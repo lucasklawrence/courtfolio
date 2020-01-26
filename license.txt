@@ -1,0 +1,7 @@
+This project is not open source.
+
+All contents of this repository — including code, graphics, SVGs, and copy — are copyright © 2025 Lucas Lawrence.
+
+This codebase is published for personal portfolio purposes only.
+
+Reuse, redistribution, or replication of any part of this repository is not permitted without prior written consent.
