@@ -6,6 +6,8 @@ import Introduction from './Introduction'
 import Projects from './Projects'
 import Employment from './Employment'
 import Verticaltabs from './Verticaltabs'
+import Timeline from './Timeline'
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -39,6 +41,9 @@ export default function CenteredGrid() {
         </Grid>
         <Grid item xs={12}>
           <Verticaltabs />
+        </Grid>
+        <Grid item xs={12}>
+          <Timeline />
         </Grid>
         <Grid item xs={6}>
            <h1 className={classes.paper}>wow</h1>
