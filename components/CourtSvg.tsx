@@ -2,11 +2,34 @@
 
 import React from 'react'
 
+import { useCallback } from 'react'
+type CourtSvgProps = {
+  onZoneClick?: (zoneId: string) => void
+  className?: string
+  zoneContent?: Record<string, React.ReactNode>
+}
+
 /**
- * Inline SVG of a basketball court with preserved styling.
- * Can be styled or layered via props or Tailwind classes.
+ * Inline SVG of a basketball court with zone interactivity.
+ * Allows content injection per zone via `zoneContent`.
  */
-export function CourtSvg({ onHalfCourtClick }: { onHalfCourtClick?: () => void }) {
+export const CourtSvg: React.FC<CourtSvgProps> = ({
+  onZoneClick,
+  className,
+  zoneContent = {},
+}) => {
+  const handleClick = useCallback(
+  (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
+    const target = e.currentTarget
+    if (!target) return
+    const zoneId = target.getAttribute('id')
+    if (zoneId && onZoneClick) {
+      onZoneClick(zoneId)
+    }
+  },
+  [onZoneClick]
+)
+
     return(
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1536.00 1024.00">
 <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
@@ -532,11 +555,6 @@ export function CourtSvg({ onHalfCourtClick }: { onHalfCourtClick?: () => void }
   M 1038.13 499.44
   L 1038.27 515.69"
 /></g>
-<g
-        onClick={onHalfCourtClick}
-        id="halfCourtDebug"
-        style={{ cursor: 'pointer' }}
-      >
 <g id="zone-51" onClick={()=>console.log('Clicked zone 51')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
   M 1038.27 515.69
   Q 1039.66 574.48 1056.96 626.24
@@ -559,7 +577,7 @@ export function CourtSvg({ onHalfCourtClick }: { onHalfCourtClick?: () => void }
   L 1283.55 623.55
   A 0.53 0.52 -0.0 0 0 1283.02 624.07
   L 1283.07 631.20"
-/></g>
+/>
 <g id="zone-52" onClick={()=>console.log('Clicked zone 52')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
   M 1283.07 631.20
   L 1283.06 634.12
@@ -2106,7 +2124,7 @@ export function CourtSvg({ onHalfCourtClick }: { onHalfCourtClick?: () => void }
   Q 444.48 577.68 444.77 577.51
   Z"
 /></g>
-<g id="zone-106" onClick={()=>console.log('Clicked zone 106')}><path fill="#894629" d="
+<g id="zone-106" onClick={() => handleClick('106')}><path fill="#894629" d="
   M 693.19 589.53
   Q 685.76 583.12 679.45 575.70
   Q 680.75 575.50 679.39 573.85
@@ -2124,8 +2142,10 @@ export function CourtSvg({ onHalfCourtClick }: { onHalfCourtClick?: () => void }
   A 0.51 0.50 58.9 0 0 693.97 588.92
   Q 693.49 589.02 693.19 589.53
   Z"
-/></g>
-<g id="zone-107" onClick={()=>console.log('Clicked zone 107')}><path fill="#894629" d="
+/>
+        {zoneContent["zone-106"]}
+</g>
+<g id="zone-107" onClick={() => handleClick('107')}><path fill="#894629" d="
   M 767.80 399.57
   A 0.76 0.76 0.0 0 1 768.60 398.78
   C 819.06 402.22 859.46 439.99 866.55 490.43
@@ -2140,7 +2160,9 @@ export function CourtSvg({ onHalfCourtClick }: { onHalfCourtClick?: () => void }
   Q 768.20 478.95 768.16 413.75
   Q 768.15 406.73 767.80 399.57
   Z"
-/></g>
+/>
+{zoneContent["zone-107"]}
+</g>
 <g id="zone-108" onClick={()=>console.log('Clicked zone 108')}><path fill="#894629" d="
   M 1153.88 399.14
   L 1153.93 614.12
