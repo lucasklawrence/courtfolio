@@ -934,7 +934,6 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 87.95 924.79
   Z"
 />
-{zoneContent["zone-78"]}
 </g>
 <g id="zone-79" onClick={()=>console.log('Clicked zone 79')}><path fill="#e5d4b9" d="
   M 87.95 924.79
@@ -1332,7 +1331,8 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 546.62 106.16 545.95 106.22
   L 755.64 106.11
   Z"
-/></g>
+/>
+</g>
 <g id="zone-81" onClick={()=>console.log('Clicked zone 81')}><path fill="#302118" d="
   M 474.20 106.17
   Q 474.22 106.43 474.66 106.52
@@ -1661,7 +1661,6 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 193.58 178.19 197.76 178.50
   Z"
 />
-{zoneContent["zone-90"]}
 </g>
 <g id="zone-91" onClick={()=>console.log('Clicked zone 91')}><path fill="#894629" d="
   M 1412.13 182.92
@@ -1782,7 +1781,6 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 1412.13 182.92
   Z"
 />
-{zoneContent["zone-91"]}
 </g>
 <g id="zone-92" onClick={()=>console.log('Clicked zone 92')}><path fill="#302118" d="
   M 101.58 178.34
@@ -2149,7 +2147,6 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 693.49 589.02 693.19 589.53
   Z"
 />
-        {zoneContent["zone-106"]}
 </g>
 <g id="zone-107" onClick={() => handleClick('107')}><path fill="#894629" d="
   M 767.80 399.57
@@ -2167,7 +2164,6 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 768.15 406.73 767.80 399.57
   Z"
 />
-{zoneContent["zone-107"]}
 </g>
 <g id="zone-108" onClick={()=>console.log('Clicked zone 108')}><path fill="#894629" d="
   M 1153.88 399.14
@@ -2390,6 +2386,10 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 1383.71 914.84
   Z"
 /></g>
+  {/* 🧠 Overlay content zones last */}
+  {Object.entries(zoneContent).map(([zoneId, content]) => (
+    <g key={zoneId}>{content}</g>
+  ))}
 </svg>
 
 
