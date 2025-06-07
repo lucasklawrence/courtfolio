@@ -933,7 +933,9 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.41 0.41 0.0 0 0 87.95 96.29
   L 87.95 924.79
   Z"
-/></g>
+/>
+{zoneContent["zone-78"]}
+</g>
 <g id="zone-79" onClick={()=>console.log('Clicked zone 79')}><path fill="#e5d4b9" d="
   M 87.95 924.79
   L 87.95 96.29
@@ -1658,7 +1660,9 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 146.37 177.87 189.50 178.16
   Q 193.58 178.19 197.76 178.50
   Z"
-/></g>
+/>
+{zoneContent["zone-90"]}
+</g>
 <g id="zone-91" onClick={()=>console.log('Clicked zone 91')}><path fill="#894629" d="
   M 1412.13 182.92
   Q 1411.93 182.86 1411.77 182.84
@@ -1777,7 +1781,9 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.77 0.77 0.0 0 1 1412.19 178.82
   L 1412.13 182.92
   Z"
-/></g>
+/>
+{zoneContent["zone-91"]}
+</g>
 <g id="zone-92" onClick={()=>console.log('Clicked zone 92')}><path fill="#302118" d="
   M 101.58 178.34
   Q 101.40 178.85 100.42 179.36

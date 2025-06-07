@@ -524,11 +524,6 @@
   M 1038.13 499.44
   L 1038.27 515.69"
 />
-<g
-        onClick={onHalfCourtClick}
-        id="halfCourtDebug"
-        style={{ cursor: 'pointer' }}
-      >
 <path stroke="#ab7e66" vector-effect="non-scaling-stroke" d="
   M 1038.27 515.69
   Q 1039.66 574.48 1056.96 626.24
@@ -625,7 +620,6 @@
   A 0.57 0.57 0.0 0 0 1411.13 183.41
   L 1411.10 387.78"
 />
-
 <path stroke="#7d371e" vector-effect="non-scaling-stroke" d="
   M 1154.99 387.93
   Q 1155.53 387.74 1155.39 387.50
@@ -692,7 +686,6 @@
   A 0.35 0.35 0.0 0 0 1038.41 515.42
   L 1038.27 515.69"
 />
- 
 <path stroke="#7d371e" vector-effect="non-scaling-stroke" d="
   M 1038.13 499.44
   Q 1038.07 500.55 1038.25 500.91
@@ -758,8 +751,6 @@
   M 679.45 575.70
   Q 685.76 583.12 693.19 589.53"
 />
-
-
 <path stroke="#ab7e66" vector-effect="non-scaling-stroke" d="
   M 693.19 589.53
   Q 720.12 611.89 755.13 614.48
@@ -803,8 +794,6 @@
   A 0.35 0.33 9.7 0 0 1163.89 613.64
   Q 1164.50 613.83 1165.66 613.71"
 />
-
-</g>
 <path stroke="#7d371e" vector-effect="non-scaling-stroke" d="
   M 1411.05 613.74
   L 1411.21 399.71
