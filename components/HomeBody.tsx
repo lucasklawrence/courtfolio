@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { CourtSvg } from './CourtSvg'
 import { useRouter } from 'next/navigation' 
+import { ReplayIntroButton } from './ReplayIntroButton'
 
 export function HomeBody() {
   const router = useRouter()
@@ -17,21 +17,15 @@ export function HomeBody() {
   }}
   zoneContent={{
     "zone-106": (
-      <foreignObject
-        x={620}
-        y={480}
-        width={150}
-        height={50}
-      >
-        <div
-          xmlns="http://www.w3.org/1999/xhtml"
-          className="text-white font-bold text-sm cursor-pointer hover:text-orange-400 transition"
-          style={{ textAlign: 'center' }}
-          onClick={() => router.push('/about')}
-        >
-          ⛹️‍♂️ About Me
-        </div>
-      </foreignObject>
+       <foreignObject x={690} y={480} width={130} height={70}>
+    <div
+      xmlns="http://www.w3.org/1999/xhtml"
+      className="bg-orange-950/70 backdrop-blur-sm text-white font-semibold text-sm px-4 py-2 rounded-lg border border-orange-500/30 shadow-sm text-center cursor-pointer hover:text-orange-300 transition"
+      onClick={() => router.push('/about')}
+    >
+      ⛹️‍♂️ About Me
+    </div>
+  </foreignObject>
     ),
     "zone-78": (
   <foreignObject x={610} y={940} width={320} height={70}>
@@ -68,8 +62,7 @@ export function HomeBody() {
       >
         <div
           xmlns="http://www.w3.org/1999/xhtml"
-          className="p-4 bg-orange-900/30 text-white text-xs font-semibold rounded-md cursor-pointer border border-orange-400/30 shadow-sm tracking-wide space-y-1"
-          onClick={() => router.push('/lineup')}
+          className="p-4 bg-orange-900/30 text-white text-xs font-semibold rounded-md border border-orange-400/30 shadow-sm tracking-wide space-y-1"
         >
           <h3 className="font-bold text-sm">🧠 Principles Lineup</h3>
           <ul className="list-disc list-inside">
@@ -101,7 +94,25 @@ export function HomeBody() {
           </ul>
         </div>
       </foreignObject>
-    )
+    ),
+    'zone-99': (
+      <foreignObject x="1250" y="880" width="180" height="50">
+        <ReplayIntroButton/>
+      </foreignObject>
+    ),
+    'zone-84': (
+  <foreignObject x="800" y="700" width="250" height="120">
+    <div
+      className="bg-orange-800/80 backdrop-blur-sm text-white p-4 rounded-lg border border-orange-400/30 shadow-md hover:scale-105 transition transform cursor-pointer"
+      onClick={() => router.push('/projects')}
+    >
+      <h3 className="text-center font-bold text-orange-300 text-sm">🎨 Projects</h3>
+      <p className="text-xs text-center mt-1 text-white/90 leading-snug">
+        Explore my plays — featuring Bars of the Day and more.
+      </p>
+    </div>
+  </foreignObject>
+),
   }}
 />
 
