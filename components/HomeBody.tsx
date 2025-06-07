@@ -19,7 +19,6 @@ export function HomeBody() {
     "zone-106": (
        <foreignObject x={690} y={480} width={130} height={70}>
     <div
-      xmlns="http://www.w3.org/1999/xhtml"
       className="bg-orange-950/70 backdrop-blur-sm text-white font-semibold text-sm px-4 py-2 rounded-lg border border-orange-500/30 shadow-sm text-center cursor-pointer hover:text-orange-300 transition"
       onClick={() => router.push('/about')}
     >
@@ -30,7 +29,6 @@ export function HomeBody() {
     "zone-78": (
   <foreignObject x={610} y={940} width={320} height={70}>
     <div
-      xmlns="http://www.w3.org/1999/xhtml"
       className="flex flex-col items-center justify-center bg-white/90 text-black rounded-xl px-4 py-2 shadow-lg text-xs font-medium space-y-1 hover:bg-orange-100 transition"
     >
       <div className="text-[10px] text-neutral-500 uppercase tracking-wide">
@@ -61,7 +59,6 @@ export function HomeBody() {
         height={500}
       >
         <div
-          xmlns="http://www.w3.org/1999/xhtml"
           className="p-4 bg-orange-900/30 text-white text-xs font-semibold rounded-md border border-orange-400/30 shadow-sm tracking-wide space-y-1"
         >
           <h3 className="font-bold text-sm">🧠 Principles Lineup</h3>

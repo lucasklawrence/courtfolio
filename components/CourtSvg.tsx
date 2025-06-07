@@ -18,12 +18,9 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   className,
   zoneContent = {},
 }) => {
-  const handleClick = useCallback(
-  (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
-    const target = e.currentTarget
-    if (!target) return
-    const zoneId = target.getAttribute('id')
-    if (zoneId && onZoneClick) {
+ const handleClick = useCallback(
+  (zoneId: string) => {
+    if (onZoneClick) {
       onZoneClick(zoneId)
     }
   },
@@ -2391,6 +2388,5 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
     <g key={zoneId}>{content}</g>
   ))}
 </svg>
-
-
 )
+}

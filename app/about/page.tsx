@@ -39,7 +39,7 @@ export default function AboutPage() {
           ),
            'zone-99': (
   <foreignObject x="1150" y="850" width="300" height="70">
-    <div xmlns="http://www.w3.org/1999/xhtml" className="flex items-center justify-center w-full h-full">
+    <div className="flex items-center justify-center w-full h-full">
       <BackToCourtButton />
     </div>
   </foreignObject>
