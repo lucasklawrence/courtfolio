@@ -7,6 +7,8 @@ import { CourtTitle } from './CourtTitle'
 import { CourtContainer } from './CourtContainer'
 import React from 'react'
 import { SafeSvgHtml } from './SafeSvgHtml'
+import { ZoneProjects } from './ZoneProjects'
+import { ZoneAbout } from './ZoneAbout'
 
 export function HomeBody() {
   const router = useRouter()
@@ -21,30 +23,7 @@ export function HomeBody() {
           }
         }}
         zoneContent={{
-          'zone-106': (
-            <foreignObject x="690" y="480" width="130" height="70">
-              <SafeSvgHtml>
-                <button
-                  onClick={() => router.push('/about')}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: 'rgba(38, 20, 4, 0.7)',
-                    color: 'white',
-                    fontWeight: 600,
-                    fontSize: '0.875rem',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '0.5rem',
-                    border: '1px solid rgba(255, 165, 0, 0.3)',
-                    textAlign: 'center',
-                    cursor: 'pointer',
-                  }}
-                >
-                  ⛹️‍♂️ About Me
-                </button>
-              </SafeSvgHtml>
-            </foreignObject>
-          ),
+          'zone-106': <ZoneAbout />,
 
           'zone-78': (
             <foreignObject x={610} y={940} width={320} height={70}>
@@ -107,54 +86,7 @@ export function HomeBody() {
               <ReplayIntroButton />
             </foreignObject>
           ),
-          'zone-84': (
-            <foreignObject x="800" y="700" width="250" height="120">
-              <SafeSvgHtml>
-                <div
-                  onClick={() => router.push('/projects')}
-                  style={{
-                    backgroundColor: 'rgba(88, 44, 13, 0.8)',
-                    backdropFilter: 'blur(4px)',
-                    color: 'white',
-                    padding: '1rem',
-                    borderRadius: '0.5rem',
-                    border: '1px solid rgba(255, 165, 0, 0.3)',
-                    boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
-                    cursor: 'pointer',
-                    transition: 'transform 0.2s ease-in-out',
-                  }}
-                  onMouseOver={e => {
-                    ;(e.currentTarget as HTMLDivElement).style.transform = 'scale(1.05)'
-                  }}
-                  onMouseOut={e => {
-                    ;(e.currentTarget as HTMLDivElement).style.transform = 'scale(1)'
-                  }}
-                >
-                  <h3
-                    style={{
-                      textAlign: 'center',
-                      fontWeight: 'bold',
-                      color: '#FDBA74',
-                      fontSize: '0.875rem',
-                    }}
-                  >
-                    🎨 Projects
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: '0.75rem',
-                      textAlign: 'center',
-                      marginTop: '0.25rem',
-                      color: 'rgba(255,255,255,0.9)',
-                      lineHeight: '1.25rem',
-                    }}
-                  >
-                    Explore my plays — featuring Bars of the Day and more.
-                  </p>
-                </div>
-              </SafeSvgHtml>
-            </foreignObject>
-          ),
+          'zone-84': <ZoneProjects />,
           'zone-50': (
             <foreignObject x="600" y="0" width="350" height="100">
               <CourtTitle title="Lucas Lawrence" subtitle="Welcome to the Court" />
