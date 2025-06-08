@@ -8,6 +8,7 @@ import { CourtContainer } from '@/components/CourtContainer'
 import { CourtZone } from '@/components/CourtZone'
 import { ZoneFantasy } from '@/components/ZoneFantasy'
 import { ZoneBars } from '@/components/ZoneBars'
+import { ZoneFantasySafari } from '@/components/ZoneFantasySafari'
 
 export default function ProjectPage() {
   return (
@@ -22,7 +23,7 @@ export default function ProjectPage() {
           ),
           'zone-91': (
             <CourtZone x={880} y={200} width={360} height={140}>
-              <ZoneFantasy />
+              <ZoneFantasySafari />
             </CourtZone>
           ),
           'zone-99': (

@@ -5,6 +5,7 @@ import { SafeSvgHtml } from '@/components/SafeSvgHtml'
 /**
  * Safari-compatible version of Fantasy Football AI zone.
  * Uses inline styles and static layout for broader compatibility.
+ * //todo: debug why not rendering on iphone...
  */
 export function ZoneFantasySafari() {
   return (
@@ -12,7 +13,6 @@ export function ZoneFantasySafari() {
       <div
         style={{
           backgroundColor: 'rgba(20, 10, 5, 0.7)',
-          backdropFilter: 'blur(4px)',
           color: 'white',
           padding: '1rem',
           borderRadius: '0.75rem',
