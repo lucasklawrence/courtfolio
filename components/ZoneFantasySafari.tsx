@@ -5,7 +5,6 @@ import { SafeSvgHtml } from '@/components/SafeSvgHtml'
 /**
  * Safari-compatible version of Fantasy Football AI zone.
  * Uses inline styles and static layout for broader compatibility.
- * //todo: debug why not rendering on iphone...
  */
 export function ZoneFantasySafari() {
   return (
