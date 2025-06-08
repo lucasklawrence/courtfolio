@@ -5,6 +5,9 @@ import { CourtTitle } from '@/components/CourtTitle'
 import { BackToCourtButton } from '@/components/BackToCourtButton'
 import { CourtContainer } from '@/components/CourtContainer'
 import React from 'react'
+import { ZoneBioCard } from '@/components/ZoneBioCard'
+import { CourtZone } from '@/components/CourtZone'
+import { ZoneCareerStats } from '@/components/ZoneCareerStats'
 
 export default function AboutPage() {
   return (
@@ -13,65 +16,16 @@ export default function AboutPage() {
         zoneContent={{
           // Player Bio Card
           'zone-106': (
-            <foreignObject x="280" y="200" width="380" height="160">
-              {React.createElement(
-                'body',
-                { xmlns: 'http://www.w3.org/1999/xhtml' },
-                <div
-                  style={{
-                    backgroundColor: 'rgba(88, 44, 13, 0.8)',
-                    color: 'white',
-                    padding: '1rem',
-                    borderRadius: '0.5rem',
-                    border: '1px solid rgba(255, 165, 0, 0.3)',
-                    fontSize: '0.875rem',
-                    textAlign: 'center',
-                    fontFamily: 'sans-serif',
-                  }}
-                >
-                  <h2
-                    style={{
-                      fontSize: '1.125rem',
-                      fontWeight: 'bold',
-                      color: '#FDBA74',
-                      margin: 0,
-                    }}
-                  >
-                    Lucas Lawrence
-                  </h2>
-                  <p style={{ fontSize: '0.875rem', margin: '0.5rem 0 0 0' }}>
-                    🏀 Senior Software Engineer & Technical Playmaker
-                  </p>
-                  <p style={{ fontSize: '0.75rem', lineHeight: '1.25rem', marginTop: '0.5rem' }}>
-                    I build scalable systems, design clean APIs, and coach full-stack teams. From
-                    court vision to execution.
-                  </p>
-                </div>
-              )}
-            </foreignObject>
+            <CourtZone x={280} y={200} width={380} height={160}>
+              <ZoneBioCard />
+            </CourtZone>
           ),
 
           // Stats Overview
           'zone-107': (
-            <foreignObject x="800" y="200" width="280" height="160">
-              <div className="bg-orange-900/70 text-white p-4 rounded-lg border border-orange-400/30 shadow-sm space-y-1 text-xs">
-                <h3 className="text-sm font-bold text-orange-300 text-center">📊 Career Stats</h3>
-                <ul className="space-y-1">
-                  <li>
-                    <strong>Years on Court:</strong> 10+
-                  </li>
-                  <li>
-                    <strong>Patents:</strong> 1 (Low Latency Packet Sync)
-                  </li>
-                  <li>
-                    <strong>Roles:</strong> Senior Eng, Team Lead
-                  </li>
-                  <li>
-                    <strong>Specialties:</strong> Java, Spring, Kubernetes, DDD
-                  </li>
-                </ul>
-              </div>
-            </foreignObject>
+            <CourtZone x={800} y={200} width={280} height={160}>
+              <ZoneCareerStats />
+            </CourtZone>
           ),
 
           // Back Button

@@ -6,6 +6,7 @@ import { CourtTitle } from '@/components/CourtTitle'
 import { BackToCourtButton } from '@/components/BackToCourtButton'
 import React from 'react'
 import { CourtContainer } from '@/components/CourtContainer'
+import { CourtZone } from '@/components/CourtZone'
 
 export default function ContactPage() {
   return (
@@ -14,7 +15,7 @@ export default function ContactPage() {
       <CourtSvg
         zoneContent={{
           'zone-80': (
-            <foreignObject x="580" y="420" width="380" height="220">
+            <CourtZone x={580} y={420} width={380} height={220}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -64,7 +65,7 @@ export default function ContactPage() {
                   </li>
                 </ul>
               </motion.div>
-            </foreignObject>
+            </CourtZone>
           ),
           'zone-99': (
             <foreignObject x="1150" y="850" width="300" height="70">

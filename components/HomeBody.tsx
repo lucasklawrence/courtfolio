@@ -9,6 +9,7 @@ import React from 'react'
 import { SafeSvgHtml } from './SafeSvgHtml'
 import { ZoneProjects } from './ZoneProjects'
 import { ZoneAbout } from './ZoneAbout'
+import { CourtZone } from './CourtZone'
 
 export function HomeBody() {
   const router = useRouter()
@@ -23,7 +24,11 @@ export function HomeBody() {
           }
         }}
         zoneContent={{
-          'zone-106': <ZoneAbout />,
+          'zone-106': (
+            <CourtZone x={690} y={480} width={130} height={70}>
+              <ZoneAbout />
+            </CourtZone>
+          ),
 
           'zone-78': (
             <foreignObject x={610} y={940} width={320} height={70}>
@@ -86,7 +91,11 @@ export function HomeBody() {
               <ReplayIntroButton />
             </foreignObject>
           ),
-          'zone-84': <ZoneProjects />,
+          'zone-84': (
+            <CourtZone x={800} y={700} width={250} height={120}>
+              <ZoneProjects />
+            </CourtZone>
+          ),
           'zone-50': (
             <foreignObject x="600" y="0" width="350" height="100">
               <CourtTitle title="Lucas Lawrence" subtitle="Welcome to the Court" />
