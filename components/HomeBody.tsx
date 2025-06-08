@@ -26,8 +26,20 @@ export function HomeBody() {
                 'div',
                 { xmlns: 'http://www.w3.org/1999/xhtml' },
                 <button
-                  className="w-full h-full bg-orange-950/70 backdrop-blur-sm text-white font-semibold text-sm px-4 py-2 rounded-lg border border-orange-500/30 shadow-sm text-center cursor-pointer hover:text-orange-300 transition"
                   onClick={() => router.push('/about')}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(38, 20, 4, 0.7)',
+                    color: 'white',
+                    fontWeight: 600,
+                    fontSize: '0.875rem',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '0.5rem',
+                    border: '1px solid rgba(255, 165, 0, 0.3)',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                  }}
                 >
                   ⛹️‍♂️ About Me
                 </button>
