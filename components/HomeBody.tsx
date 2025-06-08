@@ -3,13 +3,15 @@
 import { CourtSvg } from './CourtSvg'
 import { useRouter } from 'next/navigation' 
 import { ReplayIntroButton } from './ReplayIntroButton'
+import { CourtTitle } from './CourtTitle'
 
 export function HomeBody() {
   const router = useRouter()
 
   return (
-    <div className="relative w-full h-screen">
+<div className="relative w-full h-[100dvh] max-h-[100dvh]">
  <CourtSvg
+  className="w-full h-full"
   onZoneClick={(zoneId) => {
     if (zoneId === '106' || zoneId === '107') {
       router.push('/about')
@@ -110,22 +112,14 @@ export function HomeBody() {
     </div>
   </foreignObject>
 ),
+'zone-50': (
+  <foreignObject x="600" y="0" width="350" height="100">
+    <CourtTitle title="Lucas Lawrence" subtitle="Welcome to the Court" />
+  </foreignObject>
+),
+
   }}
 />
-
-
-  {/* Position above Zone 78/79 */}
-<div
-  className="absolute text-white text-4xl font-extrabold text-center"
-  style={{
-    top: '6%', // pulled slightly higher for visibility
-    left: '50%',
-    transform: 'translateX(-50%)',
-  }}
->
-  Lucas Lawrence <br />
-  <span className="text-orange-400 text-2xl font-mono">Welcome to the Court</span>
-</div>
 </div>
   )
 }

@@ -18,17 +18,24 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   className,
   zoneContent = {},
 }) => {
- const handleClick = useCallback(
-  (zoneId: string) => {
-    if (onZoneClick) {
-      onZoneClick(zoneId)
-    }
-  },
-  [onZoneClick]
-)
+  const handleClick = useCallback(
+    (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
+      const target = e.currentTarget
+      const zoneId = target.getAttribute('id')
+      if (zoneId && onZoneClick) {
+        onZoneClick(zoneId)
+      }
+    },
+    [onZoneClick]
+  )
 
-    return(
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1536.00 1024.00">
+  return (
+    <svg
+      viewBox="0 0 1536 1024"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+      className={className ?? 'w-full h-full'}
+    >
 <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
 <g id="zone-0" onClick={()=>console.log('Clicked zone 0')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
   M 87.95 924.79

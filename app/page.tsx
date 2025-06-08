@@ -31,7 +31,6 @@ export default function HomePage() {
           transition={{ duration: 1 }}
           className="relative min-h-screen"
         >
-          <div className="absolute inset-0 z-0 bg-[url('/court.svg')] bg-cover opacity-5 pointer-events-none" />
           <HomeBody />
         </motion.div>
       )}
