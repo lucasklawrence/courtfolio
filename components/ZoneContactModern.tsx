@@ -27,19 +27,30 @@ export function ZoneContactModern() {
         <ul className="text-xs space-y-1 list-none pl-0">
           <li>
             <strong>Email:</strong>{' '}
-            <a href="mailto:lucasklawrence@gmail.com" className="text-orange-300 underline hover:text-orange-200">
+            <a
+              href="mailto:lucasklawrence@gmail.com"
+              className="text-orange-300 underline hover:text-orange-200"
+            >
               lucasklawrence@gmail.com
             </a>
           </li>
           <li>
             <strong>LinkedIn:</strong>{' '}
-            <a href="https://linkedin.com/in/lucasklawrence" target="_blank" className="text-orange-300 underline hover:text-orange-200">
+            <a
+              href="https://linkedin.com/in/lucasklawrence"
+              target="_blank"
+              className="text-orange-300 underline hover:text-orange-200"
+            >
               /lucasklawrence
             </a>
           </li>
           <li>
             <strong>Resume:</strong>{' '}
-            <a href="/LucasLawrenceResume.pdf" target="_blank" className="text-orange-300 underline hover:text-orange-200">
+            <a
+              href="/LucasLawrenceResume.pdf"
+              target="_blank"
+              className="text-orange-300 underline hover:text-orange-200"
+            >
               View PDF
             </a>
           </li>
