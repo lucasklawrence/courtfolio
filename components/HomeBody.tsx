@@ -105,7 +105,7 @@ export function HomeBody() {
             <CourtZone x={1120} y={60} width={220} height={100}>
               <Link
                 href="/banners"
-                className="bg-yellow-500 text-black font-semibold px-4 py-2 rounded-md shadow hover:bg-yellow-400 transition"
+                className="bg-[#42210b] text-yellow-300 font-semibold px-4 py-2 rounded-md shadow hover:bg-[#5a3015] transition"
               >
                 🏟️ View the Rafters
               </Link>
