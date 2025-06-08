@@ -23,7 +23,7 @@ export function HomeBody() {
           'zone-106': (
             <foreignObject x="690" y="480" width="130" height="70">
               {React.createElement(
-                'body',
+                'div',
                 { xmlns: 'http://www.w3.org/1999/xhtml' },
                 <button
                   className="w-full h-full bg-orange-950/70 backdrop-blur-sm text-white font-semibold text-sm px-4 py-2 rounded-lg border border-orange-500/30 shadow-sm text-center cursor-pointer hover:text-orange-300 transition"
@@ -37,7 +37,7 @@ export function HomeBody() {
           'zone-78': (
             <foreignObject x={610} y={940} width={320} height={70}>
               {React.createElement(
-                'body',
+                'div',
                 { xmlns: 'http://www.w3.org/1999/xhtml' },
                 <div className="flex flex-col items-center justify-center bg-white/90 text-black rounded-xl px-4 py-2 shadow-lg text-xs font-medium space-y-1 hover:bg-orange-100 transition">
                   <div className="text-[10px] text-neutral-500 uppercase tracking-wide">
