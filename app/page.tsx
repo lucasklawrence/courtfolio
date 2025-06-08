@@ -29,7 +29,7 @@ export default function HomePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="relative min-h-screen"
+           className="w-screen h-screen overflow-hidden"
         >
           <HomeBody />
         </motion.div>

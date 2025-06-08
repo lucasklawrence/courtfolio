@@ -30,14 +30,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   )
 
   return (
-    <svg
-      viewBox="0 0 1536 1024"
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      preserveAspectRatio="xMidYMid meet"
-      className={className ?? 'w-full h-full'}
-    >
+<svg
+  viewBox="0 0 1536 1024"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid meet"
+  className="w-full h-full object-contain"
+  >
+
 <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
 <g id="zone-0" onClick={()=>console.log('Clicked zone 0')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
   M 87.95 924.79
