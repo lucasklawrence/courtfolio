@@ -14,10 +14,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Lucas Lawrence | Court Site',
-    template: '%s | Lucas Lawrence',
-  },
+  title: 'Lucas Lawrence | Court Site',
   description: 'Digital home court of Lucas Lawrence',
 }
 
