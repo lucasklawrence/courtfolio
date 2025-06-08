@@ -15,10 +15,8 @@ type CourtSvgProps = {
  */
 export const CourtSvg: React.FC<CourtSvgProps> = ({ onZoneClick, className, zoneContent = {} }) => {
   const handleClick = useCallback(
-    (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
-      const target = e.currentTarget
-      const zoneId = target.getAttribute('id')
-      if (zoneId && onZoneClick) {
+    (zoneId: string) => {
+      if (onZoneClick) {
         onZoneClick(zoneId)
       }
     },
