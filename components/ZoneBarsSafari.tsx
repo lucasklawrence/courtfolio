@@ -1,6 +1,5 @@
 'use client'
 
-import { CourtZone } from '@/components/CourtZone'
 import { SafeSvgHtml } from '@/components/SafeSvgHtml'
 
 /**

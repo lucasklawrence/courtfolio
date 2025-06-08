@@ -7,8 +7,9 @@ import React from 'react'
 import { CourtContainer } from '@/components/CourtContainer'
 import { CourtZone } from '@/components/CourtZone'
 import { ZoneFantasy } from '@/components/ZoneFantasy'
+import { ZoneBars } from '@/components/ZoneBars'
 
-export default function ContactPage() {
+export default function ProjectPage() {
   return (
     <CourtContainer>
       {/* 🏀 Court Background */}
@@ -16,23 +17,7 @@ export default function ContactPage() {
         zoneContent={{
           'zone-90': (
             <CourtZone x={280} y={200} width={360} height={140}>
-              <a
-                href="https://barsoftheday.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-orange-900/70 backdrop-blur-sm text-white p-4 rounded-xl border border-orange-500/30 shadow-md hover:bg-orange-800/80 hover:scale-105 transition"
-              >
-                <h3 className="text-lg font-bold text-orange-300 text-center">
-                  🎤 Bars of the Day
-                </h3>
-                <p className="text-xs text-center mt-1 leading-snug text-white/90">
-                  A daily drop of lyrical greatness — curated hip-hop bars with clean typography and
-                  smooth flow.
-                </p>
-                <p className="text-xs text-center mt-1 italic text-orange-400">
-                  Built with Supabase, Next.js, Tailwind, and care.
-                </p>
-              </a>
+              <ZoneBars />
             </CourtZone>
           ),
           'zone-91': (
