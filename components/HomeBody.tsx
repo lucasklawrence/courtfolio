@@ -6,6 +6,7 @@ import { ReplayIntroButton } from './ReplayIntroButton'
 import { CourtTitle } from './CourtTitle'
 import { CourtContainer } from './CourtContainer'
 import React from 'react'
+import { SafeSvgHtml } from './SafeSvgHtml'
 
 export function HomeBody() {
   const router = useRouter()
@@ -22,9 +23,7 @@ export function HomeBody() {
         zoneContent={{
           'zone-106': (
             <foreignObject x="690" y="480" width="130" height="70">
-              {React.createElement(
-                'div',
-                { xmlns: 'http://www.w3.org/1999/xhtml' },
+              <SafeSvgHtml>
                 <button
                   onClick={() => router.push('/about')}
                   style={{
@@ -43,9 +42,10 @@ export function HomeBody() {
                 >
                   ⛹️‍♂️ About Me
                 </button>
-              )}
+              </SafeSvgHtml>
             </foreignObject>
           ),
+
           'zone-78': (
             <foreignObject x={610} y={940} width={320} height={70}>
               {React.createElement(
@@ -109,15 +109,50 @@ export function HomeBody() {
           ),
           'zone-84': (
             <foreignObject x="800" y="700" width="250" height="120">
-              <div
-                className="bg-orange-800/80 backdrop-blur-sm text-white p-4 rounded-lg border border-orange-400/30 shadow-md hover:scale-105 transition transform cursor-pointer"
-                onClick={() => router.push('/projects')}
-              >
-                <h3 className="text-center font-bold text-orange-300 text-sm">🎨 Projects</h3>
-                <p className="text-xs text-center mt-1 text-white/90 leading-snug">
-                  Explore my plays — featuring Bars of the Day and more.
-                </p>
-              </div>
+              <SafeSvgHtml>
+                <div
+                  onClick={() => router.push('/projects')}
+                  style={{
+                    backgroundColor: 'rgba(88, 44, 13, 0.8)',
+                    backdropFilter: 'blur(4px)',
+                    color: 'white',
+                    padding: '1rem',
+                    borderRadius: '0.5rem',
+                    border: '1px solid rgba(255, 165, 0, 0.3)',
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s ease-in-out',
+                  }}
+                  onMouseOver={e => {
+                    ;(e.currentTarget as HTMLDivElement).style.transform = 'scale(1.05)'
+                  }}
+                  onMouseOut={e => {
+                    ;(e.currentTarget as HTMLDivElement).style.transform = 'scale(1)'
+                  }}
+                >
+                  <h3
+                    style={{
+                      textAlign: 'center',
+                      fontWeight: 'bold',
+                      color: '#FDBA74',
+                      fontSize: '0.875rem',
+                    }}
+                  >
+                    🎨 Projects
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: '0.75rem',
+                      textAlign: 'center',
+                      marginTop: '0.25rem',
+                      color: 'rgba(255,255,255,0.9)',
+                      lineHeight: '1.25rem',
+                    }}
+                  >
+                    Explore my plays — featuring Bars of the Day and more.
+                  </p>
+                </div>
+              </SafeSvgHtml>
             </foreignObject>
           ),
           'zone-50': (
