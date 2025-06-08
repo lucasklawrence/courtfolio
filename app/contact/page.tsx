@@ -5,10 +5,11 @@ import { motion } from 'framer-motion'
 import { CourtTitle } from '@/components/CourtTitle'
 import { BackToCourtButton } from '@/components/BackToCourtButton'
 import React from 'react'
+import { CourtContainer } from '@/components/CourtContainer'
 
 export default function ContactPage() {
   return (
-    <React.Fragment>
+    <CourtContainer>
       {/* 🏀 Court Background */}
       <CourtSvg
         zoneContent={{
@@ -58,14 +59,19 @@ export default function ContactPage() {
                 <BackToCourtButton />
               </div>
             </foreignObject>
-          )
+          ),
+          // Court Title
+            'zone-50': (
+                <foreignObject x="600" y="0" width="350" height="100">
+                <CourtTitle
+                    title="Lucas Lawrence"
+                    subtitle="Draft Board"
+                />
+                </foreignObject>
+            )
           
         }}
       />
-      <CourtTitle
-        title="Lucas Lawrence"
-        subtitle="Scouting Inquiry"
-        />
-    </React.Fragment>
+    </CourtContainer>
   )
 }

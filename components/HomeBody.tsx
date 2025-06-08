@@ -4,12 +4,13 @@ import { CourtSvg } from './CourtSvg'
 import { useRouter } from 'next/navigation' 
 import { ReplayIntroButton } from './ReplayIntroButton'
 import { CourtTitle } from './CourtTitle'
+import { CourtContainer } from './CourtContainer'
 
 export function HomeBody() {
   const router = useRouter()
 
   return (
-<div className="relative w-full h-[100dvh] max-h-[100dvh]">
+    <CourtContainer>
  <CourtSvg
   className="w-full h-full"
   onZoneClick={(zoneId) => {
@@ -120,6 +121,6 @@ export function HomeBody() {
 
   }}
 />
-</div>
+</CourtContainer>
   )
 }

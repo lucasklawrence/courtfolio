@@ -3,11 +3,12 @@
 import { CourtSvg } from '@/components/CourtSvg'
 import { CourtTitle } from '@/components/CourtTitle'
 import { BackToCourtButton } from '@/components/BackToCourtButton'
+import { CourtContainer } from '@/components/CourtContainer'
 import React from 'react'
 
 export default function AboutPage() {
   return (
-    <React.Fragment>
+    <CourtContainer>
       <CourtSvg
         zoneContent={{
           // Player Bio Card
@@ -37,20 +38,27 @@ export default function AboutPage() {
               </div>
             </foreignObject>
           ),
-           'zone-99': (
-  <foreignObject x="1150" y="850" width="300" height="70">
-    <div className="flex items-center justify-center w-full h-full">
-      <BackToCourtButton />
-    </div>
-  </foreignObject>
-)
 
+          // Back Button
+          'zone-99': (
+            <foreignObject x="1150" y="850" width="300" height="70">
+              <div className="flex items-center justify-center w-full h-full">
+                <BackToCourtButton />
+              </div>
+            </foreignObject>
+          ),
+
+          // Court Title
+          'zone-50': (
+            <foreignObject x="600" y="0" width="350" height="100">
+              <CourtTitle
+                title="Lucas Lawrence"
+                subtitle="About the Player"
+              />
+            </foreignObject>
+          )
         }}
       />
-      <CourtTitle
-        title="Lucas Lawrence"
-        subtitle="About the Player"
-      />
-      </React.Fragment>
+    </CourtContainer>
   )
 }
