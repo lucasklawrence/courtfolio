@@ -13,11 +13,7 @@ type CourtSvgProps = {
  * Inline SVG of a basketball court with zone interactivity.
  * Allows content injection per zone via `zoneContent`.
  */
-export const CourtSvg: React.FC<CourtSvgProps> = ({
-  onZoneClick,
-  className,
-  zoneContent = {},
-}) => {
+export const CourtSvg: React.FC<CourtSvgProps> = ({ onZoneClick, className, zoneContent = {} }) => {
   const handleClick = useCallback(
     (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
       const target = e.currentTarget
@@ -30,15 +26,18 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   )
 
   return (
-<svg
-  viewBox="0 0 1536 1024"
-  xmlns="http://www.w3.org/2000/svg"
-  preserveAspectRatio="xMidYMid meet"
-  className="w-full h-full object-contain"
-  >
-
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<g id="zone-0" onClick={()=>console.log('Clicked zone 0')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
+    <svg
+      viewBox="0 0 1536 1024"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+      className="w-full h-full object-contain"
+    >
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <g id="zone-0" onClick={() => console.log('Clicked zone 0')}>
+          <path
+            stroke="#8b7b69"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 87.95 924.79
   A 0.41 0.41 0.0 0 0 88.36 925.20
   L 1422.75 925.20
@@ -48,28 +47,53 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 88.36 95.88
   A 0.41 0.41 0.0 0 0 87.95 96.29
   L 87.95 924.79"
-/></g>
-<g id="zone-1" onClick={()=>console.log('Clicked zone 1')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-1" onClick={() => console.log('Clicked zone 1')}>
+          <path
+            stroke="#8b7b69"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 545.95 106.22
   L 528.29 106.11"
-/></g>
-<g id="zone-2" onClick={()=>console.log('Clicked zone 2')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-2" onClick={() => console.log('Clicked zone 2')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 528.29 106.11
   L 474.20 106.17"
-/></g>
-<g id="zone-3" onClick={()=>console.log('Clicked zone 3')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-3" onClick={() => console.log('Clicked zone 3')}>
+          <path
+            stroke="#8b7b69"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 474.20 106.17
   L 132.31 106.15"
-/></g>
-<g id="zone-4" onClick={()=>console.log('Clicked zone 4')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-4" onClick={() => console.log('Clicked zone 4')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 132.31 106.15
   L 99.68 106.16
   A 0.59 0.59 0.0 0 0 99.09 106.75
   L 99.09 167.27
   A 0.50 0.49 -90.0 0 0 99.58 167.77
   L 173.30 167.93"
-/></g>
-<g id="zone-5" onClick={()=>console.log('Clicked zone 5')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-5" onClick={() => console.log('Clicked zone 5')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 173.30 167.93
   Q 193.08 167.79 209.01 169.65
   Q 219.53 170.88 236.60 173.74
@@ -81,28 +105,53 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 440.64 703.66 412.85 736.12
   Q 379.37 775.22 339.50 801.01
   Q 270.56 845.62 186.26 845.95"
-/></g>
-<g id="zone-6" onClick={()=>console.log('Clicked zone 6')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-6" onClick={() => console.log('Clicked zone 6')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 186.26 845.95
   L 99.59 846.16
   A 0.40 0.39 0.0 0 0 99.19 846.55
   L 99.30 896.37"
-/></g>
-<g id="zone-7" onClick={()=>console.log('Clicked zone 7')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-7" onClick={() => console.log('Clicked zone 7')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 99.30 896.37
   L 99.09 914.25
   A 0.57 0.52 -67.3 0 0 99.22 914.61
   Q 99.51 914.94 99.82 914.89"
-/></g>
-<g id="zone-8" onClick={()=>console.log('Clicked zone 8')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-8" onClick={() => console.log('Clicked zone 8')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 99.82 914.89
   L 105.04 914.85"
-/></g>
-<g id="zone-9" onClick={()=>console.log('Clicked zone 9')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-9" onClick={() => console.log('Clicked zone 9')}>
+          <path
+            stroke="#8b7b69"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 105.04 914.85
   L 727.28 914.86"
-/></g>
-<g id="zone-10" onClick={()=>console.log('Clicked zone 10')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-10" onClick={() => console.log('Clicked zone 10')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 727.28 914.86
   L 755.30 914.91
   A 0.34 0.34 0.0 0 0 755.64 914.57
@@ -114,12 +163,22 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 732.59 389.17 755.14 387.89
   A 0.45 0.45 0.0 0 0 755.57 387.44
   L 755.64 106.11"
-/></g>
-<g id="zone-11" onClick={()=>console.log('Clicked zone 11')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-11" onClick={() => console.log('Clicked zone 11')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 755.64 106.11
   L 545.95 106.22"
-/></g>
-<g id="zone-12" onClick={()=>console.log('Clicked zone 12')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-12" onClick={() => console.log('Clicked zone 12')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 755.64 106.11
   Q 753.91 109.29 753.91 113.88
   Q 753.70 291.92 753.97 381.78
@@ -139,18 +198,33 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 753.87 913.62
   A 0.38 0.38 0.0 0 1 753.50 914.00
   L 729.62 914.51"
-/></g>
-<g id="zone-13" onClick={()=>console.log('Clicked zone 13')}><path stroke="#5d3421" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-13" onClick={() => console.log('Clicked zone 13')}>
+          <path
+            stroke="#5d3421"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 729.62 914.51
   L 103.42 914.11
   A 0.26 0.26 0.0 0 0 103.35 914.62
   Q 103.94 914.78 105.04 914.85"
-/></g>
-<g id="zone-14" onClick={()=>console.log('Clicked zone 14')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-14" onClick={() => console.log('Clicked zone 14')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 99.82 914.89
   L 99.30 896.37"
-/></g>
-<g id="zone-15" onClick={()=>console.log('Clicked zone 15')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-15" onClick={() => console.log('Clicked zone 15')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 186.26 845.95
   Q 187.03 847.12 187.75 847.11
   Q 208.70 847.04 222.00 845.00
@@ -187,8 +261,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 169.14 167.64
   A 0.17 0.15 0.3 0 0 169.30 167.78
   L 173.30 167.93"
-/></g>
-<g id="zone-16" onClick={()=>console.log('Clicked zone 16')}><path stroke="#5d3421" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-16" onClick={() => console.log('Clicked zone 16')}>
+          <path
+            stroke="#5d3421"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 132.31 106.15
   L 128.44 106.36
   A 0.17 0.16 -3.5 0 0 128.28 106.53
@@ -198,8 +277,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 474.59 106.75 474.70 106.64
   A 0.08 0.07 27.4 0 0 474.66 106.52
   Q 474.22 106.43 474.20 106.17"
-/></g>
-<g id="zone-17" onClick={()=>console.log('Clicked zone 17')}><path stroke="#5d3421" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-17" onClick={() => console.log('Clicked zone 17')}>
+          <path
+            stroke="#5d3421"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 528.29 106.11
   L 525.91 106.23
   A 0.24 0.24 0.0 0 0 525.69 106.49
@@ -208,47 +292,87 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 546.77 106.87
   A 0.26 0.26 0.0 0 0 546.93 106.40
   Q 546.62 106.16 545.95 106.22"
-/></g>
-<g id="zone-18" onClick={()=>console.log('Clicked zone 18')}><path stroke="#502515" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-18" onClick={() => console.log('Clicked zone 18')}>
+          <path
+            stroke="#502515"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 727.28 914.86
   L 729.62 914.51"
-/></g>
-<g id="zone-19" onClick={()=>console.log('Clicked zone 19')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-19" onClick={() => console.log('Clicked zone 19')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 768.11 914.91
   L 799.54 914.85"
-/></g>
-<g id="zone-20" onClick={()=>console.log('Clicked zone 20')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-20" onClick={() => console.log('Clicked zone 20')}>
+          <path
+            stroke="#8b7b69"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 799.54 914.85
   L 1383.71 914.84"
-/></g>
-<g id="zone-21" onClick={()=>console.log('Clicked zone 21')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-21" onClick={() => console.log('Clicked zone 21')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1383.71 914.84
   L 1411.88 914.92
   A 0.52 0.51 -90.0 0 0 1412.39 914.40
   L 1412.39 846.49
   A 0.42 0.41 -90.0 0 0 1411.98 846.07
   L 1334.46 846.02"
-/></g>
-<g id="zone-22" onClick={()=>console.log('Clicked zone 22')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-22" onClick={() => console.log('Clicked zone 22')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1334.46 846.02
   C 1305.52 845.89 1275.77 841.78 1248.38 832.60
   Q 1199.47 816.20 1158.25 784.25
   C 1121.18 755.52 1089.09 717.43 1067.32 675.21
   Q 1042.78 627.63 1034.10 572.73
   Q 1026.26 523.12 1029.41 474.98"
-/></g>
-<g id="zone-23" onClick={()=>console.log('Clicked zone 23')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-23" onClick={() => console.log('Clicked zone 23')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1029.41 474.98
   L 1030.10 467.30"
-/></g>
-<g id="zone-24" onClick={()=>console.log('Clicked zone 24')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-24" onClick={() => console.log('Clicked zone 24')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1030.10 467.30
   Q 1032.61 440.39 1039.03 413.00
   Q 1061.36 317.69 1131.63 250.39
   Q 1168.34 215.24 1214.56 194.09
   Q 1258.63 173.93 1307.41 168.76"
-/></g>
-<g id="zone-25" onClick={()=>console.log('Clicked zone 25')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-25" onClick={() => console.log('Clicked zone 25')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1307.41 168.76
   Q 1310.94 168.77 1314.64 168.56
   Q 1319.46 168.29 1321.87 168.26
@@ -257,24 +381,49 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 1412.15 106.60
   A 0.50 0.50 0.0 0 0 1411.64 106.10
   L 1391.94 106.43"
-/></g>
-<g id="zone-26" onClick={()=>console.log('Clicked zone 26')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-26" onClick={() => console.log('Clicked zone 26')}>
+          <path
+            stroke="#8b7b69"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1391.94 106.43
   L 1340.80 106.04"
-/></g>
-<g id="zone-27" onClick={()=>console.log('Clicked zone 27')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-27" onClick={() => console.log('Clicked zone 27')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1340.80 106.04
   L 1117.18 106.17"
-/></g>
-<g id="zone-28" onClick={()=>console.log('Clicked zone 28')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-28" onClick={() => console.log('Clicked zone 28')}>
+          <path
+            stroke="#8b7b69"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1117.18 106.17
   L 879.61 106.12"
-/></g>
-<g id="zone-29" onClick={()=>console.log('Clicked zone 29')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-29" onClick={() => console.log('Clicked zone 29')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 879.61 106.12
   L 768.16 106.01"
-/></g>
-<g id="zone-30" onClick={()=>console.log('Clicked zone 30')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-30" onClick={() => console.log('Clicked zone 30')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 768.16 106.01
   Q 767.48 105.89 766.83 106.14
   A 0.55 0.53 -10.3 0 0 766.47 106.64
@@ -287,8 +436,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 766.41 914.47
   A 0.53 0.53 0.0 0 0 766.98 915.00
   L 768.11 914.91"
-/></g>
-<g id="zone-31" onClick={()=>console.log('Clicked zone 31')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-31" onClick={() => console.log('Clicked zone 31')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 768.16 106.01
   L 767.79 386.09
   A 0.92 0.91 2.0 0 0 768.65 387.00
@@ -307,21 +461,36 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 771.01 624.96 768.99 624.92
   A 1.06 1.05 -89.2 0 0 767.91 625.98
   L 768.11 914.91"
-/></g>
-<g id="zone-32" onClick={()=>console.log('Clicked zone 32')}><path stroke="#5d3421" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-32" onClick={() => console.log('Clicked zone 32')}>
+          <path
+            stroke="#5d3421"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 879.61 106.12
   Q 879.68 107.12 883.02 107.07
   Q 893.51 106.92 904.00 106.92
   Q 1009.69 106.93 1115.38 106.78
   Q 1120.37 106.78 1117.18 106.17"
-/></g>
-<g id="zone-33" onClick={()=>console.log('Clicked zone 33')}><path stroke="#5d3421" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-33" onClick={() => console.log('Clicked zone 33')}>
+          <path
+            stroke="#5d3421"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1340.80 106.04
   Q 1339.49 106.22 1339.42 106.34
   A 0.33 0.33 0.0 0 0 1339.71 106.84
   L 1391.94 106.43"
-/></g>
-<g id="zone-34" onClick={()=>console.log('Clicked zone 34')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-34" onClick={() => console.log('Clicked zone 34')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1307.41 168.76
   Q 1293.80 168.78 1275.43 172.85
   Q 1230.69 182.78 1194.38 202.82
@@ -338,8 +507,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 1028.80 466.02 1029.34 468.29
   A 0.25 0.25 0.0 0 0 1029.82 468.30
   L 1030.10 467.30"
-/></g>
-<g id="zone-35" onClick={()=>console.log('Clicked zone 35')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-35" onClick={() => console.log('Clicked zone 35')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1029.41 474.98
   Q 1029.44 473.80 1029.05 473.77
   A 0.51 0.51 0.0 0 0 1028.49 474.24
@@ -360,24 +534,39 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 1326.31 847.47 1334.38 846.71
   Q 1334.58 846.69 1334.69 846.54
   Q 1334.87 846.30 1334.46 846.02"
-/></g>
-<g id="zone-36" onClick={()=>console.log('Clicked zone 36')}><path stroke="#5d3421" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-36" onClick={() => console.log('Clicked zone 36')}>
+          <path
+            stroke="#5d3421"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1383.71 914.84
   L 1385.25 914.54
   A 0.23 0.23 0.0 0 0 1385.20 914.08
   L 795.98 914.08
   A 0.22 0.22 0.0 0 0 795.96 914.51
   L 799.54 914.85"
-/></g>
-<g id="zone-37" onClick={()=>console.log('Clicked zone 37')}><path stroke="#8b7b69" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-37" onClick={() => console.log('Clicked zone 37')}>
+          <path
+            stroke="#8b7b69"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 101.58 178.34
   Q 100.43 178.09 99.45 178.30
   A 0.61 0.59 84.1 0 0 98.98 178.89
   L 98.98 387.19
   A 0.40 0.39 -90.0 0 0 99.37 387.59
   L 119.33 387.58"
-/></g>
-<g id="zone-38" onClick={()=>console.log('Clicked zone 38')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-38" onClick={() => console.log('Clicked zone 38')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 119.33 387.58
   L 183.29 387.55
   A 0.46 0.45 90.0 0 0 183.74 387.09
@@ -401,8 +590,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.53 0.53 0.0 0 1 301.22 376.75
   Q 304.04 376.76 307.50 376.66
   Q 307.97 376.64 308.15 377.57"
-/></g>
-<g id="zone-39" onClick={()=>console.log('Clicked zone 39')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-39" onClick={() => console.log('Clicked zone 39')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 308.15 377.57
   L 308.10 386.84
   A 0.54 0.54 0.0 0 0 308.64 387.38
@@ -413,8 +607,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 422.75 615.32 384.96 621.93
   Q 375.17 623.64 353.40 623.78
   Q 330.84 623.92 308.18 623.77"
-/></g>
-<g id="zone-40" onClick={()=>console.log('Clicked zone 40')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-40" onClick={() => console.log('Clicked zone 40')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 308.18 623.77
   L 308.05 634.25
   A 1.00 0.99 -89.4 0 1 307.06 635.23
@@ -441,8 +640,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 99.60 623.64
   A 0.49 0.49 0.0 0 0 99.11 624.13
   L 99.07 835.15"
-/></g>
-<g id="zone-41" onClick={()=>console.log('Clicked zone 41')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-41" onClick={() => console.log('Clicked zone 41')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 99.07 835.15
   Q 98.85 835.93 99.17 836.30
   A 0.24 0.22 67.9 0 0 99.34 836.38
@@ -450,12 +654,22 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 195.91 836.45 207.58 835.37
   Q 226.86 833.58 241.47 830.65
   C 290.01 820.93 335.20 797.25 371.78 764.25"
-/></g>
-<g id="zone-42" onClick={()=>console.log('Clicked zone 42')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-42" onClick={() => console.log('Clicked zone 42')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 371.78 764.25
   L 377.76 759.03"
-/></g>
-<g id="zone-43" onClick={()=>console.log('Clicked zone 43')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-43" onClick={() => console.log('Clicked zone 43')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 377.76 759.03
   C 419.08 720.63 450.98 671.23 467.22 616.99
   Q 480.72 571.90 482.85 526.74
@@ -464,14 +678,24 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 469.23 374.45 433.76 301.19 375.12 250.11
   C 338.68 218.36 294.68 195.12 246.99 185.32
   Q 223.46 180.48 197.76 178.50"
-/></g>
-<g id="zone-44" onClick={()=>console.log('Clicked zone 44')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-44" onClick={() => console.log('Clicked zone 44')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 197.76 178.50
   Q 193.58 178.19 189.50 178.16
   Q 146.37 177.87 103.25 177.86
   Q 101.88 177.85 101.58 178.34"
-/></g>
-<g id="zone-45" onClick={()=>console.log('Clicked zone 45')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-45" onClick={() => console.log('Clicked zone 45')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 197.76 178.50
   Q 196.82 178.70 196.33 179.13
   A 0.26 0.26 0.0 0 0 196.49 179.58
@@ -505,16 +729,26 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 309.13 377.37
   A 0.58 0.58 0.0 0 0 308.20 376.89
   Q 308.07 376.97 308.15 377.57"
-/></g>
-<g id="zone-46" onClick={()=>console.log('Clicked zone 46')}><path stroke="#5d3421" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-46" onClick={() => console.log('Clicked zone 46')}>
+          <path
+            stroke="#5d3421"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 119.33 387.58
   Q 110.27 386.36 101.10 386.84
   A 0.96 0.95 88.3 0 1 100.09 385.88
   L 100.09 179.90
   A 0.61 0.61 0.0 0 1 100.42 179.36
   Q 101.40 178.85 101.58 178.34"
-/></g>
-<g id="zone-47" onClick={()=>console.log('Clicked zone 47')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-47" onClick={() => console.log('Clicked zone 47')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 377.76 759.03
   Q 377.18 758.92 377.16 758.41
   A 0.41 0.38 -24.4 0 1 377.29 758.10
@@ -535,8 +769,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 310.30 624.95 309.73 625.21 309.04 625.36
   A 0.61 0.60 -9.6 0 1 308.31 624.85
   L 308.18 623.77"
-/></g>
-<g id="zone-48" onClick={()=>console.log('Clicked zone 48')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-48" onClick={() => console.log('Clicked zone 48')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 371.78 764.25
   Q 366.48 767.12 361.87 771.31
   Q 361.60 771.56 361.23 772.19
@@ -549,18 +788,33 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 204.90 834.89 197.50 835.05
   C 172.59 835.59 143.40 834.95 113.36 835.40
   Q 106.24 835.50 99.07 835.15"
-/></g>
-<g id="zone-49" onClick={()=>console.log('Clicked zone 49')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-49" onClick={() => console.log('Clicked zone 49')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1312.07 178.13
   C 1247.89 183.83 1188.71 210.83 1141.18 254.45
   C 1094.68 297.12 1063.18 352.88 1048.62 414.36
   Q 1038.52 457.03 1038.13 499.44"
-/></g>
-<g id="zone-50" onClick={()=>console.log('Clicked zone 50')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-50" onClick={() => console.log('Clicked zone 50')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1038.13 499.44
   L 1038.27 515.69"
-/></g>
-<g id="zone-51" onClick={()=>console.log('Clicked zone 51')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-51" onClick={() => console.log('Clicked zone 51')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1038.27 515.69
   Q 1039.66 574.48 1056.96 626.24
   Q 1082.47 702.56 1144.23 759.79
@@ -582,16 +836,25 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 1283.55 623.55
   A 0.53 0.52 -0.0 0 0 1283.02 624.07
   L 1283.07 631.20"
-/>
-<g id="zone-52" onClick={()=>console.log('Clicked zone 52')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+          <g id="zone-52" onClick={() => console.log('Clicked zone 52')}>
+            <path
+              stroke="#b78d71"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1283.07 631.20
   L 1283.06 634.12
   A 0.97 0.96 -89.7 0 1 1282.10 635.08
   L 1275.78 635.08
   A 0.91 0.91 0.0 0 1 1274.87 634.17
   L 1274.83 625.47"
-/></g>
-<g id="zone-53" onClick={()=>console.log('Clicked zone 53')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-53" onClick={() => console.log('Clicked zone 53')}>
+            <path
+              stroke="#ab7e66"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1274.83 625.47
   Q 1274.91 624.65 1274.75 624.07
   A 0.70 0.69 -7.7 0 0 1274.08 623.56
@@ -607,8 +870,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 1138.02 623.97 1115.04 618.36 1096.02 605.93
   C 1034.35 565.64 1025.25 477.29 1075.68 423.82
   Q 1106.98 390.63 1154.99 387.93"
-/></g>
-<g id="zone-54" onClick={()=>console.log('Clicked zone 54')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-54" onClick={() => console.log('Clicked zone 54')}>
+            <path
+              stroke="#b78d71"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1154.99 387.93
   L 1212.79 387.33
   A 0.52 0.51 -90.0 0 0 1213.30 386.81
@@ -635,29 +903,49 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 1338.94 387.27
   A 0.59 0.59 0.0 0 0 1339.53 387.86
   L 1411.10 387.78"
-/></g>
-<g id="zone-55" onClick={()=>console.log('Clicked zone 55')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-55" onClick={() => console.log('Clicked zone 55')}>
+            <path
+              stroke="#ab7e66"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1411.10 387.78
   L 1411.84 387.72
   A 0.64 0.64 0.0 0 0 1412.39 386.89
   L 1412.13 386.09
   A 0.94 0.81 40.6 0 1 1412.09 385.83
   L 1412.13 182.92"
-/></g>
-<g id="zone-56" onClick={()=>console.log('Clicked zone 56')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-56" onClick={() => console.log('Clicked zone 56')}>
+            <path
+              stroke="#b78d71"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1412.13 182.92
   L 1412.19 178.82
   A 0.77 0.77 0.0 0 0 1411.42 178.04
   L 1312.07 178.13"
-/></g>
-<g id="zone-57" onClick={()=>console.log('Clicked zone 57')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-57" onClick={() => console.log('Clicked zone 57')}>
+            <path
+              stroke="#7d371e"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1412.13 182.92
   Q 1411.93 182.86 1411.77 182.84
   A 0.57 0.57 0.0 0 0 1411.13 183.41
   L 1411.10 387.78"
-/></g>
+            />
+          </g>
 
-<g id="zone-58" onClick={()=>console.log('Clicked zone 58')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          <g id="zone-58" onClick={() => console.log('Clicked zone 58')}>
+            <path
+              stroke="#7d371e"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1154.99 387.93
   Q 1155.53 387.74 1155.39 387.50
   Q 1154.99 386.79 1154.30 386.83
@@ -678,8 +966,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.82 0.81 89.6 0 1 1224.61 624.83
   Q 1246.09 624.57 1268.30 624.75
   Q 1271.99 624.78 1274.83 625.47"
-/></g>
-<g id="zone-59" onClick={()=>console.log('Clicked zone 59')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-59" onClick={() => console.log('Clicked zone 59')}>
+            <path
+              stroke="#7d371e"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1283.07 631.20
   L 1283.30 633.76
   A 0.29 0.29 0.0 0 0 1283.88 633.76
@@ -722,9 +1015,14 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 1040.36 522.17 1039.06 515.52
   A 0.35 0.35 0.0 0 0 1038.41 515.42
   L 1038.27 515.69"
-/></g>
- 
-<g id="zone-60" onClick={()=>console.log('Clicked zone 60')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+
+          <g id="zone-60" onClick={() => console.log('Clicked zone 60')}>
+            <path
+              stroke="#7d371e"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1038.13 499.44
   Q 1038.07 500.55 1038.25 500.91
   A 0.46 0.46 0.0 0 0 1039.12 500.73
@@ -744,8 +1042,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 1305.43 179.78 1308.02 179.80 1310.72 179.60
   A 2.99 2.96 31.2 0 0 1311.55 179.40
   Q 1313.39 178.65 1312.07 178.13"
-/></g>
-<g id="zone-61" onClick={()=>console.log('Clicked zone 61')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-61" onClick={() => console.log('Clicked zone 61')}>
+            <path
+              stroke="#ab7e66"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 766.78 397.35
   A 0.32 0.32 0.0 0 0 766.44 397.67
   L 766.44 614.29
@@ -754,12 +1057,22 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 838.19 587.21 853.36 561.40
   C 877.83 519.77 872.82 466.70 839.71 431.29
   Q 810.94 400.53 766.78 397.35"
-/></g>
-<g id="zone-62" onClick={()=>console.log('Clicked zone 62')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-62" onClick={() => console.log('Clicked zone 62')}>
+            <path
+              stroke="#b78d71"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 432.56 589.71
   Q 439.13 584.14 444.77 577.51"
-/></g>
-<g id="zone-63" onClick={()=>console.log('Clicked zone 63')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-63" onClick={() => console.log('Clicked zone 63')}>
+            <path
+              stroke="#ab7e66"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 444.77 577.51
   Q 458.06 561.64 464.54 542.04
   C 487.38 472.89 443.25 401.65 369.32 397.64
@@ -767,8 +1080,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 368.70 613.45
   A 0.71 0.70 88.5 0 0 369.44 614.16
   Q 405.44 612.34 432.56 589.71"
-/></g>
-<g id="zone-64" onClick={()=>console.log('Clicked zone 64')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-64" onClick={() => console.log('Clicked zone 64')}>
+            <path
+              stroke="#7d371e"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 444.77 577.51
   Q 444.48 577.68 444.30 577.63
   A 0.49 0.48 26.8 0 1 444.04 576.85
@@ -784,14 +1102,23 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 405.80 610.81 431.73 588.99
   Q 432.19 588.60 432.55 589.09
   Q 432.69 589.28 432.56 589.71"
-/></g>
-<g id="zone-65" onClick={()=>console.log('Clicked zone 65')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-65" onClick={() => console.log('Clicked zone 65')}>
+            <path
+              stroke="#b78d71"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 679.45 575.70
   Q 685.76 583.12 693.19 589.53"
-/></g>
+            />
+          </g>
 
-
-<g id="zone-66" onClick={()=>console.log('Clicked zone 66')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          <g id="zone-66" onClick={() => console.log('Clicked zone 66')}>
+            <path
+              stroke="#ab7e66"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 693.19 589.53
   Q 720.12 611.89 755.13 614.48
   A 0.45 0.44 2.4 0 0 755.62 614.04
@@ -800,8 +1127,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 720.49 398.52 689.45 418.25 671.15 447.21
   Q 658.14 467.80 654.80 492.35
   C 650.76 522.02 660.17 552.98 679.45 575.70"
-/></g>
-<g id="zone-67" onClick={()=>console.log('Clicked zone 67')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-67" onClick={() => console.log('Clicked zone 67')}>
+            <path
+              stroke="#7d371e"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 693.19 589.53
   Q 693.49 589.02 693.97 588.92
   A 0.51 0.50 58.9 0 1 694.40 589.03
@@ -817,12 +1149,22 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 656.07 512.65 655.88 519.46 656.47 522.88
   C 659.64 541.46 667.38 559.25 679.39 573.85
   Q 680.75 575.50 679.45 575.70"
-/></g>
-<g id="zone-68" onClick={()=>console.log('Clicked zone 68')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-68" onClick={() => console.log('Clicked zone 68')}>
+            <path
+              stroke="#b78d71"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1165.66 613.71
   L 1411.05 613.74"
-/></g>
-<g id="zone-69" onClick={()=>console.log('Clicked zone 69')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+          <g id="zone-69" onClick={() => console.log('Clicked zone 69')}>
+            <path
+              stroke="#ab7e66"
+              vectorEffect="non-scaling-stroke"
+              d="
   M 1411.05 613.74
   Q 1411.23 613.79 1411.72 613.63
   A 0.67 0.66 -9.1 0 0 1412.18 613.00
@@ -833,10 +1175,14 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 1163.65 613.32
   A 0.35 0.33 9.7 0 0 1163.89 613.64
   Q 1164.50 613.83 1165.66 613.71"
-/></g>
-
-</g>
-<g id="zone-70" onClick={()=>console.log('Clicked zone 70')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+            />
+          </g>
+        </g>
+        <g id="zone-70" onClick={() => console.log('Clicked zone 70')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1411.05 613.74
   L 1411.21 399.71
   A 1.00 0.99 -0.0 0 0 1410.21 398.72
@@ -845,14 +1191,24 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 1164.94 611.07
   A 1.74 1.53 41.4 0 0 1164.99 611.47
   L 1165.66 613.71"
-/></g>
-<g id="zone-71" onClick={()=>console.log('Clicked zone 71')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-71" onClick={() => console.log('Clicked zone 71')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 107.20 613.62
   L 357.91 613.89
   A 0.97 0.96 90.0 0 0 358.87 612.92
   L 358.75 399.07"
-/></g>
-<g id="zone-72" onClick={()=>console.log('Clicked zone 72')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-72" onClick={() => console.log('Clicked zone 72')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 358.75 399.07
   Q 358.92 398.65 358.46 397.99
   A 0.45 0.43 -17.2 0 0 358.10 397.81
@@ -861,8 +1217,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 99.11 612.88
   A 0.50 0.49 -88.8 0 0 99.58 613.38
   L 107.20 613.62"
-/></g>
-<g id="zone-73" onClick={()=>console.log('Clicked zone 73')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-73" onClick={() => console.log('Clicked zone 73')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 358.75 399.07
   Q 311.02 398.53 263.25 398.53
   Q 195.93 398.53 126.25 398.72
@@ -874,20 +1235,35 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 107.68 612.64
   A 0.38 0.38 0.0 0 1 107.82 613.38
   L 107.20 613.62"
-/></g>
-<g id="zone-74" onClick={()=>console.log('Clicked zone 74')}><path stroke="#b78d71" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-74" onClick={() => console.log('Clicked zone 74')}>
+          <path
+            stroke="#b78d71"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1153.93 614.12
   L 1153.88 399.14"
-/></g>
-<g id="zone-75" onClick={()=>console.log('Clicked zone 75')}><path stroke="#ab7e66" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-75" onClick={() => console.log('Clicked zone 75')}>
+          <path
+            stroke="#ab7e66"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1153.88 399.14
   Q 1153.93 398.64 1153.83 398.28
   A 0.74 0.73 80.9 0 0 1153.10 397.75
   C 1102.77 399.93 1063.99 437.10 1054.59 485.68
   C 1045.60 532.09 1066.93 581.14 1109.72 603.03
   Q 1129.77 613.28 1153.93 614.12"
-/></g>
-<g id="zone-76" onClick={()=>console.log('Clicked zone 76')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-76" onClick={() => console.log('Clicked zone 76')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 1153.88 399.14
   Q 1147.22 398.90 1139.84 400.33
   Q 1097.17 408.54 1073.13 443.62
@@ -904,8 +1280,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 1151.60 613.27 1152.76 613.02
   Q 1153.45 612.88 1153.66 613.18
   Q 1153.88 613.49 1153.93 614.12"
-/></g>
-<g id="zone-77" onClick={()=>console.log('Clicked zone 77')}><path stroke="#7d371e" vectorEffect="non-scaling-stroke" d="
+          />
+        </g>
+        <g id="zone-77" onClick={() => console.log('Clicked zone 77')}>
+          <path
+            stroke="#7d371e"
+            vectorEffect="non-scaling-stroke"
+            d="
   M 767.80 399.57
   Q 768.15 406.73 768.16 413.75
   Q 768.20 478.95 768.15 603.78
@@ -919,9 +1300,13 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 867.03 493.89 866.55 490.43
   C 859.46 439.99 819.06 402.22 768.60 398.78
   A 0.76 0.76 0.0 0 0 767.80 399.57"
-/></g>
-</g>
-<g id="zone-78" onClick={()=>console.log('Clicked zone 78')}><path fill="#302118" d="
+          />
+        </g>
+      </g>
+      <g id="zone-78" onClick={() => console.log('Clicked zone 78')}>
+        <path
+          fill="#302118"
+          d="
   M 1536.00 0.00
   L 1536.00 1024.00
   L 0.00 1024.00
@@ -938,9 +1323,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.41 0.41 0.0 0 0 87.95 96.29
   L 87.95 924.79
   Z"
-/>
-</g>
-<g id="zone-79" onClick={()=>console.log('Clicked zone 79')}><path fill="#e5d4b9" d="
+        />
+      </g>
+      <g id="zone-79" onClick={() => console.log('Clicked zone 79')}>
+        <path
+          fill="#e5d4b9"
+          d="
   M 87.95 924.79
   L 87.95 96.29
   A 0.41 0.41 0.0 0 1 88.36 95.88
@@ -1249,8 +1637,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 1045.60 532.09 1066.93 581.14 1109.72 603.03
   Q 1129.77 613.28 1153.93 614.12
   Z"
-/></g>
-<g id="zone-80" onClick={()=>console.log('Clicked zone 80')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-80" onClick={() => console.log('Clicked zone 80')}>
+        <path
+          fill="#894629"
+          d="
   M 755.64 106.11
   Q 753.91 109.29 753.91 113.88
   Q 753.70 291.92 753.97 381.78
@@ -1336,9 +1728,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 546.62 106.16 545.95 106.22
   L 755.64 106.11
   Z"
-/>
-</g>
-<g id="zone-81" onClick={()=>console.log('Clicked zone 81')}><path fill="#302118" d="
+        />
+      </g>
+      <g id="zone-81" onClick={() => console.log('Clicked zone 81')}>
+        <path
+          fill="#302118"
+          d="
   M 474.20 106.17
   Q 474.22 106.43 474.66 106.52
   A 0.08 0.07 27.4 0 1 474.70 106.64
@@ -1350,8 +1745,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 132.31 106.15
   L 474.20 106.17
   Z"
-/></g>
-<g id="zone-82" onClick={()=>console.log('Clicked zone 82')}><path fill="#302118" d="
+        />
+      </g>
+      <g id="zone-82" onClick={() => console.log('Clicked zone 82')}>
+        <path
+          fill="#302118"
+          d="
   M 545.95 106.22
   Q 546.62 106.16 546.93 106.40
   A 0.26 0.26 0.0 0 1 546.77 106.87
@@ -1362,8 +1761,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 528.29 106.11
   L 545.95 106.22
   Z"
-/></g>
-<g id="zone-83" onClick={()=>console.log('Clicked zone 83')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-83" onClick={() => console.log('Clicked zone 83')}>
+        <path
+          fill="#702812"
+          d="
   M 768.16 106.01
   L 767.79 386.09
   A 0.92 0.91 2.0 0 0 768.65 387.00
@@ -1394,8 +1797,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.55 0.53 -10.3 0 1 766.83 106.14
   Q 767.48 105.89 768.16 106.01
   Z"
-/></g>
-<g id="zone-84" onClick={()=>console.log('Clicked zone 84')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-84" onClick={() => console.log('Clicked zone 84')}>
+        <path
+          fill="#894629"
+          d="
   M 879.61 106.12
   Q 879.68 107.12 883.02 107.07
   Q 893.51 106.92 904.00 106.92
@@ -1477,8 +1884,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   L 768.16 106.01
   L 879.61 106.12
   Z"
-/></g>
-<g id="zone-85" onClick={()=>console.log('Clicked zone 85')}><path fill="#302118" d="
+        />
+      </g>
+      <g id="zone-85" onClick={() => console.log('Clicked zone 85')}>
+        <path
+          fill="#302118"
+          d="
   M 1117.18 106.17
   Q 1120.37 106.78 1115.38 106.78
   Q 1009.69 106.93 904.00 106.92
@@ -1486,16 +1897,24 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 879.68 107.12 879.61 106.12
   L 1117.18 106.17
   Z"
-/></g>
-<g id="zone-86" onClick={()=>console.log('Clicked zone 86')}><path fill="#302118" d="
+        />
+      </g>
+      <g id="zone-86" onClick={() => console.log('Clicked zone 86')}>
+        <path
+          fill="#302118"
+          d="
   M 1391.94 106.43
   L 1339.71 106.84
   A 0.33 0.33 0.0 0 1 1339.42 106.34
   Q 1339.49 106.22 1340.80 106.04
   L 1391.94 106.43
   Z"
-/></g>
-<g id="zone-87" onClick={()=>console.log('Clicked zone 87')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-87" onClick={() => console.log('Clicked zone 87')}>
+        <path
+          fill="#702812"
+          d="
   M 755.64 106.11
   L 755.57 387.44
   A 0.45 0.45 0.0 0 1 755.14 387.89
@@ -1527,8 +1946,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 753.70 291.92 753.91 113.88
   Q 753.91 109.29 755.64 106.11
   Z"
-/></g>
-<g id="zone-88" onClick={()=>console.log('Clicked zone 88')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-88" onClick={() => console.log('Clicked zone 88')}>
+        <path
+          fill="#702812"
+          d="
   M 186.26 845.95
   Q 270.56 845.62 339.50 801.01
   Q 379.37 775.22 412.85 736.12
@@ -1576,8 +1999,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 208.70 847.04 187.75 847.11
   Q 187.03 847.12 186.26 845.95
   Z"
-/></g>
-<g id="zone-89" onClick={()=>console.log('Clicked zone 89')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-89" onClick={() => console.log('Clicked zone 89')}>
+        <path
+          fill="#702812"
+          d="
   M 1307.41 168.76
   Q 1258.63 173.93 1214.56 194.09
   Q 1168.34 215.24 1131.63 250.39
@@ -1599,8 +2026,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 1230.69 182.78 1275.43 172.85
   Q 1293.80 168.78 1307.41 168.76
   Z"
-/></g>
-<g id="zone-90" onClick={()=>console.log('Clicked zone 90')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-90" onClick={() => console.log('Clicked zone 90')}>
+        <path
+          fill="#894629"
+          d="
   M 197.76 178.50
   Q 196.82 178.70 196.33 179.13
   A 0.26 0.26 0.0 0 0 196.49 179.58
@@ -1665,9 +2096,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 146.37 177.87 189.50 178.16
   Q 193.58 178.19 197.76 178.50
   Z"
-/>
-</g>
-<g id="zone-91" onClick={()=>console.log('Clicked zone 91')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-91" onClick={() => console.log('Clicked zone 91')}>
+        <path
+          fill="#894629"
+          d="
   M 1412.13 182.92
   Q 1411.93 182.86 1411.77 182.84
   A 0.57 0.57 0.0 0 0 1411.13 183.41
@@ -1785,9 +2219,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.77 0.77 0.0 0 1 1412.19 178.82
   L 1412.13 182.92
   Z"
-/>
-</g>
-<g id="zone-92" onClick={()=>console.log('Clicked zone 92')}><path fill="#302118" d="
+        />
+      </g>
+      <g id="zone-92" onClick={() => console.log('Clicked zone 92')}>
+        <path
+          fill="#302118"
+          d="
   M 101.58 178.34
   Q 101.40 178.85 100.42 179.36
   A 0.61 0.61 0.0 0 0 100.09 179.90
@@ -1800,8 +2237,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.61 0.59 84.1 0 1 99.45 178.30
   Q 100.43 178.09 101.58 178.34
   Z"
-/></g>
-<g id="zone-93" onClick={()=>console.log('Clicked zone 93')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-93" onClick={() => console.log('Clicked zone 93')}>
+        <path
+          fill="#702812"
+          d="
   M 1312.07 178.13
   Q 1313.39 178.65 1311.55 179.40
   A 2.99 2.96 31.2 0 1 1310.72 179.60
@@ -1825,8 +2266,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 1063.18 352.88 1094.68 297.12 1141.18 254.45
   C 1188.71 210.83 1247.89 183.83 1312.07 178.13
   Z"
-/></g>
-<g id="zone-94" onClick={()=>console.log('Clicked zone 94')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-94" onClick={() => console.log('Clicked zone 94')}>
+        <path
+          fill="#702812"
+          d="
   M 377.76 759.03
   Q 377.18 758.92 377.16 758.41
   A 0.41 0.38 -24.4 0 1 377.29 758.10
@@ -1896,8 +2341,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 480.72 571.90 467.22 616.99
   C 450.98 671.23 419.08 720.63 377.76 759.03
   Z"
-/></g>
-<g id="zone-95" onClick={()=>console.log('Clicked zone 95')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-95" onClick={() => console.log('Clicked zone 95')}>
+        <path
+          fill="#702812"
+          d="
   M 1412.13 182.92
   L 1412.09 385.83
   A 0.94 0.81 40.6 0 0 1412.13 386.09
@@ -1908,8 +2357,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.57 0.57 0.0 0 1 1411.77 182.84
   Q 1411.93 182.86 1412.13 182.92
   Z"
-/></g>
-<g id="zone-96" onClick={()=>console.log('Clicked zone 96')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-96" onClick={() => console.log('Clicked zone 96')}>
+        <path
+          fill="#702812"
+          d="
   M 1154.99 387.93
   Q 1106.98 390.63 1075.68 423.82
   C 1025.25 477.29 1034.35 565.64 1096.02 605.93
@@ -1945,8 +2398,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 1154.99 386.79 1155.39 387.50
   Q 1155.53 387.74 1154.99 387.93
   Z"
-/></g>
-<g id="zone-97" onClick={()=>console.log('Clicked zone 97')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-97" onClick={() => console.log('Clicked zone 97')}>
+        <path
+          fill="#702812"
+          d="
   M 766.78 397.35
   Q 810.94 400.53 839.71 431.29
   C 872.82 466.70 877.83 519.77 853.36 561.40
@@ -1970,8 +2427,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 859.46 439.99 819.06 402.22 768.60 398.78
   A 0.76 0.76 0.0 0 0 767.80 399.57
   Z"
-/></g>
-<g id="zone-98" onClick={()=>console.log('Clicked zone 98')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-98" onClick={() => console.log('Clicked zone 98')}>
+        <path
+          fill="#702812"
+          d="
   M 444.77 577.51
   Q 444.48 577.68 444.30 577.63
   A 0.49 0.48 26.8 0 1 444.04 576.85
@@ -1994,8 +2455,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   C 443.25 401.65 487.38 472.89 464.54 542.04
   Q 458.06 561.64 444.77 577.51
   Z"
-/></g>
-<g id="zone-99" onClick={()=>console.log('Clicked zone 99')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-99" onClick={() => console.log('Clicked zone 99')}>
+        <path
+          fill="#702812"
+          d="
   M 693.19 589.53
   Q 693.49 589.02 693.97 588.92
   A 0.51 0.50 58.9 0 1 694.40 589.03
@@ -2019,8 +2484,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.45 0.44 2.4 0 1 755.13 614.48
   Q 720.12 611.89 693.19 589.53
   Z"
-/></g>
-<g id="zone-100" onClick={()=>console.log('Clicked zone 100')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-100" onClick={() => console.log('Clicked zone 100')}>
+        <path
+          fill="#702812"
+          d="
   M 1411.05 613.74
   L 1411.21 399.71
   A 1.00 0.99 -0.0 0 0 1410.21 398.72
@@ -2039,8 +2508,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.67 0.66 -9.1 0 1 1411.72 613.63
   Q 1411.23 613.79 1411.05 613.74
   Z"
-/></g>
-<g id="zone-101" onClick={()=>console.log('Clicked zone 101')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-101" onClick={() => console.log('Clicked zone 101')}>
+        <path
+          fill="#702812"
+          d="
   M 358.75 399.07
   Q 311.02 398.53 263.25 398.53
   Q 195.93 398.53 126.25 398.72
@@ -2060,8 +2533,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.45 0.43 -17.2 0 1 358.46 397.99
   Q 358.92 398.65 358.75 399.07
   Z"
-/></g>
-<g id="zone-102" onClick={()=>console.log('Clicked zone 102')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-102" onClick={() => console.log('Clicked zone 102')}>
+        <path
+          fill="#702812"
+          d="
   M 1153.88 399.14
   Q 1147.22 398.90 1139.84 400.33
   Q 1097.17 408.54 1073.13 443.62
@@ -2084,8 +2561,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.74 0.73 80.9 0 1 1153.83 398.28
   Q 1153.93 398.64 1153.88 399.14
   Z"
-/></g>
-<g id="zone-103" onClick={()=>console.log('Clicked zone 103')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-103" onClick={() => console.log('Clicked zone 103')}>
+        <path
+          fill="#894629"
+          d="
   M 358.75 399.07
   L 358.87 612.92
   A 0.97 0.96 90.0 0 1 357.91 613.89
@@ -2101,8 +2582,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 195.93 398.53 263.25 398.53
   Q 311.02 398.53 358.75 399.07
   Z"
-/></g>
-<g id="zone-104" onClick={()=>console.log('Clicked zone 104')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-104" onClick={() => console.log('Clicked zone 104')}>
+        <path
+          fill="#894629"
+          d="
   M 1411.05 613.74
   L 1165.66 613.71
   L 1164.99 611.47
@@ -2113,8 +2598,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 1.00 0.99 -0.0 0 1 1411.21 399.71
   L 1411.05 613.74
   Z"
-/></g>
-<g id="zone-105" onClick={()=>console.log('Clicked zone 105')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-105" onClick={() => console.log('Clicked zone 105')}>
+        <path
+          fill="#894629"
+          d="
   M 444.77 577.51
   Q 439.13 584.14 432.56 589.71
   Q 432.69 589.28 432.55 589.09
@@ -2132,8 +2621,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.49 0.48 26.8 0 0 444.30 577.63
   Q 444.48 577.68 444.77 577.51
   Z"
-/></g>
-<g id="zone-106" onClick={() => handleClick('106')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-106" onClick={() => handleClick('106')}>
+        <path
+          fill="#894629"
+          d="
   M 693.19 589.53
   Q 685.76 583.12 679.45 575.70
   Q 680.75 575.50 679.39 573.85
@@ -2151,9 +2644,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.51 0.50 58.9 0 0 693.97 588.92
   Q 693.49 589.02 693.19 589.53
   Z"
-/>
-</g>
-<g id="zone-107" onClick={() => handleClick('107')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-107" onClick={() => handleClick('107')}>
+        <path
+          fill="#894629"
+          d="
   M 767.80 399.57
   A 0.76 0.76 0.0 0 1 768.60 398.78
   C 819.06 402.22 859.46 439.99 866.55 490.43
@@ -2168,9 +2664,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 768.20 478.95 768.16 413.75
   Q 768.15 406.73 767.80 399.57
   Z"
-/>
-</g>
-<g id="zone-108" onClick={()=>console.log('Clicked zone 108')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-108" onClick={() => console.log('Clicked zone 108')}>
+        <path
+          fill="#894629"
+          d="
   M 1153.88 399.14
   L 1153.93 614.12
   Q 1153.88 613.49 1153.66 613.18
@@ -2189,8 +2688,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 1097.17 408.54 1139.84 400.33
   Q 1147.22 398.90 1153.88 399.14
   Z"
-/></g>
-<g id="zone-109" onClick={()=>console.log('Clicked zone 109')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-109" onClick={() => console.log('Clicked zone 109')}>
+        <path
+          fill="#702812"
+          d="
   M 1029.41 474.98
   Q 1026.26 523.12 1034.10 572.73
   Q 1042.78 627.63 1067.32 675.21
@@ -2217,8 +2720,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.51 0.51 0.0 0 1 1029.05 473.77
   Q 1029.44 473.80 1029.41 474.98
   Z"
-/></g>
-<g id="zone-110" onClick={()=>console.log('Clicked zone 110')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-110" onClick={() => console.log('Clicked zone 110')}>
+        <path
+          fill="#702812"
+          d="
   M 1283.07 631.20
   L 1283.02 624.07
   A 0.53 0.52 -0.0 0 1 1283.55 623.55
@@ -2282,8 +2789,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.29 0.29 0.0 0 1 1283.30 633.76
   L 1283.07 631.20
   Z"
-/></g>
-<g id="zone-111" onClick={()=>console.log('Clicked zone 111')}><path fill="#894629" d="
+        />
+      </g>
+      <g id="zone-111" onClick={() => console.log('Clicked zone 111')}>
+        <path
+          fill="#894629"
+          d="
   M 377.76 759.03
   L 371.78 764.25
   Q 366.48 767.12 361.87 771.31
@@ -2342,8 +2853,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.41 0.38 -24.4 0 0 377.16 758.41
   Q 377.18 758.92 377.76 759.03
   Z"
-/></g>
-<g id="zone-112" onClick={()=>console.log('Clicked zone 112')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-112" onClick={() => console.log('Clicked zone 112')}>
+        <path
+          fill="#702812"
+          d="
   M 371.78 764.25
   C 335.20 797.25 290.01 820.93 241.47 830.65
   Q 226.86 833.58 207.58 835.37
@@ -2363,16 +2878,24 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   Q 361.60 771.56 361.87 771.31
   Q 366.48 767.12 371.78 764.25
   Z"
-/></g>
-<g id="zone-113" onClick={()=>console.log('Clicked zone 113')}><path fill="#702812" d="
+        />
+      </g>
+      <g id="zone-113" onClick={() => console.log('Clicked zone 113')}>
+        <path
+          fill="#702812"
+          d="
   M 99.82 914.89
   Q 99.51 914.94 99.22 914.61
   A 0.57 0.52 -67.3 0 1 99.09 914.25
   L 99.30 896.37
   L 99.82 914.89
   Z"
-/></g>
-<g id="zone-114" onClick={()=>console.log('Clicked zone 114')}><path fill="#302118" d="
+        />
+      </g>
+      <g id="zone-114" onClick={() => console.log('Clicked zone 114')}>
+        <path
+          fill="#302118"
+          d="
   M 729.62 914.51
   L 727.28 914.86
   L 105.04 914.85
@@ -2380,8 +2903,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.26 0.26 0.0 0 1 103.42 914.11
   L 729.62 914.51
   Z"
-/></g>
-<g id="zone-115" onClick={()=>console.log('Clicked zone 115')}><path fill="#302118" d="
+        />
+      </g>
+      <g id="zone-115" onClick={() => console.log('Clicked zone 115')}>
+        <path
+          fill="#302118"
+          d="
   M 1383.71 914.84
   L 799.54 914.85
   L 795.96 914.51
@@ -2390,11 +2917,12 @@ export const CourtSvg: React.FC<CourtSvgProps> = ({
   A 0.23 0.23 0.0 0 1 1385.25 914.54
   L 1383.71 914.84
   Z"
-/></g>
-  {/* 🧠 Overlay content zones last */}
-  {Object.entries(zoneContent).map(([zoneId, content]) => (
-    <g key={zoneId}>{content}</g>
-  ))}
-</svg>
-)
+        />
+      </g>
+      {/* 🧠 Overlay content zones last */}
+      {Object.entries(zoneContent).map(([zoneId, content]) => (
+        <g key={zoneId}>{content}</g>
+      ))}
+    </svg>
+  )
 }

@@ -11,20 +11,18 @@ export function HalfCourtAbout() {
         <CourtSvg />
       </div>
 
-<Link
-  href="/"
-  className="absolute top-6 right-6 px-4 py-2 text-sm font-medium bg-black text-white rounded-full hover:bg-orange-500 transition z-20"
->
-  ⛹️ Exit About
-</Link>
+      <Link
+        href="/"
+        className="absolute top-6 right-6 px-4 py-2 text-sm font-medium bg-black text-white rounded-full hover:bg-orange-500 transition z-20"
+      >
+        ⛹️ Exit About
+      </Link>
 
       {/* Foreground content */}
       <div className="relative z-10 flex flex-col items-center justify-center px-6 py-20 text-center space-y-10">
         <div className="space-y-2">
           <h1 className="text-4xl md:text-5xl font-bold">Lucas Lawrence</h1>
-          <p className="text-lg text-orange-600 font-medium">
-            Writing code with court vision.
-          </p>
+          <p className="text-lg text-orange-600 font-medium">Writing code with court vision.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl text-center mt-10">
@@ -50,10 +48,16 @@ export function HalfCourtAbout() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-center gap-4 mt-10">
-          <Link href="/projects" className="px-6 py-3 bg-black text-white rounded-full hover:bg-orange-500 transition">
+          <Link
+            href="/projects"
+            className="px-6 py-3 bg-black text-white rounded-full hover:bg-orange-500 transition"
+          >
             💻 Projects
           </Link>
-          <Link href="/contact" className="px-6 py-3 border border-black text-black rounded-full hover:bg-black hover:text-white transition">
+          <Link
+            href="/contact"
+            className="px-6 py-3 border border-black text-black rounded-full hover:bg-black hover:text-white transition"
+          >
             📫 Contact
           </Link>
         </div>
@@ -61,4 +65,3 @@ export function HalfCourtAbout() {
     </main>
   )
 }
-

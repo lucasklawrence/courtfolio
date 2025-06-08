@@ -10,9 +10,7 @@ export const CourtTitle: React.FC<{
   subtitle: string
 }> = ({ title, subtitle }) => {
   return (
-    <div
-      className="flex flex-col items-center justify-center text-center w-full h-full text-white"
-    >
+    <div className="flex flex-col items-center justify-center text-center w-full h-full text-white">
       <h1 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-extrabold leading-tight">
         {title}
       </h1>
