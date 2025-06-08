@@ -26,13 +26,23 @@ export default function AboutPage() {
                     border: '1px solid rgba(255, 165, 0, 0.3)',
                     fontSize: '0.875rem',
                     textAlign: 'center',
+                    fontFamily: 'sans-serif',
                   }}
                 >
-                  <h2 style={{ fontSize: '1.125rem', fontWeight: 'bold', color: '#FDBA74' }}>
+                  <h2
+                    style={{
+                      fontSize: '1.125rem',
+                      fontWeight: 'bold',
+                      color: '#FDBA74',
+                      margin: 0,
+                    }}
+                  >
                     Lucas Lawrence
                   </h2>
-                  <p className="text-sm mt-1">🏀 Senior Software Engineer & Technical Playmaker</p>
-                  <p className="mt-2" style={{ fontSize: '0.75rem', lineHeight: '1.25rem' }}>
+                  <p style={{ fontSize: '0.875rem', margin: '0.5rem 0 0 0' }}>
+                    🏀 Senior Software Engineer & Technical Playmaker
+                  </p>
+                  <p style={{ fontSize: '0.75rem', lineHeight: '1.25rem', marginTop: '0.5rem' }}>
                     I build scalable systems, design clean APIs, and coach full-stack teams. From
                     court vision to execution.
                   </p>
