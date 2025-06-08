@@ -1,6 +1,6 @@
 'use client'
 
-import { CourtZone } from '@/components/CourtZone'
+import { SafeSvgHtml } from './SafeSvgHtml'
 
 /**
  * Modern version of Bars of the Day project zone.
@@ -8,7 +8,7 @@ import { CourtZone } from '@/components/CourtZone'
  */
 export function ZoneBarsModern() {
   return (
-    <CourtZone x={280} y={200} width={360} height={140}>
+    <SafeSvgHtml>
       <a
         href="https://barsoftheday.com"
         target="_blank"
@@ -24,6 +24,6 @@ export function ZoneBarsModern() {
           Supabase • Next.js • Tailwind
         </p>
       </a>
-    </CourtZone>
+    </SafeSvgHtml>
   )
 }
