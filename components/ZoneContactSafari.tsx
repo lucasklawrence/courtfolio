@@ -29,19 +29,30 @@ export function ZoneContactSafari() {
         <ul style={{ marginTop: '0.5rem', paddingLeft: 0, listStyle: 'none', fontSize: '0.75rem' }}>
           <li>
             <strong>Email:</strong>{' '}
-            <a href="mailto:lucasklawrence@gmail.com" style={{ color: '#FDBA74', textDecoration: 'underline' }}>
+            <a
+              href="mailto:lucasklawrence@gmail.com"
+              style={{ color: '#FDBA74', textDecoration: 'underline' }}
+            >
               lucasklawrence@gmail.com
             </a>
           </li>
           <li>
             <strong>LinkedIn:</strong>{' '}
-            <a href="https://linkedin.com/in/lucasklawrence" target="_blank" style={{ color: '#FDBA74', textDecoration: 'underline' }}>
+            <a
+              href="https://linkedin.com/in/lucasklawrence"
+              target="_blank"
+              style={{ color: '#FDBA74', textDecoration: 'underline' }}
+            >
               /lucasklawrence
             </a>
           </li>
           <li>
             <strong>Resume:</strong>{' '}
-            <a href="/LucasLawrenceResume.pdf" target="_blank" style={{ color: '#FDBA74', textDecoration: 'underline' }}>
+            <a
+              href="/LucasLawrenceResume.pdf"
+              target="_blank"
+              style={{ color: '#FDBA74', textDecoration: 'underline' }}
+            >
               View PDF
             </a>
           </li>

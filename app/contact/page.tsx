@@ -17,7 +17,7 @@ export default function ContactPage() {
         zoneContent={{
           'zone-80': (
             <CourtZone x={580} y={420} width={380} height={220}>
-                <ZoneContact/>
+              <ZoneContact />
             </CourtZone>
           ),
           'zone-99': (

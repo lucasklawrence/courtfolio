@@ -6,10 +6,10 @@ import { ReplayIntroButton } from './ReplayIntroButton'
 import { CourtTitle } from './CourtTitle'
 import { CourtContainer } from './CourtContainer'
 import React from 'react'
-import { SafeSvgHtml } from './SafeSvgHtml'
 import { ZoneProjects } from './ZoneProjects'
 import { ZoneAbout } from './ZoneAbout'
 import { CourtZone } from './CourtZone'
+import Link from 'next/link'
 
 export function HomeBody() {
   const router = useRouter()
@@ -100,6 +100,16 @@ export function HomeBody() {
             <foreignObject x="600" y="0" width="350" height="100">
               <CourtTitle title="Lucas Lawrence" subtitle="Welcome to the Court" />
             </foreignObject>
+          ),
+          'zone-85': (
+            <CourtZone x={1120} y={60} width={220} height={100}>
+              <Link
+                href="/banners"
+                className="bg-yellow-500 text-black font-semibold px-4 py-2 rounded-md shadow hover:bg-yellow-400 transition"
+              >
+                🏟️ View the Rafters
+              </Link>
+            </CourtZone>
           ),
         }}
       />
