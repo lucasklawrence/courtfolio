@@ -45,15 +45,15 @@ export function TunnelHero({ onIntroEnd }: TunnelHeroProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.5 }}
         >
-            <Typewriter
-              words={words}
-              loop={1}
-              cursor
-              cursorStyle="|"
-              typeSpeed={100}
-              deleteSpeed={0}
-              delaySpeed={1000}
-            />
+          <Typewriter
+            words={words}
+            loop={1}
+            cursor
+            cursorStyle="|"
+            typeSpeed={100}
+            deleteSpeed={0}
+            delaySpeed={1000}
+          />
         </motion.p>
 
         <motion.button

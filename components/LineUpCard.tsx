@@ -15,16 +15,10 @@ const awardDescriptions: Record<string, string> = {
   'All-Star': 'Consistent performer across projects.',
   'Clutch Performer': 'Shines under pressure.',
   'Sixth Man': 'Reliable support when needed most.',
-  'Defensive POY': 'Protects against bugs + tech debt.'
+  'Defensive POY': 'Protects against bugs + tech debt.',
 }
 
-export function LineupCard({
-  name,
-  position,
-  jersey,
-  strengths,
-  award
-}: LineupCardProps) {
+export function LineupCard({ name, position, jersey, strengths, award }: LineupCardProps) {
   return (
     <motion.div
       className="rounded-2xl border border-neutral-300 bg-white p-4 shadow-md relative hover:shadow-lg transition-all"
@@ -33,9 +27,7 @@ export function LineupCard({
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.4 }}
     >
-      <div className="absolute top-3 right-4 text-xl font-bold text-orange-500">
-        #{jersey}
-      </div>
+      <div className="absolute top-3 right-4 text-xl font-bold text-orange-500">#{jersey}</div>
       <h3 className="text-xl font-bold">{name}</h3>
       <p className="italic text-sm text-neutral-500">{position}</p>
       <ul className="mt-2 text-sm list-disc list-inside text-neutral-700">

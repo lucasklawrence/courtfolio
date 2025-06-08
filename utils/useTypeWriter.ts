@@ -12,7 +12,7 @@ export function useTypewriter(text: string, speed = 50) {
     if (!text || typeof text !== 'string') return
 
     intervalRef.current = setInterval(() => {
-      setDisplayed((prev) => {
+      setDisplayed(prev => {
         const nextChar = text.charAt(index.current)
         index.current += 1
 

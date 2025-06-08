@@ -3,27 +3,20 @@
 import React from 'react'
 
 /**
- * CourtTitle displays the main heading and subtitle centered above the court.
- *
- * @param title - The main name/title (e.g., "Lucas Lawrence")
- * @param subtitle - The subtitle below the main name (e.g., "Welcome to the Court")
+ * CourtTitle displays the main heading and subtitle centered inside a foreignObject zone.
  */
 export const CourtTitle: React.FC<{
   title: string
   subtitle: string
 }> = ({ title, subtitle }) => {
   return (
-    <div
-      className="absolute text-white text-4xl font-extrabold text-center z-10"
-      style={{
-        top: '6%',
-        left: '50%',
-        transform: 'translateX(-50%)',
-      }}
-    >
-      {title}
-      <br />
-      <span className="text-orange-400 text-2xl font-mono">{subtitle}</span>
+    <div className="flex flex-col items-center justify-center text-center w-full h-full text-white">
+      <h1 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-extrabold leading-tight">
+        {title}
+      </h1>
+      <p className="text-orange-400 text-xs sm:text-sm md:text-base font-mono mt-1 leading-snug">
+        {subtitle}
+      </p>
     </div>
   )
 }

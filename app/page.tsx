@@ -29,9 +29,8 @@ export default function HomePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="relative min-h-screen"
+          className="w-screen h-screen overflow-hidden"
         >
-          <div className="absolute inset-0 z-0 bg-[url('/court.svg')] bg-cover opacity-5 pointer-events-none" />
           <HomeBody />
         </motion.div>
       )}
