@@ -9,7 +9,6 @@ import { SafeSvgHtml } from '@/components/SafeSvgHtml'
  */
 export function ZoneFantasySafari() {
   return (
-    <CourtZone x={880} y={200} width={360} height={140}>
       <SafeSvgHtml>
         <div
           style={{
@@ -55,6 +54,5 @@ export function ZoneFantasySafari() {
           </p>
         </div>
       </SafeSvgHtml>
-    </CourtZone>
   )
 }
