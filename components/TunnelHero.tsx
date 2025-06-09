@@ -9,12 +9,16 @@ type TunnelHeroProps = {
 }
 
 export function TunnelHero({ onIntroEnd }: TunnelHeroProps) {
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      onIntroEnd()
-    }, 20000)
+  const [showTyping, setShowTyping] = useState(false)
 
-    return () => clearTimeout(timeout)
+  useEffect(() => {
+    const typingTimeout = setTimeout(() => setShowTyping(true), 1000) // delay to sync with motion
+    const endTimeout = setTimeout(() => onIntroEnd(), 20000)
+
+    return () => {
+      clearTimeout(typingTimeout)
+      clearTimeout(endTimeout)
+    }
   }, [onIntroEnd])
 
   const words = useMemo(() => ['Writing code with court vision.'], [])
@@ -45,15 +49,17 @@ export function TunnelHero({ onIntroEnd }: TunnelHeroProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.5 }}
         >
-          <Typewriter
-            words={words}
-            loop={1}
-            cursor
-            cursorStyle="|"
-            typeSpeed={100}
-            deleteSpeed={0}
-            delaySpeed={1000}
-          />
+          {showTyping && (
+            <Typewriter
+              words={words}
+              loop={1}
+              cursor
+              cursorStyle="|"
+              typeSpeed={100}
+              deleteSpeed={0}
+              delaySpeed={1000}
+            />
+          )}
         </motion.p>
 
         <motion.button
