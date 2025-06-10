@@ -5,32 +5,46 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-
-    return(
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 327.96 215.06
   C 327.61 216.40 328.59 217.16 328.46 218.33
   Q 328.35 219.43 328.82 220.31
   A 0.56 0.56 0.0 0 0 329.88 220.05
   Q 329.90 218.05 328.93 216.24"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.57 165.34
   Q 440.79 165.99 435.33 166.19
   Q 434.22 166.23 433.72 167.22
   Q 433.53 167.59 434.47 168.27"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 434.47 168.27
   L 434.69 168.80"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 434.69 168.80
   Q 434.57 170.57 435.12 171.81"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.12 171.81
   Q 435.29 173.12 436.24 173.53
   C 441.12 175.62 445.31 177.78 450.47 179.46
@@ -39,8 +53,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 494.47 210.34 495.47 223.08
   A 0.51 0.51 0.0 0 0 496.04 223.55
   L 500.94 222.97"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.94 222.97
   Q 503.06 224.42 506.17 223.92
   Q 508.72 223.52 508.81 223.51
@@ -103,8 +120,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 449.63 163.60 443.02 164.57
   A 0.28 0.28 0.0 0 0 443.04 165.12
   L 445.57 165.34"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.94 222.97
   Q 516.52 221.62 525.91 219.65
   C 538.79 216.96 550.18 212.62 559.46 202.99
@@ -112,31 +132,46 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 575.80 167.62 576.42 160.24
   A 2.07 1.89 -35.3 0 1 576.54 159.69
   L 578.28 154.82"
-/>
-<path stroke="#386624" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#386624"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.28 154.82
   Q 578.25 154.73 578.63 154.14"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.63 154.14
   Q 580.45 156.90 580.81 160.14
   Q 581.24 164.00 581.59 167.73"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 581.59 167.73
   Q 580.55 180.49 573.91 192.67
   Q 560.77 216.81 534.95 223.49
   C 522.24 226.78 513.31 227.33 496.25 229.27
   C 478.78 231.25 463.57 235.63 451.42 249.17
   Q 443.75 257.71 438.18 267.71"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 438.18 267.71
   Q 432.48 278.34 431.38 282.17
   Q 429.67 288.12 427.71 293.99
   Q 426.44 297.80 426.14 305.45"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 426.14 305.45
   Q 426.81 307.78 428.44 306.00
   Q 429.37 304.98 430.04 303.15
@@ -156,8 +191,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 514.98 141.90 514.50 142.17
   Q 495.74 152.91 490.25 155.01
   C 475.30 160.75 461.88 163.30 445.57 165.34"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 438.18 267.71
   L 438.15 268.50
   A 0.32 0.32 0.0 0 0 438.74 268.67
@@ -167,8 +205,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 513.10 228.81 529.05 227.55 543.83 221.77
   C 560.69 215.17 572.71 200.71 579.46 183.76
   Q 582.54 176.01 581.59 167.73"
-/>
-<path stroke="#7fba3f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7fba3f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.63 154.14
   Q 573.78 148.17 565.96 147.96
   A 5.01 4.91 -53.1 0 0 564.26 148.22
@@ -181,8 +222,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 438.63 170.15 436.94 168.91
   A 1.35 1.30 -28.7 0 0 436.06 168.67
   L 434.69 168.80"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 426.14 305.45
   C 429.29 304.34 429.20 301.60 429.97 299.90
   Q 431.85 295.73 434.87 288.04
@@ -208,8 +252,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 454.76 165.34 448.50 166.33
   Q 447.13 166.54 441.45 167.05
   Q 437.90 167.36 434.47 168.27"
-/>
-<path stroke="#7fba3f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7fba3f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.28 154.82
   Q 575.72 156.06 575.49 159.05
   Q 574.71 169.59 572.58 177.50
@@ -226,8 +273,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 446.87 176.91 439.49 173.86
   Q 438.80 173.58 437.39 172.67
   Q 436.18 171.89 435.12 171.81"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 431.21 174.15
   C 430.71 173.32 429.22 172.66 428.47 171.64
   C 424.98 166.85 420.69 162.75 416.36 157.89
@@ -238,8 +288,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 394.68 152.94 401.80 160.70 411.65 165.58
   Q 421.16 170.29 430.75 174.67
   A 0.36 0.36 0.0 0 0 431.21 174.15"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.96 332.44
   L 421.35 329.57
   A 1.07 1.06 17.3 0 0 420.03 330.26
@@ -282,8 +335,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.60 0.59 54.9 0 0 266.82 492.08
   C 272.58 497.00 278.54 502.12 279.08 510.24
   Q 279.32 513.89 274.66 519.75"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 274.66 519.75
   Q 265.15 521.36 256.43 514.57
   Q 250.35 509.83 244.83 505.05
@@ -295,8 +351,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 164.19 469.79 165.02 462.21 168.58 453.61
   A 0.79 0.78 28.0 0 0 168.28 452.65
   L 155.88 444.57"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 155.88 444.57
   L 154.69 439.12
   A 0.39 0.39 0.0 0 0 154.08 438.89
@@ -305,16 +364,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 127.86 458.67 105.54 477.79
   Q 98.12 484.14 90.35 492.37
   C 87.08 495.84 82.66 499.19 79.12 503.02"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 79.12 503.02
   Q 52.73 526.53 42.18 537.93
   C 27.99 553.27 2.22 581.60 16.69 604.09
   C 26.05 618.65 37.91 625.85 54.11 632.96
   Q 64.10 637.35 74.03 640.19
   C 111.12 650.81 149.84 652.71 188.03 648.35"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 188.03 648.35
   C 191.45 648.02 194.93 647.97 198.22 647.54
   Q 220.60 644.66 243.32 639.38
@@ -330,8 +395,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.26 2.70 76.5 0 0 406.01 525.29
   Q 408.25 519.07 410.96 514.42
   C 414.66 508.09 417.58 502.23 420.81 496.08"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.81 496.08
   C 426.84 485.77 431.58 475.21 437.51 464.53
   C 443.65 453.51 447.46 440.75 452.80 428.29
@@ -343,15 +411,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 424.49 446.70 401.73 482.53
   Q 400.39 484.63 397.73 488.47
   Q 395.71 491.38 393.82 494.44"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 393.82 494.44
   Q 381.92 510.96 368.06 525.84
   Q 360.45 534.01 348.91 544.08
   Q 337.33 554.18 328.74 561.24
   Q 325.79 563.67 320.98 566.44"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 320.98 566.44
   Q 319.26 566.98 317.72 566.65
   A 1.05 1.04 -6.6 0 1 317.01 566.09
@@ -362,12 +436,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 311.48 549.25 309.43 551.43
   Q 305.23 555.88 302.56 562.21
   Q 299.30 569.91 295.87 577.23"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 295.87 577.23
   L 291.00 582.73"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 291.00 582.73
   C 288.76 584.90 285.12 587.44 282.18 586.06
   C 275.63 582.97 275.80 578.06 278.19 572.18
@@ -386,8 +466,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 207.19 599.35 204.50 595.44 205.40 591.51
   C 206.31 587.55 208.67 583.82 211.24 580.26
   Q 215.26 574.69 218.92 568.78"
-/>
-<path stroke="#114716" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#114716"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 218.92 568.78
   Q 217.29 574.98 211.24 582.74
   Q 208.35 586.45 207.16 594.05
@@ -399,8 +482,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 234.79 572.19 238.23 568.17 241.12 564.09
   A 0.43 0.43 0.0 0 0 240.57 563.46
   L 235.14 566.28"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 235.14 566.28
   C 238.45 562.00 244.23 556.13 250.07 556.89
   C 261.66 558.42 250.08 575.74 247.19 580.94
@@ -431,8 +517,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 464.94 380.69 466.58 380.33
   C 473.69 378.80 471.13 388.37 470.02 392.40
   Q 465.54 408.73 459.10 424.47"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.10 424.47
   Q 454.68 435.50 450.78 446.80
   Q 449.10 451.69 438.47 471.26
@@ -461,12 +550,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 497.00 411.03 500.34 406.69
   A 1.40 1.39 61.7 0 0 500.62 405.74
   L 500.50 403.99"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.50 403.99
   Q 501.51 402.14 503.02 400.75"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 503.02 400.75
   Q 503.02 401.49 503.89 401.29
   A 0.75 0.75 0.0 0 0 504.33 400.98
@@ -475,19 +570,28 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 542.13 359.09 544.60 356.76
   A 0.39 0.39 0.0 0 0 544.45 356.10
   Q 543.83 355.90 544.12 356.16"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.12 356.16
   Q 544.06 355.93 544.08 355.72
   Q 544.12 355.45 544.06 355.28
   Q 541.24 346.79 541.27 337.26"
-/>
-<path stroke="#736215" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#736215"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 541.27 337.26
   Q 541.94 329.63 542.62 325.82
   Q 543.33 321.87 545.35 315.24"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 545.35 315.24
   Q 549.88 301.30 558.78 290.26
   C 569.58 276.86 582.09 270.95 598.91 272.82
@@ -519,8 +623,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 458.54 326.29 453.60 329.84
   Q 448.13 333.76 441.02 332.91
   Q 435.88 332.29 430.96 332.44"
-/>
-<path stroke="#dba716" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dba716"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 545.35 315.24
   L 544.65 314.85
   A 0.67 0.66 -54.5 0 0 543.85 314.99
@@ -530,8 +637,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 498.51 381.06 492.52 389.98
   Q 488.64 395.75 484.84 402.72
   Q 481.26 409.30 477.87 415.86"
-/>
-<path stroke="#d6c915" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d6c915"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.87 415.86
   Q 472.93 419.92 470.17 426.35
   Q 467.41 432.80 467.37 432.87
@@ -546,17 +656,26 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 543.53 355.26 541.60 351.95
   A 1.41 1.38 23.8 0 1 541.42 351.50
   L 539.31 341.90"
-/>
-<path stroke="#dba716" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dba716"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 539.31 341.90
   Q 540.13 338.67 541.27 337.26"
-/>
-<path stroke="#727813" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#727813"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.12 356.16
   Q 531.72 364.76 523.34 374.34
   Q 514.49 384.46 503.02 400.75"
-/>
-<path stroke="#80a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.50 403.99
   C 498.41 406.47 496.08 408.87 494.16 411.31
   C 482.51 426.15 471.33 440.14 461.26 454.44
@@ -579,8 +698,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 372.80 495.66 360.93 509.10
   Q 359.69 510.50 355.89 514.21
   Q 353.36 516.66 350.97 519.45"
-/>
-<path stroke="#84ae26" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84ae26"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.97 519.45
   Q 346.01 516.81 343.05 517.03
   Q 336.01 517.55 324.57 521.85
@@ -590,8 +712,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 132.42 492.73 126.20 480.63 135.61 465.90
   Q 138.43 461.50 141.15 458.64
   Q 146.21 453.33 155.88 444.57"
-/>
-<path stroke="#84ae26" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84ae26"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 274.66 519.75
   Q 281.40 519.73 286.75 518.73
   C 302.17 515.86 316.52 510.52 330.21 501.99
@@ -603,8 +728,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 431.31 367.74 432.49 361.68 431.43 354.74
   Q 431.01 351.93 431.07 348.25
   Q 431.21 340.56 430.96 332.44"
-/>
-<path stroke="#cf9f12" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf9f12"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 539.31 341.90
   Q 533.50 349.85 527.32 357.79
   Q 521.94 364.70 518.84 369.29
@@ -615,8 +743,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 480.68 422.14 478.31 424.85 475.85 428.17
   A 0.28 0.27 -20.8 0 1 475.36 427.95
   L 477.87 415.86"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 235.14 566.28
   Q 228.39 574.85 222.17 583.94
   Q 218.81 588.85 214.56 592.99
@@ -677,12 +808,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 104.46 486.06 100.28 489.29 95.32 493.37
   Q 94.93 493.69 87.92 499.36
   Q 84.14 502.42 80.58 505.98"
-/>
-<path stroke="#2e9b3a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e9b3a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 80.58 505.98
   Q 80.01 504.07 79.12 503.02"
-/>
-<path stroke="#21852e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#21852e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.10 424.47
   Q 466.41 418.42 472.29 411.03
   Q 475.85 406.55 477.83 401.93
@@ -698,8 +835,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 402.38 455.30 389.11 477.07 373.36 496.55
   Q 364.03 508.09 363.17 509.02
   Q 357.63 515.02 350.97 519.45"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 218.92 568.78
   Q 219.80 566.80 219.72 565.23
   A 1.24 1.23 -3.8 0 0 218.38 564.06
@@ -756,8 +896,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 80.58 512.24 78.39 511.60
   A 0.61 0.60 12.3 0 1 77.96 510.94
   Q 78.35 507.58 80.58 505.98"
-/>
-<path stroke="#2e9b3a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e9b3a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 188.03 648.35
   Q 188.70 647.52 188.00 647.00
   A 0.74 0.69 56.1 0 0 187.44 646.87
@@ -776,22 +919,31 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 290.91 584.83
   A 0.98 0.96 83.5 0 0 291.34 584.28
   Q 291.61 583.43 291.00 582.73"
-/>
-<path stroke="#2e9b3a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e9b3a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 295.87 577.23
   Q 300.67 574.53 306.55 573.39
   Q 307.87 573.14 311.34 571.03
   C 314.53 569.08 317.66 567.91 320.98 566.44"
-/>
-<path stroke="#2e9b3a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e9b3a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.81 496.08
   Q 421.55 492.32 423.13 488.86
   C 425.53 483.59 426.72 481.43 423.66 476.90
   C 419.96 471.42 412.91 473.46 407.87 475.58
   A 1.30 1.24 -86.0 0 0 407.23 476.16
   Q 401.63 486.45 393.82 494.44"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.62 222.42
   Q 337.02 222.65 337.40 222.63
   Q 337.77 222.61 338.01 222.19
@@ -815,31 +967,46 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 342.20 220.40 335.87 231.45
   A 0.58 0.57 -48.5 0 0 335.90 232.08
   Q 335.98 232.20 336.53 232.27"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.53 232.27
   Q 336.13 232.54 336.15 232.87
   Q 336.17 233.12 336.57 233.44
   C 341.28 237.15 343.12 240.92 345.83 246.34
   A 1.35 1.35 0.0 0 0 347.07 247.09
   L 354.54 246.87"
-/>
-<path stroke="#736215" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#736215"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 354.54 246.87
   Q 371.17 247.31 387.91 252.27"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 387.91 252.27
   Q 405.25 259.57 416.38 273.37
   Q 419.44 277.16 421.85 283.28"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 421.85 283.28
   L 423.40 289.55
   A 0.40 0.40 0.0 0 0 424.17 289.58
   L 425.30 286.21"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 425.30 286.21
   Q 425.40 287.25 425.55 287.43
   A 0.47 0.46 32.3 0 0 426.37 287.25
@@ -850,8 +1017,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 480.57 227.11 488.46 226.05
   A 0.47 0.46 53.6 0 0 488.59 225.17
   L 487.91 224.84"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.91 224.84
   L 489.38 224.39
   A 0.75 0.75 0.0 0 0 489.91 223.73
@@ -867,8 +1037,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 334.56 204.44 335.85 222.53
   A 0.34 0.34 0.0 0 0 336.48 222.67
   L 336.62 222.42"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.91 224.84
   Q 476.04 226.28 465.46 231.54
   C 457.61 235.44 450.09 241.67 445.09 247.86
@@ -876,8 +1049,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 433.37 264.64 432.05 267.80 429.78 272.26
   Q 429.05 273.69 428.07 276.44
   Q 427.37 278.44 426.45 280.67"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 426.45 280.67
   Q 426.32 276.86 428.74 272.17
   Q 434.83 260.38 435.68 259.22
@@ -887,16 +1063,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.37 1.36 -68.4 0 0 488.19 223.77
   Q 489.52 222.67 489.11 220.49
   Q 487.44 211.49 481.25 205.15"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.25 205.15
   Q 477.89 200.14 472.48 196.96
   C 465.89 193.08 459.10 190.04 450.89 187.38
   Q 443.62 185.02 431.56 180.78
   C 424.77 178.39 417.79 174.68 412.37 171.89
   Q 404.84 168.01 398.20 162.82"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 398.20 162.82
   C 394.63 159.82 390.68 157.01 387.46 153.87
   Q 379.47 146.09 370.00 141.05
@@ -914,20 +1096,29 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 359.33 187.89 361.87 183.73 365.79 179.77
   Q 370.93 174.56 372.68 173.17
   Q 382.04 165.76 394.53 168.61"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.53 168.61
   Q 399.53 169.93 402.86 171.42
   Q 423.59 180.67 443.82 193.92
   Q 454.30 200.79 462.78 209.07"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.78 209.07
   Q 465.18 211.78 464.35 213.70
   A 0.29 0.29 0.0 0 1 463.81 213.68
   Q 463.74 213.49 463.75 213.14"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 463.75 213.14
   Q 463.50 211.35 461.96 209.79
   Q 456.43 204.18 449.96 199.55
@@ -937,12 +1128,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 365.91 180.75 363.28 184.28
   Q 352.00 199.42 341.55 214.54
   Q 338.89 218.39 336.62 222.42"
-/>
-<path stroke="#386624" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#386624"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 463.75 213.14
   Q 462.45 215.88 460.32 215.00"
-/>
-<path stroke="#727813" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#727813"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.32 215.00
   Q 453.69 206.41 444.66 200.58
   C 431.64 192.18 416.90 183.52 402.12 177.13
@@ -950,22 +1147,34 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 378.31 175.18 372.13 180.44 367.93 185.95
   Q 356.16 201.41 341.39 224.33
   Q 338.85 228.27 336.53 232.27"
-/>
-<path stroke="#386624" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#386624"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 426.45 280.67
   Q 426.60 282.88 425.30 286.21"
-/>
-<path stroke="#7fba3f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7fba3f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.25 205.15
   Q 475.73 204.42 471.22 207.16
   Q 469.16 208.41 467.55 208.63
   Q 465.29 208.93 462.78 209.07"
-/>
-<path stroke="#9ac237" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9ac237"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 398.20 162.82
   Q 397.37 166.33 394.53 168.61"
-/>
-<path stroke="#a8be2b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a8be2b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.32 215.00
   Q 459.00 217.07 458.41 214.34
   A 0.62 0.62 0.0 0 0 457.23 214.26
@@ -977,8 +1186,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 0 415.59 269.83
   Q 418.46 274.61 421.45 279.99
   Q 422.94 282.69 421.85 283.28"
-/>
-<path stroke="#dba716" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dba716"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 387.91 252.27
   Q 387.92 251.27 390.42 251.69
   A 1.95 1.90 -50.1 0 0 391.40 251.59
@@ -1037,14 +1249,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 347.58 236.86 347.91 237.56
   C 348.69 239.20 350.49 241.43 351.85 244.36
   Q 352.40 245.54 354.54 246.87"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 745.23 240.67
   L 741.88 240.63
   A 0.39 0.39 0.0 0 0 741.55 241.24
   L 741.74 241.51"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 741.74 241.51
   Q 741.09 241.62 741.12 242.10
   A 0.34 0.32 -69.7 0 0 741.20 242.29
@@ -1073,16 +1291,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 727.26 371.44 726.17 372.55
   A 0.56 0.54 52.7 0 0 726.09 373.20
   L 726.28 373.53"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 726.28 373.53
   L 726.04 374.01
   A 1.51 1.51 0.0 0 0 725.96 375.12
   Q 729.06 384.61 728.45 394.95
   A 0.29 0.29 0.0 0 0 728.97 395.14
   L 731.41 391.73"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 731.41 391.73
   L 731.59 392.20
   A 0.38 0.38 0.0 0 0 732.26 392.28
@@ -1106,8 +1330,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 824.40 212.40 816.25 217.31 809.73 220.96
   Q 783.05 235.88 753.46 238.45
   Q 748.47 238.88 745.23 240.67"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 731.41 391.73
   C 742.11 376.55 752.56 361.25 764.70 347.19
   C 770.35 340.64 778.05 333.25 785.59 330.84
@@ -1126,8 +1353,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 839.97 204.43 836.93 205.95 833.08 208.40
   Q 813.79 220.69 800.86 226.85
   C 783.62 235.06 764.33 239.14 745.23 240.67"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 726.28 373.53
   L 727.07 373.29
   A 1.10 1.10 0.0 0 0 727.77 372.66
@@ -1139,8 +1369,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 875.36 308.99 876.07 308.56
   Q 888.65 300.88 893.63 294.88
   Q 901.51 285.40 905.44 268.95"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 905.44 268.95
   Q 906.02 273.83 903.13 280.16
   C 899.25 288.67 896.81 294.08 890.73 299.36
@@ -1186,16 +1419,25 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 780.47 236.91 763.01 240.40 746.41 241.86
   A 2.68 2.50 28.6 0 0 745.63 242.06
   L 743.32 243.06"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 743.32 243.06
   L 741.74 241.51"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 905.44 268.95
   L 905.24 261.29"
-/>
-<path stroke="#7fba3f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7fba3f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 905.24 261.29
   Q 904.99 257.56 904.86 253.79
   Q 904.78 251.27 904.37 249.70
@@ -1224,8 +1466,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 900.38 265.55 903.96 260.51
   A 0.40 0.40 0.0 0 1 904.68 260.71
   L 904.75 261.48"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 904.75 261.48
   C 901.90 266.20 900.63 269.21 897.10 277.26
   C 892.87 286.88 888.05 293.65 879.70 299.46
@@ -1236,16 +1481,25 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 781.44 291.60 774.62 281.15 766.20 269.86
   Q 759.03 260.25 750.73 251.52
   Q 748.40 249.06 743.32 243.06"
-/>
-<path stroke="#386624" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#386624"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 905.24 261.29
   Q 904.91 261.49 904.75 261.48"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.79 230.98
   Q 320.78 230.91 321.05 231.54"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.05 231.54
   Q 318.23 232.34 316.89 234.31
   A 0.46 0.46 0.0 0 0 317.49 234.97
@@ -1258,8 +1512,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 311.20 205.68 312.81 216.52 314.28 222.92
   C 314.95 225.80 315.34 228.55 317.08 230.93
   Q 317.46 231.45 318.79 230.98"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.05 231.54
   Q 322.85 231.29 324.25 229.64
   A 0.82 0.81 53.2 0 0 324.37 228.78
@@ -1271,37 +1528,55 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 313.36 208.71 314.25 215.81
   Q 314.60 218.54 316.19 225.62
   Q 316.87 228.63 318.79 230.98"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 304.46 247.79
   L 308.13 248.36
   A 1.02 1.02 0.0 0 0 308.94 246.57
   L 305.26 243.51"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 305.26 243.51
   Q 294.66 235.82 285.33 226.68
   Q 279.57 221.04 274.68 214.90"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 274.68 214.90
   Q 273.90 212.45 275.41 211.80"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 275.41 211.80
   Q 278.96 213.94 280.28 215.22
   Q 291.18 225.76 293.22 227.71
   C 298.92 233.19 304.63 237.09 310.08 240.77
   A 0.90 0.90 0.0 0 0 311.37 240.47
   Q 311.69 239.88 311.55 239.00"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 311.55 239.00
   L 311.35 235.24
   A 1.56 1.52 -33.5 0 1 311.52 234.46
   Q 312.50 232.59 311.45 232.31"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 311.45 232.31
   Q 311.12 229.63 310.06 228.19
   Q 302.66 218.24 293.03 211.04
@@ -1311,8 +1586,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 263.49 220.91 268.27 227.11 275.50 233.73
   C 282.80 240.43 293.30 244.49 302.27 247.46
   Q 302.85 247.65 304.46 247.79"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 311.45 232.31
   Q 310.43 231.82 309.79 230.40
   Q 309.04 228.75 308.59 228.17
@@ -1328,23 +1606,32 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 292.51 243.70 304.42 246.86
   Q 304.88 246.98 304.90 247.47
   Q 304.90 247.68 304.46 247.79"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 311.55 239.00
   Q 309.58 238.90 308.98 238.55
   Q 300.16 233.36 293.16 226.35
   C 288.60 221.79 285.53 219.16 280.56 214.19
   Q 278.24 211.87 275.41 211.80"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 274.68 214.90
   Q 274.10 214.14 273.95 214.25
   A 1.01 1.01 0.0 0 0 273.80 215.73
   Q 287.27 231.02 302.57 242.91
   Q 303.42 243.57 304.03 243.84
   Q 305.44 244.47 305.26 243.51"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 652.92 240.03
   Q 650.02 242.18 649.57 246.26
   A 2.38 2.38 0.0 0 1 649.28 247.18
@@ -1370,12 +1657,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 717.86 362.89 721.89 370.47
   A 0.73 0.72 -22.5 0 0 722.75 370.82
   Q 722.94 370.76 722.99 370.01"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 722.99 370.01
   Q 723.38 369.99 723.73 369.79"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 723.73 369.79
   L 724.12 369.87
   A 0.71 0.70 -74.1 0 0 724.92 369.42
@@ -1383,8 +1676,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 747.64 323.94 762.68 314.33 779.18 308.71
   A 0.64 0.61 6.4 0 0 779.52 308.45
   Q 779.98 307.77 779.21 307.47"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 779.21 307.47
   Q 779.61 307.24 779.82 306.89
   Q 780.03 306.55 779.90 306.06
@@ -1395,14 +1691,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 673.25 211.08 669.29 211.70 666.41 215.16
   Q 662.66 219.67 660.18 224.20
   Q 658.22 227.77 652.92 240.03"
-/>
-<path stroke="#727813" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#727813"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 779.21 307.47
   C 762.35 312.68 746.89 323.24 737.98 338.72
   Q 729.82 352.87 723.85 368.07
   Q 723.64 368.60 723.73 369.79"
-/>
-<path stroke="#727813" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#727813"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 722.99 370.01
   Q 717.38 359.33 707.30 352.46
   Q 694.22 343.54 681.16 338.39
@@ -1415,8 +1717,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 628.83 298.18 629.38 296.88
   Q 633.78 286.42 638.36 276.18
   C 643.35 265.03 648.08 252.17 652.92 240.03"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.05 246.59
   Q 338.36 241.69 334.24 236.16
   Q 332.96 234.44 331.67 233.96
@@ -1427,8 +1732,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 326.74 257.20 330.33 252.45 336.44 249.97
   Q 338.65 249.07 340.76 247.72
   A 0.86 0.86 0.0 0 0 341.05 246.59"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 312.16 236.28
   Q 312.11 236.92 312.17 237.29
   A 0.54 0.54 0.0 0 0 312.85 237.73
@@ -1436,8 +1744,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 314.18 235.43 313.05 234.94
   A 0.54 0.54 0.0 0 0 312.31 235.28
   Q 312.20 235.65 312.16 236.28"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 713.25 430.61
   C 710.78 429.88 709.08 430.47 707.56 432.60
   Q 704.33 437.13 700.57 441.07
@@ -1460,8 +1771,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 650.44 565.86 648.49 569.68 647.59 574.69
   A 1.17 1.17 0.0 0 0 648.39 576.01
   L 649.31 576.30"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 649.31 576.30
   Q 645.67 579.13 643.67 583.18
   Q 637.21 596.26 628.81 612.59
@@ -1471,8 +1785,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 621.79 594.91 621.68 594.46
   A 0.37 0.36 63.5 0 0 621.10 594.26
   L 616.37 598.12"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 616.37 598.12
   L 620.29 592.98
   A 1.01 0.94 9.2 0 1 620.83 592.62
@@ -1507,8 +1824,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 533.57 619.38 530.66 626.49 522.71 625.53
   A 0.45 0.45 0.0 0 0 522.22 626.06
   Q 522.48 627.41 522.09 628.09"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.09 628.09
   C 513.70 622.58 507.19 615.74 500.64 608.29
   A 4.27 4.24 -22.6 0 0 497.14 606.86
@@ -1522,8 +1842,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 409.66 535.12 407.59 536.69
   Q 391.12 549.17 372.89 562.14
   Q 370.22 564.04 367.71 569.47"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.71 569.47
   Q 366.73 569.41 366.79 568.75
   Q 366.90 567.62 366.87 567.07
@@ -1654,19 +1977,28 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 970.43 433.37 964.02 416.02
   Q 963.67 415.09 963.06 414.83
   Q 962.47 414.59 961.50 414.47"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 961.50 414.47
   Q 962.26 411.41 961.62 408.67
   C 960.20 402.56 957.99 395.85 956.62 390.62
   Q 953.66 379.30 950.52 367.68"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 950.52 367.68
   Q 949.33 364.46 949.12 362.13
   Q 948.01 349.77 945.99 336.01"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 945.99 336.01
   Q 946.03 334.83 946.38 331.85
   Q 947.84 319.46 949.37 307.00
@@ -1691,8 +2023,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 748.52 428.93 745.63 432.33 740.90 433.65
   Q 737.11 434.71 735.98 434.67
   Q 726.92 434.33 713.25 430.61"
-/>
-<path stroke="#84ae26" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84ae26"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 945.99 336.01
   Q 935.59 360.51 921.02 380.29
   Q 895.60 414.80 862.71 442.70
@@ -1722,8 +2057,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 715.18 431.91 714.27 431.85 713.04 431.38
   Q 712.72 431.26 712.85 430.97
   Q 712.95 430.75 713.25 430.61"
-/>
-<path stroke="#84ae26" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84ae26"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 950.52 367.68
   Q 949.95 370.12 949.70 372.38
   Q 949.32 375.94 949.07 377.10
@@ -1737,18 +2075,27 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 945.55 454.09 948.39 448.63
   Q 953.94 437.99 958.59 423.47
   Q 960.12 418.66 961.50 414.47"
-/>
-<path stroke="#84ae26" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84ae26"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.71 569.47
   C 365.24 576.37 364.03 581.55 367.47 588.29
   Q 369.60 592.44 372.62 595.99"
-/>
-<path stroke="#77a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#77a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 372.62 595.99
   Q 381.13 607.40 389.41 614.84
   C 412.23 635.35 443.83 647.24 474.37 651.15"
-/>
-<path stroke="#84ae26" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84ae26"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 474.37 651.15
   Q 496.49 653.61 518.73 651.89
   Q 553.17 649.23 584.53 634.72
@@ -1765,8 +2112,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.38 0.37 -24.2 0 0 680.55 552.59
   C 675.98 556.52 670.14 559.53 665.19 563.24
   Q 656.95 569.43 649.31 576.30"
-/>
-<path stroke="#d6c915" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d6c915"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 474.37 651.15
   L 474.37 650.49
   A 0.64 0.63 -88.4 0 1 475.05 649.84
@@ -1822,12 +2172,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 0 409.95 537.22
   Q 408.55 536.91 407.54 537.78
   Q 403.30 541.45 399.96 543.91"
-/>
-<path stroke="#cabe12" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cabe12"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 399.96 543.91
   L 395.70 547.22"
-/>
-<path stroke="#d6c915" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d6c915"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 395.70 547.22
   Q 386.17 554.16 376.61 561.11
   C 373.44 563.41 371.49 565.33 369.95 568.49
@@ -1835,8 +2191,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 366.60 583.21 368.36 587.54 370.48 590.92
   Q 370.54 591.02 372.35 593.23
   Q 373.72 594.89 372.62 595.99"
-/>
-<path stroke="#bdb60e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bdb60e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 395.70 547.22
   Q 395.52 549.01 393.76 553.26
   Q 392.76 555.71 391.93 564.36
@@ -1852,32 +2211,50 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 421.46 596.69 406.78 582.11
   C 402.57 577.93 396.86 570.04 397.09 563.96
   Q 397.41 555.22 399.96 543.91"
-/>
-<path stroke="#84ae26" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84ae26"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 616.37 598.12
   Q 598.22 611.18 591.40 615.16
   C 580.08 621.77 568.59 627.85 555.76 631.49
   C 545.03 634.54 531.19 635.27 522.09 628.09"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 359.25 251.96
   Q 350.42 251.24 340.70 253.21
   C 338.83 253.58 336.93 254.01 336.13 255.87
   Q 335.44 257.45 337.02 257.11"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.02 257.11
   Q 337.38 256.74 337.90 257.63"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.90 257.63
   Q 339.28 259.57 339.68 259.20"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 339.68 259.20
   Q 340.00 259.97 340.30 260.24"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 340.30 260.24
   L 339.95 260.29
   A 0.39 0.39 0.0 0 0 339.62 260.75
@@ -1900,14 +2277,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.07 0.07 0.0 0 1 351.02 270.38
   Q 349.18 267.49 347.01 266.14
   Q 346.40 265.77 346.27 266.48"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.27 266.48
   L 341.62 265.43
   A 0.23 0.22 -60.0 0 0 341.41 265.49
   Q 341.11 265.74 341.32 266.26"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.32 266.26
   Q 340.73 266.01 340.58 266.15
   Q 340.20 266.50 340.32 267.02
@@ -1926,12 +2309,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 408.83 268.74 402.78 264.51
   Q 387.65 253.94 368.04 251.32
   Q 364.00 250.79 359.25 251.96"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.32 266.26
   L 343.11 272.83"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.11 272.83
   C 346.47 286.29 353.70 296.99 364.29 306.20
   C 374.13 314.76 378.93 319.67 389.15 323.91
@@ -1939,12 +2328,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 421.59 312.53 420.35 299.83
   C 418.89 284.95 411.27 270.87 398.40 263.06
   Q 380.71 252.32 359.25 251.96"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.27 266.48
   Q 346.51 266.90 346.84 267.19"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.84 267.19
   Q 346.63 267.17 346.45 267.22
   A 0.47 0.46 61.3 0 0 346.23 267.98
@@ -1961,12 +2356,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 350.85 260.13 344.16 259.84
   Q 343.45 259.81 341.95 259.35
   Q 340.57 258.92 339.68 259.20"
-/>
-<path stroke="#7fba3f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7fba3f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.90 257.63
   Q 339.43 256.08 339.06 254.98"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.11 272.83
   L 343.32 272.19
   A 0.34 0.34 0.0 0 1 343.96 272.18
@@ -1984,12 +2385,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 366.40 253.90 360.51 253.33
   Q 353.03 252.61 344.00 253.65
   Q 342.12 253.87 339.06 254.98"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 339.06 254.98
   Q 337.28 255.36 337.02 257.11"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.84 267.19
   C 354.20 275.42 361.10 284.57 368.17 292.39
   C 373.11 297.86 380.62 306.21 388.22 310.32
@@ -1997,8 +2404,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 406.80 283.12 390.79 269.72 374.61 265.01
   Q 360.67 260.94 345.50 261.08
   Q 343.11 261.11 340.30 260.24"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 609.49 269.25
   C 613.31 267.51 620.85 263.88 620.56 260.17
   Q 620.18 255.37 620.06 254.78
@@ -2007,16 +2417,25 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.43 1.43 0.0 0 0 613.75 260.41
   L 609.05 268.76
   A 0.35 0.34 -87.4 0 0 609.49 269.25"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 332.59 259.13
   Q 329.62 261.14 330.49 262.33"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 330.49 262.33
   Q 328.76 263.04 327.82 265.86"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 327.82 265.86
   Q 327.46 263.78 326.54 266.31
   A 2.74 2.74 0.0 0 0 326.37 267.26
@@ -2049,8 +2468,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 362.01 367.13
   A 0.29 0.29 0.0 0 0 362.35 366.87
   L 362.69 364.17"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 362.69 364.17
   L 363.47 372.99
   A 6.47 6.41 -64.9 0 0 364.56 376.04
@@ -2059,8 +2481,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 397.57 403.16 390.36 392.15 387.81 388.51
   Q 373.41 367.89 370.83 363.91
   Q 364.51 354.14 360.91 349.73"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 360.91 349.73
   Q 359.70 350.94 358.84 348.54
   Q 358.44 347.43 358.18 345.55
@@ -2071,13 +2496,19 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 340.06 272.81 337.38 263.75
   A 0.43 0.43 0.0 0 0 336.56 263.76
   L 336.34 264.56"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.34 264.56
   Q 335.94 261.64 334.22 259.26
   Q 333.61 258.42 332.59 259.13"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.34 264.56
   Q 339.41 276.65 343.99 288.26
   C 346.73 295.22 349.08 301.32 350.04 307.23
@@ -2096,8 +2527,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 336.53 300.88 332.65 289.04
   Q 330.52 282.54 328.10 273.19
   Q 326.98 268.84 327.82 265.86"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 330.49 262.33
   Q 327.78 267.37 329.14 272.46
   Q 331.97 283.01 334.40 290.53
@@ -2122,12 +2556,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 339.29 279.53 335.71 267.29
   C 335.13 265.30 334.91 262.92 334.31 261.02
   Q 334.04 260.17 332.59 259.13"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 360.91 349.73
   L 362.69 364.17"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 296.75 281.05
   Q 299.79 280.65 305.26 281.47
   A 2.47 2.44 -50.8 0 0 306.47 281.34
@@ -2140,14 +2580,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.31 1.27 89.0 0 1 298.71 278.73
   L 296.49 280.42
   A 0.35 0.35 0.0 0 0 296.75 281.05"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 353.23 265.67
   Q 352.72 265.46 352.51 265.82
   A 0.21 0.20 43.8 0 0 352.52 266.06
   L 356.46 271.05"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 356.46 271.05
   Q 355.30 272.45 358.01 275.25
   C 361.47 278.83 364.85 284.04 368.33 287.96
@@ -2163,15 +2609,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 361.17 265.26 354.20 264.23
   Q 353.43 264.12 353.23 264.54
   Q 353.03 264.94 353.23 265.67"
-/>
-<path stroke="#727813" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#727813"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 356.46 271.05
   C 362.21 278.95 386.75 311.71 398.15 307.79
   Q 402.46 306.31 402.36 300.70
   C 402.14 288.51 393.16 277.94 382.37 272.97
   C 372.83 268.57 365.70 267.70 353.23 265.67"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.03 291.41
   C 625.13 290.68 625.29 289.79 625.62 289.17
   Q 630.44 280.20 633.34 270.62
@@ -2183,8 +2635,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 614.64 279.71 619.73 283.98 622.50 288.67
   Q 624.14 291.45 624.34 291.65
   A 0.41 0.41 0.0 0 0 625.03 291.41"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.93 270.28
   Q 320.01 271.18 318.98 272.28
   A 3.14 2.70 -79.9 0 0 318.72 272.62
@@ -2194,14 +2649,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 0 327.07 285.93
   Q 323.83 278.17 322.40 270.52
   A 0.33 0.33 0.0 0 0 321.93 270.28"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.30 326.49
   L 617.65 327.24
   A 0.65 0.64 -22.8 0 0 618.47 327.57
   L 619.43 327.20"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 619.43 327.20
   L 621.61 328.63
   A 0.34 0.34 0.0 0 1 621.60 329.20
@@ -2209,27 +2670,39 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 621.75 356.25 623.39 355.06
   Q 628.32 351.48 629.79 344.62
   C 630.32 342.17 633.38 340.02 633.98 336.76"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 633.98 336.76
   L 635.38 334.78
   A 1.11 1.10 55.9 0 0 635.55 333.88
   Q 635.09 331.88 632.68 330.58"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 632.68 330.58
   L 628.32 326.33
   A 0.10 0.09 36.3 0 1 628.30 326.22
   Q 628.36 326.07 628.37 325.96
   A 0.57 0.57 0.0 0 0 627.85 325.33
   L 626.77 325.23"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 626.77 325.23
   Q 627.80 325.00 628.87 324.86
   Q 629.41 324.80 629.25 323.96"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 629.25 323.96
   Q 630.55 324.01 630.32 322.72
   Q 629.67 319.03 629.51 317.32
@@ -2257,8 +2730,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 615.25 322.92 615.86 324.97 616.45 326.88
   A 0.39 0.38 -33.7 0 0 617.11 327.01
   Q 617.28 326.82 617.30 326.49"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 629.25 323.96
   Q 627.57 314.11 624.70 304.50
   Q 622.72 297.87 619.31 292.69
@@ -2275,28 +2751,43 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 570.13 296.95 578.62 292.56
   C 583.90 289.83 591.82 287.71 597.47 289.85
   C 610.66 294.85 616.04 313.95 617.30 326.49"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 626.77 325.23
   Q 622.99 325.49 619.43 327.20"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 632.68 330.58
   C 620.25 324.33 606.51 343.25 618.07 352.63
   C 620.30 354.45 622.72 354.89 624.65 352.66
   Q 627.62 349.25 627.89 345.25
   A 4.67 4.61 67.7 0 1 629.00 342.55
   L 633.98 336.76"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 289.84 286.78
   C 286.84 288.25 283.81 289.58 282.19 292.66"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 282.19 292.66
   Q 280.11 296.36 282.34 299.56"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 282.34 299.56
   Q 281.47 301.56 284.97 301.86
   C 287.32 302.07 289.86 301.31 292.06 301.32
@@ -2312,12 +2803,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 295.00 282.55 289.86 285.42
   Q 289.38 285.69 289.34 286.22
   Q 289.32 286.56 289.84 286.78"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 282.34 299.56
   Q 285.54 301.13 289.36 300.07"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 289.36 300.07
   L 296.67 299.02
   A 10.54 10.41 45.3 0 1 299.95 299.06
@@ -2328,8 +2825,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 321.77 289.65 311.20 286.82
   Q 303.55 284.77 296.20 285.09
   C 294.18 285.18 291.84 286.06 289.84 286.78"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 289.36 300.07
   Q 288.82 299.84 288.34 299.88
   A 0.25 0.23 -11.4 0 1 288.10 299.73
@@ -2346,8 +2846,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 284.52 291.20 283.26 293.53
   A 0.56 0.55 41.0 0 1 282.33 293.59
   Q 282.06 293.23 282.19 292.66"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 593.66 332.63
   L 590.49 331.24
   A 1.86 1.83 84.5 0 1 589.66 330.54
@@ -2373,8 +2876,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 574.55 338.52 585.32 334.69
   C 588.36 333.61 590.80 333.51 593.50 333.46
   A 0.43 0.43 0.0 0 0 593.66 332.63"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 583.09 295.67
   A 0.28 0.28 0.0 0 0 582.68 295.30
   Q 575.27 300.46 575.25 300.47
@@ -2385,8 +2891,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.36 3.99 74.4 0 1 563.62 330.36
   Q 563.83 330.05 571.92 316.87
   C 576.17 309.95 579.16 302.52 583.09 295.67"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 354.21 302.51
   Q 353.44 301.53 353.01 302.08
   A 0.28 0.28 0.0 0 0 352.97 302.34
@@ -2395,8 +2904,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 365.40 330.55 375.70 339.77
   Q 380.00 343.62 384.40 345.84
   Q 389.26 348.30 394.38 349.58"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.38 349.58
   Q 397.47 350.12 400.24 349.69
   Q 401.57 349.49 403.59 347.59
@@ -2404,8 +2916,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 414.12 333.64 415.15 330.54 414.94 328.46
   A 1.41 1.41 0.0 0 0 413.11 327.25
   L 404.22 330.09"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.22 330.09
   L 404.48 329.42
   A 0.38 0.38 0.0 0 0 404.12 328.91
@@ -2416,18 +2931,27 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 361.59 308.94 358.47 305.16 355.33 302.02
   Q 354.86 301.56 354.58 301.73
   Q 354.32 301.89 354.21 302.51"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.22 330.09
   Q 395.63 331.90 387.80 328.42"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 387.80 328.42
   Q 379.82 325.20 373.04 319.72
   C 368.42 316.00 363.50 312.33 359.44 308.13
   Q 356.77 305.36 354.21 302.51"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 387.80 328.42
   Q 387.90 328.87 388.16 329.09
   A 0.30 0.30 0.0 0 1 387.85 329.59
@@ -2444,14 +2968,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 394.06 348.61 395.20 348.66
   A 0.26 0.26 0.0 0 1 395.30 349.16
   L 394.38 349.58"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 310.49 305.72
   Q 309.11 304.76 307.93 304.89
   A 0.37 0.37 0.0 0 0 307.63 305.42
   L 308.45 307.21"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 308.45 307.21
   Q 308.06 307.26 307.84 307.19
   A 0.38 0.37 -2.6 0 0 307.38 307.69
@@ -2462,12 +2992,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 337.78 345.47 340.51 349.19
   A 0.45 0.43 64.1 0 0 340.97 349.36
   Q 341.55 349.23 341.29 348.71"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.29 348.71
   Q 341.71 349.48 343.23 349.71"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.23 349.71
   Q 343.81 346.20 343.20 343.19
   Q 342.38 339.10 342.36 338.99
@@ -2478,23 +3014,35 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 313.51 305.04 310.40 304.25
   A 0.36 0.36 0.0 0 0 310.12 304.90
   Q 310.40 305.08 310.49 305.72"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.23 349.71
   L 341.56 345.70"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.56 345.70
   Q 341.79 344.45 341.37 343.98"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.37 343.98
   Q 340.50 334.84 337.85 326.19
   Q 336.24 320.92 333.75 317.76
   Q 330.64 313.82 326.54 311.75
   Q 321.12 309.01 310.49 305.72"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.37 343.98
   Q 341.08 344.25 340.70 344.13
   A 0.55 0.53 -89.2 0 1 340.37 343.78
@@ -2505,16 +3053,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.61 0.61 0.0 0 0 309.68 308.01
   Q 318.71 320.93 329.31 334.20
   Q 333.45 339.39 341.56 345.70"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.29 348.71
   L 340.42 347.10
   A 4.34 4.19 -83.5 0 0 339.59 346.02
   Q 332.00 338.98 327.82 333.94
   Q 318.55 322.75 309.22 309.28
   Q 308.69 308.52 308.45 307.21"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 287.73 325.57
   Q 287.33 325.83 286.70 325.86
   A 0.31 0.30 -83.4 0 0 286.42 326.09
@@ -2526,14 +3080,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 262.60 324.59 258.69 325.35
   A 0.41 0.41 0.0 0 0 258.57 326.11
   Q 258.84 326.26 259.62 326.28"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 259.62 326.28
   C 253.76 326.90 247.25 331.12 250.23 337.38
   A 3.04 3.04 0.0 0 0 252.90 339.12
   L 262.27 339.36"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 262.27 339.36
   Q 261.75 339.60 261.66 339.91
   Q 261.54 340.34 262.02 340.46
@@ -2561,14 +3121,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 320.82 335.37
   A 0.49 0.49 0.0 0 0 321.43 334.84
   Q 321.40 334.59 321.22 334.34"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.22 334.34
   Q 321.86 334.17 321.22 333.30
   Q 313.45 322.81 305.78 312.24
   Q 304.53 310.52 303.06 308.19"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 303.06 308.19
   Q 302.63 306.63 301.33 304.85
   A 0.94 0.93 -19.3 0 0 300.51 304.46
@@ -2576,57 +3142,87 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 292.89 313.10 286.55 324.67
   A 0.49 0.49 0.0 0 0 286.78 325.35
   Q 287.17 325.52 287.73 325.57"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 303.06 308.19
   Q 301.85 308.34 303.88 311.20
   Q 305.53 313.53 307.10 315.93
   Q 308.60 318.22 310.47 320.56
   Q 315.27 326.54 319.14 333.18"
-/>
-<path stroke="#546d1c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#546d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 319.14 333.18
   Q 317.26 333.26 316.56 332.41"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 316.56 332.41
   Q 316.92 332.33 316.86 331.87
   A 0.59 0.58 6.4 0 0 316.46 331.38
   Q 305.50 327.68 293.96 326.55"
-/>
-<path stroke="#546d1c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#546d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 293.96 326.55
   Q 291.27 327.15 287.73 325.57"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.22 334.34
   L 319.14 333.18"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 293.96 326.55
   L 316.56 332.41"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 262.27 339.36
   Q 279.51 341.13 296.11 345.59
   Q 303.73 347.64 317.53 352.70
   Q 328.15 356.58 338.76 360.45"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 338.76 360.45
   L 343.36 362.47
   A 0.51 0.51 0.0 0 0 344.07 361.90
   Q 343.66 359.90 343.39 357.80
   Q 343.10 355.49 341.77 354.71
   Q 339.49 353.38 337.76 351.51"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.76 351.51
   C 333.29 345.96 330.18 341.25 322.58 338.94
   Q 303.69 333.19 284.41 328.95
   Q 271.23 326.05 259.62 326.28"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.76 351.51
   Q 338.00 352.11 337.96 352.17
   A 0.63 0.62 -45.3 0 1 336.98 352.18
@@ -2645,8 +3241,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 324.92 353.84 332.87 357.16 339.81 359.55
   A 0.39 0.38 -39.9 0 1 339.74 360.29
   L 338.76 360.45"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 291.91 305.53
   A 0.58 0.58 0.0 0 0 291.40 304.61
   L 281.88 305.20
@@ -2658,15 +3257,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.24 2.23 20.1 0 0 281.64 322.64
   C 284.23 318.28 286.87 315.30 288.85 310.77
   Q 289.91 308.34 291.91 305.53"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 423.84 312.35
   Q 422.99 315.19 422.13 316.12
   Q 419.85 318.61 417.35 321.37
   A 1.43 1.43 0.0 0 0 417.79 323.61
   Q 419.46 324.42 420.99 324.43"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.99 324.43
   Q 431.51 327.22 441.74 328.07
   Q 448.37 328.62 452.59 323.82
@@ -2674,8 +3279,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.74 2.62 -15.0 0 0 451.01 316.24
   Q 441.56 313.44 432.07 311.40
   Q 426.45 310.19 423.84 312.35"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.99 324.43
   Q 425.02 323.53 429.09 325.20
   A 3.37 3.30 58.6 0 0 430.00 325.43
@@ -2685,8 +3293,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.38 3.37 -75.0 0 0 450.23 317.44
   C 446.26 316.23 440.47 314.87 434.58 313.17
   Q 429.55 311.73 423.84 312.35"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 613.78 331.02
   A 1.65 1.64 -41.7 0 0 613.91 328.78
   L 610.04 324.10
@@ -2697,8 +3308,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 594.17 328.62 598.60 330.40 603.21 330.61
   Q 607.62 330.82 612.51 331.91
   Q 612.78 331.97 613.78 331.02"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 373.16 343.31
   Q 367.93 339.25 364.74 335.15
   C 363.06 332.99 360.90 331.60 359.27 329.12
@@ -2709,12 +3323,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.55 5.12 71.7 0 0 365.54 340.87
   L 372.81 343.91
   A 0.35 0.35 0.0 0 0 373.16 343.31"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 504.91 409.50
   Q 508.18 416.74 511.39 411.80"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 511.39 411.80
   Q 511.51 413.48 513.29 411.07
   Q 516.94 406.13 519.20 402.76
@@ -2724,20 +3344,29 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 570.34 357.17 591.69 350.55
   A 0.44 0.43 37.7 0 0 591.58 349.70
   L 590.19 349.63"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.19 349.63
   Q 598.29 346.77 606.83 346.67
   A 1.45 1.44 57.7 0 1 607.53 346.83
   L 608.11 347.13
   A 0.53 0.52 -73.6 0 0 608.87 346.71
   Q 608.95 345.97 608.72 345.18"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.72 345.18
   L 608.87 343.45"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.87 343.45
   Q 609.00 343.89 609.14 343.99
   A 0.39 0.38 -62.5 0 0 609.77 343.79
@@ -2753,12 +3382,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 519.60 384.02 518.54 385.28
   Q 511.85 393.26 505.08 404.79
   Q 503.51 407.46 504.91 409.50"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.87 343.45
   L 608.91 341.29"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.91 341.29
   L 610.24 336.71
   A 0.62 0.61 6.8 0 0 609.62 335.93
@@ -2768,12 +3403,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 529.86 373.77 521.63 383.65
   Q 512.49 394.60 506.93 404.61
   Q 506.16 406.00 505.62 407.44"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 505.62 407.44
   Q 505.50 408.68 504.91 409.50"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.91 341.29
   Q 607.72 341.34 608.43 338.48
   A 0.90 0.89 4.6 0 0 607.48 337.37
@@ -2786,8 +3427,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 510.57 399.72 506.21 408.19
   A 0.26 0.26 0.0 0 1 505.72 408.11
   L 505.62 407.44"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.72 345.18
   Q 600.22 345.46 593.78 347.23
   Q 568.87 354.06 547.12 370.89
@@ -2797,18 +3441,27 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 519.10 398.56 512.24 408.96
   Q 511.99 409.35 512.16 409.83
   Q 512.32 410.26 512.83 410.03"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 512.83 410.03
   L 511.39 411.80"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.19 349.63
   Q 573.28 354.98 559.84 363.34
   Q 542.78 373.97 527.77 390.01
   Q 521.94 396.24 512.83 410.03"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 647.44 336.21
   L 641.69 335.93
   A 1.13 1.12 -66.7 0 0 640.84 336.27
@@ -2817,8 +3470,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 633.40 344.64 632.86 346.32
   A 0.30 0.30 0.0 0 0 633.23 346.70
   Q 636.92 345.61 640.99 345.80"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 640.99 345.80
   L 639.51 346.11
   A 0.27 0.26 -7.8 0 0 639.30 346.38
@@ -2844,14 +3500,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.50 1.45 82.5 0 0 652.64 351.44
   Q 647.24 349.26 643.57 348.89
   Q 641.87 348.72 642.03 350.13"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 642.03 350.13
   Q 641.39 349.91 640.98 349.95
   A 0.38 0.38 0.0 0 0 640.73 350.56
   L 643.02 353.47"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 643.02 353.47
   Q 642.54 353.57 642.37 353.73
   Q 642.11 353.98 642.39 354.40
@@ -2864,12 +3526,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 699.51 413.52 708.12 412.55
   A 0.44 0.44 0.0 0 0 708.45 411.89
   Q 708.36 411.74 707.95 411.53"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 707.95 411.53
   L 712.05 411.20"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.05 411.20
   Q 714.61 412.47 717.03 410.75
   Q 718.63 409.62 722.08 406.46
@@ -2882,22 +3550,31 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 665.27 336.83 658.60 336.35 651.18 335.21
   A 8.54 8.51 -42.5 0 0 649.25 335.13
   Q 644.84 335.44 647.44 336.21"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.05 411.20
   Q 717.55 409.71 720.90 405.83
   C 725.27 400.75 723.97 389.57 722.70 383.38
   C 720.34 371.88 712.30 361.24 702.87 354.69
   Q 696.78 350.45 685.81 345.38
   C 673.41 339.63 661.53 337.28 647.44 336.21"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 707.95 411.53
   C 697.74 412.35 686.89 407.92 679.17 401.57
   Q 666.75 391.39 658.05 377.90
   Q 652.65 369.51 647.68 360.72"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 647.68 360.72
   Q 647.72 359.60 648.73 360.65
   Q 649.00 360.92 649.66 362.02
@@ -2930,8 +3607,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 647.90 352.33 645.45 351.69
   A 0.27 0.26 40.7 0 1 645.41 351.19
   Q 645.84 351.01 646.59 350.96"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 646.59 350.96
   L 651.68 352.38
   A 1.60 1.58 79.8 0 1 652.56 353.00
@@ -2941,16 +3621,25 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 715.59 391.85 706.98 377.23 703.46 372.64
   C 699.22 367.12 691.95 361.78 685.79 358.48
   Q 665.06 347.36 640.99 345.80"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 647.68 360.72
   L 643.02 353.47"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 642.03 350.13
   L 646.59 350.96"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 237.76 356.52
   L 251.54 357.60
   A 0.73 0.73 0.0 0 0 252.17 357.32
@@ -2961,38 +3650,56 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.44 3.41 -67.5 0 0 248.70 344.47
   C 244.01 350.05 241.24 354.14 237.68 356.15
   A 0.20 0.20 0.0 0 0 237.76 356.52"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 258.14 358.72
   Q 257.64 359.00 257.61 359.21
   A 0.39 0.38 14.7 0 0 257.86 359.63
   Q 272.78 364.74 285.37 368.85
   Q 288.02 369.71 288.93 368.55"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.93 368.55
   Q 289.49 369.07 290.40 368.39"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 290.40 368.39
   Q 289.87 366.09 288.35 364.21
   C 283.89 358.66 279.97 352.35 276.18 346.13
   A 0.67 0.67 0.0 0 0 275.08 346.06
   Q 275.02 346.15 275.16 346.51"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 275.16 346.51
   Q 272.72 344.39 269.49 345.79
   A 2.70 2.60 -79.1 0 0 268.58 346.43
   L 258.18 357.39
   A 1.30 1.24 71.1 0 0 257.85 358.11
   Q 257.80 358.48 258.14 358.72"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 275.16 346.51
   L 286.63 364.25"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 286.63 364.25
   Q 284.63 363.23 282.42 360.07
   Q 279.53 355.94 276.52 351.20
@@ -3004,30 +3711,48 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 260.12 356.52 259.94 357.00
   A 0.79 0.78 -72.3 0 0 260.47 358.04
   Q 272.07 361.08 283.30 366.17"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 283.30 366.17
   L 258.14 358.72"
-/>
-<path stroke="#546d1c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#546d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 290.40 368.39
   L 286.63 364.25"
-/>
-<path stroke="#546d1c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#546d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.93 368.55
   Q 284.77 367.40 283.30 366.17"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 340.57 433.64
   Q 340.89 434.48 341.39 435.04
   A 0.28 0.27 -59.8 0 0 341.86 434.91
   L 342.83 430.67"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.83 430.67
   L 343.66 425.91"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.66 425.91
   Q 343.67 428.10 344.12 428.02
   A 1.20 1.19 87.7 0 0 345.07 426.98
@@ -3052,8 +3777,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 337.65 430.79 338.59 433.15 339.53 434.20
   Q 339.99 434.72 340.26 434.37
   Q 340.36 434.24 340.57 433.64"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.66 425.91
   L 344.81 417.10
   A 6.02 5.99 31.4 0 0 343.78 412.89
@@ -3066,12 +3794,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 307.21 385.01 318.13 400.22
   Q 320.83 403.97 327.82 414.33
   Q 332.54 421.32 337.76 428.34"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.76 428.34
   L 340.57 433.64"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.83 430.67
   Q 341.69 429.83 342.13 427.00
   Q 342.85 422.38 343.55 417.72
@@ -3087,12 +3821,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 289.58 358.56 296.13 367.62
   C 306.68 382.24 312.72 391.22 321.70 403.29
   Q 330.75 415.44 337.76 428.34"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 403.11 374.44
   L 408.31 375.11"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 408.31 375.11
   Q 412.66 375.85 415.84 373.59
   C 422.37 368.93 413.58 363.11 409.74 361.51
@@ -3104,8 +3844,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 369.95 354.56 371.90 357.30 376.00 363.92
   A 4.33 4.30 83.5 0 0 378.26 365.73
   L 403.11 374.44"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 408.31 375.11
   Q 409.26 374.35 412.38 373.87
   Q 414.37 373.57 416.69 370.90
@@ -3123,12 +3866,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 404.30 373.58
   A 0.28 0.28 0.0 0 1 404.29 374.12
   L 403.11 374.44"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 633.24 585.44
   Q 634.11 586.39 635.79 586.22"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 635.79 586.22
   Q 636.26 586.74 637.04 586.41
   Q 637.61 586.16 638.01 585.51
@@ -3146,14 +3895,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 699.42 480.41 694.29 470.66 690.20 464.54
   Q 683.51 454.51 675.80 445.30
   Q 674.52 443.77 672.78 442.76"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 672.78 442.76
   Q 672.52 442.63 672.34 442.60
   Q 672.09 442.57 671.97 442.79
   Q 671.81 443.07 671.97 443.53"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 671.97 443.53
   Q 670.74 442.78 670.38 443.48
   A 0.70 0.64 -37.0 0 0 670.31 443.85
@@ -3194,8 +3949,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 652.52 496.21 649.77 512.05
   C 646.21 532.59 639.77 554.14 633.21 572.41
   C 631.99 575.79 630.43 582.36 633.24 585.44"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 671.97 443.53
   Q 672.31 451.93 671.59 460.51
   Q 671.43 462.46 673.09 464.89
@@ -3205,8 +3963,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 692.23 469.55 689.58 465.71
   Q 685.15 459.27 680.37 453.12
   Q 676.43 448.05 672.78 442.76"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 635.79 586.22
   Q 637.76 584.72 638.89 582.13
   Q 649.46 557.93 655.28 534.37
@@ -3217,12 +3978,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 658.95 394.12 656.24 388.87 654.47 383.93
   Q 652.73 379.06 649.80 373.56
   Q 643.81 362.31 635.91 352.37"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 635.91 352.37
   Q 633.33 351.96 631.21 354.26"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 631.21 354.26
   Q 626.70 356.51 628.86 360.39
   Q 640.63 381.55 643.09 387.43
@@ -3233,8 +4000,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 653.90 497.72 652.62 505.27
   Q 647.08 537.83 633.87 574.66
   Q 632.16 579.43 633.24 585.44"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 635.91 352.37
   Q 634.32 352.66 634.61 352.94
   Q 634.93 353.26 635.30 353.50
@@ -3267,8 +4037,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 629.32 359.78 628.61 356.92 631.56 355.00
   A 0.51 0.51 0.0 0 0 631.60 354.17
   Q 631.46 354.05 631.21 354.26"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 651.30 434.78
   Q 651.56 435.04 651.62 435.42
   A 0.66 0.65 -1.6 0 0 652.22 435.98
@@ -3281,8 +4054,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 634.03 380.42 630.43 373.42
   C 628.41 369.49 625.44 365.58 623.65 362.31
   Q 621.18 357.78 617.85 358.31"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.85 358.31
   Q 613.38 356.56 609.60 352.32
   A 1.41 1.40 -19.2 0 0 608.62 351.85
@@ -3294,16 +4070,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 645.63 425.52 650.84 435.59
   A 0.27 0.27 0.0 0 0 651.31 435.61
   Q 651.47 435.32 651.30 434.78"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.85 358.31
   Q 621.32 360.59 622.42 362.35
   Q 632.35 378.29 638.92 391.55
   Q 642.02 397.83 644.69 404.31
   Q 647.78 411.81 649.15 419.91
   Q 650.41 427.34 651.30 434.78"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.73 363.55
   C 582.65 368.21 577.96 371.29 572.33 375.65
   A 0.33 0.32 34.3 0 0 572.44 376.22
@@ -3345,20 +4127,29 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 571.61 371.05 574.46 368.70
   C 578.78 365.14 581.70 364.01 586.53 363.20
   A 0.22 0.21 15.9 0 1 586.73 363.55"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 662.96 358.50
   Q 673.83 374.16 684.58 383.17
   Q 693.06 390.29 703.06 394.67
   Q 704.67 395.38 706.36 394.45
   A 0.91 0.89 -12.9 0 0 706.83 393.72
   L 706.96 392.02"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 706.96 392.02
   L 706.41 388.11"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 706.41 388.11
   Q 708.18 389.03 707.41 385.83
   C 705.68 378.71 699.87 374.06 695.15 368.73
@@ -3367,25 +4158,37 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 670.47 354.75 665.19 352.86
   A 0.81 0.79 9.0 0 0 664.10 353.63
   Q 664.12 353.98 664.67 354.31"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 664.67 354.31
   L 659.29 352.93
   A 0.28 0.28 0.0 0 0 659.00 353.37
   L 662.96 358.50"
-/>
-<path stroke="#546d1c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#546d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 664.67 354.31
   Q 678.63 359.11 682.30 361.42
   C 691.25 367.05 698.57 372.61 704.11 381.56
   A 7.71 7.55 -70.0 0 1 704.92 383.35
   L 706.41 388.11"
-/>
-<path stroke="#c4c623" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c4c623"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 706.96 392.02
   Q 706.60 391.63 706.25 391.58"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 706.25 391.58
   C 704.71 386.92 703.67 381.54 700.39 377.92
   Q 697.61 374.85 692.66 369.90
@@ -3398,26 +4201,38 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 700.40 384.00
   A 1.70 1.69 40.1 0 1 700.51 385.24
   Q 699.59 388.25 696.94 390.29"
-/>
-<path stroke="#c4c623" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c4c623"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 696.94 390.29
   Q 687.68 385.17 682.55 379.69
   Q 677.98 374.80 676.25 373.05
   C 671.56 368.30 667.99 363.28 663.13 357.46
   A 0.20 0.20 0.0 0 0 662.78 357.63
   L 662.96 358.50"
-/>
-<path stroke="#a8be2b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a8be2b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 696.94 390.29
   Q 700.02 391.77 702.87 393.37
   Q 703.90 393.95 705.00 393.54
   Q 706.59 392.95 706.25 391.58"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 310.57 354.47
   L 310.27 354.96"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 310.27 354.96
   Q 308.65 354.98 310.08 357.16
   Q 318.25 369.60 319.59 371.70
@@ -3437,8 +4252,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 329.31 359.80 311.40 353.54
   Q 310.81 353.34 310.60 353.60
   Q 310.40 353.86 310.57 354.47"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 310.27 354.96
   Q 315.73 363.05 320.90 371.34
   Q 322.82 374.41 327.65 380.63
@@ -3446,18 +4264,27 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 345.30 388.93
   A 0.35 0.35 0.0 0 0 345.80 388.58
   L 345.24 382.31"
-/>
-<path stroke="#546d1c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#546d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 345.24 382.31
   L 344.11 368.70
   A 1.10 1.09 11.5 0 0 343.52 367.82
   L 336.81 364.41"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.81 364.41
   L 310.57 354.47"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.81 364.41
   L 337.23 365.01
   A 0.25 0.25 0.0 0 1 336.95 365.39
@@ -3470,16 +4297,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 344.38 381.40
   A 0.27 0.27 0.0 0 1 344.88 381.28
   Q 345.11 381.64 345.24 382.31"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 235.80 360.64
   Q 230.54 360.53 227.00 361.24
   C 223.50 361.94 218.73 365.06 218.13 369.07
   Q 217.88 370.78 218.30 373.08
   A 1.97 1.97 0.0 0 0 220.50 374.68
   L 228.37 373.62"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 228.37 373.62
   L 227.94 374.18
   A 0.52 0.51 -55.0 0 0 228.07 374.92
@@ -3491,12 +4324,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.21 1.16 72.7 0 1 304.60 394.12
   Q 305.63 395.00 306.85 394.87
   C 307.30 394.82 307.45 394.47 307.44 394.05"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 307.44 394.05
   Q 307.59 393.62 307.52 393.20"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 307.52 393.20
   Q 308.42 393.31 308.61 392.68
   A 0.46 0.46 0.0 0 0 308.53 392.26
@@ -3508,26 +4347,38 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 230.60 359.74
   A 0.71 0.67 1.3 0 0 231.28 360.41
   L 235.80 360.64"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 307.52 393.20
   L 296.52 377.06
   A 4.44 4.44 0.0 0 0 294.92 375.62
   C 289.49 372.71 283.50 371.13 278.04 369.27
   Q 269.91 366.51 256.07 363.15
   Q 247.37 361.04 235.80 360.64"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 307.44 394.05
   Q 303.96 392.38 302.94 392.06
   C 290.62 388.24 278.29 384.48 266.04 380.48
   Q 247.53 374.45 228.37 373.62"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.00 375.45
   L 588.08 378.88"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 588.08 378.88
   Q 587.45 378.95 587.67 379.59
   A 0.77 0.77 0.0 0 0 588.20 380.07
@@ -3537,8 +4388,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 599.82 361.39
   A 0.24 0.24 0.0 0 0 599.42 361.35
   Q 594.11 367.81 591.00 375.45"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 588.08 378.88
   L 611.80 385.58
   A 0.21 0.20 82.9 0 0 612.03 385.28
@@ -3547,14 +4401,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 594.59 368.70 591.90 375.38
   Q 591.65 376.03 591.08 375.85
   Q 590.97 375.81 591.00 375.45"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 244.03 378.96
   Q 243.72 378.87 243.54 379.04
   Q 243.36 379.20 243.43 379.51
   Q 243.52 379.88 243.78 380.23"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 243.78 380.23
   Q 243.30 380.24 243.09 380.43
   Q 242.86 380.64 243.12 381.09
@@ -3576,8 +4436,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 258.98 380.49 252.38 379.65 246.97 378.19
   Q 244.49 377.53 244.12 378.12
   Q 243.89 378.48 244.03 378.96"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 243.78 380.23
   C 249.51 388.82 255.38 398.32 261.14 405.93
   C 268.26 415.33 274.14 424.78 281.80 435.86
@@ -3590,8 +4453,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 263.40 385.49 261.88 384.13 259.62 383.37
   Q 253.20 381.22 249.31 380.29
   Q 246.66 379.66 244.03 378.96"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 205.18 393.18
   A 0.37 0.37 0.0 0 0 205.40 393.85
   L 215.87 394.16
@@ -3606,12 +4472,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 226.03 378.97 220.28 379.95
   A 5.30 5.28 -74.3 0 0 217.18 381.70
   Q 211.81 387.91 205.18 393.18"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 626.39 406.97
   Q 626.41 406.44 626.43 405.92"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 626.43 405.92
   Q 626.60 406.22 626.95 406.14
   A 0.63 0.62 68.4 0 0 627.35 405.20
@@ -3628,8 +4500,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 580.07 394.46 581.38 394.80
   C 584.24 395.54 586.60 395.92 589.59 396.84
   Q 607.53 402.42 626.39 406.97"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 626.43 405.92
   L 619.85 394.60
   A 1.71 1.70 -5.1 0 0 618.96 393.86
@@ -3639,8 +4514,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 558.80 385.65 558.96 390.37 562.98 390.78
   Q 579.59 392.50 593.56 396.29
   Q 609.86 400.72 626.39 406.97"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 254.69 404.20
   L 239.08 381.51
   A 0.17 0.16 51.4 0 0 238.83 381.48
@@ -3650,8 +4528,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 230.68 397.10 239.99 400.08
   C 244.52 401.53 249.57 402.11 254.33 404.60
   A 0.28 0.28 0.0 0 0 254.69 404.20"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 362.93 381.70
   L 362.75 394.12
   A 0.51 0.50 86.2 0 0 363.33 394.63
@@ -3661,8 +4542,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.47 0.47 0.0 0 0 369.21 392.75
   C 368.20 388.54 365.58 385.21 363.43 381.57
   A 0.27 0.27 0.0 0 0 362.93 381.70"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 270.69 386.59
   A 0.16 0.16 0.0 0 0 270.52 386.84
   L 294.83 420.98
@@ -3675,26 +4559,38 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 316.28 405.48 312.43 400.73
   A 6.62 6.62 0.0 0 0 309.27 398.60
   L 270.69 386.59"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.49 393.57
   L 344.86 405.73
   A 0.63 0.62 -57.8 0 0 345.99 405.47
   Q 346.15 404.53 345.32 404.14"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 345.32 404.14
   L 345.51 395.23
   A 0.92 0.90 18.0 0 0 345.11 394.46
   Q 338.96 390.18 332.37 387.62
   A 0.19 0.18 81.3 0 0 332.16 387.91
   L 336.49 393.57"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 345.32 404.14
   Q 341.43 398.14 336.49 393.57"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 669.56 400.66
   A 0.68 0.68 0.0 0 0 669.71 399.58
   Q 665.59 395.60 663.03 391.17
@@ -3704,26 +4600,41 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 664.94 396.28 665.89 401.45
   A 0.83 0.82 -19.7 0 0 667.10 402.02
   L 669.56 400.66"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 193.80 398.48
   Q 192.21 399.08 190.69 399.67
   Q 186.56 401.28 185.16 405.26"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 185.16 405.26
   Q 183.25 409.65 187.59 411.15
   Q 190.90 412.29 194.93 411.16"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 194.93 411.16
   L 199.18 411.07"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 199.18 411.07
   C 202.99 412.47 206.61 413.32 210.06 415.69"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.06 415.69
   Q 208.81 415.93 207.65 415.66
   A 0.39 0.39 0.0 0 0 207.19 416.17
@@ -3736,8 +4647,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 260.40 487.46
   A 0.33 0.31 50.6 0 0 260.43 487.03
   Q 257.31 483.04 256.31 478.04"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 256.31 478.04
   Q 257.57 477.70 256.33 475.05
   C 253.39 468.77 250.07 463.88 247.38 458.24
@@ -3756,14 +4670,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 256.24 425.40 272.17 431.73
   A 0.29 0.29 0.0 0 0 272.54 431.34
   L 272.22 430.67"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 272.22 430.67
   Q 272.41 430.70 272.56 430.69
   A 0.31 0.30 70.5 0 0 272.79 430.20
   L 272.27 429.50"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 272.27 429.50
   Q 273.39 429.35 272.84 428.52
   Q 269.41 423.32 266.17 417.72
@@ -3777,8 +4697,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 195.91 396.75 193.44 397.45
   A 0.55 0.55 0.0 0 0 193.34 398.46
   Q 193.38 398.48 193.80 398.48"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 272.27 429.50
   L 259.26 410.73
   A 1.42 1.42 0.0 0 0 258.36 410.14
@@ -3786,14 +4709,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 244.79 405.69 237.61 403.96 231.60 402.16
   Q 225.72 400.40 220.04 399.55
   C 211.52 398.27 202.27 397.31 193.80 398.48"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 272.22 430.67
   Q 271.43 430.17 270.52 429.81
   Q 247.71 420.69 223.88 414.67
   Q 210.47 411.28 199.18 411.07"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 194.93 411.16
   Q 194.33 409.32 199.19 409.58
   Q 212.16 410.29 224.55 413.67
@@ -3808,23 +4737,32 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 200.65 399.39 192.90 400.52
   A 2.60 2.57 24.4 0 0 191.90 400.89
   L 185.16 405.26"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 256.31 478.04
   Q 254.60 474.11 252.64 470.58
   Q 240.50 448.67 228.79 426.52
   C 227.40 423.91 226.67 421.42 224.92 419.60
   A 2.65 2.52 -10.4 0 0 223.94 418.96
   Q 217.10 416.43 210.06 415.69"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 640.29 506.26
   L 646.38 512.89
   A 0.26 0.26 0.0 0 0 646.83 512.76
   Q 648.98 500.90 649.32 495.26
   Q 649.40 493.92 647.75 492.44"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 647.75 492.44
   Q 622.45 460.62 607.03 438.48
   Q 598.64 426.43 582.39 399.15
@@ -3834,8 +4772,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 574.00 414.77 585.53 431.07 596.09 447.56
   Q 602.28 457.23 606.77 463.24
   Q 615.13 474.44 640.29 506.26"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 647.75 492.44
   Q 648.13 493.10 648.13 493.52
   A 0.37 0.37 0.0 0 1 647.45 493.71
@@ -3855,8 +4796,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 637.61 501.12 641.46 506.29
   A 0.31 0.30 77.4 0 1 641.16 506.77
   Q 640.83 506.70 640.29 506.26"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 562.34 399.74
   A 1.75 1.75 0.0 0 0 559.53 399.04
   L 542.88 413.85
@@ -3870,8 +4814,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 561.93 405.43
   A 3.87 3.86 -31.8 0 0 562.91 401.27
   L 562.34 399.74"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 651.13 449.27
   L 651.03 444.02
   A 1.70 1.70 0.0 0 0 650.75 443.12
@@ -3880,12 +4827,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.47 4.35 -0.8 0 0 631.61 415.52
   Q 626.87 412.32 623.47 411.00
   Q 613.60 407.18 596.79 402.17"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 596.79 402.17
   L 590.04 400.15"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.04 400.15
   Q 589.63 399.62 588.77 399.43
   A 0.26 0.25 -8.2 0 0 588.49 399.80
@@ -3894,27 +4847,42 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 616.41 439.44 619.56 439.74 622.48 440.62
   Q 638.92 445.62 651.07 450.39
   Q 651.63 450.61 651.13 449.27"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.04 400.15
   L 595.06 409.15"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 595.06 409.15
   Q 602.95 422.70 611.33 434.75
   C 612.41 436.29 613.96 437.66 615.62 437.94
   Q 620.89 438.82 622.68 439.38
   Q 631.80 442.19 646.74 447.49"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 646.74 447.49
   L 649.70 448.86"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 649.70 448.86
   Q 650.96 448.80 651.13 449.27"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 596.79 402.17
   Q 595.78 401.96 595.18 402.19
   A 0.24 0.24 0.0 0 0 595.19 402.64
@@ -3928,8 +4896,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 649.88 446.77 650.48 448.16
   A 0.43 0.42 -18.6 0 1 650.19 448.74
   L 649.70 448.86"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 646.74 447.49
   Q 643.21 442.37 637.85 439.43
   A 3.67 3.61 -0.4 0 1 636.44 438.06
@@ -3938,8 +4909,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 624.02 418.44 621.98 414.85 617.05 413.88
   Q 615.21 413.52 613.83 413.13
   Q 604.80 410.55 595.06 409.15"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 668.45 409.71
   L 669.81 418.32
   A 1.54 1.53 89.0 0 0 671.14 419.61
@@ -3951,16 +4925,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 730.03 416.30 723.44 415.57
   C 717.94 414.96 712.50 415.97 706.74 416.27
   C 695.92 416.85 687.45 412.92 678.07 407.62"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 678.07 407.62
   L 674.68 405.31
   A 1.07 1.05 -42.0 0 0 673.58 405.26
   L 668.34 408.16
   A 0.53 0.51 -25.8 0 0 668.10 408.81
   L 668.45 409.71"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 678.07 407.62
   Q 677.51 407.64 677.21 407.78
   A 0.26 0.25 49.2 0 0 677.18 408.22
@@ -3980,12 +4960,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 669.80 409.35
   A 0.71 0.70 54.8 0 0 668.48 409.12
   Q 668.43 409.20 668.45 409.71"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 565.05 408.67
   L 557.90 416.09"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 557.90 416.09
   Q 557.50 416.35 557.33 416.70
   A 0.55 0.55 0.0 0 0 557.66 417.45
@@ -3994,15 +4980,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 566.16 407.98
   A 0.51 0.51 0.0 0 0 565.31 407.92
   Q 565.11 408.19 565.05 408.67"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 557.90 416.09
   L 571.09 421.30
   A 0.29 0.29 0.0 0 0 571.47 421.12
   Q 571.86 419.90 571.21 418.77
   Q 568.24 413.61 565.05 408.67"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 162.14 432.13
   L 167.30 429.14
   A 3.40 3.40 0.0 0 1 170.15 428.90
@@ -4018,14 +5010,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.74 5.70 9.7 0 1 167.82 427.18
   Q 163.66 429.62 161.66 431.49
   A 0.40 0.40 0.0 0 0 162.14 432.13"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 587.46 444.29
   Q 587.63 444.25 587.74 444.18
   A 0.40 0.39 -15.3 0 0 587.92 443.87
   Q 587.93 443.49 587.84 443.44"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 587.84 443.44
   Q 589.24 443.01 587.36 440.11
   Q 580.95 430.22 579.97 428.78
@@ -4044,8 +5042,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 582.09 443.01 587.15 445.31
   A 0.22 0.22 0.0 0 0 587.46 445.11
   L 587.46 444.29"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 587.84 443.44
   L 579.04 429.53
   A 2.73 2.73 0.0 0 0 577.59 428.39
@@ -4055,12 +5056,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.79 3.79 0.0 0 0 527.95 426.12
   C 546.13 429.14 559.15 433.98 580.41 441.10
   Q 584.63 442.51 587.46 444.29"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 200.71 417.67
   L 191.28 427.84"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 191.28 427.84
   Q 190.48 427.99 190.04 428.91
   A 0.34 0.34 0.0 0 0 190.39 429.39
@@ -4070,14 +5077,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 205.21 424.37 202.02 417.81
   Q 201.78 417.32 201.26 417.35
   Q 200.97 417.36 200.71 417.67"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 191.28 427.84
   L 206.70 430.28
   A 0.69 0.69 0.0 0 0 207.41 429.25
   L 200.71 417.67"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 503.08 417.97
   A 0.69 0.68 -28.2 0 0 501.85 417.60
   Q 494.35 427.53 489.76 436.77
@@ -4086,28 +5099,40 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 494.14 441.81 495.92 437.93
   Q 499.77 429.53 501.76 424.80
   Q 503.28 421.15 503.08 417.97"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 231.37 421.02
   L 243.06 443.74
   A 2.19 2.18 82.1 0 0 244.56 444.88
   C 250.96 446.21 254.27 447.47 261.73 450.33
   Q 275.34 455.55 288.23 462.29"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.23 462.29
   Q 290.62 464.07 293.05 465.70
   Q 294.02 466.35 294.80 465.90
   A 1.15 1.15 0.0 0 0 295.24 464.38
   Q 293.12 460.31 290.10 456.67"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 290.10 456.67
   Q 284.16 447.29 278.07 437.97
   Q 276.76 435.95 275.17 435.38
   Q 273.42 434.75 271.23 434.79"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 271.23 434.79
   Q 271.48 434.51 271.90 434.47
   Q 272.46 434.42 272.51 434.22
@@ -4116,12 +5141,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 234.06 419.89
   A 1.47 1.47 0.0 0 0 232.75 420.07
   L 231.37 421.02"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 271.23 434.79
   Q 251.89 427.01 231.37 421.02"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 290.10 456.67
   Q 290.25 457.46 289.91 457.55
   A 0.39 0.38 -23.7 0 1 289.49 457.39
@@ -4132,34 +5163,49 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 235.96 423.22 234.25 423.22
   A 0.34 0.33 -14.0 0 0 233.95 423.71
   L 238.66 432.56"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 238.66 432.56
   L 244.09 442.80
   A 1.81 1.81 0.0 0 0 245.35 443.75
   C 249.44 444.59 253.23 445.66 257.23 447.26
   Q 259.87 448.32 271.61 453.52
   Q 275.36 455.17 279.28 456.56"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 279.28 456.56
   L 288.71 461.53
   A 0.35 0.35 0.0 0 1 288.65 462.17
   L 288.23 462.29"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 279.28 456.56
   C 277.08 448.52 270.87 443.27 263.41 440.55
   Q 254.31 437.24 245.27 433.77
   Q 242.76 432.81 238.66 432.56"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 684.93 450.05
   L 703.24 429.79
   A 0.42 0.41 28.0 0 0 703.03 429.11
   Q 688.01 425.27 672.96 424.92"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 672.96 424.92
   Q 672.21 424.51 671.64 424.81
   A 0.63 0.62 -15.8 0 0 671.30 425.41
@@ -4167,8 +5213,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 672.12 434.37 674.81 437.72
   Q 679.07 443.03 682.89 448.66
   Q 684.23 450.63 684.93 450.05"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 672.96 424.92
   L 672.92 432.09
   A 1.80 1.80 0.0 0 0 673.03 432.71
@@ -4177,23 +5226,32 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 683.79 448.79 684.54 449.02
   Q 685.00 449.16 685.09 449.40
   Q 685.20 449.69 684.93 450.05"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 311.04 447.03
   Q 311.52 448.08 312.32 448.58
   A 0.67 0.66 44.3 0 0 313.01 448.58
   L 328.70 438.71
   A 0.35 0.35 0.0 0 0 328.63 438.09
   L 323.22 436.17"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 323.22 436.17
   Q 312.59 430.94 301.27 427.91
   C 300.22 427.62 299.48 426.86 298.55 426.82
   A 0.32 0.32 0.0 0 0 298.27 427.31
   L 311.04 447.03"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 323.22 436.17
   Q 324.21 437.37 321.39 436.25
   Q 317.28 434.62 316.15 434.07
@@ -4203,8 +5261,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 305.48 436.47 311.78 446.45
   Q 311.98 446.78 311.70 447.03
   Q 311.49 447.21 311.04 447.03"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.28 435.47
   Q 531.72 446.09 537.91 455.58
   C 539.61 458.19 540.85 460.88 542.53 463.73
@@ -4228,14 +5289,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 548.83 438.55 546.07 434.60
   A 2.28 2.24 -2.4 0 0 545.34 433.94
   Q 539.01 430.48 532.23 431.21"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.23 431.21
   L 527.94 430.94
   A 0.40 0.40 0.0 0 0 527.52 431.41
   L 528.28 435.47"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.23 431.21
   L 543.89 434.72
   A 3.64 3.59 83.0 0 1 545.97 436.37
@@ -4249,8 +5316,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 562.82 496.05 553.81 480.31
   Q 553.80 480.30 540.97 458.32
   Q 534.45 447.16 528.28 435.47"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 231.88 677.76
   L 231.86 676.81
   A 0.32 0.32 0.0 0 0 231.30 676.61
@@ -4261,8 +5331,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 291.61 782.61 322.03 792.06 353.27 797.22
   A 1.20 1.19 -64.8 0 0 354.37 796.82
   Q 354.41 796.78 354.22 796.02"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 354.22 796.02
   Q 367.00 798.16 371.00 798.56
   Q 402.47 801.66 435.76 800.44
@@ -4277,15 +5350,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 662.49 747.93 654.16 759.89
   Q 651.42 763.81 649.94 767.97
   Q 648.98 770.66 651.66 772.80"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 651.66 772.80
   Q 664.77 770.29 676.85 764.68
   Q 681.13 762.70 685.04 760.17
   A 4.55 4.50 -4.2 0 0 686.69 758.28
   L 689.83 751.47"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 689.83 751.47
   Q 693.65 744.12 696.05 740.55
   C 712.78 715.70 731.91 691.81 754.00 671.25
@@ -4410,24 +5489,33 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 266.37 642.50 263.51 645.01
   Q 252.97 654.28 242.14 665.39
   Q 236.51 671.18 231.88 677.76"
-/>
-<path stroke="#2e9b3a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e9b3a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 689.83 751.47
   Q 687.08 752.58 684.64 754.18
   Q 681.14 756.47 679.63 757.21
   Q 673.18 760.37 667.06 764.15
   Q 666.52 764.48 659.25 768.03
   Q 655.26 769.98 651.66 772.80"
-/>
-<path stroke="#1c6427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c6427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 354.22 796.02
   C 322.80 791.20 291.31 781.38 263.64 765.59
   Q 249.23 757.37 237.54 746.23
   Q 232.09 741.03 226.41 733.07
   Q 216.61 719.34 219.77 702.77
   Q 222.33 689.35 231.88 677.76"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 187.28 433.91
   Q 187.01 433.86 186.76 434.21
   A 0.44 0.44 0.0 0 0 186.89 434.84
@@ -4437,13 +5525,19 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 222.48 453.38 215.62 440.89
   C 213.76 437.49 212.49 436.42 208.28 435.76
   Q 202.63 434.88 196.97 433.94"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 196.97 433.94
   Q 194.17 432.84 191.25 431.81
   Q 188.27 430.75 187.28 433.91"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 196.97 433.94
   Q 193.20 434.07 199.52 435.39
   Q 207.01 436.97 210.24 437.37
@@ -4452,8 +5546,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 218.84 448.92 223.01 456.56
   A 0.41 0.40 2.5 0 1 222.43 457.09
   L 187.28 433.91"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 172.62 449.30
   Q 171.88 449.43 171.68 449.90
   A 0.46 0.45 24.5 0 0 171.90 450.48
@@ -4473,15 +5570,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 189.81 440.46 188.93 440.75
   A 0.41 0.41 0.0 0 0 188.77 441.43
   L 189.40 442.06"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 189.40 442.06
   Q 181.74 438.04 173.92 434.54
   C 168.77 432.24 162.58 432.03 159.44 437.70
   A 1.51 1.50 -36.0 0 0 159.27 438.74
   C 160.33 444.00 168.14 447.42 172.62 449.30"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 189.40 442.06
   C 201.17 448.70 214.24 458.11 223.36 464.20
   Q 231.94 469.93 239.52 476.03
@@ -4492,8 +5595,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 251.43 504.05 244.24 498.64 237.02 492.64
   Q 220.49 478.91 198.16 464.61
   Q 183.19 455.03 172.62 449.30"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.91 432.98
   A 0.28 0.28 0.0 0 0 522.45 432.90
   Q 510.97 445.33 506.46 452.22
@@ -4503,8 +5609,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 524.90 437.66
   A 0.05 0.05 0.0 0 0 524.91 437.61
   L 522.91 432.98"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.40 447.81
   A 0.61 0.61 0.0 0 0 349.94 448.85
   Q 354.17 453.00 359.10 453.17
@@ -4513,12 +5622,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.45 0.45 0.0 0 0 358.77 434.03
   Q 357.95 436.66 357.15 440.91
   C 356.48 444.50 354.03 448.02 350.40 447.81"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 621.30 490.93
   Q 622.65 491.93 622.70 491.02"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.70 491.02
   Q 623.34 490.91 623.64 490.73
   A 0.58 0.58 0.0 0 0 623.77 489.85
@@ -4537,26 +5652,38 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 585.84 478.49 610.68 488.41
   Q 614.88 490.09 618.95 491.70
   Q 621.41 492.67 621.30 490.93"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.70 491.02
   Q 607.29 472.08 593.14 451.35
   A 5.03 5.02 82.2 0 0 590.63 449.44
   L 552.04 436.33
   A 0.39 0.39 0.0 0 0 551.60 436.92
   L 552.76 438.53"
-/>
-<path stroke="#386624" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#386624"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 552.76 438.53
   Q 553.20 440.61 553.80 440.43"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 553.80 440.43
   L 570.12 470.46
   A 5.05 5.04 -5.3 0 0 572.99 472.84
   Q 597.38 480.75 621.30 490.93"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.53 479.42
   L 606.13 479.97
   A 0.26 0.26 0.0 0 0 606.35 479.55
@@ -4564,19 +5691,28 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 592.30 460.46 586.89 458.82 580.31 456.66
   Q 575.62 455.11 573.03 454.42
   C 568.83 453.30 564.52 451.48 560.16 450.01"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 553.80 440.43
   Q 557.79 444.73 560.16 450.01"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.16 450.01
   Q 563.89 457.14 567.86 463.86
   Q 569.42 466.50 570.88 469.18
   Q 572.06 471.35 574.02 471.99
   Q 586.12 475.92 594.53 479.42"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.53 479.42
   Q 606.61 483.38 618.53 488.79
   A 0.40 0.40 0.0 0 0 619.01 488.17
@@ -4588,8 +5724,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.75 4.72 -7.9 0 0 590.40 450.52
   Q 570.30 443.63 555.78 438.61
   Q 554.93 438.31 552.76 438.53"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 616.29 443.19
   Q 615.84 443.32 616.21 443.80
   Q 623.66 453.69 628.29 459.23
@@ -4597,16 +5736,25 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 651.88 468.84
   A 0.24 0.23 15.1 0 0 652.19 468.67
   Q 652.27 468.25 652.12 467.91"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 652.12 467.91
   Q 652.36 466.56 652.19 465.70"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 652.19 465.70
   L 652.35 464.53"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 652.35 464.53
   L 652.60 468.56
   A 0.56 0.54 83.5 0 0 653.23 469.08
@@ -4618,15 +5766,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 620.25 443.09 617.21 441.90
   A 0.66 0.66 0.0 0 0 616.30 442.51
   L 616.29 443.19"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 652.35 464.53
   L 652.13 457.62
   A 2.14 2.13 -78.7 0 0 650.89 455.74
   Q 636.84 449.25 621.80 444.96
   Q 617.51 443.73 616.29 443.19"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 652.19 465.70
   L 651.94 465.83
   A 0.33 0.32 70.4 0 1 651.47 465.60
@@ -4637,49 +5791,73 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 629.85 459.35
   A 1.51 1.46 79.7 0 0 630.49 459.81
   L 652.12 467.91"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 517.03 453.20
   Q 516.60 453.53 516.42 453.83
   A 0.57 0.56 -67.4 0 0 516.76 454.67
   L 531.20 458.33"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 531.20 458.33
   Q 532.66 458.97 533.60 458.89"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 533.60 458.89
   L 536.24 460.15
   A 0.29 0.28 -2.4 0 0 536.61 459.75
   L 528.35 445.85"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.35 445.85
   Q 528.54 444.45 527.35 442.55
   A 0.43 0.43 0.0 0 0 526.67 442.50
   L 517.03 453.20"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.35 445.85
   Q 529.81 451.22 532.63 456.02
   Q 532.67 456.08 533.18 456.64
   Q 533.77 457.29 533.60 458.89"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 531.20 458.33
   L 531.79 458.23
   A 0.30 0.30 0.0 0 0 531.82 457.64
   L 517.03 453.20"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 275.23 474.77
   Q 280.37 478.74 284.57 474.64
   Q 287.50 471.78 290.35 468.91
   A 0.43 0.43 0.0 0 0 290.25 468.23
   L 284.72 465.07"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 284.72 465.07
   Q 267.39 456.88 249.35 450.34
   Q 247.68 449.73 246.38 449.11
@@ -4687,8 +5865,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 248.73 454.21 251.57 460.22 255.38 464.17
   Q 257.01 465.86 261.90 468.31
   Q 268.54 471.64 275.23 474.77"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 284.72 465.07
   Q 284.97 465.68 284.84 465.78
   A 0.75 0.74 -51.4 0 1 284.07 465.87
@@ -4699,12 +5880,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 275.83 474.12
   A 0.28 0.28 0.0 0 1 275.76 474.65
   L 275.23 474.77"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.32 483.90
   Q 550.91 483.82 550.45 483.09"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.45 483.09
   Q 551.05 483.07 551.14 482.93
   Q 551.52 482.35 551.16 481.73
@@ -4726,8 +5913,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 547.03 483.94 548.69 484.73
   Q 549.40 485.07 549.80 484.90
   Q 550.32 484.68 550.32 483.90"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.45 483.09
   L 541.27 466.97
   A 3.06 3.03 -5.9 0 0 539.53 465.57
@@ -4738,13 +5928,19 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 509.31 470.10 517.44 472.82
   Q 529.58 476.90 545.88 482.11
   Q 548.19 482.85 550.32 483.90"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 172.63 469.83
   Q 173.94 473.55 176.46 475.80
   Q 198.05 495.06 226.74 500.38"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 226.74 500.38
   Q 231.95 501.33 237.44 500.51
   A 0.42 0.42 0.0 0 0 237.70 499.83
@@ -4754,8 +5950,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.12 0.0 0 0 173.93 456.61
   C 172.96 458.78 171.60 461.08 171.29 463.50
   Q 170.80 467.28 172.63 469.83"
-/>
-<path stroke="#c4c623" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c4c623"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 226.74 500.38
   L 229.37 500.13
   A 0.38 0.34 82.9 0 0 229.66 499.71
@@ -4765,12 +5964,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 206.99 494.93 191.07 487.56 177.15 475.04
   A 3.96 3.78 5.7 0 1 176.54 474.33
   Q 174.94 471.87 172.63 469.83"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 650.44 485.54
   Q 651.24 483.03 650.54 481.66"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 650.54 481.66
   L 651.40 473.89
   A 0.74 0.74 0.0 0 0 650.90 473.11
@@ -4782,8 +5987,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 642.45 479.28 649.88 487.12
   A 0.31 0.31 0.0 0 0 650.40 486.98
   Q 650.56 486.32 650.44 485.54"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 650.54 481.66
   Q 649.69 478.60 650.29 475.04
   Q 650.40 474.35 650.08 474.02
@@ -4794,8 +6002,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 648.11 484.02
   A 0.97 0.91 83.9 0 0 648.34 484.22
   L 650.44 485.54"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.76 468.43
   L 470.24 485.51
   A 0.67 0.67 0.0 0 0 470.42 486.44
@@ -4805,8 +6016,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.59 4.44 34.0 0 0 482.77 468.31
   L 482.69 468.25
   A 0.67 0.67 0.0 0 0 481.76 468.43"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 671.30 471.59
   Q 671.76 472.60 672.71 473.34
   A 0.34 0.34 0.0 0 0 673.25 473.00
@@ -4814,16 +6028,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 671.53 469.24 671.50 469.19
   A 0.34 0.34 0.0 0 0 670.90 469.38
   Q 670.83 470.58 671.30 471.59"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 553.21 544.02
   L 564.73 562.51
   A 0.60 0.60 0.0 0 0 565.62 562.66
   L 574.56 555.27
   A 0.61 0.61 0.0 0 0 574.49 554.28
   Q 563.42 547.55 552.73 542.91"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 552.73 542.91
   Q 553.45 540.60 555.88 542.09
   Q 561.37 545.47 566.55 547.38
@@ -4855,12 +6075,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 564.58 568.86 560.98 563.17 557.62 557.34
   Q 556.82 555.95 556.29 554.33
   Q 554.67 549.34 553.21 544.02"
-/>
-<path stroke="#386624" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#386624"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 552.73 542.91
   Q 552.02 542.81 553.21 544.02"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 258.13 471.81
   Q 261.49 479.74 266.12 485.94
   A 0.47 0.46 56.5 0 0 266.72 486.07
@@ -4869,8 +6095,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 268.90 476.69 261.60 472.43
   Q 261.26 472.23 258.51 471.39
   A 0.31 0.31 0.0 0 0 258.13 471.81"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 951.15 515.91
   C 949.09 517.77 946.69 519.58 944.85 521.30
   C 937.04 528.63 928.20 533.44 918.31 539.82
@@ -4885,8 +6114,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 738.78 692.75 733.52 699.07
   Q 718.66 716.94 716.69 719.45
   Q 707.90 730.64 697.14 747.85"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 697.14 747.85
   Q 693.65 752.41 691.64 758.84
   A 0.53 0.53 0.0 0 0 692.09 759.53
@@ -4896,12 +6128,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 744.06 720.09 750.65 715.56
   A 0.40 0.39 26.8 0 0 750.41 714.84
   Q 747.46 714.93 746.24 712.49"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 746.24 712.49
   Q 744.14 706.17 749.34 701.27"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 749.34 701.27
   Q 762.29 690.15 774.61 681.12
   Q 788.27 671.11 797.29 664.01
@@ -4914,8 +6152,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 976.58 479.37 974.98 476.79 973.93 475.05
   A 0.18 0.17 35.4 0 0 973.61 475.10
   Q 968.38 498.80 951.15 515.91"
-/>
-<path stroke="#2e9b3a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e9b3a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 749.34 701.27
   Q 749.60 699.32 751.52 697.75
   Q 764.36 687.26 779.52 676.12
@@ -4932,8 +6173,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 954.05 519.67 951.62 520.89
   A 0.53 0.52 64.4 0 1 950.90 520.63
   Q 950.03 518.70 951.15 515.91"
-/>
-<path stroke="#2e9b3a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e9b3a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 746.24 712.49
   C 741.41 719.43 734.66 722.56 726.06 727.32
   C 722.35 729.37 719.98 731.05 716.29 733.66
@@ -4941,14 +6185,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 710.39 734.77 706.11 736.87
   A 1.68 1.67 5.8 0 0 705.58 737.30
   L 697.14 747.85"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 579.20 530.32
   Q 579.40 530.32 579.54 530.29
   A 0.27 0.27 0.0 0 0 579.70 529.87
   L 576.99 526.10"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 576.99 526.10
   Q 578.73 526.06 576.69 523.00
   Q 569.13 511.68 561.33 499.87
@@ -4971,8 +6221,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 578.23 531.26
   A 0.62 0.62 0.0 0 0 579.15 530.78
   L 579.20 530.32"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 576.99 526.10
   Q 568.94 513.58 560.83 501.32
   C 558.59 497.92 556.90 494.04 554.55 490.75
@@ -4985,8 +6238,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 538.32 513.73 540.22 514.33
   Q 557.70 519.86 576.45 528.65
   Q 577.92 529.34 579.20 530.32"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.75 478.21
   Q 574.92 477.28 574.49 478.27
   A 0.44 0.43 -51.7 0 0 574.53 478.68
@@ -4995,30 +6251,45 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 627.21 512.85
   A 1.67 1.66 42.5 0 0 628.64 512.79
   Q 631.55 511.25 633.95 508.72"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 633.95 508.72
   Q 634.89 508.22 633.93 506.54
   Q 630.90 501.25 627.80 498.79"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 627.80 498.79
   Q 628.14 498.15 627.72 497.45
   A 1.11 1.04 1.1 0 0 627.34 497.08
   Q 621.23 493.52 616.43 491.64
   Q 598.02 484.41 577.50 477.38
   Q 575.47 476.69 575.75 478.21"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 627.80 498.79
   L 625.23 497.13"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.23 497.13
   Q 620.22 494.80 615.00 492.76
   Q 595.47 485.13 575.75 478.21"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.23 497.13
   L 625.32 497.73
   A 0.46 0.46 0.0 0 1 624.68 498.21
@@ -5033,8 +6304,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 633.34 507.89
   A 0.37 0.36 69.2 0 1 633.94 508.16
   L 633.95 508.72"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 480.38 489.03
   L 495.20 494.51
   A 0.31 0.31 0.0 0 0 495.58 494.06
@@ -5042,12 +6316,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.10 1.10 0.0 0 0 485.90 479.91
   L 480.24 488.61
   A 0.28 0.28 0.0 0 0 480.38 489.03"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.46 491.91
   Q 448.20 498.40 451.69 499.33"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 451.69 499.33
   L 451.04 499.61
   A 0.56 0.55 -48.5 0 0 451.10 500.65
@@ -5060,14 +6340,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 497.33 516.15 508.32 520.01
   A 0.76 0.67 43.1 0 0 508.71 520.02
   Q 509.20 519.89 509.36 519.46"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 509.36 519.46
   L 510.16 519.73
   A 0.38 0.38 0.0 0 0 510.65 519.27
   Q 510.60 519.09 510.46 518.86"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.46 518.86
   Q 511.05 518.93 511.16 518.82
   A 0.85 0.85 0.0 0 0 511.30 517.82
@@ -5079,20 +6365,29 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 458.30 486.60 454.58 487.14 450.20 489.68
   A 1.11 1.10 53.1 0 0 449.96 491.40
   L 450.46 491.91"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.46 518.86
   Q 506.85 512.35 503.38 505.71
   Q 501.53 502.16 497.11 500.40
   Q 479.85 493.51 469.75 490.73
   Q 463.04 488.88 456.51 488.97
   Q 452.01 489.03 450.46 491.91"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 509.36 519.46
   L 507.75 518.43"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 507.75 518.43
   L 507.83 516.96
   A 1.54 1.52 33.0 0 0 507.65 516.13
@@ -5108,55 +6403,85 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 498.47 513.51 505.67 516.54
   A 0.42 0.42 0.0 0 1 505.81 517.22
   Q 505.63 517.41 505.23 517.58"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 505.23 517.58
   C 498.19 514.66 492.78 512.57 484.03 508.95
   Q 468.46 502.52 451.69 499.33"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 507.75 518.43
   L 505.23 517.58"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 613.73 524.35
   Q 618.54 521.96 622.35 517.60"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.35 517.60
   Q 623.12 516.69 622.61 516.40
   Q 609.67 508.97 594.68 504.07"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.68 504.07
   Q 595.11 503.18 591.51 502.39"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.51 502.39
   Q 590.65 501.46 589.88 501.41
   A 0.34 0.34 0.0 0 0 589.56 501.92
   Q 597.58 515.93 606.86 528.98
   A 0.47 0.47 0.0 0 0 607.53 529.08
   L 613.73 524.35"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.51 502.39
   L 592.92 506.09
   A 1.27 0.78 37.6 0 0 592.99 506.23
   L 606.89 527.66
   A 0.60 0.59 -38.5 0 0 607.80 527.76
   Q 610.31 525.34 613.73 524.35"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.68 504.07
   Q 606.64 509.81 617.88 514.87
   Q 620.15 515.89 622.35 517.60"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 489.54 560.78
   L 493.47 564.06"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.47 564.06
   L 498.40 570.02
   A 0.07 0.06 48.6 0 0 498.48 570.03
@@ -5173,8 +6498,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 453.90 507.23 454.26 508.08
   Q 460.64 523.05 468.70 536.86
   C 473.90 545.77 481.90 553.62 489.54 560.78"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.47 564.06
   Q 492.12 556.83 489.38 550.92
   Q 486.99 545.76 473.98 518.27
@@ -5188,8 +6516,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 478.86 548.79 490.76 560.49
   A 0.34 0.34 0.0 0 1 490.34 561.03
   Q 490.05 560.85 489.54 560.78"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.14 512.20
   Q 435.28 512.26 435.32 512.35
   A 0.68 0.67 -29.6 0 1 435.09 513.17
@@ -5203,8 +6534,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.00 0.99 -30.5 0 0 446.97 504.94
   Q 442.02 507.25 435.08 511.21
   A 0.56 0.55 42.2 0 0 435.14 512.20"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 536.89 562.11
   A 0.16 0.16 0.0 0 0 537.11 561.88
   Q 534.05 557.19 530.76 551.64
@@ -5216,22 +6550,34 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.40 1.38 87.6 0 0 491.07 540.24
   C 495.20 541.88 503.19 544.38 509.21 547.22
   Q 525.37 554.84 536.89 562.11"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.45 515.50
   L 443.91 520.76"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 443.91 520.76
   Q 443.07 521.19 442.77 521.61
   A 0.70 0.69 -55.1 0 0 442.94 522.60
   L 457.32 532.04"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 457.32 532.04
   Q 457.28 533.13 460.25 533.84"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.25 533.84
   L 464.03 538.46
   A 0.20 0.20 0.0 0 0 464.33 538.46
@@ -5241,21 +6587,30 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 454.71 519.20 452.03 514.50
   A 0.41 0.41 0.0 0 0 451.36 514.44
   L 450.45 515.50"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.25 533.84
   L 451.85 515.89
   A 0.48 0.48 0.0 0 0 451.04 515.79
   L 450.88 516.00
   A 0.16 0.16 0.0 0 1 450.60 515.95
   L 450.45 515.50"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 457.32 532.04
   Q 451.60 526.96 445.65 523.35
   Q 444.40 522.59 443.91 520.76"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 664.87 515.38
   L 662.30 525.34
   A 0.16 0.16 0.0 0 0 662.52 525.53
@@ -5263,16 +6618,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.09 1.08 -68.1 0 0 667.97 518.00
   L 665.65 515.21
   A 0.45 0.45 0.0 0 0 664.87 515.38"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 979.89 516.68
   C 970.96 534.50 957.03 549.86 941.77 562.46
   Q 928.34 573.54 928.24 573.62
   Q 913.10 586.21 909.51 588.76
   Q 888.32 603.78 866.44 619.12
   Q 849.13 631.26 832.26 644.04"
-/>
-<path stroke="#24782c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#24782c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.26 644.04
   Q 825.53 648.78 818.81 653.57
   C 806.94 662.04 793.23 673.53 784.37 679.79
@@ -5298,8 +6659,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 987.37 521.07 981.92 515.26
   A 0.63 0.62 -39.0 0 0 981.10 515.18
   Q 980.32 515.75 979.89 516.68"
-/>
-<path stroke="#2e9b3a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e9b3a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.26 644.04
   Q 832.66 644.08 832.81 644.27
   Q 833.08 644.61 832.74 644.87
@@ -5328,8 +6692,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 980.92 517.54
   A 0.76 0.74 -16.3 0 1 980.02 517.06
   L 979.89 516.68"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.74 517.93
   Q 537.55 517.94 537.42 518.06
   A 0.30 0.29 51.6 0 0 537.38 518.44
@@ -5337,20 +6704,29 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 548.16 536.00 550.17 537.55
   A 3.19 3.13 72.1 0 0 551.16 538.07
   Q 564.22 542.38 575.84 549.96"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.84 549.96
   Q 577.24 551.92 579.52 552.42
   A 1.44 1.42 -53.2 0 0 580.51 552.27
   Q 585.01 549.75 588.30 545.45
   A 1.74 1.73 -41.9 0 0 588.41 543.50
   C 586.66 540.56 585.45 537.99 582.45 536.45"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.45 536.45
   L 581.99 535.99"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 581.99 535.99
   Q 582.57 535.71 582.41 535.13
   A 0.55 0.55 0.0 0 0 582.18 534.80
@@ -5358,12 +6734,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 559.65 523.02 538.96 516.94
   Q 538.24 516.73 537.72 517.27
   Q 537.49 517.50 537.74 517.93"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 581.99 535.99
   Q 560.66 525.01 537.74 517.93"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.45 536.45
   Q 582.53 537.48 582.28 537.36
   Q 562.82 527.56 541.75 520.55
@@ -5372,8 +6754,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 549.71 536.20 551.10 536.67
   Q 560.74 539.91 572.61 546.66
   Q 575.54 548.33 575.84 549.96"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 410.44 530.89
   C 411.13 532.67 413.50 532.58 415.18 533.32
   Q 431.06 540.31 439.68 545.62
@@ -5399,48 +6784,72 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 413.96 518.41 409.88 525.37
   A 2.04 2.03 -30.8 0 0 409.60 526.47
   Q 409.71 529.03 410.44 530.89"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 415.58 541.64
   L 413.01 549.63"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 413.01 549.63
   Q 412.73 550.30 412.76 551.58"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.76 551.58
   C 413.18 556.92 416.48 562.26 419.94 566.07
   C 426.82 573.65 434.70 581.25 443.71 586.78
   C 455.76 594.18 468.60 599.53 482.50 601.32"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.50 601.32
   L 488.67 601.90"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 488.67 601.90
   Q 491.05 601.93 493.67 600.77
   A 0.59 0.57 65.1 0 0 493.95 599.98
   Q 492.50 597.05 490.71 596.65"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 490.71 596.65
   Q 481.22 585.77 466.83 571.93
   C 455.73 561.25 445.74 552.72 433.15 546.02
   Q 426.84 542.66 419.14 538.44
   A 1.15 1.12 48.5 0 0 418.20 538.37
   Q 416.59 538.97 415.58 541.64"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 490.71 596.65
   Q 477.61 584.16 465.35 571.66
   Q 457.38 563.52 445.22 554.70
   Q 440.06 550.95 433.15 547.18
   Q 426.86 543.75 420.61 540.36
   Q 418.39 539.16 415.58 541.64"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 488.67 601.90
   Q 488.88 600.59 486.10 599.63
   A 1.07 1.06 -1.2 0 1 485.45 599.01
@@ -5452,8 +6861,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 440.62 563.76 434.77 560.49
   Q 425.27 555.18 421.56 554.16
   Q 415.62 552.53 413.01 549.63"
-/>
-<path stroke="#c4c623" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c4c623"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.50 601.32
   Q 483.05 601.23 483.18 601.05
   A 0.29 0.29 0.0 0 0 483.01 600.60
@@ -5463,8 +6875,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 416.49 560.61 414.66 557.25 413.70 551.58
   A 0.38 0.38 0.0 0 0 413.09 551.34
   L 412.76 551.58"
-/>
-<path stroke="#0a3311" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a3311"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.53 546.71
   L 492.95 546.63
   A 0.52 0.52 0.0 0 0 492.42 547.38
@@ -5472,12 +6887,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 497.71 559.36 499.53 561.77 501.50 563.01
   Q 502.10 563.39 502.56 562.90
   Q 502.80 562.64 502.48 562.23"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 502.48 562.23
   Q 502.58 562.30 502.68 562.36"
-/>
-<path stroke="#50882c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#50882c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 502.68 562.36
   Q 507.87 564.46 510.91 566.33
   Q 522.55 573.51 532.46 580.98
@@ -5485,15 +6906,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 542.50 575.03
   A 1.93 1.93 0.0 0 0 543.05 572.80
   Q 540.62 566.94 534.50 565.74"
-/>
-<path stroke="#71a031" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71a031"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 534.50 565.74
   Q 522.67 558.12 510.32 552.42
   Q 502.21 548.68 493.75 545.81
   A 0.35 0.35 0.0 0 0 493.29 546.20
   Q 493.33 546.42 493.53 546.71"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 534.50 565.74
   Q 529.17 563.81 519.87 558.38
   Q 513.60 554.72 497.23 548.46
@@ -5503,13 +6930,19 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 500.75 560.27 503.83 561.53
   A 0.42 0.42 0.0 0 1 503.81 562.32
   Q 503.42 562.46 502.68 562.36"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 502.48 562.23
   Q 500.02 560.91 499.29 559.21
   Q 496.55 552.87 493.53 546.71"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.77 591.12
   Q 519.75 590.98 519.75 590.97
   A 1.23 1.20 -12.5 0 1 520.27 590.18
@@ -5520,8 +6953,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 509.10 580.09 517.50 590.29
   Q 518.40 591.39 519.35 591.54
   A 0.37 0.37 0.0 0 0 519.77 591.12"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 775.84 701.72
   A 0.47 0.47 0.0 0 0 776.49 701.84
   Q 784.02 696.73 787.10 695.37
@@ -5544,12 +6980,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 780.74 697.26 775.91 701.07
   A 0.46 0.46 0.0 0 0 775.82 701.70
   L 775.84 701.72"
-/>
-<path stroke="#5b8121" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5b8121"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 626.06 595.39
   L 620.02 607.97"
-/>
-<path stroke="#407a29" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#407a29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 620.02 607.97
   Q 616.96 612.07 617.14 616.44
   A 1.47 1.46 74.2 0 0 619.32 617.66
@@ -5558,16 +7000,22 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 632.58 595.05 632.49 592.21
   A 2.02 1.76 89.6 0 0 630.76 590.26
   C 628.40 590.20 626.78 593.52 626.06 595.39"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 620.02 607.97
   Q 619.72 608.97 620.06 609.04
   Q 620.62 609.17 620.91 608.60
   Q 624.24 601.96 626.97 595.91
   A 0.67 0.67 0.0 0 0 626.59 595.00
   Q 626.48 594.95 626.06 595.39"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 57.26 679.61
   C 69.00 686.37 82.48 689.72 94.92 693.05
   Q 100.35 694.49 104.62 695.24
@@ -5581,8 +7029,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 258.30 640.32 254.91 641.71
   A 3.10 2.22 -54.4 0 1 254.53 641.84
   Q 221.66 650.61 187.74 653.72"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 187.74 653.72
   Q 161.51 656.36 135.00 655.22
   C 114.36 654.32 94.61 650.73 74.54 645.41
@@ -5592,8 +7043,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.56 0.56 0.0 0 0 8.16 599.95
   C 6.82 616.91 10.01 636.01 20.19 649.82
   Q 34.41 669.14 57.26 679.61"
-/>
-<path stroke="#21852e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#21852e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 187.74 653.72
   Q 167.15 664.40 154.35 669.07
   Q 140.08 674.27 115.23 677.50
@@ -5602,8 +7056,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 59.08 673.66 56.93 674.44
   A 1.60 1.60 0.0 0 0 55.90 676.22
   Q 56.23 678.06 57.26 679.61"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 232.00 794.12
   Q 236.45 799.77 242.51 804.26
   Q 247.13 807.67 251.79 811.16
@@ -5627,8 +7084,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 663.01 775.67 655.04 777.64
   Q 648.99 779.14 645.19 775.57
   Q 643.45 773.94 643.57 770.32"
-/>
-<path stroke="#1b6a24" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b6a24"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 643.57 770.32
   Q 647.24 761.75 651.54 755.79
   Q 664.89 737.32 669.67 729.43
@@ -5650,8 +7110,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.14 0.14 0.0 0 0 213.71 713.78
   Q 208.69 729.68 210.02 745.89
   C 211.46 763.38 220.23 780.71 232.00 794.12"
-/>
-<path stroke="#21852e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#21852e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 643.57 770.32
   Q 644.31 771.97 641.39 772.56
   A 6.54 0.89 -8.9 0 0 637.44 773.74
@@ -5670,8 +7133,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 245.94 795.49 234.72 787.12
   A 0.51 0.51 0.0 0 0 233.99 787.25
   Q 231.99 790.32 232.00 794.12"
-/>
-<path stroke="#dba716" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dba716"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.00 336.09
   A 0.55 0.54 59.4 0 0 519.04 336.36
   Q 523.13 327.08 524.93 322.92
@@ -5688,8 +7154,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.41 0.41 0.0 0 0 501.23 316.82
   C 504.91 316.80 511.34 316.78 513.55 319.85
   Q 518.78 327.11 518.00 336.09"
-/>
-<path stroke="#d6c915" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d6c915"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 507.54 253.02
   Q 493.95 252.34 480.68 254.38
   Q 475.33 255.20 471.42 256.68
@@ -5708,8 +7177,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 432.00 342.83 432.34 345.48
   Q 432.44 346.26 432.18 349.00
   Q 431.93 351.61 432.83 354.32"
-/>
-<path stroke="#cabe12" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cabe12"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 432.83 354.32
   L 433.29 357.98
   A 0.98 0.94 -75.0 0 0 433.64 358.61
@@ -5724,8 +7196,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 512.87 254.00 513.67 253.42
   A 0.50 0.50 0.0 0 0 513.33 252.51
   L 507.54 253.02"
-/>
-<path stroke="#bdb60e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bdb60e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 432.83 354.32
   Q 433.76 352.91 436.65 354.12
   Q 439.38 355.27 440.53 355.40
@@ -5736,8 +7211,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 479.13 307.93 481.86 304.27 484.72 298.59
   C 487.02 294.01 491.71 288.07 493.82 283.06
   Q 500.21 267.88 507.54 253.02"
-/>
-<path stroke="#d6c915" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d6c915"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.48 522.01
   Q 316.93 516.96 313.02 512.97
   A 0.67 0.66 -32.9 0 0 312.29 512.82
@@ -5765,8 +7243,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 270.71 538.07 279.73 536.25
   C 293.21 533.53 305.21 528.64 318.14 522.77
   A 0.64 0.63 69.3 0 0 318.48 522.01"
-/>
-<path stroke="#dba716" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dba716"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.35 283.49
   Q 660.27 278.79 660.21 273.04
   A 0.51 0.51 0.0 0 0 659.23 272.85
@@ -5859,8 +7340,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 667.63 254.85 664.82 263.27
   Q 661.58 272.98 661.71 283.45
   A 0.18 0.18 0.0 0 1 661.35 283.49"
-/>
-<path stroke="#b9cc2e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b9cc2e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 764.50 281.46
   C 761.88 285.28 757.91 289.54 755.07 293.41
   Q 740.55 313.18 735.15 322.42
@@ -5878,8 +7362,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.96 1.96 0.0 0 0 778.63 304.56
   C 775.79 296.29 771.08 289.06 766.23 281.48
   A 1.04 1.04 0.0 0 0 764.50 281.46"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 339.77 246.14
   L 332.60 236.07
   A 2.57 2.57 0.0 0 0 329.66 235.14
@@ -5890,8 +7377,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 327.07 254.52 332.23 250.95
   C 334.49 249.39 337.13 248.94 339.53 247.38
   A 0.88 0.88 0.0 0 0 339.77 246.14"
-/>
-<path stroke="#cabe12" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cabe12"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 720.07 473.99
   C 727.81 476.96 734.44 473.06 739.63 468.13
   C 742.35 465.54 744.66 461.40 747.44 458.27
@@ -5903,8 +7393,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 823.78 359.86 831.79 351.01 837.42 342.90
   A 0.44 0.43 -59.6 0 0 837.26 342.26
   Q 835.89 341.57 834.23 341.40"
-/>
-<path stroke="#d6c915" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d6c915"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 834.23 341.40
   Q 829.51 340.60 824.78 339.51
   Q 819.11 338.20 815.33 337.70
@@ -5932,8 +7425,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 717.03 465.75 716.98 469.46
   A 2.08 2.07 -58.2 0 0 717.19 470.37
   Q 718.24 472.43 720.07 473.99"
-/>
-<path stroke="#bdb60e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bdb60e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 834.23 341.40
   L 829.63 344.89
   A 10.51 10.46 -88.7 0 0 827.90 346.55
@@ -5948,8 +7444,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 738.13 461.41 734.56 464.94 731.78 467.04
   Q 728.82 469.27 723.81 470.06
   Q 720.69 470.55 720.07 473.99"
-/>
-<path stroke="#80a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 899.96 369.90
   C 897.83 375.22 893.48 379.90 889.83 384.04
   C 886.84 387.43 886.84 392.56 887.18 396.61
@@ -5967,8 +7466,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 1.00 73.7 0 0 888.34 374.96
   Q 893.82 372.96 899.06 369.19
   A 0.60 0.60 0.0 0 1 899.96 369.90"
-/>
-<path stroke="#80a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 862.93 407.52
   A 0.94 0.94 0.0 0 0 864.24 408.38
   L 880.52 401.38
@@ -5978,8 +7480,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 876.11 373.38 871.40 376.37 867.83 378.08
   C 863.58 380.13 863.34 382.80 863.20 387.25
   Q 862.87 397.96 862.93 407.52"
-/>
-<path stroke="#80a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 828.24 405.52
   Q 827.90 422.44 827.90 424.28
   A 0.57 0.56 79.4 0 0 828.67 424.81
@@ -5991,8 +7496,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 835.74 392.02 831.19 394.18
   Q 828.55 395.43 828.45 398.02
   Q 828.31 401.76 828.24 405.52"
-/>
-<path stroke="#80a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 817.26 409.78
   L 816.71 428.47
   A 0.46 0.46 0.0 0 0 817.33 428.91
@@ -6019,8 +7527,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 809.80 432.95 811.13 430.95 812.07 426.78
   Q 813.73 419.34 816.73 409.69
   A 0.27 0.27 0.0 0 1 817.26 409.78"
-/>
-<path stroke="#80a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 854.14 412.93
   L 858.23 410.67
   A 0.93 0.91 83.0 0 0 858.67 410.10
@@ -6030,22 +7541,31 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.05 1.03 -11.6 0 0 853.40 405.76
   L 853.21 412.36
   A 0.63 0.63 0.0 0 0 854.14 412.93"
-/>
-<path stroke="#d6c915" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d6c915"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 480.5803 261.5416
   A 16.50 11.79 -58.3 0 0 461.8789 269.3847
   A 16.50 11.79 -58.3 0 0 463.2397 289.6184
   A 16.50 11.79 -58.3 0 0 481.9411 281.7753
   A 16.50 11.79 -58.3 0 0 480.5803 261.5416"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.8771 262.5251
   A 15.33 10.45 -58.6 0 0 462.9704 270.1654
   A 15.33 10.45 -58.6 0 0 463.9029 288.6949
   A 15.33 10.45 -58.6 0 0 480.8096 281.0546
   A 15.33 10.45 -58.6 0 0 479.8771 262.5251"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 466.58 282.40
   C 473.14 283.08 477.85 277.58 478.85 271.71
   C 479.43 268.32 478.30 265.51 474.61 265.65
@@ -6053,8 +7573,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 468.53 268.86 466.01 276.03
   Q 464.75 279.63 465.90 281.92
   A 0.87 0.85 79.8 0 0 466.58 282.40"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 551.08 350.56
   L 558.65 344.30
   A 1.41 1.41 0.0 0 0 558.84 342.33
@@ -6077,8 +7600,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 549.85 319.24 549.09 322.82
   Q 546.23 336.35 548.68 349.69
   A 1.48 1.48 0.0 0 0 551.08 350.56"
-/>
-<path stroke="#cabe12" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cabe12"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.28 299.55
   C 573.67 303.11 570.67 306.86 568.25 312.22
   Q 564.89 319.65 562.71 327.53
@@ -6087,8 +7613,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 570.19 317.03 573.75 312.31 575.19 308.67
   Q 576.86 304.45 579.04 300.18
   A 0.51 0.51 0.0 0 0 578.28 299.55"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 633.87 333.20
   L 632.69 332.00
   A 1.83 1.80 -13.5 0 0 631.99 331.58
@@ -6101,15 +7630,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.05 4.95 72.0 0 1 628.27 341.87
   L 633.94 334.93
   A 1.30 1.29 -47.5 0 0 633.87 333.20"
-/>
-<path stroke="#d6c915" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d6c915"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 765.16 363.83
   C 760.44 370.18 757.09 379.58 764.16 384.83
   C 771.23 390.08 779.26 384.16 783.98 377.80
   C 788.70 371.45 792.04 362.05 784.97 356.80
   C 777.90 351.55 769.88 357.47 765.16 363.83"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 363.02 355.21
   Q 362.84 357.54 363.68 360.81
   A 7.51 7.20 38.6 0 1 363.92 362.59
@@ -6122,8 +7657,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 392.99 398.84 389.71 393.42 386.79 389.27
   Q 373.11 369.80 363.67 355.05
   A 0.35 0.35 0.0 0 0 363.02 355.21"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 649.20 428.80
   Q 648.51 421.82 646.62 414.33
   Q 644.14 404.44 637.68 391.77
@@ -6140,15 +7678,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 636.38 410.85 641.25 417.16 645.22 423.64
   Q 645.31 423.78 648.57 429.01
   A 0.34 0.34 0.0 0 0 649.20 428.80"
-/>
-<path stroke="#7a8c18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a8c18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 784.0658 357.5629
   A 16.37 10.61 -54.2 0 0 765.8846 364.6336
   A 16.37 10.61 -54.2 0 0 764.9142 384.1171
   A 16.37 10.61 -54.2 0 0 783.0954 377.0464
   A 16.37 10.61 -54.2 0 0 784.0658 357.5629"
-/>
-<path stroke="#176320" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#176320"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 767.38 374.22
   Q 769.32 377.67 773.02 378.76
   A 1.67 1.65 30.9 0 0 774.64 378.36
@@ -6157,8 +7701,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 773.96 362.66 770.49 366.74
   Q 768.00 369.68 767.24 373.31
   A 1.32 1.31 36.4 0 0 767.38 374.22"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 303.83 391.05
   A 0.40 0.39 80.0 0 0 304.26 390.43
   Q 300.90 386.06 298.07 381.41
@@ -6176,8 +7723,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 246.03 373.92 251.42 375.21
   Q 259.71 377.19 268.63 380.08
   C 281.89 384.36 289.43 386.52 303.83 391.05"
-/>
-<path stroke="#80a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 869.39 390.26
   Q 869.11 399.54 869.11 399.57
   A 0.63 0.63 0.0 0 0 869.98 400.08
@@ -6189,8 +7739,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 870.81 382.96
   A 1.80 1.80 0.0 0 0 869.70 384.42
   Q 869.54 385.40 869.39 390.26"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 246.40 381.60
   Q 246.62 382.44 247.97 384.54
   Q 255.73 396.69 265.36 409.93
@@ -6208,8 +7761,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 262.56 386.04 260.24 385.00
   Q 256.88 383.50 246.91 381.08
   A 0.42 0.42 0.0 0 0 246.40 381.60"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 623.06 403.91
   A 0.39 0.39 0.0 0 0 623.46 403.34
   L 619.44 396.08
@@ -6221,8 +7777,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 590.50 393.88 605.18 398.65
   Q 612.56 401.05 616.02 401.76
   C 618.33 402.24 620.96 403.56 623.06 403.91"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 250.92 401.26
   L 239.68 383.37
   A 0.94 0.94 0.0 0 0 238.30 383.14
@@ -6232,15 +7791,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.77 0.76 -59.9 0 0 225.72 395.17
   L 250.67 401.61
   A 0.23 0.23 0.0 0 0 250.92 401.26"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 281.88 401.01
   L 294.89 419.48
   A 3.35 3.31 -9.9 0 0 296.78 420.79
   Q 300.68 421.80 304.67 422.94
   C 310.48 424.59 316.36 427.19 322.27 429.20"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 322.27 429.20
   L 330.98 432.34
   A 0.80 0.80 0.0 0 0 332.00 431.29
@@ -6253,15 +7818,21 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 293.48 394.43 274.15 389.04
   A 0.46 0.46 0.0 0 0 273.66 389.76
   L 281.88 401.01"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 322.27 429.20
   Q 325.49 427.10 323.33 423.43
   C 320.25 418.22 315.51 414.39 310.06 409.81
   C 307.18 407.39 302.48 405.17 299.47 404.94
   Q 290.55 404.27 281.88 401.01"
-/>
-<path stroke="#80a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 838.07 397.70
   Q 836.97 398.14 836.62 398.25
   A 2.28 2.27 84.2 0 0 834.98 400.26
@@ -6273,8 +7844,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 842.87 396.71
   A 0.57 0.57 0.0 0 0 842.10 396.14
   Q 839.28 397.22 838.07 397.70"
-/>
-<path stroke="#80a722" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80a722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 834.44 416.25
   A 0.46 0.46 0.0 0 0 835.12 416.66
   L 841.48 413.14
@@ -6284,8 +7858,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 835.88 408.08
   A 1.92 1.92 0.0 0 0 834.63 409.82
   L 834.44 416.25"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 255.28 481.37
   A 0.76 0.73 77.1 0 0 255.90 480.34
   Q 253.20 473.33 249.30 466.75
@@ -6300,8 +7877,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 238.29 468.03 240.36 470.02 244.26 473.00
   Q 250.48 477.76 254.82 481.17
   Q 255.09 481.39 255.28 481.37"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 585.02 440.37
   L 577.79 430.22
   A 1.47 1.44 81.2 0 0 577.05 429.67
@@ -6313,8 +7893,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 537.38 426.19 545.29 428.46
   Q 563.04 433.55 584.29 441.32
   A 0.63 0.63 0.0 0 0 585.02 440.37"
-/>
-<path stroke="#cabe12" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cabe12"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.11 422.71
   C 497.64 426.31 494.39 430.52 492.29 434.85
   C 490.75 438.03 489.61 439.64 490.19 442.52
@@ -6322,8 +7905,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 494.52 438.27 495.62 435.43
   C 497.26 431.21 499.19 427.23 500.69 423.01
   A 0.33 0.33 0.0 0 0 500.11 422.71"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.63 432.62
   A 0.55 0.55 0.0 0 0 529.13 433.34
   Q 529.88 435.53 531.14 438.12
@@ -6344,8 +7930,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.20 3.20 0.0 0 0 543.32 435.83
   Q 533.26 432.98 531.11 432.63
   Q 530.68 432.56 529.63 432.62"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 160.92 440.35
   Q 163.31 443.90 168.96 446.35
   Q 174.40 448.71 180.31 452.21
@@ -6368,8 +7957,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 166.49 433.69 163.62 435.06
   Q 160.61 436.49 160.60 439.31
   A 1.85 1.84 -62.2 0 0 160.92 440.35"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 673.53 446.07
   A 0.59 0.59 0.0 0 0 672.80 446.81
   C 673.19 448.08 673.49 449.34 673.30 450.76
@@ -6383,8 +7975,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 684.17 459.90 678.87 453.19
   C 677.41 451.34 675.66 448.06 674.30 446.70
   Q 673.73 446.13 673.53 446.07"
-/>
-<path stroke="#bdb60e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bdb60e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 158.97 463.85
   Q 156.07 468.86 155.13 475.64
   C 154.22 482.25 159.00 489.68 163.72 494.31
@@ -6401,8 +7996,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 168.97 493.14 162.43 485.33
   C 157.09 478.94 157.91 471.61 159.68 464.13
   A 0.39 0.39 0.0 0 0 158.97 463.85"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 547.51 480.68
   L 540.23 467.53
   A 1.76 1.73 -6.2 0 0 539.17 466.69
@@ -6414,8 +8012,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 511.62 469.39 526.35 474.21 540.15 479.09
   C 542.17 479.80 545.17 480.13 547.14 481.07
   A 0.28 0.28 0.0 0 0 547.51 480.68"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 218.74 486.00
   Q 200.17 471.96 178.74 459.07
   Q 178.25 458.78 175.38 457.73
@@ -6426,8 +8027,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 205.58 482.68 209.78 484.59
   C 213.21 486.16 215.40 487.57 218.64 486.59
   A 0.34 0.33 -35.5 0 0 218.74 486.00"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 489.94 471.68
   Q 490.69 475.75 492.81 479.56
   Q 501.39 495.00 512.10 512.49
@@ -6444,8 +8048,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.31 3.26 -11.4 0 0 506.23 474.42
   L 490.62 471.02
   A 0.57 0.57 0.0 0 0 489.94 471.68"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 491.29 473.52
   Q 491.96 475.62 493.36 478.20
   Q 502.84 495.81 519.88 523.10
@@ -6462,14 +8069,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 507.55 476.04 505.95 475.67
   Q 499.10 474.09 492.25 472.47
   A 0.82 0.82 0.0 0 0 491.29 473.52"
-/>
-<path stroke="#bbda3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bbda3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.07 492.69
   L 534.31 510.11
   A 4.83 4.83 0.0 0 0 536.93 512.25
   L 560.73 520.37"
-/>
-<path stroke="#a0d344" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a0d344"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.73 520.37
   L 575.55 526.60
   A 0.22 0.22 0.0 0 0 575.81 526.25
@@ -6480,8 +8093,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 517.15 478.66
   A 0.60 0.60 0.0 0 0 516.43 479.52
   L 524.07 492.69"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.73 520.37
   Q 564.18 518.84 567.32 520.26
   A 0.43 0.43 0.0 0 0 567.84 519.61
@@ -6489,8 +8105,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 561.96 510.91 559.45 508.57
   Q 551.42 501.07 537.80 496.47
   Q 528.71 493.40 524.07 492.69"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 492.85 491.18
   L 487.58 481.67
   A 1.09 1.08 47.0 0 0 485.72 481.60
@@ -6498,8 +8117,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.86 0.86 0.0 0 0 482.33 488.74
   L 491.90 492.28
   A 0.78 0.78 0.0 0 0 492.85 491.18"
-/>
-<path stroke="#8ab434" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8ab434"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 494.61 525.73
   Q 492.29 525.53 491.19 525.77
   A 1.06 1.06 0.0 0 0 491.04 527.80
@@ -6523,12 +8145,18 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.66 0.64 72.3 0 0 488.04 522.75
   L 494.71 525.33
   A 0.21 0.21 0.0 0 1 494.61 525.73"
-/>
-<path stroke="#497427" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#497427"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 515.54 616.35
   Q 516.10 617.44 518.04 618.48"
-/>
-<path stroke="#6a8c2c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6a8c2c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.04 618.48
   Q 520.93 621.18 524.84 620.59
   A 1.76 1.68 -68.5 0 0 525.73 620.18
@@ -6546,8 +8174,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 477.04 575.05 487.24 585.25
   Q 489.28 587.29 498.09 597.44
   Q 506.43 607.06 515.54 616.35"
-/>
-<path stroke="#b0e147" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b0e147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.04 618.48
   L 518.11 618.03
   A 0.29 0.28 23.4 0 1 518.57 617.85
@@ -6570,9 +8201,11 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 458.16 554.91 472.32 568.95
   Q 489.63 586.11 501.78 599.72
   Q 509.99 608.92 515.54 616.35"
-/>
-</g>
-<path fill="#114716" d="
+        />
+      </g>
+      <path
+        fill="#114716"
+        d="
   M 327.96 215.06
   C 327.61 216.40 328.59 217.16 328.46 218.33
   Q 328.35 219.43 328.82 220.31
@@ -9430,8 +11063,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 208.69 729.68 210.02 745.89
   C 211.46 763.38 220.23 780.71 232.00 794.12
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 500.94 222.97
   Q 516.52 221.62 525.91 219.65
   C 538.79 216.96 550.18 212.62 559.46 202.99
@@ -9530,8 +11165,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 508.72 223.52 506.17 223.92
   Q 503.06 224.42 500.94 222.97
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 426.14 305.45
   C 429.29 304.34 429.20 301.60 429.97 299.90
   Q 431.85 295.73 434.87 288.04
@@ -9579,8 +11216,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 429.37 304.98 428.44 306.00
   Q 426.81 307.78 426.14 305.45
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 426.14 305.45
   Q 426.44 297.80 427.71 293.99
   Q 429.67 288.12 431.38 282.17
@@ -9632,8 +11271,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 431.85 295.73 429.97 299.90
   C 429.20 301.60 429.29 304.34 426.14 305.45
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 431.21 174.15
   A 0.36 0.36 0.0 0 1 430.75 174.67
   Q 421.16 170.29 411.65 165.58
@@ -9645,8 +11286,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 420.69 162.75 424.98 166.85 428.47 171.64
   C 429.22 172.66 430.71 173.32 431.21 174.15
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 545.35 315.24
   L 544.65 314.85
   A 0.67 0.66 -54.5 0 0 543.85 314.99
@@ -9833,8 +11476,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 293.21 533.53 305.21 528.64 318.14 522.77
   A 0.64 0.63 69.3 0 0 318.48 522.01
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 487.91 224.84
   Q 476.04 226.28 465.46 231.54
   C 457.61 235.44 450.09 241.67 445.09 247.86
@@ -9900,8 +11545,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.75 0.75 0.0 0 1 489.38 224.39
   L 487.91 224.84
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 398.20 162.82
   Q 397.37 166.33 394.53 168.61
   Q 382.04 165.76 372.68 173.17
@@ -9921,8 +11568,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 379.47 146.09 387.46 153.87
   C 390.68 157.01 394.63 159.82 398.20 162.82
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 578.63 154.14
   Q 578.25 154.73 578.28 154.82
   Q 575.72 156.06 575.49 159.05
@@ -9953,8 +11602,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.01 4.91 -53.1 0 1 565.96 147.96
   Q 573.78 148.17 578.63 154.14
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 578.28 154.82
   L 576.54 159.69
   A 2.07 1.89 -35.3 0 0 576.42 160.24
@@ -9985,8 +11636,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 574.71 169.59 575.49 159.05
   Q 575.72 156.06 578.28 154.82
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 481.25 205.15
   Q 475.73 204.42 471.22 207.16
   Q 469.16 208.41 467.55 208.63
@@ -10001,8 +11654,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 459.10 190.04 465.89 193.08 472.48 196.96
   Q 477.89 200.14 481.25 205.15
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 438.18 267.71
   Q 443.75 257.71 451.42 249.17
   C 463.57 235.63 478.78 231.25 496.25 229.27
@@ -10018,8 +11673,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.32 0.32 0.0 0 1 438.15 268.50
   L 438.18 267.71
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 463.75 213.14
   Q 462.45 215.88 460.32 215.00
   Q 453.69 206.41 444.66 200.58
@@ -10059,8 +11716,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 456.43 204.18 461.96 209.79
   Q 463.50 211.35 463.75 213.14
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 460.32 215.00
   Q 459.00 217.07 458.41 214.34
   A 0.62 0.62 0.0 0 0 457.23 214.26
@@ -10143,8 +11802,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 416.90 183.52 431.64 192.18 444.66 200.58
   Q 453.69 206.41 460.32 215.00
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 731.41 391.73
   C 742.11 376.55 752.56 361.25 764.70 347.19
   C 770.35 340.64 778.05 333.25 785.59 330.84
@@ -10186,8 +11847,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.38 0.38 0.0 0 1 731.59 392.20
   L 731.41 391.73
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 731.41 391.73
   L 728.97 395.14
   A 0.29 0.29 0.0 0 1 728.45 394.95
@@ -10270,8 +11933,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 778.05 333.25 770.35 340.64 764.70 347.19
   C 752.56 361.25 742.11 376.55 731.41 391.73
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 905.44 268.95
   L 905.24 261.29
   Q 904.99 257.56 904.86 253.79
@@ -10355,8 +12020,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 896.81 294.08 899.25 288.67 903.13 280.16
   Q 906.02 273.83 905.44 268.95
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 321.05 231.54
   Q 322.85 231.29 324.25 229.64
   A 0.82 0.81 53.2 0 0 324.37 228.78
@@ -10380,8 +12047,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 1 316.89 234.31
   Q 318.23 232.34 321.05 231.54
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 311.45 232.31
   Q 310.43 231.82 309.79 230.40
   Q 309.04 228.75 308.59 228.17
@@ -10406,8 +12075,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 302.66 218.24 310.06 228.19
   Q 311.12 229.63 311.45 232.31
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 311.45 232.31
   Q 312.50 232.59 311.52 234.46
   A 1.56 1.52 -33.5 0 0 311.35 235.24
@@ -10440,8 +12111,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 309.04 228.75 309.79 230.40
   Q 310.43 231.82 311.45 232.31
   Z"
-/>
-<path fill="#d47d13" d="
+      />
+      <path
+        fill="#d47d13"
+        d="
   M 387.91 252.27
   Q 371.17 247.31 354.54 246.87
   Q 352.40 245.54 351.85 244.36
@@ -10502,8 +12175,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.95 1.90 -50.1 0 1 390.42 251.69
   Q 387.92 251.27 387.91 252.27
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 321.05 231.54
   Q 320.78 230.91 318.79 230.98
   Q 316.87 228.63 316.19 225.62
@@ -10517,8 +12192,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.82 0.81 53.2 0 1 324.25 229.64
   Q 322.85 231.29 321.05 231.54
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 481.25 205.15
   Q 487.44 211.49 489.11 220.49
   Q 489.52 222.67 488.19 223.77
@@ -10550,8 +12227,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 469.16 208.41 471.22 207.16
   Q 475.73 204.42 481.25 205.15
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 311.55 239.00
   Q 311.69 239.88 311.37 240.47
   A 0.90 0.90 0.0 0 1 310.08 240.77
@@ -10563,8 +12242,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 300.16 233.36 308.98 238.55
   Q 309.58 238.90 311.55 239.00
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 779.21 307.47
   C 762.35 312.68 746.89 323.24 737.98 338.72
   Q 729.82 352.87 723.85 368.07
@@ -10702,8 +12383,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 775.79 296.29 771.08 289.06 766.23 281.48
   A 1.04 1.04 0.0 0 0 764.50 281.46
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 274.68 214.90
   Q 279.57 221.04 285.33 226.68
   Q 294.66 235.82 305.26 243.51
@@ -10713,8 +12396,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 1.01 0.0 0 1 273.95 214.25
   Q 274.10 214.14 274.68 214.90
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 327.96 215.06
   Q 328.56 215.58 328.93 216.24
   Q 329.90 218.05 329.88 220.05
@@ -10722,8 +12407,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 328.35 219.43 328.46 218.33
   C 328.59 217.16 327.61 216.40 327.96 215.06
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 487.91 224.84
   L 488.59 225.17
   A 0.47 0.46 53.6 0 1 488.46 226.05
@@ -10742,8 +12429,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 450.09 241.67 457.61 235.44 465.46 231.54
   Q 476.04 226.28 487.91 224.84
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 905.24 261.29
   Q 904.91 261.49 904.75 261.48
   L 904.68 260.71
@@ -10774,8 +12463,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 904.78 251.27 904.86 253.79
   Q 904.99 257.56 905.24 261.29
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 341.05 246.59
   A 0.86 0.86 0.0 0 1 340.76 247.72
   Q 338.65 249.07 336.44 249.97
@@ -10798,8 +12489,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 334.49 249.39 337.13 248.94 339.53 247.38
   A 0.88 0.88 0.0 0 0 339.77 246.14
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 314.11 236.42
   Q 314.04 237.40 312.85 237.73
   A 0.54 0.54 0.0 0 1 312.17 237.29
@@ -10808,8 +12501,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 1 313.05 234.94
   Q 314.18 235.43 314.11 236.42
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 339.77 246.14
   A 0.88 0.88 0.0 0 1 339.53 247.38
   C 337.13 248.94 334.49 249.39 332.23 250.95
@@ -10821,8 +12516,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.57 2.57 0.0 0 1 332.60 236.07
   L 339.77 246.14
   Z"
-/>
-<path fill="#d47d13" d="
+      />
+      <path
+        fill="#d47d13"
+        d="
   M 518.00 336.09
   Q 518.78 327.11 513.55 319.85
   C 511.34 316.78 504.91 316.80 501.23 316.82
@@ -10840,8 +12537,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 523.13 327.08 519.04 336.36
   A 0.55 0.54 59.4 0 1 518.00 336.09
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 652.92 240.03
   C 648.08 252.17 643.35 265.03 638.36 276.18
   Q 633.78 286.42 629.38 296.88
@@ -10879,8 +12578,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.38 2.38 0.0 0 0 649.57 246.26
   Q 650.02 242.18 652.92 240.03
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 741.74 241.51
   L 743.32 243.06
   Q 748.40 249.06 750.73 251.52
@@ -10932,8 +12633,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.34 0.32 -69.7 0 1 741.12 242.10
   Q 741.09 241.62 741.74 241.51
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 945.99 336.01
   Q 935.59 360.51 921.02 380.29
   Q 895.60 414.80 862.71 442.70
@@ -11102,8 +12805,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 853.21 412.36
   A 0.63 0.63 0.0 0 0 854.14 412.93
   Z"
-/>
-<path fill="#d47d13" d="
+      />
+      <path
+        fill="#d47d13"
+        d="
   M 661.35 283.49
   A 0.18 0.18 0.0 0 0 661.71 283.45
   Q 661.58 272.98 664.82 263.27
@@ -11197,8 +12902,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.51 0.51 0.0 0 1 660.21 273.04
   Q 660.27 278.79 661.35 283.49
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 341.32 266.26
   L 343.11 272.83
   C 346.47 286.29 353.70 296.99 364.29 306.20
@@ -11225,8 +12932,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 340.20 266.50 340.58 266.15
   Q 340.73 266.01 341.32 266.26
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 359.25 251.96
   Q 380.71 252.32 398.40 263.06
   C 411.27 270.87 418.89 284.95 420.35 299.83
@@ -11255,8 +12964,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 336.93 254.01 338.83 253.58 340.70 253.21
   Q 350.42 251.24 359.25 251.96
   Z"
-/>
-<path fill="#b1ab0a" d="
+      />
+      <path
+        fill="#b1ab0a"
+        d="
   M 432.83 354.32
   Q 433.76 352.91 436.65 354.12
   Q 439.38 355.27 440.53 355.40
@@ -11281,8 +12992,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.98 0.94 -75.0 0 1 433.29 357.98
   L 432.83 354.32
   Z"
-/>
-<path fill="#c9c111" d="
+      />
+      <path
+        fill="#c9c111"
+        d="
   M 507.54 253.02
   Q 500.21 267.88 493.82 283.06
   C 491.71 288.07 487.02 294.01 484.72 298.59
@@ -11317,8 +13030,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 16.50 11.79 -58.3 0 0 481.9411 281.7753
   A 16.50 11.79 -58.3 0 0 480.5803 261.5416
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 343.11 272.83
   L 341.32 266.26
   Q 341.11 265.74 341.41 265.49
@@ -11359,8 +13074,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.34 0.34 0.0 0 0 343.32 272.19
   L 343.11 272.83
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 609.05 268.76
   L 613.75 260.41
   A 1.43 1.43 0.0 0 1 614.11 260.00
@@ -11370,15 +13087,19 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 620.85 263.88 613.31 267.51 609.49 269.25
   A 0.35 0.34 -87.4 0 1 609.05 268.76
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 339.06 254.98
   Q 339.43 256.08 337.90 257.63
   Q 337.38 256.74 337.02 257.11
   Q 337.28 255.36 339.06 254.98
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 336.34 264.56
   Q 339.41 276.65 343.99 288.26
   C 346.73 295.22 349.08 301.32 350.04 307.23
@@ -11424,8 +13145,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 333.61 258.42 334.22 259.26
   Q 335.94 261.64 336.34 264.56
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 346.84 267.19
   C 354.20 275.42 361.10 284.57 368.17 292.39
   C 373.11 297.86 380.62 306.21 388.22 310.32
@@ -11450,8 +13173,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.47 0.46 61.3 0 1 346.45 267.22
   Q 346.63 267.17 346.84 267.19
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 332.59 259.13
   Q 334.04 260.17 334.31 261.02
   C 334.91 262.92 335.13 265.30 335.71 267.29
@@ -11478,8 +13203,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 327.78 267.37 330.49 262.33
   Q 329.62 261.14 332.59 259.13
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 296.49 280.42
   L 298.71 278.73
   A 1.31 1.27 89.0 0 0 299.00 278.42
@@ -11493,8 +13220,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 299.79 280.65 296.75 281.05
   A 0.35 0.35 0.0 0 1 296.49 280.42
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 340.30 260.24
   Q 343.11 261.11 345.50 261.08
   Q 360.67 260.94 374.61 265.01
@@ -11525,8 +13254,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.39 0.39 0.0 0 1 339.95 260.29
   L 340.30 260.24
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 480.5803 261.5416
   A 16.50 11.79 -58.3 0 1 481.9411 281.7753
   A 16.50 11.79 -58.3 0 1 463.2397 289.6184
@@ -11539,8 +13270,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 15.33 10.45 -58.6 0 0 480.8096 281.0546
   A 15.33 10.45 -58.6 0 0 479.8771 262.5251
   Z"
-/>
-<path fill="#114716" d="
+      />
+      <path
+        fill="#114716"
+        d="
   M 479.8771 262.5251
   A 15.33 10.45 -58.6 0 1 480.8096 281.0546
   A 15.33 10.45 -58.6 0 1 463.9029 288.6949
@@ -11555,8 +13288,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 464.75 279.63 465.90 281.92
   A 0.87 0.85 79.8 0 0 466.58 282.40
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 360.91 349.73
   L 362.69 364.17
   L 362.35 366.87
@@ -11617,8 +13352,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 358.44 347.43 358.84 348.54
   Q 359.70 350.94 360.91 349.73
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 356.46 271.05
   C 362.21 278.95 386.75 311.71 398.15 307.79
   Q 402.46 306.31 402.36 300.70
@@ -11639,8 +13376,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 364.85 284.04 361.47 278.83 358.01 275.25
   Q 355.30 272.45 356.46 271.05
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 624.34 291.65
   Q 624.14 291.45 622.50 288.67
   C 619.73 283.98 614.64 279.71 609.94 276.78
@@ -11653,8 +13392,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 625.29 289.79 625.13 290.68 625.03 291.41
   A 0.41 0.41 0.0 0 1 624.34 291.65
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 353.23 265.67
   C 365.70 267.70 372.83 268.57 382.37 272.97
   C 393.16 277.94 402.14 288.51 402.36 300.70
@@ -11664,8 +13405,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.21 0.20 43.8 0 1 352.51 265.82
   Q 352.72 265.46 353.23 265.67
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 465.90 281.92
   Q 464.75 279.63 466.01 276.03
   Q 468.53 268.86 473.63 265.93
@@ -11674,8 +13417,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 477.85 277.58 473.14 283.08 466.58 282.40
   A 0.87 0.85 79.8 0 1 465.90 281.92
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 321.93 270.28
   A 0.33 0.33 0.0 0 1 322.40 270.52
   Q 323.83 278.17 327.07 285.93
@@ -11686,8 +13431,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.14 2.70 -79.9 0 1 318.98 272.28
   Q 320.01 271.18 321.93 270.28
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 629.25 323.96
   Q 627.57 314.11 624.70 304.50
   Q 622.72 297.87 619.31 292.69
@@ -11731,8 +13478,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 629.67 319.03 630.32 322.72
   Q 630.55 324.01 629.25 323.96
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 629.25 323.96
   Q 629.41 324.80 628.87 324.86
   Q 627.80 325.00 626.77 325.23
@@ -11779,8 +13528,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 546.23 336.35 548.68 349.69
   A 1.48 1.48 0.0 0 0 551.08 350.56
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 551.08 350.56
   A 1.48 1.48 0.0 0 1 548.68 349.69
   Q 546.23 336.35 549.09 322.82
@@ -11804,8 +13555,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.41 1.41 0.0 0 1 558.65 344.30
   L 551.08 350.56
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 764.50 281.46
   A 1.04 1.04 0.0 0 1 766.23 281.48
   C 771.08 289.06 775.79 296.29 778.63 304.56
@@ -11824,8 +13577,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 740.55 313.18 755.07 293.41
   C 757.91 289.54 761.88 285.28 764.50 281.46
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 282.34 299.56
   Q 285.54 301.13 289.36 300.07
   L 296.67 299.02
@@ -11852,8 +13607,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 289.86 301.31 287.32 302.07 284.97 301.86
   Q 281.47 301.56 282.34 299.56
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 289.36 300.07
   Q 288.82 299.84 288.34 299.88
   A 0.25 0.23 -11.4 0 1 288.10 299.73
@@ -11881,8 +13638,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 10.54 10.41 45.3 0 0 296.67 299.02
   L 289.36 300.07
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 289.36 300.07
   Q 285.54 301.13 282.34 299.56
   Q 280.11 296.36 282.19 292.66
@@ -11902,8 +13661,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.25 0.23 -11.4 0 0 288.34 299.88
   Q 288.82 299.84 289.36 300.07
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 593.66 332.63
   A 0.43 0.43 0.0 0 1 593.50 333.46
   C 590.80 333.51 588.36 333.61 585.32 334.69
@@ -11930,8 +13691,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.86 1.83 84.5 0 0 590.49 331.24
   L 593.66 332.63
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 583.09 295.67
   C 579.16 302.52 576.17 309.95 571.92 316.87
   Q 563.83 330.05 563.62 330.36
@@ -11952,8 +13715,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 576.86 304.45 579.04 300.18
   A 0.51 0.51 0.0 0 0 578.28 299.55
   Z"
-/>
-<path fill="#b1ab0a" d="
+      />
+      <path
+        fill="#b1ab0a"
+        d="
   M 578.28 299.55
   A 0.51 0.51 0.0 0 1 579.04 300.18
   Q 576.86 304.45 575.19 308.67
@@ -11963,8 +13728,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 564.89 319.65 568.25 312.22
   C 570.67 306.86 573.67 303.11 578.28 299.55
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 404.22 330.09
   Q 395.63 331.90 387.80 328.42
   Q 379.82 325.20 373.04 319.72
@@ -11980,8 +13747,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.38 0.38 0.0 0 1 404.48 329.42
   L 404.22 330.09
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 354.21 302.51
   Q 356.77 305.36 359.44 308.13
   C 363.50 312.33 368.42 316.00 373.04 319.72
@@ -12009,8 +13778,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 353.01 302.08
   Q 353.44 301.53 354.21 302.51
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 343.23 349.71
   L 341.56 345.70
   Q 341.79 344.45 341.37 343.98
@@ -12028,8 +13799,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 342.38 339.10 343.20 343.19
   Q 343.81 346.20 343.23 349.71
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 303.06 308.19
   Q 301.85 308.34 303.88 311.20
   Q 305.53 313.53 307.10 315.93
@@ -12047,8 +13820,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.94 0.93 -19.3 0 1 301.33 304.85
   Q 302.63 306.63 303.06 308.19
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 291.91 305.53
   Q 289.91 308.34 288.85 310.77
   C 286.87 315.30 284.23 318.28 281.64 322.64
@@ -12061,8 +13836,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 291.40 304.61
   A 0.58 0.58 0.0 0 1 291.91 305.53
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 310.49 305.72
   Q 321.12 309.01 326.54 311.75
   Q 330.64 313.82 333.75 317.76
@@ -12088,8 +13865,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 1 307.93 304.89
   Q 309.11 304.76 310.49 305.72
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 308.45 307.21
   Q 308.69 308.52 309.22 309.28
   Q 318.55 322.75 327.82 333.94
@@ -12106,8 +13885,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.38 0.37 -2.6 0 1 307.84 307.19
   Q 308.06 307.26 308.45 307.21
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 341.37 343.98
   Q 341.79 344.45 341.56 345.70
   Q 333.45 339.39 329.31 334.20
@@ -12120,8 +13901,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.55 0.53 -89.2 0 0 340.70 344.13
   Q 341.08 344.25 341.37 343.98
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 387.80 328.42
   Q 395.63 331.90 404.22 330.09
   L 413.11 327.25
@@ -12146,8 +13929,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.30 0.30 0.0 0 0 388.16 329.09
   Q 387.90 328.87 387.80 328.42
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 779.21 307.47
   Q 779.98 307.77 779.52 308.45
   A 0.64 0.61 6.4 0 1 779.18 308.71
@@ -12159,8 +13944,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 729.82 352.87 737.98 338.72
   C 746.89 323.24 762.35 312.68 779.21 307.47
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 303.06 308.19
   Q 304.53 310.52 305.78 312.24
   Q 313.45 322.81 321.22 333.30
@@ -12171,8 +13958,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 305.53 313.53 303.88 311.20
   Q 301.85 308.34 303.06 308.19
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 420.99 324.43
   Q 425.02 323.53 429.09 325.20
   A 3.37 3.30 58.6 0 0 430.00 325.43
@@ -12189,8 +13978,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 448.37 328.62 441.74 328.07
   Q 431.51 327.22 420.99 324.43
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 420.99 324.43
   Q 419.46 324.42 417.79 323.61
   A 1.43 1.43 0.0 0 1 417.35 321.37
@@ -12205,8 +13996,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.37 3.30 58.6 0 1 429.09 325.20
   Q 425.02 323.53 420.99 324.43
   Z"
-/>
-<path fill="#d47d13" d="
+      />
+      <path
+        fill="#d47d13"
+        d="
   M 545.35 315.24
   Q 543.33 321.87 542.62 325.82
   Q 541.94 329.63 541.27 337.26
@@ -12229,8 +14022,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.67 0.66 -54.5 0 1 544.65 314.85
   L 545.35 315.24
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 613.78 331.02
   Q 612.78 331.97 612.51 331.91
   Q 607.62 330.82 603.21 330.61
@@ -12242,8 +14037,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 613.91 328.78
   A 1.65 1.64 -41.7 0 1 613.78 331.02
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 287.73 325.57
   Q 291.27 327.15 293.96 326.55
   L 316.56 332.41
@@ -12297,8 +14094,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.31 0.30 -83.4 0 1 286.70 325.86
   Q 287.33 325.83 287.73 325.57
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 500.50 403.99
   L 500.62 405.74
   A 1.40 1.39 61.7 0 1 500.34 406.69
@@ -12363,8 +14162,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 471.33 440.14 482.51 426.15 494.16 411.31
   C 496.08 408.87 498.41 406.47 500.50 403.99
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 626.77 325.23
   L 627.85 325.33
   A 0.57 0.57 0.0 0 1 628.37 325.96
@@ -12384,16 +14185,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 619.43 327.20
   Q 622.99 325.49 626.77 325.23
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 316.56 332.41
   L 293.96 326.55
   Q 305.50 327.68 316.46 331.38
   A 0.59 0.58 6.4 0 1 316.86 331.87
   Q 316.92 332.33 316.56 332.41
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 337.76 351.51
   Q 338.00 352.11 337.96 352.17
   A 0.63 0.62 -45.3 0 1 336.98 352.18
@@ -12422,8 +14227,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 303.69 333.19 322.58 338.94
   C 330.18 341.25 333.29 345.96 337.76 351.51
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 459.10 424.47
   Q 465.54 408.73 470.02 392.40
   C 471.13 388.37 473.69 378.80 466.58 380.33
@@ -12544,8 +14351,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 475.85 406.55 472.29 411.03
   Q 466.41 418.42 459.10 424.47
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 337.76 351.51
   Q 339.49 353.38 341.77 354.71
   Q 343.10 355.49 343.39 357.80
@@ -12570,8 +14379,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.62 -45.3 0 0 337.96 352.17
   Q 338.00 352.11 337.76 351.51
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 373.16 343.31
   A 0.35 0.35 0.0 0 1 372.81 343.91
   L 365.54 340.87
@@ -12583,8 +14394,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 360.90 331.60 363.06 332.99 364.74 335.15
   Q 367.93 339.25 373.16 343.31
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 632.68 330.58
   Q 635.09 331.88 635.55 333.88
   A 1.11 1.10 55.9 0 1 635.38 334.78
@@ -12608,8 +14421,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 633.94 334.93
   A 1.30 1.29 -47.5 0 0 633.87 333.20
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 430.96 332.44
   Q 431.21 340.56 431.07 348.25
   Q 431.01 351.93 431.43 354.74
@@ -12663,8 +14478,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.07 1.06 17.3 0 1 421.35 329.57
   L 430.96 332.44
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 633.87 333.20
   A 1.30 1.29 -47.5 0 1 633.94 334.93
   L 628.27 341.87
@@ -12678,8 +14495,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.83 1.80 -13.5 0 1 632.69 332.00
   L 633.87 333.20
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 608.87 343.45
   L 608.91 341.29
   L 610.24 336.71
@@ -12706,8 +14525,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.39 0.38 -62.5 0 1 609.14 343.99
   Q 609.00 343.89 608.87 343.45
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 712.05 411.20
   Q 717.55 409.71 720.90 405.83
   C 725.27 400.75 723.97 389.57 722.70 383.38
@@ -12726,8 +14547,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 718.63 409.62 717.03 410.75
   Q 714.61 412.47 712.05 411.20
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 647.44 336.21
   C 661.53 337.28 673.41 339.63 685.81 345.38
   Q 696.78 350.45 702.87 354.69
@@ -12785,8 +14608,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.12 -66.7 0 1 641.69 335.93
   L 647.44 336.21
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 608.91 341.29
   Q 607.72 341.34 608.43 338.48
   A 0.90 0.89 4.6 0 0 607.48 337.37
@@ -12808,8 +14633,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.62 0.61 6.8 0 1 610.24 336.71
   L 608.91 341.29
   Z"
-/>
-<path fill="#c9c111" d="
+      />
+      <path
+        fill="#c9c111"
+        d="
   M 834.23 341.40
   L 829.63 344.89
   A 10.51 10.46 -88.7 0 0 827.90 346.55
@@ -12857,8 +14684,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 788.70 371.45 792.04 362.05 784.97 356.80
   C 777.90 351.55 769.88 357.47 765.16 363.83
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 945.99 336.01
   Q 948.01 349.77 949.12 362.13
   Q 949.33 364.46 950.52 367.68
@@ -13072,8 +14901,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 895.60 414.80 921.02 380.29
   Q 935.59 360.51 945.99 336.01
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 608.91 341.29
   L 608.87 343.45
   L 608.72 345.18
@@ -13100,8 +14931,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.90 0.89 4.6 0 1 608.43 338.48
   Q 607.72 341.34 608.91 341.29
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 647.68 360.72
   L 643.02 353.47
   L 640.73 350.56
@@ -13140,8 +14973,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 649.00 360.92 648.73 360.65
   Q 647.72 359.60 647.68 360.72
   Z"
-/>
-<path fill="#b1ab0a" d="
+      />
+      <path
+        fill="#b1ab0a"
+        d="
   M 834.23 341.40
   Q 835.89 341.57 837.26 342.26
   A 0.44 0.43 -59.6 0 1 837.42 342.90
@@ -13167,8 +15002,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 10.51 10.46 -88.7 0 1 829.63 344.89
   L 834.23 341.40
   Z"
-/>
-<path fill="#c9c111" d="
+      />
+      <path
+        fill="#c9c111"
+        d="
   M 539.31 341.90
   L 541.42 351.50
   A 1.41 1.38 23.8 0 0 541.60 351.95
@@ -13193,8 +15030,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 521.94 364.70 527.32 357.79
   Q 533.50 349.85 539.31 341.90
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 237.76 356.52
   A 0.20 0.20 0.0 0 1 237.68 356.15
   C 241.24 354.14 244.01 350.05 248.70 344.47
@@ -13206,8 +15045,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 251.54 357.60
   L 237.76 356.52
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 608.72 345.18
   Q 608.95 345.97 608.87 346.71
   A 0.53 0.52 -73.6 0 1 608.11 347.13
@@ -13226,8 +15067,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 568.87 354.06 593.78 347.23
   Q 600.22 345.46 608.72 345.18
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 275.16 346.51
   L 286.63 364.25
   Q 284.63 363.23 282.42 360.07
@@ -13247,8 +15090,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.70 2.60 -79.1 0 1 269.49 345.79
   Q 272.72 344.39 275.16 346.51
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 290.40 368.39
   L 286.63 364.25
   L 275.16 346.51
@@ -13257,8 +15102,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 279.97 352.35 283.89 358.66 288.35 364.21
   Q 289.87 366.09 290.40 368.39
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 343.66 425.91
   L 344.81 417.10
   A 6.02 5.99 31.4 0 0 343.78 412.89
@@ -13296,8 +15143,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.20 1.19 87.7 0 1 344.12 428.02
   Q 343.67 428.10 343.66 425.91
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 646.59 350.96
   L 642.03 350.13
   Q 641.87 348.72 643.57 348.89
@@ -13333,8 +15182,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.60 1.58 79.8 0 0 651.68 352.38
   L 646.59 350.96
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 286.63 364.25
   L 290.40 368.39
   Q 289.49 369.07 288.93 368.55
@@ -13350,8 +15201,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 279.53 355.94 282.42 360.07
   Q 284.63 363.23 286.63 364.25
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 343.66 425.91
   L 342.83 430.67
   Q 341.69 429.83 342.13 427.00
@@ -13380,8 +15233,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.02 5.99 31.4 0 1 344.81 417.10
   L 343.66 425.91
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 408.31 375.11
   Q 409.26 374.35 412.38 373.87
   Q 414.37 373.57 416.69 370.90
@@ -13410,8 +15265,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 413.58 363.11 422.37 368.93 415.84 373.59
   Q 412.66 375.85 408.31 375.11
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 342.83 430.67
   L 341.86 434.91
   A 0.28 0.27 -59.8 0 1 341.39 435.04
@@ -13432,8 +15289,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 342.85 422.38 342.13 427.00
   Q 341.69 429.83 342.83 430.67
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 408.31 375.11
   L 403.11 374.44
   L 404.29 374.12
@@ -13453,8 +15312,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 414.37 373.57 412.38 373.87
   Q 409.26 374.35 408.31 375.11
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 590.19 349.63
   L 591.58 349.70
   A 0.44 0.43 37.7 0 1 591.69 350.55
@@ -13469,8 +15330,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 542.78 373.97 559.84 363.34
   Q 573.28 354.98 590.19 349.63
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 362.69 364.17
   L 360.91 349.73
   Q 364.51 354.14 370.83 363.91
@@ -13494,8 +15357,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 373.11 369.80 363.67 355.05
   A 0.35 0.35 0.0 0 0 363.02 355.21
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 671.97 443.53
   Q 672.31 451.93 671.59 460.51
   Q 671.43 462.46 673.09 464.89
@@ -13580,8 +15445,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.70 0.64 -37.0 0 1 670.38 443.48
   Q 670.74 442.78 671.97 443.53
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 617.85 358.31
   Q 621.32 360.59 622.42 362.35
   Q 632.35 378.29 638.92 391.55
@@ -13616,8 +15483,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 645.31 423.78 648.57 429.01
   A 0.34 0.34 0.0 0 0 649.20 428.80
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 635.91 352.37
   Q 634.32 352.66 634.61 352.94
   Q 634.93 353.26 635.30 353.50
@@ -13652,8 +15521,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 631.46 354.05 631.21 354.26
   Q 633.33 351.96 635.91 352.37
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 635.91 352.37
   Q 643.81 362.31 649.80 373.56
   Q 652.73 379.06 654.47 383.93
@@ -13706,8 +15577,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 634.93 353.26 634.61 352.94
   Q 634.32 352.66 635.91 352.37
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 649.20 428.80
   A 0.34 0.34 0.0 0 1 648.57 429.01
   Q 645.31 423.78 645.22 423.64
@@ -13725,8 +15598,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 644.14 404.44 646.62 414.33
   Q 648.51 421.82 649.20 428.80
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 586.73 363.55
   A 0.22 0.21 15.9 0 0 586.53 363.20
   C 581.70 364.01 578.78 365.14 574.46 368.70
@@ -13769,8 +15644,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.33 0.32 34.3 0 1 572.33 375.65
   C 577.96 371.29 582.65 368.21 586.73 363.55
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 664.67 354.31
   Q 678.63 359.11 682.30 361.42
   C 691.25 367.05 698.57 372.61 704.11 381.56
@@ -13798,8 +15675,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 659.29 352.93
   L 664.67 354.31
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 706.41 388.11
   L 704.92 383.35
   A 7.71 7.55 -70.0 0 0 704.11 381.56
@@ -13813,8 +15692,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 699.87 374.06 705.68 378.71 707.41 385.83
   Q 708.18 389.03 706.41 388.11
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 310.27 354.96
   Q 315.73 363.05 320.90 371.34
   Q 322.82 374.41 327.65 380.63
@@ -13845,8 +15726,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 318.25 369.60 310.08 357.16
   Q 308.65 354.98 310.27 354.96
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 643.02 353.47
   L 647.68 360.72
   Q 652.65 369.51 658.05 377.90
@@ -13864,8 +15747,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 642.11 353.98 642.37 353.73
   Q 642.54 353.57 643.02 353.47
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 310.57 354.47
   L 336.81 364.41
   L 337.23 365.01
@@ -13887,8 +15772,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 315.73 363.05 310.27 354.96
   L 310.57 354.47
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 784.97 356.80
   C 792.04 362.05 788.70 371.45 783.98 377.80
   C 779.26 384.16 771.23 390.08 764.16 384.83
@@ -13901,8 +15788,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 16.37 10.61 -54.2 0 0 783.0954 377.0464
   A 16.37 10.61 -54.2 0 0 784.0658 357.5629
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 363.02 355.21
   A 0.35 0.35 0.0 0 1 363.67 355.05
   Q 373.11 369.80 386.79 389.27
@@ -13916,8 +15805,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 7.51 7.20 38.6 0 0 363.68 360.81
   Q 362.84 357.54 363.02 355.21
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 544.12 356.16
   Q 543.83 355.90 544.45 356.10
   A 0.39 0.39 0.0 0 1 544.60 356.76
@@ -13929,8 +15820,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 514.49 384.46 523.34 374.34
   Q 531.72 364.76 544.12 356.16
   Z"
-/>
-<path fill="#114716" d="
+      />
+      <path
+        fill="#114716"
+        d="
   M 784.0658 357.5629
   A 16.37 10.61 -54.2 0 1 783.0954 377.0464
   A 16.37 10.61 -54.2 0 1 764.9142 384.1171
@@ -13946,8 +15839,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 768.00 369.68 767.24 373.31
   A 1.32 1.31 36.4 0 0 767.38 374.22
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 696.94 390.29
   Q 700.02 391.77 702.87 393.37
   Q 703.90 393.95 705.00 393.54
@@ -13964,8 +15859,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 677.98 374.80 682.55 379.69
   Q 687.68 385.17 696.94 390.29
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 336.81 364.41
   L 343.52 367.82
   A 1.10 1.09 11.5 0 1 344.11 368.70
@@ -13982,8 +15879,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.25 0.25 0.0 0 0 337.23 365.01
   L 336.81 364.41
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 651.30 434.78
   Q 650.41 427.34 649.15 419.91
   Q 647.78 411.81 644.69 404.31
@@ -14002,8 +15901,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.66 0.65 -1.6 0 1 651.62 435.42
   Q 651.56 435.04 651.30 434.78
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 258.14 358.72
   L 283.30 366.17
   Q 284.77 367.40 288.93 368.55
@@ -14012,8 +15913,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.39 0.38 14.7 0 1 257.61 359.21
   Q 257.64 359.00 258.14 358.72
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 307.52 393.20
   L 296.52 377.06
   A 4.44 4.44 0.0 0 0 294.92 375.62
@@ -14031,8 +15934,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 1 308.61 392.68
   Q 308.42 393.31 307.52 393.20
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 235.80 360.64
   Q 247.37 361.04 256.07 363.15
   Q 269.91 366.51 278.04 369.27
@@ -14067,8 +15972,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 259.71 377.19 268.63 380.08
   C 281.89 384.36 289.43 386.52 303.83 391.05
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 588.08 378.88
   L 611.80 385.58
   A 0.21 0.20 82.9 0 0 612.03 385.28
@@ -14086,8 +15993,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.77 0.77 0.0 0 1 587.67 379.59
   Q 587.45 378.95 588.08 378.88
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 767.24 373.31
   Q 768.00 369.68 770.49 366.74
   Q 773.96 362.66 775.77 361.64
@@ -14097,8 +16006,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 769.32 377.67 767.38 374.22
   A 1.32 1.31 36.4 0 1 767.24 373.31
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 899.96 369.90
   A 0.60 0.60 0.0 0 0 899.06 369.19
   Q 893.82 372.96 888.34 374.96
@@ -14117,8 +16028,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 886.84 392.56 886.84 387.43 889.83 384.04
   C 893.48 379.90 897.83 375.22 899.96 369.90
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 303.83 391.05
   C 289.43 386.52 281.89 384.36 268.63 380.08
   Q 259.71 377.19 251.42 375.21
@@ -14137,8 +16050,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 300.90 386.06 304.26 390.43
   A 0.40 0.39 80.0 0 1 303.83 391.05
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 588.08 378.88
   L 591.00 375.45
   Q 590.97 375.81 591.08 375.85
@@ -14149,8 +16064,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.21 0.20 82.9 0 1 611.80 385.58
   L 588.08 378.88
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 950.52 367.68
   Q 953.66 379.30 956.62 390.62
   C 957.99 395.85 960.20 402.56 961.62 408.67
@@ -14168,8 +16085,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 949.32 375.94 949.70 372.38
   Q 949.95 370.12 950.52 367.68
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 706.25 391.58
   Q 706.59 392.95 705.00 393.54
   Q 703.90 393.95 702.87 393.37
@@ -14186,8 +16105,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 697.61 374.85 700.39 377.92
   C 703.67 381.54 704.71 386.92 706.25 391.58
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 862.93 407.52
   Q 862.87 397.96 863.20 387.25
   C 863.34 382.80 863.58 380.13 867.83 378.08
@@ -14210,8 +16131,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.80 1.80 0.0 0 0 869.70 384.42
   Q 869.54 385.40 869.39 390.26
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 307.44 394.05
   C 307.45 394.47 307.30 394.82 306.85 394.87
   Q 305.63 395.00 304.60 394.12
@@ -14227,8 +16150,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 278.29 384.48 290.62 388.24 302.94 392.06
   Q 303.96 392.38 307.44 394.05
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 243.78 380.23
   C 249.51 388.82 255.38 398.32 261.14 405.93
   C 268.26 415.33 274.14 424.78 281.80 435.86
@@ -14262,8 +16187,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 242.86 380.64 243.09 380.43
   Q 243.30 380.24 243.78 380.23
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 205.18 393.18
   Q 211.81 387.91 217.18 381.70
   A 5.30 5.28 -74.3 0 1 220.28 379.95
@@ -14279,8 +16206,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 205.40 393.85
   A 0.37 0.37 0.0 0 1 205.18 393.18
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 244.03 378.96
   Q 246.66 379.66 249.31 380.29
   Q 253.20 381.22 259.62 383.37
@@ -14315,8 +16244,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 256.88 383.50 246.91 381.08
   A 0.42 0.42 0.0 0 0 246.40 381.60
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 626.43 405.92
   L 619.85 394.60
   A 1.71 1.70 -5.1 0 0 618.96 393.86
@@ -14342,8 +16273,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.62 68.4 0 1 626.95 406.14
   Q 626.60 406.22 626.43 405.92
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 626.43 405.92
   Q 626.41 406.44 626.39 406.97
   Q 609.86 400.72 593.56 396.29
@@ -14367,8 +16300,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 612.56 401.05 616.02 401.76
   C 618.33 402.24 620.96 403.56 623.06 403.91
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 876.89 390.50
   Q 876.74 395.37 876.58 396.35
   A 1.80 1.80 0.0 0 1 875.47 397.80
@@ -14381,8 +16316,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.63 0.0 0 1 877.17 381.19
   Q 877.17 381.22 876.89 390.50
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 246.91 381.08
   Q 256.88 383.50 260.24 385.00
   Q 262.56 386.04 264.51 388.82
@@ -14401,8 +16338,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 246.62 382.44 246.40 381.60
   A 0.42 0.42 0.0 0 1 246.91 381.08
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 254.69 404.20
   A 0.28 0.28 0.0 0 1 254.33 404.60
   C 249.57 402.11 244.52 401.53 239.99 400.08
@@ -14423,8 +16362,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 250.67 401.61
   A 0.23 0.23 0.0 0 0 250.92 401.26
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 362.93 381.70
   A 0.27 0.27 0.0 0 1 363.43 381.57
   C 365.58 385.21 368.20 388.54 369.21 392.75
@@ -14435,8 +16376,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.51 0.50 86.2 0 1 362.75 394.12
   L 362.93 381.70
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 623.06 403.91
   C 620.96 403.56 618.33 402.24 616.02 401.76
   Q 612.56 401.05 605.18 398.65
@@ -14449,8 +16392,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 623.46 403.34
   A 0.39 0.39 0.0 0 1 623.06 403.91
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 250.92 401.26
   A 0.23 0.23 0.0 0 1 250.67 401.61
   L 225.72 395.17
@@ -14461,8 +16406,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.94 0.94 0.0 0 1 239.68 383.37
   L 250.92 401.26
   Z"
-/>
-<path fill="#36a942" d="
+      />
+      <path
+        fill="#36a942"
+        d="
   M 420.81 496.08
   Q 421.55 492.32 423.13 488.86
   C 425.53 483.59 426.72 481.43 423.66 476.90
@@ -14480,8 +16427,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 447.46 440.75 443.65 453.51 437.51 464.53
   C 431.58 475.21 426.84 485.77 420.81 496.08
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 270.69 386.59
   L 309.27 398.60
   A 6.62 6.62 0.0 0 1 312.43 400.73
@@ -14512,8 +16461,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 0 273.66 389.76
   L 281.88 401.01
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 848.85 406.25
   Q 848.78 410.02 848.64 413.76
   Q 848.54 416.35 845.90 417.60
@@ -14548,8 +16499,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.92 1.92 0.0 0 0 834.63 409.82
   L 834.44 416.25
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 345.32 404.14
   Q 341.43 398.14 336.49 393.57
   L 332.16 387.91
@@ -14558,8 +16511,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.92 0.90 18.0 0 1 345.51 395.23
   L 345.32 404.14
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 322.27 429.20
   Q 325.49 427.10 323.33 423.43
   C 320.25 418.22 315.51 414.39 310.06 409.81
@@ -14577,8 +16532,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.80 0.80 0.0 0 1 330.98 432.34
   L 322.27 429.20
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 669.56 400.66
   L 667.10 402.02
   A 0.83 0.82 -19.7 0 1 665.89 401.45
@@ -14589,16 +16546,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 665.59 395.60 669.71 399.58
   A 0.68 0.68 0.0 0 1 669.56 400.66
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 345.32 404.14
   Q 346.15 404.53 345.99 405.47
   A 0.63 0.62 -57.8 0 1 344.86 405.73
   L 336.49 393.57
   Q 341.43 398.14 345.32 404.14
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 272.27 429.50
   L 259.26 410.73
   A 1.42 1.42 0.0 0 0 258.36 410.14
@@ -14619,8 +16580,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 269.41 423.32 272.84 428.52
   Q 273.39 429.35 272.27 429.50
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 647.75 492.44
   Q 648.13 493.10 648.13 493.52
   A 0.37 0.37 0.0 0 1 647.45 493.71
@@ -14649,8 +16612,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 598.64 426.43 607.03 438.48
   Q 622.45 460.62 647.75 492.44
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 839.53 402.58
   Q 838.32 403.06 835.51 404.14
   A 0.57 0.57 0.0 0 1 834.74 403.57
@@ -14663,8 +16628,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.28 2.27 84.2 0 1 840.99 402.03
   Q 840.64 402.13 839.53 402.58
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 647.75 492.44
   Q 649.40 493.92 649.32 495.26
   Q 648.98 500.90 646.83 512.76
@@ -14689,8 +16656,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 0 648.13 493.52
   Q 648.13 493.10 647.75 492.44
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 817.26 409.78
   A 0.27 0.27 0.0 0 0 816.73 409.69
   Q 813.73 419.34 812.07 426.78
@@ -14718,8 +16687,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 1 816.71 428.47
   L 817.26 409.78
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 272.27 429.50
   L 272.79 430.20
   A 0.31 0.30 70.5 0 1 272.56 430.69
@@ -14750,8 +16721,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.42 1.42 0.0 0 1 259.26 410.73
   L 272.27 429.50
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 562.34 399.74
   L 562.91 401.27
   A 3.87 3.86 -31.8 0 1 561.93 405.43
@@ -14766,8 +16739,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 559.53 399.04
   A 1.75 1.75 0.0 0 1 562.34 399.74
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 590.04 400.15
   L 595.06 409.15
   Q 602.95 422.70 611.33 434.75
@@ -14784,8 +16759,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.25 -8.2 0 1 588.77 399.43
   Q 589.63 399.62 590.04 400.15
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 194.93 411.16
   Q 190.90 412.29 187.59 411.15
   Q 183.25 409.65 185.16 405.26
@@ -14803,8 +16780,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 212.16 410.29 199.19 409.58
   Q 194.33 409.32 194.93 411.16
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 596.79 402.17
   Q 595.78 401.96 595.18 402.19
   A 0.24 0.24 0.0 0 0 595.19 402.64
@@ -14829,8 +16808,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 590.04 400.15
   L 596.79 402.17
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 322.27 429.20
   C 316.36 427.19 310.48 424.59 304.67 422.94
   Q 300.68 421.80 296.78 420.79
@@ -14841,8 +16822,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 315.51 414.39 320.25 418.22 323.33 423.43
   Q 325.49 427.10 322.27 429.20
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 596.79 402.17
   Q 613.60 407.18 623.47 411.00
   Q 626.87 412.32 631.61 415.52
@@ -14865,8 +16848,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.24 0.24 0.0 0 1 595.18 402.19
   Q 595.78 401.96 596.79 402.17
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 853.21 412.36
   L 853.40 405.76
   A 1.05 1.03 -11.6 0 1 854.01 404.85
@@ -14877,8 +16862,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 854.14 412.93
   A 0.63 0.63 0.0 0 1 853.21 412.36
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 678.07 407.62
   Q 677.51 407.64 677.21 407.78
   A 0.26 0.25 49.2 0 0 677.18 408.22
@@ -14904,8 +16891,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.07 1.05 -42.0 0 1 674.68 405.31
   L 678.07 407.62
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 834.44 416.25
   L 834.63 409.82
   A 1.92 1.92 0.0 0 1 835.88 408.08
@@ -14916,8 +16905,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 835.12 416.66
   A 0.46 0.46 0.0 0 1 834.44 416.25
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 557.90 416.09
   L 571.09 421.30
   A 0.29 0.29 0.0 0 0 571.47 421.12
@@ -14931,8 +16922,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.55 0.55 0.0 0 1 557.33 416.70
   Q 557.50 416.35 557.90 416.09
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 678.07 407.62
   C 687.45 412.92 695.92 416.85 706.74 416.27
   C 712.50 415.97 717.94 414.96 723.44 415.57
@@ -14963,8 +16956,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.25 49.2 0 1 677.21 407.78
   Q 677.51 407.64 678.07 407.62
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 565.05 408.67
   Q 568.24 413.61 571.21 418.77
   Q 571.86 419.90 571.47 421.12
@@ -14972,8 +16967,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 557.90 416.09
   L 565.05 408.67
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 646.74 447.49
   Q 631.80 442.19 622.68 439.38
   Q 620.89 438.82 615.62 437.94
@@ -14987,8 +16984,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.67 3.61 -0.4 0 0 637.85 439.43
   Q 643.21 442.37 646.74 447.49
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 272.22 430.67
   L 272.54 431.34
   A 0.29 0.29 0.0 0 1 272.17 431.73
@@ -15017,8 +17016,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 247.71 420.69 270.52 429.81
   Q 271.43 430.17 272.22 430.67
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 162.14 432.13
   A 0.40 0.40 0.0 0 1 161.66 431.49
   Q 163.66 429.62 167.82 427.18
@@ -15035,8 +17036,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.40 3.40 0.0 0 0 167.30 429.14
   L 162.14 432.13
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 210.06 415.69
   Q 217.10 416.43 223.94 418.96
   A 2.65 2.52 -10.4 0 1 224.92 419.60
@@ -15070,8 +17073,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 250.48 477.76 254.82 481.17
   Q 255.09 481.39 255.28 481.37
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 587.84 443.44
   L 579.04 429.53
   A 2.73 2.73 0.0 0 0 577.59 428.39
@@ -15099,8 +17104,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 580.95 430.22 587.36 440.11
   Q 589.24 443.01 587.84 443.44
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 255.28 481.37
   Q 255.09 481.39 254.82 481.17
   Q 250.48 477.76 244.26 473.00
@@ -15116,8 +17123,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 253.20 473.33 255.90 480.34
   A 0.76 0.73 77.1 0 1 255.28 481.37
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 587.84 443.44
   Q 587.93 443.49 587.92 443.87
   A 0.40 0.39 -15.3 0 1 587.74 444.18
@@ -15143,8 +17152,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 563.04 433.55 584.29 441.32
   A 0.63 0.63 0.0 0 0 585.02 440.37
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 191.28 427.84
   L 206.70 430.28
   A 0.69 0.69 0.0 0 0 207.41 429.25
@@ -15158,8 +17169,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.34 0.34 0.0 0 1 190.04 428.91
   Q 190.48 427.99 191.28 427.84
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 503.08 417.97
   Q 503.28 421.15 501.76 424.80
   Q 499.77 429.53 495.92 437.93
@@ -15177,16 +17190,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 497.26 431.21 499.19 427.23 500.69 423.01
   A 0.33 0.33 0.0 0 0 500.11 422.71
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 200.71 417.67
   L 207.41 429.25
   A 0.69 0.69 0.0 0 1 206.70 430.28
   L 191.28 427.84
   L 200.71 417.67
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 585.02 440.37
   A 0.63 0.63 0.0 0 1 584.29 441.32
   Q 563.04 433.55 545.29 428.46
@@ -15199,8 +17216,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.47 1.44 81.2 0 1 577.79 430.22
   L 585.02 440.37
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 271.23 434.79
   Q 251.89 427.01 231.37 421.02
   L 232.75 420.07
@@ -15211,8 +17230,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 272.46 434.42 271.90 434.47
   Q 271.48 434.51 271.23 434.79
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 271.23 434.79
   Q 273.42 434.75 275.17 435.38
   Q 276.76 435.95 278.07 437.97
@@ -15240,8 +17261,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 231.37 421.02
   Q 251.89 427.01 271.23 434.79
   Z"
-/>
-<path fill="#b1ab0a" d="
+      />
+      <path
+        fill="#b1ab0a"
+        d="
   M 500.11 422.71
   A 0.33 0.33 0.0 0 1 500.69 423.01
   C 499.19 427.23 497.26 431.21 495.62 435.43
@@ -15250,8 +17273,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 489.61 439.64 490.75 438.03 492.29 434.85
   C 494.39 430.52 497.64 426.31 500.11 422.71
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 290.10 456.67
   Q 293.12 460.31 295.24 464.38
   A 1.15 1.15 0.0 0 1 294.80 465.90
@@ -15273,8 +17298,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.39 0.38 -23.7 0 0 289.91 457.55
   Q 290.25 457.46 290.10 456.67
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 672.96 424.92
   L 672.92 432.09
   A 1.80 1.80 0.0 0 0 673.03 432.71
@@ -15290,8 +17317,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.62 -15.8 0 1 671.64 424.81
   Q 672.21 424.51 672.96 424.92
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 684.93 450.05
   Q 685.20 449.69 685.09 449.40
   Q 685.00 449.16 684.54 449.02
@@ -15304,8 +17333,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.41 28.0 0 1 703.24 429.79
   L 684.93 450.05
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 323.22 436.17
   Q 324.21 437.37 321.39 436.25
   Q 317.28 434.62 316.15 434.07
@@ -15320,8 +17351,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 299.48 426.86 300.22 427.62 301.27 427.91
   Q 312.59 430.94 323.22 436.17
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 323.22 436.17
   L 328.63 438.09
   A 0.35 0.35 0.0 0 1 328.70 438.71
@@ -15337,8 +17370,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 317.28 434.62 321.39 436.25
   Q 324.21 437.37 323.22 436.17
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 532.23 431.21
   L 543.89 434.72
   A 3.64 3.59 83.0 0 1 545.97 436.37
@@ -15377,8 +17412,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 533.26 432.98 531.11 432.63
   Q 530.68 432.56 529.63 432.62
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 528.28 435.47
   Q 534.45 447.16 540.97 458.32
   Q 553.80 480.30 553.81 480.31
@@ -15415,8 +17452,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 540.85 460.88 539.61 458.19 537.91 455.58
   Q 531.72 446.09 528.28 435.47
   Z"
-/>
-<path fill="#36a942" d="
+      />
+      <path
+        fill="#36a942"
+        d="
   M 689.83 751.47
   Q 687.08 752.58 684.64 754.18
   Q 681.14 756.47 679.63 757.21
@@ -15565,8 +17604,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 731.91 691.81 712.78 715.70 696.05 740.55
   Q 693.65 744.12 689.83 751.47
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 196.97 433.94
   Q 193.20 434.07 199.52 435.39
   Q 207.01 436.97 210.24 437.37
@@ -15578,8 +17619,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 188.27 430.75 191.25 431.81
   Q 194.17 432.84 196.97 433.94
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 279.28 456.56
   Q 275.36 455.17 271.61 453.52
   Q 259.87 448.32 257.23 447.26
@@ -15590,8 +17633,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 254.31 437.24 263.41 440.55
   C 270.87 443.27 277.08 448.52 279.28 456.56
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 529.63 432.62
   Q 530.68 432.56 531.11 432.63
   Q 533.26 432.98 543.32 435.83
@@ -15613,8 +17658,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 529.88 435.53 529.13 433.34
   A 0.55 0.55 0.0 0 1 529.63 432.62
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 189.40 442.06
   C 201.17 448.70 214.24 458.11 223.36 464.20
   Q 231.94 469.93 239.52 476.03
@@ -15653,8 +17700,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 160.61 436.49 160.60 439.31
   A 1.85 1.84 -62.2 0 0 160.92 440.35
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 522.91 432.98
   L 524.91 437.61
   A 0.05 0.05 0.0 0 1 524.90 437.66
@@ -15665,8 +17714,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 510.97 445.33 522.45 432.90
   A 0.28 0.28 0.0 0 1 522.91 432.98
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 187.28 433.91
   L 222.43 457.09
   A 0.41 0.40 2.5 0 0 223.01 456.56
@@ -15684,8 +17735,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.44 0.44 0.0 0 1 186.76 434.21
   Q 187.01 433.86 187.28 433.91
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 350.40 447.81
   C 354.03 448.02 356.48 444.50 357.15 440.91
   Q 357.95 436.66 358.77 434.03
@@ -15695,8 +17748,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 354.17 453.00 349.94 448.85
   A 0.61 0.61 0.0 0 1 350.40 447.81
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 160.60 439.31
   Q 160.61 436.49 163.62 435.06
   Q 166.49 433.69 169.80 434.42
@@ -15720,8 +17775,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 163.31 443.90 160.92 440.35
   A 1.85 1.84 -62.2 0 1 160.60 439.31
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 622.70 491.02
   Q 607.29 472.08 593.14 451.35
   A 5.03 5.02 82.2 0 0 590.63 449.44
@@ -15750,8 +17807,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.58 0.0 0 1 623.64 490.73
   Q 623.34 490.91 622.70 491.02
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 622.70 491.02
   Q 622.65 491.93 621.30 490.93
   Q 597.38 480.75 572.99 472.84
@@ -15778,8 +17837,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.03 5.02 82.2 0 1 593.14 451.35
   Q 607.29 472.08 622.70 491.02
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 594.53 479.42
   L 606.13 479.97
   A 0.26 0.26 0.0 0 0 606.35 479.55
@@ -15800,8 +17861,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.40 0.0 0 1 618.53 488.79
   Q 606.61 483.38 594.53 479.42
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 172.62 449.30
   Q 183.19 455.03 198.16 464.61
   Q 220.49 478.91 237.02 492.64
@@ -15831,8 +17894,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.45 24.5 0 1 171.68 449.90
   Q 171.88 449.43 172.62 449.30
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 652.35 464.53
   L 652.13 457.62
   A 2.14 2.13 -78.7 0 0 650.89 455.74
@@ -15849,8 +17914,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.56 0.54 83.5 0 1 652.60 468.56
   L 652.35 464.53
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 528.35 445.85
   Q 529.81 451.22 532.63 456.02
   Q 532.67 456.08 533.18 456.64
@@ -15863,8 +17930,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.43 0.43 0.0 0 1 527.35 442.55
   Q 528.54 444.45 528.35 445.85
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 672.78 442.76
   Q 676.43 448.05 680.37 453.12
   Q 685.15 459.27 689.58 465.71
@@ -15892,8 +17961,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 677.41 451.34 675.66 448.06 674.30 446.70
   Q 673.73 446.13 673.53 446.07
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 616.29 443.19
   Q 617.51 443.73 621.80 444.96
   Q 636.84 449.25 650.89 455.74
@@ -15916,8 +17987,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 623.66 453.69 616.21 443.80
   Q 615.84 443.32 616.29 443.19
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 528.35 445.85
   L 536.61 459.75
   A 0.29 0.28 -2.4 0 1 536.24 460.15
@@ -15926,8 +17999,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 532.67 456.08 532.63 456.02
   Q 529.81 451.22 528.35 445.85
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 652.19 465.70
   Q 652.36 466.56 652.12 467.91
   L 630.49 459.81
@@ -15940,8 +18015,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.33 0.32 70.4 0 0 651.94 465.83
   L 652.19 465.70
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 673.53 446.07
   Q 673.73 446.13 674.30 446.70
   C 675.66 448.06 677.41 451.34 678.87 453.19
@@ -15956,8 +18033,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 673.49 449.34 673.19 448.08 672.80 446.81
   A 0.59 0.59 0.0 0 1 673.53 446.07
   Z"
-/>
-<path fill="#c9c111" d="
+      />
+      <path
+        fill="#c9c111"
+        d="
   M 318.14 522.77
   C 305.21 528.64 293.21 533.53 279.73 536.25
   Q 270.71 538.07 264.39 538.73
@@ -16003,8 +18082,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 157.09 478.94 157.91 471.61 159.68 464.13
   A 0.39 0.39 0.0 0 0 158.97 463.85
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 284.72 465.07
   Q 284.97 465.68 284.84 465.78
   A 0.75 0.74 -51.4 0 1 284.07 465.87
@@ -16022,8 +18103,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 247.68 449.73 249.35 450.34
   Q 267.39 456.88 284.72 465.07
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 594.53 479.42
   Q 586.12 475.92 574.02 471.99
   Q 572.06 471.35 570.88 469.18
@@ -16036,8 +18119,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.26 0.0 0 1 606.13 479.97
   L 594.53 479.42
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 284.72 465.07
   L 290.25 468.23
   A 0.43 0.43 0.0 0 1 290.35 468.91
@@ -16053,8 +18138,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.75 0.74 -51.4 0 0 284.84 465.78
   Q 284.97 465.68 284.72 465.07
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 517.03 453.20
   L 531.82 457.64
   A 0.30 0.30 0.0 0 1 531.79 458.23
@@ -16063,8 +18150,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.57 0.56 -67.4 0 1 516.42 453.83
   Q 516.60 453.53 517.03 453.20
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 550.45 483.09
   L 541.27 466.97
   A 3.06 3.03 -5.9 0 0 539.53 465.57
@@ -16096,8 +18185,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 551.52 482.35 551.14 482.93
   Q 551.05 483.07 550.45 483.09
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 550.45 483.09
   Q 550.91 483.82 550.32 483.90
   Q 548.19 482.85 545.88 482.11
@@ -16122,8 +18213,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 542.17 479.80 545.17 480.13 547.14 481.07
   A 0.28 0.28 0.0 0 0 547.51 480.68
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 226.74 500.38
   L 229.37 500.13
   A 0.38 0.34 82.9 0 0 229.66 499.71
@@ -16153,8 +18246,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 213.21 486.16 215.40 487.57 218.64 486.59
   A 0.34 0.33 -35.5 0 0 218.74 486.00
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 547.51 480.68
   A 0.28 0.28 0.0 0 1 547.14 481.07
   C 545.17 480.13 542.17 479.80 540.15 479.09
@@ -16167,8 +18262,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.76 1.73 -6.2 0 1 540.23 467.53
   L 547.51 480.68
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 218.64 486.59
   C 215.40 487.57 213.21 486.16 209.78 484.59
   Q 205.58 482.68 199.23 479.07
@@ -16180,8 +18277,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 200.17 471.96 218.74 486.00
   A 0.34 0.33 -35.5 0 1 218.64 486.59
   Z"
-/>
-<path fill="#b1ab0a" d="
+      />
+      <path
+        fill="#b1ab0a"
+        d="
   M 158.97 463.85
   A 0.39 0.39 0.0 0 1 159.68 464.13
   C 157.91 471.61 157.09 478.94 162.43 485.33
@@ -16199,8 +18298,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 159.00 489.68 154.22 482.25 155.13 475.64
   Q 156.07 468.86 158.97 463.85
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 650.54 481.66
   Q 649.69 478.60 650.29 475.04
   Q 650.40 474.35 650.08 474.02
@@ -16222,8 +18323,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.74 0.0 0 1 651.40 473.89
   L 650.54 481.66
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 481.76 468.43
   A 0.67 0.67 0.0 0 1 482.69 468.25
   L 482.77 468.31
@@ -16234,8 +18337,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.67 0.67 0.0 0 1 470.24 485.51
   L 481.76 468.43
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 672.38 471.09
   Q 673.23 472.95 673.25 473.00
   A 0.34 0.34 0.0 0 1 672.71 473.34
@@ -16244,8 +18349,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.34 0.34 0.0 0 1 671.50 469.19
   Q 671.53 469.24 672.38 471.09
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 226.74 500.38
   Q 198.05 495.06 176.46 475.80
   Q 173.94 473.55 172.63 469.83
@@ -16258,8 +18365,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.38 0.34 82.9 0 1 229.37 500.13
   L 226.74 500.38
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 552.73 542.91
   Q 552.02 542.81 553.21 544.02
   Q 554.67 549.34 556.29 554.33
@@ -16310,8 +18419,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 490.62 471.02
   A 0.57 0.57 0.0 0 0 489.94 471.68
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 650.54 481.66
   Q 651.24 483.03 650.44 485.54
   L 648.34 484.22
@@ -16324,8 +18435,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 650.40 474.35 650.29 475.04
   Q 649.69 478.60 650.54 481.66
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 489.94 471.68
   A 0.57 0.57 0.0 0 1 490.62 471.02
   L 506.23 474.42
@@ -16360,8 +18473,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 499.10 474.09 492.25 472.47
   A 0.82 0.82 0.0 0 0 491.29 473.52
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 258.51 471.39
   Q 261.26 472.23 261.60 472.43
   Q 268.90 476.69 275.56 479.54
@@ -16371,8 +18486,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 261.49 479.74 258.13 471.81
   A 0.31 0.31 0.0 0 1 258.51 471.39
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 420.81 496.08
   C 417.58 502.23 414.66 508.09 410.96 514.42
   Q 408.25 519.07 406.01 525.29
@@ -16419,8 +18536,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 426.72 481.43 425.53 483.59 423.13 488.86
   Q 421.55 492.32 420.81 496.08
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 491.29 473.52
   A 0.82 0.82 0.0 0 1 492.25 472.47
   Q 499.10 474.09 505.95 475.67
@@ -16438,8 +18557,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 502.84 495.81 493.36 478.20
   Q 491.96 475.62 491.29 473.52
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 749.34 701.27
   Q 749.60 699.32 751.52 697.75
   Q 764.36 687.26 779.52 676.12
@@ -16468,8 +18589,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 788.27 671.11 774.61 681.12
   Q 762.29 690.15 749.34 701.27
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 576.99 526.10
   Q 568.94 513.58 560.83 501.32
   C 558.59 497.92 556.90 494.04 554.55 490.75
@@ -16504,8 +18627,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 569.13 511.68 576.69 523.00
   Q 578.73 526.06 576.99 526.10
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 576.99 526.10
   L 579.70 529.87
   A 0.27 0.27 0.0 0 1 579.54 530.29
@@ -16536,8 +18661,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.60 0.60 0.0 0 0 516.43 479.52
   L 524.07 492.69
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 627.80 498.79
   L 625.23 497.13
   Q 620.22 494.80 615.00 492.76
@@ -16548,8 +18675,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.11 1.04 1.1 0 1 627.72 497.45
   Q 628.14 498.15 627.80 498.79
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 575.75 478.21
   Q 595.47 485.13 615.00 492.76
   Q 620.22 494.80 625.23 497.13
@@ -16574,8 +18703,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.44 0.43 -51.7 0 1 574.49 478.27
   Q 574.92 477.28 575.75 478.21
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 560.73 520.37
   Q 564.18 518.84 567.32 520.26
   A 0.43 0.43 0.0 0 0 567.84 519.61
@@ -16593,8 +18724,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.22 0.22 0.0 0 1 575.55 526.60
   L 560.73 520.37
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 480.24 488.61
   L 485.90 479.91
   A 1.10 1.10 0.0 0 1 487.79 479.98
@@ -16611,8 +18744,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 491.90 492.28
   A 0.78 0.78 0.0 0 0 492.85 491.18
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 625.23 497.13
   L 627.80 498.79
   Q 630.90 501.25 633.93 506.54
@@ -16631,8 +18766,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 0 625.32 497.73
   L 625.23 497.13
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 492.85 491.18
   A 0.78 0.78 0.0 0 1 491.90 492.28
   L 482.33 488.74
@@ -16641,8 +18778,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.09 1.08 47.0 0 1 487.58 481.67
   L 492.85 491.18
   Z"
-/>
-<path fill="#114716" d="
+      />
+      <path
+        fill="#114716"
+        d="
   M 235.14 566.28
   L 240.57 563.46
   A 0.43 0.43 0.0 0 1 241.12 564.09
@@ -16769,8 +18908,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 218.81 588.85 222.17 583.94
   Q 228.39 574.85 235.14 566.28
   Z"
-/>
-<path fill="#36a942" d="
+      />
+      <path
+        fill="#36a942"
+        d="
   M 749.34 701.27
   Q 744.14 706.17 746.24 712.49
   C 741.41 719.43 734.66 722.56 726.06 727.32
@@ -16808,8 +18949,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 764.36 687.26 751.52 697.75
   Q 749.60 699.32 749.34 701.27
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 510.46 518.86
   Q 506.85 512.35 503.38 505.71
   Q 501.53 502.16 497.11 500.40
@@ -16827,8 +18970,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.85 0.85 0.0 0 1 511.16 518.82
   Q 511.05 518.93 510.46 518.86
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 510.46 518.86
   Q 510.60 519.09 510.65 519.27
   A 0.38 0.38 0.0 0 1 510.16 519.73
@@ -16857,8 +19002,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 501.53 502.16 503.38 505.71
   Q 506.85 512.35 510.46 518.86
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 507.75 518.43
   L 505.23 517.58
   Q 505.63 517.41 505.81 517.22
@@ -16876,8 +19023,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.54 1.52 33.0 0 1 507.83 516.96
   L 507.75 518.43
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 560.73 520.37
   L 536.93 512.25
   A 4.83 4.83 0.0 0 1 534.31 510.11
@@ -16889,8 +19038,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.43 0.43 0.0 0 1 567.32 520.26
   Q 564.18 518.84 560.73 520.37
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 451.69 499.33
   Q 468.46 502.52 484.03 508.95
   C 492.78 512.57 498.19 514.66 505.23 517.58
@@ -16908,8 +19059,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.56 0.55 -48.5 0 1 451.04 499.61
   L 451.69 499.33
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 591.51 502.39
   L 592.92 506.09
   A 1.27 0.78 37.6 0 0 592.99 506.23
@@ -16922,8 +19075,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.34 0.34 0.0 0 1 589.88 501.41
   Q 590.65 501.46 591.51 502.39
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 594.68 504.07
   Q 606.64 509.81 617.88 514.87
   Q 620.15 515.89 622.35 517.60
@@ -16935,8 +19090,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 591.51 502.39
   Q 595.11 503.18 594.68 504.07
   Z"
-/>
-<path fill="#36a942" d="
+      />
+      <path
+        fill="#36a942"
+        d="
   M 80.58 505.98
   Q 78.35 507.58 77.96 510.94
   A 0.61 0.60 12.3 0 0 78.39 511.60
@@ -17034,16 +19191,20 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 52.73 526.53 79.12 503.02
   Q 80.01 504.07 80.58 505.98
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 622.35 517.60
   Q 620.15 515.89 617.88 514.87
   Q 606.64 509.81 594.68 504.07
   Q 609.67 508.97 622.61 516.40
   Q 623.12 516.69 622.35 517.60
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 493.47 564.06
   Q 492.12 556.83 489.38 550.92
   Q 486.99 545.76 473.98 518.27
@@ -17073,8 +19234,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.07 0.06 48.6 0 1 498.40 570.02
   L 493.47 564.06
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 435.14 512.20
   A 0.56 0.55 42.2 0 1 435.08 511.21
   Q 442.02 507.25 446.97 504.94
@@ -17089,8 +19252,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.67 -29.6 0 0 435.32 512.35
   Q 435.28 512.26 435.14 512.20
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 493.47 564.06
   L 489.54 560.78
   Q 490.05 560.85 490.34 561.03
@@ -17106,8 +19271,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 486.99 545.76 489.38 550.92
   Q 492.12 556.83 493.47 564.06
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 536.89 562.11
   Q 525.37 554.84 509.21 547.22
   C 503.19 544.38 495.20 541.88 491.07 540.24
@@ -17144,8 +19311,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 494.71 525.33
   A 0.21 0.21 0.0 0 1 494.61 525.73
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 616.37 598.12
   Q 598.22 611.18 591.40 615.16
   C 580.08 621.77 568.59 627.85 555.76 631.49
@@ -17184,8 +19353,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 0.94 9.2 0 0 620.29 592.98
   L 616.37 598.12
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 494.71 525.33
   L 488.04 522.75
   A 0.66 0.64 72.3 0 1 487.89 522.67
@@ -17210,8 +19381,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 492.29 525.53 494.61 525.73
   A 0.21 0.21 0.0 0 0 494.71 525.33
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 460.25 533.84
   L 451.85 515.89
   A 0.48 0.48 0.0 0 0 451.04 515.79
@@ -17227,8 +19400,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.20 0.20 0.0 0 1 464.03 538.46
   L 460.25 533.84
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 664.87 515.38
   A 0.45 0.45 0.0 0 1 665.65 515.21
   L 667.97 518.00
@@ -17237,8 +19412,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.16 0.16 0.0 0 1 662.30 525.34
   L 664.87 515.38
   Z"
-/>
-<path fill="#36a942" d="
+      />
+      <path
+        fill="#36a942"
+        d="
   M 832.26 644.04
   Q 832.66 644.08 832.81 644.27
   Q 833.08 644.61 832.74 644.87
@@ -17292,8 +19469,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 793.23 673.53 806.94 662.04 818.81 653.57
   Q 825.53 648.78 832.26 644.04
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 450.45 515.50
   L 450.60 515.95
   A 0.16 0.16 0.0 0 0 450.88 516.00
@@ -17305,8 +19484,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 444.40 522.59 443.91 520.76
   L 450.45 515.50
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 581.99 535.99
   Q 560.66 525.01 537.74 517.93
   Q 537.49 517.50 537.72 517.27
@@ -17316,8 +19497,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.55 0.55 0.0 0 1 582.41 535.13
   Q 582.57 535.71 581.99 535.99
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 979.89 516.68
   L 980.02 517.06
   A 0.76 0.74 -16.3 0 0 980.92 517.54
@@ -17352,8 +19535,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 928.34 573.54 941.77 562.46
   C 957.03 549.86 970.96 534.50 979.89 516.68
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 410.44 530.89
   Q 409.71 529.03 409.60 526.47
   A 2.04 2.03 -30.8 0 1 409.88 525.37
@@ -17399,8 +19584,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 489.28 587.29 498.09 597.44
   Q 506.43 607.06 515.54 616.35
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 537.74 517.93
   Q 560.66 525.01 581.99 535.99
   L 582.45 536.45
@@ -17418,8 +19605,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.30 0.29 51.6 0 1 537.42 518.06
   Q 537.55 517.94 537.74 517.93
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 518.04 618.48
   L 518.11 618.03
   A 0.29 0.28 23.4 0 1 518.57 617.85
@@ -17459,8 +19648,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.76 1.68 -68.5 0 1 524.84 620.59
   Q 520.93 621.18 518.04 618.48
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 518.04 618.48
   Q 516.10 617.44 515.54 616.35
   Q 509.99 608.92 501.78 599.72
@@ -17485,8 +19676,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.28 23.4 0 0 518.11 618.03
   L 518.04 618.48
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 582.45 536.45
   C 585.45 537.99 586.66 540.56 588.41 543.50
   A 1.74 1.73 -41.9 0 1 588.30 545.45
@@ -17501,8 +19694,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 562.82 527.56 582.28 537.36
   Q 582.53 537.48 582.45 536.45
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 443.91 520.76
   Q 444.40 522.59 445.65 523.35
   Q 451.60 526.96 457.32 532.04
@@ -17510,8 +19705,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.70 0.69 -55.1 0 1 442.77 521.61
   Q 443.07 521.19 443.91 520.76
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 522.09 628.09
   C 531.19 635.27 545.03 634.54 555.76 631.49
   C 568.59 627.85 580.08 621.77 591.40 615.16
@@ -17615,8 +19812,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.27 4.24 -22.6 0 1 500.64 608.29
   C 507.19 615.74 513.70 622.58 522.09 628.09
   Z"
-/>
-<path fill="#c9c111" d="
+      />
+      <path
+        fill="#c9c111"
+        d="
   M 474.37 651.15
   C 443.83 647.24 412.23 635.35 389.41 614.84
   Q 381.13 607.40 372.62 595.99
@@ -17695,8 +19894,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.64 0.63 -88.4 0 0 474.37 650.49
   L 474.37 651.15
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 490.71 596.65
   Q 477.61 584.16 465.35 571.66
   Q 457.38 563.52 445.22 554.70
@@ -17709,8 +19910,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 445.74 552.72 455.73 561.25 466.83 571.93
   Q 481.22 585.77 490.71 596.65
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 490.71 596.65
   Q 492.50 597.05 493.95 599.98
   A 0.59 0.57 65.1 0 1 493.67 600.77
@@ -17732,8 +19935,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 457.38 563.52 465.35 571.66
   Q 477.61 584.16 490.71 596.65
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 552.73 542.91
   Q 563.42 547.55 574.49 554.28
   A 0.61 0.61 0.0 0 1 574.56 555.27
@@ -17742,8 +19947,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 553.21 544.02
   Q 552.02 542.81 552.73 542.91
   Z"
-/>
-<path fill="#b1ab0a" d="
+      />
+      <path
+        fill="#b1ab0a"
+        d="
   M 399.96 543.91
   Q 397.41 555.22 397.09 563.96
   C 396.86 570.04 402.57 577.93 406.78 582.11
@@ -17761,8 +19968,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 395.52 549.01 395.70 547.22
   L 399.96 543.91
   Z"
-/>
-<path fill="#d1f94c" d="
+      />
+      <path
+        fill="#d1f94c"
+        d="
   M 534.50 565.74
   Q 529.17 563.81 519.87 558.38
   Q 513.60 554.72 497.23 548.46
@@ -17780,8 +19989,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 502.21 548.68 510.32 552.42
   Q 522.67 558.12 534.50 565.74
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 493.53 546.71
   Q 496.55 552.87 499.29 559.21
   Q 500.02 560.91 502.48 562.23
@@ -17792,8 +20003,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.52 0.52 0.0 0 1 492.95 546.63
   L 493.53 546.71
   Z"
-/>
-<path fill="#36a942" d="
+      />
+      <path
+        fill="#36a942"
+        d="
   M 320.98 566.44
   C 317.66 567.91 314.53 569.08 311.34 571.03
   Q 307.87 573.14 306.55 573.39
@@ -17808,8 +20021,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.05 1.04 -6.6 0 0 317.72 566.65
   Q 319.26 566.98 320.98 566.44
   Z"
-/>
-<path fill="#8fc842" d="
+      />
+      <path
+        fill="#8fc842"
+        d="
   M 534.50 565.74
   Q 540.62 566.94 543.05 572.80
   A 1.93 1.93 0.0 0 1 542.50 575.03
@@ -17826,8 +20041,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 513.60 554.72 519.87 558.38
   Q 529.17 563.81 534.50 565.74
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 413.01 549.63
   Q 415.62 552.53 421.56 554.16
   Q 425.27 555.18 434.77 560.49
@@ -17850,8 +20067,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 412.76 551.58
   Q 412.73 550.30 413.01 549.63
   Z"
-/>
-<path fill="#e2d019" d="
+      />
+      <path
+        fill="#e2d019"
+        d="
   M 482.50 601.32
   C 468.60 599.53 455.76 594.18 443.71 586.78
   C 434.70 581.25 426.82 573.65 419.94 566.07
@@ -17865,8 +20084,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 1 483.18 601.05
   Q 483.05 601.23 482.50 601.32
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 519.35 591.54
   Q 518.40 591.39 517.50 590.29
   Q 509.10 580.09 502.86 568.05
@@ -17878,8 +20099,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 519.75 590.98 519.77 591.12
   A 0.37 0.37 0.0 0 1 519.35 591.54
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 775.84 701.72
   L 775.82 701.70
   A 0.46 0.46 0.0 0 1 775.91 701.07
@@ -17903,8 +20126,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 784.02 696.73 776.49 701.84
   A 0.47 0.47 0.0 0 1 775.84 701.72
   Z"
-/>
-<path fill="#6eac3c" d="
+      />
+      <path
+        fill="#6eac3c"
+        d="
   M 620.02 607.97
   Q 619.72 608.97 620.06 609.04
   Q 620.62 609.17 620.91 608.60
@@ -17919,8 +20144,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.47 1.46 74.2 0 1 617.14 616.44
   Q 616.96 612.07 620.02 607.97
   Z"
-/>
-<path fill="#a5bb2c" d="
+      />
+      <path
+        fill="#a5bb2c"
+        d="
   M 620.02 607.97
   L 626.06 595.39
   Q 626.48 594.95 626.59 595.00
@@ -17929,8 +20156,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 620.62 609.17 620.06 609.04
   Q 619.72 608.97 620.02 607.97
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 187.74 653.72
   Q 167.15 664.40 154.35 669.07
   Q 140.08 674.27 115.23 677.50
@@ -17948,8 +20177,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 94.61 650.73 114.36 654.32 135.00 655.22
   Q 161.51 656.36 187.74 653.72
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 57.26 679.61
   Q 56.23 678.06 55.90 676.22
   A 1.60 1.60 0.0 0 1 56.93 674.44
@@ -17971,8 +20202,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 100.35 694.49 94.92 693.05
   C 82.48 689.72 69.00 686.37 57.26 679.61
   Z"
-/>
-<path fill="#021f0c" d="
+      />
+      <path
+        fill="#021f0c"
+        d="
   M 231.88 677.76
   Q 222.33 689.35 219.77 702.77
   Q 216.61 719.34 226.41 733.07
@@ -17989,8 +20222,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.32 0.32 0.0 0 1 231.86 676.81
   L 231.88 677.76
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 697.14 747.85
   L 705.58 737.30
   A 1.68 1.67 5.8 0 1 706.11 736.87
@@ -18007,8 +20242,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.53 0.53 0.0 0 1 691.64 758.84
   Q 693.65 752.41 697.14 747.85
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 643.57 770.32
   Q 644.31 771.97 641.39 772.56
   A 6.54 0.89 -8.9 0 0 637.44 773.74
@@ -18048,8 +20285,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 664.89 737.32 651.54 755.79
   Q 647.24 761.75 643.57 770.32
   Z"
-/>
-<path fill="#258c32" d="
+      />
+      <path
+        fill="#258c32"
+        d="
   M 689.83 751.47
   L 686.69 758.28
   A 4.55 4.50 -4.2 0 1 685.04 760.17
@@ -18061,8 +20300,10 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 681.14 756.47 684.64 754.18
   Q 687.08 752.58 689.83 751.47
   Z"
-/>
-<path fill="#1d7e2a" d="
+      />
+      <path
+        fill="#1d7e2a"
+        d="
   M 232.00 794.12
   Q 231.99 790.32 233.99 787.25
   A 0.51 0.51 0.0 0 1 234.72 787.12
@@ -18104,8 +20345,7 @@ export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 247.13 807.67 242.51 804.26
   Q 236.45 799.77 232.00 794.12
   Z"
-/>
-</svg>
-
-    )
+      />
+    </svg>
+  )
 }

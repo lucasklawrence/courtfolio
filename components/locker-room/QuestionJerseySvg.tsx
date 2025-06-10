@@ -7,8 +7,11 @@ import React from 'react'
 export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1536.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#060e14" vector-effect="non-scaling-stroke" d="
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#060e14"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.78 294.64
   Q 527.72 292.94 527.58 291.49
   Q 526.76 282.74 527.42 265.16
@@ -153,8 +156,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 585.08 323.63 577.73 319.93
   C 560.74 311.37 542.96 301.75 529.09 294.93
   A 0.75 0.73 -1.0 0 1 528.78 294.64"
-/>
-<path stroke="#060e14" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#060e14"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.05 384.37
   A 0.96 0.96 0.0 0 0 396.31 385.60
   Q 405.41 392.61 410.60 396.27
@@ -177,15 +183,21 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 463.38 349.13 459.07 351.34
   Q 412.94 374.90 398.70 382.16
   Q 396.72 383.17 396.05 384.37"
-/>
-<path stroke="#222a47" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222a47"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 418.34 462.52
   Q 436.65 477.09 457.97 485.80
   Q 491.89 499.65 527.86 496.31
   C 552.30 494.03 575.56 485.17 596.39 471.90
   Q 603.14 467.60 608.47 462.18"
-/>
-<path stroke="#837821" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#837821"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.47 462.18
   Q 612.80 460.03 617.50 455.76
   Q 638.18 436.98 651.35 413.86
@@ -200,16 +212,22 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 383.12 432.35 410.29 456.42
   Q 411.58 457.56 414.35 459.42
   Q 416.69 460.99 418.34 462.52"
-/>
-<path stroke="#998742" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#998742"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.47 462.18
   Q 599.63 465.21 591.91 468.04
   Q 553.80 481.95 512.76 481.84
   Q 487.09 481.77 462.05 476.38
   Q 447.29 473.21 436.01 468.72
   Q 425.61 464.58 418.34 462.52"
-/>
-<path stroke="#837821" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#837821"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 296.40 423.59
   L 276.58 433.29
   A 1.13 1.13 0.0 0 0 276.02 434.69
@@ -219,8 +237,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 262.20 703.16 214.72 743.74
   A 2.88 2.88 0.0 0 0 213.71 745.95
   L 213.78 774.25"
-/>
-<path stroke="#222a47" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222a47"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 213.78 774.25
   L 213.87 1238.71
   A 0.83 0.83 0.0 0 0 214.49 1239.51
@@ -232,8 +253,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 696.83 1267.23 809.63 1239.38
   A 0.99 0.99 0.0 0 0 810.38 1238.42
   L 810.27 775.08"
-/>
-<path stroke="#837821" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#837821"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 810.27 775.08
   L 810.36 745.85
   A 2.24 2.20 20.5 0 0 809.57 744.16
@@ -243,8 +267,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 724.22 498.19 746.94 434.68
   A 1.19 1.18 -67.4 0 0 746.34 433.22
   L 726.53 423.63"
-/>
-<path stroke="#222a47" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222a47"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 726.53 423.63
   Q 725.94 423.04 725.36 422.73
   Q 705.89 412.04 688.69 403.77
@@ -258,16 +285,22 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.79 0.79 0.0 0 0 335.89 402.59
   Q 316.92 412.26 300.52 420.78
   Q 299.09 421.52 296.40 423.59"
-/>
-<path stroke="#998742" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#998742"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 726.53 423.63
   C 709.57 469.79 702.46 520.16 704.82 568.74
   Q 706.12 595.65 710.58 617.98
   Q 722.58 678.16 760.00 726.74
   Q 773.50 744.28 791.11 760.14
   Q 800.95 769.02 810.27 775.08"
-/>
-<path stroke="#998742" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#998742"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 213.78 774.25
   Q 221.49 768.91 228.38 762.88
   C 272.40 724.36 302.66 671.21 313.07 613.69
@@ -275,8 +308,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 318.51 542.37 318.11 535.83
   Q 317.74 529.82 317.38 524.00
   Q 314.14 472.20 296.40 423.59"
-/>
-<path stroke="#060e14" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#060e14"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 761.38 532.85
   Q 763.63 533.04 766.25 533.03
   Q 805.97 532.83 835.01 533.06
@@ -297,8 +333,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 760.42 513.72 759.93 525.02
   C 759.83 527.37 759.00 529.00 759.58 531.33
   A 2.03 2.01 -4.6 0 0 761.38 532.85"
-/>
-<path stroke="#060e14" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#060e14"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 263.40 532.29
   A 0.65 0.64 -5.4 0 0 263.93 531.66
   Q 263.92 526.40 263.54 521.69
@@ -313,8 +352,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 177.92 532.81 184.01 532.85
   Q 235.99 533.22 258.84 532.78
   Q 260.84 532.74 263.40 532.29"
-/>
-<path stroke="#f4ba1f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4ba1f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 373.79 409.25
   Q 378.19 417.85 383.28 425.02
   Q 385.60 428.29 387.74 430.76
@@ -345,8 +387,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 454.87 452.73 439.50 447.13
   Q 403.36 433.97 373.99 409.09
   A 0.13 0.13 0.0 0 0 373.79 409.25"
-/>
-<path stroke="#222a47" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222a47"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 540.98 916.16
   Q 545.26 916.03 551.01 915.95
   C 556.25 915.88 560.68 912.31 560.40 906.88
@@ -389,8 +434,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.01 0.01 0.0 0 0 540.63 915.62
   L 540.65 915.87
   A 0.32 0.32 0.0 0 0 540.98 916.16"
-/>
-<path stroke="#222a47" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222a47"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 509.82 1046.15
   C 529.89 1046.74 547.42 1036.41 557.95 1019.70
   Q 565.39 1007.89 566.12 994.49
@@ -401,8 +449,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   C 455.34 1003.53 461.41 1020.74 475.12 1032.98
   Q 484.76 1041.59 498.95 1044.95
   Q 503.22 1045.96 509.82 1046.15"
-/>
-<path stroke="#f4ba1f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4ba1f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 295.68 425.86
   A 0.67 0.66 -23.6 0 0 294.76 425.50
   L 279.11 433.57
@@ -438,8 +489,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 311.12 479.92 308.75 470.76
   Q 307.43 465.66 305.83 458.67
   C 303.25 447.37 299.51 436.28 295.68 425.86"
-/>
-<path stroke="#f4ba1f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4ba1f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 727.03 426.71
   C 720.41 444.58 716.11 461.80 712.21 480.56
   Q 710.92 486.74 709.86 495.11
@@ -480,8 +534,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 745.66 434.26 743.71 433.31
   Q 736.37 429.74 728.89 425.97
   A 1.35 1.34 -66.6 0 0 727.03 426.71"
-/>
-<path stroke="#837821" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#837821"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 542.30 896.12
   Q 541.83 893.42 541.97 889.50
   C 542.67 870.62 552.04 854.81 564.10 840.08
@@ -508,8 +565,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.22 0.22 0.0 0 0 480.51 896.64
   L 541.86 896.64
   A 0.45 0.44 -4.9 0 0 542.30 896.12"
-/>
-<path stroke="#f4ba1f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4ba1f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 411.87 747.53
   A 0.57 0.57 0.0 0 0 412.44 748.08
   L 469.16 748.08
@@ -545,23 +605,31 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 439.10 676.77 431.98 685.77
   Q 415.55 706.53 412.95 733.24
   Q 411.77 745.32 411.87 747.53"
-/>
-<path stroke="#837821" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#837821"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 514.9101 953.4741
   A 36.98 36.55 -84.6 0 0 475.0422 986.8503
   A 36.98 36.55 -84.6 0 0 507.9499 1027.1059
   A 36.98 36.55 -84.6 0 0 547.8178 993.7297
   A 36.98 36.55 -84.6 0 0 514.9101 953.4741"
-/>
-<path stroke="#f4ba1f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4ba1f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 515.7705 954.7567
   A 35.78 35.20 -83.0 0 0 476.4724 985.9802
   A 35.78 35.20 -83.0 0 0 507.0495 1025.7833
   A 35.78 35.20 -83.0 0 0 546.3476 994.5598
   A 35.78 35.20 -83.0 0 0 515.7705 954.7567"
-/>
-</g>
-<path fill="#000001" d="
+        />
+      </g>
+      <path
+        fill="#000001"
+        d="
   M 760.49 568.09
   Q 761.87 579.80 762.06 583.98
   Q 762.14 585.70 762.75 587.94
@@ -852,8 +920,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   C 560.74 311.37 542.96 301.75 529.09 294.93
   A 0.75 0.73 -1.0 0 1 528.78 294.64
   Z"
-/>
-<path fill="#0b1b26" d="
+      />
+      <path
+        fill="#0b1b26"
+        d="
   M 528.78 294.64
   A 0.75 0.73 -1.0 0 0 529.09 294.93
   C 542.96 301.75 560.74 311.37 577.73 319.93
@@ -1117,8 +1187,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 235.99 533.22 258.84 532.78
   Q 260.84 532.74 263.40 532.29
   Z"
-/>
-<path fill="#000001" d="
+      />
+      <path
+        fill="#000001"
+        d="
   M 396.05 384.37
   Q 396.72 383.17 398.70 382.16
   Q 412.94 374.90 459.07 351.34
@@ -1156,8 +1228,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 398.05 384.33
   A 0.43 0.43 0.0 0 0 397.99 385.05
   Z"
-/>
-<path fill="#fbd61c" fill-opacity="0.996" d="
+      />
+      <path
+        fill="#fbd61c"
+        fillOpacity="0.996"
+        d="
   M 608.47 462.18
   Q 599.63 465.21 591.91 468.04
   Q 553.80 481.95 512.76 481.84
@@ -1209,8 +1284,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 403.36 433.97 373.99 409.09
   A 0.13 0.13 0.0 0 0 373.79 409.25
   Z"
-/>
-<path fill="#383968" d="
+      />
+      <path
+        fill="#383968"
+        d="
   M 726.53 423.63
   C 709.57 469.79 702.46 520.16 704.82 568.74
   Q 706.12 595.65 710.58 617.98
@@ -1300,8 +1377,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 484.76 1041.59 498.95 1044.95
   Q 503.22 1045.96 509.82 1046.15
   Z"
-/>
-<path fill="#ee9e22" d="
+      />
+      <path
+        fill="#ee9e22"
+        d="
   M 373.79 409.25
   A 0.13 0.13 0.0 0 1 373.99 409.09
   Q 403.36 433.97 439.50 447.13
@@ -1333,8 +1412,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 385.60 428.29 383.28 425.02
   Q 378.19 417.85 373.79 409.25
   Z"
-/>
-<path fill="#fbd61c" fill-opacity="0.996" d="
+      />
+      <path
+        fill="#fbd61c"
+        fillOpacity="0.996"
+        d="
   M 296.40 423.59
   Q 314.14 472.20 317.38 524.00
   Q 317.74 529.82 318.11 535.83
@@ -1387,8 +1469,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 307.43 465.66 305.83 458.67
   C 303.25 447.37 299.51 436.28 295.68 425.86
   Z"
-/>
-<path fill="#fbd61c" fill-opacity="0.996" d="
+      />
+      <path
+        fill="#fbd61c"
+        fillOpacity="0.996"
+        d="
   M 810.27 775.08
   Q 800.95 769.02 791.11 760.14
   Q 773.50 744.28 760.00 726.74
@@ -1445,8 +1530,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 736.37 429.74 728.89 425.97
   A 1.35 1.34 -66.6 0 0 727.03 426.71
   Z"
-/>
-<path fill="#ee9e22" d="
+      />
+      <path
+        fill="#ee9e22"
+        d="
   M 295.68 425.86
   C 299.51 436.28 303.25 447.37 305.83 458.67
   Q 307.43 465.66 308.75 470.76
@@ -1483,8 +1570,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 294.76 425.50
   A 0.67 0.66 -23.6 0 1 295.68 425.86
   Z"
-/>
-<path fill="#ee9e22" d="
+      />
+      <path
+        fill="#ee9e22"
+        d="
   M 727.03 426.71
   A 1.35 1.34 -66.6 0 1 728.89 425.97
   Q 736.37 429.74 743.71 433.31
@@ -1526,8 +1615,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 710.92 486.74 712.21 480.56
   C 716.11 461.80 720.41 444.58 727.03 426.71
   Z"
-/>
-<path fill="#000001" d="
+      />
+      <path
+        fill="#000001"
+        d="
   M 761.38 532.85
   A 2.03 2.01 -4.6 0 1 759.58 531.33
   C 759.00 529.00 759.83 527.37 759.93 525.02
@@ -1560,8 +1651,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 855.14 501.27 848.39 497.84
   Q 816.33 481.52 774.46 459.66
   Z"
-/>
-<path fill="#000001" d="
+      />
+      <path
+        fill="#000001"
+        d="
   M 263.40 532.29
   Q 260.84 532.74 258.84 532.78
   Q 235.99 533.22 184.01 532.85
@@ -1588,8 +1681,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 258.04 485.72 249.32 460.57
   A 0.22 0.22 0.0 0 0 249.01 460.45
   Z"
-/>
-<path fill="#383968" d="
+      />
+      <path
+        fill="#383968"
+        d="
   M 608.47 462.18
   Q 603.14 467.60 596.39 471.90
   C 575.56 485.17 552.30 494.03 527.86 496.31
@@ -1601,8 +1696,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 553.80 481.95 591.91 468.04
   Q 599.63 465.21 608.47 462.18
   Z"
-/>
-<path fill="#0b1b26" d="
+      />
+      <path
+        fill="#0b1b26"
+        d="
   M 540.98 916.16
   A 0.32 0.32 0.0 0 1 540.65 915.87
   L 540.63 915.62
@@ -1673,8 +1770,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 541.86 896.64
   A 0.45 0.44 -4.9 0 0 542.30 896.12
   Z"
-/>
-<path fill="#fbd61c" fill-opacity="0.996" d="
+      />
+      <path
+        fill="#fbd61c"
+        fillOpacity="0.996"
+        d="
   M 541.86 896.64
   L 480.51 896.64
   A 0.22 0.22 0.0 0 1 480.29 896.40
@@ -1738,8 +1838,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 415.55 706.53 412.95 733.24
   Q 411.77 745.32 411.87 747.53
   Z"
-/>
-<path fill="#ee9e22" d="
+      />
+      <path
+        fill="#ee9e22"
+        d="
   M 411.87 747.53
   Q 411.77 745.32 412.95 733.24
   Q 415.55 706.53 431.98 685.77
@@ -1776,8 +1878,10 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 412.44 748.08
   A 0.57 0.57 0.0 0 1 411.87 747.53
   Z"
-/>
-<path fill="#0b1b26" d="
+      />
+      <path
+        fill="#0b1b26"
+        d="
   M 557.95 1019.70
   C 547.42 1036.41 529.89 1046.74 509.82 1046.15
   Q 503.22 1045.96 498.95 1044.95
@@ -1795,8 +1899,11 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 36.98 36.55 -84.6 0 0 547.8178 993.7297
   A 36.98 36.55 -84.6 0 0 514.9101 953.4741
   Z"
-/>
-<path fill="#fbd61c" fill-opacity="0.996" d="
+      />
+      <path
+        fill="#fbd61c"
+        fillOpacity="0.996"
+        d="
   M 514.9101 953.4741
   A 36.98 36.55 -84.6 0 1 547.8178 993.7297
   A 36.98 36.55 -84.6 0 1 507.9499 1027.1059
@@ -1809,7 +1916,15 @@ export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 35.78 35.20 -83.0 0 0 546.3476 994.5598
   A 35.78 35.20 -83.0 0 0 515.7705 954.7567
   Z"
-/>
-<ellipse fill="#ee9e22" cx="0.00" cy="0.00" transform="translate(511.41,990.27) rotate(-83.0)" rx="35.78" ry="35.20"/>
-</svg>)
+      />
+      <ellipse
+        fill="#ee9e22"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(511.41,990.27) rotate(-83.0)"
+        rx="35.78"
+        ry="35.20"
+      />
+    </svg>
+  )
 }

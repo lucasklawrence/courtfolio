@@ -5,11 +5,13 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.78 193.54
   Q 608.51 181.34 590.10 174.36
   C 576.79 169.32 559.25 166.75 545.42 172.25
@@ -25,8 +27,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 585.12 205.11 594.79 196.04 606.02 194.57
   Q 614.29 193.49 622.57 194.06
   A 0.30 0.29 -23.0 0 0 622.78 193.54"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 757.40 235.17
   A 0.26 0.25 -24.9 0 0 757.57 234.71
   C 740.67 222.19 722.71 211.68 703.15 205.37
@@ -40,8 +45,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.10 3.08 -6.6 0 0 710.28 295.31
   C 713.03 274.13 716.59 239.78 743.35 235.90
   Q 750.82 234.82 757.40 235.17"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 631.17 257.86
   A 0.39 0.38 -81.1 0 0 631.59 257.55
   Q 636.21 232.58 648.44 210.45
@@ -58,8 +66,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 631.73 245.39 630.75 257.36
   A 0.45 0.45 0.0 0 0 631.15 257.85
   L 631.17 257.86"
-/>
-<path stroke="#87742a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87742a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 885.67 267.56
   Q 887.86 250.70 893.30 235.35
   C 895.35 229.56 897.51 225.74 901.02 219.12
@@ -70,8 +81,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.87 0.86 12.8 0 0 861.26 251.26
   Q 876.45 254.75 885.15 267.69
   A 0.29 0.28 -58.6 0 0 885.67 267.56"
-/>
-<path stroke="#87742a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87742a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 893.86 316.88
   A 0.34 0.33 -34.2 0 0 894.50 317.00
   C 902.96 298.31 911.17 279.53 916.43 259.45
@@ -81,14 +95,20 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 909.78 229.92 905.98 237.26 904.10 242.74
   Q 894.87 269.63 893.34 297.37
   C 892.96 304.27 893.59 310.04 893.86 316.88"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.82 259.45
   L 618.60 262.77
   A 0.49 0.48 -15.5 0 0 619.22 263.12
   Q 621.60 262.35 622.16 260.94"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.16 260.94
   Q 623.58 259.65 623.49 257.75
   C 623.24 252.87 620.71 247.87 616.14 246.18
@@ -97,8 +117,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 611.08 250.66 613.66 252.64
   A 4.88 4.88 0.0 0 1 615.00 254.21
   L 617.82 259.45"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.16 260.94
   Q 623.65 251.50 616.20 247.65
   A 3.48 3.48 0.0 0 0 615.21 247.32
@@ -107,8 +130,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 610.50 250.21 612.39 250.46
   A 0.19 0.15 52.0 0 1 612.47 250.48
   Q 617.62 253.22 617.82 259.45"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 909.22 402.42
   Q 901.25 382.48 895.32 359.02
   Q 893.98 353.68 893.42 346.81
@@ -184,8 +210,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 868.47 422.24 879.56 410.82
   C 886.60 403.57 899.11 395.03 908.82 402.72
   A 0.26 0.26 0.0 0 0 909.22 402.42"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 496.02 250.61
   A 1.29 1.29 0.0 0 0 493.87 250.82
   C 490.71 256.79 492.56 262.84 495.93 268.08
@@ -197,8 +226,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 555.64 319.31 544.45 307.80
   Q 527.43 290.31 517.29 277.47
   Q 503.29 259.72 496.02 250.61"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.96 281.36
   Q 531.60 282.65 532.76 284.52
   A 2.20 2.17 -5.5 0 0 533.84 285.40
@@ -211,8 +243,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 562.82 271.43 551.21 275.05 539.65 277.88
   Q 534.12 279.24 530.08 280.66
   A 0.41 0.41 0.0 0 0 529.96 281.36"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 826.93 257.28
   Q 827.30 257.75 827.88 258.11
   Q 839.38 265.35 848.39 271.09
@@ -221,12 +256,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 867.06 274.13 872.13 266.27 861.23 263.31
   Q 844.07 258.65 827.05 257.06
   A 0.14 0.14 0.0 0 0 826.93 257.28"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 806.34 260.48
   L 805.35 270.78"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 805.35 270.78
   Q 802.35 290.13 801.17 296.19
   C 797.46 315.20 791.04 338.85 785.53 360.02
@@ -242,8 +283,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 812.13 262.23 807.13 259.90
   A 0.57 0.55 35.0 0 0 806.51 260.00
   Q 806.25 260.24 806.34 260.48"
-/>
-<path stroke="#e1dfda" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e1dfda"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 805.35 270.78
   Q 806.42 277.66 804.36 284.70
   C 804.10 285.59 804.11 286.81 803.96 287.73
@@ -257,15 +301,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 825.51 404.98 828.52 404.40
   Q 845.14 401.20 858.83 390.56
   Q 863.79 386.71 866.95 382.73"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 866.95 382.73
   C 880.17 369.32 885.64 351.24 885.66 332.75
   Q 885.70 306.80 877.89 281.98
   A 0.46 0.46 0.0 0 0 877.09 281.84
   Q 874.80 284.92 871.21 286.81"
-/>
-<path stroke="#e1dfda" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e1dfda"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 871.21 286.81
   Q 861.43 292.57 851.38 287.87
   Q 840.99 283.00 830.33 275.73
@@ -273,8 +323,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 808.84 261.84 807.62 262.02
   A 0.93 0.93 0.0 0 1 806.74 261.68
   Q 806.36 261.21 806.34 260.48"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 871.21 286.81
   Q 872.16 288.00 873.74 287.85
   A 0.56 0.55 -8.6 0 1 874.34 288.29
@@ -283,12 +336,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 874.73 332.74 873.91 342.99 872.78 350.50
   Q 871.95 356.04 869.40 369.92
   Q 868.27 376.04 866.95 382.73"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 628.67 272.82
   Q 628.97 271.51 628.65 270.62"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 628.65 270.62
   L 629.31 265.68
   A 0.20 0.19 -23.2 0 0 628.96 265.54
@@ -309,8 +368,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 615.79 278.16 627.46 277.39
   A 0.88 0.88 0.0 0 0 628.22 276.83
   Q 628.97 274.92 628.67 272.82"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 628.65 270.62
   L 619.39 275.77
   A 1.79 1.75 -67.4 0 1 618.99 275.94
@@ -327,8 +389,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 627.86 274.96 627.56 273.53
   Q 627.45 273.00 627.85 272.78
   Q 628.16 272.60 628.67 272.82"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 491.42 275.53
   A 0.36 0.35 61.9 0 0 491.01 275.40
   Q 490.51 275.59 490.21 275.99
@@ -337,8 +402,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 496.98 283.71
   A 0.26 0.26 0.0 0 0 497.15 283.30
   L 491.42 275.53"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 761.52 299.60
   A 0.36 0.35 5.0 0 0 761.95 300.11
   Q 766.53 298.47 767.30 293.87
@@ -347,8 +415,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.38 0.38 0.0 0 0 747.31 282.30
   C 750.37 281.91 756.72 281.26 759.13 283.32
   Q 767.06 290.10 761.52 299.60"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.68 285.20
   A 1.32 1.31 28.8 0 0 623.92 285.71
   Q 620.08 292.49 621.88 299.44
@@ -361,12 +432,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 664.74 338.76 650.31 323.99 638.19 305.83
   C 634.27 299.96 630.08 291.59 626.80 286.47
   Q 626.13 285.43 625.68 285.20"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 658.77 321.10
   Q 662.31 326.41 666.32 327.57"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 666.32 327.57
   Q 669.87 326.82 673.04 326.14
   Q 688.62 322.76 700.62 319.62
@@ -377,14 +454,20 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 678.23 315.29 658.71 319.39
   A 0.88 0.84 -22.8 0 0 658.14 320.70
   Q 658.34 321.00 658.77 321.10"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 666.32 327.57
   Q 666.00 324.02 662.53 321.23
   Q 660.63 319.70 660.00 320.85
   Q 659.46 321.83 658.77 321.10"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.84 314.54
   Q 562.48 313.45 562.75 312.39
   Q 565.54 301.73 565.23 290.86
@@ -393,8 +476,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.74 0.74 0.0 0 0 542.92 296.33
   L 561.21 314.62
   A 0.40 0.40 0.0 0 0 561.84 314.54"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.09 303.14
   Q 491.70 300.03 509.40 298.94
   A 0.47 0.47 0.0 0 0 509.71 298.15
@@ -404,27 +490,39 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 7.26 7.23 -80.2 0 0 477.74 297.16
   L 475.53 300.99
   A 1.46 1.45 9.1 0 0 477.09 303.14"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 511.05 316.31
   Q 512.01 318.80 514.93 319.32
   Q 522.80 320.72 533.40 323.52
   A 0.18 0.18 0.0 0 0 533.57 323.22
   L 531.04 320.63"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 531.04 320.63
   Q 524.52 314.31 517.94 308.05
   Q 516.15 306.35 514.70 306.42
   Q 509.17 306.68 503.86 307.54
   A 0.61 0.60 57.4 0 0 503.62 308.64
   Q 508.09 311.66 511.05 316.31"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 531.04 320.63
   L 529.49 321.04"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.49 321.04
   Q 529.46 320.91 529.47 320.75
   A 0.07 0.07 0.0 0 0 529.45 320.70
@@ -435,16 +533,25 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 518.21 312.36
   A 3.23 3.11 -3.5 0 1 519.29 313.28
   L 523.51 319.10"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.51 319.10
   Q 516.31 319.55 511.05 316.31"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.49 321.04
   Q 526.10 321.23 523.51 319.10"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 499.49 315.55
   Q 498.17 313.80 495.58 312.94
   Q 485.64 309.66 478.47 316.41
@@ -454,8 +561,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 473.86 347.60 482.31 337.34
   C 488.46 329.87 492.87 323.01 499.41 316.57
   A 0.78 0.77 49.8 0 0 499.49 315.55"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 470.36 313.95
   Q 470.08 314.22 469.67 315.20
   Q 468.75 317.48 468.49 319.21
@@ -465,8 +575,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.26 0.26 0.0 0 0 475.72 312.39
   Q 473.98 312.55 471.65 313.34
   Q 470.65 313.68 470.36 313.95"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.81 325.55
   Q 621.85 322.97 624.58 323.18
   A 0.28 0.28 0.0 0 0 624.82 322.72
@@ -474,8 +587,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.46 0.46 0.0 0 0 620.31 318.32
   L 617.60 325.37
   A 0.15 0.14 85.1 0 0 617.81 325.55"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 547.77 338.37
   Q 544.88 334.77 541.81 333.02
   A 3.65 3.61 66.4 0 0 540.88 332.65
@@ -487,12 +603,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 513.90 335.55 537.95 341.35
   C 541.90 342.31 545.19 342.71 547.78 339.33
   A 0.78 0.78 0.0 0 0 547.77 338.37"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 691.71 354.52
   Q 692.07 355.90 693.47 356.28"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 693.47 356.28
   Q 694.24 357.59 694.85 357.82
   A 1.45 1.44 -66.5 0 0 696.66 357.10
@@ -502,8 +624,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 672.16 334.44
   A 0.30 0.30 0.0 0 0 672.02 334.95
   L 691.71 354.52"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 693.47 356.28
   Q 696.09 356.74 696.93 354.64
   Q 701.87 342.36 706.23 329.86
@@ -513,8 +638,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 674.39 334.95
   A 0.68 0.67 59.2 0 0 674.10 336.11
   Q 683.74 344.74 691.71 354.52"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 605.10 351.65
   Q 607.75 349.13 611.30 347.26
   Q 622.60 341.32 631.37 338.39
@@ -524,8 +652,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.14 3.13 65.3 0 0 627.37 329.19
   C 616.58 331.62 606.28 340.04 604.50 351.33
   A 0.36 0.36 0.0 0 0 605.10 351.65"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 432.62 350.48
   A 0.28 0.28 0.0 0 0 433.09 350.53
   Q 437.53 344.97 444.13 343.88
@@ -538,8 +669,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 439.04 342.44 432.32 349.87
   A 0.04 0.04 0.0 0 0 432.32 349.91
   L 432.62 350.48"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.69 345.94
   Q 487.94 346.23 494.77 353.50
   Q 499.69 358.73 504.68 366.55
@@ -552,12 +686,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 495.49 338.26 491.95 337.45 490.45 339.35
   Q 488.02 342.42 487.37 344.20
   A 1.73 1.72 -55.7 0 0 487.69 345.94"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 663.17 371.75
   Q 664.85 371.96 666.75 371.56"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 666.75 371.56
   Q 667.57 371.75 668.14 371.51
   A 0.37 0.37 0.0 0 0 668.24 370.89
@@ -572,8 +712,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 639.58 363.48 643.54 365.88 644.53 372.25
   A 0.90 0.89 83.4 0 0 645.48 373.01
   L 663.17 371.75"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 666.75 371.56
   Q 666.34 371.03 666.10 370.22
   A 1.81 1.79 13.4 0 0 665.59 369.40
@@ -591,46 +734,67 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 660.31 371.31
   A 0.39 0.14 -25.7 0 0 660.40 371.30
   Q 664.30 370.34 663.17 371.75"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.01 356.74
   Q 521.65 358.16 522.65 359.24
   A 0.59 0.59 0.0 0 0 523.41 359.33
   Q 529.75 355.15 534.78 349.61"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 534.78 349.61
   Q 535.35 349.21 535.64 348.82
   A 0.42 0.41 26.3 0 0 535.42 348.18
   Q 524.05 344.65 512.54 342.94
   A 0.40 0.40 0.0 0 0 512.15 343.55
   L 521.01 356.74"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 534.78 349.61
   Q 532.30 348.13 529.50 347.87"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.50 347.87
   Q 524.55 345.98 521.99 345.75
   Q 518.72 345.45 515.58 344.37
   A 0.81 0.81 0.0 0 0 514.65 345.59
   L 521.65 356.03"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.65 356.03
   Q 521.69 356.43 521.58 356.73
   Q 521.52 356.91 521.01 356.74"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.50 347.87
   L 527.79 350.99
   A 2.44 2.33 -4.1 0 1 527.00 351.86
   Q 524.65 353.44 522.22 354.76
   Q 521.87 354.95 521.74 355.27
   Q 521.61 355.61 521.65 356.03"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 512.88 550.58
   Q 514.05 551.23 522.50 557.25
   C 529.05 561.92 529.03 570.06 523.52 575.38
@@ -688,19 +852,28 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 529.57 538.34 516.12 547.76
   C 515.22 548.39 513.13 549.31 512.73 549.81
   A 0.51 0.51 0.0 0 0 512.88 550.58"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.73 362.56
   L 566.44 354.61
   A 0.43 0.43 0.0 0 0 565.70 354.83
   L 565.47 356.25"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 565.47 356.25
   Q 563.98 361.73 566.96 365.81
   Q 573.78 375.15 584.80 370.07"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.80 370.07
   Q 590.87 367.52 593.56 359.84
   Q 595.80 353.46 594.41 347.42
@@ -709,24 +882,36 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.54 0.54 0.0 0 0 589.58 344.04
   C 591.63 348.93 591.38 356.25 587.71 360.27
   C 583.75 364.61 579.03 365.45 573.73 362.56"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.80 370.07
   Q 580.12 370.98 576.07 370.64
   Q 572.68 370.36 570.20 368.29
   Q 567.42 365.98 566.35 363.14
   Q 565.44 360.75 566.59 356.62"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.59 356.62
   C 568.48 358.52 570.66 361.45 572.72 362.77
   Q 574.17 363.71 573.73 362.56"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.59 356.62
   Q 565.87 356.76 565.47 356.25"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.23 425.90
   L 429.15 444.77
   A 2.82 2.82 0.0 0 0 428.08 447.23
@@ -758,28 +943,40 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 472.51 443.54 468.75 444.07
   C 457.88 445.59 455.67 434.17 453.71 426.07
   A 0.30 0.30 0.0 0 0 453.23 425.90"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 474.67 363.02
   Q 474.15 363.49 474.55 364.13
   A 0.61 0.61 0.0 0 0 474.92 364.40
   L 492.18 368.63"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 492.18 368.63
   Q 494.25 369.80 496.92 369.86
   A 0.79 0.79 0.0 0 0 497.59 368.62
   Q 491.22 359.41 482.07 350.46
   A 0.45 0.45 0.0 0 0 481.36 350.56
   L 474.67 363.02"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 492.18 368.63
   Q 492.72 367.54 490.65 366.63
   Q 489.68 366.21 487.91 365.99
   Q 481.16 365.18 474.67 363.02"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.55 353.81
   A 2.55 2.54 -17.7 0 0 442.79 352.39
   Q 434.34 353.92 434.91 361.96
@@ -791,16 +988,22 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 469.19 407.61 463.75 394.76
   Q 456.97 378.72 449.33 363.34
   C 447.63 359.92 446.63 356.11 445.55 353.81"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 632.38 372.50
   C 634.26 370.86 633.15 368.82 631.43 367.59
   C 611.85 353.58 595.92 384.99 591.12 398.84
   C 588.91 405.22 586.78 411.44 593.93 414.73
   C 598.80 416.97 601.99 413.85 604.02 409.54
   Q 613.84 388.65 632.38 372.50"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 422.18 369.58
   L 426.62 369.58
   A 0.54 0.53 -62.3 0 0 426.93 369.48
@@ -809,8 +1012,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.50 0.50 0.0 0 0 425.56 365.28
   L 421.91 368.93
   A 0.38 0.38 0.0 0 0 422.18 369.58"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 461.46 372.01
   L 465.35 381.47
   A 0.35 0.33 -5.6 0 0 465.62 381.68
@@ -820,16 +1026,22 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.65 0.65 0.0 0 0 500.48 378.43
   Q 481.13 371.88 461.57 371.86
   A 0.12 0.11 -10.3 0 0 461.46 372.01"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 593.83 375.45
   Q 593.07 375.87 589.87 378.44
   C 587.27 380.51 586.85 381.62 585.81 384.82
   A 0.59 0.58 73.4 0 0 586.82 385.37
   L 594.30 376.00
   A 0.37 0.37 0.0 0 0 593.83 375.45"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 381.67 393.74
   C 383.79 392.57 384.79 391.89 387.41 391.22
   Q 411.20 385.12 434.31 382.91
@@ -840,8 +1052,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 398.25 382.25 392.22 384.97
   C 388.86 386.48 382.70 390.10 381.29 393.41
   A 0.27 0.26 -3.5 0 0 381.67 393.74"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 634.93 382.20
   A 0.41 0.41 0.0 0 0 634.80 382.90
   L 643.20 390.10
@@ -854,31 +1069,46 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.86 3.86 0.0 0 0 675.10 379.00
   Q 658.52 378.53 643.04 380.16
   C 639.91 380.49 637.93 381.17 634.93 382.20"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.45 386.15
   Q 583.43 385.83 583.58 385.71
   A 0.66 0.61 -65.8 0 0 583.19 384.56
   Q 582.50 384.63 582.06 385.74
   A 0.32 0.31 1.7 0 0 582.45 386.15"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 708.59 406.47
   L 705.90 404.13"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 705.90 404.13
   Q 704.58 402.56 703.61 402.17
   A 0.73 0.73 0.0 0 0 702.62 402.93
   C 703.33 408.89 706.87 414.91 713.02 416.20
   Q 721.44 417.98 728.31 413.31
   Q 733.90 409.51 734.31 403.88"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 734.31 403.88
   Q 735.54 402.03 734.60 398.69"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 734.60 398.69
   Q 732.47 391.56 726.92 386.56
   A 0.10 0.08 -24.7 0 0 726.84 386.54
@@ -887,16 +1117,22 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 728.78 389.66 729.78 391.78
   C 732.08 396.63 731.62 403.59 727.31 407.36
   C 721.44 412.51 714.33 412.01 708.59 406.47"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 734.60 398.69
   Q 733.58 398.67 732.37 396.78
   A 0.14 0.14 0.0 0 0 732.11 396.87
   Q 732.73 407.62 722.60 411.29
   C 718.32 412.84 715.56 411.80 711.37 410.15
   Q 708.13 408.87 708.59 406.47"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 734.31 403.88
   Q 731.24 410.38 729.47 411.49
   Q 725.12 414.21 721.99 415.18
@@ -904,8 +1140,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.37 3.33 -24.8 0 1 711.83 414.78
   Q 706.39 411.69 704.84 407.27
   Q 704.39 405.99 705.90 404.13"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 621.58 397.03
   Q 622.09 398.09 630.56 407.70
   Q 647.14 426.51 659.53 450.46
@@ -917,8 +1156,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.09 2.08 -51.2 0 0 627.03 388.33
   L 621.70 395.71
   A 1.28 1.27 50.5 0 0 621.58 397.03"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 470.84 389.69
   A 0.71 0.71 0.0 0 0 470.09 390.61
   L 473.26 400.86
@@ -926,46 +1168,67 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 484.74 392.38
   A 0.71 0.71 0.0 0 0 484.35 391.13
   L 470.84 389.69"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 432.68 390.92
   L 406.64 394.10
   A 0.32 0.31 -19.7 0 0 406.41 394.58
   L 412.01 403.33
   A 0.76 0.72 -8.3 0 0 412.48 403.66
   Q 415.02 404.21 416.68 403.55"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 416.68 403.55
   Q 432.09 405.01 446.39 407.99
   A 0.27 0.27 0.0 0 0 446.70 407.63
   Q 443.79 399.67 440.00 392.25
   Q 439.00 390.29 437.11 390.34"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 437.11 390.34
   L 432.68 390.92"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 437.11 390.34
   Q 441.98 397.58 444.67 406.07
   A 0.53 0.52 87.6 0 1 444.06 406.74
   Q 442.45 406.39 442.08 405.79"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 442.08 405.79
   Q 438.71 399.73 436.89 394.85
   Q 435.75 391.75 432.68 390.92"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 416.68 403.55
   Q 422.50 402.04 428.76 403.76
   A 3.67 3.43 52.6 0 0 429.59 403.90
   L 431.94 404.03
   A 0.58 0.21 25.1 0 1 432.05 404.04
   L 442.08 405.79"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.40 391.60
   Q 572.81 395.07 568.13 396.87
   Q 562.51 399.02 556.05 406.52
@@ -975,8 +1238,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 583.19 402.68 584.40 399.65 586.03 394.96
   Q 586.71 393.02 586.88 392.05
   A 0.39 0.39 0.0 0 0 586.40 391.60"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 387.56 399.60
   A 1.87 1.87 0.0 0 0 387.48 401.82
   Q 400.31 420.65 406.49 443.01
@@ -986,12 +1252,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 421.39 440.73 414.64 419.33 401.59 402.46
   C 398.29 398.19 395.24 394.87 389.30 398.26
   Q 388.06 398.97 387.56 399.60"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 663.14 411.82
   Q 669.39 406.01 673.39 398.88"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 673.39 398.88
   L 674.11 397.59
   A 0.34 0.33 -75.3 0 0 673.82 397.09
@@ -1000,8 +1272,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 661.37 412.10
   A 0.82 0.82 0.0 0 0 662.30 412.38
   Q 662.70 412.23 663.14 411.82"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 673.39 398.88
   Q 672.24 398.55 671.14 398.32
   Q 670.04 398.09 668.84 398.14
@@ -1010,12 +1285,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 658.00 405.51
   A 2.25 1.82 -83.9 0 1 658.29 405.96
   Q 660.08 409.60 663.14 411.82"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 615.50 407.24
   Q 614.45 407.93 614.42 408.95"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 614.42 408.95
   Q 611.26 412.47 609.19 416.39
   A 3.04 3.00 80.2 0 1 608.78 416.98
@@ -1024,8 +1305,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 578.90 412.60
   A 0.29 0.29 0.0 0 0 578.58 413.06
   L 588.84 424.66"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 588.84 424.66
   Q 589.13 426.25 590.50 426.20
   Q 612.81 425.44 635.37 427.90
@@ -1033,8 +1317,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 629.05 417.79 624.74 411.53 616.77 405.42
   A 0.50 0.50 0.0 0 0 616.04 405.56
   Q 615.67 406.15 615.50 407.24"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 588.84 424.66
   Q 588.61 424.40 589.03 424.30
   A 0.41 0.40 68.8 0 1 589.50 424.51
@@ -1045,15 +1332,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.52 0.07 6.1 0 0 605.32 425.14
   Q 616.29 424.84 627.25 426.17
   Q 628.00 426.26 630.26 425.78"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 630.26 425.78
   L 632.05 426.30
   A 0.63 0.63 0.0 0 0 632.75 425.36
   C 628.53 418.87 624.48 413.13 618.24 407.72
   Q 617.07 406.71 615.50 407.24"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 630.26 425.78
   Q 626.67 421.57 623.58 417.13
   Q 621.65 414.36 619.68 412.86
@@ -1067,8 +1360,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 611.20 414.70
   A 2.00 1.98 79.9 0 1 611.71 413.96
   Q 614.32 411.66 614.42 408.95"
-/>
-<path stroke="#68284a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68284a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 766.02 559.75
   C 753.39 567.29 742.25 573.83 727.83 581.78
   C 704.47 594.66 682.89 610.36 663.63 629.13
@@ -1083,8 +1379,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 653.47 678.78 671.00 661.56 692.97 644.97
   Q 720.57 624.14 754.19 613.46
   Q 769.10 608.72 783.73 603.29"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 783.73 603.29
   C 815.91 591.35 847.68 575.05 873.84 552.80
   A 1.08 1.07 54.8 0 0 874.07 551.44
@@ -1100,16 +1399,25 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 845.23 479.65 839.67 489.27 834.53 496.79
   C 824.82 511.01 811.99 524.28 798.34 536.08
   Q 785.45 547.21 766.02 559.75"
-/>
-<path stroke="#b9799a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b9799a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 783.73 603.29
   Q 783.60 602.75 783.71 602.25"
-/>
-<path stroke="#9c91a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c91a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 783.71 602.25
   L 784.85 601.73"
-/>
-<path stroke="#8fa2a9" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8fa2a9"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 784.85 601.73
   Q 814.74 590.41 842.19 574.05
   C 853.07 567.57 862.99 560.25 872.09 552.73
@@ -1133,16 +1441,25 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 825.33 511.17 814.92 521.92
   Q 797.89 539.48 775.56 554.54
   Q 769.30 558.77 766.05 560.60"
-/>
-<path stroke="#b9799a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b9799a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 766.05 560.60
   Q 765.95 560.24 766.02 559.75"
-/>
-<path stroke="#9e558c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9e558c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 765.95 560.65
   L 750.43 570.05"
-/>
-<path stroke="#af3f81" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#af3f81"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 750.43 570.05
   C 745.53 572.98 740.51 576.07 735.59 578.67
   Q 715.52 589.27 696.75 602.71
@@ -1168,24 +1485,39 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 687.65 647.91 691.12 645.17
   Q 715.42 625.99 747.14 614.80
   Q 757.10 611.29 767.30 607.78"
-/>
-<path stroke="#9e558c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9e558c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 767.30 607.78
   L 783.71 602.25"
-/>
-<path stroke="#92578a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92578a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 767.30 607.78
   Q 757.81 589.30 750.43 570.05"
-/>
-<path stroke="#747e9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#747e9b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 784.85 601.73
   C 778.39 588.08 771.60 574.68 765.95 560.65"
-/>
-<path stroke="#916691" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#916691"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 765.95 560.65
   Q 766.00 560.63 766.05 560.60"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 416.30 410.44
   L 420.14 419.79
   A 0.51 0.50 85.0 0 0 420.48 420.08
@@ -1195,8 +1527,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.42 0.42 0.0 0 0 448.65 417.10
   Q 433.18 411.40 416.41 410.30
   A 0.11 0.10 -8.5 0 0 416.30 410.44"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.06 428.70
   A 0.27 0.27 0.0 0 0 336.43 428.97
   Q 342.38 426.42 349.52 425.03
@@ -1206,12 +1541,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.52 2.51 70.9 0 0 384.19 412.17
   C 372.65 413.29 362.63 414.60 351.58 417.83
   C 347.44 419.04 336.48 423.70 336.06 428.70"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 545.33 420.89
   Q 547.93 418.41 546.75 415.55"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.75 415.55
   Q 546.95 414.80 546.76 414.24
   A 0.63 0.63 0.0 0 0 545.75 413.96
@@ -1261,12 +1602,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 503.23 446.95 513.41 442.12
   C 517.63 440.12 523.77 438.55 528.36 435.37
   Q 537.33 429.15 545.33 420.89"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.75 415.55
   Q 542.19 417.85 545.33 420.89"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 562.01 417.21
   C 559.73 418.92 561.56 422.44 562.77 424.24
   Q 571.87 437.94 580.80 452.68
@@ -1278,8 +1625,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 609.96 477.91 601.91 461.57
   Q 590.43 438.27 572.60 416.53
   C 570.06 413.44 564.70 415.19 562.01 417.21"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.10 433.18
   Q 545.54 433.11 557.29 430.51
   A 0.33 0.32 69.2 0 0 557.50 430.03
@@ -1287,13 +1637,19 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.58 0.58 0.0 0 0 553.88 425.06
   L 543.97 432.82
   A 0.20 0.20 0.0 0 0 544.10 433.18"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 358.65 440.07
   Q 359.38 441.72 360.63 441.89
   Q 379.74 444.55 397.19 449.95"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 397.19 449.95
   L 400.59 450.40
   A 0.42 0.42 0.0 0 0 401.05 449.88
@@ -1303,12 +1659,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 357.94 431.12 353.97 432.60
   A 0.59 0.59 0.0 0 0 353.71 433.51
   L 358.65 440.07"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 397.19 449.95
   Q 397.88 449.44 397.49 448.81"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 397.49 448.81
   Q 398.31 449.00 398.86 448.88
   A 0.67 0.67 0.0 0 0 399.35 448.01
@@ -1325,23 +1687,35 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 388.69 430.50
   A 2.85 2.85 0.0 0 1 391.66 432.34
   Q 394.42 439.68 395.90 448.21"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 395.90 448.21
   Q 380.14 443.95 371.50 442.25
   Q 368.47 441.65 361.92 441.17
   A 3.46 3.28 -30.6 0 1 360.96 440.95
   L 358.65 440.07"
-/>
-<path stroke="#bebbb7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bebbb7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 397.49 448.81
   L 395.90 448.21"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.43 433.58
   Q 431.52 432.92 432.48 431.26"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 432.48 431.26
   Q 433.55 430.47 432.50 429.91
   A 5.20 5.16 -23.4 0 0 431.30 429.44
@@ -1350,20 +1724,29 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 425.63 436.84
   A 0.34 0.34 0.0 0 0 426.17 437.02
   L 430.43 433.58"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 432.48 431.26
   Q 429.37 429.74 425.88 429.50
   A 0.39 0.39 0.0 0 0 425.46 429.96
   L 426.23 434.09
   A 0.63 0.63 0.0 0 0 427.17 434.52
   Q 429.17 433.34 430.43 433.58"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 640.35 435.11
   Q 639.53 434.88 639.05 435.00"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 639.05 435.00
   Q 616.44 432.47 594.56 433.03
   A 0.34 0.34 0.0 0 0 594.28 433.55
@@ -1374,8 +1757,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 637.34 442.26 641.51 437.63
   A 2.06 2.04 -37.2 0 0 641.83 435.37
   Q 641.77 435.23 640.35 435.11"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 639.05 435.00
   Q 637.29 436.15 634.59 436.44
   A 0.45 0.45 0.0 0 0 634.19 436.95
@@ -1385,8 +1771,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.10 1.10 0.0 0 0 632.76 444.84
   Q 633.95 443.66 639.51 438.21
   Q 640.10 437.62 640.35 435.11"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 362.91 474.88
   C 360.81 462.11 356.12 447.20 347.53 436.88
   A 5.32 5.31 -32.6 0 0 341.16 435.49
@@ -1396,8 +1785,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.93 4.91 -84.6 0 0 353.92 471.51
   L 361.48 475.87
   A 0.96 0.96 0.0 0 0 362.91 474.88"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.09 458.94
   Q 512.45 456.33 514.99 455.72
   Q 539.49 449.82 567.45 446.54
@@ -1407,8 +1799,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 542.48 439.67 523.11 445.55
   C 516.68 447.51 508.49 451.86 505.72 458.57
   A 0.28 0.28 0.0 0 0 506.09 458.94"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 375.03 462.49
   Q 380.46 463.95 381.48 464.11
   A 4.61 4.60 30.3 0 0 385.03 463.19
@@ -1420,8 +1815,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 366.03 458.07
   A 4.61 4.60 -0.1 0 0 368.63 460.65
   Q 369.60 461.03 375.03 462.49"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.02 462.84
   Q 339.83 457.12 335.33 450.87
   A 2.24 2.23 -20.2 0 0 333.32 449.95
@@ -1431,8 +1829,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.25 0.24 56.2 0 0 318.20 453.06
   L 341.64 463.20
   A 0.28 0.28 0.0 0 0 342.02 462.84"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 624.39 453.05
   L 605.03 450.30
   A 0.28 0.27 -8.7 0 0 604.74 450.69
@@ -1440,8 +1841,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.82 0.82 0.0 0 0 612.75 464.96
   L 624.45 453.25
   A 0.12 0.11 -63.0 0 0 624.39 453.05"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 286.54 458.67
   Q 287.30 459.40 289.48 460.24
   Q 309.08 467.73 330.46 479.06
@@ -1453,21 +1857,30 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 307.10 455.29 301.56 453.56
   C 295.26 451.59 288.65 450.32 286.27 457.58
   A 1.07 1.07 0.0 0 0 286.54 458.67"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 908.3793 452.9333
   A 52.90 30.93 -88.3 0 0 875.8936 504.8924
   A 52.90 30.93 -88.3 0 0 905.2407 558.6867
   A 52.90 30.93 -88.3 0 0 937.7264 506.7276
   A 52.90 30.93 -88.3 0 0 908.3793 452.9333"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.17 464.03
   L 541.71 470.82
   A 1.04 1.04 0.0 0 0 542.62 471.27
   C 555.35 470.48 566.57 471.86 580.46 474.91"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.46 474.91
   L 585.16 476.06
   A 0.46 0.46 0.0 0 0 585.67 475.39
@@ -1476,14 +1889,20 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 533.72 459.34
   A 0.28 0.27 -24.8 0 0 533.55 459.79
   L 537.17 464.03"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.46 474.91
   Q 580.61 474.75 580.78 474.69
   A 0.23 0.22 62.4 0 0 580.88 474.35
   L 580.71 474.09"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.71 474.09
   L 582.41 474.11
   A 0.53 0.53 0.0 0 0 582.87 473.32
@@ -1501,8 +1920,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.86 2.86 0.0 0 1 571.08 457.82
   Q 573.38 462.07 576.79 466.97
   Q 578.57 469.53 579.73 473.49"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 579.73 473.49
   Q 576.55 473.34 573.43 472.33
   A 5.00 4.49 55.2 0 0 572.58 472.13
@@ -1510,12 +1932,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 548.22 469.95 543.44 470.35
   A 1.93 1.91 67.7 0 1 541.81 469.66
   L 537.17 464.03"
-/>
-<path stroke="#bebbb7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bebbb7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.71 474.09
   Q 580.11 473.88 579.73 473.49"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 391.14 513.17
   C 391.89 512.64 392.10 511.95 393.29 511.38
   Q 397.04 509.56 402.07 507.02
@@ -1534,8 +1962,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 392.45 487.92 394.81 498.23 392.14 508.20
   Q 391.48 510.65 390.74 512.87
   A 0.26 0.26 0.0 0 0 391.14 513.17"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 512.62 466.74
   L 513.61 468.54
   A 1.82 0.47 66.2 0 0 513.73 468.73
@@ -1548,8 +1979,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 534.93 474.00 525.53 464.79
   C 522.04 461.37 516.58 462.58 513.04 464.99
   A 1.35 1.34 58.7 0 0 512.62 466.74"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 496.07 475.03
   Q 496.09 475.05 496.13 475.10
   A 0.14 0.11 59.6 0 0 496.24 475.14
@@ -1561,8 +1995,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 496.08 474.83
   A 0.14 0.11 64.5 0 0 496.05 474.95
   Q 496.06 475.01 496.07 475.03"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 547.00 478.63
   Q 548.00 480.53 551.87 487.74
   C 552.88 489.62 553.76 489.91 555.81 490.17
@@ -1572,8 +2009,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 587.67 483.06 586.49 482.78
   Q 566.78 478.08 547.38 478.00
   A 0.43 0.43 0.0 0 0 547.00 478.63"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.83 489.14
   L 514.47 481.58
   A 2.65 2.64 -16.8 0 0 512.02 480.27
@@ -1584,8 +2024,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 462.39 498.12 471.96 496.25
   Q 495.48 491.63 518.57 489.63
   A 0.33 0.33 0.0 0 0 518.83 489.14"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 378.00 503.02
   Q 373.50 507.98 367.76 508.25
   C 362.69 508.48 358.78 504.66 353.85 500.85
@@ -1594,15 +2037,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 346.31 503.83 347.66 508.61
   C 349.23 514.17 353.35 516.33 358.88 517.67
   Q 365.13 519.19 371.82 517.15"
-/>
-<path stroke="#53514e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53514e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 371.82 517.15
   Q 377.80 516.24 380.78 511.04
   C 383.69 505.97 384.72 497.21 380.42 492.18
   A 0.45 0.45 0.0 0 0 379.62 492.49
   Q 379.84 497.65 378.00 503.02"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 371.82 517.15
   Q 370.70 516.13 368.34 517.12
   A 3.27 3.01 -56.1 0 1 367.46 517.33
@@ -1613,8 +2062,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 355.43 502.99 358.10 505.16
   Q 361.91 508.27 363.44 508.63
   Q 373.59 511.08 378.00 503.02"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 571.01 498.63
   L 557.74 497.87
   A 0.30 0.30 0.0 0 0 557.44 498.29
@@ -1622,8 +2074,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.67 0.66 58.8 0 0 561.74 506.50
   L 571.08 498.85
   A 0.12 0.12 0.0 0 0 571.01 498.63"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 533.88 515.00
   Q 528.77 505.27 525.74 500.74
   C 524.50 498.89 520.79 498.79 519.00 498.77
@@ -1634,8 +2089,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 503.61 510.09 514.54 511.20 524.68 513.51
   Q 532.56 515.31 533.56 515.45
   A 0.31 0.31 0.0 0 0 533.88 515.00"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 495.41 540.71
   A 1.00 1.00 0.0 0 0 496.72 539.85
   Q 496.95 537.36 496.21 535.01
@@ -1646,8 +2104,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.49 1.49 0.0 0 0 469.48 506.39
   Q 476.97 519.10 483.74 532.98
   C 486.12 537.87 490.41 539.02 495.41 540.71"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.62 516.38
   Q 448.72 516.38 449.63 516.11
   Q 453.02 515.09 462.59 511.79
@@ -1656,8 +2117,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.55 2.54 53.2 0 0 459.35 508.66
   Q 452.03 511.63 448.15 514.88
   A 0.85 0.85 0.0 0 0 448.62 516.38"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.16 530.18
   L 468.27 518.24
   A 1.42 1.39 -4.1 0 0 467.54 517.62
@@ -1667,8 +2131,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.40 0.40 0.0 0 0 454.21 522.89
   L 474.67 530.75
   A 0.40 0.40 0.0 0 0 475.16 530.18"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 497.54 517.69
   L 501.52 527.39
   A 1.89 1.82 7.5 0 0 502.15 528.18
@@ -1679,8 +2146,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.65 0.64 -56.7 0 0 533.58 523.63
   C 521.96 519.63 509.78 516.86 497.96 517.05
   A 0.46 0.46 0.0 0 0 497.54 517.69"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 408.55 527.78
   Q 409.40 529.56 410.96 529.87
   Q 422.00 532.07 432.37 535.65
@@ -1692,8 +2162,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 482.93 540.99 449.85 527.66
   C 439.73 523.58 415.68 515.24 408.61 526.73
   A 1.09 1.08 -41.9 0 0 408.55 527.78"
-/>
-<path stroke="#68284a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68284a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 766.00 617.42
   Q 748.65 623.00 740.12 626.37
   Q 725.63 632.09 708.89 642.58
@@ -1701,22 +2174,34 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 670.85 672.50 646.57 694.43
   C 637.92 702.25 631.02 707.74 621.09 715.33
   Q 611.04 723.00 600.64 727.42"
-/>
-<path stroke="#784033" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#784033"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.64 727.42
   C 587.06 733.12 569.80 734.75 556.24 728.06"
-/>
-<path stroke="#846b2b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#846b2b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.24 728.06
   Q 552.31 724.91 548.39 721.80
   C 546.82 720.55 545.67 720.36 543.88 721.11
   C 523.02 729.80 504.16 736.77 481.55 742.50"
-/>
-<path stroke="#81785e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#81785e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.55 742.50
   L 448.20 749.43"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.20 749.43
   Q 415.77 754.06 388.99 754.84
   Q 378.46 755.14 347.59 755.01
@@ -1727,37 +2212,58 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 281.29 791.29 302.08 797.08 320.49 800.53
   Q 345.24 805.17 367.25 806.77
   Q 384.34 808.00 401.46 808.13"
-/>
-<path stroke="#767571" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767571"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 401.46 808.13
   Q 437.76 809.15 474.34 807.21"
-/>
-<path stroke="#81785e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#81785e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 474.34 807.21
   L 494.71 806.00"
-/>
-<path stroke="#846b2b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#846b2b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 494.71 806.00
   Q 541.23 802.21 587.21 794.28
   Q 592.90 793.30 605.24 790.41
   Q 634.06 783.67 656.83 768.85"
-/>
-<path stroke="#492138" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#492138"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 656.83 768.85
   C 668.88 760.46 684.16 746.82 690.08 741.59
   Q 719.17 715.88 756.35 704.66
   Q 777.55 698.26 786.11 696.58
   Q 813.85 691.11 841.32 684.41"
-/>
-<path stroke="#5c2a49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5c2a49"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 841.32 684.41
   L 842.82 683.94"
-/>
-<path stroke="#492138" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#492138"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 842.82 683.94
   Q 843.05 683.88 843.28 683.70"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 843.28 683.70
   Q 880.76 675.15 915.36 658.61
   Q 931.63 650.83 945.83 639.10
@@ -1771,34 +2277,49 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.98 0.98 0.0 0 0 878.52 558.20
   Q 874.67 561.98 870.40 565.16
   C 838.99 588.56 804.40 604.52 766.00 617.42"
-/>
-<path stroke="#b38ba1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b38ba1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 843.28 683.70
   Q 843.27 680.85 842.20 677.28
   Q 839.19 667.26 834.28 659.34
   C 828.63 650.24 821.05 641.27 811.98 634.76
   Q 794.63 622.32 773.28 618.28
   Q 769.68 617.60 768.04 617.93"
-/>
-<path stroke="#d292b3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d292b3"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 768.04 617.93
   Q 765.68 618.49 766.00 617.42"
-/>
-<path stroke="#90386e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#90386e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 842.82 683.94
   Q 842.00 682.98 840.58 683.77
   A 0.26 0.25 -52.6 0 0 840.64 684.24
   L 841.32 684.41"
-/>
-<path stroke="#b97850" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97850"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 656.83 768.85
   Q 656.58 768.49 656.59 768.43
   A 0.39 0.39 0.0 0 0 655.96 768.10
   Q 652.43 770.72 648.58 772.90
   Q 631.18 782.75 612.10 787.57
   Q 607.30 788.79 602.60 790.15"
-/>
-<path stroke="#90386e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#90386e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 602.60 790.15
   L 602.31 789.86
   A 0.58 0.58 0.0 0 1 602.24 789.15
@@ -1811,17 +2332,26 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 602.81 785.16 602.79 785.23
   A 0.44 0.43 -58.7 0 1 602.11 785.40
   C 599.75 783.48 597.66 783.46 594.00 783.28"
-/>
-<path stroke="#ad4e58" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad4e58"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.00 783.28
   Q 612.02 778.65 627.84 768.66"
-/>
-<path stroke="#a94161" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a94161"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 627.84 768.66
   Q 633.81 765.48 637.90 760.15
   Q 640.20 757.14 643.95 751.60"
-/>
-<path stroke="#9c3670" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c3670"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 768.04 617.93
   Q 768.13 618.38 768.50 618.46
   Q 775.73 619.89 783.25 622.02
@@ -1833,59 +2363,86 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 769.01 623.08 716.09 651.35 683.35 691.10
   C 674.96 701.28 666.69 710.73 660.53 721.75
   Q 652.18 736.67 643.95 751.60"
-/>
-<path stroke="#c84974" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c84974"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 643.95 751.60
   C 630.96 744.20 621.00 735.38 609.29 725.12
   A 0.77 0.75 -36.9 0 0 608.47 725.01
   L 601.51 728.28"
-/>
-<path stroke="#cc556b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cc556b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.51 728.28
   Q 600.95 727.93 600.64 727.42"
-/>
-<path stroke="#d9615c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d9615c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 627.84 768.66
   Q 622.49 769.99 617.46 772.75
   A 0.69 0.68 51.0 0 1 616.69 772.66
   L 574.01 734.52
   A 0.33 0.32 65.6 0 1 574.22 733.95
   Q 588.41 733.90 601.51 728.28"
-/>
-<path stroke="#e8984b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e8984b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.24 728.06
   Q 552.78 757.36 557.70 786.51
   Q 558.06 788.67 558.65 790.08"
-/>
-<path stroke="#cc8261" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cc8261"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 558.65 790.08
   L 560.22 797.05
   A 1.12 1.11 75.7 0 0 561.61 797.88
   L 566.48 796.52
   A 0.05 0.01 -31.7 0 0 566.51 796.51
   Q 584.69 794.21 602.60 790.15"
-/>
-<path stroke="#f1cf77" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1cf77"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 494.71 806.00
   Q 492.80 794.20 490.92 782.56
   Q 487.73 762.80 478.67 744.97
   A 0.37 0.36 -19.9 0 1 478.92 744.44
   Q 481.82 743.84 481.55 742.50"
-/>
-<path stroke="#c05769" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c05769"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.00 783.28
   L 561.68 791.24
   A 1.75 1.73 57.5 0 1 560.18 790.90
   Q 559.34 790.21 558.65 790.08"
-/>
-<path stroke="#e3d9bd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d9bd"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 474.34 807.21
   Q 468.80 805.49 462.52 806.01
   Q 449.14 807.12 435.76 806.78
   A 0.71 0.71 0.0 0 1 435.11 806.28
   Q 427.25 780.68 422.33 754.32"
-/>
-<path stroke="#ebe2c7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ebe2c7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.20 749.43
   Q 448.70 749.60 448.76 749.80
   A 0.64 0.62 -9.7 0 1 448.17 750.61
@@ -1893,8 +2450,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 435.22 752.91 428.27 753.35
   A 5.04 4.62 33.5 0 0 427.39 753.49
   Q 424.86 754.18 422.33 754.32"
-/>
-<path stroke="#e1dfda" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e1dfda"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 422.33 754.32
   L 397.83 756.11
   A 0.59 0.57 -1.1 0 0 397.29 756.66
@@ -1904,8 +2464,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 396.86 806.33 400.96 806.01 402.55 807.40
   A 0.40 0.40 0.0 0 1 402.43 808.08
   Q 402.05 808.22 401.46 808.13"
-/>
-<path stroke="#666462" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666462"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.49 538.31
   L 505.25 537.14
   A 0.49 0.48 1.4 0 0 504.70 537.66
@@ -1913,8 +2476,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.67 0.67 0.0 0 0 506.38 544.80
   L 513.64 538.85
   A 0.31 0.31 0.0 0 0 513.49 538.31"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 123.40 547.21
   Q 111.45 552.98 100.30 559.54
   Q 86.23 567.83 75.26 579.18
@@ -1932,8 +2498,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 127.00 567.88 121.95 561.76 122.19 553.26
   Q 122.27 550.26 123.74 547.56
   A 0.26 0.26 0.0 0 0 123.40 547.21"
-/>
-<path stroke="#87742a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87742a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 200.60 643.01
   Q 187.14 641.78 170.44 639.33
   Q 147.44 635.96 121.69 628.08
@@ -1948,8 +2517,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 159.76 684.95 168.12 674.49 178.32 663.53
   Q 188.43 652.66 200.71 643.40
   A 0.22 0.22 0.0 0 0 200.60 643.01"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 239.51 628.98
   Q 216.39 639.88 196.84 657.09
   Q 189.96 663.14 183.41 670.69
@@ -1973,8 +2545,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 254.52 660.59 238.01 651.92 238.00 638.91
   Q 238.00 634.57 239.79 629.23
   A 0.21 0.20 -2.8 0 0 239.51 628.98"
-/>
-<path stroke="#87742a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87742a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 955.23 640.70
   Q 951.57 644.50 945.46 648.93
   Q 928.05 661.52 911.56 668.55
@@ -2015,15 +2590,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 943.08 660.79 954.09 643.60
   Q 955.32 641.69 955.50 640.84
   A 0.16 0.16 0.0 0 0 955.23 640.70"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.9286 194.6315
   A 26.45 20.45 -65.5 0 0 519.3513 210.2195
   A 26.45 20.45 -65.5 0 0 526.9914 242.7685
   A 26.45 20.45 -65.5 0 0 556.5687 227.1805
   A 26.45 20.45 -65.5 0 0 548.9286 194.6315"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.73 227.35
   Q 525.80 227.13 527.52 226.00
   Q 531.59 223.32 534.81 221.72
@@ -2048,15 +2629,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.57 1.55 60.5 0 1 532.64 218.24
   C 528.66 220.98 523.48 223.87 523.03 226.61
   A 0.64 0.64 0.0 0 0 523.73 227.35"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 683.9119 230.8587
   A 30.93 25.28 -69.5 0 0 649.4009 250.9768
   A 30.93 25.28 -69.5 0 0 662.2481 288.8013
   A 30.93 25.28 -69.5 0 0 696.7591 268.6832
   A 30.93 25.28 -69.5 0 0 683.9119 230.8587"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 671.54 264.21
   L 678.57 275.20
   A 1.91 1.90 -23.3 0 0 680.65 276.02
@@ -2081,8 +2668,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 658.61 273.08 660.07 272.06
   Q 662.92 270.06 670.26 264.01
   A 0.87 0.87 0.0 0 1 671.54 264.21"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 720.70 331.98
   Q 721.16 331.18 722.24 330.54
   Q 727.95 327.14 729.04 326.49
@@ -2097,8 +2687,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.60 0.59 80.3 0 0 720.23 323.46
   L 720.23 331.85
   A 0.25 0.25 0.0 0 0 720.70 331.98"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 871.52 394.76
   Q 871.89 394.88 872.49 395.55
   Q 877.94 401.74 880.58 406.28
@@ -2112,22 +2705,31 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 891.85 357.79 891.35 359.44
   Q 885.54 378.66 871.18 393.40
   A 0.83 0.82 31.1 0 0 871.52 394.76"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.1267 477.5781
   A 31.44 26.80 -91.3 0 0 692.0469 509.6180
   A 31.44 26.80 -91.3 0 0 719.5533 540.4419
   A 31.44 26.80 -91.3 0 0 745.6331 508.4020
   A 31.44 26.80 -91.3 0 0 718.1267 477.5781"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 478.83 566.51
   Q 479.52 565.68 479.38 565.53
   Q 479.00 565.12 478.50 564.89
   Q 464.48 558.26 450.41 551.56
   C 447.60 550.22 444.03 548.92 440.81 547.50"
-/>
-<path stroke="#e1dfda" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e1dfda"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.81 547.50
   Q 431.25 543.56 420.78 540.97
   Q 417.46 540.15 415.21 539.29
@@ -2187,8 +2789,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 477.25 567.50 477.24 567.46
   A 0.43 0.43 0.0 0 1 477.58 566.92
   Q 478.51 566.76 478.83 566.51"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.81 547.50
   Q 439.05 548.00 441.63 550.64
   A 1.64 1.63 -15.4 0 0 442.39 551.07
@@ -2197,15 +2802,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 464.05 560.26
   A 2.19 1.97 66.4 0 1 464.38 560.41
   Q 471.39 564.25 478.83 566.51"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 602.08 607.31
   C 610.64 621.08 629.45 625.16 642.90 616.24
   C 655.89 607.63 657.06 590.27 649.37 577.90
   C 641.67 565.52 625.58 558.90 612.11 566.75
   C 598.17 574.87 593.51 593.55 602.08 607.31"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.03 258.73
   A 0.44 0.44 0.0 0 0 831.89 259.53
   Q 835.57 261.97 837.08 262.69
@@ -2216,8 +2827,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 866.91 266.32 864.35 265.38 861.60 264.66
   Q 848.11 261.11 833.74 258.78
   Q 832.60 258.59 832.03 258.73"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 765.67 293.75
   L 766.57 289.28
   A 1.80 1.62 -47.1 0 0 766.58 288.67
@@ -2228,8 +2842,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.22 0.22 0.0 0 0 765.29 293.76
   L 765.59 293.80
   A 0.07 0.07 0.0 0 0 765.67 293.75"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.14 312.73
   Q 561.70 311.78 561.94 310.85
   Q 564.40 301.51 564.14 291.99
@@ -2238,15 +2855,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.65 0.65 0.0 0 0 544.59 296.76
   L 560.59 312.80
   A 0.35 0.35 0.0 0 0 561.14 312.73"
-/>
-<path stroke="#bebbb7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bebbb7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 545.56 338.48
   Q 545.32 337.59 543.14 335.89
   A 0.40 0.40 0.0 0 0 542.51 336.29
   Q 543.01 338.54 543.46 339.35
   A 1.15 1.14 -67.4 0 0 545.56 338.48"
-/>
-<path stroke="#bebbb7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bebbb7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 631.49 337.06
   L 633.05 335.87
   A 0.30 0.30 0.0 0 0 633.11 335.45
@@ -2256,8 +2879,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.37 0.87 52.7 0 0 629.02 334.31
   L 631.07 337.00
   A 0.30 0.30 0.0 0 0 631.49 337.06"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 717.77 376.20
   Q 719.52 378.12 722.29 378.47
   C 731.26 379.62 738.52 385.43 741.71 393.62
@@ -2277,8 +2903,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.78 2.73 -5.2 0 1 720.10 372.41
   Q 718.86 373.47 717.70 375.29
   A 0.76 0.75 -50.1 0 0 717.77 376.20"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 682.23 386.35
   L 675.54 379.56
   A 0.11 0.11 0.0 0 0 675.38 379.56
@@ -2288,8 +2917,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.75 3.57 45.4 0 0 682.20 386.53
   L 682.23 386.51
   A 0.11 0.11 0.0 0 0 682.23 386.35"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.06 392.80
   L 472.38 390.35
   A 0.76 0.75 -2.5 0 0 471.48 391.33
@@ -2297,8 +2929,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.64 0.64 0.0 0 0 475.05 399.03
   L 482.19 393.44
   A 0.37 0.36 -56.9 0 0 482.06 392.80"
-/>
-<path stroke="#e1dfda" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e1dfda"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 401.17 517.36
   C 395.49 520.06 390.37 522.51 383.49 525.37
   Q 375.63 528.65 370.32 529.13
@@ -2353,14 +2988,20 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.68 1.66 -22.1 0 0 401.10 521.00
   L 401.58 517.66
   A 0.29 0.29 0.0 0 0 401.17 517.36"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 273.04 509.69
   C 291.60 528.25 335.28 501.27 307.83 480.11
   C 296.81 471.61 281.37 479.95 274.00 488.77
   C 269.18 494.55 267.11 503.75 273.04 509.69"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.67 439.90
   A 0.50 0.50 0.0 0 0 601.90 439.14
   Q 600.74 437.47 600.54 435.37
@@ -2370,8 +3011,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 600.16 440.69
   A 0.40 0.40 0.0 0 0 600.86 440.64
   Q 601.11 440.10 601.67 439.90"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 621.25 453.89
   L 607.53 451.94
   A 0.86 0.86 0.0 0 0 606.71 453.28
@@ -2379,8 +3023,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.02 1.02 0.0 0 0 612.66 462.98
   Q 617.69 459.43 621.59 454.80
   A 0.56 0.55 -65.8 0 0 621.25 453.89"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 891.56 465.68
   C 895.47 461.73 902.59 456.66 908.21 456.95
   C 914.69 457.28 920.54 461.96 924.03 466.80
@@ -2398,22 +3045,31 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.70 0.66 63.5 0 0 891.02 464.25
   L 891.27 465.59
   A 0.17 0.17 0.0 0 0 891.56 465.68"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 908.4819 458.8231
   A 46.86 26.73 -88.2 0 0 880.2932 504.8204
   A 46.86 26.73 -88.2 0 0 905.5381 552.4969
   A 46.86 26.73 -88.2 0 0 933.7268 506.4996
   A 46.86 26.73 -88.2 0 0 908.4819 458.8231"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 935.7128 509.2006
   A 2.16 0.34 -88.6 0 0 935.3201 511.3517
   A 2.16 0.34 -88.6 0 0 935.6072 513.5194
   A 2.16 0.34 -88.6 0 0 935.9999 511.3683
   A 2.16 0.34 -88.6 0 0 935.7128 509.2006"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 935.12 514.32
   Q 934.28 518.33 933.32 522.99
   Q 932.05 529.20 927.70 537.49
@@ -2427,16 +3083,22 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.28 0.28 0.0 0 0 935.48 514.09
   L 935.47 514.09
   A 0.30 0.30 0.0 0 0 935.12 514.32"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 905.30 500.99
   L 891.96 485.22
   A 0.95 0.95 0.0 0 0 890.56 485.16
   L 889.77 485.96
   A 1.24 1.23 -42.1 0 0 889.68 487.61
   L 903.52 504.58"
-/>
-<path stroke="#3e5159" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3e5159"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 903.52 504.58
   L 888.13 510.91
   A 1.78 1.76 76.5 0 0 887.04 512.70
@@ -2444,8 +3106,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.33 1.33 0.0 0 0 888.87 514.36
   Q 896.74 511.52 904.26 507.86
   Q 904.99 507.51 905.62 508.08"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 905.62 508.08
   L 894.95 532.91
   A 2.77 2.74 41.9 0 0 895.10 535.37
@@ -2453,8 +3118,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.89 0.89 0.0 0 0 896.93 535.69
   Q 901.24 525.85 904.71 517.96
   Q 905.36 516.46 906.61 512.43"
-/>
-<path stroke="#3e5159" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3e5159"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 906.61 512.43
   Q 907.20 511.12 907.79 512.90
   Q 907.80 512.93 907.81 512.96
@@ -2466,16 +3134,22 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 910.24 514.94 909.61 513.27 908.86 511.15
   A 0.50 0.49 -74.2 0 1 909.71 510.67
   L 911.20 512.53"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 911.20 512.53
   L 924.64 525.91
   A 0.97 0.97 0.0 0 0 926.29 525.36
   L 926.43 524.33
   A 2.41 2.39 26.8 0 0 925.74 522.27
   L 912.19 508.91"
-/>
-<path stroke="#3e5159" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3e5159"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 912.19 508.91
   L 911.87 508.38
   A 0.40 0.39 66.4 0 1 912.10 507.79
@@ -2487,16 +3161,22 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.90 0.85 -80.3 0 0 913.38 503.31
   Q 911.93 504.56 911.52 504.78
   Q 910.74 505.21 910.18 504.47"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 910.18 504.47
   Q 914.82 492.41 918.32 479.96
   Q 919.00 477.54 918.71 475.79
   A 0.60 0.57 69.7 0 0 917.84 475.36
   Q 917.34 475.66 917.13 476.21
   Q 912.42 488.52 908.77 501.18"
-/>
-<path stroke="#3e5159" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3e5159"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 908.77 501.18
   Q 908.33 501.95 907.93 501.08
   C 907.44 500.01 907.79 497.52 907.60 496.19
@@ -2506,28 +3186,43 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 903.77 487.08 906.14 500.74
   Q 906.23 501.23 905.79 501.42
   Q 905.51 501.54 905.30 500.99"
-/>
-<path stroke="#a8bbc2" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a8bbc2"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 908.77 501.18
   Q 908.82 502.82 908.87 504.24
   Q 908.90 504.89 909.55 504.87
   Q 909.83 504.87 910.18 504.47"
-/>
-<path stroke="#a8bbc2" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a8bbc2"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 912.19 508.91
   Q 910.57 509.50 911.20 512.53"
-/>
-<path stroke="#a8bbc2" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a8bbc2"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 906.61 512.43
   Q 906.18 510.59 906.79 508.33
   A 0.53 0.53 0.0 0 0 905.90 507.81
   L 905.62 508.08"
-/>
-<path stroke="#a8bbc2" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a8bbc2"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 903.52 504.58
   Q 904.66 507.21 905.30 500.99"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 294.30 493.62
   L 295.55 484.80
   A 0.69 0.69 0.0 0 0 294.81 484.02
@@ -2549,8 +3244,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.77 0.77 0.0 0 0 307.14 493.03
   Q 300.70 492.63 294.64 493.93
   A 0.28 0.28 0.0 0 1 294.30 493.62"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 708.05 491.40
   C 704.96 495.36 703.53 501.61 709.68 503.89
   C 717.01 506.60 725.61 507.31 731.67 508.12
@@ -2562,8 +3260,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 737.17 504.99 736.39 502.49 732.93 501.55
   C 723.80 499.08 715.56 496.99 708.43 491.36
   A 0.27 0.27 0.0 0 0 708.05 491.40"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 587.49 484.71
   L 586.14 483.46
   A 0.27 0.27 0.0 0 0 585.76 483.47
@@ -2573,8 +3274,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 8.44 1.08 -47.1 0 0 587.36 485.24
   L 587.50 485.09
   A 0.27 0.27 0.0 0 0 587.49 484.71"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 516.56 487.57
   L 512.82 480.87
   A 0.19 0.19 0.0 0 0 512.56 480.80
@@ -2584,8 +3288,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.01 2.39 60.8 0 0 516.42 487.87
   L 516.49 487.83
   A 0.19 0.19 0.0 0 0 516.56 487.57"
-/>
-<path stroke="#c8c6c1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c6c1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 520.47 499.99
   Q 505.71 499.83 490.94 501.41
   A 0.79 0.79 0.0 0 0 490.31 502.53
@@ -2593,22 +3300,31 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.50 1.49 -11.0 0 0 494.03 508.52
   Q 506.38 509.32 507.57 509.43
   Q 517.30 510.32 528.54 513.14"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.54 513.14
   L 531.30 513.82
   A 0.36 0.36 0.0 0 0 531.71 513.31
   Q 528.78 507.46 525.37 502.11
   Q 523.63 499.37 520.47 499.99"
-/>
-<path stroke="#a5a29e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a5a29e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.54 513.14
   Q 526.19 509.52 523.36 503.68
   Q 522.48 501.87 520.37 501.11
   A 0.50 0.50 0.0 0 1 520.18 500.29
   L 520.47 499.99"
-/>
-<path stroke="#b5b2ad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b5b2ad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 464.23 519.93
   Q 466.99 521.94 468.05 525.57
   A 2.72 2.68 4.0 0 0 469.57 527.29
@@ -2619,15 +3335,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.10 1.09 -48.1 0 0 464.92 518.57
   L 464.23 519.07
   A 0.54 0.54 0.0 0 0 464.23 519.93"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 527.04 527.80
   Q 530.08 527.04 531.15 525.14
   A 0.54 0.54 0.0 0 0 530.76 524.34
   Q 527.88 523.94 526.67 527.39
   A 0.31 0.31 0.0 0 0 527.04 527.80"
-/>
-<path stroke="#d0cecb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0cecb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 924.38 567.25
   Q 935.02 572.50 942.13 582.10
   C 953.43 597.36 950.89 617.39 938.57 631.09
@@ -2647,15 +3369,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.72 0.72 0.0 0 0 946.02 532.71
   C 941.34 546.01 935.21 557.26 924.28 566.41
   A 0.50 0.50 0.0 0 0 924.38 567.25"
-/>
-<path stroke="#9c91a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c91a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.1587 538.8743
   A 1.67 0.56 -160.2 0 0 507.5403 539.9669
   A 1.67 0.56 -160.2 0 0 509.3013 540.0057
   A 1.67 0.56 -160.2 0 0 507.9197 538.9131
   A 1.67 0.56 -160.2 0 0 506.1587 538.8743"
-/>
-<path stroke="#e1dfda" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e1dfda"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 418.83 547.30
   Q 410.19 549.06 404.49 552.28
   Q 402.91 553.17 398.52 557.03
@@ -2666,15 +3394,21 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 444.20 577.13 448.66 567.93 444.54 560.24
   C 442.01 555.52 439.78 552.62 434.92 550.29
   C 430.18 548.02 423.91 546.27 418.83 547.30"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 443.8531 561.5490
   A 26.94 19.89 -17.5 0 0 412.1790 550.6806
   A 26.94 19.89 -17.5 0 0 392.4669 577.7510
   A 26.94 19.89 -17.5 0 0 424.1410 588.6194
   A 26.94 19.89 -17.5 0 0 443.8531 561.5490"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 401.22 570.11
   A 0.65 0.65 0.0 0 0 401.92 570.85
   L 414.89 569.72
@@ -2700,8 +3434,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 401.98 568.09
   A 0.65 0.65 0.0 0 0 401.43 568.64
   L 401.22 570.11"
-/>
-<path stroke="#7f7d7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7d7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.50 608.84
   A 2.51 2.05 -70.4 0 0 627.94 607.36
   Q 633.11 596.23 636.13 586.90
@@ -2710,8 +3447,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 628.02 576.94 627.24 579.24
   Q 624.48 587.39 622.33 596.07
   C 621.37 599.92 620.25 607.75 625.50 608.84"
-/>
-<path stroke="#e3c234" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3c234"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 70.86 656.24
   A 0.67 0.66 74.1 0 0 70.25 657.34
   C 73.75 661.22 78.63 665.43 83.71 668.66
@@ -2724,8 +3464,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 117.73 680.00 103.89 673.48 92.20 668.29
   Q 84.71 664.97 71.59 656.60
   Q 71.07 656.28 70.86 656.24"
-/>
-<path stroke="#e3c234" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3c234"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 629.23 799.82
   A 2.27 2.25 46.1 0 0 630.92 799.86
   Q 634.75 798.44 638.88 796.38
@@ -2755,9 +3498,11 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 632.84 791.08 621.20 795.36
   A 0.52 0.52 0.0 0 0 621.17 796.33
   L 629.23 799.82"
-/>
-</g>
-<path fill="#141312" d="
+        />
+      </g>
+      <path
+        fill="#141312"
+        d="
   M 848.86 248.47
   Q 849.69 240.71 851.04 236.01
   Q 854.50 224.03 859.14 215.63
@@ -4130,8 +4875,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 955.32 641.69 955.50 640.84
   A 0.16 0.16 0.0 0 0 955.23 640.70
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 622.78 193.54
   A 0.30 0.29 -23.0 0 1 622.57 194.06
   Q 614.29 193.49 606.02 194.57
@@ -4154,8 +4901,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 26.45 20.45 -65.5 0 0 556.5687 227.1805
   A 26.45 20.45 -65.5 0 0 548.9286 194.6315
   Z"
-/>
-<path fill="#141312" d="
+      />
+      <path
+        fill="#141312"
+        d="
   M 548.9286 194.6315
   A 26.45 20.45 -65.5 0 1 556.5687 227.1805
   A 26.45 20.45 -65.5 0 1 526.9914 242.7685
@@ -4187,8 +4936,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 528.66 220.98 523.48 223.87 523.03 226.61
   A 0.64 0.64 0.0 0 0 523.73 227.35
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 757.40 235.17
   Q 750.82 234.82 743.35 235.90
   C 716.59 239.78 713.03 274.13 710.28 295.31
@@ -4209,8 +4960,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 30.93 25.28 -69.5 0 0 696.7591 268.6832
   A 30.93 25.28 -69.5 0 0 683.9119 230.8587
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 630.75 257.36
   Q 631.73 245.39 621.14 239.85
   Q 614.94 236.60 608.07 238.59
@@ -4228,8 +4981,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 631.15 257.85
   A 0.45 0.45 0.0 0 1 630.75 257.36
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 523.73 227.35
   A 0.64 0.64 0.0 0 1 523.03 226.61
   C 523.48 223.87 528.66 220.98 532.64 218.24
@@ -4255,8 +5010,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 531.59 223.32 527.52 226.00
   Q 525.80 227.13 523.73 227.35
   Z"
-/>
-<path fill="#f9d541" d="
+      />
+      <path
+        fill="#f9d541"
+        d="
   M 885.67 267.56
   A 0.29 0.28 -58.6 0 1 885.15 267.69
   Q 876.45 254.75 861.26 251.26
@@ -4268,8 +5025,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 897.51 225.74 895.35 229.56 893.30 235.35
   Q 887.86 250.70 885.67 267.56
   Z"
-/>
-<path fill="#f9d541" d="
+      />
+      <path
+        fill="#f9d541"
+        d="
   M 893.86 316.88
   C 893.59 310.04 892.96 304.27 893.34 297.37
   Q 894.87 269.63 904.10 242.74
@@ -4280,8 +5039,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 911.17 279.53 902.96 298.31 894.50 317.00
   A 0.34 0.33 -34.2 0 1 893.86 316.88
   Z"
-/>
-<path fill="#141312" d="
+      />
+      <path
+        fill="#141312"
+        d="
   M 683.9119 230.8587
   A 30.93 25.28 -69.5 0 1 696.7591 268.6832
   A 30.93 25.28 -69.5 0 1 662.2481 288.8013
@@ -4313,8 +5074,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 662.92 270.06 670.26 264.01
   A 0.87 0.87 0.0 0 1 671.54 264.21
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 671.54 264.21
   A 0.87 0.87 0.0 0 0 670.26 264.01
   Q 662.92 270.06 660.07 272.06
@@ -4340,8 +5103,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.91 1.90 -23.3 0 1 678.57 275.20
   L 671.54 264.21
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 622.16 260.94
   Q 623.65 251.50 616.20 247.65
   A 3.48 3.48 0.0 0 0 615.21 247.32
@@ -4358,8 +5123,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 620.71 247.87 623.24 252.87 623.49 257.75
   Q 623.58 259.65 622.16 260.94
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 908.82 402.72
   C 899.11 395.03 886.60 403.57 879.56 410.82
   Q 868.47 422.24 859.28 438.53
@@ -4541,8 +5308,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 641.67 565.52 625.58 558.90 612.11 566.75
   C 598.17 574.87 593.51 593.55 602.08 607.31
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 622.16 260.94
   Q 621.60 262.35 619.22 263.12
   A 0.49 0.48 -15.5 0 1 618.60 262.77
@@ -4555,8 +5324,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.48 3.48 0.0 0 1 616.20 247.65
   Q 623.65 251.50 622.16 260.94
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 496.02 250.61
   Q 503.29 259.72 517.29 277.47
   Q 527.43 290.31 544.45 307.80
@@ -4569,8 +5340,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 492.56 262.84 490.71 256.79 493.87 250.82
   A 1.29 1.29 0.0 0 1 496.02 250.61
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 530.08 280.66
   Q 534.12 279.24 539.65 277.88
   C 551.21 275.05 562.82 271.43 571.79 268.03
@@ -4584,8 +5357,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 531.60 282.65 529.96 281.36
   A 0.41 0.41 0.0 0 1 530.08 280.66
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 826.93 257.28
   A 0.14 0.14 0.0 0 1 827.05 257.06
   Q 844.07 258.65 861.23 263.31
@@ -4606,8 +5381,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 848.11 261.11 833.74 258.78
   Q 832.60 258.59 832.03 258.73
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 832.03 258.73
   Q 832.60 258.59 833.74 258.78
   Q 848.11 261.11 861.60 264.66
@@ -4619,8 +5396,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 835.57 261.97 831.89 259.53
   A 0.44 0.44 0.0 0 1 832.03 258.73
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 805.35 270.78
   Q 806.42 277.66 804.36 284.70
   C 804.10 285.59 804.11 286.81 803.96 287.73
@@ -4659,8 +5438,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 791.04 338.85 797.46 315.20 801.17 296.19
   Q 802.35 290.13 805.35 270.78
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 871.21 286.81
   Q 872.16 288.00 873.74 287.85
   A 0.56 0.55 -8.6 0 1 874.34 288.29
@@ -4689,8 +5470,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 840.99 283.00 851.38 287.87
   Q 861.43 292.57 871.21 286.81
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 628.65 270.62
   L 619.39 275.77
   A 1.79 1.75 -67.4 0 1 618.99 275.94
@@ -4727,8 +5510,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.20 0.19 -23.2 0 1 629.31 265.68
   L 628.65 270.62
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 628.65 270.62
   Q 628.97 271.51 628.67 272.82
   Q 628.16 272.60 627.85 272.78
@@ -4747,8 +5532,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.79 1.75 -67.4 0 0 619.39 275.77
   L 628.65 270.62
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 496.98 283.71
   L 484.29 285.66
   A 0.16 0.16 0.0 0 1 484.13 285.42
@@ -4758,8 +5545,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 497.15 283.30
   A 0.26 0.26 0.0 0 1 496.98 283.71
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 761.52 299.60
   Q 767.06 290.10 759.13 283.32
   C 756.72 281.26 750.37 281.91 747.31 282.30
@@ -4780,8 +5569,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 765.59 293.80
   A 0.07 0.07 0.0 0 0 765.67 293.75
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 765.67 293.75
   A 0.07 0.07 0.0 0 1 765.59 293.80
   L 765.29 293.76
@@ -4793,8 +5584,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.80 1.62 -47.1 0 1 766.57 289.28
   L 765.67 293.75
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 866.95 382.73
   Q 868.27 376.04 869.40 369.92
   Q 871.95 356.04 872.78 350.50
@@ -4808,8 +5601,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 885.70 306.80 885.66 332.75
   C 885.64 351.24 880.17 369.32 866.95 382.73
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 625.68 285.20
   Q 626.13 285.43 626.80 286.47
   C 630.08 291.59 634.27 299.96 638.19 305.83
@@ -4823,8 +5618,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 620.08 292.49 623.92 285.71
   A 1.32 1.31 28.8 0 1 625.68 285.20
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 666.32 327.57
   Q 666.00 324.02 662.53 321.23
   Q 660.63 319.70 660.00 320.85
@@ -4839,8 +5636,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 688.62 322.76 673.04 326.14
   Q 669.87 326.82 666.32 327.57
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 561.84 314.54
   A 0.40 0.40 0.0 0 1 561.21 314.62
   L 542.92 296.33
@@ -4859,8 +5658,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 560.59 312.80
   A 0.35 0.35 0.0 0 0 561.14 312.73
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 477.09 303.14
   A 1.46 1.45 9.1 0 1 475.53 300.99
   L 477.74 297.16
@@ -4871,8 +5672,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.47 0.47 0.0 0 1 509.40 298.94
   Q 491.70 300.03 477.09 303.14
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 561.14 312.73
   A 0.35 0.35 0.0 0 1 560.59 312.80
   L 544.59 296.76
@@ -4882,8 +5685,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 564.40 301.51 561.94 310.85
   Q 561.70 311.78 561.14 312.73
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 531.04 320.63
   L 529.49 321.04
   Q 529.46 320.91 529.47 320.75
@@ -4902,8 +5707,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 516.15 306.35 517.94 308.05
   Q 524.52 314.31 531.04 320.63
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 529.49 321.04
   Q 526.10 321.23 523.51 319.10
   L 519.29 313.28
@@ -4916,8 +5723,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.07 0.07 0.0 0 1 529.47 320.75
   Q 529.46 320.91 529.49 321.04
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 720.70 331.98
   A 0.25 0.25 0.0 0 1 720.23 331.85
   L 720.23 323.46
@@ -4933,8 +5742,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 727.95 327.14 722.24 330.54
   Q 721.16 331.18 720.70 331.98
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 499.41 316.57
   C 492.87 323.01 488.46 329.87 482.31 337.34
   Q 473.86 347.60 466.67 361.40
@@ -4945,8 +5756,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 498.17 313.80 499.49 315.55
   A 0.78 0.77 49.8 0 1 499.41 316.57
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 472.16 315.86
   Q 470.45 317.48 468.96 319.41
   A 0.26 0.26 0.0 0 1 468.49 319.21
@@ -4957,8 +5770,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.26 0.26 0.0 0 1 475.89 312.87
   Q 473.88 314.24 472.16 315.86
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 523.51 319.10
   Q 526.10 321.23 529.49 321.04
   L 531.04 320.63
@@ -4968,8 +5783,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 512.01 318.80 511.05 316.31
   Q 516.31 319.55 523.51 319.10
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 617.81 325.55
   A 0.15 0.14 85.1 0 1 617.60 325.37
   L 620.31 318.32
@@ -4978,16 +5795,20 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.28 0.28 0.0 0 1 624.58 323.18
   Q 621.85 322.97 617.81 325.55
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 666.32 327.57
   Q 662.31 326.41 658.77 321.10
   Q 659.46 321.83 660.00 320.85
   Q 660.63 319.70 662.53 321.23
   Q 666.00 324.02 666.32 327.57
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 547.78 339.33
   C 545.19 342.71 541.90 342.31 537.95 341.35
   Q 513.90 335.55 500.52 333.04
@@ -5006,8 +5827,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 543.01 338.54 543.46 339.35
   A 1.15 1.14 -67.4 0 0 545.56 338.48
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 693.47 356.28
   Q 696.09 356.74 696.93 354.64
   Q 701.87 342.36 706.23 329.86
@@ -5026,8 +5849,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.45 1.44 -66.5 0 1 694.85 357.82
   Q 694.24 357.59 693.47 356.28
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 693.47 356.28
   Q 692.07 355.90 691.71 354.52
   Q 683.74 344.74 674.10 336.11
@@ -5039,8 +5864,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 701.87 342.36 696.93 354.64
   Q 696.09 356.74 693.47 356.28
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 605.10 351.65
   A 0.36 0.36 0.0 0 1 604.50 351.33
   C 606.28 340.04 616.58 331.62 627.37 329.19
@@ -5061,8 +5888,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 631.07 337.00
   A 0.30 0.30 0.0 0 0 631.49 337.06
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 631.49 337.06
   A 0.30 0.30 0.0 0 1 631.07 337.00
   L 629.02 334.31
@@ -5073,16 +5902,20 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.30 0.30 0.0 0 1 633.05 335.87
   L 631.49 337.06
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 545.56 338.48
   A 1.15 1.14 -67.4 0 1 543.46 339.35
   Q 543.01 338.54 542.51 336.29
   A 0.40 0.40 0.0 0 1 543.14 335.89
   Q 545.32 337.59 545.56 338.48
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 432.62 350.48
   L 432.32 349.91
   A 0.04 0.04 0.0 0 1 432.32 349.87
@@ -5096,8 +5929,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 437.53 344.97 433.09 350.53
   A 0.28 0.28 0.0 0 1 432.62 350.48
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 487.69 345.94
   A 1.73 1.72 -55.7 0 1 487.37 344.20
   Q 488.02 342.42 490.45 339.35
@@ -5111,8 +5946,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 499.69 358.73 494.77 353.50
   Q 487.94 346.23 487.69 345.94
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 666.75 371.56
   Q 666.34 371.03 666.10 370.22
   A 1.81 1.79 13.4 0 0 665.59 369.40
@@ -5144,8 +5981,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.37 0.37 0.0 0 1 668.14 371.51
   Q 667.57 371.75 666.75 371.56
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 534.78 349.61
   Q 532.30 348.13 529.50 347.87
   Q 524.55 345.98 521.99 345.75
@@ -5160,8 +5999,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.42 0.41 26.3 0 1 535.64 348.82
   Q 535.35 349.21 534.78 349.61
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 512.73 549.81
   C 513.13 549.31 515.22 548.39 516.12 547.76
   Q 529.57 538.34 540.57 529.71
@@ -5240,8 +6081,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 718.86 373.47 717.70 375.29
   A 0.76 0.75 -50.1 0 0 717.77 376.20
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 584.80 370.07
   Q 580.12 370.98 576.07 370.64
   Q 572.68 370.36 570.20 368.29
@@ -5257,8 +6100,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 595.80 353.46 593.56 359.84
   Q 590.87 367.52 584.80 370.07
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 666.75 371.56
   Q 664.85 371.96 663.17 371.75
   Q 664.30 370.34 660.40 371.30
@@ -5278,8 +6123,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.81 1.79 13.4 0 1 666.10 370.22
   Q 666.34 371.03 666.75 371.56
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 717.70 375.29
   Q 718.86 373.47 720.10 372.41
   A 2.78 2.73 -5.2 0 0 720.67 371.74
@@ -5300,8 +6147,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 719.52 378.12 717.77 376.20
   A 0.76 0.75 -50.1 0 1 717.70 375.29
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 529.50 347.87
   L 527.79 350.99
   A 2.44 2.33 -4.1 0 1 527.00 351.86
@@ -5313,8 +6162,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 518.72 345.45 521.99 345.75
   Q 524.55 345.98 529.50 347.87
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 453.23 425.90
   A 0.30 0.30 0.0 0 1 453.71 426.07
   C 455.67 434.17 457.88 445.59 468.75 444.07
@@ -5347,8 +6198,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.82 2.82 0.0 0 1 429.15 444.77
   L 453.23 425.90
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 529.50 347.87
   Q 532.30 348.13 534.78 349.61
   Q 529.75 355.15 523.41 359.33
@@ -5362,8 +6215,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.44 2.33 -4.1 0 0 527.79 350.99
   L 529.50 347.87
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 492.18 368.63
   Q 492.72 367.54 490.65 366.63
   Q 489.68 366.21 487.91 365.99
@@ -5374,8 +6229,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.79 0.79 0.0 0 1 496.92 369.86
   Q 494.25 369.80 492.18 368.63
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 445.55 353.81
   C 446.63 356.11 447.63 359.92 449.33 363.34
   Q 456.97 378.72 463.75 394.76
@@ -5388,8 +6245,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 434.34 353.92 442.79 352.39
   A 2.55 2.54 -17.7 0 1 445.55 353.81
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 573.73 362.56
   Q 574.17 363.71 572.72 362.77
   C 570.66 361.45 568.48 358.52 566.59 356.62
@@ -5398,8 +6257,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.43 0.43 0.0 0 1 566.44 354.61
   L 573.73 362.56
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 871.52 394.76
   A 0.83 0.82 31.1 0 1 871.18 393.40
   Q 885.54 378.66 891.35 359.44
@@ -5414,8 +6275,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 877.94 401.74 872.49 395.55
   Q 871.89 394.88 871.52 394.76
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 565.47 356.25
   Q 565.87 356.76 566.59 356.62
   Q 565.44 360.75 566.35 363.14
@@ -5425,8 +6288,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 573.78 375.15 566.96 365.81
   Q 563.98 361.73 565.47 356.25
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 492.18 368.63
   L 474.92 364.40
   A 0.61 0.61 0.0 0 1 474.55 364.13
@@ -5435,8 +6300,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 489.68 366.21 490.65 366.63
   Q 492.72 367.54 492.18 368.63
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 631.43 367.59
   C 633.15 368.82 634.26 370.86 632.38 372.50
   Q 613.84 388.65 604.02 409.54
@@ -5444,8 +6311,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 586.78 411.44 588.91 405.22 591.12 398.84
   C 595.92 384.99 611.85 353.58 631.43 367.59
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 421.91 368.93
   L 425.56 365.28
   A 0.50 0.50 0.0 0 1 426.35 365.40
@@ -5455,8 +6324,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 422.18 369.58
   A 0.38 0.38 0.0 0 1 421.91 368.93
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 461.57 371.86
   Q 481.13 371.88 500.48 378.43
   A 0.65 0.65 0.0 0 1 500.73 379.51
@@ -5467,8 +6338,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 461.46 372.01
   A 0.12 0.11 -10.3 0 1 461.57 371.86
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 593.83 375.45
   A 0.37 0.37 0.0 0 1 594.30 376.00
   L 586.82 385.37
@@ -5476,8 +6349,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 586.85 381.62 587.27 380.51 589.87 378.44
   Q 593.07 375.87 593.83 375.45
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 381.29 393.41
   C 382.70 390.10 388.86 386.48 392.22 384.97
   Q 398.25 382.25 408.27 379.81
@@ -5489,8 +6364,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 384.79 391.89 383.79 392.57 381.67 393.74
   A 0.27 0.26 -3.5 0 1 381.29 393.41
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 634.93 382.20
   C 637.93 381.17 639.91 380.49 643.04 380.16
   Q 658.52 378.53 675.10 379.00
@@ -5514,8 +6391,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 682.23 386.51
   A 0.11 0.11 0.0 0 0 682.23 386.35
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 682.23 386.35
   A 0.11 0.11 0.0 0 1 682.23 386.51
   L 682.20 386.53
@@ -5526,16 +6405,20 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.11 0.11 0.0 0 1 675.54 379.56
   L 682.23 386.35
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 582.06 385.74
   Q 582.50 384.63 583.19 384.56
   A 0.66 0.61 -65.8 0 1 583.58 385.71
   Q 583.43 385.83 582.45 386.15
   A 0.32 0.31 1.7 0 1 582.06 385.74
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 734.60 398.69
   Q 733.58 398.67 732.37 396.78
   A 0.14 0.14 0.0 0 0 732.11 396.87
@@ -5550,8 +6433,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.10 0.08 -24.7 0 1 726.92 386.56
   Q 732.47 391.56 734.60 398.69
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 621.70 395.71
   L 627.03 388.33
   A 2.09 2.08 -51.2 0 1 630.09 387.99
@@ -5564,8 +6449,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 622.09 398.09 621.58 397.03
   A 1.28 1.27 50.5 0 1 621.70 395.71
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 470.84 389.69
   L 484.35 391.13
   A 0.71 0.71 0.0 0 1 484.74 392.38
@@ -5582,8 +6469,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 482.19 393.44
   A 0.37 0.36 -56.9 0 0 482.06 392.80
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 437.11 390.34
   Q 441.98 397.58 444.67 406.07
   A 0.53 0.52 87.6 0 1 444.06 406.74
@@ -5592,8 +6481,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 435.75 391.75 432.68 390.92
   L 437.11 390.34
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 416.68 403.55
   Q 422.50 402.04 428.76 403.76
   A 3.67 3.43 52.6 0 0 429.59 403.90
@@ -5608,8 +6499,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.27 0.27 0.0 0 1 446.39 407.99
   Q 432.09 405.01 416.68 403.55
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 482.19 393.44
   L 475.05 399.03
   A 0.64 0.64 0.0 0 1 474.05 398.73
@@ -5618,8 +6511,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 482.06 392.80
   A 0.37 0.36 -56.9 0 1 482.19 393.44
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 432.68 390.92
   Q 435.75 391.75 436.89 394.85
   Q 438.71 399.73 442.08 405.79
@@ -5634,8 +6529,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.32 0.31 -19.7 0 1 406.64 394.10
   L 432.68 390.92
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 586.88 392.05
   Q 586.71 393.02 586.03 394.96
   C 584.40 399.65 583.19 402.68 577.88 404.15
@@ -5646,8 +6543,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 572.81 395.07 586.40 391.60
   A 0.39 0.39 0.0 0 1 586.88 392.05
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 734.60 398.69
   Q 735.54 402.03 734.31 403.88
   Q 731.24 410.38 729.47 411.49
@@ -5663,8 +6562,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.14 0.14 0.0 0 1 732.37 396.78
   Q 733.58 398.67 734.60 398.69
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 387.56 399.60
   Q 388.06 398.97 389.30 398.26
   C 395.24 394.87 398.29 398.19 401.59 402.46
@@ -5675,8 +6576,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 400.31 420.65 387.48 401.82
   A 1.87 1.87 0.0 0 1 387.56 399.60
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 673.39 398.88
   Q 672.24 398.55 671.14 398.32
   Q 670.04 398.09 668.84 398.14
@@ -5693,8 +6596,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.34 0.33 -75.3 0 1 674.11 397.59
   L 673.39 398.88
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 673.39 398.88
   Q 669.39 406.01 663.14 411.82
   Q 660.08 409.60 658.29 405.96
@@ -5705,8 +6610,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 670.04 398.09 671.14 398.32
   Q 672.24 398.55 673.39 398.88
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 705.90 404.13
   Q 704.39 405.99 704.84 407.27
   Q 706.39 411.69 711.83 414.78
@@ -5720,8 +6627,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.73 0.73 0.0 0 1 703.61 402.17
   Q 704.58 402.56 705.90 404.13
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 588.84 424.66
   Q 588.61 424.40 589.03 424.30
   A 0.41 0.40 68.8 0 1 589.50 424.51
@@ -5743,8 +6652,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 612.81 425.44 590.50 426.20
   Q 589.13 426.25 588.84 424.66
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 615.50 407.24
   Q 617.07 406.71 618.24 407.72
   C 624.48 413.13 628.53 418.87 632.75 425.36
@@ -5764,8 +6675,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 614.32 411.66 614.42 408.95
   Q 614.45 407.93 615.50 407.24
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 783.73 603.29
   Q 783.60 602.75 783.71 602.25
   L 784.85 601.73
@@ -5807,8 +6720,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.08 1.07 54.8 0 1 873.84 552.80
   C 847.68 575.05 815.91 591.35 783.73 603.29
   Z"
-/>
-<path fill="#678ea0" d="
+      />
+      <path
+        fill="#678ea0"
+        d="
   M 784.85 601.73
   C 778.39 588.08 771.60 574.68 765.95 560.65
   Q 766.00 560.63 766.05 560.60
@@ -5835,8 +6750,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 862.99 560.25 853.07 567.57 842.19 574.05
   Q 814.74 590.41 784.85 601.73
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 614.42 408.95
   Q 614.32 411.66 611.71 413.96
   A 2.00 1.98 79.9 0 0 611.20 414.70
@@ -5867,8 +6784,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.04 3.00 80.2 0 0 609.19 416.39
   Q 611.26 412.47 614.42 408.95
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 416.30 410.44
   A 0.11 0.10 -8.5 0 1 416.41 410.30
   Q 433.18 411.40 448.65 417.10
@@ -5879,8 +6798,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.51 0.50 85.0 0 1 420.14 419.79
   L 416.30 410.44
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 336.06 428.70
   C 336.48 423.70 347.44 419.04 351.58 417.83
   C 362.63 414.60 372.65 413.29 384.19 412.17
@@ -5891,8 +6812,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 342.38 426.42 336.43 428.97
   A 0.27 0.27 0.0 0 1 336.06 428.70
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 546.75 415.55
   Q 542.19 417.85 545.33 420.89
   Q 537.33 429.15 528.36 435.37
@@ -6004,8 +6927,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 296.81 471.61 281.37 479.95 274.00 488.77
   C 269.18 494.55 267.11 503.75 273.04 509.69
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 562.77 424.24
   C 561.56 422.44 559.73 418.92 562.01 417.21
   C 564.70 415.19 570.06 413.44 572.60 416.53
@@ -6018,14 +6943,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 592.98 472.78 580.80 452.68
   Q 571.87 437.94 562.77 424.24
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 546.75 415.55
   Q 547.93 418.41 545.33 420.89
   Q 542.19 417.85 546.75 415.55
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 543.97 432.82
   L 553.88 425.06
   A 0.58 0.58 0.0 0 1 554.73 425.23
@@ -6034,8 +6963,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 545.54 433.11 544.10 433.18
   A 0.20 0.20 0.0 0 1 543.97 432.82
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 397.19 449.95
   Q 397.88 449.44 397.49 448.81
   Q 398.31 449.00 398.86 448.88
@@ -6066,8 +6997,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.42 0.42 0.0 0 1 400.59 450.40
   L 397.19 449.95
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 432.48 431.26
   Q 429.37 429.74 425.88 429.50
   A 0.39 0.39 0.0 0 0 425.46 429.96
@@ -6082,8 +7015,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 5.20 5.16 -23.4 0 1 432.50 429.91
   Q 433.55 430.47 432.48 431.26
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 397.49 448.81
   L 395.90 448.21
   Q 394.42 439.68 391.66 432.34
@@ -6102,8 +7037,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.67 0.67 0.0 0 1 398.86 448.88
   Q 398.31 449.00 397.49 448.81
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 432.48 431.26
   Q 431.52 432.92 430.43 433.58
   Q 429.17 433.34 427.17 434.52
@@ -6112,8 +7049,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.39 0.39 0.0 0 1 425.88 429.50
   Q 429.37 429.74 432.48 431.26
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 639.05 435.00
   Q 637.29 436.15 634.59 436.44
   A 0.45 0.45 0.0 0 0 634.19 436.95
@@ -6143,8 +7082,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.40 0.40 0.0 0 0 600.86 440.64
   Q 601.11 440.10 601.67 439.90
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 601.67 439.90
   Q 601.11 440.10 600.86 440.64
   A 0.40 0.40 0.0 0 1 600.16 440.69
@@ -6155,8 +7096,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 600.74 437.47 601.90 439.14
   A 0.50 0.50 0.0 0 1 601.67 439.90
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 362.91 474.88
   A 0.96 0.96 0.0 0 1 361.48 475.87
   L 353.92 471.51
@@ -6167,8 +7110,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 5.32 5.31 -32.6 0 1 347.53 436.88
   C 356.12 447.20 360.81 462.11 362.91 474.88
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 640.35 435.11
   Q 640.10 437.62 639.51 438.21
   Q 633.95 443.66 632.76 444.84
@@ -6180,8 +7125,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 637.29 436.15 639.05 435.00
   Q 639.53 434.88 640.35 435.11
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 505.72 458.57
   C 508.49 451.86 516.68 447.51 523.11 445.55
   Q 542.48 439.67 561.82 437.39
@@ -6192,8 +7139,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 512.45 456.33 506.09 458.94
   A 0.28 0.28 0.0 0 1 505.72 458.57
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 395.90 448.21
   L 397.49 448.81
   Q 397.88 449.44 397.19 449.95
@@ -6204,8 +7153,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 368.47 441.65 371.50 442.25
   Q 380.14 443.95 395.90 448.21
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 377.94 451.71
   Q 384.74 453.54 391.92 456.72
   A 0.56 0.56 0.0 0 1 392.04 457.68
@@ -6218,8 +7169,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.56 0.56 0.0 0 1 363.32 449.01
   Q 371.13 449.87 377.94 451.71
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 341.64 463.20
   L 318.20 453.06
   A 0.25 0.24 56.2 0 1 318.29 452.59
@@ -6230,8 +7183,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 339.83 457.12 342.02 462.84
   A 0.28 0.28 0.0 0 1 341.64 463.20
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 624.45 453.25
   L 612.75 464.96
   A 0.82 0.82 0.0 0 1 611.43 464.73
@@ -6248,8 +7203,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 617.69 459.43 621.59 454.80
   A 0.56 0.55 -65.8 0 0 621.25 453.89
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 621.25 453.89
   A 0.56 0.55 -65.8 0 1 621.59 454.80
   Q 617.69 459.43 612.66 462.98
@@ -6258,8 +7215,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.86 0.86 0.0 0 1 607.53 451.94
   L 621.25 453.89
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 286.27 457.58
   C 288.65 450.32 295.26 451.59 301.56 453.56
   Q 307.10 455.29 316.21 459.34
@@ -6272,8 +7231,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 287.30 459.40 286.54 458.67
   A 1.07 1.07 0.0 0 1 286.27 457.58
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 908.3793 452.9333
   A 52.90 30.93 -88.3 0 1 937.7264 506.7276
   A 52.90 30.93 -88.3 0 1 905.2407 558.6867
@@ -6324,8 +7285,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 935.47 514.09
   A 0.30 0.30 0.0 0 0 935.12 514.32
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 580.46 474.91
   Q 580.61 474.75 580.78 474.69
   A 0.23 0.22 62.4 0 0 580.88 474.35
@@ -6360,8 +7323,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.46 0.46 0.0 0 1 585.16 476.06
   L 580.46 474.91
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 891.56 465.68
   A 0.17 0.17 0.0 0 1 891.27 465.59
   L 891.02 464.25
@@ -6380,8 +7345,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 920.54 461.96 914.69 457.28 908.21 456.95
   C 902.59 456.66 895.47 461.73 891.56 465.68
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 580.71 474.09
   Q 580.11 473.88 579.73 473.49
   Q 578.57 469.53 576.79 466.97
@@ -6401,8 +7368,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.53 0.53 0.0 0 1 582.41 474.11
   L 580.71 474.09
   Z"
-/>
-<path fill="#141312" d="
+      />
+      <path
+        fill="#141312"
+        d="
   M 908.4819 458.8231
   A 46.86 26.73 -88.2 0 1 933.7268 506.4996
   A 46.86 26.73 -88.2 0 1 905.5381 552.4969
@@ -6466,8 +7435,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 906.23 501.23 905.79 501.42
   Q 905.51 501.54 905.30 500.99
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 390.74 512.87
   Q 391.48 510.65 392.14 508.20
   C 394.81 498.23 392.45 487.92 381.26 485.10
@@ -6487,8 +7458,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 392.10 511.95 391.89 512.64 391.14 513.17
   A 0.26 0.26 0.0 0 1 390.74 512.87
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 512.62 466.74
   A 1.35 1.34 58.7 0 1 513.04 464.99
   C 516.58 462.58 522.04 461.37 525.53 464.79
@@ -6502,8 +7475,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.82 0.47 66.2 0 1 513.61 468.54
   L 512.62 466.74
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 579.73 473.49
   Q 580.11 473.88 580.71 474.09
   L 580.88 474.35
@@ -6519,8 +7494,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 5.00 4.49 55.2 0 1 573.43 472.33
   Q 576.55 473.34 579.73 473.49
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 504.74 470.43
   Q 505.98 472.76 506.13 473.05
   A 0.43 0.42 -17.9 0 1 505.81 473.67
@@ -6533,8 +7510,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.43 0.42 -38.0 0 1 503.34 467.81
   Q 503.51 468.10 504.74 470.43
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 401.58 517.66
   L 401.10 521.00
   A 1.68 1.66 -22.1 0 1 400.74 521.84
@@ -6590,8 +7569,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 390.37 522.51 395.49 520.06 401.17 517.36
   A 0.29 0.29 0.0 0 1 401.58 517.66
   Z"
-/>
-<path fill="#678ea0" d="
+      />
+      <path
+        fill="#678ea0"
+        d="
   M 908.77 501.18
   Q 908.82 502.82 908.87 504.24
   Q 908.90 504.89 909.55 504.87
@@ -6636,8 +7617,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 907.79 497.52 907.44 500.01 907.93 501.08
   Q 908.33 501.95 908.77 501.18
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 910.18 504.47
   Q 909.83 504.87 909.55 504.87
   Q 908.90 504.89 908.87 504.24
@@ -6648,8 +7631,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 919.00 477.54 918.32 479.96
   Q 914.82 492.41 910.18 504.47
   Z"
-/>
-<path fill="#141312" d="
+      />
+      <path
+        fill="#141312"
+        d="
   M 273.04 509.69
   C 267.11 503.75 269.18 494.55 274.00 488.77
   C 281.37 479.95 296.81 471.61 307.83 480.11
@@ -6677,8 +7662,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 300.70 492.63 294.64 493.93
   A 0.28 0.28 0.0 0 1 294.30 493.62
   Z"
-/>
-<path fill="#141312" d="
+      />
+      <path
+        fill="#141312"
+        d="
   M 718.1267 477.5781
   A 31.44 26.80 -91.3 0 1 745.6331 508.4020
   A 31.44 26.80 -91.3 0 1 719.5533 540.4419
@@ -6697,8 +7684,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 723.80 499.08 715.56 496.99 708.43 491.36
   A 0.27 0.27 0.0 0 0 708.05 491.40
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 547.00 478.63
   A 0.43 0.43 0.0 0 1 547.38 478.00
   Q 566.78 478.08 586.49 482.78
@@ -6719,8 +7708,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 587.50 485.09
   A 0.27 0.27 0.0 0 0 587.49 484.71
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 518.57 489.63
   Q 495.48 491.63 471.96 496.25
   Q 462.39 498.12 455.44 500.20
@@ -6742,8 +7733,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 516.49 487.83
   A 0.19 0.19 0.0 0 0 516.56 487.57
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 516.56 487.57
   A 0.19 0.19 0.0 0 1 516.49 487.83
   L 516.42 487.87
@@ -6754,8 +7747,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.19 0.19 0.0 0 1 512.82 480.87
   L 516.56 487.57
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 587.49 484.71
   A 0.27 0.27 0.0 0 1 587.50 485.09
   L 587.36 485.24
@@ -6766,8 +7761,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.27 0.27 0.0 0 1 586.14 483.46
   L 587.49 484.71
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 294.30 493.62
   A 0.28 0.28 0.0 0 0 294.64 493.93
   Q 300.70 492.63 307.14 493.03
@@ -6790,8 +7787,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.69 0.69 0.0 0 1 295.55 484.80
   L 294.30 493.62
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 905.30 500.99
   Q 904.66 507.21 903.52 504.58
   L 889.68 487.61
@@ -6800,8 +7799,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.95 0.95 0.0 0 1 891.96 485.22
   L 905.30 500.99
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 708.05 491.40
   A 0.27 0.27 0.0 0 1 708.43 491.36
   C 715.56 496.99 723.80 499.08 732.93 501.55
@@ -6814,8 +7815,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 725.61 507.31 717.01 506.60 709.68 503.89
   C 703.53 501.61 704.96 495.36 708.05 491.40
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 371.82 517.15
   Q 370.70 516.13 368.34 517.12
   A 3.27 3.01 -56.1 0 1 367.46 517.33
@@ -6831,8 +7834,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 384.72 497.21 383.69 505.97 380.78 511.04
   Q 377.80 516.24 371.82 517.15
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 571.01 498.63
   A 0.12 0.12 0.0 0 1 571.08 498.85
   L 561.74 506.50
@@ -6841,8 +7846,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.30 0.30 0.0 0 1 557.74 497.87
   L 571.01 498.63
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 533.56 515.45
   Q 532.56 515.31 524.68 513.51
   C 514.54 511.20 503.61 510.09 493.63 509.51
@@ -6866,8 +7873,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 528.78 507.46 525.37 502.11
   Q 523.63 499.37 520.47 499.99
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 378.00 503.02
   Q 373.59 511.08 363.44 508.63
   Q 361.91 508.27 358.10 505.16
@@ -6886,8 +7895,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 358.78 504.66 362.69 508.48 367.76 508.25
   Q 373.50 507.98 378.00 503.02
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 528.54 513.14
   Q 526.19 509.52 523.36 503.68
   Q 522.48 501.87 520.37 501.11
@@ -6898,8 +7909,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.36 0.36 0.0 0 1 531.30 513.82
   L 528.54 513.14
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 520.47 499.99
   L 520.18 500.29
   A 0.50 0.50 0.0 0 0 520.37 501.11
@@ -6912,8 +7925,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.79 0.79 0.0 0 1 490.94 501.41
   Q 505.71 499.83 520.47 499.99
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 495.41 540.71
   C 490.41 539.02 486.12 537.87 483.74 532.98
   Q 476.97 519.10 469.48 506.39
@@ -6925,8 +7940,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 496.95 537.36 496.72 539.85
   A 1.00 1.00 0.0 0 1 495.41 540.71
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 906.61 512.43
   Q 905.36 516.46 904.71 517.96
   Q 901.24 525.85 896.93 535.69
@@ -6938,8 +7955,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.53 0.53 0.0 0 1 906.79 508.33
   Q 906.18 510.59 906.61 512.43
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 448.62 516.38
   A 0.85 0.85 0.0 0 1 448.15 514.88
   Q 452.03 511.63 459.35 508.66
@@ -6949,8 +7968,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 453.02 515.09 449.63 516.11
   Q 448.72 516.38 448.62 516.38
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 912.19 508.91
   L 925.74 522.27
   A 2.41 2.39 26.8 0 1 926.43 524.33
@@ -6959,9 +7980,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 911.20 512.53
   Q 910.57 509.50 912.19 508.91
   Z"
-/>
-<ellipse fill="#b7b5b2" cx="0.00" cy="0.00" transform="translate(935.66,511.36) rotate(-88.6)" rx="2.16" ry="0.34"/>
-<path fill="#b7b5b2" d="
+      />
+      <ellipse
+        fill="#b7b5b2"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(935.66,511.36) rotate(-88.6)"
+        rx="2.16"
+        ry="0.34"
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 935.12 514.32
   A 0.30 0.30 0.0 0 1 935.47 514.09
   L 935.48 514.09
@@ -6976,8 +8006,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 932.05 529.20 933.32 522.99
   Q 934.28 518.33 935.12 514.32
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 475.16 530.18
   A 0.40 0.40 0.0 0 1 474.67 530.75
   L 454.21 522.89
@@ -6999,8 +8031,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 464.23 519.07
   A 0.54 0.54 0.0 0 0 464.23 519.93
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 497.54 517.69
   A 0.46 0.46 0.0 0 1 497.96 517.05
   C 509.78 516.86 521.96 519.63 533.58 523.63
@@ -7018,8 +8052,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 527.88 523.94 526.67 527.39
   A 0.31 0.31 0.0 0 0 527.04 527.80
   Z"
-/>
-<path fill="#928e8a" d="
+      />
+      <path
+        fill="#928e8a"
+        d="
   M 464.23 519.93
   A 0.54 0.54 0.0 0 1 464.23 519.07
   L 464.92 518.57
@@ -7031,8 +8067,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.72 2.68 4.0 0 1 468.05 525.57
   Q 466.99 521.94 464.23 519.93
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 408.61 526.73
   C 415.68 515.24 439.73 523.58 449.85 527.66
   Q 482.93 540.99 513.06 558.93
@@ -7045,16 +8083,20 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 409.40 529.56 408.55 527.78
   A 1.09 1.08 -41.9 0 1 408.61 526.73
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 527.04 527.80
   A 0.31 0.31 0.0 0 1 526.67 527.39
   Q 527.88 523.94 530.76 524.34
   A 0.54 0.54 0.0 0 1 531.15 525.14
   Q 530.08 527.04 527.04 527.80
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 843.28 683.70
   Q 843.27 680.85 842.20 677.28
   Q 839.19 667.26 834.28 659.34
@@ -7095,8 +8137,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 941.34 546.01 935.21 557.26 924.28 566.41
   A 0.50 0.50 0.0 0 0 924.38 567.25
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 924.38 567.25
   A 0.50 0.50 0.0 0 1 924.28 566.41
   C 935.21 557.26 941.34 546.01 946.02 532.71
@@ -7117,8 +8161,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 950.89 617.39 953.43 597.36 942.13 582.10
   Q 935.02 572.50 924.38 567.25
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 513.49 538.31
   A 0.31 0.31 0.0 0 1 513.64 538.85
   L 506.38 544.80
@@ -7133,8 +8179,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.67 0.56 -160.2 0 0 507.9197 538.9131
   A 1.67 0.56 -160.2 0 0 506.1587 538.8743
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 440.81 547.50
   Q 439.05 548.00 441.63 550.64
   A 1.64 1.63 -15.4 0 0 442.39 551.07
@@ -7213,9 +8261,18 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 442.01 555.52 439.78 552.62 434.92 550.29
   C 430.18 548.02 423.91 546.27 418.83 547.30
   Z"
-/>
-<ellipse fill="#806d95" cx="0.00" cy="0.00" transform="translate(507.73,539.44) rotate(-160.2)" rx="1.67" ry="0.56"/>
-<path fill="#e9e7e4" d="
+      />
+      <ellipse
+        fill="#806d95"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(507.73,539.44) rotate(-160.2)"
+        rx="1.67"
+        ry="0.56"
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 418.83 547.30
   C 423.91 546.27 430.18 548.02 434.92 550.29
   C 439.78 552.62 442.01 555.52 444.54 560.24
@@ -7233,8 +8290,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 26.94 19.89 -17.5 0 0 424.1410 588.6194
   A 26.94 19.89 -17.5 0 0 443.8531 561.5490
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 123.40 547.21
   A 0.26 0.26 0.0 0 1 123.74 547.56
   Q 122.27 550.26 122.19 553.26
@@ -7253,8 +8312,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 86.23 567.83 100.30 559.54
   Q 111.45 552.98 123.40 547.21
   Z"
-/>
-<path fill="#b7b5b2" d="
+      />
+      <path
+        fill="#b7b5b2"
+        d="
   M 440.81 547.50
   C 444.03 548.92 447.60 550.22 450.41 551.56
   Q 464.48 558.26 478.50 564.89
@@ -7268,8 +8329,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.64 1.63 -15.4 0 1 441.63 550.64
   Q 439.05 548.00 440.81 547.50
   Z"
-/>
-<path fill="#141312" d="
+      />
+      <path
+        fill="#141312"
+        d="
   M 443.8531 561.5490
   A 26.94 19.89 -17.5 0 1 424.1410 588.6194
   A 26.94 19.89 -17.5 0 1 392.4669 577.7510
@@ -7302,8 +8365,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.65 0.65 0.0 0 0 401.43 568.64
   L 401.22 570.11
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 401.22 570.11
   L 401.43 568.64
   A 0.65 0.65 0.0 0 1 401.98 568.09
@@ -7330,8 +8395,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 401.92 570.85
   A 0.65 0.65 0.0 0 1 401.22 570.11
   Z"
-/>
-<path fill="#bb3d82" d="
+      />
+      <path
+        fill="#bb3d82"
+        d="
   M 766.02 559.75
   Q 765.95 560.24 766.05 560.60
   Q 766.00 560.63 765.95 560.65
@@ -7376,8 +8443,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 682.89 610.36 704.47 594.66 727.83 581.78
   C 742.25 573.83 753.39 567.29 766.02 559.75
   Z"
-/>
-<path fill="#806d95" d="
+      />
+      <path
+        fill="#806d95"
+        d="
   M 765.95 560.65
   C 771.60 574.68 778.39 588.08 784.85 601.73
   L 783.71 602.25
@@ -7385,8 +8454,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 757.81 589.30 750.43 570.05
   L 765.95 560.65
   Z"
-/>
-<path fill="#141312" d="
+      />
+      <path
+        fill="#141312"
+        d="
   M 649.37 577.90
   C 657.06 590.27 655.89 607.63 642.90 616.24
   C 629.45 625.16 610.64 621.08 602.08 607.31
@@ -7402,8 +8473,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 624.48 587.39 622.33 596.07
   C 621.37 599.92 620.25 607.75 625.50 608.84
   Z"
-/>
-<path fill="#a3417f" d="
+      />
+      <path
+        fill="#a3417f"
+        d="
   M 750.43 570.05
   Q 757.81 589.30 767.30 607.78
   Q 757.10 611.29 747.14 614.80
@@ -7431,8 +8504,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 715.52 589.27 735.59 578.67
   C 740.51 576.07 745.53 572.98 750.43 570.05
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 625.50 608.84
   C 620.25 607.75 621.37 599.92 622.33 596.07
   Q 624.48 587.39 627.24 579.24
@@ -7442,8 +8517,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 633.11 596.23 627.94 607.36
   A 2.51 2.05 -70.4 0 1 625.50 608.84
   Z"
-/>
-<path fill="#f9d541" d="
+      />
+      <path
+        fill="#f9d541"
+        d="
   M 200.60 643.01
   A 0.22 0.22 0.0 0 1 200.71 643.40
   Q 188.43 652.66 178.32 663.53
@@ -7472,8 +8549,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 84.71 664.97 71.59 656.60
   Q 71.07 656.28 70.86 656.24
   Z"
-/>
-<path fill="#bb3d82" d="
+      />
+      <path
+        fill="#bb3d82"
+        d="
   M 766.00 617.42
   Q 765.68 618.49 768.04 617.93
   Q 768.13 618.38 768.50 618.46
@@ -7497,8 +8576,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 725.63 632.09 740.12 626.37
   Q 748.65 623.00 766.00 617.42
   Z"
-/>
-<path fill="#7d2e5d" d="
+      />
+      <path
+        fill="#7d2e5d"
+        d="
   M 843.28 683.70
   Q 843.05 683.88 842.82 683.94
   Q 842.00 682.98 840.58 683.77
@@ -7543,8 +8624,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 839.19 667.26 842.20 677.28
   Q 843.27 680.85 843.28 683.70
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 239.51 628.98
   A 0.21 0.20 -2.8 0 1 239.79 629.23
   Q 238.00 634.57 238.00 638.91
@@ -7569,8 +8652,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 189.96 663.14 196.84 657.09
   Q 216.39 639.88 239.51 628.98
   Z"
-/>
-<path fill="#f9d541" d="
+      />
+      <path
+        fill="#f9d541"
+        d="
   M 955.50 640.84
   Q 955.32 641.69 954.09 643.60
   Q 943.08 660.79 928.07 671.28
@@ -7642,8 +8727,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.52 0.52 0.0 0 0 621.17 796.33
   L 629.23 799.82
   Z"
-/>
-<path fill="#cdae26" d="
+      />
+      <path
+        fill="#cdae26"
+        d="
   M 621.20 795.36
   Q 632.84 791.08 639.09 788.29
   Q 659.81 779.05 675.14 765.87
@@ -7674,8 +8761,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 621.17 796.33
   A 0.52 0.52 0.0 0 1 621.20 795.36
   Z"
-/>
-<path fill="#cdae26" d="
+      />
+      <path
+        fill="#cdae26"
+        d="
   M 70.86 656.24
   Q 71.07 656.28 71.59 656.60
   Q 84.71 664.97 92.20 668.29
@@ -7689,16 +8778,20 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 78.63 665.43 73.75 661.22 70.25 657.34
   A 0.67 0.66 74.1 0 1 70.86 656.24
   Z"
-/>
-<path fill="#a3417f" d="
+      />
+      <path
+        fill="#a3417f"
+        d="
   M 842.82 683.94
   L 841.32 684.41
   L 840.64 684.24
   A 0.26 0.25 -52.6 0 1 840.58 683.77
   Q 842.00 682.98 842.82 683.94
   Z"
-/>
-<path fill="#f4c243" d="
+      />
+      <path
+        fill="#f4c243"
+        d="
   M 556.24 728.06
   Q 552.78 757.36 557.70 786.51
   Q 558.06 788.67 558.65 790.08
@@ -7723,8 +8816,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 545.67 720.36 546.82 720.55 548.39 721.80
   Q 552.31 724.91 556.24 728.06
   Z"
-/>
-<path fill="#d55465" d="
+      />
+      <path
+        fill="#d55465"
+        d="
   M 643.95 751.60
   Q 640.20 757.14 637.90 760.15
   Q 633.81 765.48 627.84 768.66
@@ -7737,8 +8832,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.77 0.75 -36.9 0 1 609.29 725.12
   C 621.00 735.38 630.96 744.20 643.95 751.60
   Z"
-/>
-<path fill="#dc6d53" d="
+      />
+      <path
+        fill="#dc6d53"
+        d="
   M 600.64 727.42
   Q 600.95 727.93 601.51 728.28
   Q 588.41 733.90 574.22 733.95
@@ -7754,8 +8851,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 552.78 757.36 556.24 728.06
   C 569.80 734.75 587.06 733.12 600.64 727.42
   Z"
-/>
-<path fill="#e9e7e4" d="
+      />
+      <path
+        fill="#e9e7e4"
+        d="
   M 448.20 749.43
   Q 448.70 749.60 448.76 749.80
   A 0.64 0.62 -9.7 0 1 448.17 750.61
@@ -7781,8 +8880,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 378.46 755.14 388.99 754.84
   Q 415.77 754.06 448.20 749.43
   Z"
-/>
-<path fill="#eddcaa" d="
+      />
+      <path
+        fill="#eddcaa"
+        d="
   M 481.55 742.50
   Q 481.82 743.84 478.92 744.44
   A 0.37 0.36 -19.9 0 0 478.67 744.97
@@ -7801,8 +8902,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 448.70 749.60 448.20 749.43
   L 481.55 742.50
   Z"
-/>
-<path fill="#d8d6d0" d="
+      />
+      <path
+        fill="#d8d6d0"
+        d="
   M 422.33 754.32
   Q 427.25 780.68 435.11 806.28
   A 0.71 0.71 0.0 0 0 435.76 806.78
@@ -7818,8 +8921,10 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.59 0.57 -1.1 0 1 397.83 756.11
   L 422.33 754.32
   Z"
-/>
-<path fill="#a3417f" d="
+      />
+      <path
+        fill="#a3417f"
+        d="
   M 602.60 790.15
   Q 584.69 794.21 566.51 796.51
   A 0.05 0.01 -31.7 0 1 566.48 796.52
@@ -7841,8 +8946,7 @@ export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.58 0.58 0.0 0 0 602.31 789.86
   L 602.60 790.15
   Z"
-/>
-</svg>
-
-    )
+      />
+    </svg>
+  )
 }

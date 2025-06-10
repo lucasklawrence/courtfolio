@@ -7,21 +7,30 @@ import React from 'react'
 export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1536.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.84 732.67
   Q 746.19 716.48 776.62 707.38
   Q 807.13 698.26 838.67 694.00
   Q 844.00 693.28 851.37 693.33
   Q 867.25 693.43 882.99 691.25"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 889.19 684.39
   Q 888.03 684.22 887.63 683.88
   C 862.25 662.10 844.63 631.88 835.16 599.84
   Q 833.64 594.70 831.12 583.92"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 818.20 572.71
   C 815.71 568.29 813.62 563.39 809.21 560.50
   C 804.56 557.46 800.22 560.23 796.86 563.62
@@ -37,18 +46,27 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 722.03 604.89 712.32 614.06
   Q 708.04 618.11 705.13 619.39
   C 683.39 628.96 664.53 642.15 657.80 666.22"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 554.57 719.34
   Q 548.89 704.20 538.85 691.14
   Q 511.64 655.75 469.67 639.79"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 463.26 638.11
   Q 459.22 640.10 457.62 641.12
   Q 448.05 647.25 439.78 654.95"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 389.62 669.32
   L 394.22 659.47
   A 2.17 2.15 -8.5 0 1 394.75 658.76
@@ -58,16 +76,25 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 520.64 580.75 528.11 570.35
   Q 554.38 533.76 562.96 489.23
   Q 564.61 480.63 566.06 467.62"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.02 464.23
   L 566.76 451.52"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.62 448.01
   L 565.86 431.75"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 565.01 426.63
   Q 559.55 395.83 544.92 368.59
   Q 540.11 359.62 533.39 351.79
@@ -89,16 +116,22 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 344.84 661.87 366.46 660.96
   A 0.40 0.40 0.0 0 1 366.78 661.62
   L 358.79 671.38"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 385.08 670.47
   L 389.64 659.20
   A 0.29 0.29 0.0 0 0 389.32 658.81
   Q 381.36 660.27 374.53 660.92
   C 372.10 661.15 371.34 661.97 369.91 663.91
   Q 368.52 665.79 363.25 671.73"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 370.56 319.16
   Q 373.73 318.19 377.21 315.93
   Q 393.43 305.40 405.71 289.27
@@ -111,8 +144,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 347.47 238.26 348.51 244.50
   Q 354.81 282.19 368.31 318.06
   A 1.83 1.82 71.0 0 0 370.56 319.16"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 215.69 510.41
   Q 219.16 507.67 221.01 505.51
   Q 232.26 492.32 238.35 475.35
@@ -129,8 +165,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 198.06 497.18 205.92 504.31
   Q 209.49 507.55 214.63 510.49
   A 0.97 0.96 -48.8 0 0 215.69 510.41"
-/>
-<path stroke="#f1d2c7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1d2c7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 371.19 317.74
   Q 374.59 316.29 378.12 313.87
   Q 393.27 303.44 404.21 289.46
@@ -147,8 +186,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 347.64 227.83 347.91 230.02
   Q 353.32 275.01 369.31 316.94
   A 1.42 1.41 -21.9 0 0 371.19 317.74"
-/>
-<path stroke="#f1d2c7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1d2c7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 407.59 553.60
   Q 409.43 554.81 411.51 554.72
   Q 420.86 554.31 430.74 551.92
@@ -162,8 +204,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 415.56 540.64 410.70 545.76 407.64 549.86
   Q 406.82 550.96 407.06 552.74
   A 1.22 1.22 0.0 0 0 407.59 553.60"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 455.21 565.17
   A 0.94 0.93 89.3 0 1 456.07 564.28
   Q 456.82 564.23 462.24 563.95
@@ -186,8 +231,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.90 3.90 0.0 0 0 433.59 606.61
   C 446.43 600.83 453.95 587.52 454.74 573.98
   Q 454.91 571.13 455.21 565.17"
-/>
-<path stroke="#f1d2c7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1d2c7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 215.90 508.67
   Q 219.14 505.93 221.72 502.71
   Q 232.52 489.22 237.82 473.03
@@ -202,8 +250,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 194.34 491.56 206.56 503.39
   C 208.88 505.63 211.52 507.42 214.08 508.85
   A 1.61 1.60 -50.5 0 0 215.90 508.67"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 710.52 659.65
   C 709.93 655.99 700.29 659.12 698.04 659.78
   Q 681.65 664.59 674.92 680.40
@@ -214,8 +265,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 685.50 665.83 704.03 662.58
   Q 704.64 662.47 709.13 661.62
   A 1.74 1.73 -10.0 0 0 710.52 659.65"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 710.29 695.83
   C 705.99 701.31 702.60 707.35 701.86 714.82
   A 1.87 1.86 -83.0 0 0 703.44 716.85
@@ -227,8 +281,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 729.06 684.16
   A 1.87 1.86 -20.8 0 0 726.71 683.11
   C 719.63 685.61 714.58 690.36 710.29 695.83"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 443.10 743.05
   A 1.50 1.50 0.0 0 0 444.96 741.21
   C 440.61 725.23 444.59 709.77 454.25 696.52
@@ -237,8 +294,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 450.18 694.84 448.47 697.43
   Q 435.72 716.77 439.95 738.96
   Q 440.59 742.34 443.10 743.05"
-/>
-<path stroke="#8a8885" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a8885"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 485.40 754.39
   A 1.34 1.33 -4.3 0 0 487.02 752.51
   Q 482.95 744.77 482.83 735.94
@@ -249,9 +309,11 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 484.90 711.04 483.93 712.83
   Q 474.23 730.73 481.37 749.92
   Q 482.68 753.45 485.40 754.39"
-/>
-</g>
-<path fill="#1e1e1e" d="
+        />
+      </g>
+      <path
+        fill="#1e1e1e"
+        d="
   M 718.84 732.67
   Q 746.19 716.48 776.62 707.38
   Q 807.13 698.26 838.67 694.00
@@ -501,8 +563,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 209.49 507.55 214.63 510.49
   A 0.97 0.96 -48.8 0 0 215.69 510.41
   Z"
-/>
-<path fill="#f5f1eb" d="
+      />
+      <path
+        fill="#f5f1eb"
+        d="
   M 370.56 319.16
   A 1.83 1.82 71.0 0 1 368.31 318.06
   Q 354.81 282.19 348.51 244.50
@@ -533,8 +597,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 353.32 275.01 369.31 316.94
   A 1.42 1.41 -21.9 0 0 371.19 317.74
   Z"
-/>
-<path fill="#ecb2a2" d="
+      />
+      <path
+        fill="#ecb2a2"
+        d="
   M 371.19 317.74
   A 1.42 1.41 -21.9 0 1 369.31 316.94
   Q 353.32 275.01 347.91 230.02
@@ -552,8 +618,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 393.27 303.44 378.12 313.87
   Q 374.59 316.29 371.19 317.74
   Z"
-/>
-<path fill="#f5f1eb" d="
+      />
+      <path
+        fill="#f5f1eb"
+        d="
   M 565.01 426.63
   Q 564.83 429.42 565.86 431.75
   L 566.62 448.01
@@ -646,8 +714,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 446.43 600.83 453.95 587.52 454.74 573.98
   Q 454.91 571.13 455.21 565.17
   Z"
-/>
-<path fill="#f5f1eb" d="
+      />
+      <path
+        fill="#f5f1eb"
+        d="
   M 214.63 510.49
   Q 209.49 507.55 205.92 504.31
   Q 198.06 497.18 190.20 488.32
@@ -680,8 +750,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 208.88 505.63 211.52 507.42 214.08 508.85
   A 1.61 1.60 -50.5 0 0 215.90 508.67
   Z"
-/>
-<path fill="#ecb2a2" d="
+      />
+      <path
+        fill="#ecb2a2"
+        d="
   M 215.90 508.67
   A 1.61 1.60 -50.5 0 1 214.08 508.85
   C 211.52 507.42 208.88 505.63 206.56 503.39
@@ -697,8 +769,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 232.52 489.22 221.72 502.71
   Q 219.14 505.93 215.90 508.67
   Z"
-/>
-<path fill="#f5f1eb" d="
+      />
+      <path
+        fill="#f5f1eb"
+        d="
   M 818.20 572.71
   Q 821.21 580.18 826.13 586.60
   Q 828.19 589.29 830.79 591.10
@@ -755,8 +829,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.87 1.86 -20.8 0 0 726.71 683.11
   C 719.63 685.61 714.58 690.36 710.29 695.83
   Z"
-/>
-<path fill="#ecb2a2" d="
+      />
+      <path
+        fill="#ecb2a2"
+        d="
   M 407.06 552.74
   Q 406.82 550.96 407.64 549.86
   C 410.70 545.76 415.56 540.64 418.96 535.92
@@ -771,8 +847,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 409.43 554.81 407.59 553.60
   A 1.22 1.22 0.0 0 1 407.06 552.74
   Z"
-/>
-<path fill="#1e1e1e" d="
+      />
+      <path
+        fill="#1e1e1e"
+        d="
   M 455.21 565.17
   Q 454.91 571.13 454.74 573.98
   C 453.95 587.52 446.43 600.83 433.59 606.61
@@ -796,8 +874,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 456.82 564.23 456.07 564.28
   A 0.94 0.93 89.3 0 0 455.21 565.17
   Z"
-/>
-<path fill="#f5f1eb" d="
+      />
+      <path
+        fill="#f5f1eb"
+        d="
   M 463.26 638.11
   L 469.67 639.79
   Q 511.64 655.75 538.85 691.14
@@ -835,8 +915,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 474.23 730.73 481.37 749.92
   Q 482.68 753.45 485.40 754.39
   Z"
-/>
-<path fill="#1e1e1e" d="
+      />
+      <path
+        fill="#1e1e1e"
+        d="
   M 710.52 659.65
   A 1.74 1.73 -10.0 0 1 709.13 661.62
   Q 704.64 662.47 704.03 662.58
@@ -848,8 +930,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 681.65 664.59 698.04 659.78
   C 700.29 659.12 709.93 655.99 710.52 659.65
   Z"
-/>
-<path fill="#1e1e1e" d="
+      />
+      <path
+        fill="#1e1e1e"
+        d="
   M 385.08 670.47
   L 363.25 671.73
   Q 368.52 665.79 369.91 663.91
@@ -858,8 +942,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 1 389.64 659.20
   L 385.08 670.47
   Z"
-/>
-<path fill="#1e1e1e" d="
+      />
+      <path
+        fill="#1e1e1e"
+        d="
   M 713.54 698.39
   Q 707.50 705.89 705.59 715.40
   A 1.85 1.84 -79.9 0 1 703.50 716.86
@@ -872,8 +958,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.85 1.84 -24.0 0 1 728.16 686.59
   Q 719.39 690.72 713.54 698.39
   Z"
-/>
-<path fill="#1e1e1e" d="
+      />
+      <path
+        fill="#1e1e1e"
+        d="
   M 443.10 743.05
   Q 440.59 742.34 439.95 738.96
   Q 435.72 716.77 448.47 697.43
@@ -883,8 +971,10 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 444.59 709.77 440.61 725.23 444.96 741.21
   A 1.50 1.50 0.0 0 1 443.10 743.05
   Z"
-/>
-<path fill="#1e1e1e" d="
+      />
+      <path
+        fill="#1e1e1e"
+        d="
   M 485.40 754.39
   Q 482.68 753.45 481.37 749.92
   Q 474.23 730.73 483.93 712.83
@@ -896,6 +986,7 @@ export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 482.95 744.77 487.02 752.51
   A 1.34 1.33 -4.3 0 1 485.40 754.39
   Z"
-/>
-</svg>
-  )}
+      />
+    </svg>
+  )
+}

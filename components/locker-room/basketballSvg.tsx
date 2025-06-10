@@ -4,12 +4,14 @@ import React from 'react'
  * SVG component for Mythical 5 trophy.
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
-export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#7f5e27" vector-effect="non-scaling-stroke" d="
+export const BasketballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#7f5e27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.69 447.37
   Q 365.79 444.11 392.78 430.72
   C 419.35 417.55 443.25 399.09 465.51 379.51
@@ -30,8 +32,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 351.38 369.91 342.55 407.15 336.40 442.89
   Q 335.96 445.45 336.14 446.94
   A 0.49 0.49 0.0 0 0 336.69 447.37"
-/>
-<path stroke="#7f5e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f5e27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.55 113.26
   A 0.22 0.22 0.0 0 0 435.35 112.90
   C 403.77 119.11 373.31 129.99 344.14 143.40
@@ -45,15 +50,21 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 299.26 437.89 300.86 429.17
   Q 324.72 299.92 385.65 186.64
   C 399.82 160.31 416.06 135.11 435.55 113.26"
-/>
-<path stroke="#733c19" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#733c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 860.55 506.70
   Q 890.38 500.64 919.75 492.66
   A 0.65 0.64 -9.2 0 0 920.22 492.02
   Q 917.11 405.98 877.69 329.79
   Q 863.36 302.08 845.59 276.51"
-/>
-<path stroke="#7f5e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f5e27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 845.59 276.51
   Q 833.33 259.56 826.34 250.90
   Q 809.32 229.82 789.11 211.92
@@ -86,8 +97,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 632.97 539.05 647.52 537.83
   Q 677.46 535.31 719.50 530.01
   Q 790.47 521.07 860.55 506.70"
-/>
-<path stroke="#f29940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f29940"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 845.59 276.51
   Q 845.72 277.45 845.30 277.48
   Q 844.80 277.53 844.50 277.10
@@ -132,8 +146,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 853.52 506.78 860.48 505.60
   A 0.27 0.27 0.0 0 1 860.79 505.95
   L 860.55 506.70"
-/>
-<path stroke="#7f5e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f5e27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 172.58 286.16
   C 171.53 287.08 170.76 289.32 169.75 290.91
   Q 116.12 375.73 107.32 475.65
@@ -150,8 +167,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 183.97 398.85 169.42 343.31 172.23 291.25
   Q 172.34 289.10 173.11 286.49
   A 0.33 0.32 -13.0 0 0 172.58 286.16"
-/>
-<path stroke="#7f5e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f5e27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 848.94 546.42
   Q 801.47 555.65 758.14 561.83
   Q 706.36 569.22 655.74 573.98
@@ -171,8 +191,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 350.64 628.96 369.49 634.54
   C 433.30 653.44 486.24 697.51 538.53 737.46
   C 567.16 759.33 594.93 777.75 626.74 794.49"
-/>
-<path stroke="#733c19" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#733c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 626.74 794.49
   C 654.10 808.95 684.06 820.60 714.20 826.80
   C 721.03 828.21 729.97 829.35 735.44 829.82
@@ -186,8 +209,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 885.22 538.85 849.98 546.04
   Q 849.80 546.08 849.48 546.25
   Q 849.22 546.39 848.94 546.42"
-/>
-<path stroke="#f29940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f29940"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 626.74 794.49
   L 627.05 794.33
   A 0.40 0.40 0.0 0 0 627.06 793.63
@@ -211,8 +237,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 572.93 581.45 585.53 580.66
   Q 669.65 575.42 755.53 563.29
   Q 796.61 557.48 845.60 548.23"
-/>
-<path stroke="#d86a28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d86a28"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 845.60 548.23
   Q 839.94 566.33 833.37 583.13
   Q 828.70 595.11 823.31 606.07
@@ -239,18 +268,27 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 918.67 535.93 919.19 531.67
   A 0.88 0.88 0.0 0 0 918.08 530.71
   Q 884.02 540.18 849.20 547.38"
-/>
-<path stroke="#f29940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f29940"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 849.20 547.38
   Q 849.34 547.15 849.36 546.93
   Q 849.38 546.75 849.23 546.62
   Q 849.11 546.53 848.94 546.42"
-/>
-<path stroke="#e48c36" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e48c36"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 845.60 548.23
   L 849.20 547.38"
-/>
-<path stroke="#7f5e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f5e27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 171.97 734.03
   C 173.79 725.61 176.17 717.85 180.08 709.87
   C 193.11 683.32 214.98 661.38 240.58 646.80
@@ -265,8 +303,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 108.94 582.44 123.93 632.84
   Q 140.08 687.13 171.42 734.13
   A 0.30 0.30 0.0 0 0 171.97 734.03"
-/>
-<path stroke="#7f5e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f5e27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 410.19 903.67
   Q 398.36 893.98 387.48 881.02
   C 360.64 849.06 340.07 810.72 325.39 771.15
@@ -279,8 +320,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 271.21 842.49 297.18 858.08
   Q 350.06 889.82 409.94 904.17
   A 0.29 0.29 0.0 0 0 410.19 903.67"
-/>
-<path stroke="#7f5e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f5e27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 719.68 861.61
   A 0.26 0.26 0.0 0 0 719.44 861.28
   Q 709.13 860.65 697.01 857.96
@@ -300,8 +344,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 691.45 879.09 719.55 861.97
   A 0.13 0.13 0.0 0 0 719.61 861.88
   L 719.68 861.61"
-/>
-<path stroke="#f29940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f29940"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 746.69 179.25
   Q 744.31 177.58 741.56 175.82
   Q 729.20 167.93 720.62 162.91
@@ -332,8 +379,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 734.47 183.05 737.58 182.26
   Q 746.36 180.01 746.64 179.87
   A 0.36 0.36 0.0 0 0 746.69 179.25"
-/>
-<path stroke="#f29940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f29940"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 431.22 114.95
   C 402.28 120.70 374.33 130.85 347.23 143.06
   Q 289.96 168.86 243.86 207.64
@@ -353,8 +403,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 390.81 173.20 407.28 148.43
   C 414.98 136.86 423.20 125.91 431.76 115.87
   A 0.57 0.56 14.7 0 0 431.22 114.95"
-/>
-<path stroke="#d86a28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d86a28"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 861.77 504.05
   A 0.84 0.84 0.0 0 0 862.76 505.05
   Q 891.23 499.01 918.50 491.81
@@ -372,8 +425,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 871.03 413.28 871.32 421.59 870.75 430.76
   Q 869.22 454.90 866.05 479.51
   Q 864.51 491.45 861.77 504.05"
-/>
-<path stroke="#f29940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f29940"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 169.65 293.05
   Q 155.64 314.74 142.62 343.87
   Q 115.92 403.59 109.52 465.81
@@ -399,8 +455,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 170.72 308.81 170.41 302.95 170.68 296.32
   Q 170.75 294.64 170.11 293.09
   A 0.26 0.26 0.0 0 0 169.65 293.05"
-/>
-<path stroke="#f29940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f29940"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 108.24 532.77
   A 0.55 0.55 0.0 0 0 107.42 533.24
   C 107.34 538.74 108.19 543.88 108.63 548.90
@@ -425,8 +484,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 190.01 563.43 169.28 557.64
   Q 146.54 551.29 126.88 542.63
   C 120.43 539.79 115.90 537.09 108.24 532.77"
-/>
-<path stroke="#e48c36" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e48c36"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 208.90 761.72
   C 209.53 769.55 210.69 777.88 213.74 785.09
   A 3.86 3.75 15.6 0 0 214.23 785.93
@@ -440,8 +502,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 387.63 883.95 375.30 867.27
   Q 359.05 845.29 346.42 821.06
   Q 346.18 820.59 345.17 819.55"
-/>
-<path stroke="#f29940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f29940"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 345.17 819.55
   Q 345.17 819.02 344.93 818.55
   Q 332.15 793.56 323.66 769.89
@@ -452,8 +517,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 232.43 695.54 226.21 703.46
   Q 212.48 720.97 209.07 743.01
   Q 207.89 750.66 208.90 761.72"
-/>
-<path stroke="#d86a28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d86a28"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 345.17 819.55
   Q 344.19 819.72 343.62 819.62
   Q 333.43 817.81 324.23 815.71
@@ -462,8 +530,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 234.91 777.95 209.86 761.09
   A 0.57 0.57 0.0 0 0 209.00 761.39
   L 208.90 761.72"
-/>
-<path stroke="#e48c36" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e48c36"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 399.77 837.07
   Q 412.68 856.62 422.77 867.48
   Q 436.08 881.83 443.33 887.91
@@ -482,8 +553,11 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 644.93 844.60 610.36 826.70
   Q 594.40 818.43 586.20 813.80
   Q 584.79 813.00 583.88 812.98"
-/>
-<path stroke="#f29940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f29940"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 583.88 812.98
   Q 583.00 811.99 582.38 811.63
   Q 563.02 800.69 545.40 788.59
@@ -499,16 +573,21 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 339.13 683.98 342.92 700.22
   C 349.26 727.47 357.00 752.98 367.98 777.97
   Q 381.63 809.04 399.77 837.07"
-/>
-<path stroke="#d86a28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d86a28"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 583.88 812.98
   Q 571.31 818.52 554.32 823.29
   Q 510.19 835.66 467.01 837.83
   Q 435.93 839.40 419.00 838.01
   Q 406.02 836.95 399.77 837.07"
-/>
-</g>
-<path fill="#000000" d="
+        />
+      </g>
+      <path
+        fill="#000000"
+        d="
   M 100.92 332.39
   Q 101.82 329.94 105.00 323.00
   Q 110.02 312.07 117.06 299.03
@@ -756,8 +835,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.13 0.13 0.0 0 0 719.61 861.88
   L 719.68 861.61
   Z"
-/>
-<path fill="#febb4d" d="
+      />
+      <path
+        fill="#febb4d"
+        d="
   M 336.14 446.94
   Q 335.96 445.45 336.40 442.89
   C 342.55 407.15 351.38 369.91 363.10 334.37
@@ -810,8 +891,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 746.36 180.01 746.64 179.87
   A 0.36 0.36 0.0 0 0 746.69 179.25
   Z"
-/>
-<path fill="#e67732" d="
+      />
+      <path
+        fill="#e67732"
+        d="
   M 746.64 179.87
   Q 746.36 180.01 737.58 182.26
   Q 734.47 183.05 728.60 185.01
@@ -843,8 +926,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 744.31 177.58 746.69 179.25
   A 0.36 0.36 0.0 0 1 746.64 179.87
   Z"
-/>
-<path fill="#febb4d" d="
+      />
+      <path
+        fill="#febb4d"
+        d="
   M 435.55 113.26
   C 416.06 135.11 399.82 160.31 385.65 186.64
   Q 324.72 299.92 300.86 429.17
@@ -879,8 +964,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 414.98 136.86 423.20 125.91 431.76 115.87
   A 0.57 0.56 14.7 0 0 431.22 114.95
   Z"
-/>
-<path fill="#e67732" d="
+      />
+      <path
+        fill="#e67732"
+        d="
   M 431.22 114.95
   A 0.57 0.56 14.7 0 1 431.76 115.87
   C 423.20 125.91 414.98 136.86 407.28 148.43
@@ -901,8 +988,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 289.96 168.86 347.23 143.06
   C 374.33 130.85 402.28 120.70 431.22 114.95
   Z"
-/>
-<path fill="#febb4d" d="
+      />
+      <path
+        fill="#febb4d"
+        d="
   M 845.59 276.51
   Q 845.72 277.45 845.30 277.48
   Q 844.80 277.53 844.50 277.10
@@ -979,8 +1068,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 809.32 229.82 826.34 250.90
   Q 833.33 259.56 845.59 276.51
   Z"
-/>
-<path fill="#e67732" d="
+      />
+      <path
+        fill="#e67732"
+        d="
   M 845.59 276.51
   Q 863.36 302.08 877.69 329.79
   Q 917.11 405.98 920.22 492.02
@@ -1048,8 +1139,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 869.22 454.90 866.05 479.51
   Q 864.51 491.45 861.77 504.05
   Z"
-/>
-<path fill="#febb4d" d="
+      />
+      <path
+        fill="#febb4d"
+        d="
   M 172.58 286.16
   A 0.33 0.32 -13.0 0 1 173.11 286.49
   Q 172.34 289.10 172.23 291.25
@@ -1093,8 +1186,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 170.75 294.64 170.11 293.09
   A 0.26 0.26 0.0 0 0 169.65 293.05
   Z"
-/>
-<path fill="#c95c1e" d="
+      />
+      <path
+        fill="#c95c1e"
+        d="
   M 861.77 504.05
   Q 864.51 491.45 866.05 479.51
   Q 869.22 454.90 870.75 430.76
@@ -1113,8 +1208,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 891.23 499.01 862.76 505.05
   A 0.84 0.84 0.0 0 1 861.77 504.05
   Z"
-/>
-<path fill="#e67732" d="
+      />
+      <path
+        fill="#e67732"
+        d="
   M 170.11 293.09
   Q 170.75 294.64 170.68 296.32
   C 170.41 302.95 170.72 308.81 171.24 319.98
@@ -1141,8 +1238,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 155.64 314.74 169.65 293.05
   A 0.26 0.26 0.0 0 1 170.11 293.09
   Z"
-/>
-<path fill="#e67732" d="
+      />
+      <path
+        fill="#e67732"
+        d="
   M 626.74 794.49
   L 627.05 794.33
   A 0.40 0.40 0.0 0 0 627.06 793.63
@@ -1207,8 +1306,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 729.97 829.35 721.03 828.21 714.20 826.80
   C 684.06 820.60 654.10 808.95 626.74 794.49
   Z"
-/>
-<path fill="#febb4d" d="
+      />
+      <path
+        fill="#febb4d"
+        d="
   M 171.97 734.03
   A 0.30 0.30 0.0 0 1 171.42 734.13
   Q 140.08 687.13 123.93 632.84
@@ -1249,8 +1350,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 146.54 551.29 126.88 542.63
   C 120.43 539.79 115.90 537.09 108.24 532.77
   Z"
-/>
-<path fill="#c95c1e" d="
+      />
+      <path
+        fill="#c95c1e"
+        d="
   M 845.60 548.23
   L 849.20 547.38
   Q 884.02 540.18 918.08 530.71
@@ -1279,8 +1382,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 828.70 595.11 833.37 583.13
   Q 839.94 566.33 845.60 548.23
   Z"
-/>
-<path fill="#e67732" d="
+      />
+      <path
+        fill="#e67732"
+        d="
   M 108.24 532.77
   C 115.90 537.09 120.43 539.79 126.88 542.63
   Q 146.54 551.29 169.28 557.64
@@ -1306,8 +1411,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 108.19 543.88 107.34 538.74 107.42 533.24
   A 0.55 0.55 0.0 0 1 108.24 532.77
   Z"
-/>
-<path fill="#febb4d" d="
+      />
+      <path
+        fill="#febb4d"
+        d="
   M 848.94 546.42
   Q 849.11 546.53 849.23 546.62
   Q 849.38 546.75 849.36 546.93
@@ -1354,8 +1461,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 706.36 569.22 758.14 561.83
   Q 801.47 555.65 848.94 546.42
   Z"
-/>
-<path fill="#febb4d" d="
+      />
+      <path
+        fill="#febb4d"
+        d="
   M 410.19 903.67
   A 0.29 0.29 0.0 0 1 409.94 904.17
   Q 350.06 889.82 297.18 858.08
@@ -1392,8 +1501,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 212.48 720.97 209.07 743.01
   Q 207.89 750.66 208.90 761.72
   Z"
-/>
-<path fill="#febb4d" d="
+      />
+      <path
+        fill="#febb4d"
+        d="
   M 719.68 861.61
   L 719.61 861.88
   A 0.13 0.13 0.0 0 1 719.55 861.97
@@ -1447,8 +1558,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 349.26 727.47 357.00 752.98 367.98 777.97
   Q 381.63 809.04 399.77 837.07
   Z"
-/>
-<path fill="#e67732" d="
+      />
+      <path
+        fill="#e67732"
+        d="
   M 345.17 819.55
   Q 344.19 819.72 343.62 819.62
   Q 333.43 817.81 324.23 815.71
@@ -1467,8 +1580,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 332.15 793.56 344.93 818.55
   Q 345.17 819.02 345.17 819.55
   Z"
-/>
-<path fill="#e67732" d="
+      />
+      <path
+        fill="#e67732"
+        d="
   M 583.88 812.98
   Q 571.31 818.52 554.32 823.29
   Q 510.19 835.66 467.01 837.83
@@ -1489,8 +1604,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 563.02 800.69 582.38 811.63
   Q 583.00 811.99 583.88 812.98
   Z"
-/>
-<path fill="#c95c1e" d="
+      />
+      <path
+        fill="#c95c1e"
+        d="
   M 345.17 819.55
   Q 346.18 820.59 346.42 821.06
   Q 359.05 845.29 375.30 867.27
@@ -1512,8 +1629,10 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 333.43 817.81 343.62 819.62
   Q 344.19 819.72 345.17 819.55
   Z"
-/>
-<path fill="#c95c1e" d="
+      />
+      <path
+        fill="#c95c1e"
+        d="
   M 583.88 812.98
   Q 584.79 813.00 586.20 813.80
   Q 594.40 818.43 610.36 826.70
@@ -1537,7 +1656,7 @@ export const BasektballSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 510.19 835.66 554.32 823.29
   Q 571.31 818.52 583.88 812.98
   Z"
-/>
-</svg>
-    )
+      />
+    </svg>
+  )
 }
