@@ -5,13 +5,13 @@ import { LockerRoomSvg } from '@/components/locker-room/LockerRoomSvg'
 import { DadJerseySVG } from '@/components/locker-room/DadJerseySvg'
 import { LockerZone } from '@/components/locker-room/LockerZone'
 import { LockerPlacardSVG } from '@/components/locker-room/LockerPlacardSvg'
-import { motion } from 'framer-motion'
 import { InteractiveLockerItem } from '@/components/locker-room/InteractiveLockerItem'
 import { QuestionJerseySVG } from '@/components/locker-room/QuestionJerseySvg'
 import { ZoeSvg } from '@/components/locker-room/Zoe'
 import { MythicalFiveTrophySvg } from '@/components/locker-room/MythicalFiveSvg'
 import { BasektballSvg } from '@/components/locker-room/basketballSvg'
 import { Melo2sSvg } from '@/components/locker-room/Melo2s'
+import { WayOfWade10sSVG } from '@/components/locker-room/WayOfWade10sSvg'
 
 export default function LockerRoomPage() {
   return (
@@ -65,6 +65,11 @@ export default function LockerRoomPage() {
             'zone-437': (
                 <LockerZone  x={150} y={800} width={150} height={180}>
                     <Melo2sSvg/>
+                </LockerZone>
+            ),
+            'zone-439': (
+                <LockerZone  x={440} y={800} width={160} height={190}>
+                    <WayOfWade10sSVG/>
                 </LockerZone>
             )
           }}
