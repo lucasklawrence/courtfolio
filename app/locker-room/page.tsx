@@ -5,6 +5,13 @@ import { LockerRoomSvg } from '@/components/locker-room/LockerRoomSvg'
 import { DadJerseySVG } from '@/components/locker-room/DadJerseySvg'
 import { LockerZone } from '@/components/locker-room/LockerZone'
 import { LockerPlacardSVG } from '@/components/locker-room/LockerPlacardSvg'
+import { motion } from 'framer-motion'
+import { InteractiveLockerItem } from '@/components/locker-room/InteractiveLockerItem'
+import { QuestionJerseySVG } from '@/components/locker-room/QuestionJerseySvg'
+import { ZoeSvg } from '@/components/locker-room/Zoe'
+import { MythicalFiveTrophySvg } from '@/components/locker-room/MythicalFiveSvg'
+import { BasektballSvg } from '@/components/locker-room/basketballSvg'
+import { Melo2sSvg } from '@/components/locker-room/Melo2s'
 
 export default function LockerRoomPage() {
   return (
@@ -18,7 +25,9 @@ export default function LockerRoomPage() {
           zoneContent={{
             'zone-342': (
               <LockerZone x={630} y={250} width={300} height={370}>
+                <InteractiveLockerItem>
                 <DadJerseySVG />
+               </InteractiveLockerItem>
               </LockerZone>
             ),
             'zone-360': (
@@ -26,6 +35,38 @@ export default function LockerRoomPage() {
                 <LockerPlacardSVG label="Wild Card" />
               </LockerZone>
             ),
+            'zone-363': (
+              <LockerZone x={1250} y={80} width={300} height={370}>
+                <LockerPlacardSVG label="Next Team" />
+              </LockerZone>
+            ),
+            'zone-361': (
+                <LockerZone x={1170} y={280} width={250} height={320}>
+  <InteractiveLockerItem>
+    <QuestionJerseySVG className="w-16 h-auto opacity-90 hover:opacity-100" />
+  </InteractiveLockerItem>
+</LockerZone>
+            ),
+            'zone-441': (
+                <LockerZone  x={670} y={790} width={250} height={320}>
+                    <ZoeSvg/>
+                </LockerZone>
+            ),
+            'zone-359': (
+                <LockerZone  x={90} y={155} width={100} height={180}>
+                    <MythicalFiveTrophySvg/>
+                </LockerZone>
+            ),
+            'zone-344': (
+                <LockerZone  x={90} y={650} width={100} height={180}>
+                    <BasektballSvg/>
+                </LockerZone>
+            ),
+            'zone-437': (
+                <LockerZone  x={150} y={800} width={150} height={180}>
+                    <Melo2sSvg/>
+                </LockerZone>
+            )
           }}
         />
       </div>
