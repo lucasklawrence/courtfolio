@@ -10,6 +10,9 @@ import { ZoneProjects } from './ZoneProjects'
 import { ZoneAbout } from './ZoneAbout'
 import { CourtZone } from './CourtZone'
 import Link from 'next/link'
+import { ZoneBioCard } from './ZoneBioCard'
+import { ZoneCareerStats } from './ZoneCareerStats'
+import { LogoSvg } from './LogoSvg'
 
 export function HomeBody() {
   const router = useRouter()
@@ -19,17 +22,27 @@ export function HomeBody() {
       <CourtSvg
         className="w-full h-full"
         onZoneClick={zoneId => {
-          if (zoneId === '106' || zoneId === '107') {
-            router.push('/about')
-          }
         }}
         zoneContent={{
+           // Player Bio Card
           'zone-106': (
-            <CourtZone x={690} y={480} width={130} height={70}>
-              <ZoneAbout />
+            <CourtZone x={350} y={110} width={380} height={160}>
+              <ZoneBioCard />
             </CourtZone>
           ),
 
+          // Stats Overview
+                    'zone-107': (
+                      <CourtZone x={800} y={110} width={280} height={160}>
+                        <ZoneCareerStats />
+                      </CourtZone>
+                    ),
+          // Logo
+'zone-108': (
+  <CourtZone x={610} y={355} width={300} height={300}>
+    <LogoSvg />
+  </CourtZone>
+),
           'zone-78': (
             <foreignObject x={610} y={940} width={320} height={70}>
               {React.createElement(
@@ -59,7 +72,7 @@ export function HomeBody() {
           ),
 
           'zone-90': (
-            <foreignObject x={110} y={225} width={230} height={500}>
+            <foreignObject x={110} y={425} width={230} height={500}>
               <div className="p-4 bg-orange-900/30 text-white text-xs font-semibold rounded-md border border-orange-400/30 shadow-sm tracking-wide space-y-1">
                 <h3 className="font-bold text-sm">🧠 Principles Lineup</h3>
                 <ul className="list-disc list-inside">
@@ -73,7 +86,7 @@ export function HomeBody() {
             </foreignObject>
           ),
           'zone-91': (
-            <foreignObject x={1175} y={225} width={230} height={500}>
+            <foreignObject x={1175} y={425} width={230} height={500}>
               <div className="p-3 bg-orange-900/30 text-white text-xs font-bold rounded-md border border-orange-300/40 shadow-sm tracking-wide">
                 <h3 className="font-bold text-center text-lg">🧰 Tech Stack Lineup</h3>
                 <ul className="list-disc list-inside text-xs">

@@ -8,7 +8,9 @@ import { CourtContainer } from '@/components/CourtContainer'
 import { CourtZone } from '@/components/CourtZone'
 import { ZoneFantasy } from '@/components/ZoneFantasy'
 import { ZoneBars } from '@/components/ZoneBars'
-import { ZoneFantasySafari } from '@/components/ZoneFantasySafari'
+import { ZoneBioCard } from '@/components/ZoneBioCard'
+import { ZoneCareerStats } from '@/components/ZoneCareerStats'
+import { LogoSvg } from '@/components/LogoSvg'
 
 export default function ProjectPage() {
   return (
@@ -16,14 +18,32 @@ export default function ProjectPage() {
       {/* 🏀 Court Background */}
       <CourtSvg
         zoneContent={{
+                    'zone-106': (
+                      <CourtZone x={350} y={110} width={380} height={160}>
+                        <ZoneBioCard />
+                      </CourtZone>
+                    ),
+          
+                    // Stats Overview
+                              'zone-107': (
+                                <CourtZone x={800} y={110} width={280} height={160}>
+                                  <ZoneCareerStats />
+                                </CourtZone>
+                              ),
+                                        // Logo
+                              'zone-108': (
+                                <CourtZone x={610} y={355} width={300} height={300}>
+                                  <LogoSvg />
+                                </CourtZone>
+                              ),
           'zone-90': (
-            <CourtZone x={280} y={200} width={360} height={140}>
+            <CourtZone x={350} y={700} width={360} height={140}>
               <ZoneBars />
             </CourtZone>
           ),
           'zone-91': (
-            <CourtZone x={880} y={200} width={360} height={140}>
-              <ZoneFantasySafari />
+            <CourtZone x={800} y={700} width={360} height={140}>
+              <ZoneFantasy />
             </CourtZone>
           ),
           'zone-99': (
