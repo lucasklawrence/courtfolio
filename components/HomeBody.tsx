@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { ZoneBioCard } from './ZoneBioCard'
 import { ZoneCareerStats } from './ZoneCareerStats'
 import { LogoSvg } from './LogoSvg'
+import { CourtTitleSolo } from './CourtTitleSolo'
 
 export function HomeBody() {
   const router = useRouter()
@@ -109,8 +110,8 @@ export function HomeBody() {
             </CourtZone>
           ),
           'zone-50': (
-            <foreignObject x="600" y="0" width="350" height="100">
-              <CourtTitle title="Lucas Lawrence" subtitle="Welcome to the Court" />
+            <foreignObject x="600" y="20" width="350" height="100">
+              <CourtTitleSolo title="Welcome to the Court" />
             </foreignObject>
           ),
           'zone-85': (

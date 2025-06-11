@@ -1,7 +1,6 @@
 'use client'
 
 import { CourtSvg } from '@/components/CourtSvg'
-import { CourtTitle } from '@/components/CourtTitle'
 import { BackToCourtButton } from '@/components/BackToCourtButton'
 import React from 'react'
 import { CourtContainer } from '@/components/CourtContainer'
@@ -11,6 +10,7 @@ import { ZoneBars } from '@/components/ZoneBars'
 import { ZoneBioCard } from '@/components/ZoneBioCard'
 import { ZoneCareerStats } from '@/components/ZoneCareerStats'
 import { LogoSvg } from '@/components/LogoSvg'
+import { CourtTitleSolo } from '@/components/CourtTitleSolo'
 
 export default function ProjectPage() {
   return (
@@ -47,14 +47,14 @@ export default function ProjectPage() {
             </CourtZone>
           ),
           'zone-99': (
-            <foreignObject x="1150" y="850" width="340" height="70">
+            <foreignObject x="1220" y="873" width="340" height="70">
               <BackToCourtButton />
             </foreignObject>
           ),
           // Court Title
           'zone-50': (
-            <foreignObject x="600" y="0" width="350" height="100">
-              <CourtTitle title="Lucas Lawrence" subtitle="Highlight Reel" />
+            <foreignObject x="600" y="20" width="350" height="100">
+              <CourtTitleSolo title="Highlight Reel" />
             </foreignObject>
           ),
         }}
