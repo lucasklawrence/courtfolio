@@ -13,7 +13,7 @@ export function ReplayIntroButton() {
   return (
     <button
       onClick={handleReplay}
-      className="px-3 py-1 text-xs rounded-full bg-orange-700 text-white hover:bg-orange-600 shadow transition"
+      className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer"
     >
       🔁 Replay Tunnel Intro
     </button>
