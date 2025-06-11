@@ -3,11 +3,9 @@
 import { CourtSvg } from './CourtSvg'
 import { useRouter } from 'next/navigation'
 import { ReplayIntroButton } from './ReplayIntroButton'
-import { CourtTitle } from './CourtTitle'
 import { CourtContainer } from './CourtContainer'
 import React from 'react'
 import { ZoneProjects } from './ZoneProjects'
-import { ZoneAbout } from './ZoneAbout'
 import { CourtZone } from './CourtZone'
 import Link from 'next/link'
 import { ZoneBioCard } from './ZoneBioCard'
@@ -118,7 +116,7 @@ export function HomeBody() {
             <CourtZone x={1120} y={60} width={220} height={200}>
               <Link
                 href="/banners"
-                className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] active:scale-95 transition transform text-center text-base sm:text-lg"
+                className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
               >
                 🏟️ View the Rafters
               </Link>
