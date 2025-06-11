@@ -98,7 +98,7 @@ export function HomeBody() {
             </foreignObject>
           ),
           'zone-99': (
-            <foreignObject x="1250" y="870" width="180" height="70">
+            <foreignObject x="1210" y="870" width="180" height="70">
               <ReplayIntroButton />
             </foreignObject>
           ),
