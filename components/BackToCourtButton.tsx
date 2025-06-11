@@ -11,9 +11,9 @@ export function BackToCourtButton() {
   return (
     <button
       onClick={() => router.push('/')}
-      className="px-4 py-1.5 rounded-full text-sm bg-black text-white hover:bg-orange-600 transition shadow-md"
+      className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-black hover:bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer"
     >
-      🏀 Back to the Court
+      🏀 Back to Home Court
     </button>
   )
 }
