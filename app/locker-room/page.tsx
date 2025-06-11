@@ -9,7 +9,7 @@ import { InteractiveLockerItem } from '@/components/locker-room/InteractiveLocke
 import { QuestionJerseySVG } from '@/components/locker-room/QuestionJerseySvg'
 import { ZoeSvg } from '@/components/locker-room/Zoe'
 import { MythicalFiveTrophySvg } from '@/components/locker-room/MythicalFiveSvg'
-import { BasketballSvg } from '@/components/locker-room/BasketballSvg'
+import { BasketballSvg } from '@/components/locker-room/basketballSvg'
 import { Melo2sSvg } from '@/components/locker-room/Melo2s'
 import { WayOfWade10sSVG } from '@/components/locker-room/WayOfWade10sSvg'
 import { Harden7sSVG } from '@/components/locker-room/Harden7sSvg'
@@ -20,6 +20,11 @@ import { DuffelBagSvg } from '@/components/locker-room/DuffelBagSvg'
 import { VinylSvg } from '@/components/locker-room/VinylSvg'
 import { HeadphonesSvg } from '@/components/locker-room/HeadphonesSvg'
 import { PatentSvg } from '@/components/locker-room/PatentSvg'
+import { ScoutsCapeSvg } from '@/components/locker-room/ScoutsCapeSvg'
+import { StrawHatSvg } from '@/components/locker-room/StrawHatSvg'
+import { JerseysSVG } from '@/components/locker-room/JerseysSvg'
+import { LaptopSvg } from '@/components/locker-room/LaptopSvg'
+import { BooksSvg } from '@/components/locker-room/BooksSvg'
 
 export default function LockerRoomPage() {
   return (
@@ -31,6 +36,32 @@ export default function LockerRoomPage() {
         <LockerRoomSvg
           onZoneClick={zoneId => console.log(zoneId)}
           zoneContent={{
+
+            'zone-325': (
+              <LockerZone x={980} y={620} width={150} height={150}>
+                  <LaptopSvg />
+              </LockerZone>
+            ),
+            'zone-326': (
+              <LockerZone x={980} y={130} width={150} height={150}>
+                  <BooksSvg />
+              </LockerZone>
+            ),
+            'zone-327': (
+              <LockerZone x={50} y={290} width={360} height={370}>
+                  <JerseysSVG />
+              </LockerZone>
+            ),
+            'zone-328': (
+              <LockerZone x={430} y={150} width={160} height={200}>
+                  <StrawHatSvg />
+              </LockerZone>
+            ),
+            'zone-329': (
+              <LockerZone x={380} y={350} width={260} height={400}>
+                  <ScoutsCapeSvg />
+              </LockerZone>
+            ),
             'zone-330': (
               <LockerZone x={1180} y={120} width={250} height={200}>
                 <InteractiveLockerItem>
