@@ -18,24 +18,24 @@ export default function ProjectPage() {
       {/* 🏀 Court Background */}
       <CourtSvg
         zoneContent={{
-                    'zone-106': (
-                      <CourtZone x={350} y={110} width={380} height={160}>
-                        <ZoneBioCard />
-                      </CourtZone>
-                    ),
-          
-                    // Stats Overview
-                              'zone-107': (
-                                <CourtZone x={800} y={110} width={280} height={160}>
-                                  <ZoneCareerStats />
-                                </CourtZone>
-                              ),
-                                        // Logo
-                              'zone-108': (
-                                <CourtZone x={610} y={355} width={300} height={300}>
-                                  <LogoSvg />
-                                </CourtZone>
-                              ),
+          'zone-106': (
+            <CourtZone x={350} y={110} width={380} height={160}>
+              <ZoneBioCard />
+            </CourtZone>
+          ),
+
+          // Stats Overview
+          'zone-107': (
+            <CourtZone x={800} y={110} width={280} height={160}>
+              <ZoneCareerStats />
+            </CourtZone>
+          ),
+          // Logo
+          'zone-108': (
+            <CourtZone x={610} y={355} width={300} height={300}>
+              <LogoSvg />
+            </CourtZone>
+          ),
           'zone-90': (
             <CourtZone x={350} y={700} width={360} height={140}>
               <ZoneBars />
@@ -48,7 +48,7 @@ export default function ProjectPage() {
           ),
           'zone-99': (
             <foreignObject x="1150" y="850" width="340" height="70">
-                <BackToCourtButton />
+              <BackToCourtButton />
             </foreignObject>
           ),
           // Court Title

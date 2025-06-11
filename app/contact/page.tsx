@@ -32,11 +32,11 @@ export default function ContactPage() {
             </CourtZone>
           ),
           // Logo
-'zone-108': (
-  <CourtZone x={610} y={355} width={300} height={300}>
-    <LogoSvg />
-  </CourtZone>
-),
+          'zone-108': (
+            <CourtZone x={610} y={355} width={300} height={300}>
+              <LogoSvg />
+            </CourtZone>
+          ),
           'zone-80': (
             <CourtZone x={350} y={720} width={380} height={220}>
               <ZoneContact />

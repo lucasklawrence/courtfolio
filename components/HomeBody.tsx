@@ -21,10 +21,9 @@ export function HomeBody() {
     <CourtContainer>
       <CourtSvg
         className="w-full h-full"
-        onZoneClick={zoneId => {
-        }}
+        onZoneClick={zoneId => {}}
         zoneContent={{
-           // Player Bio Card
+          // Player Bio Card
           'zone-106': (
             <CourtZone x={350} y={110} width={380} height={160}>
               <ZoneBioCard />
@@ -32,17 +31,17 @@ export function HomeBody() {
           ),
 
           // Stats Overview
-                    'zone-107': (
-                      <CourtZone x={800} y={110} width={280} height={160}>
-                        <ZoneCareerStats />
-                      </CourtZone>
-                    ),
+          'zone-107': (
+            <CourtZone x={800} y={110} width={280} height={160}>
+              <ZoneCareerStats />
+            </CourtZone>
+          ),
           // Logo
-'zone-108': (
-  <CourtZone x={610} y={355} width={300} height={300}>
-    <LogoSvg />
-  </CourtZone>
-),
+          'zone-108': (
+            <CourtZone x={610} y={355} width={300} height={300}>
+              <LogoSvg />
+            </CourtZone>
+          ),
           'zone-78': (
             <foreignObject x={610} y={940} width={320} height={70}>
               {React.createElement(
@@ -116,12 +115,12 @@ export function HomeBody() {
           ),
           'zone-85': (
             <CourtZone x={1120} y={60} width={220} height={200}>
-<Link
-  href="/banners"
-  className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] active:scale-95 transition transform text-center text-base sm:text-lg"
->
-  🏟️ View the Rafters
-</Link>
+              <Link
+                href="/banners"
+                className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] active:scale-95 transition transform text-center text-base sm:text-lg"
+              >
+                🏟️ View the Rafters
+              </Link>
             </CourtZone>
           ),
         }}
