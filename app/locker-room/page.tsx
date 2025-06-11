@@ -25,18 +25,24 @@ import { StrawHatSvg } from '@/components/locker-room/StrawHatSvg'
 import { JerseysSVG } from '@/components/locker-room/JerseysSvg'
 import { LaptopSvg } from '@/components/locker-room/LaptopSvg'
 import { BooksSvg } from '@/components/locker-room/BooksSvg'
+import { ScoutingReportSvg } from '@/components/locker-room/ScoutingReportSvg'
+import { BackToCourtButton } from '@/components/BackToCourtButton'
 
 export default function LockerRoomPage() {
   return (
     <main className="min-h-screen bg-neutral-900 text-white flex flex-col items-center justify-center p-4">
       <h1 className="text-3xl font-bold mb-4">🏀 Locker Room</h1>
-      <p className="mb-8 text-sm text-gray-300">Click a locker to view its contents</p>
 
       <div className="w-full max-w-6xl">
         <LockerRoomSvg
           onZoneClick={zoneId => console.log(zoneId)}
           zoneContent={{
 
+            'zone-324': (
+              <LockerZone x={1220} y={630} width={150} height={200}>
+                  <ScoutingReportSvg />
+              </LockerZone>
+            ),
             'zone-325': (
               <LockerZone x={980} y={620} width={150} height={150}>
                   <LaptopSvg />
@@ -48,7 +54,7 @@ export default function LockerRoomPage() {
               </LockerZone>
             ),
             'zone-327': (
-              <LockerZone x={50} y={290} width={360} height={370}>
+              <LockerZone x={58} y={285} width={340} height={370}>
                   <JerseysSVG />
               </LockerZone>
             ),
@@ -180,6 +186,11 @@ export default function LockerRoomPage() {
                     <KobesSVG/>
                 </LockerZone>
             )*/
+               'zone-99': (
+                       <foreignObject x="1220" y="970" width="340" height="70">
+                         <BackToCourtButton />
+                       </foreignObject>
+                     )
           }}
         />
       </div>
