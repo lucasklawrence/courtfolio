@@ -55,13 +55,13 @@ export function HomeBody() {
                   <div className="flex gap-4 text-sm">
                     <button
                       onClick={() => router.push('/contact')}
-                      className="hover:text-orange-500 transition"
+                      className="cursor-pointer hover:text-orange-500 transition"
                     >
                       📫 Contact Me
                     </button>
                     <button
                       onClick={() => window.open('/LucasLawrenceResume.pdf', '_blank')}
-                      className="hover:text-orange-500 transition"
+                      className="cursor-pointer hover:text-orange-500 transition"
                     >
                       📄 Resume
                     </button>
@@ -100,7 +100,7 @@ export function HomeBody() {
             </foreignObject>
           ),
           'zone-99': (
-            <foreignObject x="1250" y="880" width="180" height="50">
+            <foreignObject x="1250" y="870" width="180" height="70">
               <ReplayIntroButton />
             </foreignObject>
           ),
@@ -115,13 +115,13 @@ export function HomeBody() {
             </foreignObject>
           ),
           'zone-85': (
-            <CourtZone x={1120} y={60} width={220} height={100}>
-              <Link
-                href="/banners"
-                className="bg-[#42210b] text-yellow-300 font-semibold px-4 py-2 rounded-md shadow hover:bg-[#5a3015] transition"
-              >
-                🏟️ View the Rafters
-              </Link>
+            <CourtZone x={1120} y={60} width={220} height={200}>
+<Link
+  href="/banners"
+  className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] active:scale-95 transition transform text-center text-base sm:text-lg"
+>
+  🏟️ View the Rafters
+</Link>
             </CourtZone>
           ),
         }}
