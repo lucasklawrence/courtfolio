@@ -7,7 +7,7 @@ import React from 'react'
 export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
     return (
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
+<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
 <path stroke="#0a1c29" vectorEffect="non-scaling-stroke" d="
   M 104.32 694.13
   Q 104.14 695.45 104.15 696.77
