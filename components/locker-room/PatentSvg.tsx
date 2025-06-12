@@ -5,10 +5,13 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-    return (
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 689.00 832.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#10171c" vectorEffect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 689.00 832.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#10171c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 41.10 40.40
   A 0.76 0.76 0.0 0 0 41.63 40.62
   L 643.61 40.62
@@ -18,8 +21,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 7.79 5.26
   A 0.76 0.76 0.0 0 0 7.26 6.56
   L 41.10 40.40"
-/>
-<path stroke="#10171c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#10171c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 684.73 816.48
   A 0.58 0.58 0.0 0 0 685.72 816.07
   L 685.72 8.54
@@ -29,8 +35,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 649.24 780.74
   A 0.58 0.58 0.0 0 0 649.41 781.15
   L 684.73 816.48"
-/>
-<path stroke="#10171c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#10171c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 3.10 11.31
   A 0.34 0.34 0.0 0 0 2.52 11.55
   L 2.52 816.06
@@ -40,8 +49,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 37.81 46.16
   A 0.34 0.34 0.0 0 0 37.71 45.92
   L 3.10 11.31"
-/>
-<path stroke="#827b6e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#827b6e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 638.29 51.57
   A 0.26 0.26 0.0 0 0 638.03 51.31
   L 48.71 51.31
@@ -51,8 +63,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 638.03 775.97
   A 0.26 0.26 0.0 0 0 638.29 775.71
   L 638.29 51.57"
-/>
-<path stroke="#10171c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#10171c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 6.75 820.56
   A 0.48 0.48 0.0 0 0 7.09 821.38
   L 679.90 821.38
@@ -62,8 +77,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 40.94 786.57
   A 0.48 0.48 0.0 0 0 40.60 786.71
   L 6.75 820.56"
-/>
-<path stroke="#f0dbba" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0dbba"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 636.83 774.05
   L 636.83 53.90
   A 0.81 0.80 0.7 0 0 636.04 53.10
@@ -79,8 +97,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.53 0.53 0.0 0 0 629.37 774.88
   L 636.01 774.87
   A 0.83 0.82 -0.4 0 0 636.83 774.05"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 216.95 140.85
   L 216.95 124.37
   A 0.51 0.50 0.0 0 0 216.44 123.87
@@ -104,8 +125,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.97 3.95 -70.6 0 0 223.11 134.40
   L 217.75 141.13
   A 0.45 0.45 0.0 0 1 216.95 140.85"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 247.11 124.21
   A 0.27 0.27 0.0 0 0 246.84 123.94
   L 242.92 123.94
@@ -115,8 +139,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 246.84 153.20
   A 0.27 0.27 0.0 0 0 247.11 152.93
   L 247.11 124.21"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 317.36 124.32
   A 0.38 0.38 0.0 0 0 316.98 123.94
   L 313.18 123.94
@@ -126,8 +153,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 316.98 153.16
   A 0.38 0.38 0.0 0 0 317.36 152.78
   L 317.36 124.32"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 417.88 134.09
   L 417.88 124.89
   A 0.93 0.92 -0.0 0 0 416.95 123.97
@@ -148,8 +178,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 430.33 141.56 430.14 139.32
   C 429.59 132.93 423.09 130.04 418.41 134.32
   A 0.32 0.31 -21.4 0 1 417.88 134.09"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.3144 124.8786
   A 0.50 0.50 0.0 0 0 559.8205 124.3725
   L 556.1608 124.3278
@@ -159,8 +192,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 559.7592 129.3922
   A 0.50 0.50 0.0 0 0 560.2653 128.8983
   L 560.3144 124.8786"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 92.97 140.07
   Q 96.12 146.05 99.79 152.40
   A 1.57 1.57 0.0 0 0 101.15 153.19
@@ -184,8 +220,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 88.73 132.73
   A 0.17 0.17 0.0 0 1 89.04 132.64
   Q 90.35 135.09 92.97 140.07"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 498.5251 125.2816
   A 0.56 0.56 0.0 0 0 497.9729 124.7138
   L 494.5933 124.6666
@@ -195,8 +234,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 497.9067 129.4534
   A 0.56 0.56 0.0 0 0 498.4745 128.9012
   L 498.5251 125.2816"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 138.36 136.98
   L 141.13 137.02
   A 1.04 1.03 0.8 0 0 142.18 136.00
@@ -224,8 +266,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.53 1.53 0.0 0 1 137.56 148.09
   L 137.70 137.61
   A 0.64 0.64 0.0 0 1 138.36 136.98"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 547.70 136.96
   L 550.50 136.96
   A 1.05 1.04 -0.0 0 0 551.55 135.92
@@ -253,8 +298,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.55 1.55 0.0 0 1 547.05 148.19
   L 547.05 137.61
   A 0.65 0.65 0.0 0 1 547.70 136.96"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 128.21 144.03
   C 128.63 137.88 125.20 131.15 118.18 132.55
   C 107.64 134.65 107.31 153.58 119.07 154.14
@@ -267,8 +315,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.50 0.49 -4.9 0 1 115.58 144.63
   L 127.57 144.63
   A 0.64 0.64 0.0 0 0 128.21 144.03"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 308.78 144.10
   C 309.27 137.97 305.93 131.21 298.91 132.52
   C 288.36 134.49 287.80 153.38 299.53 154.08
@@ -281,8 +332,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.49 0.49 0.0 0 1 296.16 144.55
   L 308.13 144.70
   A 0.64 0.64 0.0 0 0 308.78 144.10"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 408.11 146.65
   L 405.99 146.66
   A 1.12 1.11 16.7 0 0 405.06 147.16
@@ -297,8 +351,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 390.95 145.50 392.04 151.18 396.92 153.27
   C 402.09 155.48 406.29 153.54 409.19 148.51
   A 1.24 1.24 0.0 0 0 408.11 146.65"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.78 152.64
   Q 537.20 149.57 537.43 142.25
   C 537.66 135.20 535.10 131.53 527.48 132.51
@@ -314,15 +371,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.77 0.76 -44.2 0 1 532.96 152.37
   Q 534.53 153.47 537.39 153.16
   A 0.44 0.44 0.0 0 0 537.78 152.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 182.8447 132.2067
   A 11.04 9.77 -92.0 0 0 173.4660 143.5810
   A 11.04 9.77 -92.0 0 0 183.6153 154.2733
   A 11.04 9.77 -92.0 0 0 192.9940 142.8990
   A 11.04 9.77 -92.0 0 0 182.8447 132.2067"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 269.08 144.00
   C 269.49 137.84 266.04 131.11 259.02 132.52
   C 248.47 134.65 248.18 153.61 259.95 154.14
@@ -335,8 +398,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.50 0.49 -5.0 0 1 256.44 144.63
   L 268.44 144.60
   A 0.64 0.64 0.0 0 0 269.08 144.00"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 330.93 148.48
   C 332.61 153.60 337.71 155.07 342.58 153.54
   Q 346.30 152.36 347.13 149.07
@@ -353,8 +419,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.27 1.27 0.0 0 0 334.65 147.65
   L 331.53 147.65
   A 0.63 0.63 0.0 0 0 330.93 148.48"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 375.27 134.92
   L 375.27 133.85
   A 0.62 0.62 0.0 0 0 374.71 133.24
@@ -376,8 +445,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 388.62 137.43 387.59 133.76 384.07 132.82
   Q 378.98 131.48 375.78 135.11
   A 0.29 0.29 0.0 0 1 375.27 134.92"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.09 134.77
   L 439.66 133.53
   A 0.74 0.74 0.0 0 0 438.96 133.03
@@ -393,15 +465,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.81 0.81 0.0 0 0 446.32 132.66
   Q 442.47 132.00 440.75 134.84
   A 0.37 0.37 0.0 0 1 440.09 134.77"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 458.5992 132.2500
   A 11.00 9.76 -89.9 0 0 448.8200 143.2330
   A 11.00 9.76 -89.9 0 0 458.5608 154.2500
   A 11.00 9.76 -89.9 0 0 468.3400 143.2670
   A 11.00 9.76 -89.9 0 0 458.5992 132.2500"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.19 134.98
   L 476.19 133.92
   A 0.62 0.61 3.1 0 0 475.64 133.31
@@ -423,8 +501,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 489.44 137.51 488.43 133.86 484.93 132.92
   Q 479.88 131.57 476.70 135.17
   A 0.29 0.29 0.0 0 1 476.19 134.98"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.8514 141.1083
   A 8.60 8.60 0.0 0 0 574.1767 132.5837
   L 572.6367 132.5971
@@ -434,8 +515,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 574.3633 153.9629
   A 8.60 8.60 0.0 0 0 582.8879 145.2882
   L 582.8514 141.1083"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.12 134.96
   L 591.12 133.90
   A 0.62 0.62 0.0 0 0 590.57 133.28
@@ -457,8 +541,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 604.43 137.54 603.43 133.86 599.91 132.91
   Q 594.84 131.54 591.63 135.15
   A 0.29 0.29 0.0 0 1 591.12 134.96"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 201.26 134.84
   L 200.84 133.62
   A 0.93 0.93 0.0 0 0 199.96 133.00
@@ -475,8 +562,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.41 -73.7 0 0 208.45 133.00
   Q 204.26 131.67 201.93 134.94
   A 0.38 0.38 0.0 0 1 201.26 134.84"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 157.71 140.99
   A 0.08 0.07 -47.0 0 1 157.85 140.98
   L 161.06 152.40
@@ -503,8 +593,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 153.95 153.22
   A 0.50 0.50 0.0 0 0 154.43 152.85
   L 157.71 140.99"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 279.91 153.23
   Q 281.61 153.22 281.82 153.16
   A 1.22 1.22 0.0 0 0 282.59 152.40
@@ -522,8 +615,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 277.23 152.41
   A 1.22 1.22 0.0 0 0 278.00 153.16
   Q 278.21 153.23 279.91 153.23"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 358.51 146.28
   L 354.20 133.91
   A 1.26 1.25 -9.4 0 0 353.01 133.07
@@ -543,8 +639,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.89 1.89 0.0 0 0 363.13 134.23
   L 358.82 146.28
   A 0.17 0.16 -44.7 0 1 358.51 146.28"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 498.44 133.55
   A 0.50 0.50 0.0 0 0 497.94 133.05
   L 494.54 133.05
@@ -554,8 +653,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 497.94 153.21
   A 0.50 0.50 0.0 0 0 498.44 152.71
   L 498.44 133.55"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 508.17 141.66
   C 504.77 145.63 501.37 148.54 501.73 152.56
   A 0.64 0.64 0.0 0 0 502.36 153.14
@@ -575,8 +677,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 511.48 136.97
   A 0.30 0.30 0.0 0 1 511.71 137.44
   Q 511.18 138.16 508.17 141.66"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.1870 133.4438
   A 0.32 0.32 0.0 0 0 559.8675 133.1233
   L 556.1275 133.1168
@@ -586,8 +691,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 559.8325 153.2232
   A 0.32 0.32 0.0 0 0 560.1530 152.9038
   L 560.1870 133.4438"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 105.77 185.72
   L 104.06 185.73
   A 0.70 0.70 0.0 0 0 103.36 186.43
@@ -615,8 +723,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.86 0.86 0.0 0 0 115.66 176.67
   C 108.79 174.04 105.68 179.12 106.22 185.24
   A 0.45 0.44 -2.3 0 1 105.77 185.72"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.27 193.66
   L 367.27 176.79
   A 0.67 0.66 0.0 0 0 366.60 176.13
@@ -640,8 +751,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.46 4.45 -74.9 0 0 372.74 187.54
   L 367.74 193.82
   A 0.26 0.26 0.0 0 1 367.27 193.66"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 569.9225 177.0839
   A 0.94 0.94 0.0 0 0 568.9842 176.1422
   L 566.4442 176.1378
@@ -651,8 +765,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 568.9758 180.9422
   A 0.94 0.94 0.0 0 0 569.9174 180.0039
   L 569.9225 177.0839"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 131.93 177.11
   A 0.75 0.75 0.0 0 0 131.18 176.36
   L 128.08 176.36
@@ -662,8 +779,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 131.18 206.04
   A 0.75 0.75 0.0 0 0 131.93 205.29
   L 131.93 177.11"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 193.8148 176.9740
   A 0.67 0.67 0.0 0 0 193.1460 176.3028
   L 189.9260 176.2972
@@ -673,8 +793,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 193.0940 206.0428
   A 0.67 0.67 0.0 0 0 193.7652 205.3740
   L 193.8148 176.9740"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.3713 177.0688
   A 0.61 0.61 0.0 0 0 527.7581 176.4620
   L 524.6982 176.4780
@@ -684,8 +807,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 527.7818 180.9820
   A 0.61 0.61 0.0 0 0 528.3886 180.3688
   L 528.3713 177.0688"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 217.32 186.02
   L 216.04 185.66
   A 0.68 0.68 0.0 0 0 215.17 186.31
@@ -714,8 +840,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 1.01 0.0 0 0 218.08 181.00
   L 218.05 185.46
   A 0.58 0.58 0.0 0 1 217.32 186.02"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 399.24 186.06
   L 397.96 185.71
   A 0.68 0.68 0.0 0 0 397.10 186.36
@@ -744,8 +873,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 1.01 0.0 0 0 399.97 181.06
   L 399.97 185.50
   A 0.58 0.58 0.0 0 1 399.24 186.06"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.26 185.99
   L 418.99 185.62
   A 0.68 0.68 0.0 0 0 418.12 186.27
@@ -774,22 +906,31 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 1.01 0.0 0 0 421.04 180.99
   L 421.00 185.43
   A 0.58 0.58 0.0 0 1 420.26 185.99"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 93.1911 185.1900
   A 10.84 9.11 -90.1 0 0 84.1000 196.0459
   A 10.84 9.11 -90.1 0 0 93.2289 206.8700
   A 10.84 9.11 -90.1 0 0 102.3200 196.0141
   A 10.84 9.11 -90.1 0 0 93.1911 185.1900"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 143.4688 185.2100
   A 10.80 9.11 -89.9 0 0 134.3400 195.9941
   A 10.80 9.11 -89.9 0 0 143.4312 206.8100
   A 10.80 9.11 -89.9 0 0 152.5600 196.0259
   A 10.80 9.11 -89.9 0 0 143.4688 185.2100"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 244.03 196.38
   C 244.22 190.57 241.86 184.82 235.27 185.24
   C 226.11 185.83 225.16 201.38 231.98 205.56
@@ -801,8 +942,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.98 0.97 -5.2 0 1 232.89 196.99
   L 243.40 196.99
   A 0.63 0.63 0.0 0 0 244.03 196.38"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 251.90 205.27
   L 251.80 192.94
   A 3.10 3.10 0.0 0 1 254.58 189.83
@@ -822,8 +966,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.81 0.81 0.0 0 0 248.11 206.11
   L 251.10 206.08
   A 0.80 0.80 0.0 0 0 251.90 205.27"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 265.44 196.19
   C 265.50 201.38 267.82 206.61 273.69 206.78
   Q 279.21 206.94 281.54 200.54
@@ -839,8 +986,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.16 1.16 0.0 0 0 281.44 191.46
   Q 278.96 185.12 273.45 185.41
   C 267.58 185.71 265.38 190.99 265.44 196.19"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 312.88 205.38
   A 0.32 0.31 -66.9 0 1 313.42 205.16
   C 317.44 209.36 322.39 205.78 323.80 201.34
@@ -854,8 +1004,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 311.82 212.96
   A 1.07 1.07 0.0 0 0 312.89 211.89
   L 312.88 205.38"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.37 205.41
   C 341.85 200.83 346.23 186.72 337.22 185.44
   Q 330.05 184.42 327.71 190.30
@@ -871,8 +1024,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.95 0.94 -44.2 0 1 338.70 205.29
   Q 340.47 206.33 342.94 206.07
   A 0.50 0.50 0.0 0 0 343.37 205.41"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.25 196.36
   C 396.42 190.60 394.06 184.92 387.53 185.37
   C 378.47 185.99 377.60 201.39 384.37 205.50
@@ -884,8 +1040,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.97 0.97 0.0 0 1 385.23 197.01
   L 395.63 196.96
   A 0.62 0.62 0.0 0 0 396.25 196.36"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 458.41 205.23
   C 456.88 200.72 461.13 186.77 452.23 185.55
   Q 445.14 184.59 442.87 190.40
@@ -901,8 +1060,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.94 0.93 -44.5 0 1 453.80 205.14
   Q 455.55 206.16 457.98 205.89
   A 0.50 0.50 0.0 0 0 458.41 205.23"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 465.81 205.30
   L 465.81 193.03
   A 3.09 3.08 -2.8 0 1 468.60 189.96
@@ -922,8 +1084,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.81 0.81 0.0 0 0 462.03 206.10
   L 465.01 206.10
   A 0.80 0.80 0.0 0 0 465.81 205.30"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 492.51 191.26
   A 1.56 1.56 0.0 0 0 492.99 189.14
   C 490.34 184.84 484.58 183.85 481.18 187.40
@@ -940,8 +1105,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 1 483.73 190.42
   C 485.42 188.14 487.41 188.85 489.09 191.04
   Q 490.34 192.67 492.51 191.26"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 496.11 186.18
   L 496.11 205.21
   A 0.82 0.81 90.0 0 0 496.92 206.03
@@ -970,8 +1138,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.99 0.97 -44.4 0 1 500.27 186.60
   Q 498.59 185.71 496.68 185.63
   A 0.55 0.55 0.0 0 0 496.11 186.18"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.74 191.26
   A 1.56 1.56 0.0 0 0 545.22 189.14
   C 542.57 184.83 536.81 183.83 533.40 187.38
@@ -988,8 +1159,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 1 535.95 190.41
   C 537.64 188.13 539.64 188.84 541.32 191.03
   Q 542.56 192.67 544.74 191.26"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 562.02 191.30
   A 1.56 1.56 0.0 0 0 562.50 189.18
   C 559.86 184.88 554.11 183.88 550.70 187.42
@@ -1006,15 +1180,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 1 553.25 190.44
   C 554.94 188.17 556.93 188.88 558.60 191.07
   Q 559.85 192.71 562.02 191.30"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.7370 185.2006
   A 10.79 8.91 -90.6 0 0 571.9405 196.0833
   A 10.79 8.91 -90.6 0 0 580.9630 206.7794
   A 10.79 8.91 -90.6 0 0 589.7595 195.8967
   A 10.79 8.91 -90.6 0 0 580.7370 185.2006"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 596.69 205.10
   L 596.68 192.94
   A 3.06 3.06 0.0 0 1 599.44 189.89
@@ -1034,8 +1214,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.80 0.80 0.0 0 0 592.95 205.90
   L 595.90 205.90
   A 0.79 0.79 0.0 0 0 596.69 205.10"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 213.31 205.38
   C 211.76 200.80 216.06 186.64 207.03 185.41
   Q 199.85 184.43 197.54 190.34
@@ -1051,8 +1234,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.95 0.95 0.0 0 1 208.63 205.29
   Q 210.41 206.32 212.88 206.04
   A 0.50 0.50 0.0 0 0 213.31 205.38"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 345.02 196.10
   C 345.05 201.30 347.33 206.54 353.21 206.74
   Q 358.72 206.93 361.09 200.54
@@ -1068,8 +1254,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.16 1.16 0.0 0 0 361.03 191.47
   Q 358.59 185.11 353.08 185.37
   C 347.21 185.64 344.99 190.91 345.02 196.10"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.58 187.24
   L 435.58 186.78
   A 0.92 0.91 -87.2 0 0 434.77 185.88
@@ -1087,8 +1276,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.08 1.08 0.0 0 0 440.93 185.56
   Q 437.71 184.84 436.37 187.43
   A 0.42 0.42 0.0 0 1 435.58 187.24"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 160.39 197.55
   Q 159.81 190.99 157.85 186.13
   A 0.75 0.74 -11.2 0 0 157.16 185.67
@@ -1115,8 +1307,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 164.04 186.41 163.65 187.68
   Q 162.90 190.14 160.94 197.60
   A 0.28 0.28 0.0 0 1 160.39 197.55"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 289.41 199.01
   L 285.91 186.56
   A 0.97 0.97 0.0 0 0 284.98 185.86
@@ -1134,8 +1329,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.97 0.97 0.0 0 0 293.62 186.47
   L 289.62 199.01
   A 0.11 0.11 0.0 0 1 289.41 199.01"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.24 186.23
   A 0.53 0.53 0.0 0 0 527.71 185.70
   L 524.53 185.70
@@ -1145,8 +1343,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 527.71 206.00
   A 0.53 0.53 0.0 0 0 528.24 205.47
   L 528.24 186.23"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 569.92 186.34
   A 0.63 0.63 0.0 0 0 569.29 185.71
   L 566.07 185.71
@@ -1156,8 +1357,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 569.29 205.99
   A 0.63 0.63 0.0 0 0 569.92 205.36
   L 569.92 186.34"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 316.74 275.50
   L 316.72 265.77
   A 0.73 0.73 0.0 0 0 315.99 265.04
@@ -1171,8 +1375,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 325.62 272.71 319.25 274.07
   C 318.60 274.21 317.91 275.06 317.17 275.70
   A 0.26 0.26 0.0 0 1 316.74 275.50"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 132.76 284.94
   Q 133.97 285.07 137.13 284.74
   Q 145.02 283.93 146.11 277.15
@@ -1184,8 +1391,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.62 0.61 90.0 0 0 132.09 293.67
   L 132.08 285.55
   A 0.61 0.61 0.0 0 1 132.76 284.94"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.93 295.32
   C 468.76 295.24 472.19 285.93 465.33 280.36
   A 0.51 0.50 -52.8 0 1 465.24 279.67
@@ -1195,15 +1405,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 454.31 279.72 454.34 279.77
   A 0.51 0.50 51.7 0 1 454.27 280.46
   C 447.51 286.15 451.10 295.40 459.93 295.32"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 495.22 280.75
   C 495.30 286.76 496.79 295.49 504.69 295.39
   C 512.58 295.29 513.85 286.53 513.78 280.52
   C 513.70 274.51 512.21 265.78 504.31 265.88
   C 496.42 265.98 495.14 274.74 495.22 280.75"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.79 283.56
   L 556.79 267.10
   A 0.78 0.78 0.0 0 0 556.01 266.32
@@ -1226,8 +1442,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.93 0.93 0.0 0 0 559.02 284.06
   Q 558.77 284.09 557.29 284.07
   A 0.51 0.51 0.0 0 1 556.79 283.56"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 441.91 282.89
   Q 441.38 286.10 439.97 288.70
   C 438.71 291.03 435.92 292.32 433.80 290.26
@@ -1242,8 +1461,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 433.39 284.24 437.17 284.66 439.61 283.31
   Q 441.37 282.34 441.40 282.34
   A 0.48 0.47 -88.5 0 1 441.91 282.89"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 393.70 273.37
   L 393.74 293.95
   A 0.71 0.71 0.0 0 0 394.47 294.67
@@ -1257,8 +1479,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.03 1.02 -8.7 0 0 388.86 273.93
   L 392.84 272.74
   A 0.67 0.67 0.0 0 1 393.70 273.37"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 407.85 273.05
   A 0.83 0.83 0.0 0 0 408.90 273.85
   L 412.99 272.71
@@ -1272,8 +1497,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 408.41 270.01
   A 0.83 0.83 0.0 0 0 407.85 270.79
   L 407.85 273.05"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 478.67 275.72
   L 479.09 271.83
   A 0.94 0.93 3.1 0 1 480.02 271.00
@@ -1293,8 +1521,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 474.20 297.24 487.10 298.20 490.00 289.15
   C 492.42 281.58 488.51 273.71 479.27 276.22
   A 0.48 0.47 -4.7 0 1 478.67 275.72"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.01 275.74
   L 524.38 271.87
   A 0.93 0.92 2.3 0 1 525.29 271.04
@@ -1314,8 +1545,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 519.84 297.19 532.68 297.98 535.44 288.95
   C 537.75 281.39 533.76 273.62 524.61 276.23
   A 0.47 0.47 0.0 0 1 524.01 275.74"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 169.25 274.85
   L 167.80 274.45
   A 0.62 0.62 0.0 0 0 167.01 275.05
@@ -1341,8 +1575,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.10 1.09 -86.9 0 0 170.04 270.02
   L 170.04 274.25
   A 0.62 0.62 0.0 0 1 169.25 274.85"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 220.19 274.85
   L 218.76 274.45
   A 0.62 0.62 0.0 0 0 217.97 275.04
@@ -1368,8 +1605,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.08 1.08 0.0 0 0 220.99 270.09
   L 220.97 274.26
   A 0.62 0.62 0.0 0 1 220.19 274.85"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 164.22 293.77
   Q 164.00 293.27 163.95 281.74
   Q 163.92 272.79 154.69 274.00
@@ -1386,8 +1626,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.67 0.67 0.0 0 1 160.11 293.41
   Q 161.46 294.91 163.86 294.46
   A 0.50 0.49 72.8 0 0 164.22 293.77"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 196.60 288.14
   Q 195.07 287.91 193.51 288.29
   A 1.33 1.32 -82.9 0 0 192.67 288.95
@@ -1399,8 +1642,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 179.32 271.11 176.61 290.73 185.73 294.36
   C 190.67 296.32 195.48 293.98 197.01 288.81
   A 0.53 0.52 -77.0 0 0 196.60 288.14"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 215.42 294.15
   A 0.60 0.60 0.0 0 0 216.02 293.55
   Q 216.19 284.09 215.78 279.26
@@ -1419,8 +1665,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 212.07 293.62
   A 0.55 0.54 -0.2 0 0 212.63 294.16
   L 215.42 294.15"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 285.90 275.44
   Q 285.25 274.11 282.80 274.49
   A 0.72 0.72 0.0 0 0 282.20 275.20
@@ -1451,8 +1700,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 295.65 275.83 295.09 275.30
   C 292.73 273.02 289.14 273.65 286.76 275.62
   A 0.56 0.55 -32.9 0 1 285.90 275.44"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 348.26 288.14
   Q 346.73 287.90 345.17 288.27
   A 1.33 1.32 -82.6 0 0 344.32 288.93
@@ -1464,8 +1716,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 331.03 270.99 328.23 290.63 337.34 294.31
   C 342.28 296.30 347.11 293.98 348.67 288.81
   A 0.53 0.52 -76.8 0 0 348.26 288.14"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 256.23 294.35
   A 0.61 0.61 0.0 0 0 256.83 293.75
   Q 257.04 284.18 256.65 279.30
@@ -1484,8 +1739,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 252.84 293.80
   A 0.56 0.55 0.0 0 0 253.40 294.35
   L 256.23 294.35"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 356.31 276.12
   L 356.30 275.11
   A 0.55 0.55 0.0 0 0 355.75 274.56
@@ -1502,8 +1760,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.53 8.0 0 0 362.59 274.20
   Q 359.73 273.39 356.95 276.37
   A 0.37 0.37 0.0 0 1 356.31 276.12"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 262.57 274.54
   A 0.61 0.61 0.0 0 0 261.96 275.13
   Q 261.67 284.68 262.01 289.55
@@ -1522,8 +1783,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 265.94 275.12
   A 0.56 0.55 0.5 0 0 265.39 274.56
   L 262.57 274.54"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 371.94 276.05
   A 0.70 0.70 0.0 0 0 371.24 275.35
   L 368.16 275.35
@@ -1533,8 +1797,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 371.24 280.85
   A 0.70 0.70 0.0 0 0 371.94 280.15
   L 371.94 276.05"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 371.8497 290.1459
   A 0.82 0.82 0.0 0 0 371.0427 289.3131
   L 368.1431 289.2676
@@ -1544,8 +1811,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 370.9569 294.7724
   A 0.82 0.82 0.0 0 0 371.7897 293.9654
   L 371.8497 290.1459"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 111.71 360.62
   L 111.71 352.06
   A 0.45 0.45 0.0 0 0 111.26 351.61
@@ -1557,8 +1827,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.90 0.89 36.8 0 1 111.90 378.72
   C 126.90 386.27 127.57 353.80 112.30 360.99
   A 0.41 0.41 0.0 0 1 111.71 360.62"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 340.25 360.67
   A 0.44 0.43 -76.6 0 1 339.61 361.06
   C 330.03 356.14 327.10 368.49 329.50 374.72
@@ -1571,8 +1844,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 341.04 351.51
   A 0.88 0.88 0.0 0 0 340.17 352.40
   L 340.25 360.67"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 403.63 360.65
   A 0.44 0.44 0.0 0 1 402.99 361.04
   C 393.40 356.01 390.35 368.40 392.71 374.68
@@ -1585,8 +1861,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 404.51 351.46
   A 0.88 0.88 0.0 0 0 403.63 352.34
   L 403.63 360.65"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 536.69 363.69
   L 538.82 363.69
   A 1.14 1.14 0.0 0 0 539.95 362.67
@@ -1613,8 +1892,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.83 0.83 0.0 0 0 536.03 378.58
   L 536.03 364.35
   A 0.66 0.66 0.0 0 1 536.69 363.69"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 295.49 361.91
   L 295.49 352.54
   A 0.85 0.85 0.0 0 0 294.64 351.69
@@ -1636,8 +1918,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 306.05 362.80 303.78 358.37 298.43 360.42
   C 297.55 360.76 296.89 361.39 295.86 362.11
   A 0.24 0.24 0.0 0 1 295.49 361.91"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 94.71 372.87
   Q 97.46 372.89 98.16 372.94
   A 1.15 1.14 84.0 0 1 99.18 373.77
@@ -1657,8 +1942,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 90.22 373.70
   A 1.15 1.14 -83.1 0 1 91.26 372.88
   Q 91.95 372.85 94.71 372.87"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 247.44 379.12
   Q 249.11 379.13 249.43 378.07
   Q 251.99 369.61 255.13 359.02
@@ -1686,8 +1974,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.15 0.14 -53.6 0 1 239.95 358.95
   Q 242.99 369.57 245.47 378.06
   Q 245.78 379.11 247.44 379.12"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 143.31 360.64
   L 141.92 360.26
   A 0.59 0.59 0.0 0 0 141.17 360.84
@@ -1713,8 +2004,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.05 1.04 -87.2 0 0 144.04 356.02
   L 144.06 360.06
   A 0.59 0.59 0.0 0 1 143.31 360.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 203.40 360.64
   L 202.01 360.27
   A 0.59 0.59 0.0 0 0 201.26 360.85
@@ -1740,8 +2034,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.05 1.04 -87.4 0 0 204.12 356.03
   L 204.14 360.06
   A 0.59 0.59 0.0 0 1 203.40 360.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 285.25 360.26
   L 285.20 356.02
   A 1.12 1.12 0.0 0 0 284.08 354.92
@@ -1767,8 +2064,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.84 0.84 0.0 0 0 288.32 360.80
   L 285.82 360.83
   A 0.57 0.56 89.5 0 1 285.25 360.26"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 471.08 360.28
   L 471.03 356.06
   A 1.11 1.11 0.0 0 0 469.91 354.96
@@ -1794,8 +2094,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.84 0.84 0.0 0 0 474.14 360.81
   L 471.65 360.85
   A 0.57 0.56 89.5 0 1 471.08 360.28"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 185.92 370.02
   C 185.98 375.55 188.39 380.60 194.71 379.94
   Q 199.14 379.47 200.87 374.47
@@ -1811,8 +2114,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.22 1.22 0.0 0 0 200.76 365.22
   Q 198.92 360.26 194.48 359.90
   C 188.14 359.38 185.86 364.49 185.92 370.02"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 266.53 370.60
   L 277.00 370.35
   A 0.90 0.90 0.0 0 0 277.88 369.50
@@ -1825,15 +2131,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 274.36 373.11 274.51 375.68 272.59 376.59
   C 268.83 378.39 266.26 374.52 265.95 371.26
   A 0.61 0.60 86.1 0 1 266.53 370.60"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 317.4889 359.7502
   A 10.18 7.77 -90.4 0 0 309.7902 369.9842
   A 10.18 7.77 -90.4 0 0 317.6311 380.1098
   A 10.18 7.77 -90.4 0 0 325.3298 369.8758
   A 10.18 7.77 -90.4 0 0 317.4889 359.7502"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 480.76 370.53
   L 491.13 370.44
   A 0.89 0.89 0.0 0 0 492.01 369.61
@@ -1846,15 +2158,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 488.47 373.14 488.59 375.68 486.67 376.56
   C 482.92 378.28 480.44 374.41 480.18 371.18
   A 0.60 0.60 0.0 0 1 480.76 370.53"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.4477 359.7500
   A 10.17 7.78 -89.9 0 0 540.6500 369.9064
   A 10.17 7.78 -89.9 0 0 548.4123 380.0900
   A 10.17 7.78 -89.9 0 0 556.2100 369.9336
   A 10.17 7.78 -89.9 0 0 548.4477 359.7500"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 139.51 363.32
   C 137.03 358.57 129.27 358.69 127.03 363.75
   C 125.54 367.13 127.63 369.89 131.23 370.91
@@ -1872,8 +2190,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.77 1.53 36.9 0 1 130.45 364.00
   C 132.83 362.06 134.74 363.61 137.41 365.27
   A 1.49 1.49 0.0 0 0 139.51 363.32"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 159.04 362.29
   L 158.71 361.13
   A 0.92 0.91 82.0 0 0 157.83 360.46
@@ -1891,8 +2212,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.97 0.97 0.0 0 0 163.96 359.96
   Q 161.62 359.99 159.94 362.44
   A 0.50 0.50 0.0 0 1 159.04 362.29"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 182.19 378.76
   Q 181.98 378.29 181.88 367.42
   Q 181.81 358.98 173.11 360.16
@@ -1909,8 +2233,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.63 0.0 0 1 178.31 378.44
   Q 179.59 379.85 181.85 379.42
   A 0.47 0.46 72.5 0 0 182.19 378.76"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.29 378.51
   Q 368.11 379.71 369.39 379.52
   A 0.78 0.77 85.3 0 0 370.05 378.73
@@ -1928,8 +2255,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 356.62 379.13 361.18 380.94 364.28 379.30
   Q 366.27 378.23 366.36 378.20
   A 0.81 0.80 62.7 0 1 367.29 378.51"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 376.99 361.54
   Q 376.12 360.15 374.62 360.59
   A 0.73 0.73 0.0 0 0 374.10 361.29
@@ -1948,8 +2278,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 388.05 369.48 387.92 365.89
   C 387.69 360.00 381.97 358.48 377.76 361.69
   A 0.54 0.54 0.0 0 1 376.99 361.54"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 418.77 375.02
   Q 418.70 376.30 419.78 377.46
   C 423.51 381.44 431.76 380.71 431.98 374.41
@@ -1964,8 +2297,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 425.92 377.59 423.72 376.71
   C 422.57 376.25 421.94 374.97 421.16 374.31
   A 1.50 1.28 24.2 0 0 418.77 375.02"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.51 375.03
   Q 450.43 376.32 451.51 377.49
   C 455.22 381.50 463.50 380.82 463.76 374.51
@@ -1980,8 +2316,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 457.66 377.66 455.47 376.76
   C 454.31 376.29 453.69 375.00 452.92 374.34
   A 1.50 1.29 24.6 0 0 450.51 375.03"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 498.32 361.51
   Q 497.39 360.22 496.15 360.52
   A 0.78 0.78 0.0 0 0 495.55 361.28
@@ -2012,8 +2351,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 1 507.50 361.89
   Q 504.24 358.25 499.34 361.68
   A 0.74 0.73 54.2 0 1 498.32 361.51"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 562.99 362.27
   Q 562.94 362.18 562.97 361.96
   Q 563.03 361.47 562.73 361.19
@@ -2030,8 +2372,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.57 1.56 1.6 0 0 567.92 360.46
   Q 565.32 360.50 563.82 362.33
   A 0.51 0.51 0.0 0 1 562.99 362.27"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 441.12 373.19
   L 437.93 361.85
   A 1.46 1.45 82.1 0 0 436.53 360.79
@@ -2050,8 +2395,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.38 1.35 1.7 0 0 445.24 361.84
   L 441.61 373.20
   A 0.26 0.26 0.0 0 1 441.12 373.19"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 220.8496 361.7135
   A 0.75 0.75 0.0 0 0 220.1075 360.9556
   L 217.1476 360.9246
@@ -2061,8 +2409,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 220.0524 366.2154
   A 0.75 0.75 0.0 0 0 220.8102 365.4732
   L 220.8496 361.7135"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 220.7224 375.9279
   A 1.00 1.00 0.0 0 0 219.7172 374.9332
   L 217.0972 374.9469
@@ -2072,8 +2423,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 219.7428 379.8131
   A 1.00 1.00 0.0 0 0 220.7375 378.8079
   L 220.7224 375.9279"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 198.55 409.10
   A 3.67 3.66 15.1 0 0 196.23 410.43
   L 191.01 416.92
@@ -2097,8 +2451,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 200.86 409.53
   A 0.44 0.44 0.0 0 0 200.45 408.83
   L 198.55 409.10"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 217.4430 400.7629
   A 0.74 0.74 0.0 0 0 216.7043 400.0216
   L 214.8643 400.0184
@@ -2108,8 +2465,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 216.6557 427.8616
   A 0.74 0.74 0.0 0 0 217.3970 427.1229
   L 217.4430 400.7629"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 274.8774 401.0875
   A 1.12 1.12 0.0 0 0 273.7555 399.9695
   L 273.1155 399.9706
@@ -2119,8 +2479,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 273.8045 428.0494
   A 1.12 1.12 0.0 0 0 274.9225 426.9275
   L 274.8774 401.0875"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 358.01 409.44
   L 357.99 400.98
   A 1.09 1.08 0.0 0 0 356.90 399.90
@@ -2142,8 +2505,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 368.71 410.14 365.62 407.27 361.85 408.47
   Q 360.57 408.87 358.82 409.90
   A 0.54 0.54 0.0 0 1 358.01 409.44"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 543.37 409.08
   L 542.40 409.18
   A 0.90 0.89 89.6 0 0 541.62 409.98
@@ -2169,8 +2535,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.43 1.43 0.0 0 0 551.54 400.11
   C 545.90 398.94 543.53 403.49 544.06 408.22
   A 0.78 0.78 0.0 0 1 543.37 409.08"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 565.01 401.01
   A 1.10 1.10 0.0 0 0 563.91 399.91
   L 563.17 399.91
@@ -2180,8 +2549,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 563.91 427.91
   A 1.10 1.10 0.0 0 0 565.01 426.81
   L 565.01 401.01"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.96 401.42
   A 1.06 1.06 0.0 0 0 475.90 400.36
   L 475.22 400.36
@@ -2191,8 +2563,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 475.90 404.90
   A 1.06 1.06 0.0 0 0 476.96 403.84
   L 476.96 401.42"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 424.8302 401.4157
   A 0.96 0.96 0.0 0 0 423.8552 400.4708
   L 422.6554 400.4897
@@ -2202,8 +2577,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 423.9246 404.8903
   A 0.96 0.96 0.0 0 0 424.8694 403.9153
   L 424.8302 401.4157"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 125.34 408.54
   L 125.32 404.34
   A 1.11 1.11 0.0 0 0 124.21 403.23
@@ -2229,8 +2607,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.84 0.84 0.0 0 0 128.39 409.10
   L 125.90 409.11
   A 0.57 0.56 89.9 0 1 125.34 408.54"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 466.08 408.52
   L 466.05 404.30
   A 1.12 1.12 0.0 0 0 464.93 403.19
@@ -2256,8 +2637,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.84 0.84 0.0 0 0 469.15 409.07
   L 466.65 409.09
   A 0.57 0.56 89.7 0 1 466.08 408.52"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 106.75 418.77
   L 117.09 418.69
   A 0.89 0.88 -88.2 0 0 117.97 417.86
@@ -2270,15 +2654,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 114.44 421.37 114.55 423.91 112.65 424.78
   C 108.90 426.50 106.43 422.63 106.17 419.41
   A 0.60 0.60 0.0 0 1 106.75 418.77"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 163.8712 408.0912
   A 10.11 7.95 -90.9 0 0 156.0810 418.3249
   A 10.11 7.95 -90.9 0 0 164.1888 428.3088
   A 10.11 7.95 -90.9 0 0 171.9790 418.0751
   A 10.11 7.95 -90.9 0 0 163.8712 408.0912"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 224.02 418.71
   L 234.37 418.56
   A 0.89 0.89 0.0 0 0 235.24 417.73
@@ -2291,8 +2681,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 231.73 421.26 231.86 423.80 229.96 424.69
   C 226.22 426.43 223.72 422.59 223.44 419.37
   A 0.60 0.60 0.0 0 1 224.02 418.71"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 256.83 418.73
   L 267.21 418.69
   A 0.89 0.89 0.0 0 0 268.10 417.86
@@ -2305,8 +2698,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 264.54 421.37 264.65 423.92 262.73 424.79
   C 258.96 426.49 256.49 422.61 256.25 419.38
   A 0.60 0.60 0.0 0 1 256.83 418.73"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 286.67 423.25
   Q 286.60 424.54 287.69 425.70
   C 291.44 429.67 299.69 428.92 299.89 422.62
@@ -2321,8 +2717,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 293.84 425.81 291.64 424.93
   C 290.48 424.48 289.85 423.20 289.07 422.54
   A 1.50 1.29 24.0 0 0 286.67 423.25"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.16 418.47
   Q 337.27 421.89 338.55 424.33
   C 341.75 430.40 350.20 429.23 351.95 422.63
@@ -2336,15 +2735,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 0 351.68 413.44
   C 349.54 406.96 341.03 406.29 338.20 412.54
   Q 337.06 415.05 337.16 418.47"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 392.1030 408.0708
   A 10.07 7.92 -89.3 0 0 384.0606 418.0432
   A 10.07 7.92 -89.3 0 0 391.8570 428.2092
   A 10.07 7.92 -89.3 0 0 399.8994 418.2368
   A 10.07 7.92 -89.3 0 0 392.1030 408.0708"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 454.99 426.44
   Q 455.34 427.96 456.87 427.80
   A 1.12 1.11 -2.3 0 0 457.87 426.72
@@ -2357,29 +2762,41 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 449.58 415.90 444.16 416.59 443.78 422.24
   C 443.34 428.63 450.65 429.54 454.58 426.29
   A 0.26 0.25 64.0 0 1 454.99 426.44"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.5946 408.0301
   A 10.14 7.83 -90.2 0 0 479.8000 418.1973
   A 10.14 7.83 -90.2 0 0 487.6654 428.3099
   A 10.14 7.83 -90.2 0 0 495.4600 418.1427
   A 10.14 7.83 -90.2 0 0 487.5946 408.0301"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.1966 408.0608
   A 10.10 7.87 -90.7 0 0 524.4506 418.2561
   A 10.10 7.87 -90.7 0 0 532.4434 428.2592
   A 10.10 7.87 -90.7 0 0 540.1894 418.0639
   A 10.10 7.87 -90.7 0 0 532.1966 408.0608"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.7746 408.0401
   A 10.15 7.83 -90.2 0 0 567.9800 418.2173
   A 10.15 7.83 -90.2 0 0 575.8454 428.3399
   A 10.15 7.83 -90.2 0 0 583.6400 418.1627
   A 10.15 7.83 -90.2 0 0 575.7746 408.0401"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 88.30 409.92
   Q 87.43 408.53 85.93 408.99
   A 0.73 0.73 0.0 0 0 85.42 409.69
@@ -2398,8 +2815,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 99.44 417.74 99.27 414.16
   C 98.99 408.27 93.25 406.81 89.08 410.06
   A 0.54 0.54 0.0 0 1 88.30 409.92"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 322.26 409.92
   Q 321.39 408.53 319.88 408.99
   A 0.73 0.73 0.0 0 0 319.37 409.69
@@ -2418,8 +2838,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 333.37 417.80 333.22 414.22
   C 332.96 408.32 327.23 406.83 323.04 410.07
   A 0.54 0.54 0.0 0 1 322.26 409.92"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 405.93 409.85
   Q 405.05 408.46 403.55 408.91
   A 0.73 0.73 0.0 0 0 403.03 409.61
@@ -2438,8 +2861,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 417.03 417.76 416.88 414.17
   C 416.64 408.27 410.90 406.77 406.70 410.00
   A 0.54 0.54 0.0 0 1 405.93 409.85"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 501.89 409.64
   Q 501.36 409.01 499.71 408.96
   A 0.79 0.78 -89.0 0 0 498.90 409.75
@@ -2459,8 +2885,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 512.42 408.99 508.57 406.79 503.98 409.22
   Q 503.74 409.35 502.75 409.83
   A 0.72 0.71 57.1 0 1 501.89 409.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 179.02 410.10
   Q 178.07 408.76 175.83 409.02
   A 0.61 0.60 -3.8 0 0 175.30 409.62
@@ -2475,8 +2904,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.40 1.40 0.0 0 0 183.28 408.42
   Q 180.66 408.96 179.71 410.12
   A 0.43 0.43 0.0 0 1 179.02 410.10"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 375.96 410.45
   Q 375.91 410.36 375.95 410.13
   Q 376.00 409.64 375.70 409.36
@@ -2493,8 +2925,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.58 1.57 1.3 0 0 380.92 408.61
   Q 378.30 408.65 376.81 410.51
   A 0.51 0.51 0.0 0 1 375.96 410.45"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 143.48 415.67
   Q 143.82 415.67 143.99 416.51
   Q 145.14 422.12 146.29 426.85
@@ -2522,8 +2957,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.12 -5.5 0 0 140.66 426.82
   Q 141.88 422.10 143.10 416.51
   Q 143.28 415.67 143.48 415.67"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 243.78 427.94
   Q 245.29 427.95 245.76 426.49
   Q 250.57 411.33 250.97 410.42
@@ -2539,8 +2977,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 1.01 0.0 0 0 237.02 410.25
   Q 237.40 411.17 241.84 426.44
   Q 242.27 427.92 243.78 427.94"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 308.65 422.07
   L 305.27 410.27
   A 1.70 1.69 -8.2 0 0 303.62 409.04
@@ -2560,8 +3001,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.55 1.53 -89.8 0 0 312.42 410.40
   L 309.24 422.07
   A 0.31 0.31 0.0 0 1 308.65 422.07"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 424.8650 409.7872
   A 0.81 0.81 0.0 0 0 424.0535 408.9786
   L 422.4135 408.9814
@@ -2571,8 +3015,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 424.0865 427.8386
   A 0.81 0.81 0.0 0 0 424.8950 427.0271
   L 424.8650 409.7872"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 436.47 412.68
   Q 433.28 416.83 430.01 421.12
   Q 427.76 424.07 427.49 426.69
@@ -2591,8 +3038,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.42 1.41 0.2 0 0 429.32 411.82
   L 436.06 411.85
   A 0.52 0.52 0.0 0 1 436.47 412.68"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.8709 410.0751
   A 1.16 1.16 0.0 0 0 475.7068 408.9192
   L 475.2068 408.9209
@@ -2602,8 +3052,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 475.7732 427.9191
   A 1.16 1.16 0.0 0 0 476.9291 426.7550
   L 476.8709 410.0751"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 597.01 415.63
   Q 597.34 415.63 597.52 416.48
   Q 598.71 422.09 599.90 426.83
@@ -2631,8 +3084,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.12 -5.8 0 0 594.25 426.83
   Q 595.44 422.09 596.63 416.48
   Q 596.81 415.63 597.01 415.63"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 88.73 449.09
   A 0.65 0.65 0.0 0 0 88.08 448.44
   L 86.00 448.44
@@ -2642,8 +3098,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 88.08 476.60
   A 0.65 0.65 0.0 0 0 88.73 475.95
   L 88.73 449.09"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 262.34 457.64
   A 3.70 3.69 15.2 0 0 260.00 458.97
   L 254.74 465.50
@@ -2667,8 +3126,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 264.66 458.07
   A 0.44 0.44 0.0 0 0 264.26 457.36
   L 262.34 457.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 408.9972 450.0796
   A 1.05 1.05 0.0 0 0 407.9751 449.0025
   L 407.0754 448.9789
@@ -2678,8 +3140,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 407.8646 453.2211
   A 1.05 1.05 0.0 0 0 408.9417 452.1989
   L 408.9972 450.0796"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.6874 449.9489
   A 0.93 0.93 0.0 0 0 446.7804 448.9965
   L 445.4808 448.9647
@@ -2689,8 +3154,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 446.6792 453.1353
   A 0.93 0.93 0.0 0 0 447.6317 452.2283
   L 447.6874 449.9489"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.0530 450.0496
   A 1.04 1.04 0.0 0 0 499.0057 449.0169
   L 498.1058 449.0232
@@ -2700,8 +3168,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 499.0342 453.0968
   A 1.04 1.04 0.0 0 0 500.0669 452.0496
   L 500.0530 450.0496"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 114.44 457.20
   L 114.42 452.96
   A 1.12 1.12 0.0 0 0 113.30 451.84
@@ -2727,8 +3198,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.84 0.84 0.0 0 0 117.51 457.76
   L 115.00 457.77
   A 0.57 0.56 89.9 0 1 114.44 457.20"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.88 457.25
   L 288.87 453.01
   A 1.12 1.12 0.0 0 0 287.75 451.90
@@ -2754,8 +3228,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.84 0.84 0.0 0 0 291.95 457.81
   L 289.44 457.83
   A 0.57 0.56 90.0 0 1 288.88 457.25"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 308.97 457.30
   L 308.96 453.07
   A 1.12 1.12 0.0 0 0 307.85 451.95
@@ -2781,8 +3258,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.84 0.84 0.0 0 0 312.04 457.87
   L 309.54 457.88
   A 0.57 0.56 -90.0 0 1 308.97 457.30"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 102.99 475.18
   Q 103.32 476.70 104.85 476.57
   A 1.12 1.11 -1.5 0 0 105.87 475.50
@@ -2795,8 +3275,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 97.72 464.57 92.30 465.19 91.84 470.83
   C 91.32 477.22 98.61 478.22 102.59 475.03
   A 0.26 0.25 64.7 0 1 102.99 475.18"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 124.77 467.67
   L 135.17 467.66
   A 0.89 0.89 0.0 0 0 136.06 466.83
@@ -2809,8 +3292,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 132.48 470.34 132.58 472.89 130.66 473.76
   C 126.88 475.46 124.42 471.56 124.18 468.32
   A 0.60 0.60 0.0 0 1 124.77 467.67"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 156.15 467.15
   Q 156.22 470.57 157.48 473.02
   C 160.62 479.11 169.08 478.02 170.89 471.44
@@ -2824,8 +3310,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 0 170.70 462.25
   C 168.62 455.75 160.12 455.01 157.23 461.22
   Q 156.07 463.72 156.15 467.15"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 227.93 475.55
   Q 228.77 476.74 230.05 476.52
   A 0.78 0.77 84.2 0 0 230.69 475.73
@@ -2843,8 +3332,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 217.25 476.37 221.84 478.10 224.92 476.40
   Q 226.90 475.29 226.98 475.26
   A 0.81 0.80 61.7 0 1 227.93 475.55"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 233.74 467.23
   Q 233.82 470.64 235.09 473.08
   C 238.24 479.15 246.68 478.03 248.46 471.46
@@ -2858,8 +3350,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 0 248.24 462.29
   C 246.14 455.81 237.66 455.10 234.80 461.32
   Q 233.65 463.82 233.74 467.23"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 270.17 467.64
   L 280.56 467.67
   A 0.89 0.89 0.0 0 0 281.45 466.85
@@ -2872,8 +3367,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 277.87 470.34 277.95 472.89 276.03 473.75
   C 272.24 475.43 269.80 471.53 269.58 468.29
   A 0.60 0.60 0.0 0 1 270.17 467.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.95 475.23
   Q 338.28 476.76 339.81 476.62
   A 1.12 1.12 0.0 0 0 340.83 475.55
@@ -2886,8 +3384,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 332.63 464.62 327.20 465.25 326.75 470.91
   C 326.25 477.30 333.56 478.29 337.54 475.08
   A 0.26 0.25 64.6 0 1 337.95 475.23"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 361.95 472.11
   Q 361.88 473.40 362.97 474.56
   C 366.71 478.54 374.98 477.80 375.19 471.49
@@ -2902,8 +3403,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 369.12 474.68 366.92 473.80
   C 365.76 473.34 365.13 472.06 364.35 471.40
   A 1.50 1.29 24.1 0 0 361.95 472.11"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 380.99 458.62
   Q 380.06 457.33 378.82 457.63
   A 0.78 0.77 83.4 0 0 378.23 458.39
@@ -2934,8 +3438,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.67 -35.8 0 1 390.14 458.98
   Q 386.89 455.36 382.00 458.78
   A 0.74 0.73 54.1 0 1 380.99 458.62"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 411.89 472.08
   Q 411.82 473.36 412.90 474.53
   C 416.60 478.51 424.85 477.81 425.09 471.53
@@ -2950,8 +3457,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 419.02 474.68 416.84 473.79
   C 415.68 473.32 415.06 472.05 414.29 471.38
   A 1.50 1.28 24.4 0 0 411.89 472.08"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.61 472.13
   Q 427.53 473.42 428.61 474.58
   C 432.33 478.58 440.59 477.88 440.84 471.58
@@ -2966,15 +3476,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 434.76 474.74 432.56 473.84
   C 431.41 473.38 430.78 472.10 430.01 471.43
   A 1.50 1.29 24.4 0 0 427.61 472.13"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 458.6429 456.8901
   A 10.11 7.85 -89.7 0 0 450.7401 466.9589
   A 10.11 7.85 -89.7 0 0 458.5371 477.1099
   A 10.11 7.85 -89.7 0 0 466.4399 467.0411
   A 10.11 7.85 -89.7 0 0 458.6429 456.8901"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.68 458.62
   Q 505.80 457.22 504.29 457.68
   A 0.74 0.73 -8.8 0 0 503.77 458.38
@@ -2993,8 +3509,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 517.85 466.57 517.70 462.96
   C 517.45 457.02 511.68 455.52 507.46 458.77
   A 0.54 0.54 0.0 0 1 506.68 458.62"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 540.87 475.27
   Q 541.20 476.80 542.74 476.66
   A 1.12 1.12 0.0 0 0 543.76 475.58
@@ -3007,8 +3526,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 535.53 464.64 530.09 465.28 529.65 470.95
   C 529.15 477.36 536.48 478.34 540.46 475.12
   A 0.26 0.25 64.5 0 1 540.87 475.27"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 141.95 458.64
   Q 141.08 457.24 139.57 457.68
   A 0.74 0.73 -8.5 0 0 139.05 458.38
@@ -3027,8 +3549,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 153.05 466.61 152.91 463.01
   C 152.70 457.10 146.95 455.57 142.73 458.79
   A 0.54 0.54 0.0 0 1 141.95 458.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 202.62 475.86
   C 216.64 482.63 217.10 450.77 202.35 458.36
   A 1.03 1.02 48.3 0 1 201.34 458.30
@@ -3040,8 +3565,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.79 0.79 0.0 0 0 201.91 482.02
   L 201.90 476.31
   A 0.51 0.50 12.8 0 1 202.62 475.86"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 347.99 458.61
   Q 347.12 457.21 345.61 457.66
   A 0.74 0.73 -8.6 0 0 345.09 458.36
@@ -3060,8 +3588,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 359.11 466.59 358.97 462.98
   C 358.75 457.06 353.00 455.54 348.77 458.76
   A 0.54 0.54 0.0 0 1 347.99 458.61"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.86 458.53
   Q 471.98 457.14 470.47 457.60
   A 0.74 0.73 -9.0 0 0 469.96 458.30
@@ -3080,8 +3611,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 484.04 466.41 483.87 462.81
   C 483.60 456.89 477.84 455.41 473.64 458.67
   A 0.54 0.54 0.0 0 1 472.86 458.53"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.59 459.30
   Q 318.54 459.22 318.57 458.99
   Q 318.62 458.50 318.32 458.22
@@ -3098,8 +3632,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.57 1.57 0.0 0 0 323.52 457.44
   Q 320.91 457.50 319.43 459.36
   A 0.51 0.51 0.0 0 1 318.59 459.30"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 408.91 458.38
   A 0.86 0.86 0.0 0 0 408.05 457.52
   L 406.83 457.52
@@ -3109,8 +3646,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 408.05 476.66
   A 0.86 0.86 0.0 0 0 408.91 475.80
   L 408.91 458.38"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.5448 458.3873
   A 0.74 0.74 0.0 0 0 446.8035 457.6486
   L 445.1635 457.6514
@@ -3120,8 +3660,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 446.8365 476.5886
   A 0.74 0.74 0.0 0 0 447.5752 475.8473
   L 447.5448 458.3873"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 179.21 470.69
   L 175.89 458.94
   A 1.69 1.69 0.0 0 0 174.24 457.71
@@ -3141,8 +3684,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.55 1.52 -89.6 0 0 183.00 459.09
   L 179.80 470.69
   A 0.31 0.31 0.0 0 1 179.21 470.69"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 499.9347 458.4175
   A 0.65 0.65 0.0 0 0 499.2836 457.7686
   L 497.6836 457.7714
@@ -3152,8 +3698,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 499.3164 476.5886
   A 0.65 0.65 0.0 0 0 499.9653 475.9375
   L 499.9347 458.4175"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 497.08 506.10
   A 3.67 3.66 15.0 0 0 494.77 507.43
   L 489.57 513.92
@@ -3177,8 +3726,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 499.38 506.52
   A 0.44 0.44 0.0 0 0 498.98 505.81
   L 497.08 506.10"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 149.93 506.15
   A 3.67 3.66 14.7 0 0 147.63 507.49
   L 142.45 514.02
@@ -3202,8 +3754,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 152.25 506.56
   A 0.44 0.44 0.0 0 0 151.84 505.86
   L 149.93 506.15"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 297.1187 498.3722
   A 0.91 0.91 0.0 0 0 296.2410 497.4310
   L 295.1217 497.3919
@@ -3213,8 +3768,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 296.0783 502.0881
   A 0.91 0.91 0.0 0 0 297.0195 501.2104
   L 297.1187 498.3722"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 335.1143 498.5721
   A 1.03 1.03 0.0 0 0 334.1135 497.5137
   L 333.1938 497.4880
@@ -3224,8 +3782,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 333.9862 502.0720
   A 1.03 1.03 0.0 0 0 335.0445 501.0711
   L 335.1143 498.5721"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 196.63 505.49
   L 196.62 501.21
   A 1.13 1.13 0.0 0 0 195.49 500.08
@@ -3251,8 +3812,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.85 0.85 0.0 0 0 199.73 506.06
   L 197.20 506.07
   A 0.58 0.57 90.0 0 1 196.63 505.49"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 423.33 505.47
   L 423.30 501.18
   A 1.13 1.13 0.0 0 0 422.16 500.06
@@ -3278,8 +3842,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.85 0.85 0.0 0 0 426.44 506.02
   L 423.91 506.05
   A 0.58 0.57 89.6 0 1 423.33 505.47"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.26 505.51
   L 524.21 501.22
   A 1.13 1.13 0.0 0 0 523.07 500.10
@@ -3305,8 +3872,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.85 0.85 0.0 0 0 527.37 506.05
   L 524.84 506.08
   A 0.58 0.57 89.4 0 1 524.26 505.51"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 176.85 505.54
   L 176.84 501.26
   A 1.13 1.13 0.0 0 0 175.71 500.13
@@ -3332,8 +3902,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.85 0.85 0.0 0 0 179.95 506.11
   L 177.42 506.12
   A 0.58 0.57 -90.0 0 1 176.85 505.54"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 120.96 515.72
   Q 121.09 519.13 122.40 521.55
   C 125.64 527.56 134.06 526.32 135.73 519.72
@@ -3347,8 +3920,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 0 135.37 510.56
   C 133.17 504.12 124.69 503.55 121.93 509.80
   Q 120.82 512.31 120.96 515.72"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 157.98 515.92
   L 168.35 515.85
   A 0.89 0.89 0.0 0 0 169.23 515.02
@@ -3361,8 +3937,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 165.69 518.54 165.80 521.08 163.89 521.95
   C 160.13 523.67 157.66 519.80 157.40 516.57
   A 0.60 0.60 0.0 0 1 157.98 515.92"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 256.09 517.01
   C 257.66 517.54 260.08 518.10 260.23 519.64
   A 2.41 2.27 -11.5 0 1 258.51 522.07
@@ -3376,8 +3955,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.37 1.31 28.0 0 0 262.86 509.90
   C 262.77 504.38 251.58 503.65 250.16 510.20
   C 249.27 514.28 252.32 515.73 256.09 517.01"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 300.12 520.75
   Q 300.07 522.03 301.17 523.17
   C 304.94 527.08 313.15 526.23 313.27 519.96
@@ -3392,8 +3974,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 307.28 523.21 305.08 522.36
   C 303.93 521.92 303.28 520.66 302.50 520.01
   A 1.49 1.28 23.3 0 0 300.12 520.75"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 315.52 520.58
   Q 315.45 521.86 316.54 523.01
   C 320.28 526.96 328.50 526.20 328.69 519.92
@@ -3408,15 +3993,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 322.66 523.11 320.47 522.24
   C 319.31 521.79 318.68 520.52 317.90 519.87
   A 1.49 1.28 23.9 0 0 315.52 520.58"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.0752 505.4201
   A 10.08 7.85 -89.8 0 0 338.1900 515.4726
   A 10.08 7.85 -89.8 0 0 346.0048 525.5799
   A 10.08 7.85 -89.8 0 0 353.8900 515.5274
   A 10.08 7.85 -89.8 0 0 346.0752 505.4201"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.63 516.03
   L 414.96 516.05
   A 0.89 0.88 -87.7 0 0 415.85 515.24
@@ -3429,8 +4020,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 412.29 518.71 412.37 521.24 410.46 522.09
   C 406.70 523.77 404.27 519.89 404.05 516.67
   A 0.60 0.60 0.0 0 1 404.63 516.03"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 89.58 524.17
   C 103.48 530.93 104.00 499.30 89.35 506.80
   A 1.02 1.01 48.4 0 1 88.34 506.73
@@ -3442,8 +4036,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.79 0.79 0.0 0 0 88.86 530.28
   L 88.86 524.62
   A 0.50 0.50 0.0 0 1 89.58 524.17"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 114.71 523.97
   Q 115.54 525.15 116.82 524.94
   A 0.78 0.77 84.2 0 0 117.46 524.14
@@ -3461,8 +4058,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 104.08 524.79 108.66 526.51 111.71 524.82
   Q 113.69 523.71 113.77 523.68
   A 0.81 0.80 61.6 0 1 114.71 523.97"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 225.86 523.65
   Q 226.20 525.16 227.72 525.02
   A 1.11 1.10 -2.0 0 0 228.72 523.95
@@ -3475,8 +4075,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 220.54 513.17 215.17 513.83 214.76 519.43
   C 214.30 525.77 221.54 526.70 225.46 523.51
   A 0.26 0.25 64.3 0 1 225.86 523.65"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 235.90 507.10
   Q 235.04 505.70 233.53 506.14
   A 0.74 0.73 -8.3 0 0 233.00 506.84
@@ -3495,8 +4098,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 246.95 515.12 246.83 511.52
   C 246.64 505.61 240.91 504.06 236.67 507.26
   A 0.54 0.54 0.0 0 1 235.90 507.10"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 268.91 506.77
   Q 268.76 506.03 267.22 505.92
   A 0.89 0.88 -87.9 0 0 266.27 506.81
@@ -3526,8 +4132,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 275.11 504.41 270.91 506.73
   Q 270.38 507.02 269.81 507.26
   A 0.67 0.66 -16.3 0 1 268.91 506.77"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 360.43 507.16
   Q 359.57 505.76 358.07 506.21
   A 0.73 0.73 0.0 0 0 357.56 506.90
@@ -3546,8 +4155,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 371.46 515.07 371.33 511.50
   C 371.11 505.62 365.40 504.10 361.21 507.31
   A 0.54 0.53 55.9 0 1 360.43 507.16"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 386.51 507.15
   Q 385.64 505.75 384.13 506.20
   A 0.74 0.73 -8.6 0 0 383.61 506.90
@@ -3566,8 +4178,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 397.62 515.10 397.48 511.51
   C 397.25 505.59 391.50 504.07 387.29 507.30
   A 0.54 0.54 0.0 0 1 386.51 507.15"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 436.42 520.20
   L 433.30 507.05
   A 1.11 1.10 -3.4 0 0 432.35 506.21
@@ -3594,22 +4209,31 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 439.81 507.78 439.65 508.24
   Q 437.68 514.11 436.65 520.20
   A 0.12 0.11 43.7 0 1 436.42 520.20"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.1126 505.4804
   A 10.02 7.91 -90.5 0 0 454.2903 515.5690
   A 10.02 7.91 -90.5 0 0 462.2874 525.5196
   A 10.02 7.91 -90.5 0 0 470.1097 515.4310
   A 10.02 7.91 -90.5 0 0 462.1126 505.4804"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.9500 505.5200
   A 10.00 7.97 -90.0 0 0 529.9800 515.5200
   A 10.00 7.97 -90.0 0 0 537.9500 525.5200
   A 10.00 7.97 -90.0 0 0 545.9200 515.5200
   A 10.00 7.97 -90.0 0 0 537.9500 505.5200"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 206.25 507.64
   Q 206.20 507.56 206.23 507.33
   Q 206.29 506.84 205.99 506.55
@@ -3626,8 +4250,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.58 1.58 0.0 0 0 211.22 505.81
   Q 208.60 505.85 207.10 507.71
   A 0.52 0.51 49.3 0 1 206.25 507.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 296.95 506.96
   A 1.02 1.02 0.0 0 0 295.93 505.94
   L 295.09 505.94
@@ -3637,8 +4264,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 295.93 525.00
   A 1.02 1.02 0.0 0 0 296.95 523.98
   L 296.95 506.96"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 334.9596 506.7849
   A 0.75 0.75 0.0 0 0 334.2070 506.0375
   L 332.7670 506.0426
@@ -3648,8 +4278,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 334.2730 524.9374
   A 0.75 0.75 0.0 0 0 335.0204 524.1848
   L 334.9596 506.7849"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.92 507.63
   Q 476.87 507.55 476.90 507.32
   Q 476.95 506.84 476.66 506.56
@@ -3666,8 +4299,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.57 1.56 1.2 0 0 481.84 505.80
   Q 479.24 505.85 477.76 507.70
   A 0.51 0.51 0.0 0 1 476.92 507.63"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.3325 520.9747
   A 0.75 0.75 0.0 0 0 505.7001 520.1231
   L 503.8601 519.8514
@@ -3677,8 +4313,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 504.1399 530.6886
   A 0.75 0.75 0.0 0 0 504.9915 530.0562
   L 506.3325 520.9747"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 268.22 555.26
   A 0.44 0.43 -76.6 0 1 267.59 555.65
   C 257.97 550.71 255.03 563.11 257.44 569.36
@@ -3691,8 +4330,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 269.02 546.07
   A 0.88 0.88 0.0 0 0 268.15 546.96
   L 268.22 555.26"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 376.06 555.26
   A 0.44 0.43 -76.3 0 1 375.42 555.65
   C 365.86 550.68 362.87 563.03 365.24 569.27
@@ -3705,8 +4347,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 376.90 546.11
   A 0.88 0.88 0.0 0 0 376.03 546.99
   L 376.06 555.26"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.93 546.85
   A 0.69 0.69 0.0 0 0 394.24 546.16
   L 392.26 546.16
@@ -3716,8 +4361,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 394.24 574.06
   A 0.69 0.69 0.0 0 0 394.93 573.37
   L 394.93 546.85"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.86 555.20
   L 520.90 555.30
   A 0.89 0.88 89.6 0 0 520.12 556.10
@@ -3743,8 +4391,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.43 1.42 6.0 0 0 530.00 546.27
   C 524.38 545.10 522.02 549.64 522.55 554.35
   A 0.77 0.77 0.0 0 1 521.86 555.20"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 116.6984 547.3223
   A 0.90 0.90 0.0 0 0 115.8174 546.4037
   L 114.5577 546.3773
@@ -3754,8 +4405,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 115.7223 550.9427
   A 0.90 0.90 0.0 0 0 116.6410 550.0617
   L 116.6984 547.3223"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 141.9114 547.6685
   A 0.87 0.87 0.0 0 0 141.0506 546.7894
   L 139.2707 546.7708
@@ -3765,8 +4419,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 141.0093 550.7292
   A 0.87 0.87 0.0 0 0 141.8884 549.8684
   L 141.9114 547.6685"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 176.7358 547.6540
   A 0.83 0.83 0.0 0 0 175.9029 546.8269
   L 174.1430 546.8331
@@ -3776,8 +4433,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 175.9170 550.8669
   A 0.83 0.83 0.0 0 0 176.7441 550.0340
   L 176.7358 547.6540"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 416.29 555.14
   L 414.85 555.14
   A 0.85 0.85 0.0 0 0 414.00 556.00
@@ -3804,8 +4464,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.46 1.45 88.9 0 0 417.11 550.68
   L 417.02 554.43
   A 0.73 0.73 0.0 0 1 416.29 555.14"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 291.99 554.66
   L 291.95 550.39
   A 1.13 1.13 0.0 0 0 290.81 549.27
@@ -3831,8 +4494,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.85 0.85 0.0 0 0 295.09 555.21
   L 292.57 555.24
   A 0.58 0.57 89.6 0 1 291.99 554.66"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 88.16 556.11
   Q 87.24 554.83 86.01 555.13
   A 0.78 0.77 83.4 0 0 85.41 555.88
@@ -3863,8 +4529,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.67 -35.8 0 1 97.28 556.48
   Q 94.04 552.87 89.17 556.28
   A 0.73 0.73 0.0 0 1 88.16 556.11"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 123.60 556.13
   Q 122.73 554.72 121.21 555.17
   A 0.74 0.73 -8.5 0 0 120.69 555.88
@@ -3883,8 +4552,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 134.74 564.13 134.61 560.52
   C 134.38 554.58 128.62 553.05 124.38 556.28
   A 0.54 0.54 0.0 0 1 123.60 556.13"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 148.07 556.12
   Q 147.13 554.84 145.90 555.14
   A 0.78 0.78 0.0 0 0 145.30 555.90
@@ -3915,8 +4587,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 1 157.24 556.47
   Q 153.97 552.84 149.09 556.29
   A 0.74 0.73 54.0 0 1 148.07 556.12"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 199.35 565.18
   L 209.79 565.10
   A 0.90 0.89 -88.2 0 0 210.68 564.26
@@ -3929,8 +4604,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 207.11 567.81 207.23 570.37 205.30 571.25
   C 201.52 572.98 199.02 569.08 198.77 565.83
   A 0.60 0.60 0.0 0 1 199.35 565.18"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 224.72 565.17
   L 235.15 565.10
   A 0.89 0.89 0.0 0 0 236.03 564.26
@@ -3943,15 +4621,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 232.47 567.80 232.58 570.36 230.66 571.23
   C 226.88 572.96 224.39 569.06 224.14 565.82
   A 0.60 0.60 0.0 0 1 224.72 565.17"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 306.2423 554.4100
   A 10.13 7.84 -90.1 0 0 298.4200 564.5537
   A 10.13 7.84 -90.1 0 0 306.2777 574.6700
   A 10.13 7.84 -90.1 0 0 314.1000 564.5263
   A 10.13 7.84 -90.1 0 0 306.2423 554.4100"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 331.89 565.24
   L 342.31 565.06
   A 0.89 0.89 0.0 0 0 343.19 564.22
@@ -3964,8 +4648,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 339.67 567.79 339.81 570.35 337.89 571.25
   C 334.13 573.02 331.60 569.15 331.31 565.90
   A 0.60 0.60 0.0 0 1 331.89 565.24"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 409.51 573.14
   Q 410.34 574.33 411.62 574.12
   A 0.78 0.77 84.5 0 0 412.26 573.33
@@ -3983,8 +4670,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 398.87 573.90 403.44 575.65 406.51 573.97
   Q 408.49 572.88 408.57 572.85
   A 0.81 0.80 62.0 0 1 409.51 573.14"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.65 565.14
   L 440.08 565.12
   A 0.89 0.89 0.0 0 0 440.97 564.29
@@ -3997,8 +4687,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 437.39 567.81 437.49 570.37 435.56 571.24
   C 431.77 572.95 429.30 569.04 429.06 565.79
   A 0.60 0.60 0.0 0 1 429.65 565.14"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 461.64 564.92
   Q 461.81 568.34 463.13 570.76
   C 466.44 576.76 474.86 575.44 476.49 568.82
@@ -4012,15 +4705,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 0 476.06 559.64
   C 473.80 553.20 465.29 552.69 462.57 558.98
   Q 461.48 561.51 461.64 564.92"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.8989 554.3602
   A 10.18 7.95 -90.4 0 0 503.0202 564.5955
   A 10.18 7.95 -90.4 0 0 511.0411 574.7198
   A 10.18 7.95 -90.4 0 0 518.9198 564.4845
   A 10.18 7.95 -90.4 0 0 510.8989 554.3602"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 242.24 556.13
   Q 241.38 554.74 239.88 555.19
   A 0.73 0.73 0.0 0 0 239.36 555.89
@@ -4039,8 +4738,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 253.29 564.03 253.15 560.46
   C 252.92 554.58 247.21 553.07 243.02 556.28
   A 0.54 0.53 55.7 0 1 242.24 556.13"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 349.70 556.18
   Q 348.84 554.79 347.34 555.23
   A 0.73 0.73 0.0 0 0 346.82 555.92
@@ -4059,8 +4761,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 360.72 564.11 360.59 560.54
   C 360.38 554.66 354.67 553.13 350.47 556.33
   A 0.54 0.53 55.9 0 1 349.70 556.18"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.26 556.17
   Q 446.39 554.77 444.88 555.23
   A 0.73 0.73 0.0 0 0 444.37 555.93
@@ -4079,8 +4784,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 458.37 564.07 458.22 560.48
   C 457.97 554.58 452.23 553.08 448.04 556.31
   A 0.54 0.54 0.0 0 1 447.26 556.17"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 116.5544 555.6174
   A 0.50 0.50 0.0 0 0 116.0535 555.1183
   L 114.0535 555.1218
@@ -4090,8 +4798,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 116.0865 573.9982
   A 0.50 0.50 0.0 0 0 116.5856 573.4974
   L 116.5544 555.6174"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 141.8346 555.6970
   A 0.61 0.61 0.0 0 0 141.2235 555.0881
   L 139.0235 555.0919
@@ -4101,8 +4812,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 141.2565 573.9681
   A 0.61 0.61 0.0 0 0 141.8654 573.3570
   L 141.8346 555.6970"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 176.6446 555.7672
   A 0.65 0.65 0.0 0 0 175.9935 555.1183
   L 174.0135 555.1217
@@ -4112,8 +4826,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 176.0265 574.0183
   A 0.65 0.65 0.0 0 0 176.6754 573.3671
   L 176.6446 555.7672"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 188.68 558.84
   Q 185.46 563.06 182.16 567.42
   Q 179.89 570.42 179.63 573.08
@@ -4132,8 +4849,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.44 1.43 0.0 0 0 181.43 558.00
   L 188.26 558.00
   A 0.53 0.52 18.6 0 1 188.68 558.84"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 485.48 568.17
   L 482.13 556.27
   A 1.71 1.71 0.0 0 0 480.47 555.02
@@ -4153,8 +4873,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.57 1.54 -89.5 0 0 489.33 556.43
   L 486.08 568.17
   A 0.31 0.31 0.0 0 1 485.48 568.17"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 284.5161 562.7230
   A 0.68 0.68 0.0 0 0 283.8409 562.0382
   L 275.7611 561.9818
@@ -4164,8 +4887,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 283.8189 565.1782
   A 0.68 0.68 0.0 0 0 284.5037 564.5029
   L 284.5161 562.7230"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 325.7926 562.8569
   A 0.83 0.83 0.0 0 0 324.9655 562.0240
   L 316.9256 561.9960
@@ -4175,8 +4901,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 324.9544 565.2040
   A 0.83 0.83 0.0 0 0 325.7873 564.3769
   L 325.7926 562.8569"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 149.96 603.18
   A 3.69 3.68 15.0 0 0 147.63 604.52
   L 142.41 611.04
@@ -4200,8 +4929,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 152.28 603.61
   A 0.44 0.44 0.0 0 0 151.87 602.90
   L 149.96 603.18"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 255.91 603.92
   L 255.86 595.18
   A 1.36 1.35 -87.9 0 0 254.62 593.84
@@ -4223,8 +4955,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 266.23 604.23 263.10 600.76 258.14 603.45
   Q 256.95 604.09 256.53 604.31
   A 0.43 0.43 0.0 0 1 255.91 603.92"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 409.31 603.14
   A 3.70 3.69 14.8 0 0 406.98 604.49
   L 401.75 611.06
@@ -4248,8 +4983,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 411.64 603.56
   A 0.44 0.44 0.0 0 0 411.23 602.85
   L 409.31 603.14"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.7477 595.7259
   A 0.85 0.85 0.0 0 0 209.9112 594.8627
   L 208.3314 594.8378
@@ -4259,8 +4997,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 209.8486 598.8422
   A 0.85 0.85 0.0 0 0 210.7119 598.0056
   L 210.7477 595.7259"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 176.86 602.61
   L 176.85 598.33
   A 1.13 1.13 0.0 0 0 175.72 597.20
@@ -4286,8 +5027,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.85 0.85 0.0 0 0 179.96 603.18
   L 177.43 603.19
   A 0.58 0.57 90.0 0 1 176.86 602.61"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 246.05 602.58
   L 246.03 598.32
   A 1.12 1.12 0.0 0 0 244.91 597.20
@@ -4313,8 +5057,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.85 0.85 0.0 0 0 249.13 603.14
   L 246.61 603.15
   A 0.58 0.57 90.0 0 1 246.05 602.58"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.38 602.59
   L 336.33 598.31
   A 1.13 1.13 0.0 0 0 335.18 597.19
@@ -4340,8 +5087,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.85 0.85 0.0 0 0 339.48 603.13
   L 336.95 603.16
   A 0.58 0.57 89.4 0 1 336.38 602.59"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 89.58 621.27
   C 103.52 627.98 103.92 596.32 89.28 603.88
   A 1.02 1.01 48.2 0 1 88.27 603.82
@@ -4353,8 +5103,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.79 0.79 0.0 0 0 88.88 627.39
   L 88.86 621.72
   A 0.50 0.50 0.0 0 1 89.58 621.27"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 120.74 612.58
   Q 120.79 616.01 122.05 618.47
   C 125.18 624.60 133.67 623.54 135.51 616.95
@@ -4368,8 +5121,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.35 1.35 0.0 0 0 135.36 607.73
   C 133.30 601.20 124.78 600.42 121.86 606.64
   Q 120.68 609.15 120.74 612.58"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 157.62 612.93
   L 168.00 612.86
   A 0.89 0.89 0.0 0 0 168.89 612.03
@@ -4382,8 +5138,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 165.34 615.55 165.46 618.10 163.54 618.97
   C 159.78 620.70 157.30 616.82 157.04 613.58
   A 0.60 0.60 0.0 0 1 157.62 612.93"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 182.76 617.62
   Q 182.70 618.90 183.80 620.05
   C 187.57 623.98 195.81 623.15 195.95 616.86
@@ -4398,8 +5157,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 189.93 620.10 187.73 619.25
   C 186.57 618.80 185.93 617.53 185.14 616.88
   A 1.50 1.28 23.5 0 0 182.76 617.62"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 273.95 612.93
   L 284.33 612.89
   A 0.89 0.89 0.0 0 0 285.21 612.06
@@ -4412,8 +5174,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 281.66 615.57 281.76 618.11 279.85 618.98
   C 276.08 620.69 273.62 616.81 273.37 613.58
   A 0.60 0.60 0.0 0 1 273.95 612.93"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 299.72 604.14
   Q 298.85 602.74 297.34 603.19
   A 0.74 0.73 -8.6 0 0 296.82 603.89
@@ -4432,8 +5197,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 310.84 612.10 310.70 608.50
   C 310.47 602.58 304.72 601.06 300.50 604.29
   A 0.54 0.54 0.0 0 1 299.72 604.14"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 317.53 613.00
   L 327.82 613.03
   A 0.88 0.88 0.0 0 0 328.71 612.21
@@ -4446,15 +5214,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 325.15 615.67 325.24 618.20 323.33 619.05
   C 319.58 620.72 317.16 616.84 316.94 613.64
   A 0.60 0.59 87.6 0 1 317.53 613.00"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 374.8807 602.3910
   A 10.08 7.79 -89.2 0 0 366.9508 612.3612
   A 10.08 7.79 -89.2 0 0 374.5993 622.5490
   A 10.08 7.79 -89.2 0 0 382.5292 612.5788
   A 10.08 7.79 -89.2 0 0 374.8807 602.3910"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 114.68 621.00
   Q 115.51 622.19 116.79 621.98
   A 0.78 0.77 84.6 0 0 117.43 621.20
@@ -4472,8 +5246,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 104.05 621.74 108.61 623.50 111.68 621.82
   Q 113.67 620.74 113.75 620.71
   A 0.81 0.80 62.1 0 1 114.68 621.00"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 217.96 604.06
   Q 217.09 602.66 215.58 603.11
   A 0.74 0.73 -8.6 0 0 215.06 603.81
@@ -4492,8 +5269,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 229.09 612.03 228.95 608.43
   C 228.72 602.50 222.97 600.98 218.74 604.22
   A 0.54 0.54 0.0 0 1 217.96 604.06"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.5048 603.8474
   A 0.74 0.74 0.0 0 0 209.7635 603.1087
   L 208.2035 603.1114
@@ -4503,8 +5283,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 209.7965 621.9686
   A 0.74 0.74 0.0 0 0 210.5352 621.2273
   L 210.5048 603.8474"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 354.20 609.76
   Q 354.54 609.76 354.72 610.61
   Q 355.92 616.26 357.12 621.03
@@ -4532,8 +5315,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.14 1.13 -5.9 0 0 351.44 621.04
   Q 352.63 616.26 353.82 610.61
   Q 354.00 609.76 354.20 609.76"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 389.73 604.80
   Q 389.68 604.72 389.71 604.50
   Q 389.76 604.02 389.47 603.74
@@ -4550,8 +5336,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.55 1.54 1.0 0 0 394.58 602.97
   Q 392.01 603.03 390.56 604.86
   A 0.50 0.50 0.0 0 1 389.73 604.80"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 418.9889 618.1316
   A 1.09 1.09 0.0 0 0 417.9220 617.0190
   L 416.1623 616.9821
@@ -4561,8 +5350,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 417.8177 621.9979
   A 1.09 1.09 0.0 0 0 418.9302 620.9309
   L 418.9889 618.1316"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 199.36 677.01
   C 194.49 675.43 189.97 676.48 189.79 682.52
   Q 189.76 683.56 189.71 684.84
@@ -4589,8 +5381,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.27 0.27 0.0 0 0 198.74 680.52
   L 199.59 677.44
   A 0.35 0.35 0.0 0 0 199.36 677.01"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.38 703.66
   Q 343.82 703.66 344.19 703.44
   A 1.14 1.13 -6.8 0 0 344.69 702.81
@@ -4620,8 +5415,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 340.07 702.81
   A 1.14 1.13 6.8 0 0 340.57 703.44
   Q 340.94 703.66 342.38 703.66"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.27 701.11
   A 0.40 0.40 0.0 0 1 469.03 700.39
   Q 474.19 696.62 477.33 692.25
@@ -4640,15 +5438,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 480.18 701.88
   A 0.87 0.87 0.0 0 0 479.30 701.02
   L 469.27 701.11"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 501.69 691.44
   C 501.64 685.70 500.24 677.37 492.70 677.44
   C 485.17 677.50 483.93 685.86 483.98 691.60
   C 484.03 697.33 485.43 705.67 492.96 705.60
   C 500.49 705.53 501.74 697.17 501.69 691.44"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 511.63 701.09
   A 0.40 0.40 0.0 0 1 511.40 700.37
   Q 516.59 696.65 519.76 692.32
@@ -4667,8 +5471,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 522.52 701.96
   A 0.87 0.87 0.0 0 0 521.65 701.09
   L 511.63 701.09"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 87.09 678.40
   L 87.05 704.04
   A 0.95 0.95 0.0 0 0 88.00 704.99
@@ -4678,8 +5485,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 12.19 11.90 -89.9 0 0 95.91 677.47
   L 88.04 677.45
   A 0.95 0.95 0.0 0 0 87.09 678.40"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 213.65 695.77
   Q 214.84 695.90 217.93 695.59
   Q 225.65 694.81 226.73 688.18
@@ -4691,8 +5501,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.61 0.60 -89.9 0 0 212.98 704.31
   L 212.99 696.37
   A 0.60 0.60 0.0 0 1 213.65 695.77"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 411.93 684.46
   L 412.04 704.32
   A 0.69 0.69 0.0 0 0 412.75 705.01
@@ -4706,8 +5519,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.99 0.98 -8.9 0 0 407.25 685.02
   L 411.09 683.85
   A 0.65 0.65 0.0 0 1 411.93 684.46"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 540.45 704.64
   L 540.45 699.07
   A 0.85 0.85 0.0 0 1 541.55 698.26
@@ -4730,8 +5546,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.41 0.0 0 0 537.22 705.00
   L 540.09 705.00
   A 0.36 0.36 0.0 0 0 540.45 704.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 438.04 694.63
   L 438.04 679.45
   A 0.75 0.74 -86.0 0 0 437.40 678.71
@@ -4753,8 +5572,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.71 0.71 0.0 0 0 440.20 694.85
   Q 439.84 694.95 438.57 695.10
   A 0.48 0.47 -3.3 0 1 438.04 694.63"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 130.98 680.12
   A 0.89 0.89 0.0 0 0 130.09 681.01
   L 130.10 685.17
@@ -4781,8 +5603,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 134.31 680.80
   A 0.69 0.69 0.0 0 0 133.62 680.11
   L 130.98 680.12"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 245.64 688.59
   A 0.49 0.49 0.0 0 0 246.11 688.95
   L 248.11 688.95
@@ -4811,8 +5636,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 246.34 685.25 245.84 685.35
   A 0.51 0.50 -3.4 0 0 245.45 685.78
   Q 245.28 687.21 245.64 688.59"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 297.10 685.64
   L 295.70 685.24
   A 0.60 0.60 0.0 0 0 294.93 685.81
@@ -4838,8 +5666,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.06 1.06 0.0 0 0 297.91 680.99
   L 297.86 685.07
   A 0.60 0.60 0.0 0 1 297.10 685.64"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 126.14 704.29
   Q 125.93 703.81 125.90 692.58
   Q 125.89 683.87 116.90 685.03
@@ -4856,8 +5687,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.65 0.65 0.0 0 1 122.14 703.94
   Q 123.46 705.40 125.79 704.96
   A 0.48 0.48 0.0 0 0 126.14 704.29"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 145.46 696.03
   L 156.41 696.03
   A 0.41 0.40 0.0 0 0 156.82 695.63
@@ -4869,15 +5703,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 152.51 698.46 152.73 700.73 150.88 701.63
   C 147.37 703.34 144.75 699.90 144.78 696.71
   A 0.69 0.68 -89.6 0 1 145.46 696.03"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 176.9929 684.7041
   A 10.49 8.99 -88.4 0 0 167.7135 694.9390
   A 10.49 8.99 -88.4 0 0 176.4071 705.6759
   A 10.49 8.99 -88.4 0 0 185.6865 695.4410
   A 10.49 8.99 -88.4 0 0 176.9929 684.7041"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 243.46 704.15
   Q 243.24 703.67 243.04 692.56
   Q 242.90 683.93 234.02 685.21
@@ -4894,8 +5734,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.65 0.64 -38.2 0 1 239.49 703.86
   Q 240.81 705.28 243.12 704.82
   A 0.48 0.47 72.1 0 0 243.46 704.15"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 274.16 698.96
   Q 272.67 698.71 271.16 699.07
   A 1.29 1.28 -82.3 0 0 270.33 699.70
@@ -4907,8 +5750,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 257.50 682.18 254.67 701.27 263.51 704.90
   C 268.30 706.86 273.01 704.63 274.56 699.61
   A 0.51 0.51 0.0 0 0 274.16 698.96"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 292.40 704.97
   A 0.60 0.60 0.0 0 0 292.98 704.39
   Q 293.16 695.06 292.77 690.30
@@ -4927,8 +5773,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 289.09 704.45
   A 0.55 0.54 -0.1 0 0 289.64 704.98
   L 292.40 704.97"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 374.61 704.28
   Q 374.40 703.79 374.40 692.63
   Q 374.40 683.96 365.46 685.09
@@ -4945,8 +5794,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.65 0.65 0.0 0 1 370.63 703.91
   Q 371.93 705.37 374.26 704.94
   A 0.48 0.48 0.0 0 0 374.61 704.28"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 385.00 697.72
   A 0.46 0.45 -44.2 0 1 384.13 697.71
   L 381.01 686.63
@@ -4965,8 +5817,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 390.45 685.43
   A 2.10 2.09 -81.0 0 0 388.46 686.88
   L 385.00 697.72"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 314.6987 687.7167
   A 0.80 0.80 0.0 0 0 313.8890 686.9265
   L 311.6492 686.9539
@@ -4976,8 +5831,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 313.9508 691.9861
   A 0.80 0.80 0.0 0 0 314.7410 691.1764
   L 314.6987 687.7167"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 314.7584 701.0132
   A 0.93 0.93 0.0 0 0 313.8399 700.0719
   L 311.9200 700.0485
@@ -4987,8 +5845,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 313.7800 704.9715
   A 0.93 0.93 0.0 0 0 314.7213 704.0530
   L 314.7584 701.0132"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 449.67 700.35
   L 446.01 699.84
   A 0.22 0.22 0.0 0 0 445.76 700.03
@@ -4998,8 +5859,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 11.32 0.92 -82.2 0 0 449.83 700.81
   L 449.86 700.59
   A 0.22 0.22 0.0 0 0 449.67 700.35"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 115.73 141.12
   L 122.97 141.02
   A 0.27 0.27 0.0 0 0 123.24 140.75
@@ -5008,8 +5872,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.97 3.89 89.2 0 0 115.45 140.45
   L 115.46 140.85
   A 0.27 0.27 0.0 0 0 115.73 141.12"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 296.41 141.15
   L 303.59 141.07
   A 0.28 0.28 0.0 0 0 303.86 140.78
@@ -5018,8 +5885,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.97 3.87 89.3 0 0 296.12 140.47
   L 296.13 140.88
   A 0.28 0.28 0.0 0 0 296.41 141.15"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 530.79 143.58
   L 525.39 146.06
   A 1.26 1.26 0.0 0 0 524.78 147.73
@@ -5029,15 +5899,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.14 4.09 -24.7 0 0 532.58 144.46
   L 532.46 144.20
   A 1.26 1.26 0.0 0 0 530.79 143.58"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 183.2300 136.5500
   A 6.80 5.01 -90.0 0 0 178.2200 143.3500
   A 6.80 5.01 -90.0 0 0 183.2300 150.1500
   A 6.80 5.01 -90.0 0 0 188.2400 143.3500
   A 6.80 5.01 -90.0 0 0 183.2300 136.5500"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 256.55 141.06
   L 263.81 141.10
   A 0.26 0.26 0.0 0 0 264.07 140.84
@@ -5046,36 +5922,51 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.89 3.85 0.3 0 0 256.29 140.41
   L 256.29 140.80
   A 0.26 0.26 0.0 0 0 256.55 141.06"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 458.6163 136.5600
   A 6.79 4.93 -90.2 0 0 453.7100 143.3672
   A 6.79 4.93 -90.2 0 0 458.6637 150.1400
   A 6.79 4.93 -90.2 0 0 463.5700 143.3328
   A 6.79 4.93 -90.2 0 0 458.6163 136.5600"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.4903 136.5003
   A 6.84 4.88 -90.5 0 0 568.6702 143.3826
   A 6.84 4.88 -90.5 0 0 573.6097 150.1797
   A 6.84 4.88 -90.5 0 0 578.4298 143.2974
   A 6.84 4.88 -90.5 0 0 573.4903 136.5003"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 93.2751 189.6802
   A 6.43 4.59 -90.4 0 0 88.7301 196.1420
   A 6.43 4.59 -90.4 0 0 93.3649 202.5398
   A 6.43 4.59 -90.4 0 0 97.9099 196.0780
   A 6.43 4.59 -90.4 0 0 93.2751 189.6802"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 143.4950 189.6302
   A 6.45 4.64 -89.6 0 0 138.8101 196.0476
   A 6.45 4.64 -89.6 0 0 143.4050 202.5298
   A 6.45 4.64 -89.6 0 0 148.0899 196.1124
   A 6.45 4.64 -89.6 0 0 143.4950 189.6302"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 232.36 193.95
   L 239.04 194.03
   A 0.28 0.28 0.0 0 0 239.33 193.75
@@ -5085,21 +5976,30 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.18 3.59 -89.3 0 0 232.09 193.53
   L 232.09 193.67
   A 0.28 0.28 0.0 0 0 232.36 193.95"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 316.6298 189.6320
   A 6.54 3.85 -88.6 0 0 312.6211 196.0759
   A 6.54 3.85 -88.6 0 0 316.3102 202.7080
   A 6.54 3.85 -88.6 0 0 320.3189 196.2641
   A 6.54 3.85 -88.6 0 0 316.6298 189.6320"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.66 196.58
   C 327.19 196.47 332.01 205.84 336.83 201.48
   Q 338.32 200.13 338.27 197.19
   A 0.62 0.61 89.5 0 0 337.66 196.58"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.87 193.94
   L 391.33 193.92
   A 0.29 0.29 0.0 0 0 391.62 193.63
@@ -5109,35 +6009,50 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.77 3.50 89.9 0 0 384.58 193.23
   L 384.58 193.65
   A 0.29 0.29 0.0 0 0 384.87 193.94"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.25 196.96
   Q 449.92 196.78 447.99 197.99
   C 445.59 199.50 446.54 202.79 449.30 202.86
   C 452.37 202.93 453.29 200.37 453.79 197.65
   A 0.58 0.58 0.0 0 0 453.25 196.96"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 581.0029 189.7212
   A 6.40 4.37 -88.9 0 0 576.5108 196.0361
   A 6.40 4.37 -88.9 0 0 580.7571 202.5188
   A 6.40 4.37 -88.9 0 0 585.2492 196.2039
   A 6.40 4.37 -88.9 0 0 581.0029 189.7212"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 207.65 196.50
   C 196.64 196.58 201.87 206.33 206.86 201.67
   Q 208.40 200.22 208.30 197.13
   A 0.66 0.64 88.5 0 0 207.65 196.50"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 320.8442 277.7220
   A 6.72 4.36 -88.6 0 0 316.3213 284.3335
   A 6.72 4.36 -88.6 0 0 320.5158 291.1580
   A 6.72 4.36 -88.6 0 0 325.0387 284.5465
   A 6.72 4.36 -88.6 0 0 320.8442 277.7220"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 132.11 270.68
   L 132.07 280.20
   A 0.69 0.69 0.0 0 0 132.75 280.90
@@ -5147,29 +6062,41 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.32 5.24 0.3 0 0 135.72 270.01
   L 132.81 270.00
   A 0.69 0.69 0.0 0 0 132.11 270.68"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 456.1000 272.1400
   A 4.22 3.96 -155.5 0 0 458.2978 277.4934
   A 4.22 3.96 -155.5 0 0 463.7800 275.6400
   A 4.22 3.96 -155.5 0 0 461.5822 270.2866
   A 4.22 3.96 -155.5 0 0 456.1000 272.1400"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 455.8037 284.3046
   A 4.74 4.55 -146.8 0 0 457.2786 290.7073
   A 4.74 4.55 -146.8 0 0 463.7363 289.4954
   A 4.74 4.55 -146.8 0 0 462.2614 283.0927
   A 4.74 4.55 -146.8 0 0 455.8037 284.3046"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 504.5089 269.7700
   A 10.81 4.79 -89.9 0 0 499.7000 280.5716
   A 10.81 4.79 -89.9 0 0 504.4711 291.3900
   A 10.81 4.79 -89.9 0 0 509.2800 280.5884
   A 10.81 4.79 -89.9 0 0 504.5089 269.7700"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 551.50 273.92
   L 546.08 283.37
   A 0.46 0.46 0.0 0 0 546.48 284.06
@@ -5177,22 +6104,31 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.57 0.57 0.0 0 0 552.10 283.47
   L 552.05 274.06
   A 0.29 0.29 0.0 0 0 551.50 273.92"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.2236 270.8983
   A 4.77 4.53 -107.4 0 0 432.3273 276.8047
   A 4.77 4.53 -107.4 0 0 438.0764 280.0017
   A 4.77 4.53 -107.4 0 0 440.9727 274.0953
   A 4.77 4.53 -107.4 0 0 435.2236 270.8983"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 159.7350 285.8876
   A 4.30 3.05 -30.5 0 0 154.4820 285.4420
   A 4.30 3.05 -30.5 0 0 152.3250 290.2524
   A 4.30 3.05 -30.5 0 0 157.5780 290.6980
   A 4.30 3.05 -30.5 0 0 159.7350 285.8876"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 185.24 282.11
   L 192.40 282.09
   A 0.28 0.28 0.0 0 0 192.68 281.81
@@ -5201,8 +6137,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.86 3.84 -0.1 0 0 184.96 281.41
   L 184.96 281.83
   A 0.28 0.28 0.0 0 0 185.24 282.11"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.80 282.08
   L 343.66 282.10
   A 0.50 0.50 0.0 0 0 344.16 281.60
@@ -5212,29 +6151,41 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.91 3.85 0.1 0 0 336.30 281.39
   L 336.30 281.58
   A 0.50 0.50 0.0 0 0 336.80 282.08"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 115.6869 363.1912
   A 6.61 4.21 -88.9 0 0 111.3508 369.7192
   A 6.61 4.21 -88.9 0 0 115.4331 376.4088
   A 6.61 4.21 -88.9 0 0 119.7692 369.8808
   A 6.61 4.21 -88.9 0 0 115.6869 363.1912"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.0770 363.0013
   A 6.93 4.36 -91.1 0 0 331.8508 370.0137
   A 6.93 4.36 -91.1 0 0 336.3430 376.8587
   A 6.93 4.36 -91.1 0 0 340.5692 369.8463
   A 6.93 4.36 -91.1 0 0 336.0770 363.0013"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 399.4820 363.0302
   A 6.87 4.56 -90.4 0 0 394.9701 369.9318
   A 6.87 4.56 -90.4 0 0 399.5780 376.7698
   A 6.87 4.56 -90.4 0 0 404.0899 369.8682
   A 6.87 4.56 -90.4 0 0 399.4820 363.0302"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 91.75 368.65
   A 0.38 0.38 0.0 0 0 92.12 369.13
   L 97.47 369.14
@@ -5242,8 +6193,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 95.18 358.70
   A 0.38 0.38 0.0 0 0 94.44 358.70
   L 91.75 368.65"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 266.38 368.35
   L 274.52 368.25
   A 0.26 0.26 0.0 0 0 274.78 367.99
@@ -5253,15 +6207,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.87 4.27 89.3 0 0 266.12 367.88
   L 266.12 368.09
   A 0.26 0.26 0.0 0 0 266.38 368.35"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 317.4685 363.0704
   A 6.83 4.62 -90.6 0 0 312.9203 369.9484
   A 6.83 4.62 -90.6 0 0 317.6115 376.7296
   A 6.83 4.62 -90.6 0 0 322.1597 369.8516
   A 6.83 4.62 -90.6 0 0 317.4685 363.0704"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 480.90 368.28
   L 488.48 368.26
   A 0.41 0.41 0.0 0 0 488.89 367.85
@@ -5270,28 +6230,40 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.56 4.20 89.8 0 0 480.49 367.56
   L 480.49 367.87
   A 0.41 0.41 0.0 0 0 480.90 368.28"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.3301 363.0410
   A 6.87 4.56 -91.0 0 0 543.8907 369.9896
   A 6.87 4.56 -91.0 0 0 548.5699 376.7790
   A 6.87 4.56 -91.0 0 0 553.0093 369.8304
   A 6.87 4.56 -91.0 0 0 548.3301 363.0410"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 177.45 370.37
   C 166.35 370.36 171.56 380.23 176.62 375.56
   Q 178.18 374.12 178.10 371.00
   A 0.66 0.65 88.9 0 0 177.45 370.37"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 366.8773 371.1223
   A 4.50 3.22 -31.0 0 0 361.3616 370.6799
   A 4.50 3.22 -31.0 0 0 359.1627 375.7577
   A 4.50 3.22 -31.0 0 0 364.6784 376.2001
   A 4.50 3.22 -31.0 0 0 366.8773 371.1223"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 106.93 416.55
   L 114.39 416.51
   A 0.52 0.52 0.0 0 0 114.91 415.99
@@ -5300,15 +6272,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.26 4.25 89.7 0 0 106.41 415.61
   L 106.41 416.03
   A 0.52 0.52 0.0 0 0 106.93 416.55"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 163.9930 411.4408
   A 6.81 4.64 -90.9 0 0 159.4606 418.3229
   A 6.81 4.64 -90.9 0 0 164.2070 425.0592
   A 6.81 4.64 -90.9 0 0 168.7394 418.1771
   A 6.81 4.64 -90.9 0 0 163.9930 411.4408"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 224.10 416.50
   L 231.96 416.48
   A 0.24 0.24 0.0 0 0 232.20 416.24
@@ -5318,8 +6296,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.97 4.09 89.9 0 0 223.86 416.09
   L 223.86 416.26
   A 0.24 0.24 0.0 0 0 224.10 416.50"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 256.80 416.46
   L 264.74 416.50
   A 0.28 0.28 0.0 0 0 265.02 416.22
@@ -5329,48 +6310,69 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.90 4.21 -89.7 0 0 256.52 416.06
   L 256.52 416.18
   A 0.28 0.28 0.0 0 0 256.80 416.46"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 391.8302 411.5012
   A 6.76 4.55 -91.1 0 0 387.4108 418.3473
   A 6.76 4.55 -91.1 0 0 392.0898 425.0188
   A 6.76 4.55 -91.1 0 0 396.5092 418.1727
   A 6.76 4.55 -91.1 0 0 391.8302 411.5012"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.94 418.51
   C 441.95 418.17 447.27 428.99 452.88 424.11
   Q 454.62 422.59 454.63 419.23
   A 0.71 0.70 -89.4 0 0 453.94 418.51"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.4529 411.4008
   A 6.82 4.60 -90.9 0 0 482.9606 418.2923
   A 6.82 4.60 -90.9 0 0 487.6671 425.0392
   A 6.82 4.60 -90.9 0 0 492.1594 418.1477
   A 6.82 4.60 -90.9 0 0 487.4529 411.4008"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.2284 411.4615
   A 6.76 4.60 -91.2 0 0 527.7710 418.3163
   A 6.76 4.60 -91.2 0 0 532.5116 424.9785
   A 6.76 4.60 -91.2 0 0 536.9690 418.1237
   A 6.76 4.60 -91.2 0 0 532.2284 411.4615"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.6324 411.3920
   A 6.86 4.53 -91.4 0 0 571.2714 418.3607
   A 6.86 4.53 -91.4 0 0 575.9676 425.1080
   A 6.86 4.53 -91.4 0 0 580.3286 418.1393
   A 6.86 4.53 -91.4 0 0 575.6324 411.3920"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 101.95 467.17
   C 89.83 467.46 95.78 478.10 101.18 472.87
   Q 102.85 471.25 102.68 467.85
   A 0.72 0.71 87.5 0 0 101.95 467.17"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 124.75 465.26
   L 132.64 465.12
   A 0.28 0.28 0.0 0 0 132.92 464.84
@@ -5379,14 +6381,20 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.44 4.23 89.0 0 0 124.45 464.56
   L 124.46 464.98
   A 0.28 0.28 0.0 0 0 124.75 465.26"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 226.61 466.89
   C 214.40 467.25 220.45 477.93 225.87 472.63
   Q 227.54 470.99 227.35 467.57
   A 0.73 0.72 87.2 0 0 226.61 466.89"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 270.11 465.26
   L 278.03 465.16
   A 0.31 0.31 0.0 0 0 278.34 464.85
@@ -5396,34 +6404,49 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.63 4.23 89.3 0 0 269.80 464.73
   L 269.80 464.95
   A 0.31 0.31 0.0 0 0 270.11 465.26"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.98 467.19
   C 324.86 467.32 330.66 478.03 336.13 472.88
   Q 337.82 471.28 337.70 467.88
   A 0.72 0.71 88.3 0 0 336.98 467.19"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 458.5381 460.2100
   A 6.82 4.61 -90.1 0 0 453.9400 467.0380
   A 6.82 4.61 -90.1 0 0 458.5619 473.8500
   A 6.82 4.61 -90.1 0 0 463.1600 467.0220
   A 6.82 4.61 -90.1 0 0 458.5381 460.2100"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 539.87 467.33
   C 527.81 467.23 533.38 478.00 538.92 472.98
   Q 540.63 471.42 540.57 468.03
   A 0.72 0.71 89.4 0 0 539.87 467.33"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 205.9490 460.0409
   A 6.94 4.27 -89.1 0 0 201.5705 466.9129
   A 6.94 4.27 -89.1 0 0 205.7310 473.9191
   A 6.94 4.27 -89.1 0 0 210.1095 467.0471
   A 6.94 4.27 -89.1 0 0 205.9490 460.0409"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 157.79 513.85
   L 165.99 513.75
   A 0.23 0.23 0.0 0 0 166.22 513.52
@@ -5433,15 +6456,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.81 4.27 89.3 0 0 157.56 513.46
   L 157.56 513.62
   A 0.23 0.23 0.0 0 0 157.79 513.85"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.0132 508.7902
   A 6.70 4.67 -90.4 0 0 341.3901 515.5226
   A 6.70 4.67 -90.4 0 0 346.1068 522.1898
   A 6.70 4.67 -90.4 0 0 350.7299 515.4574
   A 6.70 4.67 -90.4 0 0 346.0132 508.7902"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.47 513.79
   L 412.45 513.75
   A 0.27 0.27 0.0 0 0 412.72 513.48
@@ -5451,41 +6480,59 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.87 4.25 89.7 0 0 404.20 513.34
   L 404.20 513.52
   A 0.27 0.27 0.0 0 0 404.47 513.79"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 93.0145 508.6437
   A 6.77 4.28 -88.1 0 0 88.5124 515.2681
   A 6.77 4.28 -88.1 0 0 92.5655 522.1763
   A 6.77 4.28 -88.1 0 0 97.0676 515.5519
   A 6.77 4.28 -88.1 0 0 93.0145 508.6437"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 113.59 515.75
   C 101.44 515.13 106.59 526.23 112.39 521.40
   Q 114.19 519.90 114.27 516.48
   A 0.72 0.71 -88.2 0 0 113.59 515.75"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 225.04 515.79
   C 213.20 515.12 218.17 525.96 223.84 521.29
   Q 225.60 519.84 225.70 516.51
   A 0.71 0.69 -87.9 0 0 225.04 515.79"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.1912 508.7303
   A 6.74 4.54 -90.5 0 0 457.7102 515.5096
   A 6.74 4.54 -90.5 0 0 462.3088 522.2097
   A 6.74 4.54 -90.5 0 0 466.7898 515.4304
   A 6.74 4.54 -90.5 0 0 462.1912 508.7303"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.8398 508.8204
   A 6.70 4.66 -90.6 0 0 533.2503 515.5688
   A 6.70 4.66 -90.6 0 0 537.9802 522.2196
   A 6.70 4.66 -90.6 0 0 542.5697 515.4712
   A 6.70 4.66 -90.6 0 0 537.8398 508.8204"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 268.1160 561.7004
   A 3.81 3.81 0.0 0 0 264.2597 557.9372
   L 263.7198 557.9438
@@ -5495,15 +6542,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 264.4202 571.0762
   A 3.81 3.81 0.0 0 0 268.1834 567.2199
   L 268.1160 561.7004"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 371.8799 557.6510
   A 6.88 4.35 -91.0 0 0 367.6507 564.6059
   A 6.88 4.35 -91.0 0 0 372.1201 571.4090
   A 6.88 4.35 -91.0 0 0 376.3493 564.4541
   A 6.88 4.35 -91.0 0 0 371.8799 557.6510"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 199.39 562.98
   L 207.17 563.04
   A 0.42 0.42 0.0 0 0 207.59 562.62
@@ -5513,8 +6566,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.87 4.25 -89.6 0 0 198.98 562.43
   L 198.97 562.56
   A 0.42 0.42 0.0 0 0 199.39 562.98"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 224.70 563.10
   L 232.54 562.98
   A 0.41 0.41 0.0 0 0 232.95 562.56
@@ -5524,15 +6580,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.63 4.31 89.1 0 0 224.28 562.38
   L 224.29 562.70
   A 0.41 0.41 0.0 0 0 224.70 563.10"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 306.0546 557.7820
   A 6.77 4.65 -91.4 0 0 301.5714 564.6636
   A 6.77 4.65 -91.4 0 0 306.3854 571.3180
   A 6.77 4.65 -91.4 0 0 310.8686 564.4364
   A 6.77 4.65 -91.4 0 0 306.0546 557.7820"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 332.31 563.07
   L 339.25 562.97
   A 0.64 0.64 0.0 0 0 339.88 562.32
@@ -5542,14 +6604,20 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.52 4.10 89.2 0 0 331.66 562.20
   L 331.66 562.44
   A 0.64 0.64 0.0 0 0 332.31 563.07"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 408.43 564.97
   C 396.33 564.42 401.52 575.43 407.27 570.60
   Q 409.04 569.10 409.11 565.70
   A 0.72 0.71 -88.5 0 0 408.43 564.97"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.63 563.09
   L 437.48 562.89
   A 0.41 0.41 0.0 0 0 437.88 562.47
@@ -5559,22 +6627,31 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.62 4.29 88.6 0 0 429.20 562.38
   L 429.21 562.69
   A 0.41 0.41 0.0 0 0 429.63 563.09"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.8822 557.8010
   A 6.75 4.62 -91.0 0 0 506.3807 564.6306
   A 6.75 4.62 -91.0 0 0 511.1178 571.2990
   A 6.75 4.62 -91.0 0 0 515.6193 564.4694
   A 6.75 4.62 -91.0 0 0 510.8822 557.8010"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 92.8923 605.6130
   A 6.82 4.32 -88.3 0 0 88.3719 612.3018
   A 6.82 4.32 -88.3 0 0 92.4877 619.2470
   A 6.82 4.32 -88.3 0 0 97.0081 612.5582
   A 6.82 4.32 -88.3 0 0 92.8923 605.6130"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 157.67 610.81
   L 165.51 610.81
   A 0.40 0.40 0.0 0 0 165.91 610.41
@@ -5584,8 +6661,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.63 4.29 90.0 0 0 157.27 610.12
   L 157.27 610.41
   A 0.40 0.40 0.0 0 0 157.67 610.81"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 274.11 610.84
   L 281.91 610.80
   A 0.30 0.30 0.0 0 0 282.21 610.50
@@ -5595,8 +6675,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.98 4.10 89.7 0 0 273.81 610.36
   L 273.81 610.54
   A 0.30 0.30 0.0 0 0 274.11 610.84"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 317.48 610.72
   L 325.06 610.80
   A 0.34 0.34 0.0 0 0 325.41 610.46
@@ -5606,28 +6689,40 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.77 4.07 -89.4 0 0 317.15 610.13
   L 317.15 610.38
   A 0.34 0.34 0.0 0 0 317.48 610.72"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 374.6789 605.6304
   A 6.79 4.53 -90.6 0 0 370.2202 612.4674
   A 6.79 4.53 -90.6 0 0 374.8211 619.2096
   A 6.79 4.53 -90.6 0 0 379.2798 612.3726
   A 6.79 4.53 -90.6 0 0 374.6789 605.6304"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 113.59 612.66
   C 101.37 612.30 106.79 623.33 112.51 618.36
   Q 114.28 616.82 114.29 613.38
   A 0.73 0.72 -89.4 0 0 113.59 612.66"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 492.9031 680.8004
   A 10.67 4.65 -89.5 0 0 488.1602 691.4294
   A 10.67 4.65 -89.5 0 0 492.7169 702.1396
   A 10.67 4.65 -89.5 0 0 497.4598 691.5106
   A 10.67 4.65 -89.5 0 0 492.9031 680.8004"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 91.57 681.72
   L 91.51 700.64
   A 0.43 0.43 0.0 0 0 91.94 701.07
@@ -5637,8 +6732,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 8.21 8.05 -89.8 0 0 95.10 681.30
   L 92.00 681.29
   A 0.43 0.43 0.0 0 0 91.57 681.72"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 213.03 681.89
   L 212.95 691.19
   A 0.68 0.68 0.0 0 0 213.62 691.87
@@ -5648,8 +6746,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.65 5.13 0.5 0 0 217.25 681.24
   L 213.72 681.21
   A 0.68 0.68 0.0 0 0 213.03 681.89"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 530.59 694.87
   L 536.37 694.87
   A 0.45 0.44 -0.0 0 0 536.82 694.43
@@ -5657,8 +6758,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.45 0.45 0.0 0 0 535.98 685.02
   L 530.44 694.62
   A 0.17 0.16 15.0 0 0 530.59 694.87"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.46 684.63
   L 427.93 694.19
   A 0.47 0.46 -75.0 0 0 428.33 694.89
@@ -5666,14 +6770,20 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.58 0.0 0 0 434.03 694.31
   L 434.01 684.77
   A 0.30 0.29 -30.4 0 0 433.46 684.63"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 121.06 695.59
   C 109.68 695.88 115.28 705.86 120.35 700.95
   Q 121.91 699.42 121.75 696.23
   A 0.68 0.67 87.4 0 0 121.06 695.59"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 145.20 693.09
   L 152.34 693.11
   A 0.27 0.27 0.0 0 0 152.61 692.84
@@ -5682,21 +6792,30 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.84 3.83 0.2 0 0 144.93 692.42
   L 144.93 692.82
   A 0.27 0.27 0.0 0 0 145.20 693.09"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 176.6500 688.6300
   A 6.59 4.77 -90.0 0 0 171.8800 695.2200
   A 6.59 4.77 -90.0 0 0 176.6500 701.8100
   A 6.59 4.77 -90.0 0 0 181.4200 695.2200
   A 6.59 4.77 -90.0 0 0 176.6500 688.6300"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 238.38 695.73
   C 227.31 696.24 232.96 705.85 237.79 700.96
   Q 239.28 699.45 239.06 696.34
   A 0.66 0.65 86.3 0 0 238.38 695.73"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 263.00 693.18
   L 269.96 693.00
   A 0.42 0.42 0.0 0 0 270.36 692.57
@@ -5706,8 +6825,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.82 3.81 -1.5 0 0 262.56 692.64
   L 262.57 692.77
   A 0.42 0.42 0.0 0 0 263.00 693.18"
-/>
-<path stroke="#807667" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807667"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 363.48 701.15
   Q 364.87 703.05 367.49 701.78
   Q 370.45 700.35 370.69 696.03
@@ -5715,9 +6837,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 370.58 695.83 370.61 695.85 370.55 695.83
   Q 366.35 694.75 364.10 697.14
   Q 362.09 699.26 363.48 701.15"
-/>
-</g>
-<path fill="#040a0e" d="
+        />
+      </g>
+      <path
+        fill="#040a0e"
+        d="
   M 689.00 0.00
   L 689.00 832.00
   L 0.00 832.00
@@ -5774,8 +6898,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.48 0.48 0.0 0 0 40.60 786.71
   L 6.75 820.56
   Z"
-/>
-<path fill="#1b2329" d="
+      />
+      <path
+        fill="#1b2329"
+        d="
   M 41.10 40.40
   L 7.26 6.56
   A 0.76 0.76 0.0 0 1 7.79 5.26
@@ -5786,8 +6912,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 41.63 40.62
   A 0.76 0.76 0.0 0 1 41.10 40.40
   Z"
-/>
-<path fill="#1b2329" d="
+      />
+      <path
+        fill="#1b2329"
+        d="
   M 684.73 816.48
   L 649.41 781.15
   A 0.58 0.58 0.0 0 1 649.24 780.74
@@ -5798,8 +6926,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 685.72 816.07
   A 0.58 0.58 0.0 0 1 684.73 816.48
   Z"
-/>
-<path fill="#1b2329" d="
+      />
+      <path
+        fill="#1b2329"
+        d="
   M 3.10 11.31
   L 37.71 45.92
   A 0.34 0.34 0.0 0 1 37.81 46.16
@@ -5810,8 +6940,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 2.52 11.55
   A 0.34 0.34 0.0 0 1 3.10 11.31
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 638.29 775.71
   A 0.26 0.26 0.0 0 1 638.03 775.97
   L 48.71 775.97
@@ -10476,8 +11608,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 449.86 700.59
   A 0.22 0.22 0.0 0 0 449.67 700.35
   Z"
-/>
-<path fill="#e0c9a6" d="
+      />
+      <path
+        fill="#e0c9a6"
+        d="
   M 636.83 774.05
   A 0.83 0.82 -0.4 0 1 636.01 774.87
   L 629.37 774.88
@@ -10494,8 +11628,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.81 0.80 0.7 0 1 636.83 53.90
   L 636.83 774.05
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 216.95 140.85
   A 0.45 0.45 0.0 0 0 217.75 141.13
   L 223.11 134.40
@@ -10520,10 +11656,12 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.51 0.50 0.0 0 1 216.95 124.37
   L 216.95 140.85
   Z"
-/>
-<rect fill="#000000" x="242.65" y="123.94" width="4.46" height="29.26" rx="0.27"/>
-<rect fill="#000000" x="312.80" y="123.94" width="4.56" height="29.22" rx="0.38"/>
-<path fill="#000000" d="
+      />
+      <rect fill="#000000" x="242.65" y="123.94" width="4.46" height="29.26" rx="0.27" />
+      <rect fill="#000000" x="312.80" y="123.94" width="4.56" height="29.22" rx="0.38" />
+      <path
+        fill="#000000"
+        d="
   M 418.41 134.32
   C 423.09 130.04 429.59 132.93 430.14 139.32
   Q 430.33 141.56 430.26 152.72
@@ -10545,9 +11683,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 417.88 134.09
   A 0.32 0.31 -21.4 0 0 418.41 134.32
   Z"
-/>
-<rect fill="#000000" x="-2.33" y="-2.51" transform="translate(557.96,126.86) rotate(0.7)" width="4.66" height="5.02" rx="0.50"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-2.33"
+        y="-2.51"
+        transform="translate(557.96,126.86) rotate(0.7)"
+        width="4.66"
+        height="5.02"
+        rx="0.50"
+      />
+      <path
+        fill="#000000"
+        d="
   M 96.91 137.80
   Q 99.53 142.77 100.84 145.22
   A 0.17 0.17 0.0 0 0 101.15 145.14
@@ -10572,9 +11720,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.57 1.57 0.0 0 1 90.09 125.46
   Q 93.76 131.82 96.91 137.80
   Z"
-/>
-<rect fill="#000000" x="-2.25" y="-2.37" transform="translate(496.25,127.06) rotate(0.8)" width="4.50" height="4.74" rx="0.56"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-2.25"
+        y="-2.37"
+        transform="translate(496.25,127.06) rotate(0.8)"
+        width="4.50"
+        height="4.74"
+        rx="0.56"
+      />
+      <path
+        fill="#000000"
+        d="
   M 138.36 136.98
   A 0.64 0.64 0.0 0 0 137.70 137.61
   L 137.56 148.09
@@ -10603,8 +11761,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.04 1.03 0.8 0 1 141.13 137.02
   L 138.36 136.98
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 547.05 137.61
   L 547.05 148.19
   A 1.55 1.55 0.0 0 0 549.11 149.65
@@ -10633,8 +11793,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 547.70 136.96
   A 0.65 0.65 0.0 0 0 547.05 137.61
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 127.57 144.63
   L 115.58 144.63
   A 0.50 0.49 -4.9 0 0 115.09 145.20
@@ -10657,8 +11819,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 115.46 140.85
   A 0.27 0.27 0.0 0 0 115.73 141.12
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 308.78 144.10
   A 0.64 0.64 0.0 0 1 308.13 144.70
   L 296.16 144.55
@@ -10681,8 +11845,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 296.13 140.88
   A 0.28 0.28 0.0 0 0 296.41 141.15
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 408.11 146.65
   A 1.24 1.24 0.0 0 1 409.19 148.51
   C 406.29 153.54 402.09 155.48 396.92 153.27
@@ -10698,8 +11864,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.11 16.7 0 1 405.99 146.66
   L 408.11 146.65
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 537.39 153.16
   Q 534.53 153.47 532.96 152.37
   A 0.77 0.76 -44.2 0 0 532.11 152.36
@@ -10726,8 +11894,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 532.46 144.20
   A 1.26 1.26 0.0 0 0 530.79 143.58
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 182.8447 132.2067
   A 11.04 9.77 -92.0 0 1 192.9940 142.8990
   A 11.04 9.77 -92.0 0 1 183.6153 154.2733
@@ -10740,8 +11910,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.80 5.01 -90.0 0 0 188.2400 143.3500
   A 6.80 5.01 -90.0 0 0 183.2300 136.5500
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 269.08 144.00
   A 0.64 0.64 0.0 0 1 268.44 144.60
   L 256.44 144.63
@@ -10764,8 +11936,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 256.29 140.80
   A 0.26 0.26 0.0 0 0 256.55 141.06
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 331.53 147.65
   L 334.65 147.65
   A 1.27 1.27 0.0 0 1 335.74 148.27
@@ -10783,8 +11957,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 337.71 155.07 332.61 153.60 330.93 148.48
   A 0.63 0.63 0.0 0 1 331.53 147.65
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 375.27 134.92
   A 0.29 0.29 0.0 0 0 375.78 135.11
   Q 378.98 131.48 384.07 132.82
@@ -10807,8 +11983,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.62 0.62 0.0 0 1 375.27 133.85
   L 375.27 134.92
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 440.09 134.77
   A 0.37 0.37 0.0 0 0 440.75 134.84
   Q 442.47 132.00 446.32 132.66
@@ -10825,8 +12003,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.74 0.0 0 1 439.66 133.53
   L 440.09 134.77
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 458.5992 132.2500
   A 11.00 9.76 -89.9 0 1 468.3400 143.2670
   A 11.00 9.76 -89.9 0 1 458.5608 154.2500
@@ -10839,8 +12019,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.79 4.93 -90.2 0 0 463.5700 143.3328
   A 6.79 4.93 -90.2 0 0 458.6163 136.5600
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 476.19 134.98
   A 0.29 0.29 0.0 0 0 476.70 135.17
   Q 479.88 131.57 484.93 132.92
@@ -10863,8 +12045,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.62 0.61 3.1 0 1 476.19 133.92
   L 476.19 134.98
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 582.8879 145.2882
   A 8.60 8.60 0.0 0 1 574.3633 153.9629
   L 572.8233 153.9763
@@ -10881,8 +12065,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.84 4.88 -90.5 0 0 578.4298 143.2974
   A 6.84 4.88 -90.5 0 0 573.4903 136.5003
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 591.12 134.96
   A 0.29 0.29 0.0 0 0 591.63 135.15
   Q 594.84 131.54 599.91 132.91
@@ -10905,8 +12091,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.62 0.62 0.0 0 1 591.12 133.90
   L 591.12 134.96
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 201.26 134.84
   A 0.38 0.38 0.0 0 0 201.93 134.94
   Q 204.26 131.67 208.45 133.00
@@ -10924,8 +12112,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.93 0.93 0.0 0 1 200.84 133.62
   L 201.26 134.84
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 157.71 140.99
   L 154.43 152.85
   A 0.50 0.50 0.0 0 1 153.95 153.22
@@ -10953,8 +12143,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 157.85 140.98
   A 0.08 0.07 -47.0 0 0 157.71 140.99
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 279.90 146.71
   Q 280.10 146.71 280.15 146.56
   Q 281.53 141.55 284.06 134.20
@@ -10973,8 +12165,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 278.26 141.55 279.66 146.56
   Q 279.70 146.71 279.90 146.71
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 358.51 146.28
   A 0.17 0.16 -44.7 0 0 358.82 146.28
   L 363.13 134.23
@@ -10995,9 +12189,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.26 1.25 -9.4 0 1 354.20 133.91
   L 358.51 146.28
   Z"
-/>
-<rect fill="#000000" x="494.04" y="133.05" width="4.40" height="20.16" rx="0.50"/>
-<path fill="#000000" d="
+      />
+      <rect fill="#000000" x="494.04" y="133.05" width="4.40" height="20.16" rx="0.50" />
+      <path
+        fill="#000000"
+        d="
   M 508.17 141.66
   Q 511.18 138.16 511.71 137.44
   A 0.30 0.30 0.0 0 0 511.48 136.97
@@ -11018,9 +12214,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.64 0.64 0.0 0 1 501.73 152.56
   C 501.37 148.54 504.77 145.63 508.17 141.66
   Z"
-/>
-<rect fill="#000000" x="-2.19" y="-10.05" transform="translate(557.98,143.17) rotate(0.1)" width="4.38" height="20.10" rx="0.32"/>
-<path fill="#ffeccd" d="
+      />
+      <rect
+        fill="#000000"
+        x="-2.19"
+        y="-10.05"
+        transform="translate(557.98,143.17) rotate(0.1)"
+        width="4.38"
+        height="20.10"
+        rx="0.32"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 115.73 141.12
   A 0.27 0.27 0.0 0 1 115.46 140.85
   L 115.45 140.45
@@ -11030,8 +12236,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.27 0.27 0.0 0 1 122.97 141.02
   L 115.73 141.12
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 296.41 141.15
   A 0.28 0.28 0.0 0 1 296.13 140.88
   L 296.12 140.47
@@ -11041,8 +12249,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 303.59 141.07
   L 296.41 141.15
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 256.55 141.06
   A 0.26 0.26 0.0 0 1 256.29 140.80
   L 256.29 140.41
@@ -11052,11 +12262,34 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.26 0.0 0 1 263.81 141.10
   L 256.55 141.06
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(573.55,143.34) rotate(-90.5)" rx="6.84" ry="4.88"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(183.23,143.35) rotate(-90.0)" rx="6.80" ry="5.01"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(458.64,143.35) rotate(-90.2)" rx="6.79" ry="4.93"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(573.55,143.34) rotate(-90.5)"
+        rx="6.84"
+        ry="4.88"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(183.23,143.35) rotate(-90.0)"
+        rx="6.80"
+        ry="5.01"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(458.64,143.35) rotate(-90.2)"
+        rx="6.79"
+        ry="4.93"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 530.79 143.58
   A 1.26 1.26 0.0 0 1 532.46 144.20
   L 532.58 144.46
@@ -11067,8 +12300,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.26 1.26 0.0 0 1 525.39 146.06
   L 530.79 143.58
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 105.77 185.72
   A 0.45 0.44 -2.3 0 0 106.22 185.24
   C 105.68 179.12 108.79 174.04 115.66 176.67
@@ -11097,8 +12332,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.70 0.70 0.0 0 1 104.06 185.73
   L 105.77 185.72
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 367.27 193.66
   A 0.26 0.26 0.0 0 0 367.74 193.82
   L 372.74 187.54
@@ -11123,12 +12360,38 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.67 0.66 0.0 0 1 367.27 176.79
   L 367.27 193.66
   Z"
-/>
-<rect fill="#000000" x="-2.21" y="-2.40" transform="translate(567.71,178.54) rotate(0.1)" width="4.42" height="4.80" rx="0.94"/>
-<rect fill="#000000" x="127.33" y="176.36" width="4.60" height="29.68" rx="0.75"/>
-<rect fill="#000000" x="-2.28" y="-14.87" transform="translate(191.51,191.17) rotate(0.1)" width="4.56" height="29.74" rx="0.67"/>
-<rect fill="#000000" x="-2.14" y="-2.26" transform="translate(526.24,178.73) rotate(-0.3)" width="4.28" height="4.52" rx="0.61"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-2.21"
+        y="-2.40"
+        transform="translate(567.71,178.54) rotate(0.1)"
+        width="4.42"
+        height="4.80"
+        rx="0.94"
+      />
+      <rect fill="#000000" x="127.33" y="176.36" width="4.60" height="29.68" rx="0.75" />
+      <rect
+        fill="#000000"
+        x="-2.28"
+        y="-14.87"
+        transform="translate(191.51,191.17) rotate(0.1)"
+        width="4.56"
+        height="29.74"
+        rx="0.67"
+      />
+      <rect
+        fill="#000000"
+        x="-2.14"
+        y="-2.26"
+        transform="translate(526.24,178.73) rotate(-0.3)"
+        width="4.28"
+        height="4.52"
+        rx="0.61"
+      />
+      <path
+        fill="#000000"
+        d="
   M 217.32 186.02
   A 0.58 0.58 0.0 0 0 218.05 185.46
   L 218.08 181.00
@@ -11158,8 +12421,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 1 216.04 185.66
   L 217.32 186.02
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 399.97 185.50
   L 399.97 181.06
   A 1.01 1.01 0.0 0 1 400.98 180.05
@@ -11189,8 +12454,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 399.24 186.06
   A 0.58 0.58 0.0 0 0 399.97 185.50
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 420.26 185.99
   A 0.58 0.58 0.0 0 0 421.00 185.43
   L 421.04 180.99
@@ -11220,8 +12487,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 1 418.99 185.62
   L 420.26 185.99
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 93.1911 185.1900
   A 10.84 9.11 -90.1 0 1 102.3200 196.0141
   A 10.84 9.11 -90.1 0 1 93.2289 206.8700
@@ -11234,8 +12503,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.43 4.59 -90.4 0 0 97.9099 196.0780
   A 6.43 4.59 -90.4 0 0 93.2751 189.6802
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 143.4688 185.2100
   A 10.80 9.11 -89.9 0 1 152.5600 196.0259
   A 10.80 9.11 -89.9 0 1 143.4312 206.8100
@@ -11248,8 +12519,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.45 4.64 -89.6 0 0 148.0899 196.1124
   A 6.45 4.64 -89.6 0 0 143.4950 189.6302
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 243.40 196.99
   L 232.89 196.99
   A 0.98 0.97 -5.2 0 0 231.93 198.14
@@ -11272,8 +12545,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 232.09 193.67
   A 0.28 0.28 0.0 0 0 232.36 193.95
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 251.90 205.27
   A 0.80 0.80 0.0 0 1 251.10 206.08
   L 248.11 206.11
@@ -11294,8 +12569,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.10 3.10 0.0 0 0 251.80 192.94
   L 251.90 205.27
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 269.92 196.14
   C 269.95 199.00 270.88 202.96 274.47 202.41
   C 276.05 202.17 276.71 200.80 277.34 199.50
@@ -11312,8 +12589,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 276.60 191.31 275.91 189.96 274.33 189.76
   C 270.72 189.29 269.89 193.27 269.92 196.14
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 312.88 205.38
   L 312.89 211.89
   A 1.07 1.07 0.0 0 1 311.82 212.96
@@ -11334,8 +12613,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.54 3.85 -88.6 0 0 320.3189 196.2641
   A 6.54 3.85 -88.6 0 0 316.6298 189.6320
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 342.94 206.07
   Q 340.47 206.33 338.70 205.29
   A 0.95 0.94 -44.2 0 0 337.75 205.28
@@ -11357,8 +12638,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 338.32 200.13 338.27 197.19
   A 0.62 0.61 89.5 0 0 337.66 196.58
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 396.25 196.36
   A 0.62 0.62 0.0 0 1 395.63 196.96
   L 385.23 197.01
@@ -11381,8 +12664,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 384.58 193.65
   A 0.29 0.29 0.0 0 0 384.87 193.94
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 458.41 205.23
   A 0.50 0.50 0.0 0 1 457.98 205.89
   Q 455.55 206.16 453.80 205.14
@@ -11405,8 +12690,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 452.37 202.93 453.29 200.37 453.79 197.65
   A 0.58 0.58 0.0 0 0 453.25 196.96
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 465.81 205.30
   A 0.80 0.80 0.0 0 1 465.01 206.10
   L 462.03 206.10
@@ -11427,8 +12714,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.09 3.08 -2.8 0 0 465.81 193.03
   L 465.81 205.30
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 492.51 191.26
   Q 490.34 192.67 489.09 191.04
   C 487.41 188.85 485.42 188.14 483.73 190.42
@@ -11446,8 +12735,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 484.58 183.85 490.34 184.84 492.99 189.14
   A 1.56 1.56 0.0 0 1 492.51 191.26
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 496.11 186.18
   A 0.55 0.55 0.0 0 1 496.68 185.63
   Q 498.59 185.71 500.27 186.60
@@ -11477,8 +12768,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.82 0.81 -90.0 0 1 496.11 205.21
   L 496.11 186.18
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 544.74 191.26
   Q 542.56 192.67 541.32 191.03
   C 539.64 188.84 537.64 188.13 535.95 190.41
@@ -11496,8 +12789,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 536.81 183.83 542.57 184.83 545.22 189.14
   A 1.56 1.56 0.0 0 1 544.74 191.26
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 562.02 191.30
   Q 559.85 192.71 558.60 191.07
   C 556.93 188.88 554.94 188.17 553.25 190.44
@@ -11515,8 +12810,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 554.11 183.88 559.86 184.88 562.50 189.18
   A 1.56 1.56 0.0 0 1 562.02 191.30
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 580.7370 185.2006
   A 10.79 8.91 -90.6 0 1 589.7595 195.8967
   A 10.79 8.91 -90.6 0 1 580.9630 206.7794
@@ -11529,8 +12826,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.40 4.37 -88.9 0 0 585.2492 196.2039
   A 6.40 4.37 -88.9 0 0 581.0029 189.7212
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 596.69 205.10
   A 0.79 0.79 0.0 0 1 595.90 205.90
   L 592.95 205.90
@@ -11551,8 +12850,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.06 3.06 0.0 0 0 596.68 192.94
   L 596.69 205.10
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 213.31 205.38
   A 0.50 0.50 0.0 0 1 212.88 206.04
   Q 210.41 206.32 208.63 205.29
@@ -11574,8 +12875,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 208.40 200.22 208.30 197.13
   A 0.66 0.64 88.5 0 0 207.65 196.50
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 345.02 196.10
   C 344.99 190.91 347.21 185.64 353.08 185.37
   Q 358.59 185.11 361.03 191.47
@@ -11592,8 +12895,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 358.72 206.93 353.21 206.74
   C 347.33 206.54 345.05 201.30 345.02 196.10
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 436.37 187.43
   Q 437.71 184.84 440.93 185.56
   A 1.08 1.08 0.0 0 1 441.78 186.70
@@ -11612,8 +12917,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 435.58 187.24
   A 0.42 0.42 0.0 0 0 436.37 187.43
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 160.39 197.55
   A 0.28 0.28 0.0 0 0 160.94 197.60
   Q 162.90 190.14 163.65 187.68
@@ -11641,8 +12948,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.75 0.74 -11.2 0 1 157.85 186.13
   Q 159.81 190.99 160.39 197.55
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 289.41 199.01
   A 0.11 0.11 0.0 0 0 289.62 199.01
   L 293.62 186.47
@@ -11661,10 +12970,12 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.97 0.97 0.0 0 1 285.91 186.56
   L 289.41 199.01
   Z"
-/>
-<rect fill="#000000" x="524.00" y="185.70" width="4.24" height="20.30" rx="0.53"/>
-<rect fill="#000000" x="565.44" y="185.71" width="4.48" height="20.28" rx="0.63"/>
-<path fill="#ffeccd" d="
+      />
+      <rect fill="#000000" x="524.00" y="185.70" width="4.24" height="20.30" rx="0.53" />
+      <rect fill="#000000" x="565.44" y="185.71" width="4.48" height="20.28" rx="0.63" />
+      <path
+        fill="#ffeccd"
+        d="
   M 232.36 193.95
   A 0.28 0.28 0.0 0 1 232.09 193.67
   L 232.09 193.53
@@ -11675,8 +12986,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 239.04 194.03
   L 232.36 193.95
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 384.87 193.94
   A 0.29 0.29 0.0 0 1 384.58 193.65
   L 384.58 193.23
@@ -11687,34 +13000,70 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 1 391.33 193.92
   L 384.87 193.94
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(93.32,196.11) rotate(-90.4)" rx="6.43" ry="4.59"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(143.45,196.08) rotate(-89.6)" rx="6.45" ry="4.64"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(316.47,196.17) rotate(-88.6)" rx="6.54" ry="3.85"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(580.88,196.12) rotate(-88.9)" rx="6.40" ry="4.37"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(93.32,196.11) rotate(-90.4)"
+        rx="6.43"
+        ry="4.59"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(143.45,196.08) rotate(-89.6)"
+        rx="6.45"
+        ry="4.64"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(316.47,196.17) rotate(-88.6)"
+        rx="6.54"
+        ry="3.85"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(580.88,196.12) rotate(-88.9)"
+        rx="6.40"
+        ry="4.37"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 207.65 196.50
   A 0.66 0.64 88.5 0 1 208.30 197.13
   Q 208.40 200.22 206.86 201.67
   C 201.87 206.33 196.64 196.58 207.65 196.50
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 337.66 196.58
   A 0.62 0.61 89.5 0 1 338.27 197.19
   Q 338.32 200.13 336.83 201.48
   C 332.01 205.84 327.19 196.47 337.66 196.58
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 453.79 197.65
   C 453.29 200.37 452.37 202.93 449.30 202.86
   C 446.54 202.79 445.59 199.50 447.99 197.99
   Q 449.92 196.78 453.25 196.96
   A 0.58 0.58 0.0 0 1 453.79 197.65
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 317.17 275.70
   C 317.91 275.06 318.60 274.21 319.25 274.07
   Q 325.62 272.71 328.09 278.44
@@ -11735,8 +13084,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.72 4.36 -88.6 0 0 325.0387 284.5465
   A 6.72 4.36 -88.6 0 0 320.8442 277.7220
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 132.08 285.55
   L 132.09 293.67
   A 0.62 0.61 90.0 0 1 131.48 294.29
@@ -11759,8 +13110,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 132.81 270.00
   A 0.69 0.69 0.0 0 0 132.11 270.68
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 459.67 266.05
   C 466.37 265.99 470.77 272.68 466.30 278.33
   Q 465.27 279.62 465.24 279.67
@@ -11783,8 +13136,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.74 4.55 -146.8 0 0 462.2614 283.0927
   A 4.74 4.55 -146.8 0 0 455.8037 284.3046
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 504.31 265.88
   C 512.21 265.78 513.70 274.51 513.78 280.52
   C 513.85 286.53 512.58 295.29 504.69 295.39
@@ -11797,8 +13152,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 10.81 4.79 -89.9 0 0 509.2800 280.5884
   A 10.81 4.79 -89.9 0 0 504.5089 269.7700
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 557.29 284.07
   Q 558.77 284.09 559.02 284.06
   A 0.93 0.93 0.0 0 1 560.06 284.98
@@ -11830,8 +13187,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 552.05 274.06
   A 0.29 0.29 0.0 0 0 551.50 273.92
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 441.40 282.34
   Q 441.37 282.34 439.61 283.31
   C 437.17 284.66 433.39 284.24 431.30 282.84
@@ -11853,8 +13212,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.77 4.53 -107.4 0 0 440.9727 274.0953
   A 4.77 4.53 -107.4 0 0 435.2236 270.8983
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 393.70 273.37
   A 0.67 0.67 0.0 0 0 392.84 272.74
   L 388.86 273.93
@@ -11869,8 +13230,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.71 0.71 0.0 0 1 393.74 293.95
   L 393.70 273.37
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 407.85 273.05
   L 407.85 270.79
   A 0.83 0.83 0.0 0 1 408.41 270.01
@@ -11885,8 +13248,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 408.90 273.85
   A 0.83 0.83 0.0 0 1 407.85 273.05
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 479.27 276.22
   C 488.51 273.71 492.42 281.58 490.00 289.15
   C 487.10 298.20 474.20 297.24 472.27 287.92
@@ -11907,8 +13272,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 478.67 275.72
   A 0.48 0.47 -4.7 0 0 479.27 276.22
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 524.01 275.74
   A 0.47 0.47 0.0 0 0 524.61 276.23
   C 533.76 273.62 537.75 281.39 535.44 288.95
@@ -11929,8 +13296,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.93 0.92 2.3 0 0 524.38 271.87
   L 524.01 275.74
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 170.04 274.25
   L 170.04 270.02
   A 1.10 1.09 -86.9 0 1 171.25 268.93
@@ -11957,8 +13326,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 169.25 274.85
   A 0.62 0.62 0.0 0 0 170.04 274.25
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 220.19 274.85
   A 0.62 0.62 0.0 0 0 220.97 274.26
   L 220.99 270.09
@@ -11985,8 +13356,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.62 0.62 0.0 0 1 218.76 274.45
   L 220.19 274.85
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 132.11 270.68
   A 0.69 0.69 0.0 0 1 132.81 270.00
   L 135.72 270.01
@@ -11997,11 +13370,34 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.69 0.69 0.0 0 1 132.07 280.20
   L 132.11 270.68
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(459.94,273.89) rotate(-155.5)" rx="4.22" ry="3.96"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(504.49,280.58) rotate(-89.9)" rx="10.81" ry="4.79"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(436.65,275.45) rotate(-107.4)" rx="4.77" ry="4.53"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(459.94,273.89) rotate(-155.5)"
+        rx="4.22"
+        ry="3.96"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(504.49,280.58) rotate(-89.9)"
+        rx="10.81"
+        ry="4.79"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(436.65,275.45) rotate(-107.4)"
+        rx="4.77"
+        ry="4.53"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 551.50 273.92
   A 0.29 0.29 0.0 0 1 552.05 274.06
   L 552.10 283.47
@@ -12010,8 +13406,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 1 546.08 283.37
   L 551.50 273.92
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 163.86 294.46
   Q 161.46 294.91 160.11 293.41
   A 0.67 0.67 0.0 0 0 159.25 293.30
@@ -12035,8 +13433,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.30 3.05 -30.5 0 0 157.5780 290.6980
   A 4.30 3.05 -30.5 0 0 159.7350 285.8876
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 196.60 288.14
   A 0.53 0.52 -77.0 0 1 197.01 288.81
   C 195.48 293.98 190.67 296.32 185.73 294.36
@@ -12058,8 +13458,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 184.96 281.83
   A 0.28 0.28 0.0 0 0 185.24 282.11
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 215.42 294.15
   L 212.63 294.16
   A 0.55 0.54 -0.2 0 1 212.07 293.62
@@ -12079,8 +13481,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 216.19 284.09 216.02 293.55
   A 0.60 0.60 0.0 0 1 215.42 294.15
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 285.90 275.44
   A 0.56 0.55 -32.9 0 0 286.76 275.62
   C 289.14 273.65 292.73 273.02 295.09 275.30
@@ -12112,8 +13516,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.72 0.72 0.0 0 1 282.80 274.49
   Q 285.25 274.11 285.90 275.44
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 348.26 288.14
   A 0.53 0.52 -76.8 0 1 348.67 288.81
   C 347.11 293.98 342.28 296.30 337.34 294.31
@@ -12136,8 +13542,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 336.30 281.58
   A 0.50 0.50 0.0 0 0 336.80 282.08
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 252.84 293.80
   L 252.81 280.83
   A 2.95 2.95 0.0 0 0 249.44 277.91
@@ -12157,8 +13565,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 253.40 294.35
   A 0.56 0.55 0.0 0 1 252.84 293.80
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 356.31 276.12
   A 0.37 0.37 0.0 0 0 356.95 276.37
   Q 359.73 273.39 362.59 274.20
@@ -12176,8 +13586,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.55 0.55 0.0 0 1 356.30 275.11
   L 356.31 276.12
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 262.57 274.54
   L 265.39 274.56
   A 0.56 0.55 0.5 0 1 265.94 275.12
@@ -12197,9 +13609,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 261.67 284.68 261.96 275.13
   A 0.61 0.61 0.0 0 1 262.57 274.54
   Z"
-/>
-<rect fill="#000000" x="367.46" y="275.35" width="4.48" height="5.50" rx="0.70"/>
-<path fill="#ffeccd" d="
+      />
+      <rect fill="#000000" x="367.46" y="275.35" width="4.48" height="5.50" rx="0.70" />
+      <path
+        fill="#ffeccd"
+        d="
   M 185.24 282.11
   A 0.28 0.28 0.0 0 1 184.96 281.83
   L 184.96 281.41
@@ -12209,8 +13623,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 192.40 282.09
   L 185.24 282.11
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 336.80 282.08
   A 0.50 0.50 0.0 0 1 336.30 281.58
   L 336.30 281.39
@@ -12221,12 +13637,43 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.50 0.50 0.0 0 1 343.66 282.10
   L 336.80 282.08
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(320.68,284.44) rotate(-88.6)" rx="6.72" ry="4.36"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(459.77,286.90) rotate(-146.8)" rx="4.74" ry="4.55"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(156.03,288.07) rotate(-30.5)" rx="4.30" ry="3.05"/>
-<rect fill="#000000" x="-2.27" y="-2.73" transform="translate(369.55,292.02) rotate(0.9)" width="4.54" height="5.46" rx="0.82"/>
-<path fill="#000000" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(320.68,284.44) rotate(-88.6)"
+        rx="6.72"
+        ry="4.36"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(459.77,286.90) rotate(-146.8)"
+        rx="4.74"
+        ry="4.55"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(156.03,288.07) rotate(-30.5)"
+        rx="4.30"
+        ry="3.05"
+      />
+      <rect
+        fill="#000000"
+        x="-2.27"
+        y="-2.73"
+        transform="translate(369.55,292.02) rotate(0.9)"
+        width="4.54"
+        height="5.46"
+        rx="0.82"
+      />
+      <path
+        fill="#000000"
+        d="
   M 111.71 360.62
   A 0.41 0.41 0.0 0 0 112.30 360.99
   C 127.57 353.80 126.90 386.27 111.90 378.72
@@ -12245,8 +13692,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.61 4.21 -88.9 0 0 119.7692 369.8808
   A 6.61 4.21 -88.9 0 0 115.6869 363.1912
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 340.25 360.67
   L 340.17 352.40
   A 0.88 0.88 0.0 0 1 341.04 351.51
@@ -12266,8 +13715,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.93 4.36 -91.1 0 0 340.5692 369.8463
   A 6.93 4.36 -91.1 0 0 336.0770 363.0013
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 403.63 360.65
   L 403.63 352.34
   A 0.88 0.88 0.0 0 1 404.51 351.46
@@ -12287,8 +13738,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.87 4.56 -90.4 0 0 404.0899 369.8682
   A 6.87 4.56 -90.4 0 0 399.4820 363.0302
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 536.03 364.35
   L 536.03 378.58
   A 0.83 0.83 0.0 0 1 535.20 379.41
@@ -12316,8 +13769,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 536.69 363.69
   A 0.66 0.66 0.0 0 0 536.03 364.35
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 295.86 362.11
   C 296.89 361.39 297.55 360.76 298.43 360.42
   C 303.78 358.37 306.05 362.80 305.98 367.52
@@ -12340,8 +13795,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 295.49 361.91
   A 0.24 0.24 0.0 0 0 295.86 362.11
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 94.88 352.04
   Q 96.07 352.05 96.71 352.15
   A 1.32 1.32 0.0 0 1 97.76 353.09
@@ -12370,8 +13827,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.38 0.38 0.0 0 0 94.44 358.70
   L 91.75 368.65
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 247.47 372.77
   Q 247.69 372.77 247.75 372.57
   Q 250.58 362.76 253.55 353.03
@@ -12400,8 +13859,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 244.46 362.73 247.21 372.57
   Q 247.26 372.77 247.47 372.77
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 143.31 360.64
   A 0.59 0.59 0.0 0 0 144.06 360.06
   L 144.04 356.02
@@ -12428,8 +13889,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.59 0.59 0.0 0 1 141.92 360.26
   L 143.31 360.64
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 203.40 360.64
   A 0.59 0.59 0.0 0 0 204.14 360.06
   L 204.12 356.03
@@ -12456,8 +13919,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.59 0.59 0.0 0 1 202.01 360.27
   L 203.40 360.64
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 285.25 360.26
   A 0.57 0.56 89.5 0 0 285.82 360.83
   L 288.32 360.80
@@ -12484,8 +13949,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.12 0.0 0 1 285.20 356.02
   L 285.25 360.26
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 471.08 360.28
   A 0.57 0.56 89.5 0 0 471.65 360.85
   L 474.14 360.81
@@ -12512,8 +13979,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.11 1.11 0.0 0 1 471.03 356.06
   L 471.08 360.28
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 91.75 368.65
   L 94.44 358.70
   A 0.38 0.38 0.0 0 1 95.18 358.70
@@ -12522,8 +13991,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 92.12 369.13
   A 0.38 0.38 0.0 0 1 91.75 368.65
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 189.58 369.97
   C 189.61 372.33 190.20 375.44 192.92 376.11
   Q 195.85 376.84 197.13 373.93
@@ -12540,8 +14011,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 195.69 362.97 192.78 363.76
   C 190.08 364.49 189.55 367.62 189.58 369.97
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 266.53 370.60
   A 0.61 0.60 86.1 0 0 265.95 371.26
   C 266.26 374.52 268.83 378.39 272.59 376.59
@@ -12565,8 +14038,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 266.12 368.09
   A 0.26 0.26 0.0 0 0 266.38 368.35
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 317.4889 359.7502
   A 10.18 7.77 -90.4 0 1 325.3298 369.8758
   A 10.18 7.77 -90.4 0 1 317.6311 380.1098
@@ -12579,8 +14054,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.83 4.62 -90.6 0 0 322.1597 369.8516
   A 6.83 4.62 -90.6 0 0 317.4685 363.0704
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 480.76 370.53
   A 0.60 0.60 0.0 0 0 480.18 371.18
   C 480.44 374.41 482.92 378.28 486.67 376.56
@@ -12603,8 +14080,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 480.49 367.87
   A 0.41 0.41 0.0 0 0 480.90 368.28
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 548.4477 359.7500
   A 10.17 7.78 -89.9 0 1 556.2100 369.9336
   A 10.17 7.78 -89.9 0 1 548.4123 380.0900
@@ -12617,8 +14096,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.87 4.56 -91.0 0 0 553.0093 369.8304
   A 6.87 4.56 -91.0 0 0 548.3301 363.0410
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 139.51 363.32
   A 1.49 1.49 0.0 0 1 137.41 365.27
   C 134.74 363.61 132.83 362.06 130.45 364.00
@@ -12637,8 +14118,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 127.63 369.89 125.54 367.13 127.03 363.75
   C 129.27 358.69 137.03 358.57 139.51 363.32
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 159.04 362.29
   A 0.50 0.50 0.0 0 0 159.94 362.44
   Q 161.62 359.99 163.96 359.96
@@ -12657,8 +14140,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.92 0.91 82.0 0 1 158.71 361.13
   L 159.04 362.29
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 182.19 378.76
   A 0.47 0.46 72.5 0 1 181.85 379.42
   Q 179.59 379.85 178.31 378.44
@@ -12681,8 +14166,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 178.18 374.12 178.10 371.00
   A 0.66 0.65 88.9 0 0 177.45 370.37
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 367.29 378.51
   A 0.81 0.80 62.7 0 0 366.36 378.20
   Q 366.27 378.23 364.28 379.30
@@ -12707,8 +14194,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.50 3.22 -31.0 0 0 364.6784 376.2001
   A 4.50 3.22 -31.0 0 0 366.8773 371.1223
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 376.99 361.54
   A 0.54 0.54 0.0 0 0 377.76 361.69
   C 381.97 358.48 387.69 360.00 387.92 365.89
@@ -12728,8 +14217,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 374.62 360.59
   Q 376.12 360.15 376.99 361.54
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 418.77 375.02
   A 1.50 1.28 24.2 0 1 421.16 374.31
   C 421.94 374.97 422.57 376.25 423.72 376.71
@@ -12745,8 +14236,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 431.76 380.71 423.51 381.44 419.78 377.46
   Q 418.70 376.30 418.77 375.02
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 450.51 375.03
   A 1.50 1.29 24.6 0 1 452.92 374.34
   C 453.69 375.00 454.31 376.29 455.47 376.76
@@ -12762,8 +14255,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 463.50 380.82 455.22 381.50 451.51 377.49
   Q 450.43 376.32 450.51 375.03
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 498.32 361.51
   A 0.74 0.73 54.2 0 0 499.34 361.68
   Q 504.24 358.25 507.50 361.89
@@ -12795,8 +14290,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.78 0.78 0.0 0 1 496.15 360.52
   Q 497.39 360.22 498.32 361.51
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 562.99 362.27
   A 0.51 0.51 0.0 0 0 563.82 362.33
   Q 565.32 360.50 567.92 360.46
@@ -12814,8 +14311,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 563.03 361.47 562.97 361.96
   Q 562.94 362.18 562.99 362.27
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 441.12 373.19
   A 0.26 0.26 0.0 0 0 441.61 373.20
   L 445.24 361.84
@@ -12835,9 +14334,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.46 1.45 82.1 0 1 437.93 361.85
   L 441.12 373.19
   Z"
-/>
-<rect fill="#000000" x="-2.23" y="-2.63" transform="translate(218.60,363.57) rotate(0.6)" width="4.46" height="5.26" rx="0.75"/>
-<path fill="#ffeccd" d="
+      />
+      <rect
+        fill="#000000"
+        x="-2.23"
+        y="-2.63"
+        transform="translate(218.60,363.57) rotate(0.6)"
+        width="4.46"
+        height="5.26"
+        rx="0.75"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 266.38 368.35
   A 0.26 0.26 0.0 0 1 266.12 368.09
   L 266.12 367.88
@@ -12848,11 +14357,34 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.26 0.0 0 1 274.52 368.25
   L 266.38 368.35
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(317.54,369.90) rotate(-90.6)" rx="6.83" ry="4.62"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(336.21,369.93) rotate(-91.1)" rx="6.93" ry="4.36"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(399.53,369.90) rotate(-90.4)" rx="6.87" ry="4.56"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(317.54,369.90) rotate(-90.6)"
+        rx="6.83"
+        ry="4.62"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(336.21,369.93) rotate(-91.1)"
+        rx="6.93"
+        ry="4.36"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(399.53,369.90) rotate(-90.4)"
+        rx="6.87"
+        ry="4.56"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 480.90 368.28
   A 0.41 0.41 0.0 0 1 480.49 367.87
   L 480.49 367.56
@@ -12862,19 +14394,52 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.41 0.41 0.0 0 1 488.48 368.26
   L 480.90 368.28
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(548.45,369.91) rotate(-91.0)" rx="6.87" ry="4.56"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(115.56,369.80) rotate(-88.9)" rx="6.61" ry="4.21"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(363.02,373.44) rotate(-31.0)" rx="4.50" ry="3.22"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(548.45,369.91) rotate(-91.0)"
+        rx="6.87"
+        ry="4.56"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(115.56,369.80) rotate(-88.9)"
+        rx="6.61"
+        ry="4.21"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(363.02,373.44) rotate(-31.0)"
+        rx="4.50"
+        ry="3.22"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 177.45 370.37
   A 0.66 0.65 88.9 0 1 178.10 371.00
   Q 178.18 374.12 176.62 375.56
   C 171.56 380.23 166.35 370.36 177.45 370.37
   Z"
-/>
-<rect fill="#000000" x="-2.31" y="-2.44" transform="translate(218.42,377.38) rotate(-0.3)" width="4.62" height="4.88" rx="1.00"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-2.31"
+        y="-2.44"
+        transform="translate(218.42,377.38) rotate(-0.3)"
+        width="4.62"
+        height="4.88"
+        rx="1.00"
+      />
+      <path
+        fill="#000000"
+        d="
   M 198.55 409.10
   L 200.45 408.83
   A 0.44 0.44 0.0 0 1 200.86 409.53
@@ -12899,10 +14464,28 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 196.23 410.43
   A 3.67 3.66 15.1 0 1 198.55 409.10
   Z"
-/>
-<rect fill="#000000" x="-1.66" y="-13.92" transform="translate(215.76,413.94) rotate(0.1)" width="3.32" height="27.84" rx="0.74"/>
-<rect fill="#000000" x="-1.44" y="-14.04" transform="translate(273.46,414.01) rotate(-0.1)" width="2.88" height="28.08" rx="1.12"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.66"
+        y="-13.92"
+        transform="translate(215.76,413.94) rotate(0.1)"
+        width="3.32"
+        height="27.84"
+        rx="0.74"
+      />
+      <rect
+        fill="#000000"
+        x="-1.44"
+        y="-14.04"
+        transform="translate(273.46,414.01) rotate(-0.1)"
+        width="2.88"
+        height="28.08"
+        rx="1.12"
+      />
+      <path
+        fill="#000000"
+        d="
   M 358.01 409.44
   A 0.54 0.54 0.0 0 0 358.82 409.90
   Q 360.57 408.87 361.85 408.47
@@ -12925,8 +14508,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.09 1.08 -0.0 0 1 357.99 400.98
   L 358.01 409.44
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 543.37 409.08
   A 0.78 0.78 0.0 0 0 544.06 408.22
   C 543.53 403.49 545.90 398.94 551.54 400.11
@@ -12953,11 +14538,21 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.90 0.89 89.6 0 1 542.40 409.18
   L 543.37 409.08
   Z"
-/>
-<rect fill="#000000" x="562.07" y="399.91" width="2.94" height="28.00" rx="1.10"/>
-<rect fill="#000000" x="474.16" y="400.36" width="2.80" height="4.54" rx="1.06"/>
-<rect fill="#000000" x="-1.56" y="-2.21" transform="translate(423.29,402.69) rotate(-0.9)" width="3.12" height="4.42" rx="0.96"/>
-<path fill="#000000" d="
+      />
+      <rect fill="#000000" x="562.07" y="399.91" width="2.94" height="28.00" rx="1.10" />
+      <rect fill="#000000" x="474.16" y="400.36" width="2.80" height="4.54" rx="1.06" />
+      <rect
+        fill="#000000"
+        x="-1.56"
+        y="-2.21"
+        transform="translate(423.29,402.69) rotate(-0.9)"
+        width="3.12"
+        height="4.42"
+        rx="0.96"
+      />
+      <path
+        fill="#000000"
+        d="
   M 125.34 408.54
   A 0.57 0.56 89.9 0 0 125.90 409.11
   L 128.39 409.10
@@ -12984,8 +14579,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.11 1.11 0.0 0 1 125.32 404.34
   L 125.34 408.54
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 466.08 408.52
   A 0.57 0.56 89.7 0 0 466.65 409.09
   L 469.15 409.07
@@ -13012,8 +14609,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.12 0.0 0 1 466.05 404.30
   L 466.08 408.52
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 106.75 418.77
   A 0.60 0.60 0.0 0 0 106.17 419.41
   C 106.43 422.63 108.90 426.50 112.65 424.78
@@ -13036,8 +14635,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 106.41 416.03
   A 0.52 0.52 0.0 0 0 106.93 416.55
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 163.8712 408.0912
   A 10.11 7.95 -90.9 0 1 171.9790 418.0751
   A 10.11 7.95 -90.9 0 1 164.1888 428.3088
@@ -13050,8 +14651,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.81 4.64 -90.9 0 0 168.7394 418.1771
   A 6.81 4.64 -90.9 0 0 163.9930 411.4408
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 224.02 418.71
   A 0.60 0.60 0.0 0 0 223.44 419.37
   C 223.72 422.59 226.22 426.43 229.96 424.69
@@ -13075,8 +14678,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 223.86 416.26
   A 0.24 0.24 0.0 0 0 224.10 416.50
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 256.83 418.73
   A 0.60 0.60 0.0 0 0 256.25 419.38
   C 256.49 422.61 258.96 426.49 262.73 424.79
@@ -13100,8 +14705,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 256.52 416.18
   A 0.28 0.28 0.0 0 0 256.80 416.46
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 286.67 423.25
   A 1.50 1.29 24.0 0 1 289.07 422.54
   C 289.85 423.20 290.48 424.48 291.64 424.93
@@ -13117,8 +14724,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 299.69 428.92 291.44 429.67 287.69 425.70
   Q 286.60 424.54 286.67 423.25
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 337.16 418.47
   Q 337.06 415.05 338.20 412.54
   C 341.03 406.29 349.54 406.96 351.68 413.44
@@ -13133,8 +14742,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 350.20 429.23 341.75 430.40 338.55 424.33
   Q 337.27 421.89 337.16 418.47
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 392.1030 408.0708
   A 10.07 7.92 -89.3 0 1 399.8994 418.2368
   A 10.07 7.92 -89.3 0 1 391.8570 428.2092
@@ -13147,8 +14758,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.76 4.55 -91.1 0 0 396.5092 418.1727
   A 6.76 4.55 -91.1 0 0 391.8302 411.5012
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 454.99 426.44
   A 0.26 0.25 64.0 0 0 454.58 426.29
   C 450.65 429.54 443.34 428.63 443.78 422.24
@@ -13167,8 +14780,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 454.62 422.59 454.63 419.23
   A 0.71 0.70 -89.4 0 0 453.94 418.51
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 487.5946 408.0301
   A 10.14 7.83 -90.2 0 1 495.4600 418.1427
   A 10.14 7.83 -90.2 0 1 487.6654 428.3099
@@ -13181,8 +14796,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.82 4.60 -90.9 0 0 492.1594 418.1477
   A 6.82 4.60 -90.9 0 0 487.4529 411.4008
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 532.1966 408.0608
   A 10.10 7.87 -90.7 0 1 540.1894 418.0639
   A 10.10 7.87 -90.7 0 1 532.4434 428.2592
@@ -13195,8 +14812,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.76 4.60 -91.2 0 0 536.9690 418.1237
   A 6.76 4.60 -91.2 0 0 532.2284 411.4615
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 575.7746 408.0401
   A 10.15 7.83 -90.2 0 1 583.6400 418.1627
   A 10.15 7.83 -90.2 0 1 575.8454 428.3399
@@ -13209,8 +14828,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.86 4.53 -91.4 0 0 580.3286 418.1393
   A 6.86 4.53 -91.4 0 0 575.6324 411.3920
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 88.30 409.92
   A 0.54 0.54 0.0 0 0 89.08 410.06
   C 93.25 406.81 98.99 408.27 99.27 414.16
@@ -13230,8 +14851,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 85.93 408.99
   Q 87.43 408.53 88.30 409.92
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 322.26 409.92
   A 0.54 0.54 0.0 0 0 323.04 410.07
   C 327.23 406.83 332.96 408.32 333.22 414.22
@@ -13251,8 +14874,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 319.88 408.99
   Q 321.39 408.53 322.26 409.92
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 405.93 409.85
   A 0.54 0.54 0.0 0 0 406.70 410.00
   C 410.90 406.77 416.64 408.27 416.88 414.17
@@ -13272,8 +14897,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 403.55 408.91
   Q 405.05 408.46 405.93 409.85
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 502.75 409.83
   Q 503.74 409.35 503.98 409.22
   C 508.57 406.79 512.42 408.99 512.88 413.82
@@ -13294,8 +14921,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 501.36 409.01 501.89 409.64
   A 0.72 0.71 57.1 0 0 502.75 409.83
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 179.71 410.12
   Q 180.66 408.96 183.28 408.42
   A 1.40 1.40 0.0 0 1 184.96 409.78
@@ -13311,8 +14940,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 178.07 408.76 179.02 410.10
   A 0.43 0.43 0.0 0 0 179.71 410.12
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 375.96 410.45
   A 0.51 0.51 0.0 0 0 376.81 410.51
   Q 378.30 408.65 380.92 408.61
@@ -13330,8 +14961,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 376.00 409.64 375.95 410.13
   Q 375.91 410.36 375.96 410.45
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 143.48 415.67
   Q 143.28 415.67 143.10 416.51
   Q 141.88 422.10 140.66 426.82
@@ -13360,8 +14993,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 145.14 422.12 143.99 416.51
   Q 143.82 415.67 143.48 415.67
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 243.85 422.38
   Q 244.12 422.38 244.21 422.00
   Q 245.64 416.22 247.38 410.57
@@ -13378,8 +15013,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 242.21 416.18 243.49 421.99
   Q 243.58 422.38 243.85 422.38
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 308.65 422.07
   A 0.31 0.31 0.0 0 0 309.24 422.07
   L 312.42 410.40
@@ -13400,9 +15037,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.70 1.69 -8.2 0 1 305.27 410.27
   L 308.65 422.07
   Z"
-/>
-<rect fill="#000000" x="-1.63" y="-9.43" transform="translate(423.25,418.41) rotate(-0.1)" width="3.26" height="18.86" rx="0.81"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.63"
+        y="-9.43"
+        transform="translate(423.25,418.41) rotate(-0.1)"
+        width="3.26"
+        height="18.86"
+        rx="0.81"
+      />
+      <path
+        fill="#000000"
+        d="
   M 436.47 412.68
   A 0.52 0.52 0.0 0 0 436.06 411.85
   L 429.32 411.82
@@ -13422,9 +15069,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 427.76 424.07 430.01 421.12
   Q 433.28 416.83 436.47 412.68
   Z"
-/>
-<rect fill="#000000" x="-1.41" y="-9.50" transform="translate(475.49,418.42) rotate(-0.2)" width="2.82" height="19.00" rx="1.16"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.41"
+        y="-9.50"
+        transform="translate(475.49,418.42) rotate(-0.2)"
+        width="2.82"
+        height="19.00"
+        rx="1.16"
+      />
+      <path
+        fill="#000000"
+        d="
   M 597.01 415.63
   Q 596.81 415.63 596.63 416.48
   Q 595.44 422.09 594.25 426.83
@@ -13453,8 +15110,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 598.71 422.09 597.52 416.48
   Q 597.34 415.63 597.01 415.63
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 224.10 416.50
   A 0.24 0.24 0.0 0 1 223.86 416.26
   L 223.86 416.09
@@ -13465,8 +15124,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.24 0.24 0.0 0 1 231.96 416.48
   L 224.10 416.50
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 256.80 416.46
   A 0.28 0.28 0.0 0 1 256.52 416.18
   L 256.52 416.06
@@ -13477,8 +15138,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 264.74 416.50
   L 256.80 416.46
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 106.93 416.55
   A 0.52 0.52 0.0 0 1 106.41 416.03
   L 106.41 415.61
@@ -13488,21 +15151,60 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.52 0.52 0.0 0 1 114.39 416.51
   L 106.93 416.55
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(575.80,418.25) rotate(-91.4)" rx="6.86" ry="4.53"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(164.10,418.25) rotate(-90.9)" rx="6.81" ry="4.64"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(391.96,418.26) rotate(-91.1)" rx="6.76" ry="4.55"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(487.56,418.22) rotate(-90.9)" rx="6.82" ry="4.60"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(532.37,418.22) rotate(-91.2)" rx="6.76" ry="4.60"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(575.80,418.25) rotate(-91.4)"
+        rx="6.86"
+        ry="4.53"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(164.10,418.25) rotate(-90.9)"
+        rx="6.81"
+        ry="4.64"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(391.96,418.26) rotate(-91.1)"
+        rx="6.76"
+        ry="4.55"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(487.56,418.22) rotate(-90.9)"
+        rx="6.82"
+        ry="4.60"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(532.37,418.22) rotate(-91.2)"
+        rx="6.76"
+        ry="4.60"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 453.94 418.51
   A 0.71 0.70 -89.4 0 1 454.63 419.23
   Q 454.62 422.59 452.88 424.11
   C 447.27 428.99 441.95 418.17 453.94 418.51
   Z"
-/>
-<rect fill="#000000" x="85.35" y="448.44" width="3.38" height="28.16" rx="0.65"/>
-<path fill="#000000" d="
+      />
+      <rect fill="#000000" x="85.35" y="448.44" width="3.38" height="28.16" rx="0.65" />
+      <path
+        fill="#000000"
+        d="
   M 262.34 457.64
   L 264.26 457.36
   A 0.44 0.44 0.0 0 1 264.66 458.07
@@ -13527,11 +15229,37 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 260.00 458.97
   A 3.70 3.69 15.2 0 1 262.34 457.64
   Z"
-/>
-<rect fill="#000000" x="-1.50" y="-2.11" transform="translate(407.47,451.10) rotate(1.5)" width="3.00" height="4.22" rx="1.05"/>
-<rect fill="#000000" x="-1.58" y="-2.07" transform="translate(446.08,451.05) rotate(1.4)" width="3.16" height="4.14" rx="0.93"/>
-<rect fill="#000000" x="-1.49" y="-2.04" transform="translate(498.57,451.06) rotate(-0.4)" width="2.98" height="4.08" rx="1.04"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.50"
+        y="-2.11"
+        transform="translate(407.47,451.10) rotate(1.5)"
+        width="3.00"
+        height="4.22"
+        rx="1.05"
+      />
+      <rect
+        fill="#000000"
+        x="-1.58"
+        y="-2.07"
+        transform="translate(446.08,451.05) rotate(1.4)"
+        width="3.16"
+        height="4.14"
+        rx="0.93"
+      />
+      <rect
+        fill="#000000"
+        x="-1.49"
+        y="-2.04"
+        transform="translate(498.57,451.06) rotate(-0.4)"
+        width="2.98"
+        height="4.08"
+        rx="1.04"
+      />
+      <path
+        fill="#000000"
+        d="
   M 114.44 457.20
   A 0.57 0.56 89.9 0 0 115.00 457.77
   L 117.51 457.76
@@ -13558,8 +15286,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.12 0.0 0 1 114.42 452.96
   L 114.44 457.20
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 288.88 457.25
   A 0.57 0.56 90.0 0 0 289.44 457.83
   L 291.95 457.81
@@ -13586,8 +15316,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.12 0.0 0 1 288.87 453.01
   L 288.88 457.25
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 308.97 457.30
   A 0.57 0.56 -90.0 0 0 309.54 457.88
   L 312.04 457.87
@@ -13614,8 +15346,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.12 0.0 0 1 308.96 453.07
   L 308.97 457.30
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 102.99 475.18
   A 0.26 0.25 64.7 0 0 102.59 475.03
   C 98.61 478.22 91.32 477.22 91.84 470.83
@@ -13634,8 +15368,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 102.85 471.25 102.68 467.85
   A 0.72 0.71 87.5 0 0 101.95 467.17
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 124.77 467.67
   A 0.60 0.60 0.0 0 0 124.18 468.32
   C 124.42 471.56 126.88 475.46 130.66 473.76
@@ -13658,8 +15394,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 124.46 464.98
   A 0.28 0.28 0.0 0 0 124.75 465.26
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 159.22 467.08
   C 159.30 470.72 161.53 475.32 165.88 473.36
   Q 166.42 473.12 167.28 471.86
@@ -13674,8 +15412,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 166.17 460.75 165.62 460.53
   C 161.19 458.76 159.15 463.45 159.22 467.08
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 227.93 475.55
   A 0.81 0.80 61.7 0 0 226.98 475.26
   Q 226.90 475.29 224.92 476.40
@@ -13699,8 +15439,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 227.54 470.99 227.35 467.57
   A 0.73 0.72 87.2 0 0 226.61 466.89
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 233.74 467.23
   Q 233.65 463.82 234.80 461.32
   C 237.66 455.10 246.14 455.81 248.24 462.29
@@ -13715,8 +15457,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 246.68 478.03 238.24 479.15 235.09 473.08
   Q 233.82 470.64 233.74 467.23
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 270.17 467.64
   A 0.60 0.60 0.0 0 0 269.58 468.29
   C 269.80 471.53 272.24 475.43 276.03 473.75
@@ -13740,8 +15484,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 269.80 464.95
   A 0.31 0.31 0.0 0 0 270.11 465.26
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 337.95 475.23
   A 0.26 0.25 64.6 0 0 337.54 475.08
   C 333.56 478.29 326.25 477.30 326.75 470.91
@@ -13760,8 +15506,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 337.82 471.28 337.70 467.88
   A 0.72 0.71 88.3 0 0 336.98 467.19
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 361.95 472.11
   A 1.50 1.29 24.1 0 1 364.35 471.40
   C 365.13 472.06 365.76 473.34 366.92 473.80
@@ -13777,8 +15525,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 374.98 477.80 366.71 478.54 362.97 474.56
   Q 361.88 473.40 361.95 472.11
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 380.99 458.62
   A 0.74 0.73 54.1 0 0 382.00 458.78
   Q 386.89 455.36 390.14 458.98
@@ -13810,8 +15560,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.78 0.77 83.4 0 1 378.82 457.63
   Q 380.06 457.33 380.99 458.62
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 411.89 472.08
   A 1.50 1.28 24.4 0 1 414.29 471.38
   C 415.06 472.05 415.68 473.32 416.84 473.79
@@ -13827,8 +15579,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 424.85 477.81 416.60 478.51 412.90 474.53
   Q 411.82 473.36 411.89 472.08
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 427.61 472.13
   A 1.50 1.29 24.4 0 1 430.01 471.43
   C 430.78 472.10 431.41 473.38 432.56 473.84
@@ -13844,8 +15598,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 440.59 477.88 432.33 478.58 428.61 474.58
   Q 427.53 473.42 427.61 472.13
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 458.6429 456.8901
   A 10.11 7.85 -89.7 0 1 466.4399 467.0411
   A 10.11 7.85 -89.7 0 1 458.5371 477.1099
@@ -13858,8 +15614,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.82 4.61 -90.1 0 0 463.1600 467.0220
   A 6.82 4.61 -90.1 0 0 458.5381 460.2100
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 506.68 458.62
   A 0.54 0.54 0.0 0 0 507.46 458.77
   C 511.68 455.52 517.45 457.02 517.70 462.96
@@ -13879,8 +15637,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 -8.8 0 1 504.29 457.68
   Q 505.80 457.22 506.68 458.62
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 540.87 475.27
   A 0.26 0.25 64.5 0 0 540.46 475.12
   C 536.48 478.34 529.15 477.36 529.65 470.95
@@ -13899,8 +15659,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 540.63 471.42 540.57 468.03
   A 0.72 0.71 89.4 0 0 539.87 467.33
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 141.95 458.64
   A 0.54 0.54 0.0 0 0 142.73 458.79
   C 146.95 455.57 152.70 457.10 152.91 463.01
@@ -13920,8 +15682,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 -8.5 0 1 139.57 457.68
   Q 141.08 457.24 141.95 458.64
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 202.62 475.86
   A 0.51 0.50 12.8 0 0 201.90 476.31
   L 201.91 482.02
@@ -13940,8 +15704,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.94 4.27 -89.1 0 0 210.1095 467.0471
   A 6.94 4.27 -89.1 0 0 205.9490 460.0409
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 347.99 458.61
   A 0.54 0.54 0.0 0 0 348.77 458.76
   C 353.00 455.54 358.75 457.06 358.97 462.98
@@ -13961,8 +15727,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 -8.6 0 1 345.61 457.66
   Q 347.12 457.21 347.99 458.61
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 472.86 458.53
   A 0.54 0.54 0.0 0 0 473.64 458.67
   C 477.84 455.41 483.60 456.89 483.87 462.81
@@ -13982,8 +15750,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 -9.0 0 1 470.47 457.60
   Q 471.98 457.14 472.86 458.53
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 319.43 459.36
   Q 320.91 457.50 323.52 457.44
   A 1.57 1.57 0.0 0 1 325.12 459.09
@@ -14001,10 +15771,20 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 318.54 459.22 318.59 459.30
   A 0.51 0.51 0.0 0 0 319.43 459.36
   Z"
-/>
-<rect fill="#000000" x="405.97" y="457.52" width="2.94" height="19.14" rx="0.86"/>
-<rect fill="#000000" x="-1.56" y="-9.47" transform="translate(446.00,467.12) rotate(-0.1)" width="3.12" height="18.94" rx="0.74"/>
-<path fill="#000000" d="
+      />
+      <rect fill="#000000" x="405.97" y="457.52" width="2.94" height="19.14" rx="0.86" />
+      <rect
+        fill="#000000"
+        x="-1.56"
+        y="-9.47"
+        transform="translate(446.00,467.12) rotate(-0.1)"
+        width="3.12"
+        height="18.94"
+        rx="0.74"
+      />
+      <path
+        fill="#000000"
+        d="
   M 179.21 470.69
   A 0.31 0.31 0.0 0 0 179.80 470.69
   L 183.00 459.09
@@ -14025,9 +15805,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.69 1.69 0.0 0 1 175.89 458.94
   L 179.21 470.69
   Z"
-/>
-<rect fill="#000000" x="-1.45" y="-9.41" transform="translate(498.50,467.18) rotate(-0.1)" width="2.90" height="18.82" rx="0.65"/>
-<path fill="#ffeccd" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.45"
+        y="-9.41"
+        transform="translate(498.50,467.18) rotate(-0.1)"
+        width="2.90"
+        height="18.82"
+        rx="0.65"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 124.75 465.26
   A 0.28 0.28 0.0 0 1 124.46 464.98
   L 124.45 464.56
@@ -14037,8 +15827,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 132.64 465.12
   L 124.75 465.26
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 270.11 465.26
   A 0.31 0.31 0.0 0 1 269.80 464.95
   L 269.80 464.73
@@ -14049,38 +15841,62 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.31 0.31 0.0 0 1 278.03 465.16
   L 270.11 465.26
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(205.84,466.98) rotate(-89.1)" rx="6.94" ry="4.27"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(458.55,467.03) rotate(-90.1)" rx="6.82" ry="4.61"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(205.84,466.98) rotate(-89.1)"
+        rx="6.94"
+        ry="4.27"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(458.55,467.03) rotate(-90.1)"
+        rx="6.82"
+        ry="4.61"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 102.68 467.85
   Q 102.85 471.25 101.18 472.87
   C 95.78 478.10 89.83 467.46 101.95 467.17
   A 0.72 0.71 87.5 0 1 102.68 467.85
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 226.61 466.89
   A 0.73 0.72 87.2 0 1 227.35 467.57
   Q 227.54 470.99 225.87 472.63
   C 220.45 477.93 214.40 467.25 226.61 466.89
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 336.98 467.19
   A 0.72 0.71 88.3 0 1 337.70 467.88
   Q 337.82 471.28 336.13 472.88
   C 330.66 478.03 324.86 467.32 336.98 467.19
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 539.87 467.33
   A 0.72 0.71 89.4 0 1 540.57 468.03
   Q 540.63 471.42 538.92 472.98
   C 533.38 478.00 527.81 467.23 539.87 467.33
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 497.08 506.10
   L 498.98 505.81
   A 0.44 0.44 0.0 0 1 499.38 506.52
@@ -14105,8 +15921,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 494.77 507.43
   A 3.67 3.66 15.0 0 1 497.08 506.10
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 149.93 506.15
   L 151.84 505.86
   A 0.44 0.44 0.0 0 1 152.25 506.56
@@ -14131,10 +15949,28 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 147.63 507.49
   A 3.67 3.66 14.7 0 1 149.93 506.15
   Z"
-/>
-<rect fill="#000000" x="-1.47" y="-2.33" transform="translate(295.60,499.74) rotate(2.0)" width="2.94" height="4.66" rx="0.91"/>
-<rect fill="#000000" x="-1.49" y="-2.28" transform="translate(333.59,499.78) rotate(1.6)" width="2.98" height="4.56" rx="1.03"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.47"
+        y="-2.33"
+        transform="translate(295.60,499.74) rotate(2.0)"
+        width="2.94"
+        height="4.66"
+        rx="0.91"
+      />
+      <rect
+        fill="#000000"
+        x="-1.49"
+        y="-2.28"
+        transform="translate(333.59,499.78) rotate(1.6)"
+        width="2.98"
+        height="4.56"
+        rx="1.03"
+      />
+      <path
+        fill="#000000"
+        d="
   M 196.63 505.49
   A 0.58 0.57 90.0 0 0 197.20 506.07
   L 199.73 506.06
@@ -14161,8 +15997,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.13 0.0 0 1 196.62 501.21
   L 196.63 505.49
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 423.33 505.47
   A 0.58 0.57 89.6 0 0 423.91 506.05
   L 426.44 506.02
@@ -14189,8 +16027,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.13 0.0 0 1 423.30 501.18
   L 423.33 505.47
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 524.26 505.51
   A 0.58 0.57 89.4 0 0 524.84 506.08
   L 527.37 506.05
@@ -14217,8 +16057,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.13 0.0 0 1 524.21 501.22
   L 524.26 505.51
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 176.85 505.54
   A 0.58 0.57 -90.0 0 0 177.42 506.12
   L 179.95 506.11
@@ -14245,8 +16087,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.13 0.0 0 1 176.84 501.26
   L 176.85 505.54
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 120.96 515.72
   Q 120.82 512.31 121.93 509.80
   C 124.69 503.55 133.17 504.12 135.37 510.56
@@ -14261,8 +16105,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 134.06 526.32 125.64 527.56 122.40 521.55
   Q 121.09 519.13 120.96 515.72
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 157.98 515.92
   A 0.60 0.60 0.0 0 0 157.40 516.57
   C 157.66 519.80 160.13 523.67 163.89 521.95
@@ -14286,8 +16132,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 157.56 513.62
   A 0.23 0.23 0.0 0 0 157.79 513.85
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 256.09 517.01
   C 252.32 515.73 249.27 514.28 250.16 510.20
   C 251.58 503.65 262.77 504.38 262.86 509.90
@@ -14302,8 +16150,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.41 2.27 -11.5 0 0 260.23 519.64
   C 260.08 518.10 257.66 517.54 256.09 517.01
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 300.12 520.75
   A 1.49 1.28 23.3 0 1 302.50 520.01
   C 303.28 520.66 303.93 521.92 305.08 522.36
@@ -14319,8 +16169,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 313.15 526.23 304.94 527.08 301.17 523.17
   Q 300.07 522.03 300.12 520.75
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 315.52 520.58
   A 1.49 1.28 23.9 0 1 317.90 519.87
   C 318.68 520.52 319.31 521.79 320.47 522.24
@@ -14336,8 +16188,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 328.50 526.20 320.28 526.96 316.54 523.01
   Q 315.45 521.86 315.52 520.58
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 346.0752 505.4201
   A 10.08 7.85 -89.8 0 1 353.8900 515.5274
   A 10.08 7.85 -89.8 0 1 346.0048 525.5799
@@ -14350,8 +16204,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.70 4.67 -90.4 0 0 350.7299 515.4574
   A 6.70 4.67 -90.4 0 0 346.0132 508.7902
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 404.63 516.03
   A 0.60 0.60 0.0 0 0 404.05 516.67
   C 404.27 519.89 406.70 523.77 410.46 522.09
@@ -14375,8 +16231,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 404.20 513.52
   A 0.27 0.27 0.0 0 0 404.47 513.79
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 89.58 524.17
   A 0.50 0.50 0.0 0 0 88.86 524.62
   L 88.86 530.28
@@ -14395,8 +16253,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.77 4.28 -88.1 0 0 97.0676 515.5519
   A 6.77 4.28 -88.1 0 0 93.0145 508.6437
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 114.71 523.97
   A 0.81 0.80 61.6 0 0 113.77 523.68
   Q 113.69 523.71 111.71 524.82
@@ -14420,8 +16280,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 114.19 519.90 114.27 516.48
   A 0.72 0.71 -88.2 0 0 113.59 515.75
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 225.86 523.65
   A 0.26 0.25 64.3 0 0 225.46 523.51
   C 221.54 526.70 214.30 525.77 214.76 519.43
@@ -14440,8 +16302,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 225.60 519.84 225.70 516.51
   A 0.71 0.69 -87.9 0 0 225.04 515.79
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 235.90 507.10
   A 0.54 0.54 0.0 0 0 236.67 507.26
   C 240.91 504.06 246.64 505.61 246.83 511.52
@@ -14461,8 +16325,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 -8.3 0 1 233.53 506.14
   Q 235.04 505.70 235.90 507.10
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 269.81 507.26
   Q 270.38 507.02 270.91 506.73
   Q 275.11 504.41 278.15 507.38
@@ -14493,8 +16359,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 268.76 506.03 268.91 506.77
   A 0.67 0.66 -16.3 0 0 269.81 507.26
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 360.43 507.16
   A 0.54 0.53 55.9 0 0 361.21 507.31
   C 365.40 504.10 371.11 505.62 371.33 511.50
@@ -14514,8 +16382,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 358.07 506.21
   Q 359.57 505.76 360.43 507.16
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 386.51 507.15
   A 0.54 0.54 0.0 0 0 387.29 507.30
   C 391.50 504.07 397.25 505.59 397.48 511.51
@@ -14535,8 +16405,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 -8.6 0 1 384.13 506.20
   Q 385.64 505.75 386.51 507.15
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 436.42 520.20
   A 0.12 0.11 43.7 0 0 436.65 520.20
   Q 437.68 514.11 439.65 508.24
@@ -14564,8 +16436,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.11 1.10 -3.4 0 1 433.30 507.05
   L 436.42 520.20
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 462.1126 505.4804
   A 10.02 7.91 -90.5 0 1 470.1097 515.4310
   A 10.02 7.91 -90.5 0 1 462.2874 525.5196
@@ -14578,8 +16452,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.74 4.54 -90.5 0 0 466.7898 515.4304
   A 6.74 4.54 -90.5 0 0 462.1912 508.7303
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 537.9500 505.5200
   A 10.00 7.97 -90.0 0 1 545.9200 515.5200
   A 10.00 7.97 -90.0 0 1 537.9500 525.5200
@@ -14592,8 +16468,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.70 4.66 -90.6 0 0 542.5697 515.4712
   A 6.70 4.66 -90.6 0 0 537.8398 508.8204
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 206.25 507.64
   A 0.52 0.51 49.3 0 0 207.10 507.71
   Q 208.60 505.85 211.22 505.81
@@ -14611,10 +16489,20 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 206.29 506.84 206.23 507.33
   Q 206.20 507.56 206.25 507.64
   Z"
-/>
-<rect fill="#000000" x="294.07" y="505.94" width="2.88" height="19.06" rx="1.02"/>
-<rect fill="#000000" x="-1.47" y="-9.45" transform="translate(333.52,515.49) rotate(-0.2)" width="2.94" height="18.90" rx="0.75"/>
-<path fill="#000000" d="
+      />
+      <rect fill="#000000" x="294.07" y="505.94" width="2.88" height="19.06" rx="1.02" />
+      <rect
+        fill="#000000"
+        x="-1.47"
+        y="-9.45"
+        transform="translate(333.52,515.49) rotate(-0.2)"
+        width="2.94"
+        height="18.90"
+        rx="0.75"
+      />
+      <path
+        fill="#000000"
+        d="
   M 476.92 507.63
   A 0.51 0.51 0.0 0 0 477.76 507.70
   Q 479.24 505.85 481.84 505.80
@@ -14632,8 +16520,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 476.95 506.84 476.90 507.32
   Q 476.87 507.55 476.92 507.63
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 404.47 513.79
   A 0.27 0.27 0.0 0 1 404.20 513.52
   L 404.20 513.34
@@ -14644,8 +16534,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.27 0.27 0.0 0 1 412.45 513.75
   L 404.47 513.79
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 157.79 513.85
   A 0.23 0.23 0.0 0 1 157.56 513.62
   L 157.56 513.46
@@ -14656,27 +16548,69 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.23 0.23 0.0 0 1 165.99 513.75
   L 157.79 513.85
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(92.79,515.41) rotate(-88.1)" rx="6.77" ry="4.28"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(346.06,515.49) rotate(-90.4)" rx="6.70" ry="4.67"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(462.25,515.47) rotate(-90.5)" rx="6.74" ry="4.54"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(537.91,515.52) rotate(-90.6)" rx="6.70" ry="4.66"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(92.79,515.41) rotate(-88.1)"
+        rx="6.77"
+        ry="4.28"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(346.06,515.49) rotate(-90.4)"
+        rx="6.70"
+        ry="4.67"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(462.25,515.47) rotate(-90.5)"
+        rx="6.74"
+        ry="4.54"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(537.91,515.52) rotate(-90.6)"
+        rx="6.70"
+        ry="4.66"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 113.59 515.75
   A 0.72 0.71 -88.2 0 1 114.27 516.48
   Q 114.19 519.90 112.39 521.40
   C 106.59 526.23 101.44 515.13 113.59 515.75
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 225.04 515.79
   A 0.71 0.69 -87.9 0 1 225.70 516.51
   Q 225.60 519.84 223.84 521.29
   C 218.17 525.96 213.20 515.12 225.04 515.79
   Z"
-/>
-<rect fill="#000000" x="-1.68" y="-5.34" transform="translate(504.00,525.27) rotate(8.4)" width="3.36" height="10.68" rx="0.75"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.68"
+        y="-5.34"
+        transform="translate(504.00,525.27) rotate(8.4)"
+        width="3.36"
+        height="10.68"
+        rx="0.75"
+      />
+      <path
+        fill="#000000"
+        d="
   M 268.22 555.26
   L 268.15 546.96
   A 0.88 0.88 0.0 0 1 269.02 546.07
@@ -14700,8 +16634,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.81 3.81 0.0 0 0 268.1834 567.2199
   L 268.1160 561.7004
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 376.06 555.26
   L 376.03 546.99
   A 0.88 0.88 0.0 0 1 376.90 546.11
@@ -14721,9 +16657,11 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.88 4.35 -91.0 0 0 376.3493 564.4541
   A 6.88 4.35 -91.0 0 0 371.8799 557.6510
   Z"
-/>
-<rect fill="#000000" x="391.57" y="546.16" width="3.36" height="27.90" rx="0.69"/>
-<path fill="#000000" d="
+      />
+      <rect fill="#000000" x="391.57" y="546.16" width="3.36" height="27.90" rx="0.69" />
+      <path
+        fill="#000000"
+        d="
   M 522.55 554.35
   C 522.02 549.64 524.38 545.10 530.00 546.27
   A 1.43 1.42 6.0 0 1 531.13 547.66
@@ -14750,11 +16688,37 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 521.86 555.20
   A 0.77 0.77 0.0 0 0 522.55 554.35
   Z"
-/>
-<rect fill="#000000" x="-1.53" y="-2.27" transform="translate(115.14,548.66) rotate(1.2)" width="3.06" height="4.54" rx="0.90"/>
-<rect fill="#000000" x="-1.76" y="-1.97" transform="translate(140.14,548.75) rotate(0.6)" width="3.52" height="3.94" rx="0.87"/>
-<rect fill="#000000" x="-1.71" y="-2.02" transform="translate(175.03,548.85) rotate(-0.2)" width="3.42" height="4.04" rx="0.83"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.53"
+        y="-2.27"
+        transform="translate(115.14,548.66) rotate(1.2)"
+        width="3.06"
+        height="4.54"
+        rx="0.90"
+      />
+      <rect
+        fill="#000000"
+        x="-1.76"
+        y="-1.97"
+        transform="translate(140.14,548.75) rotate(0.6)"
+        width="3.52"
+        height="3.94"
+        rx="0.87"
+      />
+      <rect
+        fill="#000000"
+        x="-1.71"
+        y="-2.02"
+        transform="translate(175.03,548.85) rotate(-0.2)"
+        width="3.42"
+        height="4.04"
+        rx="0.83"
+      />
+      <path
+        fill="#000000"
+        d="
   M 417.02 554.43
   L 417.11 550.68
   A 1.46 1.45 88.9 0 1 418.46 549.27
@@ -14782,8 +16746,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 416.29 555.14
   A 0.73 0.73 0.0 0 0 417.02 554.43
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 291.99 554.66
   A 0.58 0.57 89.6 0 0 292.57 555.24
   L 295.09 555.21
@@ -14810,8 +16776,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.13 0.0 0 1 291.95 550.39
   L 291.99 554.66
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 88.16 556.11
   A 0.73 0.73 0.0 0 0 89.17 556.28
   Q 94.04 552.87 97.28 556.48
@@ -14843,8 +16811,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.78 0.77 83.4 0 1 86.01 555.13
   Q 87.24 554.83 88.16 556.11
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 123.60 556.13
   A 0.54 0.54 0.0 0 0 124.38 556.28
   C 128.62 553.05 134.38 554.58 134.61 560.52
@@ -14864,8 +16834,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 -8.5 0 1 121.21 555.17
   Q 122.73 554.72 123.60 556.13
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 148.07 556.12
   A 0.74 0.73 54.0 0 0 149.09 556.29
   Q 153.97 552.84 157.24 556.47
@@ -14897,8 +16869,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.78 0.78 0.0 0 1 145.90 555.14
   Q 147.13 554.84 148.07 556.12
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 199.35 565.18
   A 0.60 0.60 0.0 0 0 198.77 565.83
   C 199.02 569.08 201.52 572.98 205.30 571.25
@@ -14922,8 +16896,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 198.97 562.56
   A 0.42 0.42 0.0 0 0 199.39 562.98
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 224.72 565.17
   A 0.60 0.60 0.0 0 0 224.14 565.82
   C 224.39 569.06 226.88 572.96 230.66 571.23
@@ -14947,8 +16923,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 224.29 562.70
   A 0.41 0.41 0.0 0 0 224.70 563.10
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 306.2423 554.4100
   A 10.13 7.84 -90.1 0 1 314.1000 564.5263
   A 10.13 7.84 -90.1 0 1 306.2777 574.6700
@@ -14961,8 +16939,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.77 4.65 -91.4 0 0 310.8686 564.4364
   A 6.77 4.65 -91.4 0 0 306.0546 557.7820
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 331.89 565.24
   A 0.60 0.60 0.0 0 0 331.31 565.90
   C 331.60 569.15 334.13 573.02 337.89 571.25
@@ -14986,8 +16966,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 331.66 562.44
   A 0.64 0.64 0.0 0 0 332.31 563.07
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 408.57 572.85
   Q 408.49 572.88 406.51 573.97
   C 403.44 575.65 398.87 573.90 398.16 570.30
@@ -15011,8 +16993,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 409.04 569.10 409.11 565.70
   A 0.72 0.71 -88.5 0 0 408.43 564.97
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 429.06 565.79
   C 429.30 569.04 431.77 572.95 435.56 571.24
   C 437.49 570.37 437.39 567.81 440.00 568.10
@@ -15036,8 +17020,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 429.21 562.69
   A 0.41 0.41 0.0 0 0 429.63 563.09
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 461.64 564.92
   Q 461.48 561.51 462.57 558.98
   C 465.29 552.69 473.80 553.20 476.06 559.64
@@ -15052,8 +17038,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 474.86 575.44 466.44 576.76 463.13 570.76
   Q 461.81 568.34 461.64 564.92
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 510.8989 554.3602
   A 10.18 7.95 -90.4 0 1 518.9198 564.4845
   A 10.18 7.95 -90.4 0 1 511.0411 574.7198
@@ -15066,8 +17054,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.75 4.62 -91.0 0 0 515.6193 564.4694
   A 6.75 4.62 -91.0 0 0 510.8822 557.8010
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 242.24 556.13
   A 0.54 0.53 55.7 0 0 243.02 556.28
   C 247.21 553.07 252.92 554.58 253.15 560.46
@@ -15087,8 +17077,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 239.88 555.19
   Q 241.38 554.74 242.24 556.13
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 349.70 556.18
   A 0.54 0.53 55.9 0 0 350.47 556.33
   C 354.67 553.13 360.38 554.66 360.59 560.54
@@ -15108,8 +17100,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 347.34 555.23
   Q 348.84 554.79 349.70 556.18
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 447.26 556.17
   A 0.54 0.54 0.0 0 0 448.04 556.31
   C 452.23 553.08 457.97 554.58 458.22 560.48
@@ -15129,11 +17123,37 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 444.88 555.23
   Q 446.39 554.77 447.26 556.17
   Z"
-/>
-<rect fill="#000000" x="-1.50" y="-9.44" transform="translate(115.07,564.56) rotate(-0.1)" width="3.00" height="18.88" rx="0.50"/>
-<rect fill="#000000" x="-1.71" y="-9.44" transform="translate(140.14,564.53) rotate(-0.1)" width="3.42" height="18.88" rx="0.61"/>
-<rect fill="#000000" x="-1.64" y="-9.45" transform="translate(175.02,564.57) rotate(-0.1)" width="3.28" height="18.90" rx="0.65"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.50"
+        y="-9.44"
+        transform="translate(115.07,564.56) rotate(-0.1)"
+        width="3.00"
+        height="18.88"
+        rx="0.50"
+      />
+      <rect
+        fill="#000000"
+        x="-1.71"
+        y="-9.44"
+        transform="translate(140.14,564.53) rotate(-0.1)"
+        width="3.42"
+        height="18.88"
+        rx="0.61"
+      />
+      <rect
+        fill="#000000"
+        x="-1.64"
+        y="-9.45"
+        transform="translate(175.02,564.57) rotate(-0.1)"
+        width="3.28"
+        height="18.90"
+        rx="0.65"
+      />
+      <path
+        fill="#000000"
+        d="
   M 188.26 558.00
   L 181.43 558.00
   A 1.44 1.43 0.0 0 1 179.99 556.57
@@ -15153,8 +17173,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 185.46 563.06 188.68 558.84
   A 0.53 0.52 18.6 0 0 188.26 558.00
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 485.48 568.17
   A 0.31 0.31 0.0 0 0 486.08 568.17
   L 489.33 556.43
@@ -15175,8 +17197,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.71 1.71 0.0 0 1 482.13 556.27
   L 485.48 568.17
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 199.39 562.98
   A 0.42 0.42 0.0 0 1 198.97 562.56
   L 198.98 562.43
@@ -15187,8 +17211,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.42 0.0 0 1 207.17 563.04
   L 199.39 562.98
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 224.70 563.10
   A 0.41 0.41 0.0 0 1 224.29 562.70
   L 224.28 562.38
@@ -15199,8 +17225,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.41 0.41 0.0 0 1 232.54 562.98
   L 224.70 563.10
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 332.31 563.07
   A 0.64 0.64 0.0 0 1 331.66 562.44
   L 331.66 562.20
@@ -15211,8 +17239,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.64 0.64 0.0 0 1 339.25 562.97
   L 332.31 563.07
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 429.63 563.09
   A 0.41 0.41 0.0 0 1 429.21 562.69
   L 429.20 562.38
@@ -15223,21 +17253,70 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.41 0.41 0.0 0 1 437.48 562.89
   L 429.63 563.09
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(306.22,564.55) rotate(-91.4)" rx="6.77" ry="4.65"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(372.00,564.53) rotate(-91.0)" rx="6.88" ry="4.35"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(511.00,564.55) rotate(-91.0)" rx="6.75" ry="4.62"/>
-<rect fill="#ffeccd" x="-4.08" y="-6.57" transform="translate(264.07,564.51) rotate(-0.7)" width="8.16" height="13.14" rx="3.81"/>
-<rect fill="#000000" x="-4.72" y="-1.57" transform="translate(279.79,563.58) rotate(0.4)" width="9.44" height="3.14" rx="0.68"/>
-<rect fill="#000000" x="-4.85" y="-1.59" transform="translate(320.94,563.60) rotate(0.2)" width="9.70" height="3.18" rx="0.83"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(306.22,564.55) rotate(-91.4)"
+        rx="6.77"
+        ry="4.65"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(372.00,564.53) rotate(-91.0)"
+        rx="6.88"
+        ry="4.35"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(511.00,564.55) rotate(-91.0)"
+        rx="6.75"
+        ry="4.62"
+      />
+      <rect
+        fill="#ffeccd"
+        x="-4.08"
+        y="-6.57"
+        transform="translate(264.07,564.51) rotate(-0.7)"
+        width="8.16"
+        height="13.14"
+        rx="3.81"
+      />
+      <rect
+        fill="#000000"
+        x="-4.72"
+        y="-1.57"
+        transform="translate(279.79,563.58) rotate(0.4)"
+        width="9.44"
+        height="3.14"
+        rx="0.68"
+      />
+      <rect
+        fill="#000000"
+        x="-4.85"
+        y="-1.59"
+        transform="translate(320.94,563.60) rotate(0.2)"
+        width="9.70"
+        height="3.18"
+        rx="0.83"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 408.43 564.97
   A 0.72 0.71 -88.5 0 1 409.11 565.70
   Q 409.04 569.10 407.27 570.60
   C 401.52 575.43 396.33 564.42 408.43 564.97
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 149.96 603.18
   L 151.87 602.90
   A 0.44 0.44 0.0 0 1 152.28 603.61
@@ -15262,8 +17341,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 147.63 604.52
   A 3.69 3.68 15.0 0 1 149.96 603.18
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 256.53 604.31
   Q 256.95 604.09 258.14 603.45
   C 263.10 600.76 266.23 604.23 266.71 609.00
@@ -15286,8 +17367,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 255.91 603.92
   A 0.43 0.43 0.0 0 0 256.53 604.31
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 409.31 603.14
   L 411.23 602.85
   A 0.44 0.44 0.0 0 1 411.64 603.56
@@ -15312,9 +17395,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 406.98 604.49
   A 3.70 3.69 14.8 0 1 409.31 603.14
   Z"
-/>
-<rect fill="#000000" x="-1.64" y="-1.99" transform="translate(209.09,596.84) rotate(0.9)" width="3.28" height="3.98" rx="0.85"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.64"
+        y="-1.99"
+        transform="translate(209.09,596.84) rotate(0.9)"
+        width="3.28"
+        height="3.98"
+        rx="0.85"
+      />
+      <path
+        fill="#000000"
+        d="
   M 177.43 603.19
   L 179.96 603.18
   A 0.85 0.85 0.0 0 1 180.81 604.03
@@ -15341,8 +17434,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 176.86 602.61
   A 0.58 0.57 90.0 0 0 177.43 603.19
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 246.05 602.58
   A 0.58 0.57 90.0 0 0 246.61 603.15
   L 249.13 603.14
@@ -15369,8 +17464,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.12 0.0 0 1 246.03 598.32
   L 246.05 602.58
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 336.38 602.59
   A 0.58 0.57 89.4 0 0 336.95 603.16
   L 339.48 603.13
@@ -15397,8 +17494,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.13 0.0 0 1 336.33 598.31
   L 336.38 602.59
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 88.86 621.72
   L 88.88 627.39
   A 0.79 0.79 0.0 0 1 88.09 628.18
@@ -15417,8 +17516,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.82 4.32 -88.3 0 0 97.0081 612.5582
   A 6.82 4.32 -88.3 0 0 92.8923 605.6130
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 120.74 612.58
   Q 120.68 609.15 121.86 606.64
   C 124.78 600.42 133.30 601.20 135.36 607.73
@@ -15433,8 +17534,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 133.67 623.54 125.18 624.60 122.05 618.47
   Q 120.79 616.01 120.74 612.58
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 157.62 612.93
   A 0.60 0.60 0.0 0 0 157.04 613.58
   C 157.30 616.82 159.78 620.70 163.54 618.97
@@ -15458,8 +17561,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 157.27 610.41
   A 0.40 0.40 0.0 0 0 157.67 610.81
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 182.76 617.62
   A 1.50 1.28 23.5 0 1 185.14 616.88
   C 185.93 617.53 186.57 618.80 187.73 619.25
@@ -15475,8 +17580,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 195.81 623.15 187.57 623.98 183.80 620.05
   Q 182.70 618.90 182.76 617.62
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 273.95 612.93
   A 0.60 0.60 0.0 0 0 273.37 613.58
   C 273.62 616.81 276.08 620.69 279.85 618.98
@@ -15500,8 +17607,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 273.81 610.54
   A 0.30 0.30 0.0 0 0 274.11 610.84
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 300.50 604.29
   C 304.72 601.06 310.47 602.58 310.70 608.50
   Q 310.84 612.10 310.78 621.21
@@ -15521,8 +17630,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 298.85 602.74 299.72 604.14
   A 0.54 0.54 0.0 0 0 300.50 604.29
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 317.53 613.00
   A 0.60 0.59 87.6 0 0 316.94 613.64
   C 317.16 616.84 319.58 620.72 323.33 619.05
@@ -15546,8 +17657,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 317.15 610.38
   A 0.34 0.34 0.0 0 0 317.48 610.72
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 374.8807 602.3910
   A 10.08 7.79 -89.2 0 1 382.5292 612.5788
   A 10.08 7.79 -89.2 0 1 374.5993 622.5490
@@ -15560,8 +17673,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.79 4.53 -90.6 0 0 379.2798 612.3726
   A 6.79 4.53 -90.6 0 0 374.6789 605.6304
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 114.68 621.00
   A 0.81 0.80 62.1 0 0 113.75 620.71
   Q 113.67 620.74 111.68 621.82
@@ -15585,8 +17700,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 114.28 616.82 114.29 613.38
   A 0.73 0.72 -89.4 0 0 113.59 612.66
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 217.96 604.06
   A 0.54 0.54 0.0 0 0 218.74 604.22
   C 222.97 600.98 228.72 602.50 228.95 608.43
@@ -15606,9 +17723,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 -8.6 0 1 215.58 603.11
   Q 217.09 602.66 217.96 604.06
   Z"
-/>
-<rect fill="#000000" x="-1.52" y="-9.43" transform="translate(209.00,612.54) rotate(-0.1)" width="3.04" height="18.86" rx="0.74"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.52"
+        y="-9.43"
+        transform="translate(209.00,612.54) rotate(-0.1)"
+        width="3.04"
+        height="18.86"
+        rx="0.74"
+      />
+      <path
+        fill="#000000"
+        d="
   M 354.24 603.00
   Q 355.53 603.00 355.96 604.51
   Q 357.79 610.90 358.86 616.43
@@ -15637,8 +17764,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 350.75 610.91 352.56 604.51
   Q 352.99 603.00 354.24 603.00
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 389.73 604.80
   A 0.50 0.50 0.0 0 0 390.56 604.86
   Q 392.01 603.03 394.58 602.97
@@ -15656,8 +17785,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 389.76 604.02 389.71 604.50
   Q 389.68 604.72 389.73 604.80
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 157.67 610.81
   A 0.40 0.40 0.0 0 1 157.27 610.41
   L 157.27 610.12
@@ -15668,8 +17799,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.40 0.0 0 1 165.51 610.81
   L 157.67 610.81
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 274.11 610.84
   A 0.30 0.30 0.0 0 1 273.81 610.54
   L 273.81 610.36
@@ -15680,8 +17813,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.30 0.30 0.0 0 1 281.91 610.80
   L 274.11 610.84
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 317.48 610.72
   A 0.34 0.34 0.0 0 1 317.15 610.38
   L 317.15 610.13
@@ -15692,18 +17827,44 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.34 0.34 0.0 0 1 325.06 610.80
   L 317.48 610.72
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(92.69,612.43) rotate(-88.3)" rx="6.82" ry="4.32"/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(374.75,612.42) rotate(-90.6)" rx="6.79" ry="4.53"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(92.69,612.43) rotate(-88.3)"
+        rx="6.82"
+        ry="4.32"
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(374.75,612.42) rotate(-90.6)"
+        rx="6.79"
+        ry="4.53"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 113.59 612.66
   A 0.73 0.72 -89.4 0 1 114.29 613.38
   Q 114.28 616.82 112.51 618.36
   C 106.79 623.33 101.37 612.30 113.59 612.66
   Z"
-/>
-<rect fill="#000000" x="-1.97" y="-2.49" transform="translate(416.99,619.49) rotate(1.2)" width="3.94" height="4.98" rx="1.09"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.97"
+        y="-2.49"
+        transform="translate(416.99,619.49) rotate(1.2)"
+        width="3.94"
+        height="4.98"
+        rx="1.09"
+      />
+      <path
+        fill="#000000"
+        d="
   M 199.36 677.01
   A 0.35 0.35 0.0 0 1 199.59 677.44
   L 198.74 680.52
@@ -15731,8 +17892,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 189.76 683.56 189.79 682.52
   C 189.97 676.48 194.49 675.43 199.36 677.01
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 342.38 697.65
   Q 342.56 697.65 342.61 697.49
   Q 345.49 687.44 348.94 677.74
@@ -15763,8 +17926,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 339.27 687.44 342.15 697.49
   Q 342.19 697.65 342.38 697.65
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 469.27 701.11
   L 479.30 701.02
   A 0.87 0.87 0.0 0 1 480.18 701.88
@@ -15784,8 +17949,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 474.19 696.62 469.03 700.39
   A 0.40 0.40 0.0 0 0 469.27 701.11
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 501.69 691.44
   C 501.74 697.17 500.49 705.53 492.96 705.60
   C 485.43 705.67 484.03 697.33 483.98 691.60
@@ -15798,8 +17965,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 10.67 4.65 -89.5 0 0 497.4598 691.5106
   A 10.67 4.65 -89.5 0 0 492.9031 680.8004
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 511.63 701.09
   L 521.65 701.09
   A 0.87 0.87 0.0 0 1 522.52 701.96
@@ -15819,8 +17988,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 516.59 696.65 511.40 700.37
   A 0.40 0.40 0.0 0 0 511.63 701.09
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 87.09 678.40
   A 0.95 0.95 0.0 0 1 88.04 677.45
   L 95.91 677.47
@@ -15841,8 +18012,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 92.00 681.29
   A 0.43 0.43 0.0 0 0 91.57 681.72
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 213.65 695.77
   A 0.60 0.60 0.0 0 0 212.99 696.37
   L 212.98 704.31
@@ -15865,8 +18038,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 213.72 681.21
   A 0.68 0.68 0.0 0 0 213.03 681.89
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 411.93 684.46
   A 0.65 0.65 0.0 0 0 411.09 683.85
   L 407.25 685.02
@@ -15881,8 +18056,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.69 0.69 0.0 0 1 412.04 704.32
   L 411.93 684.46
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 540.45 704.64
   A 0.36 0.36 0.0 0 1 540.09 705.00
   L 537.22 705.00
@@ -15914,8 +18091,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 530.44 694.62
   A 0.17 0.16 15.0 0 0 530.59 694.87
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 438.57 695.10
   Q 439.84 694.95 440.20 694.85
   A 0.71 0.71 0.0 0 1 441.11 695.53
@@ -15946,8 +18125,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 434.01 684.77
   A 0.30 0.29 -30.4 0 0 433.46 684.63
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 134.31 680.80
   L 134.32 684.53
   A 0.86 0.86 0.0 0 0 135.18 685.39
@@ -15975,8 +18156,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 133.62 680.11
   A 0.69 0.69 0.0 0 1 134.31 680.80
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 245.84 685.35
   Q 246.34 685.25 247.62 685.65
   A 0.96 0.96 0.0 0 0 248.87 684.73
@@ -16006,8 +18189,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 245.28 687.21 245.45 685.78
   A 0.51 0.50 -3.4 0 1 245.84 685.35
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 297.10 685.64
   A 0.60 0.60 0.0 0 0 297.86 685.07
   L 297.91 680.99
@@ -16034,9 +18219,18 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.60 0.60 0.0 0 1 295.70 685.24
   L 297.10 685.64
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(492.81,691.47) rotate(-89.5)" rx="10.67" ry="4.65"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(492.81,691.47) rotate(-89.5)"
+        rx="10.67"
+        ry="4.65"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 91.57 681.72
   A 0.43 0.43 0.0 0 1 92.00 681.29
   L 95.10 681.30
@@ -16047,8 +18241,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.43 0.43 0.0 0 1 91.51 700.64
   L 91.57 681.72
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 213.03 681.89
   A 0.68 0.68 0.0 0 1 213.72 681.21
   L 217.25 681.24
@@ -16059,8 +18255,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 1 212.95 691.19
   L 213.03 681.89
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 434.01 684.77
   L 434.03 694.31
   A 0.58 0.58 0.0 0 1 433.45 694.89
@@ -16069,8 +18267,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 433.46 684.63
   A 0.30 0.29 -30.4 0 1 434.01 684.77
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 530.44 694.62
   L 535.98 685.02
   A 0.45 0.45 0.0 0 1 536.82 685.24
@@ -16079,8 +18279,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 530.59 694.87
   A 0.17 0.16 15.0 0 1 530.44 694.62
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 126.14 704.29
   A 0.48 0.48 0.0 0 1 125.79 704.96
   Q 123.46 705.40 122.14 703.94
@@ -16103,8 +18305,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 121.91 699.42 121.75 696.23
   A 0.68 0.67 87.4 0 0 121.06 695.59
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 144.78 696.71
   C 144.75 699.90 147.37 703.34 150.88 701.63
   C 152.73 700.73 152.51 698.46 155.62 699.13
@@ -16126,8 +18330,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 144.93 692.82
   A 0.27 0.27 0.0 0 0 145.20 693.09
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 176.9929 684.7041
   A 10.49 8.99 -88.4 0 1 185.6865 695.4410
   A 10.49 8.99 -88.4 0 1 176.4071 705.6759
@@ -16140,8 +18346,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.59 4.77 -90.0 0 0 181.4200 695.2200
   A 6.59 4.77 -90.0 0 0 176.6500 688.6300
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 243.46 704.15
   A 0.48 0.47 72.1 0 1 243.12 704.82
   Q 240.81 705.28 239.49 703.86
@@ -16164,8 +18372,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 239.28 699.45 239.06 696.34
   A 0.66 0.65 86.3 0 0 238.38 695.73
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 274.16 698.96
   A 0.51 0.51 0.0 0 1 274.56 699.61
   C 273.01 704.63 268.30 706.86 263.51 704.90
@@ -16188,8 +18398,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 262.57 692.77
   A 0.42 0.42 0.0 0 0 263.00 693.18
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 292.40 704.97
   L 289.64 704.98
   A 0.55 0.54 -0.1 0 1 289.09 704.45
@@ -16209,8 +18421,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 293.16 695.06 292.98 704.39
   A 0.60 0.60 0.0 0 1 292.40 704.97
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 374.61 704.28
   A 0.48 0.48 0.0 0 1 374.26 704.94
   Q 371.93 705.37 370.63 703.91
@@ -16236,8 +18450,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 366.35 694.75 364.10 697.14
   Q 362.09 699.26 363.48 701.15
   Z"
-/>
-<path fill="#000000" d="
+      />
+      <path
+        fill="#000000"
+        d="
   M 385.00 697.72
   L 388.46 686.88
   A 2.10 2.09 -81.0 0 1 390.45 685.43
@@ -16257,9 +18473,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 384.13 697.71
   A 0.46 0.45 -44.2 0 0 385.00 697.72
   Z"
-/>
-<rect fill="#000000" x="-1.92" y="-2.53" transform="translate(312.80,689.47) rotate(-0.7)" width="3.84" height="5.06" rx="0.80"/>
-<path fill="#ffeccd" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.92"
+        y="-2.53"
+        transform="translate(312.80,689.47) rotate(-0.7)"
+        width="3.84"
+        height="5.06"
+        rx="0.80"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 145.20 693.09
   A 0.27 0.27 0.0 0 1 144.93 692.82
   L 144.93 692.42
@@ -16269,9 +18495,18 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.27 0.27 0.0 0 1 152.34 693.11
   L 145.20 693.09
   Z"
-/>
-<ellipse fill="#ffeccd" cx="0.00" cy="0.00" transform="translate(176.65,695.22) rotate(-90.0)" rx="6.59" ry="4.77"/>
-<path fill="#ffeccd" d="
+      />
+      <ellipse
+        fill="#ffeccd"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(176.65,695.22) rotate(-90.0)"
+        rx="6.59"
+        ry="4.77"
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 263.00 693.18
   A 0.42 0.42 0.0 0 1 262.57 692.77
   L 262.56 692.64
@@ -16282,15 +18517,19 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.42 0.0 0 1 269.96 693.00
   L 263.00 693.18
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 121.06 695.59
   A 0.68 0.67 87.4 0 1 121.75 696.23
   Q 121.91 699.42 120.35 700.95
   C 115.28 705.86 109.68 695.88 121.06 695.59
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 370.64 695.91
   C 370.70 696.00 370.69 695.96 370.69 696.03
   Q 370.45 700.35 367.49 701.78
@@ -16299,16 +18538,28 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 366.35 694.75 370.55 695.83
   C 370.61 695.85 370.58 695.83 370.64 695.91
   Z"
-/>
-<path fill="#ffeccd" d="
+      />
+      <path
+        fill="#ffeccd"
+        d="
   M 238.38 695.73
   A 0.66 0.65 86.3 0 1 239.06 696.34
   Q 239.28 699.45 237.79 700.96
   C 232.96 705.85 227.31 696.24 238.38 695.73
   Z"
-/>
-<rect fill="#000000" x="-1.89" y="-2.45" transform="translate(312.85,702.51) rotate(0.7)" width="3.78" height="4.90" rx="0.93"/>
-<path fill="#000000" d="
+      />
+      <rect
+        fill="#000000"
+        x="-1.89"
+        y="-2.45"
+        transform="translate(312.85,702.51) rotate(0.7)"
+        width="3.78"
+        height="4.90"
+        rx="0.93"
+      />
+      <path
+        fill="#000000"
+        d="
   M 449.67 700.35
   A 0.22 0.22 0.0 0 1 449.86 700.59
   L 449.83 700.81
@@ -16319,8 +18570,10 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.22 0.22 0.0 0 1 446.01 699.84
   L 449.67 700.35
   Z"
-/>
-<path fill="#1b2329" d="
+      />
+      <path
+        fill="#1b2329"
+        d="
   M 6.75 820.56
   L 40.60 786.71
   A 0.48 0.48 0.0 0 1 40.94 786.57
@@ -16331,7 +18584,7 @@ export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 7.09 821.38
   A 0.48 0.48 0.0 0 1 6.75 820.56
   Z"
-/>
-</svg>
-
-    )}
+      />
+    </svg>
+  )
+}

@@ -5,11 +5,13 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-
-    return (
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#202435" vector-effect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#202435"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 947.13 800.98
   C 949.05 795.11 952.00 790.46 951.97 784.03
   C 951.89 768.52 952.61 758.23 952.57 744.24
@@ -36,12 +38,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 71.77 751.65 72.05 761.53 71.94 771.38
   Q 71.94 771.48 72.13 778.60
   Q 72.28 783.87 71.16 789.34"
-/>
-<path stroke="#202435" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#202435"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1007.97 802.02
   Q 1009.23 803.39 1011.71 804.69"
-/>
-<path stroke="#3f4245" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3f4245"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1011.71 804.69
   Q 1009.14 803.56 1006.50 803.61
   Q 977.37 804.21 945.84 803.92
@@ -59,8 +67,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 399.55 801.66 390.92 801.70
   Q 367.43 801.82 80.50 801.81
   Q 79.82 801.81 78.32 802.21"
-/>
-<path stroke="#202435" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#202435"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 26.02 836.55
   C 41.70 842.26 59.59 843.75 76.64 844.56
   C 79.41 844.69 81.27 845.15 83.79 845.08
@@ -72,13 +83,19 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 970.67 842.81 976.34 841.63
   Q 979.88 840.89 987.18 839.76
   Q 993.55 838.77 1001.53 834.33"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1011.71 804.69
   Q 1012.22 809.32 1012.16 817.26
   Q 1012.08 829.26 1001.53 834.33"
-/>
-<path stroke="#3f4245" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3f4245"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1001.53 834.33
   Q 997.63 833.38 993.76 834.12
   Q 989.57 834.93 988.20 834.93
@@ -92,8 +109,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 46.28 834.98 34.55 834.80
   A 4.72 4.19 35.9 0 0 33.65 834.89
   L 26.02 836.55"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 26.02 836.55
   Q 19.22 834.49 14.93 829.21
   C 12.38 826.07 11.50 822.76 10.96 818.96
@@ -104,8 +124,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 60.96 804.03 75.95 803.74
   A 0.92 0.92 0.0 0 0 76.83 802.98
   L 76.95 802.29"
-/>
-<path stroke="#26313c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#26313c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 927.51 201.18
   A 1.08 1.08 0.0 0 0 926.43 200.10
   L 98.05 200.10
@@ -115,8 +138,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 926.43 780.80
   A 1.08 1.08 0.0 0 0 927.51 779.72
   L 927.51 201.18"
-/>
-<path stroke="#854e39" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#854e39"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 179.54 259.72
   A 1.09 1.08 -45.2 0 0 179.54 258.09
   Q 174.33 253.55 173.82 246.21
@@ -140,8 +166,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.89 1.89 0.0 0 0 168.07 273.41
   Q 169.15 266.45 175.36 262.58
   Q 178.60 260.55 179.54 259.72"
-/>
-<path stroke="#0c151f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0c151f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 216.56 244.08
   A 2.89 2.88 50.4 0 0 216.98 239.58
   Q 210.28 233.17 201.30 234.75
@@ -163,8 +192,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 208.70 242.22 210.71 244.57
   A 3.19 3.19 0.0 0 0 214.87 245.18
   L 216.56 244.08"
-/>
-<path stroke="#0c151f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0c151f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 294.72 266.67
   Q 295.09 264.89 295.16 263.50
   Q 295.60 254.78 294.62 245.48
@@ -224,8 +256,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.25 2.21 -48.3 0 1 288.44 266.97
   Q 291.54 267.74 294.11 267.27
   A 0.76 0.75 -89.4 0 0 294.72 266.67"
-/>
-<path stroke="#0c151f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0c151f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.35 265.60
   L 342.35 246.57
   A 1.81 1.81 0.0 0 0 340.45 244.76
@@ -255,8 +290,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.05 0.93 -48.4 0 1 334.82 267.13
   L 340.18 267.60
   A 2.01 2.00 -87.6 0 0 342.35 265.60"
-/>
-<path stroke="#1d2d42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2d42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.11 298.74
   A 7.01 7.01 0.0 0 0 506.10 291.73
   L 136.06 291.73
@@ -266,8 +304,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 506.10 522.62
   A 7.01 7.01 0.0 0 0 513.11 515.61
   L 513.11 298.74"
-/>
-<path stroke="#1d2d42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2d42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.57 556.37
   Q 529.12 557.88 534.11 557.87
   Q 632.02 557.77 689.42 557.78
@@ -282,8 +323,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 522.24 543.24 522.41 548.33
   Q 522.51 551.45 523.92 555.71
   A 1.05 1.04 0.7 0 0 524.57 556.37"
-/>
-<path stroke="#1d2d42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2d42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 132.54 753.18
   Q 138.76 754.72 145.59 754.73
   Q 266.18 754.77 497.26 754.71
@@ -299,8 +343,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 129.13 730.74 129.40 741.91
   Q 129.53 747.36 131.38 752.16
   A 1.70 1.68 86.1 0 0 132.54 753.18"
-/>
-<path stroke="#1d2d42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2d42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 893.71 752.73
   Q 894.67 748.00 894.65 743.19
   Q 894.43 670.88 894.65 576.70
@@ -316,8 +363,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 832.13 754.93 873.22 754.71
   Q 882.81 754.66 892.29 753.97
   A 1.56 1.56 0.0 0 0 893.71 752.73"
-/>
-<path stroke="#854e39" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#854e39"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 171.03 242.58
   Q 169.69 240.40 166.01 238.45
   Q 160.68 235.62 155.34 237.91
@@ -330,8 +380,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 151.42 247.98 157.84 242.32 164.52 242.81
   Q 170.29 243.23 170.77 243.15
   A 0.38 0.38 0.0 0 0 171.03 242.58"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 218.02 250.94
   A 1.04 1.04 0.0 0 0 216.99 250.02
   L 205.35 250.02
@@ -351,8 +404,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 188.11 256.01 192.80 261.79
   C 197.98 268.18 209.87 268.60 215.61 262.91
   C 218.63 259.92 218.49 255.08 218.02 250.94"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 272.27 236.06
   Q 266.11 234.81 263.46 239.04
   C 262.33 240.86 262.32 243.87 261.96 245.33
@@ -377,8 +433,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 0 272.50 239.69
   Q 272.77 238.02 272.34 236.13
   A 0.09 0.09 0.0 0 0 272.27 236.06"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 227.54 247.87
   Q 227.48 247.37 227.76 246.40
   A 0.28 0.28 0.0 0 0 227.49 246.03
@@ -395,8 +454,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.75 0.75 0.0 0 0 235.00 245.66
   Q 230.58 245.15 228.29 248.07
   A 0.42 0.42 0.0 0 1 227.54 247.87"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 252.84 266.38
   L 256.19 266.38
   A 0.74 0.74 0.0 0 0 256.93 265.64
@@ -410,8 +472,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 1 252.27 265.06
   L 252.17 265.56
   A 0.69 0.68 -84.4 0 0 252.84 266.38"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 289.72 266.31
   L 293.06 266.31
   A 0.74 0.74 0.0 0 0 293.80 265.57
@@ -425,8 +490,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 1 289.15 264.99
   L 289.05 265.49
   A 0.69 0.68 -84.4 0 0 289.72 266.31"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 302.93 266.31
   A 0.67 0.67 0.0 0 0 303.60 265.64
   L 303.60 254.48
@@ -446,8 +514,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 298.77 265.70
   A 0.61 0.61 0.0 0 0 299.38 266.31
   L 302.93 266.31"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.93 266.40
   L 340.27 266.39
   A 0.74 0.74 0.0 0 0 341.01 265.65
@@ -461,43 +532,61 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 1 336.36 265.08
   L 336.26 265.58
   A 0.69 0.68 -84.6 0 0 336.93 266.40"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 246.7629 249.9219
   A 6.26 5.52 -88.6 0 0 241.0916 256.0451
   A 6.26 5.52 -88.6 0 0 246.4571 262.4381
   A 6.26 5.52 -88.6 0 0 252.1284 256.3149
   A 6.26 5.52 -88.6 0 0 246.7629 249.9219"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 283.3869 250.0224
   A 6.20 5.55 -91.6 0 0 278.0122 256.3750
   A 6.20 5.55 -91.6 0 0 283.7331 262.4176
   A 6.20 5.55 -91.6 0 0 289.1078 256.0650
   A 6.20 5.55 -91.6 0 0 283.3869 250.0224"
-/>
-<path stroke="#8b939c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b939c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 330.6300 250.0000
   A 6.33 5.62 -90.0 0 0 325.0100 256.3300
   A 6.33 5.62 -90.0 0 0 330.6300 262.6600
   A 6.33 5.62 -90.0 0 0 336.2500 256.3300
   A 6.33 5.62 -90.0 0 0 330.6300 250.0000"
-/>
-<path stroke="#0c151f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0c151f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 246.3331 251.3402
   A 4.91 4.11 -93.7 0 0 242.5486 256.5052
   A 4.91 4.11 -93.7 0 0 246.9669 261.1398
   A 4.91 4.11 -93.7 0 0 250.7514 255.9748
   A 4.91 4.11 -93.7 0 0 246.3331 251.3402"
-/>
-<path stroke="#0c151f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0c151f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 283.5313 251.3605
   A 4.92 4.08 -90.8 0 0 279.5204 256.3370
   A 4.92 4.08 -90.8 0 0 283.6687 261.1995
   A 4.92 4.08 -90.8 0 0 287.6796 256.2230
   A 4.92 4.08 -90.8 0 0 283.5313 251.3605"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 167.64 327.05
   C 170.44 329.45 170.05 334.15 175.02 333.19
   A 1.33 1.33 0.0 0 0 175.85 332.66
@@ -543,8 +632,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.22 2.22 0.0 0 0 166.67 331.29
   L 167.01 327.31
   A 0.38 0.38 0.0 0 1 167.64 327.05"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 246.78 326.08
   L 247.34 329.49
   A 0.79 0.76 23.2 0 0 247.48 329.82
@@ -579,12 +671,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.80 0.80 0.0 0 1 240.71 327.90
   Q 243.70 327.86 246.01 325.81
   A 0.47 0.47 0.0 0 1 246.78 326.08"
-/>
-<path stroke="#8f98a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f98a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 282.18 331.80
   Q 282.49 330.72 281.33 330.07"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 281.33 330.07
   Q 282.56 326.63 281.80 323.36
   A 0.83 0.82 83.7 0 0 281.01 322.72
@@ -601,8 +699,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 278.28 332.46 281.69 333.27
   A 0.73 0.71 88.0 0 0 282.52 332.35
   Q 282.46 332.12 282.18 331.80"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 281.33 330.07
   L 280.62 323.87
   A 0.87 0.87 0.0 0 0 278.92 323.74
@@ -620,8 +721,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 273.70 332.40 277.46 331.17
   A 1.79 1.78 49.0 0 1 278.84 331.27
   Q 280.50 332.10 282.18 331.80"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 330.57 328.88
   L 330.57 330.80
   A 1.33 1.31 -61.3 0 0 330.77 331.50
@@ -690,8 +794,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.86 1.86 0.0 0 0 329.65 331.01
   Q 329.98 329.34 330.28 328.81
   A 0.16 0.15 -30.9 0 1 330.57 328.88"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 417.97 332.53
   Q 422.81 335.13 426.82 330.82
   A 1.20 1.14 -23.0 0 0 427.12 330.13
@@ -732,8 +839,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 407.05 339.13 413.10 337.47
   Q 416.29 336.60 417.14 332.90
   A 0.57 0.57 0.0 0 1 417.97 332.53"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 490.57 319.74
   L 490.24 316.35
   A 1.32 1.32 0.0 0 0 489.82 315.51
@@ -773,8 +883,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 500.38 320.61 496.50 319.36
   Q 495.09 318.90 491.29 320.20
   A 0.54 0.54 0.0 0 1 490.57 319.74"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 441.44 332.15
   Q 443.93 334.35 446.60 332.05
   A 0.76 0.76 0.0 0 1 447.53 332.01
@@ -789,8 +902,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 427.58 326.34 430.48 330.62
   C 432.93 334.21 436.94 334.35 440.41 332.07
   A 0.86 0.85 -40.2 0 1 441.44 332.15"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 146.60 358.43
   Q 146.58 357.80 146.69 356.85
   A 0.57 0.56 -87.2 0 1 147.25 356.34
@@ -814,8 +930,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.33 75.2 0 0 150.29 358.60
   Q 147.97 358.09 147.13 358.69
   A 0.34 0.33 -18.4 0 1 146.60 358.43"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 164.3366 358.4143
   A 4.55 4.55 0.0 0 0 159.8185 353.8327
   L 159.0985 353.8277
@@ -825,8 +944,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 159.7215 367.7323
   A 4.55 4.55 0.0 0 0 164.3031 363.2142
   L 164.3366 358.4143"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.66 362.32
   A 0.73 0.73 0.0 0 0 492.93 361.59
   L 191.59 361.59
@@ -836,92 +958,143 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 492.93 363.19
   A 0.73 0.73 0.0 0 0 493.66 362.46
   L 493.66 362.32"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 361.46 399.97
   L 361.63 431.65"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 361.63 431.65
   L 361.66 467.83"
-/>
-<path stroke="#8c683b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c683b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 361.66 467.83
   L 361.70 491.83
   A 0.47 0.46 0.0 0 0 362.17 492.29
   L 384.32 492.29
   A 0.43 0.43 0.0 0 0 384.75 491.86
   L 384.76 467.87"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.76 467.87
   L 384.74 433.15"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.74 433.15
   L 384.76 400.08"
-/>
-<path stroke="#8a5340" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a5340"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.76 400.08
   L 384.84 380.26
   A 0.51 0.51 0.0 0 0 384.33 379.75
   L 362.06 379.75
   A 0.49 0.49 0.0 0 0 361.57 380.23
   L 361.46 399.97"
-/>
-<path stroke="#9b7f64" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b7f64"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.76 400.08
   L 361.46 399.97"
-/>
-<path stroke="#44acab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#44acab"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.74 433.15
   L 363.73 433.14
   A 0.80 0.78 76.7 0 1 363.02 432.69
   Q 362.04 430.69 361.63 431.65"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.76 467.87
   L 361.66 467.83"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 192.57 404.43
   L 192.60 405.54"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 192.60 405.54
   L 192.58 467.22"
-/>
-<path stroke="#8c683b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c683b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 192.58 467.22
   L 192.53 491.94
   A 0.43 0.42 -90.0 0 0 192.95 492.37
   L 216.84 492.37
   A 0.55 0.55 0.0 0 0 217.39 491.82
   L 217.41 466.83"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 217.41 466.83
   L 216.97 408.18"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 216.97 408.18
   Q 217.67 407.01 217.25 404.15"
-/>
-<path stroke="#8a5340" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a5340"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 217.25 404.15
   L 217.46 384.57
   A 0.38 0.37 -0.0 0 0 217.08 384.20
   L 192.85 384.20
   A 0.28 0.27 0.0 0 0 192.57 384.47
   L 192.57 404.43"
-/>
-<path stroke="#9b7f64" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b7f64"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 217.25 404.15
   L 194.67 403.69
   A 1.21 1.17 34.6 0 0 194.19 403.77
   L 192.57 404.43"
-/>
-<path stroke="#44acab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#44acab"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 216.97 408.18
   L 216.42 441.02
   A 0.82 0.82 0.0 0 1 215.60 441.82
@@ -930,48 +1103,75 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 193.56 405.77
   A 0.41 0.41 0.0 0 0 193.19 405.36
   Q 192.81 405.31 192.60 405.54"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 217.41 466.83
   L 192.58 467.22"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 262.84 410.49
   L 262.99 470.46"
-/>
-<path stroke="#8c683b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c683b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 262.99 470.46
   L 262.94 491.79
   A 0.55 0.54 -90.0 0 0 263.48 492.34
   L 285.68 492.34
   A 0.50 0.49 -90.0 0 0 286.17 491.84
   L 286.20 470.54"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 286.20 470.54
   L 285.95 411.39"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 285.95 411.39
   Q 286.07 411.13 286.19 410.87"
-/>
-<path stroke="#8a5340" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a5340"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 286.19 410.87
   L 286.33 394.10
   A 0.47 0.46 90.0 0 0 285.87 393.63
   L 263.37 393.63
   A 0.37 0.37 0.0 0 0 263.00 393.99
   L 262.84 410.49"
-/>
-<path stroke="#9b7f64" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b7f64"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 286.19 410.87
   L 263.47 410.56"
-/>
-<path stroke="#9ba17e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9ba17e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 263.47 410.56
   Q 263.69 411.39 262.84 410.49"
-/>
-<path stroke="#44acab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#44acab"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 285.95 411.39
   Q 284.90 428.23 285.11 445.00
   Q 285.13 447.10 285.57 451.37
@@ -979,12 +1179,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 265.13 452.28
   A 1.24 1.23 -0.2 0 1 263.89 451.06
   L 263.47 410.56"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 286.20 470.54
   L 262.99 470.46"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 164.08 401.56
   A 4.36 4.36 0.0 0 0 159.72 397.20
   L 159.04 397.20
@@ -994,8 +1200,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 159.72 410.94
   A 4.36 4.36 0.0 0 0 164.08 406.58
   L 164.08 401.56"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 149.08 408.57
   L 149.09 409.78
   A 1.39 1.39 0.0 0 0 151.70 410.42
@@ -1010,8 +1219,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.98 0.97 -79.3 0 0 144.03 408.14
   L 148.65 408.14
   A 0.43 0.43 0.0 0 1 149.08 408.57"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 359.7199 404.4185
   A 1.13 1.13 0.0 0 0 358.5879 403.2905
   L 290.4080 403.4095
@@ -1021,8 +1233,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 358.5920 405.5905
   A 1.13 1.13 0.0 0 0 359.7200 404.4585
   L 359.7199 404.4185"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 494.45 404.50
   A 1.08 1.08 0.0 0 0 493.37 403.42
   L 387.69 403.42
@@ -1032,8 +1247,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 493.37 405.60
   A 1.08 1.08 0.0 0 0 494.45 404.52
   L 494.45 404.50"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 219.14 403.76
   L 219.14 405.04
   A 0.29 0.29 0.0 0 0 219.43 405.33
@@ -1043,92 +1261,143 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 7.85 0.88 -0.1 0 0 249.43 403.42
   L 219.43 403.47
   A 0.29 0.29 0.0 0 0 219.14 403.76"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 329.15 431.81
   L 329.16 454.76"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 329.16 454.76
   L 329.18 474.92"
-/>
-<path stroke="#8c683b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c683b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 329.18 474.92
   L 329.26 491.85
   A 0.52 0.52 0.0 0 0 329.78 492.37
   L 351.15 492.37
   A 0.53 0.52 -89.4 0 0 351.67 491.85
   L 351.77 474.95"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.77 474.95
   L 351.84 455.13"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.84 455.13
   L 351.70 431.84"
-/>
-<path stroke="#8a5340" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a5340"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.70 431.84
   L 351.64 416.70
   A 0.57 0.57 0.0 0 0 351.07 416.13
   L 329.81 416.13
   A 0.57 0.57 0.0 0 0 329.24 416.69
   L 329.15 431.81"
-/>
-<path stroke="#9b7f64" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b7f64"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.70 431.84
   L 329.15 431.81"
-/>
-<path stroke="#44acab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#44acab"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.84 455.13
   L 329.16 454.76"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.77 474.95
   L 329.18 474.92"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.65 437.95
   L 394.64 476.99"
-/>
-<path stroke="#8c683b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c683b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.64 476.99
   L 394.49 491.98
   A 0.37 0.37 0.0 0 0 394.86 492.36
   L 416.84 492.36
   A 0.52 0.52 0.0 0 0 417.36 491.85
   L 417.54 477.14"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 417.54 477.14
   L 417.42 438.73"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 417.42 438.73
   Q 417.25 438.31 417.40 438.21"
-/>
-<path stroke="#8a5340" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a5340"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 417.40 438.21
   L 417.41 422.41
   A 0.40 0.39 90.0 0 0 417.02 422.01
   L 395.08 422.01
   A 0.58 0.57 -90.0 0 0 394.51 422.59
   L 394.65 437.95"
-/>
-<path stroke="#9b7f64" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b7f64"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 417.40 438.21
   Q 416.89 438.83 416.18 438.33
   A 0.74 0.74 0.0 0 0 415.76 438.20
   L 396.21 438.31
   A 0.51 0.50 27.2 0 0 395.92 438.40
   Q 395.74 438.52 395.63 438.67"
-/>
-<path stroke="#9ba17e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9ba17e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 395.63 438.67
   Q 394.97 438.97 394.65 437.95"
-/>
-<path stroke="#44acab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#44acab"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 395.63 438.67
   L 395.54 456.37
   A 1.38 1.38 0.0 0 0 396.92 457.76
@@ -1136,48 +1405,75 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 0 416.40 457.02
   Q 416.32 450.59 416.54 440.75
   Q 416.59 438.63 417.42 438.73"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 417.54 477.14
   L 394.64 476.99"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 296.84 439.98
   L 296.81 477.99"
-/>
-<path stroke="#8c683b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c683b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 296.81 477.99
   L 296.92 491.88
   A 0.51 0.50 0.0 0 0 297.43 492.38
   L 318.25 492.38
   A 0.54 0.54 0.0 0 0 318.79 491.85
   L 318.87 477.98"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.87 477.98
   L 318.94 441.79"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.94 441.79
   Q 319.08 440.83 318.72 440.10"
-/>
-<path stroke="#8a5340" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a5340"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.72 440.10
   L 318.79 426.41
   A 0.53 0.53 0.0 0 0 318.26 425.88
   L 297.23 425.88
   A 0.32 0.31 -0.0 0 0 296.91 426.19
   L 296.84 439.98"
-/>
-<path stroke="#9b7f64" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b7f64"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.72 440.10
   L 297.37 440.24"
-/>
-<path stroke="#9ba17e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9ba17e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 297.37 440.24
   L 296.84 439.98"
-/>
-<path stroke="#44acab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#44acab"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.94 441.79
   L 318.46 441.88
   A 0.70 0.70 0.0 0 0 317.88 442.57
@@ -1186,52 +1482,82 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 299.42 458.71
   A 1.96 1.95 -0.1 0 1 297.46 456.77
   L 297.37 440.24"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.87 477.98
   L 296.81 477.99"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 227.99 441.60
   L 228.09 444.71"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 228.09 444.71
   L 227.93 474.08"
-/>
-<path stroke="#8c683b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c683b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 227.93 474.08
   L 227.98 491.86
   A 0.50 0.49 90.0 0 0 228.47 492.36
   L 251.79 492.36
   A 0.50 0.50 0.0 0 0 252.29 491.86
   L 252.38 474.11"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 252.38 474.11
   L 252.19 441.59"
-/>
-<path stroke="#8a5340" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a5340"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 252.19 441.59
   L 252.20 427.64
   A 0.63 0.62 -90.0 0 0 251.58 427.01
   L 228.63 427.01
   A 0.57 0.57 0.0 0 0 228.06 427.58
   L 227.99 441.60"
-/>
-<path stroke="#9ba17e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9ba17e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 252.19 441.59
   Q 251.65 441.91 251.33 441.76"
-/>
-<path stroke="#9b7f64" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b7f64"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 251.33 441.76
   L 227.99 441.60"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 252.38 474.11
   L 227.93 474.08"
-/>
-<path stroke="#44acab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#44acab"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 251.33 441.76
   L 251.54 454.51
   A 0.59 0.59 0.0 0 1 250.95 455.11
@@ -1240,58 +1566,88 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 229.02 442.99
   A 0.35 0.35 0.0 0 0 228.33 442.94
   L 228.09 444.71"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.83 446.77
   L 459.80 479.97"
-/>
-<path stroke="#8c683b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c683b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.80 479.97
   L 459.90 491.86
   A 0.51 0.51 0.0 0 0 460.41 492.37
   L 482.06 492.37
   A 0.51 0.51 0.0 0 0 482.57 491.86
   L 482.55 480.01"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.55 480.01
   L 482.37 446.92"
-/>
-<path stroke="#8a5340" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a5340"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.37 446.92
   L 482.50 431.74
   A 0.64 0.63 0.4 0 0 481.86 431.10
   L 460.45 431.10
   A 0.58 0.57 -0.0 0 0 459.87 431.67
   L 459.83 446.77"
-/>
-<path stroke="#9ba17e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9ba17e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.37 446.92
   Q 481.79 446.75 481.39 446.88"
-/>
-<path stroke="#9b7f64" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b7f64"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.39 446.88
   L 461.63 446.24
   A 1.08 1.04 -64.5 0 0 460.86 446.53
   L 460.59 446.79"
-/>
-<path stroke="#9ba17e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9ba17e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.59 446.79
   Q 460.36 446.64 459.83 446.77"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.55 480.01
   L 459.80 479.97"
-/>
-<path stroke="#44acab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#44acab"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.39 446.88
   L 481.65 459.29
   A 0.98 0.98 0.0 0 1 480.67 460.29
   L 461.44 460.29
   A 0.54 0.54 0.0 0 1 460.90 459.76
   L 460.59 446.79"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 146.59 453.72
   Q 153.15 451.29 152.29 444.47
   A 1.30 1.28 -77.1 0 0 151.71 443.53
@@ -1308,8 +1664,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.65 0.65 0.0 0 0 152.00 454.27
   L 146.68 454.27
   A 0.29 0.28 -54.8 0 1 146.59 453.72"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 164.2160 447.1728
   A 4.48 4.48 0.0 0 0 159.6739 442.7558
   L 158.9740 442.7656
@@ -1319,55 +1678,85 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 159.8660 456.5144
   A 4.48 4.48 0.0 0 0 164.2830 451.9723
   L 164.2160 447.1728"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.24 458.24
   L 427.16 465.25"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.16 465.25
   L 427.21 479.17"
-/>
-<path stroke="#8c683b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c683b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.21 479.17
   L 427.14 491.84
   A 0.53 0.52 90.0 0 0 427.66 492.37
   L 449.45 492.37
   A 0.52 0.52 0.0 0 0 449.97 491.86
   L 450.04 479.72"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.04 479.72
   L 450.19 459.22"
-/>
-<path stroke="#8a5340" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a5340"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.19 459.22
   L 450.02 447.34
   A 0.68 0.68 0.0 0 0 449.34 446.67
   L 427.75 446.67
   A 0.49 0.49 0.0 0 0 427.26 447.16
   L 427.24 458.24"
-/>
-<path stroke="#9ba17e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9ba17e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.19 459.22
   L 449.60 459.26"
-/>
-<path stroke="#9b7f64" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b7f64"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 449.60 459.26
   Q 449.08 458.70 448.06 458.67
   Q 437.63 458.43 427.24 458.24"
-/>
-<path stroke="#44acab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#44acab"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 449.60 459.26
   L 449.55 464.40
   A 1.43 1.43 0.0 0 1 448.18 465.82
   Q 437.70 466.27 427.16 465.25"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.04 479.72
   L 427.21 479.17"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 164.1295 489.4787
   A 4.47 4.47 0.0 0 0 159.5669 485.1033
   L 158.7870 485.1197
@@ -1377,8 +1766,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 159.8530 498.7603
   A 4.47 4.47 0.0 0 0 164.2284 494.1977
   L 164.1295 489.4787"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.63 324.20
   Q 832.72 328.35 831.05 332.52
   Q 830.55 333.77 830.99 334.50
@@ -1388,8 +1780,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.36 2.11 32.9 0 0 830.55 313.97
   Q 830.15 314.72 830.70 315.95
   Q 832.54 320.04 832.63 324.20"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 678.71 320.52
   C 677.63 319.17 677.40 317.37 676.45 315.28
   A 1.59 1.59 0.0 0 0 675.61 314.47
@@ -1455,24 +1850,36 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.92 1.91 7.5 0 0 680.75 315.50
   L 679.42 320.37
   A 0.41 0.41 0.0 0 1 678.71 320.52"
-/>
-<path stroke="#8f98a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f98a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 826.52 315.10
   Q 826.26 314.91 825.91 314.83"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 825.91 314.83
   Q 825.89 313.78 824.24 314.20
   A 0.83 0.75 14.2 0 0 823.88 314.39
   L 821.79 316.36
   A 1.00 1.00 0.0 0 1 820.37 316.32
   C 817.37 313.13 814.47 314.61 810.77 315.10"
-/>
-<path stroke="#8f98a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f98a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 810.77 315.10
   Q 810.43 315.06 810.21 314.84"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 810.21 314.84
   Q 810.48 314.35 810.42 314.28
   A 2.10 1.88 -41.1 0 0 807.49 314.24
@@ -1498,8 +1905,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 827.12 318.20 827.47 315.42
   A 0.46 0.46 0.0 0 0 827.24 314.96
   Q 826.82 314.72 826.52 315.10"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 810.21 314.84
   Q 808.18 314.54 807.47 315.71
   Q 802.82 323.41 807.51 333.04
@@ -1507,8 +1917,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 809.76 334.54
   A 0.69 0.69 0.0 0 0 810.51 333.55
   C 807.24 327.12 807.12 321.39 810.77 315.10"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 825.91 314.83
   Q 824.01 315.20 823.00 316.99
   Q 819.48 323.20 814.51 330.98
@@ -1518,8 +1931,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 826.37 315.88
   A 0.83 0.78 -27.5 0 0 826.48 315.56
   Q 826.50 315.32 826.52 315.10"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 636.57 325.07
   A 0.30 0.30 0.0 0 1 637.09 325.19
   Q 637.96 328.75 640.71 331.10
@@ -1545,8 +1961,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 625.11 323.84 627.52 330.30
   Q 628.32 332.46 630.25 332.66
   C 635.49 333.20 634.66 327.48 636.57 325.07"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 770.23 316.05
   Q 766.48 312.87 760.93 314.53
   A 3.29 3.24 -70.4 0 0 760.00 314.98
@@ -1575,8 +1994,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.13 2.13 0.0 0 0 775.75 314.53
   Q 772.89 313.06 771.19 315.89
   A 0.64 0.63 -54.2 0 1 770.23 316.05"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 777.38 528.62
   Q 779.35 527.74 782.82 525.33
   C 786.45 522.80 790.67 519.85 793.75 516.52
@@ -1598,8 +2020,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 734.26 546.04 756.34 540.85 774.90 530.67
   A 2.81 2.77 -83.5 0 0 775.67 530.05
   Q 776.60 528.97 777.38 528.62"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.21 314.23
   A 0.76 0.76 0.0 0 0 831.54 315.36
   Q 836.22 323.95 831.89 333.35
@@ -1609,15 +2034,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 838.93 323.74 834.20 315.12
   A 1.69 1.69 0.0 0 0 832.71 314.23
   L 832.21 314.23"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 724.81 316.31
   A 1.86 1.86 0.0 0 0 722.95 314.45
   A 1.86 1.86 0.0 0 0 721.09 316.31
   A 1.86 1.86 0.0 0 0 722.95 318.17
   A 1.86 1.86 0.0 0 0 724.81 316.31"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 684.14 320.26
   L 684.23 330.59
   A 0.68 0.67 89.5 0 0 684.91 331.26
@@ -1645,8 +2076,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 680.09 330.84 680.34 330.20
   Q 681.00 328.53 683.70 320.19
   A 0.22 0.22 0.0 0 1 684.14 320.26"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 714.21 322.41
   L 714.21 328.60
   A 1.66 1.61 27.3 0 0 714.54 329.58
@@ -1674,8 +2108,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.11 1.10 -52.7 0 0 712.90 321.82
   L 713.98 322.12
   A 0.31 0.30 7.6 0 1 714.21 322.41"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 692.35 326.21
   L 698.99 326.21
   A 1.23 1.23 0.0 0 0 700.18 324.66
@@ -1689,8 +2126,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.58 1.56 39.4 0 1 694.63 328.79
   Q 692.31 328.43 691.93 326.75
   A 0.44 0.43 83.2 0 1 692.35 326.21"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 704.53 326.21
   L 711.05 325.97
   A 1.21 1.21 0.0 0 0 712.16 324.41
@@ -1704,8 +2144,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.55 1.53 37.3 0 1 706.86 328.66
   Q 704.57 328.39 704.14 326.75
   A 0.43 0.43 0.0 0 1 704.53 326.21"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 739.82 332.33
   C 740.20 336.23 744.82 336.86 747.97 335.80
   A 1.87 1.85 -76.3 0 0 748.75 335.32
@@ -1724,8 +2167,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.93 1.83 -22.9 0 1 743.82 333.19
   Q 742.08 332.08 740.37 331.81
   A 0.48 0.48 0.0 0 0 739.82 332.33"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 724.61 319.65
   A 0.36 0.36 0.0 0 0 724.25 319.29
   L 721.85 319.29
@@ -1735,8 +2181,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 724.25 331.23
   A 0.36 0.36 0.0 0 0 724.61 330.87
   L 724.61 319.65"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 726.92 320.10
   L 726.97 330.64
   A 0.75 0.75 0.0 0 0 727.73 331.39
@@ -1755,15 +2204,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.44 1.44 0.0 0 1 729.66 319.78
   Q 728.59 319.39 727.45 319.50
   A 0.60 0.60 0.0 0 0 726.92 320.10"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 719.47 323.56
   Q 719.31 323.78 719.45 323.88
   A 0.08 0.06 38.0 0 0 719.52 323.88
   Q 719.64 323.79 719.63 323.60
   A 0.09 0.09 0.0 0 0 719.47 323.56"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 814.64 323.87
   Q 817.65 324.59 819.55 319.70
   A 2.86 2.82 26.8 0 0 818.40 316.27
@@ -1771,15 +2226,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 815.64 315.30 814.69 315.39
   A 2.86 2.82 -0.1 0 0 812.11 317.94
   Q 811.62 323.16 814.64 323.87"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 826.2101 322.5490
   A 4.44 3.82 -84.7 0 0 821.9963 326.6171
   A 4.44 3.82 -84.7 0 0 825.3899 331.3910
   A 4.44 3.82 -84.7 0 0 829.6037 327.3229
   A 4.44 3.82 -84.7 0 0 826.2101 322.5490"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 630.93 331.35
   Q 632.82 331.36 633.48 329.26
   Q 634.71 325.35 638.20 316.12
@@ -1795,8 +2256,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.62 80.2 0 0 623.82 316.04
   Q 627.21 325.31 628.40 329.24
   Q 629.03 331.34 630.93 331.35"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 638.43 323.44
   C 638.55 328.28 641.45 331.80 646.61 331.33
   Q 650.91 330.95 652.04 326.98
@@ -1808,8 +2272,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.93 0.93 0.0 0 0 651.85 319.25
   Q 650.53 315.33 646.22 315.16
   C 641.05 314.94 638.31 318.59 638.43 323.44"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 651.42 324.90
   A 1.15 1.15 0.0 0 0 652.61 323.71
   L 652.57 322.64
@@ -1819,8 +2286,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 641.05 321.97 643.57 326.05
   C 644.59 327.70 646.19 327.74 647.73 326.36
   Q 649.44 324.81 651.42 324.90"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.96 322.95
   A 1.17 1.17 0.0 0 0 662.67 320.93
   Q 660.08 318.51 656.79 319.43
@@ -1839,8 +2309,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.94 0.94 0.0 0 1 657.13 321.95
   C 657.76 321.56 658.59 321.68 659.20 321.95
   Q 661.53 322.98 661.96 322.95"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 758.38 327.95
   C 759.67 332.23 764.53 331.72 768.05 330.84
   A 1.98 1.92 13.8 0 0 768.94 330.32
@@ -1859,8 +2332,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.03 0.97 -20.4 0 1 763.01 328.43
   L 760.41 326.52
   A 1.31 1.31 0.0 0 0 758.38 327.95"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 791.25 327.78
   Q 793.48 327.78 793.59 327.78
   A 1.05 1.05 0.0 0 1 794.43 328.24
@@ -1878,8 +2354,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 787.80 328.64 788.07 328.24
   A 1.05 1.05 0.0 0 1 788.91 327.78
   Q 789.02 327.78 791.25 327.78"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 782.38 331.19
   A 0.50 0.50 0.0 0 0 782.88 330.69
   L 782.88 328.71
@@ -1893,22 +2372,31 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 772.38 330.69
   A 0.50 0.50 0.0 0 0 772.88 331.19
   L 782.38 331.19"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 770.49 321.63
   Q 770.55 320.64 770.54 320.61
   A 0.39 0.38 46.3 0 0 769.86 320.59
   Q 769.48 321.27 770.08 321.80
   A 0.25 0.25 0.0 0 0 770.49 321.63"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 763.71 326.89
   Q 764.19 327.03 764.51 326.94
   A 0.17 0.17 0.0 0 0 764.56 326.64
   Q 764.22 326.41 763.75 326.46
   A 0.22 0.22 0.0 0 0 763.71 326.89"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 168.03 324.70
   Q 169.61 327.59 171.64 330.62
   C 172.80 332.34 173.59 332.23 175.45 332.04
@@ -1930,8 +2418,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 165.44 321.20
   A 0.19 0.19 0.0 0 1 165.71 321.03
   C 166.27 321.30 167.01 323.02 168.03 324.70"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 197.51 321.13
   Q 193.28 319.02 190.38 322.81
   A 1.36 1.36 0.0 0 0 190.09 323.65
@@ -1947,8 +2438,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.23 1.23 0.0 0 0 197.48 317.33
   L 198.31 320.48
   A 0.57 0.57 0.0 0 1 197.51 321.13"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 205.81 327.14
   L 212.26 326.96
   A 1.20 1.19 -9.1 0 0 213.38 325.42
@@ -1962,8 +2456,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.54 1.52 37.8 0 1 208.09 329.58
   Q 205.83 329.30 205.42 327.67
   A 0.43 0.42 81.6 0 1 205.81 327.14"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 188.6544 325.9087
   A 4.96 4.96 0.0 0 0 184.1362 320.5432
   L 183.1598 320.4595
@@ -1973,8 +2470,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 183.1402 332.1605
   A 4.96 4.96 0.0 0 0 188.5058 327.6423
   L 188.6544 325.9087"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 219.39 324.26
   C 219.55 329.13 222.51 332.64 227.69 332.12
   Q 232.02 331.70 233.12 327.69
@@ -1986,8 +2486,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.93 0.93 0.0 0 0 232.85 319.91
   Q 231.49 315.99 227.14 315.86
   C 221.94 315.69 219.23 319.39 219.39 324.26"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 238.87 326.41
   Q 239.70 326.37 241.01 326.36
   Q 246.93 326.34 246.28 320.22
@@ -1999,8 +2502,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.15 1.15 0.0 0 0 238.18 330.96
   L 238.18 327.13
   A 0.72 0.72 0.0 0 1 238.87 326.41"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 254.78 332.15
   C 258.09 332.13 260.63 330.77 260.92 327.18
   Q 261.06 325.44 260.93 316.49
@@ -2016,8 +2522,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.71 0.70 -0.3 0 0 248.45 316.56
   Q 248.43 325.51 248.59 327.25
   C 248.92 330.84 251.48 332.17 254.78 332.15"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 232.45 322.15
   Q 230.46 322.32 228.68 320.83
   C 227.08 319.50 225.47 319.60 224.51 321.30
@@ -2027,8 +2536,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.43 1.43 0.0 0 0 233.70 324.38
   L 233.70 323.30
   A 1.16 1.15 -2.3 0 0 232.45 322.15"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 301.82 320.94
   L 301.94 331.22
   A 0.68 0.67 89.4 0 0 302.61 331.89
@@ -2056,8 +2568,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 297.82 331.48 298.06 330.84
   Q 298.72 329.18 301.39 320.88
   A 0.22 0.22 0.0 0 1 301.82 320.94"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 309.85 327.25
   L 316.22 327.10
   A 1.18 1.18 0.0 0 0 317.33 325.58
@@ -2071,8 +2586,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.52 1.50 38.0 0 1 312.10 329.68
   Q 309.86 329.38 309.46 327.78
   A 0.42 0.42 0.0 0 1 309.85 327.25"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.15 331.99
   A 0.65 0.65 0.0 0 0 321.80 331.35
   L 321.93 324.61
@@ -2099,8 +2617,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 318.82 331.36
   A 0.61 0.61 0.0 0 0 319.43 331.97
   L 321.15 331.99"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 347.0725 325.2363
   A 4.71 4.71 0.0 0 0 342.2891 320.6008
   L 341.0293 320.6206
@@ -2110,8 +2631,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 342.4707 332.1594
   A 4.71 4.71 0.0 0 0 347.1061 327.3760
   L 347.0725 325.2363"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 355.01 321.27
   A 0.84 0.84 0.0 0 0 354.23 320.43
   Q 353.49 320.37 352.63 320.89
@@ -2127,8 +2651,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 353.56 323.17 354.29 323.47
   A 0.52 0.52 0.0 0 0 355.01 322.99
   L 355.01 321.27"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 361.00 328.57
   L 359.15 321.58
   A 1.52 1.52 0.0 0 0 357.68 320.45
@@ -2144,8 +2671,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.96 0.96 0.0 0 0 363.49 321.29
   L 361.51 328.58
   A 0.27 0.26 45.7 0 1 361.00 328.57"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 378.44 329.67
   Q 376.08 329.67 375.74 327.48
   Q 375.39 325.21 375.57 316.69
@@ -2163,8 +2693,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.83 0.83 0.0 0 0 381.35 316.70
   Q 381.50 325.22 381.14 327.49
   Q 380.80 329.68 378.44 329.67"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.05 323.19
   A 2.31 2.29 14.3 0 0 392.87 321.22
   Q 389.95 319.58 387.03 321.40
@@ -2185,8 +2718,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 392.99 324.14
   A 0.77 0.77 0.0 0 0 394.07 323.37
   L 394.05 323.19"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 395.84 323.58
   A 0.68 0.68 0.0 0 0 396.85 324.17
   Q 401.07 321.80 401.59 324.39
@@ -2202,8 +2738,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 404.43 320.27 400.21 320.00 396.96 321.05
   A 1.63 1.63 0.0 0 0 395.84 322.60
   L 395.84 323.58"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 413.01 333.08
   A 1.28 1.23 -18.5 0 1 412.68 333.71
   C 410.43 336.00 409.12 332.73 406.64 332.96
@@ -2219,8 +2758,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 410.21 332.78 412.57 331.04
   A 0.48 0.48 0.0 0 1 413.32 331.52
   L 413.01 333.08"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 425.17 328.97
   L 424.92 328.86
   A 0.98 0.96 47.6 0 0 424.21 328.82
@@ -2232,8 +2774,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 416.44 325.10 416.65 329.46 418.51 331.25
   Q 420.63 333.28 425.21 330.97
   A 1.11 1.11 0.0 0 0 425.17 328.97"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.20 321.30
   L 484.22 320.50
   A 1.03 0.98 -34.0 0 0 483.80 320.43
@@ -2248,8 +2793,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.72 5.6 0 0 486.58 316.49
   L 486.58 321.04
   A 0.28 0.28 0.0 0 1 486.20 321.30"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 457.03 316.84
   L 457.03 331.06
   A 1.00 1.00 0.0 0 0 458.03 332.06
@@ -2261,15 +2809,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 468.86 320.05 466.27 317.57
   C 464.00 315.40 461.35 315.96 457.94 315.94
   A 0.90 0.90 0.0 0 0 457.03 316.84"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.1148 320.4313
   A 5.96 5.19 -88.8 0 0 467.8011 326.2813
   A 5.96 5.19 -88.8 0 0 472.8652 332.3487
   A 5.96 5.19 -88.8 0 0 478.1789 326.4987
   A 5.96 5.19 -88.8 0 0 473.1148 320.4313"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 498.80 323.19
   A 2.30 2.28 14.1 0 0 497.62 321.24
   Q 494.71 319.62 491.81 321.44
@@ -2290,8 +2844,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 497.75 324.14
   A 0.77 0.77 0.0 0 0 498.82 323.37
   L 498.80 323.19"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 791.05 324.97
   Q 791.63 324.99 792.74 325.12
   A 0.43 0.42 81.2 0 0 793.17 324.52
@@ -2303,22 +2860,31 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 790.21 322.14 788.98 324.35
   A 0.43 0.42 -76.6 0 0 789.36 324.99
   Q 790.47 324.94 791.05 324.97"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 816.2737 317.1592
   A 2.33 1.19 -76.0 0 0 814.5553 319.1321
   A 2.33 1.19 -76.0 0 0 815.1463 321.6808
   A 2.33 1.19 -76.0 0 0 816.8647 319.7079
   A 2.33 1.19 -76.0 0 0 816.2737 317.1592"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 195.2831 322.9609
   A 3.39 2.63 -91.3 0 0 192.7307 326.4097
   A 3.39 2.63 -91.3 0 0 195.4369 329.7391
   A 3.39 2.63 -91.3 0 0 197.9893 326.2903
   A 3.39 2.63 -91.3 0 0 195.2831 322.9609"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 238.20 319.25
   L 238.35 323.54
   A 0.41 0.41 0.0 0 0 238.77 323.94
@@ -2328,15 +2894,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.44 1.93 -2.0 0 0 240.56 318.75
   L 238.59 318.82
   A 0.41 0.41 0.0 0 0 238.20 319.25"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 273.6354 317.9292
   A 1.71 1.53 -100.6 0 0 272.4461 319.8914
   A 1.71 1.53 -100.6 0 0 274.2646 321.2908
   A 1.71 1.53 -100.6 0 0 275.4539 319.3286
   A 1.71 1.53 -100.6 0 0 273.6354 317.9292"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 276.10 327.77
   L 273.22 324.75
   A 0.64 0.64 0.0 0 0 272.31 324.72
@@ -2346,15 +2918,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.34 2.61 -43.7 0 0 275.94 328.81
   L 276.08 328.67
   A 0.64 0.64 0.0 0 0 276.10 327.77"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 484.1434 323.0404
   A 3.40 2.39 -89.1 0 0 481.7003 326.4025
   A 3.40 2.39 -89.1 0 0 484.0366 329.8396
   A 3.40 2.39 -89.1 0 0 486.4797 326.4775
   A 3.40 2.39 -89.1 0 0 484.1434 323.0404"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.96 319.27
   L 460.00 323.29
   A 0.40 0.40 0.0 0 0 460.41 323.68
@@ -2364,22 +2942,31 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.68 2.25 -0.6 0 0 462.21 318.84
   L 460.35 318.86
   A 0.40 0.40 0.0 0 0 459.96 319.27"
-/>
-<path stroke="#226865" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#226865"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 240.55 321.66
   A 0.40 0.32 -56.6 0 0 241.20 321.45
   Q 241.32 320.88 240.70 320.51
   A 0.26 0.25 -78.5 0 0 240.32 320.77
   Q 240.39 321.32 240.55 321.66"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 463.00 321.16
   A 0.71 0.71 0.0 0 0 462.29 320.45
   A 0.71 0.71 0.0 0 0 461.58 321.16
   A 0.71 0.71 0.0 0 0 462.29 321.87
   A 0.71 0.71 0.0 0 0 463.00 321.16"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 692.16 324.03
   L 696.86 323.93
   A 0.14 0.14 0.0 0 0 697.00 323.78
@@ -2389,8 +2976,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.23 1.83 -1.3 0 0 692.02 323.83
   L 692.02 323.90
   A 0.14 0.14 0.0 0 0 692.16 324.03"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 704.20 324.01
   L 709.06 323.91
   A 0.15 0.15 0.0 0 0 709.21 323.76
@@ -2400,15 +2990,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.17 1.85 -1.2 0 0 704.05 323.80
   L 704.05 323.86
   A 0.15 0.15 0.0 0 0 704.20 324.01"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 744.6861 321.8089
   A 3.33 2.87 -96.1 0 0 742.1863 325.4250
   A 3.33 2.87 -96.1 0 0 745.3939 328.4311
   A 3.33 2.87 -96.1 0 0 747.8937 324.8150
   A 3.33 2.87 -96.1 0 0 744.6861 321.8089"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.9521 324.9489
   A 4.70 4.70 0.0 0 0 435.9739 320.5446
   L 435.1155 320.5971
@@ -2418,8 +3014,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 436.6845 332.1629
   A 4.70 4.70 0.0 0 0 441.0888 327.1847
   L 440.9521 324.9489"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 442.25 321.34
   L 442.35 331.10
   A 0.69 0.69 0.0 0 0 443.05 331.79
@@ -2438,8 +3037,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.33 1.33 0.0 0 1 444.79 321.03
   Q 443.79 320.68 442.74 320.79
   A 0.56 0.55 -3.7 0 0 442.25 321.34"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 205.93 325.04
   L 210.05 324.92
   A 0.27 0.27 0.0 0 0 210.31 324.64
@@ -2449,8 +3051,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.75 1.60 -1.6 0 0 205.65 324.60
   L 205.65 324.77
   A 0.27 0.27 0.0 0 0 205.93 325.04"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 309.68 324.97
   L 314.11 325.17
   A 0.15 0.15 0.0 0 0 314.27 325.02
@@ -2460,36 +3065,51 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.22 1.93 2.5 0 0 309.54 324.74
   L 309.53 324.82
   A 0.15 0.15 0.0 0 0 309.68 324.97"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 183.4305 323.0255
   A 3.31 2.67 -86.7 0 0 180.5744 326.1763
   A 3.31 2.67 -86.7 0 0 183.0495 329.6345
   A 3.31 2.67 -86.7 0 0 185.9056 326.4837
   A 3.31 2.67 -86.7 0 0 183.4305 323.0255"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.9046 323.0916
   A 3.33 2.62 -88.2 0 0 339.1813 326.3377
   A 3.33 2.62 -88.2 0 0 341.6954 329.7484
   A 3.33 2.62 -88.2 0 0 344.4187 326.5023
   A 3.33 2.62 -88.2 0 0 341.9046 323.0916"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 401.4766 327.6088
   A 1.97 1.48 -25.6 0 0 399.0605 327.1253
   A 1.97 1.48 -25.6 0 0 397.9234 329.3112
   A 1.97 1.48 -25.6 0 0 400.3395 329.7947
   A 1.97 1.48 -25.6 0 0 401.4766 327.6088"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 410.8330 323.0213
   A 3.33 2.54 -88.4 0 0 408.2010 326.2791
   A 3.33 2.54 -88.4 0 0 410.6470 329.6787
   A 3.33 2.54 -88.4 0 0 413.2790 326.4209
   A 3.33 2.54 -88.4 0 0 410.8330 323.0213"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 419.73 325.15
   L 423.21 324.99
   A 0.17 0.17 0.0 0 0 423.37 324.81
@@ -2499,36 +3119,51 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.82 1.81 -2.7 0 0 419.55 324.95
   L 419.55 324.99
   A 0.17 0.17 0.0 0 0 419.73 325.15"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.8842 322.9501
   A 3.46 2.45 -89.6 0 0 433.4101 326.3929
   A 3.46 2.45 -89.6 0 0 435.8358 329.8699
   A 3.46 2.45 -89.6 0 0 438.3099 326.4271
   A 3.46 2.45 -89.6 0 0 435.8842 322.9501"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.0018 322.9500
   A 3.48 2.49 -90.3 0 0 470.5300 326.4430
   A 3.48 2.49 -90.3 0 0 473.0382 329.9100
   A 3.48 2.49 -90.3 0 0 475.5100 326.4170
   A 3.48 2.49 -90.3 0 0 473.0018 322.9500"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 744.9536 323.2261
   A 1.75 0.88 -94.8 0 0 744.2231 325.0436
   A 1.75 0.88 -94.8 0 0 745.2464 326.7139
   A 1.75 0.88 -94.8 0 0 745.9769 324.8964
   A 1.75 0.88 -94.8 0 0 744.9536 323.2261"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 825.9754 324.6429
   A 2.28 1.23 -87.1 0 0 824.6316 326.8578
   A 2.28 1.23 -87.1 0 0 825.7446 329.1971
   A 2.28 1.23 -87.1 0 0 827.0884 326.9822
   A 2.28 1.23 -87.1 0 0 825.9754 324.6429"
-/>
-<path stroke="#1b5754" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b5754"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 182.96 327.44
   A 0.23 0.23 0.0 0 0 183.41 327.40
   L 183.61 325.18
@@ -2536,81 +3171,117 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 182.99 324.89
   A 0.51 0.50 -4.7 0 0 182.45 325.52
   L 182.96 327.44"
-/>
-<path stroke="#226865" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#226865"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 195.60 327.36
   L 195.60 325.64
   A 0.31 0.31 0.0 0 0 195.04 325.45
   Q 194.59 326.03 195.07 327.45
   A 0.27 0.27 0.0 0 0 195.60 327.36"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.19 327.17
   Q 342.33 325.53 342.18 325.38
   A 0.36 0.36 0.0 0 0 341.57 325.63
   Q 341.56 326.39 341.86 327.22
   A 0.17 0.17 0.0 0 0 342.19 327.17"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 410.8022 324.8104
   A 1.42 0.76 -88.7 0 0 410.0102 326.2128
   A 1.42 0.76 -88.7 0 0 410.7378 327.6496
   A 1.42 0.76 -88.7 0 0 411.5298 326.2472
   A 1.42 0.76 -88.7 0 0 410.8022 324.8104"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.56 326.34
   Q 435.57 327.12 435.73 327.62
   A 0.25 0.25 0.0 0 0 436.22 327.57
   Q 436.32 326.54 435.99 326.17
   A 0.25 0.25 0.0 0 0 435.56 326.34"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.32 327.52
   Q 473.51 327.17 473.46 325.47
   A 0.39 0.39 0.0 0 0 472.74 325.29
   Q 472.60 325.54 472.87 327.44
   A 0.24 0.24 0.0 0 0 473.32 327.52"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 483.9686 324.9605
   A 1.58 0.70 -91.5 0 0 483.3102 326.5583
   A 1.58 0.70 -91.5 0 0 484.0514 328.1195
   A 1.58 0.70 -91.5 0 0 484.7098 326.5217
   A 1.58 0.70 -91.5 0 0 483.9686 324.9605"
-/>
-<path stroke="#81562d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#81562d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 777.18 527.53
   Q 788.23 520.70 796.83 511.83
   Q 822.59 485.22 824.69 448.73
   Q 825.95 426.84 818.02 407.96
   Q 799.16 363.00 751.82 349.89
   Q 740.83 346.84 725.80 347.02"
-/>
-<path stroke="#286e79" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#286e79"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 725.80 347.02
   C 687.69 346.20 654.15 366.78 637.07 400.77
   C 611.76 451.15 635.85 512.27 687.54 534.63
   Q 715.23 546.61 745.48 540.18
   Q 762.78 536.50 777.18 527.53"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 725.80 347.02
   Q 726.37 349.73 726.30 352.50
   Q 726.10 361.40 726.01 370.54"
-/>
-<path stroke="#286e79" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#286e79"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 726.01 370.54
   C 696.32 370.86 670.34 386.10 658.00 413.48
   Q 647.77 436.18 652.88 459.46
   C 657.95 482.49 673.87 502.07 695.37 511.77
   C 719.24 522.55 746.71 519.64 768.57 504.88"
-/>
-<path stroke="#9db679" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9db679"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 768.57 504.88
   L 777.18 527.53"
-/>
-<path stroke="#81562d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#81562d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 768.57 504.88
   Q 771.66 502.12 775.14 499.40
   Q 780.88 494.92 788.15 485.18
@@ -2618,15 +3289,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 782.65 389.23 758.81 377.66
   Q 748.08 372.46 736.30 371.34
   Q 731.17 370.85 726.01 370.54"
-/>
-<path stroke="#286e79" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#286e79"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 159.4300 356.1400
   A 4.77 2.31 -90.0 0 0 157.1200 360.9100
   A 4.77 2.31 -90.0 0 0 159.4300 365.6800
   A 4.77 2.31 -90.0 0 0 161.7400 360.9100
   A 4.77 2.31 -90.0 0 0 159.4300 356.1400"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 769.92 501.81
   C 777.22 495.40 784.52 488.99 789.05 481.55
   C 794.70 472.29 798.97 461.28 799.30 450.34
@@ -2641,8 +3318,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 725.95 519.11 742.97 516.47 757.91 509.68
   C 760.27 508.60 762.98 506.74 764.99 505.50
   Q 767.38 504.04 769.92 501.81"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 676.82 447.93
   L 671.12 449.44
   A 1.59 1.59 0.0 0 0 669.94 451.16
@@ -2654,8 +3334,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 675.72 421.63 669.21 427.39 669.36 436.57
   Q 669.49 444.61 676.85 447.43
   A 0.26 0.26 0.0 0 1 676.82 447.93"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 720.93 453.01
   A 2.60 2.59 -90.0 0 0 718.34 450.41
   L 710.99 450.41
@@ -2676,12 +3359,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 718.07 458.74
   A 2.87 2.86 -90.0 0 0 720.93 455.87
   L 720.93 453.01"
-/>
-<path stroke="#8f98a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f98a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 730.39 450.91
   Q 729.79 450.13 729.50 450.19"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 729.50 450.19
   L 729.64 449.93
   A 0.27 0.27 0.0 0 0 729.40 449.53
@@ -2711,8 +3400,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 741.27 429.63 732.43 443.74
   A 2.94 2.87 -26.4 0 0 731.98 445.02
   Q 731.61 448.51 730.39 450.91"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 729.50 450.19
   Q 727.25 451.09 724.97 450.86
   A 0.91 0.90 8.4 0 0 723.99 451.58
@@ -2721,12 +3413,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 724.56 461.02
   A 2.22 2.21 -78.2 0 0 726.59 459.69
   L 730.39 450.91"
-/>
-<path stroke="#8f98a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f98a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 764.75 457.46
   L 765.15 457.99"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 765.15 457.99
   Q 764.89 458.35 765.03 458.67
   Q 765.16 458.95 765.58 459.06
@@ -2739,12 +3437,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 780.91 439.53 783.41 435.95
   Q 784.64 434.20 783.75 433.75
   Q 783.36 433.56 783.10 433.62"
-/>
-<path stroke="#8f98a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f98a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 783.10 433.62
   L 782.63 433.06"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 782.63 433.06
   Q 782.93 431.54 781.49 431.52
   Q 779.98 431.51 778.25 432.79
@@ -2758,18 +3462,27 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 766.02 452.38 764.14 456.31
   Q 763.84 456.94 764.21 457.47
   Q 764.46 457.82 764.75 457.46"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 782.63 433.06
   Q 779.76 432.45 778.67 434.17
   Q 774.06 441.44 764.75 457.46"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 783.10 433.62
   Q 776.34 445.16 769.32 456.60
   Q 768.07 458.63 765.15 457.99"
-/>
-<path stroke="#2e7b80" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e7b80"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 161.3845 401.6035
   A 1.88 1.88 0.0 0 0 159.5077 399.7202
   L 159.2877 399.7198
@@ -2779,8 +3492,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 159.4923 408.6002
   A 1.88 1.88 0.0 0 0 161.3755 406.7235
   L 161.3845 401.6035"
-/>
-<path stroke="#286e79" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#286e79"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 148.85 400.71
   Q 148.19 402.93 145.83 405.58
   A 0.30 0.29 -69.3 0 0 146.05 406.07
@@ -2788,8 +3504,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.61 0.60 -86.8 0 0 149.05 405.53
   Q 149.53 401.19 149.33 400.69
   A 0.25 0.25 0.0 0 0 148.85 400.71"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 687.65 445.15
   C 686.81 449.37 684.80 454.18 679.42 452.68
   A 1.57 1.56 82.5 0 1 678.49 451.96
@@ -2804,8 +3523,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 670.18 439.93 672.04 444.26 677.04 446.19
   Q 682.50 448.29 687.20 444.86
   A 0.29 0.29 0.0 0 1 687.65 445.15"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 706.60 451.89
   A 0.35 0.35 0.0 0 1 706.39 451.26
   Q 711.23 447.64 714.71 443.75
@@ -2825,8 +3547,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 719.45 452.25
   A 0.37 0.36 0.0 0 0 719.08 451.89
   L 706.60 451.89"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 752.38 457.43
   A 0.67 0.67 0.0 0 0 753.05 456.76
   L 753.05 451.81
@@ -2849,15 +3574,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 746.90 457.09
   A 0.34 0.34 0.0 0 0 747.24 457.43
   L 752.38 457.43"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 682.9229 430.0004
   A 5.77 5.18 -81.7 0 0 676.9643 434.9622
   A 5.77 5.18 -81.7 0 0 681.2571 441.4196
   A 5.77 5.18 -81.7 0 0 687.2157 436.4578
   A 5.77 5.18 -81.7 0 0 682.9229 430.0004"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 746.98 433.36
   A 0.44 0.44 0.0 0 0 746.16 433.14
   L 739.15 445.28
@@ -2865,22 +3596,31 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 746.54 445.94
   A 0.44 0.44 0.0 0 0 746.98 445.50
   L 746.98 433.36"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 682.2720 431.2920
   A 4.45 3.86 -88.3 0 0 678.2817 435.6255
   A 4.45 3.86 -88.3 0 0 682.0080 440.1880
   A 4.45 3.86 -88.3 0 0 685.9983 435.8545
   A 4.45 3.86 -88.3 0 0 682.2720 431.2920"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 767.7800 433.2762
   A 6.72 6.10 -79.8 0 0 760.5864 438.8098
   A 6.72 6.10 -79.8 0 0 765.4000 446.5038
   A 6.72 6.10 -79.8 0 0 772.5936 440.9702
   A 6.72 6.10 -79.8 0 0 767.7800 433.2762"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 745.38 437.51
   Q 744.38 438.67 741.73 443.81
   A 0.45 0.44 13.7 0 0 742.13 444.46
@@ -2888,36 +3628,51 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.64 0.63 87.1 0 0 745.28 443.76
   Q 744.93 440.40 745.89 437.81
   A 0.30 0.30 0.0 0 0 745.38 437.51"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 766.7306 436.1339
   A 3.76 1.76 -87.4 0 0 764.8018 439.8102
   A 3.76 1.76 -87.4 0 0 766.3894 443.6461
   A 3.76 1.76 -87.4 0 0 768.3182 439.9698
   A 3.76 1.76 -87.4 0 0 766.7306 436.1339"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 781.5476 445.0260
   A 6.56 5.92 -86.0 0 0 775.1844 451.1570
   A 6.56 5.92 -86.0 0 0 780.6324 458.1140
   A 6.56 5.92 -86.0 0 0 786.9956 451.9830
   A 6.56 5.92 -86.0 0 0 781.5476 445.0260"
-/>
-<path stroke="#286e79" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#286e79"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 159.3794 445.0107
   A 4.62 2.11 -91.0 0 0 157.3503 449.6668
   A 4.62 2.11 -91.0 0 0 159.5406 454.2493
   A 4.62 2.11 -91.0 0 0 161.5697 449.5932
   A 4.62 2.11 -91.0 0 0 159.3794 445.0107"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 781.0662 448.0416
   A 3.58 1.94 -88.3 0 0 779.0209 451.5624
   A 3.58 1.94 -88.3 0 0 780.8538 455.1984
   A 3.58 1.94 -88.3 0 0 782.8991 451.6776
   A 3.58 1.94 -88.3 0 0 781.0662 448.0416"
-/>
-<path stroke="#286e79" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#286e79"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 161.3103 489.4489
   A 1.88 1.88 0.0 0 0 159.4010 487.5987
   L 159.1611 487.6024
@@ -2927,12 +3682,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 159.5389 496.3776
   A 1.88 1.88 0.0 0 0 161.3892 494.4683
   L 161.3103 489.4489"
-/>
-<path stroke="#8f98a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f98a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 366.97 570.04
   Q 367.38 570.12 368.00 569.71"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 368.00 569.71
   L 369.19 568.65
   A 2.00 1.97 16.6 0 1 370.02 568.21
@@ -2971,8 +3732,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 365.11 570.96 366.88 571.09
   A 0.36 0.34 14.2 0 0 367.21 570.90
   Q 367.43 570.46 366.97 570.04"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 368.00 569.71
   Q 363.59 560.07 368.06 550.69
   A 0.54 0.54 0.0 0 0 367.43 549.93
@@ -2981,8 +3745,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 360.75 560.58 365.33 568.94
   A 1.61 1.56 -0.9 0 0 366.02 569.59
   L 366.97 570.04"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 237.93 565.26
   C 239.51 567.91 241.17 568.14 243.91 567.67
   Q 245.04 567.48 247.71 567.74
@@ -3024,8 +3791,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.32 1.32 0.0 0 1 232.53 567.78
   Q 237.14 568.68 237.10 565.49
   A 0.45 0.45 0.0 0 1 237.93 565.26"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 348.56 565.93
   A 1.05 1.04 -35.7 0 1 348.38 567.02
   C 347.21 568.46 345.74 568.34 346.14 570.94
@@ -3090,8 +3860,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 342.97 570.92 347.05 563.34
   A 0.24 0.24 0.0 0 1 347.48 563.36
   L 348.56 565.93"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 488.72 590.50
   A 0.96 0.96 0.0 0 0 487.76 589.54
   L 150.46 589.54
@@ -3101,12 +3874,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 487.76 591.48
   A 0.96 0.96 0.0 0 0 488.72 590.52
   L 488.72 590.50"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 304.98 643.78
   Q 297.04 642.92 288.67 643.56"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.67 643.56
   Q 287.19 636.14 285.79 628.79
   C 284.88 624.06 284.72 618.97 283.62 614.83
@@ -3144,14 +3923,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 160.92 615.38 160.48 617.29
   C 158.76 624.78 157.08 633.50 154.80 642.33
   Q 154.25 644.45 154.08 646.67"
-/>
-<path stroke="#2c7077" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c7077"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 154.08 646.67
   Q 153.93 647.71 152.17 647.88
   A 0.67 0.67 0.0 0 0 151.63 648.24
   Q 151.27 648.93 152.05 649.67"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 152.05 649.67
   Q 151.66 649.68 151.49 649.78
   A 0.28 0.28 0.0 0 0 151.50 650.26
@@ -3172,12 +3957,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 190.52 644.08 192.73 647.47 196.51 649.40
   A 2.58 2.57 -61.6 0 0 199.91 648.38
   L 201.87 644.94"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 201.87 644.94
   L 211.48 645.55"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 211.48 645.55
   C 213.62 651.96 215.80 658.35 219.56 663.21
   C 222.02 666.39 225.13 670.12 228.81 668.01
@@ -3189,12 +3980,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 255.56 645.73 256.77 647.96
   C 259.31 652.63 262.18 651.42 265.83 648.45
   Q 268.71 646.11 271.29 643.69"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 271.29 643.69
   Q 276.74 646.02 282.73 645.35"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 282.73 645.35
   Q 284.21 652.43 285.49 659.30
   C 286.04 662.28 287.49 669.27 290.63 670.08
@@ -3210,14 +4007,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 312.79 649.12 314.34 650.93
   Q 316.26 653.19 318.32 651.81
   Q 320.89 650.09 323.63 644.59"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 323.63 644.59
   Q 323.90 645.35 324.24 645.56
   Q 324.28 645.58 325.35 645.56
   Q 338.34 645.23 351.44 645.43"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.44 645.43
   Q 352.09 647.15 352.91 649.83
   Q 353.45 651.62 355.37 652.53
@@ -3252,12 +4055,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 480.88 666.94 484.44 665.51 486.68 663.18
   Q 491.30 658.38 494.50 653.54
   Q 495.71 651.70 494.45 651.03"
-/>
-<path stroke="#2c7077" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c7077"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 494.45 651.03
   Q 493.73 650.05 491.32 650.62"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 491.32 650.62
   Q 491.60 649.67 490.27 650.61
   Q 489.62 651.07 489.06 651.70
@@ -3270,16 +4079,22 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 468.85 661.83 466.19 662.62
   Q 460.35 664.36 457.73 659.29
   Q 454.86 653.74 453.91 645.74"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.91 645.74
   Q 471.78 645.86 490.50 645.78
   C 491.97 645.78 493.55 645.46 494.99 645.19
   A 0.48 0.48 0.0 0 0 495.01 644.25
   Q 492.90 643.73 490.53 643.68
   Q 472.05 643.31 453.51 643.26"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.51 643.26
   Q 451.72 634.53 449.91 625.75
   Q 448.57 619.22 446.07 614.61
@@ -3294,12 +4109,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.24 85.3 0 1 411.46 639.71
   Q 410.43 641.19 407.87 643.36
   Q 407.00 644.10 406.56 645.42"
-/>
-<path stroke="#2c7077" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c7077"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 406.56 645.42
   Q 406.38 646.23 404.82 647.35"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.82 647.35
   Q 402.20 646.67 400.17 643.93
   Q 398.33 641.46 397.83 641.06
@@ -3329,8 +4150,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 314.32 636.67 310.98 633.88
   A 1.86 1.86 0.0 0 0 308.02 634.71
   L 304.98 643.78"
-/>
-<path stroke="#215e68" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#215e68"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.82 647.35
   Q 404.30 648.16 403.58 648.40
   A 0.71 0.71 0.0 0 1 402.76 648.13
@@ -3397,28 +4221,43 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.42 1.42 0.0 0 0 162.25 615.56
   Q 158.29 631.98 156.01 642.00
   Q 155.47 644.37 154.08 646.67"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.67 643.56
   L 288.89 645.40"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.89 645.40
   L 291.39 656.03
   A 0.59 0.48 -35.4 0 0 292.35 656.10
   C 294.86 652.98 297.33 647.42 302.50 650.33
   A 0.84 0.84 0.0 0 0 303.74 649.72
   L 304.32 645.92"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 304.32 645.92
   Q 304.65 645.75 304.98 643.78"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 304.32 645.92
   L 288.89 645.40"
-/>
-<path stroke="#215e68" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#215e68"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 406.56 645.42
   Q 411.95 641.62 413.31 638.28
   Q 415.44 633.03 418.05 628.35
@@ -3437,8 +4276,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 481.80 660.41
   A 0.49 0.49 0.0 0 0 482.56 660.46
   L 491.32 650.62"
-/>
-<path stroke="#215e68" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#215e68"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 494.45 651.03
   Q 490.76 658.14 484.87 663.40
   C 480.63 667.19 477.71 662.35 475.77 659.15
@@ -3518,31 +4360,46 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 175.94 666.97 175.33 664.80
   Q 170.05 645.93 165.39 627.42
   Q 164.94 625.64 164.90 624.73"
-/>
-<path stroke="#3d9b9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3d9b9b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 164.90 624.73
   Q 164.91 624.04 165.53 623.57
   A 0.86 0.86 0.0 0 0 165.84 622.66
   L 164.52 617.64
   A 0.50 0.50 0.0 0 0 163.58 617.55
   Q 161.24 622.32 163.72 624.70"
-/>
-<path stroke="#215e68" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#215e68"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 163.72 624.70
   Q 162.09 635.31 158.82 646.03
   Q 158.17 648.14 156.72 649.79
   A 1.49 1.49 0.0 0 1 155.82 650.28
   Q 153.91 650.54 152.05 649.67"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.51 643.26
   Q 452.95 645.53 453.91 645.74"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.44 645.43
   Q 351.08 643.43 350.47 642.90"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.47 642.90
   L 348.61 633.38
   A 0.47 0.47 0.0 0 0 347.77 633.18
@@ -3550,60 +4407,96 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 333.77 635.52 333.68 626.25 331.22 622.27
   A 0.34 0.34 0.0 0 0 330.61 622.36
   L 325.04 642.63"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 325.04 642.63
   L 323.63 644.59"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 282.73 645.35
   L 282.35 642.77"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 282.35 642.77
   L 279.76 628.15
   A 0.35 0.35 0.0 0 0 279.09 628.09
   Q 277.07 633.31 275.05 638.29
   Q 273.93 641.05 271.93 643.28"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 271.93 643.28
   Q 271.77 643.53 271.29 643.69"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 211.48 645.55
   Q 211.39 644.05 210.49 642.64"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.49 642.64
   L 207.54 628.96
   A 0.60 0.60 0.0 0 0 206.37 628.93
   L 202.61 643.09"
-/>
-<path stroke="#2b2d3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2b2d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 202.61 643.09
   Q 202.23 643.60 201.87 644.94"
-/>
-<path stroke="#284c5f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#284c5f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 163.72 624.70
   Q 164.28 623.99 164.50 624.11
   Q 164.79 624.27 164.90 624.73"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.47 642.90
   L 326.74 643.24
   A 1.96 1.90 -31.3 0 1 325.82 643.03
   L 325.04 642.63"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.49 642.64
   Q 206.59 643.59 202.61 643.09"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 282.35 642.77
   L 271.93 643.28"
-/>
-<path stroke="#353f4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#353f4b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 320.07 703.10
   Q 332.37 703.10 347.25 703.12
   Q 363.28 703.14 456.71 703.27
@@ -3621,8 +4514,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 159.63 703.31 183.43 703.27
   Q 276.86 703.14 292.89 703.12
   Q 307.77 703.10 320.07 703.10"
-/>
-<path stroke="#1d2d42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2d42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.43 717.44
   C 488.67 716.17 483.65 718.04 477.07 719.67
   C 470.71 721.26 466.52 720.69 460.98 717.82
@@ -3691,8 +4587,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 473.24 728.67 482.43 724.61 489.02 723.23
   C 490.63 722.89 492.81 721.92 494.07 721.04
   A 2.02 2.02 0.0 0 0 493.43 717.44"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 405.77 570.01
   L 406.28 570.00
   A 1.72 1.72 0.0 0 0 407.77 569.05
@@ -3702,8 +4601,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.66 0.66 0.0 0 0 404.95 550.57
   Q 409.60 560.02 405.06 568.88
   A 0.78 0.78 0.0 0 0 405.77 570.01"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 389.21 560.44
   Q 389.13 562.86 387.34 564.06
   A 1.26 1.26 0.0 0 1 386.11 564.15
@@ -3722,8 +4624,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 384.16 561.19 386.91 562.09 387.85 560.89
   Q 388.37 560.23 388.69 560.09
   A 0.37 0.37 0.0 0 1 389.21 560.44"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 373.61 561.30
   Q 374.42 561.25 375.70 561.23
   Q 381.48 561.18 380.80 555.20
@@ -3735,8 +4640,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.12 0.0 0 0 372.96 565.75
   L 372.94 562.01
   A 0.70 0.70 0.0 0 1 373.61 561.30"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 401.38 561.31
   Q 400.86 563.45 399.14 564.12
   A 1.38 1.37 50.7 0 1 397.90 563.99
@@ -3748,8 +4656,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 393.74 561.58 398.69 561.39
   C 399.49 561.36 400.37 560.81 400.92 560.77
   A 0.44 0.44 0.0 0 1 401.38 561.31"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 243.78 565.66
   L 241.11 561.04
   A 0.72 0.71 54.0 0 1 241.25 560.14
@@ -3766,8 +4677,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.80 2.80 0.0 0 0 242.61 566.93
   L 243.04 566.93
   A 0.85 0.85 0.0 0 0 243.78 565.66"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 249.76 561.22
   Q 250.59 561.19 251.89 561.18
   Q 257.75 561.20 257.14 555.13
@@ -3779,8 +4693,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.14 1.14 0.0 0 0 249.05 565.73
   L 249.08 561.93
   A 0.72 0.71 -0.9 0 1 249.76 561.22"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 258.70 558.87
   C 258.75 563.68 261.60 567.21 266.73 566.81
   Q 271.01 566.49 272.18 562.55
@@ -3792,8 +4709,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.92 0.92 0.0 0 0 272.09 554.86
   Q 270.83 550.96 266.54 550.73
   C 261.40 550.45 258.64 554.05 258.70 558.87"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 227.27 566.12
   Q 226.98 568.75 223.81 568.92
   A 1.20 1.16 -27.4 0 1 223.01 568.68
@@ -3809,8 +4729,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 219.64 565.40 222.39 566.88 224.30 566.31
   Q 225.44 565.98 226.70 565.64
   A 0.45 0.45 0.0 0 1 227.27 566.12"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 289.61 563.63
   L 283.63 563.82
   A 0.56 0.56 0.0 0 1 283.05 563.25
@@ -3824,8 +4747,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.56 0.56 0.0 0 0 290.15 566.09
   L 290.13 564.14
   A 0.51 0.51 0.0 0 0 289.61 563.63"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 308.99 554.93
   L 307.69 554.93
   A 0.61 0.61 0.0 0 1 307.08 554.30
@@ -3851,8 +4777,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.59 0.58 -84.7 0 1 307.80 557.34
   Q 310.15 557.76 310.09 556.00
   A 1.10 1.10 0.0 0 0 308.99 554.93"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 293.57 558.69
   L 295.65 557.49
   A 2.08 2.08 0.0 0 1 298.05 557.72
@@ -3868,8 +4797,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.33 1.32 -35.6 0 0 292.12 557.85
   L 292.43 558.39
   A 0.83 0.83 0.0 0 0 293.57 558.69"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 314.13 561.72
   L 320.67 561.54
   A 1.21 1.21 0.0 0 0 321.80 559.98
@@ -3883,8 +4815,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.56 1.54 37.8 0 1 316.44 564.20
   Q 314.15 563.91 313.73 562.26
   A 0.43 0.43 0.0 0 1 314.13 561.72"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 344.83 562.54
   A 1.60 1.59 36.6 0 0 342.70 562.85
   Q 341.47 564.37 340.06 564.12
@@ -3898,8 +4833,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 341.77 568.34 345.13 564.43
   A 1.26 1.25 37.4 0 0 344.88 562.58
   L 344.83 562.54"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 323.10 555.55
   L 323.06 565.90
   A 0.74 0.74 0.0 0 0 323.79 566.64
@@ -3918,8 +4856,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.41 1.41 0.0 0 1 325.79 555.26
   Q 324.75 554.87 323.63 554.97
   A 0.59 0.59 0.0 0 0 323.10 555.55"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.24 562.42
   L 349.60 556.34
   A 1.65 1.62 0.1 0 0 348.43 555.18
@@ -3936,8 +4877,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.97 1.97 0.0 0 0 353.51 556.22
   L 351.85 562.42
   A 0.32 0.32 0.0 0 1 351.24 562.42"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 235.32 553.84
   L 235.36 557.70
   A 0.40 0.40 0.0 0 0 235.76 558.10
@@ -3947,8 +4891,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.39 2.09 -0.5 0 0 237.85 553.42
   L 235.72 553.44
   A 0.40 0.40 0.0 0 0 235.32 553.84"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 249.01 554.25
   L 249.09 558.07
   A 0.58 0.58 0.0 0 0 249.68 558.64
@@ -3958,15 +4905,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.41 2.17 -1.1 0 0 251.63 553.62
   L 249.58 553.66
   A 0.58 0.58 0.0 0 0 249.01 554.25"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 386.4935 553.7271
   A 2.58 2.40 -96.6 0 0 384.4059 556.5658
   A 2.58 2.40 -96.6 0 0 387.0865 558.8529
   A 2.58 2.40 -96.6 0 0 389.1741 556.0142
   A 2.58 2.40 -96.6 0 0 386.4935 553.7271"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 372.92 554.06
   L 372.96 558.48
   A 0.41 0.41 0.0 0 0 373.38 558.88
@@ -3976,56 +4929,80 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.40 2.41 -0.6 0 0 374.45 553.63
   L 373.32 553.64
   A 0.41 0.41 0.0 0 0 372.92 554.06"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 398.5471 553.6637
   A 2.73 2.32 -93.0 0 0 396.3732 556.5114
   A 2.73 2.32 -93.0 0 0 398.8329 559.1163
   A 2.73 2.32 -93.0 0 0 401.0068 556.2686
   A 2.73 2.32 -93.0 0 0 398.5471 553.6637"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 237.96 555.36
   Q 237.85 555.36 237.47 555.69
   A 0.22 0.22 0.0 0 0 237.71 556.06
   L 238.11 555.88
   A 0.27 0.27 0.0 0 0 237.96 555.36"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 251.99 555.70
   Q 251.06 555.57 250.65 555.75
   A 0.26 0.26 0.0 0 0 250.69 556.24
   Q 251.90 556.56 252.18 556.29
   A 0.35 0.34 -63.0 0 0 251.99 555.70"
-/>
-<path stroke="#1b5754" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b5754"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 375.80 556.04
   A 0.61 0.61 0.0 0 0 375.19 555.43
   A 0.61 0.61 0.0 0 0 374.58 556.04
   A 0.61 0.61 0.0 0 0 375.19 556.65
   A 0.61 0.61 0.0 0 0 375.80 556.04"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 386.99 556.71
   Q 387.41 556.71 387.30 555.99
   Q 387.22 555.54 386.87 555.71
   A 0.55 0.49 -55.1 0 0 386.99 556.71"
-/>
-<path stroke="#252628" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252628"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 398.34 555.85
   L 398.34 556.59
   A 0.26 0.26 0.0 0 0 398.68 556.84
   Q 399.28 556.64 398.66 555.75
   A 0.18 0.18 0.0 0 0 398.34 555.85"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 298.5341 562.0495
   A 2.36 1.28 -18.8 0 0 295.8875 561.5983
   A 2.36 1.28 -18.8 0 0 294.0659 563.5705
   A 2.36 1.28 -18.8 0 0 296.7125 564.0217
   A 2.36 1.28 -18.8 0 0 298.5341 562.0495"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 314.06 559.53
   L 318.38 559.41
   A 0.16 0.16 0.0 0 0 318.53 559.25
@@ -4035,22 +5012,31 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.18 1.98 -1.5 0 0 313.89 559.27
   L 313.90 559.37
   A 0.16 0.16 0.0 0 0 314.06 559.53"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 224.5166 557.2541
   A 3.41 2.80 -87.2 0 0 221.5533 560.5232
   A 3.41 2.80 -87.2 0 0 224.1834 564.0659
   A 3.41 2.80 -87.2 0 0 227.1467 560.7968
   A 3.41 2.80 -87.2 0 0 224.5166 557.2541"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 224.4097 559.0546
   A 1.56 1.04 -85.6 0 0 223.2531 560.5302
   A 1.56 1.04 -85.6 0 0 224.1703 562.1654
   A 1.56 1.04 -85.6 0 0 225.3269 560.6898
   A 1.56 1.04 -85.6 0 0 224.4097 559.0546"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 862.13 587.92
   Q 858.99 586.77 858.97 587.36
   A 0.13 0.13 0.0 0 1 858.72 587.39
@@ -4084,8 +5070,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.16 0.16 0.0 0 1 863.44 593.78
   C 863.19 591.79 863.76 589.97 862.60 588.28
   A 0.97 0.93 81.0 0 0 862.13 587.92"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 686.62 590.78
   Q 686.53 590.64 685.71 588.96
   C 684.59 586.69 681.87 586.98 679.92 588.11
@@ -4129,8 +5118,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.57 2.57 0.0 0 0 688.19 588.94
   L 687.32 590.77
   A 0.39 0.39 0.0 0 1 686.62 590.78"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.04 599.68
   L 564.12 593.52
   A 0.65 0.65 0.0 0 1 564.83 592.88
@@ -4158,8 +5150,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.77 1.74 67.3 0 0 560.36 601.61
   Q 563.25 601.94 563.93 600.22
   A 1.68 1.66 57.0 0 0 564.04 599.68"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 621.59 601.04
   Q 623.00 599.20 622.99 598.15
   A 0.22 0.21 29.2 0 1 623.39 598.04
@@ -4203,12 +5198,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 612.00 601.67 614.23 601.69
   Q 616.50 601.72 620.68 601.52
   A 1.23 1.21 16.7 0 0 621.59 601.04"
-/>
-<path stroke="#8f98a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f98a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 833.11 586.74
   Q 833.43 585.88 832.68 585.15"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.68 585.15
   Q 832.59 583.25 829.88 584.54
   A 1.05 1.04 -2.3 0 0 829.35 585.11
@@ -4233,12 +5234,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.52 0.47 54.8 0 0 772.39 587.30
   Q 767.57 587.57 763.49 587.43
   C 760.89 587.34 758.66 588.36 758.84 591.26"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 758.84 591.26
   Q 758.67 589.90 758.45 590.62"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 758.45 590.62
   L 757.87 588.81
   A 2.14 2.14 0.0 0 0 755.78 587.32
@@ -4318,16 +5325,22 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 842.82 585.85 837.98 587.98
   A 2.74 2.45 -21.6 0 1 834.38 586.66
   Q 834.25 586.26 833.11 586.74"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 758.45 590.62
   L 758.41 595.49
   A 0.27 0.23 -75.2 0 0 758.51 595.70
   Q 758.54 595.73 758.57 595.77
   A 0.13 0.04 -77.8 0 0 758.65 595.62
   Q 758.97 593.49 758.84 591.26"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.68 585.15
   Q 831.34 585.06 830.53 585.43
   A 0.91 0.91 0.0 0 0 830.02 586.25
@@ -4354,8 +5367,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 833.38 588.91
   A 0.57 0.56 -89.5 0 1 832.82 588.33
   Q 832.83 587.53 833.11 586.74"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 572.24 630.19
   L 571.78 631.33
   A 0.19 0.19 0.0 0 1 571.41 631.25
@@ -4407,8 +5423,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 1.00 82.5 0 0 584.01 628.64
   L 574.53 628.64
   A 2.49 2.47 -78.8 0 0 572.24 630.19"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 668.93 645.73
   Q 668.60 647.91 671.73 648.06
   Q 676.54 648.29 678.43 648.13
@@ -4450,8 +5469,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.00 0.99 -18.1 0 0 668.42 646.29
   Q 668.34 645.34 668.38 645.32
   A 0.39 0.39 0.0 0 1 668.93 645.73"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 830.01 641.95
   C 830.56 640.82 832.05 639.69 832.60 638.06
   Q 833.97 634.04 831.57 630.67
@@ -4484,8 +5506,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.33 1.31 9.9 0 0 833.11 647.20
   Q 834.52 643.22 830.35 642.59
   A 0.46 0.45 -73.3 0 1 830.01 641.95"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 634.01 641.84
   L 630.64 645.21
   A 1.33 1.32 45.2 0 0 630.64 647.08
@@ -4507,8 +5532,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.81 1.80 -5.6 0 0 615.82 641.30
   L 633.78 641.30
   A 0.32 0.32 0.0 0 1 634.01 641.84"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 845.99 635.24
   C 845.55 637.18 845.90 640.43 844.84 642.42
   A 0.49 0.49 0.0 0 1 843.91 642.19
@@ -4528,8 +5556,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.96 0.95 -46.1 0 1 851.44 634.96
   L 849.36 633.76
   A 2.29 2.28 -68.7 0 0 845.99 635.24"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 571.68 689.78
   L 572.34 692.29
   A 1.30 1.29 82.4 0 0 573.59 693.25
@@ -4566,8 +5597,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 1.01 0.0 0 0 570.54 692.40
   L 571.05 689.80
   A 0.32 0.32 0.0 0 1 571.68 689.78"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 668.50 689.18
   A 0.34 0.34 0.0 0 1 669.11 689.42
   Q 668.61 693.11 671.50 693.24
@@ -4624,8 +5658,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 662.33 693.17 664.94 694.27 667.11 692.92
   A 1.22 1.20 -11.6 0 0 667.66 692.10
   Q 668.10 689.75 668.50 689.18"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 807.88 689.55
   L 809.61 691.66
   A 1.57 1.54 85.3 0 0 809.98 691.98
@@ -4648,12 +5685,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 794.56 691.57 796.81 692.46
   Q 803.46 695.09 807.08 689.59
   A 0.50 0.50 0.0 0 1 807.88 689.55"
-/>
-<path stroke="#8f98a4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f98a4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 823.83 676.86
   C 822.32 677.58 822.29 679.35 823.65 680.25"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 823.65 680.25
   Q 823.53 680.63 823.67 680.89
   Q 823.82 681.16 824.20 681.06
@@ -4666,8 +5709,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 830.93 672.37 825.43 674.52 823.52 675.74
   Q 823.02 676.06 823.29 676.56
   Q 823.37 676.72 823.83 676.86"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 823.65 680.25
   Q 824.74 679.36 826.00 679.01
   A 0.37 0.37 0.0 0 1 826.47 679.37
@@ -4678,8 +5724,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 829.60 675.99
   A 0.99 0.98 -11.1 0 0 828.24 675.08
   L 823.83 676.86"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 632.44 682.26
   L 616.20 682.26
   A 1.54 1.54 0.0 0 0 614.66 683.83
@@ -4697,8 +5746,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.42 1.42 0.0 0 0 630.39 679.39
   L 632.60 681.93
   A 0.20 0.20 0.0 0 1 632.44 682.26"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 843.76 687.29
   L 843.76 680.64
   A 2.22 2.22 0.0 0 0 841.35 678.43
@@ -4723,8 +5775,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.59 1.58 -22.8 0 1 845.11 687.48
   L 844.79 687.76
   A 0.62 0.62 0.0 0 1 843.76 687.29"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 571.80 733.78
   Q 571.97 735.70 574.07 735.91
   Q 576.57 736.17 582.36 736.02
@@ -4767,12 +5822,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.91 0.91 0.0 0 0 571.38 734.65
   Q 571.42 733.69 571.43 733.68
   A 0.20 0.20 0.0 0 1 571.80 733.78"
-/>
-<path stroke="#335e6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#335e6d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.55 722.70
   L 677.86 722.19"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.86 722.19
   Q 681.83 722.85 682.33 718.66
   A 1.93 1.92 3.9 0 0 680.45 716.51
@@ -4830,14 +5891,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 680.43 724.31 680.22 723.67
   A 1.10 1.09 84.0 0 0 679.31 722.92
   L 677.55 722.70"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.86 722.19
   L 675.79 722.44
   A 0.18 0.18 0.0 0 0 675.75 722.78
   Q 676.41 723.02 677.55 722.70"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 812.24 724.30
   L 812.24 733.87
   A 2.00 2.00 0.0 0 0 814.24 735.87
@@ -4860,8 +5927,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 1 807.84 723.53
   Q 809.88 725.09 811.48 723.91
   A 0.48 0.48 0.0 0 1 812.24 724.30"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.10 718.01
   A 1.42 1.41 -90.0 0 0 830.69 716.59
   L 821.95 716.59
@@ -4877,8 +5947,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 829.14 721.82 830.41 721.73
   A 1.84 1.83 87.8 0 0 832.10 719.90
   L 832.10 718.01"
-/>
-<path stroke="#328087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#328087"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 632.70 725.96
   L 615.38 725.96
   A 0.87 0.87 0.0 0 0 614.53 726.99
@@ -4898,8 +5971,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.87 1.86 -45.1 0 0 630.62 723.11
   L 632.92 725.41
   A 0.32 0.32 0.0 0 1 632.70 725.96"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 841.66 721.01
   L 840.90 721.01
   A 2.55 2.54 0.7 0 0 838.35 723.49
@@ -4925,8 +6001,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.30 0.30 0.0 0 1 844.08 730.18
   L 844.08 723.42
   A 2.42 2.41 0.0 0 0 841.66 721.01"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 881.34 583.67
   A 0.76 0.76 0.0 0 0 880.66 584.79
   Q 885.26 593.43 880.84 602.79
@@ -4936,8 +6015,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 887.98 593.24 883.32 584.57
   A 1.70 1.69 76.3 0 0 881.84 583.67
   L 881.34 583.67"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 856.80 583.84
   L 856.30 583.86
   A 1.69 1.68 -77.3 0 0 854.84 584.78
@@ -4947,8 +6029,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.65 0.64 83.4 0 0 857.62 602.86
   Q 853.06 593.62 857.50 584.95
   A 0.76 0.76 0.0 0 0 856.80 583.84"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 868.80 599.75
   L 868.85 589.43
   A 0.73 0.73 0.0 0 0 868.12 588.69
@@ -4967,8 +6052,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.41 1.41 0.0 0 1 866.11 600.03
   Q 867.16 600.43 868.27 600.33
   A 0.59 0.58 -2.8 0 0 868.80 599.75"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 878.84 592.44
   A 1.16 1.16 0.0 0 0 879.65 590.48
   Q 877.22 587.95 873.92 588.69
@@ -4987,8 +6075,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.93 0.93 0.0 0 1 874.12 591.18
   C 874.77 590.84 875.58 591.00 876.17 591.30
   Q 878.40 592.45 878.84 592.44"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 668.8005 584.7626
   A 0.60 0.60 0.0 0 0 668.1974 584.1658
   L 666.5374 584.1745
@@ -4998,8 +6089,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 668.2826 600.4455
   A 0.60 0.60 0.0 0 0 668.8795 599.8424
   L 668.8005 584.7626"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 639.77 584.66
   L 639.69 600.08
   A 0.32 0.32 0.0 0 0 640.01 600.40
@@ -5009,8 +6103,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 7.50 7.46 -89.7 0 0 645.51 584.37
   L 640.09 584.34
   A 0.32 0.32 0.0 0 0 639.77 584.66"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 657.64 595.49
   L 663.99 595.49
   A 0.63 0.62 0.9 0 0 664.62 594.89
@@ -5020,8 +6117,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.95 0.95 0.0 0 0 663.03 596.91
   C 660.64 597.34 659.16 599.53 657.04 596.70
   A 0.76 0.75 71.6 0 1 657.64 595.49"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 671.65 592.55
   C 673.53 591.88 675.63 589.75 677.23 592.31
   A 0.67 0.67 0.0 0 1 676.55 593.33
@@ -5037,8 +6137,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.44 2.44 0.0 0 0 670.97 590.86
   L 670.75 591.74
   A 0.69 0.68 -2.6 0 0 671.65 592.55"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 686.72 596.24
   L 685.10 590.10
   A 1.66 1.63 0.4 0 0 683.93 588.93
@@ -5055,15 +6158,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.98 1.98 0.0 0 0 689.04 590.01
   L 687.34 596.24
   A 0.32 0.32 0.0 0 1 686.72 596.24"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 549.9724 584.1473
   A 8.30 7.79 -92.4 0 0 542.5368 592.7662
   A 8.30 7.79 -92.4 0 0 550.6676 600.7327
   A 8.30 7.79 -92.4 0 0 558.1032 592.1138
   A 8.30 7.79 -92.4 0 0 549.9724 584.1473"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 559.90 589.39
   L 560.00 599.86
   A 0.74 0.74 0.0 0 0 560.75 600.60
@@ -5082,8 +6191,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.43 1.43 0.0 0 1 562.62 589.07
   Q 561.55 588.68 560.42 588.80
   A 0.60 0.59 -3.7 0 0 559.90 589.39"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.38 595.54
   L 582.01 595.37
   A 1.23 1.23 0.0 0 0 583.16 593.79
@@ -5097,8 +6209,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.58 1.56 37.9 0 1 577.73 598.06
   Q 575.40 597.76 574.98 596.09
   A 0.44 0.43 81.7 0 1 575.38 595.54"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.65 589.84
   Q 600.70 589.83 600.75 589.85
   A 0.27 0.15 7.0 0 1 600.93 589.98
@@ -5128,8 +6243,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 600.37 589.98
   A 0.27 0.15 -7.8 0 1 600.54 589.85
   Q 600.59 589.84 600.65 589.84"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 612.47 592.38
   C 613.41 592.02 616.60 589.88 618.11 591.78
   A 0.86 0.85 -13.9 0 1 617.28 593.15
@@ -5144,8 +6262,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 615.98 587.49 612.70 589.60
   Q 611.30 590.49 611.80 592.06
   A 0.52 0.51 70.4 0 0 612.47 592.38"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 627.09 596.12
   L 625.49 590.07
   A 1.64 1.61 0.4 0 0 624.33 588.91
@@ -5162,8 +6283,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.96 1.95 6.4 0 0 629.38 589.98
   L 627.70 596.12
   A 0.32 0.32 0.0 0 1 627.09 596.12"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 713.03 589.46
   L 713.03 599.96
   A 0.69 0.68 90.0 0 0 713.71 600.65
@@ -5191,8 +6315,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 708.82 600.18 709.08 599.53
   Q 709.77 597.84 712.59 589.39
   A 0.23 0.23 0.0 0 1 713.03 589.46"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 844.88 592.46
   A 1.17 1.17 0.0 0 0 845.73 590.50
   Q 843.33 587.90 839.99 588.58
@@ -5211,8 +6338,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.94 0.94 0.0 0 1 840.14 591.11
   C 840.80 590.77 841.62 590.95 842.21 591.26
   Q 844.44 592.46 844.88 592.46"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 721.43 595.64
   L 727.99 595.48
   A 1.22 1.21 -9.0 0 0 729.12 593.92
@@ -5226,8 +6356,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.56 1.54 38.0 0 1 723.75 598.13
   Q 721.45 597.83 721.03 596.18
   A 0.43 0.43 0.0 0 1 721.43 595.64"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 731.65 592.48
   C 733.58 591.83 735.75 589.70 737.34 592.33
   A 0.68 0.68 0.0 0 1 736.63 593.36
@@ -5243,8 +6376,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.49 2.49 0.0 0 0 730.99 590.75
   L 730.75 591.64
   A 0.70 0.69 -1.7 0 0 731.65 592.48"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 750.47 592.33
   A 1.18 1.18 0.0 0 0 751.24 590.31
   Q 748.70 587.80 745.36 588.64
@@ -5263,8 +6399,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.95 0.95 0.0 0 1 745.63 591.18
   C 746.28 590.81 747.11 590.95 747.72 591.24
   Q 750.03 592.35 750.47 592.33"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 763.95 599.84
   L 763.99 589.29
   A 0.75 0.75 0.0 0 0 763.25 588.54
@@ -5283,8 +6422,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.44 1.44 0.0 0 1 761.20 600.13
   Q 762.27 600.54 763.41 600.43
   A 0.60 0.60 0.0 0 0 763.95 599.84"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 769.03 589.44
   Q 768.20 588.57 766.66 588.61
   A 0.51 0.51 0.0 0 0 766.16 589.12
@@ -5300,8 +6442,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.04 1.04 0.0 0 0 772.22 588.42
   Q 770.63 588.26 769.75 589.41
   A 0.47 0.47 0.0 0 1 769.03 589.44"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 776.74 595.60
   L 783.32 595.40
   A 1.22 1.22 0.0 0 0 784.46 593.83
@@ -5315,8 +6460,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.57 1.55 37.7 0 1 779.08 598.09
   Q 776.77 597.80 776.34 596.15
   A 0.43 0.43 0.0 0 1 776.74 595.60"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 788.56 600.51
   A 0.67 0.67 0.0 0 0 789.23 599.85
   L 789.31 592.90
@@ -5343,8 +6491,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 786.16 599.88
   A 0.63 0.63 0.0 0 0 786.79 600.51
   L 788.56 600.51"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 807.68 595.51
   L 814.31 595.50
   A 1.23 1.23 0.0 0 0 815.49 593.95
@@ -5358,8 +6509,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.58 1.56 39.3 0 1 809.96 598.08
   Q 807.65 597.73 807.26 596.05
   A 0.44 0.43 83.1 0 1 807.68 595.51"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 816.86 589.33
   L 817.00 599.75
   A 0.74 0.74 0.0 0 0 817.75 600.48
@@ -5378,22 +6532,31 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.42 1.42 0.0 0 1 819.57 589.00
   Q 818.50 588.62 817.38 588.74
   A 0.59 0.59 0.0 0 0 816.86 589.33"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 835.54 595.66
   Q 835.84 594.79 835.24 593.09
   A 0.29 0.29 0.0 0 0 834.68 593.18
   L 834.68 595.52
   A 0.44 0.44 0.0 0 0 835.54 595.66"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.1483 587.1016
   A 5.39 4.41 -91.4 0 0 545.8713 592.5977
   A 5.39 4.41 -91.4 0 0 550.4117 597.8784
   A 5.39 4.41 -91.4 0 0 554.6887 592.3823
   A 5.39 4.41 -91.4 0 0 550.1483 587.1016"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 642.92 587.51
   L 642.98 597.41
   A 0.44 0.44 0.0 0 0 643.43 597.85
@@ -5403,8 +6566,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.05 4.87 -0.4 0 0 644.60 587.06
   L 643.35 587.07
   A 0.44 0.44 0.0 0 0 642.92 587.51"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 553.1453 591.3506
   A 2.67 2.67 0.0 0 0 550.3747 588.7851
   L 549.9750 588.8005
@@ -5414,8 +6580,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 550.6650 596.3395
   A 2.67 2.67 0.0 0 0 553.2305 593.5690
   L 553.1453 591.3506"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 644.28 589.44
   L 644.42 595.50
   A 0.72 0.72 0.0 0 0 645.16 596.20
@@ -5425,8 +6594,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.19 3.15 -1.4 0 0 645.11 588.70
   L 644.98 588.70
   A 0.72 0.72 0.0 0 0 644.28 589.44"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.03 593.44
   L 580.07 593.46
   A 0.11 0.11 0.0 0 0 580.18 593.35
@@ -5436,15 +6608,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.45 2.23 0.2 0 0 574.92 593.27
   L 574.92 593.33
   A 0.11 0.11 0.0 0 0 575.03 593.44"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 618.0447 595.6264
   A 2.26 1.38 -25.8 0 0 615.4094 595.3676
   A 2.26 1.38 -25.8 0 0 613.9753 597.5936
   A 2.26 1.38 -25.8 0 0 616.6106 597.8524
   A 2.26 1.38 -25.8 0 0 618.0447 595.6264"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 657.19 593.31
   L 662.03 593.43
   A 0.11 0.11 0.0 0 0 662.14 593.33
@@ -5454,15 +6632,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.34 1.99 1.5 0 0 657.09 593.15
   L 657.09 593.19
   A 0.11 0.11 0.0 0 0 657.19 593.31"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.20 595.54
   A 0.40 0.40 0.0 0 0 676.78 595.12
   Q 674.77 595.20 673.46 596.00
   A 1.15 1.03 -48.0 0 0 673.46 597.95
   C 675.68 598.82 677.07 597.97 677.20 595.54"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 721.06 593.46
   L 726.22 593.42
   A 0.05 0.05 0.0 0 0 726.27 593.37
@@ -5472,8 +6656,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.49 2.21 -0.5 0 0 721.01 593.37
   L 721.01 593.41
   A 0.05 0.05 0.0 0 0 721.06 593.46"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 736.66 595.01
   L 732.80 596.14
   A 0.26 0.26 0.0 0 0 732.62 596.46
@@ -5483,8 +6670,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.13 1.99 -16.3 0 0 737.07 595.48
   L 736.98 595.18
   A 0.26 0.26 0.0 0 0 736.66 595.01"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 776.75 593.40
   L 781.55 593.36
   A 0.11 0.11 0.0 0 0 781.66 593.25
@@ -5494,8 +6684,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.40 2.12 -0.4 0 0 776.64 593.26
   L 776.64 593.29
   A 0.11 0.11 0.0 0 0 776.75 593.40"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 807.45 593.39
   L 812.23 593.45
   A 0.16 0.16 0.0 0 0 812.39 593.29
@@ -5505,15 +6698,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.43 2.18 0.7 0 0 807.29 593.15
   L 807.29 593.23
   A 0.16 0.16 0.0 0 0 807.45 593.39"
-/>
-<path stroke="#3d9b9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3d9b9b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 285.8869 645.5242
   A 0.63 0.17 -102.2 0 0 285.8538 646.1759
   A 0.63 0.17 -102.2 0 0 286.1531 646.7558
   A 0.63 0.17 -102.2 0 0 286.1862 646.1041
   A 0.63 0.17 -102.2 0 0 285.8869 645.5242"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.68 639.12
   Q 563.34 642.17 565.49 645.37
   C 566.71 647.18 567.54 647.06 569.50 646.86
@@ -5535,8 +6734,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 558.95 635.43
   A 0.20 0.20 0.0 0 1 559.24 635.25
   C 559.83 635.53 560.61 637.35 561.68 639.12"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.36 638.42
   Q 573.33 645.58 573.34 646.30
   A 0.58 0.58 0.0 0 0 573.91 646.87
@@ -5562,8 +6764,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 573.99 629.98
   A 0.58 0.58 0.0 0 0 573.41 630.54
   Q 573.39 631.26 573.36 638.42"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 593.82 630.11
   Q 591.13 630.15 588.09 631.87
   A 2.02 1.99 -15.0 0 0 587.07 633.61
@@ -5577,8 +6782,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.18 1.17 0.0 0 0 594.44 645.84
   L 594.44 630.71
   A 0.61 0.60 -0.5 0 0 593.82 630.11"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 658.61 639.24
   Q 660.25 642.27 662.38 645.46
   C 663.58 647.27 664.41 647.16 666.36 646.97
@@ -5600,8 +6808,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 655.91 635.55
   A 0.20 0.20 0.0 0 1 656.19 635.37
   C 656.78 635.66 657.55 637.46 658.61 639.24"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 670.36 638.41
   Q 670.36 645.55 670.37 646.27
   A 0.58 0.58 0.0 0 0 670.95 646.84
@@ -5627,8 +6838,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 670.95 629.99
   A 0.58 0.58 0.0 0 0 670.37 630.55
   Q 670.36 631.27 670.36 638.41"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 687.03 643.72
   C 690.03 640.81 695.63 634.42 695.02 630.75
   A 0.79 0.78 85.2 0 0 694.25 630.09
@@ -5646,8 +6860,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.82 0.81 -0.0 0 0 694.58 644.15
   L 687.21 644.15
   A 0.25 0.25 0.0 0 1 687.03 643.72"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 804.50 637.66
   Q 807.01 635.34 805.46 631.90
   A 1.82 1.81 2.6 0 0 804.65 631.02
@@ -5671,8 +6888,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 795.63 648.28 804.24 648.59 806.26 643.97
   Q 807.72 640.65 804.57 638.49
   A 0.54 0.53 -49.9 0 1 804.50 637.66"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 813.54 643.51
   C 816.53 640.87 819.73 638.65 819.14 634.21
   C 818.35 628.28 809.14 629.05 808.92 634.04
@@ -5687,8 +6907,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.22 1.21 0.0 0 0 818.43 644.12
   L 813.78 644.12
   A 0.35 0.35 0.0 0 1 813.54 643.51"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 826.06 643.44
   C 829.09 640.85 832.32 638.68 831.79 634.24
   C 831.09 628.30 821.88 628.94 821.59 633.92
@@ -5703,8 +6926,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.22 1.21 0.8 0 0 830.94 644.12
   L 826.30 644.05
   A 0.35 0.35 0.0 0 1 826.06 643.44"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 817.67 642.73
   Q 819.97 643.77 821.59 642.40
   C 823.81 640.53 827.84 637.62 827.26 634.69
@@ -5713,8 +6939,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.42 0.0 0 0 820.96 636.36
   L 817.53 642.30
   A 0.31 0.30 27.3 0 0 817.67 642.73"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 850.01 646.30
   L 850.07 635.73
   A 0.75 0.75 0.0 0 0 849.32 634.98
@@ -5733,8 +6962,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.44 1.44 0.0 0 1 847.26 646.58
   Q 848.33 646.99 849.47 646.89
   A 0.60 0.60 0.0 0 0 850.01 646.30"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 858.44 644.25
   A 1.28 1.28 0.0 0 1 856.71 644.72
   L 853.31 642.85
@@ -5756,8 +6988,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 858.49 642.71
   A 0.60 0.60 0.0 0 1 858.82 643.58
   L 858.44 644.25"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.67 684.14
   Q 563.30 687.17 565.41 690.35
   C 566.60 692.15 567.43 692.04 569.37 691.86
@@ -5779,8 +7014,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 558.99 680.47
   A 0.20 0.19 13.1 0 1 559.28 680.30
   C 559.86 680.58 560.62 682.38 561.67 684.14"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.42 683.51
   Q 573.42 690.66 573.44 691.38
   A 0.58 0.58 0.0 0 0 574.01 691.95
@@ -5806,8 +7044,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 574.01 675.08
   A 0.58 0.58 0.0 0 0 573.43 675.65
   Q 573.42 676.37 573.42 683.51"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 595.59 682.57
   Q 597.27 680.74 597.02 678.34
   C 596.51 673.45 585.73 673.91 586.54 679.58
@@ -5825,15 +7066,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 584.70 692.63 598.18 694.91 597.50 685.97
   Q 597.40 684.61 595.66 683.32
   A 0.51 0.51 0.0 0 1 595.59 682.57"
-/>
-<path stroke="#1b5754" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b5754"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.48 686.55
   A 0.38 0.35 62.7 0 0 591.31 687.18
   Q 591.69 687.56 592.16 687.22
   Q 592.52 686.97 592.25 686.72
   Q 592.01 686.50 591.48 686.55"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 658.57 684.23
   Q 660.22 687.25 662.34 690.43
   C 663.55 692.22 664.38 692.11 666.32 691.91
@@ -5855,8 +7102,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 655.86 680.56
   A 0.20 0.20 0.0 0 1 656.15 680.39
   C 656.73 680.67 657.50 682.46 658.57 684.23"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 670.30 683.44
   Q 670.29 690.56 670.31 691.27
   A 0.58 0.57 -0.3 0 0 670.88 691.84
@@ -5882,8 +7132,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 670.89 675.04
   A 0.58 0.57 0.3 0 0 670.32 675.60
   Q 670.30 676.32 670.30 683.44"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 692.96 691.88
   A 0.88 0.87 -85.3 0 0 693.82 691.14
   Q 693.94 690.42 693.74 689.70
@@ -5903,8 +7156,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 690.84 691.15
   A 0.74 0.73 0.0 0 0 691.58 691.88
   L 692.96 691.88"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 798.07 681.15
   Q 798.01 679.60 798.35 678.62
   A 0.90 0.90 0.0 0 1 799.20 678.02
@@ -5928,15 +7184,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 806.59 689.67 806.45 686.13 805.92 684.01
   C 805.15 680.88 801.24 680.45 798.81 681.60
   A 0.52 0.52 0.0 0 1 798.07 681.15"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 813.8976 674.9034
   A 8.68 6.33 -91.6 0 0 807.8125 683.7567
   A 8.68 6.33 -91.6 0 0 814.3824 692.2566
   A 8.68 6.33 -91.6 0 0 820.4675 683.4033
   A 8.68 6.33 -91.6 0 0 813.8976 674.9034"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 801.54 686.97
   L 801.56 685.89
   A 0.18 0.18 0.0 0 0 801.38 685.70
@@ -5945,8 +7207,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.80 0.72 0.8 0 0 801.14 687.14
   L 801.36 687.14
   A 0.18 0.18 0.0 0 0 801.54 686.97"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 690.42 679.12
   L 686.51 685.89
   A 0.18 0.17 2.0 0 0 686.74 686.13
@@ -5954,22 +7219,31 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 0 691.00 685.74
   L 691.00 679.28
   A 0.31 0.31 0.0 0 0 690.42 679.12"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 814.2400 677.7900
   A 5.75 2.99 -90.0 0 0 811.2500 683.5400
   A 5.75 2.99 -90.0 0 0 814.2400 689.2900
   A 5.75 2.99 -90.0 0 0 817.2300 683.5400
   A 5.75 2.99 -90.0 0 0 814.2400 677.7900"
-/>
-<path stroke="#111a27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#111a27"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 814.4582 679.3230
   A 4.12 1.56 -87.8 0 0 812.7411 683.3801
   A 4.12 1.56 -87.8 0 0 814.1418 687.5570
   A 4.12 1.56 -87.8 0 0 815.8589 683.4999
   A 4.12 1.56 -87.8 0 0 814.4582 679.3230"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 858.60 689.16
   A 1.31 1.31 0.0 0 1 856.87 689.76
   L 853.29 688.08
@@ -5991,8 +7265,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 858.55 687.60
   A 0.61 0.61 0.0 0 1 858.94 688.46
   L 858.60 689.16"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 850.12 691.24
   L 850.07 680.65
   A 0.75 0.75 0.0 0 0 849.31 679.90
@@ -6011,8 +7288,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.44 1.44 0.0 0 1 847.37 691.55
   Q 848.44 691.95 849.59 691.83
   A 0.60 0.60 0.0 0 0 850.12 691.24"
-/>
-<path stroke="#854e39" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#854e39"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.64 715.86
   C 434.17 721.24 438.10 725.14 445.78 725.19
   C 450.87 725.22 453.01 722.69 455.89 720.48
@@ -6101,8 +7381,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 414.01 726.13 418.18 726.41 421.46 725.40
   C 424.92 724.34 427.59 719.10 429.06 715.94
   A 0.35 0.34 -52.6 0 1 429.64 715.86"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.61 727.03
   Q 563.27 730.09 565.42 733.32
   C 566.64 735.15 567.48 735.04 569.45 734.85
@@ -6124,8 +7407,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 558.88 723.30
   A 0.20 0.20 0.0 0 1 559.17 723.12
   C 559.76 723.41 560.54 725.23 561.61 727.03"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.45 726.33
   Q 573.45 733.48 573.47 734.20
   A 0.58 0.58 0.0 0 0 574.05 734.77
@@ -6151,8 +7437,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 574.04 717.89
   A 0.58 0.58 0.0 0 0 573.46 718.46
   Q 573.45 719.18 573.45 726.33"
-/>
-<path stroke="#858695" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858695"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.12 721.05
   A 0.11 0.10 -84.1 0 1 590.22 720.96
   L 596.21 720.83
@@ -6172,15 +7461,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 596.67 722.26 589.84 724.62
   A 0.23 0.22 -4.3 0 1 589.55 724.36
   L 590.12 721.05"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.20 722.60
   Q 578.20 723.06 580.70 723.02
   Q 583.20 722.98 583.20 722.52
   Q 583.19 722.06 580.69 722.10
   Q 578.19 722.14 578.20 722.60"
-/>
-<path stroke="#17203b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#17203b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 589.91 728.85
   Q 589.87 728.99 591.62 730.34
   A 0.74 0.70 62.8 0 0 592.04 730.48
@@ -6188,8 +7483,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 593.11 728.61 592.54 728.33
   A 0.74 0.70 -36.4 0 0 592.10 728.28
   Q 589.94 728.71 589.91 728.85"
-/>
-<path stroke="#284c5f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#284c5f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.12 729.57
   Q 578.15 730.13 581.88 729.59
   A 0.21 0.16 1.5 0 0 582.05 729.46
@@ -6197,8 +7495,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 582.06 729.30 582.04 729.24
   A 0.21 0.16 -7.7 0 0 581.86 729.14
   Q 578.09 729.00 578.12 729.57"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 658.61 727.11
   Q 660.27 730.15 662.41 733.36
   C 663.62 735.17 664.45 735.06 666.41 734.87
@@ -6220,8 +7521,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 655.90 723.40
   A 0.20 0.20 0.0 0 1 656.18 723.23
   C 656.77 723.51 657.55 725.33 658.61 727.11"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 670.41 726.33
   Q 670.46 733.51 670.48 734.23
   A 0.58 0.58 0.0 0 0 671.06 734.80
@@ -6247,8 +7551,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 670.95 717.86
   A 0.58 0.58 0.0 0 0 670.37 718.43
   Q 670.36 719.15 670.41 726.33"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 686.03 724.20
   Q 686.58 720.82 689.88 720.49
   A 1.15 1.14 66.6 0 1 690.86 720.88
@@ -6262,8 +7569,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 687.54 736.01 691.28 734.68
   C 697.94 732.30 695.80 720.44 686.95 724.88
   A 0.64 0.64 0.0 0 1 686.03 724.20"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 800.85 734.97
   C 805.94 734.87 809.11 729.82 804.40 726.06
   A 0.44 0.44 0.0 0 1 804.43 725.35
@@ -6273,8 +7583,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 794.24 723.85 796.88 725.50
   A 0.44 0.44 0.0 0 1 796.94 726.21
   C 792.38 730.15 795.75 735.08 800.85 734.97"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 813.62 721.97
   L 813.62 733.91
   A 1.06 1.06 0.0 0 0 814.68 734.97
@@ -6287,8 +7600,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 0 809.70 723.30
   Q 811.39 722.86 812.68 721.58
   A 0.55 0.55 0.0 0 1 813.62 721.97"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 824.38 720.90
   A 0.11 0.10 -82.8 0 1 824.48 720.81
   L 830.47 720.81
@@ -6308,8 +7624,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 830.90 722.25 824.02 724.46
   A 0.23 0.22 -3.1 0 1 823.73 724.20
   L 824.38 720.90"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 824.39 728.68
   Q 824.36 728.78 825.52 730.14
   A 0.63 0.63 0.0 0 0 826.16 730.34
@@ -6317,36 +7636,51 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 827.17 728.57 826.76 728.15
   A 0.63 0.63 0.0 0 0 826.11 728.00
   Q 824.42 728.57 824.39 728.68"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 689.9661 726.3754
   A 2.96 2.84 -76.2 0 0 686.5020 728.5726
   A 2.96 2.84 -76.2 0 0 688.5539 732.1246
   A 2.96 2.84 -76.2 0 0 692.0180 729.9274
   A 2.96 2.84 -76.2 0 0 689.9661 726.3754"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 803.0295 722.4718
   A 2.51 2.19 -1.1 0 0 800.4780 720.3304
   A 2.51 2.19 -1.1 0 0 798.0105 722.5682
   A 2.51 2.19 -1.1 0 0 800.5620 724.7096
   A 2.51 2.19 -1.1 0 0 803.0295 722.4718"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 797.9344 729.4050
   A 2.82 2.44 -174.2 0 0 800.4934 732.1175
   A 2.82 2.44 -174.2 0 0 803.5456 729.9750
   A 2.82 2.44 -174.2 0 0 800.9866 727.2625
   A 2.82 2.44 -174.2 0 0 797.9344 729.4050"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 800.93 722.74
   A 0.22 0.22 0.0 0 0 800.84 722.33
   Q 800.32 722.31 800.31 722.32
   A 0.34 0.33 -48.9 0 0 800.35 722.95
   Q 800.48 722.99 800.93 722.74"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 850.15 734.05
   L 850.15 723.21
   A 0.77 0.77 0.0 0 0 849.38 722.44
@@ -6365,8 +7699,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.48 1.48 0.0 0 1 847.33 734.36
   Q 848.43 734.77 849.60 734.66
   A 0.62 0.61 -3.1 0 0 850.15 734.05"
-/>
-<path stroke="#7f8081" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f8081"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 858.49 731.80
   A 1.33 1.33 0.0 0 1 856.70 732.33
   L 853.15 730.46
@@ -6388,8 +7725,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 858.51 730.22
   A 0.62 0.62 0.0 0 1 858.87 731.11
   L 858.49 731.80"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 688.51 729.64
   Q 688.72 730.33 688.74 730.36
   A 0.60 0.60 0.0 0 0 689.54 730.59
@@ -6397,16 +7737,21 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 689.99 728.16 688.83 728.29
   A 0.60 0.60 0.0 0 0 688.30 728.92
   Q 688.30 728.96 688.51 729.64"
-/>
-<path stroke="#22454b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#22454b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 801.7900 729.7450
   A 0.95 0.72 -0.3 0 0 800.8362 729.0300
   A 0.95 0.72 -0.3 0 0 799.8900 729.7550
   A 0.95 0.72 -0.3 0 0 800.8438 730.4700
   A 0.95 0.72 -0.3 0 0 801.7900 729.7450"
-/>
-</g>
-<path fill="#0c0e2c" d="
+        />
+      </g>
+      <path
+        fill="#0c0e2c"
+        d="
   M 947.13 800.98
   C 949.05 795.11 952.00 790.46 951.97 784.03
   C 951.89 768.52 952.61 758.23 952.57 744.24
@@ -6445,8 +7790,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 953.48 232.62 953.48 783.25
   Q 953.48 794.04 947.13 800.98
   Z"
-/>
-<path fill="#34393d" d="
+      />
+      <path
+        fill="#34393d"
+        d="
   M 947.13 800.98
   L 946.60 801.67
   A 0.23 0.22 18.7 0 0 946.78 802.03
@@ -6506,8 +7853,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.08 1.08 0.0 0 0 927.51 779.72
   L 927.51 201.18
   Z"
-/>
-<path fill="#18283a" d="
+      />
+      <path
+        fill="#18283a"
+        d="
   M 927.51 201.18
   L 927.51 779.72
   A 1.08 1.08 0.0 0 1 926.43 780.80
@@ -6711,8 +8060,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 882.81 754.66 892.29 753.97
   A 1.56 1.56 0.0 0 0 893.71 752.73
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 179.54 259.72
   Q 178.60 260.55 175.36 262.58
   Q 169.15 266.45 168.07 273.41
@@ -6750,8 +8101,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 170.29 243.23 170.77 243.15
   A 0.38 0.38 0.0 0 0 171.03 242.58
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 216.56 244.08
   L 214.87 245.18
   A 3.19 3.19 0.0 0 1 210.71 244.57
@@ -6794,8 +8147,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 197.98 268.18 209.87 268.60 215.61 262.91
   C 218.63 259.92 218.49 255.08 218.02 250.94
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 294.11 267.27
   Q 291.54 267.74 288.44 266.97
   A 2.25 2.21 -48.3 0 0 287.12 267.06
@@ -6926,8 +8281,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 289.05 265.49
   A 0.69 0.68 -84.4 0 0 289.72 266.31
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 272.27 236.06
   A 0.09 0.09 0.0 0 1 272.34 236.13
   Q 272.77 238.02 272.50 239.69
@@ -6953,8 +8310,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 262.32 243.87 262.33 240.86 263.46 239.04
   Q 266.11 234.81 272.27 236.06
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 218.02 250.94
   C 218.49 255.08 218.63 259.92 215.61 262.91
   C 209.87 268.60 197.98 268.18 192.80 261.79
@@ -6975,8 +8334,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 216.99 250.02
   A 1.04 1.04 0.0 0 1 218.02 250.94
   Z"
-/>
-<path fill="#18283a" d="
+      />
+      <path
+        fill="#18283a"
+        d="
   M 170.77 243.15
   Q 170.29 243.23 164.52 242.81
   C 157.84 242.32 151.42 247.98 153.29 254.96
@@ -6990,8 +8351,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 169.69 240.40 171.03 242.58
   A 0.38 0.38 0.0 0 1 170.77 243.15
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 342.35 265.60
   A 2.01 2.00 -87.6 0 1 340.18 267.60
   L 334.82 267.13
@@ -7056,8 +8419,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 336.26 265.58
   A 0.69 0.68 -84.6 0 0 336.93 266.40
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 227.54 247.87
   A 0.42 0.42 0.0 0 0 228.29 248.07
   Q 230.58 245.15 235.00 245.66
@@ -7075,8 +8440,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 227.76 246.40
   Q 227.48 247.37 227.54 247.87
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 252.17 265.56
   L 252.27 265.06
   A 0.37 0.37 0.0 0 0 251.68 264.70
@@ -7097,8 +8464,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.26 5.52 -88.6 0 0 252.1284 256.3149
   A 6.26 5.52 -88.6 0 0 246.7629 249.9219
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 289.72 266.31
   A 0.69 0.68 -84.4 0 1 289.05 265.49
   L 289.15 264.99
@@ -7119,8 +8488,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.20 5.55 -91.6 0 0 289.1078 256.0650
   A 6.20 5.55 -91.6 0 0 283.3869 250.0224
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 298.77 265.70
   L 298.77 246.73
   A 0.56 0.56 0.0 0 1 299.26 246.17
@@ -7141,8 +8512,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 299.38 266.31
   A 0.61 0.61 0.0 0 1 298.77 265.70
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 336.93 266.40
   A 0.69 0.68 -84.6 0 1 336.26 265.58
   L 336.36 265.08
@@ -7163,8 +8536,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.33 5.62 -90.0 0 0 336.2500 256.3300
   A 6.33 5.62 -90.0 0 0 330.6300 250.0000
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 246.7629 249.9219
   A 6.26 5.52 -88.6 0 1 252.1284 256.3149
   A 6.26 5.52 -88.6 0 1 246.4571 262.4381
@@ -7177,8 +8552,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.91 4.11 -93.7 0 0 250.7514 255.9748
   A 4.91 4.11 -93.7 0 0 246.3331 251.3402
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 283.3869 250.0224
   A 6.20 5.55 -91.6 0 1 289.1078 256.0650
   A 6.20 5.55 -91.6 0 1 283.7331 262.4176
@@ -7191,11 +8568,34 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.92 4.08 -90.8 0 0 287.6796 256.2230
   A 4.92 4.08 -90.8 0 0 283.5313 251.3605
   Z"
-/>
-<ellipse fill="#18283a" cx="0.00" cy="0.00" transform="translate(330.63,256.33) rotate(-90.0)" rx="6.33" ry="5.62"/>
-<ellipse fill="#18283a" cx="0.00" cy="0.00" transform="translate(246.65,256.24) rotate(-93.7)" rx="4.91" ry="4.11"/>
-<ellipse fill="#18283a" cx="0.00" cy="0.00" transform="translate(283.60,256.28) rotate(-90.8)" rx="4.92" ry="4.08"/>
-<path fill="#213249" d="
+      />
+      <ellipse
+        fill="#18283a"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(330.63,256.33) rotate(-90.0)"
+        rx="6.33"
+        ry="5.62"
+      />
+      <ellipse
+        fill="#18283a"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(246.65,256.24) rotate(-93.7)"
+        rx="4.91"
+        ry="4.11"
+      />
+      <ellipse
+        fill="#18283a"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(283.60,256.28) rotate(-90.8)"
+        rx="4.92"
+        ry="4.08"
+      />
+      <path
+        fill="#213249"
+        d="
   M 513.11 298.74
   L 513.11 515.61
   A 7.01 7.01 0.0 0 1 506.10 522.62
@@ -7743,8 +9143,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.47 4.47 0.0 0 0 164.2284 494.1977
   L 164.1295 489.4787
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 523.92 555.71
   Q 522.51 551.45 522.41 548.33
   Q 522.24 543.24 522.22 531.00
@@ -7946,8 +9348,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.81 2.77 -83.5 0 0 775.67 530.05
   Q 776.60 528.97 777.38 528.62
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 837.94 324.08
   C 838.02 327.72 837.25 332.53 834.38 334.89
   A 2.36 2.11 -35.3 0 1 830.99 334.50
@@ -7968,8 +9372,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.69 1.69 0.0 0 0 832.71 314.23
   L 832.21 314.23
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 678.71 320.52
   A 0.41 0.41 0.0 0 0 679.42 320.37
   L 680.75 315.50
@@ -8180,8 +9586,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 719.64 323.79 719.63 323.60
   A 0.09 0.09 0.0 0 0 719.47 323.56
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 810.21 314.84
   Q 808.18 314.54 807.47 315.71
   Q 802.82 323.41 807.51 333.04
@@ -8241,8 +9649,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.44 3.82 -84.7 0 0 829.6037 327.3229
   A 4.44 3.82 -84.7 0 0 826.2101 322.5490
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 636.57 325.07
   C 634.66 327.48 635.49 333.20 630.25 332.66
   Q 628.32 332.46 627.52 330.30
@@ -8326,8 +9736,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 657.76 321.56 658.59 321.68 659.20 321.95
   Q 661.53 322.98 661.96 322.95
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 771.19 315.89
   Q 772.89 313.06 775.75 314.53
   A 2.13 2.13 0.0 0 1 776.92 316.43
@@ -8420,8 +9832,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 764.22 326.41 763.75 326.46
   A 0.22 0.22 0.0 0 0 763.71 326.89
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 167.01 327.31
   L 166.67 331.29
   A 2.22 2.22 0.0 0 1 164.27 333.30
@@ -8530,8 +9944,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.96 4.96 0.0 0 0 188.5058 327.6423
   L 188.6544 325.9087
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 246.01 325.81
   Q 243.70 327.86 240.71 327.90
   A 0.80 0.80 0.0 0 0 239.94 328.54
@@ -8617,8 +10033,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 233.70 323.30
   A 1.16 1.15 -2.3 0 0 232.45 322.15
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 281.33 330.07
   L 280.62 323.87
   A 0.87 0.87 0.0 0 0 278.92 323.74
@@ -8652,8 +10070,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.83 0.82 83.7 0 1 281.80 323.36
   Q 282.56 326.63 281.33 330.07
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 330.28 328.81
   Q 329.98 329.34 329.65 331.01
   A 1.86 1.86 0.0 0 1 329.22 331.91
@@ -8834,8 +10254,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 361.51 328.58
   A 0.27 0.26 45.7 0 1 361.00 328.57
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 832.21 314.23
   L 832.71 314.23
   A 1.69 1.69 0.0 0 1 834.20 315.12
@@ -8846,8 +10268,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 836.22 323.95 831.54 315.36
   A 0.76 0.76 0.0 0 1 832.21 314.23
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 417.14 332.90
   Q 416.29 336.60 413.10 337.47
   Q 407.05 339.13 404.62 333.82
@@ -8972,8 +10396,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 420.63 333.28 425.21 330.97
   A 1.11 1.11 0.0 0 0 425.17 328.97
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 491.29 320.20
   Q 495.09 318.90 496.50 319.36
   Q 500.38 320.61 499.57 324.23
@@ -9068,9 +10494,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.77 0.77 0.0 0 0 498.82 323.37
   L 498.80 323.19
   Z"
-/>
-<circle fill="#fdfefe" cx="722.95" cy="316.31" r="1.86"/>
-<path fill="#fdfefe" d="
+      />
+      <circle fill="#fdfefe" cx="722.95" cy="316.31" r="1.86" />
+      <path
+        fill="#fdfefe"
+        d="
   M 810.21 314.84
   Q 810.43 315.06 810.77 315.10
   C 807.12 321.39 807.24 327.12 810.51 333.55
@@ -9080,8 +10508,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 802.82 323.41 807.47 315.71
   Q 808.18 314.54 810.21 314.84
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 825.91 314.83
   Q 826.26 314.91 826.52 315.10
   Q 826.50 315.32 826.48 315.56
@@ -9093,8 +10523,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 819.48 323.20 823.00 316.99
   Q 824.01 315.20 825.91 314.83
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 630.95 326.65
   Q 631.34 326.66 631.53 326.01
   Q 633.04 320.78 634.61 316.14
@@ -9111,8 +10543,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 628.93 320.76 630.38 326.01
   Q 630.56 326.65 630.95 326.65
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 641.57 323.36
   C 641.68 327.97 645.77 330.48 649.32 326.55
   Q 649.79 326.04 650.97 325.82
@@ -9125,8 +10559,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 649.65 320.29 649.16 319.80
   C 645.43 316.06 641.46 318.76 641.57 323.36
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 684.14 320.26
   A 0.22 0.22 0.0 0 0 683.70 320.19
   Q 681.00 328.53 680.34 330.20
@@ -9155,8 +10591,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.67 89.5 0 1 684.23 330.59
   L 684.14 320.26
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 758.38 327.95
   A 1.31 1.31 0.0 0 1 760.41 326.52
   L 763.01 328.43
@@ -9176,8 +10614,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.98 1.92 13.8 0 1 768.05 330.84
   C 764.53 331.72 759.67 332.23 758.38 327.95
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 791.25 315.00
   Q 793.22 315.00 793.66 316.36
   Q 795.94 323.40 798.48 329.97
@@ -9208,8 +10648,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.43 0.42 -76.6 0 0 789.36 324.99
   Q 790.47 324.94 791.05 324.97
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 782.38 331.19
   L 772.88 331.19
   A 0.50 0.50 0.0 0 1 772.38 330.69
@@ -9224,8 +10666,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 782.88 330.69
   A 0.50 0.50 0.0 0 1 782.38 331.19
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 816.61 315.53
   Q 817.58 315.76 818.40 316.27
   A 2.86 2.82 26.8 0 1 819.55 319.70
@@ -9240,8 +10684,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.33 1.19 -76.0 0 0 816.8647 319.7079
   A 2.33 1.19 -76.0 0 0 816.2737 317.1592
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 168.03 324.70
   C 167.01 323.02 166.27 321.30 165.71 321.03
   A 0.19 0.19 0.0 0 0 165.44 321.20
@@ -9264,8 +10710,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 173.59 332.23 172.80 332.34 171.64 330.62
   Q 169.61 327.59 168.03 324.70
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 198.31 320.48
   L 197.48 317.33
   A 1.23 1.23 0.0 0 1 198.67 315.78
@@ -9288,8 +10736,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.39 2.63 -91.3 0 0 197.9893 326.2903
   A 3.39 2.63 -91.3 0 0 195.2831 322.9609
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 219.39 324.26
   C 219.23 319.39 221.94 315.69 227.14 315.86
   Q 231.49 315.99 232.85 319.91
@@ -9302,8 +10752,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 232.02 331.70 227.69 332.12
   C 222.51 332.64 219.55 329.13 219.39 324.26
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 238.18 327.13
   L 238.18 330.96
   A 1.15 1.15 0.0 0 1 237.03 332.11
@@ -9326,8 +10778,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 238.59 318.82
   A 0.41 0.41 0.0 0 0 238.20 319.25
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 254.77 329.38
   Q 257.95 329.36 257.95 325.28
   Q 257.95 320.34 257.81 316.51
@@ -9344,8 +10798,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 251.48 320.38 251.54 325.31
   Q 251.58 329.39 254.77 329.38
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 281.33 330.07
   Q 282.49 330.72 282.18 331.80
   Q 280.50 332.10 278.84 331.27
@@ -9381,8 +10837,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 276.08 328.67
   A 0.64 0.64 0.0 0 0 276.10 327.77
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 301.82 320.94
   A 0.22 0.22 0.0 0 0 301.39 320.88
   Q 298.72 329.18 298.06 330.84
@@ -9411,8 +10869,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.67 89.4 0 1 301.94 331.22
   L 301.82 320.94
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 378.43 332.18
   C 375.71 332.18 373.82 331.37 372.86 328.73
   A 1.63 1.56 35.4 0 1 372.77 328.28
@@ -9431,8 +10891,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.63 1.56 -35.2 0 1 384.02 328.75
   C 383.05 331.39 381.16 332.19 378.43 332.18
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 486.58 321.04
   L 486.58 316.49
   A 0.73 0.72 5.6 0 1 487.45 315.78
@@ -9454,8 +10916,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.40 2.39 -89.1 0 0 486.4797 326.4775
   A 3.40 2.39 -89.1 0 0 484.1434 323.0404
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 457.94 315.94
   C 461.35 315.96 464.00 315.40 466.27 317.57
   Q 468.86 320.05 467.12 323.54
@@ -9478,8 +10942,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 460.35 318.86
   A 0.40 0.40 0.0 0 0 459.96 319.27
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 713.98 322.12
   L 712.90 321.82
   A 1.11 1.10 -52.7 0 1 712.63 319.80
@@ -9508,10 +10974,26 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 714.21 322.41
   A 0.31 0.30 7.6 0 0 713.98 322.12
   Z"
-/>
-<ellipse fill="#000104" cx="0.00" cy="0.00" transform="translate(815.71,319.42) rotate(-76.0)" rx="2.33" ry="1.19"/>
-<ellipse fill="#000104" cx="0.00" cy="0.00" transform="translate(273.95,319.61) rotate(-100.6)" rx="1.71" ry="1.53"/>
-<path fill="#000104" d="
+      />
+      <ellipse
+        fill="#000104"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(815.71,319.42) rotate(-76.0)"
+        rx="2.33"
+        ry="1.19"
+      />
+      <ellipse
+        fill="#000104"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(273.95,319.61) rotate(-100.6)"
+        rx="1.71"
+        ry="1.53"
+      />
+      <path
+        fill="#000104"
+        d="
   M 238.20 319.25
   A 0.41 0.41 0.0 0 1 238.59 318.82
   L 240.56 318.75
@@ -9528,8 +11010,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.25 -78.5 0 0 240.32 320.77
   Q 240.39 321.32 240.55 321.66
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 791.30 318.73
   Q 791.47 318.74 791.61 318.87
   Q 791.80 319.05 791.81 319.19
@@ -9542,8 +11026,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 790.78 319.01 790.98 318.85
   Q 791.12 318.73 791.30 318.73
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 459.96 319.27
   A 0.40 0.40 0.0 0 1 460.35 318.86
   L 462.21 318.84
@@ -9560,8 +11046,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.71 0.71 0.0 0 0 462.29 321.87
   A 0.71 0.71 0.0 0 0 463.00 321.16
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 691.93 326.75
   Q 692.31 328.43 694.63 328.79
   A 1.58 1.56 39.4 0 0 695.39 328.72
@@ -9586,8 +11074,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 692.02 323.90
   A 0.14 0.14 0.0 0 0 692.16 324.03
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 704.53 326.21
   A 0.43 0.43 0.0 0 0 704.14 326.75
   Q 704.57 328.39 706.86 328.66
@@ -9612,8 +11102,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 704.05 323.86
   A 0.15 0.15 0.0 0 0 704.20 324.01
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 740.37 331.81
   Q 742.08 332.08 743.82 333.19
   A 1.93 1.83 -22.9 0 0 744.57 333.47
@@ -9639,8 +11131,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.33 2.87 -96.1 0 0 747.8937 324.8150
   A 3.33 2.87 -96.1 0 0 744.6861 321.8089
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 440.41 332.07
   C 436.94 334.35 432.93 334.21 430.48 330.62
   Q 427.58 326.34 430.94 321.27
@@ -9685,8 +11179,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 443.79 320.68 442.74 320.79
   A 0.56 0.55 -3.7 0 0 442.25 321.34
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 651.42 324.90
   Q 649.44 324.81 647.73 326.36
   C 646.19 327.74 644.59 327.70 643.57 326.05
@@ -9697,8 +11193,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 652.61 323.71
   A 1.15 1.15 0.0 0 1 651.42 324.90
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 661.96 322.95
   Q 661.53 322.98 659.20 321.95
   C 658.59 321.68 657.76 321.56 657.13 321.95
@@ -9718,9 +11216,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 660.08 318.51 662.67 320.93
   A 1.17 1.17 0.0 0 1 661.96 322.95
   Z"
-/>
-<rect fill="#fdfefe" x="721.49" y="319.29" width="3.12" height="11.94" rx="0.36"/>
-<path fill="#fdfefe" d="
+      />
+      <rect fill="#fdfefe" x="721.49" y="319.29" width="3.12" height="11.94" rx="0.36" />
+      <path
+        fill="#fdfefe"
+        d="
   M 726.92 320.10
   A 0.60 0.60 0.0 0 1 727.45 319.50
   Q 728.59 319.39 729.66 319.78
@@ -9740,8 +11240,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.75 0.75 0.0 0 1 726.97 330.64
   L 726.92 320.10
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 232.45 322.15
   A 1.16 1.15 -2.3 0 1 233.70 323.30
   L 233.70 324.38
@@ -9752,8 +11254,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 225.47 319.60 227.08 319.50 228.68 320.83
   Q 230.46 322.32 232.45 322.15
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 205.81 327.14
   A 0.43 0.42 81.6 0 0 205.42 327.67
   Q 205.83 329.30 208.09 329.58
@@ -9778,8 +11282,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 205.65 324.77
   A 0.27 0.27 0.0 0 0 205.93 325.04
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 309.85 327.25
   A 0.42 0.42 0.0 0 0 309.46 327.78
   Q 309.86 329.38 312.10 329.68
@@ -9804,16 +11310,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 309.53 324.82
   A 0.15 0.15 0.0 0 0 309.68 324.97
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 770.49 321.63
   A 0.25 0.25 0.0 0 1 770.08 321.80
   Q 769.48 321.27 769.86 320.59
   A 0.39 0.38 46.3 0 1 770.54 320.61
   Q 770.55 320.64 770.49 321.63
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 188.5058 327.6423
   A 4.96 4.96 0.0 0 1 183.1402 332.1605
   L 182.1638 332.0768
@@ -9830,16 +11340,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.31 2.67 -86.7 0 0 185.9056 326.4837
   A 3.31 2.67 -86.7 0 0 183.4305 323.0255
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 240.55 321.66
   Q 240.39 321.32 240.32 320.77
   A 0.26 0.25 -78.5 0 1 240.70 320.51
   Q 241.32 320.88 241.20 321.45
   A 0.40 0.32 -56.6 0 1 240.55 321.66
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 321.15 331.99
   L 319.43 331.97
   A 0.61 0.61 0.0 0 1 318.82 331.36
@@ -9867,8 +11381,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 321.80 331.35
   A 0.65 0.65 0.0 0 1 321.15 331.99
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 347.1061 327.3760
   A 4.71 4.71 0.0 0 1 342.4707 332.1594
   L 341.2109 332.1792
@@ -9885,8 +11401,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.33 2.62 -88.2 0 0 344.4187 326.5023
   A 3.33 2.62 -88.2 0 0 341.9046 323.0916
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 354.29 323.47
   Q 353.56 323.17 352.49 323.56
   A 0.99 0.98 -10.3 0 0 351.85 324.48
@@ -9903,8 +11421,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 355.01 322.99
   A 0.52 0.52 0.0 0 1 354.29 323.47
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 361.00 328.57
   A 0.27 0.26 45.7 0 0 361.51 328.58
   L 363.49 321.29
@@ -9921,8 +11441,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.52 1.52 0.0 0 1 359.15 321.58
   L 361.00 328.57
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 394.05 323.19
   L 394.07 323.37
   A 0.77 0.77 0.0 0 1 392.99 324.14
@@ -9944,8 +11466,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 389.95 319.58 392.87 321.22
   A 2.31 2.29 14.3 0 1 394.05 323.19
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 395.84 323.58
   L 395.84 322.60
   A 1.63 1.63 0.0 0 1 396.96 321.05
@@ -9968,8 +11492,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.97 1.48 -25.6 0 0 400.3395 329.7947
   A 1.97 1.48 -25.6 0 0 401.4766 327.6088
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 412.57 331.04
   Q 410.21 332.78 407.98 331.65
   C 405.18 330.24 405.42 325.94 406.14 323.23
@@ -9992,8 +11518,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.33 2.54 -88.4 0 0 413.2790 326.4209
   A 3.33 2.54 -88.4 0 0 410.8330 323.0213
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 425.17 328.97
   A 1.11 1.11 0.0 0 1 425.21 330.97
   Q 420.63 333.28 418.51 331.25
@@ -10016,8 +11544,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 419.55 324.99
   A 0.17 0.17 0.0 0 0 419.73 325.15
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 441.0888 327.1847
   A 4.70 4.70 0.0 0 1 436.6845 332.1629
   L 435.8261 332.2154
@@ -10034,8 +11564,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.46 2.45 -89.6 0 0 438.3099 326.4271
   A 3.46 2.45 -89.6 0 0 435.8842 322.9501
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 442.25 321.34
   A 0.56 0.55 -3.7 0 1 442.74 320.79
   Q 443.79 320.68 444.79 321.03
@@ -10055,9 +11587,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.69 0.69 0.0 0 1 442.35 331.10
   L 442.25 321.34
   Z"
-/>
-<circle fill="#448991" cx="462.29" cy="321.16" r="0.71"/>
-<path fill="#fdfefe" d="
+      />
+      <circle fill="#448991" cx="462.29" cy="321.16" r="0.71" />
+      <path
+        fill="#fdfefe"
+        d="
   M 473.1148 320.4313
   A 5.96 5.19 -88.8 0 1 478.1789 326.4987
   A 5.96 5.19 -88.8 0 1 472.8652 332.3487
@@ -10070,8 +11604,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.48 2.49 -90.3 0 0 475.5100 326.4170
   A 3.48 2.49 -90.3 0 0 473.0018 322.9500
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 498.80 323.19
   L 498.82 323.37
   A 0.77 0.77 0.0 0 1 497.75 324.14
@@ -10093,8 +11629,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 494.71 319.62 497.62 321.24
   A 2.30 2.28 14.1 0 1 498.80 323.19
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 692.16 324.03
   A 0.14 0.14 0.0 0 1 692.02 323.90
   L 692.02 323.83
@@ -10105,8 +11643,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.14 0.14 0.0 0 1 696.86 323.93
   L 692.16 324.03
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 704.20 324.01
   A 0.15 0.15 0.0 0 1 704.05 323.86
   L 704.05 323.80
@@ -10117,8 +11657,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.15 0.15 0.0 0 1 709.06 323.91
   L 704.20 324.01
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 744.6861 321.8089
   A 3.33 2.87 -96.1 0 1 747.8937 324.8150
   A 3.33 2.87 -96.1 0 1 745.3939 328.4311
@@ -10131,8 +11673,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.75 0.88 -94.8 0 0 745.9769 324.8964
   A 1.75 0.88 -94.8 0 0 744.9536 323.2261
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 826.2101 322.5490
   A 4.44 3.82 -84.7 0 1 829.6037 327.3229
   A 4.44 3.82 -84.7 0 1 825.3899 331.3910
@@ -10145,8 +11689,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.28 1.23 -87.1 0 0 827.0884 326.9822
   A 2.28 1.23 -87.1 0 0 825.9754 324.6429
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 183.4305 323.0255
   A 3.31 2.67 -86.7 0 1 185.9056 326.4837
   A 3.31 2.67 -86.7 0 1 183.0495 329.6345
@@ -10161,8 +11707,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.51 0.50 -4.7 0 0 182.45 325.52
   L 182.96 327.44
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 195.2831 322.9609
   A 3.39 2.63 -91.3 0 1 197.9893 326.2903
   A 3.39 2.63 -91.3 0 1 195.4369 329.7391
@@ -10175,8 +11723,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 194.59 326.03 195.07 327.45
   A 0.27 0.27 0.0 0 0 195.60 327.36
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 205.93 325.04
   A 0.27 0.27 0.0 0 1 205.65 324.77
   L 205.65 324.60
@@ -10187,8 +11737,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.27 0.27 0.0 0 1 210.05 324.92
   L 205.93 325.04
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 309.68 324.97
   A 0.15 0.15 0.0 0 1 309.53 324.82
   L 309.54 324.74
@@ -10199,8 +11751,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.15 0.15 0.0 0 1 314.11 325.17
   L 309.68 324.97
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 341.9046 323.0916
   A 3.33 2.62 -88.2 0 1 344.4187 326.5023
   A 3.33 2.62 -88.2 0 1 341.6954 329.7484
@@ -10213,8 +11767,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 341.56 326.39 341.86 327.22
   A 0.17 0.17 0.0 0 0 342.19 327.17
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 410.8330 323.0213
   A 3.33 2.54 -88.4 0 1 413.2790 326.4209
   A 3.33 2.54 -88.4 0 1 410.6470 329.6787
@@ -10227,8 +11783,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.42 0.76 -88.7 0 0 411.5298 326.2472
   A 1.42 0.76 -88.7 0 0 410.8022 324.8104
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 419.73 325.15
   A 0.17 0.17 0.0 0 1 419.55 324.99
   L 419.55 324.95
@@ -10239,8 +11797,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.17 0.17 0.0 0 1 423.21 324.99
   L 419.73 325.15
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 435.8842 322.9501
   A 3.46 2.45 -89.6 0 1 438.3099 326.4271
   A 3.46 2.45 -89.6 0 1 435.8358 329.8699
@@ -10253,8 +11813,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 436.32 326.54 435.99 326.17
   A 0.25 0.25 0.0 0 0 435.56 326.34
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 473.0018 322.9500
   A 3.48 2.49 -90.3 0 1 475.5100 326.4170
   A 3.48 2.49 -90.3 0 1 473.0382 329.9100
@@ -10267,8 +11829,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 472.60 325.54 472.87 327.44
   A 0.24 0.24 0.0 0 0 473.32 327.52
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 484.1434 323.0404
   A 3.40 2.39 -89.1 0 1 486.4797 326.4775
   A 3.40 2.39 -89.1 0 1 484.0366 329.8396
@@ -10281,17 +11845,28 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.58 0.70 -91.5 0 0 484.7098 326.5217
   A 1.58 0.70 -91.5 0 0 483.9686 324.9605
   Z"
-/>
-<ellipse fill="#448991" cx="0.00" cy="0.00" transform="translate(745.10,324.97) rotate(-94.8)" rx="1.75" ry="0.88"/>
-<path fill="#448991" d="
+      />
+      <ellipse
+        fill="#448991"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(745.10,324.97) rotate(-94.8)"
+        rx="1.75"
+        ry="0.88"
+      />
+      <path
+        fill="#448991"
+        d="
   M 719.47 323.56
   A 0.09 0.09 0.0 0 1 719.63 323.60
   Q 719.64 323.79 719.52 323.88
   A 0.08 0.06 38.0 0 1 719.45 323.88
   Q 719.31 323.78 719.47 323.56
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 276.10 327.77
   A 0.64 0.64 0.0 0 1 276.08 328.67
   L 275.94 328.81
@@ -10302,8 +11877,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.64 0.64 0.0 0 1 273.22 324.75
   L 276.10 327.77
   Z"
-/>
-<path fill="#36ada4" d="
+      />
+      <path
+        fill="#36ada4"
+        d="
   M 182.96 327.44
   L 182.45 325.52
   A 0.51 0.50 -4.7 0 1 182.99 324.89
@@ -10312,52 +11889,92 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 183.41 327.40
   A 0.23 0.23 0.0 0 1 182.96 327.44
   Z"
-/>
-<ellipse fill="#448991" cx="0.00" cy="0.00" transform="translate(410.77,326.23) rotate(-88.7)" rx="1.42" ry="0.76"/>
-<ellipse fill="#000104" cx="0.00" cy="0.00" transform="translate(825.86,326.92) rotate(-87.1)" rx="2.28" ry="1.23"/>
-<path fill="#448991" d="
+      />
+      <ellipse
+        fill="#448991"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(410.77,326.23) rotate(-88.7)"
+        rx="1.42"
+        ry="0.76"
+      />
+      <ellipse
+        fill="#000104"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(825.86,326.92) rotate(-87.1)"
+        rx="2.28"
+        ry="1.23"
+      />
+      <path
+        fill="#448991"
+        d="
   M 472.87 327.44
   Q 472.60 325.54 472.74 325.29
   A 0.39 0.39 0.0 0 1 473.46 325.47
   Q 473.51 327.17 473.32 327.52
   A 0.24 0.24 0.0 0 1 472.87 327.44
   Z"
-/>
-<ellipse fill="#213249" cx="0.00" cy="0.00" transform="translate(484.01,326.54) rotate(-91.5)" rx="1.58" ry="0.70"/>
-<path fill="#43cec5" d="
+      />
+      <ellipse
+        fill="#213249"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(484.01,326.54) rotate(-91.5)"
+        rx="1.58"
+        ry="0.70"
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 195.60 327.36
   A 0.27 0.27 0.0 0 1 195.07 327.45
   Q 194.59 326.03 195.04 325.45
   A 0.31 0.31 0.0 0 1 195.60 325.64
   L 195.60 327.36
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 341.86 327.22
   Q 341.56 326.39 341.57 325.63
   A 0.36 0.36 0.0 0 1 342.18 325.38
   Q 342.33 325.53 342.19 327.17
   A 0.17 0.17 0.0 0 1 341.86 327.22
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 435.99 326.17
   Q 436.32 326.54 436.22 327.57
   A 0.25 0.25 0.0 0 1 435.73 327.62
   Q 435.57 327.12 435.56 326.34
   A 0.25 0.25 0.0 0 1 435.99 326.17
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 763.75 326.46
   Q 764.22 326.41 764.56 326.64
   A 0.17 0.17 0.0 0 1 764.51 326.94
   Q 764.19 327.03 763.71 326.89
   A 0.22 0.22 0.0 0 1 763.75 326.46
   Z"
-/>
-<ellipse fill="#000104" cx="0.00" cy="0.00" transform="translate(399.70,328.46) rotate(-25.6)" rx="1.97" ry="1.48"/>
-<path fill="#0c0e2c" d="
+      />
+      <ellipse
+        fill="#000104"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(399.70,328.46) rotate(-25.6)"
+        rx="1.97"
+        ry="1.48"
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 777.38 528.62
   Q 776.60 528.97 775.67 530.05
   A 2.81 2.77 -83.5 0 1 774.90 530.67
@@ -10391,8 +12008,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 715.23 546.61 745.48 540.18
   Q 762.78 536.50 777.18 527.53
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 725.80 347.02
   Q 726.37 349.73 726.30 352.50
   Q 726.10 361.40 726.01 370.54
@@ -10406,8 +12025,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 635.85 512.27 611.76 451.15 637.07 400.77
   C 654.15 366.78 687.69 346.20 725.80 347.02
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 777.18 527.53
   L 768.57 504.88
   Q 771.66 502.12 775.14 499.40
@@ -10424,8 +12045,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 822.59 485.22 796.83 511.83
   Q 788.23 520.70 777.18 527.53
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 147.13 358.69
   Q 147.97 358.09 150.29 358.60
   A 1.34 1.33 75.2 0 1 151.04 359.04
@@ -10450,8 +12073,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 146.58 357.80 146.60 358.43
   A 0.34 0.33 -18.4 0 0 147.13 358.69
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 164.3031 363.2142
   A 4.55 4.55 0.0 0 1 159.7215 367.7323
   L 159.0015 367.7273
@@ -10468,10 +12093,19 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.77 2.31 -90.0 0 0 161.7400 360.9100
   A 4.77 2.31 -90.0 0 0 159.4300 356.1400
   Z"
-/>
-<ellipse fill="#0c0e2c" cx="0.00" cy="0.00" transform="translate(159.43,360.91) rotate(-90.0)" rx="4.77" ry="2.31"/>
-<rect fill="#494b4c" x="190.86" y="361.59" width="302.80" height="1.60" rx="0.73"/>
-<path fill="#0c0e2c" d="
+      />
+      <ellipse
+        fill="#0c0e2c"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(159.43,360.91) rotate(-90.0)"
+        rx="4.77"
+        ry="2.31"
+      />
+      <rect fill="#494b4c" x="190.86" y="361.59" width="302.80" height="1.60" rx="0.73" />
+      <path
+        fill="#0c0e2c"
+        d="
   M 726.01 370.54
   Q 731.17 370.85 736.30 371.34
   Q 748.08 372.46 758.81 377.66
@@ -10499,8 +12133,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 760.27 508.60 762.98 506.74 764.99 505.50
   Q 767.38 504.04 769.92 501.81
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 764.99 505.50
   C 762.98 506.74 760.27 508.60 757.91 509.68
   C 742.97 516.47 725.95 519.11 709.73 515.27
@@ -10607,8 +12243,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 763.84 456.94 764.21 457.47
   Q 764.46 457.82 764.75 457.46
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 384.76 400.08
   L 361.46 399.97
   L 361.57 380.23
@@ -10617,8 +12255,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.51 0.51 0.0 0 1 384.84 380.26
   L 384.76 400.08
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 217.25 404.15
   L 194.67 403.69
   A 1.21 1.17 34.6 0 0 194.19 403.77
@@ -10629,8 +12269,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.38 0.37 0.0 0 1 217.46 384.57
   L 217.25 404.15
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 286.19 410.87
   L 263.47 410.56
   Q 263.69 411.39 262.84 410.49
@@ -10640,8 +12282,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.47 0.46 -90.0 0 1 286.33 394.10
   L 286.19 410.87
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 164.08 406.58
   A 4.36 4.36 0.0 0 1 159.72 410.94
   L 159.04 410.94
@@ -10662,8 +12306,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.88 1.88 0.0 0 0 161.3755 406.7235
   L 161.3845 401.6035
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 148.65 408.14
   L 144.03 408.14
   A 0.98 0.97 -79.3 0 1 143.13 406.81
@@ -10687,9 +12333,19 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 149.53 401.19 149.33 400.69
   A 0.25 0.25 0.0 0 0 148.85 400.71
   Z"
-/>
-<rect fill="#18283a" x="-1.99" y="-4.44" transform="translate(159.39,404.16) rotate(0.1)" width="3.98" height="8.88" rx="1.88"/>
-<path fill="#448991" d="
+      />
+      <rect
+        fill="#18283a"
+        x="-1.99"
+        y="-4.44"
+        transform="translate(159.39,404.16) rotate(0.1)"
+        width="3.98"
+        height="8.88"
+        rx="1.88"
+      />
+      <path
+        fill="#448991"
+        d="
   M 384.76 400.08
   L 384.74 433.15
   L 363.73 433.14
@@ -10698,8 +12354,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 361.46 399.97
   L 384.76 400.08
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 149.33 400.69
   Q 149.53 401.19 149.05 405.53
   A 0.61 0.60 -86.8 0 1 148.45 406.07
@@ -10708,10 +12366,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 148.19 402.93 148.85 400.71
   A 0.25 0.25 0.0 0 1 149.33 400.69
   Z"
-/>
-<rect fill="#494b4c" x="-35.22" y="-1.15" transform="translate(324.50,404.50) rotate(-0.1)" width="70.44" height="2.30" rx="1.13"/>
-<rect fill="#494b4c" x="386.61" y="403.42" width="107.84" height="2.18" rx="1.08"/>
-<path fill="#494b4c" d="
+      />
+      <rect
+        fill="#494b4c"
+        x="-35.22"
+        y="-1.15"
+        transform="translate(324.50,404.50) rotate(-0.1)"
+        width="70.44"
+        height="2.30"
+        rx="1.13"
+      />
+      <rect fill="#494b4c" x="386.61" y="403.42" width="107.84" height="2.18" rx="1.08" />
+      <path
+        fill="#494b4c"
+        d="
   M 219.14 403.76
   A 0.29 0.29 0.0 0 1 219.43 403.47
   L 249.43 403.42
@@ -10722,8 +12390,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 1 219.14 405.04
   L 219.14 403.76
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 217.25 404.15
   Q 217.67 407.01 216.97 408.18
   L 216.42 441.02
@@ -10738,8 +12408,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.21 1.17 34.6 0 1 194.67 403.69
   L 217.25 404.15
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 216.97 408.18
   L 217.41 466.83
   L 192.58 467.22
@@ -10752,8 +12424,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.82 0.82 0.0 0 0 216.42 441.02
   L 216.97 408.18
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 286.19 410.87
   Q 286.07 411.13 285.95 411.39
   Q 284.90 428.23 285.11 445.00
@@ -10764,8 +12438,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 263.47 410.56
   L 286.19 410.87
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 262.84 410.49
   Q 263.69 411.39 263.47 410.56
   L 263.89 451.06
@@ -10778,8 +12454,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 262.99 470.46
   L 262.84 410.49
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 351.70 431.84
   L 329.15 431.81
   L 329.24 416.69
@@ -10788,8 +12466,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.57 0.57 0.0 0 1 351.64 416.70
   L 351.70 431.84
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 417.40 438.21
   Q 416.89 438.83 416.18 438.33
   A 0.74 0.74 0.0 0 0 415.76 438.20
@@ -10803,8 +12483,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.39 -90.0 0 1 417.41 422.41
   L 417.40 438.21
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 676.85 447.43
   Q 669.49 444.61 669.36 436.57
   C 669.21 427.39 675.72 421.63 684.95 423.37
@@ -10832,8 +12514,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 682.50 448.29 687.20 444.86
   A 0.29 0.29 0.0 0 1 687.65 445.15
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 720.93 453.01
   L 720.93 455.87
   A 2.87 2.86 -90.0 0 1 718.07 458.74
@@ -10875,8 +12559,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.36 0.0 0 0 719.08 451.89
   L 706.60 451.89
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 729.50 450.19
   Q 727.25 451.09 724.97 450.86
   A 0.91 0.90 8.4 0 0 723.99 451.58
@@ -10937,8 +12623,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.34 0.34 0.0 0 0 747.24 457.43
   L 752.38 457.43
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 687.65 445.15
   A 0.29 0.29 0.0 0 0 687.20 444.86
   Q 682.50 448.29 677.04 446.19
@@ -10960,8 +12648,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.77 5.18 -81.7 0 0 687.2157 436.4578
   A 5.77 5.18 -81.7 0 0 682.9229 430.0004
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 706.60 451.89
   L 719.08 451.89
   A 0.37 0.36 -0.0 0 1 719.45 452.25
@@ -10982,8 +12672,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 711.23 447.64 706.39 451.26
   A 0.35 0.35 0.0 0 0 706.60 451.89
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 746.90 457.09
   L 746.90 451.91
   A 0.65 0.64 -90.0 0 0 746.26 451.26
@@ -11015,8 +12707,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.44 0.44 0.0 0 0 746.98 445.50
   L 746.98 433.36
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 318.72 440.10
   L 297.37 440.24
   L 296.84 439.98
@@ -11026,8 +12720,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.53 0.53 0.0 0 1 318.79 426.41
   L 318.72 440.10
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 252.19 441.59
   Q 251.65 441.91 251.33 441.76
   L 227.99 441.60
@@ -11037,8 +12733,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.62 90.0 0 1 252.20 427.64
   L 252.19 441.59
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 682.9229 430.0004
   A 5.77 5.18 -81.7 0 1 687.2157 436.4578
   A 5.77 5.18 -81.7 0 1 681.2571 441.4196
@@ -11051,8 +12749,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.45 3.86 -88.3 0 0 685.9983 435.8545
   A 4.45 3.86 -88.3 0 0 682.2720 431.2920
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 482.37 446.92
   Q 481.79 446.75 481.39 446.88
   L 461.63 446.24
@@ -11065,8 +12765,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.64 0.63 0.4 0 1 482.50 431.74
   L 482.37 446.92
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 384.74 433.15
   L 384.76 467.87
   L 361.66 467.83
@@ -11075,9 +12777,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.80 0.78 76.7 0 0 363.73 433.14
   L 384.74 433.15
   Z"
-/>
-<ellipse fill="#213249" cx="0.00" cy="0.00" transform="translate(682.14,435.74) rotate(-88.3)" rx="4.45" ry="3.86"/>
-<path fill="#000104" d="
+      />
+      <ellipse
+        fill="#213249"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(682.14,435.74) rotate(-88.3)"
+        rx="4.45"
+        ry="3.86"
+      />
+      <path
+        fill="#000104"
+        d="
   M 782.63 433.06
   Q 779.76 432.45 778.67 434.17
   Q 774.06 441.44 764.75 457.46
@@ -11100,16 +12811,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.72 6.10 -79.8 0 0 772.5936 440.9702
   A 6.72 6.10 -79.8 0 0 767.7800 433.2762
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 351.70 431.84
   L 351.84 455.13
   L 329.16 454.76
   L 329.15 431.81
   L 351.70 431.84
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 746.98 433.36
   L 746.98 445.50
   A 0.44 0.44 0.0 0 1 746.54 445.94
@@ -11126,8 +12841,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 744.93 440.40 745.89 437.81
   A 0.30 0.30 0.0 0 0 745.38 437.51
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 782.63 433.06
   L 783.10 433.62
   Q 776.34 445.16 769.32 456.60
@@ -11136,8 +12853,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 774.06 441.44 778.67 434.17
   Q 779.76 432.45 782.63 433.06
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 767.7800 433.2762
   A 6.72 6.10 -79.8 0 1 772.5936 440.9702
   A 6.72 6.10 -79.8 0 1 765.4000 446.5038
@@ -11150,8 +12869,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.76 1.76 -87.4 0 0 768.3182 439.9698
   A 3.76 1.76 -87.4 0 0 766.7306 436.1339
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 783.10 433.62
   Q 783.36 433.56 783.75 433.75
   Q 784.64 434.20 783.41 435.95
@@ -11173,9 +12894,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.56 5.92 -86.0 0 0 786.9956 451.9830
   A 6.56 5.92 -86.0 0 0 781.5476 445.0260
   Z"
-/>
-<ellipse fill="#000104" cx="0.00" cy="0.00" transform="translate(766.56,439.89) rotate(-87.4)" rx="3.76" ry="1.76"/>
-<path fill="#213249" d="
+      />
+      <ellipse
+        fill="#000104"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(766.56,439.89) rotate(-87.4)"
+        rx="3.76"
+        ry="1.76"
+      />
+      <path
+        fill="#213249"
+        d="
   M 745.38 437.51
   A 0.30 0.30 0.0 0 1 745.89 437.81
   Q 744.93 440.40 745.28 443.76
@@ -11184,8 +12914,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.45 0.44 13.7 0 1 741.73 443.81
   Q 744.38 438.67 745.38 437.51
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 395.63 438.67
   L 395.54 456.37
   A 1.38 1.38 0.0 0 0 396.92 457.76
@@ -11198,8 +12930,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 394.65 437.95
   Q 394.97 438.97 395.63 438.67
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 417.40 438.21
   Q 417.25 438.31 417.42 438.73
   Q 416.59 438.63 416.54 440.75
@@ -11214,8 +12948,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.74 0.0 0 1 416.18 438.33
   Q 416.89 438.83 417.40 438.21
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 318.72 440.10
   Q 319.08 440.83 318.94 441.79
   L 318.46 441.88
@@ -11227,8 +12963,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 297.37 440.24
   L 318.72 440.10
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 297.37 440.24
   L 297.46 456.77
   A 1.96 1.95 -0.1 0 0 299.42 458.71
@@ -11242,8 +12980,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 296.84 439.98
   L 297.37 440.24
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 251.33 441.76
   L 251.54 454.51
   A 0.59 0.59 0.0 0 1 250.95 455.11
@@ -11255,8 +12995,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 227.99 441.60
   L 251.33 441.76
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 252.19 441.59
   L 252.38 474.11
   L 227.93 474.08
@@ -11270,8 +13012,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 251.33 441.76
   Q 251.65 441.91 252.19 441.59
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 146.68 454.27
   L 152.00 454.27
   A 0.65 0.65 0.0 0 1 152.64 455.04
@@ -11289,8 +13033,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 153.15 451.29 146.59 453.72
   A 0.29 0.28 -54.8 0 0 146.68 454.27
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 164.2830 451.9723
   A 4.48 4.48 0.0 0 1 159.8660 456.5144
   L 159.1661 456.5242
@@ -11307,8 +13053,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.62 2.11 -91.0 0 0 161.5697 449.5932
   A 4.62 2.11 -91.0 0 0 159.3794 445.0107
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 781.5476 445.0260
   A 6.56 5.92 -86.0 0 1 786.9956 451.9830
   A 6.56 5.92 -86.0 0 1 780.6324 458.1140
@@ -11321,9 +13069,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.58 1.94 -88.3 0 0 782.8991 451.6776
   A 3.58 1.94 -88.3 0 0 781.0662 448.0416
   Z"
-/>
-<ellipse fill="#0c0e2c" cx="0.00" cy="0.00" transform="translate(159.46,449.63) rotate(-91.0)" rx="4.62" ry="2.11"/>
-<path fill="#448991" d="
+      />
+      <ellipse
+        fill="#0c0e2c"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(159.46,449.63) rotate(-91.0)"
+        rx="4.62"
+        ry="2.11"
+      />
+      <path
+        fill="#448991"
+        d="
   M 481.39 446.88
   L 481.65 459.29
   A 0.98 0.98 0.0 0 1 480.67 460.29
@@ -11334,8 +13091,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.08 1.04 -64.5 0 1 461.63 446.24
   L 481.39 446.88
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 450.19 459.22
   L 449.60 459.26
   Q 449.08 458.70 448.06 458.67
@@ -11346,8 +13105,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 1 450.02 447.34
   L 450.19 459.22
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 460.59 446.79
   L 460.90 459.76
   A 0.54 0.54 0.0 0 0 461.44 460.29
@@ -11360,9 +13121,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 459.83 446.77
   Q 460.36 446.64 460.59 446.79
   Z"
-/>
-<ellipse fill="#000104" cx="0.00" cy="0.00" transform="translate(780.96,451.62) rotate(-88.3)" rx="3.58" ry="1.94"/>
-<path fill="#fdfefe" d="
+      />
+      <ellipse
+        fill="#000104"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(780.96,451.62) rotate(-88.3)"
+        rx="3.58"
+        ry="1.94"
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 729.50 450.19
   Q 729.79 450.13 730.39 450.91
   L 726.59 459.69
@@ -11373,16 +13143,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.91 0.90 8.4 0 1 724.97 450.86
   Q 727.25 451.09 729.50 450.19
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 351.84 455.13
   L 351.77 474.95
   L 329.18 474.92
   L 329.16 454.76
   L 351.84 455.13
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 449.60 459.26
   L 449.55 464.40
   A 1.43 1.43 0.0 0 1 448.18 465.82
@@ -11391,8 +13165,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 437.63 458.43 448.06 458.67
   Q 449.08 458.70 449.60 459.26
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 450.19 459.22
   L 450.04 479.72
   L 427.21 479.17
@@ -11402,8 +13178,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 449.60 459.26
   L 450.19 459.22
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 217.41 466.83
   L 217.39 491.82
   A 0.55 0.55 0.0 0 1 216.84 492.37
@@ -11412,8 +13190,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 192.58 467.22
   L 217.41 466.83
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 384.76 467.87
   L 384.75 491.86
   A 0.43 0.43 0.0 0 1 384.32 492.29
@@ -11422,8 +13202,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 361.66 467.83
   L 384.76 467.87
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 286.20 470.54
   L 286.17 491.84
   A 0.50 0.49 -90.0 0 1 285.68 492.34
@@ -11432,8 +13214,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 262.99 470.46
   L 286.20 470.54
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 252.38 474.11
   L 252.29 491.86
   A 0.50 0.50 0.0 0 1 251.79 492.36
@@ -11442,8 +13226,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 227.93 474.08
   L 252.38 474.11
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 351.77 474.95
   L 351.67 491.85
   A 0.53 0.52 -89.4 0 1 351.15 492.37
@@ -11452,8 +13238,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 329.18 474.92
   L 351.77 474.95
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 417.54 477.14
   L 417.36 491.85
   A 0.52 0.52 0.0 0 1 416.84 492.36
@@ -11462,8 +13250,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 394.64 476.99
   L 417.54 477.14
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 318.87 477.98
   L 318.79 491.85
   A 0.54 0.54 0.0 0 1 318.25 492.38
@@ -11472,8 +13262,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 296.81 477.99
   L 318.87 477.98
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 450.04 479.72
   L 449.97 491.86
   A 0.52 0.52 0.0 0 1 449.45 492.37
@@ -11482,8 +13274,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 427.21 479.17
   L 450.04 479.72
   Z"
-/>
-<path fill="#f69d2d" d="
+      />
+      <path
+        fill="#f69d2d"
+        d="
   M 482.55 480.01
   L 482.57 491.86
   A 0.51 0.51 0.0 0 1 482.06 492.37
@@ -11492,8 +13286,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 459.80 479.97
   L 482.55 480.01
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 164.2284 494.1977
   A 4.47 4.47 0.0 0 1 159.8530 498.7603
   L 159.0731 498.7767
@@ -11514,9 +13310,19 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.88 1.88 0.0 0 0 161.3892 494.4683
   L 161.3103 489.4489
   Z"
-/>
-<rect fill="#0c0e2c" x="-2.00" y="-4.39" transform="translate(159.35,491.99) rotate(-0.9)" width="4.00" height="8.78" rx="1.88"/>
-<path fill="#213249" d="
+      />
+      <rect
+        fill="#0c0e2c"
+        x="-2.00"
+        y="-4.39"
+        transform="translate(159.35,491.99) rotate(-0.9)"
+        width="4.00"
+        height="8.78"
+        rx="1.88"
+      />
+      <path
+        fill="#213249"
+        d="
   M 132.54 753.18
   A 1.70 1.68 86.1 0 1 131.38 752.16
   Q 129.53 747.36 129.40 741.91
@@ -11959,8 +13765,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 490.63 722.89 492.81 721.92 494.07 721.04
   A 2.02 2.02 0.0 0 0 493.43 717.44
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 368.00 569.71
   Q 363.59 560.07 368.06 550.69
   A 0.54 0.54 0.0 0 0 367.43 549.93
@@ -12060,8 +13868,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 399.49 561.36 400.37 560.81 400.92 560.77
   A 0.44 0.44 0.0 0 1 401.38 561.31
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 237.10 565.49
   Q 237.14 568.68 232.53 567.78
   A 1.32 1.32 0.0 0 0 231.09 568.51
@@ -12161,8 +13971,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 225.44 565.98 226.70 565.64
   A 0.45 0.45 0.0 0 1 227.27 566.12
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 347.05 563.34
   Q 342.97 570.92 335.50 566.28
   A 0.72 0.71 35.3 0 0 334.58 566.43
@@ -12348,8 +14160,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 351.85 562.42
   A 0.32 0.32 0.0 0 1 351.24 562.42
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 405.77 570.01
   A 0.78 0.78 0.0 0 1 405.06 568.88
   Q 409.60 560.02 404.95 550.57
@@ -12360,8 +14174,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.72 1.72 0.0 0 1 406.28 570.00
   L 405.77 570.01
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 368.00 569.71
   Q 367.38 570.12 366.97 570.04
   L 366.02 569.59
@@ -12372,8 +14188,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 1 368.06 550.69
   Q 363.59 560.07 368.00 569.71
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 243.78 565.66
   A 0.85 0.85 0.0 0 1 243.04 566.93
   L 242.61 566.93
@@ -12401,8 +14219,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 235.72 553.44
   A 0.40 0.40 0.0 0 0 235.32 553.84
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 249.76 561.22
   A 0.72 0.71 -0.9 0 0 249.08 561.93
   L 249.05 565.73
@@ -12425,8 +14245,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 249.58 553.66
   A 0.58 0.58 0.0 0 0 249.01 554.25
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 258.70 558.87
   C 258.64 554.05 261.40 550.45 266.54 550.73
   Q 270.83 550.96 272.09 554.86
@@ -12439,8 +14261,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 271.01 566.49 266.73 566.81
   C 261.60 567.21 258.75 563.68 258.70 558.87
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 289.61 563.63
   A 0.51 0.51 0.0 0 1 290.13 564.14
   L 290.15 566.09
@@ -12455,8 +14279,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.56 0.56 0.0 0 0 283.63 563.82
   L 289.61 563.63
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 388.69 560.09
   Q 388.37 560.23 387.85 560.89
   C 386.91 562.09 384.16 561.19 383.15 560.60
@@ -12482,8 +14308,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.58 2.40 -96.6 0 0 389.1741 556.0142
   A 2.58 2.40 -96.6 0 0 386.4935 553.7271
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 373.61 561.30
   A 0.70 0.70 0.0 0 0 372.94 562.01
   L 372.96 565.75
@@ -12506,8 +14334,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 373.32 553.64
   A 0.41 0.41 0.0 0 0 372.92 554.06
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 400.92 560.77
   C 400.37 560.81 399.49 561.36 398.69 561.39
   Q 393.74 561.58 393.83 555.97
@@ -12526,8 +14356,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.73 2.32 -93.0 0 0 401.0068 556.2686
   A 2.73 2.32 -93.0 0 0 398.5471 553.6637
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 308.99 554.93
   A 1.10 1.10 0.0 0 1 310.09 556.00
   Q 310.15 557.76 307.80 557.34
@@ -12554,8 +14386,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.61 0.61 0.0 0 0 307.69 554.93
   L 308.99 554.93
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 235.32 553.84
   A 0.40 0.40 0.0 0 1 235.72 553.44
   L 237.85 553.42
@@ -12572,8 +14406,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 238.11 555.88
   A 0.27 0.27 0.0 0 0 237.96 555.36
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 249.01 554.25
   A 0.58 0.58 0.0 0 1 249.58 553.66
   L 251.63 553.62
@@ -12590,8 +14426,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 251.90 556.56 252.18 556.29
   A 0.35 0.34 -63.0 0 0 251.99 555.70
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 372.92 554.06
   A 0.41 0.41 0.0 0 1 373.32 553.64
   L 374.45 553.63
@@ -12608,8 +14446,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.61 0.61 0.0 0 0 375.19 556.65
   A 0.61 0.61 0.0 0 0 375.80 556.04
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 386.4935 553.7271
   A 2.58 2.40 -96.6 0 1 389.1741 556.0142
   A 2.58 2.40 -96.6 0 1 387.0865 558.8529
@@ -12621,8 +14461,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 387.22 555.54 386.87 555.71
   A 0.55 0.49 -55.1 0 0 386.99 556.71
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 398.5471 553.6637
   A 2.73 2.32 -93.0 0 1 401.0068 556.2686
   A 2.73 2.32 -93.0 0 1 398.8329 559.1163
@@ -12635,8 +14477,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 399.28 556.64 398.66 555.75
   A 0.18 0.18 0.0 0 0 398.34 555.85
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 293.57 558.69
   A 0.83 0.83 0.0 0 1 292.43 558.39
   L 292.12 557.85
@@ -12659,8 +14503,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.36 1.28 -18.8 0 0 296.7125 564.0217
   A 2.36 1.28 -18.8 0 0 298.5341 562.0495
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 314.13 561.72
   A 0.43 0.43 0.0 0 0 313.73 562.26
   Q 314.15 563.91 316.44 564.20
@@ -12685,8 +14531,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 313.90 559.37
   A 0.16 0.16 0.0 0 0 314.06 559.53
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 344.83 562.54
   L 344.88 562.58
   A 1.26 1.25 37.4 0 1 345.13 564.43
@@ -12701,8 +14549,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 341.47 564.37 342.70 562.85
   A 1.60 1.59 36.6 0 1 344.83 562.54
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 226.70 565.64
   Q 225.44 565.98 224.30 566.31
   C 222.39 566.88 219.64 565.40 218.96 563.58
@@ -12725,8 +14575,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.41 2.80 -87.2 0 0 227.1467 560.7968
   A 3.41 2.80 -87.2 0 0 224.5166 557.2541
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 323.10 555.55
   A 0.59 0.59 0.0 0 1 323.63 554.97
   Q 324.75 554.87 325.79 555.26
@@ -12746,8 +14598,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.74 0.0 0 1 323.06 565.90
   L 323.10 555.55
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 351.24 562.42
   A 0.32 0.32 0.0 0 0 351.85 562.42
   L 353.51 556.22
@@ -12765,40 +14619,50 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.65 1.62 0.1 0 1 349.60 556.34
   L 351.24 562.42
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 237.96 555.36
   A 0.27 0.27 0.0 0 1 238.11 555.88
   L 237.71 556.06
   A 0.22 0.22 0.0 0 1 237.47 555.69
   Q 237.85 555.36 237.96 555.36
   Z"
-/>
-<circle fill="#36ada4" cx="375.19" cy="556.04" r="0.61"/>
-<path fill="#448991" d="
+      />
+      <circle fill="#36ada4" cx="375.19" cy="556.04" r="0.61" />
+      <path
+        fill="#448991"
+        d="
   M 252.18 556.29
   Q 251.90 556.56 250.69 556.24
   A 0.26 0.26 0.0 0 1 250.65 555.75
   Q 251.06 555.57 251.99 555.70
   A 0.35 0.34 -63.0 0 1 252.18 556.29
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 386.99 556.71
   A 0.55 0.49 -55.1 0 1 386.87 555.71
   Q 387.22 555.54 387.30 555.99
   Q 387.41 556.71 386.99 556.71
   Z"
-/>
-<path fill="#494b4c" d="
+      />
+      <path
+        fill="#494b4c"
+        d="
   M 398.34 555.85
   A 0.18 0.18 0.0 0 1 398.66 555.75
   Q 399.28 556.64 398.68 556.84
   A 0.26 0.26 0.0 0 1 398.34 556.59
   L 398.34 555.85
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 224.5166 557.2541
   A 3.41 2.80 -87.2 0 1 227.1467 560.7968
   A 3.41 2.80 -87.2 0 1 224.1834 564.0659
@@ -12811,8 +14675,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.56 1.04 -85.6 0 0 225.3269 560.6898
   A 1.56 1.04 -85.6 0 0 224.4097 559.0546
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 314.06 559.53
   A 0.16 0.16 0.0 0 1 313.90 559.37
   L 313.89 559.27
@@ -12823,10 +14689,26 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.16 0.16 0.0 0 1 318.38 559.41
   L 314.06 559.53
   Z"
-/>
-<ellipse fill="#213249" cx="0.00" cy="0.00" transform="translate(224.29,560.61) rotate(-85.6)" rx="1.56" ry="1.04"/>
-<ellipse fill="#000104" cx="0.00" cy="0.00" transform="translate(296.30,562.81) rotate(-18.8)" rx="2.36" ry="1.28"/>
-<path fill="#213249" d="
+      />
+      <ellipse
+        fill="#213249"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(224.29,560.61) rotate(-85.6)"
+        rx="1.56"
+        ry="1.04"
+      />
+      <ellipse
+        fill="#000104"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(296.30,562.81) rotate(-18.8)"
+        rx="2.36"
+        ry="1.28"
+      />
+      <path
+        fill="#213249"
+        d="
   M 893.71 752.73
   A 1.56 1.56 0.0 0 1 892.29 753.97
   Q 882.81 754.66 873.22 754.71
@@ -13628,8 +15510,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 844.08 723.42
   A 2.42 2.41 0.0 0 0 841.66 721.01
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 862.60 588.28
   C 863.76 589.97 863.19 591.79 863.44 593.78
   A 0.16 0.16 0.0 0 0 863.61 593.92
@@ -13722,8 +15606,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 874.77 590.84 875.58 591.00 876.17 591.30
   Q 878.40 592.45 878.84 592.44
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 687.32 590.77
   L 688.19 588.94
   A 2.57 2.57 0.0 0 1 690.51 587.48
@@ -13831,8 +15717,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 687.34 596.24
   A 0.32 0.32 0.0 0 1 686.72 596.24
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 563.93 600.22
   Q 563.25 601.94 560.36 601.61
   A 1.77 1.74 67.3 0 1 559.48 601.24
@@ -13900,8 +15788,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 575.40 597.76 574.98 596.09
   A 0.44 0.43 81.7 0 1 575.38 595.54
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 620.68 601.52
   Q 616.50 601.72 614.23 601.69
   Q 612.00 601.67 610.27 599.77
@@ -14008,8 +15898,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 627.70 596.12
   A 0.32 0.32 0.0 0 1 627.09 596.12
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 758.45 590.62
   L 758.41 595.49
   A 0.27 0.23 -75.2 0 0 758.51 595.70
@@ -14354,8 +16246,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 834.68 595.52
   A 0.44 0.44 0.0 0 0 835.54 595.66
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 881.34 583.67
   L 881.84 583.67
   A 1.70 1.69 76.3 0 1 883.32 584.57
@@ -14366,8 +16260,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 885.26 593.43 880.66 584.79
   A 0.76 0.76 0.0 0 1 881.34 583.67
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 600.61 584.05
   C 601.96 584.04 602.32 584.37 602.68 585.61
   Q 604.19 590.80 605.14 595.17
@@ -14398,9 +16294,19 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 597.12 590.85 598.55 585.64
   C 598.90 584.40 599.26 584.06 600.61 584.05
   Z"
-/>
-<rect fill="#fdfefe" x="-1.43" y="-8.14" transform="translate(667.41,592.31) rotate(-0.3)" width="2.86" height="16.28" rx="0.60"/>
-<path fill="#fdfefe" d="
+      />
+      <rect
+        fill="#fdfefe"
+        x="-1.43"
+        y="-8.14"
+        transform="translate(667.41,592.31) rotate(-0.3)"
+        width="2.86"
+        height="16.28"
+        rx="0.60"
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 856.80 583.84
   A 0.76 0.76 0.0 0 1 857.50 584.95
   Q 853.06 593.62 857.62 602.86
@@ -14411,8 +16317,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.69 1.68 -77.3 0 1 856.30 583.86
   L 856.80 583.84
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 549.9724 584.1473
   A 8.30 7.79 -92.4 0 1 558.1032 592.1138
   A 8.30 7.79 -92.4 0 1 550.6676 600.7327
@@ -14425,8 +16333,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.39 4.41 -91.4 0 0 554.6887 592.3823
   A 5.39 4.41 -91.4 0 0 550.1483 587.1016
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 639.77 584.66
   A 0.32 0.32 0.0 0 1 640.09 584.34
   L 645.51 584.37
@@ -14447,8 +16357,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 643.35 587.07
   A 0.44 0.44 0.0 0 0 642.92 587.51
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 713.03 589.46
   A 0.23 0.23 0.0 0 0 712.59 589.39
   Q 709.77 597.84 709.08 599.53
@@ -14477,8 +16389,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.69 0.68 90.0 0 1 713.03 599.96
   L 713.03 589.46
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 832.68 585.15
   Q 833.43 585.88 833.11 586.74
   Q 832.83 587.53 832.82 588.33
@@ -14507,8 +16421,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.91 0.91 0.0 0 1 830.53 585.43
   Q 831.34 585.06 832.68 585.15
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 550.1483 587.1016
   A 5.39 4.41 -91.4 0 1 554.6887 592.3823
   A 5.39 4.41 -91.4 0 1 550.4117 597.8784
@@ -14525,8 +16441,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.67 2.67 0.0 0 0 553.2305 593.5690
   L 553.1453 591.3506
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 642.92 587.51
   A 0.44 0.44 0.0 0 1 643.35 587.07
   L 644.60 587.06
@@ -14547,8 +16465,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 644.98 588.70
   A 0.72 0.72 0.0 0 0 644.28 589.44
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 844.88 592.46
   Q 844.44 592.46 842.21 591.26
   C 841.62 590.95 840.80 590.77 840.14 591.11
@@ -14568,8 +16488,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 843.33 587.90 845.73 590.50
   A 1.17 1.17 0.0 0 1 844.88 592.46
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 559.90 589.39
   A 0.60 0.59 -3.7 0 1 560.42 588.80
   Q 561.55 588.68 562.62 589.07
@@ -14589,8 +16511,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.74 0.0 0 1 560.00 599.86
   L 559.90 589.39
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 575.38 595.54
   A 0.44 0.43 81.7 0 0 574.98 596.09
   Q 575.40 597.76 577.73 598.06
@@ -14615,8 +16539,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 574.92 593.33
   A 0.11 0.11 0.0 0 0 575.03 593.44
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 611.80 592.06
   Q 611.30 590.49 612.70 589.60
   Q 615.98 587.49 619.22 588.98
@@ -14638,8 +16564,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.26 1.38 -25.8 0 0 616.6106 597.8524
   A 2.26 1.38 -25.8 0 0 618.0447 595.6264
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 627.09 596.12
   A 0.32 0.32 0.0 0 0 627.70 596.12
   L 629.38 589.98
@@ -14657,8 +16585,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.64 1.61 0.4 0 1 625.49 590.07
   L 627.09 596.12
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 657.64 595.49
   A 0.76 0.75 71.6 0 0 657.04 596.70
   C 659.16 599.53 660.64 597.34 663.03 596.91
@@ -14679,8 +16609,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 657.09 593.19
   A 0.11 0.11 0.0 0 0 657.19 593.31
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 671.65 592.55
   A 0.69 0.68 -2.6 0 1 670.75 591.74
   L 670.97 590.86
@@ -14703,8 +16635,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.15 1.03 -48.0 0 0 673.46 597.95
   C 675.68 598.82 677.07 597.97 677.20 595.54
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 686.72 596.24
   A 0.32 0.32 0.0 0 0 687.34 596.24
   L 689.04 590.01
@@ -14722,8 +16656,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.66 1.63 0.4 0 1 685.10 590.10
   L 686.72 596.24
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 721.43 595.64
   A 0.43 0.43 0.0 0 0 721.03 596.18
   Q 721.45 597.83 723.75 598.13
@@ -14748,8 +16684,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 721.01 593.41
   A 0.05 0.05 0.0 0 0 721.06 593.46
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 731.65 592.48
   A 0.70 0.69 -1.7 0 1 730.75 591.64
   L 730.99 590.75
@@ -14776,8 +16714,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 736.98 595.18
   A 0.26 0.26 0.0 0 0 736.66 595.01
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 750.47 592.33
   Q 750.03 592.35 747.72 591.24
   C 747.11 590.95 746.28 590.81 745.63 591.18
@@ -14797,8 +16737,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 748.70 587.80 751.24 590.31
   A 1.18 1.18 0.0 0 1 750.47 592.33
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 763.95 599.84
   A 0.60 0.60 0.0 0 1 763.41 600.43
   Q 762.27 600.54 761.20 600.13
@@ -14818,8 +16760,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.75 0.75 0.0 0 1 763.99 589.29
   L 763.95 599.84
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 769.75 589.41
   Q 770.63 588.26 772.22 588.42
   A 1.04 1.04 0.0 0 1 773.12 589.73
@@ -14836,8 +16780,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 768.20 588.57 769.03 589.44
   A 0.47 0.47 0.0 0 0 769.75 589.41
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 776.74 595.60
   A 0.43 0.43 0.0 0 0 776.34 596.15
   Q 776.77 597.80 779.08 598.09
@@ -14862,8 +16808,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 776.64 593.29
   A 0.11 0.11 0.0 0 0 776.75 593.40
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 786.16 599.88
   L 786.16 589.22
   A 0.46 0.46 0.0 0 1 786.61 588.76
@@ -14891,8 +16839,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 786.79 600.51
   A 0.63 0.63 0.0 0 1 786.16 599.88
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 807.68 595.51
   A 0.44 0.43 83.1 0 0 807.26 596.05
   Q 807.65 597.73 809.96 598.08
@@ -14917,8 +16867,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 807.29 593.23
   A 0.16 0.16 0.0 0 0 807.45 593.39
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 816.86 589.33
   A 0.59 0.59 0.0 0 1 817.38 588.74
   Q 818.50 588.62 819.57 589.00
@@ -14938,8 +16890,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.74 0.0 0 1 817.00 599.75
   L 816.86 589.33
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 868.80 599.75
   A 0.59 0.58 -2.8 0 1 868.27 600.33
   Q 867.16 600.43 866.11 600.03
@@ -14959,8 +16913,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.73 0.73 0.0 0 1 868.85 589.43
   L 868.80 599.75
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 878.84 592.44
   Q 878.40 592.45 876.17 591.30
   C 875.58 591.00 874.77 590.84 874.12 591.18
@@ -14980,9 +16936,19 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 877.22 587.95 879.65 590.48
   A 1.16 1.16 0.0 0 1 878.84 592.44
   Z"
-/>
-<rect fill="#213249" x="-2.87" y="-3.78" transform="translate(550.32,592.57) rotate(-2.2)" width="5.74" height="7.56" rx="2.67"/>
-<path fill="#213249" d="
+      />
+      <rect
+        fill="#213249"
+        x="-2.87"
+        y="-3.78"
+        transform="translate(550.32,592.57) rotate(-2.2)"
+        width="5.74"
+        height="7.56"
+        rx="2.67"
+      />
+      <path
+        fill="#213249"
+        d="
   M 644.28 589.44
   A 0.72 0.72 0.0 0 1 644.98 588.70
   L 645.11 588.70
@@ -14993,9 +16959,11 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.72 0.72 0.0 0 1 644.42 595.50
   L 644.28 589.44
   Z"
-/>
-<rect fill="#494b4c" x="149.50" y="589.54" width="339.22" height="1.94" rx="0.96"/>
-<path fill="#448991" d="
+      />
+      <rect fill="#494b4c" x="149.50" y="589.54" width="339.22" height="1.94" rx="0.96" />
+      <path
+        fill="#448991"
+        d="
   M 758.84 591.26
   Q 758.97 593.49 758.65 595.62
   A 0.13 0.04 -77.8 0 1 758.57 595.77
@@ -15004,8 +16972,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 758.45 590.62
   Q 758.67 589.90 758.84 591.26
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 575.03 593.44
   A 0.11 0.11 0.0 0 1 574.92 593.33
   L 574.92 593.27
@@ -15016,8 +16986,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.11 0.11 0.0 0 1 580.07 593.46
   L 575.03 593.44
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 657.19 593.31
   A 0.11 0.11 0.0 0 1 657.09 593.19
   L 657.09 593.15
@@ -15028,8 +17000,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.11 0.11 0.0 0 1 662.03 593.43
   L 657.19 593.31
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 721.06 593.46
   A 0.05 0.05 0.0 0 1 721.01 593.41
   L 721.01 593.37
@@ -15040,8 +17014,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.05 0.05 0.0 0 1 726.22 593.42
   L 721.06 593.46
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 776.75 593.40
   A 0.11 0.11 0.0 0 1 776.64 593.29
   L 776.64 593.26
@@ -15052,8 +17028,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.11 0.11 0.0 0 1 781.55 593.36
   L 776.75 593.40
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 807.45 593.39
   A 0.16 0.16 0.0 0 1 807.29 593.23
   L 807.29 593.15
@@ -15064,25 +17042,38 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.16 0.16 0.0 0 1 812.23 593.45
   L 807.45 593.39
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 834.68 595.52
   L 834.68 593.18
   A 0.29 0.29 0.0 0 1 835.24 593.09
   Q 835.84 594.79 835.54 595.66
   A 0.44 0.44 0.0 0 1 834.68 595.52
   Z"
-/>
-<ellipse fill="#000104" cx="0.00" cy="0.00" transform="translate(616.01,596.61) rotate(-25.8)" rx="2.26" ry="1.38"/>
-<path fill="#000104" d="
+      />
+      <ellipse
+        fill="#000104"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(616.01,596.61) rotate(-25.8)"
+        rx="2.26"
+        ry="1.38"
+      />
+      <path
+        fill="#000104"
+        d="
   M 677.20 595.54
   C 677.07 597.97 675.68 598.82 673.46 597.95
   A 1.15 1.03 -48.0 0 1 673.46 596.00
   Q 674.77 595.20 676.78 595.12
   A 0.40 0.40 0.0 0 1 677.20 595.54
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 736.66 595.01
   A 0.26 0.26 0.0 0 1 736.98 595.18
   L 737.07 595.48
@@ -15093,8 +17084,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.26 0.0 0 1 732.80 596.14
   L 736.66 595.01
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 404.82 647.35
   Q 404.30 648.16 403.58 648.40
   A 0.71 0.71 0.0 0 1 402.76 648.13
@@ -15233,8 +17226,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 398.33 641.46 400.17 643.93
   Q 402.20 646.67 404.82 647.35
   Z"
-/>
-<path fill="#36ada4" d="
+      />
+      <path
+        fill="#36ada4"
+        d="
   M 404.82 647.35
   Q 406.38 646.23 406.56 645.42
   Q 411.95 641.62 413.31 638.28
@@ -15417,8 +17412,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.17 -102.2 0 0 286.1862 646.1041
   A 0.63 0.17 -102.2 0 0 285.8869 645.5242
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 453.51 643.26
   Q 452.95 645.53 453.91 645.74
   Q 454.86 653.74 457.73 659.29
@@ -15463,8 +17460,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 448.57 619.22 449.91 625.75
   Q 451.72 634.53 453.51 643.26
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 494.45 651.03
   Q 495.71 651.70 494.50 653.54
   Q 491.30 658.38 486.68 663.18
@@ -15646,8 +17645,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 477.71 662.35 480.63 667.19 484.87 663.40
   Q 490.76 658.14 494.45 651.03
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 164.90 624.73
   Q 164.79 624.27 164.50 624.11
   Q 164.28 623.99 163.72 624.70
@@ -15657,8 +17658,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.86 0.86 0.0 0 1 165.53 623.57
   Q 164.91 624.04 164.90 624.73
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 350.47 642.90
   L 326.74 643.24
   A 1.96 1.90 -31.3 0 1 325.82 643.03
@@ -15670,8 +17673,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.47 0.47 0.0 0 1 348.61 633.38
   L 350.47 642.90
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 282.35 642.77
   L 271.93 643.28
   Q 273.93 641.05 275.05 638.29
@@ -15679,16 +17684,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.35 0.35 0.0 0 1 279.76 628.15
   L 282.35 642.77
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 210.49 642.64
   Q 206.59 643.59 202.61 643.09
   L 206.37 628.93
   A 0.60 0.60 0.0 0 1 207.54 628.96
   L 210.49 642.64
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 572.24 630.19
   A 2.49 2.47 -78.8 0 1 574.53 628.64
   L 584.01 628.64
@@ -15803,8 +17812,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 594.44 630.71
   A 0.61 0.60 -0.5 0 0 593.82 630.11
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 668.38 645.32
   Q 668.34 645.34 668.42 646.29
   A 1.00 0.99 -18.1 0 1 667.94 647.22
@@ -15913,8 +17924,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 687.21 644.15
   A 0.25 0.25 0.0 0 1 687.03 643.72
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 830.01 641.95
   A 0.46 0.45 -73.3 0 0 830.35 642.59
   Q 834.52 643.22 833.11 647.20
@@ -16011,8 +18024,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 817.53 642.30
   A 0.31 0.30 27.3 0 0 817.67 642.73
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 561.68 639.12
   C 560.61 637.35 559.83 635.53 559.24 635.25
   A 0.20 0.20 0.0 0 0 558.95 635.43
@@ -16035,8 +18050,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 567.54 647.06 566.71 647.18 565.49 645.37
   Q 563.34 642.17 561.68 639.12
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 573.36 638.42
   Q 573.39 631.26 573.41 630.54
   A 0.58 0.58 0.0 0 1 573.99 629.98
@@ -16063,8 +18080,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.58 0.0 0 1 573.34 646.30
   Q 573.33 645.58 573.36 638.42
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 593.82 630.11
   A 0.61 0.60 -0.5 0 1 594.44 630.71
   L 594.44 645.84
@@ -16079,8 +18098,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.02 1.99 -15.0 0 1 588.09 631.87
   Q 591.13 630.15 593.82 630.11
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 661.33 637.71
   C 662.31 639.53 663.08 641.33 663.66 641.61
   A 0.20 0.20 0.0 0 0 663.95 641.44
@@ -16103,8 +18124,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 655.45 629.83 656.28 629.72 657.48 631.52
   Q 659.60 634.72 661.33 637.71
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 670.36 638.41
   Q 670.36 631.27 670.37 630.55
   A 0.58 0.58 0.0 0 1 670.95 629.99
@@ -16131,8 +18154,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.58 0.0 0 1 670.37 646.27
   Q 670.36 645.55 670.36 638.41
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 687.03 643.72
   A 0.25 0.25 0.0 0 0 687.21 644.15
   L 694.58 644.15
@@ -16151,8 +18176,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.79 0.78 85.2 0 1 695.02 630.75
   C 695.63 634.42 690.03 640.81 687.03 643.72
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 804.57 638.49
   Q 807.72 640.65 806.26 643.97
   C 804.24 648.59 795.63 648.28 794.92 643.15
@@ -16177,8 +18204,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 807.01 635.34 804.50 637.66
   A 0.54 0.53 -49.9 0 0 804.57 638.49
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 813.78 644.12
   L 818.43 644.12
   A 1.22 1.21 -0.0 0 1 819.65 645.33
@@ -16194,8 +18223,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 819.73 638.65 816.53 640.87 813.54 643.51
   A 0.35 0.35 0.0 0 0 813.78 644.12
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 826.06 643.44
   A 0.35 0.35 0.0 0 0 826.30 644.05
   L 830.94 644.12
@@ -16211,8 +18242,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 821.88 628.94 831.09 628.30 831.79 634.24
   C 832.32 638.68 829.09 640.85 826.06 643.44
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 634.01 641.84
   A 0.32 0.32 0.0 0 0 633.78 641.30
   L 615.82 641.30
@@ -16235,8 +18268,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.33 1.32 45.2 0 1 630.64 645.21
   L 634.01 641.84
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 845.99 635.24
   A 2.29 2.28 -68.7 0 1 849.36 633.76
   L 851.44 634.96
@@ -16298,8 +18333,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.60 0.60 0.0 0 1 858.82 643.58
   L 858.44 644.25
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 817.67 642.73
   A 0.31 0.30 27.3 0 1 817.53 642.30
   L 820.96 636.36
@@ -16309,8 +18346,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 827.84 637.62 823.81 640.53 821.59 642.40
   Q 819.97 643.77 817.67 642.73
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 850.01 646.30
   A 0.60 0.60 0.0 0 1 849.47 646.89
   Q 848.33 646.99 847.26 646.58
@@ -16330,8 +18369,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.75 0.75 0.0 0 1 850.07 635.73
   L 850.01 646.30
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 858.44 644.25
   L 858.82 643.58
   A 0.60 0.60 0.0 0 0 858.49 642.71
@@ -16354,16 +18395,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 856.71 644.72
   A 1.28 1.28 0.0 0 0 858.44 644.25
   Z"
-/>
-<path fill="#494b4c" d="
+      />
+      <path
+        fill="#494b4c"
+        d="
   M 210.49 642.64
   Q 211.39 644.05 211.48 645.55
   L 201.87 644.94
   Q 202.23 643.60 202.61 643.09
   Q 206.59 643.59 210.49 642.64
   Z"
-/>
-<path fill="#494b4c" d="
+      />
+      <path
+        fill="#494b4c"
+        d="
   M 350.47 642.90
   Q 351.08 643.43 351.44 645.43
   Q 338.34 645.23 325.35 645.56
@@ -16374,24 +18419,30 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.96 1.90 -31.3 0 0 326.74 643.24
   L 350.47 642.90
   Z"
-/>
-<path fill="#494b4c" d="
+      />
+      <path
+        fill="#494b4c"
+        d="
   M 282.35 642.77
   L 282.73 645.35
   Q 276.74 646.02 271.29 643.69
   Q 271.77 643.53 271.93 643.28
   L 282.35 642.77
   Z"
-/>
-<path fill="#494b4c" d="
+      />
+      <path
+        fill="#494b4c"
+        d="
   M 304.98 643.78
   Q 304.65 645.75 304.32 645.92
   L 288.89 645.40
   L 288.67 643.56
   Q 297.04 642.92 304.98 643.78
   Z"
-/>
-<path fill="#494b4c" d="
+      />
+      <path
+        fill="#494b4c"
+        d="
   M 453.91 645.74
   Q 452.95 645.53 453.51 643.26
   Q 472.05 643.31 490.53 643.68
@@ -16400,8 +18451,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 493.55 645.46 491.97 645.78 490.50 645.78
   Q 471.78 645.86 453.91 645.74
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 304.32 645.92
   L 303.74 649.72
   A 0.84 0.84 0.0 0 1 302.50 650.33
@@ -16410,9 +18463,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 288.89 645.40
   L 304.32 645.92
   Z"
-/>
-<ellipse fill="#448991" cx="0.00" cy="0.00" transform="translate(286.02,646.14) rotate(-102.2)" rx="0.63" ry="0.17"/>
-<path fill="#000104" d="
+      />
+      <ellipse
+        fill="#448991"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(286.02,646.14) rotate(-102.2)"
+        rx="0.63"
+        ry="0.17"
+      />
+      <path
+        fill="#000104"
+        d="
   M 571.05 689.80
   L 570.54 692.40
   A 1.01 1.01 0.0 0 1 569.76 693.19
@@ -16522,8 +18584,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 592.52 686.97 592.25 686.72
   Q 592.01 686.50 591.48 686.55
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 668.50 689.18
   Q 668.10 689.75 667.66 692.10
   A 1.22 1.20 -11.6 0 1 667.11 692.92
@@ -16649,8 +18713,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 0.0 0 0 691.58 691.88
   L 692.96 691.88
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 807.08 689.59
   Q 803.46 695.09 796.81 692.46
   Q 794.56 691.57 794.00 688.42
@@ -16713,8 +18779,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 801.36 687.14
   A 0.18 0.18 0.0 0 0 801.54 686.97
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 823.65 680.25
   Q 824.74 679.36 826.00 679.01
   A 0.37 0.37 0.0 0 1 826.47 679.37
@@ -16737,8 +18805,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 823.82 681.16 823.67 680.89
   Q 823.53 680.63 823.65 680.25
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 561.67 684.14
   C 560.62 682.38 559.86 680.58 559.28 680.30
   A 0.20 0.19 13.1 0 0 558.99 680.47
@@ -16761,8 +18831,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 567.43 692.04 566.60 692.15 565.41 690.35
   Q 563.30 687.17 561.67 684.14
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 573.42 683.51
   Q 573.42 676.37 573.43 675.65
   A 0.58 0.58 0.0 0 1 574.01 675.08
@@ -16789,8 +18861,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.58 0.0 0 1 573.44 691.38
   Q 573.42 690.66 573.42 683.51
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 595.66 683.32
   Q 597.40 684.61 597.50 685.97
   C 598.18 694.91 584.70 692.63 586.33 687.34
@@ -16809,8 +18883,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 597.27 680.74 595.59 682.57
   A 0.51 0.51 0.0 0 0 595.66 683.32
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 658.57 684.23
   C 657.50 682.46 656.73 680.67 656.15 680.39
   A 0.20 0.20 0.0 0 0 655.86 680.56
@@ -16833,8 +18909,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 664.38 692.11 663.55 692.22 662.34 690.43
   Q 660.22 687.25 658.57 684.23
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 670.30 683.44
   Q 670.30 676.32 670.32 675.60
   A 0.58 0.57 0.3 0 1 670.89 675.04
@@ -16861,8 +18939,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.57 -0.3 0 1 670.31 691.27
   Q 670.29 690.56 670.30 683.44
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 690.84 691.15
   L 690.84 689.45
   A 0.46 0.46 0.0 0 0 690.38 688.99
@@ -16891,8 +18971,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 691.00 679.28
   A 0.31 0.31 0.0 0 0 690.42 679.12
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 798.07 681.15
   A 0.52 0.52 0.0 0 0 798.81 681.60
   C 801.24 680.45 805.15 680.88 805.92 684.01
@@ -16917,8 +18999,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.90 0.90 0.0 0 0 798.35 678.62
   Q 798.01 679.60 798.07 681.15
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 813.8976 674.9034
   A 8.68 6.33 -91.6 0 1 820.4675 683.4033
   A 8.68 6.33 -91.6 0 1 814.3824 692.2566
@@ -16931,8 +19015,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.75 2.99 -90.0 0 0 817.2300 683.5400
   A 5.75 2.99 -90.0 0 0 814.2400 677.7900
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 823.65 680.25
   C 822.29 679.35 822.32 677.58 823.83 676.86
   L 828.24 675.08
@@ -16945,8 +19031,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 0 826.00 679.01
   Q 824.74 679.36 823.65 680.25
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 632.60 681.93
   L 630.39 679.39
   A 1.42 1.42 0.0 0 1 630.53 677.38
@@ -16965,8 +19053,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 632.44 682.26
   A 0.20 0.20 0.0 0 0 632.60 681.93
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 814.2400 677.7900
   A 5.75 2.99 -90.0 0 1 817.2300 683.5400
   A 5.75 2.99 -90.0 0 1 814.2400 689.2900
@@ -16979,8 +19069,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.12 1.56 -87.8 0 0 815.8589 683.4999
   A 4.12 1.56 -87.8 0 0 814.4582 679.3230
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 843.76 687.29
   A 0.62 0.62 0.0 0 0 844.79 687.76
   L 845.11 687.48
@@ -17047,8 +19139,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 848.44 691.95 849.59 691.83
   A 0.60 0.60 0.0 0 0 850.12 691.24
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 691.00 679.28
   L 691.00 685.74
   A 0.54 0.54 0.0 0 1 690.32 686.26
@@ -17057,9 +19151,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 690.42 679.12
   A 0.31 0.31 0.0 0 1 691.00 679.28
   Z"
-/>
-<ellipse fill="#213249" cx="0.00" cy="0.00" transform="translate(814.30,683.44) rotate(-87.8)" rx="4.12" ry="1.56"/>
-<path fill="#fdfefe" d="
+      />
+      <ellipse
+        fill="#213249"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(814.30,683.44) rotate(-87.8)"
+        rx="4.12"
+        ry="1.56"
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 858.60 689.16
   L 858.94 688.46
   A 0.61 0.61 0.0 0 0 858.55 687.60
@@ -17082,8 +19185,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 856.87 689.76
   A 1.31 1.31 0.0 0 0 858.60 689.16
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 850.12 691.24
   A 0.60 0.60 0.0 0 1 849.59 691.83
   Q 848.44 691.95 847.37 691.55
@@ -17103,8 +19208,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.75 0.75 0.0 0 1 850.07 680.65
   L 850.12 691.24
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 801.54 686.97
   A 0.18 0.18 0.0 0 1 801.36 687.14
   L 801.14 687.14
@@ -17114,16 +19221,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.18 0.18 0.0 0 1 801.56 685.89
   L 801.54 686.97
   Z"
-/>
-<path fill="#36ada4" d="
+      />
+      <path
+        fill="#36ada4"
+        d="
   M 591.48 686.55
   Q 592.01 686.50 592.25 686.72
   Q 592.52 686.97 592.16 687.22
   Q 591.69 687.56 591.31 687.18
   A 0.38 0.35 62.7 0 1 591.48 686.55
   Z"
-/>
-<path fill="#494b4c" d="
+      />
+      <path
+        fill="#494b4c"
+        d="
   M 320.07 701.40
   Q 432.82 701.40 445.25 701.36
   Q 481.89 701.22 491.68 701.51
@@ -17142,8 +19253,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 158.25 701.22 194.89 701.36
   Q 207.32 701.40 320.07 701.40
   Z"
-/>
-<path fill="#18283a" d="
+      />
+      <path
+        fill="#18283a"
+        d="
   M 493.43 717.44
   A 2.02 2.02 0.0 0 1 494.07 721.04
   C 492.81 721.92 490.63 722.89 489.02 723.23
@@ -17302,8 +19415,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 424.92 724.34 427.59 719.10 429.06 715.94
   A 0.35 0.34 -52.6 0 1 429.64 715.86
   Z"
-/>
-<path fill="#f27437" d="
+      />
+      <path
+        fill="#f27437"
+        d="
   M 429.64 715.86
   A 0.35 0.34 -52.6 0 0 429.06 715.94
   C 427.59 719.10 424.92 724.34 421.46 725.40
@@ -17393,8 +19508,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 453.01 722.69 450.87 725.22 445.78 725.19
   C 438.10 725.14 434.17 721.24 429.64 715.86
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 571.43 733.68
   Q 571.42 733.69 571.38 734.65
   A 0.91 0.91 0.0 0 1 570.82 735.44
@@ -17528,8 +19645,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.21 0.16 -7.7 0 0 581.86 729.14
   Q 578.09 729.00 578.12 729.57
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 677.86 722.19
   L 675.79 722.44
   A 0.18 0.18 0.0 0 0 675.75 722.78
@@ -17653,8 +19772,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 697.94 732.30 695.80 720.44 686.95 724.88
   A 0.64 0.64 0.0 0 1 686.03 724.20
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 811.48 723.91
   Q 809.88 725.09 807.84 723.53
   A 0.46 0.46 0.0 0 0 807.14 723.73
@@ -17701,8 +19822,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 811.39 722.86 812.68 721.58
   A 0.55 0.55 0.0 0 1 813.62 721.97
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 830.41 721.73
   Q 829.14 721.82 828.45 721.89
   A 0.41 0.41 0.0 0 0 828.45 722.70
@@ -17747,8 +19870,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.63 0.0 0 0 826.11 728.00
   Q 824.42 728.57 824.39 728.68
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 561.61 727.03
   C 560.54 725.23 559.76 723.41 559.17 723.12
   A 0.20 0.20 0.0 0 0 558.88 723.30
@@ -17771,8 +19896,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 567.48 735.04 566.64 735.15 565.42 733.32
   Q 563.27 730.09 561.61 727.03
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 573.45 726.33
   Q 573.45 719.18 573.46 718.46
   A 0.58 0.58 0.0 0 1 574.04 717.89
@@ -17799,8 +19926,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.58 0.0 0 1 573.47 734.20
   Q 573.45 733.48 573.45 726.33
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 658.61 727.11
   C 657.55 725.33 656.77 723.51 656.18 723.23
   A 0.20 0.20 0.0 0 0 655.90 723.40
@@ -17823,8 +19952,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 664.45 735.06 663.62 735.17 662.41 733.36
   Q 660.27 730.15 658.61 727.11
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 680.16 726.29
   Q 680.17 727.77 678.26 727.73
   Q 675.98 727.69 674.18 727.61
@@ -17851,8 +19982,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 675.96 724.90 678.24 724.83
   Q 680.15 724.76 680.16 726.29
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 686.03 724.20
   A 0.64 0.64 0.0 0 0 686.95 724.88
   C 695.80 720.44 697.94 732.30 691.28 734.68
@@ -17873,8 +20006,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.96 2.84 -76.2 0 0 692.0180 729.9274
   A 2.96 2.84 -76.2 0 0 689.9661 726.3754
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 800.50 717.74
   C 802.83 717.69 804.67 718.29 805.60 720.40
   Q 807.01 723.60 804.43 725.35
@@ -17897,8 +20032,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.82 2.44 -174.2 0 0 800.9866 727.2625
   A 2.82 2.44 -174.2 0 0 797.9344 729.4050
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 813.62 721.97
   A 0.55 0.55 0.0 0 0 812.68 721.58
   Q 811.39 722.86 809.70 723.30
@@ -17912,8 +20049,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.06 1.06 0.0 0 1 813.62 733.91
   L 813.62 721.97
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 824.38 720.90
   L 823.73 724.20
   A 0.23 0.22 -3.1 0 0 824.02 724.46
@@ -17934,8 +20073,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 824.48 720.81
   A 0.11 0.10 -82.8 0 0 824.38 720.90
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 590.12 721.05
   L 589.55 724.36
   A 0.23 0.22 -4.3 0 0 589.84 724.62
@@ -17956,8 +20097,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 590.22 720.96
   A 0.11 0.10 -84.1 0 0 590.12 721.05
   Z"
-/>
-<path fill="#43cec5" d="
+      />
+      <path
+        fill="#43cec5"
+        d="
   M 632.70 725.96
   A 0.32 0.32 0.0 0 0 632.92 725.41
   L 630.62 723.11
@@ -17978,8 +20121,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.87 0.87 0.0 0 1 615.38 725.96
   L 632.70 725.96
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 803.0295 722.4718
   A 2.51 2.19 -1.1 0 1 800.5620 724.7096
   A 2.51 2.19 -1.1 0 1 798.0105 722.5682
@@ -17992,8 +20137,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.34 0.33 -48.9 0 0 800.35 722.95
   Q 800.48 722.99 800.93 722.74
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 844.08 723.42
   L 844.08 730.18
   A 0.30 0.30 0.0 0 0 844.38 730.48
@@ -18061,16 +20208,20 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.62 0.62 0.0 0 1 858.87 731.11
   L 858.49 731.80
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 580.69 722.10
   Q 583.19 722.06 583.20 722.52
   Q 583.20 722.98 580.70 723.02
   Q 578.20 723.06 578.20 722.60
   Q 578.19 722.14 580.69 722.10
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 849.60 734.66
   Q 848.43 734.77 847.33 734.36
   A 1.48 1.48 0.0 0 0 846.33 734.36
@@ -18090,8 +20241,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 850.15 734.05
   A 0.62 0.61 -3.1 0 1 849.60 734.66
   Z"
-/>
-<path fill="#fdfefe" d="
+      />
+      <path
+        fill="#fdfefe"
+        d="
   M 858.49 731.80
   L 858.87 731.11
   A 0.62 0.62 0.0 0 0 858.51 730.22
@@ -18114,24 +20267,30 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 856.70 732.33
   A 1.33 1.33 0.0 0 0 858.49 731.80
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 677.86 722.19
   L 677.55 722.70
   Q 676.41 723.02 675.75 722.78
   A 0.18 0.18 0.0 0 1 675.79 722.44
   L 677.86 722.19
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 800.93 722.74
   Q 800.48 722.99 800.35 722.95
   A 0.34 0.33 -48.9 0 1 800.31 722.32
   Q 800.32 722.31 800.84 722.33
   A 0.22 0.22 0.0 0 1 800.93 722.74
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 689.9661 726.3754
   A 2.96 2.84 -76.2 0 1 692.0180 729.9274
   A 2.96 2.84 -76.2 0 1 688.5539 732.1246
@@ -18146,8 +20305,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.60 0.60 0.0 0 0 688.30 728.92
   Q 688.30 728.96 688.51 729.64
   Z"
-/>
-<path fill="#000104" d="
+      />
+      <path
+        fill="#000104"
+        d="
   M 797.9344 729.4050
   A 2.82 2.44 -174.2 0 1 800.9866 727.2625
   A 2.82 2.44 -174.2 0 1 803.5456 729.9750
@@ -18160,8 +20321,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.95 0.72 -0.3 0 0 800.8438 730.4700
   A 0.95 0.72 -0.3 0 0 801.7900 729.7450
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 826.95 729.38
   Q 826.73 730.20 826.16 730.34
   A 0.63 0.63 0.0 0 1 825.52 730.14
@@ -18170,8 +20333,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.63 0.0 0 1 826.76 728.15
   Q 827.17 728.57 826.95 729.38
   Z"
-/>
-<path fill="#213249" d="
+      />
+      <path
+        fill="#213249"
+        d="
   M 592.89 729.55
   Q 592.67 730.49 592.04 730.48
   A 0.74 0.70 62.8 0 1 591.62 730.34
@@ -18180,8 +20345,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.70 -36.4 0 1 592.54 728.33
   Q 593.11 728.61 592.89 729.55
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 690.28 729.10
   Q 690.57 730.04 689.54 730.59
   A 0.60 0.60 0.0 0 1 688.74 730.36
@@ -18190,8 +20357,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.60 0.60 0.0 0 1 688.83 728.29
   Q 689.99 728.16 690.28 729.10
   Z"
-/>
-<path fill="#448991" d="
+      />
+      <path
+        fill="#448991"
+        d="
   M 582.06 729.35
   Q 582.06 729.41 582.05 729.46
   A 0.21 0.16 1.5 0 1 581.88 729.59
@@ -18200,9 +20369,18 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.21 0.16 -7.7 0 1 582.04 729.24
   Q 582.06 729.30 582.06 729.35
   Z"
-/>
-<ellipse fill="#448991" cx="0.00" cy="0.00" transform="translate(800.84,729.75) rotate(-0.3)" rx="0.95" ry="0.72"/>
-<path fill="#494b4c" d="
+      />
+      <ellipse
+        fill="#448991"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(800.84,729.75) rotate(-0.3)"
+        rx="0.95"
+        ry="0.72"
+      />
+      <path
+        fill="#494b4c"
+        d="
   M 1011.71 804.69
   Q 1012.22 809.32 1012.16 817.26
   Q 1012.08 829.26 1001.53 834.33
@@ -18245,8 +20423,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 977.37 804.21 1006.50 803.61
   Q 1009.14 803.56 1011.71 804.69
   Z"
-/>
-<path fill="#0c0e2c" d="
+      />
+      <path
+        fill="#0c0e2c"
+        d="
   M 76.95 802.29
   L 76.83 802.98
   A 0.92 0.92 0.0 0 1 75.95 803.74
@@ -18287,8 +20467,10 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.96 0.78 50.8 0 1 76.45 802.08
   L 76.95 802.29
   Z"
-/>
-<path fill="#34393d" d="
+      />
+      <path
+        fill="#34393d"
+        d="
   M 1001.53 834.33
   Q 993.55 838.77 987.18 839.76
   Q 979.88 840.89 976.34 841.63
@@ -18313,6 +20495,7 @@ export const LaptopSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 989.57 834.93 993.76 834.12
   Q 997.63 833.38 1001.53 834.33
   Z"
-/>
-</svg>
-)}
+      />
+    </svg>
+  )
+}

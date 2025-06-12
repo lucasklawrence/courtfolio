@@ -7,8 +7,11 @@ import React from 'react'
 export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1536.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 368.87 86.21
   C 374.14 88.50 377.37 89.70 381.07 92.45
   C 387.03 96.89 392.70 102.82 397.28 109.14
@@ -19,8 +22,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 406.78 80.06 400.20 79.34 396.00 79.02
   Q 381.45 77.90 368.82 85.37
   A 0.47 0.47 0.0 0 0 368.87 86.21"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 413.49 83.69
   C 414.28 85.04 416.05 86.82 417.06 88.85
   C 422.57 99.93 423.62 110.46 423.38 122.82
@@ -29,8 +35,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 438.89 106.99 435.22 99.19 426.82 92.16
   Q 420.49 86.86 413.83 83.34
   A 0.25 0.25 0.0 0 0 413.49 83.69"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 417.04 137.91
   Q 418.21 133.99 418.22 128.01
   A 0.67 0.67 0.0 0 0 417.68 127.35
@@ -45,8 +54,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 351.13 126.56 362.54 129.22
   Q 389.16 135.42 415.91 138.64
   A 1.05 1.04 -77.8 0 0 417.04 137.91"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 439.05 110.20
   C 438.81 120.50 433.05 125.09 424.01 127.98
   A 1.07 1.06 84.4 0 0 423.28 128.87
@@ -56,8 +68,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.93 0.93 0.0 0 0 442.98 140.57
   C 444.99 129.78 443.05 120.38 439.51 110.12
   A 0.24 0.24 0.0 0 0 439.05 110.20"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.87 127.75
   Q 341.80 139.98 346.17 152.08
   C 347.69 156.30 353.81 167.01 358.77 166.97
@@ -71,8 +86,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 393.38 139.26 371.74 135.01
   Q 356.26 131.98 342.34 127.41
   A 0.36 0.36 0.0 0 0 341.87 127.75"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 399.70 301.74
   Q 398.88 291.66 393.81 282.73
   A 3.53 3.39 6.5 0 0 393.04 281.80
@@ -83,14 +101,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 344.12 183.39 343.57 181.12
   A 1.50 1.49 -77.6 0 0 343.05 180.30
   L 340.24 178.03"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 340.24 178.03
   L 339.94 177.45
   A 0.79 0.78 -37.6 0 1 340.06 176.55
   Q 341.28 175.24 341.52 174.14"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.52 174.14
   Q 343.92 170.41 346.76 168.40
   A 0.90 0.90 0.0 0 0 346.93 167.08
@@ -110,8 +134,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 393.56 325.85
   A 0.71 0.71 0.0 0 0 394.44 325.59
   Q 401.45 314.76 399.70 301.74"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.52 174.14
   Q 341.33 170.98 344.58 168.69
   A 1.38 1.37 -35.7 0 0 344.90 166.75
@@ -145,8 +172,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.51 1.51 0.0 0 1 311.18 271.98
   C 316.91 270.93 321.95 268.18 327.22 266.36
   Q 331.01 265.05 334.80 263.90"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 334.80 263.90
   L 335.45 264.82
   A 1.34 1.34 0.0 0 0 336.15 265.34
@@ -158,8 +188,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.91 1.78 29.0 0 1 396.35 291.73
   Q 397.24 296.79 398.47 301.25
   Q 398.71 302.14 399.70 301.74"
-/>
-<path stroke="#dab137" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dab137"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 340.24 178.03
   Q 339.82 178.27 339.91 178.70
   Q 339.97 179.01 340.35 179.35
@@ -168,8 +201,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 339.35 206.33 337.06 230.14
   Q 336.98 230.99 336.71 233.98
   Q 335.41 248.47 334.80 263.90"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.38 167.97
   Q 430.56 165.82 432.17 164.16
   C 436.76 159.42 439.93 152.07 441.85 145.81
@@ -180,8 +216,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.22 1.21 21.8 0 0 418.68 153.33
   Q 427.63 157.21 428.77 167.85
   A 0.33 0.33 0.0 0 0 429.38 167.97"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 359.89 170.32
   A 0.33 0.32 -26.5 0 0 359.69 170.91
   C 362.86 173.10 364.99 175.14 368.30 176.74
@@ -192,8 +231,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 404.81 156.39 399.75 158.80 393.66 161.45
   Q 387.55 164.10 381.42 166.64
   C 374.30 169.58 367.30 170.54 359.89 170.32"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 400.62 181.79
   Q 400.79 181.96 401.04 181.91
   C 409.43 180.16 431.03 175.08 423.03 161.50
@@ -201,8 +243,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.43 1.42 -73.8 0 0 415.57 158.22
   Q 410.12 171.14 400.61 181.26
   A 0.38 0.38 0.0 0 0 400.62 181.79"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 356.10 175.79
   A 0.47 0.46 63.6 0 0 356.35 175.04
   C 354.98 173.38 351.64 169.25 349.30 171.76
@@ -210,8 +255,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.29 1.28 -58.3 0 0 346.74 177.37
   Q 348.15 178.18 350.29 177.53
   Q 355.59 175.90 356.10 175.79"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 505.13 270.54
   Q 504.75 281.26 503.08 291.94
   Q 502.31 296.88 506.53 299.44
@@ -219,8 +267,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 526.26 307.65 528.93 307.69
   Q 532.42 307.74 533.75 307.53
   Q 541.50 306.33 548.32 300.06"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.32 300.06
   Q 550.10 293.84 550.46 286.51
   Q 550.72 281.05 551.09 279.58
@@ -258,8 +309,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 566.80 226.00 563.88 224.65
   A 1.41 1.41 0.0 0 1 563.09 223.56
   L 562.78 221.21"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 562.78 221.21
   C 563.00 214.40 562.50 207.61 557.96 202.42
   C 553.79 197.65 547.81 196.75 541.27 197.01
@@ -274,8 +328,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 502.92 226.22 497.53 227.68
   A 0.76 0.76 0.0 0 0 497.72 229.17
   Q 500.99 229.19 504.67 231.58"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 504.67 231.58
   Q 506.56 234.10 507.18 238.66
   A 0.91 0.90 88.1 0 1 506.23 239.68
@@ -317,8 +374,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 491.68 247.95 498.49 259.05 503.03 256.55
   A 1.28 1.28 0.0 0 1 504.92 257.65
   L 505.13 270.54"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 504.67 231.58
   Q 505.32 231.09 506.24 231.12
   A 1.35 1.31 -20.0 0 1 507.16 231.53
@@ -356,12 +416,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 561.56 220.36
   A 0.82 0.81 3.0 0 0 562.26 221.13
   L 562.78 221.21"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.32 300.06
   L 546.71 299.73"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.71 299.73
   Q 549.01 294.50 548.88 289.25
   C 548.73 283.23 550.26 279.06 551.42 273.78
@@ -375,12 +441,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 514.12 254.86
   A 0.55 0.55 0.0 0 0 513.64 255.52
   Q 514.05 257.45 514.77 258.22"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 514.77 258.22
   L 514.27 268.31"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 514.27 268.31
   Q 513.79 276.24 517.86 285.89
   Q 521.65 294.90 525.24 304.48
@@ -392,29 +464,44 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 506.26 280.52 506.05 276.77 506.10 271.97
   A 2.99 2.88 -55.2 0 0 505.95 271.04
   Q 505.35 269.30 505.13 270.54"
-/>
-<path stroke="#dab137" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dab137"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.71 299.73
   C 542.96 302.28 540.56 304.71 535.65 305.81"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 535.65 305.81
   C 536.00 301.77 538.27 297.99 538.70 294.97
   C 539.40 290.13 538.93 283.26 537.45 279.31
   Q 535.60 274.39 530.19 272.07
   Q 524.80 269.76 519.47 267.36"
-/>
-<path stroke="#dab137" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dab137"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.47 267.36
   L 518.43 264.74
   A 0.37 0.37 0.0 0 0 517.73 264.76
   L 517.43 265.61"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 517.43 265.61
   Q 516.74 261.26 514.77 258.22"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 517.43 265.61
   Q 520.06 276.89 522.68 282.80
   Q 525.70 289.63 527.38 294.12
@@ -423,31 +510,46 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.96 0.96 0.0 0 1 527.10 306.13
   Q 523.92 295.86 519.45 286.55
   Q 517.35 282.20 514.27 268.31"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.47 267.36
   Q 519.75 270.79 520.04 271.68
   Q 522.86 280.27 527.74 291.47
   Q 530.36 297.50 530.68 305.44
   A 0.63 0.63 0.0 0 0 531.23 306.04
   Q 533.60 306.34 535.65 305.81"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.9586 232.9608
   A 1.17 0.33 -13.3 0 0 565.7441 232.9089
   A 1.17 0.33 -13.3 0 0 564.6814 233.4992
   A 1.17 0.33 -13.3 0 0 565.8959 233.5511
   A 1.17 0.33 -13.3 0 0 566.9586 232.9608"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 405.61 305.45
   Q 404.77 320.11 397.22 332.78"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 397.22 332.78
   Q 396.54 333.51 396.27 334.24"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.27 334.24
   Q 395.42 334.92 395.43 335.12
   A 1.32 1.32 0.0 0 0 396.50 336.28
@@ -461,8 +563,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 439.51 305.75 435.82 300.97
   A 0.17 0.16 87.9 0 1 436.04 300.73
   Q 436.29 300.91 436.81 300.89"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 436.81 300.89
   Q 441.98 304.25 447.12 307.69
   Q 453.81 312.17 457.83 318.14
@@ -475,8 +580,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 401.00 281.86
   A 0.25 0.24 -5.5 0 0 400.71 282.20
   Q 405.76 292.93 405.61 305.45"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 436.81 300.89
   L 436.85 300.55
   A 0.52 0.51 18.9 0 1 437.63 300.17
@@ -499,8 +607,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 404.99 288.86 405.32 290.58
   Q 406.05 294.37 406.95 298.75
   Q 407.61 301.98 405.61 305.45"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.27 334.24
   L 397.16 334.93
   A 2.13 2.02 67.8 0 0 398.07 335.34
@@ -524,8 +635,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 402.40 327.35 398.16 332.86
   A 0.54 0.52 12.2 0 1 397.84 333.06
   Q 397.34 333.18 397.22 332.78"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.20 288.93
   L 472.25 289.22
   A 2.39 2.38 -87.2 0 0 469.96 291.30
@@ -577,16 +691,22 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 573.07 291.70 565.81 290.44 557.85 288.76
   A 0.51 0.50 -79.8 0 0 557.25 289.18
   L 556.00 298.56"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.00 298.56
   C 550.71 310.96 534.67 315.30 522.71 312.17
   Q 510.87 309.07 501.94 302.78
   C 496.72 299.10 494.96 296.17 492.30 290.50
   A 1.80 1.75 2.7 0 0 491.56 289.71
   C 488.91 288.25 484.94 288.49 482.20 288.93"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.00 298.56
   Q 557.52 298.53 556.84 299.97
   Q 553.59 306.89 545.24 310.96
@@ -612,8 +732,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 482.65 290.24 482.50 290.19
   A 0.64 0.62 -75.2 0 1 482.11 289.50
   L 482.20 288.93"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 595.87 328.27
   Q 598.60 342.65 598.99 357.12
   A 0.38 0.38 0.0 0 0 599.60 357.42
@@ -628,12 +751,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 650.55 404.82 657.36 408.14
   A 0.38 0.38 0.0 0 0 657.90 407.88
   Q 659.05 402.75 662.64 397.29"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 662.64 397.29
   Q 663.32 396.20 664.36 396.05"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 664.36 396.05
   Q 666.19 396.34 665.37 399.11
   C 663.42 405.69 660.05 414.50 666.53 418.20
@@ -641,8 +770,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.37 0.36 15.0 0 0 674.35 421.93
   Q 674.52 419.32 674.53 418.50
   Q 674.64 412.77 677.29 407.73"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.29 407.73
   C 680.59 401.64 685.18 395.02 691.44 391.76
   A 0.40 0.39 -34.0 0 0 691.56 391.16
@@ -657,8 +789,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 603.91 300.62 589.17 296.32
   A 0.34 0.34 0.0 0 0 588.74 296.72
   L 595.87 328.27"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.29 407.73
   Q 676.76 407.95 676.61 407.85
   Q 675.97 407.43 676.35 406.78
@@ -682,8 +817,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 591.64 302.68 592.51 307.04
   Q 594.36 316.41 596.81 325.63
   Q 597.19 327.08 595.87 328.27"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 664.36 396.05
   Q 644.41 381.26 625.39 365.36
   Q 622.40 362.86 620.60 360.00
@@ -699,8 +837,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 650.10 403.11 653.00 404.42 655.78 405.99
   A 0.88 0.88 0.0 0 0 657.08 405.37
   Q 658.08 399.45 662.64 397.29"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 682.35 407.60
   Q 679.77 412.64 678.97 421.84
   C 678.57 426.30 679.97 426.29 683.37 428.68
@@ -708,8 +849,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 700.56 439.79 709.26 441.45
   A 0.43 0.42 -84.5 0 0 709.76 441.03
   Q 709.67 435.35 712.35 430.53"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.35 430.53
   Q 716.72 422.27 723.66 416.62
   A 0.97 0.97 0.0 0 0 723.66 415.12
@@ -717,16 +861,25 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 696.13 395.02 694.27 395.11
   A 2.50 2.42 -57.8 0 0 693.33 395.34
   C 688.44 397.65 684.82 402.80 682.35 407.60"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.35 430.53
   Q 711.92 429.81 711.94 428.91"
-/>
-<path stroke="#dab137" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dab137"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 711.94 428.91
   L 712.76 427.48"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.76 427.48
   L 714.64 423.87
   A 0.84 0.84 0.0 0 0 713.89 422.64
@@ -745,8 +898,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 690.50 398.26 687.21 401.76
   A 2.57 2.46 78.3 0 0 686.69 402.59
   Q 685.27 406.21 682.35 407.60"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.76 427.48
   Q 708.41 425.94 704.44 423.92
   Q 696.92 420.09 696.39 419.83
@@ -759,8 +915,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.65 0.64 18.9 0 0 708.06 439.38
   Q 708.34 438.80 708.97 435.04
   Q 709.35 432.76 711.94 428.91"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 719.45 429.38
   Q 714.98 434.30 714.66 441.39
   A 1.69 1.69 0.0 0 0 715.66 443.02
@@ -773,16 +932,25 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.84 0.84 0.0 0 0 791.99 494.24
   Q 792.71 488.11 789.14 482.85
   C 786.40 478.83 783.53 475.62 784.33 471.71"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 784.33 471.71
   Q 784.67 469.16 788.30 469.69"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 788.30 469.69
   L 792.16 470.17"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 792.16 470.17
   Q 802.56 474.18 806.95 477.54
   Q 816.70 485.00 818.71 486.28
@@ -796,8 +964,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 748.11 434.89 730.50 422.23
   Q 727.37 419.98 724.88 422.36
   Q 721.84 425.27 719.45 429.38"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 792.16 470.17
   Q 794.90 469.34 797.94 471.21
   C 802.16 473.81 806.16 475.31 809.18 478.13
@@ -820,8 +991,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 726.47 423.37
   A 0.91 0.88 -65.0 0 0 725.84 423.61
   L 719.45 429.38"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 788.30 469.69
   L 784.45 465.64
   A 0.43 0.43 0.0 0 1 784.86 464.92
@@ -850,8 +1024,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 783.24 476.03
   A 4.59 4.50 -62.4 0 1 782.68 474.18
   Q 782.42 471.06 784.33 471.71"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 555.07 492.86
   L 554.07 485.95
   A 3.59 3.58 14.5 0 0 552.68 483.60
@@ -866,21 +1043,33 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 503.94 468.64 530.62 479.40
   Q 544.01 484.79 554.17 493.36
   A 0.55 0.55 0.0 0 0 555.07 492.86"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.02 598.51
   Q 435.54 598.28 435.80 597.51"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.80 597.51
   C 438.50 594.11 441.02 590.91 440.82 587.26
   Q 440.22 576.23 433.99 566.47"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.99 566.47
   Q 435.57 567.06 437.28 568.80"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 437.28 568.80
   Q 442.55 574.46 444.08 578.70
   Q 445.24 581.92 446.49 584.79
@@ -888,14 +1077,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 464.95 562.35 490.91 551.18
   C 500.37 547.12 510.50 545.65 520.74 545.99
   Q 522.11 546.03 525.21 547.12"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 525.21 547.12
   L 525.58 547.46
   A 0.34 0.34 0.0 0 1 525.45 548.04
   Q 525.06 548.17 524.99 548.06"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.99 548.06
   Q 501.87 550.26 484.52 560.76
   Q 470.85 569.03 461.09 579.84
@@ -918,14 +1113,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.46 0.46 0.0 0 0 519.72 667.32
   Q 520.57 663.06 521.15 656.75
   C 521.44 653.60 515.43 646.20 513.51 644.07"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.51 644.07
   Q 513.55 643.92 513.49 643.79
   A 0.16 0.16 0.0 0 1 513.58 643.58
   Q 513.69 643.53 513.80 643.45"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.80 643.45
   C 516.53 643.88 521.55 648.67 523.40 650.63
   A 0.42 0.42 0.0 0 0 524.09 650.51
@@ -956,8 +1157,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 432.47 598.23 431.97 600.90 432.02 603.36
   A 0.21 0.21 0.0 0 0 432.42 603.45
   L 435.02 598.51"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.80 643.45
   Q 513.56 643.15 513.58 643.10
   A 1.22 0.95 28.2 0 1 515.29 642.80
@@ -989,8 +1193,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 535.77 533.68
   A 0.08 0.07 -4.7 0 1 535.70 533.75
   L 533.53 533.97"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 533.53 533.97
   Q 501.13 534.58 468.70 534.00
   C 464.52 533.92 461.61 533.20 457.92 532.83
@@ -1000,8 +1207,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 464.67 535.84 469.25 536.48
   C 476.92 537.55 484.52 538.87 492.29 539.08
   Q 513.73 539.65 535.51 535.59"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 535.51 535.59
   Q 530.01 538.02 524.00 538.67
   Q 514.43 539.69 509.51 540.28
@@ -1016,8 +1226,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 445.91 558.50 449.91 560.42 452.15 566.11
   A 0.39 0.39 0.0 0 1 451.88 566.63
   Q 451.50 566.72 451.24 566.44"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 451.24 566.44
   Q 449.53 561.91 444.99 559.27
   C 440.78 556.81 437.18 554.79 432.54 553.74
@@ -1025,8 +1238,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.49 0.49 0.0 0 0 421.33 552.08
   Q 429.01 555.87 436.18 559.58
   C 439.51 561.30 446.10 562.43 450.07 566.23"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.07 566.23
   Q 450.39 566.57 450.36 566.88
   Q 450.32 567.31 449.83 567.20
@@ -1035,8 +1251,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 436.07 561.39 431.49 558.96
   A 0.29 0.29 0.0 0 0 431.06 559.25
   Q 431.57 563.55 433.99 566.47"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.80 597.51
   Q 435.16 597.73 435.21 596.86
   A 1.51 1.47 67.7 0 1 435.57 595.97
@@ -1052,8 +1271,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 432.56 588.34 433.72 596.77
   A 1.56 1.55 -72.0 0 0 434.19 597.70
   L 435.02 598.51"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.51 644.07
   Q 512.89 644.01 512.67 644.40
   A 0.48 0.47 -51.3 0 0 512.72 644.95
@@ -1085,8 +1307,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 528.96 574.41 529.61 565.75
   Q 530.24 557.25 529.64 554.70
   Q 528.78 551.08 524.99 548.06"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 525.21 547.12
   Q 525.76 547.12 526.09 546.95
   A 0.32 0.32 0.0 0 0 526.08 546.37
@@ -1100,18 +1325,27 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 443.92 574.01 437.81 567.95
   A 0.39 0.39 0.0 0 0 437.15 568.23
   Q 437.16 568.47 437.28 568.80"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.07 566.23
   Q 450.58 566.42 451.24 566.44"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 535.51 535.59
   Q 536.07 535.02 537.57 534.62
   A 0.15 0.15 0.0 0 0 537.57 534.34
   Q 535.67 533.78 533.53 533.97"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 344.41 617.77
   C 343.81 616.75 344.42 614.32 344.73 612.73
   A 2.30 2.29 -53.3 0 0 344.51 611.21
@@ -1134,8 +1368,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 364.69 583.45 357.55 597.84
   C 354.18 604.62 349.70 610.68 346.06 617.73
   A 0.94 0.94 0.0 0 1 344.41 617.77"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 148.63 694.77
   Q 147.41 692.07 146.96 687.92
   C 144.94 669.30 154.05 650.50 166.69 636.96
@@ -1150,8 +1387,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 149.50 649.78 142.83 664.28 141.85 677.56
   C 141.37 684.18 141.54 692.29 148.25 695.16
   A 0.29 0.29 0.0 0 0 148.63 694.77"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 152.37 674.53
   Q 150.02 683.89 152.80 692.89
   Q 154.03 696.86 158.09 695.60
@@ -1193,8 +1433,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 219.08 640.83 216.96 640.86
   A 1.78 1.78 0.0 0 1 215.68 640.34
   L 213.49 638.21"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 213.49 638.21
   Q 212.74 636.12 213.40 633.37
   C 214.67 628.12 215.23 624.76 217.29 621.30
@@ -1206,16 +1449,25 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 217.71 605.30 211.80 608.11 208.09 610.31
   Q 186.45 623.11 170.07 641.80
   C 161.84 651.20 154.68 662.51 152.37 674.53"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 213.49 638.21
   Q 213.86 639.05 213.23 639.20"
-/>
-<path stroke="#dab137" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dab137"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 213.23 639.20
   Q 212.82 638.80 212.54 638.26"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 212.54 638.26
   Q 211.63 636.19 212.17 633.43
   Q 213.75 625.32 217.04 618.90
@@ -1232,8 +1484,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 155.82 662.80 153.38 676.33
   A 0.21 0.21 0.0 0 1 152.98 676.36
   L 152.37 674.53"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 212.54 638.26
   L 209.88 638.12
   A 1.69 1.69 0.0 0 0 208.16 639.39
@@ -1248,8 +1503,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.63 2.38 -29.5 0 0 223.99 642.51
   Q 221.19 642.28 215.98 641.61
   Q 214.55 641.43 213.23 639.20"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 260.56 613.56
   Q 259.25 613.60 253.21 614.36
   C 247.56 615.06 241.96 614.71 235.50 614.60
@@ -1263,8 +1521,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.46 0.46 0.0 0 0 261.94 644.16
   C 256.74 635.98 258.28 623.09 261.08 614.23
   A 0.53 0.51 7.8 0 0 260.56 613.56"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 451.90 651.83
   A 0.69 0.69 0.0 0 0 451.24 652.41
   Q 449.49 663.60 446.20 682.68
@@ -1286,8 +1547,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 504.13 677.86 510.16 667.28 507.14 665.13
   Q 498.15 658.74 487.79 655.99
   Q 469.73 651.21 451.90 651.83"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 499.61 700.77
   Q 498.36 702.64 495.27 707.78
   Q 489.59 717.20 480.96 722.38
@@ -1307,14 +1571,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 487.19 739.74 494.55 715.90
   C 495.61 712.47 498.32 705.99 499.87 700.90
   A 0.15 0.15 0.0 0 0 499.61 700.77"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 446.01 764.49
   L 446.48 764.37
   A 0.42 0.42 0.0 0 1 446.94 764.54
   Q 447.01 764.65 447.07 764.78"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.07 764.78
   C 443.88 774.18 441.07 784.95 438.36 793.19
   Q 426.36 829.66 420.77 848.96
@@ -1349,8 +1619,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 405.75 875.79 416.41 842.35
   Q 425.26 814.59 436.74 784.98
   Q 439.24 778.54 446.01 764.49"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.07 764.78
   Q 448.16 764.13 447.58 766.01
   Q 446.76 768.67 444.16 778.63
@@ -1383,8 +1656,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 444.86 764.06
   A 0.78 0.77 28.7 0 1 445.95 763.75
   Q 445.97 763.77 446.01 764.49"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 379.03 755.46
   Q 373.94 760.76 367.07 767.57
   Q 358.38 776.20 345.56 784.07
@@ -1397,8 +1673,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.45 0.45 0.0 0 0 396.68 777.06
   Q 384.89 769.35 379.73 755.60
   A 0.42 0.42 0.0 0 0 379.03 755.46"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 362.59 938.01
   L 349.57 938.01
   A 0.31 0.31 0.0 0 1 349.33 937.50
@@ -1439,8 +1718,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 350.70 962.22 353.44 960.67 355.65 956.15
   C 358.34 950.64 360.15 944.09 362.83 938.40
   A 0.28 0.27 -77.3 0 0 362.59 938.01"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 314.62 781.73
   C 303.51 783.90 301.75 792.50 302.17 802.26
   C 302.49 809.65 303.30 816.48 302.85 823.68
@@ -1455,8 +1737,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 307.99 817.82 308.23 806.48 310.61 797.94
   Q 312.98 789.43 315.47 782.74
   A 0.76 0.75 -85.1 0 0 314.62 781.73"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 326.41 851.46
   Q 324.42 850.40 325.02 848.59
   A 0.85 0.84 7.3 0 1 325.76 848.02
@@ -1477,8 +1762,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 332.28 832.35 332.57 832.17
   A 0.76 0.76 0.0 0 0 332.92 831.57
   L 333.05 827.92"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 333.05 827.92
   Q 337.90 827.49 343.64 830.05
   A 2.64 2.64 0.0 0 0 347.00 828.96
@@ -1503,8 +1791,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 331.63 867.84 334.40 855.95
   A 1.41 1.40 -72.5 0 0 333.56 854.33
   L 326.41 851.46"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 333.05 827.92
   Q 330.67 827.53 330.03 829.30
   Q 328.85 832.55 329.04 833.48
@@ -1524,8 +1815,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.77 1.77 0.0 0 0 331.79 854.98
   Q 328.57 853.59 326.75 852.95
   Q 325.72 852.60 326.41 851.46"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.12 808.37
   C 363.50 807.82 356.80 806.10 353.03 807.80
   Q 346.38 810.80 342.35 816.91
@@ -1534,8 +1828,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 3.60 3.60 0.0 0 0 356.09 820.06
   L 367.28 808.86
   A 0.29 0.29 0.0 0 0 367.12 808.37"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 359.95 932.89
   Q 366.86 932.16 369.51 932.26
   Q 371.92 932.35 373.04 934.02
@@ -1557,12 +1854,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 3.29 3.28 -33.9 0 1 367.07 923.94
   L 359.70 932.41
   A 0.29 0.29 0.0 0 0 359.95 932.89"
-/>
-<path stroke="#6b5312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b5312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 357.45 1006.24
   Q 356.80 1006.25 357.07 1006.11"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 357.07 1006.11
   L 353.52 1004.00
   A 2.57 2.38 83.3 0 1 352.90 1003.47
@@ -1597,8 +1900,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 365.36 983.30 357.37 986.38
   A 1.88 1.88 0.0 0 0 356.17 988.27
   L 357.45 1006.24"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 357.07 1006.11
   Q 356.88 1006.37 356.68 1006.51
   Q 356.51 1006.64 356.20 1006.54
@@ -1623,8 +1929,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 359.19 1003.88 358.30 1006.57
   A 0.37 0.37 0.0 0 1 357.61 1006.61
   L 357.45 1006.24"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.61 993.10
   C 350.29 990.59 350.79 984.59 353.58 983.01
   Q 357.26 980.91 362.86 978.76
@@ -1644,12 +1953,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 338.70 984.36 343.82 983.11 345.97 987.09
   Q 348.99 992.67 350.18 993.38
   A 0.29 0.29 0.0 0 0 350.61 993.10"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 416.04 1019.71
   L 444.68 1021.53"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 444.68 1021.53
   Q 449.82 1021.98 457.50 1022.01
   C 486.46 1022.13 503.79 1022.47 526.25 1021.41
@@ -1670,8 +1985,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 372.09 1014.66
   A 0.56 0.56 0.0 0 0 372.44 1015.59
   Q 394.59 1018.56 416.04 1019.71"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 444.68 1021.53
   Q 444.77 1020.80 444.64 1020.44
   A 0.86 0.27 65.5 0 1 444.55 1019.71
@@ -1700,8 +2018,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 416.81 1017.93 416.68 1017.98
   A 0.87 0.80 84.4 0 0 416.11 1018.74
   L 416.04 1019.71"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 354.94 1037.62
   Q 364.83 1039.50 377.04 1040.66
   Q 396.01 1042.46 415.15 1043.49
@@ -1722,8 +2043,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 3.02 3.00 -79.6 0 0 359.43 1023.92
   L 354.43 1036.68
   A 0.70 0.69 -73.6 0 0 354.94 1037.62"
-/>
-<path stroke="#2f2722" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2f2722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 192.71 1282.72
   A 0.89 0.89 0.0 0 0 193.60 1283.61
   L 830.83 1283.61
@@ -1733,8 +2057,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 193.60 1057.83
   A 0.89 0.89 0.0 0 0 192.71 1058.72
   L 192.71 1282.72"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 372.45 85.84
   Q 374.26 87.41 377.68 87.91
   A 0.58 0.58 0.0 0 0 378.35 87.32
@@ -1755,8 +2082,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.42 2.28 -10.7 0 0 405.97 82.42
   Q 389.08 76.75 372.58 84.88
   A 0.58 0.58 0.0 0 0 372.45 85.84"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 419.01 87.94
   A 0.49 0.49 0.0 0 0 418.33 88.58
   Q 425.80 103.70 425.04 120.65
@@ -1767,8 +2097,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 431.44 98.78 430.22 96.62
   A 3.27 2.98 9.9 0 0 429.67 95.91
   Q 424.59 91.08 419.01 87.94"
-/>
-<path stroke="#dab137" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dab137"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 401.99 135.27
   Q 407.43 135.86 411.52 136.82
   Q 411.90 136.90 414.71 136.86
@@ -1776,8 +2109,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 416.86 129.66
   A 1.48 1.47 5.7 0 0 415.52 128.03
   Q 412.67 127.80 410.98 126.59"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 410.98 126.59
   L 399.21 119.31
   A 2.11 2.05 -33.2 0 0 397.77 119.03
@@ -1797,12 +2133,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 357.97 126.55 359.91 127.54 362.41 127.86
   Q 364.13 128.07 367.59 128.91
   Q 385.20 133.18 401.99 135.27"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 410.98 126.59
   L 401.99 135.27"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 438.92 115.90
   C 438.76 122.33 431.07 127.13 425.37 129.06
   A 1.23 1.22 83.9 0 0 424.55 130.08
@@ -1813,8 +2155,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 443.40 128.48 440.75 117.99
   Q 440.30 116.21 439.50 115.62
   A 0.36 0.36 0.0 0 0 438.92 115.90"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 347.07 150.97
   Q 348.05 154.34 348.39 154.89
   Q 351.94 160.60 355.52 164.47
@@ -1835,8 +2180,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.77 1.74 67.2 0 1 351.83 152.85
   Q 349.92 151.29 347.44 150.60
   A 0.30 0.30 0.0 0 0 347.07 150.97"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 331.41 184.21
   L 330.19 184.77
   A 7.10 7.06 87.3 0 0 326.45 188.90
@@ -1852,8 +2200,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 328.28 204.95 329.71 198.07
   Q 331.23 190.80 332.84 185.45
   A 1.04 1.04 0.0 0 0 331.41 184.21"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.02 299.62
   A 0.69 0.69 0.0 0 0 396.16 298.45
   Q 395.05 297.58 394.74 296.23
@@ -1867,8 +2218,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 376.47 293.45 389.29 297.92
   Q 393.50 299.39 395.03 299.61
   Q 395.80 299.72 396.02 299.62"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.09 146.96
   A 0.38 0.38 0.0 0 0 439.77 146.48
   L 423.68 144.64
@@ -1878,8 +2232,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 427.05 156.61 428.98 163.63
   A 1.09 1.09 0.0 0 0 430.86 164.05
   Q 437.37 156.45 440.09 146.96"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 363.81 172.73
   C 366.00 175.43 372.91 177.54 377.21 178.91
   C 380.45 179.95 383.90 179.99 387.46 180.72
@@ -1892,8 +2249,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 389.21 164.45 381.80 168.39 376.39 169.80
   Q 371.41 171.10 364.28 171.62
   A 0.68 0.68 0.0 0 0 363.81 172.73"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.02 179.37
   A 0.39 0.39 0.0 0 0 404.48 179.92
   Q 410.64 178.23 414.72 176.49
@@ -1902,8 +2262,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.26 1.25 -68.4 0 0 416.42 159.42
   Q 412.09 169.32 405.42 177.40
   Q 404.32 178.73 404.02 179.37"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.65 173.27
   Q 348.41 173.78 348.02 176.01
   A 0.43 0.43 0.0 0 0 348.46 176.52
@@ -1911,8 +2274,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 353.94 175.29 354.03 175.26
   A 0.43 0.43 0.0 0 0 354.21 174.61
   Q 352.90 172.77 350.65 173.27"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 514.26 190.35
   Q 502.04 194.46 495.05 204.99
   A 0.55 0.54 -59.4 0 0 495.25 205.78
@@ -1925,8 +2291,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 3.36 3.33 83.4 0 0 510.66 198.64
   L 514.64 190.79
   A 0.31 0.31 0.0 0 0 514.26 190.35"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.42 213.27
   L 553.94 210.23
   A 0.45 0.45 0.0 0 0 553.81 209.35
@@ -1948,8 +2317,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.29 0.28 71.9 0 1 544.51 213.79
   L 544.38 213.35
   A 0.08 0.07 75.1 0 1 544.42 213.27"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 409.81 288.17
   A 1.83 1.83 0.0 0 0 407.79 290.13
   Q 408.06 293.74 409.53 297.19
@@ -1960,8 +2332,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 430.96 297.46 429.23 295.50
   Q 424.69 290.38 417.77 289.23
   Q 414.60 288.70 409.81 288.17"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 454.72 303.63
   C 457.69 299.90 459.41 295.39 455.57 291.91
   Q 453.12 289.68 448.24 289.19
@@ -1972,8 +2347,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.70 0.66 52.0 0 0 454.04 304.85
   Q 454.64 304.70 454.59 304.06
   A 0.61 0.61 0.0 0 1 454.72 303.63"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 574.85 425.14
   Q 582.95 401.14 586.56 387.10
   Q 591.77 366.82 590.64 347.76
@@ -1999,8 +2377,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 554.49 391.31 566.03 407.87
   Q 568.35 411.20 574.39 425.15
   A 0.25 0.25 0.0 0 0 574.85 425.14"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 512.11 360.64
   A 0.42 0.42 0.0 0 0 512.67 360.17
   L 511.57 354.53
@@ -2012,14 +2393,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 476.08 337.71 488.37 348.86
   Q 493.92 353.90 501.17 356.59
   Q 511.47 360.40 512.11 360.64"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.75 347.00
   Q 469.56 347.03 469.42 347.06
   A 0.33 0.33 0.0 0 0 469.22 347.55
   L 469.60 348.17"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.60 348.17
   L 469.17 348.55
   A 0.63 0.63 0.0 0 0 469.22 349.55
@@ -2045,12 +2432,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 538.61 444.90
   A 0.63 0.63 0.0 0 0 539.53 444.38
   Q 539.78 440.13 538.42 435.43"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 538.42 435.43
   L 538.19 431.62"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 538.19 431.62
   Q 534.49 416.54 525.39 402.61
   Q 515.21 387.02 504.98 376.02
@@ -2058,21 +2451,30 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 479.56 351.10 470.52 346.18
   A 0.50 0.49 49.2 0 0 470.15 346.15
   Q 469.59 346.35 469.75 347.00"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 538.19 431.62
   Q 528.22 405.77 511.16 385.11
   Q 501.65 373.59 487.64 360.37
   Q 478.57 351.82 469.75 347.00"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 538.42 435.43
   Q 534.32 425.97 529.90 420.36
   Q 515.89 402.58 514.70 401.04
   C 502.95 385.79 494.49 376.29 478.01 356.74
   Q 473.38 351.25 469.60 348.17"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 468.11 401.82
   Q 469.46 403.72 470.01 406.27
   A 0.81 0.81 0.0 0 1 469.26 407.25
@@ -2085,8 +2487,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 469.10 387.71 467.39 386.01 465.13 385.02
   A 1.38 1.38 0.0 0 0 463.20 386.17
   L 462.90 389.80"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.90 389.80
   Q 459.97 381.46 457.27 373.15
   Q 454.92 365.94 454.46 360.61
@@ -2102,12 +2507,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 458.37 410.02 458.36 411.62
   A 0.32 0.31 -27.0 0 0 458.93 411.80
   Q 462.96 406.28 468.11 401.82"
-/>
-<path stroke="#dab137" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dab137"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.90 389.80
   Q 464.76 395.93 468.11 401.82"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.74 450.31
   Q 541.01 459.15 542.63 461.36
   Q 545.58 465.39 549.12 473.63
@@ -2128,8 +2539,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 542.52 451.39 539.86 450.86
   C 537.66 450.42 535.52 449.94 532.88 449.97
   A 0.20 0.20 0.0 0 0 532.74 450.31"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.94 450.19
   C 485.52 443.27 477.45 439.93 465.90 439.55
   Q 457.64 439.28 448.02 439.94
@@ -2140,8 +2554,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 479.84 447.92 482.18 448.36
   Q 489.79 449.79 493.64 450.78
   A 0.34 0.34 0.0 0 0 493.94 450.19"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 621.66 329.83
   Q 621.73 328.32 620.60 327.20
   Q 617.62 324.25 616.90 322.28
@@ -2152,8 +2569,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 600.84 323.48 606.94 325.41 609.80 327.25
   C 613.41 329.57 616.69 330.13 620.83 330.56
   A 0.76 0.76 0.0 0 0 621.66 329.83"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 628.88 349.42
   C 623.64 344.88 619.67 342.12 612.30 339.10
   Q 604.86 336.06 598.88 332.16
@@ -2163,8 +2583,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 604.60 352.94 608.49 352.00
   Q 618.81 349.52 628.71 349.85
   A 0.25 0.24 -23.6 0 0 628.88 349.42"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 660.57 380.56
   Q 661.59 374.28 657.86 370.99
   C 654.15 367.71 651.46 364.55 647.23 361.15
@@ -2176,8 +2599,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 5.49 5.48 35.6 0 0 636.10 361.18
   Q 646.68 372.68 659.41 381.07
   A 0.76 0.76 0.0 0 0 660.57 380.56"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 674.13 407.10
   A 0.26 0.26 0.0 0 0 674.22 406.63
   L 667.24 401.57
@@ -2192,8 +2618,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 669.31 408.96
   A 0.37 0.37 0.0 0 1 669.36 408.25
   L 674.13 407.10"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 754.04 443.74
   Q 753.11 441.93 752.06 441.28
   Q 742.33 435.32 733.09 428.74
@@ -2203,8 +2632,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.79 1.18 -1.6 0 1 740.54 436.22
   L 753.86 443.92
   A 0.14 0.13 -89.0 0 0 754.04 443.74"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 553.31 487.04
   A 5.14 5.12 13.7 0 0 551.19 483.57
   Q 540.74 476.19 540.01 475.76
@@ -2222,14 +2654,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 539.32 481.32 551.52 489.83
   A 1.29 1.29 0.0 0 0 553.54 488.59
   L 553.31 487.04"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 458.03 476.09
   Q 457.89 476.11 457.77 476.14
   A 0.37 0.36 -28.8 0 0 457.59 476.75
   Q 458.59 477.76 460.35 478.10"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.35 478.10
   Q 460.11 478.22 459.98 478.36
   A 0.41 0.41 0.0 0 0 460.11 479.02
@@ -2239,12 +2677,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 495.64 500.88 498.67 502.26 501.55 504.59
   Q 501.82 504.80 505.85 507.58
   Q 507.47 508.71 507.56 507.46"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 507.56 507.46
   Q 507.86 507.14 507.49 506.34"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 507.49 506.34
   Q 507.85 506.50 508.09 506.24
   Q 508.42 505.89 508.13 505.53
@@ -2253,19 +2697,28 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 471.16 477.50 464.92 476.50 458.47 475.16
   Q 458.11 475.08 457.89 475.43
   Q 457.66 475.79 458.03 476.09"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 507.49 506.34
   Q 503.43 501.61 499.32 496.91
   Q 489.09 485.18 474.62 480.17
   C 469.86 478.53 463.55 477.41 458.03 476.09"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 507.56 507.46
   Q 492.35 496.23 478.69 487.31
   Q 470.24 481.79 460.35 478.10"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.15 484.28
   C 454.04 478.54 445.46 485.09 441.85 489.69
   Q 438.19 494.36 431.25 502.59
@@ -2277,8 +2730,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 451.38 506.62 453.81 503.50 455.32 499.66
   Q 457.44 494.26 459.70 486.77
   A 2.62 2.61 -57.5 0 0 459.15 484.28"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.96 626.53
   Q 469.87 626.13 469.92 625.78
   Q 471.28 616.84 475.78 604.40
@@ -2294,8 +2750,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.97 0.96 -1.1 0 0 449.22 628.14
   Q 458.01 625.86 468.52 628.02
   A 1.23 1.23 0.0 0 0 469.96 626.53"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 265.72 629.52
   A 0.90 0.89 -8.6 0 0 264.96 630.54
   C 265.50 634.02 266.42 639.84 268.79 642.76
@@ -2326,8 +2785,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 340.48 634.13 330.88 632.88
   C 314.53 630.75 300.17 630.17 284.75 629.02
   Q 274.57 628.25 265.72 629.52"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 352.91 620.87
   A 2.50 2.49 -47.5 0 0 356.01 620.73
   Q 358.51 618.56 359.94 616.19
@@ -2339,8 +2801,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 359.36 604.97 356.89 611.74 351.71 616.48
   A 2.38 2.37 41.8 0 0 351.92 620.15
   L 352.91 620.87"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 291.44 615.80
   A 0.92 0.92 0.0 0 0 291.50 617.58
   Q 295.79 618.51 298.94 618.60
@@ -2349,8 +2814,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 329.43 609.82 323.49 609.61
   Q 317.25 609.40 305.53 611.60
   C 300.55 612.53 296.75 614.27 291.44 615.80"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 145.89 691.03
   Q 146.15 689.78 146.00 689.07
   Q 145.19 685.41 145.04 681.93
@@ -2382,8 +2850,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 144.09 672.57 143.21 677.74
   Q 141.93 685.33 144.68 691.17
   A 0.64 0.64 0.0 0 0 145.89 691.03"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 200.06 645.15
   L 199.89 645.60
   A 0.85 0.85 0.0 0 1 199.00 646.13
@@ -2395,8 +2866,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.75 1.75 0.0 0 0 206.33 652.60
   Q 203.11 649.67 201.06 645.13
   A 0.54 0.54 0.0 0 0 200.06 645.15"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 170.56 664.46
   L 168.04 665.07
   A 1.53 1.49 -75.6 0 0 167.22 665.57
@@ -2413,8 +2887,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 175.98 670.96 174.70 669.19
   Q 171.75 665.11 171.53 664.81
   A 0.95 0.94 -25.1 0 0 170.56 664.46"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 259.77 642.19
   L 258.37 638.83
   A 0.56 0.41 -69.6 0 1 258.32 638.65
@@ -2427,8 +2904,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 240.07 642.95 241.68 643.88 243.05 643.79
   Q 251.25 643.19 258.96 643.38
   A 0.86 0.86 0.0 0 0 259.77 642.19"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 452.05 657.31
   L 446.23 686.27
   A 1.04 1.04 0.0 0 1 445.82 686.91
@@ -2451,8 +2931,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.23 1.22 64.3 0 0 384.88 751.98
   Q 385.01 754.98 386.90 758.31
   Q 389.68 763.22 392.03 765.88"
-/>
-<path stroke="#dab137" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dab137"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 392.03 765.88
   Q 394.84 769.34 398.45 771.39
   Q 401.32 773.02 404.08 771.40
@@ -2468,8 +2951,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 464.79 653.29 459.21 652.32 452.87 652.90
   A 1.09 1.09 0.0 0 0 451.88 654.04
   L 452.05 657.31"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 392.03 765.88
   L 392.42 764.98
   A 1.21 1.21 0.0 0 1 392.93 764.41
@@ -2497,8 +2983,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 452.97 658.24
   A 0.61 0.60 73.0 0 1 452.19 657.82
   L 452.05 657.31"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.84 713.15
   L 481.69 723.66
   A 5.15 5.14 77.5 0 0 480.10 726.16
@@ -2524,8 +3013,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 480.03 760.47 490.88 723.23
   C 491.99 719.42 493.52 716.19 494.03 713.26
   A 0.12 0.12 0.0 0 0 493.84 713.15"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 349.68 800.97
   L 362.75 800.58
   A 4.97 4.80 -54.1 0 0 364.16 800.33
@@ -2541,8 +3033,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 360.89 792.97 358.14 794.87
   Q 354.16 797.62 349.39 799.61
   A 0.71 0.71 0.0 0 0 349.68 800.97"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 318.56 991.45
   A 0.84 0.82 -74.0 0 0 317.57 992.01
   Q 315.89 997.45 314.45 1000.96
@@ -2557,22 +3052,31 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.09 1.07 59.4 0 0 339.06 990.11
   Q 333.89 990.90 330.49 991.70
   Q 324.83 993.02 318.56 991.45"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 299.67 863.82
   Q 299.68 864.82 299.84 865.10
   A 0.20 0.20 0.0 0 0 300.22 864.98
   Q 300.14 863.83 300.05 863.70
   A 0.21 0.21 0.0 0 0 299.67 863.82"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 301.5620 872.2405
   A 1.19 0.29 -105.0 0 0 301.5899 873.4651
   A 1.19 0.29 -105.0 0 0 302.1780 874.5395
   A 1.19 0.29 -105.0 0 0 302.1501 873.3149
   A 1.19 0.29 -105.0 0 0 301.5620 872.2405"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.09 819.61
   L 333.69 824.66
   A 0.86 0.85 20.6 0 0 334.23 825.84
@@ -2584,8 +3088,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.17 1.15 -15.3 0 1 340.58 824.38
   L 336.42 819.56
   A 0.20 0.20 0.0 0 0 336.09 819.61"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 344.18 818.03
   A 0.88 0.87 3.4 0 0 344.91 818.84
   L 353.08 820.20
@@ -2596,8 +3103,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 347.97 811.67 344.46 815.99
   A 1.44 1.42 63.4 0 0 344.13 817.01
   L 344.18 818.03"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 563.95 1018.23
   Q 575.50 1017.84 575.99 1017.79
   Q 599.80 1015.39 606.54 1014.94
@@ -2624,8 +3134,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.68 1.55 42.8 0 1 563.53 1016.67
   L 563.42 1017.65
   A 0.52 0.52 0.0 0 0 563.95 1018.23"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 392.97 989.42
   L 387.42 990.35
   A 2.32 2.30 8.2 0 0 385.74 991.60
@@ -2641,8 +3154,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.78 2.60 -22.9 0 1 397.32 991.47
   L 393.42 989.49
   A 0.73 0.70 -34.9 0 0 392.97 989.42"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 413.10 1026.96
   C 406.55 1025.99 399.83 1026.28 393.37 1025.47
   Q 379.94 1023.79 362.12 1023.16
@@ -2659,8 +3175,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 410.44 1035.26 410.66 1031.62
   C 410.76 1029.95 411.44 1028.05 413.14 1027.51
   A 0.29 0.28 -49.6 0 0 413.10 1026.96"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 569.49 1027.13
   C 565.89 1027.14 562.05 1027.91 558.82 1027.89
   Q 552.50 1027.84 545.31 1028.35
@@ -2683,8 +3202,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 544.02 1043.22 554.98 1042.53
   Q 560.50 1042.18 564.05 1042.17
   Q 568.97 1042.16 573.13 1041.87"
-/>
-<path stroke="#dab137" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dab137"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.13 1041.87
   Q 587.17 1041.57 599.81 1040.34
   C 603.14 1040.02 606.05 1040.40 608.60 1039.94
@@ -2694,12 +3216,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 624.33 1030.39 622.14 1025.38
   Q 621.08 1022.97 619.00 1023.15
   Q 594.32 1025.38 569.49 1027.13"
-/>
-<path stroke="#d4a525" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d4a525"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.13 1041.87
   Q 572.86 1034.03 569.49 1027.13"
-/>
-<path stroke="#2f2722" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2f2722"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 822.54 1068.09
   A 0.33 0.33 0.0 0 0 822.21 1067.76
   L 202.31 1067.76
@@ -2709,8 +3237,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 822.21 1274.34
   A 0.33 0.33 0.0 0 0 822.54 1274.01
   L 822.54 1068.09"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 365.01 1080.29
   L 364.89 1265.83
   A 1.19 1.18 0.2 0 0 366.08 1267.02
@@ -2719,12 +3250,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 815.26 1075.08
   A 0.30 0.30 0.0 0 0 814.96 1074.78
   L 367.64 1074.79"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.64 1074.79
   Q 364.31 1073.17 365.01 1080.29"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.64 1074.79
   Q 368.13 1076.13 371.63 1076.13
   Q 802.65 1075.80 808.88 1075.67
@@ -2736,12 +3273,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.38 1.37 0.2 0 1 365.82 1264.58
   Q 365.98 1170.68 365.88 1082.33
   Q 365.87 1080.72 365.01 1080.29"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 217.52 1098.51
   Q 218.11 1097.54 218.92 1098.82"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 218.92 1098.82
   L 219.05 1146.89
   A 0.58 0.57 89.5 0 0 219.62 1147.46
@@ -2752,8 +3295,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 224.57 1087.90 217.20 1087.79
   A 0.63 0.62 -86.5 0 0 216.57 1088.35
   Q 216.04 1093.36 217.52 1098.51"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 218.92 1098.82
   Q 220.17 1098.50 220.30 1099.22
   Q 220.79 1101.91 220.82 1106.51
@@ -2768,8 +3314,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 233.95 1088.93 218.26 1088.83
   A 0.71 0.70 85.3 0 0 217.56 1089.66
   Q 218.29 1093.89 217.52 1098.51"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 270.84 1128.08
   A 0.80 0.80 0.0 0 0 270.04 1128.88
   L 270.04 1133.89
@@ -2794,8 +3343,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 279.49 1136.82 279.19 1129.09
   A 1.05 1.04 -0.8 0 0 278.14 1128.08
   L 270.84 1128.08"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 333.63 1132.01
   Q 336.83 1132.03 337.44 1132.20
   A 0.56 0.56 0.0 0 1 337.85 1132.68
@@ -2815,8 +3367,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 329.39 1132.63
   A 0.56 0.56 0.0 0 1 329.80 1132.16
   Q 330.42 1131.99 333.63 1132.01"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 293.53 1128.39
   L 286.40 1128.39
   A 1.55 1.55 0.0 0 0 284.85 1129.96
@@ -2843,8 +3398,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.68 2.67 8.1 0 1 295.15 1134.79
   L 294.87 1129.66
   A 1.34 1.34 0.0 0 0 293.53 1128.39"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 224.42 1164.42
   Q 227.17 1161.64 224.83 1158.22
   A 2.00 1.95 80.2 0 0 223.72 1157.41
@@ -2855,8 +3413,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 222.46 1173.72 227.33 1173.69 226.41 1167.69
   Q 226.27 1166.80 224.45 1165.21
   A 0.55 0.54 43.2 0 1 224.42 1164.42"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 236.45 1169.89
   Q 237.47 1169.89 237.85 1169.90
   A 0.86 0.84 -5.8 0 1 238.66 1170.55
@@ -2876,8 +3437,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 234.24 1170.53
   A 0.86 0.84 6.3 0 1 235.06 1169.89
   Q 235.44 1169.88 236.45 1169.89"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 253.76 1157.21
   C 251.69 1156.82 248.18 1156.73 247.16 1159.08
   Q 245.83 1162.14 247.40 1164.79
@@ -2895,8 +3459,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.57 0.57 0.0 0 0 254.15 1159.94
   L 254.37 1158.03
   A 0.76 0.76 0.0 0 0 253.76 1157.21"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 263.57 1163.46
   L 264.12 1158.61
   A 1.47 1.46 3.3 0 0 262.66 1156.98
@@ -2920,8 +3487,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.46 2.43 10.7 0 0 267.31 1158.37
   L 264.24 1163.69
   A 0.36 0.36 0.0 0 1 263.57 1163.46"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 283.98 1171.62
   A 0.59 0.59 0.0 0 0 283.39 1171.03
   L 279.52 1171.03
@@ -2947,8 +3517,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 283.39 1173.63
   A 0.59 0.59 0.0 0 0 283.98 1173.04
   L 283.98 1171.62"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.04 1159.28
   A 0.60 0.60 0.0 0 0 288.64 1159.88
   L 290.39 1159.88
@@ -2966,8 +3539,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 288.64 1157.16
   A 0.60 0.60 0.0 0 0 288.04 1157.76
   L 288.04 1159.28"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 309.30 1164.49
   Q 312.06 1161.77 309.79 1158.35
   A 1.98 1.93 80.9 0 0 308.70 1157.54
@@ -2978,8 +3554,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 307.24 1173.69 312.07 1173.72 311.23 1167.76
   Q 311.10 1166.88 309.32 1165.28
   A 0.55 0.54 43.9 0 1 309.30 1164.49"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.17 1169.91
   Q 322.15 1169.91 322.46 1169.92
   A 0.82 0.82 0.0 0 1 323.24 1170.54
@@ -2999,8 +3578,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 319.09 1170.52
   A 0.82 0.82 0.0 0 1 319.87 1169.90
   Q 320.19 1169.90 321.17 1169.91"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 339.50 1171.77
   A 0.55 0.55 0.0 0 0 338.95 1171.16
   L 335.04 1171.16
@@ -3014,8 +3596,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 338.80 1173.61
   A 0.55 0.55 0.0 0 0 339.35 1173.12
   L 339.50 1171.77"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.80 1170.59
   L 346.79 1158.08
   A 1.14 1.13 -0.5 0 0 345.63 1156.95
@@ -3029,22 +3614,34 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.82 0.82 0.0 0 0 351.09 1171.16
   L 347.42 1171.19
   A 0.62 0.61 -0.3 0 1 346.80 1170.59"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 424.83 1093.22
   L 424.78 1110.82
   A 0.51 0.50 0.6 0 0 425.29 1111.33
   L 435.16 1111.21"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.16 1111.21
   Q 441.16 1113.67 446.19 1111.41"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 446.19 1111.41
   Q 447.56 1111.31 447.74 1109.80"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.74 1109.80
   Q 450.06 1110.92 452.30 1111.85
   Q 460.67 1115.32 465.00 1107.74
@@ -3071,8 +3668,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 521.33 1109.13 520.92 1104.47 520.60 1102.36
   A 0.60 0.60 0.0 0 0 520.11 1101.87
   Q 519.59 1101.78 519.28 1102.31"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.28 1102.31
   Q 519.37 1101.89 519.14 1101.54
   A 0.56 0.54 73.6 0 0 518.70 1101.29
@@ -3086,8 +3686,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 508.59 1096.34 513.71 1094.23 518.64 1097.70
   A 0.39 0.39 0.0 0 0 519.26 1097.37
   L 519.25 1096.96"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.25 1096.96
   Q 519.47 1096.94 519.61 1097.14
   A 0.55 0.44 -71.7 0 0 520.42 1096.61
@@ -3104,14 +3707,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 493.11 1090.40 487.34 1092.94
   A 1.36 1.33 -45.6 0 1 486.34 1092.96
   Q 483.97 1092.02 482.03 1093.15"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.03 1093.15
   Q 481.70 1093.15 481.44 1093.27
   Q 481.15 1093.39 481.06 1093.69
   Q 480.96 1094.05 481.07 1094.46"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.07 1094.46
   C 478.56 1094.00 476.17 1092.34 474.19 1092.11
   Q 470.79 1091.72 467.19 1092.29
@@ -3130,8 +3739,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 426.10 1092.21
   A 0.37 0.37 0.0 0 1 426.21 1092.91
   Q 425.77 1093.13 424.83 1093.22"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.07 1094.46
   L 481.05 1110.70
   A 0.88 0.88 0.0 0 0 481.93 1111.58
@@ -3140,8 +3752,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 484.68 1093.98
   A 0.72 0.71 9.0 0 0 484.18 1093.30
   Q 483.20 1092.97 482.03 1093.15"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.25 1096.96
   Q 519.30 1095.51 518.60 1094.40
   A 1.67 1.65 -6.2 0 0 517.78 1093.75
@@ -3150,8 +3765,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 506.74 1111.80 513.18 1113.51 518.40 1110.87
   A 1.28 1.27 77.7 0 0 519.10 1109.76
   L 519.28 1102.31"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.74 1109.80
   Q 447.01 1107.81 441.63 1108.13
   A 0.44 0.43 -1.9 0 1 441.16 1107.70
@@ -3162,8 +3780,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 437.65 1110.87
   A 0.46 0.45 90.0 0 0 438.10 1111.33
   L 446.19 1111.41"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.16 1111.21
   L 435.02 1109.02
   A 0.73 0.72 87.9 0 0 434.30 1108.34
@@ -3184,8 +3805,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 434.71 1093.87
   A 0.70 0.70 0.0 0 0 434.01 1093.17
   L 424.83 1093.22"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 579.37 1111.38
   L 578.90 1098.48
   A 0.25 0.25 0.0 0 1 579.39 1098.39
@@ -3195,8 +3819,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.29 0.29 0.0 0 1 590.06 1098.88
   Q 590.00 1107.27 589.97 1110.75
   Q 589.97 1111.23 590.82 1111.42"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.82 1111.42
   Q 590.39 1112.36 590.75 1112.48
   Q 593.25 1113.35 594.72 1111.52
@@ -3209,12 +3836,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.29 0.29 0.0 0 1 609.46 1102.47
   C 609.77 1102.97 610.13 1104.25 610.06 1105.04
   Q 609.78 1108.41 611.18 1110.90"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 611.18 1110.90
   Q 614.89 1112.55 615.07 1110.35"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 615.07 1110.35
   Q 615.57 1110.57 615.93 1110.45
   Q 616.31 1110.32 616.44 1109.76
@@ -3241,14 +3874,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 660.72 1097.00 660.85 1097.00
   Q 660.98 1097.00 661.05 1096.84
   Q 661.20 1096.52 661.05 1095.99"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.05 1095.99
   Q 662.59 1096.20 664.09 1096.96
   Q 664.71 1097.28 664.94 1097.06
   Q 665.18 1096.82 665.19 1096.18"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 665.19 1096.18
   Q 666.54 1096.29 666.37 1095.79
   Q 665.84 1094.32 664.86 1093.16
@@ -3260,24 +3899,36 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 645.83 1096.95
   A 0.51 0.51 0.0 0 1 644.94 1097.23
   C 643.38 1095.49 641.68 1090.17 637.94 1092.97"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 637.94 1092.97
   Q 636.93 1093.01 636.90 1093.67"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 636.90 1093.67
   Q 635.52 1094.80 634.60 1094.95
   A 1.13 1.12 -29.8 0 1 633.71 1094.71
   Q 626.18 1088.53 618.49 1094.86
   Q 617.88 1095.36 617.21 1094.98
   Q 616.38 1094.51 615.09 1095.06"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 615.09 1095.06
   Q 614.75 1090.87 611.22 1094.29"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 611.22 1094.29
   Q 604.00 1091.11 597.11 1092.16
   C 596.20 1092.30 596.13 1093.06 595.51 1093.43
@@ -3304,8 +3955,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 557.37 1091.68 554.95 1092.19
   Q 554.69 1092.24 554.63 1092.51
   Q 554.57 1092.77 554.80 1093.00"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 554.80 1093.00
   Q 553.75 1092.96 553.77 1093.78
   Q 553.89 1097.20 553.86 1100.34
@@ -3315,8 +3969,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 547.85 1093.90
   A 0.73 0.73 0.0 0 0 547.34 1093.18
   Q 545.11 1092.46 544.11 1093.73"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.11 1093.73
   C 539.81 1092.66 534.78 1090.31 530.74 1093.02
   C 526.36 1095.95 525.87 1103.59 527.60 1107.84
@@ -3337,8 +3994,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 565.97 1109.18
   A 1.71 1.70 47.0 0 1 568.46 1109.27
   Q 572.56 1113.98 579.37 1111.38"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.11 1093.73
   L 544.19 1110.59
   A 0.89 0.89 0.0 0 0 545.08 1111.47
@@ -3355,12 +4015,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 557.40 1093.77
   A 0.69 0.69 0.0 0 0 556.88 1093.10
   Q 555.85 1092.84 554.80 1093.00"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 611.22 1094.29
   Q 611.91 1101.07 611.18 1110.90"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.82 1111.42
   Q 591.78 1111.58 592.71 1111.41
   A 0.58 0.58 0.0 0 0 593.18 1110.84
@@ -3377,8 +4043,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 575.97 1110.77
   A 0.61 0.60 -89.5 0 0 576.58 1111.40
   L 579.37 1111.38"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 636.90 1093.67
   L 636.93 1110.76
   A 0.89 0.88 -89.3 0 0 637.79 1111.65
@@ -3398,8 +4067,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.22 0.22 0.0 0 1 647.42 1106.08
   Q 644.63 1100.17 641.77 1094.80
   C 640.89 1093.15 639.71 1092.77 637.94 1092.97"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 665.19 1096.18
   C 665.14 1091.00 651.46 1091.56 654.37 1100.30
   C 655.59 1103.94 661.58 1103.40 662.21 1105.87
@@ -3412,12 +4084,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 667.93 1102.80 662.72 1101.20 658.40 1099.47
   A 1.76 1.63 27.5 0 1 657.51 1096.98
   Q 658.54 1095.46 661.05 1095.99"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 615.07 1110.35
   L 615.09 1095.06"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 379.44 1093.78
   L 379.36 1110.76
   A 0.70 0.70 0.0 0 0 380.05 1111.47
@@ -3427,8 +4105,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 8.47 8.45 -89.7 0 0 384.94 1093.11
   L 380.15 1093.09
   A 0.70 0.70 0.0 0 0 379.44 1093.78"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 405.56 1101.00
   A 0.66 0.66 0.0 0 0 404.90 1100.34
   L 400.54 1100.34
@@ -3454,8 +4135,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 404.90 1103.23
   A 0.66 0.66 0.0 0 0 405.56 1102.57
   L 405.56 1101.00"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 415.68 1111.91
   C 416.93 1111.91 417.63 1111.46 417.97 1110.24
   Q 421.46 1097.83 422.90 1093.70
@@ -3471,8 +4155,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.48 0.48 0.0 0 0 408.60 1093.65
   Q 410.01 1097.79 413.40 1110.23
   C 413.73 1111.45 414.43 1111.90 415.68 1111.91"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 673.41 1109.46
   A 1.11 1.09 18.0 0 0 673.97 1110.54
   C 677.11 1112.32 681.75 1112.67 684.30 1109.71
@@ -3490,8 +4177,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 679.30 1109.79 674.33 1107.21
   A 0.48 0.48 0.0 0 0 673.63 1107.58
   L 673.41 1109.46"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 692.44 1105.14
   Q 694.18 1104.95 694.28 1104.95
   Q 699.68 1104.84 700.04 1099.26
@@ -3503,8 +4193,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.95 0.95 0.0 0 0 691.79 1110.81
   L 691.79 1105.87
   A 0.73 0.73 0.0 0 1 692.44 1105.14"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 717.6925 1100.3020
   A 7.18 7.18 0.0 0 0 710.5881 1093.0472
   L 709.3082 1093.0338
@@ -3514,8 +4207,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 710.3918 1111.7862
   A 7.18 7.18 0.0 0 0 717.6466 1104.6818
   L 717.6925 1100.3020"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 732.86 1110.81
   L 730.03 1104.63
   A 1.00 0.99 52.7 0 1 730.17 1103.58
@@ -3534,8 +4230,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.62 1.61 -8.4 0 0 730.09 1111.34
   L 732.29 1111.60
   A 0.56 0.56 0.0 0 0 732.86 1110.81"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 735.76 1096.35
   Q 737.02 1099.49 736.93 1101.04
   Q 736.63 1105.93 737.27 1110.93
@@ -3544,8 +4243,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.04 1.02 9.3 0 0 742.81 1112.35
   Q 744.00 1110.16 743.92 1109.14
   Q 743.39 1102.33 744.72 1096.35"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 744.72 1096.35
   L 745.90 1096.42
   A 0.76 0.76 0.0 0 0 746.69 1095.75
@@ -3554,8 +4256,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 734.84 1093.13
   A 0.75 0.75 0.0 0 0 734.12 1093.66
   Q 733.17 1096.69 735.76 1096.35"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 744.72 1096.35
   Q 743.55 1095.87 742.54 1096.31
   A 0.84 0.84 0.0 0 0 742.04 1097.08
@@ -3566,8 +4271,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 738.63 1097.00
   A 0.84 0.84 0.0 0 0 738.08 1096.21
   Q 737.24 1095.91 735.76 1096.35"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 758.88 1094.81
   A 1.53 1.52 7.9 0 0 757.83 1093.44
   C 755.06 1092.51 750.28 1092.65 748.83 1095.82
@@ -3585,8 +4293,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 754.68 1095.07 758.05 1097.04
   A 0.62 0.62 0.0 0 0 758.98 1096.46
   L 758.88 1094.81"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.76 1145.62
   Q 577.75 1146.49 579.38 1145.42
   A 1.01 0.99 77.2 0 0 579.81 1144.72
@@ -3597,8 +4308,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 587.52 1144.80
   A 1.36 1.35 -83.9 0 0 588.25 1145.71
   Q 590.18 1146.63 591.24 1145.35"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.24 1145.35
   Q 593.25 1145.60 595.24 1146.89
   A 1.59 1.54 59.5 0 0 596.15 1147.14
@@ -3627,8 +4341,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 648.19 1142.48 647.61 1136.93 647.25 1127.67
   A 1.21 1.14 89.2 0 0 646.12 1126.50
   Q 645.87 1126.50 645.97 1127.26"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 645.97 1127.26
   Q 644.33 1126.27 643.13 1127.09
   A 1.31 1.30 -18.5 0 0 642.56 1128.22
@@ -3637,8 +4354,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 636.70 1127.75
   A 1.17 1.16 84.8 0 0 635.95 1127.12
   Q 633.65 1126.51 631.79 1127.11"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 631.79 1127.11
   Q 630.16 1127.68 629.84 1129.05
   A 0.73 0.73 0.0 0 1 628.59 1129.38
@@ -3648,45 +4368,69 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 610.63 1127.44
   A 0.50 0.49 61.4 0 0 609.86 1127.21
   L 609.16 1127.75"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 609.16 1127.75
   Q 609.25 1127.56 609.22 1127.36
   A 0.37 0.37 0.0 0 0 608.94 1127.04
   Q 607.17 1126.63 605.45 1127.06"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 605.45 1127.06
   L 603.46 1127.08"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.46 1127.08
   Q 597.20 1126.52 590.83 1127.13
   Q 590.63 1127.15 590.52 1127.28
   Q 590.39 1127.43 590.34 1127.60"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.34 1127.60
   Q 589.94 1127.42 589.61 1127.37
   C 589.36 1127.32 589.22 1127.51 589.12 1127.69
   A 0.43 0.43 0.0 0 1 588.68 1127.89
   L 585.98 1127.39"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 585.98 1127.39
   Q 584.86 1126.53 581.06 1126.84"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 581.06 1126.84
   Q 577.66 1132.22 576.10 1139.03
   A 0.43 0.43 0.0 0 1 575.25 1138.91
   Q 575.46 1133.39 574.09 1127.73"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 574.09 1127.73
   Q 572.24 1126.11 570.10 1127.52"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 570.10 1127.52
   C 564.01 1125.39 558.88 1123.39 554.23 1128.94
   C 553.55 1129.74 553.25 1130.97 552.76 1131.70
@@ -3700,14 +4444,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 504.29 1133.36 507.89 1137.00
   Q 508.30 1137.41 508.79 1137.39
   Q 509.37 1137.37 509.52 1136.77"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 509.52 1136.77
   C 511.14 1137.26 514.95 1138.18 515.21 1140.15
   A 2.29 2.29 0.0 0 1 513.74 1142.60
   C 511.08 1143.60 509.34 1141.90 506.93 1141.33"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.93 1141.33
   Q 503.86 1139.09 503.56 1134.00
   A 1.25 1.19 -57.5 0 0 503.50 1133.69
@@ -3736,8 +4486,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.42 0.42 0.0 0 1 568.81 1145.31
   Q 569.90 1146.87 570.70 1147.00
   Q 574.37 1147.59 575.76 1145.62"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.93 1141.33
   Q 506.45 1143.17 506.65 1143.65
   C 508.12 1147.19 514.46 1146.43 516.48 1145.03
@@ -3751,20 +4504,29 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.62 1.62 0.0 0 0 516.68 1127.11
   C 513.35 1126.17 509.46 1126.15 507.51 1129.64
   Q 505.38 1133.45 509.52 1136.77"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 570.10 1127.52
   L 570.14 1144.87
   A 1.16 1.15 -0.0 0 0 571.30 1146.02
   L 572.76 1146.02
   A 1.18 1.18 0.0 0 0 573.94 1144.85
   L 574.09 1127.73"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 581.06 1126.84
   L 575.76 1145.62"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 631.79 1127.11
   L 631.53 1145.18
   A 0.76 0.75 -88.8 0 0 632.26 1145.95
@@ -3777,12 +4539,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 643.60 1146.30 645.42 1145.94
   A 0.71 0.69 84.5 0 0 645.98 1145.25
   L 645.97 1127.26"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.24 1145.35
   L 585.98 1127.39"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.34 1127.60
   Q 589.81 1130.06 591.46 1130.02
   Q 593.79 1129.96 594.35 1130.00
@@ -3796,20 +4564,29 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 602.62 1129.98
   A 0.67 0.66 -80.3 0 0 603.28 1129.51
   Q 603.57 1128.47 603.46 1127.08"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 605.45 1127.06
   L 605.49 1145.61
   A 0.33 0.33 0.0 0 0 605.81 1145.94
   L 608.83 1146.04
   A 0.36 0.35 -89.2 0 0 609.19 1145.68
   L 609.16 1127.75"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 478.69 1162.77
   Q 478.37 1164.07 479.52 1164.49"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.52 1164.49
   Q 478.98 1164.88 479.27 1165.28
   A 0.30 0.28 73.2 0 0 479.48 1165.40
@@ -3868,8 +4645,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 476.98 1166.14
   A 1.12 1.12 0.0 0 1 477.13 1165.58
   L 478.69 1162.77"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.52 1164.49
   L 483.57 1164.48
   A 0.48 0.48 0.0 0 1 484.06 1164.96
@@ -3886,12 +4666,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 485.63 1160.82 479.82 1160.99
   Q 478.95 1161.01 478.71 1161.48
   Q 478.47 1161.96 478.69 1162.77"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 441.31 1167.47
   L 440.33 1171.23"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.33 1171.23
   Q 437.56 1167.72 437.16 1162.65
   Q 436.93 1159.67 434.04 1159.57
@@ -3929,8 +4715,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 440.11 1167.12
   A 0.49 0.48 85.8 0 0 440.75 1167.68
   L 441.31 1167.47"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.33 1171.23
   L 439.41 1176.97
   A 0.31 0.31 0.0 0 1 438.80 1176.98
@@ -3959,12 +4748,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 443.27 1160.96
   A 0.85 0.84 -84.6 0 0 442.44 1161.65
   L 441.31 1167.47"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 568.86 1179.26
   L 568.54 1178.91"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 568.54 1178.91
   Q 568.04 1177.24 565.95 1177.65
   Q 565.18 1177.81 562.32 1177.48
@@ -4035,8 +4830,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 570.72 1176.79
   A 2.55 2.53 -15.7 0 1 570.22 1177.67
   L 568.86 1179.26"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 568.54 1178.91
   L 560.87 1179.12
   A 0.92 0.92 0.0 0 1 559.92 1178.20
@@ -4061,8 +4859,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 567.91 1182.68
   A 0.79 0.78 7.7 0 0 568.67 1182.11
   Q 569.07 1180.71 568.86 1179.26"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 668.54 1166.76
   C 667.39 1164.95 668.07 1162.43 665.20 1160.79
   C 661.63 1158.77 657.32 1158.44 654.04 1161.23
@@ -4089,8 +4890,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 682.65 1159.36 677.14 1159.23
   C 672.08 1159.11 670.08 1162.25 668.99 1166.69
   A 0.25 0.25 0.0 0 1 668.54 1166.76"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 552.33 1177.86
   A 1.77 1.75 -27.4 0 0 551.33 1177.55
   L 545.64 1177.55
@@ -4106,8 +4910,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 550.95 1184.00 552.96 1183.19
   A 1.02 0.99 -3.9 0 0 553.55 1182.53
   Q 554.40 1179.31 552.33 1177.86"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 687.66 1182.69
   L 698.76 1182.69
   A 0.97 0.97 0.0 0 0 699.73 1181.72
@@ -4124,8 +4931,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 694.60 1170.29 692.62 1172.90
   Q 688.16 1178.79 686.91 1181.51
   A 0.83 0.83 0.0 0 0 687.66 1182.69"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.95 1170.99
   Q 716.71 1168.76 715.68 1164.57
   C 714.57 1160.07 707.89 1160.29 704.67 1161.64
@@ -4147,8 +4957,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 709.45 1184.06 716.86 1183.09 716.18 1176.01
   Q 715.85 1172.61 713.02 1171.68
   A 0.38 0.38 0.0 0 1 712.95 1170.99"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 633.39 1182.72
   L 644.91 1182.63
   A 0.84 0.84 0.0 0 0 645.75 1181.74
@@ -4174,8 +4987,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.70 0.70 0.0 0 0 632.71 1161.68
   L 632.81 1182.16
   A 0.58 0.57 -0.4 0 0 633.39 1182.72"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.25 1208.59
   C 602.52 1208.78 604.83 1208.75 604.99 1211.15
   Q 605.08 1212.52 605.72 1214.10
@@ -4202,8 +5018,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 597.73 1228.95 597.55 1212.54
   Q 597.54 1211.26 599.37 1208.98
   A 1.03 1.02 -68.5 0 1 600.25 1208.59"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 452.40 1232.56
   Q 452.60 1245.72 452.66 1247.24
   Q 452.73 1248.98 453.93 1250.25
@@ -4240,12 +5059,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.10 0.09 -81.7 0 1 452.16 1232.32
   L 452.17 1232.32
   A 0.24 0.24 0.0 0 1 452.40 1232.56"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 495.95 1200.84
   Q 495.95 1200.38 495.49 1200.31"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 495.49 1200.31
   Q 495.37 1199.91 495.07 1199.63
   A 0.88 0.86 -23.4 0 0 494.41 1199.38
@@ -4268,8 +5093,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 497.01 1201.89
   A 0.79 0.79 0.0 0 0 496.83 1201.08
   Q 496.48 1200.71 495.95 1200.84"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 495.49 1200.31
   L 487.80 1200.37
   A 1.08 1.08 0.0 0 0 486.77 1201.16
@@ -4288,8 +5116,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 486.01 1230.46
   A 15.36 15.18 -34.5 0 1 486.93 1225.66
   L 495.95 1200.84"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 640.24 1250.81
   L 646.75 1250.81
   A 1.71 1.71 0.0 0 0 648.45 1248.92
@@ -4308,12 +5139,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.47 1.47 0.0 0 1 636.15 1241.99
   L 637.82 1248.90
   A 2.49 2.49 0.0 0 0 640.24 1250.81"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.00 1242.80
   Q 676.99 1242.11 676.04 1242.01"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 676.04 1242.01
   C 676.03 1241.59 675.86 1241.36 675.42 1241.30
   Q 670.81 1240.78 664.94 1240.86
@@ -4329,8 +5166,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 678.16 1243.99
   A 1.97 1.97 0.0 0 0 677.89 1242.89
   Q 677.60 1242.41 677.00 1242.80"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 676.04 1242.01
   L 663.13 1242.02
   A 0.35 0.35 0.0 0 1 662.78 1241.67
@@ -4343,12 +5183,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 676.37 1249.76
   A 0.58 0.57 0.0 0 0 676.95 1249.19
   L 677.00 1242.80"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 720.06 1201.30
   Q 720.24 1200.62 718.94 1200.00"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.94 1200.00
   Q 708.32 1198.70 697.29 1199.14
   A 1.31 1.31 0.0 0 0 696.03 1200.45
@@ -4380,8 +5226,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 720.97 1201.89
   A 0.57 0.56 -87.7 0 0 720.47 1201.34
   L 720.06 1201.30"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.94 1200.00
   L 698.22 1200.36
   A 0.44 0.44 0.0 0 0 697.79 1200.79
@@ -4408,8 +5257,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 719.33 1207.84
   A 0.72 0.72 0.0 0 0 720.05 1207.12
   L 720.06 1201.30"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.71 1200.84
   A 0.58 0.58 0.0 0 0 578.13 1200.26
   L 570.87 1200.26
@@ -4419,8 +5271,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 578.13 1249.70
   A 0.58 0.58 0.0 0 0 578.71 1249.12
   L 578.71 1200.84"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.49 1230.00
   Q 549.75 1230.00 550.66 1230.10
   A 0.74 0.74 0.0 0 1 551.32 1230.84
@@ -4448,8 +5303,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 541.65 1230.84
   A 0.74 0.74 0.0 0 1 542.31 1230.10
   Q 543.23 1230.00 546.49 1230.00"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 514.37 1249.72
   Q 517.49 1249.71 518.14 1249.64
   A 0.51 0.51 0.0 0 0 518.60 1249.14
@@ -4469,8 +5327,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 510.13 1249.17
   A 0.51 0.51 0.0 0 0 510.60 1249.67
   Q 511.24 1249.73 514.37 1249.72"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 271.58 1130.70
   C 271.50 1135.96 269.24 1141.00 262.96 1138.16
   Q 260.47 1137.04 260.42 1133.29
@@ -4494,8 +5355,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.26 1.25 86.0 0 0 276.74 1129.31
   L 272.69 1129.53
   A 1.18 1.17 88.7 0 0 271.58 1130.70"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 333.58 1131.15
   Q 335.29 1131.16 337.19 1131.12
   A 1.49 1.48 74.3 0 1 338.51 1131.86
@@ -4515,8 +5379,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 327.45 1133.79 328.64 1131.79
   A 1.49 1.48 -73.5 0 1 329.97 1131.07
   Q 331.87 1131.14 333.58 1131.15"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 310.91 1103.96
   C 311.29 1098.83 310.78 1091.68 305.61 1089.75
   C 302.41 1088.55 292.87 1088.00 289.32 1091.16
@@ -4548,8 +5415,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.44 1.44 0.0 0 0 305.11 1105.39
   L 309.36 1105.39
   A 1.56 1.55 2.2 0 0 310.91 1103.96"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 238.0808 1100.5491
   A 3.14 3.14 0.0 0 0 234.9518 1097.3981
   L 230.3718 1097.3821
@@ -4559,8 +5429,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 234.8082 1138.5179
   A 3.14 3.14 0.0 0 0 237.9592 1135.3888
   L 238.0808 1100.5491"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 332.83 1103.04
   L 332.24 1102.09
   A 0.35 0.35 0.0 0 0 331.60 1102.24
@@ -4571,29 +5444,41 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 336.61 1116.71
   A 2.71 2.11 -56.4 0 1 336.58 1116.32
   Q 336.61 1109.17 334.50 1102.29"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 334.50 1102.29
   L 333.76 1100.38
   A 0.21 0.21 0.0 0 0 333.37 1100.38
   Q 332.90 1101.55 332.83 1103.04"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 334.50 1102.29
   L 336.38 1122.69
   A 0.58 0.58 0.0 0 1 335.78 1123.32
   L 330.67 1123.16
   A 0.46 0.46 0.0 0 1 330.23 1122.64
   L 332.83 1103.04"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 456.1311 1092.7515
   A 9.68 8.11 -91.0 0 0 448.1912 1102.5715
   A 9.68 8.11 -91.0 0 0 456.4689 1112.1085
   A 9.68 8.11 -91.0 0 0 464.4088 1102.2885
   A 9.68 8.11 -91.0 0 0 456.1311 1092.7515"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 471.30 1105.04
   Q 473.03 1104.85 473.13 1104.85
   Q 478.49 1104.74 478.84 1099.19
@@ -4605,8 +5490,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.94 0.94 0.0 0 0 470.66 1110.67
   L 470.66 1105.77
   A 0.73 0.72 86.9 0 1 471.30 1105.04"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.75 1102.95
   Q 495.55 1107.19 498.08 1111.10
   A 1.02 1.02 0.0 0 0 498.93 1111.56
@@ -4630,8 +5518,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 491.33 1099.40
   A 0.28 0.28 0.0 0 1 491.83 1099.21
   Q 492.56 1100.14 493.75 1102.95"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.08 1102.34
   C 528.03 1109.75 532.91 1113.98 540.45 1110.81
   A 0.91 0.90 78.6 0 0 541.00 1109.98
@@ -4643,8 +5534,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 541.10 1094.87
   A 0.91 0.90 -77.8 0 0 540.55 1094.03
   C 533.05 1090.77 528.13 1094.94 528.08 1102.34"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.91 1107.36
   Q 568.69 1107.36 569.12 1107.38
   A 0.87 0.87 0.0 0 1 569.91 1108.01
@@ -4664,8 +5558,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 563.91 1108.04
   A 0.87 0.87 0.0 0 1 564.70 1107.40
   Q 565.12 1107.37 566.91 1107.36"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.25 1105.03
   Q 602.98 1104.86 603.08 1104.86
   Q 608.46 1104.80 608.87 1099.25
@@ -4677,8 +5574,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.95 0.95 0.0 0 0 600.55 1110.68
   L 600.59 1105.76
   A 0.73 0.73 0.0 0 1 601.25 1105.03"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 633.9513 1100.2712
   A 7.23 7.23 0.0 0 0 626.7592 1093.0034
   L 625.4992 1092.9968
@@ -4688,8 +5588,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 626.6608 1111.8032
   A 7.23 7.23 0.0 0 0 633.9285 1104.6111
   L 633.9513 1100.2712"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 382.96 1096.76
   L 382.98 1107.78
   A 0.83 0.83 0.0 0 0 383.81 1108.60
@@ -4699,15 +5602,21 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 5.40 5.20 89.9 0 0 384.30 1095.92
   L 383.79 1095.92
   A 0.83 0.83 0.0 0 0 382.96 1096.76"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 456.1133 1096.0322
   A 6.37 4.37 -91.5 0 0 451.9115 1102.5144
   A 6.37 4.37 -91.5 0 0 456.4467 1108.7678
   A 6.37 4.37 -91.5 0 0 460.6485 1102.2856
   A 6.37 4.37 -91.5 0 0 456.1133 1096.0322"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 470.79 1096.71
   L 470.77 1101.47
   A 0.61 0.61 0.0 0 0 471.38 1102.08
@@ -4717,8 +5626,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.80 2.58 0.2 0 0 472.43 1096.11
   L 471.40 1096.10
   A 0.61 0.61 0.0 0 0 470.79 1096.71"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.91 1104.43
   Q 567.82 1104.42 568.38 1104.37
   A 0.45 0.45 0.0 0 0 568.77 1103.81
@@ -4728,8 +5640,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 565.18 1103.27 565.05 1103.83
   A 0.45 0.45 0.0 0 0 565.45 1104.38
   Q 566.01 1104.43 566.91 1104.43"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.60 1096.60
   L 600.50 1101.42
   A 0.54 0.54 0.0 0 0 601.03 1101.97
@@ -4739,15 +5654,21 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.83 2.46 1.1 0 0 602.40 1096.09
   L 601.15 1096.07
   A 0.54 0.54 0.0 0 0 600.60 1096.60"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.8190 1095.9532
   A 6.40 4.36 -91.8 0 0 621.6622 1102.4870
   A 6.40 4.36 -91.8 0 0 626.2210 1108.7468
   A 6.40 4.36 -91.8 0 0 630.3778 1102.2130
   A 6.40 4.36 -91.8 0 0 625.8190 1095.9532"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 691.88 1096.69
   L 691.78 1101.35
   A 0.61 0.61 0.0 0 0 692.38 1101.98
@@ -4757,15 +5678,21 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.83 2.45 1.2 0 0 693.54 1096.12
   L 692.50 1096.10
   A 0.61 0.61 0.0 0 0 691.88 1096.69"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 709.8012 1095.9900
   A 6.40 4.41 -89.9 0 0 705.3800 1102.3823
   A 6.40 4.41 -89.9 0 0 709.7788 1108.7900
   A 6.40 4.41 -89.9 0 0 714.2000 1102.3977
   A 6.40 4.41 -89.9 0 0 709.8012 1095.9900"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 724.35 1096.50
   L 724.27 1100.86
   A 0.39 0.39 0.0 0 0 724.66 1101.26
@@ -4775,8 +5702,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.85 2.29 1.0 0 0 726.06 1096.14
   L 724.75 1096.12
   A 0.39 0.39 0.0 0 0 724.35 1096.50"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 236.8384 1099.7530
   A 1.32 1.32 0.0 0 0 235.5161 1098.4354
   L 230.1561 1098.4447
@@ -4786,8 +5716,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 235.5839 1137.2753
   A 1.32 1.32 0.0 0 0 236.9016 1135.9530
   L 236.8384 1099.7530"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.11 1128.56
   A 1.59 1.58 8.2 0 0 531.04 1127.14
   C 528.17 1126.16 523.23 1126.27 521.70 1129.54
@@ -4805,15 +5738,21 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 527.76 1128.80 531.24 1130.86
   A 0.64 0.64 0.0 0 0 532.21 1130.27
   L 532.11 1128.56"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 543.7104 1126.2361
   A 10.04 8.37 -88.0 0 0 534.9951 1135.9779
   A 10.04 8.37 -88.0 0 0 543.0096 1146.3039
   A 10.04 8.37 -88.0 0 0 551.7249 1136.5621
   A 10.04 8.37 -88.0 0 0 543.7104 1126.2361"
-/>
-<path stroke="#eac147" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eac147"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 565.98 1131.24
   Q 565.74 1131.89 565.04 1132.03
   Q 564.42 1132.16 563.70 1131.82
@@ -4824,8 +5763,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 567.12 1140.59 567.61 1140.48
   A 0.88 0.87 89.0 0 0 568.26 1139.80
   Q 569.28 1134.56 567.08 1131.19"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 567.08 1131.19
   Q 567.51 1127.18 564.01 1126.69
   Q 556.65 1125.66 554.35 1131.73
@@ -4836,12 +5778,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.87 0.87 0.0 0 0 565.89 1141.48
   C 559.13 1145.01 556.64 1140.02 557.43 1134.51
   C 558.11 1129.75 562.43 1128.78 565.98 1131.24"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 567.08 1131.19
   Q 566.51 1131.60 565.98 1131.24"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 497.68 1141.65
   Q 499.54 1141.66 499.98 1141.69
   A 0.91 0.91 0.0 0 1 500.80 1142.35
@@ -4861,29 +5809,41 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 494.55 1142.33
   A 0.91 0.91 0.0 0 1 495.37 1141.67
   Q 495.82 1141.64 497.68 1141.65"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 620.5951 1126.2606
   A 10.04 8.34 -89.4 0 0 612.1505 1136.2127
   A 10.04 8.34 -89.4 0 0 620.3849 1146.3394
   A 10.04 8.34 -89.4 0 0 628.8295 1136.3873
   A 10.04 8.34 -89.4 0 0 620.5951 1126.2606"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 543.4232 1129.6400
   A 6.66 4.44 -89.8 0 0 538.9600 1136.2845
   A 6.66 4.44 -89.8 0 0 543.3768 1142.9600
   A 6.66 4.44 -89.8 0 0 547.8400 1136.3155
   A 6.66 4.44 -89.8 0 0 543.4232 1129.6400"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 620.3676 1129.6906
   A 6.62 4.55 -90.8 0 0 615.9104 1136.3735
   A 6.62 4.55 -90.8 0 0 620.5524 1142.9294
   A 6.62 4.55 -90.8 0 0 625.0096 1136.2465
   A 6.62 4.55 -90.8 0 0 620.3676 1129.6906"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 495.76 1138.46
   A 0.38 0.37 -88.4 0 0 496.18 1138.91
   L 499.61 1138.42
@@ -4891,8 +5851,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 497.88 1130.80
   A 0.26 0.26 0.0 0 0 497.38 1130.81
   L 495.76 1138.46"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 585.55 1138.39
   L 583.74 1130.80
   A 0.26 0.26 0.0 0 0 583.24 1130.80
@@ -4900,8 +5863,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.31 0.30 -80.1 0 0 581.70 1138.45
   L 585.14 1138.85
   A 0.37 0.37 0.0 0 0 585.55 1138.39"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 220.18 1159.82
   L 219.97 1163.63
   A 0.31 0.31 0.0 0 0 220.26 1163.96
@@ -4911,8 +5877,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.04 2.03 3.1 0 0 221.21 1159.57
   L 220.50 1159.53
   A 0.31 0.31 0.0 0 0 220.18 1159.82"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 220.30 1166.13
   L 219.82 1170.96
   A 0.21 0.21 0.0 0 0 220.01 1171.19
@@ -4922,8 +5891,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 3.04 2.49 5.6 0 0 221.07 1165.99
   L 220.53 1165.94
   A 0.21 0.21 0.0 0 0 220.30 1166.13"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 236.80 1160.20
   Q 237.08 1160.76 236.18 1161.78
   A 1.21 1.16 73.6 0 0 235.90 1162.32
@@ -4934,8 +5906,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 237.09 1165.07 237.07 1163.01
   Q 237.04 1159.94 237.02 1159.94
   A 0.19 0.19 0.0 0 0 236.80 1160.20"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 305.07 1159.72
   L 304.72 1163.59
   A 0.51 0.51 0.0 0 0 305.19 1164.14
@@ -4945,8 +5920,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.23 2.16 -84.9 0 0 305.81 1159.27
   L 305.62 1159.26
   A 0.51 0.51 0.0 0 0 305.07 1159.72"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 304.81 1166.62
   L 304.83 1171.04
   A 0.28 0.28 0.0 0 0 305.11 1171.32
@@ -4956,8 +5934,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.67 2.15 -0.3 0 0 305.54 1166.34
   L 305.09 1166.34
   A 0.28 0.28 0.0 0 0 304.81 1166.62"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.01 1167.23
   Q 321.36 1167.23 321.82 1167.25
   A 0.44 0.43 -2.4 0 0 322.27 1166.77
@@ -4965,8 +5946,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 320.76 1160.03 319.77 1166.72
   A 0.44 0.43 4.9 0 0 320.20 1167.21
   Q 320.66 1167.22 321.01 1167.23"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 465.80 1172.72
   Q 468.60 1178.99 470.58 1182.23
   A 1.28 1.27 75.3 0 0 471.61 1182.83
@@ -4990,8 +5974,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 463.02 1167.36
   A 0.25 0.25 0.0 0 1 463.51 1167.25
   Q 465.09 1171.13 465.80 1172.72"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.15 1182.23
   L 518.15 1174.76
   A 0.86 0.85 -86.7 0 1 519.10 1173.91
@@ -5009,8 +5996,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.78 0.78 0.0 0 0 514.76 1182.71
   L 517.67 1182.71
   A 0.48 0.48 0.0 0 0 518.15 1182.23"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 497.73 1160.93
   A 0.77 0.77 0.0 0 0 496.96 1161.70
   L 496.96 1181.93
@@ -5036,8 +6026,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 509.69 1161.70
   A 0.77 0.77 0.0 0 0 508.92 1160.93
   L 497.73 1160.93"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 454.34 1161.36
   A 0.45 0.45 0.0 0 0 453.89 1160.91
   L 450.55 1160.91
@@ -5047,8 +6040,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 453.89 1182.81
   A 0.45 0.45 0.0 0 0 454.34 1182.36
   L 454.34 1161.36"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 579.68 1177.69
   Q 581.82 1177.70 582.32 1177.73
   A 1.04 1.04 0.0 0 1 583.26 1178.49
@@ -5068,8 +6064,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 576.10 1178.47
   A 1.04 1.04 0.0 0 1 577.04 1177.72
   Q 577.55 1177.69 579.68 1177.69"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 606.82 1162.83
   A 1.32 1.31 -82.6 0 0 605.92 1161.65
   C 599.36 1159.52 591.87 1160.51 590.45 1168.55
@@ -5090,8 +6089,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 603.37 1164.21 606.28 1166.33
   A 0.45 0.45 0.0 0 0 606.99 1165.94
   L 606.82 1162.83"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 619.94 1179.25
   C 617.89 1179.26 616.21 1178.39 616.03 1176.15
   Q 615.53 1170.12 615.98 1161.81
@@ -5107,8 +6109,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.83 0.83 0.0 0 0 623.87 1161.80
   Q 624.34 1170.11 623.85 1176.14
   C 623.67 1178.39 622.00 1179.25 619.94 1179.25"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 660.15 1178.61
   C 663.18 1175.15 666.07 1171.63 666.53 1167.73
   C 667.37 1160.61 660.29 1159.49 655.36 1161.85
@@ -5126,15 +6131,21 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.80 0.80 0.0 0 0 666.10 1178.99
   L 660.48 1179.30
   A 0.42 0.41 -70.7 0 1 660.15 1178.61"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 669.98 1171.97
   C 670.09 1176.94 671.13 1183.14 677.37 1183.00
   C 683.61 1182.86 684.38 1176.63 684.27 1171.66
   C 684.17 1166.69 683.12 1160.50 676.88 1160.64
   C 670.64 1160.77 669.87 1167.01 669.98 1171.97"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 551.56 1182.73
   A 0.75 0.75 0.0 0 0 552.31 1181.94
   L 552.19 1179.84
@@ -5148,8 +6159,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 540.06 1181.98
   A 0.75 0.75 0.0 0 0 540.81 1182.73
   L 551.56 1182.73"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.22 1164.95
   L 518.12 1169.69
   A 0.63 0.63 0.0 0 0 518.73 1170.33
@@ -5159,8 +6173,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 4.37 2.75 1.3 0 0 520.13 1164.36
   L 518.87 1164.33
   A 0.63 0.63 0.0 0 0 518.22 1164.95"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.17 1173.93
   L 580.02 1165.02
   A 0.30 0.30 0.0 0 0 579.43 1165.02
@@ -5168,15 +6185,21 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.37 0.36 -80.3 0 0 577.65 1174.01
   L 581.69 1174.47
   A 0.44 0.44 0.0 0 0 582.17 1173.93"
-/>
-<path stroke="#7b6322" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b6322"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.1700 1163.7800
   A 8.04 3.22 -90.0 0 0 673.9500 1171.8200
   A 8.04 3.22 -90.0 0 0 677.1700 1179.8600
   A 8.04 3.22 -90.0 0 0 680.3900 1171.8200
   A 8.04 3.22 -90.0 0 0 677.1700 1163.7800"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 613.34 1214.07
   A 1.21 1.20 2.7 0 0 614.59 1212.94
   C 614.94 1207.06 612.77 1201.58 606.29 1200.44
@@ -5196,8 +6219,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 606.21 1208.69 606.12 1212.67
   A 1.19 1.19 0.0 0 0 607.27 1213.88
   L 613.34 1214.07"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.79 1216.62
   L 440.04 1248.76
   A 1.08 1.07 84.4 0 0 441.09 1249.63
@@ -5230,8 +6256,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 434.11 1226.45 433.70 1223.55
   Q 433.33 1220.95 433.45 1216.65
   A 0.17 0.17 0.0 0 1 433.79 1216.62"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 632.87 1239.36
   Q 635.83 1239.38 636.51 1239.43
   A 1.03 1.03 0.0 0 1 637.46 1240.26
@@ -5251,8 +6280,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 628.26 1240.17
   A 1.03 1.03 0.0 0 1 629.22 1239.36
   Q 629.91 1239.33 632.87 1239.36"
-/>
-<path stroke="#816f34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#816f34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 632.80 1212.82
   L 629.70 1231.45
   A 0.49 0.49 0.0 0 0 630.20 1232.02
@@ -5260,9 +6292,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.62 0.61 85.4 0 0 635.93 1231.17
   L 633.26 1212.82
   A 0.23 0.23 0.0 0 0 632.80 1212.82"
-/>
-</g>
-<path fill="#12110e" d="
+        />
+      </g>
+      <path
+        fill="#12110e"
+        d="
   M 445.78 598.52
   Q 444.74 599.11 444.29 599.82
   Q 438.30 609.29 432.09 616.04
@@ -6508,8 +7542,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.89 0.89 0.0 0 0 192.71 1058.72
   L 192.71 1282.72
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 368.87 86.21
   A 0.47 0.47 0.0 0 1 368.82 85.37
   Q 381.45 77.90 396.00 79.02
@@ -6542,8 +7578,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 389.08 76.75 372.58 84.88
   A 0.58 0.58 0.0 0 0 372.45 85.84
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 372.45 85.84
   A 0.58 0.58 0.0 0 1 372.58 84.88
   Q 389.08 76.75 405.97 82.42
@@ -6565,8 +7603,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.58 0.58 0.0 0 1 377.68 87.91
   Q 374.26 87.41 372.45 85.84
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 413.49 83.69
   A 0.25 0.25 0.0 0 1 413.83 83.34
   Q 420.49 86.86 426.82 92.16
@@ -6587,8 +7627,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 3.27 2.98 9.9 0 0 429.67 95.91
   Q 424.59 91.08 419.01 87.94
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 419.01 87.94
   Q 424.59 91.08 429.67 95.91
   A 3.27 2.98 9.9 0 1 430.22 96.62
@@ -6600,8 +7642,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 425.80 103.70 418.33 88.58
   A 0.49 0.49 0.0 0 1 419.01 87.94
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 417.04 137.91
   A 1.05 1.04 -77.8 0 1 415.91 138.64
   Q 389.16 135.42 362.54 129.22
@@ -6643,8 +7687,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 364.13 128.07 367.59 128.91
   Q 385.20 133.18 401.99 135.27
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 410.98 126.59
   L 401.99 135.27
   Q 385.20 133.18 367.59 128.91
@@ -6666,8 +7712,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.11 2.05 -33.2 0 1 399.21 119.31
   L 410.98 126.59
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 439.05 110.20
   A 0.24 0.24 0.0 0 1 439.51 110.12
   C 443.05 120.38 444.99 129.78 442.98 140.57
@@ -6689,8 +7737,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 440.30 116.21 439.50 115.62
   A 0.36 0.36 0.0 0 0 438.92 115.90
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 439.50 115.62
   Q 440.30 116.21 440.75 117.99
   Q 443.40 128.48 442.03 139.00
@@ -6702,8 +7752,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 431.07 127.13 438.76 122.33 438.92 115.90
   A 0.36 0.36 0.0 0 1 439.50 115.62
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 410.98 126.59
   Q 412.67 127.80 415.52 128.03
   A 1.48 1.47 5.7 0 1 416.86 129.66
@@ -6713,8 +7765,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 407.43 135.86 401.99 135.27
   L 410.98 126.59
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 342.34 127.41
   Q 356.26 131.98 371.74 135.01
   Q 393.38 139.26 400.52 140.46
@@ -6750,8 +7804,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 349.92 151.29 347.44 150.60
   A 0.30 0.30 0.0 0 0 347.07 150.97
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 341.52 174.14
   Q 341.33 170.98 344.58 168.69
   A 1.38 1.37 -35.7 0 0 344.90 166.75
@@ -6844,8 +7900,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 393.50 299.39 395.03 299.61
   Q 395.80 299.72 396.02 299.62
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 347.44 150.60
   Q 349.92 151.29 351.83 152.85
   A 1.77 1.74 67.2 0 0 352.79 153.25
@@ -6867,8 +7925,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 348.05 154.34 347.07 150.97
   A 0.30 0.30 0.0 0 1 347.44 150.60
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 428.77 167.85
   Q 427.63 157.21 418.68 153.33
   A 1.22 1.21 21.8 0 1 418.02 151.81
@@ -6890,8 +7950,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.09 1.09 0.0 0 0 430.86 164.05
   Q 437.37 156.45 440.09 146.96
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 440.09 146.96
   Q 437.37 156.45 430.86 164.05
   A 1.09 1.09 0.0 0 1 428.98 163.63
@@ -6902,8 +7964,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 439.77 146.48
   A 0.38 0.38 0.0 0 1 440.09 146.96
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 359.89 170.32
   C 367.30 170.54 374.30 169.58 381.42 166.64
   Q 387.55 164.10 393.66 161.45
@@ -6928,8 +7992,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 371.41 171.10 364.28 171.62
   A 0.68 0.68 0.0 0 0 363.81 172.73
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 400.62 181.79
   A 0.38 0.38 0.0 0 1 400.61 181.26
   Q 410.12 171.14 415.57 158.22
@@ -6947,8 +8013,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 412.09 169.32 405.42 177.40
   Q 404.32 178.73 404.02 179.37
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 363.81 172.73
   A 0.68 0.68 0.0 0 1 364.28 171.62
   Q 371.41 171.10 376.39 169.80
@@ -6962,8 +8030,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 383.90 179.99 380.45 179.95 377.21 178.91
   C 372.91 177.54 366.00 175.43 363.81 172.73
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 404.02 179.37
   Q 404.32 178.73 405.42 177.40
   Q 412.09 169.32 416.42 159.42
@@ -6973,8 +8043,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 410.64 178.23 404.48 179.92
   A 0.39 0.39 0.0 0 1 404.02 179.37
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 341.52 174.14
   Q 341.28 175.24 340.06 176.55
   A 0.79 0.78 -37.6 0 0 339.94 177.45
@@ -7019,8 +8091,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.38 1.37 -35.7 0 1 344.58 168.69
   Q 341.33 170.98 341.52 174.14
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 356.10 175.79
   Q 355.59 175.90 350.29 177.53
   Q 348.15 178.18 346.74 177.37
@@ -7037,8 +8111,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.43 0.43 0.0 0 0 354.21 174.61
   Q 352.90 172.77 350.65 173.27
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 351.25 175.90
   Q 348.55 176.51 348.46 176.52
   A 0.43 0.43 0.0 0 1 348.02 176.01
@@ -7047,8 +8123,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.43 0.43 0.0 0 1 354.03 175.26
   Q 353.94 175.29 351.25 175.90
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 340.24 178.03
   L 343.05 180.30
   A 1.50 1.49 -77.6 0 1 343.57 181.12
@@ -7077,8 +8155,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 339.97 179.01 339.91 178.70
   Q 339.82 178.27 340.24 178.03
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 331.41 184.21
   A 1.04 1.04 0.0 0 1 332.84 185.45
   Q 331.23 190.80 329.71 198.07
@@ -7095,8 +8175,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 7.10 7.06 87.3 0 1 330.19 184.77
   L 331.41 184.21
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 504.67 231.58
   Q 505.32 231.09 506.24 231.12
   A 1.35 1.31 -20.0 0 1 507.16 231.53
@@ -7270,8 +8352,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 544.38 213.35
   A 0.08 0.07 75.1 0 1 544.42 213.27
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 514.64 190.79
   L 510.66 198.64
   A 3.36 3.33 83.4 0 1 509.86 199.66
@@ -7285,8 +8369,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 502.04 194.46 514.26 190.35
   A 0.31 0.31 0.0 0 1 514.64 190.79
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 562.78 221.21
   L 562.26 221.13
   A 0.82 0.81 3.0 0 1 561.56 220.36
@@ -7338,8 +8424,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 547.81 196.75 553.79 197.65 557.96 202.42
   C 562.50 207.61 563.00 214.40 562.78 221.21
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 544.42 213.27
   A 0.08 0.07 75.1 0 0 544.38 213.35
   L 544.51 213.79
@@ -7362,9 +8450,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.45 0.45 0.0 0 1 553.94 210.23
   L 544.42 213.27
   Z"
-/>
-<ellipse fill="#e3b535" cx="0.00" cy="0.00" transform="translate(565.82,233.23) rotate(-13.3)" rx="1.17" ry="0.33"/>
-<path fill="#c49515" d="
+      />
+      <ellipse
+        fill="#e3b535"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(565.82,233.23) rotate(-13.3)"
+        rx="1.17"
+        ry="0.33"
+      />
+      <path
+        fill="#c49515"
+        d="
   M 546.71 299.73
   C 542.96 302.28 540.56 304.71 535.65 305.81
   C 536.00 301.77 538.27 297.99 538.70 294.97
@@ -7388,8 +8485,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 550.26 279.06 548.73 283.23 548.88 289.25
   Q 549.01 294.50 546.71 299.73
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 517.43 265.61
   Q 520.06 276.89 522.68 282.80
   Q 525.70 289.63 527.38 294.12
@@ -7401,8 +8500,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 514.77 258.22
   Q 516.74 261.26 517.43 265.61
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 519.47 267.36
   Q 519.75 270.79 520.04 271.68
   Q 522.86 280.27 527.74 291.47
@@ -7438,8 +8539,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.37 0.37 0.0 0 1 518.43 264.74
   L 519.47 267.36
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 535.65 305.81
   Q 533.60 306.34 531.23 306.04
   A 0.63 0.63 0.0 0 1 530.68 305.44
@@ -7451,8 +8554,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 538.93 283.26 539.40 290.13 538.70 294.97
   C 538.27 297.99 536.00 301.77 535.65 305.81
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 396.02 299.62
   Q 395.80 299.72 395.03 299.61
   Q 393.50 299.39 389.29 297.92
@@ -7467,8 +8572,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 395.05 297.58 396.16 298.45
   A 0.69 0.69 0.0 0 1 396.02 299.62
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 436.81 300.89
   L 436.85 300.55
   A 0.52 0.51 18.9 0 1 437.63 300.17
@@ -7503,8 +8610,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 453.81 312.17 447.12 307.69
   Q 441.98 304.25 436.81 300.89
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 436.81 300.89
   Q 436.29 300.91 436.04 300.73
   A 0.17 0.16 87.9 0 0 435.82 300.97
@@ -7585,8 +8694,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 454.64 304.70 454.59 304.06
   A 0.61 0.61 0.0 0 1 454.72 303.63
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 409.81 288.17
   Q 414.60 288.70 417.77 289.23
   Q 424.69 290.38 429.23 295.50
@@ -7598,8 +8709,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 408.06 293.74 407.79 290.13
   A 1.83 1.83 0.0 0 1 409.81 288.17
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 556.00 298.56
   Q 557.52 298.53 556.84 299.97
   Q 553.59 306.89 545.24 310.96
@@ -7631,8 +8744,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 510.87 309.07 522.71 312.17
   C 534.67 315.30 550.71 310.96 556.00 298.56
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 482.20 288.93
   L 482.11 289.50
   A 0.64 0.62 -75.2 0 0 482.50 290.19
@@ -7842,8 +8957,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 489.79 449.79 493.64 450.78
   A 0.34 0.34 0.0 0 0 493.94 450.19
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 454.59 304.06
   Q 454.64 304.70 454.04 304.85
   A 0.70 0.66 52.0 0 1 453.52 304.77
@@ -7855,8 +8972,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 459.41 295.39 457.69 299.90 454.72 303.63
   A 0.61 0.61 0.0 0 0 454.59 304.06
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 574.39 425.15
   Q 568.35 411.20 566.03 407.87
   Q 554.49 391.31 550.40 385.91
@@ -7883,8 +9002,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 582.95 401.14 574.85 425.14
   A 0.25 0.25 0.0 0 1 574.39 425.15
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 677.29 407.73
   Q 676.76 407.95 676.61 407.85
   Q 675.97 407.43 676.35 406.78
@@ -7922,8 +9043,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.40 0.39 -34.0 0 1 691.44 391.76
   C 685.18 395.02 680.59 401.64 677.29 407.73
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 677.29 407.73
   Q 674.64 412.77 674.53 418.50
   Q 674.52 419.32 674.35 421.93
@@ -8029,8 +9152,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.37 0.37 0.0 0 1 669.36 408.25
   L 674.13 407.10
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 621.66 329.83
   A 0.76 0.76 0.0 0 1 620.83 330.56
   C 616.69 330.13 613.41 329.57 609.80 327.25
@@ -8042,8 +9167,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 617.62 324.25 620.60 327.20
   Q 621.73 328.32 621.66 329.83
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 396.27 334.24
   Q 396.54 333.51 397.22 332.78
   Q 397.34 333.18 397.84 333.06
@@ -8069,8 +9196,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.13 2.02 67.8 0 1 397.16 334.93
   L 396.27 334.24
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 512.11 360.64
   Q 511.47 360.40 501.17 356.59
   Q 493.92 353.90 488.37 348.86
@@ -8083,8 +9212,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 512.67 360.17
   A 0.42 0.42 0.0 0 1 512.11 360.64
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 628.71 349.85
   Q 618.81 349.52 608.49 352.00
   Q 604.60 352.94 601.23 354.73
@@ -8095,8 +9226,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 619.67 342.12 623.64 344.88 628.88 349.42
   A 0.25 0.24 -23.6 0 1 628.71 349.85
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 538.19 431.62
   Q 528.22 405.77 511.16 385.11
   Q 501.65 373.59 487.64 360.37
@@ -8108,8 +9241,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 515.21 387.02 525.39 402.61
   Q 534.49 416.54 538.19 431.62
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 469.75 347.00
   Q 478.57 351.82 487.64 360.37
   Q 501.65 373.59 511.16 385.11
@@ -8123,8 +9258,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.33 0.33 0.0 0 1 469.42 347.06
   Q 469.56 347.03 469.75 347.00
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 469.60 348.17
   Q 473.38 351.25 478.01 356.74
   C 494.49 376.29 502.95 385.79 514.70 401.04
@@ -8155,8 +9292,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.63 0.63 0.0 0 1 469.17 348.55
   L 469.60 348.17
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 462.90 389.80
   Q 464.76 395.93 468.11 401.82
   Q 462.96 406.28 458.93 411.80
@@ -8174,8 +9313,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 454.92 365.94 457.27 373.15
   Q 459.97 381.46 462.90 389.80
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 660.57 380.56
   A 0.76 0.76 0.0 0 1 659.41 381.07
   Q 646.68 372.68 636.10 361.18
@@ -8188,8 +9329,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 651.46 364.55 654.15 367.71 657.86 370.99
   Q 661.59 374.28 660.57 380.56
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 664.36 396.05
   Q 663.32 396.20 662.64 397.29
   Q 658.08 399.45 657.08 405.37
@@ -8207,8 +9350,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 622.40 362.86 625.39 365.36
   Q 644.41 381.26 664.36 396.05
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 468.11 401.82
   Q 464.76 395.93 462.90 389.80
   L 463.20 386.17
@@ -8223,8 +9368,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.81 0.81 0.0 0 0 470.01 406.27
   Q 469.46 403.72 468.11 401.82
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 712.35 430.53
   Q 711.92 429.81 711.94 428.91
   L 712.76 427.48
@@ -8252,8 +9399,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.97 0.97 0.0 0 1 723.66 416.62
   Q 716.72 422.27 712.35 430.53
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 712.76 427.48
   Q 708.41 425.94 704.44 423.92
   Q 696.92 420.09 696.39 419.83
@@ -8291,8 +9440,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.84 0.84 0.0 0 1 714.64 423.87
   L 712.76 427.48
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 532.88 449.97
   C 535.52 449.94 537.66 450.42 539.86 450.86
   Q 542.52 451.39 545.10 450.52
@@ -8314,8 +9465,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 541.01 459.15 532.74 450.31
   A 0.20 0.20 0.0 0 1 532.88 449.97
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 674.13 407.10
   L 669.36 408.25
   A 0.37 0.37 0.0 0 0 669.31 408.96
@@ -8331,8 +9484,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 674.22 406.63
   A 0.26 0.26 0.0 0 1 674.13 407.10
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 712.76 427.48
   L 711.94 428.91
   Q 709.35 432.76 708.97 435.04
@@ -8347,8 +9502,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 696.92 420.09 704.44 423.92
   Q 708.41 425.94 712.76 427.48
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 792.16 470.17
   Q 794.90 469.34 797.94 471.21
   C 802.16 473.81 806.16 475.31 809.18 478.13
@@ -8384,8 +9541,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 816.70 485.00 806.95 477.54
   Q 802.56 474.18 792.16 470.17
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 792.16 470.17
   L 788.30 469.69
   L 784.45 465.64
@@ -8458,8 +9617,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 753.86 443.92
   A 0.14 0.13 -89.0 0 0 754.04 443.74
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 753.86 443.92
   L 740.54 436.22
   A 1.79 1.18 -1.6 0 0 740.33 436.13
@@ -8470,8 +9631,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 753.11 441.93 754.04 443.74
   A 0.14 0.13 -89.0 0 1 753.86 443.92
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 788.30 469.69
   Q 784.67 469.16 784.33 471.71
   Q 782.42 471.06 782.68 474.18
@@ -8502,8 +9665,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.43 0.43 0.0 0 0 784.45 465.64
   L 788.30 469.69
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 493.94 450.19
   A 0.34 0.34 0.0 0 1 493.64 450.78
   Q 489.79 449.79 482.18 448.36
@@ -8515,8 +9680,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 457.64 439.28 465.90 439.55
   C 477.45 439.93 485.52 443.27 493.94 450.19
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 554.17 493.36
   Q 544.01 484.79 530.62 479.40
   Q 503.94 468.64 477.36 463.65
@@ -8550,8 +9717,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.29 1.29 0.0 0 0 553.54 488.59
   L 553.31 487.04
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 553.31 487.04
   L 553.54 488.59
   A 1.29 1.29 0.0 0 1 551.52 489.83
@@ -8570,8 +9739,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 540.74 476.19 551.19 483.57
   A 5.14 5.12 13.7 0 1 553.31 487.04
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 513.80 643.45
   Q 513.56 643.15 513.58 643.10
   A 1.22 0.95 28.2 0 1 515.29 642.80
@@ -8716,8 +9887,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 457.44 494.26 459.70 486.77
   A 2.62 2.61 -57.5 0 0 459.15 484.28
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 507.49 506.34
   Q 503.43 501.61 499.32 496.91
   Q 489.09 485.18 474.62 480.17
@@ -8730,8 +9903,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 508.42 505.89 508.09 506.24
   Q 507.85 506.50 507.49 506.34
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 458.03 476.09
   C 463.55 477.41 469.86 478.53 474.62 480.17
   Q 489.09 485.18 499.32 496.91
@@ -8743,8 +9918,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.37 0.36 -28.8 0 1 457.77 476.14
   Q 457.89 476.11 458.03 476.09
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 460.35 478.10
   Q 470.24 481.79 478.69 487.31
   Q 492.35 496.23 507.56 507.46
@@ -8757,8 +9934,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.41 0.41 0.0 0 1 459.98 478.36
   Q 460.11 478.22 460.35 478.10
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 459.15 484.28
   A 2.62 2.61 -57.5 0 1 459.70 486.77
   Q 457.44 494.26 455.32 499.66
@@ -8771,8 +9950,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 438.19 494.36 441.85 489.69
   C 445.46 485.09 454.04 478.54 459.15 484.28
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 513.80 643.45
   Q 513.69 643.53 513.58 643.58
   A 0.16 0.16 0.0 0 0 513.49 643.79
@@ -8878,8 +10059,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.22 0.95 28.2 0 0 513.58 643.10
   Q 513.56 643.15 513.80 643.45
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 533.53 533.97
   Q 535.67 533.78 537.57 534.34
   A 0.15 0.15 0.0 0 1 537.57 534.62
@@ -8893,8 +10076,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 461.61 533.20 464.52 533.92 468.70 534.00
   Q 501.13 534.58 533.53 533.97
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 525.21 547.12
   Q 522.11 546.03 520.74 545.99
   C 510.50 545.65 500.37 547.12 490.91 551.18
@@ -8915,8 +10100,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.32 0.32 0.0 0 1 526.09 546.95
   Q 525.76 547.12 525.21 547.12
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 524.99 548.06
   Q 528.78 551.08 529.64 554.70
   Q 530.24 557.25 529.61 565.75
@@ -8986,8 +10173,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 458.01 625.86 468.52 628.02
   A 1.23 1.23 0.0 0 0 469.96 626.53
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 451.24 566.44
   Q 450.58 566.42 450.07 566.23
   C 446.10 562.43 439.51 561.30 436.18 559.58
@@ -8997,8 +10186,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 437.18 554.79 440.78 556.81 444.99 559.27
   Q 449.53 561.91 451.24 566.44
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 469.96 626.53
   A 1.23 1.23 0.0 0 1 468.52 628.02
   Q 458.01 625.86 449.22 628.14
@@ -9015,8 +10206,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 471.28 616.84 469.92 625.78
   Q 469.87 626.13 469.96 626.53
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 344.41 617.77
   A 0.94 0.94 0.0 0 0 346.06 617.73
   C 349.70 610.68 354.18 604.62 357.55 597.84
@@ -9092,8 +10285,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 317.25 609.40 305.53 611.60
   C 300.55 612.53 296.75 614.27 291.44 615.80
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 265.72 629.52
   Q 274.57 628.25 284.75 629.02
   C 300.17 630.17 314.53 630.75 330.88 632.88
@@ -9125,8 +10320,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 266.42 639.84 265.50 634.02 264.96 630.54
   A 0.90 0.89 -8.6 0 1 265.72 629.52
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 435.80 597.51
   Q 435.54 598.28 435.02 598.51
   L 434.19 597.70
@@ -9144,8 +10341,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.51 1.47 67.7 0 0 435.21 596.86
   Q 435.16 597.73 435.80 597.51
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 351.71 616.48
   C 356.89 611.74 359.36 604.97 362.41 597.89
   Q 365.71 590.24 372.47 578.46
@@ -9158,8 +10357,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 351.92 620.15
   A 2.38 2.37 41.8 0 1 351.71 616.48
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 148.63 694.77
   A 0.29 0.29 0.0 0 1 148.25 695.16
   C 141.54 692.29 141.37 684.18 141.85 677.56
@@ -9207,8 +10408,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 141.93 685.33 144.68 691.17
   A 0.64 0.64 0.0 0 0 145.89 691.03
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 145.89 691.03
   A 0.64 0.64 0.0 0 1 144.68 691.17
   Q 141.93 685.33 143.21 677.74
@@ -9241,8 +10444,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 145.19 685.41 146.00 689.07
   Q 146.15 689.78 145.89 691.03
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 213.49 638.21
   Q 213.86 639.05 213.23 639.20
   Q 212.82 638.80 212.54 638.26
@@ -9272,8 +10477,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 215.23 624.76 214.67 628.12 213.40 633.37
   Q 212.74 636.12 213.49 638.21
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 212.54 638.26
   L 209.88 638.12
   A 1.69 1.69 0.0 0 0 208.16 639.39
@@ -9374,8 +10581,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 171.75 665.11 171.53 664.81
   A 0.95 0.94 -25.1 0 0 170.56 664.46
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 291.44 615.80
   C 296.75 614.27 300.55 612.53 305.53 611.60
   Q 317.25 609.40 323.49 609.61
@@ -9385,8 +10594,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 295.79 618.51 291.50 617.58
   A 0.92 0.92 0.0 0 1 291.44 615.80
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 261.08 614.23
   C 258.28 623.09 256.74 635.98 261.94 644.16
   A 0.46 0.46 0.0 0 1 261.45 644.85
@@ -9414,8 +10625,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 251.25 643.19 258.96 643.38
   A 0.86 0.86 0.0 0 0 259.77 642.19
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 259.77 642.19
   A 0.86 0.86 0.0 0 1 258.96 643.38
   Q 251.25 643.19 243.05 643.79
@@ -9429,8 +10642,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.56 0.41 -69.6 0 0 258.37 638.83
   L 259.77 642.19
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 212.54 638.26
   Q 212.82 638.80 213.23 639.20
   Q 214.55 641.43 215.98 641.61
@@ -9447,8 +10662,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.69 1.69 0.0 0 1 209.88 638.12
   L 212.54 638.26
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 201.06 645.13
   Q 203.11 649.67 206.33 652.60
   A 1.75 1.75 0.0 0 1 205.81 655.52
@@ -9461,8 +10678,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 200.06 645.15
   A 0.54 0.54 0.0 0 1 201.06 645.13
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 451.90 651.83
   Q 469.73 651.21 487.79 655.99
   Q 498.15 658.74 507.14 665.13
@@ -9522,8 +10741,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.09 1.09 0.0 0 0 451.88 654.04
   L 452.05 657.31
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 392.03 765.88
   L 392.42 764.98
   A 1.21 1.21 0.0 0 1 392.93 764.41
@@ -9566,8 +10787,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 401.32 773.02 398.45 771.39
   Q 394.84 769.34 392.03 765.88
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 392.03 765.88
   Q 389.68 763.22 386.90 758.31
   Q 385.01 754.98 384.88 751.98
@@ -9617,8 +10840,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.21 1.21 0.0 0 0 392.42 764.98
   L 392.03 765.88
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 171.53 664.81
   Q 171.75 665.11 174.70 669.19
   Q 175.98 670.96 181.64 674.56
@@ -9636,8 +10861,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 170.56 664.46
   A 0.95 0.94 -25.1 0 1 171.53 664.81
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 499.87 700.90
   C 498.32 705.99 495.61 712.47 494.55 715.90
   Q 487.19 739.74 480.16 766.19
@@ -9684,8 +10911,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 491.99 719.42 493.52 716.19 494.03 713.26
   A 0.12 0.12 0.0 0 0 493.84 713.15
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 494.03 713.26
   C 493.52 716.19 491.99 719.42 490.88 723.23
   Q 480.03 760.47 475.93 777.89
@@ -9712,8 +10941,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 493.84 713.15
   A 0.12 0.12 0.0 0 1 494.03 713.26
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 447.07 764.78
   Q 448.16 764.13 447.58 766.01
   Q 446.76 768.67 444.16 778.63
@@ -9780,8 +11011,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 426.36 829.66 438.36 793.19
   C 441.07 784.95 443.88 774.18 447.07 764.78
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 447.07 764.78
   Q 447.01 764.65 446.94 764.54
   A 0.42 0.42 0.0 0 0 446.48 764.37
@@ -9818,8 +11051,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 446.76 768.67 447.58 766.01
   Q 448.16 764.13 447.07 764.78
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 379.73 755.60
   Q 384.89 769.35 396.68 777.06
   A 0.45 0.45 0.0 0 1 396.73 777.78
@@ -9849,8 +11084,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 354.16 797.62 349.39 799.61
   A 0.71 0.71 0.0 0 0 349.68 800.97
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 362.59 938.01
   A 0.28 0.27 -77.3 0 1 362.83 938.40
   C 360.15 944.09 358.34 950.64 355.65 956.15
@@ -9907,8 +11144,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 333.89 990.90 330.49 991.70
   Q 324.83 993.02 318.56 991.45
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 349.68 800.97
   A 0.71 0.71 0.0 0 1 349.39 799.61
   Q 354.16 797.62 358.14 794.87
@@ -9925,8 +11164,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 4.97 4.80 -54.1 0 1 362.75 800.58
   L 349.68 800.97
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 314.62 781.73
   A 0.76 0.75 -85.1 0 1 315.47 782.74
   Q 312.98 789.43 310.61 797.94
@@ -9954,8 +11195,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.19 0.29 -105.0 0 0 302.1501 873.3149
   A 1.19 0.29 -105.0 0 0 301.5620 872.2405
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 333.05 827.92
   Q 330.67 827.53 330.03 829.30
   Q 328.85 832.55 329.04 833.48
@@ -10011,8 +11254,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 336.42 819.56
   A 0.20 0.20 0.0 0 0 336.09 819.61
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 367.12 808.37
   A 0.29 0.29 0.0 0 1 367.28 808.86
   L 356.09 820.06
@@ -10033,8 +11278,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.44 1.42 63.4 0 0 344.13 817.01
   L 344.18 818.03
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 344.18 818.03
   L 344.13 817.01
   A 1.44 1.42 63.4 0 1 344.46 815.99
@@ -10046,8 +11293,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 344.91 818.84
   A 0.88 0.87 3.4 0 1 344.18 818.03
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 336.42 819.56
   L 340.58 824.38
   A 1.17 1.15 -15.3 0 0 341.26 824.76
@@ -10060,8 +11309,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 336.09 819.61
   A 0.20 0.20 0.0 0 1 336.42 819.56
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 333.05 827.92
   L 332.92 831.57
   A 0.76 0.76 0.0 0 1 332.57 832.17
@@ -10101,17 +11352,28 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 328.85 832.55 330.03 829.30
   Q 330.67 827.53 333.05 827.92
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 300.05 863.70
   Q 300.14 863.83 300.22 864.98
   A 0.20 0.20 0.0 0 1 299.84 865.10
   Q 299.68 864.82 299.67 863.82
   A 0.21 0.21 0.0 0 1 300.05 863.70
   Z"
-/>
-<ellipse fill="#c49515" cx="0.00" cy="0.00" transform="translate(301.87,873.39) rotate(-105.0)" rx="1.19" ry="0.29"/>
-<path fill="#e3b535" d="
+      />
+      <ellipse
+        fill="#c49515"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(301.87,873.39) rotate(-105.0)"
+        rx="1.19"
+        ry="0.29"
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 359.95 932.89
   A 0.29 0.29 0.0 0 1 359.70 932.41
   L 367.07 923.94
@@ -10134,8 +11396,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 371.92 932.35 369.51 932.26
   Q 366.86 932.16 359.95 932.89
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 357.07 1006.11
   Q 356.88 1006.37 356.68 1006.51
   Q 356.51 1006.64 356.20 1006.54
@@ -10194,8 +11458,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 2.57 2.38 83.3 0 0 353.52 1004.00
   L 357.07 1006.11
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 350.18 993.38
   Q 348.99 992.67 345.97 987.09
   C 343.82 983.11 338.70 984.36 334.70 984.92
@@ -10216,8 +11482,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 350.79 984.59 350.29 990.59 350.61 993.10
   A 0.29 0.29 0.0 0 1 350.18 993.38
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 357.07 1006.11
   Q 356.80 1006.25 357.45 1006.24
   L 357.61 1006.61
@@ -10244,8 +11512,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 356.51 1006.64 356.68 1006.51
   Q 356.88 1006.37 357.07 1006.11
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 444.68 1021.53
   Q 444.77 1020.80 444.64 1020.44
   A 0.86 0.27 65.5 0 1 444.55 1019.71
@@ -10337,8 +11607,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 393.42 989.49
   A 0.73 0.70 -34.9 0 0 392.97 989.42
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 563.42 1017.65
   L 563.53 1016.67
   A 1.68 1.55 42.8 0 0 563.48 1016.03
@@ -10366,8 +11638,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 575.50 1017.84 563.95 1018.23
   A 0.52 0.52 0.0 0 1 563.42 1017.65
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 393.42 989.49
   L 397.32 991.47
   A 2.78 2.60 -22.9 0 0 398.00 991.72
@@ -10384,8 +11658,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 392.97 989.42
   A 0.73 0.70 -34.9 0 1 393.42 989.49
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 318.56 991.45
   Q 324.83 993.02 330.49 991.70
   Q 333.89 990.90 339.06 990.11
@@ -10401,8 +11677,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 315.89 997.45 317.57 992.01
   A 0.84 0.82 -74.0 0 1 318.56 991.45
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 444.68 1021.53
   L 416.04 1019.71
   L 416.11 1018.74
@@ -10433,8 +11711,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.86 0.27 65.5 0 0 444.64 1020.44
   Q 444.77 1020.80 444.68 1021.53
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 354.94 1037.62
   A 0.70 0.69 -73.6 0 1 354.43 1036.68
   L 359.43 1023.92
@@ -10504,8 +11784,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 621.08 1022.97 619.00 1023.15
   Q 594.32 1025.38 569.49 1027.13
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 413.10 1026.96
   A 0.29 0.28 -49.6 0 1 413.14 1027.51
   C 411.44 1028.05 410.76 1029.95 410.66 1031.62
@@ -10523,8 +11805,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 379.94 1023.79 393.37 1025.47
   C 399.83 1026.28 406.55 1025.99 413.10 1026.96
   Z"
-/>
-<path fill="#c49515" d="
+      />
+      <path
+        fill="#c49515"
+        d="
   M 573.13 1041.87
   Q 572.86 1034.03 569.49 1027.13
   Q 594.32 1025.38 619.00 1023.15
@@ -10536,8 +11820,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 606.05 1040.40 603.14 1040.02 599.81 1040.34
   Q 587.17 1041.57 573.13 1041.87
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 569.49 1027.13
   Q 572.86 1034.03 573.13 1041.87
   Q 568.97 1042.16 564.05 1042.17
@@ -10562,8 +11848,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 552.50 1027.84 558.82 1027.89
   C 562.05 1027.91 565.89 1027.14 569.49 1027.13
   Z"
-/>
-<path fill="#4b3d35" d="
+      />
+      <path
+        fill="#4b3d35"
+        d="
   M 192.71 1282.72
   L 192.71 1058.72
   A 0.89 0.89 0.0 0 1 193.60 1057.83
@@ -10584,8 +11872,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.33 0.33 0.0 0 0 822.54 1274.01
   L 822.54 1068.09
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 822.54 1274.01
   A 0.33 0.33 0.0 0 1 822.21 1274.34
   L 202.31 1274.34
@@ -10866,8 +12156,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 347.42 1171.19
   A 0.62 0.61 -0.3 0 1 346.80 1170.59
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 367.64 1074.79
   Q 368.13 1076.13 371.63 1076.13
   Q 802.65 1075.80 808.88 1075.67
@@ -11829,8 +13121,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.51 0.51 0.0 0 0 510.60 1249.67
   Q 511.24 1249.73 514.37 1249.72
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 365.01 1080.29
   Q 365.87 1080.72 365.88 1082.33
   Q 365.98 1170.68 365.82 1264.58
@@ -11850,8 +13144,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.19 1.18 0.2 0 1 364.89 1265.83
   L 365.01 1080.29
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 218.92 1098.82
   Q 220.17 1098.50 220.30 1099.22
   Q 220.79 1101.91 220.82 1106.51
@@ -11876,8 +13172,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.58 0.57 89.5 0 1 219.05 1146.89
   L 218.92 1098.82
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 279.19 1129.09
   Q 279.49 1136.82 278.47 1141.27
   C 276.83 1148.44 267.87 1147.78 261.80 1147.32
@@ -11927,8 +13225,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 272.69 1129.53
   A 1.18 1.17 88.7 0 0 271.58 1130.70
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 333.87 1087.84
   Q 334.09 1087.84 340.08 1087.87
   A 1.07 1.06 -3.9 0 1 341.13 1088.78
@@ -11969,8 +13269,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.49 1.48 -73.5 0 1 329.97 1131.07
   Q 331.87 1131.14 333.58 1131.15
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 293.53 1128.39
   A 1.34 1.34 0.0 0 1 294.87 1129.66
   L 295.15 1134.79
@@ -12030,8 +13332,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 309.36 1105.39
   A 1.56 1.55 2.2 0 0 310.91 1103.96
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 218.92 1098.82
   Q 218.11 1097.54 217.52 1098.51
   Q 218.29 1093.89 217.56 1089.66
@@ -12058,8 +13362,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 3.14 3.14 0.0 0 0 237.9592 1135.3888
   L 238.0808 1100.5491
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 333.89 1088.88
   Q 335.54 1088.89 338.64 1088.89
   A 1.36 1.35 -4.0 0 1 339.98 1090.05
@@ -12094,8 +13400,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.21 0.21 0.0 0 0 333.37 1100.38
   Q 332.90 1101.55 332.83 1103.04
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 271.58 1130.70
   A 1.18 1.17 88.7 0 1 272.69 1129.53
   L 276.74 1129.31
@@ -12120,8 +13428,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 260.47 1137.04 262.96 1138.16
   C 269.24 1141.00 271.50 1135.96 271.58 1130.70
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 310.91 1103.96
   A 1.56 1.55 2.2 0 1 309.36 1105.39
   L 305.11 1105.39
@@ -12154,8 +13464,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 292.87 1088.00 302.41 1088.55 305.61 1089.75
   C 310.78 1091.68 311.29 1098.83 310.91 1103.96
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 481.07 1094.46
   L 481.05 1110.70
   A 0.88 0.88 0.0 0 0 481.93 1111.58
@@ -12300,8 +13612,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.28 0.28 0.0 0 1 491.83 1099.21
   Q 492.56 1100.14 493.75 1102.95
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 544.11 1093.73
   L 544.19 1110.59
   A 0.89 0.89 0.0 0 0 545.08 1111.47
@@ -12434,8 +13748,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 600.59 1105.76
   A 0.73 0.73 0.0 0 1 601.25 1105.03
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 636.90 1093.67
   L 636.93 1110.76
   A 0.89 0.88 -89.3 0 0 637.79 1111.65
@@ -12518,8 +13834,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 7.23 7.23 0.0 0 0 633.9285 1104.6111
   L 633.9513 1100.2712
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 379.44 1093.78
   A 0.70 0.70 0.0 0 1 380.15 1093.09
   L 384.94 1093.11
@@ -12540,8 +13858,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 383.79 1095.92
   A 0.83 0.83 0.0 0 0 382.96 1096.76
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 405.56 1101.00
   L 405.56 1102.57
   A 0.66 0.66 0.0 0 1 404.90 1103.23
@@ -12568,8 +13888,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 404.90 1100.34
   A 0.66 0.66 0.0 0 1 405.56 1101.00
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 415.71 1105.65
   Q 416.03 1105.65 416.19 1104.96
   Q 417.61 1099.12 419.19 1093.77
@@ -12586,8 +13908,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 413.85 1099.11 415.22 1104.95
   Q 415.38 1105.65 415.71 1105.65
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 435.16 1111.21
   L 425.29 1111.33
   A 0.51 0.50 0.6 0 1 424.78 1110.82
@@ -12612,8 +13936,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.73 0.72 87.9 0 1 435.02 1109.02
   L 435.16 1111.21
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 447.74 1109.80
   Q 447.56 1111.31 446.19 1111.41
   L 438.10 1111.33
@@ -12626,8 +13952,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.44 0.43 -1.9 0 0 441.63 1108.13
   Q 447.01 1107.81 447.74 1109.80
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 456.1311 1092.7515
   A 9.68 8.11 -91.0 0 1 464.4088 1102.2885
   A 9.68 8.11 -91.0 0 1 456.4689 1112.1085
@@ -12640,8 +13968,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 6.37 4.37 -91.5 0 0 460.6485 1102.2856
   A 6.37 4.37 -91.5 0 0 456.1133 1096.0322
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 471.30 1105.04
   A 0.73 0.72 86.9 0 0 470.66 1105.77
   L 470.66 1110.67
@@ -12664,8 +13994,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 471.40 1096.10
   A 0.61 0.61 0.0 0 0 470.79 1096.71
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 481.07 1094.46
   Q 480.96 1094.05 481.06 1093.69
   Q 481.15 1093.39 481.44 1093.27
@@ -12678,8 +14010,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.88 0.88 0.0 0 1 481.05 1110.70
   L 481.07 1094.46
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 496.72 1101.77
   Q 497.91 1104.57 498.64 1105.51
   A 0.28 0.28 0.0 0 0 499.14 1105.32
@@ -12704,8 +14038,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.02 1.02 0.0 0 1 492.39 1093.62
   Q 494.92 1097.52 496.72 1101.77
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 519.25 1096.96
   L 519.26 1097.37
   A 0.39 0.39 0.0 0 1 518.64 1097.70
@@ -12727,8 +14063,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.67 1.65 -6.2 0 1 518.60 1094.40
   Q 519.30 1095.51 519.25 1096.96
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 531.81 1102.37
   C 531.78 1107.72 534.76 1110.09 540.22 1107.50
   A 0.54 0.54 0.0 0 1 541.00 1107.99
@@ -12741,8 +14079,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.54 0.54 0.0 0 1 540.29 1097.34
   C 534.86 1094.69 531.85 1097.02 531.81 1102.37
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 554.80 1093.00
   Q 555.85 1092.84 556.88 1093.10
   A 0.69 0.69 0.0 0 1 557.40 1093.77
@@ -12768,8 +14108,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 553.89 1097.20 553.77 1093.78
   Q 553.75 1092.96 554.80 1093.00
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 566.91 1107.36
   Q 565.12 1107.37 564.70 1107.40
   A 0.87 0.87 0.0 0 0 563.91 1108.04
@@ -12800,8 +14142,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.45 0.45 0.0 0 0 565.45 1104.38
   Q 566.01 1104.43 566.91 1104.43
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 590.82 1111.42
   Q 589.97 1111.23 589.97 1110.75
   Q 590.00 1107.27 590.06 1098.88
@@ -12827,8 +14171,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.58 0.58 0.0 0 1 592.71 1111.41
   Q 591.78 1111.58 590.82 1111.42
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 601.25 1105.03
   A 0.73 0.73 0.0 0 0 600.59 1105.76
   L 600.55 1110.68
@@ -12851,16 +14197,20 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 601.15 1096.07
   A 0.54 0.54 0.0 0 0 600.60 1096.60
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 615.09 1095.06
   L 615.07 1110.35
   Q 614.89 1112.55 611.18 1110.90
   Q 611.91 1101.07 611.22 1094.29
   Q 614.75 1090.87 615.09 1095.06
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 633.9285 1104.6111
   A 7.23 7.23 0.0 0 1 626.6608 1111.8032
   L 625.4008 1111.7966
@@ -12877,8 +14227,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 6.40 4.36 -91.8 0 0 630.3778 1102.2130
   A 6.40 4.36 -91.8 0 0 625.8190 1095.9532
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 637.94 1092.97
   C 639.71 1092.77 640.89 1093.15 641.77 1094.80
   Q 644.63 1100.17 647.42 1106.08
@@ -12900,8 +14252,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 636.90 1093.67
   Q 636.93 1093.01 637.94 1092.97
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 665.19 1096.18
   Q 665.18 1096.82 664.94 1097.06
   Q 664.71 1097.28 664.09 1096.96
@@ -12918,8 +14272,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 661.58 1103.40 655.59 1103.94 654.37 1100.30
   C 651.46 1091.56 665.14 1091.00 665.19 1096.18
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 673.41 1109.46
   L 673.63 1107.58
   A 0.48 0.48 0.0 0 1 674.33 1107.21
@@ -12938,8 +14294,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 681.75 1112.67 677.11 1112.32 673.97 1110.54
   A 1.11 1.09 18.0 0 1 673.41 1109.46
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 691.79 1105.87
   L 691.79 1110.81
   A 0.95 0.95 0.0 0 1 690.81 1111.76
@@ -12962,8 +14320,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 692.50 1096.10
   A 0.61 0.61 0.0 0 0 691.88 1096.69
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 717.6466 1104.6818
   A 7.18 7.18 0.0 0 1 710.3918 1111.7862
   L 709.1119 1111.7728
@@ -12980,8 +14340,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 6.40 4.41 -89.9 0 0 714.2000 1102.3977
   A 6.40 4.41 -89.9 0 0 709.8012 1095.9900
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 732.86 1110.81
   A 0.56 0.56 0.0 0 1 732.29 1111.60
   L 730.09 1111.34
@@ -13011,8 +14373,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 724.75 1096.12
   A 0.39 0.39 0.0 0 0 724.35 1096.50
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 744.72 1096.35
   Q 743.55 1095.87 742.54 1096.31
   A 0.84 0.84 0.0 0 0 742.04 1097.08
@@ -13031,8 +14395,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.76 0.76 0.0 0 1 745.90 1096.42
   L 744.72 1096.35
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 758.88 1094.81
   L 758.98 1096.46
   A 0.62 0.62 0.0 0 1 758.05 1097.04
@@ -13051,8 +14417,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 750.28 1092.65 755.06 1092.51 757.83 1093.44
   A 1.53 1.52 7.9 0 1 758.88 1094.81
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 382.96 1096.76
   A 0.83 0.83 0.0 0 1 383.79 1095.92
   L 384.30 1095.92
@@ -13063,9 +14431,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.83 0.83 0.0 0 1 382.98 1107.78
   L 382.96 1096.76
   Z"
-/>
-<ellipse fill="#e3b535" cx="0.00" cy="0.00" transform="translate(456.28,1102.40) rotate(-91.5)" rx="6.37" ry="4.37"/>
-<path fill="#f0cd59" d="
+      />
+      <ellipse
+        fill="#e3b535"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(456.28,1102.40) rotate(-91.5)"
+        rx="6.37"
+        ry="4.37"
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 470.79 1096.71
   A 0.61 0.61 0.0 0 1 471.40 1096.10
   L 472.43 1096.11
@@ -13076,8 +14453,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.61 0.61 0.0 0 1 470.77 1101.47
   L 470.79 1096.71
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 600.60 1096.60
   A 0.54 0.54 0.0 0 1 601.15 1096.07
   L 602.40 1096.09
@@ -13088,9 +14467,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.54 0.54 0.0 0 1 600.50 1101.42
   L 600.60 1096.60
   Z"
-/>
-<ellipse fill="#e3b535" cx="0.00" cy="0.00" transform="translate(626.02,1102.35) rotate(-91.8)" rx="6.40" ry="4.36"/>
-<path fill="#f0cd59" d="
+      />
+      <ellipse
+        fill="#e3b535"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(626.02,1102.35) rotate(-91.8)"
+        rx="6.40"
+        ry="4.36"
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 691.88 1096.69
   A 0.61 0.61 0.0 0 1 692.50 1096.10
   L 693.54 1096.12
@@ -13101,9 +14489,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.61 0.61 0.0 0 1 691.78 1101.35
   L 691.88 1096.69
   Z"
-/>
-<ellipse fill="#e3b535" cx="0.00" cy="0.00" transform="translate(709.79,1102.39) rotate(-89.9)" rx="6.40" ry="4.41"/>
-<path fill="#f0cd59" d="
+      />
+      <ellipse
+        fill="#e3b535"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(709.79,1102.39) rotate(-89.9)"
+        rx="6.40"
+        ry="4.41"
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 724.35 1096.50
   A 0.39 0.39 0.0 0 1 724.75 1096.12
   L 726.06 1096.14
@@ -13114,8 +14511,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.39 0.39 0.0 0 1 724.27 1100.86
   L 724.35 1096.50
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 744.72 1096.35
   Q 743.39 1102.33 743.92 1109.14
   Q 744.00 1110.16 742.81 1112.35
@@ -13134,8 +14533,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.84 0.84 0.0 0 1 742.54 1096.31
   Q 743.55 1095.87 744.72 1096.35
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 566.86 1096.73
   Q 567.05 1096.72 568.24 1101.63
   Q 568.63 1103.25 568.77 1103.81
@@ -13146,8 +14547,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 565.18 1103.27 565.56 1101.64
   Q 566.68 1096.73 566.86 1096.73
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 237.9592 1135.3888
   A 3.14 3.14 0.0 0 1 234.8082 1138.5179
   L 230.2282 1138.5019
@@ -13168,9 +14571,19 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.32 1.32 0.0 0 0 236.9016 1135.9530
   L 236.8384 1099.7530
   Z"
-/>
-<rect fill="#12110e" x="-4.00" y="-19.42" transform="translate(232.87,1117.86) rotate(-0.1)" width="8.00" height="38.84" rx="1.32"/>
-<path fill="#12110e" d="
+      />
+      <rect
+        fill="#12110e"
+        x="-4.00"
+        y="-19.42"
+        transform="translate(232.87,1117.86) rotate(-0.1)"
+        width="8.00"
+        height="38.84"
+        rx="1.32"
+      />
+      <path
+        fill="#12110e"
+        d="
   M 334.50 1102.29
   L 336.38 1122.69
   A 0.58 0.58 0.0 0 1 335.78 1123.32
@@ -13181,8 +14594,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.21 0.21 0.0 0 1 333.76 1100.38
   L 334.50 1102.29
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 332.83 1103.04
   L 330.23 1122.64
   A 0.46 0.46 0.0 0 0 330.67 1123.16
@@ -13199,8 +14614,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.35 0.35 0.0 0 1 332.24 1102.09
   L 332.83 1103.04
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 506.93 1141.33
   Q 506.45 1143.17 506.65 1143.65
   C 508.12 1147.19 514.46 1146.43 516.48 1145.03
@@ -13327,8 +14744,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.91 0.91 0.0 0 1 495.37 1141.67
   Q 495.82 1141.64 497.68 1141.65
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 631.79 1127.11
   L 631.53 1145.18
   A 0.76 0.75 -88.8 0 0 632.26 1145.95
@@ -13406,8 +14825,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 10.04 8.34 -89.4 0 0 628.8295 1136.3873
   A 10.04 8.34 -89.4 0 0 620.5951 1126.2606
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 506.93 1141.33
   C 509.34 1141.90 511.08 1143.60 513.74 1142.60
   A 2.29 2.29 0.0 0 0 515.21 1140.15
@@ -13425,8 +14846,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 514.46 1146.43 508.12 1147.19 506.65 1143.65
   Q 506.45 1143.17 506.93 1141.33
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 532.11 1128.56
   L 532.21 1130.27
   A 0.64 0.64 0.0 0 1 531.24 1130.86
@@ -13445,8 +14868,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 523.23 1126.27 528.17 1126.16 531.04 1127.14
   A 1.59 1.58 8.2 0 1 532.11 1128.56
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 543.7104 1126.2361
   A 10.04 8.37 -88.0 0 1 551.7249 1136.5621
   A 10.04 8.37 -88.0 0 1 543.0096 1146.3039
@@ -13459,8 +14884,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 6.66 4.44 -89.8 0 0 547.8400 1136.3155
   A 6.66 4.44 -89.8 0 0 543.4232 1129.6400
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 567.08 1131.19
   Q 566.51 1131.60 565.98 1131.24
   C 562.43 1128.78 558.11 1129.75 557.43 1134.51
@@ -13473,8 +14900,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 556.65 1125.66 564.01 1126.69
   Q 567.51 1127.18 567.08 1131.19
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 620.5951 1126.2606
   A 10.04 8.34 -89.4 0 1 628.8295 1136.3873
   A 10.04 8.34 -89.4 0 1 620.3849 1146.3394
@@ -13487,8 +14916,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 6.62 4.55 -90.8 0 0 625.0096 1136.2465
   A 6.62 4.55 -90.8 0 0 620.3676 1129.6906
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 497.68 1141.65
   Q 495.82 1141.64 495.37 1141.67
   A 0.91 0.91 0.0 0 0 494.55 1142.33
@@ -13517,8 +14948,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.26 0.26 0.0 0 0 497.38 1130.81
   L 495.76 1138.46
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 585.98 1127.39
   L 591.24 1145.35
   Q 590.18 1146.63 588.25 1145.71
@@ -13541,8 +14974,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 585.14 1138.85
   A 0.37 0.37 0.0 0 0 585.55 1138.39
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 603.46 1127.08
   Q 603.57 1128.47 603.28 1129.51
   A 0.67 0.66 -80.3 0 1 602.62 1129.98
@@ -13560,8 +14995,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 590.63 1127.15 590.83 1127.13
   Q 597.20 1126.52 603.46 1127.08
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 609.16 1127.75
   L 609.19 1145.68
   A 0.36 0.35 -89.2 0 1 608.83 1146.04
@@ -13572,8 +15009,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.37 0.37 0.0 0 1 609.22 1127.36
   Q 609.25 1127.56 609.16 1127.75
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 645.97 1127.26
   L 645.98 1145.25
   A 0.71 0.69 84.5 0 1 645.42 1145.94
@@ -13594,8 +15033,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.31 1.30 -18.5 0 1 643.13 1127.09
   Q 644.33 1126.27 645.97 1127.26
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 574.09 1127.73
   L 573.94 1144.85
   A 1.18 1.18 0.0 0 1 572.76 1146.02
@@ -13604,10 +15045,26 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 570.10 1127.52
   Q 572.24 1126.11 574.09 1127.73
   Z"
-/>
-<ellipse fill="#e3b535" cx="0.00" cy="0.00" transform="translate(543.40,1136.30) rotate(-89.8)" rx="6.66" ry="4.44"/>
-<ellipse fill="#e3b535" cx="0.00" cy="0.00" transform="translate(620.46,1136.31) rotate(-90.8)" rx="6.62" ry="4.55"/>
-<path fill="#f0cd59" d="
+      />
+      <ellipse
+        fill="#e3b535"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(543.40,1136.30) rotate(-89.8)"
+        rx="6.66"
+        ry="4.44"
+      />
+      <ellipse
+        fill="#e3b535"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(620.46,1136.31) rotate(-90.8)"
+        rx="6.62"
+        ry="4.55"
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 495.76 1138.46
   L 497.38 1130.81
   A 0.26 0.26 0.0 0 1 497.88 1130.80
@@ -13616,8 +15073,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 496.18 1138.91
   A 0.38 0.37 -88.4 0 1 495.76 1138.46
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 585.55 1138.39
   A 0.37 0.37 0.0 0 1 585.14 1138.85
   L 581.70 1138.45
@@ -13626,8 +15085,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.26 0.26 0.0 0 1 583.74 1130.80
   L 585.55 1138.39
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 565.98 1131.24
   Q 566.51 1131.60 567.08 1131.19
   Q 569.28 1134.56 568.26 1139.80
@@ -13640,8 +15101,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 564.42 1132.16 565.04 1132.03
   Q 565.74 1131.89 565.98 1131.24
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 224.42 1164.42
   A 0.55 0.54 43.2 0 0 224.45 1165.21
   Q 226.27 1166.80 226.41 1167.69
@@ -13673,8 +15136,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 220.53 1165.94
   A 0.21 0.21 0.0 0 0 220.30 1166.13
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 236.52 1157.05
   Q 237.34 1157.06 237.77 1157.12
   A 0.88 0.86 87.0 0 1 238.49 1157.78
@@ -13706,8 +15171,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 237.04 1159.94 237.02 1159.94
   A 0.19 0.19 0.0 0 0 236.80 1160.20
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 253.76 1157.21
   A 0.76 0.76 0.0 0 1 254.37 1158.03
   L 254.15 1159.94
@@ -13726,8 +15193,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 245.83 1162.14 247.16 1159.08
   C 248.18 1156.73 251.69 1156.82 253.76 1157.21
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 263.57 1163.46
   A 0.36 0.36 0.0 0 0 264.24 1163.69
   L 267.31 1158.37
@@ -13752,8 +15221,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.47 1.46 3.3 0 1 264.12 1158.61
   L 263.57 1163.46
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 283.98 1171.62
   L 283.98 1173.04
   A 0.59 0.59 0.0 0 1 283.39 1173.63
@@ -13780,8 +15251,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 283.39 1171.03
   A 0.59 0.59 0.0 0 1 283.98 1171.62
   Z"
-/>
-<path fill="#e3b535" d="
+      />
+      <path
+        fill="#e3b535"
+        d="
   M 288.04 1159.28
   L 288.04 1157.76
   A 0.60 0.60 0.0 0 1 288.64 1157.16
@@ -13800,8 +15273,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 288.64 1159.88
   A 0.60 0.60 0.0 0 1 288.04 1159.28
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 309.32 1165.28
   Q 311.10 1166.88 311.23 1167.76
   C 312.07 1173.72 307.24 1173.69 302.64 1173.54
@@ -13833,8 +15308,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 305.09 1166.34
   A 0.28 0.28 0.0 0 0 304.81 1166.62
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 321.24 1157.03
   Q 321.26 1157.03 322.09 1157.06
   A 1.16 1.15 -5.5 0 1 323.18 1157.95
@@ -13863,8 +15340,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.44 0.43 4.9 0 0 320.20 1167.21
   Q 320.66 1167.22 321.01 1167.23
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 339.50 1171.77
   L 339.35 1173.12
   A 0.55 0.55 0.0 0 1 338.80 1173.61
@@ -13879,8 +15358,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 338.95 1171.16
   A 0.55 0.55 0.0 0 1 339.50 1171.77
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 346.80 1170.59
   A 0.62 0.61 -0.3 0 0 347.42 1171.19
   L 351.09 1171.16
@@ -13895,8 +15376,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.14 1.13 -0.5 0 1 346.79 1158.08
   L 346.80 1170.59
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 479.52 1164.49
   L 483.57 1164.48
   A 0.48 0.48 0.0 0 1 484.06 1164.96
@@ -14039,8 +15522,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.77 0.77 0.0 0 0 508.92 1160.93
   L 497.73 1160.93
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 440.33 1171.23
   L 439.41 1176.97
   A 0.31 0.31 0.0 0 1 438.80 1176.98
@@ -14116,8 +15601,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.45 0.45 0.0 0 0 454.34 1182.36
   L 454.34 1161.36
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 568.54 1178.91
   L 560.87 1179.12
   A 0.92 0.92 0.0 0 1 559.92 1178.20
@@ -14269,8 +15756,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 624.34 1170.11 623.85 1176.14
   C 623.67 1178.39 622.00 1179.25 619.94 1179.25
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 668.99 1166.69
   C 670.08 1162.25 672.08 1159.11 677.14 1159.23
   Q 682.65 1159.36 684.67 1164.58
@@ -14322,8 +15811,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 684.17 1166.69 683.12 1160.50 676.88 1160.64
   C 670.64 1160.77 669.87 1167.01 669.98 1171.97
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 305.07 1159.72
   A 0.51 0.51 0.0 0 1 305.62 1159.26
   L 305.81 1159.27
@@ -14334,8 +15825,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.51 0.51 0.0 0 1 304.72 1163.59
   L 305.07 1159.72
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 552.33 1177.86
   Q 554.40 1179.31 553.55 1182.53
   A 1.02 0.99 -3.9 0 1 552.96 1183.19
@@ -14366,8 +15859,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.75 0.75 0.0 0 0 540.81 1182.73
   L 551.56 1182.73
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 220.18 1159.82
   A 0.31 0.31 0.0 0 1 220.50 1159.53
   L 221.21 1159.57
@@ -14378,8 +15873,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.31 0.31 0.0 0 1 219.97 1163.63
   L 220.18 1159.82
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 237.02 1159.94
   Q 237.04 1159.94 237.07 1163.01
   Q 237.09 1165.07 238.10 1166.73
@@ -14391,8 +15888,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 237.08 1160.76 236.80 1160.20
   A 0.19 0.19 0.0 0 1 237.02 1159.94
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 321.16 1160.04
   Q 321.57 1160.05 322.27 1166.77
   A 0.44 0.43 -2.4 0 1 321.82 1167.25
@@ -14401,8 +15900,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.44 0.43 4.9 0 1 319.77 1166.72
   Q 320.76 1160.03 321.16 1160.04
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 440.33 1171.23
   L 441.31 1167.47
   L 442.44 1161.65
@@ -14433,8 +15934,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.31 0.31 0.0 0 0 439.41 1176.97
   L 440.33 1171.23
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 469.19 1171.10
   Q 469.90 1172.69 471.48 1176.57
   A 0.25 0.25 0.0 0 0 471.97 1176.46
@@ -14459,8 +15962,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.28 1.27 75.3 0 1 464.40 1161.59
   Q 466.39 1164.83 469.19 1171.10
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 518.15 1182.23
   A 0.48 0.48 0.0 0 1 517.67 1182.71
   L 514.76 1182.71
@@ -14489,8 +15994,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 518.87 1164.33
   A 0.63 0.63 0.0 0 0 518.22 1164.95
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 568.54 1178.91
   L 568.86 1179.26
   Q 569.07 1180.71 568.67 1182.11
@@ -14517,8 +16024,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.92 0.92 0.0 0 0 560.87 1179.12
   L 568.54 1178.91
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 579.73 1160.67
   Q 580.87 1160.67 581.57 1160.83
   A 1.34 1.33 -1.6 0 1 582.56 1161.76
@@ -14547,8 +16056,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 581.69 1174.47
   A 0.44 0.44 0.0 0 0 582.17 1173.93
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 606.82 1162.83
   L 606.99 1165.94
   A 0.45 0.45 0.0 0 1 606.28 1166.33
@@ -14570,8 +16081,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 591.87 1160.51 599.36 1159.52 605.92 1161.65
   A 1.32 1.31 -82.6 0 1 606.82 1162.83
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 619.95 1183.10
   C 615.17 1183.10 611.77 1180.93 611.83 1175.72
   Q 611.84 1175.13 611.74 1161.74
@@ -14588,8 +16101,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 628.04 1175.11 628.05 1175.71
   C 628.12 1180.91 624.73 1183.09 619.95 1183.10
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 660.48 1179.30
   L 666.10 1178.99
   A 0.80 0.80 0.0 0 1 666.95 1179.75
@@ -14608,8 +16123,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 666.07 1171.63 663.18 1175.15 660.15 1178.61
   A 0.42 0.41 -70.7 0 0 660.48 1179.30
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 676.88 1160.64
   C 683.12 1160.50 684.17 1166.69 684.27 1171.66
   C 684.38 1176.63 683.61 1182.86 677.37 1183.00
@@ -14622,8 +16139,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 8.04 3.22 -90.0 0 0 680.3900 1171.8200
   A 8.04 3.22 -90.0 0 0 677.1700 1163.7800
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 687.66 1182.69
   A 0.83 0.83 0.0 0 1 686.91 1181.51
   Q 688.16 1178.79 692.62 1172.90
@@ -14641,8 +16160,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.97 0.97 0.0 0 1 698.76 1182.69
   L 687.66 1182.69
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 713.02 1171.68
   Q 715.85 1172.61 716.18 1176.01
   C 716.86 1183.09 709.45 1184.06 704.61 1182.26
@@ -14665,9 +16186,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 716.71 1168.76 712.95 1170.99
   A 0.38 0.38 0.0 0 0 713.02 1171.68
   Z"
-/>
-<rect fill="#12110e" x="450.10" y="1160.91" width="4.24" height="21.90" rx="0.45"/>
-<path fill="#12110e" d="
+      />
+      <rect fill="#12110e" x="450.10" y="1160.91" width="4.24" height="21.90" rx="0.45" />
+      <path
+        fill="#12110e"
+        d="
   M 479.52 1164.49
   Q 478.37 1164.07 478.69 1162.77
   Q 478.47 1161.96 478.71 1161.48
@@ -14686,8 +16209,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.48 0.48 0.0 0 0 483.57 1164.48
   L 479.52 1164.49
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 497.73 1160.93
   L 508.92 1160.93
   A 0.77 0.77 0.0 0 1 509.69 1161.70
@@ -14714,8 +16239,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 496.96 1161.70
   A 0.77 0.77 0.0 0 1 497.73 1160.93
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 551.56 1182.73
   L 540.81 1182.73
   A 0.75 0.75 0.0 0 1 540.06 1181.98
@@ -14730,8 +16257,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 552.31 1181.94
   A 0.75 0.75 0.0 0 1 551.56 1182.73
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 633.39 1182.72
   A 0.58 0.57 -0.4 0 1 632.81 1182.16
   L 632.71 1161.68
@@ -14758,9 +16287,18 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.84 0.84 0.0 0 1 644.91 1182.63
   L 633.39 1182.72
   Z"
-/>
-<ellipse fill="#e3b535" cx="0.00" cy="0.00" transform="translate(677.17,1171.82) rotate(-90.0)" rx="8.04" ry="3.22"/>
-<path fill="#f0cd59" d="
+      />
+      <ellipse
+        fill="#e3b535"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(677.17,1171.82) rotate(-90.0)"
+        rx="8.04"
+        ry="3.22"
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 518.22 1164.95
   A 0.63 0.63 0.0 0 1 518.87 1164.33
   L 520.13 1164.36
@@ -14771,8 +16309,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.63 0.63 0.0 0 1 518.12 1169.69
   L 518.22 1164.95
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 581.69 1174.47
   L 577.65 1174.01
   A 0.37 0.36 -80.3 0 1 577.34 1173.56
@@ -14781,8 +16321,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 582.17 1173.93
   A 0.44 0.44 0.0 0 1 581.69 1174.47
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 220.30 1166.13
   A 0.21 0.21 0.0 0 1 220.53 1165.94
   L 221.07 1165.99
@@ -14793,8 +16335,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.21 0.21 0.0 0 1 219.82 1170.96
   L 220.30 1166.13
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 304.81 1166.62
   A 0.28 0.28 0.0 0 1 305.09 1166.34
   L 305.54 1166.34
@@ -14805,8 +16349,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.28 0.28 0.0 0 1 304.83 1171.04
   L 304.81 1166.62
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 599.37 1208.98
   Q 597.54 1211.26 597.55 1212.54
   Q 597.73 1228.95 597.78 1236.50
@@ -14854,8 +16400,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.19 1.19 0.0 0 0 607.27 1213.88
   L 613.34 1214.07
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 452.40 1232.56
   A 0.24 0.24 0.0 0 0 452.17 1232.32
   L 452.16 1232.32
@@ -14926,8 +16474,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 433.33 1220.95 433.45 1216.65
   A 0.17 0.17 0.0 0 1 433.79 1216.62
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 495.49 1200.31
   L 487.80 1200.37
   A 1.08 1.08 0.0 0 0 486.77 1201.16
@@ -14968,8 +16518,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.88 0.86 -23.4 0 1 495.07 1199.63
   Q 495.37 1199.91 495.49 1200.31
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 640.24 1250.81
   A 2.49 2.49 0.0 0 1 637.82 1248.90
   L 636.15 1241.99
@@ -15009,8 +16561,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.03 1.03 0.0 0 1 629.22 1239.36
   Q 629.91 1239.33 632.87 1239.36
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 676.04 1242.01
   L 663.13 1242.02
   A 0.35 0.35 0.0 0 1 662.78 1241.67
@@ -15038,8 +16592,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   Q 670.81 1240.78 675.42 1241.30
   C 675.86 1241.36 676.03 1241.59 676.04 1242.01
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 718.94 1200.00
   L 698.22 1200.36
   A 0.44 0.44 0.0 0 0 697.79 1200.79
@@ -15097,8 +16653,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.31 1.31 0.0 0 1 697.29 1199.14
   Q 708.32 1198.70 718.94 1200.00
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 613.34 1214.07
   L 607.27 1213.88
   A 1.19 1.19 0.0 0 1 606.12 1212.67
@@ -15119,9 +16677,11 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   C 612.77 1201.58 614.94 1207.06 614.59 1212.94
   A 1.21 1.20 2.7 0 1 613.34 1214.07
   Z"
-/>
-<rect fill="#12110e" x="570.29" y="1200.26" width="8.42" height="49.44" rx="0.58"/>
-<path fill="#12110e" d="
+      />
+      <rect fill="#12110e" x="570.29" y="1200.26" width="8.42" height="49.44" rx="0.58" />
+      <path
+        fill="#12110e"
+        d="
   M 433.45 1216.65
   Q 433.33 1220.95 433.70 1223.55
   Q 434.11 1226.45 434.04 1228.84
@@ -15155,8 +16715,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 433.79 1216.62
   A 0.17 0.17 0.0 0 0 433.45 1216.65
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 495.49 1200.31
   Q 495.95 1200.38 495.95 1200.84
   L 486.93 1225.66
@@ -15177,8 +16739,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 1.08 1.08 0.0 0 1 487.80 1200.37
   L 495.49 1200.31
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 546.49 1222.07
   Q 548.81 1222.07 550.95 1221.89
   A 0.38 0.38 0.0 0 0 551.30 1221.51
@@ -15207,8 +16771,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.38 0.38 0.0 0 0 542.03 1221.89
   Q 544.16 1222.07 546.49 1222.07
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 633.24 1200.22
   Q 635.60 1200.24 637.45 1200.36
   A 0.89 0.88 -3.7 0 1 638.27 1201.07
@@ -15237,8 +16803,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   L 633.26 1212.82
   A 0.23 0.23 0.0 0 0 632.80 1212.82
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 676.04 1242.01
   Q 676.99 1242.11 677.00 1242.80
   L 676.95 1249.19
@@ -15253,8 +16821,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.35 0.35 0.0 0 0 663.13 1242.02
   L 676.04 1242.01
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 718.94 1200.00
   Q 720.24 1200.62 720.06 1201.30
   L 720.05 1207.12
@@ -15283,8 +16853,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.44 0.44 0.0 0 1 698.22 1200.36
   L 718.94 1200.00
   Z"
-/>
-<path fill="#12110e" d="
+      />
+      <path
+        fill="#12110e"
+        d="
   M 514.17 1200.47
   Q 520.39 1200.51 526.37 1200.42
   A 0.73 0.72 -0.3 0 1 527.11 1201.14
@@ -15305,8 +16877,10 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.73 0.72 -0.2 0 1 501.96 1200.52
   Q 507.94 1200.56 514.17 1200.47
   Z"
-/>
-<path fill="#f0cd59" d="
+      />
+      <path
+        fill="#f0cd59"
+        d="
   M 632.80 1212.82
   A 0.23 0.23 0.0 0 1 633.26 1212.82
   L 635.93 1231.17
@@ -15315,7 +16889,7 @@ export const MythicalFiveTrophySvg: React.FC<React.SVGProps<SVGSVGElement>> = pr
   A 0.49 0.49 0.0 0 1 629.70 1231.45
   L 632.80 1212.82
   Z"
-/>
-</svg>
+      />
+    </svg>
   )
 }

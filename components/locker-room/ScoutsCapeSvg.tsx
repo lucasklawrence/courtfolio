@@ -5,11 +5,13 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-
-    return(
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#13100c" vectorEffect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#13100c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 836.03 782.81
   C 837.25 773.26 842.58 769.44 850.37 764.94
   Q 854.88 762.34 858.55 761.12
@@ -119,15 +121,21 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.16 2.09 44.0 0 0 837.64 792.12
   L 836.04 783.21
   A 1.18 1.15 44.3 0 1 836.03 782.81"
-/>
-<path stroke="#2a3222" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2a3222"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.53 206.39
   Q 491.90 206.40 509.84 199.67
   C 514.14 198.05 517.97 195.86 522.13 194.25
   A 0.75 0.75 0.0 0 1 523.13 195.14
   Q 522.48 197.56 521.25 198.80"
-/>
-<path stroke="#303827" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#303827"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.25 198.80
   Q 517.89 202.22 513.00 204.96
   Q 497.82 213.48 481.64 214.21
@@ -146,8 +154,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 482.10 338.64 496.62 344.13
   C 508.70 348.69 520.45 350.40 533.01 346.75
   Q 544.63 343.37 552.52 338.77"
-/>
-<path stroke="#2a3222" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2a3222"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 552.52 338.77
   Q 573.25 326.25 592.79 311.91
   Q 601.12 305.79 609.12 298.89
@@ -158,8 +169,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 691.01 192.45 693.68 188.19
   Q 695.04 186.02 693.24 184.53
   Q 684.13 176.99 674.49 170.25"
-/>
-<path stroke="#303827" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#303827"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 674.49 170.25
   Q 667.13 164.84 661.68 161.36
   Q 652.47 155.49 644.38 162.04
@@ -169,19 +183,28 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 562.21 218.90 557.82 221.58
   Q 542.47 230.93 526.18 235.84
   C 520.80 237.46 514.89 238.16 509.13 238.95"
-/>
-<path stroke="#2a3222" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2a3222"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 509.13 238.95
   C 497.75 240.40 489.09 241.17 478.60 240.72
   A 1.62 1.61 88.8 0 1 477.06 239.24
   Q 476.96 238.00 477.44 236.39"
-/>
-<path stroke="#303827" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#303827"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.44 236.39
   C 482.62 236.04 487.93 235.92 492.82 235.20
   Q 515.93 231.81 537.35 222.85"
-/>
-<path stroke="#13100c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#13100c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.35 222.85
   Q 542.87 222.04 548.02 218.99
   Q 552.60 216.27 552.66 216.23
@@ -206,12 +229,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 394.42 165.29 404.76 174.60 415.66 181.77
   Q 432.30 192.74 449.04 200.70
   Q 460.57 206.18 472.53 206.39"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.35 222.85
   L 550.75 216.21"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.75 216.21
   Q 567.17 207.45 582.55 197.04
   Q 591.94 190.67 604.80 180.12
@@ -219,8 +248,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 632.33 158.50 637.12 154.98
   A 0.99 0.99 0.0 0 0 637.16 153.41
   L 634.89 151.58"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 634.89 151.58
   Q 627.63 145.62 620.34 140.37
   Q 615.19 136.66 609.55 139.79
@@ -235,15 +267,21 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 396.53 145.85 387.50 153.53
   A 1.09 1.08 49.9 0 0 387.38 155.05
   L 390.16 158.36"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 390.16 158.36
   Q 394.29 163.16 398.94 167.30
   Q 407.61 175.02 417.15 181.60
   Q 424.43 186.63 442.78 196.49
   Q 455.27 203.20 472.53 206.39"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 634.89 151.58
   Q 627.79 152.66 622.38 156.48
   C 618.19 159.43 614.52 165.11 610.35 167.94
@@ -259,13 +297,19 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 23.17 23.08 82.3 0 1 410.36 172.91
   Q 405.33 168.24 400.15 162.61
   Q 395.97 158.08 390.16 158.36"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.75 216.21
   C 540.27 217.39 527.56 217.63 523.15 205.65
   Q 521.92 202.32 521.25 198.80"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.44 236.39
   Q 472.70 232.15 467.83 231.35
   Q 455.21 229.30 442.57 226.14
@@ -278,8 +322,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 450.33 250.00 466.25 255.93
   Q 474.75 259.09 488.37 262.55
   Q 503.64 266.42 519.11 270.07"
-/>
-<path stroke="#303827" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#303827"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.11 270.07
   Q 510.15 269.46 501.51 267.45
   Q 477.05 261.75 452.07 252.01
@@ -296,8 +343,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 526.90 282.30 545.36 277.89
   C 555.45 275.47 566.69 270.25 575.81 265.07
   Q 596.64 253.23 616.80 237.52"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 616.80 237.52
   L 613.29 246.13
   Q 613.25 246.21 613.21 246.29
@@ -311,19 +361,28 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.66 0.65 7.0 0 0 522.70 346.25
   Q 536.05 345.40 547.89 339.57
   Q 548.93 339.06 552.52 338.77"
-/>
-<path stroke="#2a3222" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2a3222"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 616.80 237.52
   Q 623.52 231.36 625.24 228.23
   Q 627.76 223.66 630.82 219.15
   A 0.24 0.24 0.0 0 0 630.46 218.84
   C 621.96 226.81 613.26 234.39 602.83 240.85"
-/>
-<path stroke="#2a3222" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2a3222"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.11 270.07
   Q 536.42 273.22 552.92 267.01"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 674.49 170.25
   C 670.07 169.56 667.18 167.08 662.59 164.21
   Q 660.90 163.16 656.73 162.53
@@ -334,13 +393,19 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 626.43 213.44 626.00 214.30
   C 625.37 215.57 623.69 217.68 622.14 219.06
   C 614.72 225.64 606.70 231.47 602.83 240.85"
-/>
-<path stroke="#303827" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#303827"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 602.83 240.85
   Q 585.90 252.40 567.11 261.32
   Q 560.26 264.57 552.92 267.01"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 552.92 267.01
   Q 559.31 261.88 567.21 259.44
   A 0.85 0.85 0.0 0 0 567.72 259.00
@@ -353,14 +418,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 518.51 241.56
   A 0.90 0.89 -84.5 0 0 517.79 240.68
   L 509.13 238.95"
-/>
-<path stroke="#2a3222" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2a3222"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 181.10 755.54
   Q 183.33 756.67 185.43 759.03
   A 0.20 0.20 0.0 0 0 185.78 758.91
   Q 185.90 756.71 186.73 755.02"
-/>
-<path stroke="#13100c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#13100c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 186.73 755.02
   Q 188.75 752.40 189.65 749.84
   Q 191.57 744.39 193.86 735.87
@@ -434,12 +505,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 818.25 710.05 822.93 732.69 828.83 757.80
   A 15.57 14.42 28.8 0 0 829.69 760.38
   L 831.18 763.81"
-/>
-<path stroke="#2a3222" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2a3222"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 831.18 763.81
   Q 836.71 758.21 842.69 755.66"
-/>
-<path stroke="#13100c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#13100c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 842.69 755.66
   Q 859.32 750.10 875.65 744.19
   Q 892.40 738.13 905.85 726.81
@@ -464,14 +541,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 640.72 279.48 634.77 284.85 630.70 289.47
   Q 628.60 291.85 618.49 300.69
   Q 611.12 307.14 604.15 314.11"
-/>
-<path stroke="#2a3222" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2a3222"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 604.15 314.11
   Q 583.52 332.02 559.07 345.32
   A 0.36 0.36 0.0 0 0 559.24 346.00
   L 568.16 346.04"
-/>
-<path stroke="#13100c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#13100c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 568.16 346.04
   C 563.79 348.96 559.28 348.83 552.98 349.28
   Q 550.41 349.47 542.02 352.54
@@ -479,14 +562,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 513.80 359.17 501.13 355.37 489.70 350.57
   Q 487.92 349.82 483.78 349.00
   Q 479.53 348.17 475.88 346.11"
-/>
-<path stroke="#303827" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#303827"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.88 346.11
   Q 476.50 345.85 476.77 345.60
   A 0.28 0.27 55.0 0 0 476.82 345.27
   Q 476.74 345.11 476.56 345.01"
-/>
-<path stroke="#13100c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#13100c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.56 345.01
   Q 474.11 343.14 473.18 342.66
   Q 448.87 330.02 429.66 315.09
@@ -530,8 +619,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 155.51 747.09 164.47 749.60
   Q 167.42 750.43 172.79 752.52
   Q 176.82 754.08 181.10 755.54"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.56 345.01
   Q 473.40 344.26 472.45 343.76
   C 446.09 329.75 423.78 313.12 400.69 292.78
@@ -557,13 +649,19 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 108.42 716.79 109.96 718.54
   Q 121.45 731.59 136.35 738.35
   Q 144.95 742.25 153.98 745.13"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 153.98 745.13
   Q 161.01 747.30 168.11 749.42
   Q 174.97 751.46 181.10 755.54"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.88 346.11
   L 435.39 345.98
   A 4.06 4.01 66.0 0 1 432.67 344.92
@@ -610,8 +708,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 633.00 345.94 615.44 346.06
   A 0.83 0.82 5.1 0 1 614.62 345.08
   Q 616.35 335.85 611.07 332.13"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 611.07 332.13
   L 614.64 332.15
   A 0.93 0.92 17.6 0 0 615.42 331.75
@@ -635,12 +736,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 744.81 421.03 741.95 403.89
   Q 739.83 391.20 737.36 366.87
   Q 736.98 363.16 737.98 359.81"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 737.98 359.81
   Q 742.41 407.41 752.62 454.22"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 752.62 454.22
   L 748.92 447.24
   A 0.31 0.25 66.7 0 0 748.60 447.07
@@ -661,13 +768,19 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 805.51 739.44 806.72 754.16 807.46 761.75
   Q 808.97 777.15 808.48 782.49
   C 807.48 793.35 806.08 800.57 808.12 808.59"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 808.12 808.59
   C 799.20 813.70 789.21 817.27 779.35 820.04
   Q 761.35 825.10 743.06 828.65"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 743.06 828.65
   L 751.48 824.99
   A 1.43 1.43 0.0 0 0 752.33 823.48
@@ -700,8 +813,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 667.07 861.11
   A 0.65 0.65 0.0 0 1 667.83 861.73
   L 667.88 862.87"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 667.88 862.87
   Q 660.57 866.97 658.06 868.05
   Q 635.30 877.92 610.75 882.02
@@ -711,8 +827,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 417.17 881.95 408.82 879.90
   Q 388.24 874.85 371.87 867.88
   Q 360.91 863.22 343.33 854.55"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.33 854.55
   C 345.89 852.80 346.15 850.99 344.69 848.24
   Q 343.15 845.32 342.13 841.66
@@ -736,8 +855,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 251.24 789.81 249.09 800.07 243.61 809.62
   A 0.62 0.61 25.5 0 0 243.93 810.50
   Q 246.91 811.63 245.46 812.94"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 245.46 812.94
   Q 235.75 810.66 226.02 808.22
   C 213.93 805.18 198.49 799.07 193.31 786.46
@@ -758,8 +880,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 274.50 404.39 271.23 419.54
   Q 268.34 432.91 265.09 449.53
   Q 257.44 488.60 248.00 527.29"
-/>
-<path stroke="#3a4c34" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3a4c34"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 248.00 527.29
   C 247.44 522.66 248.96 518.00 250.10 513.55
   C 252.89 502.76 254.86 490.98 256.72 483.25
@@ -784,19 +909,28 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 157.63 725.37 151.60 741.40
   A 0.84 0.82 29.7 0 0 151.87 742.34
   Q 153.18 743.36 153.98 745.13"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 245.46 812.94
   Q 271.26 820.60 283.82 826.38
   Q 297.83 832.83 311.87 839.21
   C 322.52 844.05 332.80 849.47 343.33 854.55"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 667.88 862.87
   Q 681.31 855.13 694.61 847.34
   Q 715.39 835.18 743.06 828.65"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 808.12 808.59
   Q 818.03 803.97 823.58 797.32
   C 828.03 791.99 827.27 786.51 825.69 780.37
@@ -807,8 +941,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 774.36 556.09 770.26 538.01 764.67 512.83
   C 762.06 501.03 759.95 489.71 757.71 479.37
   Q 755.00 466.81 752.62 454.22"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 186.73 755.02
   Q 187.90 751.74 188.82 748.44
   Q 211.31 667.31 214.33 656.33
@@ -816,8 +953,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 225.23 615.95 232.32 590.21
   C 237.11 572.81 240.38 559.20 245.96 536.72
   Q 247.12 532.03 248.00 527.29"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 831.18 763.81
   Q 828.99 752.96 826.51 742.42
   Q 823.22 728.35 821.63 721.07
@@ -832,14 +972,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 741.40 360.40 739.75 356.76
   A 0.80 0.80 0.0 0 0 738.22 357.02
   L 737.98 359.81"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 611.07 332.13
   Q 601.60 337.25 595.05 344.30
   A 4.88 4.84 21.0 0 1 591.53 345.85
   L 568.16 346.04"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 842.69 755.66
   Q 846.67 753.24 850.93 751.71
   Q 862.48 747.56 868.73 745.46
@@ -860,8 +1006,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 663.41 253.16 653.89 264.89
   Q 640.95 280.83 627.59 293.59
   Q 617.42 303.30 604.15 314.11"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.58 334.26
   L 413.35 336.21
   A 5.51 5.43 29.3 0 1 413.66 337.28
@@ -874,8 +1023,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 433.17 351.39 431.80 349.08 429.61 347.14
   Q 421.34 339.80 413.16 333.81
   A 0.38 0.38 0.0 0 0 412.58 334.26"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 568.57 402.74
   A 0.13 0.13 0.0 0 0 568.79 402.84
   Q 571.86 399.99 580.24 392.50
@@ -887,8 +1039,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 574.15 371.38 569.59 376.15
   A 0.59 0.58 69.3 0 0 569.42 376.54
   L 568.57 402.74"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 407.44 484.38
   Q 422.33 490.55 435.72 499.31
   C 436.92 500.09 439.60 502.46 440.40 503.50
@@ -897,8 +1052,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.30 1.29 6.1 0 1 445.23 531.59
   Q 441.76 530.54 436.76 527.66
   Q 430.18 523.86 423.84 521.08"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 423.84 521.08
   Q 421.44 519.25 413.53 514.23
   Q 405.47 509.11 398.51 497.67
@@ -909,8 +1067,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.93 1.93 0.0 0 0 397.58 596.12
   Q 429.55 612.63 458.17 627.62
   Q 458.89 628.00 459.26 627.10"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.26 627.10
   Q 461.78 624.35 462.25 622.44
   Q 463.01 619.35 464.55 615.56
@@ -922,12 +1083,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 521.63 568.42 522.17 568.84
   A 0.83 0.82 18.8 0 1 522.48 569.46
   L 522.50 571.45"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.50 571.45
   L 521.39 577.18"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.39 577.18
   C 519.56 582.41 519.89 588.80 513.31 591.65
   Q 510.60 592.83 510.58 592.84
@@ -944,15 +1111,21 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 512.39 594.65 516.78 594.76
   A 0.57 0.57 0.0 0 1 517.34 595.41
   Q 517.24 596.11 516.35 597.11"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 516.35 597.11
   L 505.56 621.10
   A 0.14 0.14 0.0 0 0 505.77 621.27
   Q 507.31 620.22 508.63 618.88
   Q 510.05 617.44 516.03 616.31"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 516.03 616.31
   Q 531.94 609.07 548.33 603.54
   Q 550.28 602.88 552.16 602.60
@@ -960,8 +1133,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 554.67 605.94 553.63 607.40
   Q 550.96 611.14 549.37 614.27
   Q 547.92 617.12 546.11 619.75"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.11 619.75
   L 544.41 621.98
   A 1.90 1.87 -70.9 0 1 542.92 622.72
@@ -983,14 +1159,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 516.30 627.57 521.98 627.08
   Q 530.90 626.32 537.63 624.12
   Q 539.49 623.52 543.64 624.35"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 543.64 624.35
   C 541.47 626.00 539.12 624.83 536.67 626.43
   A 1.04 1.02 77.4 0 0 536.21 627.17
   Q 536.02 628.62 533.94 628.90"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 533.94 628.90
   L 521.79 630.59
   A 0.49 0.48 -3.3 0 0 521.36 631.07
@@ -999,13 +1181,19 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 548.21 639.36
   A 0.25 0.25 0.0 0 0 548.22 638.92
   L 537.53 632.79"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.53 632.79
   C 536.47 631.11 537.16 629.57 538.94 629.33
   Q 553.71 627.30 567.90 625.08"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 567.90 625.08
   Q 571.32 624.67 574.57 623.32
   C 577.28 622.20 581.08 620.63 584.25 618.90
@@ -1015,8 +1203,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.18 0.18 0.0 0 0 629.73 492.06
   C 625.57 499.89 620.87 507.13 614.19 513.09
   Q 610.89 516.04 607.44 519.16"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 607.44 519.16
   Q 606.29 519.29 604.92 520.26
   Q 603.40 521.33 602.57 521.68
@@ -1028,8 +1219,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 584.67 504.07 588.44 501.70
   Q 598.98 495.08 609.56 489.58
   C 613.98 487.28 619.07 486.03 622.30 484.51"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.30 484.51
   L 632.29 483.02
   A 1.41 1.41 0.0 0 1 633.89 484.64
@@ -1039,12 +1233,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 614.51 606.00 590.32 619.38
   Q 586.86 621.29 582.88 623.24
   C 577.49 625.89 575.13 627.14 570.04 627.96"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 570.04 627.96
   L 568.33 628.24"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 568.33 628.24
   Q 567.15 627.97 566.09 628.16
   A 0.20 0.20 0.0 0 0 566.00 628.51
@@ -1071,12 +1271,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 634.38 416.51 632.88 420.34 633.08 426.26
   Q 633.24 431.11 633.01 440.51
   Q 633.00 441.02 634.09 440.81"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 634.09 440.81
   L 635.29 441.46"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 635.29 441.46
   Q 635.74 442.06 635.68 442.86
   A 1.45 1.42 -28.1 0 1 635.47 443.53
@@ -1085,38 +1291,56 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.66 0.66 0.0 0 1 632.64 472.21
   Q 627.80 472.20 623.49 471.91
   C 619.17 471.63 618.12 473.50 615.66 475.96"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 615.66 475.96
   L 612.12 479.47"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 612.12 479.47
   Q 602.69 486.67 599.06 488.57
   C 592.53 491.96 586.22 495.93 579.36 498.74
   A 0.96 0.95 -8.2 0 1 578.04 497.76
   L 578.64 492.22"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.64 492.22
   L 584.28 467.26"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.28 467.26
   Q 585.77 465.43 587.05 464.55
   Q 597.99 457.00 613.18 447.50
   Q 613.95 447.01 615.82 446.11
   Q 617.45 445.33 618.30 444.44"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 618.30 444.44
   L 629.72 441.39
   A 0.59 0.58 -7.9 0 0 630.15 440.83
   L 630.15 424.79
   A 0.07 0.06 -29.0 0 0 630.03 424.76
   Q 624.72 432.84 617.21 439.25"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.21 439.25
   Q 612.84 442.77 609.90 444.66
   Q 600.44 450.73 590.44 457.17
@@ -1127,12 +1351,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 527.19 501.93 525.83 502.45
   A 1.31 1.31 0.0 0 1 524.05 501.31
   L 523.84 498.24"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.84 498.24
   L 528.20 480.04"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.20 480.04
   Q 527.75 477.68 529.70 475.95
   Q 535.81 470.51 541.14 466.66
@@ -1142,8 +1372,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 577.57 439.31 577.80 439.24
   A 0.33 0.32 -15.6 0 1 578.22 439.47
   Q 578.45 440.47 579.06 441.26"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 579.06 441.26
   L 576.07 460.49
   A 1.98 1.57 -38.5 0 1 576.01 460.75
@@ -1152,15 +1385,21 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 577.91 462.52 578.29 461.34
   C 579.49 457.63 580.06 452.11 580.67 448.95
   Q 581.66 443.74 582.65 438.54"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.65 438.54
   Q 583.13 435.67 584.54 434.53
   Q 593.66 427.17 610.34 415.99
   Q 612.19 414.75 614.57 413.60
   Q 616.85 412.49 618.91 411.36"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 618.91 411.36
   L 629.37 409.27
   A 0.58 0.57 -6.3 0 0 629.83 408.71
@@ -1172,8 +1411,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.55 1.29 -30.4 0 1 627.98 385.39
   Q 626.48 388.33 624.61 391.94
   Q 618.85 403.07 609.13 411.47"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 609.13 411.47
   L 577.74 434.41
   A 1.59 1.43 61.8 0 1 575.50 433.60
@@ -1200,8 +1442,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.52 1.51 -78.3 0 0 574.14 408.82
   Q 575.21 407.49 579.22 404.01
   Q 590.41 394.30 601.65 385.77"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.65 385.77
   Q 608.68 381.08 615.10 376.85
   Q 619.26 374.11 626.39 371.67
@@ -1212,8 +1457,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 610.22 364.63
   A 2.46 2.45 16.0 0 0 608.14 365.78
   Q 600.09 378.74 589.33 389.03"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 589.33 389.03
   Q 575.87 400.19 571.71 404.18
   Q 568.23 407.50 565.09 406.33
@@ -1228,8 +1476,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 527.23 443.35 524.28 444.18
   A 1.23 1.23 0.0 0 1 523.37 441.91
   Q 523.55 441.81 524.05 441.24"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.05 441.24
   Q 524.76 440.92 525.40 440.38
   Q 542.04 426.13 554.77 413.61
@@ -1241,25 +1492,40 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 541.71 401.48 529.11 414.85
   Q 526.26 417.87 526.11 421.42
   Q 525.81 428.04 525.18 431.71"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 525.18 431.71
   Q 524.61 432.39 524.79 432.70"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.79 432.70
   Q 524.21 432.92 524.01 432.85
   Q 523.70 432.74 523.79 432.42"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.79 432.42
   L 523.87 419.46"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.87 419.46
   Q 523.44 415.91 525.58 413.20"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 525.58 413.20
   Q 538.14 399.81 551.30 387.30
   Q 553.73 384.98 558.35 381.09
@@ -1268,12 +1534,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 562.00 379.97 562.07 379.77
   A 0.52 0.52 0.0 0 0 561.67 379.08
   Q 560.94 378.95 561.21 378.49"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.21 378.49
   L 563.26 376.74"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 563.26 376.74
   Q 567.76 373.81 569.30 371.54
   Q 571.72 367.99 574.81 365.05
@@ -1282,16 +1554,25 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.45 0.45 0.0 0 0 521.38 365.13
   Q 521.35 382.45 521.58 406.42
   C 521.67 414.89 522.37 423.92 522.74 432.70"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.74 432.70
   C 522.09 435.00 523.53 437.77 524.10 440.05"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.10 440.05
   L 523.78 440.83"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.78 440.83
   Q 521.45 441.42 521.87 443.98
   Q 522.13 445.64 522.55 453.31
@@ -1302,12 +1583,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 509.50 491.94 508.91 492.61
   Q 500.55 502.13 491.07 511.60
   C 488.67 514.00 485.83 516.22 483.15 518.57"
-/>
-<path stroke="#222b1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#222b1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 483.15 518.57
   L 477.65 519.19"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.65 519.19
   Q 476.70 518.28 476.82 516.48
   Q 477.20 510.98 478.35 501.01
@@ -1318,14 +1605,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 519.37 460.22
   A 0.25 0.25 0.0 0 0 519.87 460.15
   L 519.17 448.45"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.17 448.45
   Q 519.35 442.44 519.20 436.41
   Q 519.16 434.66 519.28 427.61
   Q 519.36 423.13 518.77 418.82"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.77 418.82
   L 518.02 362.68
   A 1.56 1.56 0.0 0 1 519.58 361.09
@@ -1336,12 +1629,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 553.06 350.21
   A 7.78 7.66 32.9 0 0 550.00 350.84
   C 542.05 354.24 536.04 356.97 526.68 357.99"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 526.68 357.99
   L 521.21 358.61"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.21 358.61
   Q 515.50 359.09 509.82 358.10
   Q 499.06 356.23 492.25 353.12
@@ -1355,8 +1654,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.13 1.12 0.3 0 1 507.80 362.12
   Q 507.69 393.58 508.62 423.68
   Q 508.64 424.28 508.22 425.19"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 508.22 425.19
   Q 502.17 431.57 496.10 437.85
   Q 494.39 439.62 492.39 438.93
@@ -1366,8 +1668,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 463.72 411.76 463.68 409.76
   Q 463.49 400.19 462.97 381.79
   C 462.93 380.49 463.48 379.78 464.72 379.56"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 464.72 379.56
   Q 465.20 379.75 465.62 380.13
   Q 487.48 400.02 504.75 418.11
@@ -1380,14 +1685,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.24 0.23 -6.3 0 0 450.12 364.23
   Q 454.06 368.84 458.10 372.64
   Q 459.66 374.11 459.28 377.02"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.28 377.02
   L 459.72 408.81
   A 0.31 0.31 0.0 0 1 459.17 409.00
   Q 456.56 405.65 453.24 404.07"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.24 404.07
   Q 441.37 393.22 431.16 381.60
   Q 424.20 373.68 419.10 365.54
@@ -1396,17 +1707,26 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 401.56 365.53 397.33 365.55
   A 0.37 0.36 75.1 0 0 397.02 366.09
   Q 397.60 367.17 398.89 367.49"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 398.89 367.49
   Q 399.88 368.23 401.01 368.50"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 401.01 368.50
   Q 404.66 370.40 406.65 371.85
   Q 422.56 383.48 438.08 397.11"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 438.08 397.11
   Q 439.56 398.94 442.21 401.06
   Q 444.39 402.81 444.89 406.35
@@ -1414,8 +1734,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 446.90 430.97 446.73 431.61
   A 1.16 1.15 25.2 0 1 444.96 432.24
   Q 431.81 423.08 420.51 412.93"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.51 412.93
   Q 411.48 405.08 404.79 395.22
   C 402.27 391.50 400.18 385.96 398.62 383.47
@@ -1425,8 +1748,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 396.76 407.33
   A 0.60 0.59 7.7 0 0 397.20 407.90
   Q 410.46 411.66 421.74 419.57"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 421.74 419.57
   Q 435.98 429.76 439.24 433.01
   Q 441.11 434.87 441.41 436.82
@@ -1434,8 +1760,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.72 1.72 0.0 0 1 441.35 461.15
   Q 440.13 460.68 439.03 459.99
   Q 428.22 453.29 418.01 445.75"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 418.01 445.75
   Q 410.74 440.71 404.31 434.69
   Q 403.16 433.62 398.47 427.43
@@ -1445,8 +1774,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 396.65 424.79 396.39 439.56
   A 0.93 0.92 -78.3 0 0 396.96 440.43
   L 409.08 445.58"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 409.08 445.58
   Q 409.88 446.91 412.85 447.90
   A 3.61 3.53 -19.1 0 1 413.57 448.24
@@ -1461,8 +1793,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 431.63 492.21 422.84 486.65
   Q 420.43 485.12 417.66 482.80
   Q 415.07 480.62 412.69 478.65"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.69 478.65
   L 405.33 471.85
   A 1.75 1.74 65.9 0 0 404.16 471.40
@@ -1501,12 +1836,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 393.40 490.41 392.98 483.11
   A 1.07 1.07 0.0 0 1 394.00 481.98
   Q 400.80 481.68 407.44 484.38"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.69 478.65
   Q 412.05 479.93 409.03 476.80"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 409.03 476.80
   C 406.44 474.81 406.02 472.52 401.72 472.63
   Q 396.32 472.77 394.46 472.74
@@ -1541,36 +1882,54 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 392.08 482.64
   A 1.89 1.89 0.0 0 1 394.23 480.77
   L 406.68 482.52"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 406.68 482.52
   Q 407.34 482.77 407.73 483.26
   Q 407.98 483.59 407.88 483.87
   Q 407.78 484.14 407.44 484.38"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 409.03 476.80
   L 406.68 482.52"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 609.13 411.47
   Q 622.50 402.24 628.24 386.30
   A 0.36 0.36 0.0 0 1 628.94 386.42
   L 628.94 407.94
   A 0.51 0.51 0.0 0 1 628.46 408.45
   Q 623.18 408.76 618.91 411.36"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.65 438.54
   Q 582.65 437.68 582.21 437.21
   A 0.43 0.42 38.5 0 0 581.55 437.28
   L 579.06 441.26"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.20 480.04
   Q 524.80 481.35 523.44 483.01"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.44 483.01
   L 521.07 482.22
   A 0.79 0.79 0.0 0 0 520.03 482.97
@@ -1591,12 +1950,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 511.58 517.38 516.26 513.66 520.13 508.59
   A 1.04 0.96 72.5 0 0 520.30 508.23
   L 522.61 496.89"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.61 496.89
   Q 523.09 498.07 523.84 498.24"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.21 439.25
   Q 617.26 440.61 619.06 439.07
   Q 623.46 435.31 627.52 429.92
@@ -1605,12 +1970,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.49 1.48 -88.5 0 1 627.53 440.58
   Q 626.88 440.56 625.83 440.89
   Q 622.02 442.08 618.30 444.44"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.28 467.26
   Q 583.83 466.27 582.06 468.64"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.06 468.64
   Q 581.66 467.40 580.38 468.13
   Q 579.22 468.78 578.58 469.54
@@ -1628,23 +1999,35 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 547.41 518.43 556.10 512.57
   C 560.67 509.48 565.19 506.94 570.18 503.91
   Q 575.06 500.95 575.54 496.32"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.54 496.32
   Q 577.09 495.76 578.64 492.22"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 612.56 480.00
   Q 610.44 482.58 612.08 485.30
   A 1.28 1.27 -31.6 0 0 613.85 485.72
   Q 615.68 484.56 618.35 484.93
   Q 619.70 485.11 619.17 483.55"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 619.17 483.55
   Q 622.08 482.98 622.30 484.51"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 607.44 519.16
   Q 616.18 513.91 620.10 508.60
   Q 622.75 504.99 626.55 499.73
@@ -1656,8 +2039,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 601.72 608.37 583.03 618.45
   C 578.26 621.02 573.94 622.63 568.80 623.57
   Q 567.58 623.79 567.90 625.08"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.53 632.79
   Q 537.03 632.75 536.97 632.78
   A 0.62 0.61 40.8 0 0 537.05 633.81
@@ -1670,12 +2056,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 535.01 629.68
   A 0.38 0.38 0.0 0 0 535.08 628.94
   Q 534.67 628.79 533.94 628.90"
-/>
-<path stroke="#5e676b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5e676b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 543.64 624.35
   Q 545.12 622.68 546.11 619.75"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 516.03 616.31
   Q 514.86 614.45 510.03 616.14
   A 0.38 0.38 0.0 0 1 509.55 615.66
@@ -1688,8 +2080,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 513.45 612.33 514.36 612.92
   A 0.50 0.50 0.0 0 0 515.11 612.35
   L 515.01 612.04"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 515.01 612.04
   Q 518.87 612.74 519.88 612.38
   Q 527.60 609.69 549.31 599.89
@@ -1699,19 +2094,28 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 563.13 570.81 558.51 573.30 553.99 575.27
   Q 541.42 580.74 525.33 589.05
   Q 523.08 590.21 520.39 594.80"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 520.39 594.80
   L 520.23 594.25
   A 0.43 0.42 -43.5 0 0 519.42 594.23
   Q 518.51 596.79 516.35 597.11"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.39 577.18
   Q 521.56 578.26 522.01 578.74
   Q 522.36 579.11 523.19 578.45"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.19 578.45
   L 522.19 584.39
   A 1.29 1.28 -15.6 0 1 521.76 585.14
@@ -1726,16 +2130,22 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 569.96 541.08 567.13 542.39
   Q 552.45 549.24 551.04 549.87
   Q 538.22 555.60 528.53 562.53"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.53 562.53
   L 524.59 568.30
   A 0.80 0.80 0.0 0 1 523.88 568.64
   L 523.43 568.60
   A 0.52 0.52 0.0 0 0 522.87 569.04
   L 522.50 571.45"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.26 627.10
   L 398.56 595.61
   A 1.83 1.82 13.7 0 1 397.57 593.99
@@ -1744,8 +2154,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 398.50 498.94 398.88 499.64
   Q 403.13 507.42 410.52 512.99
   Q 417.65 518.38 423.84 521.08"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 409.08 445.58
   Q 403.95 441.78 398.79 440.33
   A 1.85 1.85 0.0 0 1 397.45 438.54
@@ -1756,8 +2169,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 412.97 443.43 417.34 446.45
   A 0.54 0.53 24.6 0 0 418.16 446.15
   Q 418.19 446.03 418.01 445.75"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 421.74 419.57
   L 422.64 419.78
   A 0.22 0.22 0.0 0 0 422.82 419.38
@@ -1771,14 +2187,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 412.72 407.15 419.51 413.38
   A 0.50 0.49 38.5 0 0 420.25 413.30
   L 420.51 412.93"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 438.08 397.11
   Q 432.44 390.76 426.21 385.78
   C 418.52 379.64 411.05 373.49 402.57 368.43
   Q 401.43 367.75 401.01 368.50"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 508.79 426.52
   Q 503.96 431.93 498.96 437.18
   C 495.86 440.44 493.95 443.67 490.91 446.19
@@ -1789,12 +2211,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 478.85 485.87
   A 0.78 0.78 0.0 0 0 480.30 486.32
   L 481.04 485.04"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.04 485.04
   Q 481.58 485.18 481.57 484.93"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.57 484.93
   L 481.95 486.15
   A 0.84 0.84 0.0 0 1 481.70 487.03
@@ -1805,19 +2233,28 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 482.46 488.67 482.82 488.31
   C 493.27 477.61 504.41 466.67 513.90 454.39
   Q 516.81 450.63 517.23 445.52"
-/>
-<path stroke="#68705c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68705c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.65 519.19
   Q 475.07 521.80 476.05 526.65
   A 1.05 1.05 0.0 0 0 477.82 527.19
   Q 480.26 524.79 482.75 522.19
   Q 483.72 521.18 483.15 518.57"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.78 440.83
   L 524.05 441.24"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 570.04 627.96
   Q 570.06 628.12 570.01 628.23
   A 0.15 0.15 0.0 0 0 570.11 628.43
@@ -1832,16 +2269,25 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 622.29 483.13
   A 0.73 0.70 -12.4 0 0 621.77 482.81
   L 614.35 482.05"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 614.35 482.05
   Q 614.12 479.67 612.56 480.00"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 612.56 480.00
   Q 612.32 479.85 612.12 479.47"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 615.66 475.96
   Q 615.85 476.23 615.89 476.29
   A 0.63 0.62 48.5 0 0 616.94 476.36
@@ -1854,27 +2300,42 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 637.22 441.54 635.65 441.10
   A 0.32 0.31 26.4 0 0 635.30 441.21
   Q 635.16 441.40 635.29 441.46"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.54 496.32
   Q 576.47 492.26 576.96 488.41
   Q 577.85 481.44 579.17 473.64
   C 579.47 471.85 581.47 470.79 582.06 468.64"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.61 496.89
   L 523.44 483.01"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.19 578.45
   L 528.53 562.53"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 515.01 612.04
   Q 513.76 610.94 514.17 610.00
   Q 517.48 602.42 520.39 594.80"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.24 404.07
   Q 444.55 398.72 441.44 394.82
   C 436.96 389.20 431.15 383.79 427.46 379.01
@@ -1882,8 +2343,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.32 1.31 -19.0 0 0 417.41 366.23
   Q 411.01 366.82 402.53 366.65
   Q 400.98 366.62 398.89 367.49"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.57 484.93
   Q 485.74 479.63 487.21 478.21
   Q 497.80 468.01 508.94 455.43
@@ -1894,8 +2358,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 484.57 457.77 484.00 460.27
   C 482.45 467.10 482.83 477.07 481.93 483.38
   Q 481.84 484.05 481.04 485.04"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.21 358.61
   Q 527.74 359.79 529.51 359.80
   Q 552.52 359.93 577.28 359.88
@@ -1908,8 +2375,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.45 2.94 -59.1 0 1 538.69 356.97
   Q 534.67 357.86 529.94 358.92
   Q 527.61 359.44 526.68 357.99"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.77 418.82
   Q 517.29 419.48 517.28 415.25
   Q 517.24 402.74 517.29 400.41
@@ -1923,16 +2393,25 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 509.17 372.79 509.24 390.79 509.73 406.49
   Q 510.04 416.68 509.87 423.75
   Q 509.85 424.45 510.10 425.35"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.10 425.35
   Q 509.37 425.75 508.79 426.52"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 508.79 426.52
   Q 508.06 426.42 508.22 425.19"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.65 385.77
   Q 610.29 378.06 620.38 373.13
   C 621.94 372.37 624.50 371.67 625.92 370.92
@@ -1943,12 +2422,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 610.80 365.48
   A 2.74 2.72 -75.0 0 0 608.43 366.86
   Q 601.01 379.84 589.33 389.03"
-/>
-<path stroke="#9fa797" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9fa797"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.10 440.05
   Q 524.26 439.75 524.28 439.57"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.28 439.57
   L 524.98 437.76
   A 0.53 0.48 -65.2 0 1 525.68 437.46
@@ -1967,8 +2452,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 527.04 427.68 526.21 431.88
   Q 526.11 432.40 525.63 432.24
   Q 525.32 432.14 525.18 431.71"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 464.72 379.56
   Q 464.48 379.07 464.63 378.91
   Q 465.08 378.43 465.63 378.86
@@ -1984,26 +2472,38 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 456.04 369.13 458.71 372.21
   Q 460.76 374.58 460.44 376.35
   Q 460.13 378.01 459.28 377.02"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.17 448.45
   Q 517.87 447.25 517.23 445.52"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 517.23 445.52
   L 518.13 424.07
   A 1.18 1.17 -89.3 0 0 516.94 422.84
   Q 513.52 422.87 510.10 425.35"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 614.35 482.05
   L 613.29 484.15
   A 0.44 0.43 -9.4 0 0 613.99 484.65
   L 614.69 483.95
   A 1.44 1.41 -66.7 0 1 615.72 483.53
   L 619.17 483.55"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 568.33 628.24
   L 569.02 630.00
   A 1.42 1.42 0.0 0 0 569.60 630.67
@@ -2031,12 +2531,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.24 3.13 -27.3 0 0 635.38 418.26
   Q 634.51 422.60 634.53 423.50
   Q 634.77 432.15 634.09 440.81"
-/>
-<path stroke="#858c79" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858c79"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.28 439.57
   L 524.79 432.70"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 563.26 376.74
   Q 562.67 376.73 562.58 376.66
   A 0.39 0.39 0.0 0 1 562.60 376.03
@@ -2048,14 +2554,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 522.63 413.30 523.24 414.80
   A 1.98 1.88 38.9 0 1 523.37 415.76
   Q 523.14 417.79 523.87 419.46"
-/>
-<path stroke="#858c79" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#858c79"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.79 432.42
   L 523.14 433.03
   A 0.19 0.19 0.0 0 1 522.85 433.00
   Q 522.77 432.89 522.74 432.70"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.21 378.49
   L 560.43 379.59
   A 0.24 0.24 0.0 0 1 559.99 379.44
@@ -2064,8 +2576,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 556.23 381.36 552.85 383.86 550.27 386.48
   Q 539.41 397.54 528.12 408.87
   Q 525.60 411.40 525.58 413.20"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 398.61 371.18
   C 398.67 372.15 398.90 374.45 399.25 375.42
   Q 406.01 394.30 417.69 405.81
@@ -2075,8 +2590,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.41 5.38 18.8 0 0 440.16 403.67
   Q 420.53 385.31 399.12 370.89
   A 0.33 0.32 14.9 0 0 398.61 371.18"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.93 429.93
   Q 596.01 417.09 605.64 409.42
   Q 618.23 399.39 624.01 385.14
@@ -2088,8 +2606,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 580.38 414.33 579.26 425.57
   C 579.07 427.45 578.56 428.42 578.40 429.62
   A 0.33 0.33 0.0 0 0 578.93 429.93"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 465.99 385.38
   Q 466.34 392.31 466.92 408.37
   C 467.04 411.81 468.38 413.05 470.84 415.17
@@ -2099,8 +2620,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 505.03 423.31 503.49 421.78
   Q 483.37 401.82 466.52 385.14
   A 0.31 0.31 0.0 0 0 465.99 385.38"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.82 457.04
   Q 440.04 451.41 439.23 443.49
   C 438.77 439.11 438.49 435.64 435.73 433.75
@@ -2114,8 +2638,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 406.30 432.69 409.37 435.19
   Q 424.23 447.34 440.22 457.42
   A 0.39 0.39 0.0 0 0 440.82 457.04"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.43 457.76
   A 0.52 0.52 0.0 0 0 583.20 458.40
   Q 590.93 453.40 606.03 443.18
@@ -2130,8 +2657,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 586.53 436.71 586.15 438.73
   Q 584.56 447.16 583.73 450.96
   C 583.17 453.51 583.33 455.58 582.43 457.76"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 526.79 470.09
   Q 529.69 467.98 530.00 467.74
   Q 542.81 457.75 564.85 439.36
@@ -2144,8 +2674,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 529.38 458.71 527.67 466.92
   C 527.45 467.98 526.83 468.92 526.48 469.85
   A 0.20 0.20 0.0 0 0 526.79 470.09"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.11 492.75
   Q 438.29 483.75 436.16 468.40
   C 435.83 466.04 434.97 465.54 433.17 464.36
@@ -2158,8 +2691,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 406.51 469.58 417.87 478.89
   Q 427.97 487.17 440.01 492.82
   A 0.07 0.06 7.5 0 0 440.11 492.75"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.53 493.95
   Q 595.11 487.83 605.97 479.79
   Q 619.07 470.10 627.57 453.91
@@ -2170,8 +2706,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 587.31 468.86 586.83 470.56
   Q 583.84 481.02 582.02 493.58
   A 0.36 0.36 0.0 0 0 582.53 493.95"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.34 497.42
   C 530.16 496.71 532.11 494.40 533.85 493.12
   Q 540.19 488.47 552.49 478.74
@@ -2184,8 +2723,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 531.05 479.85 530.79 481.58
   Q 529.52 490.17 528.07 497.19
   A 0.20 0.20 0.0 0 0 528.34 497.42"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 621.76 469.44
   L 629.49 469.11
   A 0.46 0.46 0.0 0 0 629.93 468.67
@@ -2194,8 +2736,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 629.14 458.24 628.17 460.21
   Q 625.66 465.30 621.63 469.13
   A 0.18 0.18 0.0 0 0 621.76 469.44"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 401.49 467.44
   L 397.96 462.70
   A 1.00 0.97 17.6 0 1 397.82 462.44
@@ -2205,14 +2750,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.39 0.0 0 0 396.39 467.86
   L 401.27 467.86
   A 0.27 0.26 -18.2 0 0 401.49 467.44"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.51 509.07
   L 479.83 515.84
   A 0.55 0.55 0.0 0 0 480.75 516.36
   L 487.18 509.97"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.18 509.97
   Q 502.26 496.22 514.90 480.28
   C 515.91 479.00 516.89 476.98 517.17 475.43
@@ -2222,8 +2773,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 498.25 481.44 484.18 495.90
   Q 482.27 497.86 481.86 499.63
   Q 481.05 503.05 481.51 509.07"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.18 509.97
   Q 486.91 510.05 486.71 509.88
   Q 486.31 509.53 486.68 509.16
@@ -2241,8 +2795,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 484.03 498.56
   A 3.02 3.00 -27.3 0 0 483.46 500.32
   Q 483.47 505.21 481.51 509.07"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 444.35 528.36
   Q 443.20 527.05 442.85 525.25
   Q 441.77 519.82 439.79 511.24
@@ -2258,8 +2815,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 431.56 521.68 440.74 526.47
   C 442.09 527.18 442.93 528.09 444.12 528.66
   A 0.19 0.19 0.0 0 0 444.35 528.36"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 628.62 486.59
   Q 618.47 488.65 609.10 493.62
   Q 598.83 499.06 586.63 506.87
@@ -2271,15 +2831,21 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 617.40 506.49 624.02 495.28
   Q 627.82 488.84 628.93 487.02
   A 0.29 0.29 0.0 0 0 628.62 486.59"
-/>
-<path stroke="#1d2519" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d2519"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.26 568.46
   A 0.46 0.38 6.4 0 0 520.71 567.89
   Q 520.23 568.02 520.24 568.66
   A 0.22 0.22 0.0 0 0 520.54 568.86
   Q 521.14 568.62 521.26 568.46"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.44 571.48
   Q 488.27 591.25 475.26 600.01
   C 472.25 602.04 471.44 606.46 470.32 610.17
@@ -2290,8 +2856,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 515.49 586.43 515.98 584.23
   Q 516.97 579.77 518.94 571.84
   A 0.33 0.33 0.0 0 0 518.44 571.48"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 511.95 598.66
   Q 511.58 598.66 508.81 600.36
   Q 507.84 600.95 505.30 602.20
@@ -2310,8 +2879,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 506.16 611.45 507.02 609.51
   Q 510.90 600.74 512.18 599.11
   A 0.28 0.28 0.0 0 0 511.95 598.66"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 498.29 620.48
   L 474.49 635.80
   A 0.45 0.44 42.8 0 0 474.52 636.57
@@ -2321,29 +2893,44 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 504.76 640.25 504.97 629.93
   A 0.64 0.64 0.0 0 0 504.46 629.29
   L 500.53 628.44"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.53 628.44
   Q 500.51 627.99 500.34 627.93"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.34 627.93
   L 501.52 622.01"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 501.52 622.01
   L 502.77 617.74
   A 0.24 0.24 0.0 0 0 502.45 617.45
   Q 499.64 618.62 498.29 620.48"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 501.52 622.01
   Q 500.03 623.54 499.63 626.48
   Q 499.55 627.09 499.90 628.05
   A 0.19 0.18 -22.6 0 0 500.15 628.15
   Q 500.33 628.07 500.34 627.93"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.53 628.44
   Q 500.29 628.48 500.19 628.64
   A 0.31 0.31 0.0 0 0 500.36 629.11
@@ -2357,8 +2944,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.87 0.87 0.0 0 1 477.09 635.49
   Q 487.06 629.14 494.23 624.50
   Q 497.47 622.40 498.29 620.48"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 596.73 657.83
   Q 592.16 655.08 589.04 652.22
   Q 584.37 647.94 581.62 646.09
@@ -2375,12 +2965,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.24 0.24 0.0 0 0 596.84 658.51
   L 596.88 658.45
   A 0.45 0.44 31.9 0 0 596.73 657.83"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 464.96 641.43
   L 462.73 643.02"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.73 643.02
   Q 462.06 643.16 461.73 643.45
   A 0.48 0.48 0.0 0 0 461.82 644.24
@@ -2395,12 +2991,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 518.00 631.89
   A 0.58 0.58 0.0 0 0 517.44 631.31
   L 510.48 631.07"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.48 631.07
   Q 510.26 631.12 510.09 631.23"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.09 631.23
   Q 509.57 630.51 508.99 630.30
   A 0.41 0.40 9.4 0 0 508.45 630.68
@@ -2409,8 +3011,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 470.96 638.41
   A 1.60 1.59 -47.6 0 0 469.34 638.49
   L 464.96 641.43"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.09 631.23
   Q 509.69 632.23 509.72 632.75
   Q 510.35 643.18 509.86 655.77
@@ -2420,8 +3025,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 465.61 641.98
   A 0.39 0.39 0.0 0 1 465.02 641.76
   Q 464.98 641.61 464.96 641.43"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.48 631.07
   Q 511.02 632.11 511.57 632.13
   Q 514.03 632.26 516.07 632.28
@@ -2439,8 +3047,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 463.69 643.76 463.68 643.65
   A 0.63 0.62 -88.4 0 0 463.13 643.06
   L 462.73 643.02"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 610.08 338.90
   A 1.37 1.37 0.0 0 0 607.79 338.27
   C 601.52 344.44 594.58 350.30 589.18 356.85
@@ -2458,8 +3069,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 597.50 372.99 601.26 367.18 603.49 363.23
   Q 609.29 353.00 610.13 340.74
   Q 610.22 339.45 610.08 338.90"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.70 358.94
   Q 496.66 356.99 488.51 352.80
   A 11.93 11.92 58.7 0 0 483.16 351.49
@@ -2472,8 +3086,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.08 0.08 0.0 0 0 507.01 359.71
   L 507.05 359.44
   A 0.44 0.44 0.0 0 0 506.70 358.94"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.66 407.70
   A 0.83 0.82 -1.7 0 0 449.84 408.56
   L 450.96 434.60
@@ -2484,8 +3101,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 489.51 443.73 489.21 442.59 488.13 441.40
   Q 475.05 427.09 459.85 414.55
   C 457.20 412.37 454.08 407.70 450.66 407.70"
-/>
-<path stroke="#59554b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#59554b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 563.89 408.79
   Q 563.95 409.22 564.58 409.38
   A 0.60 0.59 43.2 0 0 564.90 409.37
@@ -2493,8 +3113,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 566.89 408.05 564.72 407.98
   A 0.60 0.59 -57.9 0 0 564.40 408.06
   Q 563.84 408.37 563.89 408.79"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.76 438.44
   A 1.00 1.00 0.0 0 0 446.47 439.45
   Q 446.80 445.62 447.56 461.02
@@ -2507,15 +3130,21 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 463.63 449.58 450.24 439.21
   A 0.73 0.60 64.7 0 0 450.03 439.11
   L 447.76 438.44"
-/>
-<path stroke="#68705c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68705c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 558.84 451.24
   Q 559.19 451.01 559.24 450.91
   A 0.15 0.15 0.0 0 0 559.11 450.69
   Q 559.01 450.69 558.59 450.97
   A 0.20 0.17 6.7 0 0 558.84 451.24"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.58 514.03
   Q 473.68 513.89 473.74 513.52
   Q 474.87 505.88 474.86 495.07
@@ -2527,8 +3156,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 448.98 502.61 451.86 504.17
   Q 464.29 510.87 471.18 514.55
   A 1.90 1.90 0.0 0 0 473.58 514.03"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.35 544.10
   Q 475.18 533.91 474.61 522.46
   A 1.20 1.18 -72.4 0 0 474.17 521.60
@@ -2539,12 +3171,18 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 451.15 534.86 452.41 535.85 454.52 537.01
   Q 458.43 539.16 470.14 545.08
   A 1.56 1.56 0.0 0 0 472.35 544.10"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 531.47 535.46
   Q 527.27 537.25 526.46 541.57"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 526.46 541.57
   Q 522.11 538.84 517.73 542.22
   Q 492.13 561.98 478.53 575.03
@@ -2557,14 +3195,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 499.61 577.19 510.99 568.99 518.32 564.43
   C 520.00 563.38 521.85 561.21 522.23 559.95
   Q 523.38 556.14 524.46 552.20"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.46 552.20
   Q 524.52 553.01 525.02 553.23
   A 0.51 0.50 27.7 0 0 525.65 553.04
   Q 526.13 552.29 526.92 551.97"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 526.92 551.97
   Q 526.64 554.05 525.53 556.18
   A 1.24 1.24 0.0 0 0 526.89 557.96
@@ -2580,20 +3224,32 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 544.85 524.25 534.40 530.36
   Q 532.62 531.39 531.85 532.40
   Q 530.62 533.99 531.47 535.46"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 526.92 551.97
   L 531.47 535.46"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.46 552.20
   L 526.46 541.57"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.95 567.24
   Q 476.89 567.71 477.39 568.08"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.39 568.08
   Q 473.77 571.70 472.63 575.93
   A 0.54 0.54 0.0 0 0 473.45 576.53
@@ -2615,8 +3271,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 474.15 567.75
   A 0.73 0.73 0.0 0 0 475.20 568.51
   Q 476.41 567.91 476.95 567.24"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.39 568.08
   C 483.57 562.18 491.91 555.98 496.91 551.68
   Q 504.28 545.34 515.63 535.88
@@ -2629,8 +3288,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.97 2.61 -89.2 0 0 480.40 556.44
   Q 478.97 558.43 478.69 560.22
   Q 477.99 564.58 476.95 567.24"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 449.57 562.27
   A 1.08 1.07 83.0 0 0 450.62 560.92
   Q 449.09 555.16 446.47 544.76
@@ -2643,8 +3305,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 419.91 549.78 430.05 554.18
   Q 446.83 561.45 448.08 561.92
   Q 449.02 562.26 449.57 562.27"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 606.27 524.83
   Q 594.25 529.71 582.80 535.89
   Q 580.96 536.88 580.22 538.48
@@ -2653,8 +3318,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.60 0.59 82.5 0 0 572.38 563.01
   Q 574.88 562.50 575.83 562.11
   Q 586.27 557.77 601.49 550.78"
-/>
-<path stroke="#c8c5bb" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8c5bb"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.49 550.78
   Q 614.13 544.29 621.25 531.09
   Q 623.45 527.02 623.69 522.95
@@ -2663,16 +3331,22 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 611.35 523.30 606.55 523.80
   Q 605.76 523.89 605.74 524.57
   Q 605.74 524.68 606.27 524.83"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.49 550.78
   Q 610.87 544.31 617.48 535.71
   Q 620.59 531.66 621.59 528.10
   Q 622.30 525.55 622.95 523.35
   A 1.07 1.07 0.0 0 0 621.73 521.99
   L 606.27 524.83"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.92 540.48
   Q 450.66 541.22 450.77 542.26
   Q 451.31 547.36 454.51 563.34
@@ -2683,8 +3357,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.29 2.29 0.0 0 0 471.15 551.50
   Q 462.59 544.27 451.58 540.16
   A 0.52 0.51 -70.5 0 0 450.92 540.48"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.93 590.74
   Q 453.09 591.42 458.56 594.26
   A 1.22 1.22 0.0 0 0 460.34 593.18
@@ -2692,8 +3369,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 459.76 590.13 455.40 574.60
   Q 454.10 569.95 451.82 568.42
   Q 443.40 562.77 429.44 558.16"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.44 558.16
   Q 429.97 558.01 430.09 557.76
   Q 430.33 557.28 429.46 556.97
@@ -2702,16 +3382,22 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 406.68 555.92 409.49 561.01 410.62 562.96
   C 414.71 569.96 420.57 576.90 426.75 580.76
   Q 435.36 586.14 448.93 590.74"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.44 558.16
   Q 420.35 555.00 410.60 554.71
   A 1.50 1.49 -9.6 0 0 409.16 556.73
   Q 414.63 571.24 427.32 579.72
   Q 428.87 580.75 438.15 585.14
   Q 443.58 587.70 448.93 590.74"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 597.22 557.49
   Q 586.68 561.04 576.51 566.06
   Q 573.69 567.44 572.81 569.33
@@ -2720,38 +3406,56 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.96 0.96 0.0 0 0 563.22 595.09
   Q 569.17 593.36 574.22 590.95
   Q 577.73 589.27 584.71 587.91"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.71 587.91
   Q 588.66 587.30 593.14 583.64
   Q 602.68 575.83 608.36 567.62
   Q 611.74 562.72 611.96 557.46
   A 0.95 0.94 -71.1 0 0 611.56 556.63
   L 611.08 556.29"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 611.08 556.29
   L 610.54 555.90"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 610.54 555.90
   Q 611.02 555.86 611.05 555.72
   A 0.90 0.78 0.6 0 0 610.03 554.82
   Q 605.40 555.43 601.48 555.60
   Q 599.81 555.68 598.91 555.94
   Q 596.86 556.54 597.22 557.49"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 610.54 555.90
   L 597.22 557.49"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 611.08 556.29
   Q 610.99 562.19 607.47 567.22
   C 602.22 574.73 595.58 581.46 587.76 585.95
   Q 586.24 586.82 584.71 587.91"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.35 571.65
   A 0.50 0.49 3.0 0 0 458.70 572.23
   L 463.53 592.35
@@ -2762,8 +3466,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 463.22 578.65 463.41 575.70
   A 1.59 1.58 -62.3 0 0 463.09 574.66
   Q 461.33 572.35 459.35 571.65"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 456.90 619.58
   L 458.09 618.80
   A 1.44 1.43 -5.6 0 0 458.65 618.12
@@ -2771,8 +3478,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 462.52 602.81 462.82 602.28
   A 0.72 0.71 -57.9 0 0 462.61 601.34
   C 458.25 598.27 452.82 596.10 446.72 593.55"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 446.72 593.55
   Q 447.91 593.81 447.90 593.33
   Q 447.88 592.73 447.27 592.52
@@ -2783,15 +3493,21 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 450.79 618.12 454.42 620.07
   A 2.18 2.16 -31.8 0 0 455.51 620.32
   Q 458.24 620.22 456.90 619.58"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 446.72 593.55
   L 428.17 588.50
   A 0.43 0.42 6.4 0 0 427.63 588.93
   C 427.98 598.21 435.80 607.55 443.31 612.45
   Q 451.17 617.58 456.90 619.58"
-/>
-<path stroke="#4b4841" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4b4841"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 583.16 592.22
   Q 575.73 594.46 567.97 597.23
   Q 563.17 598.94 561.04 600.71
@@ -2802,8 +3518,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 547.92 624.11 547.32 624.40
   A 0.35 0.34 -63.8 0 0 547.54 625.05
   L 566.43 620.93"
-/>
-<path stroke="#aeaa9d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#aeaa9d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.43 620.93
   Q 569.07 621.80 571.67 620.39
   C 573.44 619.43 575.94 618.40 577.22 617.49
@@ -2812,16 +3531,22 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 596.66 591.29 595.77 590.55
   Q 595.17 590.06 594.51 590.01
   Q 588.23 589.55 583.16 592.22"
-/>
-<path stroke="#68655e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#68655e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.43 620.93
   Q 574.50 618.92 580.61 613.62
   Q 588.19 607.04 592.12 601.00
   C 594.02 598.06 594.76 595.07 595.38 591.79
   A 0.51 0.51 0.0 0 0 594.83 591.18
   L 583.16 592.22"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 581.56 425.98
   Q 582.52 425.56 583.97 424.47
   Q 593.46 417.38 603.60 409.60
@@ -2835,8 +3560,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.89 1.87 -20.7 0 0 583.10 407.94
   L 580.39 425.08
   A 0.84 0.84 0.0 0 0 581.56 425.98"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 452.40 412.50
   L 453.58 419.77
   A 1.69 0.65 66.0 0 1 453.59 419.96
@@ -2851,8 +3579,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 476.05 432.53 467.31 424.94
   Q 455.63 414.80 452.92 412.22
   A 0.31 0.31 0.0 0 0 452.40 412.50"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 585.99 454.95
   L 612.03 437.69
   Q 612.04 437.68 612.05 437.67
@@ -2867,8 +3598,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.65 2.64 77.3 0 0 587.41 438.50
   L 584.92 454.26
   A 0.70 0.69 77.6 0 0 585.99 454.95"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 567.98 418.46
   L 532.06 450.17
   A 1.06 1.06 0.0 0 0 531.72 450.79
@@ -2882,8 +3616,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 568.04 425.99 568.82 422.92 569.10 420.88
   Q 569.30 419.45 569.02 418.71
   A 0.65 0.65 0.0 0 0 567.98 418.46"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 484.77 479.10
   Q 485.03 478.59 485.55 478.05
   C 488.75 474.65 497.13 467.31 501.97 461.38
@@ -2897,8 +3634,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 486.93 456.98 485.49 459.07 485.32 460.08
   Q 484.04 468.04 483.56 478.77
   A 0.64 0.64 0.0 0 0 484.77 479.10"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 449.22 442.95
   C 449.29 444.18 449.89 445.34 449.88 446.72
   Q 449.86 450.87 450.48 461.73
@@ -2910,8 +3650,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 472.51 460.67 469.85 458.39
   Q 460.52 450.38 449.67 442.70
   A 0.29 0.29 0.0 0 0 449.22 442.95"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 585.08 491.22
   Q 586.51 490.70 587.87 489.86
   C 595.78 484.97 604.21 480.92 610.87 473.86
@@ -2923,8 +3666,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.31 4.28 -11.2 0 0 588.11 470.97
   L 583.65 489.95
   A 1.08 1.08 0.0 0 0 585.08 491.22"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 530.23 493.44
   A 0.28 0.28 0.0 0 0 530.65 493.73
   Q 533.85 491.93 536.10 489.67
@@ -2940,8 +3686,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 534.43 477.53
   A 6.03 6.00 -14.4 0 0 532.14 481.38
   L 530.23 493.44"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.21 474.66
   Q 556.91 488.17 539.03 500.87
   C 536.48 502.69 536.15 503.59 535.50 506.51
@@ -2952,8 +3701,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 573.03 492.71 574.45 480.93
   Q 574.59 479.72 575.54 474.86
   A 0.21 0.20 -13.0 0 0 575.21 474.66"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.04 473.91
   L 448.12 476.70
   A 1.26 1.26 0.0 0 1 448.19 477.05
@@ -2964,8 +3716,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 471.58 503.05 473.50 493.07 468.73 489.05
   Q 458.73 480.62 447.61 473.45
   A 0.39 0.38 -83.8 0 0 447.04 473.91"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.17 478.93
   A 0.59 0.59 0.0 0 0 572.28 478.46
   L 568.68 480.62
@@ -2979,8 +3734,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 569.26 499.17
   A 3.11 3.10 78.5 0 0 570.64 497.08
   C 572.12 488.48 573.38 482.63 573.17 478.93"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.30 545.26
   A 0.22 0.22 0.0 0 0 477.65 545.51
   C 484.49 538.51 493.25 530.98 500.15 524.21
@@ -2992,8 +3750,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 482.04 529.59 480.59 530.57 479.91 531.86
   A 2.17 2.12 -31.4 0 0 479.65 532.88
   Q 479.66 539.98 477.30 545.26"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.84 488.76
   Q 624.82 488.36 623.79 488.75
   Q 619.73 490.30 613.39 492.96
@@ -3007,8 +3768,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 601.98 516.89 603.96 515.44
   Q 617.96 505.20 626.05 489.31
   A 0.40 0.40 0.0 0 0 625.84 488.76"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 480.68 540.11
   A 0.57 0.57 0.0 0 0 481.57 540.23
   L 515.34 507.38
@@ -3024,8 +3788,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.39 2.37 67.9 0 0 481.06 532.89
   Q 481.43 535.54 480.45 538.58
   C 480.32 539.00 480.45 539.72 480.68 540.11"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.84 510.87
   A 0.37 0.37 0.0 0 0 450.31 511.26
   Q 451.61 518.65 453.41 530.58
@@ -3036,8 +3803,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.63 2.57 32.1 0 0 471.26 523.63
   Q 470.04 521.68 466.06 519.31
   Q 457.60 514.26 450.84 510.87"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.97 554.14
   Q 530.42 554.11 530.69 553.94
   C 542.63 546.70 554.07 541.01 568.08 533.33
@@ -3049,8 +3819,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.91 4.90 83.4 0 0 535.74 534.60
   L 529.90 554.05
   A 0.07 0.07 0.0 0 0 529.97 554.14"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 571.92 514.75
   A 0.58 0.58 0.0 0 0 571.07 514.11
   L 537.50 533.48
@@ -3060,8 +3833,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 567.73 531.74
   A 0.58 0.58 0.0 0 0 568.01 531.37
   L 571.92 514.75"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.92 561.98
   A 0.58 0.58 0.0 0 0 480.82 562.59
   Q 489.05 556.92 495.61 550.93
@@ -3081,8 +3857,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 493.39 545.46 487.51 552.38 481.40 557.25
   A 1.71 1.71 0.0 0 0 480.81 558.17
   L 479.92 561.98"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 446.83 557.57
   Q 444.81 549.37 442.58 542.71
   Q 441.44 539.32 439.30 537.64
@@ -3093,8 +3872,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 424.07 549.06 433.17 553.23 441.00 555.60
   C 442.90 556.17 445.04 557.75 446.30 558.09
   A 0.43 0.43 0.0 0 0 446.83 557.57"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 618.34 525.75
   C 613.83 526.90 607.50 527.82 602.19 530.11
   Q 590.83 535.01 584.05 538.82
@@ -3104,8 +3886,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 580.81 556.61 589.83 552.58
   C 602.60 546.89 612.43 538.40 618.69 526.19
   A 0.31 0.31 0.0 0 0 618.34 525.75"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.13 555.24
   A 0.71 0.70 88.1 0 0 579.09 556.14
   Q 585.71 552.90 591.04 550.55
@@ -3115,8 +3900,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 593.11 535.57 586.30 538.88
   C 584.51 539.75 583.79 540.59 583.13 542.42
   Q 581.08 548.03 578.13 555.24"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 454.36 544.59
   L 457.27 561.95
   A 3.68 3.67 -80.7 0 0 459.16 564.58
@@ -3126,8 +3914,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.51 1.51 0.0 0 0 468.41 552.33
   L 454.65 544.39
   A 0.19 0.19 0.0 0 0 454.36 544.59"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.15 589.95
   L 519.09 560.29
   A 1.40 1.36 78.9 0 0 519.71 559.34
@@ -3139,8 +3930,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.74 2.73 81.6 0 0 474.80 581.70
   L 472.90 589.78
   A 0.16 0.16 0.0 0 0 473.15 589.95"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 526.15 581.56
   Q 544.18 572.22 561.88 564.14
   Q 564.22 563.07 564.79 561.00
@@ -3151,8 +3945,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 532.11 563.23 531.37 565.17
   Q 529.68 569.63 525.84 581.30
   A 0.22 0.22 0.0 0 0 526.15 581.56"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.26 584.25
   A 1.30 1.29 83.5 0 0 477.18 585.78
   L 518.01 559.42
@@ -3166,8 +3963,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 484.14 576.40 476.93 580.75
   A 1.67 1.66 -5.8 0 0 476.21 581.63
   L 475.26 584.25"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.87 548.38
   A 0.54 0.54 0.0 0 0 566.11 547.74
   L 533.45 563.71
@@ -3177,8 +3977,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 562.76 562.04
   A 0.54 0.54 0.0 0 0 563.05 561.70
   L 566.87 548.38"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 457.81 590.45
   L 455.80 586.98
   A 1.41 0.95 33.9 0 1 455.67 586.66
@@ -3191,8 +3994,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 448.67 586.89 455.30 589.62
   C 455.91 589.87 457.17 590.97 457.48 590.99
   A 0.36 0.36 0.0 0 0 457.81 590.45"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 607.03 559.59
   L 600.88 560.23
   A 0.35 0.31 -48.6 0 0 600.80 560.24
@@ -3205,8 +4011,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 599.05 574.63 606.53 562.07
   Q 606.91 561.43 607.29 559.88
   A 0.24 0.24 0.0 0 0 607.03 559.59"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 569.33 587.72
   Q 575.34 585.86 584.87 582.12
   C 587.66 581.03 588.98 579.41 591.66 577.39
@@ -3217,8 +4026,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 576.73 570.76 575.63 573.39
   Q 572.42 581.07 568.92 587.21
   A 0.35 0.35 0.0 0 0 569.33 587.72"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.03 606.36
   A 0.50 0.50 0.0 0 0 473.73 606.97
   L 514.10 585.71
@@ -3228,8 +4040,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 474.77 601.81
   A 0.50 0.50 0.0 0 0 474.57 602.06
   L 473.03 606.36"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.23 586.70
   C 531.20 589.55 526.31 590.81 524.70 594.47
   Q 521.34 602.13 518.24 609.79
@@ -3241,8 +4056,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.15 0.15 0.0 0 0 561.52 575.93
   Q 548.07 581.84 538.56 586.09
   Q 537.90 586.39 537.23 586.70"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.94 606.68
   Q 535.98 600.89 550.42 594.41
   Q 552.88 593.30 553.67 591.63
@@ -3253,8 +4071,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 524.28 599.47 521.92 603.92
   Q 521.22 605.24 521.34 606.32
   A 0.44 0.44 0.0 0 0 521.94 606.68"
-/>
-<path stroke="#18222c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#18222c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 431.10 592.40
   Q 434.53 600.85 437.91 604.39
   Q 445.32 612.13 455.71 616.17
@@ -3264,8 +4085,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 448.31 597.39 437.90 593.51
   Q 433.47 591.86 431.60 591.72
   A 0.50 0.49 81.5 0 0 431.10 592.40"
-/>
-<path stroke="#82807c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#82807c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.86 594.65
   Q 580.51 596.33 577.75 597.27
   Q 569.28 600.15 566.67 600.91
@@ -3276,8 +4100,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 575.34 615.63 584.38 606.58 589.23 599.01
   C 589.95 597.89 590.38 596.75 591.17 595.05
   A 0.29 0.28 8.1 0 0 590.86 594.65"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 588.77 596.87
   A 0.30 0.30 0.0 0 0 588.40 596.50
   C 586.41 597.06 583.70 597.18 581.09 597.90
@@ -3288,8 +4115,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 562.95 617.18 568.48 615.51
   C 575.54 613.38 579.18 608.62 584.94 602.64
   C 586.24 601.29 588.42 598.19 588.77 596.87"
-/>
-<path stroke="#e5e1d8" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5e1d8"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.42 644.92
   Q 448.30 645.19 448.51 645.28
   Q 449.41 645.69 450.24 645.19
@@ -3304,9 +4134,11 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 11.14 11.10 -1.1 0 1 460.76 633.01
   Q 454.90 637.75 448.91 644.36
   Q 448.44 644.87 448.42 644.92"
-/>
-</g>
-<path fill="#050302" d="
+        />
+      </g>
+      <path
+        fill="#050302"
+        d="
   M 648.14 145.61
   A 2.78 2.77 47.4 0 0 650.63 145.72
   C 655.61 143.45 662.79 147.07 667.25 150.02
@@ -3492,8 +4324,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 836.04 783.21
   A 1.18 1.15 44.3 0 1 836.03 782.81
   Z"
-/>
-<path fill="#201d15" d="
+      />
+      <path
+        fill="#201d15"
+        d="
   M 836.04 783.21
   L 837.64 792.12
   A 2.16 2.09 44.0 0 1 837.66 792.70
@@ -3827,8 +4661,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 167.42 750.43 172.79 752.52
   Q 176.82 754.08 181.10 755.54
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 537.35 222.85
   L 550.75 216.21
   Q 567.17 207.45 582.55 197.04
@@ -3878,8 +4714,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 552.60 216.27 548.02 218.99
   Q 542.87 222.04 537.35 222.85
   Z"
-/>
-<path fill="#3f5238" d="
+      />
+      <path
+        fill="#3f5238"
+        d="
   M 634.89 151.58
   Q 627.79 152.66 622.38 156.48
   C 618.19 159.43 614.52 165.11 610.35 167.94
@@ -3909,8 +4747,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 615.19 136.66 620.34 140.37
   Q 627.63 145.62 634.89 151.58
   Z"
-/>
-<path fill="#34462f" d="
+      />
+      <path
+        fill="#34462f"
+        d="
   M 550.75 216.21
   C 540.27 217.39 527.56 217.63 523.15 205.65
   Q 521.92 202.32 521.25 198.80
@@ -3943,8 +4783,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 591.94 190.67 582.55 197.04
   Q 567.17 207.45 550.75 216.21
   Z"
-/>
-<path fill="#3f5238" d="
+      />
+      <path
+        fill="#3f5238"
+        d="
   M 521.25 198.80
   Q 521.92 202.32 523.15 205.65
   C 527.56 217.63 540.27 217.39 550.75 216.21
@@ -4007,8 +4849,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 497.82 213.48 513.00 204.96
   Q 517.89 202.22 521.25 198.80
   Z"
-/>
-<path fill="#3f5238" d="
+      />
+      <path
+        fill="#3f5238"
+        d="
   M 674.49 170.25
   C 670.07 169.56 667.18 167.08 662.59 164.21
   Q 660.90 163.16 656.73 162.53
@@ -4041,8 +4885,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 652.47 155.49 661.68 161.36
   Q 667.13 164.84 674.49 170.25
   Z"
-/>
-<path fill="#34462f" d="
+      />
+      <path
+        fill="#34462f"
+        d="
   M 674.49 170.25
   Q 684.13 176.99 693.24 184.53
   Q 695.04 186.02 693.68 188.19
@@ -4079,8 +4925,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 660.90 163.16 662.59 164.21
   C 667.18 167.08 670.07 169.56 674.49 170.25
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 476.56 345.01
   Q 473.40 344.26 472.45 343.76
   C 446.09 329.75 423.78 313.12 400.69 292.78
@@ -4151,8 +4999,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 448.87 330.02 473.18 342.66
   Q 474.11 343.14 476.56 345.01
   Z"
-/>
-<path fill="#3f5238" d="
+      />
+      <path
+        fill="#3f5238"
+        d="
   M 476.56 345.01
   Q 476.74 345.11 476.82 345.27
   A 0.28 0.27 55.0 0 1 476.77 345.60
@@ -4374,8 +5224,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 423.78 313.12 446.09 329.75 472.45 343.76
   Q 473.40 344.26 476.56 345.01
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 842.69 755.66
   Q 846.67 753.24 850.93 751.71
   Q 862.48 747.56 868.73 745.46
@@ -4420,8 +5272,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 892.40 738.13 875.65 744.19
   Q 859.32 750.10 842.69 755.66
   Z"
-/>
-<path fill="#34462f" d="
+      />
+      <path
+        fill="#34462f"
+        d="
   M 842.69 755.66
   Q 836.71 758.21 831.18 763.81
   Q 828.99 752.96 826.51 742.42
@@ -4485,8 +5339,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 862.48 747.56 850.93 751.71
   Q 846.67 753.24 842.69 755.66
   Z"
-/>
-<path fill="#201d15" d="
+      />
+      <path
+        fill="#201d15"
+        d="
   M 519.11 270.07
   Q 536.42 273.22 552.92 267.01
   Q 560.26 264.57 567.11 261.32
@@ -4511,8 +5367,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 477.05 261.75 501.51 267.45
   Q 510.15 269.46 519.11 270.07
   Z"
-/>
-<path fill="#34462f" d="
+      />
+      <path
+        fill="#34462f"
+        d="
   M 477.44 236.39
   Q 476.96 238.00 477.06 239.24
   A 1.62 1.61 88.8 0 0 478.60 240.72
@@ -4541,8 +5399,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 455.21 229.30 467.83 231.35
   Q 472.70 232.15 477.44 236.39
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 245.46 812.94
   Q 271.26 820.60 283.82 826.38
   Q 297.83 832.83 311.87 839.21
@@ -4680,8 +5540,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 198.49 799.07 213.93 805.18 226.02 808.22
   Q 235.75 810.66 245.46 812.94
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 475.88 346.11
   Q 479.53 348.17 483.78 349.00
   Q 487.92 349.82 489.70 350.57
@@ -5459,8 +6321,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.60 1.59 -47.6 0 0 469.34 638.49
   L 464.96 641.43
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 412.58 334.26
   A 0.38 0.38 0.0 0 1 413.16 333.81
   Q 421.34 339.80 429.61 347.14
@@ -5474,8 +6338,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.51 5.43 29.3 0 0 413.35 336.21
   L 412.58 334.26
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 568.57 402.74
   L 569.42 376.54
   A 0.59 0.58 69.3 0 1 569.59 376.15
@@ -5506,8 +6372,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 609.29 353.00 610.13 340.74
   Q 610.22 339.45 610.08 338.90
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 610.08 338.90
   Q 610.22 339.45 610.13 340.74
   Q 609.29 353.00 603.49 363.23
@@ -5526,8 +6394,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 594.58 350.30 601.52 344.44 607.79 338.27
   A 1.37 1.37 0.0 0 1 610.08 338.90
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 412.69 478.65
   Q 412.05 479.93 409.03 476.80
   C 406.44 474.81 406.02 472.52 401.72 472.63
@@ -5604,8 +6474,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.75 1.74 65.9 0 1 405.33 471.85
   L 412.69 478.65
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 521.21 358.61
   Q 527.74 359.79 529.51 359.80
   Q 552.52 359.93 577.28 359.88
@@ -5667,8 +6539,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 507.05 359.44
   A 0.44 0.44 0.0 0 0 506.70 358.94
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 568.33 628.24
   L 569.02 630.00
   A 1.42 1.42 0.0 0 0 569.60 630.67
@@ -5722,8 +6596,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.20 0.20 0.0 0 1 566.09 628.16
   Q 567.15 627.97 568.33 628.24
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 506.70 358.94
   A 0.44 0.44 0.0 0 1 507.05 359.44
   L 507.01 359.71
@@ -5737,8 +6613,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 11.93 11.92 58.7 0 1 488.51 352.80
   Q 496.66 356.99 506.70 358.94
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 409.03 476.80
   L 406.68 482.52
   L 394.23 480.77
@@ -5775,8 +6653,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 396.32 472.77 401.72 472.63
   C 406.02 472.52 406.44 474.81 409.03 476.80
   Z"
-/>
-<path fill="#918d80" d="
+      />
+      <path
+        fill="#918d80"
+        d="
   M 521.21 358.61
   L 526.68 357.99
   Q 527.61 359.44 529.94 358.92
@@ -5791,8 +6671,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 552.52 359.93 529.51 359.80
   Q 527.74 359.79 521.21 358.61
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 568.33 628.24
   L 570.04 627.96
   Q 570.06 628.12 570.01 628.23
@@ -5850,8 +6732,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.42 1.42 0.0 0 1 569.02 630.00
   L 568.33 628.24
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 518.77 418.82
   Q 519.36 423.13 519.28 427.61
   Q 519.16 434.66 519.20 436.41
@@ -5873,8 +6757,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 517.24 402.74 517.28 415.25
   Q 517.29 419.48 518.77 418.82
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 464.72 379.56
   Q 464.48 379.07 464.63 378.91
   Q 465.08 378.43 465.63 378.86
@@ -5902,8 +6788,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 487.48 400.02 465.62 380.13
   Q 465.20 379.75 464.72 379.56
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 563.26 376.74
   Q 562.67 376.73 562.58 376.66
   A 0.39 0.39 0.0 0 1 562.60 376.03
@@ -5927,8 +6815,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 571.72 367.99 569.30 371.54
   Q 567.76 373.81 563.26 376.74
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 601.65 385.77
   Q 610.29 378.06 620.38 373.13
   C 621.94 372.37 624.50 371.67 625.92 370.92
@@ -5949,8 +6839,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 619.26 374.11 615.10 376.85
   Q 608.68 381.08 601.65 385.77
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 453.24 404.07
   Q 444.55 398.72 441.44 394.82
   C 436.96 389.20 431.15 383.79 427.46 379.01
@@ -5966,8 +6858,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 424.20 373.68 431.16 381.60
   Q 441.37 393.22 453.24 404.07
   Z"
-/>
-<path fill="#918d80" d="
+      />
+      <path
+        fill="#918d80"
+        d="
   M 563.26 376.74
   L 561.21 378.49
   L 560.43 379.59
@@ -5989,8 +6883,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.39 0.39 0.0 0 0 562.58 376.66
   Q 562.67 376.73 563.26 376.74
   Z"
-/>
-<path fill="#918d80" d="
+      />
+      <path
+        fill="#918d80"
+        d="
   M 601.65 385.77
   Q 590.41 394.30 579.22 404.01
   Q 575.21 407.49 574.14 408.82
@@ -6619,8 +7515,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 595.17 590.06 594.51 590.01
   Q 588.23 589.55 583.16 592.22
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 438.08 397.11
   Q 422.56 383.48 406.65 371.85
   Q 404.66 370.40 401.01 368.50
@@ -6628,8 +7526,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 411.05 373.49 418.52 379.64 426.21 385.78
   Q 432.44 390.76 438.08 397.11
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 399.12 370.89
   Q 420.53 385.31 440.16 403.67
   A 5.41 5.38 18.8 0 1 441.85 407.08
@@ -6640,8 +7540,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 398.90 374.45 398.67 372.15 398.61 371.18
   A 0.33 0.32 14.9 0 1 399.12 370.89
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 578.40 429.62
   C 578.56 428.42 579.07 427.45 579.26 425.57
   Q 580.38 414.33 582.01 407.73
@@ -6668,8 +7570,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 580.39 425.08
   A 0.84 0.84 0.0 0 0 581.56 425.98
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 420.51 412.93
   L 420.25 413.30
   A 0.50 0.49 38.5 0 1 419.51 413.38
@@ -6692,8 +7596,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 400.18 385.96 402.27 391.50 404.79 395.22
   Q 411.48 405.08 420.51 412.93
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 581.56 425.98
   A 0.84 0.84 0.0 0 1 580.39 425.08
   L 583.10 407.94
@@ -6708,8 +7614,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 593.46 417.38 583.97 424.47
   Q 582.52 425.56 581.56 425.98
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 561.21 378.49
   Q 560.94 378.95 561.67 379.08
   A 0.52 0.52 0.0 0 1 562.07 379.77
@@ -6726,8 +7634,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.24 0.24 0.0 0 0 560.43 379.59
   L 561.21 378.49
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 618.91 411.36
   Q 623.18 408.76 628.46 408.45
   A 0.51 0.51 0.0 0 0 628.94 407.94
@@ -6745,8 +7655,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.57 -6.3 0 1 629.37 409.27
   L 618.91 411.36
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 524.05 441.24
   L 523.78 440.83
   L 524.10 440.05
@@ -6779,8 +7691,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 542.04 426.13 525.40 440.38
   Q 524.76 440.92 524.05 441.24
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 465.99 385.38
   A 0.31 0.31 0.0 0 1 466.52 385.14
   Q 483.37 401.82 503.49 421.78
@@ -6791,8 +7705,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 468.38 413.05 467.04 411.81 466.92 408.37
   Q 466.34 392.31 465.99 385.38
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 524.28 439.57
   L 524.79 432.70
   Q 524.61 432.39 525.18 431.71
@@ -6814,8 +7730,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.53 0.48 -65.2 0 0 524.98 437.76
   L 524.28 439.57
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 450.66 407.70
   C 454.08 407.70 457.20 412.37 459.85 414.55
   Q 475.05 427.09 488.13 441.40
@@ -6842,8 +7760,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 455.63 414.80 452.92 412.22
   A 0.31 0.31 0.0 0 0 452.40 412.50
   Z"
-/>
-<path fill="#201d15" d="
+      />
+      <path
+        fill="#201d15"
+        d="
   M 566.93 408.40
   Q 566.98 408.75 564.90 409.37
   A 0.60 0.59 43.2 0 1 564.58 409.38
@@ -6852,8 +7772,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.60 0.59 -57.9 0 1 564.72 407.98
   Q 566.89 408.05 566.93 408.40
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 440.82 457.04
   A 0.39 0.39 0.0 0 1 440.22 457.42
   Q 424.23 447.34 409.37 435.19
@@ -6868,8 +7790,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 438.49 435.64 438.77 439.11 439.23 443.49
   Q 440.04 451.41 440.82 457.04
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 452.92 412.22
   Q 455.63 414.80 467.31 424.94
   Q 476.05 432.53 483.11 440.47
@@ -6885,8 +7809,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 452.40 412.50
   A 0.31 0.31 0.0 0 1 452.92 412.22
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 582.43 457.76
   C 583.33 455.58 583.17 453.51 583.73 450.96
   Q 584.56 447.16 586.15 438.73
@@ -6917,8 +7843,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 584.92 454.26
   A 0.70 0.69 77.6 0 0 585.99 454.95
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 585.99 454.95
   A 0.70 0.69 77.6 0 1 584.92 454.26
   L 587.41 438.50
@@ -6934,8 +7862,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 612.04 437.68 612.03 437.69
   L 585.99 454.95
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 526.48 469.85
   C 526.83 468.92 527.45 467.98 527.67 466.92
   Q 529.38 458.71 530.23 451.00
@@ -6963,8 +7893,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 569.30 419.45 569.02 418.71
   A 0.65 0.65 0.0 0 0 567.98 418.46
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 567.98 418.46
   A 0.65 0.65 0.0 0 1 569.02 418.71
   Q 569.30 419.45 569.10 420.88
@@ -6979,8 +7911,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.06 1.06 0.0 0 1 532.06 450.17
   L 567.98 418.46
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 517.23 445.52
   Q 516.81 450.63 513.90 454.39
   C 504.41 466.67 493.27 477.61 482.82 488.31
@@ -7014,8 +7948,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.18 1.17 -89.3 0 1 518.13 424.07
   L 517.23 445.52
   Z"
-/>
-<path fill="#34462f" d="
+      />
+      <path
+        fill="#34462f"
+        d="
   M 248.00 527.29
   Q 247.12 532.03 245.96 536.72
   C 240.38 559.20 237.11 572.81 232.32 590.21
@@ -7052,8 +7988,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 254.86 490.98 252.89 502.76 250.10 513.55
   C 248.96 518.00 247.44 522.66 248.00 527.29
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 418.01 445.75
   Q 418.19 446.03 418.16 446.15
   A 0.54 0.53 24.6 0 1 417.34 446.45
@@ -7073,8 +8011,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 403.16 433.62 404.31 434.69
   Q 410.74 440.71 418.01 445.75
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 618.30 444.44
   Q 622.02 442.08 625.83 440.89
   Q 626.88 440.56 627.53 440.58
@@ -7089,8 +8029,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.59 0.58 -7.9 0 1 629.72 441.39
   L 618.30 444.44
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 481.57 484.93
   Q 481.58 485.18 481.04 485.04
   Q 481.84 484.05 481.93 483.38
@@ -7117,8 +8059,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 484.04 468.04 483.56 478.77
   A 0.64 0.64 0.0 0 0 484.77 479.10
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 484.77 479.10
   A 0.64 0.64 0.0 0 1 483.56 478.77
   Q 484.04 468.04 485.32 460.08
@@ -7133,8 +8077,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 497.13 467.31 488.75 474.65 485.55 478.05
   Q 485.03 478.59 484.77 479.10
   Z"
-/>
-<path fill="#3f5238" d="
+      />
+      <path
+        fill="#3f5238"
+        d="
   M 523.79 432.42
   Q 523.70 432.74 524.01 432.85
   Q 524.21 432.92 524.79 432.70
@@ -7145,8 +8091,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.19 0.19 0.0 0 0 523.14 433.03
   L 523.79 432.42
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 582.65 438.54
   Q 581.66 443.74 580.67 448.95
   C 580.06 452.11 579.49 457.63 578.29 461.34
@@ -7159,8 +8107,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.43 0.42 38.5 0 1 582.21 437.21
   Q 582.65 437.68 582.65 438.54
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 447.76 438.44
   L 450.03 439.11
   A 0.73 0.60 64.7 0 1 450.24 439.21
@@ -7186,8 +8136,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 460.52 450.38 449.67 442.70
   A 0.29 0.29 0.0 0 0 449.22 442.95
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 615.66 475.96
   C 618.12 473.50 619.17 471.63 623.49 471.91
   Q 627.80 472.20 632.64 472.21
@@ -7208,8 +8160,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.62 48.5 0 1 615.89 476.29
   Q 615.85 476.23 615.66 475.96
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 449.22 442.95
   A 0.29 0.29 0.0 0 1 449.67 442.70
   Q 460.52 450.38 469.85 458.39
@@ -7222,8 +8176,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 449.86 450.87 449.88 446.72
   C 449.89 445.34 449.29 444.18 449.22 442.95
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 440.11 492.75
   A 0.07 0.06 7.5 0 1 440.01 492.82
   Q 427.97 487.17 417.87 478.89
@@ -7237,8 +8193,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 434.97 465.54 435.83 466.04 436.16 468.40
   Q 438.29 483.75 440.11 492.75
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 582.53 493.95
   A 0.36 0.36 0.0 0 1 582.02 493.58
   Q 583.84 481.02 586.83 470.56
@@ -7262,8 +8220,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 583.65 489.95
   A 1.08 1.08 0.0 0 0 585.08 491.22
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 528.34 497.42
   A 0.20 0.20 0.0 0 1 528.07 497.19
   Q 529.52 490.17 530.79 481.58
@@ -7293,8 +8253,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.03 6.00 -14.4 0 0 532.14 481.38
   L 530.23 493.44
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 585.08 491.22
   A 1.08 1.08 0.0 0 1 583.65 489.95
   L 588.11 470.97
@@ -7307,8 +8269,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 604.21 480.92 595.78 484.97 587.87 489.86
   Q 586.51 490.70 585.08 491.22
   Z"
-/>
-<path fill="#34462f" d="
+      />
+      <path
+        fill="#34462f"
+        d="
   M 752.62 454.22
   Q 755.00 466.81 757.71 479.37
   C 759.95 489.71 762.06 501.03 764.67 512.83
@@ -7339,8 +8303,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.31 0.25 66.7 0 1 748.92 447.24
   L 752.62 454.22
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 530.23 493.44
   L 532.14 481.38
   A 6.03 6.00 -14.4 0 1 534.43 477.53
@@ -7357,16 +8323,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 533.85 491.93 530.65 493.73
   A 0.28 0.28 0.0 0 1 530.23 493.44
   Z"
-/>
-<path fill="#3f5238" d="
+      />
+      <path
+        fill="#3f5238"
+        d="
   M 558.59 450.97
   Q 559.01 450.69 559.11 450.69
   A 0.15 0.15 0.0 0 1 559.24 450.91
   Q 559.19 451.01 558.84 451.24
   A 0.20 0.17 6.7 0 1 558.59 450.97
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 621.76 469.44
   A 0.18 0.18 0.0 0 1 621.63 469.13
   Q 625.66 465.30 628.17 460.21
@@ -7376,8 +8346,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 1 629.49 469.11
   L 621.76 469.44
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 401.27 467.86
   L 396.39 467.86
   A 0.40 0.39 0.0 0 1 395.99 467.47
@@ -7388,8 +8360,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 401.49 467.44
   A 0.27 0.26 -18.2 0 1 401.27 467.86
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 487.18 509.97
   Q 486.91 510.05 486.71 509.88
   Q 486.31 509.53 486.68 509.16
@@ -7416,8 +8390,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 516.89 476.98 515.91 479.00 514.90 480.28
   Q 502.26 496.22 487.18 509.97
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 487.18 509.97
   L 480.75 516.36
   A 0.55 0.55 0.0 0 1 479.83 515.84
@@ -7439,8 +8415,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 486.31 509.53 486.71 509.88
   Q 486.91 510.05 487.18 509.97
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 584.28 467.26
   L 578.64 492.22
   Q 577.09 495.76 575.54 496.32
@@ -7449,8 +8427,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 579.47 471.85 581.47 470.79 582.06 468.64
   Q 583.83 466.27 584.28 467.26
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 582.06 468.64
   C 581.47 470.79 579.47 471.85 579.17 473.64
   Q 577.85 481.44 576.96 488.41
@@ -7483,8 +8463,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 574.59 479.72 575.54 474.86
   A 0.21 0.20 -13.0 0 0 575.21 474.66
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 473.58 514.03
   A 1.90 1.90 0.0 0 1 471.18 514.55
   Q 464.29 510.87 451.86 504.17
@@ -7508,8 +8490,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 458.73 480.62 447.61 473.45
   A 0.39 0.38 -83.8 0 0 447.04 473.91
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 447.61 473.45
   Q 458.73 480.62 468.73 489.05
   C 473.50 493.07 471.58 503.05 471.07 510.10
@@ -7521,8 +8505,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 447.04 473.91
   A 0.39 0.38 -83.8 0 1 447.61 473.45
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 575.54 474.86
   Q 574.59 479.72 574.45 480.93
   Q 573.03 492.71 571.73 498.21
@@ -7548,8 +8534,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.11 3.10 78.5 0 0 570.64 497.08
   C 572.12 488.48 573.38 482.63 573.17 478.93
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 573.17 478.93
   C 573.38 482.63 572.12 488.48 570.64 497.08
   A 3.11 3.10 78.5 0 1 569.26 499.17
@@ -7564,16 +8552,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 572.28 478.46
   A 0.59 0.59 0.0 0 1 573.17 478.93
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 528.20 480.04
   L 523.84 498.24
   Q 523.09 498.07 522.61 496.89
   L 523.44 483.01
   Q 524.80 481.35 528.20 480.04
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 614.35 482.05
   L 613.29 484.15
   A 0.44 0.43 -9.4 0 0 613.99 484.65
@@ -7586,8 +8578,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 610.44 482.58 612.56 480.00
   Q 614.12 479.67 614.35 482.05
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 570.04 627.96
   C 575.13 627.14 577.49 625.89 582.88 623.24
   Q 586.86 621.29 590.32 619.38
@@ -7617,8 +8611,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.15 0.15 0.0 0 1 570.01 628.23
   Q 570.06 628.12 570.04 627.96
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 523.44 483.01
   L 522.61 496.89
   L 520.30 508.23
@@ -7653,8 +8649,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.17 2.12 -31.4 0 0 479.65 532.88
   Q 479.66 539.98 477.30 545.26
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 444.35 528.36
   A 0.19 0.19 0.0 0 1 444.12 528.66
   C 442.93 528.09 442.09 527.18 440.74 526.47
@@ -7671,8 +8669,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 441.77 519.82 442.85 525.25
   Q 443.20 527.05 444.35 528.36
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 628.93 487.02
   Q 627.82 488.84 624.02 495.28
   Q 617.40 506.49 607.10 514.65
@@ -7699,8 +8699,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 617.96 505.20 626.05 489.31
   A 0.40 0.40 0.0 0 0 625.84 488.76
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 625.84 488.76
   A 0.40 0.40 0.0 0 1 626.05 489.31
   Q 617.96 505.20 603.96 515.44
@@ -7715,8 +8717,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 619.73 490.30 623.79 488.75
   Q 624.82 488.36 625.84 488.76
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 477.30 545.26
   Q 479.66 539.98 479.65 532.88
   A 2.17 2.12 -31.4 0 1 479.91 531.86
@@ -7745,8 +8749,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 481.43 535.54 480.45 538.58
   C 480.32 539.00 480.45 539.72 480.68 540.11
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 567.90 625.08
   Q 567.58 623.79 568.80 623.57
   C 573.94 622.63 578.26 621.02 583.03 618.45
@@ -7767,8 +8773,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 581.08 620.63 577.28 622.20 574.57 623.32
   Q 571.32 624.67 567.90 625.08
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 480.68 540.11
   C 480.45 539.72 480.32 539.00 480.45 538.58
   Q 481.43 535.54 481.06 532.89
@@ -7785,8 +8793,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 481.57 540.23
   A 0.57 0.57 0.0 0 1 480.68 540.11
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 423.84 521.08
   Q 417.65 518.38 410.52 512.99
   Q 403.13 507.42 398.88 499.64
@@ -7805,8 +8815,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 405.47 509.11 413.53 514.23
   Q 421.44 519.25 423.84 521.08
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 472.35 544.10
   A 1.56 1.56 0.0 0 1 470.14 545.08
   Q 458.43 539.16 454.52 537.01
@@ -7829,8 +8841,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 470.04 521.68 466.06 519.31
   Q 457.60 514.26 450.84 510.87
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 526.92 551.97
   L 531.47 535.46
   Q 530.62 533.99 531.85 532.40
@@ -7860,8 +8874,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 529.90 554.05
   A 0.07 0.07 0.0 0 0 529.97 554.14
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 477.39 568.08
   C 483.57 562.18 491.91 555.98 496.91 551.68
   Q 504.28 545.34 515.63 535.88
@@ -7895,8 +8911,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 1 472.63 575.93
   Q 473.77 571.70 477.39 568.08
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 450.84 510.87
   Q 457.60 514.26 466.06 519.31
   Q 470.04 521.68 471.26 523.63
@@ -7908,8 +8926,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 451.61 518.65 450.31 511.26
   A 0.37 0.37 0.0 0 1 450.84 510.87
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 529.90 554.05
   L 535.74 534.60
   A 4.91 4.90 83.4 0 1 537.97 531.78
@@ -7932,8 +8952,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.58 0.0 0 0 568.01 531.37
   L 571.92 514.75
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 477.39 568.08
   Q 476.89 567.71 476.95 567.24
   Q 477.99 564.58 478.69 560.22
@@ -7968,8 +8990,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.71 1.71 0.0 0 0 480.81 558.17
   L 479.92 561.98
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 571.92 514.75
   L 568.01 531.37
   A 0.58 0.58 0.0 0 1 567.73 531.74
@@ -7980,8 +9004,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 571.07 514.11
   A 0.58 0.58 0.0 0 1 571.92 514.75
   Z"
-/>
-<path fill="#34462f" d="
+      />
+      <path
+        fill="#34462f"
+        d="
   M 743.06 828.65
   Q 715.39 835.18 694.61 847.34
   Q 681.31 855.13 667.88 862.87
@@ -8017,8 +9043,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.43 1.43 0.0 0 1 751.48 824.99
   L 743.06 828.65
   Z"
-/>
-<path fill="#3f5238" d="
+      />
+      <path
+        fill="#3f5238"
+        d="
   M 483.15 518.57
   Q 483.72 521.18 482.75 522.19
   Q 480.26 524.79 477.82 527.19
@@ -8026,8 +9054,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 475.07 521.80 477.65 519.19
   L 483.15 518.57
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 479.92 561.98
   L 480.81 558.17
   A 1.71 1.71 0.0 0 1 481.40 557.25
@@ -8048,8 +9078,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 489.05 556.92 480.82 562.59
   A 0.58 0.58 0.0 0 1 479.92 561.98
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 449.57 562.27
   Q 449.02 562.26 448.08 561.92
   Q 446.83 561.45 430.05 554.18
@@ -8074,8 +9106,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 442.90 556.17 445.04 557.75 446.30 558.09
   A 0.43 0.43 0.0 0 0 446.83 557.57
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 601.49 550.78
   Q 610.87 544.31 617.48 535.71
   Q 620.59 531.66 621.59 528.10
@@ -8090,8 +9124,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 623.45 527.02 621.25 531.09
   Q 614.13 544.29 601.49 550.78
   Z"
-/>
-<path fill="#34462f" d="
+      />
+      <path
+        fill="#34462f"
+        d="
   M 343.33 854.55
   C 332.80 849.47 322.52 844.05 311.87 839.21
   Q 297.83 832.83 283.82 826.38
@@ -8119,8 +9155,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 343.15 845.32 344.69 848.24
   C 346.15 850.99 345.89 852.80 343.33 854.55
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 601.49 550.78
   Q 586.27 557.77 575.83 562.11
   Q 574.88 562.50 572.38 563.01
@@ -8145,8 +9183,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 602.60 546.89 612.43 538.40 618.69 526.19
   A 0.31 0.31 0.0 0 0 618.34 525.75
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 446.30 558.09
   C 445.04 557.75 442.90 556.17 441.00 555.60
   C 433.17 553.23 424.07 549.06 417.71 543.78
@@ -8158,8 +9198,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 444.81 549.37 446.83 557.57
   A 0.43 0.43 0.0 0 1 446.30 558.09
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 618.34 525.75
   A 0.31 0.31 0.0 0 1 618.69 526.19
   C 612.43 538.40 602.60 546.89 589.83 552.58
@@ -8180,8 +9222,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 584.51 539.75 583.79 540.59 583.13 542.42
   Q 581.08 548.03 578.13 555.24
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 578.13 555.24
   Q 581.08 548.03 583.13 542.42
   C 583.79 540.59 584.51 539.75 586.30 538.88
@@ -8192,8 +9236,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 585.71 552.90 579.09 556.14
   A 0.71 0.70 88.1 0 1 578.13 555.24
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 531.47 535.46
   L 526.92 551.97
   Q 526.13 552.29 525.65 553.04
@@ -8202,8 +9248,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 526.46 541.57
   Q 527.27 537.25 531.47 535.46
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 450.92 540.48
   A 0.52 0.51 -70.5 0 1 451.58 540.16
   Q 462.59 544.27 471.15 551.50
@@ -8225,8 +9273,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 454.65 544.39
   A 0.19 0.19 0.0 0 0 454.36 544.59
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 526.46 541.57
   L 524.46 552.20
   Q 523.38 556.14 522.23 559.95
@@ -8253,8 +9303,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 472.90 589.78
   A 0.16 0.16 0.0 0 0 473.15 589.95
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 523.19 578.45
   L 528.53 562.53
   Q 538.22 555.60 551.04 549.87
@@ -8282,8 +9334,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 529.68 569.63 525.84 581.30
   A 0.22 0.22 0.0 0 0 526.15 581.56
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 473.15 589.95
   A 0.16 0.16 0.0 0 1 472.90 589.78
   L 474.80 581.70
@@ -8310,8 +9364,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.67 1.66 -5.8 0 0 476.21 581.63
   L 475.26 584.25
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 454.65 544.39
   L 468.41 552.33
   A 1.51 1.51 0.0 0 1 469.14 553.87
@@ -8322,8 +9378,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 454.36 544.59
   A 0.19 0.19 0.0 0 1 454.65 544.39
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 525.84 581.30
   Q 529.68 569.63 531.37 565.17
   Q 532.11 563.23 533.84 562.34
@@ -8345,8 +9403,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 0 563.05 561.70
   L 566.87 548.38
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 475.26 584.25
   L 476.21 581.63
   A 1.67 1.66 -5.8 0 1 476.93 580.75
@@ -8361,8 +9421,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 477.18 585.78
   A 1.30 1.29 83.5 0 1 475.26 584.25
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 566.87 548.38
   L 563.05 561.70
   A 0.54 0.54 0.0 0 1 562.76 562.04
@@ -8373,8 +9435,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 566.11 547.74
   A 0.54 0.54 0.0 0 1 566.87 548.38
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 429.44 558.16
   Q 420.35 555.00 410.60 554.71
   A 1.50 1.49 -9.6 0 0 409.16 556.73
@@ -8389,8 +9453,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 430.33 557.28 430.09 557.76
   Q 429.97 558.01 429.44 558.16
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 429.44 558.16
   Q 443.40 562.77 451.82 568.42
   Q 454.10 569.95 455.40 574.60
@@ -8417,8 +9483,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 455.91 589.87 457.17 590.97 457.48 590.99
   A 0.36 0.36 0.0 0 0 457.81 590.45
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 610.54 555.90
   L 597.22 557.49
   Q 596.86 556.54 598.91 555.94
@@ -8427,8 +9495,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.90 0.78 0.6 0 1 611.05 555.72
   Q 611.02 555.86 610.54 555.90
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 610.54 555.90
   L 611.08 556.29
   Q 610.99 562.19 607.47 567.22
@@ -8456,8 +9526,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 606.91 561.43 607.29 559.88
   A 0.24 0.24 0.0 0 0 607.03 559.59
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 584.71 587.91
   Q 586.24 586.82 587.76 585.95
   C 595.58 581.46 602.22 574.73 607.47 567.22
@@ -8468,8 +9540,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 602.68 575.83 593.14 583.64
   Q 588.66 587.30 584.71 587.91
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 457.48 590.99
   C 457.17 590.97 455.91 589.87 455.30 589.62
   Q 448.67 586.89 442.35 584.15
@@ -8483,8 +9557,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 457.81 590.45
   A 0.36 0.36 0.0 0 1 457.48 590.99
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 607.29 559.88
   Q 606.91 561.43 606.53 562.07
   Q 599.05 574.63 586.58 582.68
@@ -8509,8 +9585,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 572.42 581.07 568.92 587.21
   A 0.35 0.35 0.0 0 0 569.33 587.72
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 569.33 587.72
   A 0.35 0.35 0.0 0 1 568.92 587.21
   Q 572.42 581.07 575.63 573.39
@@ -8522,8 +9600,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 588.98 579.41 587.66 581.03 584.87 582.12
   Q 575.34 585.86 569.33 587.72
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 528.53 562.53
   L 523.19 578.45
   Q 522.36 579.11 522.01 578.74
@@ -8535,16 +9615,20 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.80 0.80 0.0 0 0 524.59 568.30
   L 528.53 562.53
   Z"
-/>
-<path fill="#34462f" d="
+      />
+      <path
+        fill="#34462f"
+        d="
   M 521.26 568.46
   Q 521.14 568.62 520.54 568.86
   A 0.22 0.22 0.0 0 1 520.24 568.66
   Q 520.23 568.02 520.71 567.89
   A 0.46 0.38 6.4 0 1 521.26 568.46
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 518.94 571.84
   Q 516.97 579.77 515.98 584.23
   Q 515.49 586.43 513.15 587.67
@@ -8566,8 +9650,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.50 0.50 0.0 0 0 474.57 602.06
   L 473.03 606.36
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 459.35 571.65
   Q 461.33 572.35 463.09 574.66
   A 1.59 1.58 -62.3 0 1 463.41 575.70
@@ -8579,8 +9665,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 458.70 572.23
   A 0.50 0.49 3.0 0 1 459.35 571.65
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 515.01 612.04
   Q 513.76 610.94 514.17 610.00
   Q 517.48 602.42 520.39 594.80
@@ -8605,8 +9693,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 548.07 581.84 538.56 586.09
   Q 537.90 586.39 537.23 586.70
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 473.03 606.36
   L 474.57 602.06
   A 0.50 0.50 0.0 0 1 474.77 601.81
@@ -8617,8 +9707,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 473.73 606.97
   A 0.50 0.50 0.0 0 1 473.03 606.36
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 542.72 599.20
   Q 542.06 599.51 541.40 599.81
   Q 531.89 604.07 518.44 609.98
@@ -8642,8 +9734,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 521.22 605.24 521.34 606.32
   A 0.44 0.44 0.0 0 0 521.94 606.68
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 521.34 606.32
   Q 521.22 605.24 521.92 603.92
   Q 524.28 599.47 525.84 594.87
@@ -8655,8 +9749,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 535.98 600.89 521.94 606.68
   A 0.44 0.44 0.0 0 1 521.34 606.32
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 446.72 593.55
   L 428.17 588.50
   A 0.43 0.42 6.4 0 0 427.63 588.93
@@ -8672,8 +9768,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 447.88 592.73 447.90 593.33
   Q 447.91 593.81 446.72 593.55
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 446.72 593.55
   C 452.82 596.10 458.25 598.27 462.61 601.34
   A 0.72 0.71 -57.9 0 1 462.82 602.28
@@ -8696,8 +9794,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 433.47 591.86 431.60 591.72
   A 0.50 0.49 81.5 0 0 431.10 592.40
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 566.43 620.93
   Q 574.50 618.92 580.61 613.62
   Q 588.19 607.04 592.12 601.00
@@ -8712,8 +9812,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 575.94 618.40 573.44 619.43 571.67 620.39
   Q 569.07 621.80 566.43 620.93
   Z"
-/>
-<path fill="#050302" d="
+      />
+      <path
+        fill="#050302"
+        d="
   M 566.43 620.93
   L 547.54 625.05
   A 0.35 0.34 -63.8 0 1 547.32 624.40
@@ -8741,8 +9843,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 589.95 597.89 590.38 596.75 591.17 595.05
   A 0.29 0.28 8.1 0 0 590.86 594.65
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 431.60 591.72
   Q 433.47 591.86 437.90 593.51
   Q 448.31 597.39 458.88 602.49
@@ -8753,8 +9857,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 434.53 600.85 431.10 592.40
   A 0.50 0.49 81.5 0 1 431.60 591.72
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 520.39 594.80
   Q 517.48 602.42 514.17 610.00
   Q 513.76 610.94 515.01 612.04
@@ -8777,8 +9883,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.43 0.42 -43.5 0 1 520.23 594.25
   L 520.39 594.80
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 591.17 595.05
   C 590.38 596.75 589.95 597.89 589.23 599.01
   C 584.38 606.58 575.34 615.63 565.95 617.71
@@ -8801,8 +9909,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 575.54 613.38 579.18 608.62 584.94 602.64
   C 586.24 601.29 588.42 598.19 588.77 596.87
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 588.77 596.87
   C 588.42 598.19 586.24 601.29 584.94 602.64
   C 579.18 608.62 575.54 613.38 568.48 615.51
@@ -8814,8 +9924,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 583.70 597.18 586.41 597.06 588.40 596.50
   A 0.30 0.30 0.0 0 1 588.77 596.87
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 512.18 599.11
   Q 510.90 600.74 507.02 609.51
   Q 506.16 611.45 504.32 613.14
@@ -8850,8 +9962,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 454.90 637.75 448.91 644.36
   Q 448.44 644.87 448.42 644.92
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 448.42 644.92
   Q 448.44 644.87 448.91 644.36
   Q 454.90 637.75 460.76 633.01
@@ -8867,8 +9981,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 449.41 645.69 448.51 645.28
   Q 448.30 645.19 448.42 644.92
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 546.11 619.75
   Q 545.12 622.68 543.64 624.35
   Q 539.49 623.52 537.63 624.12
@@ -8892,8 +10008,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.90 1.87 -70.9 0 0 544.41 621.98
   L 546.11 619.75
   Z"
-/>
-<path fill="#918d80" d="
+      />
+      <path
+        fill="#918d80"
+        d="
   M 501.52 622.01
   Q 500.03 623.54 499.63 626.48
   Q 499.55 627.09 499.90 628.05
@@ -8916,8 +10034,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.24 0.24 0.0 0 1 502.77 617.74
   L 501.52 622.01
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 498.29 620.48
   Q 497.47 622.40 494.23 624.50
   Q 487.06 629.14 477.09 635.49
@@ -8940,8 +10060,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.45 0.44 42.8 0 1 474.49 635.80
   L 498.29 620.48
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 501.52 622.01
   L 500.34 627.93
   Q 500.33 628.07 500.15 628.15
@@ -8949,8 +10071,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 499.55 627.09 499.63 626.48
   Q 500.03 623.54 501.52 622.01
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 533.94 628.90
   Q 534.67 628.79 535.08 628.94
   A 0.38 0.38 0.0 0 1 535.01 629.68
@@ -8971,8 +10095,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.49 0.48 -3.3 0 1 521.79 630.59
   L 533.94 628.90
   Z"
-/>
-<path fill="#2a4155" d="
+      />
+      <path
+        fill="#2a4155"
+        d="
   M 596.73 657.83
   A 0.45 0.44 31.9 0 1 596.88 658.45
   L 596.84 658.51
@@ -8990,8 +10116,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 584.37 647.94 589.04 652.22
   Q 592.16 655.08 596.73 657.83
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 510.09 631.23
   Q 509.69 632.23 509.72 632.75
   Q 510.35 643.18 509.86 655.77
@@ -9009,8 +10137,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.41 0.40 9.4 0 1 508.99 630.30
   Q 509.57 630.51 510.09 631.23
   Z"
-/>
-<path fill="#cbc6ba" d="
+      />
+      <path
+        fill="#cbc6ba"
+        d="
   M 510.48 631.07
   Q 511.02 632.11 511.57 632.13
   Q 514.03 632.26 516.07 632.28
@@ -9039,8 +10169,10 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 509.69 632.23 510.09 631.23
   Q 510.26 631.12 510.48 631.07
   Z"
-/>
-<path fill="#fefcf6" d="
+      />
+      <path
+        fill="#fefcf6"
+        d="
   M 462.73 643.02
   L 463.13 643.06
   A 0.63 0.62 -88.4 0 1 463.68 643.65
@@ -9072,8 +10204,7 @@ export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.48 0.48 0.0 0 1 461.73 643.45
   Q 462.06 643.16 462.73 643.02
   Z"
-/>
-</svg>
-
-    )
+      />
+    </svg>
+  )
 }

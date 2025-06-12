@@ -5,16 +5,22 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-    return(
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1536.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#8c7f2a" vectorEffect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1536.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#8c7f2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 574.68 60.19
   Q 575.48 69.35 571.41 75.87
   Q 564.86 86.38 562.84 91.01
   Q 559.04 99.73 559.04 110.05"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 559.04 110.05
   Q 559.17 117.19 562.63 125.91
   Q 565.96 134.32 570.33 143.90
@@ -42,8 +48,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.28 1.28 0.0 0 0 576.70 32.19
   Q 573.57 36.95 573.38 43.00
   Q 573.18 49.38 574.68 60.19"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 559.04 110.05
   Q 563.05 112.27 565.31 106.55
   Q 567.95 99.84 569.66 95.10
@@ -52,8 +61,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 581.41 67.88 577.12 58.31
   A 0.49 0.49 0.0 0 0 576.19 58.44
   Q 576.02 59.71 574.68 60.19"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.30 58.93
   C 420.16 71.79 422.14 85.96 420.95 101.05
   A 0.66 0.66 0.0 0 0 421.54 101.76
@@ -63,8 +75,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.46 0.45 33.5 0 0 447.92 62.33
   C 436.94 56.45 424.24 56.07 412.50 58.46
   A 0.31 0.31 0.0 0 0 412.30 58.93"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 375.42 103.48
   Q 378.95 102.33 382.76 101.81
   Q 398.89 99.65 414.18 100.45
@@ -73,8 +88,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.72 0.71 -29.5 0 0 404.97 61.64
   Q 378.48 73.71 374.85 103.02
   A 0.44 0.43 -5.7 0 0 375.42 103.48"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.12 117.49
   C 479.03 111.38 479.42 104.65 478.08 98.91
   Q 475.62 88.42 471.76 82.74
@@ -85,8 +103,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 455.80 108.88 459.28 110.20
   Q 467.77 113.40 478.49 117.92
   A 0.46 0.46 0.0 0 0 479.12 117.49"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 413.27 107.48
   A 0.17 0.17 0.0 0 0 413.11 107.29
   Q 393.33 105.90 375.22 110.22
@@ -95,8 +116,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.55 1.55 0.0 0 0 390.44 149.03
   Q 394.27 146.43 397.50 142.71
   Q 410.46 127.80 413.27 107.48"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.16 109.81
   L 420.32 108.73
   A 0.89 0.88 5.3 0 0 419.34 109.54
@@ -109,8 +133,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 436.83 152.34 432.59 143.57 431.49 134.99
   Q 430.02 123.55 430.87 110.66
   A 0.80 0.80 0.0 0 0 430.16 109.81"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 437.13 112.37
   C 436.18 128.83 439.46 145.81 448.56 160.07
   A 1.70 1.70 0.0 0 0 450.75 160.68
@@ -119,14 +146,20 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.09 1.09 0.0 0 0 477.02 124.81
   Q 457.79 115.73 437.88 111.80
   A 0.63 0.63 0.0 0 0 437.13 112.37"
-/>
-<path stroke="#8c7f2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c7f2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 379.41 181.77
   Q 364.55 200.93 348.99 219.49
   Q 345.33 223.86 341.97 228.43
   Q 338.19 233.58 336.36 239.41"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.36 239.41
   Q 334.96 246.24 336.99 252.77
   C 337.99 255.97 339.71 260.68 341.33 264.19
@@ -151,8 +184,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.26 0.26 0.0 0 0 381.46 157.79
   Q 381.75 159.41 382.72 166.00
   Q 384.02 174.89 379.41 181.77"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.36 239.41
   L 339.68 243.51
   A 1.04 1.03 53.5 0 0 341.07 243.72
@@ -164,8 +200,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 380.82 182.24 380.82 182.23
   A 0.19 0.19 0.0 0 0 380.63 181.95
   Q 380.02 182.01 379.41 181.77"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 471.01 238.26
   A 0.38 0.38 0.0 0 0 471.57 238.64
   C 482.67 232.38 493.07 231.07 505.95 231.91
@@ -178,8 +217,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 501.28 217.11 490.47 219.22
   C 486.97 219.91 482.47 222.30 479.71 224.18
   Q 472.16 229.31 471.01 238.26"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.13 318.90
   Q 481.08 327.62 479.26 332.19
   A 1.68 1.18 84.3 0 1 479.17 332.38
@@ -213,8 +255,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 512.76 318.74 507.86 322.94 503.75 322.75
   Q 492.19 322.21 481.76 318.46
   A 0.47 0.47 0.0 0 0 481.13 318.90"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 563.67 334.24
   Q 559.24 339.32 553.19 341.26
   C 551.42 341.83 549.90 342.62 549.14 344.16
@@ -223,15 +268,21 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 463.18 362.28 454.77 346.98
   A 1.25 1.24 -11.0 0 0 453.81 346.34
   L 448.06 345.75"
-/>
-<path stroke="#8c7f2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c7f2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.06 345.75
   C 442.91 344.43 438.24 340.01 435.11 336.34
   C 427.49 327.41 424.06 323.01 419.88 319.11
   A 0.37 0.37 0.0 0 0 419.25 319.38
   L 419.30 325.79"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 419.30 325.79
   C 417.89 345.64 410.02 368.50 393.98 380.83
   A 1.39 1.38 59.8 0 0 393.55 382.46
@@ -278,8 +329,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 576.17 360.65 576.39 355.63
   A 0.33 0.32 -67.9 0 1 576.93 355.40
   Q 577.68 356.06 578.15 357.04"
-/>
-<path stroke="#8c7f2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c7f2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.15 357.04
   C 583.29 367.51 592.46 376.69 604.00 379.12
   A 2.43 2.41 -69.0 0 0 606.59 377.96
@@ -290,8 +344,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 578.55 325.01 577.81 317.33
   A 0.44 0.44 0.0 0 0 577.02 317.10
   L 563.67 334.24"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 578.15 357.04
   Q 579.06 355.26 579.50 357.18
   A 2.34 2.23 -70.1 0 0 579.86 358.00
@@ -314,8 +371,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 560.67 349.64 560.36 347.23
   C 559.99 344.40 559.15 340.72 561.33 338.79
   Q 563.67 336.71 563.67 334.24"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.06 345.75
   L 452.37 351.11
   A 1.13 1.09 -58.3 0 1 452.58 352.07
@@ -324,8 +384,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 438.57 353.75 434.72 351.01 431.46 346.55
   C 428.73 342.82 425.83 339.42 424.72 334.89
   Q 423.47 329.77 419.30 325.79"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 463.67 345.94
   Q 471.94 361.44 485.82 372.38
   C 491.04 376.50 497.28 379.16 504.03 376.76
@@ -340,8 +403,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.15 2.14 62.1 0 0 466.65 342.80
   L 464.39 343.83
   A 1.53 1.52 -26.2 0 0 463.67 345.94"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 436.04 541.78
   Q 444.13 539.73 451.75 538.76
   Q 481.96 534.90 507.63 535.05
@@ -354,8 +420,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 435.72 532.01 434.86 533.27 435.16 535.86
   Q 435.47 538.45 435.61 541.46
   A 0.35 0.35 0.0 0 0 436.04 541.78"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.44 591.71
   Q 532.52 591.75 532.72 592.00
   Q 546.52 609.73 565.78 620.70
@@ -443,8 +512,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 553.55 627.55 544.07 616.90 538.03 605.07
   Q 534.04 597.26 531.84 592.29
   A 0.44 0.44 0.0 0 1 532.44 591.71"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 583.81 726.14
   L 583.84 718.08
   A 1.26 1.25 17.1 0 0 583.27 717.01
@@ -458,8 +530,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 548.39 726.36 569.75 726.14
   Q 576.95 726.06 582.94 726.90
   A 0.77 0.77 0.0 0 0 583.81 726.14"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 421.73 738.65
   A 0.92 0.92 0.0 0 0 421.00 739.54
   Q 420.86 753.41 421.00 773.89
@@ -479,8 +554,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 463.33 748.12 459.14 744.46 451.71 742.06
   Q 439.78 738.21 427.79 738.14
   Q 424.27 738.11 421.73 738.65"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 565.29 816.67
   C 576.78 804.09 581.84 784.08 582.83 766.76
   C 583.33 758.06 581.52 748.73 573.68 743.92
@@ -502,8 +580,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 576.20 853.64 574.29 838.93
   Q 572.72 826.82 565.26 817.47
   A 0.62 0.61 -43.1 0 1 565.29 816.67"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.89 927.11
   C 439.32 928.52 432.31 930.35 424.91 928.25
   Q 422.20 927.48 419.87 927.05
@@ -514,8 +595,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.02 2.01 86.8 0 0 445.47 936.86
   L 446.48 927.64
   A 0.49 0.49 0.0 0 0 445.89 927.11"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 543.83 927.62
   L 543.83 937.10
   A 0.43 0.42 -81.8 0 0 544.13 937.51
@@ -525,8 +609,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.28 0.28 0.0 0 0 573.00 929.47
   Q 558.55 931.54 544.03 927.47
   A 0.16 0.16 0.0 0 0 543.83 927.62"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 443.40 946.81
   C 435.88 948.61 427.88 947.99 420.17 946.48
   A 0.46 0.45 -83.5 0 0 419.63 946.91
@@ -536,8 +623,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.18 1.17 6.3 0 0 443.23 965.07
   L 443.96 947.28
   A 0.46 0.45 84.3 0 0 443.40 946.81"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.56 946.32
   A 0.57 0.57 0.0 0 0 543.85 946.85
   L 542.88 970.46
@@ -548,14 +638,20 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 569.11 952.23 568.90 948.49
   A 0.62 0.62 0.0 0 0 568.21 947.91
   Q 555.99 949.34 544.56 946.32"
-/>
-<path stroke="#8c7f2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c7f2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 406.12 1032.73
   Q 401.09 1030.37 399.03 1030.14
   C 392.73 1029.44 386.12 1044.73 384.06 1049.55
   Q 382.50 1053.17 385.30 1056.14"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 385.30 1056.14
   Q 395.79 1062.57 409.27 1060.89
   Q 417.76 1059.83 423.42 1054.65
@@ -587,8 +683,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 410.94 1026.91
   A 1.08 1.07 84.2 0 1 411.51 1027.38
   C 413.96 1031.55 409.58 1033.55 406.12 1032.73"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 385.30 1056.14
   Q 385.89 1055.05 386.56 1054.48
   A 1.16 1.15 18.7 0 1 387.09 1054.22
@@ -597,8 +696,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 396.52 1048.02
   A 3.24 3.10 84.3 0 1 396.99 1047.42
   Q 402.97 1041.28 406.12 1032.73"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 552.71 998.34
   L 552.86 996.98
   A 4.21 4.20 86.8 0 1 556.11 993.34
@@ -633,8 +735,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.64 0.64 0.0 0 0 567.72 997.75
   L 555.21 1000.57
   A 2.06 2.05 -3.2 0 1 552.71 998.34"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 376.72 1069.52
   A 0.17 0.17 0.0 0 0 376.71 1069.84
   Q 397.53 1076.17 418.73 1078.52
@@ -654,12 +759,18 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 408.06 1073.87 387.19 1069.13
   Q 383.58 1068.31 381.99 1068.55
   Q 378.15 1069.12 376.72 1069.52"
-/>
-<path stroke="#8c7f2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c7f2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.39 1115.17
   Q 415.78 1118.93 433.92 1120.30"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.92 1120.30
   Q 462.04 1122.41 478.25 1122.80
   Q 499.23 1123.31 525.06 1122.49
@@ -670,30 +781,45 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 540.53 1091.27 528.00 1091.81
   Q 507.51 1092.70 477.00 1091.98
   Q 466.59 1091.73 436.70 1089.39"
-/>
-<path stroke="#8c7f2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c7f2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 436.70 1089.39
   Q 418.52 1087.95 400.14 1084.57"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 400.14 1084.57
   Q 385.12 1082.02 370.32 1077.22
   A 0.11 0.10 17.5 0 0 370.19 1077.28
   L 360.24 1104.60
   A 0.44 0.44 0.0 0 0 360.47 1105.15
   C 371.63 1110.35 384.30 1112.56 396.39 1115.17"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 400.14 1084.57
   Q 401.17 1087.07 400.98 1088.50
   C 400.06 1095.32 398.26 1102.50 397.41 1109.74
   Q 397.09 1112.49 396.39 1115.17"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 436.70 1089.39
   Q 434.32 1104.95 433.92 1120.30"
-/>
-<path stroke="#8c7f2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8c7f2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.07 1128.98
   Q 426.14 1128.19 418.63 1127.40
   Q 393.28 1124.75 368.45 1117.78
@@ -703,8 +829,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.33 1.32 18.6 0 0 345.68 1148.95
   Q 358.37 1153.00 370.22 1155.34
   Q 399.03 1161.03 428.28 1163.19"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 428.28 1163.19
   Q 430.56 1163.26 432.61 1163.50
   Q 436.38 1163.95 436.92 1163.96
@@ -727,14 +856,20 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 515.32 1131.38 500.68 1131.00 484.97 1131.11
   Q 475.81 1131.18 462.54 1130.51
   Q 447.95 1129.78 433.07 1128.98"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 428.28 1163.19
   Q 428.42 1155.57 429.69 1148.23
   Q 430.43 1143.92 431.16 1138.56
   Q 431.83 1133.69 433.07 1128.98"
-/>
-<path stroke="#28271a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#28271a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 174.78 1191.84
   A 1.21 1.21 0.0 0 0 175.94 1193.01
   Q 191.79 1193.83 205.00 1193.86
@@ -757,8 +892,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 438.92 1184.49 373.19 1184.14 325.00 1184.31
   Q 250.66 1184.57 187.26 1184.12
   C 180.51 1184.08 174.48 1183.54 174.78 1191.84"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 793.11 1210.74
   A 0.51 0.51 0.0 0 0 792.60 1210.23
   L 200.60 1210.23
@@ -768,8 +906,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 792.60 1349.55
   A 0.51 0.51 0.0 0 0 793.11 1349.04
   L 793.11 1210.74"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 618.95 233.57
   A 1.60 1.60 0.0 0 0 621.17 233.33
   Q 624.41 229.39 622.92 225.09
@@ -781,8 +922,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 599.13 195.55 605.69 210.34
   Q 607.67 214.80 614.05 227.84
   Q 615.55 230.90 618.95 233.57"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 645.84 239.23
   A 0.33 0.33 0.0 0 0 645.25 239.38
   Q 644.04 246.07 640.87 252.91
@@ -800,8 +944,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 648.16 245.49 646.93 240.77
   A 1.44 1.36 -73.6 0 0 646.65 240.22
   L 645.84 239.23"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 456.42 107.88
   L 477.21 115.96
   A 0.77 0.76 9.0 0 0 478.25 115.21
@@ -811,8 +958,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 466.57 85.76 464.25 90.77
   Q 460.47 98.94 456.18 107.25
   A 0.45 0.45 0.0 0 0 456.42 107.88"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 402.75 148.92
   L 397.16 153.93
   A 0.48 0.47 42.2 0 0 397.20 154.67
@@ -825,8 +975,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.78 0.76 64.1 0 1 404.04 148.99
   Q 403.95 148.92 403.91 148.89
   A 0.90 0.89 -46.3 0 0 402.75 148.92"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 452.09 117.50
   Q 452.10 118.08 451.89 118.43
   Q 445.75 128.97 441.44 134.20
@@ -840,8 +993,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 465.25 120.73 455.95 117.75
   Q 454.68 117.34 452.70 116.98
   A 0.51 0.51 0.0 0 0 452.09 117.50"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 407.92 175.69
   Q 408.18 175.83 407.92 176.16
   Q 406.37 178.11 402.70 181.46
@@ -861,8 +1017,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.39 0.39 0.0 0 0 424.26 177.79
   Q 416.49 176.86 408.41 174.70
   A 0.58 0.53 -21.3 0 0 407.92 175.69"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 403.56 342.10
   Q 403.12 342.60 401.99 342.66
   Q 393.26 343.14 384.92 341.38
@@ -873,8 +1032,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.84 0.84 0.0 0 0 394.57 363.02
   Q 401.50 353.25 404.26 342.47
   A 0.41 0.41 0.0 0 0 403.56 342.10"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 484.66 268.74
   L 487.90 259.54
   A 2.03 2.03 0.0 0 0 486.78 257.00
@@ -895,16 +1057,22 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.47 1.47 0.0 0 1 491.06 269.88
   Q 487.42 270.35 485.04 269.53
   A 0.62 0.61 -70.8 0 1 484.66 268.74"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.92 287.68
   Q 482.31 289.91 484.61 291.16
   Q 494.75 296.69 500.82 287.57
   A 0.40 0.40 0.0 0 0 500.48 286.95
   L 482.54 286.95
   A 0.63 0.62 -5.0 0 0 481.92 287.68"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 499.49 306.39
   A 0.47 0.46 5.0 0 0 500.03 307.03
   Q 510.74 304.31 517.67 296.93
@@ -937,8 +1105,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.98 0.97 -83.7 0 0 521.72 288.23
   C 517.86 287.12 516.14 288.56 512.53 290.93
   Q 503.93 296.59 499.49 306.39"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.02 392.97
   Q 438.32 394.71 437.31 397.56
   C 434.06 406.65 430.41 418.52 428.66 429.14
@@ -950,8 +1121,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 445.60 410.61 444.86 400.08
   Q 444.60 396.35 443.27 393.52
   A 2.01 2.00 54.6 0 0 440.02 392.97"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 536.49 393.21
   Q 523.13 405.35 508.29 413.90
   Q 502.37 417.30 498.70 418.25
@@ -965,8 +1139,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 481.58 432.61 488.47 435.71 496.46 433.17
   C 515.30 427.19 527.40 410.19 537.19 393.78
   A 0.46 0.46 0.0 0 0 536.49 393.21"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.64 405.40
   A 0.33 0.33 0.0 0 0 560.03 405.20
   C 558.39 408.15 557.54 412.29 556.35 414.95
@@ -977,8 +1154,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 552.50 456.31 555.29 445.59
   Q 558.28 434.14 558.83 425.36
   Q 559.53 414.31 560.64 405.40"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 464.85 477.02
   Q 462.74 478.45 458.62 482.12
   Q 454.07 486.16 440.61 499.86
@@ -988,8 +1168,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 450.46 506.15 460.91 491.38
   Q 465.28 485.19 465.41 477.32
   A 0.36 0.36 0.0 0 0 464.85 477.02"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 458.94 557.95
   A 0.30 0.30 0.0 0 0 458.35 557.86
   C 457.12 561.81 456.72 566.57 455.77 570.72
@@ -999,8 +1182,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 443.87 621.27 445.61 619.07
   Q 458.19 603.19 458.78 581.99
   Q 459.06 571.88 458.94 557.95"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 434.70 559.35
   Q 431.79 560.80 431.25 564.11
   A 1.54 1.52 -14.1 0 1 430.66 565.08
@@ -1017,8 +1203,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 432.83 593.07 437.35 579.79 438.67 566.25
   Q 439.16 561.24 435.55 559.36
   A 0.95 0.94 -44.0 0 0 434.70 559.35"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 520.79 623.37
   Q 520.26 621.47 518.48 619.75
   C 505.44 607.12 494.84 597.68 487.42 583.31
@@ -1026,8 +1215,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 484.68 598.16 491.21 609.72 502.61 617.93
   C 507.18 621.22 514.30 624.24 520.33 623.99
   A 0.50 0.49 -8.9 0 0 520.79 623.37"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 410.97 692.53
   C 414.77 689.50 416.19 685.39 417.18 680.23
   Q 419.19 669.71 422.52 650.43
@@ -1042,8 +1234,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 4.56 4.41 40.0 0 0 407.07 688.46
   Q 407.69 690.33 409.50 692.39
   A 1.07 1.07 0.0 0 0 410.97 692.53"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 567.02 698.88
   A 0.36 0.36 0.0 0 0 567.06 698.30
   Q 559.21 691.80 550.77 684.22
@@ -1053,8 +1248,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 530.66 682.81 544.64 691.37
   C 550.60 695.02 557.93 698.08 565.20 699.14
   Q 566.33 699.30 567.02 698.88"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 452.00 802.65
   Q 451.15 803.44 449.20 805.69
   Q 446.53 808.78 441.16 812.38
@@ -1065,8 +1263,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 432.93 822.50 434.92 823.19
   Q 439.89 824.91 444.12 821.03
   C 448.91 816.64 453.29 810.35 452.81 803.80"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 452.81 803.80
   Q 452.82 803.03 453.12 802.66
   A 0.35 0.35 0.0 0 1 453.74 802.82
@@ -1101,12 +1302,18 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 454.62 765.16 453.82 784.31
   Q 453.50 791.98 451.65 800.75
   Q 451.55 801.24 452.00 802.65"
-/>
-<path stroke="#7e5a09" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7e5a09"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 452.81 803.80
   L 452.00 802.65"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.57 804.29
   A 1.83 1.82 63.2 0 0 432.81 805.03
   Q 435.88 803.79 436.58 801.17
@@ -1118,8 +1325,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 423.83 779.16 423.97 782.54 424.83 785.93
   Q 425.69 789.34 426.30 793.45
   C 426.98 798.01 428.37 800.75 430.57 804.29"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 574.23 798.03
   A 0.43 0.42 15.5 0 0 574.72 797.76
   Q 577.54 789.49 579.82 779.91
@@ -1130,8 +1340,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 574.73 792.82 573.66 797.58
   A 0.31 0.31 0.0 0 0 573.89 797.95
   L 574.23 798.03"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 554.00 809.83
   Q 555.73 807.55 556.03 804.49
   Q 557.08 793.77 553.54 784.01
@@ -1142,8 +1355,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.99 1.33 33.7 0 0 548.54 801.25
   L 553.20 809.77
   A 0.48 0.48 0.0 0 0 554.00 809.83"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.27 854.30
   A 1.29 1.29 0.0 0 0 548.51 853.86
   C 544.74 856.12 544.07 859.66 543.56 864.18
@@ -1153,8 +1369,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 549.93 882.97 550.63 879.38
   Q 552.60 869.31 551.97 859.76
   Q 551.77 856.79 550.27 854.30"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 434.73 951.15
   Q 434.40 951.43 434.33 951.93
   Q 434.09 953.44 433.87 962.58
@@ -1169,8 +1388,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.57 0.57 0.0 0 0 434.24 950.32
   Q 434.36 950.62 434.59 950.66
   A 0.29 0.29 0.0 0 1 434.73 951.15"
-/>
-<path stroke="#ffd323" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd323"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 356.97 1116.93
   Q 349.22 1138.70 348.20 1141.74
   Q 347.21 1144.67 346.90 1146.65
@@ -1183,8 +1405,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 375.66 1122.31 360.33 1116.64
   Q 358.47 1115.95 357.30 1116.54
   A 0.71 0.70 85.6 0 0 356.97 1116.93"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 717.99 1310.25
   Q 719.14 1303.72 716.53 1299.76
   Q 714.73 1297.04 711.43 1296.87
@@ -1197,8 +1422,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 707.16 1316.68
   A 0.75 0.75 0.0 0 1 708.01 1315.94
   Q 712.99 1316.66 716.25 1313.33"
-/>
-<path stroke="#f1ae02" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae02"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 716.25 1313.33
   Q 714.04 1316.89 709.55 1317.20
   A 0.92 0.92 0.0 0 0 708.70 1318.08
@@ -1290,12 +1518,18 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.84 0.82 89.9 0 1 720.18 1327.45
   Q 719.58 1324.49 719.66 1324.00
   Q 721.11 1315.26 717.99 1310.25"
-/>
-<path stroke="#7e5a09" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7e5a09"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 716.25 1313.33
   L 717.99 1310.25"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 356.01 1220.64
   A 0.26 0.26 0.0 0 0 355.75 1220.38
   L 211.11 1220.38
@@ -1305,8 +1539,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 355.75 1327.48
   A 0.26 0.26 0.0 0 0 356.01 1327.22
   L 356.01 1220.64"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 364.04 1236.80
   L 364.06 1252.38
   A 0.63 0.63 0.0 0 0 364.69 1253.01
@@ -1316,8 +1553,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 5.10 5.05 -0.1 0 0 368.28 1236.16
   L 364.67 1236.17
   A 0.63 0.63 0.0 0 0 364.04 1236.80"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 378.49 1239.99
   A 0.97 0.97 0.0 0 1 379.46 1239.02
   L 382.37 1239.02
@@ -1341,8 +1581,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 379.28 1243.10
   A 0.72 0.72 0.0 0 1 378.49 1242.38
   L 378.49 1239.99"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 389.43 1246.09
   Q 388.90 1245.48 388.69 1244.28
   Q 387.63 1238.36 387.46 1237.41
@@ -1357,8 +1600,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.30 1.30 0.0 0 0 391.76 1237.12
   L 389.76 1246.00
   A 0.19 0.19 0.0 0 1 389.43 1246.09"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 408.99 1249.35
   L 408.99 1237.31
   A 1.32 1.32 0.0 0 0 407.67 1235.99
@@ -1372,8 +1618,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.37 1.37 0.0 0 0 412.11 1249.88
   L 409.83 1250.11
   A 0.76 0.76 0.0 0 1 408.99 1249.35"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 423.8728 1240.4021
   A 4.28 4.28 0.0 0 0 419.5854 1236.1295
   L 419.0454 1236.1305
@@ -1383,8 +1632,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 419.6146 1252.8895
   A 4.28 4.28 0.0 0 0 423.8871 1248.6021
   L 423.8728 1240.4021"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.0536 1236.7827
   A 0.67 0.67 0.0 0 0 439.3847 1236.1116
   L 437.6047 1236.1085
@@ -1394,8 +1646,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 439.3553 1253.0115
   A 0.67 0.67 0.0 0 0 440.0264 1252.3427
   L 440.0536 1236.7827"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 444.88 1241.18
   L 448.27 1251.75
   A 1.62 1.58 4.1 0 0 449.14 1252.73
@@ -1417,8 +1672,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.98 0.98 0.0 0 0 445.50 1251.82
   L 444.41 1241.28
   A 0.24 0.24 0.0 0 1 444.88 1241.18"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 463.10 1243.94
   L 459.51 1243.79
   A 1.02 1.02 0.0 0 0 458.67 1245.45
@@ -1436,8 +1694,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.31 1.30 -14.0 0 0 463.34 1250.97
   L 463.60 1244.48
   A 0.52 0.52 0.0 0 0 463.10 1243.94"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.91 1244.52
   C 469.90 1248.68 469.76 1253.95 475.61 1252.80
   Q 478.87 1252.16 478.48 1248.50
@@ -1451,8 +1712,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.71 0.71 0.0 0 0 478.51 1240.59
   Q 478.92 1236.93 475.67 1236.27
   C 469.82 1235.08 469.93 1240.35 469.91 1244.52"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 484.97 1245.35
   Q 485.61 1245.35 485.88 1245.36
   A 0.64 0.64 0.0 0 1 486.49 1246.00
@@ -1480,8 +1744,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 483.44 1245.98
   A 0.64 0.64 0.0 0 1 484.06 1245.35
   Q 484.33 1245.34 484.97 1245.35"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.88 1253.06
   A 0.91 0.91 0.0 0 0 501.80 1251.95
   L 498.36 1236.66
@@ -1499,8 +1766,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 498.66 1252.14
   A 1.10 1.10 0.0 0 0 499.70 1253.01
   L 500.88 1253.06"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.17 1241.05
   L 508.67 1252.15
   A 1.26 1.25 -45.2 0 0 511.12 1252.14
@@ -1527,8 +1797,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.64 0.64 0.0 0 0 506.08 1252.45
   L 506.08 1241.06
   A 0.05 0.05 0.0 0 1 506.17 1241.05"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.77 1246.46
   C 527.92 1247.33 528.96 1242.95 528.00 1239.10
   A 3.41 3.40 86.2 0 0 525.07 1236.53
@@ -1540,8 +1813,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.09 1.09 0.0 0 0 522.10 1252.06
   L 522.10 1247.03
   A 0.58 0.58 0.0 0 1 522.77 1246.46"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 533.1764 1236.7573
   A 0.66 0.66 0.0 0 0 532.5153 1236.0984
   L 530.7153 1236.1016
@@ -1551,8 +1827,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 532.5447 1252.9784
   A 0.66 0.66 0.0 0 0 533.2036 1252.3173
   L 533.1764 1236.7573"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 545.5762 1240.8300
   A 4.58 4.58 0.0 0 0 541.0525 1236.1944
   L 540.4325 1236.1868
@@ -1562,8 +1841,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 540.8475 1252.9732
   A 4.58 4.58 0.0 0 0 545.4831 1248.4495
   L 545.5762 1240.8300"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 551.70 1244.89
   Q 552.85 1248.37 554.12 1252.17
   A 0.96 0.96 0.0 0 0 554.65 1252.74
@@ -1587,8 +1869,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 550.30 1242.22
   A 0.19 0.19 0.0 0 1 550.66 1242.11
   Q 550.91 1242.49 551.70 1244.89"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.23 1248.16
   Q 559.16 1252.31 563.51 1252.94
   C 569.54 1253.82 570.52 1245.96 566.38 1243.68
@@ -1606,8 +1891,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.33 1.33 0.0 0 1 563.39 1249.80
   L 561.43 1247.83
   A 0.72 0.72 0.0 0 0 560.23 1248.16"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 579.03 1245.95
   C 580.56 1246.79 582.15 1247.81 580.93 1249.51
   A 1.47 1.43 -49.6 0 1 578.72 1249.72
@@ -1623,8 +1911,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 584.91 1235.94 579.16 1234.75 576.35 1237.70
   A 2.30 2.28 -16.1 0 0 575.79 1238.70
   C 574.85 1242.30 576.01 1244.28 579.03 1245.95"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 606.9557 1240.9199
   A 4.59 4.59 0.0 0 0 602.4221 1236.2742
   L 601.8422 1236.2671
@@ -1634,8 +1925,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 602.2178 1252.9929
   A 4.59 4.59 0.0 0 0 606.8636 1248.4593
   L 606.9557 1240.9199"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 618.76 1252.17
   L 616.94 1246.48
   A 1.15 1.14 54.9 0 1 617.12 1245.42
@@ -1653,8 +1947,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.28 2.28 0.0 0 0 617.43 1253.08
   L 617.97 1253.14
   A 0.75 0.75 0.0 0 0 618.76 1252.17"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 633.40 1249.25
   Q 633.12 1248.36 632.30 1247.87
   A 0.70 0.69 -62.6 0 0 631.31 1248.19
@@ -1671,8 +1968,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 630.18 1239.88 630.85 1242.60
   C 631.73 1246.13 637.28 1245.40 636.30 1249.23
   A 1.53 1.49 44.0 0 1 633.40 1249.25"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 657.99 1248.29
   Q 656.98 1252.45 661.33 1253.03
   C 667.37 1253.83 668.25 1245.97 664.09 1243.74
@@ -1690,8 +1990,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.33 1.33 0.0 0 1 661.17 1249.89
   L 659.19 1247.95
   A 0.72 0.72 0.0 0 0 657.99 1248.29"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 668.53 1248.29
   Q 667.52 1252.44 671.86 1253.01
   C 677.89 1253.81 678.77 1245.96 674.61 1243.74
@@ -1709,8 +2012,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.33 1.33 0.0 0 1 671.71 1249.88
   L 669.73 1247.94
   A 0.72 0.71 -60.9 0 0 668.53 1248.29"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 688.8766 1240.7086
   A 4.62 4.62 0.0 0 0 684.2647 1236.0806
   L 683.6447 1236.0795
@@ -1720,8 +2026,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 684.2353 1252.9405
   A 4.62 4.62 0.0 0 0 688.8633 1248.3286
   L 688.8766 1240.7086"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 691.04 1244.55
   C 691.04 1248.50 690.76 1253.42 696.21 1252.97
   Q 700.11 1252.65 700.12 1248.70
@@ -1735,8 +2044,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.22 1.22 0.0 0 0 700.11 1240.37
   Q 700.09 1236.42 696.18 1236.11
   C 690.73 1235.68 691.03 1240.59 691.04 1244.55"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 705.4610 1236.7785
   A 0.59 0.59 0.0 0 0 704.8741 1236.1855
   L 702.8342 1236.1748
@@ -1746,8 +2058,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 704.7858 1253.0452
   A 0.59 0.59 0.0 0 0 705.3789 1252.4583
   L 705.4610 1236.7785"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.60 1248.98
   Q 712.73 1248.98 713.72 1249.01
   A 0.94 0.94 0.0 0 1 714.62 1249.74
@@ -1767,8 +2082,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 710.56 1249.66
   A 0.94 0.94 0.0 0 1 711.49 1248.96
   Q 712.48 1248.98 712.60 1248.98"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 744.0600 1240.7291
   A 4.57 4.57 0.0 0 0 739.4424 1236.2072
   L 738.8225 1236.2137
@@ -1778,8 +2096,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 739.6175 1252.9263
   A 4.57 4.57 0.0 0 0 744.1394 1248.3087
   L 744.0600 1240.7291"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 749.03 1241.31
   L 752.45 1251.98
   A 1.95 1.94 -53.9 0 0 756.25 1251.38
@@ -1800,8 +2121,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.11 1.11 0.0 0 0 749.46 1251.74
   L 748.40 1241.44
   A 0.32 0.32 0.0 0 1 749.03 1241.31"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.03 1244.57
   Q 396.03 1251.69 396.08 1252.27
   A 0.70 0.69 87.4 0 0 396.77 1252.90
@@ -1829,8 +2153,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 396.76 1236.23
   A 0.70 0.69 -87.4 0 0 396.07 1236.86
   Q 396.03 1237.44 396.03 1244.57"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.72 1246.31
   C 434.84 1247.08 435.79 1242.73 434.77 1238.93
   A 3.38 3.37 85.2 0 0 431.83 1236.44
@@ -1842,8 +2169,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.08 1.08 0.0 0 0 429.16 1251.87
   L 429.07 1246.89
   A 0.57 0.57 0.0 0 1 429.72 1246.31"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 589.83 1246.39
   C 594.95 1247.22 595.95 1242.86 594.97 1239.04
   A 3.39 3.38 85.8 0 0 592.04 1236.50
@@ -1855,8 +2185,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.08 1.08 0.0 0 0 589.20 1251.96
   L 589.16 1246.96
   A 0.57 0.57 0.0 0 1 589.83 1246.39"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.59 1239.35
   A 0.51 0.51 0.0 0 1 623.10 1239.86
   L 623.10 1252.19
@@ -1872,8 +2205,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 620.00 1238.49
   A 0.86 0.85 90.0 0 0 620.85 1239.35
   L 622.59 1239.35"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 650.82 1248.97
   Q 650.95 1248.98 651.94 1248.99
   A 0.94 0.94 0.0 0 1 652.85 1249.72
@@ -1893,8 +2229,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 648.78 1249.66
   A 0.94 0.94 0.0 0 1 649.70 1248.96
   Q 650.70 1248.97 650.82 1248.97"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 722.57 1253.09
   Q 722.94 1253.09 723.18 1253.06
   A 0.90 0.89 -3.6 0 0 723.97 1252.17
@@ -1914,8 +2253,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 721.17 1252.19
   A 0.90 0.89 2.7 0 0 721.97 1253.07
   Q 722.21 1253.09 722.57 1253.09"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 731.82 1237.05
   A 0.80 0.80 0.0 0 0 731.02 1236.25
   L 729.56 1236.25
@@ -1925,8 +2267,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 731.02 1253.01
   A 0.80 0.80 0.0 0 0 731.82 1252.21
   L 731.82 1237.05"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.88 1282.96
   A 0.73 0.73 0.0 0 0 506.15 1282.23
   L 501.17 1282.23
@@ -1940,8 +2285,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 506.15 1285.41
   A 0.73 0.73 0.0 0 0 506.88 1284.68
   L 506.88 1282.96"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 568.44 1274.78
   L 563.44 1275.29
   A 0.56 0.56 0.0 0 0 562.94 1275.90
@@ -1966,8 +2314,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.58 0.57 -3.4 0 0 569.08 1284.66
   L 569.08 1275.35
   A 0.58 0.57 -3.1 0 0 568.44 1274.78"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.31 1281.70
   Q 611.67 1278.74 613.37 1275.43
   C 617.10 1268.18 611.08 1263.46 604.74 1267.46
@@ -1984,8 +2335,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.77 0.77 0.0 0 0 614.16 1282.07
   L 608.45 1282.07
   A 0.21 0.21 0.0 0 1 608.31 1281.70"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 628.19 1271.44
   A 5.24 5.24 0.0 0 0 622.95 1266.20
   L 622.27 1266.20
@@ -1995,8 +2349,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 622.95 1285.72
   A 5.24 5.24 0.0 0 0 628.19 1280.48
   L 628.19 1271.44"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 635.31 1281.43
   C 638.64 1277.47 641.98 1274.46 640.25 1268.79
   C 639.14 1265.15 633.62 1265.95 631.08 1267.41
@@ -2014,8 +2371,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.61 0.61 0.0 0 0 640.30 1282.07
   L 635.60 1282.07
   A 0.39 0.38 -69.9 0 1 635.31 1281.43"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 461.02 1270.06
   A 0.61 0.61 0.0 0 1 461.63 1269.45
   L 466.56 1269.45
@@ -2037,8 +2397,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 461.60 1273.99
   A 0.61 0.61 0.0 0 1 461.02 1273.38
   L 461.02 1270.06"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.59 1266.33
   A 0.81 0.81 0.0 0 0 471.80 1266.96
   L 467.81 1284.68
@@ -2056,8 +2419,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 477.44 1266.96
   A 0.81 0.81 0.0 0 0 476.65 1266.33
   L 472.59 1266.33"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 494.05 1282.13
   L 488.25 1281.94
   A 0.53 0.53 0.0 0 1 487.73 1281.40
@@ -2071,8 +2437,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.48 0.48 0.0 0 0 494.45 1284.95
   L 494.50 1282.61
   A 0.46 0.46 0.0 0 0 494.05 1282.13"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 526.42 1285.57
   A 0.50 0.50 0.0 0 0 526.92 1285.07
   L 526.92 1282.59
@@ -2086,8 +2455,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 516.24 1285.07
   A 0.50 0.50 0.0 0 0 516.74 1285.57
   L 526.42 1285.57"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 539.38 1285.50
   A 0.67 0.67 0.0 0 0 540.05 1284.83
   L 540.05 1282.69
@@ -2113,8 +2485,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 529.60 1284.83
   A 0.67 0.67 0.0 0 0 530.27 1285.50
   L 539.38 1285.50"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.74 1281.14
   Q 549.75 1281.14 550.27 1281.17
   A 1.02 1.00 84.9 0 1 551.19 1281.95
@@ -2134,8 +2509,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 546.29 1281.94
   A 1.02 1.00 -84.8 0 1 547.21 1281.17
   Q 547.72 1281.13 548.74 1281.14"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 577.66 1285.65
   C 580.92 1285.67 583.17 1284.58 583.40 1281.12
   Q 583.57 1278.58 583.70 1267.14
@@ -2151,8 +2529,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.79 0.78 -89.6 0 0 571.86 1267.07
   Q 571.84 1278.51 571.98 1281.05
   C 572.16 1284.51 574.40 1285.63 577.66 1285.65"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.90 1275.83
   Q 586.93 1283.93 587.00 1285.19
   A 0.27 0.26 88.1 0 0 587.26 1285.44
@@ -2180,8 +2561,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 587.19 1266.21
   A 0.27 0.26 -88.6 0 0 586.93 1266.46
   Q 586.87 1267.72 586.90 1275.83"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 643.31 1285.50
   L 652.13 1285.50
   A 0.92 0.92 0.0 0 0 653.05 1284.58
@@ -2200,8 +2584,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 649.43 1274.87 646.22 1278.10 643.93 1280.44
   Q 643.08 1281.32 642.80 1284.96
   A 0.51 0.50 2.1 0 0 643.31 1285.50"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 549.01 1305.24
   L 551.71 1304.96
   A 0.81 0.80 -0.0 0 0 552.43 1304.25
@@ -2222,8 +2609,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.45 1.42 10.3 0 1 547.70 1302.51
   L 548.18 1304.64
   A 0.77 0.77 0.0 0 0 549.01 1305.24"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 581.7067 1304.2118
   A 7.89 7.89 0.0 0 0 573.7618 1296.3770
   L 572.8019 1296.3837
@@ -2233,8 +2623,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 573.9781 1327.3563
   A 7.89 7.89 0.0 0 0 581.8129 1319.4114
   L 581.7067 1304.2118"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 747.6725 1304.7254
   A 8.29 8.29 0.0 0 0 739.3970 1296.4209
   L 738.3370 1296.4191
@@ -2244,8 +2637,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 739.3430 1327.3609
   A 8.29 8.29 0.0 0 0 747.6475 1319.0854
   L 747.6725 1304.7254"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 413.75 1305.53
   A 0.28 0.26 -0.1 0 0 414.00 1305.29
   Q 414.32 1302.38 413.02 1299.78
@@ -2266,8 +2662,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 409.30 1301.64 408.90 1305.81
   A 0.18 0.18 0.0 0 0 409.10 1306.01
   L 413.75 1305.53"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 517.21 1327.09
   Q 518.93 1327.10 519.38 1326.96
   A 1.53 1.53 0.0 0 0 520.41 1325.83
@@ -2285,8 +2684,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 514.01 1325.82
   A 1.53 1.53 0.0 0 0 515.04 1326.95
   Q 515.49 1327.09 517.21 1327.09"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.39 1306.12
   L 629.45 1305.70
   A 0.41 0.41 0.0 0 0 629.82 1305.28
@@ -2302,8 +2704,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 618.59 1303.83 619.13 1301.73 621.06 1301.34
   C 623.66 1300.82 624.04 1303.62 624.62 1305.61
   A 0.73 0.72 -11.1 0 0 625.39 1306.12"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 377.08 1314.11
   Q 379.22 1314.11 379.25 1314.11
   A 0.73 0.73 0.0 0 1 379.87 1314.83
@@ -2331,8 +2736,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 374.29 1314.84
   A 0.73 0.73 0.0 0 1 374.91 1314.12
   Q 374.94 1314.11 377.08 1314.11"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 393.94 1297.40
   A 0.51 0.51 0.0 0 0 393.43 1296.89
   L 389.57 1296.89
@@ -2342,8 +2750,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 393.43 1327.01
   A 0.51 0.51 0.0 0 0 393.94 1326.50
   L 393.94 1297.40"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 425.66 1314.10
   Q 427.80 1314.09 427.83 1314.10
   A 0.73 0.73 0.0 0 1 428.45 1314.82
@@ -2371,8 +2782,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 422.87 1314.82
   A 0.73 0.73 0.0 0 1 423.49 1314.10
   Q 423.52 1314.10 425.66 1314.10"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 438.14 1296.90
   A 0.59 0.59 0.0 0 0 437.55 1297.49
   L 437.55 1326.46
@@ -2398,8 +2812,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 450.61 1297.49
   A 0.59 0.59 0.0 0 0 450.02 1296.90
   L 438.14 1296.90"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 454.76 1327.04
   L 458.36 1327.04
   A 0.74 0.74 0.0 0 0 459.10 1326.30
@@ -2418,8 +2835,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.43 0.43 0.0 0 0 454.04 1297.33
   L 454.04 1326.33
   A 0.72 0.71 0.0 0 0 454.76 1327.04"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.07 1297.22
   L 480.97 1326.38
   A 0.63 0.63 0.0 0 0 481.60 1327.01
@@ -2429,8 +2849,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 9.23 8.07 -89.8 0 0 488.96 1296.62
   L 481.70 1296.59
   A 0.63 0.63 0.0 0 0 481.07 1297.22"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 505.6082 1297.0812
   A 0.27 0.27 0.0 0 0 505.3373 1296.8122
   L 500.7973 1296.8280
@@ -2440,8 +2863,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 505.4427 1327.0120
   A 0.27 0.27 0.0 0 0 505.7118 1326.7410
   L 505.6082 1297.0812"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 534.14 1297.28
   A 0.45 0.45 0.0 0 0 533.69 1296.83
   L 529.45 1296.83
@@ -2451,8 +2877,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 533.69 1327.01
   A 0.45 0.45 0.0 0 0 534.14 1326.56
   L 534.14 1297.28"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.33 1297.24
   A 0.42 0.42 0.0 0 0 560.91 1296.82
   L 556.53 1296.82
@@ -2462,8 +2891,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 560.91 1327.06
   A 0.42 0.42 0.0 0 0 561.33 1326.64
   L 561.33 1297.24"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 596.82 1315.11
   L 591.35 1298.02
   A 1.68 1.67 -8.8 0 0 589.75 1296.85
@@ -2485,8 +2917,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.21 0.21 0.0 0 0 597.20 1297.09
   L 597.20 1315.05
   A 0.20 0.19 -53.8 0 1 596.82 1315.11"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 641.07 1314.11
   Q 643.22 1314.11 643.25 1314.11
   A 0.74 0.73 4.4 0 1 643.88 1314.84
@@ -2514,8 +2949,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 638.25 1314.84
   A 0.74 0.73 -4.4 0 1 638.87 1314.12
   Q 638.91 1314.11 641.07 1314.11"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.45 1320.51
   Q 661.70 1320.51 664.00 1320.46
   A 0.88 0.87 82.8 0 1 664.87 1321.14
@@ -2535,8 +2973,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 658.04 1321.20
   A 0.88 0.87 -83.8 0 1 658.90 1320.50
   Q 661.21 1320.51 661.45 1320.51"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 688.01 1327.02
   A 0.02 0.02 0.0 0 0 688.03 1327.00
   L 693.07 1304.64
@@ -2565,8 +3006,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 683.23 1327.00
   A 0.02 0.02 0.0 0 0 683.25 1327.02
   L 688.01 1327.02"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 726.48 1297.15
   A 0.32 0.32 0.0 0 0 726.16 1296.83
   L 721.40 1296.83
@@ -2576,8 +3020,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 726.16 1327.05
   A 0.32 0.32 0.0 0 0 726.48 1326.73
   L 726.48 1297.15"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 756.19 1307.58
   L 762.20 1326.39
   A 1.05 1.05 0.0 0 0 763.20 1327.11
@@ -2599,8 +3046,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.34 0.33 -90.0 0 0 756.06 1326.71
   L 756.06 1307.60
   A 0.07 0.07 0.0 0 1 756.19 1307.58"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 283.61 1264.13
   L 275.96 1263.82
   A 0.25 0.25 0.0 0 0 275.70 1264.07
@@ -2620,8 +3070,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 259.85 1281.25 268.57 1281.47
   C 279.03 1281.73 284.77 1274.66 283.84 1264.36
   A 0.25 0.24 88.6 0 0 283.61 1264.13"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.09 1268.91
   C 288.06 1277.06 293.58 1281.58 301.77 1281.62
   C 308.10 1281.65 313.72 1279.28 315.40 1272.71
@@ -2643,8 +3096,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.02 1.02 0.0 0 0 295.14 1267.16
   L 289.11 1267.78
   A 1.15 1.14 87.2 0 0 288.09 1268.91"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 220.12 1232.78
   L 219.79 1280.02
   A 0.87 0.87 0.0 0 0 220.65 1280.89
@@ -2654,8 +3110,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 16.14 14.55 -89.6 0 0 235.03 1232.01
   L 220.99 1231.91
   A 0.87 0.87 0.0 0 0 220.12 1232.78"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 334.71 1271.34
   Q 335.91 1271.35 339.57 1271.28
   A 0.56 0.56 0.0 0 1 340.12 1271.72
@@ -2675,8 +3134,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 329.31 1271.69
   A 0.56 0.56 0.0 0 1 329.86 1271.26
   Q 333.52 1271.34 334.71 1271.34"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 253.15 1297.36
   Q 253.94 1299.15 255.98 1298.89
   A 0.88 0.87 3.2 0 0 256.74 1298.22
@@ -2692,8 +3154,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 257.92 1303.24 255.01 1302.41 251.39 1300.60
   C 250.08 1299.94 249.74 1299.07 250.24 1297.66
   A 1.64 1.52 -48.7 0 1 253.15 1297.36"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 269.45 1293.94
   A 2.46 2.43 -74.8 0 0 267.34 1295.16
   L 263.91 1301.10
@@ -2717,8 +3182,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 270.81 1295.16 271.37 1294.53
   A 0.35 0.35 0.0 0 0 271.11 1293.94
   L 269.45 1293.94"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 331.76 1308.47
   L 331.65 1294.91
   A 1.06 1.06 0.0 0 0 330.62 1293.86
@@ -2732,8 +3200,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.92 0.92 0.0 0 0 336.90 1309.05
   L 332.34 1309.06
   A 0.59 0.58 89.8 0 1 331.76 1308.47"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.51 1308.46
   L 343.64 1295.01
   A 1.05 1.05 0.0 0 0 342.64 1293.95
@@ -2747,8 +3218,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.91 0.91 0.0 0 0 348.60 1309.13
   L 344.09 1309.06
   A 0.59 0.58 -89.2 0 1 343.51 1308.46"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 228.33 1302.12
   Q 230.96 1299.25 228.80 1295.85
   C 227.16 1293.28 222.33 1293.93 219.44 1294.08
@@ -2758,8 +3232,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 221.39 1312.19 227.58 1312.81 228.97 1310.02
   Q 231.16 1305.66 228.37 1303.01
   A 0.64 0.63 42.7 0 1 228.33 1302.12"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 238.10 1307.99
   Q 239.04 1308.00 239.52 1308.04
   A 0.94 0.93 85.5 0 1 240.36 1308.77
@@ -2779,8 +3256,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 235.82 1308.72
   A 0.94 0.93 -84.1 0 1 236.68 1308.00
   Q 237.16 1307.98 238.10 1307.99"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 282.91 1301.85
   A 0.64 0.64 0.0 0 0 282.27 1301.21
   L 278.48 1301.21
@@ -2806,8 +3286,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 282.27 1304.27
   A 0.64 0.64 0.0 0 0 282.91 1303.63
   L 282.91 1301.85"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 291.22 1312.21
   Q 291.87 1312.21 292.20 1312.20
   A 0.73 0.73 0.0 0 0 292.93 1311.47
@@ -2827,8 +3310,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 289.52 1311.47
   A 0.73 0.73 0.0 0 0 290.24 1312.20
   Q 290.57 1312.21 291.22 1312.21"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 299.71 1303.11
   Q 299.85 1310.99 299.86 1311.60
   A 0.81 0.80 86.5 0 0 300.75 1312.39
@@ -2844,8 +3330,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 300.42 1293.81
   A 0.81 0.80 -88.6 0 0 299.56 1294.63
   Q 299.57 1295.24 299.71 1303.11"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 319.52 1307.96
   Q 320.47 1307.96 320.94 1308.00
   A 0.94 0.93 85.1 0 1 321.79 1308.72
@@ -2865,8 +3354,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 317.26 1308.70
   A 0.94 0.93 -84.5 0 1 318.11 1307.98
   Q 318.59 1307.95 319.52 1307.96"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 228.90 1240.50
   L 228.84 1272.44
   A 0.54 0.54 0.0 0 0 229.38 1272.98
@@ -2876,8 +3368,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 7.36 6.63 -89.9 0 0 233.31 1239.97
   L 229.44 1239.96
   A 0.54 0.54 0.0 0 0 228.90 1240.50"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 334.66 1264.10
   Q 337.10 1264.10 338.62 1264.01
   A 0.27 0.27 0.0 0 0 338.87 1263.68
@@ -2887,8 +3382,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 332.77 1253.82 330.45 1263.68
   A 0.27 0.27 0.0 0 0 330.69 1264.01
   Q 332.22 1264.10 334.66 1264.10"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 366.98 1239.73
   L 366.96 1249.39
   A 0.73 0.73 0.0 0 0 367.69 1250.12
@@ -2898,8 +3396,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.83 2.56 -89.9 0 0 367.86 1239.00
   L 367.71 1239.00
   A 0.73 0.73 0.0 0 0 366.98 1239.73"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.9708 1240.5588
   A 1.61 1.61 0.0 0 0 419.3692 1238.9404
   L 419.2492 1238.9398
@@ -2909,8 +3410,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 419.3108 1250.1002
   A 1.61 1.61 0.0 0 0 420.9292 1248.4987
   L 420.9708 1240.5588"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 496.36 1246.66
   Q 496.85 1246.68 497.22 1246.61
   A 0.47 0.47 0.0 0 0 497.60 1246.09
@@ -2918,8 +3422,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 496.26 1240.93 495.18 1245.98
   A 0.47 0.47 0.0 0 0 495.52 1246.54
   Q 495.88 1246.64 496.36 1246.66"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.17 1239.83
   L 522.11 1243.49
   A 0.66 0.66 0.0 0 0 522.76 1244.16
@@ -2929,8 +3436,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.19 2.11 0.9 0 0 523.05 1239.18
   L 522.84 1239.18
   A 0.66 0.66 0.0 0 0 522.17 1239.83"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 542.35 1240.78
   A 1.74 1.74 0.0 0 0 540.61 1239.04
   L 540.47 1239.04
@@ -2940,15 +3450,21 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 540.61 1250.06
   A 1.74 1.74 0.0 0 0 542.35 1248.32
   L 542.35 1240.78"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 602.2002 1238.8413
   A 5.74 2.05 -88.8 0 0 600.0304 1244.5371
   A 5.74 2.05 -88.8 0 0 601.9598 1250.3187
   A 5.74 2.05 -88.8 0 0 604.1296 1244.6229
   A 5.74 2.05 -88.8 0 0 602.2002 1238.8413"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 612.35 1239.47
   L 612.39 1243.53
   A 0.53 0.53 0.0 0 0 612.92 1244.05
@@ -2958,8 +3474,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.82 2.38 -0.5 0 0 613.05 1238.93
   L 612.88 1238.93
   A 0.53 0.53 0.0 0 0 612.35 1239.47"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 685.7543 1240.7277
   A 1.77 1.77 0.0 0 0 683.9628 1238.9794
   L 683.8028 1238.9814
@@ -2969,8 +3488,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 684.0972 1249.9786
   A 1.77 1.77 0.0 0 0 685.8454 1248.1871
   L 685.7543 1240.7277"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.36 1240.98
   Q 712.23 1241.62 711.33 1246.36
   A 0.44 0.44 0.0 0 0 711.81 1246.88
@@ -2978,15 +3500,21 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.62 0.61 -6.2 0 0 713.68 1246.05
   L 713.12 1241.02
   A 0.39 0.38 47.7 0 0 712.36 1240.98"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 739.3103 1238.6800
   A 5.93 1.88 -89.9 0 0 737.4200 1244.6067
   A 5.93 1.88 -89.9 0 0 739.2897 1250.5400
   A 5.93 1.88 -89.9 0 0 741.1800 1244.6133
   A 5.93 1.88 -89.9 0 0 739.3103 1238.6800"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.30 1239.51
   L 429.06 1243.42
   A 0.53 0.53 0.0 0 0 429.56 1243.98
@@ -2996,8 +3524,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.87 1.76 3.5 0 0 430.36 1239.04
   L 429.86 1239.01
   A 0.53 0.53 0.0 0 0 429.30 1239.51"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 592.1592 1240.0892
   A 0.96 0.96 0.0 0 0 591.2438 1239.0866
   L 590.1849 1239.0386
@@ -3007,8 +3538,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 591.0151 1244.1214
   A 0.96 0.96 0.0 0 0 592.0177 1243.2060
   L 592.1592 1240.0892"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 650.46 1240.96
   Q 650.34 1241.60 649.51 1246.31
   A 0.44 0.43 -89.0 0 0 649.99 1246.81
@@ -3016,15 +3550,21 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.61 0.61 0.0 0 0 651.83 1245.97
   L 651.21 1240.99
   A 0.38 0.38 0.0 0 0 650.46 1240.96"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.5034 1269.2702
   A 6.68 2.02 -90.4 0 0 620.5300 1275.9641
   A 6.68 2.02 -90.4 0 0 622.5966 1282.6298
   A 6.68 2.02 -90.4 0 0 624.5700 1275.9359
   A 6.68 2.02 -90.4 0 0 622.5034 1269.2702"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 474.25 1271.15
   Q 474.10 1271.87 473.04 1277.23
   A 0.50 0.50 0.0 0 0 473.58 1277.82
@@ -3032,8 +3572,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.70 0.69 -5.8 0 0 475.70 1276.90
   L 475.11 1271.20
   A 0.44 0.43 48.1 0 0 474.25 1271.15"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.66 1277.32
   Q 549.20 1277.33 549.60 1277.24
   A 0.52 0.52 0.0 0 0 550.00 1276.65
@@ -3041,8 +3584,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 548.34 1271.03 547.34 1276.62
   A 0.52 0.52 0.0 0 0 547.73 1277.22
   Q 548.13 1277.32 548.66 1277.32"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 222.38 1297.42
   L 222.24 1300.74
   A 0.54 0.54 0.0 0 0 222.76 1301.30
@@ -3052,8 +3598,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.74 1.89 2.3 0 0 223.62 1296.93
   L 222.94 1296.90
   A 0.54 0.54 0.0 0 0 222.38 1297.42"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 222.39 1304.71
   L 222.31 1308.53
   A 0.56 0.56 0.0 0 0 222.86 1309.10
@@ -3063,8 +3612,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.26 1.98 1.2 0 0 224.20 1304.19
   L 222.96 1304.16
   A 0.56 0.56 0.0 0 0 222.39 1304.71"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 236.97 1305.30
   L 239.03 1305.32
   A 0.24 0.24 0.0 0 0 239.27 1305.09
@@ -3073,8 +3625,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 6.32 1.27 -89.3 0 0 236.73 1304.87
   L 236.73 1305.05
   A 0.24 0.24 0.0 0 0 236.97 1305.30"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 303.19 1297.59
   L 303.17 1300.83
   A 0.54 0.54 0.0 0 0 303.70 1301.37
@@ -3084,8 +3639,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.39 1.75 0.4 0 0 304.75 1297.06
   L 303.74 1297.05
   A 0.54 0.54 0.0 0 0 303.19 1297.59"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 303.23 1304.58
   L 303.23 1308.60
   A 0.58 0.58 0.0 0 0 303.81 1309.18
@@ -3095,8 +3653,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.66 2.38 0.1 0 0 304.83 1304.00
   L 303.81 1304.00
   A 0.58 0.58 0.0 0 0 303.23 1304.58"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 319.34 1305.38
   Q 319.91 1305.38 320.34 1305.29
   A 0.55 0.55 0.0 0 0 320.76 1304.66
@@ -3104,8 +3665,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 319.01 1298.71 317.94 1304.63
   A 0.55 0.55 0.0 0 0 318.35 1305.27
   Q 318.78 1305.37 319.34 1305.38"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 576.6689 1304.4169
   A 3.08 3.08 0.0 0 0 573.6051 1301.3208
   L 573.3451 1301.3195
@@ -3115,15 +3679,21 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 573.4949 1322.3605
   A 3.08 3.08 0.0 0 0 576.5910 1319.2967
   L 576.6689 1304.4169"
-/>
-<path stroke="#7e5a09" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7e5a09"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 735.16 1311.80
   C 735.15 1315.20 734.79 1322.49 738.72 1322.50
   C 742.66 1322.51 742.34 1315.23 742.35 1311.82
   C 742.36 1308.42 742.73 1301.13 738.79 1301.12
   C 734.85 1301.11 735.17 1308.40 735.16 1311.80"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 459.16 1302.14
   L 459.12 1309.05
   A 0.76 0.76 0.0 0 0 459.88 1309.82
@@ -3133,8 +3703,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 3.75 3.63 -89.7 0 0 461.25 1301.39
   L 459.92 1301.38
   A 0.76 0.76 0.0 0 0 459.16 1302.14"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.09 1302.21
   L 486.05 1321.31
   A 0.78 0.78 0.0 0 0 486.83 1322.10
@@ -3144,8 +3717,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 4.80 4.40 -89.9 0 0 487.53 1301.44
   L 486.87 1301.44
   A 0.78 0.78 0.0 0 0 486.09 1302.21"
-/>
-<path stroke="#8b6e08" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b6e08"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.29 1315.72
   Q 661.89 1315.74 662.75 1315.84
   A 0.44 0.44 0.0 0 0 663.24 1315.34
@@ -3153,8 +3729,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 661.44 1304.61 659.37 1315.22
   A 0.44 0.44 0.0 0 0 659.82 1315.74
   Q 660.69 1315.70 661.29 1315.72"
-/>
-<path stroke="#7e5a09" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7e5a09"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 707.16 1302.26
   L 707.16 1310.34
   A 0.77 0.77 0.0 0 0 707.93 1311.11
@@ -3164,9 +3743,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 3.98 3.72 90.0 0 0 709.20 1301.49
   L 707.93 1301.49
   A 0.77 0.77 0.0 0 0 707.16 1302.26"
-/>
-</g>
-<path fill="#18190f" d="
+        />
+      </g>
+      <path
+        fill="#18190f"
+        d="
   M 380.44 251.94
   Q 385.60 261.40 391.09 269.90
   Q 402.94 288.23 412.05 301.50
@@ -4087,8 +4668,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.51 0.51 0.0 0 0 793.11 1349.04
   L 793.11 1210.74
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 559.04 110.05
   Q 563.05 112.27 565.31 106.55
   Q 567.95 99.84 569.66 95.10
@@ -4154,8 +4737,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.44 1.36 -73.6 0 0 646.65 240.22
   L 645.84 239.23
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 412.30 58.93
   A 0.31 0.31 0.0 0 1 412.50 58.46
   C 424.24 56.07 436.94 56.45 447.92 62.33
@@ -4166,8 +4751,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.66 0.66 0.0 0 1 420.95 101.05
   C 422.14 85.96 420.16 71.79 412.30 58.93
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 559.04 110.05
   Q 559.04 99.73 562.84 91.01
   Q 564.86 86.38 571.41 75.87
@@ -4180,8 +4767,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 567.95 99.84 565.31 106.55
   Q 563.05 112.27 559.04 110.05
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 375.42 103.48
   A 0.44 0.43 -5.7 0 1 374.85 103.02
   Q 378.48 73.71 404.97 61.64
@@ -4191,8 +4780,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 398.89 99.65 382.76 101.81
   Q 378.95 102.33 375.42 103.48
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 479.12 117.49
   A 0.46 0.46 0.0 0 1 478.49 117.92
   Q 467.77 113.40 459.28 110.20
@@ -4214,8 +4805,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 460.47 98.94 456.18 107.25
   A 0.45 0.45 0.0 0 0 456.42 107.88
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 456.42 107.88
   A 0.45 0.45 0.0 0 1 456.18 107.25
   Q 460.47 98.94 464.25 90.77
@@ -4226,8 +4819,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.77 0.76 9.0 0 1 477.21 115.96
   L 456.42 107.88
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 413.27 107.48
   Q 410.46 127.80 397.50 142.71
   Q 394.27 146.43 390.44 149.03
@@ -4237,8 +4832,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 393.33 105.90 413.11 107.29
   A 0.17 0.17 0.0 0 1 413.27 107.48
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 430.16 109.81
   A 0.80 0.80 0.0 0 1 430.87 110.66
   Q 430.02 123.55 431.49 134.99
@@ -4265,8 +4862,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 403.95 148.92 403.91 148.89
   A 0.90 0.89 -46.3 0 0 402.75 148.92
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 437.88 111.80
   Q 457.79 115.73 477.02 124.81
   A 1.09 1.09 0.0 0 1 477.61 126.05
@@ -4290,8 +4889,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 454.68 117.34 452.70 116.98
   A 0.51 0.51 0.0 0 0 452.09 117.50
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 452.70 116.98
   Q 454.68 117.34 455.95 117.75
   Q 465.25 120.73 475.23 125.28
@@ -4306,8 +4907,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 452.10 118.08 452.09 117.50
   A 0.51 0.51 0.0 0 1 452.70 116.98
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 403.91 148.89
   Q 403.95 148.92 404.04 148.99
   A 0.78 0.76 64.1 0 0 404.57 149.18
@@ -4321,8 +4924,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 402.75 148.92
   A 0.90 0.89 -46.3 0 1 403.91 148.89
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 618.95 233.57
   Q 615.55 230.90 614.05 227.84
   Q 607.67 214.80 605.69 210.34
@@ -4335,8 +4940,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 624.41 229.39 621.17 233.33
   A 1.60 1.60 0.0 0 1 618.95 233.57
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 336.36 239.41
   L 339.68 243.51
   A 1.04 1.03 53.5 0 0 341.07 243.72
@@ -4403,8 +5010,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 401.50 353.25 404.26 342.47
   A 0.41 0.41 0.0 0 0 403.56 342.10
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 407.92 175.69
   A 0.58 0.53 -21.3 0 1 408.41 174.70
   Q 416.49 176.86 424.26 177.79
@@ -4425,8 +5034,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 406.37 178.11 407.92 176.16
   Q 408.18 175.83 407.92 175.69
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 336.36 239.41
   Q 338.19 233.58 341.97 228.43
   Q 345.33 223.86 348.99 219.49
@@ -4442,8 +5053,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.04 1.03 53.5 0 1 339.68 243.51
   L 336.36 239.41
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 471.01 238.26
   Q 472.16 229.31 479.71 224.18
   C 482.47 222.30 486.97 219.91 490.47 219.22
@@ -4457,8 +5070,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 493.07 231.07 482.67 232.38 471.57 238.64
   A 0.38 0.38 0.0 0 1 471.01 238.26
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 481.76 318.46
   Q 492.19 322.21 503.75 322.75
   C 507.86 322.94 512.76 318.74 515.59 316.31
@@ -4554,8 +5169,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 517.86 287.12 516.14 288.56 512.53 290.93
   Q 503.93 296.59 499.49 306.39
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 645.84 239.23
   L 646.65 240.22
   A 1.44 1.36 -73.6 0 1 646.93 240.77
@@ -4574,8 +5191,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 644.04 246.07 645.25 239.38
   A 0.33 0.33 0.0 0 1 645.84 239.23
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 484.66 268.74
   A 0.62 0.61 -70.8 0 0 485.04 269.53
   Q 487.42 270.35 491.06 269.88
@@ -4597,8 +5216,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.03 2.03 0.0 0 1 487.90 259.54
   L 484.66 268.74
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 481.92 287.68
   A 0.63 0.62 -5.0 0 1 482.54 286.95
   L 500.48 286.95
@@ -4606,8 +5227,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 494.75 296.69 484.61 291.16
   Q 482.31 289.91 481.92 287.68
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 499.49 306.39
   Q 503.93 296.59 512.53 290.93
   C 516.14 288.56 517.86 287.12 521.72 288.23
@@ -4641,8 +5264,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 510.74 304.31 500.03 307.03
   A 0.47 0.46 5.0 0 1 499.49 306.39
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 578.15 357.04
   Q 579.06 355.26 579.50 357.18
   A 2.34 2.23 -70.1 0 0 579.86 358.00
@@ -4675,8 +5300,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 2.43 2.41 -69.0 0 1 604.00 379.12
   C 592.46 376.69 583.29 367.51 578.15 357.04
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 448.06 345.75
   L 452.37 351.11
   A 1.13 1.09 -58.3 0 1 452.58 352.07
@@ -4690,8 +5317,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 424.06 323.01 427.49 327.41 435.11 336.34
   C 438.24 340.01 442.91 344.43 448.06 345.75
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 448.06 345.75
   L 453.81 346.34
   A 1.25 1.24 -11.0 0 1 454.77 346.98
@@ -4821,8 +5450,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 465.28 485.19 465.41 477.32
   A 0.36 0.36 0.0 0 0 464.85 477.02
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 463.67 345.94
   A 1.53 1.52 -26.2 0 1 464.39 343.83
   L 466.65 342.80
@@ -4838,8 +5469,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 497.28 379.16 491.04 376.50 485.82 372.38
   Q 471.94 361.44 463.67 345.94
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 403.56 342.10
   A 0.41 0.41 0.0 0 1 404.26 342.47
   Q 401.50 353.25 394.57 363.02
@@ -4851,8 +5484,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 393.26 343.14 401.99 342.66
   Q 403.12 342.60 403.56 342.10
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 440.02 392.97
   A 2.01 2.00 54.6 0 1 443.27 393.52
   Q 444.60 396.35 444.86 400.08
@@ -4865,8 +5500,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 430.41 418.52 434.06 406.65 437.31 397.56
   Q 438.32 394.71 440.02 392.97
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 536.49 393.21
   A 0.46 0.46 0.0 0 1 537.19 393.78
   C 527.40 410.19 515.30 427.19 496.46 433.17
@@ -4881,8 +5518,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 502.37 417.30 508.29 413.90
   Q 523.13 405.35 536.49 393.21
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 560.64 405.40
   Q 559.53 414.31 558.83 425.36
   Q 558.28 434.14 555.29 445.59
@@ -4894,8 +5533,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 557.54 412.29 558.39 408.15 560.03 405.20
   A 0.33 0.33 0.0 0 1 560.64 405.40
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 464.85 477.02
   A 0.36 0.36 0.0 0 1 465.41 477.32
   Q 465.28 485.19 460.91 491.38
@@ -4906,8 +5547,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 454.07 486.16 458.62 482.12
   Q 462.74 478.45 464.85 477.02
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 436.04 541.78
   A 0.35 0.35 0.0 0 1 435.61 541.46
   Q 435.47 538.45 435.16 535.86
@@ -4921,8 +5564,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 481.96 534.90 451.75 538.76
   Q 444.13 539.73 436.04 541.78
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 532.44 591.71
   A 0.44 0.44 0.0 0 0 531.84 592.29
   Q 534.04 597.26 538.03 605.07
@@ -5071,8 +5716,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 550.60 695.02 557.93 698.08 565.20 699.14
   Q 566.33 699.30 567.02 698.88
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 458.94 557.95
   Q 459.06 571.88 458.78 581.99
   Q 458.19 603.19 445.61 619.07
@@ -5083,8 +5730,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 456.72 566.57 457.12 561.81 458.35 557.86
   A 0.30 0.30 0.0 0 1 458.94 557.95
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 435.55 559.36
   Q 439.16 561.24 438.67 566.25
   C 437.35 579.79 432.83 593.07 428.32 605.99
@@ -5102,8 +5751,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 431.79 560.80 434.70 559.35
   A 0.95 0.94 -44.0 0 1 435.55 559.36
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 520.79 623.37
   A 0.50 0.49 -8.9 0 1 520.33 623.99
   C 514.30 624.24 507.18 621.22 502.61 617.93
@@ -5112,8 +5763,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 494.84 597.68 505.44 607.12 518.48 619.75
   Q 520.26 621.47 520.79 623.37
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 410.97 692.53
   A 1.07 1.07 0.0 0 1 409.50 692.39
   Q 407.69 690.33 407.07 688.46
@@ -5129,8 +5782,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 419.19 669.71 417.18 680.23
   C 416.19 685.39 414.77 689.50 410.97 692.53
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 567.02 698.88
   Q 566.33 699.30 565.20 699.14
   C 557.93 698.08 550.60 695.02 544.64 691.37
@@ -5141,8 +5796,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 559.21 691.80 567.06 698.30
   A 0.36 0.36 0.0 0 1 567.02 698.88
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 583.81 726.14
   A 0.77 0.77 0.0 0 1 582.94 726.90
   Q 576.95 726.06 569.75 726.14
@@ -5157,8 +5814,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.26 1.25 17.1 0 1 583.84 718.08
   L 583.81 726.14
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 421.73 738.65
   Q 424.27 738.11 427.79 738.14
   Q 439.78 738.21 451.71 742.06
@@ -5235,8 +5894,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 425.69 789.34 426.30 793.45
   C 426.98 798.01 428.37 800.75 430.57 804.29
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 565.26 817.47
   Q 572.72 826.82 574.29 838.93
   Q 576.20 853.64 575.62 862.25
@@ -5291,8 +5952,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 552.60 869.31 551.97 859.76
   Q 551.77 856.79 550.27 854.30
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 452.81 803.80
   L 452.00 802.65
   Q 451.55 801.24 451.65 800.75
@@ -5329,8 +5992,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.35 0.35 0.0 0 0 453.12 802.66
   Q 452.82 803.03 452.81 803.80
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 574.23 798.03
   L 573.89 797.95
   A 0.31 0.31 0.0 0 1 573.66 797.58
@@ -5342,8 +6007,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 577.54 789.49 574.72 797.76
   A 0.43 0.42 15.5 0 1 574.23 798.03
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 430.57 804.29
   C 428.37 800.75 426.98 798.01 426.30 793.45
   Q 425.69 789.34 424.83 785.93
@@ -5356,8 +6023,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 435.88 803.79 432.81 805.03
   A 1.83 1.82 63.2 0 1 430.57 804.29
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 554.00 809.83
   A 0.48 0.48 0.0 0 1 553.20 809.77
   L 548.54 801.25
@@ -5369,8 +6038,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 557.08 793.77 556.03 804.49
   Q 555.73 807.55 554.00 809.83
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 452.00 802.65
   L 452.81 803.80
   C 453.29 810.35 448.91 816.64 444.12 821.03
@@ -5383,8 +6054,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 446.53 808.78 449.20 805.69
   Q 451.15 803.44 452.00 802.65
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 550.27 854.30
   Q 551.77 856.79 551.97 859.76
   Q 552.60 869.31 550.63 879.38
@@ -5395,8 +6068,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 544.07 859.66 544.74 856.12 548.51 853.86
   A 1.29 1.29 0.0 0 1 550.27 854.30
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 446.48 927.64
   L 445.47 936.86
   A 2.02 2.01 86.8 0 1 443.92 938.60
@@ -5408,8 +6083,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 432.31 930.35 439.32 928.52 445.89 927.11
   A 0.49 0.49 0.0 0 1 446.48 927.64
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 543.83 927.62
   A 0.16 0.16 0.0 0 1 544.03 927.47
   Q 558.55 931.54 573.00 929.47
@@ -5420,8 +6097,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.43 0.42 -81.8 0 1 543.83 937.10
   L 543.83 927.62
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 443.96 947.28
   L 443.23 965.07
   A 1.18 1.17 6.3 0 1 441.84 966.18
@@ -5447,8 +6126,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 434.36 950.62 434.59 950.66
   A 0.29 0.29 0.0 0 1 434.73 951.15
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 544.56 946.32
   Q 555.99 949.34 568.21 947.91
   A 0.62 0.62 0.0 0 1 568.90 948.49
@@ -5460,8 +6141,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 543.85 946.85
   A 0.57 0.57 0.0 0 1 544.56 946.32
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 434.59 950.66
   Q 434.36 950.62 434.24 950.32
   A 0.57 0.57 0.0 0 1 434.73 949.55
@@ -5477,8 +6160,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 434.40 951.43 434.73 951.15
   A 0.29 0.29 0.0 0 0 434.59 950.66
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 385.30 1056.14
   Q 385.89 1055.05 386.56 1054.48
   A 1.16 1.15 18.7 0 1 387.09 1054.22
@@ -5518,8 +6203,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 417.76 1059.83 409.27 1060.89
   Q 395.79 1062.57 385.30 1056.14
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 552.71 998.34
   A 2.06 2.05 -3.2 0 0 555.21 1000.57
   L 567.72 997.75
@@ -5555,8 +6242,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 4.21 4.20 86.8 0 0 552.86 996.98
   L 552.71 998.34
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 406.12 1032.73
   Q 402.97 1041.28 396.99 1047.42
   A 3.24 3.10 84.3 0 0 396.52 1048.02
@@ -5569,8 +6258,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 386.12 1044.73 392.73 1029.44 399.03 1030.14
   Q 401.09 1030.37 406.12 1032.73
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 376.72 1069.52
   Q 378.15 1069.12 381.99 1068.55
   Q 383.58 1068.31 387.19 1069.13
@@ -5591,8 +6282,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 397.53 1076.17 376.71 1069.84
   A 0.17 0.17 0.0 0 1 376.72 1069.52
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 400.14 1084.57
   Q 401.17 1087.07 400.98 1088.50
   C 400.06 1095.32 398.26 1102.50 397.41 1109.74
@@ -5603,8 +6296,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.11 0.10 17.5 0 1 370.32 1077.22
   Q 385.12 1082.02 400.14 1084.57
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 436.70 1089.39
   Q 434.32 1104.95 433.92 1120.30
   Q 415.78 1118.93 396.39 1115.17
@@ -5613,8 +6308,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 401.17 1087.07 400.14 1084.57
   Q 418.52 1087.95 436.70 1089.39
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 436.70 1089.39
   Q 466.59 1091.73 477.00 1091.98
   Q 507.51 1092.70 528.00 1091.81
@@ -5627,8 +6324,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 462.04 1122.41 433.92 1120.30
   Q 434.32 1104.95 436.70 1089.39
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 428.28 1163.19
   Q 428.42 1155.57 429.69 1148.23
   Q 430.43 1143.92 431.16 1138.56
@@ -5655,8 +6354,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 436.38 1163.95 432.61 1163.50
   Q 430.56 1163.26 428.28 1163.19
   Z"
-/>
-<path fill="#ffe445" d="
+      />
+      <path
+        fill="#ffe445"
+        d="
   M 433.07 1128.98
   Q 431.83 1133.69 431.16 1138.56
   Q 430.43 1143.92 429.69 1148.23
@@ -5683,8 +6384,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 358.47 1115.95 357.30 1116.54
   A 0.71 0.70 85.6 0 0 356.97 1116.93
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 357.30 1116.54
   Q 358.47 1115.95 360.33 1116.64
   Q 375.66 1122.31 391.93 1124.79
@@ -5698,8 +6401,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 349.22 1138.70 356.97 1116.93
   A 0.71 0.70 85.6 0 1 357.30 1116.54
   Z"
-/>
-<path fill="#383524" d="
+      />
+      <path
+        fill="#383524"
+        d="
   M 174.78 1191.84
   C 174.48 1183.54 180.51 1184.08 187.26 1184.12
   Q 250.66 1184.57 325.00 1184.31
@@ -5723,8 +6428,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 191.79 1193.83 175.94 1193.01
   A 1.21 1.21 0.0 0 1 174.78 1191.84
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 793.11 1349.04
   A 0.51 0.51 0.0 0 1 792.60 1349.55
   L 200.60 1349.55
@@ -7071,8 +7778,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 756.06 1307.60
   A 0.07 0.07 0.0 0 1 756.19 1307.58
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 716.25 1313.33
   L 717.99 1310.25
   Q 721.11 1315.26 719.66 1324.00
@@ -7166,8 +7875,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.92 0.92 0.0 0 1 709.55 1317.20
   Q 714.04 1316.89 716.25 1313.33
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 356.01 1327.22
   A 0.26 0.26 0.0 0 1 355.75 1327.48
   L 211.11 1327.48
@@ -7430,8 +8141,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.94 0.93 -84.5 0 1 318.11 1307.98
   Q 318.59 1307.95 319.52 1307.96
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 283.84 1264.36
   C 284.77 1274.66 279.03 1281.73 268.57 1281.47
   Q 259.85 1281.25 256.36 1271.82
@@ -7452,8 +8165,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 283.61 1264.13
   A 0.25 0.24 88.6 0 1 283.84 1264.36
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 289.11 1267.78
   L 295.14 1267.16
   A 1.02 1.02 0.0 0 1 296.21 1267.86
@@ -7476,8 +8191,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 293.58 1281.58 288.06 1277.06 288.09 1268.91
   A 1.15 1.14 87.2 0 1 289.11 1267.78
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 220.12 1232.78
   A 0.87 0.87 0.0 0 1 220.99 1231.91
   L 235.03 1232.01
@@ -7498,8 +8215,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 229.44 1239.96
   A 0.54 0.54 0.0 0 0 228.90 1240.50
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 334.82 1231.96
   Q 337.33 1231.97 339.76 1232.18
   A 0.61 0.60 85.8 0 1 340.29 1232.65
@@ -7530,8 +8249,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.27 0.27 0.0 0 0 330.69 1264.01
   Q 332.22 1264.10 334.66 1264.10
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 364.04 1236.80
   A 0.63 0.63 0.0 0 1 364.67 1236.17
   L 368.28 1236.16
@@ -7552,8 +8273,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 367.71 1239.00
   A 0.73 0.73 0.0 0 0 366.98 1239.73
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 379.28 1243.10
   L 382.09 1242.81
   A 0.51 0.50 -12.4 0 1 382.62 1243.14
@@ -7578,8 +8301,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 378.49 1242.38
   A 0.72 0.72 0.0 0 0 379.28 1243.10
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 389.76 1246.00
   L 391.76 1237.12
   A 1.30 1.30 0.0 0 1 392.75 1236.13
@@ -7595,8 +8320,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 388.90 1245.48 389.43 1246.09
   A 0.19 0.19 0.0 0 0 389.76 1246.00
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 409.83 1250.11
   L 412.11 1249.88
   A 1.37 1.37 0.0 0 1 413.61 1251.10
@@ -7611,8 +8338,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 408.99 1249.35
   A 0.76 0.76 0.0 0 0 409.83 1250.11
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 423.8871 1248.6021
   A 4.28 4.28 0.0 0 1 419.6146 1252.8895
   L 419.0746 1252.8905
@@ -7633,9 +8362,19 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.61 1.61 0.0 0 0 420.9292 1248.4987
   L 420.9708 1240.5588
   Z"
-/>
-<rect fill="#18190f" x="-1.56" y="-8.45" transform="translate(438.48,1244.56) rotate(0.1)" width="3.12" height="16.90" rx="0.67"/>
-<path fill="#18190f" d="
+      />
+      <rect
+        fill="#18190f"
+        x="-1.56"
+        y="-8.45"
+        transform="translate(438.48,1244.56) rotate(0.1)"
+        width="3.12"
+        height="16.90"
+        rx="0.67"
+      />
+      <path
+        fill="#18190f"
+        d="
   M 444.41 1241.28
   L 445.50 1251.82
   A 0.98 0.98 0.0 0 1 444.63 1252.89
@@ -7658,8 +8397,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 444.88 1241.18
   A 0.24 0.24 0.0 0 0 444.41 1241.28
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 463.10 1243.94
   A 0.52 0.52 0.0 0 1 463.60 1244.48
   L 463.34 1250.97
@@ -7678,8 +8419,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.02 1.02 0.0 0 1 459.51 1243.79
   L 463.10 1243.94
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 472.89 1244.53
   Q 472.88 1247.35 473.05 1248.87
   A 1.37 1.34 51.8 0 0 475.67 1249.21
@@ -7694,8 +8437,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.37 1.34 -51.4 0 0 473.09 1240.18
   Q 472.90 1241.71 472.89 1244.53
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 484.99 1243.11
   Q 485.73 1243.11 486.02 1243.10
   A 0.71 0.70 -1.4 0 0 486.69 1242.40
@@ -7724,8 +8469,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.71 0.70 2.2 0 0 483.96 1243.09
   Q 484.25 1243.10 484.99 1243.11
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 500.88 1253.06
   L 499.70 1253.01
   A 1.10 1.10 0.0 0 1 498.66 1252.14
@@ -7752,8 +8499,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.47 0.47 0.0 0 0 495.52 1246.54
   Q 495.88 1246.64 496.36 1246.66
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 506.08 1241.06
   L 506.08 1252.45
   A 0.64 0.64 0.0 0 1 505.44 1253.09
@@ -7781,8 +8530,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 506.17 1241.05
   A 0.05 0.05 0.0 0 0 506.08 1241.06
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 522.10 1247.03
   L 522.10 1252.06
   A 1.09 1.09 0.0 0 1 521.01 1253.15
@@ -7805,9 +8556,19 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 522.84 1239.18
   A 0.66 0.66 0.0 0 0 522.17 1239.83
   Z"
-/>
-<rect fill="#18190f" x="-1.56" y="-8.44" transform="translate(531.63,1244.54) rotate(-0.1)" width="3.12" height="16.88" rx="0.66"/>
-<path fill="#18190f" d="
+      />
+      <rect
+        fill="#18190f"
+        x="-1.56"
+        y="-8.44"
+        transform="translate(531.63,1244.54) rotate(-0.1)"
+        width="3.12"
+        height="16.88"
+        rx="0.66"
+      />
+      <path
+        fill="#18190f"
+        d="
   M 545.4831 1248.4495
   A 4.58 4.58 0.0 0 1 540.8475 1252.9732
   L 540.2275 1252.9656
@@ -7828,8 +8589,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.74 1.74 0.0 0 0 542.35 1248.32
   L 542.35 1240.78
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 554.01 1244.23
   Q 554.81 1246.64 555.05 1247.01
   A 0.19 0.19 0.0 0 0 555.41 1246.90
@@ -7854,8 +8617,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.96 0.96 0.0 0 1 551.59 1236.96
   Q 552.86 1240.75 554.01 1244.23
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 560.23 1248.16
   A 0.72 0.72 0.0 0 1 561.43 1247.83
   L 563.39 1249.80
@@ -7874,8 +8639,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 570.52 1245.96 569.54 1253.82 563.51 1252.94
   Q 559.16 1252.31 560.23 1248.16
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 579.03 1245.95
   C 576.01 1244.28 574.85 1242.30 575.79 1238.70
   A 2.30 2.28 -16.1 0 1 576.35 1237.70
@@ -7892,8 +8659,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.47 1.43 -49.6 0 0 580.93 1249.51
   C 582.15 1247.81 580.56 1246.79 579.03 1245.95
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 606.8636 1248.4593
   A 4.59 4.59 0.0 0 1 602.2178 1252.9929
   L 601.6379 1252.9858
@@ -7910,8 +8679,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 5.74 2.05 -88.8 0 0 604.1296 1244.6229
   A 5.74 2.05 -88.8 0 0 602.2002 1238.8413
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 618.76 1252.17
   A 0.75 0.75 0.0 0 1 617.97 1253.14
   L 617.43 1253.08
@@ -7940,8 +8711,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 612.88 1238.93
   A 0.53 0.53 0.0 0 0 612.35 1239.47
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 633.40 1249.25
   A 1.53 1.49 44.0 0 0 636.30 1249.23
   C 637.28 1245.40 631.73 1246.13 630.85 1242.60
@@ -7959,8 +8732,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.70 0.69 -62.6 0 1 632.30 1247.87
   Q 633.12 1248.36 633.40 1249.25
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 657.99 1248.29
   A 0.72 0.72 0.0 0 1 659.19 1247.95
   L 661.17 1249.89
@@ -7979,8 +8754,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 668.25 1245.97 667.37 1253.83 661.33 1253.03
   Q 656.98 1252.45 657.99 1248.29
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 668.53 1248.29
   A 0.72 0.71 -60.9 0 1 669.73 1247.94
   L 671.71 1249.88
@@ -7999,8 +8776,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 678.77 1245.96 677.89 1253.81 671.86 1253.01
   Q 667.52 1252.44 668.53 1248.29
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 688.8633 1248.3286
   A 4.62 4.62 0.0 0 1 684.2353 1252.9405
   L 683.6153 1252.9394
@@ -8021,8 +8800,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.77 1.77 0.0 0 0 685.8454 1248.1871
   L 685.7543 1240.7277
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 693.88 1244.54
   C 693.88 1246.33 693.86 1248.80 694.64 1249.66
   A 1.47 1.46 38.3 0 0 697.01 1249.39
@@ -8037,9 +8818,19 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.47 1.46 -38.5 0 0 694.63 1239.43
   C 693.85 1240.29 693.87 1242.76 693.88 1244.54
   Z"
-/>
-<rect fill="#18190f" x="-1.61" y="-8.43" transform="translate(703.81,1244.61) rotate(0.3)" width="3.22" height="16.86" rx="0.59"/>
-<path fill="#18190f" d="
+      />
+      <rect
+        fill="#18190f"
+        x="-1.61"
+        y="-8.43"
+        transform="translate(703.81,1244.61) rotate(0.3)"
+        width="3.22"
+        height="16.86"
+        rx="0.59"
+      />
+      <path
+        fill="#18190f"
+        d="
   M 712.86 1236.18
   Q 713.66 1236.19 714.19 1236.41
   A 0.91 0.89 5.5 0 1 714.72 1237.04
@@ -8068,8 +8859,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 713.12 1241.02
   A 0.39 0.38 47.7 0 0 712.36 1240.98
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 744.1394 1248.3087
   A 4.57 4.57 0.0 0 1 739.6175 1252.9263
   L 738.9976 1252.9328
@@ -8086,8 +8879,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 5.93 1.88 -89.9 0 0 741.1800 1244.6133
   A 5.93 1.88 -89.9 0 0 739.3103 1238.6800
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 748.40 1241.44
   L 749.46 1251.74
   A 1.11 1.11 0.0 0 1 748.35 1252.96
@@ -8109,8 +8904,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 749.03 1241.31
   A 0.32 0.32 0.0 0 0 748.40 1241.44
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 403.30 1244.56
   Q 403.30 1244.93 403.29 1245.11
   A 0.72 0.72 0.0 0 1 402.57 1245.79
@@ -8139,8 +8936,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.72 0.72 0.0 0 1 403.28 1244.01
   Q 403.30 1244.20 403.30 1244.56
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 429.72 1246.31
   A 0.57 0.57 0.0 0 0 429.07 1246.89
   L 429.16 1251.87
@@ -8163,8 +8962,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 429.86 1239.01
   A 0.53 0.53 0.0 0 0 429.30 1239.51
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 589.83 1246.39
   A 0.57 0.57 0.0 0 0 589.16 1246.96
   L 589.20 1251.96
@@ -8187,8 +8988,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.96 0.96 0.0 0 0 592.0177 1243.2060
   L 592.1592 1240.0892
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 622.59 1239.35
   L 620.85 1239.35
   A 0.86 0.85 90.0 0 1 620.00 1238.49
@@ -8205,8 +9008,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 623.10 1239.86
   A 0.51 0.51 0.0 0 0 622.59 1239.35
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 650.82 1248.97
   Q 650.70 1248.97 649.70 1248.96
   A 0.94 0.94 0.0 0 0 648.78 1249.66
@@ -8235,8 +9040,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 651.21 1240.99
   A 0.38 0.38 0.0 0 0 650.46 1240.96
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 722.45 1236.21
   Q 724.53 1236.14 726.29 1236.32
   A 0.78 0.77 -87.4 0 1 726.99 1237.09
@@ -8257,9 +9064,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.78 0.77 86.5 0 1 718.60 1236.37
   Q 720.37 1236.17 722.45 1236.21
   Z"
-/>
-<rect fill="#18190f" x="728.76" y="1236.25" width="3.06" height="16.76" rx="0.80"/>
-<path fill="#fec200" d="
+      />
+      <rect fill="#18190f" x="728.76" y="1236.25" width="3.06" height="16.76" rx="0.80" />
+      <path
+        fill="#fec200"
+        d="
   M 366.98 1239.73
   A 0.73 0.73 0.0 0 1 367.71 1239.00
   L 367.86 1239.00
@@ -8270,9 +9079,19 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.73 0.73 0.0 0 1 366.96 1249.39
   L 366.98 1239.73
   Z"
-/>
-<rect fill="#fec200" x="-1.67" y="-5.58" transform="translate(419.28,1244.52) rotate(0.3)" width="3.34" height="11.16" rx="1.61"/>
-<path fill="#fec200" d="
+      />
+      <rect
+        fill="#fec200"
+        x="-1.67"
+        y="-5.58"
+        transform="translate(419.28,1244.52) rotate(0.3)"
+        width="3.34"
+        height="11.16"
+        rx="1.61"
+      />
+      <path
+        fill="#fec200"
+        d="
   M 429.30 1239.51
   A 0.53 0.53 0.0 0 1 429.86 1239.01
   L 430.36 1239.04
@@ -8283,8 +9102,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.53 0.53 0.0 0 1 429.06 1243.42
   L 429.30 1239.51
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 522.17 1239.83
   A 0.66 0.66 0.0 0 1 522.84 1239.18
   L 523.05 1239.18
@@ -8295,11 +9116,28 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.66 0.66 0.0 0 1 522.11 1243.49
   L 522.17 1239.83
   Z"
-/>
-<rect fill="#fec200" x="538.73" y="1239.04" width="3.62" height="11.02" rx="1.74"/>
-<rect fill="#fec200" x="-1.49" y="-2.52" transform="translate(590.60,1241.58) rotate(2.6)" width="2.98" height="5.04" rx="0.96"/>
-<ellipse fill="#fec200" cx="0.00" cy="0.00" transform="translate(602.08,1244.58) rotate(-88.8)" rx="5.74" ry="2.05"/>
-<path fill="#fec200" d="
+      />
+      <rect fill="#fec200" x="538.73" y="1239.04" width="3.62" height="11.02" rx="1.74" />
+      <rect
+        fill="#fec200"
+        x="-1.49"
+        y="-2.52"
+        transform="translate(590.60,1241.58) rotate(2.6)"
+        width="2.98"
+        height="5.04"
+        rx="0.96"
+      />
+      <ellipse
+        fill="#fec200"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(602.08,1244.58) rotate(-88.8)"
+        rx="5.74"
+        ry="2.05"
+      />
+      <path
+        fill="#fec200"
+        d="
   M 612.35 1239.47
   A 0.53 0.53 0.0 0 1 612.88 1238.93
   L 613.05 1238.93
@@ -8310,10 +9148,27 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.53 0.53 0.0 0 1 612.39 1243.53
   L 612.35 1239.47
   Z"
-/>
-<rect fill="#fec200" x="-1.85" y="-5.50" transform="translate(683.95,1244.48) rotate(-0.7)" width="3.70" height="11.00" rx="1.77"/>
-<ellipse fill="#fec200" cx="0.00" cy="0.00" transform="translate(739.30,1244.61) rotate(-89.9)" rx="5.93" ry="1.88"/>
-<path fill="#18190f" d="
+      />
+      <rect
+        fill="#fec200"
+        x="-1.85"
+        y="-5.50"
+        transform="translate(683.95,1244.48) rotate(-0.7)"
+        width="3.70"
+        height="11.00"
+        rx="1.77"
+      />
+      <ellipse
+        fill="#fec200"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(739.30,1244.61) rotate(-89.9)"
+        rx="5.93"
+        ry="1.88"
+      />
+      <path
+        fill="#18190f"
+        d="
   M 228.90 1240.50
   A 0.54 0.54 0.0 0 1 229.44 1239.96
   L 233.31 1239.97
@@ -8324,8 +9179,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.54 0.54 0.0 0 1 228.84 1272.44
   L 228.90 1240.50
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 650.46 1240.96
   A 0.38 0.38 0.0 0 1 651.21 1240.99
   L 651.83 1245.97
@@ -8334,8 +9191,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.44 0.43 -89.0 0 1 649.51 1246.31
   Q 650.34 1241.60 650.46 1240.96
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 712.36 1240.98
   A 0.39 0.38 47.7 0 1 713.12 1241.02
   L 713.68 1246.05
@@ -8344,8 +9203,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.44 0.44 0.0 0 1 711.33 1246.36
   Q 712.23 1241.62 712.36 1240.98
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 496.36 1246.66
   Q 495.88 1246.64 495.52 1246.54
   A 0.47 0.47 0.0 0 1 495.18 1245.98
@@ -8354,8 +9215,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.47 0.47 0.0 0 1 497.22 1246.61
   Q 496.85 1246.68 496.36 1246.66
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 334.65 1243.88
   Q 334.97 1243.88 335.07 1244.49
   Q 336.54 1253.82 338.87 1263.68
@@ -8366,8 +9229,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 332.77 1253.82 334.23 1244.49
   Q 334.32 1243.88 334.65 1243.88
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 506.88 1282.96
   L 506.88 1284.68
   A 0.73 0.73 0.0 0 1 506.15 1285.41
@@ -8382,8 +9247,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 506.15 1282.23
   A 0.73 0.73 0.0 0 1 506.88 1282.96
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 569.08 1275.35
   L 569.08 1284.66
   A 0.58 0.57 -3.4 0 1 568.57 1285.23
@@ -8409,8 +9276,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 568.44 1274.78
   A 0.58 0.57 -3.1 0 1 569.08 1275.35
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 608.31 1281.70
   A 0.21 0.21 0.0 0 0 608.45 1282.07
   L 614.16 1282.07
@@ -8428,8 +9297,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 611.08 1263.46 617.10 1268.18 613.37 1275.43
   Q 611.67 1278.74 608.31 1281.70
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 628.19 1280.48
   A 5.24 5.24 0.0 0 1 622.95 1285.72
   L 622.27 1285.72
@@ -8446,8 +9317,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 6.68 2.02 -90.4 0 0 624.5700 1275.9359
   A 6.68 2.02 -90.4 0 0 622.5034 1269.2702
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 635.31 1281.43
   A 0.39 0.38 -69.9 0 0 635.60 1282.07
   L 640.30 1282.07
@@ -8466,8 +9339,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 633.62 1265.95 639.14 1265.15 640.25 1268.79
   C 641.98 1274.46 638.64 1277.47 635.31 1281.43
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 461.02 1270.06
   L 461.02 1273.38
   A 0.61 0.61 0.0 0 0 461.60 1273.99
@@ -8490,8 +9365,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 461.63 1269.45
   A 0.61 0.61 0.0 0 0 461.02 1270.06
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 472.59 1266.33
   L 476.65 1266.33
   A 0.81 0.81 0.0 0 1 477.44 1266.96
@@ -8518,8 +9395,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 475.11 1271.20
   A 0.44 0.43 48.1 0 0 474.25 1271.15
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 494.05 1282.13
   A 0.46 0.46 0.0 0 1 494.50 1282.61
   L 494.45 1284.95
@@ -8534,8 +9413,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.53 0.53 0.0 0 0 488.25 1281.94
   L 494.05 1282.13
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 526.42 1285.57
   L 516.74 1285.57
   A 0.50 0.50 0.0 0 1 516.24 1285.07
@@ -8550,8 +9431,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 526.92 1285.07
   A 0.50 0.50 0.0 0 1 526.42 1285.57
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 539.38 1285.50
   L 530.27 1285.50
   A 0.67 0.67 0.0 0 1 529.60 1284.83
@@ -8578,8 +9461,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 540.05 1284.83
   A 0.67 0.67 0.0 0 1 539.38 1285.50
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 548.74 1281.14
   Q 547.72 1281.13 547.21 1281.17
   A 1.02 1.00 -84.8 0 0 546.29 1281.94
@@ -8608,8 +9493,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.52 0.52 0.0 0 0 547.73 1277.22
   Q 548.13 1277.32 548.66 1277.32
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 577.68 1282.08
   C 578.94 1282.09 579.60 1281.56 579.65 1280.30
   Q 579.91 1273.54 579.71 1267.16
@@ -8626,8 +9513,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 575.57 1273.51 575.74 1280.28
   C 575.77 1281.53 576.43 1282.08 577.68 1282.08
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 596.05 1275.79
   Q 596.05 1276.45 595.95 1276.75
   A 0.89 0.88 -81.8 0 1 595.12 1277.37
@@ -8656,8 +9545,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.89 0.88 81.3 0 1 595.94 1274.83
   Q 596.05 1275.13 596.05 1275.79
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 642.80 1284.96
   Q 643.08 1281.32 643.93 1280.44
   C 646.22 1278.10 649.43 1274.87 649.61 1271.91
@@ -8677,9 +9568,18 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 643.31 1285.50
   A 0.51 0.50 2.1 0 1 642.80 1284.96
   Z"
-/>
-<ellipse fill="#fec200" cx="0.00" cy="0.00" transform="translate(622.55,1275.95) rotate(-90.4)" rx="6.68" ry="2.02"/>
-<path fill="#fec200" d="
+      />
+      <ellipse
+        fill="#fec200"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(622.55,1275.95) rotate(-90.4)"
+        rx="6.68"
+        ry="2.02"
+      />
+      <path
+        fill="#fec200"
+        d="
   M 475.11 1271.20
   L 475.70 1276.90
   A 0.70 0.69 -5.8 0 1 475.07 1277.66
@@ -8688,8 +9588,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 474.10 1271.87 474.25 1271.15
   A 0.44 0.43 48.1 0 1 475.11 1271.20
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 548.66 1277.32
   Q 548.13 1277.32 547.73 1277.22
   A 0.52 0.52 0.0 0 1 547.34 1276.62
@@ -8698,8 +9600,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.52 0.52 0.0 0 1 549.60 1277.24
   Q 549.20 1277.33 548.66 1277.32
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 253.15 1297.36
   A 1.64 1.52 -48.7 0 0 250.24 1297.66
   C 249.74 1299.07 250.08 1299.94 251.39 1300.60
@@ -8716,8 +9620,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.88 0.87 3.2 0 1 255.98 1298.89
   Q 253.94 1299.15 253.15 1297.36
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 271.37 1294.53
   Q 270.81 1295.16 268.96 1298.71
   C 267.81 1300.89 267.84 1302.51 268.87 1304.98
@@ -8742,8 +9648,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 271.11 1293.94
   A 0.35 0.35 0.0 0 1 271.37 1294.53
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 331.76 1308.47
   A 0.59 0.58 89.8 0 0 332.34 1309.06
   L 336.90 1309.05
@@ -8758,8 +9666,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.06 1.06 0.0 0 1 331.65 1294.91
   L 331.76 1308.47
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 343.51 1308.46
   A 0.59 0.58 -89.2 0 0 344.09 1309.06
   L 348.60 1309.13
@@ -8774,8 +9684,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.05 1.05 0.0 0 1 343.64 1295.01
   L 343.51 1308.46
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 228.37 1303.01
   Q 231.16 1305.66 228.97 1310.02
   C 227.58 1312.81 221.39 1312.19 219.51 1312.05
@@ -8806,8 +9718,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 222.96 1304.16
   A 0.56 0.56 0.0 0 0 222.39 1304.71
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 238.10 1307.99
   Q 237.16 1307.98 236.68 1308.00
   A 0.94 0.93 -84.1 0 0 235.82 1308.72
@@ -8837,8 +9751,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 236.73 1305.05
   A 0.24 0.24 0.0 0 0 236.97 1305.30
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 282.91 1301.85
   L 282.91 1303.63
   A 0.64 0.64 0.0 0 1 282.27 1304.27
@@ -8865,8 +9781,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 282.27 1301.21
   A 0.64 0.64 0.0 0 1 282.91 1301.85
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 291.25 1294.02
   Q 294.10 1294.02 296.40 1294.14
   A 1.02 1.02 0.0 0 1 297.37 1295.16
@@ -8887,8 +9805,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.02 1.02 0.0 0 1 286.10 1294.13
   Q 288.40 1294.01 291.25 1294.02
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 308.73 1302.96
   Q 308.73 1302.97 308.79 1303.15
   Q 308.83 1303.29 308.87 1303.31
@@ -8925,8 +9845,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 303.81 1304.00
   A 0.58 0.58 0.0 0 0 303.23 1304.58
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 319.59 1294.04
   Q 320.47 1294.04 321.22 1294.15
   A 1.04 1.04 0.0 0 1 322.08 1294.95
@@ -8955,8 +9877,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.55 0.55 0.0 0 0 318.35 1305.27
   Q 318.78 1305.37 319.34 1305.38
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 548.18 1304.64
   L 547.70 1302.51
   A 1.45 1.42 10.3 0 0 547.07 1301.62
@@ -8978,8 +9902,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 549.01 1305.24
   A 0.77 0.77 0.0 0 1 548.18 1304.64
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 581.8129 1319.4114
   A 7.89 7.89 0.0 0 1 573.9781 1327.3563
   L 573.0182 1327.3630
@@ -9000,8 +9926,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 3.08 3.08 0.0 0 0 576.5910 1319.2967
   L 576.6689 1304.4169
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 747.6475 1319.0854
   A 8.29 8.29 0.0 0 1 739.3430 1327.3609
   L 738.2830 1327.3591
@@ -9018,8 +9946,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   C 742.36 1308.42 742.73 1301.13 738.79 1301.12
   C 734.85 1301.11 735.17 1308.40 735.16 1311.80
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 413.75 1305.53
   L 409.10 1306.01
   A 0.18 0.18 0.0 0 1 408.90 1305.81
@@ -9041,8 +9971,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 414.32 1302.38 414.00 1305.29
   A 0.28 0.26 -0.1 0 1 413.75 1305.53
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 517.23 1318.60
   Q 517.43 1318.61 517.51 1318.21
   Q 519.65 1307.99 521.36 1297.36
@@ -9061,8 +9993,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   Q 514.86 1307.98 516.95 1318.21
   Q 517.03 1318.60 517.23 1318.60
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 624.62 1305.61
   C 624.04 1303.62 623.66 1300.82 621.06 1301.34
   C 619.13 1301.73 618.59 1303.83 618.48 1305.52
@@ -9079,8 +10013,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 625.39 1306.12
   A 0.73 0.72 -11.1 0 1 624.62 1305.61
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 222.38 1297.42
   A 0.54 0.54 0.0 0 1 222.94 1296.90
   L 223.62 1296.93
@@ -9091,8 +10027,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.54 0.54 0.0 0 1 222.24 1300.74
   L 222.38 1297.42
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 377.08 1314.11
   Q 374.94 1314.11 374.91 1314.12
   A 0.73 0.73 0.0 0 0 374.29 1314.84
@@ -9121,9 +10059,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.73 0.73 0.0 0 0 379.25 1314.11
   Q 379.22 1314.11 377.08 1314.11
   Z"
-/>
-<rect fill="#18190f" x="389.06" y="1296.89" width="4.88" height="30.12" rx="0.51"/>
-<path fill="#18190f" d="
+      />
+      <rect fill="#18190f" x="389.06" y="1296.89" width="4.88" height="30.12" rx="0.51" />
+      <path
+        fill="#18190f"
+        d="
   M 425.66 1314.10
   Q 423.52 1314.10 423.49 1314.10
   A 0.73 0.73 0.0 0 0 422.87 1314.82
@@ -9152,8 +10092,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.73 0.73 0.0 0 0 427.83 1314.10
   Q 427.80 1314.09 425.66 1314.10
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 438.14 1296.90
   L 450.02 1296.90
   A 0.59 0.59 0.0 0 1 450.61 1297.49
@@ -9180,8 +10122,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 437.55 1297.49
   A 0.59 0.59 0.0 0 1 438.14 1296.90
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 454.76 1327.04
   A 0.72 0.71 -0.0 0 1 454.04 1326.33
   L 454.04 1297.33
@@ -9211,8 +10155,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 459.92 1301.38
   A 0.76 0.76 0.0 0 0 459.16 1302.14
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 481.07 1297.22
   A 0.63 0.63 0.0 0 1 481.70 1296.59
   L 488.96 1296.62
@@ -9233,11 +10179,21 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 486.87 1301.44
   A 0.78 0.78 0.0 0 0 486.09 1302.21
   Z"
-/>
-<rect fill="#18190f" x="-2.54" y="-15.10" transform="translate(503.12,1311.92) rotate(-0.2)" width="5.08" height="30.20" rx="0.27"/>
-<rect fill="#18190f" x="529.00" y="1296.83" width="5.14" height="30.18" rx="0.45"/>
-<rect fill="#18190f" x="556.11" y="1296.82" width="5.22" height="30.24" rx="0.42"/>
-<path fill="#18190f" d="
+      />
+      <rect
+        fill="#18190f"
+        x="-2.54"
+        y="-15.10"
+        transform="translate(503.12,1311.92) rotate(-0.2)"
+        width="5.08"
+        height="30.20"
+        rx="0.27"
+      />
+      <rect fill="#18190f" x="529.00" y="1296.83" width="5.14" height="30.18" rx="0.45" />
+      <rect fill="#18190f" x="556.11" y="1296.82" width="5.22" height="30.24" rx="0.42" />
+      <path
+        fill="#18190f"
+        d="
   M 596.82 1315.11
   A 0.20 0.19 -53.8 0 0 597.20 1315.05
   L 597.20 1297.09
@@ -9260,8 +10216,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.68 1.67 -8.8 0 1 591.35 1298.02
   L 596.82 1315.11
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 641.06 1309.16
   Q 642.42 1309.16 643.32 1308.94
   A 0.82 0.82 0.0 0 0 643.94 1308.14
@@ -9290,8 +10248,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.82 0.82 0.0 0 0 638.81 1308.94
   Q 639.70 1309.16 641.06 1309.16
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 661.25 1296.82
   Q 662.65 1296.80 663.78 1296.98
   A 1.01 1.00 -1.9 0 1 664.61 1297.75
@@ -9320,8 +10280,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.44 0.44 0.0 0 0 659.82 1315.74
   Q 660.69 1315.70 661.29 1315.72
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 688.01 1327.02
   L 683.25 1327.02
   A 0.02 0.02 0.0 0 1 683.23 1327.00
@@ -9351,8 +10313,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 688.03 1327.00
   A 0.02 0.02 0.0 0 1 688.01 1327.02
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 717.99 1310.25
   L 716.25 1313.33
   Q 712.99 1316.66 708.01 1315.94
@@ -9377,9 +10341,11 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   L 707.93 1301.49
   A 0.77 0.77 0.0 0 0 707.16 1302.26
   Z"
-/>
-<rect fill="#18190f" x="721.08" y="1296.83" width="5.40" height="30.22" rx="0.32"/>
-<path fill="#18190f" d="
+      />
+      <rect fill="#18190f" x="721.08" y="1296.83" width="5.40" height="30.22" rx="0.32" />
+      <path
+        fill="#18190f"
+        d="
   M 756.19 1307.58
   A 0.07 0.07 0.0 0 0 756.06 1307.60
   L 756.06 1326.71
@@ -9402,8 +10368,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 1.05 1.05 0.0 0 1 762.20 1326.39
   L 756.19 1307.58
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 303.19 1297.59
   A 0.54 0.54 0.0 0 1 303.74 1297.05
   L 304.75 1297.06
@@ -9414,8 +10382,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.54 0.54 0.0 0 1 303.17 1300.83
   L 303.19 1297.59
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 236.97 1305.30
   A 0.24 0.24 0.0 0 1 236.73 1305.05
   L 236.73 1304.87
@@ -9425,8 +10395,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.24 0.24 0.0 0 1 239.03 1305.32
   L 236.97 1305.30
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 319.44 1298.71
   Q 319.82 1298.72 320.76 1304.66
   A 0.55 0.55 0.0 0 1 320.34 1305.29
@@ -9435,17 +10407,29 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.55 0.55 0.0 0 1 317.94 1304.63
   Q 319.01 1298.71 319.44 1298.71
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 738.79 1301.12
   C 742.73 1301.13 742.36 1308.42 742.35 1311.82
   C 742.34 1315.23 742.66 1322.51 738.72 1322.50
   C 734.79 1322.49 735.15 1315.20 735.16 1311.80
   C 735.17 1308.40 734.85 1301.11 738.79 1301.12
   Z"
-/>
-<rect fill="#fec200" x="-3.21" y="-10.52" transform="translate(573.42,1311.84) rotate(0.3)" width="6.42" height="21.04" rx="3.08"/>
-<path fill="#fec200" d="
+      />
+      <rect
+        fill="#fec200"
+        x="-3.21"
+        y="-10.52"
+        transform="translate(573.42,1311.84) rotate(0.3)"
+        width="6.42"
+        height="21.04"
+        rx="3.08"
+      />
+      <path
+        fill="#fec200"
+        d="
   M 459.16 1302.14
   A 0.76 0.76 0.0 0 1 459.92 1301.38
   L 461.25 1301.39
@@ -9456,8 +10440,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.76 0.76 0.0 0 1 459.12 1309.05
   L 459.16 1302.14
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 486.09 1302.21
   A 0.78 0.78 0.0 0 1 486.87 1301.44
   L 487.53 1301.44
@@ -9468,8 +10454,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.78 0.78 0.0 0 1 486.05 1321.31
   L 486.09 1302.21
   Z"
-/>
-<path fill="#e49a03" d="
+      />
+      <path
+        fill="#e49a03"
+        d="
   M 707.16 1302.26
   A 0.77 0.77 0.0 0 1 707.93 1301.49
   L 709.20 1301.49
@@ -9480,8 +10468,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.77 0.77 0.0 0 1 707.16 1310.34
   L 707.16 1302.26
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 303.23 1304.58
   A 0.58 0.58 0.0 0 1 303.81 1304.00
   L 304.83 1304.00
@@ -9492,8 +10482,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.58 0.58 0.0 0 1 303.23 1308.60
   L 303.23 1304.58
   Z"
-/>
-<path fill="#18190f" d="
+      />
+      <path
+        fill="#18190f"
+        d="
   M 222.39 1304.71
   A 0.56 0.56 0.0 0 1 222.96 1304.16
   L 224.20 1304.19
@@ -9504,8 +10496,10 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.56 0.56 0.0 0 1 222.31 1308.53
   L 222.39 1304.71
   Z"
-/>
-<path fill="#fec200" d="
+      />
+      <path
+        fill="#fec200"
+        d="
   M 661.65 1304.62
   Q 661.86 1304.62 663.24 1315.34
   A 0.44 0.44 0.0 0 1 662.75 1315.84
@@ -9514,6 +10508,7 @@ export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = 
   A 0.44 0.44 0.0 0 1 659.37 1315.22
   Q 661.44 1304.61 661.65 1304.62
   Z"
-/>
-</svg>
-    )}
+      />
+    </svg>
+  )
+}

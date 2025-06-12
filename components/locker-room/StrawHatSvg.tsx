@@ -5,11 +5,13 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-
-    return(
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#1d110b" vectorEffect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#1d110b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 863.02 383.04
   Q 862.79 384.43 861.80 383.94
   C 854.45 380.32 848.21 377.05 841.52 374.82
@@ -136,8 +138,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 661.33 817.64 664.20 821.76
   Q 666.62 825.23 681.45 846.74
   Q 685.60 852.76 689.39 858.86"
-/>
-<path stroke="#1d110b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d110b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 778.77 389.45
   Q 775.73 362.60 768.05 334.37
   C 766.56 328.91 764.50 323.81 762.80 318.55
@@ -195,12 +200,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 779.04 424.01 779.81 417.19
   C 780.24 413.38 780.65 408.54 780.24 404.27
   Q 779.14 392.71 778.77 389.45"
-/>
-<path stroke="#956d21" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#956d21"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 785.08 365.85
   L 784.72 366.22"
-/>
-<path stroke="#1d110b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d110b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 784.72 366.22
   Q 784.50 365.29 784.33 365.08
   A 0.58 0.58 0.0 0 0 783.31 365.52
@@ -241,27 +252,42 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 791.26 365.88 785.01 364.80
   A 0.28 0.28 0.0 0 0 784.69 365.13
   Q 784.78 365.56 785.08 365.85"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 784.72 366.22
   L 785.99 374.23"
-/>
-<path stroke="#795516" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#795516"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 785.99 374.23
   L 786.91 380.03"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 786.91 380.03
   L 787.81 386.10
   A 3.38 3.36 12.7 0 0 789.27 388.40
   Q 795.84 392.78 800.34 400.23"
-/>
-<path stroke="#795516" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#795516"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 800.34 400.23
   Q 805.41 413.49 804.26 428.05
   Q 803.82 433.51 803.23 439.06"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 803.23 439.06
   Q 801.06 450.12 802.58 461.50
   Q 804.24 473.96 804.84 484.01
@@ -269,12 +295,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 774.95 545.52 755.64 554.40
   A 0.77 0.77 0.0 0 0 755.41 555.64
   Q 777.89 578.51 795.74 605.34"
-/>
-<path stroke="#795516" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#795516"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 795.74 605.34
   L 812.72 632.67"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 812.72 632.67
   L 821.99 651.17
   A 0.50 0.50 0.0 0 0 822.64 651.41
@@ -284,16 +316,25 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 942.09 563.42 952.63 543.17 955.54 522.24
   C 961.38 480.12 933.02 441.89 900.81 418.45
   C 866.42 393.43 826.41 376.17 785.08 365.85"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 812.72 632.67
   Q 813.23 632.28 813.70 632.30"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 813.70 632.30
   L 814.54 632.98"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 814.54 632.98
   Q 814.97 633.15 814.88 634.05
   A 0.33 0.32 34.3 0 0 814.92 634.24
@@ -318,8 +359,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 786.38 371.10 787.57 373.69
   A 0.47 0.47 0.0 0 1 787.25 374.34
   Q 786.77 374.46 785.99 374.23"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 837.72 521.07
   Q 836.10 520.49 835.42 521.97
   C 833.99 525.05 832.63 528.47 830.78 531.41
@@ -327,8 +371,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 800.05 567.73 778.45 578.55
   A 0.82 0.82 0.0 0 0 778.20 579.82
   L 781.65 583.75"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 814.54 632.98
   Q 835.02 624.22 856.10 611.08
   Q 886.62 592.05 906.86 566.37
@@ -341,20 +388,29 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 819.51 624.52 811.81 627.59
   A 0.57 0.56 71.0 0 0 811.48 628.27
   Q 812.10 630.47 813.70 632.30"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 795.74 605.34
   Q 797.44 604.81 795.17 602.66
   A 3.28 3.13 -85.3 0 1 794.62 601.98
   Q 788.63 592.11 781.65 583.75"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 781.65 583.75
   Q 799.76 574.91 815.60 560.59
   Q 832.25 545.52 840.35 525.17
   C 841.43 522.46 840.22 521.45 837.72 521.07"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 837.72 521.07
   Q 837.97 520.44 837.94 520.35
   A 1.33 1.33 0.0 0 0 835.61 520.06
@@ -373,44 +429,65 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 804.08 463.56 804.02 461.37
   C 803.92 457.56 803.00 453.99 803.15 450.28
   Q 803.38 444.76 804.61 439.29"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 804.61 439.29
   Q 814.01 446.72 822.02 455.96
   Q 834.04 469.79 837.97 487.20
   C 839.60 494.41 839.61 502.47 839.43 509.76
   Q 839.37 512.31 841.43 512.63
   C 847.04 513.49 845.78 497.78 845.43 494.93"
-/>
-<path stroke="#b46e16" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b46e16"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 845.43 494.93
   Q 839.98 457.68 808.72 436.93"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 808.72 436.93
   Q 807.42 435.20 805.48 434.40
   A 0.40 0.40 0.0 0 0 804.93 434.72
   L 804.41 438.98"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 804.41 438.98
   Q 804.36 438.46 804.02 438.46
   Q 803.84 438.45 803.61 438.71
   Q 803.45 438.89 803.23 439.06"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 800.34 400.23
   L 800.83 400.12
   A 0.53 0.52 67.2 0 0 801.15 399.33
   Q 796.49 392.08 790.07 387.56
   A 3.10 3.10 0.0 0 1 788.76 385.05
   L 788.76 380.85"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 788.76 380.85
   Q 790.42 381.39 791.70 381.26"
-/>
-<path stroke="#b46e16" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b46e16"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 791.70 381.26
   Q 822.51 391.44 849.45 406.80
   Q 869.92 418.47 889.69 436.47
@@ -419,21 +496,33 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.93 1.93 0.0 0 0 895.64 434.00
   Q 882.02 420.62 867.47 410.81
   Q 830.38 385.81 787.12 374.56"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 787.12 374.56
   Q 786.52 375.14 786.71 375.47
   Q 787.64 377.16 787.55 379.03"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 787.55 379.03
   Q 787.06 378.93 786.91 380.03"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 788.76 380.85
   Q 787.77 380.25 787.55 379.03"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 808.72 436.93
   Q 808.23 436.73 807.98 436.91
   A 0.25 0.24 44.3 0 0 807.99 437.31
@@ -441,12 +530,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 842.76 481.81 844.74 495.52
   A 0.35 0.35 0.0 0 0 845.43 495.54
   Q 845.49 495.30 845.43 494.93"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 804.61 439.29
   Q 804.51 439.14 804.41 438.98"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 791.70 381.26
   Q 804.86 383.95 820.14 390.90
   Q 841.26 400.51 852.24 407.04
@@ -459,8 +554,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 789.14 376.29 787.82 376.14
   A 0.61 0.60 70.5 0 1 787.43 375.95
   Q 786.92 375.42 787.12 374.56"
-/>
-<path stroke="#1d110b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d110b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.70 608.30
   A 1.40 1.40 0.0 0 0 593.19 607.36
   Q 586.40 608.19 580.59 609.32
@@ -524,12 +622,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 590.43 641.35 591.34 635.28 592.20 623.84
   C 592.56 619.02 594.22 613.23 594.65 609.21
   Q 594.73 608.39 594.70 608.30"
-/>
-<path stroke="#6c1c15" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c1c15"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 700.11 523.35
   Q 706.16 524.04 707.10 523.05"
-/>
-<path stroke="#7c2118" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c2118"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 707.10 523.05
   Q 717.72 518.18 726.54 513.05
   Q 756.31 495.75 777.45 469.47
@@ -546,8 +650,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 689.66 509.49 691.97 512.32
   Q 692.24 512.64 695.46 518.15
   Q 697.57 521.76 700.11 523.35"
-/>
-<path stroke="#ba231d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba231d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 707.10 523.05
   Q 714.47 517.72 721.97 514.21
   Q 724.89 512.84 725.96 512.10
@@ -565,8 +672,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 702.30 522.31
   A 0.41 0.41 0.0 0 1 702.35 523.07
   Q 701.71 523.37 700.11 523.35"
-/>
-<path stroke="#6c1c15" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c1c15"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.21 603.91
   L 594.83 598.91
   A 2.35 2.35 0.0 0 0 596.75 597.07
@@ -574,8 +684,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 606.03 567.03 606.77 566.09
   A 0.39 0.38 11.2 0 0 606.36 565.48
   L 601.92 566.74"
-/>
-<path stroke="#7c2118" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c2118"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.92 566.74
   Q 576.52 573.28 560.38 574.62
   Q 551.13 575.39 541.78 576.20
@@ -585,12 +698,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.66 0.66 0.0 0 1 469.54 565.88
   C 474.63 566.21 480.77 567.46 487.02 567.95
   Q 498.39 568.86 509.74 569.63"
-/>
-<path stroke="#6c1c15" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c1c15"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 509.74 569.63
   L 527.03 569.63"
-/>
-<path stroke="#7c2118" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c2118"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 527.03 569.63
   C 538.98 568.61 551.95 567.80 562.85 565.94
   C 576.82 563.56 593.97 560.27 607.63 555.90
@@ -622,8 +741,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 317.23 572.94 327.03 576.50
   Q 386.84 598.22 449.59 604.40
   C 489.27 608.31 525.79 608.90 564.21 603.91"
-/>
-<path stroke="#ba231d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba231d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 527.03 569.63
   L 527.43 568.63
   A 0.88 0.85 -81.2 0 1 528.14 568.09
@@ -653,8 +775,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 512.96 569.31
   A 0.39 0.38 8.0 0 1 512.59 569.58
   L 509.74 569.63"
-/>
-<path stroke="#ba231d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba231d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.92 566.74
   Q 596.49 570.54 589.25 571.33
   A 1.66 1.65 -86.8 0 0 587.82 572.61
@@ -665,8 +790,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 564.41 602.75
   A 0.53 0.53 0.0 0 1 564.63 603.62
   Q 564.47 603.79 564.21 603.91"
-/>
-<path stroke="#6c1c15" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c1c15"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 793.77 461.53
   A 0.41 0.41 0.0 0 0 793.00 461.42
   Q 789.44 468.36 783.71 475.21
@@ -678,8 +806,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 762.40 541.63 773.92 531.42
   C 787.61 519.26 796.47 504.15 796.09 485.53
   Q 795.84 472.96 793.77 461.53"
-/>
-<path stroke="#7c2118" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c2118"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 627.55 516.93
   Q 632.24 518.26 636.70 521.07
   Q 649.03 528.84 657.60 540.66
@@ -691,16 +822,22 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 692.07 525.00 681.54 513.75
   C 665.64 496.78 643.20 504.31 627.42 516.29
   A 0.37 0.36 34.0 0 0 627.55 516.93"
-/>
-<path stroke="#6c1c15" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c1c15"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 762.40 644.42
   Q 759.28 643.55 757.27 640.23
   Q 753.55 634.09 750.85 628.94
   Q 741.35 610.76 731.99 592.51
   Q 726.48 581.75 721.19 573.07
   Q 713.75 560.88 702.76 549.49"
-/>
-<path stroke="#7c2118" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c2118"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 702.76 549.49
   L 700.76 547.39
   A 0.36 0.36 0.0 0 0 700.14 547.61
@@ -726,8 +863,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 716.02 550.31 724.74 561.64 732.52 575.99
   C 742.15 593.74 749.45 610.37 757.83 628.94
   Q 761.34 636.71 762.40 644.42"
-/>
-<path stroke="#ba231d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba231d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 702.76 549.49
   Q 703.03 550.36 701.43 549.88
   A 0.46 0.46 0.0 0 0 700.83 550.28
@@ -781,8 +921,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 747.54 602.71 759.76 629.72
   Q 761.65 633.90 762.75 638.37
   Q 763.08 639.71 762.40 644.42"
-/>
-<path stroke="#7c2118" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c2118"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 689.38 845.76
   Q 688.11 839.31 685.70 828.04
   C 683.86 819.45 683.38 808.53 683.58 797.62
@@ -816,8 +959,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 663.99 807.55 667.34 815.45 675.57 826.59
   Q 683.52 837.37 689.03 845.90
   A 0.19 0.19 0.0 0 0 689.38 845.76"
-/>
-<path stroke="#1d110b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1d110b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 694.05 583.44
   A 1.83 1.82 -22.6 0 0 691.81 582.52
   Q 676.04 587.97 670.91 589.60
@@ -839,8 +985,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 700.20 602.72 697.31 594.89 694.86 585.14
   A 0.78 0.78 0.0 0 0 694.79 584.93
   L 694.05 583.44"
-/>
-<path stroke="#7c2118" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c2118"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 815.19 766.69
   Q 816.51 769.46 824.39 787.31
   Q 828.97 797.70 835.61 803.86
@@ -854,31 +1003,49 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.47 4.45 -82.2 0 0 845.53 784.74
   L 815.41 766.49
   A 0.16 0.15 -87.0 0 0 815.19 766.69"
-/>
-<path stroke="#472106" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#472106"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.31 168.48
   Q 475.81 168.22 475.59 168.40"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.59 168.40
   Q 473.53 168.19 471.76 168.37
   Q 454.47 170.11 437.36 173.03
   C 430.91 174.13 424.32 175.87 417.86 177.44
   Q 401.43 181.41 385.99 188.19"
-/>
-<path stroke="#613c0f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#613c0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 385.99 188.19
   L 377.23 191.65"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 377.23 191.65
   Q 359.74 199.76 343.78 210.55"
-/>
-<path stroke="#613c0f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#613c0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.78 210.55
   L 337.05 214.99"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.05 214.99
   C 302.91 240.44 277.10 276.25 262.29 315.99
   Q 254.29 337.44 249.12 359.37
@@ -891,8 +1058,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 333.83 481.39 351.04 488.25 368.59 493.48
   C 381.41 497.31 390.60 500.19 402.57 503.00
   Q 454.91 515.28 508.84 517.97"
-/>
-<path stroke="#795516" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#795516"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 508.84 517.97
   Q 515.35 518.60 525.25 518.87
   Q 562.79 519.91 593.74 517.64
@@ -906,8 +1076,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 779.11 410.24 779.02 401.95 777.88 394.51
   Q 777.72 393.42 776.75 384.51
   Q 774.67 365.30 768.36 341.58"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 768.36 341.58
   Q 757.41 298.57 733.64 263.12
   Q 719.46 241.97 698.43 223.83
@@ -918,51 +1091,78 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.70 2.58 -22.7 0 1 651.61 195.01
   Q 645.99 191.57 637.35 188.19
   Q 624.85 183.30 614.26 180.06"
-/>
-<path stroke="#613c0f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#613c0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 614.26 180.06
   Q 614.09 180.30 613.05 180.13"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 613.05 180.13
   Q 609.29 178.55 604.77 177.44
   Q 596.07 175.32 587.29 173.68"
-/>
-<path stroke="#613c0f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#613c0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 587.29 173.68
   L 580.79 172.67"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.79 172.67
   Q 564.64 169.61 548.23 168.36
   Q 545.96 168.19 542.07 167.71
   Q 538.16 167.23 535.90 167.09
   Q 511.93 165.53 487.48 167.24
   Q 484.15 167.47 476.31 168.48"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.79 172.67
   Q 581.33 174.01 581.95 174.56"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 581.95 174.56
   C 591.45 182.06 601.84 189.65 603.22 203.27
   Q 603.57 206.63 603.53 207.51
   C 603.37 211.59 607.93 212.02 608.57 208.53
   C 610.10 200.10 606.32 191.18 601.14 184.69
   C 599.47 182.59 596.69 180.26 594.56 177.97"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.56 177.97
   C 592.99 176.15 588.80 175.24 586.51 174.60
   A 0.43 0.43 0.0 0 1 586.43 173.81
   Q 586.76 173.64 587.29 173.68"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 613.05 180.13
   Q 615.78 184.07 619.49 186.56"
-/>
-<path stroke="#956d21" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#956d21"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 619.49 186.56
   Q 626.82 195.64 630.20 204.57
   Q 634.39 215.63 629.78 227.50
@@ -973,13 +1173,19 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 635.36 231.99 639.50 222.20 638.17 213.77
   Q 635.79 198.67 625.55 186.95
   Q 624.18 185.39 622.00 184.45"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.00 184.45
   Q 620.90 182.94 618.50 182.64
   Q 615.53 182.28 614.26 180.06"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 768.36 341.58
   Q 767.48 342.61 766.52 339.07
   Q 760.02 315.07 748.81 291.50
@@ -994,8 +1200,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 714.25 290.06 712.28 299.61
   A 1.00 0.99 -60.3 0 0 712.51 300.47
   L 714.11 302.29"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 714.11 302.29
   C 702.21 320.27 685.25 335.17 667.27 346.28
   Q 621.88 374.33 567.98 384.19
@@ -1014,8 +1223,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 582.03 389.71 609.72 381.96 635.44 370.93
   Q 667.89 357.02 695.14 334.14
   Q 699.57 330.41 705.54 323.74"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 705.54 323.74
   Q 704.82 326.13 703.63 328.27
   Q 701.94 331.33 701.59 332.70
@@ -1027,12 +1239,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 664.04 387.54 655.02 395.34
   Q 653.72 396.45 649.09 399.61
   Q 645.76 401.88 643.36 404.92"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 643.36 404.92
   L 623.50 413.46"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 623.50 413.46
   C 599.30 422.48 574.76 427.52 548.49 431.95
   Q 534.96 434.23 520.25 435.21
@@ -1050,12 +1268,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 529.60 441.80 549.59 438.83
   C 561.14 437.12 574.26 434.26 586.51 431.79
   Q 597.69 429.53 614.04 423.19"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 614.04 423.19
   Q 621.81 421.87 629.80 418.14"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 629.80 418.14
   Q 630.83 418.28 630.46 418.92
   A 1.45 1.40 -85.3 0 1 629.80 419.50
@@ -1077,8 +1301,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 693.28 425.37 715.30 408.56
   Q 730.28 397.12 740.80 384.59
   Q 743.11 381.84 745.33 381.50"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 745.33 381.50
   Q 729.51 400.71 711.24 413.72
   Q 668.53 444.14 616.04 461.48
@@ -1099,8 +1326,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 517.53 485.47 535.04 483.81 552.68 481.89
   Q 558.46 481.26 568.25 479.76
   Q 576.00 478.57 583.82 477.57"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 583.82 477.57
   Q 565.79 482.59 546.59 483.81
   C 543.31 484.02 540.28 484.99 537.32 484.87
@@ -1118,15 +1348,21 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 485.76 515.41 489.31 515.29 493.76 515.89
   Q 494.02 515.92 500.26 515.92
   Q 504.89 515.91 508.84 517.97"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.05 214.99
   Q 337.35 214.98 337.45 215.05
   A 0.58 0.58 0.0 0 1 337.46 215.96
   Q 336.02 217.14 334.61 218.35
   Q 333.61 219.21 334.13 219.98"
-/>
-<path stroke="#956d21" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#956d21"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 334.13 219.98
   Q 332.06 229.15 331.69 232.00
   C 330.39 242.08 332.48 254.26 339.59 261.93
@@ -1136,29 +1372,44 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 340.66 254.56 338.78 249.04
   Q 337.18 244.33 337.20 238.80
   C 337.23 230.30 339.23 219.26 344.28 212.12"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 344.28 212.12
   Q 344.87 211.82 343.78 210.55"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 377.23 191.65
   Q 377.64 191.89 377.66 192.45
   A 0.64 0.63 75.9 0 1 377.32 193.03
   Q 374.60 194.46 373.31 196.76"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 373.31 196.76
   C 365.16 208.34 363.76 223.74 370.07 236.39
   C 378.21 252.71 392.33 261.19 408.51 269.08
   Q 417.68 273.56 430.90 277.40
   Q 457.96 285.26 486.20 287.38"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.20 287.38
   Q 503.56 288.79 520.97 287.30"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 520.97 287.30
   Q 549.93 285.05 577.43 275.66
   Q 587.24 272.30 596.77 267.52
@@ -1175,12 +1426,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 388.21 248.95 383.33 244.23 380.07 239.90
   Q 365.77 220.91 378.24 199.95
   Q 381.64 194.22 384.92 190.21"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.92 190.21
   Q 385.68 189.42 385.99 188.19"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.59 168.40
   Q 473.90 169.46 472.16 169.27
   A 2.01 1.98 -50.7 0 0 471.24 169.37
@@ -1203,8 +1460,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 438.34 183.51 450.78 177.46 460.10 174.33
   Q 469.80 171.08 473.53 169.99
   Q 475.14 169.51 476.31 168.48"
-/>
-<path stroke="#724514" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724514"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 344.28 212.12
   Q 342.68 212.65 342.26 213.53
   Q 336.45 225.87 336.48 239.53
@@ -1215,8 +1475,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 335.06 255.90 333.30 249.86 332.38 241.79
   Q 331.41 233.17 334.23 224.21
   Q 335.03 221.67 334.13 219.98"
-/>
-<path stroke="#724514" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724514"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.00 184.45
   Q 622.63 185.52 623.65 186.48
   Q 625.09 187.84 625.51 188.32
@@ -1229,29 +1492,41 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 629.64 229.99 632.67 224.72 632.99 217.19
   C 633.13 213.73 632.45 208.92 631.33 205.57
   Q 627.71 194.67 619.49 186.56"
-/>
-<path stroke="#b46e16" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b46e16"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 583.82 477.57
   Q 608.74 471.39 632.85 462.80
   C 653.93 455.30 674.38 444.53 693.80 433.29
   Q 707.33 425.46 722.51 413.55
   C 734.50 404.13 744.53 393.46 753.73 381.48
   Q 762.14 370.53 767.44 357.57"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 767.44 357.57
   L 769.79 354.41
   A 1.34 1.34 0.0 0 0 770.02 353.37
   L 767.92 342.45
   A 0.52 0.52 0.0 0 0 766.95 342.32
   Q 766.22 343.80 766.06 345.27"
-/>
-<path stroke="#b46e16" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b46e16"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 766.06 345.27
   Q 765.18 349.01 764.29 351.03
   Q 756.98 367.69 745.33 381.50"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 629.80 418.14
   Q 643.02 413.35 651.54 409.04
   Q 653.97 407.81 671.22 398.25
@@ -1261,8 +1536,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 722.94 349.75 721.18 351.28 719.95 352.61
   Q 701.29 372.65 673.10 389.33
   Q 656.09 399.39 643.36 404.92"
-/>
-<path stroke="#b46e16" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b46e16"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 705.54 323.74
   Q 708.18 320.11 711.43 316.34
   Q 715.54 311.57 717.25 308.94
@@ -1271,8 +1549,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 730.88 270.51
   A 1.64 1.63 29.7 0 0 728.28 271.22
   C 724.10 283.27 720.96 292.59 714.11 302.29"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.56 177.97
   Q 594.39 177.98 594.25 178.12
   A 0.23 0.23 0.0 0 0 594.24 178.46
@@ -1286,8 +1567,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 588.67 178.85 585.32 175.69
   Q 584.08 174.52 582.78 174.04
   Q 582.15 173.81 581.95 174.56"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.92 190.21
   Q 384.54 189.02 383.05 191.25
   Q 380.88 194.49 378.94 197.41
@@ -1316,8 +1600,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 517.76 287.37
   A 0.02 0.01 0.0 0 0 517.78 287.38
   L 520.97 287.30"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.20 287.38
   Q 487.39 287.39 487.60 286.84
   A 0.31 0.31 0.0 0 0 487.33 286.41
@@ -1328,8 +1615,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 365.24 226.57 367.46 212.94
   C 368.29 207.83 370.02 203.17 373.04 199.02
   Q 374.11 197.56 373.31 196.76"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 614.04 423.19
   Q 605.47 425.32 597.13 427.76
   Q 586.05 430.99 580.20 432.13
@@ -1358,8 +1648,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 608.28 420.21 623.63 414.53
   A 0.36 0.32 3.8 0 0 623.80 414.40
   Q 624.08 413.93 623.50 413.46"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 767.44 357.57
   Q 764.21 362.52 761.44 367.72
   Q 757.75 374.64 755.42 377.85
@@ -1405,8 +1698,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 746.69 381.31 747.17 380.70
   Q 757.78 367.52 764.72 352.54
   Q 766.13 349.48 766.06 345.27"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 574.03 193.96
   L 574.08 193.93
   A 2.45 2.45 0.0 0 0 575.31 190.85
@@ -1431,12 +1727,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 547.31 175.44 558.53 180.72
   Q 567.14 184.76 571.09 192.93
   A 2.21 2.20 64.2 0 0 574.03 193.96"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 419.20 178.44
   Q 414.14 178.80 412.08 181.61"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.08 181.61
   Q 404.09 188.89 399.61 199.60
   Q 396.52 206.97 397.44 213.79
@@ -1449,8 +1751,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 421.88 177.25
   A 0.22 0.21 -40.6 0 0 421.60 177.23
   Q 420.50 178.06 419.20 178.44"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.08 181.61
   Q 410.56 184.02 406.45 189.19
   Q 401.09 195.91 398.48 205.77
@@ -1460,8 +1765,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.76 1.76 0.0 0 0 402.09 213.75
   Q 401.65 200.33 409.89 189.85
   Q 414.46 184.03 419.20 178.44"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 488.54 192.10
   A 2.05 2.05 0.0 0 0 490.86 194.74
   Q 502.43 193.34 507.37 192.93
@@ -1474,12 +1782,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 501.51 187.07 492.22 188.80
   A 4.71 4.70 3.5 0 0 488.57 192.02
   L 488.54 192.10"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 664.50 204.45
   Q 661.56 199.83 655.21 197.67"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 655.21 197.67
   Q 653.61 196.37 652.81 196.43
   A 0.42 0.42 0.0 0 0 652.54 197.15
@@ -1505,8 +1819,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 627.91 299.40 654.43 284.75 669.69 259.17
   Q 675.68 249.11 676.22 236.99
   C 676.75 224.91 672.22 213.62 664.50 204.45"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 655.21 197.67
   Q 661.83 205.66 666.05 215.01
   Q 670.92 225.78 670.77 234.78
@@ -1543,12 +1860,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 676.75 246.81 678.02 228.02 669.28 212.79
   Q 669.23 212.72 666.71 209.09
   Q 665.17 206.87 664.50 204.45"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.21 258.08
   Q 501.52 259.77 516.78 258.31"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 516.78 258.31
   Q 537.04 257.19 559.78 250.98
   Q 584.53 244.23 600.29 228.80
@@ -1566,8 +1889,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 404.46 228.09 404.74 230.49 407.20 232.66
   Q 412.56 237.40 415.35 238.92
   C 437.14 250.80 461.95 256.45 486.21 258.08"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 516.78 258.31
   L 512.08 258.30
   A 0.12 0.12 0.0 0 1 511.96 258.20
@@ -1600,12 +1926,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 491.84 257.91
   A 0.14 0.13 84.6 0 1 491.71 258.07
   L 486.21 258.08"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 702.00 230.21
   Q 700.56 225.90 695.95 223.51"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.95 223.51
   Q 695.18 222.39 693.98 221.60
   A 0.46 0.46 0.0 0 0 693.31 222.18
@@ -1613,8 +1945,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.18 2.11 7.1 0 0 700.05 258.75
   C 701.54 258.91 702.73 258.34 703.31 256.90
   C 706.49 248.93 704.91 238.45 702.00 230.21"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.95 223.51
   C 696.12 224.65 696.06 226.04 696.46 227.08
   Q 701.89 241.07 698.97 256.50
@@ -1624,8 +1959,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 705.39 242.01 700.48 229.74
   A 0.35 0.34 4.6 0 1 700.98 229.32
   Q 701.49 229.62 702.00 230.21"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 307.75 251.38
   A 1.07 1.07 0.0 0 0 305.97 251.32
   Q 304.16 253.88 303.70 257.26
@@ -1637,12 +1975,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 312.50 278.16 308.94 268.72 308.46 259.34
   Q 308.15 253.23 307.90 252.05
   Q 307.76 251.40 307.75 251.38"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 484.20 359.59
   Q 501.82 360.62 519.48 359.47"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.48 359.47
   Q 546.76 358.27 573.44 352.23
   Q 587.58 349.02 592.64 347.64
@@ -1669,8 +2013,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 388.97 341.98 409.49 347.95
   C 425.12 352.49 442.04 355.23 458.76 357.40
   Q 471.43 359.05 484.20 359.59"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.48 359.47
   Q 518.62 359.35 518.27 359.03
   A 0.51 0.51 0.0 0 1 518.62 358.14
@@ -1711,8 +2058,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 467.14 358.02 484.87 358.49
   A 0.40 0.40 0.0 0 1 485.14 359.18
   Q 484.86 359.45 484.20 359.59"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 294.10 317.52
   A 1.68 1.67 66.3 0 0 295.08 315.01
   Q 287.80 303.56 283.86 294.86
@@ -1721,8 +2071,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 280.54 301.40 285.80 311.06 290.47 316.45
   A 3.52 3.49 61.8 0 0 294.04 317.54
   L 294.10 317.52"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 259.38 334.27
   Q 262.32 340.96 265.06 346.53
   Q 275.10 366.91 292.93 382.15
@@ -1731,15 +2084,21 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.81 3.80 38.9 0 0 296.40 376.73
   Q 284.25 364.44 276.83 353.68
   Q 268.31 341.33 261.49 325.49"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 261.49 325.49
   Q 261.51 324.89 261.27 324.40
   A 0.49 0.48 35.1 0 0 260.35 324.56
   C 260.11 327.05 258.61 329.10 258.49 331.32
   Q 258.40 333.24 259.38 334.27"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 261.49 325.49
   Q 259.72 325.19 261.20 327.22
   A 3.06 2.86 -76.8 0 1 261.43 327.62
@@ -1750,8 +2109,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.20 2.20 0.0 0 1 293.01 381.37
   Q 271.85 362.98 261.43 336.65
   Q 260.48 334.23 259.38 334.27"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 247.98 381.95
   Q 250.12 387.66 253.32 392.67
   Q 261.28 405.12 274.35 417.45
@@ -1759,14 +2121,20 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 279.13 416.88
   A 3.80 3.79 39.5 0 0 278.63 411.76
   Q 262.30 397.16 251.26 378.71"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 251.26 378.71
   L 248.40 373.51
   A 0.22 0.22 0.0 0 0 248.00 373.53
   Q 246.15 377.93 247.98 381.95"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 251.26 378.71
   Q 256.82 390.51 267.07 401.16
   Q 276.74 411.20 278.20 412.48
@@ -1777,8 +2145,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 250.30 386.19 248.82 382.05
   Q 248.62 381.47 248.04 381.42
   Q 247.95 381.41 247.98 381.95"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 574.26 192.01
   C 573.85 183.42 557.77 175.65 550.67 173.16
   Q 541.73 170.03 527.67 168.91
@@ -1808,8 +2179,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 556.20 178.32 561.73 181.53
   Q 568.47 185.44 572.02 192.59
   A 1.18 1.18 0.0 0 0 574.26 192.01"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.19 173.13
   A 0.33 0.33 0.0 0 0 460.05 172.49
   Q 455.85 172.80 451.75 174.22
@@ -1832,8 +2206,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 430.84 194.29 432.98 189.19 436.18 186.94
   C 438.63 185.21 440.42 183.23 442.97 181.64
   Q 451.53 176.27 460.19 173.13"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 490.73 193.83
   Q 498.97 192.58 504.93 192.25
   Q 508.50 192.05 510.57 191.69
@@ -1850,8 +2227,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.62 3.62 0.0 0 0 489.41 192.05
   L 489.37 192.16
   A 1.25 1.25 0.0 0 0 490.73 193.83"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 730.86 343.77
   L 731.18 343.84
   A 4.15 4.15 0.0 0 0 735.43 342.18
@@ -1861,8 +2241,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.37 2.37 0.0 0 0 745.13 310.04
   Q 741.66 322.13 729.60 340.73
   A 2.00 2.00 0.0 0 0 730.86 343.77"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 525.36 517.02
   Q 528.98 517.55 533.00 517.58
   Q 555.86 517.77 557.85 517.82
@@ -1891,8 +2274,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 532.24 516.76 530.38 516.71
   Q 525.67 516.56 525.33 516.69
   A 0.17 0.17 0.0 0 0 525.36 517.02"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 307.13 252.63
   A 0.57 0.57 0.0 0 0 306.05 252.54
   Q 303.19 259.62 304.63 267.75
@@ -1903,8 +2289,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 318.61 288.37 316.80 285.71
   Q 310.32 276.16 308.03 262.79
   C 307.48 259.63 307.80 255.69 307.13 252.63"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 730.32 271.43
   A 0.38 0.38 0.0 0 0 729.59 271.35
   C 727.07 277.21 724.76 284.64 722.14 290.04
@@ -1948,8 +2337,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 713.29 313.53 713.80 312.77
   Q 723.70 298.06 727.05 288.99
   C 729.48 282.42 731.37 277.39 730.32 271.43"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 294.41 315.36
   C 291.46 310.43 287.86 305.42 285.54 300.24
   Q 283.66 296.04 283.03 295.23
@@ -1959,8 +2351,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.82 2.80 -21.9 0 0 293.37 316.93
   L 293.64 316.91
   A 1.03 1.02 71.5 0 0 294.41 315.36"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 236.11 367.56
   C 200.04 376.84 164.53 391.74 133.75 412.49
   Q 109.40 428.92 91.66 451.62
@@ -1993,12 +2388,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 233.90 383.74 234.09 381.80
   Q 234.80 374.81 236.43 367.87
   A 0.26 0.26 0.0 0 0 236.11 367.56"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 232.76 381.86
   Q 233.79 380.49 233.16 377.95"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 233.16 377.95
   Q 233.53 377.30 233.57 376.78
   A 0.40 0.40 0.0 0 0 233.04 376.37
@@ -2012,8 +2413,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 168.55 412.04 193.84 398.81 220.78 387.12
   Q 220.82 387.10 226.61 384.99
   Q 229.84 383.82 232.76 381.86"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 233.16 377.95
   Q 232.49 377.82 232.26 377.89
   Q 200.01 387.93 172.01 405.78
@@ -2026,24 +2430,33 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 154.83 424.17 160.86 419.61
   C 180.71 404.61 201.91 394.25 225.40 384.32
   Q 228.86 382.86 232.76 381.86"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.75 412.28
   Q 192.15 422.24 176.40 436.14
   C 174.18 438.10 167.58 444.13 168.09 446.84
   C 168.89 451.11 173.41 449.05 175.25 447.19
   Q 188.79 433.54 204.84 422.86
   Q 207.61 421.01 210.51 419.42"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.51 419.42
   Q 212.53 418.72 213.76 417.38
   A 1.33 1.30 70.8 0 0 214.12 416.61
   L 214.95 410.09
   A 0.35 0.34 76.6 0 0 214.42 409.76
   L 210.75 412.28"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.51 419.42
   Q 210.68 418.89 209.82 419.05
   A 1.53 1.39 21.1 0 0 209.41 419.21
@@ -2055,8 +2468,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 202.90 417.71 211.06 412.99
   A 0.54 0.53 -25.7 0 0 211.29 412.34
   Q 211.26 412.26 210.75 412.28"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 212.75 444.48
   Q 210.16 446.39 207.16 449.66
   C 190.42 467.86 180.59 489.35 187.38 514.44
@@ -2066,16 +2482,22 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.14 3.14 0.0 0 0 227.73 558.48
   C 207.33 543.03 188.39 518.33 192.78 491.50
   Q 196.27 470.11 210.91 453.63"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.91 453.63
   C 213.12 451.46 217.72 448.25 215.80 444.59
   A 1.05 1.04 -49.3 0 1 215.74 443.74
   Q 215.77 443.63 215.83 443.45
   A 0.62 0.62 0.0 0 0 214.85 442.79
   L 212.75 444.48"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.91 453.63
   Q 210.46 452.88 208.88 454.87
   Q 203.19 462.07 199.15 469.34
@@ -2090,12 +2512,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 180.37 488.88 193.36 462.29 213.16 445.19
   Q 213.53 444.87 213.20 444.46
   Q 213.05 444.27 212.75 444.48"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 121.55 567.20
   Q 126.86 575.28 134.68 581.33"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 134.68 581.33
   C 136.87 583.93 142.65 589.16 144.70 583.64
   A 2.63 2.62 30.2 0 0 143.92 580.72
@@ -2108,8 +2536,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 112.30 460.71 109.39 466.39
   Q 94.11 496.17 101.46 527.51
   Q 106.47 548.91 121.55 567.20"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 134.68 581.33
   L 140.84 585.23
   A 1.35 1.32 53.7 0 0 141.86 585.40
@@ -2126,12 +2557,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 95.09 496.98 102.58 528.39
   Q 104.86 537.94 110.34 548.61
   Q 115.24 558.15 121.55 567.20"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 165.06 556.61
   Q 177.07 573.02 194.84 585.22"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 194.84 585.22
   C 212.61 598.50 231.50 608.96 251.57 617.64
   Q 313.62 644.47 380.50 655.22
@@ -2159,8 +2596,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 150.59 469.55 144.84 484.19 144.09 499.14
   Q 143.45 512.16 148.82 527.37
   Q 154.38 543.15 165.06 556.61"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 194.84 585.22
   Q 194.49 584.99 194.65 584.69
   Q 194.93 584.15 195.39 584.50
@@ -2204,12 +2644,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 147.48 475.80 145.09 496.65
   C 144.35 503.04 145.18 511.24 146.58 516.94
   Q 151.53 537.20 165.06 556.61"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.02 637.88
   L 559.52 637.42"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 559.52 637.42
   Q 559.71 638.26 559.47 639.02
   A 0.70 0.70 0.0 0 0 559.70 639.77
@@ -2219,12 +2665,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 584.44 658.49 587.37 658.71
   A 0.50 0.50 0.0 0 0 587.91 658.22
   L 588.24 634.48"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 588.24 634.48
   Q 590.23 631.79 588.85 627.98"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 588.85 627.98
   L 591.42 612.51
   A 1.64 1.64 0.0 0 0 589.80 610.61
@@ -2244,13 +2696,19 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 550.14 629.89
   A 0.39 0.39 0.0 0 1 550.48 630.46
   Q 550.35 630.69 550.03 630.97"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.03 630.97
   C 539.22 631.24 528.09 631.88 517.65 631.93
   Q 504.53 631.99 491.56 632.05"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 491.56 632.05
   Q 454.18 631.14 427.52 627.40
   Q 402.77 623.93 392.99 622.27
@@ -2265,8 +2723,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 416.85 633.04 438.01 635.15
   Q 468.48 638.19 485.50 638.79
   C 504.11 639.46 525.29 639.50 546.02 637.88"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 491.56 632.05
   Q 493.29 633.36 488.94 633.01
   C 482.74 632.51 477.37 632.98 471.96 632.07
@@ -2299,20 +2760,32 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 526.24 638.23 547.16 637.09
   A 0.29 0.29 0.0 0 1 547.38 637.58
   Q 547.00 637.96 546.02 637.88"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.03 630.97
   L 588.85 627.98"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 588.24 634.48
   L 559.52 637.42"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 153.08 597.31
   Q 156.91 601.56 162.34 604.13"
-/>
-<path stroke="#bf7d1c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bf7d1c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 162.34 604.13
   Q 179.59 616.67 198.39 626.59
   Q 208.68 632.02 221.14 637.33
@@ -2339,8 +2812,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 171.90 604.16 153.98 590.74
   C 153.02 590.02 150.56 589.52 149.90 591.25
   C 148.89 593.87 150.83 596.09 153.08 597.31"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 162.34 604.13
   Q 176.78 613.41 191.59 621.76
   Q 206.80 630.34 222.15 636.91
@@ -2382,8 +2858,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 154.14 591.81 152.32 591.00
   A 1.26 1.26 0.0 0 0 150.55 592.20
   Q 150.64 594.46 153.08 597.31"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 802.12 400.82
   A 0.11 0.10 1.6 0 0 801.98 400.95
   L 804.05 407.09
@@ -2397,12 +2876,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 876.64 455.54 856.26 436.77
   Q 839.85 421.67 821.12 410.17
   Q 813.54 405.51 802.12 400.82"
-/>
-<path stroke="#b46e16" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b46e16"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 926.28 481.24
   Q 922.42 468.91 915.06 458.29"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 915.06 458.29
   Q 911.27 450.66 905.10 444.14
   Q 903.67 442.63 901.94 442.33
@@ -2418,12 +2903,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 925.14 534.02 927.05 527.02
   Q 930.69 513.66 929.89 498.77
   Q 929.34 488.55 926.28 481.24"
-/>
-<path stroke="#9c550f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9c550f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 915.06 458.29
   L 926.28 481.24"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 801.00 609.47
   Q 818.04 600.63 834.09 589.57
   C 858.46 572.79 880.89 547.69 887.48 518.01
@@ -2437,8 +2928,11 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.19 1.19 0.0 0 0 797.08 606.36
   L 800.04 609.32
   A 0.84 0.83 53.6 0 0 801.00 609.47"
-/>
-<path stroke="#ba231d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba231d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 676.40 697.28
   Q 676.14 693.80 674.42 680.53
   C 673.61 674.24 672.22 669.36 671.21 663.23
@@ -2463,12 +2957,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 672.29 690.99 674.23 695.03
   Q 674.58 695.77 675.72 697.51
   A 0.37 0.37 0.0 0 0 676.40 697.28"
-/>
-<path stroke="#795516" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#795516"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 722.41 664.48
   L 720.22 660.01"
-/>
-<path stroke="#84641c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#84641c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 720.22 660.01
   Q 709.20 635.35 702.89 616.16
   Q 697.84 600.79 692.99 584.55
@@ -2482,38 +2982,59 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 709.02 687.37 730.33 681.65
   A 0.50 0.50 0.0 0 0 730.65 680.94
   L 722.41 664.48"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 720.22 660.01
   Q 720.09 660.52 719.64 660.81"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 719.64 660.81
   Q 719.44 659.89 718.57 659.23"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.57 659.23
   L 711.07 642.20
   A 0.54 0.54 0.0 0 0 710.42 641.91
   Q 697.65 645.76 684.50 648.44
   Q 682.01 648.95 681.39 648.06"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 681.39 648.06
   L 710.02 641.13
   A 0.51 0.51 0.0 0 0 710.40 640.51
   L 709.46 636.72"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 709.46 636.72
   L 701.11 616.22"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 701.11 616.22
   Q 701.64 615.67 701.46 615.21
   Q 700.60 613.02 699.66 610.74"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 699.66 610.74
   L 691.81 585.57
   A 0.40 0.40 0.0 0 0 691.30 585.31
@@ -2526,16 +3047,22 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 694.42 611.83
   A 0.23 0.23 0.0 0 1 694.28 612.15
   Q 693.48 612.40 692.95 612.96"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 692.95 612.96
   L 674.39 617.69
   A 0.60 0.60 0.0 0 0 673.95 618.36
   L 674.56 622.56
   A 0.54 0.53 78.1 0 0 675.23 623.00
   L 700.44 616.28"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 700.44 616.28
   Q 700.25 616.95 699.53 617.22
   Q 696.12 618.49 682.59 622.32
@@ -2544,26 +3071,38 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 675.78 623.61
   A 0.63 0.63 0.0 0 0 675.08 624.36
   L 679.15 643.42"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 679.15 643.42
   Q 678.74 645.81 680.58 648.29"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 680.58 648.29
   L 684.26 667.70
   A 0.63 0.63 0.0 0 0 685.21 668.12
   Q 686.24 667.47 687.64 667.00
   Q 694.65 664.64 714.03 659.92
   Q 715.37 659.59 716.68 659.91"
-/>
-<path stroke="#d89724" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d89724"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 716.68 659.91
   L 685.25 668.61
   A 0.76 0.76 0.0 0 0 684.69 669.24
   Q 684.21 672.58 685.71 674.76"
-/>
-<path stroke="#f1b12b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1b12b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 685.71 674.76
   L 687.06 688.99
   A 1.04 1.04 0.0 0 0 688.29 689.91
@@ -2572,37 +3111,57 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 721.14 664.87
   A 0.43 0.43 0.0 0 1 721.83 664.37
   Q 722.26 664.78 722.41 664.48"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 709.46 636.72
   L 709.04 636.56
   A 1.15 1.13 48.0 0 0 708.35 636.52
   L 679.15 643.42"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 701.11 616.22
   L 700.44 616.28"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 719.64 660.81
   L 721.03 663.50
   A 1.15 1.14 -21.5 0 1 720.32 665.13
   L 685.71 674.76"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 681.39 648.06
   Q 681.25 647.98 680.58 648.29"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.57 659.23
   Q 717.50 659.82 716.68 659.91"
-/>
-<path stroke="#ce891e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ce891e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 699.66 610.74
   L 692.95 612.96"
-/>
-</g>
-<path fill="#0c0806" d="
+        />
+      </g>
+      <path
+        fill="#0c0806"
+        d="
   M 863.02 383.04
   Q 862.79 384.43 861.80 383.94
   C 854.45 380.32 848.21 377.05 841.52 374.82
@@ -2795,8 +3354,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 807.98 360.73 826.94 367.58
   Q 846.05 374.49 863.02 383.04
   Z"
-/>
-<path fill="#2e1a10" d="
+      />
+      <path
+        fill="#2e1a10"
+        d="
   M 863.02 383.04
   Q 899.22 400.35 927.85 428.14
   Q 945.26 445.04 955.30 465.18
@@ -3323,8 +3884,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 815.41 766.49
   A 0.16 0.15 -87.0 0 0 815.19 766.69
   Z"
-/>
-<path fill="#0c0806" d="
+      />
+      <path
+        fill="#0c0806"
+        d="
   M 778.77 389.45
   Q 779.14 392.71 780.24 404.27
   C 780.65 408.54 780.24 413.38 779.81 417.19
@@ -3434,8 +3997,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 511.93 165.53 487.48 167.24
   Q 484.15 167.47 476.31 168.48
   Z"
-/>
-<path fill="#fbbf31" d="
+      />
+      <path
+        fill="#fbbf31"
+        d="
   M 580.79 172.67
   Q 581.33 174.01 581.95 174.56
   C 591.45 182.06 601.84 189.65 603.22 203.27
@@ -3842,8 +4407,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.22 0.22 0.0 0 0 248.00 373.53
   Q 246.15 377.93 247.98 381.95
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 574.03 193.96
   A 2.21 2.20 64.2 0 1 571.09 192.93
   Q 567.14 184.76 558.53 180.72
@@ -3899,8 +4466,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 568.47 185.44 572.02 192.59
   A 1.18 1.18 0.0 0 0 574.26 192.01
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 476.31 168.48
   Q 475.14 169.51 473.53 169.99
   Q 469.80 171.08 460.10 174.33
@@ -3948,8 +4517,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 438.63 185.21 440.42 183.23 442.97 181.64
   Q 451.53 176.27 460.19 173.13
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 574.26 192.01
   A 1.18 1.18 0.0 0 1 572.02 192.59
   Q 568.47 185.44 561.73 181.53
@@ -3980,8 +4551,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 541.73 170.03 550.67 173.16
   C 557.77 175.65 573.85 183.42 574.26 192.01
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 460.19 173.13
   Q 451.53 176.27 442.97 181.64
   C 440.42 183.23 438.63 185.21 436.18 186.94
@@ -4005,8 +4578,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 455.85 172.80 460.05 172.49
   A 0.33 0.33 0.0 0 1 460.19 173.13
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 587.29 173.68
   Q 586.76 173.64 586.43 173.81
   A 0.43 0.43 0.0 0 0 586.51 174.60
@@ -4026,8 +4601,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 581.33 174.01 580.79 172.67
   L 587.29 173.68
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 594.56 177.97
   C 596.69 180.26 599.47 182.59 601.14 184.69
   C 606.32 191.18 610.10 200.10 608.57 208.53
@@ -4047,8 +4624,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.23 0.23 0.0 0 1 594.25 178.12
   Q 594.39 177.98 594.56 177.97
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 412.08 181.61
   Q 410.56 184.02 406.45 189.19
   Q 401.09 195.91 398.48 205.77
@@ -4070,8 +4649,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 396.52 206.97 399.61 199.60
   Q 404.09 188.89 412.08 181.61
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 419.20 178.44
   Q 414.46 184.03 409.89 189.85
   Q 401.65 200.33 402.09 213.75
@@ -4083,8 +4664,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 410.56 184.02 412.08 181.61
   Q 414.14 178.80 419.20 178.44
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 614.26 180.06
   Q 615.53 182.28 618.50 182.64
   Q 620.90 182.94 622.00 184.45
@@ -4102,8 +4685,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 615.78 184.07 613.05 180.13
   Q 614.09 180.30 614.26 180.06
   Z"
-/>
-<path fill="#2e1a10" d="
+      />
+      <path
+        fill="#2e1a10"
+        d="
   M 622.00 184.45
   Q 624.18 185.39 625.55 186.95
   Q 635.79 198.67 638.17 213.77
@@ -4126,8 +4711,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 625.09 187.84 623.65 186.48
   Q 622.63 185.52 622.00 184.45
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 488.54 192.10
   L 488.57 192.02
   A 4.71 4.70 3.5 0 1 492.22 188.80
@@ -4158,8 +4745,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 489.37 192.16
   A 1.25 1.25 0.0 0 0 490.73 193.83
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 490.73 193.83
   A 1.25 1.25 0.0 0 1 489.37 192.16
   L 489.41 192.05
@@ -4177,8 +4766,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 508.50 192.05 504.93 192.25
   Q 498.97 192.58 490.73 193.83
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 385.99 188.19
   Q 385.68 189.42 384.92 190.21
   Q 384.54 189.02 383.05 191.25
@@ -4223,8 +4814,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 377.64 191.89 377.23 191.65
   L 385.99 188.19
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 384.92 190.21
   Q 381.64 194.22 378.24 199.95
   Q 365.77 220.91 380.07 239.90
@@ -4269,8 +4862,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 380.88 194.49 383.05 191.25
   Q 384.54 189.02 384.92 190.21
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 655.21 197.67
   Q 661.83 205.66 666.05 215.01
   Q 670.92 225.78 670.77 234.78
@@ -4332,8 +4927,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.42 0.0 0 1 652.81 196.43
   Q 653.61 196.37 655.21 197.67
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 373.31 196.76
   Q 374.11 197.56 373.04 199.02
   C 370.02 203.17 368.29 207.83 367.46 212.94
@@ -4349,8 +4946,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 392.33 261.19 378.21 252.71 370.07 236.39
   C 363.76 223.74 365.16 208.34 373.31 196.76
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 664.50 204.45
   Q 665.17 206.87 666.71 209.09
   Q 669.23 212.72 669.28 212.79
@@ -4389,8 +4988,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 661.83 205.66 655.21 197.67
   Q 661.56 199.83 664.50 204.45
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 343.78 210.55
   Q 344.87 211.82 344.28 212.12
   Q 342.68 212.65 342.26 213.53
@@ -4408,8 +5009,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 337.35 214.98 337.05 214.99
   L 343.78 210.55
   Z"
-/>
-<path fill="#2e1a10" d="
+      />
+      <path
+        fill="#2e1a10"
+        d="
   M 344.28 212.12
   C 339.23 219.26 337.23 230.30 337.20 238.80
   Q 337.18 244.33 338.78 249.04
@@ -4429,8 +5032,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 336.45 225.87 342.26 213.53
   Q 342.68 212.65 344.28 212.12
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 516.78 258.31
   L 512.08 258.30
   A 0.12 0.12 0.0 0 1 511.96 258.20
@@ -4480,8 +5085,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 584.53 244.23 559.78 250.98
   Q 537.04 257.19 516.78 258.31
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 516.78 258.31
   Q 501.52 259.77 486.21 258.08
   L 491.71 258.07
@@ -4516,8 +5123,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.12 0.12 0.0 0 0 512.08 258.30
   L 516.78 258.31
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 695.95 223.51
   C 696.12 224.65 696.06 226.04 696.46 227.08
   Q 701.89 241.07 698.97 256.50
@@ -4534,8 +5143,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 1 693.98 221.60
   Q 695.18 222.39 695.95 223.51
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 702.00 230.21
   Q 701.49 229.62 700.98 229.32
   A 0.35 0.34 4.6 0 0 700.48 229.74
@@ -4547,8 +5158,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 696.06 226.04 696.12 224.65 695.95 223.51
   Q 700.56 225.90 702.00 230.21
   Z"
-/>
-<path fill="#e6a225" d="
+      />
+      <path
+        fill="#e6a225"
+        d="
   M 768.36 341.58
   Q 774.67 365.30 776.75 384.51
   Q 777.72 393.42 777.88 394.51
@@ -4688,8 +5301,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 525.67 516.56 525.33 516.69
   A 0.17 0.17 0.0 0 0 525.36 517.02
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 307.75 251.38
   Q 307.76 251.40 307.90 252.05
   Q 308.15 253.23 308.46 259.34
@@ -4713,8 +5328,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 310.32 276.16 308.03 262.79
   C 307.48 259.63 307.80 255.69 307.13 252.63
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 307.13 252.63
   C 307.80 255.69 307.48 259.63 308.03 262.79
   Q 310.32 276.16 316.80 285.71
@@ -4726,8 +5343,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 303.19 259.62 306.05 252.54
   A 0.57 0.57 0.0 0 1 307.13 252.63
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 519.48 359.47
   Q 518.62 359.35 518.27 359.03
   A 0.51 0.51 0.0 0 1 518.62 358.14
@@ -4794,8 +5413,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 587.58 349.02 573.44 352.23
   Q 546.76 358.27 519.48 359.47
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 705.54 323.74
   Q 699.57 330.41 695.14 334.14
   Q 667.89 357.02 635.44 370.93
@@ -4866,8 +5487,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 723.70 298.06 727.05 288.99
   C 729.48 282.42 731.37 277.39 730.32 271.43
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 519.48 359.47
   Q 501.82 360.62 484.20 359.59
   Q 484.86 359.45 485.14 359.18
@@ -4910,8 +5533,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.51 0.51 0.0 0 0 518.27 359.03
   Q 518.62 359.35 519.48 359.47
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 730.32 271.43
   C 731.37 277.39 729.48 282.42 727.05 288.99
   Q 723.70 298.06 713.80 312.77
@@ -4956,8 +5581,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 724.76 284.64 727.07 277.21 729.59 271.35
   A 0.38 0.38 0.0 0 1 730.32 271.43
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 294.10 317.52
   L 294.04 317.54
   A 3.52 3.49 61.8 0 1 290.47 316.45
@@ -4977,8 +5604,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 293.64 316.91
   A 1.03 1.02 71.5 0 0 294.41 315.36
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 294.41 315.36
   A 1.03 1.02 71.5 0 1 293.64 316.91
   L 293.37 316.93
@@ -4989,8 +5618,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 283.66 296.04 285.54 300.24
   C 287.86 305.42 291.46 310.43 294.41 315.36
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 730.86 343.77
   A 2.00 2.00 0.0 0 1 729.60 340.73
   Q 741.66 322.13 745.13 310.04
@@ -5001,8 +5632,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.15 4.15 0.0 0 1 731.18 343.84
   L 730.86 343.77
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 261.49 325.49
   Q 259.72 325.19 261.20 327.22
   A 3.06 2.86 -76.8 0 1 261.43 327.62
@@ -5018,8 +5651,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.49 0.48 35.1 0 1 261.27 324.40
   Q 261.51 324.89 261.49 325.49
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 261.49 325.49
   Q 268.31 341.33 276.83 353.68
   Q 284.25 364.44 296.40 376.73
@@ -5038,8 +5673,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.06 2.86 -76.8 0 0 261.20 327.22
   Q 259.72 325.19 261.49 325.49
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 767.44 357.57
   Q 764.21 362.52 761.44 367.72
   Q 757.75 374.64 755.42 377.85
@@ -5091,8 +5728,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 1 769.79 354.41
   L 767.44 357.57
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 767.44 357.57
   Q 762.14 370.53 753.73 381.48
   C 744.53 393.46 734.50 404.13 722.51 413.55
@@ -5165,8 +5804,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 757.75 374.64 761.44 367.72
   Q 764.21 362.52 767.44 357.57
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 629.80 418.14
   Q 621.81 421.87 614.04 423.19
   Q 605.47 425.32 597.13 427.76
@@ -5206,8 +5847,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 653.97 407.81 651.54 409.04
   Q 643.02 413.35 629.80 418.14
   Z"
-/>
-<path fill="#0c0806" d="
+      />
+      <path
+        fill="#0c0806"
+        d="
   M 784.72 366.22
   L 785.99 374.23
   L 786.91 380.03
@@ -5271,8 +5914,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.58 0.0 0 1 784.33 365.08
   Q 784.50 365.29 784.72 366.22
   Z"
-/>
-<path fill="#fbbf31" d="
+      />
+      <path
+        fill="#fbbf31"
+        d="
   M 785.08 365.85
   C 826.41 376.17 866.42 393.43 900.81 418.45
   C 933.02 441.89 961.38 480.12 955.54 522.24
@@ -5310,8 +5955,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 784.72 366.22
   L 785.08 365.85
   Z"
-/>
-<path fill="#0c0806" d="
+      />
+      <path
+        fill="#0c0806"
+        d="
   M 594.70 608.30
   Q 594.73 608.39 594.65 609.21
   C 594.22 613.23 592.56 619.02 592.20 623.84
@@ -5409,8 +6056,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 234.80 374.81 236.43 367.87
   A 0.26 0.26 0.0 0 0 236.11 367.56
   Z"
-/>
-<path fill="#fbbf31" d="
+      />
+      <path
+        fill="#fbbf31"
+        d="
   M 236.11 367.56
   A 0.26 0.26 0.0 0 1 236.43 367.87
   Q 234.80 374.81 234.09 381.80
@@ -5602,8 +6251,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 153.02 590.02 150.56 589.52 149.90 591.25
   C 148.89 593.87 150.83 596.09 153.08 597.31
   Z"
-/>
-<path fill="#e6a225" d="
+      />
+      <path
+        fill="#e6a225"
+        d="
   M 814.54 632.98
   Q 835.02 624.22 856.10 611.08
   Q 886.62 592.05 906.86 566.37
@@ -5741,8 +6392,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 800.04 609.32
   A 0.84 0.83 53.6 0 0 801.00 609.47
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 251.26 378.71
   Q 256.82 390.51 267.07 401.16
   Q 276.74 411.20 278.20 412.48
@@ -5757,8 +6410,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.22 0.22 0.0 0 1 248.40 373.51
   L 251.26 378.71
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 791.70 381.26
   Q 804.86 383.95 820.14 390.90
   Q 841.26 400.51 852.24 407.04
@@ -5779,8 +6434,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 869.92 418.47 849.45 406.80
   Q 822.51 391.44 791.70 381.26
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 787.12 374.56
   Q 786.92 375.42 787.43 375.95
   A 0.61 0.60 70.5 0 0 787.82 376.14
@@ -5798,8 +6455,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 787.64 377.16 786.71 375.47
   Q 786.52 375.14 787.12 374.56
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 233.16 377.95
   Q 232.49 377.82 232.26 377.89
   Q 200.01 387.93 172.01 405.78
@@ -5825,8 +6484,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.40 0.0 0 1 233.57 376.78
   Q 233.53 377.30 233.16 377.95
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 233.16 377.95
   Q 233.79 380.49 232.76 381.86
   Q 228.86 382.86 225.40 384.32
@@ -5841,8 +6502,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 200.01 387.93 232.26 377.89
   Q 232.49 377.82 233.16 377.95
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 251.26 378.71
   Q 262.30 397.16 278.63 411.76
   A 3.80 3.79 39.5 0 1 279.13 416.88
@@ -5860,8 +6523,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 276.74 411.20 267.07 401.16
   Q 256.82 390.51 251.26 378.71
   Z"
-/>
-<path fill="#fbbf31" d="
+      />
+      <path
+        fill="#fbbf31"
+        d="
   M 787.55 379.03
   Q 787.77 380.25 788.76 380.85
   L 788.76 385.05
@@ -5874,8 +6539,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 786.91 380.03
   Q 787.06 378.93 787.55 379.03
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 623.50 413.46
   Q 624.08 413.93 623.80 414.40
   A 0.36 0.32 3.8 0 1 623.63 414.53
@@ -5921,8 +6588,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 534.96 434.23 548.49 431.95
   C 574.76 427.52 599.30 422.48 623.50 413.46
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 525.33 516.69
   Q 525.67 516.56 530.38 516.71
   Q 532.24 516.76 535.22 516.53
@@ -5952,8 +6621,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 528.98 517.55 525.36 517.02
   A 0.17 0.17 0.0 0 1 525.33 516.69
   Z"
-/>
-<path fill="#ca2820" d="
+      />
+      <path
+        fill="#ca2820"
+        d="
   M 707.10 523.05
   Q 714.47 517.72 721.97 514.21
   Q 724.89 512.84 725.96 512.10
@@ -5987,8 +6658,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 756.31 495.75 726.54 513.05
   Q 717.72 518.18 707.10 523.05
   Z"
-/>
-<path fill="#ca2820" d="
+      />
+      <path
+        fill="#ca2820"
+        d="
   M 527.03 569.63
   L 527.43 568.63
   A 0.88 0.85 -81.2 0 1 528.14 568.09
@@ -6066,8 +6739,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 593.97 560.27 576.82 563.56 562.85 565.94
   C 551.95 567.80 538.98 568.61 527.03 569.63
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 802.12 400.82
   Q 813.54 405.51 821.12 410.17
   Q 839.85 421.67 856.26 436.77
@@ -6082,8 +6757,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 801.98 400.95
   A 0.11 0.10 1.6 0 1 802.12 400.82
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 210.51 419.42
   Q 210.68 418.89 209.82 419.05
   A 1.53 1.39 21.1 0 0 209.41 419.21
@@ -6101,8 +6778,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.33 1.30 70.8 0 1 213.76 417.38
   Q 212.53 418.72 210.51 419.42
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 210.75 412.28
   Q 211.26 412.26 211.29 412.34
   A 0.54 0.53 -25.7 0 1 211.06 412.99
@@ -6120,8 +6799,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 167.58 444.13 174.18 438.10 176.40 436.14
   Q 192.15 422.24 210.75 412.28
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 808.72 436.93
   Q 808.23 436.73 807.98 436.91
   A 0.25 0.24 44.3 0 0 807.99 437.31
@@ -6139,8 +6820,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.40 0.0 0 1 805.48 434.40
   Q 807.42 435.20 808.72 436.93
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 808.72 436.93
   Q 839.98 457.68 845.43 494.93
   Q 845.49 495.30 845.43 495.54
@@ -6150,8 +6833,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.25 0.24 44.3 0 1 807.98 436.91
   Q 808.23 436.73 808.72 436.93
   Z"
-/>
-<path fill="#fbbf31" d="
+      />
+      <path
+        fill="#fbbf31"
+        d="
   M 804.41 438.98
   Q 804.51 439.14 804.61 439.29
   Q 803.38 444.76 803.15 450.28
@@ -6190,8 +6875,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 803.84 438.45 804.02 438.46
   Q 804.36 438.46 804.41 438.98
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 915.06 458.29
   L 926.28 481.24
   Q 929.34 488.55 929.89 498.77
@@ -6209,8 +6896,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 903.67 442.63 905.10 444.14
   Q 911.27 450.66 915.06 458.29
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 210.91 453.63
   Q 210.46 452.88 208.88 454.87
   Q 203.19 462.07 199.15 469.34
@@ -6231,8 +6920,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.05 1.04 -49.3 0 0 215.80 444.59
   C 217.72 448.25 213.12 451.46 210.91 453.63
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 212.75 444.48
   Q 213.05 444.27 213.20 444.46
   Q 213.53 444.87 213.16 445.19
@@ -6256,8 +6947,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 180.59 489.35 190.42 467.86 207.16 449.66
   Q 210.16 446.39 212.75 444.48
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 134.68 581.33
   L 140.84 585.23
   A 1.35 1.32 53.7 0 0 141.86 585.40
@@ -6286,8 +6979,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.63 2.62 30.2 0 1 144.70 583.64
   C 142.65 589.16 136.87 583.93 134.68 581.33
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 134.68 581.33
   Q 126.86 575.28 121.55 567.20
   Q 115.24 558.15 110.34 548.61
@@ -6306,8 +7001,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.35 1.32 53.7 0 1 140.84 585.23
   L 134.68 581.33
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 194.84 585.22
   Q 194.49 584.99 194.65 584.69
   Q 194.93 584.15 195.39 584.50
@@ -6378,8 +7075,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 313.62 644.47 251.57 617.64
   C 231.50 608.96 212.61 598.50 194.84 585.22
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 194.84 585.22
   Q 177.07 573.02 165.06 556.61
   Q 151.53 537.20 146.58 516.94
@@ -6425,14 +7124,18 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 194.93 584.15 194.65 584.69
   Q 194.49 584.99 194.84 585.22
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 915.06 458.29
   Q 922.42 468.91 926.28 481.24
   L 915.06 458.29
   Z"
-/>
-<path fill="#aa1e1a" d="
+      />
+      <path
+        fill="#aa1e1a"
+        d="
   M 793.77 461.53
   Q 795.84 472.96 796.09 485.53
   C 796.47 504.15 787.61 519.26 773.92 531.42
@@ -6445,8 +7148,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 789.44 468.36 793.00 461.42
   A 0.41 0.41 0.0 0 1 793.77 461.53
   Z"
-/>
-<path fill="#aa1e1a" d="
+      />
+      <path
+        fill="#aa1e1a"
+        d="
   M 707.10 523.05
   Q 706.16 524.04 700.11 523.35
   Q 701.71 523.37 702.35 523.07
@@ -6466,8 +7171,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 724.89 512.84 721.97 514.21
   Q 714.47 517.72 707.10 523.05
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 801.00 609.47
   A 0.84 0.83 53.6 0 1 800.04 609.32
   L 797.08 606.36
@@ -6482,8 +7189,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 880.89 547.69 858.46 572.79 834.09 589.57
   Q 818.04 600.63 801.00 609.47
   Z"
-/>
-<path fill="#ca2820" d="
+      />
+      <path
+        fill="#ca2820"
+        d="
   M 627.55 516.93
   A 0.37 0.36 34.0 0 1 627.42 516.29
   C 643.20 504.31 665.64 496.78 681.54 513.75
@@ -6496,8 +7205,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 649.03 528.84 636.70 521.07
   Q 632.24 518.26 627.55 516.93
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 837.72 521.07
   C 840.22 521.45 841.43 522.46 840.35 525.17
   Q 832.25 545.52 815.60 560.59
@@ -6509,8 +7220,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 832.63 528.47 833.99 525.05 835.42 521.97
   Q 836.10 520.49 837.72 521.07
   Z"
-/>
-<path fill="#aa1e1a" d="
+      />
+      <path
+        fill="#aa1e1a"
+        d="
   M 527.03 569.63
   L 509.74 569.63
   L 512.59 569.58
@@ -6542,8 +7255,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.88 0.85 -81.2 0 0 527.43 568.63
   L 527.03 569.63
   Z"
-/>
-<path fill="#ca2820" d="
+      />
+      <path
+        fill="#ca2820"
+        d="
   M 702.76 549.49
   Q 703.03 550.36 701.43 549.88
   A 0.46 0.46 0.0 0 0 700.83 550.28
@@ -6622,8 +7337,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.36 0.36 0.0 0 1 700.76 547.39
   L 702.76 549.49
   Z"
-/>
-<path fill="#aa1e1a" d="
+      />
+      <path
+        fill="#aa1e1a"
+        d="
   M 702.76 549.49
   Q 713.75 560.88 721.19 573.07
   Q 726.48 581.75 731.99 592.51
@@ -6683,8 +7400,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 1 701.43 549.88
   Q 703.03 550.36 702.76 549.49
   Z"
-/>
-<path fill="#ca2820" d="
+      />
+      <path
+        fill="#ca2820"
+        d="
   M 689.38 845.76
   A 0.19 0.19 0.0 0 1 689.03 845.90
   Q 683.52 837.37 675.57 826.59
@@ -6744,8 +7463,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 674.58 695.77 675.72 697.51
   A 0.37 0.37 0.0 0 0 676.40 697.28
   Z"
-/>
-<path fill="#aa1e1a" d="
+      />
+      <path
+        fill="#aa1e1a"
+        d="
   M 676.40 697.28
   A 0.37 0.37 0.0 0 1 675.72 697.51
   Q 674.58 695.77 674.23 695.03
@@ -6771,8 +7492,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 672.22 669.36 673.61 674.24 674.42 680.53
   Q 676.14 693.80 676.40 697.28
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 814.54 632.98
   L 813.70 632.30
   Q 812.10 630.47 811.48 628.27
@@ -6787,8 +7510,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 886.62 592.05 856.10 611.08
   Q 835.02 624.22 814.54 632.98
   Z"
-/>
-<path fill="#aa1e1a" d="
+      />
+      <path
+        fill="#aa1e1a"
+        d="
   M 564.21 603.91
   Q 564.47 603.79 564.63 603.62
   A 0.53 0.53 0.0 0 0 564.41 602.75
@@ -6806,8 +7531,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.35 2.35 0.0 0 1 594.83 598.91
   L 564.21 603.91
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 491.56 632.05
   Q 493.29 633.36 488.94 633.01
   C 482.74 632.51 477.37 632.98 471.96 632.07
@@ -6854,8 +7581,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 402.77 623.93 427.52 627.40
   Q 454.18 631.14 491.56 632.05
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 491.56 632.05
   Q 504.53 631.99 517.65 631.93
   C 528.09 631.88 539.22 631.24 550.03 630.97
@@ -6895,8 +7624,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 477.37 632.98 482.74 632.51 488.94 633.01
   Q 493.29 633.36 491.56 632.05
   Z"
-/>
-<path fill="#0c0806" d="
+      />
+      <path
+        fill="#0c0806"
+        d="
   M 694.05 583.44
   L 694.79 584.93
   A 0.78 0.78 0.0 0 1 694.86 585.14
@@ -6934,8 +7665,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.50 0.50 0.0 0 0 730.65 680.94
   L 722.41 664.48
   Z"
-/>
-<path fill="#fbbf31" d="
+      />
+      <path
+        fill="#fbbf31"
+        d="
   M 720.22 660.01
   Q 720.09 660.52 719.64 660.81
   Q 719.44 659.89 718.57 659.23
@@ -7001,8 +7734,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 697.84 600.79 702.89 616.16
   Q 709.20 635.35 720.22 660.01
   Z"
-/>
-<path fill="#e6a225" d="
+      />
+      <path
+        fill="#e6a225"
+        d="
   M 699.66 610.74
   L 692.95 612.96
   Q 693.48 612.40 694.28 612.15
@@ -7017,8 +7752,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.40 0.0 0 1 691.81 585.57
   L 699.66 610.74
   Z"
-/>
-<path fill="#823a06" d="
+      />
+      <path
+        fill="#823a06"
+        d="
   M 162.34 604.13
   Q 176.78 613.41 191.59 621.76
   Q 206.80 630.34 222.15 636.91
@@ -7086,8 +7823,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 208.68 632.02 198.39 626.59
   Q 179.59 616.67 162.34 604.13
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 162.34 604.13
   Q 156.91 601.56 153.08 597.31
   Q 150.64 594.46 150.55 592.20
@@ -7131,8 +7870,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 206.80 630.34 191.59 621.76
   Q 176.78 613.41 162.34 604.13
   Z"
-/>
-<path fill="#e6a225" d="
+      />
+      <path
+        fill="#e6a225"
+        d="
   M 588.85 627.98
   L 550.03 630.97
   Q 550.35 630.69 550.48 630.46
@@ -7154,8 +7895,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.64 1.64 0.0 0 1 591.42 612.51
   L 588.85 627.98
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 699.66 610.74
   Q 700.60 613.02 701.46 615.21
   Q 701.64 615.67 701.11 616.22
@@ -7167,8 +7910,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 692.95 612.96
   L 699.66 610.74
   Z"
-/>
-<path fill="#e6a225" d="
+      />
+      <path
+        fill="#e6a225"
+        d="
   M 701.11 616.22
   L 709.46 636.72
   L 709.04 636.56
@@ -7183,8 +7928,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 700.25 616.95 700.44 616.28
   L 701.11 616.22
   Z"
-/>
-<path fill="#e6a225" d="
+      />
+      <path
+        fill="#e6a225"
+        d="
   M 588.24 634.48
   L 587.91 658.22
   A 0.50 0.50 0.0 0 1 587.37 658.71
@@ -7196,8 +7943,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 559.71 638.26 559.52 637.42
   L 588.24 634.48
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 709.46 636.72
   L 710.40 640.51
   A 0.51 0.51 0.0 0 1 710.02 641.13
@@ -7208,8 +7957,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.15 1.13 48.0 0 1 709.04 636.56
   L 709.46 636.72
   Z"
-/>
-<path fill="#e6a225" d="
+      />
+      <path
+        fill="#e6a225"
+        d="
   M 718.57 659.23
   Q 717.50 659.82 716.68 659.91
   Q 715.37 659.59 714.03 659.92
@@ -7223,8 +7974,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 1 711.07 642.20
   L 718.57 659.23
   Z"
-/>
-<path fill="#b56f17" d="
+      />
+      <path
+        fill="#b56f17"
+        d="
   M 718.57 659.23
   Q 719.44 659.89 719.64 660.81
   L 721.03 663.50
@@ -7235,8 +7988,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 716.68 659.91
   Q 717.50 659.82 718.57 659.23
   Z"
-/>
-<path fill="#e6a225" d="
+      />
+      <path
+        fill="#e6a225"
+        d="
   M 722.41 664.48
   Q 722.26 664.78 721.83 664.37
   A 0.43 0.43 0.0 0 0 721.14 664.87
@@ -7251,8 +8006,10 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 720.09 660.52 720.22 660.01
   L 722.41 664.48
   Z"
-/>
-<path fill="#ca2820" d="
+      />
+      <path
+        fill="#ca2820"
+        d="
   M 815.41 766.49
   L 845.53 784.74
   A 4.47 4.45 -82.2 0 1 847.52 787.38
@@ -7267,5 +8024,7 @@ export const StrawHatSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 816.51 769.46 815.19 766.69
   A 0.16 0.15 -87.0 0 1 815.41 766.49
   Z"
-/>
-</svg>)}
+      />
+    </svg>
+  )
+}

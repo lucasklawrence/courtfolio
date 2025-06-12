@@ -5,10 +5,13 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-    return (
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#0a1c29" vectorEffect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#0a1c29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 104.32 694.13
   Q 104.14 695.45 104.15 696.77
   Q 104.35 720.45 104.33 734.50
@@ -49,16 +52,22 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 104.21 658.68 104.29 661.91
   C 104.52 670.72 103.86 683.40 104.35 693.36
   A 4.43 3.99 50.2 0 1 104.32 694.13"
-/>
-<path stroke="#083255" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#083255"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 121.46 669.97
   L 121.54 782.11
   A 0.89 0.89 0.0 0 0 122.43 783.00
   L 904.06 783.00
   A 0.90 0.89 90.0 0 0 904.95 782.10
   L 904.99 219.03"
-/>
-<path stroke="#0a1c29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a1c29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 904.99 219.03
   Q 905.46 216.47 905.21 215.57
   Q 901.57 202.20 890.44 194.92
@@ -72,8 +81,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 120.56 400.23 120.53 479.47
   Q 120.53 488.95 120.57 660.00
   Q 120.57 666.48 121.46 669.97"
-/>
-<path stroke="#0e2c43" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0e2c43"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 904.99 219.03
   Q 903.88 211.44 899.76 205.25
   Q 892.31 194.08 880.00 191.13
@@ -84,8 +96,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 121.88 212.57 121.68 219.07
   Q 121.55 223.13 121.55 227.25
   Q 121.46 448.60 121.46 669.97"
-/>
-<path stroke="#082c4c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#082c4c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 122.00 800.04
   A 0.36 0.36 0.0 0 0 121.64 800.40
   Q 121.28 826.64 121.41 848.75
@@ -101,8 +116,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 904.79 812.43 905.18 807.28 905.06 801.22
   A 1.20 1.20 0.0 0 0 903.86 800.04
   L 122.00 800.04"
-/>
-<path stroke="#083255" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#083255"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 668.29 623.48
   Q 668.67 621.30 669.73 619.44
   A 2.17 2.10 87.3 0 1 670.38 618.70
@@ -134,8 +152,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 734.96 475.75 726.53 495.31
   Q 717.09 517.19 699.95 536.94
   Q 698.31 538.83 695.14 541.13"
-/>
-<path stroke="#0e2c43" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0e2c43"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.14 541.13
   Q 695.67 539.43 695.88 538.46
   Q 700.59 516.51 700.98 495.25
@@ -160,13 +181,19 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 642.29 653.77 645.51 647.35 650.30 643.56
   Q 658.04 637.44 661.31 634.80
   Q 666.82 630.38 668.29 623.48"
-/>
-<path stroke="#0a1c29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a1c29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.14 541.13
   Q 685.50 549.92 676.73 556.97
   Q 674.39 558.85 670.52 561.33"
-/>
-<path stroke="#171c1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#171c1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 670.52 561.33
   Q 671.48 555.99 673.77 547.55
   Q 678.34 530.70 680.06 514.44
@@ -194,8 +221,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 427.01 743.80 446.36 743.93 466.56 740.70
   Q 499.20 735.47 529.05 722.07
   C 551.00 712.21 569.16 701.93 586.04 686.46"
-/>
-<path stroke="#0a1c29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#0a1c29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.04 686.46
   Q 592.97 688.41 598.66 683.68
   Q 615.17 669.96 641.71 649.80
@@ -204,8 +234,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 665.76 630.22 667.30 623.20
   A 0.49 0.49 0.0 0 1 668.10 622.93
   Q 668.19 623.01 668.29 623.48"
-/>
-<path stroke="#11222f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#11222f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.04 686.46
   C 583.21 682.66 580.41 678.40 577.40 675.15
   C 570.68 667.89 565.74 660.42 558.76 653.22
@@ -214,8 +247,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 626.12 581.20 631.17 576.75 639.06 583.33
   A 2.24 2.23 -43.8 0 0 641.85 583.38
   L 670.52 561.33"
-/>
-<path stroke="#083255" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#083255"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 864.34 745.40
   A 8.49 8.49 0.0 0 0 855.85 736.91
   L 657.45 736.91
@@ -225,8 +261,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 855.85 754.05
   A 8.49 8.49 0.0 0 0 864.34 745.56
   L 864.34 745.40"
-/>
-<path stroke="#784d29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#784d29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 821.33 333.05
   C 826.62 328.66 827.81 324.03 830.48 317.23
   Q 837.00 300.60 844.81 278.82
@@ -238,8 +277,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 764.26 305.44 761.42 318.68 772.89 323.11
   Q 778.84 325.41 806.80 335.45
   Q 814.92 338.37 821.33 333.05"
-/>
-<path stroke="#784d29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#784d29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 660.86 605.33
   Q 675.26 594.79 685.00 587.51
   C 703.75 573.50 720.77 557.53 734.73 538.72
@@ -259,8 +301,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.16 1.15 -38.4 0 0 653.37 597.11
   L 660.39 605.28
   A 0.35 0.35 0.0 0 0 660.86 605.33"
-/>
-<path stroke="#784d29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#784d29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 631.45 600.81
   A 0.84 0.84 0.0 0 0 630.30 600.70
   L 574.64 643.93
@@ -270,8 +315,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 648.87 622.39
   A 0.84 0.84 0.0 0 0 648.99 621.18
   L 631.45 600.81"
-/>
-<path stroke="#171c1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#171c1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 330.31 293.34
   C 342.13 288.07 335.54 272.35 322.84 277.33
   C 313.53 280.99 306.38 285.61 296.00 292.00
@@ -283,8 +331,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 211.32 475.33 213.20 467.29 213.77 460.73
   C 216.73 426.46 228.11 393.67 247.54 364.80
   C 268.37 333.87 296.69 308.31 330.31 293.34"
-/>
-<path stroke="#171c1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#171c1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 431.37 599.13
   C 465.28 598.73 498.94 581.66 518.53 553.78
   Q 538.45 525.42 538.54 490.73
@@ -296,8 +347,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 324.37 520.49 331.00 535.58
   Q 347.08 572.19 382.85 589.20
   C 398.31 596.55 413.91 599.34 431.37 599.13"
-/>
-<path stroke="#7d4717" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d4717"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 340.23 480.48
   C 337.35 511.39 349.10 540.85 373.02 560.19
   C 393.29 576.58 418.18 582.44 443.34 578.46
@@ -306,29 +360,41 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 464.06 403.60 443.56 400.04
   C 418.77 395.73 392.01 402.34 372.62 419.13
   Q 343.59 444.27 340.23 480.48"
-/>
-<path stroke="#7d4717" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d4717"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 447.2854 471.5190
   A 25.95 25.67 -41.4 0 0 410.8441 469.4246
   A 25.95 25.67 -41.4 0 0 408.3546 505.8410
   A 25.95 25.67 -41.4 0 0 444.7959 507.9354
   A 25.95 25.67 -41.4 0 0 447.2854 471.5190"
-/>
-<path stroke="#171c1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#171c1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 425.7446 478.5737
   A 10.17 9.72 -101.2 0 0 418.1851 490.4380
   A 10.17 9.72 -101.2 0 0 429.6954 498.5263
   A 10.17 9.72 -101.2 0 0 437.2549 486.6620
   A 10.17 9.72 -101.2 0 0 425.7446 478.5737"
-/>
-<path stroke="#082c4c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#082c4c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 167.0203 829.1396
   A 33.40 32.82 -166.3 0 0 191.6970 868.9362
   A 33.40 32.82 -166.3 0 0 231.9197 844.9604
   A 33.40 32.82 -166.3 0 0 207.2430 805.1638
   A 33.40 32.82 -166.3 0 0 167.0203 829.1396"
-/>
-<path stroke="#7c573a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c573a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.9304 837.3094
   A 9.06 9.06 0.0 0 0 327.8862 828.2336
   L 277.9863 828.1465
@@ -338,16 +404,21 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 327.8537 846.8935
   A 9.06 9.06 0.0 0 0 336.9295 837.8494
   L 336.9304 837.3094"
-/>
-<path stroke="#784d29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#784d29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 175.2189 827.9417
   A 26.03 25.74 -159.0 0 0 190.2956 861.3004
   A 26.03 25.74 -159.0 0 0 223.8211 846.5983
   A 26.03 25.74 -159.0 0 0 208.7444 813.2396
   A 26.03 25.74 -159.0 0 0 175.2189 827.9417"
-/>
-</g>
-<path fill="#0f1517" d="
+        />
+      </g>
+      <path
+        fill="#0f1517"
+        d="
   M 102.03 848.14
   L 102.03 219.88
   A 48.83 48.83 0.0 0 1 150.86 171.05
@@ -399,8 +470,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 104.52 670.72 103.86 683.40 104.35 693.36
   A 4.43 3.99 50.2 0 1 104.32 694.13
   Z"
-/>
-<path fill="#04223b" d="
+      />
+      <path
+        fill="#04223b"
+        d="
   M 104.35 693.36
   C 103.86 683.40 104.52 670.72 104.29 661.91
   Q 104.21 658.68 104.20 644.19
@@ -477,8 +550,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.20 1.20 0.0 0 0 903.86 800.04
   L 122.00 800.04
   Z"
-/>
-<path fill="#0f1517" d="
+      />
+      <path
+        fill="#0f1517"
+        d="
   M 904.99 219.03
   Q 903.88 211.44 899.76 205.25
   Q 892.31 194.08 880.00 191.13
@@ -502,8 +577,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 901.57 202.20 905.21 215.57
   Q 905.46 216.47 904.99 219.03
   Z"
-/>
-<path fill="#0c426f" d="
+      />
+      <path
+        fill="#0c426f"
+        d="
   M 904.99 219.03
   L 904.95 782.10
   A 0.90 0.89 -90.0 0 1 904.06 783.00
@@ -585,8 +662,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 8.49 8.49 0.0 0 0 864.34 745.56
   L 864.34 745.40
   Z"
-/>
-<path fill="#0f1517" d="
+      />
+      <path
+        fill="#0f1517"
+        d="
   M 695.14 541.13
   Q 685.50 549.92 676.73 556.97
   Q 674.39 558.85 670.52 561.33
@@ -647,8 +726,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 700.59 516.51 695.88 538.46
   Q 695.67 539.43 695.14 541.13
   Z"
-/>
-<path fill="#04223b" d="
+      />
+      <path
+        fill="#04223b"
+        d="
   M 668.29 623.48
   Q 668.19 623.01 668.10 622.93
   A 0.49 0.49 0.0 0 0 667.30 623.20
@@ -739,8 +820,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.84 0.84 0.0 0 0 648.99 621.18
   L 631.45 600.81
   Z"
-/>
-<path fill="#1e2222" d="
+      />
+      <path
+        fill="#1e2222"
+        d="
   M 670.52 561.33
   L 641.85 583.38
   A 2.24 2.23 -43.8 0 1 639.06 583.33
@@ -800,8 +883,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 347.08 572.19 382.85 589.20
   C 398.31 596.55 413.91 599.34 431.37 599.13
   Z"
-/>
-<path fill="#eb7817" d="
+      />
+      <path
+        fill="#eb7817"
+        d="
   M 821.33 333.05
   Q 814.92 338.37 806.80 335.45
   Q 778.84 325.41 772.89 323.11
@@ -814,8 +899,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 837.00 300.60 830.48 317.23
   C 827.81 324.03 826.62 328.66 821.33 333.05
   Z"
-/>
-<path fill="#0f1517" d="
+      />
+      <path
+        fill="#0f1517"
+        d="
   M 322.84 277.33
   C 335.54 272.35 342.13 288.07 330.31 293.34
   C 296.69 308.31 268.37 333.87 247.54 364.80
@@ -828,8 +915,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 286.28 297.99 296.00 292.00
   C 306.38 285.61 313.53 280.99 322.84 277.33
   Z"
-/>
-<path fill="#eb7817" d="
+      />
+      <path
+        fill="#eb7817"
+        d="
   M 660.86 605.33
   A 0.35 0.35 0.0 0 1 660.39 605.28
   L 653.37 597.11
@@ -850,8 +939,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 720.77 557.53 703.75 573.50 685.00 587.51
   Q 675.26 594.79 660.86 605.33
   Z"
-/>
-<path fill="#0f1517" d="
+      />
+      <path
+        fill="#0f1517"
+        d="
   M 431.37 599.13
   C 413.91 599.34 398.31 596.55 382.85 589.20
   Q 347.08 572.19 331.00 535.58
@@ -873,8 +964,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 418.77 395.73 392.01 402.34 372.62 419.13
   Q 343.59 444.27 340.23 480.48
   Z"
-/>
-<path fill="#eb7817" d="
+      />
+      <path
+        fill="#eb7817"
+        d="
   M 340.23 480.48
   Q 343.59 444.27 372.62 419.13
   C 392.01 402.34 418.77 395.73 443.56 400.04
@@ -890,8 +983,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 25.95 25.67 -41.4 0 0 444.7959 507.9354
   A 25.95 25.67 -41.4 0 0 447.2854 471.5190
   Z"
-/>
-<path fill="#0f1517" d="
+      />
+      <path
+        fill="#0f1517"
+        d="
   M 447.2854 471.5190
   A 25.95 25.67 -41.4 0 1 444.7959 507.9354
   A 25.95 25.67 -41.4 0 1 408.3546 505.8410
@@ -904,9 +999,18 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 10.17 9.72 -101.2 0 0 437.2549 486.6620
   A 10.17 9.72 -101.2 0 0 425.7446 478.5737
   Z"
-/>
-<ellipse fill="#1e2222" cx="0.00" cy="0.00" transform="translate(427.72,488.55) rotate(-101.2)" rx="10.17" ry="9.72"/>
-<path fill="#eb7817" d="
+      />
+      <ellipse
+        fill="#1e2222"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(427.72,488.55) rotate(-101.2)"
+        rx="10.17"
+        ry="9.72"
+      />
+      <path
+        fill="#eb7817"
+        d="
   M 631.45 600.81
   L 648.99 621.18
   A 0.84 0.84 0.0 0 1 648.87 622.39
@@ -917,9 +1021,11 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 630.30 600.70
   A 0.84 0.84 0.0 0 1 631.45 600.81
   Z"
-/>
-<rect fill="#04223b" x="648.96" y="736.91" width="215.38" height="17.14" rx="8.49"/>
-<path fill="#0c365c" d="
+      />
+      <rect fill="#04223b" x="648.96" y="736.91" width="215.38" height="17.14" rx="8.49" />
+      <path
+        fill="#0c365c"
+        d="
   M 122.00 800.04
   L 903.86 800.04
   A 1.20 1.20 0.0 0 1 905.06 801.22
@@ -952,8 +1058,10 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 9.06 9.06 0.0 0 0 336.9295 837.8494
   L 336.9304 837.3094
   Z"
-/>
-<path fill="#04223b" d="
+      />
+      <path
+        fill="#04223b"
+        d="
   M 167.0203 829.1396
   A 33.40 32.82 -166.3 0 1 207.2430 805.1638
   A 33.40 32.82 -166.3 0 1 231.9197 844.9604
@@ -966,9 +1074,24 @@ export const VinylSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 26.03 25.74 -159.0 0 0 208.7444 813.2396
   A 26.03 25.74 -159.0 0 0 175.2189 827.9417
   Z"
-/>
-<ellipse fill="#eb7817" cx="0.00" cy="0.00" transform="translate(199.52,837.27) rotate(-159.0)" rx="26.03" ry="25.74"/>
-<rect fill="#eb7817" x="-34.01" y="-9.33" transform="translate(302.92,837.52) rotate(0.1)" width="68.02" height="18.66" rx="9.06"/>
-</svg>
-
-    )}
+      />
+      <ellipse
+        fill="#eb7817"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(199.52,837.27) rotate(-159.0)"
+        rx="26.03"
+        ry="25.74"
+      />
+      <rect
+        fill="#eb7817"
+        x="-34.01"
+        y="-9.33"
+        transform="translate(302.92,837.52) rotate(0.1)"
+        width="68.02"
+        height="18.66"
+        rx="9.06"
+      />
+    </svg>
+  )
+}

@@ -5,10 +5,13 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-    return(
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1536.00 1024.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1536.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 820.05 167.14
   C 810.25 158.02 810.69 138.83 813.72 127.18
   Q 814.81 122.97 815.95 118.52
@@ -22,8 +25,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 698.79 167.93 814.00 168.01
   Q 815.78 168.01 819.80 167.83
   A 0.40 0.40 0.0 0 0 820.05 167.14"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 833.36 399.75
   L 863.11 400.56
   A 0.99 0.97 9.9 0 0 864.05 399.91
@@ -42,8 +48,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 860.18 293.24 847.83 340.57
   Q 841.00 366.76 832.84 399.07
   A 0.55 0.54 8.0 0 0 833.36 399.75"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 497.48 389.40
   A 0.36 0.36 0.0 0 0 497.79 389.91
   L 526.73 391.31
@@ -60,8 +69,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 549.86 240.50 537.60 266.63 527.48 293.95
   Q 511.03 338.37 498.29 387.28
   Q 498.06 388.14 497.48 389.40"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 655.88 324.93
   Q 651.77 304.21 650.92 283.63
   Q 648.81 232.82 656.93 184.22
@@ -74,8 +86,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.09 1.09 0.0 0 0 628.04 324.66
   L 655.49 325.40
   A 0.39 0.39 0.0 0 0 655.88 324.93"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 901.07 181.08
   Q 901.21 181.76 902.25 186.05
   Q 904.20 194.10 905.17 205.01
@@ -87,8 +102,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 972.56 293.03 954.53 252.49 930.26 216.24
   Q 917.54 197.24 901.52 180.85
   A 0.26 0.26 0.0 0 0 901.07 181.08"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1104.22 353.54
   A 0.35 0.35 0.0 0 0 1104.05 352.88
   Q 1098.59 353.14 1093.23 352.97
@@ -167,8 +185,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1024.38 467.94 1040.04 431.24
   C 1049.24 409.67 1060.97 390.80 1076.38 374.14
   Q 1088.69 360.84 1104.22 353.54"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1182.80 364.48
   C 1186.01 369.83 1190.10 374.63 1191.81 381.20
   C 1195.31 394.61 1195.83 411.48 1190.30 424.41
@@ -209,8 +230,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1203.27 375.90 1193.01 368.73
   Q 1188.56 365.61 1183.52 363.63
   A 0.59 0.59 0.0 0 0 1182.80 364.48"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1112.24 365.54
   Q 1104.95 368.72 1098.34 374.34
   Q 1084.21 386.36 1074.45 400.92
@@ -237,8 +261,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.18 0.18 0.0 0 0 1112.59 365.66
   L 1112.58 365.66
   A 0.26 0.26 0.0 0 0 1112.24 365.54"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1169.07 370.87
   A 1.24 1.24 0.0 0 0 1167.85 369.69
   C 1156.48 369.53 1147.91 370.88 1133.77 373.26
@@ -249,8 +276,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.42 1.42 0.0 0 0 1134.55 390.66
   Q 1149.82 390.01 1163.44 383.89
   C 1168.81 381.47 1169.33 376.11 1169.07 370.87"
-/>
-<path stroke="#444543" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#444543"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1131.89 435.87
   L 1132.53 428.56
   A 2.53 2.52 -63.7 0 0 1131.88 426.63
@@ -263,8 +293,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1112.23 399.84 1112.62 411.01 1117.48 421.55
   C 1120.39 427.86 1124.95 431.24 1130.92 436.27
   A 0.59 0.59 0.0 0 0 1131.89 435.87"
-/>
-<path stroke="#444543" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#444543"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1181.93 387.35
   A 0.56 0.56 0.0 0 0 1180.97 386.91
   L 1176.05 391.83
@@ -277,8 +310,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1173.33 434.25 1178.55 421.57
   C 1182.00 413.20 1183.59 403.54 1182.43 394.58
   Q 1181.77 389.49 1181.93 387.35"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1163.31 397.92
   C 1156.42 399.60 1151.77 400.84 1146.38 401.60
   Q 1137.33 402.88 1132.93 403.74
@@ -290,8 +326,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 0 1159.46 418.20
   Q 1164.34 408.74 1163.83 398.30
   A 0.42 0.41 -8.0 0 0 1163.31 397.92"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 508.50 419.39
   A 0.32 0.32 0.0 0 0 508.94 419.45
   L 525.56 406.73
@@ -299,8 +338,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 498.01 404.82
   A 0.32 0.32 0.0 0 0 497.74 405.34
   L 508.50 419.39"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 497.66 428.93
   A 0.34 0.34 0.0 0 0 497.72 428.45
   L 483.23 409.53
@@ -308,8 +350,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 473.23 446.87
   A 0.34 0.34 0.0 0 0 473.77 447.23
   L 497.66 428.93"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.34 429.30
   A 0.36 0.36 0.0 0 0 518.27 429.81
   L 531.24 446.74
@@ -317,8 +362,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 539.11 414.20
   A 0.36 0.36 0.0 0 0 538.54 413.83
   L 518.34 429.30"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 845.66 428.77
   A 0.32 0.32 0.0 0 0 846.10 428.82
   L 863.03 415.85
@@ -326,8 +374,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 834.02 414.50
   A 0.32 0.32 0.0 0 0 833.77 415.03
   L 845.66 428.77"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 834.51 437.59
   A 0.34 0.34 0.0 0 0 834.56 437.10
   L 819.18 419.33
@@ -335,8 +386,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 810.62 455.12
   A 0.34 0.34 0.0 0 0 811.16 455.46
   L 834.51 437.59"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 854.34 439.86
   L 868.90 456.66
   A 0.11 0.11 0.0 0 0 869.09 456.61
@@ -347,8 +401,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.17 0.10 -48.6 0 0 876.21 422.34
   L 854.40 439.30
   A 0.39 0.39 0.0 0 0 854.34 439.86"
-/>
-<path stroke="#444543" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#444543"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1152.63 532.84
   Q 1154.07 533.17 1155.72 532.13
   Q 1161.26 528.64 1162.60 521.63
@@ -377,8 +434,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1150.40 505.11 1156.91 512.00 1154.68 522.98
   Q 1153.60 528.34 1152.34 532.32
   A 0.41 0.40 -74.7 0 0 1152.63 532.84"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 507.58 439.22
   A 0.35 0.35 0.0 0 0 507.10 439.17
   L 487.52 454.16
@@ -386,8 +446,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 521.06 455.69
   A 0.35 0.35 0.0 0 0 521.33 455.11
   L 507.58 439.22"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 843.51 448.24
   A 0.32 0.32 0.0 0 0 843.07 448.19
   L 822.89 463.64
@@ -395,8 +458,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 857.44 465.14
   A 0.32 0.32 0.0 0 0 857.69 464.61
   L 843.51 448.24"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1014.09 524.58
   Q 945.99 523.06 925.99 522.48
   Q 862.12 520.62 798.74 518.40
@@ -421,8 +487,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.49 0.48 3.1 0 0 1007.13 604.34
   L 1014.19 524.69
   A 0.11 0.10 5.4 0 0 1014.09 524.58"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 244.76 675.99
   A 0.77 0.76 -66.2 0 0 246.11 675.46
   Q 246.09 675.10 246.07 674.32
@@ -440,8 +509,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 231.45 625.83 232.49 639.81
   Q 233.74 656.66 242.89 673.24
   Q 243.70 674.71 244.76 675.99"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1102.78 505.83
   Q 1104.64 507.00 1107.28 507.27
   A 2.03 2.01 64.5 0 1 1108.20 507.60
@@ -455,8 +527,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.69 5.66 60.3 0 0 1122.94 505.23
   L 1102.96 505.23
   A 0.33 0.32 -28.6 0 0 1102.78 505.83"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 688.34 790.91
   A 0.73 0.72 7.3 0 0 687.56 791.51
   L 681.91 826.25
@@ -491,8 +566,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 800.67 788.35 784.75 790.08
   Q 770.00 791.69 765.00 791.97
   Q 726.87 794.15 688.34 790.91"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1006.42 620.47
   Q 966.48 619.63 924.68 618.16
   Q 923.91 618.14 914.00 617.93
@@ -540,8 +618,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1006.69 634.77 1006.78 632.26
   Q 1007.00 626.00 1006.93 620.99
   A 0.52 0.52 0.0 0 0 1006.42 620.47"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 239.20 690.41
   Q 243.26 706.49 249.10 717.45
   Q 255.49 729.46 260.04 735.98
@@ -558,8 +639,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.46 0.68 34.0 0 1 241.73 693.10
   L 239.94 690.11
   A 0.41 0.40 22.7 0 0 239.20 690.41"
-/>
-<path stroke="#1c283c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1c283c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1034.69 817.77
   A 0.33 0.33 0.0 0 0 1034.78 817.19
   C 1024.56 810.16 1018.20 798.48 1015.16 786.91
@@ -578,8 +662,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1009.10 816.10 1011.18 816.29
   C 1019.22 817.01 1027.25 817.31 1032.75 818.00
   Q 1033.60 818.11 1034.69 817.77"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 639.29 746.01
   A 0.57 0.57 0.0 0 0 638.75 745.35
   L 445.69 735.98
@@ -589,8 +676,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 622.97 843.08
   A 0.57 0.57 0.0 0 0 623.56 842.61
   L 639.29 746.01"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.38 737.60
   A 0.37 0.36 -5.3 0 0 429.89 737.20
   Q 417.32 741.77 412.08 752.67
@@ -600,8 +690,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 408.83 828.12 414.27 830.75
   A 0.72 0.72 0.0 0 0 415.30 830.22
   L 430.38 737.60"
-/>
-<path stroke="#783c19" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#783c19"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 639.42 844.07
   C 650.51 844.01 659.26 839.08 664.56 829.51
   Q 666.53 825.96 668.05 815.40
@@ -611,8 +704,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 0 654.53 747.27
   L 638.87 843.43
   A 0.56 0.55 4.4 0 0 639.42 844.07"
-/>
-<path stroke="#ca581c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ca581c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 658.82 153.94
   A 0.59 0.59 0.0 0 0 658.26 154.72
   Q 659.86 159.43 663.48 163.32
@@ -622,8 +718,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 813.62 160.88 811.83 154.39
   A 0.63 0.62 -8.0 0 0 811.23 153.94
   L 658.82 153.94"
-/>
-<path stroke="#ca581c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ca581c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.99 240.32
   A 0.47 0.47 0.0 0 0 574.82 240.31
   Q 583.41 223.73 592.46 210.34
@@ -642,8 +741,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 585.99 185.20 565.51 217.80
   A 1.46 1.45 53.6 0 0 565.34 218.96
   Q 568.63 230.72 573.99 240.32"
-/>
-<path stroke="#ca581c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ca581c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 648.02 177.16
   C 641.34 180.46 641.46 185.06 639.63 190.72
   Q 638.68 193.65 637.88 197.22
@@ -669,8 +771,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.28 1.27 24.9 0 0 655.58 183.65
   L 649.30 177.38
   A 1.11 1.11 0.0 0 0 648.02 177.16"
-/>
-<path stroke="#ca581c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ca581c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 904.33 186.00
   A 0.39 0.39 0.0 0 0 903.72 186.37
   L 906.85 207.60
@@ -690,8 +795,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 943.66 238.91 936.22 226.80 931.86 220.24
   Q 922.23 205.75 909.11 190.27
   Q 907.18 187.99 904.33 186.00"
-/>
-<path stroke="#ca581c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ca581c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 428.87 739.58
   A 0.35 0.34 -6.5 0 0 428.40 739.21
   Q 419.90 742.43 415.07 749.79
@@ -700,8 +808,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 400.49 822.58 413.58 828.91
   A 0.57 0.57 0.0 0 0 414.39 828.49
   L 428.87 739.58"
-/>
-<path stroke="#ca581c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ca581c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 641.56 842.69
   Q 651.13 842.39 658.14 836.11
   Q 663.00 831.75 664.95 825.25
@@ -716,9 +827,11 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 642.28 831.19 640.88 838.62
   Q 640.85 838.79 640.90 842.06
   A 0.64 0.64 0.0 0 0 641.56 842.69"
-/>
-</g>
-<path fill="#151611" d="
+        />
+      </g>
+      <path
+        fill="#151611"
+        d="
   M 502.06 318.45
   C 512.60 286.50 525.15 255.36 541.00 226.49
   Q 555.55 199.99 573.87 177.87
@@ -1517,8 +1630,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 638.87 843.43
   A 0.56 0.55 4.4 0 0 639.42 844.07
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 820.05 167.14
   A 0.40 0.40 0.0 0 1 819.80 167.83
   Q 815.78 168.01 814.00 168.01
@@ -1543,8 +1658,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.62 -8.0 0 0 811.23 153.94
   L 658.82 153.94
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 832.84 399.07
   Q 841.00 366.76 847.83 340.57
   Q 860.18 293.24 866.01 244.50
@@ -1564,8 +1681,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 833.36 399.75
   A 0.55 0.54 8.0 0 1 832.84 399.07
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 497.48 389.40
   Q 498.06 388.14 498.29 387.28
   Q 511.03 338.37 527.48 293.95
@@ -1602,8 +1721,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.46 1.45 53.6 0 0 565.34 218.96
   Q 568.63 230.72 573.99 240.32
   Z"
-/>
-<path fill="#b94e16" d="
+      />
+      <path
+        fill="#b94e16"
+        d="
   M 573.99 240.32
   Q 568.63 230.72 565.34 218.96
   A 1.46 1.45 53.6 0 1 565.51 217.80
@@ -1623,8 +1744,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 583.41 223.73 574.82 240.31
   A 0.47 0.47 0.0 0 1 573.99 240.32
   Z"
-/>
-<path fill="#b94e16" d="
+      />
+      <path
+        fill="#b94e16"
+        d="
   M 658.82 153.94
   L 811.23 153.94
   A 0.63 0.62 -8.0 0 1 811.83 154.39
@@ -1635,8 +1758,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 659.86 159.43 658.26 154.72
   A 0.59 0.59 0.0 0 1 658.82 153.94
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 655.88 324.93
   A 0.39 0.39 0.0 0 1 655.49 325.40
   L 628.04 324.66
@@ -1676,8 +1801,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 649.30 177.38
   A 1.11 1.11 0.0 0 0 648.02 177.16
   Z"
-/>
-<path fill="#b94e16" d="
+      />
+      <path
+        fill="#b94e16"
+        d="
   M 649.30 177.38
   L 655.58 183.65
   A 1.28 1.27 24.9 0 1 655.94 184.63
@@ -1704,8 +1831,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 641.46 185.06 641.34 180.46 648.02 177.16
   A 1.11 1.11 0.0 0 1 649.30 177.38
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 901.52 180.85
   Q 917.54 197.24 930.26 216.24
   C 954.53 252.49 972.56 293.03 986.76 334.46
@@ -1738,8 +1867,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 922.23 205.75 909.11 190.27
   Q 907.18 187.99 904.33 186.00
   Z"
-/>
-<path fill="#b94e16" d="
+      />
+      <path
+        fill="#b94e16"
+        d="
   M 904.33 186.00
   Q 907.18 187.99 909.11 190.27
   Q 922.23 205.75 931.86 220.24
@@ -1760,8 +1891,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 903.72 186.37
   A 0.39 0.39 0.0 0 1 904.33 186.00
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 1104.22 353.54
   Q 1088.69 360.84 1076.38 374.14
   C 1060.97 390.80 1049.24 409.67 1040.04 431.24
@@ -1841,8 +1974,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1098.59 353.14 1104.05 352.88
   A 0.35 0.35 0.0 0 1 1104.22 353.54
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 1182.80 364.48
   A 0.59 0.59 0.0 0 1 1183.52 363.63
   Q 1188.56 365.61 1193.01 368.73
@@ -1884,8 +2019,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1195.83 411.48 1195.31 394.61 1191.81 381.20
   C 1190.10 374.63 1186.01 369.83 1182.80 364.48
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 1112.24 365.54
   A 0.26 0.26 0.0 0 1 1112.58 365.66
   L 1112.59 365.66
@@ -1913,8 +2050,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1084.21 386.36 1098.34 374.34
   Q 1104.95 368.72 1112.24 365.54
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 1169.07 370.87
   C 1169.33 376.11 1168.81 381.47 1163.44 383.89
   Q 1149.82 390.01 1134.55 390.66
@@ -1926,8 +2065,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1147.91 370.88 1156.48 369.53 1167.85 369.69
   A 1.24 1.24 0.0 0 1 1169.07 370.87
   Z"
-/>
-<path fill="#737375" d="
+      />
+      <path
+        fill="#737375"
+        d="
   M 1131.89 435.87
   A 0.59 0.59 0.0 0 1 1130.92 436.27
   C 1124.95 431.24 1120.39 427.86 1117.48 421.55
@@ -1941,8 +2082,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.53 2.52 -63.7 0 1 1132.53 428.56
   L 1131.89 435.87
   Z"
-/>
-<path fill="#737375" d="
+      />
+      <path
+        fill="#737375"
+        d="
   M 1181.93 387.35
   Q 1181.77 389.49 1182.43 394.58
   C 1183.59 403.54 1182.00 413.20 1178.55 421.57
@@ -1956,8 +2099,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 1180.97 386.91
   A 0.56 0.56 0.0 0 1 1181.93 387.35
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 1163.31 397.92
   A 0.42 0.41 -8.0 0 1 1163.83 398.30
   Q 1164.34 408.74 1159.46 418.20
@@ -1970,8 +2115,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1137.33 402.88 1146.38 401.60
   C 1151.77 400.84 1156.42 399.60 1163.31 397.92
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 508.50 419.39
   L 497.74 405.34
   A 0.32 0.32 0.0 0 1 498.01 404.82
@@ -1980,8 +2127,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 508.94 419.45
   A 0.32 0.32 0.0 0 1 508.50 419.39
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 497.66 428.93
   L 473.77 447.23
   A 0.34 0.34 0.0 0 1 473.23 446.87
@@ -1990,8 +2139,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 497.72 428.45
   A 0.34 0.34 0.0 0 1 497.66 428.93
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 518.34 429.30
   L 538.54 413.83
   A 0.36 0.36 0.0 0 1 539.11 414.20
@@ -2000,8 +2151,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 518.27 429.81
   A 0.36 0.36 0.0 0 1 518.34 429.30
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 845.66 428.77
   L 833.77 415.03
   A 0.32 0.32 0.0 0 1 834.02 414.50
@@ -2010,8 +2163,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 846.10 428.82
   A 0.32 0.32 0.0 0 1 845.66 428.77
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 834.51 437.59
   L 811.16 455.46
   A 0.34 0.34 0.0 0 1 810.62 455.12
@@ -2020,8 +2175,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 834.56 437.10
   A 0.34 0.34 0.0 0 1 834.51 437.59
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 854.34 439.86
   A 0.39 0.39 0.0 0 1 854.40 439.30
   L 876.21 422.34
@@ -2033,8 +2190,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.11 0.11 0.0 0 1 868.90 456.66
   L 854.34 439.86
   Z"
-/>
-<path fill="#737375" d="
+      />
+      <path
+        fill="#737375"
+        d="
   M 1152.63 532.84
   A 0.41 0.40 -74.7 0 1 1152.34 532.32
   Q 1153.60 528.34 1154.68 522.98
@@ -2064,8 +2223,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1161.26 528.64 1155.72 532.13
   Q 1154.07 533.17 1152.63 532.84
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 507.58 439.22
   L 521.33 455.11
   A 0.35 0.35 0.0 0 1 521.06 455.69
@@ -2074,8 +2235,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 507.10 439.17
   A 0.35 0.35 0.0 0 1 507.58 439.22
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 843.51 448.24
   L 857.69 464.61
   A 0.32 0.32 0.0 0 1 857.44 465.14
@@ -2084,8 +2247,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 843.07 448.19
   A 0.32 0.32 0.0 0 1 843.51 448.24
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 1014.09 524.58
   A 0.11 0.10 5.4 0 1 1014.19 524.69
   L 1007.13 604.34
@@ -2111,8 +2276,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 862.12 520.62 925.99 522.48
   Q 945.99 523.06 1014.09 524.58
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 244.76 675.99
   Q 243.70 674.71 242.89 673.24
   Q 233.74 656.66 232.49 639.81
@@ -2131,8 +2298,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 246.09 675.10 246.11 675.46
   A 0.77 0.76 -66.2 0 1 244.76 675.99
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 1102.78 505.83
   A 0.33 0.32 -28.6 0 1 1102.96 505.23
   L 1122.94 505.23
@@ -2147,8 +2316,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.03 2.01 64.5 0 0 1107.28 507.27
   Q 1104.64 507.00 1102.78 505.83
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 688.34 790.91
   Q 726.87 794.15 765.00 791.97
   Q 770.00 791.69 784.75 790.08
@@ -2184,8 +2355,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 687.56 791.51
   A 0.73 0.72 7.3 0 1 688.34 790.91
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 1006.42 620.47
   A 0.52 0.52 0.0 0 1 1006.93 620.99
   Q 1007.00 626.00 1006.78 632.26
@@ -2234,8 +2407,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 923.91 618.14 924.68 618.16
   Q 966.48 619.63 1006.42 620.47
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 239.94 690.11
   L 241.73 693.10
   A 1.46 0.68 34.0 0 0 241.84 693.24
@@ -2253,8 +2428,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 243.26 706.49 239.20 690.41
   A 0.41 0.40 22.7 0 1 239.94 690.11
   Z"
-/>
-<path fill="#233a66" d="
+      />
+      <path
+        fill="#233a66"
+        d="
   M 1034.69 817.77
   Q 1033.60 818.11 1032.75 818.00
   C 1027.25 817.31 1019.22 817.01 1011.18 816.29
@@ -2274,8 +2451,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1018.20 798.48 1024.56 810.16 1034.78 817.19
   A 0.33 0.33 0.0 0 1 1034.69 817.77
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 639.29 746.01
   L 623.56 842.61
   A 0.57 0.57 0.0 0 1 622.97 843.08
@@ -2286,8 +2465,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 638.75 745.35
   A 0.57 0.57 0.0 0 1 639.29 746.01
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 430.38 737.60
   L 415.30 830.22
   A 0.72 0.72 0.0 0 1 414.27 830.75
@@ -2307,8 +2488,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.57 0.57 0.0 0 0 414.39 828.49
   L 428.87 739.58
   Z"
-/>
-<path fill="#b94e16" d="
+      />
+      <path
+        fill="#b94e16"
+        d="
   M 428.87 739.58
   L 414.39 828.49
   A 0.57 0.57 0.0 0 1 413.58 828.91
@@ -2318,8 +2501,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 419.90 742.43 428.40 739.21
   A 0.35 0.34 -6.5 0 1 428.87 739.58
   Z"
-/>
-<path fill="#db6221" d="
+      />
+      <path
+        fill="#db6221"
+        d="
   M 639.42 844.07
   A 0.56 0.55 4.4 0 1 638.87 843.43
   L 654.53 747.27
@@ -2345,8 +2530,10 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 640.85 838.79 640.90 842.06
   A 0.64 0.64 0.0 0 0 641.56 842.69
   Z"
-/>
-<path fill="#b94e16" d="
+      />
+      <path
+        fill="#b94e16"
+        d="
   M 640.90 842.06
   Q 640.85 838.79 640.88 838.62
   Q 642.28 831.19 642.50 829.75
@@ -2362,6 +2549,7 @@ export const DuffelBagSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 651.13 842.39 641.56 842.69
   A 0.64 0.64 0.0 0 1 640.90 842.06
   Z"
-/>
-</svg>
-    )}
+      />
+    </svg>
+  )
+}

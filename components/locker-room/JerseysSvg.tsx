@@ -6,9 +6,12 @@ import React from 'react'
  */
 export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
-   <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#101011" vector-effect="non-scaling-stroke" d="
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#101011"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 199.03 240.54
   Q 199.87 241.47 199.11 241.84
   C 191.93 245.27 189.85 246.15 182.48 249.21
@@ -283,8 +286,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 212.52 235.94 210.31 236.88
   Q 206.81 238.36 203.16 239.95
   Q 201.61 240.62 200.65 239.73"
-/>
-<path stroke="#101011" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#101011"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 393.48 230.30
   Q 393.30 229.02 392.00 228.72
   Q 386.54 227.45 383.36 225.91
@@ -317,8 +323,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 392.92 233.88 394.99 232.41
   A 0.57 0.57 0.0 0 0 395.21 231.80
   Q 395.09 231.36 394.55 231.01"
-/>
-<path stroke="#101011" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#101011"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 273.66 288.02
   C 264.61 278.86 256.68 271.68 250.01 263.21
   Q 239.49 249.86 232.70 235.26
@@ -384,8 +393,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 236.74 333.98 239.19 327.14 242.48 321.68
   C 250.33 308.63 261.04 298.66 273.52 289.74
   A 1.13 1.13 0.0 0 0 273.66 288.02"
-/>
-<path stroke="#101011" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#101011"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.03 242.69
   L 529.71 242.07
   A 0.77 0.77 0.0 0 0 529.32 240.75
@@ -395,15 +407,21 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.93 1.93 0.0 0 0 469.32 235.02
   Q 467.74 235.75 466.87 237.11
   Q 466.63 237.48 466.96 237.79"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.12 261.71
   L 476.33 258.94
   A 0.64 0.64 0.0 0 0 476.73 258.23
   Q 476.16 254.82 475.53 248.10
   Q 475.04 242.92 469.62 240.73"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.62 240.73
   Q 465.13 241.95 458.95 241.68
   A 0.67 0.67 0.0 0 0 458.26 242.19
@@ -411,12 +429,18 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 451.26 263.00 448.36 267.83
   A 0.45 0.45 0.0 0 0 448.89 268.48
   L 469.12 261.71"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.62 240.73
   L 469.12 261.71"
-/>
-<path stroke="#8f8e8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f8e8a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.20 270.25
   L 444.42 269.45
   A 3.56 3.55 9.4 0 0 446.83 267.73
@@ -426,8 +450,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.99 1.97 89.3 0 0 449.60 244.79
   Q 446.53 257.18 439.28 268.92
   A 0.89 0.88 10.4 0 0 440.20 270.25"
-/>
-<path stroke="#101011" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#101011"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 696.96 267.58
   Q 696.91 265.19 693.28 264.69
   A 3.97 3.88 -28.9 0 1 692.41 264.45
@@ -441,8 +468,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 639.59 262.45 642.06 263.77
   A 5.70 5.25 -8.7 0 1 643.04 264.43
   L 647.68 268.28"
-/>
-<path stroke="#453051" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#453051"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 434.72 247.93
   Q 425.98 250.87 412.78 256.34
   C 409.42 257.73 405.70 260.51 402.74 261.06
@@ -452,8 +482,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 427.21 269.02 428.19 267.14
   Q 432.61 258.68 435.18 248.35
   A 0.36 0.35 -2.4 0 0 434.72 247.93"
-/>
-<path stroke="#8b8370" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b8370"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 398.78 312.12
   L 401.10 310.38
   A 0.88 0.88 0.0 0 0 401.17 309.03
@@ -466,16 +499,25 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 379.12 291.87 389.78 303.53
   C 392.35 306.35 396.35 309.32 398.09 311.99
   A 0.48 0.47 55.3 0 0 398.78 312.12"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.19 255.18
   L 335.91 257.30"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 335.91 257.30
   Q 327.71 260.35 320.34 265.29"
-/>
-<path stroke="#101011" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#101011"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 320.34 265.29
   L 317.98 264.27
   A 2.99 2.96 45.2 0 0 315.64 264.25
@@ -494,8 +536,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 292.19 514.80 283.77 519.37
   A 3.57 3.55 -10.9 0 0 281.93 522.07
   Q 281.37 526.62 284.14 529.88"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 284.14 529.88
   Q 284.66 536.79 284.91 543.50
   Q 286.54 586.20 286.67 632.75
@@ -505,55 +550,91 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 270.03 883.61 269.77 886.27
   A 1.52 1.51 13.1 0 0 270.75 887.83
   C 275.00 889.43 278.64 891.68 283.36 892.26"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 283.36 892.26
   L 288.95 893.93"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.95 893.93
   Q 291.86 895.29 293.32 895.69
   Q 298.10 896.99 307.95 898.66"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 307.95 898.66
   L 313.21 899.86"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 313.21 899.86
   Q 328.09 903.72 343.18 906.10"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.18 906.10
   L 348.74 907.11"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 348.74 907.11
   L 371.85 910.94"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 371.85 910.94
   L 376.98 911.70"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 376.98 911.70
   L 395.60 913.88"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 395.60 913.88
   L 401.24 914.17"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 401.24 914.17
   L 425.58 915.89
   A 3.27 3.17 -45.9 0 0 426.20 915.87
   L 427.54 915.67"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.54 915.67
   L 433.47 915.97"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.47 915.97
   L 463.19 916.16
   A 0.30 0.30 0.0 0 0 463.48 915.78
@@ -561,31 +642,49 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 453.14 913.02 444.84 911.77
   A 0.29 0.24 50.7 0 1 444.74 911.75
   L 433.50 908.66"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.50 908.66
   L 427.69 906.58"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.69 906.58
   L 402.13 898.16"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 402.13 898.16
   L 396.59 896.03"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.59 896.03
   Q 392.51 893.28 393.27 887.76
   Q 395.41 872.19 396.72 856.56"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.72 856.56
   Q 398.79 831.86 401.23 807.23
   Q 403.28 786.61 403.49 768.00
   C 404.27 698.93 404.46 623.69 403.45 551.47"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 403.45 551.47
   L 403.89 545.65
   A 0.11 0.11 0.0 0 1 404.00 545.55
@@ -608,28 +707,46 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 412.32 571.94 412.17 538.95 410.88 506.40
   A 0.60 0.60 0.0 0 0 410.09 505.85
   L 402.88 508.19"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 402.88 508.19
   Q 399.66 508.41 397.82 509.63"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 397.82 509.63
   L 380.46 514.62"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 380.46 514.62
   Q 376.87 515.37 375.32 516.54"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 375.32 516.54
   L 355.72 523.49"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 355.72 523.49
   Q 352.64 524.11 350.06 525.88"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.06 525.88
   L 346.15 526.34
   A 0.87 0.87 0.0 0 1 345.18 525.54
@@ -638,154 +755,244 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 342.73 452.59 342.79 441.56
   Q 342.82 437.51 342.94 437.03
   Q 343.51 434.77 346.30 434.48"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.30 434.48
   L 351.74 432.37"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.74 432.37
   L 370.11 425.72"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 370.11 425.72
   Q 372.73 425.29 375.12 424.04"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 375.12 424.04
   L 394.43 417.97"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.43 417.97
   L 399.43 416.74"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 399.43 416.74
   L 420.22 412.28"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.22 412.28
   L 424.79 411.38"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 424.79 411.38
   L 441.28 409.00"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 441.28 409.00
   Q 444.10 409.16 446.92 408.38"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 446.92 408.38
   Q 449.06 408.83 449.87 405.88
   Q 449.94 405.63 450.65 401.62
   Q 455.11 376.33 453.96 348.85
   A 1.24 1.24 0.0 0 0 453.07 347.70
   L 444.53 345.16"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 444.53 345.16
   Q 442.98 343.84 439.09 342.60"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 439.09 342.60
   Q 433.20 339.80 428.20 336.30
   Q 424.06 333.41 422.11 332.25"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 422.11 332.25
   Q 421.28 330.01 419.28 329.26
   A 0.82 0.80 32.3 0 0 418.43 329.44
   L 416.38 331.54"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 416.38 331.54
   Q 410.55 336.54 405.20 344.20
   Q 402.40 348.20 397.13 353.05"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 397.13 353.05
   Q 395.10 353.89 392.47 353.77"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 392.47 353.77
   C 383.19 353.21 380.87 346.80 383.70 338.67
   Q 387.18 328.69 392.20 320.94"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 392.20 320.94
   L 397.84 313.82
   A 0.63 0.62 -50.1 0 0 397.77 312.96
   L 391.46 307.21"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 391.46 307.21
   C 386.05 302.13 382.97 297.73 378.83 292.68
   C 374.59 287.49 370.64 281.64 366.25 276.29"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 366.25 276.29
   Q 364.07 271.26 360.02 265.86"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 360.02 265.86
   L 353.44 251.64
   A 1.04 1.03 70.7 0 0 352.27 251.07
   Q 346.20 252.50 341.19 255.18"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 360.02 265.86
   Q 362.15 294.43 364.04 322.03
   Q 366.12 352.39 368.10 382.75
   Q 368.85 394.10 370.11 425.72"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.74 432.37
   C 350.92 424.64 350.96 414.56 350.73 409.30
   Q 347.97 347.82 343.42 286.45
   Q 342.35 271.99 341.15 257.49
   Q 341.07 256.48 341.19 255.18"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 366.25 276.29
   Q 369.20 310.14 370.89 344.07
   C 371.30 352.26 372.47 361.84 372.77 368.75
   Q 373.96 396.08 375.12 424.04"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.30 434.48
   Q 346.06 425.87 345.56 417.47
   Q 345.49 416.35 345.04 401.98
   Q 344.78 393.55 343.35 384.90"
-/>
-<path stroke="#292929" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292929"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.35 384.90
   Q 343.67 369.03 342.92 358.37
   Q 342.40 350.92 342.12 346.13
   C 341.49 335.32 340.58 325.73 339.64 315.54"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 339.64 315.54
   C 339.93 309.98 339.40 304.76 339.13 299.25
   Q 338.89 294.16 338.29 288.03
   Q 336.80 272.67 335.91 257.30"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 391.46 307.21
   Q 390.98 314.12 392.20 320.94"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 392.47 353.77
   Q 392.93 388.30 393.48 398.50
   Q 393.99 408.09 394.43 417.97"
-/>
-<path stroke="#191919" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#191919"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 339.64 315.54
   C 338.91 311.90 337.61 308.18 336.99 304.77
   Q 334.00 288.24 325.87 273.59
   C 324.49 271.09 322.17 268.22 320.34 265.29"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.06 525.88
   Q 350.25 527.41 350.26 531.25
   Q 350.41 595.58 350.04 632.67
@@ -796,8 +1003,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 347.02 805.17 346.24 816.53 346.13 827.57
   Q 346.00 840.77 345.44 853.91
   Q 344.32 879.93 343.18 906.10"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 313.21 899.86
   Q 315.37 868.14 315.72 858.75
   Q 316.32 842.28 317.88 806.24
@@ -805,32 +1015,50 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 320.55 743.42 321.42 705.01
   Q 322.88 641.03 322.99 623.75
   Q 323.38 557.63 322.89 491.10"
-/>
-<path stroke="#191919" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#191919"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 343.35 384.90
   Q 341.80 397.37 341.96 409.64
   C 342.02 414.41 341.14 417.86 341.16 422.06
   Q 341.17 425.23 340.41 431.38
   Q 336.54 462.89 322.89 491.10"
-/>
-<path stroke="#292929" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292929"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 322.89 491.10
   L 317.26 501.47"
-/>
-<path stroke="#191919" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#191919"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 317.26 501.47
   Q 313.15 506.63 309.41 511.90
   Q 306.94 515.39 298.66 522.32"
-/>
-<path stroke="#292929" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292929"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 298.66 522.32
   L 293.53 525.96"
-/>
-<path stroke="#191919" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#191919"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 293.53 525.96
   L 284.14 529.88"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 307.95 898.66
   Q 310.16 867.19 310.79 851.50
   Q 312.61 806.41 313.59 785.49
@@ -840,43 +1068,64 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 316.99 658.20 317.70 607.50
   Q 318.28 566.50 317.87 544.25
   Q 317.29 512.86 317.26 501.47"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 283.36 892.26
   Q 286.13 858.46 287.96 824.75
   Q 288.04 823.17 288.13 821.51
   Q 290.17 782.40 292.23 726.27
   C 293.08 703.12 293.29 676.25 293.92 651.25
   Q 294.77 617.45 293.53 525.96"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 288.95 893.93
   Q 292.73 836.25 293.86 811.74
   Q 295.11 784.47 295.14 783.91
   C 296.37 761.30 296.78 746.38 297.58 722.25
   Q 299.32 670.45 299.33 617.00
   Q 299.35 569.86 298.66 522.32"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 399.43 416.74
   L 397.13 353.05"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 348.74 907.11
   Q 350.07 876.95 350.62 859.44
   Q 351.98 816.15 352.63 777.75
   Q 352.94 759.87 353.30 742.00
   C 355.01 657.96 356.41 596.40 355.72 523.49"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 422.11 332.25
   L 424.79 411.38"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.22 412.28
   L 416.38 331.54"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 371.85 910.94
   Q 372.13 899.25 372.48 887.82
   Q 372.93 873.56 373.03 864.68
@@ -885,68 +1134,107 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 375.23 741.71 375.86 718.71 376.00 698.73
   Q 376.31 652.66 375.92 542.50
   Q 375.87 526.87 375.32 516.54"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 439.09 342.60
   L 441.28 409.00"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.59 896.03
   L 395.60 913.88"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 376.98 911.70
   Q 378.40 870.29 379.12 829.00
   Q 380.09 773.75 380.91 718.50
   Q 381.74 662.83 380.92 535.50
   Q 380.83 521.08 380.46 514.62"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 444.53 345.16
   L 446.92 408.38"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.72 856.56
   Q 395.54 857.37 395.64 855.50
   Q 396.22 845.12 397.17 829.00
   Q 397.62 821.35 397.89 787.82
   C 398.17 753.35 398.31 729.82 398.99 684.25
   Q 399.86 625.45 397.82 509.63"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 402.13 898.16
   Q 401.63 902.03 401.13 905.61
   Q 400.73 908.40 401.24 914.17"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 403.45 551.47
   L 402.88 508.19"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.69 906.58
   L 427.54 915.67"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.50 908.66
   Q 432.90 912.47 433.47 915.97"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.54 285.93
   L 613.41 285.68"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 613.41 285.68
   Q 618.76 286.40 624.23 285.64
   A 1.56 1.56 0.0 0 0 625.55 284.44
   L 629.71 265.76
   A 0.96 0.96 0.0 0 0 629.21 264.70
   L 614.16 256.81"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 614.16 256.81
   Q 612.56 255.27 610.04 254.25"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 610.04 254.25
   L 604.10 251.73
   A 1.08 1.06 -48.1 0 0 603.16 251.79
@@ -956,17 +1244,26 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 590.65 279.73 588.40 283.92
   A 0.43 0.43 0.0 0 0 588.71 284.55
   Q 599.47 286.29 608.54 285.93"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 610.04 254.25
   Q 608.78 254.03 608.76 255.00
   Q 608.38 270.47 608.54 285.93"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 614.16 256.81
   L 613.41 285.68"
-/>
-<path stroke="#8f8e8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f8e8a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 595.01 251.97
   A 1.33 1.32 -85.5 0 0 593.69 253.10
   Q 591.41 268.39 584.46 282.97
@@ -975,8 +1272,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 593.61 266.20 596.42 252.75
   A 0.64 0.64 0.0 0 0 595.80 251.98
   L 595.01 251.97"
-/>
-<path stroke="#453051" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#453051"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 254.38 254.69
   Q 254.61 255.77 255.27 256.72
   Q 265.38 271.22 279.15 283.45
@@ -987,8 +1287,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 289.47 266.96 277.10 263.20
   C 269.74 260.97 262.31 256.65 255.28 253.93
   A 0.67 0.67 0.0 0 0 254.38 254.69"
-/>
-<path stroke="#8f8e8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f8e8a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 573.17 281.66
   L 574.92 281.94
   A 1.68 1.67 -71.5 0 0 576.65 281.07
@@ -998,8 +1301,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 583.42 256.33 582.62 257.39 582.29 258.58
   Q 578.90 270.93 572.65 280.52
   A 0.75 0.74 20.6 0 0 573.17 281.66"
-/>
-<path stroke="#101011" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#101011"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 734.73 260.65
   C 732.41 265.08 731.34 270.51 729.86 274.83
   Q 725.03 288.90 715.34 302.08
@@ -1092,8 +1398,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.06 1.05 9.5 0 0 790.67 280.85
   L 735.46 260.36
   A 0.60 0.59 -66.4 0 0 734.73 260.65"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 539.86 269.54
   A 0.48 0.48 0.0 0 0 539.86 270.34
   C 546.23 274.52 555.12 276.99 561.64 279.11
@@ -1104,8 +1413,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 569.10 259.44 567.53 259.81
   Q 556.03 262.45 542.25 268.25
   Q 541.01 268.77 539.86 269.54"
-/>
-<path stroke="#8f8e8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f8e8a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 630.97 266.37
   L 627.40 284.58
   A 0.25 0.25 0.0 0 0 627.60 284.87
@@ -1115,8 +1427,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.42 3.66 11.1 0 0 632.83 266.48
   L 631.27 266.17
   A 0.25 0.25 0.0 0 0 630.97 266.37"
-/>
-<path stroke="#295d76" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#295d76"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.27 279.33
   Q 714.14 277.51 709.34 275.15
   Q 707.03 274.01 705.84 274.22
@@ -1134,8 +1449,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 636.71 350.10 639.90 350.74 644.70 348.70
   C 677.08 334.93 702.94 311.89 718.72 280.56
   A 0.91 0.90 24.9 0 0 718.27 279.33"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 386.67 276.00
   Q 391.76 282.57 398.94 293.11
   C 401.25 296.50 404.19 299.55 407.06 303.00
@@ -1147,8 +1465,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 408.49 279.55 401.06 277.63 393.95 275.87
   C 391.55 275.28 388.63 275.22 387.05 275.22
   A 0.48 0.48 0.0 0 0 386.67 276.00"
-/>
-<path stroke="#51395f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#51395f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 161.56 440.75
   Q 184.92 411.84 190.29 375.30
   Q 191.33 368.16 191.84 357.14
@@ -1159,8 +1480,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 179.43 399.41 164.81 432.85
   Q 162.83 437.37 161.22 440.54
   A 0.20 0.20 0.0 0 0 161.56 440.75"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 312.73 469.48
   Q 317.00 458.45 319.02 446.77
   C 323.04 423.55 324.77 400.92 324.51 375.87
@@ -1186,8 +1510,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.13 0.13 0.0 0 0 312.53 469.57
   L 312.53 469.58
   A 0.17 0.17 0.0 0 0 312.73 469.48"
-/>
-<path stroke="#295d76" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#295d76"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 434.99 476.30
   A 0.25 0.25 0.0 0 0 435.44 476.46
   C 439.25 471.00 443.14 466.18 446.43 460.84
@@ -1200,30 +1527,42 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 450.25 439.06 444.59 454.04
   C 442.16 460.47 438.89 466.80 435.99 473.00
   Q 435.05 475.01 434.99 476.30"
-/>
-<path stroke="#383838" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#383838"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 443.36 311.85
   Q 439.71 312.84 434.79 316.37
   A 1.37 1.36 -28.1 0 0 434.30 317.95
   C 435.98 322.47 440.22 325.21 445.24 327.28"
-/>
-<path stroke="#282828" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#282828"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.24 327.28
   L 451.89 330.43
   A 0.49 0.48 -79.1 0 0 452.58 329.96
   C 452.14 323.01 452.10 316.45 449.80 310.61
   A 0.83 0.82 79.9 0 0 449.05 310.08
   Q 446.47 310.02 443.36 311.85"
-/>
-<path stroke="#414040" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#414040"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.24 327.28
   L 445.74 327.30
   A 0.51 0.50 -28.5 0 0 446.02 326.36
   L 444.57 325.53
   A 0.86 0.84 -76.9 0 1 444.14 324.82
   L 443.36 311.85"
-/>
-<path stroke="#8f8e8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f8e8a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.57 328.80
   Q 430.90 337.51 443.30 342.92
   Q 448.19 345.05 452.92 345.87
@@ -1235,8 +1574,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.30 1.29 46.9 0 0 422.02 326.50
   L 420.60 327.57
   A 0.79 0.78 46.6 0 0 420.57 328.80"
-/>
-<path stroke="#101011" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#101011"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.09 489.99
   L 409.94 476.23
   A 1.02 1.02 0.0 0 0 408.65 475.41
@@ -1253,8 +1595,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 417.39 485.25
   A 0.51 0.50 52.6 0 0 418.34 485.38
   L 418.65 484.75"
-/>
-<path stroke="#8b8370" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b8370"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 418.65 484.75
   Q 418.39 485.00 418.73 484.97
   A 0.51 0.49 16.2 0 0 419.07 484.79
@@ -1279,8 +1624,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 410.82 492.15
   A 1.39 1.39 0.0 0 1 411.46 491.12
   Q 412.84 490.25 412.09 489.99"
-/>
-<path stroke="#7c7461" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c7461"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 418.65 484.75
   L 408.76 431.15
   A 0.76 0.76 0.0 0 0 407.81 430.56
@@ -1297,8 +1645,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 409.19 479.94 410.28 489.17
   Q 410.39 490.03 410.87 490.15
   Q 411.32 490.26 412.09 489.99"
-/>
-<path stroke="#8b8370" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b8370"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 403.21 449.35
   L 400.24 468.42
   A 0.57 0.56 86.4 0 0 400.95 469.05
@@ -1306,16 +1657,25 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.47 0.46 -13.7 0 0 406.87 466.92
   L 403.55 449.34
   A 0.17 0.17 0.0 0 0 403.21 449.35"
-/>
-<path stroke="#422a50" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422a50"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 222.17 237.90
   L 180.88 256.83"
-/>
-<path stroke="#362142" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#362142"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 180.88 256.83
   Q 180.77 256.99 180.52 256.99"
-/>
-<path stroke="#7c7461" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c7461"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 180.52 256.99
   L 171.69 261.01
   A 0.97 0.96 58.0 0 0 171.35 262.50
@@ -1325,8 +1685,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 153.47 462.93 141.05 468.79
   A 1.79 1.78 -15.6 0 0 140.04 470.57
   L 140.98 480.47"
-/>
-<path stroke="#422a50" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422a50"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 140.98 480.47
   C 143.54 529.60 142.54 578.09 140.06 628.01
   Q 139.49 639.37 138.00 659.39
@@ -1342,37 +1705,58 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 276.14 531.79 275.32 522.81
   C 274.90 518.18 275.82 514.70 277.71 510.98
   Q 282.04 502.46 286.48 494.03"
-/>
-<path stroke="#362142" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#362142"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 286.48 494.03
   Q 286.49 493.56 286.89 493.10"
-/>
-<path stroke="#7c7461" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c7461"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 286.89 493.10
   L 293.06 481.23"
-/>
-<path stroke="#422a50" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422a50"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 293.06 481.23
   Q 300.32 466.60 303.59 450.29"
-/>
-<path stroke="#7c7461" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c7461"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 303.59 450.29
   L 306.16 438.00"
-/>
-<path stroke="#422a50" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422a50"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 306.16 438.00
   Q 307.77 431.34 308.24 426.49
   C 311.02 397.36 310.39 366.41 308.40 336.62
   Q 307.72 326.45 306.37 316.67"
-/>
-<path stroke="#7c7461" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c7461"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 306.37 316.67
   C 306.23 313.88 306.33 308.47 303.93 306.81
   Q 301.15 304.87 297.10 303.24
   A 3.65 3.61 41.1 0 0 293.95 303.44
   L 287.00 307.36"
-/>
-<path stroke="#422a50" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422a50"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 287.00 307.36
   Q 276.14 313.94 267.68 323.42
   C 262.16 329.60 258.26 336.46 254.25 343.51
@@ -1380,30 +1764,45 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 244.14 351.92 236.18 348.58 235.53 341.45
   Q 234.80 333.39 238.91 325.59
   Q 248.28 307.84 264.27 295.09"
-/>
-<path stroke="#7c7461" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c7461"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 264.27 295.09
   L 272.28 289.08
   A 0.34 0.34 0.0 0 0 272.30 288.56
   C 255.37 273.22 240.68 257.01 231.43 236.02
   A 1.40 1.39 -21.6 0 0 229.69 235.27
   L 222.17 237.90"
-/>
-<path stroke="#bd9dae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bd9dae"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 264.27 295.09
   Q 263.51 294.83 263.59 294.73
   Q 264.69 293.45 264.37 292.18"
-/>
-<path stroke="#b094a0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b094a0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 264.37 292.18
   Q 242.86 274.41 228.91 251.35
   Q 225.74 246.11 223.06 238.94"
-/>
-<path stroke="#bd9dae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bd9dae"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 223.06 238.94
   Q 222.24 238.53 222.17 237.90"
-/>
-<path stroke="#774a8f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#774a8f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 223.06 238.94
   Q 222.64 239.02 222.37 239.18
   A 0.65 0.64 -28.6 0 0 222.11 240.05
@@ -1411,27 +1810,42 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 240.94 274.40 263.57 292.83
   A 0.45 0.45 0.0 0 0 264.28 292.62
   Q 264.34 292.43 264.37 292.18"
-/>
-<path stroke="#bd9dae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bd9dae"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 287.00 307.36
   Q 287.58 308.18 287.62 307.87"
-/>
-<path stroke="#774a8f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#774a8f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 287.62 307.87
   Q 286.98 308.76 287.89 309.36
   Q 294.81 313.90 302.89 317.08
   Q 303.46 317.31 303.88 316.86
   Q 304.00 316.72 303.72 316.20"
-/>
-<path stroke="#bd9dae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bd9dae"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 303.72 316.20
   Q 306.82 317.76 306.37 316.67"
-/>
-<path stroke="#bd9dae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bd9dae"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 306.16 438.00
   L 304.75 437.56"
-/>
-<path stroke="#774a8f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#774a8f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 304.75 437.56
   Q 305.12 437.47 305.11 437.02
   A 0.64 0.62 12.9 0 0 304.76 436.48
@@ -1441,12 +1855,18 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 284.07 493.76 284.49 493.96
   A 0.80 0.79 -50.5 0 0 285.27 493.88
   Q 285.97 493.37 286.48 494.03"
-/>
-<path stroke="#bd9dae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bd9dae"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 140.98 480.47
   Q 141.92 479.88 141.47 479.53"
-/>
-<path stroke="#774a8f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#774a8f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 141.47 479.53
   Q 160.77 471.83 174.61 455.10
   Q 190.67 435.67 199.32 414.60
@@ -1456,12 +1876,18 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 208.92 314.78 202.84 297.75
   Q 202.75 297.50 199.56 289.23
   C 195.07 277.60 188.48 266.72 180.88 256.83"
-/>
-<path stroke="#b094a0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b094a0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 303.72 316.20
   C 297.83 314.06 292.96 311.17 287.62 307.87"
-/>
-<path stroke="#b094a0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b094a0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 141.47 479.53
   Q 143.87 477.29 147.13 475.65
   Q 152.97 472.72 153.26 472.53
@@ -1470,28 +1896,43 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 214.91 366.87 213.87 323.70 196.29 284.46
   C 192.17 275.25 187.16 267.48 181.33 259.23
   C 180.92 258.65 180.80 257.71 180.52 256.99"
-/>
-<path stroke="#b094a0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b094a0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 304.75 437.56
   C 294.07 432.89 284.02 434.56 275.49 442.36
   C 266.65 450.44 264.25 465.55 266.13 476.92
   C 268.02 488.38 276.37 492.19 286.89 493.10"
-/>
-<path stroke="#bd9dae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bd9dae"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 303.59 450.29
   Q 302.85 450.54 302.22 450.09"
-/>
-<path stroke="#b094a0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b094a0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 302.22 450.09
   C 295.72 447.10 288.99 446.74 284.74 453.32
   Q 279.77 461.02 280.28 470.03
   C 280.67 477.01 283.27 481.71 290.73 481.68"
-/>
-<path stroke="#bd9dae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bd9dae"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 290.73 481.68
   L 293.06 481.23"
-/>
-<path stroke="#774a8f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#774a8f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 302.22 450.09
   Q 302.50 450.73 301.35 450.74
   A 1.94 1.84 -31.0 0 1 300.54 450.56
@@ -1499,8 +1940,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 280.86 464.58 278.69 480.49 289.81 480.24
   A 0.83 0.82 -10.4 0 1 290.60 480.78
   Q 290.75 481.16 290.73 481.68"
-/>
-<path stroke="#774a8f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#774a8f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 260.37 437.31
   Q 259.15 436.81 256.80 436.80
   C 253.08 436.79 251.36 436.80 248.82 439.60
@@ -1518,8 +1962,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 257.84 482.08 257.50 478.99 257.74 473.76
   Q 258.55 456.07 261.66 439.69
   A 2.15 2.14 -73.6 0 0 260.37 437.31"
-/>
-<path stroke="#774a8f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#774a8f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 183.48 506.34
   Q 183.17 507.37 182.36 514.78
   Q 181.91 518.89 181.02 522.60
@@ -1544,16 +1991,25 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 182.27 539.64 183.37 521.14
   C 183.67 516.02 184.22 511.80 184.08 506.41
   A 0.31 0.30 -38.0 0 0 183.48 506.34"
-/>
-<path stroke="#13425c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#13425c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 492.95 262.18
   Q 492.05 262.28 491.44 262.83"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 491.44 262.83
   L 464.21 272.27"
-/>
-<path stroke="#1a4e67" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1a4e67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 464.21 272.27
   L 455.03 275.48
   A 0.77 0.77 0.0 0 0 454.63 276.61
@@ -1563,20 +2019,32 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 435.10 488.86 427.23 494.78 420.56 500.22
   A 2.80 2.77 70.4 0 0 419.54 502.40
   L 419.62 510.39"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 419.62 510.39
   L 420.23 533.74"
-/>
-<path stroke="#1a4e67" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1a4e67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.23 533.74
   Q 421.44 596.46 419.34 659.21"
-/>
-<path stroke="#13425c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#13425c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 419.34 659.21
   L 419.18 662.26"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 419.18 662.26
   Q 417.18 700.56 414.77 738.99
   Q 413.46 759.96 412.85 766.68
@@ -1595,20 +2063,29 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 850.99 880.88 854.62 878.90
   A 1.42 1.42 0.0 0 0 855.35 877.52
   L 851.25 835.93"
-/>
-<path stroke="#1a4e67" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1a4e67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 851.25 835.93
   Q 845.99 769.57 843.05 703.03"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 843.05 703.03
   Q 842.93 694.27 842.57 685.50
   C 842.04 672.70 842.08 663.14 841.47 651.65
   Q 841.06 643.71 841.04 635.35
   Q 841.04 632.98 840.29 599.00
   Q 839.54 564.99 840.21 515.56"
-/>
-<path stroke="#1a4e67" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1a4e67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 840.21 515.56
   Q 841.23 508.98 840.87 501.66
   A 3.12 3.07 21.7 0 0 839.99 499.66
@@ -1617,16 +2094,25 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 787.82 301.65 790.17 283.49
   A 1.31 1.30 -76.1 0 0 789.33 282.09
   L 782.99 279.77"
-/>
-<path stroke="#13425c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#13425c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 782.99 279.77
   L 781.97 279.70"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 781.97 279.70
   L 747.92 266.57"
-/>
-<path stroke="#1a4e67" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1a4e67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 747.92 266.57
   L 735.69 261.94
   A 0.46 0.46 0.0 0 0 735.08 262.28
@@ -1638,12 +2124,18 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 507.10 268.55 502.29 259.74
   A 1.11 1.10 65.4 0 0 500.93 259.23
   L 492.95 262.18"
-/>
-<path stroke="#99cce0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#99cce0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 747.92 266.57
   L 747.52 267.98"
-/>
-<path stroke="#2c8ec1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c8ec1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 747.52 267.98
   Q 747.22 266.79 746.55 267.77
   Q 746.20 268.29 745.92 269.18
@@ -1663,8 +2155,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.65 1.65 0.0 0 0 500.09 260.80
   Q 497.15 261.67 494.27 262.85
   Q 493.10 263.32 492.95 262.18"
-/>
-<path stroke="#92c0d5" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92c0d5"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 747.52 267.98
   Q 741.22 288.04 730.86 303.86
   Q 703.85 345.09 657.81 365.54
@@ -1673,23 +2168,35 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 580.04 355.21 544.39 326.38
   Q 521.56 307.91 505.59 286.15
   Q 498.46 276.44 491.44 262.83"
-/>
-<path stroke="#92c0d5" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92c0d5"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 781.97 279.70
   C 777.87 299.97 775.96 320.77 775.09 341.24
   Q 774.04 366.03 778.33 395.74
   Q 783.97 434.79 803.54 469.96
   Q 817.30 494.66 839.22 514.38"
-/>
-<path stroke="#99cce0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#99cce0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 839.22 514.38
   L 840.21 515.56"
-/>
-<path stroke="#99cce0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#99cce0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 843.05 703.03
   Q 842.33 703.11 841.95 702.95"
-/>
-<path stroke="#92c0d5" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92c0d5"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 841.95 702.95
   L 841.66 702.55
   A 1.61 1.60 83.1 0 0 841.00 702.03
@@ -1698,16 +2205,25 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 668.52 632.56 641.40 621.71
   Q 553.69 586.62 467.64 551.94
   C 454.88 546.80 437.83 540.47 423.05 534.33"
-/>
-<path stroke="#99cce0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#99cce0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 423.05 534.33
   Q 421.73 533.75 420.23 533.74"
-/>
-<path stroke="#99cce0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#99cce0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 419.62 510.39
   Q 420.41 510.05 420.85 510.06"
-/>
-<path stroke="#92c0d5" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92c0d5"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 420.85 510.06
   Q 449.19 493.95 465.55 466.28
   Q 481.93 438.58 486.82 405.46
@@ -1715,12 +2231,18 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 489.17 380.94 489.14 368.47
   Q 489.12 358.53 487.95 348.59
   C 484.84 322.25 477.02 296.12 464.33 272.85"
-/>
-<path stroke="#99cce0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#99cce0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 464.33 272.85
   Q 464.20 273.04 464.21 272.27"
-/>
-<path stroke="#2c8ec1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c8ec1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 464.33 272.85
   Q 463.52 273.47 464.11 274.63
   Q 480.53 307.29 485.60 340.78
@@ -1734,8 +2256,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 431.99 502.04 422.03 508.25
   Q 422.00 508.26 421.42 508.47
   Q 420.72 508.73 420.85 510.06"
-/>
-<path stroke="#2c8ec1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c8ec1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 423.05 534.33
   Q 422.84 534.58 422.59 534.56
   A 0.47 0.45 57.5 0 0 422.41 535.46
@@ -1747,12 +2272,18 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 840.29 702.91 841.44 704.08
   A 0.27 0.27 0.0 0 0 841.90 703.91
   L 841.95 702.95"
-/>
-<path stroke="#99cce0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#99cce0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 851.25 835.93
   Q 850.62 835.61 849.31 835.47"
-/>
-<path stroke="#2c8ec1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c8ec1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 849.31 835.47
   Q 849.42 835.46 849.61 835.43
   A 0.15 0.15 0.0 0 0 849.71 835.21
@@ -1790,8 +2321,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 420.30 659.01
   A 0.42 0.42 0.0 0 1 420.02 659.34
   Q 419.69 659.44 419.34 659.21"
-/>
-<path stroke="#2c8ec1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c8ec1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 782.99 279.77
   Q 776.67 316.05 776.14 352.76
   C 776.05 359.00 777.24 365.42 777.09 370.66
@@ -1805,12 +2339,18 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 826.24 500.52 839.62 513.42
   A 0.52 0.52 0.0 0 1 839.47 514.26
   L 839.22 514.38"
-/>
-<path stroke="#92c0d5" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92c0d5"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 849.31 835.47
   L 419.18 662.26"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.26 495.91
   L 541.33 527.54
   A 2.29 2.29 0.0 0 0 543.17 529.17
@@ -1832,8 +2372,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.58 0.58 0.0 0 0 531.56 528.09
   L 531.82 495.97
   A 0.22 0.22 0.0 0 1 532.26 495.91"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.69 463.21
   L 503.06 464.54
   A 0.72 0.71 86.8 0 0 502.44 465.24
@@ -1851,8 +2394,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 513.59 524.38 513.32 514.98 513.51 506.25
   Q 513.97 485.68 514.04 463.52
   A 0.31 0.31 0.0 0 0 513.69 463.21"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 562.35 463.34
   A 0.18 0.17 3.0 0 0 562.15 463.51
   L 562.09 530.33
@@ -1862,8 +2408,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 592.36 503.32 591.81 485.25
   Q 591.68 480.81 590.35 476.90
   C 586.24 464.84 572.91 464.42 562.35 463.34"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 609.34 540.22
   A 0.27 0.26 -83.0 0 0 609.66 539.96
   L 610.19 474.74
@@ -1874,8 +2423,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 598.98 489.36 598.98 536.60
   A 1.63 1.63 0.0 0 0 600.26 538.19
   L 609.34 540.22"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.01 521.06
   C 616.80 534.93 620.22 546.17 635.79 548.53
   C 642.41 549.53 645.28 543.39 645.51 537.73
@@ -1898,8 +2450,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.17 1.16 9.9 0 0 626.75 523.36
   L 617.55 520.66
   A 0.42 0.42 0.0 0 0 617.01 521.06"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 662.76 529.84
   A 0.36 0.36 0.0 0 1 663.23 529.50
   Q 666.47 530.59 670.03 531.02
@@ -1912,8 +2467,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 662.44 555.81
   A 0.43 0.42 -81.8 0 0 662.98 555.40
   L 662.76 529.84"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 684.97 497.01
   Q 684.88 536.53 685.08 546.47
   C 685.33 558.40 691.54 567.60 704.00 568.98
@@ -1930,8 +2488,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.35 1.34 -82.2 0 0 694.78 499.58
   L 685.27 496.79
   A 0.24 0.23 7.7 0 0 684.97 497.01"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 739.22 522.34
   C 741.69 523.13 744.59 524.09 747.44 524.15
   A 0.63 0.63 0.0 0 0 748.08 523.51
@@ -1949,8 +2510,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.80 0.80 0.0 0 0 738.92 578.32
   L 738.46 522.90
   A 0.59 0.58 8.4 0 1 739.22 522.34"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 764.08 526.19
   L 777.70 527.56
   A 0.43 0.43 0.0 0 0 778.17 527.12
@@ -1976,8 +2540,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.82 0.81 1.1 0 1 763.97 539.78
   L 763.86 526.39
   A 0.20 0.19 1.4 0 1 764.08 526.19"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 783.60 516.84
   L 784.14 581.39
   A 0.56 0.56 0.0 0 0 784.73 581.95
@@ -1987,8 +2554,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 813.52 525.03 811.01 517.16 800.95 516.09
   Q 796.84 515.66 784.00 516.41
   A 0.43 0.42 -2.8 0 0 783.60 516.84"
-/>
-<path stroke="#7c7461" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c7461"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 283.90 526.85
   A 1.11 1.11 0.0 0 0 285.40 527.90
   C 297.63 523.30 307.28 513.62 314.43 502.67
@@ -2009,8 +2579,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 293.90 515.92 285.34 519.90
   A 2.43 2.40 -12.5 0 0 283.94 522.07
   L 283.90 526.85"
-/>
-<path stroke="#2c8ec1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c8ec1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.78 279.34
   Q 529.32 280.43 531.15 282.60
   Q 541.77 295.21 555.86 307.16
@@ -2038,8 +2611,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 536.45 280.68 531.23 278.20
   Q 530.43 277.82 529.66 277.85
   A 1.03 1.03 0.0 0 0 528.78 279.34"
-/>
-<path stroke="#774a8f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#774a8f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 181.03 300.20
   Q 181.78 305.54 182.54 316.11
   C 182.96 322.11 183.65 329.51 183.71 336.55
@@ -2057,8 +2633,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 188.99 321.88 186.56 313.87
   Q 184.16 305.97 181.59 300.05
   A 0.29 0.29 0.0 0 0 181.03 300.20"
-/>
-<path stroke="#2c8ec1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2c8ec1"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.56 314.97
   C 461.35 317.01 460.98 319.21 461.27 321.72
   Q 464.64 351.86 462.78 378.81
@@ -2080,8 +2659,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.24 0.24 0.0 0 0 460.78 314.54
   L 460.77 314.54
   A 0.32 0.32 0.0 0 0 460.56 314.97"
-/>
-<path stroke="#8b8370" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8b8370"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 383.96 497.66
   A 0.36 0.36 0.0 0 0 384.22 497.30
   L 382.81 437.47
@@ -2107,8 +2689,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 375.31 499.67
   A 0.36 0.36 0.0 0 0 375.77 500.01
   L 383.96 497.66"
-/>
-<path stroke="#b094a0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b094a0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 248.61 441.39
   A 0.64 0.64 0.0 0 1 247.73 441.51
   C 239.21 435.57 227.51 436.65 219.76 443.59
@@ -2125,16 +2710,22 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.82 0.81 -78.1 0 0 260.03 438.18
   C 257.55 437.72 252.94 437.32 250.86 439.04
   Q 249.73 439.97 248.61 441.39"
-/>
-<path stroke="#948c78" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#948c78"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 243.38 464.25
   C 243.86 459.48 245.30 451.84 240.18 449.93
   C 231.31 446.61 225.37 455.36 223.51 462.76
   Q 221.79 469.63 222.94 476.29
   C 224.55 485.60 234.44 485.17 238.87 478.62
   C 241.97 474.02 242.80 469.99 243.38 464.25"
-/>
-<path stroke="#5a4267" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5a4267"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 241.63 452.14
   Q 238.90 449.62 234.87 450.46
   C 224.12 452.70 221.44 471.42 225.38 479.45
@@ -2142,8 +2733,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 240.95 484.21 242.55 466.20 242.81 458.26
   Q 242.93 454.37 242.25 452.97
   A 2.87 2.76 9.4 0 0 241.63 452.14"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 551.85 528.45
   L 552.37 464.75
   A 1.08 1.08 0.0 0 0 551.30 463.66
@@ -2169,8 +2763,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.62 1.61 -4.3 0 0 543.96 527.86
   L 551.21 528.99
   A 0.55 0.55 0.0 0 0 551.85 528.45"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 511.74 464.64
   L 504.72 465.96
   A 0.91 0.90 84.3 0 0 503.99 466.86
@@ -2187,8 +2784,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 512.20 501.11 511.56 482.66 512.93 467.69
   Q 513.02 466.73 512.77 465.34
   A 0.88 0.87 -10.7 0 0 511.74 464.64"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.00 465.53
   L 563.48 529.50
   A 1.10 1.10 0.0 0 0 564.36 530.59
@@ -2198,8 +2798,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 590.24 477.46 587.42 470.64 580.59 468.04
   Q 575.90 466.26 564.66 464.94
   A 0.60 0.59 3.0 0 0 564.00 465.53"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 572.15 475.58
   L 571.78 521.06
   A 2.28 2.28 0.0 0 0 574.04 523.36
@@ -2208,8 +2811,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 582.31 488.27 581.92 483.21
   Q 581.32 475.55 572.81 474.96
   A 0.63 0.62 -87.8 0 0 572.15 475.58"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.96 472.53
   A 0.68 0.68 0.0 0 0 600.13 473.20
   L 600.66 536.40
@@ -2219,8 +2825,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 608.24 474.69
   A 0.68 0.68 0.0 0 0 607.71 474.03
   L 600.96 472.53"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 572.76 478.29
   L 573.11 520.37
   A 2.00 2.00 0.0 0 0 575.36 522.34
@@ -2230,8 +2839,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 7.69 7.69 0.0 0 0 576.83 477.06
   L 575.66 476.48
   A 2.01 2.00 13.0 0 0 572.76 478.29"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 643.69 500.42
   Q 643.85 494.77 641.75 489.29
   C 639.16 482.52 633.95 479.57 627.11 478.54
@@ -2255,8 +2867,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.77 1.75 -85.8 0 0 636.87 499.44
   L 642.69 501.15
   A 0.78 0.78 0.0 0 0 643.69 500.42"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.41 553.44
   L 661.21 529.94
   A 1.68 1.67 -82.6 0 1 663.33 528.31
@@ -2269,8 +2884,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.48 0.48 0.0 0 0 653.68 551.78
   L 660.83 553.88
   A 0.46 0.45 -81.9 0 0 661.41 553.44"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.02 500.49
   L 661.16 516.83
   A 1.97 1.97 0.0 0 0 662.50 518.68
@@ -2279,8 +2897,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 8.28 8.28 0.0 0 0 665.87 499.60
   L 664.20 498.64
   A 2.12 2.12 0.0 0 0 661.02 500.49"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 705.35 504.46
   A 0.30 0.29 -84.7 0 0 705.00 504.76
   Q 705.81 527.75 705.82 545.98
@@ -2299,8 +2920,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 713.82 534.34 713.01 506.53
   A 0.49 0.48 -85.4 0 0 712.64 506.08
   L 705.35 504.46"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 662.46 500.28
   L 662.83 516.12
   A 2.09 2.09 0.0 0 0 664.97 518.16
@@ -2308,8 +2932,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.88 2.87 1.7 0 0 668.89 515.49
   C 669.40 509.41 669.72 501.30 662.91 499.91
   A 0.37 0.37 0.0 0 0 662.46 500.28"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 746.72 514.62
   A 0.72 0.72 0.0 0 0 746.16 513.93
   L 720.74 508.27
@@ -2327,8 +2954,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 745.91 522.54
   A 0.72 0.72 0.0 0 0 746.78 521.83
   L 746.72 514.62"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 754.21 515.63
   L 753.70 578.09
   A 1.86 1.85 -88.7 0 0 755.48 579.96
@@ -2354,8 +2984,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.22 1.21 -89.8 0 0 775.82 516.99
   C 767.99 516.98 763.28 516.31 754.62 515.27
   A 0.37 0.36 3.5 0 0 754.21 515.63"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 784.88 518.82
   L 785.39 579.81
   A 0.45 0.45 0.0 0 0 785.84 580.26
@@ -2366,8 +2999,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 800.20 517.23 799.74 517.21
   Q 793.50 516.94 785.46 518.13
   A 0.69 0.68 85.2 0 0 784.88 518.82"
-/>
-<path stroke="#4a1e06" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4a1e06"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 793.79 526.90
   L 793.57 569.04
   A 0.98 0.98 0.0 0 0 794.54 570.03
@@ -2377,8 +3013,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 7.79 7.40 -89.7 0 0 796.84 525.94
   L 794.78 525.93
   A 0.98 0.98 0.0 0 0 793.79 526.90"
-/>
-<path stroke="#807f7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f7b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 795.06 528.07
   L 794.86 567.91
   A 1.05 1.05 0.0 0 0 795.90 568.96
@@ -2388,8 +3027,11 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 7.65 6.25 -89.7 0 0 796.82 527.03
   L 796.12 527.02
   A 1.05 1.05 0.0 0 0 795.06 528.07"
-/>
-<path stroke="#fbf2da" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf2da"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 416.55 745.66
   Q 426.43 709.97 435.12 670.78
   A 1.12 1.12 0.0 0 0 434.41 669.48
@@ -2403,10 +3045,12 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.16 4.87 49.7 0 1 417.10 733.10
   Q 416.29 738.31 416.25 745.62
   A 0.15 0.15 0.0 0 0 416.55 745.66"
-/>
-</g>
-<g>
-<path fill="#010102" d="
+        />
+      </g>
+      <g>
+        <path
+          fill="#010102"
+          d="
   M 199.03 240.54
   Q 199.87 241.47 199.11 241.84
   C 191.93 245.27 189.85 246.15 182.48 249.21
@@ -2914,8 +3558,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 160.82 260.01 162.28 257.48 164.39 256.40
   Q 179.90 248.48 199.03 240.54
   Z"
-/>
-<path fill="#1f1f20" d="
+        />
+        <path
+          fill="#1f1f20"
+          d="
   M 199.03 240.54
   Q 199.52 239.97 200.65 239.73
   Q 201.61 240.62 203.16 239.95
@@ -3812,10 +4458,12 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 403.55 449.34
   A 0.17 0.17 0.0 0 0 403.21 449.35
   Z"
-/>
-</g>
-<g>
-<path fill="#010102" d="
+        />
+      </g>
+      <g>
+        <path
+          fill="#010102"
+          d="
   M 393.48 230.30
   Q 388.25 229.64 383.57 227.35
   A 3.68 3.57 59.0 0 0 382.14 226.97
@@ -3874,8 +4522,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 386.54 227.45 392.00 228.72
   Q 393.30 229.02 393.48 230.30
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 273.66 288.02
   A 1.13 1.13 0.0 0 1 273.52 289.74
   C 261.04 298.66 250.33 308.63 242.48 321.68
@@ -3990,8 +4640,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.40 1.39 -21.6 0 0 229.69 235.27
   L 222.17 237.90
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 529.03 242.69
   Q 529.15 242.54 529.13 242.38
   A 0.20 0.19 5.6 0 0 529.00 242.23
@@ -4011,8 +4663,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.77 0.77 0.0 0 1 529.71 242.07
   L 529.03 242.69
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 469.62 240.73
   L 469.12 261.71
   L 448.89 268.48
@@ -4022,8 +4676,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.67 0.67 0.0 0 1 458.95 241.68
   Q 465.13 241.95 469.62 240.73
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 469.62 240.73
   Q 475.04 242.92 475.53 248.10
   Q 476.16 254.82 476.73 258.23
@@ -4031,8 +4687,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 469.12 261.71
   L 469.62 240.73
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 440.20 270.25
   A 0.89 0.88 10.4 0 1 439.28 268.92
   Q 446.53 257.18 449.60 244.79
@@ -4043,8 +4701,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.56 3.55 9.4 0 1 444.42 269.45
   L 440.20 270.25
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 696.96 267.58
   Q 693.73 266.67 689.37 264.63
   Q 685.82 262.97 669.82 256.90
@@ -4069,8 +4729,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.97 3.88 -28.9 0 0 693.28 264.69
   Q 696.91 265.19 696.96 267.58
   Z"
-/>
-<path fill="#6a4181" d="
+        />
+        <path
+          fill="#6a4181"
+          d="
   M 435.18 248.35
   Q 432.61 258.68 428.19 267.14
   Q 427.21 269.02 425.00 268.55
@@ -4081,8 +4743,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 425.98 250.87 434.72 247.93
   A 0.36 0.35 -2.4 0 1 435.18 248.35
   Z"
-/>
-<path fill="#f6e7bf" d="
+        />
+        <path
+          fill="#f6e7bf"
+          d="
   M 398.09 311.99
   C 396.35 309.32 392.35 306.35 389.78 303.53
   Q 379.12 291.87 368.74 276.75
@@ -4096,8 +4760,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 398.78 312.12
   A 0.48 0.47 55.3 0 1 398.09 311.99
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 360.02 265.86
   Q 362.15 294.43 364.04 322.03
   Q 366.12 352.39 368.10 382.75
@@ -4111,8 +4777,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.04 1.03 70.7 0 1 353.44 251.64
   L 360.02 265.86
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 610.04 254.25
   Q 608.78 254.03 608.76 255.00
   Q 608.38 270.47 608.54 285.93
@@ -4125,8 +4793,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.08 1.06 -48.1 0 1 604.10 251.73
   L 610.04 254.25
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 596.42 252.75
   Q 593.61 266.20 588.67 279.69
   C 587.90 281.78 587.05 284.61 584.83 283.84
@@ -4136,8 +4806,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 595.80 251.98
   A 0.64 0.64 0.0 0 1 596.42 252.75
   Z"
-/>
-<path fill="#6a4181" d="
+        />
+        <path
+          fill="#6a4181"
+          d="
   M 254.38 254.69
   A 0.67 0.67 0.0 0 1 255.28 253.93
   C 262.31 256.65 269.74 260.97 277.10 263.20
@@ -4149,8 +4821,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 265.38 271.22 255.27 256.72
   Q 254.61 255.77 254.38 254.69
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 610.04 254.25
   Q 612.56 255.27 614.16 256.81
   L 613.41 285.68
@@ -4158,8 +4832,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 608.38 270.47 608.76 255.00
   Q 608.78 254.03 610.04 254.25
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 572.65 280.52
   Q 578.90 270.93 582.29 258.58
   C 582.62 257.39 583.42 256.33 583.83 254.92
@@ -4170,8 +4846,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 573.17 281.66
   A 0.75 0.74 20.6 0 1 572.65 280.52
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 341.19 255.18
   Q 341.07 256.48 341.15 257.49
   Q 342.35 271.99 343.42 286.45
@@ -4189,8 +4867,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 336.80 272.67 335.91 257.30
   L 341.19 255.18
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 613.41 285.68
   L 614.16 256.81
   L 629.21 264.70
@@ -4199,8 +4879,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.56 1.56 0.0 0 1 624.23 285.64
   Q 618.76 286.40 613.41 285.68
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 335.91 257.30
   Q 336.80 272.67 338.29 288.03
   Q 338.89 294.16 339.13 299.25
@@ -4210,8 +4892,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 324.49 271.09 322.17 268.22 320.34 265.29
   Q 327.71 260.35 335.91 257.30
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 734.73 260.65
   A 0.60 0.59 -66.4 0 1 735.46 260.36
   L 790.67 280.85
@@ -4362,8 +5046,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.11 1.10 65.4 0 0 500.93 259.23
   L 492.95 262.18
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 539.86 269.54
   Q 541.01 268.77 542.25 268.25
   Q 556.03 262.45 567.53 259.81
@@ -4375,8 +5061,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 555.12 276.99 546.23 274.52 539.86 270.34
   A 0.48 0.48 0.0 0 1 539.86 269.54
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 320.34 265.29
   C 322.17 268.22 324.49 271.09 325.87 273.59
   Q 334.00 288.24 336.99 304.77
@@ -4432,8 +5120,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.43 2.40 -12.5 0 0 283.94 522.07
   L 283.90 526.85
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 630.97 266.37
   A 0.25 0.25 0.0 0 1 631.27 266.17
   L 632.83 266.48
@@ -4444,8 +5134,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.25 0.25 0.0 0 1 627.40 284.58
   L 630.97 266.37
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 360.02 265.86
   Q 364.07 271.26 366.25 276.29
   Q 369.20 310.14 370.89 344.07
@@ -4456,8 +5148,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 366.12 352.39 364.04 322.03
   Q 362.15 294.43 360.02 265.86
   Z"
-/>
-<path fill="#339acc" d="
+        />
+        <path
+          fill="#339acc"
+          d="
   M 718.27 279.33
   A 0.91 0.90 24.9 0 1 718.72 280.56
   C 702.94 311.89 677.08 334.93 644.70 348.70
@@ -4504,8 +5198,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 530.43 277.82 529.66 277.85
   A 1.03 1.03 0.0 0 0 528.78 279.34
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 386.67 276.00
   A 0.48 0.48 0.0 0 1 387.05 275.22
   C 388.63 275.22 391.55 275.28 393.95 275.87
@@ -4518,8 +5214,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 404.19 299.55 401.25 296.50 398.94 293.11
   Q 391.76 282.57 386.67 276.00
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 391.46 307.21
   Q 390.98 314.12 392.20 320.94
   Q 387.18 328.69 383.70 338.67
@@ -4533,8 +5231,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 370.64 281.64 374.59 287.49 378.83 292.68
   C 382.97 297.73 386.05 302.13 391.46 307.21
   Z"
-/>
-<path fill="#83539d" d="
+        />
+        <path
+          fill="#83539d"
+          d="
   M 161.56 440.75
   A 0.20 0.20 0.0 0 1 161.22 440.54
   Q 162.83 437.37 164.81 432.85
@@ -4564,8 +5264,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 184.16 305.97 181.59 300.05
   A 0.29 0.29 0.0 0 0 181.03 300.20
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 312.73 469.48
   A 0.17 0.17 0.0 0 1 312.53 469.58
   L 312.53 469.57
@@ -4592,8 +5294,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 324.77 400.92 323.04 423.55 319.02 446.77
   Q 317.00 458.45 312.73 469.48
   Z"
-/>
-<path fill="#339acc" d="
+        />
+        <path
+          fill="#339acc"
+          d="
   M 434.99 476.30
   Q 435.05 475.01 435.99 473.00
   C 438.89 466.80 442.16 460.47 444.59 454.04
@@ -4629,16 +5333,20 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 460.77 314.54
   A 0.32 0.32 0.0 0 0 460.56 314.97
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 392.20 320.94
   Q 390.98 314.12 391.46 307.21
   L 397.77 312.96
   A 0.63 0.62 -50.1 0 1 397.84 313.82
   L 392.20 320.94
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 445.24 327.28
   L 445.74 327.30
   A 0.51 0.50 -28.5 0 0 446.02 326.36
@@ -4651,8 +5359,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.49 0.48 -79.1 0 1 451.89 330.43
   L 445.24 327.28
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 443.36 311.85
   L 444.14 324.82
   A 0.86 0.84 -76.9 0 0 444.57 325.53
@@ -4663,8 +5373,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.37 1.36 -28.1 0 1 434.79 316.37
   Q 439.71 312.84 443.36 311.85
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 420.57 328.80
   A 0.79 0.78 46.6 0 1 420.60 327.57
   L 422.02 326.50
@@ -4677,8 +5389,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 448.19 345.05 443.30 342.92
   Q 430.90 337.51 420.57 328.80
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 422.11 332.25
   L 424.79 411.38
   L 420.22 412.28
@@ -4687,8 +5401,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.82 0.80 32.3 0 1 419.28 329.26
   Q 421.28 330.01 422.11 332.25
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 416.38 331.54
   L 420.22 412.28
   L 399.43 416.74
@@ -4696,8 +5412,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 402.40 348.20 405.20 344.20
   Q 410.55 336.54 416.38 331.54
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 439.09 342.60
   L 441.28 409.00
   L 424.79 411.38
@@ -4705,16 +5423,20 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 424.06 333.41 428.20 336.30
   Q 433.20 339.80 439.09 342.60
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 439.09 342.60
   Q 442.98 343.84 444.53 345.16
   L 446.92 408.38
   Q 444.10 409.16 441.28 409.00
   L 439.09 342.60
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 446.92 408.38
   L 444.53 345.16
   L 453.07 347.70
@@ -4723,8 +5445,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 449.94 405.63 449.87 405.88
   Q 449.06 408.83 446.92 408.38
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 397.13 353.05
   L 399.43 416.74
   L 394.43 417.97
@@ -4732,8 +5456,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 392.93 388.30 392.47 353.77
   Q 395.10 353.89 397.13 353.05
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 346.30 434.48
   Q 343.51 434.77 342.94 437.03
   Q 342.82 437.51 342.79 441.56
@@ -4766,8 +5492,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 345.49 416.35 345.56 417.47
   Q 346.06 425.87 346.30 434.48
   Z"
-/>
-<path fill="#f6e7bf" d="
+        />
+        <path
+          fill="#f6e7bf"
+          d="
   M 418.65 484.75
   L 408.76 431.15
   A 0.76 0.76 0.0 0 0 407.81 430.56
@@ -4834,8 +5562,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.36 0.36 0.0 0 0 375.77 500.01
   L 383.96 497.66
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 418.65 484.75
   L 418.34 485.38
   A 0.51 0.50 52.6 0 1 417.39 485.25
@@ -4868,8 +5598,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.76 0.76 0.0 0 1 408.76 431.15
   L 418.65 484.75
   Z"
-/>
-<path fill="#f6e7bf" d="
+        />
+        <path
+          fill="#f6e7bf"
+          d="
   M 403.21 449.35
   A 0.17 0.17 0.0 0 1 403.55 449.34
   L 406.87 466.92
@@ -4878,8 +5610,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.57 0.56 86.4 0 1 400.24 468.42
   L 403.21 449.35
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 313.21 899.86
   L 307.95 898.66
   Q 310.16 867.19 310.79 851.50
@@ -4898,8 +5632,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 316.32 842.28 315.72 858.75
   Q 315.37 868.14 313.21 899.86
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 317.26 501.47
   Q 317.29 512.86 317.87 544.25
   Q 318.28 566.50 317.70 607.50
@@ -4919,8 +5655,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 306.94 515.39 309.41 511.90
   Q 313.15 506.63 317.26 501.47
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 403.45 551.47
   L 402.88 508.19
   L 410.09 505.85
@@ -4945,8 +5683,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.11 0.11 0.0 0 0 403.89 545.65
   L 403.45 551.47
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 402.88 508.19
   L 403.45 551.47
   C 404.46 623.69 404.27 698.93 403.49 768.00
@@ -4959,8 +5699,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 399.86 625.45 397.82 509.63
   Q 399.66 508.41 402.88 508.19
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 397.82 509.63
   Q 399.86 625.45 398.99 684.25
   C 398.31 729.82 398.17 753.35 397.89 787.82
@@ -4977,8 +5719,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 380.83 521.08 380.46 514.62
   L 397.82 509.63
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 380.46 514.62
   Q 380.83 521.08 380.92 535.50
   Q 381.74 662.83 380.91 718.50
@@ -4994,8 +5738,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 375.87 526.87 375.32 516.54
   Q 376.87 515.37 380.46 514.62
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 375.32 516.54
   Q 375.87 526.87 375.92 542.50
   Q 376.31 652.66 376.00 698.73
@@ -5011,8 +5757,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 355.01 657.96 356.41 596.40 355.72 523.49
   L 375.32 516.54
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 298.66 522.32
   Q 299.35 569.86 299.33 617.00
   Q 299.32 670.45 297.58 722.25
@@ -5027,8 +5775,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 294.77 617.45 293.53 525.96
   L 298.66 522.32
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 355.72 523.49
   C 356.41 596.40 355.01 657.96 353.30 742.00
   Q 352.94 759.87 352.63 777.75
@@ -5046,8 +5796,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 350.25 527.41 350.06 525.88
   Q 352.64 524.11 355.72 523.49
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 293.53 525.96
   Q 294.77 617.45 293.92 651.25
   C 293.29 676.25 293.08 703.12 292.23 726.27
@@ -5064,8 +5816,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 284.66 536.79 284.14 529.88
   L 293.53 525.96
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 402.13 898.16
   Q 401.63 902.03 401.13 905.61
   Q 400.73 908.40 401.24 914.17
@@ -5073,8 +5827,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 396.59 896.03
   L 402.13 898.16
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 427.69 906.58
   L 427.54 915.67
   L 426.20 915.87
@@ -5084,16 +5840,20 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 401.63 902.03 402.13 898.16
   L 427.69 906.58
   Z"
-/>
-<path fill="#51504f" d="
+        />
+        <path
+          fill="#51504f"
+          d="
   M 427.69 906.58
   L 433.50 908.66
   Q 432.90 912.47 433.47 915.97
   L 427.54 915.67
   L 427.69 906.58
   Z"
-/>
-<path fill="#313030" d="
+        />
+        <path
+          fill="#313030"
+          d="
   M 433.47 915.97
   Q 432.90 912.47 433.50 908.66
   L 444.74 911.75
@@ -5103,10 +5863,12 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.30 0.30 0.0 0 1 463.19 916.16
   L 433.47 915.97
   Z"
-/>
-</g>
-<g>
-<path fill="#f6e7bf" d="
+        />
+      </g>
+      <g>
+        <path
+          fill="#f6e7bf"
+          d="
   M 264.27 295.09
   Q 263.51 294.83 263.59 294.73
   Q 264.69 293.45 264.37 292.18
@@ -5119,8 +5881,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.34 0.34 0.0 0 1 272.28 289.08
   L 264.27 295.09
   Z"
-/>
-<path fill="#83539d" d="
+        />
+        <path
+          fill="#83539d"
+          d="
   M 222.17 237.90
   Q 222.24 238.53 223.06 238.94
   Q 222.64 239.02 222.37 239.18
@@ -5223,8 +5987,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 183.67 516.02 184.22 511.80 184.08 506.41
   A 0.31 0.30 -38.0 0 0 183.48 506.34
   Z"
-/>
-<path fill="#6a4181" d="
+        />
+        <path
+          fill="#6a4181"
+          d="
   M 223.06 238.94
   Q 225.74 246.11 228.91 251.35
   Q 242.86 274.41 264.37 292.18
@@ -5235,8 +6001,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.65 0.64 -28.6 0 1 222.37 239.18
   Q 222.64 239.02 223.06 238.94
   Z"
-/>
-<path fill="#6a4181" d="
+        />
+        <path
+          fill="#6a4181"
+          d="
   M 180.88 256.83
   C 188.48 266.72 195.07 277.60 199.56 289.23
   Q 202.75 297.50 202.84 297.75
@@ -5255,8 +6023,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 180.92 258.65 180.80 257.71 180.52 256.99
   Q 180.77 256.99 180.88 256.83
   Z"
-/>
-<path fill="#f6e7bf" d="
+        />
+        <path
+          fill="#f6e7bf"
+          d="
   M 180.52 256.99
   C 180.80 257.71 180.92 258.65 181.33 259.23
   C 187.16 267.48 192.17 275.25 196.29 284.46
@@ -5275,8 +6045,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.97 0.96 58.0 0 1 171.69 261.01
   L 180.52 256.99
   Z"
-/>
-<path fill="#339acc" d="
+        />
+        <path
+          fill="#339acc"
+          d="
   M 747.92 266.57
   L 747.52 267.98
   Q 747.22 266.79 746.55 267.77
@@ -5308,8 +6080,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.46 0.46 0.0 0 1 735.69 261.94
   L 747.92 266.57
   Z"
-/>
-<path fill="#2482b6" d="
+        />
+        <path
+          fill="#2482b6"
+          d="
   M 747.52 267.98
   Q 741.22 288.04 730.86 303.86
   Q 703.85 345.09 657.81 365.54
@@ -5338,8 +6112,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 746.20 268.29 746.55 267.77
   Q 747.22 266.79 747.52 267.98
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 491.44 262.83
   Q 498.46 276.44 505.59 286.15
   Q 521.56 307.91 544.39 326.38
@@ -5548,8 +6324,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 796.84 515.66 784.00 516.41
   A 0.43 0.42 -2.8 0 0 783.60 516.84
   Z"
-/>
-<path fill="#f6e7bf" d="
+        />
+        <path
+          fill="#f6e7bf"
+          d="
   M 283.90 526.85
   L 283.94 522.07
   A 2.43 2.40 -12.5 0 1 285.34 519.90
@@ -5571,8 +6349,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 307.28 513.62 297.63 523.30 285.40 527.90
   A 1.11 1.11 0.0 0 1 283.90 526.85
   Z"
-/>
-<path fill="#339acc" d="
+        />
+        <path
+          fill="#339acc"
+          d="
   M 464.21 272.27
   Q 464.20 273.04 464.33 272.85
   Q 463.52 273.47 464.11 274.63
@@ -5597,8 +6377,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.77 0.77 0.0 0 1 455.03 275.48
   L 464.21 272.27
   Z"
-/>
-<path fill="#2482b6" d="
+        />
+        <path
+          fill="#2482b6"
+          d="
   M 464.33 272.85
   C 477.02 296.12 484.84 322.25 487.95 348.59
   Q 489.12 358.53 489.14 368.47
@@ -5619,8 +6401,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 480.53 307.29 464.11 274.63
   Q 463.52 273.47 464.33 272.85
   Z"
-/>
-<path fill="#2482b6" d="
+        />
+        <path
+          fill="#2482b6"
+          d="
   M 528.78 279.34
   A 1.03 1.03 0.0 0 1 529.66 277.85
   Q 530.43 277.82 531.23 278.20
@@ -5649,8 +6433,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 541.77 295.21 531.15 282.60
   Q 529.32 280.43 528.78 279.34
   Z"
-/>
-<path fill="#2482b6" d="
+        />
+        <path
+          fill="#2482b6"
+          d="
   M 782.99 279.77
   Q 776.67 316.05 776.14 352.76
   C 776.05 359.00 777.24 365.42 777.09 370.66
@@ -5670,8 +6456,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 775.96 320.77 777.87 299.97 781.97 279.70
   L 782.99 279.77
   Z"
-/>
-<path fill="#339acc" d="
+        />
+        <path
+          fill="#339acc"
+          d="
   M 840.21 515.56
   L 839.22 514.38
   L 839.47 514.26
@@ -5694,8 +6482,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.12 3.07 21.7 0 1 840.87 501.66
   Q 841.23 508.98 840.21 515.56
   Z"
-/>
-<path fill="#6a4181" d="
+        />
+        <path
+          fill="#6a4181"
+          d="
   M 181.03 300.20
   A 0.29 0.29 0.0 0 1 181.59 300.05
   Q 184.16 305.97 186.56 313.87
@@ -5714,8 +6504,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 183.65 329.51 182.96 322.11 182.54 316.11
   Q 181.78 305.54 181.03 300.20
   Z"
-/>
-<path fill="#f6e7bf" d="
+        />
+        <path
+          fill="#f6e7bf"
+          d="
   M 306.37 316.67
   Q 306.82 317.76 303.72 316.20
   C 297.83 314.06 292.96 311.17 287.62 307.87
@@ -5725,8 +6517,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 301.15 304.87 303.93 306.81
   C 306.33 308.47 306.23 313.88 306.37 316.67
   Z"
-/>
-<path fill="#6a4181" d="
+        />
+        <path
+          fill="#6a4181"
+          d="
   M 287.62 307.87
   C 292.96 311.17 297.83 314.06 303.72 316.20
   Q 304.00 316.72 303.88 316.86
@@ -5734,8 +6528,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 294.81 313.90 287.89 309.36
   Q 286.98 308.76 287.62 307.87
   Z"
-/>
-<path fill="#2482b6" d="
+        />
+        <path
+          fill="#2482b6"
+          d="
   M 460.56 314.97
   A 0.32 0.32 0.0 0 1 460.77 314.54
   L 460.78 314.54
@@ -5758,8 +6554,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 464.64 351.86 461.27 321.72
   C 460.98 319.21 461.35 317.01 460.56 314.97
   Z"
-/>
-<path fill="#6a4181" d="
+        />
+        <path
+          fill="#6a4181"
+          d="
   M 304.75 437.56
   C 294.07 432.89 284.02 434.56 275.49 442.36
   C 266.65 450.44 264.25 465.55 266.13 476.92
@@ -5774,8 +6572,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.64 0.62 12.9 0 1 305.11 437.02
   Q 305.12 437.47 304.75 437.56
   Z"
-/>
-<path fill="#f6e7bf" d="
+        />
+        <path
+          fill="#f6e7bf"
+          d="
   M 304.75 437.56
   L 306.16 438.00
   L 303.59 450.29
@@ -5789,8 +6589,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 264.25 465.55 266.65 450.44 275.49 442.36
   C 284.02 434.56 294.07 432.89 304.75 437.56
   Z"
-/>
-<path fill="#1f1f20" d="
+        />
+        <path
+          fill="#1f1f20"
+          d="
   M 383.96 497.66
   L 375.77 500.01
   A 0.36 0.36 0.0 0 1 375.31 499.67
@@ -5817,8 +6619,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 384.22 497.30
   A 0.36 0.36 0.0 0 1 383.96 497.66
   Z"
-/>
-<path fill="#6a4181" d="
+        />
+        <path
+          fill="#6a4181"
+          d="
   M 302.22 450.09
   Q 302.50 450.73 301.35 450.74
   A 1.94 1.84 -31.0 0 1 300.54 450.56
@@ -5830,8 +6634,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 279.77 461.02 284.74 453.32
   C 288.99 446.74 295.72 447.10 302.22 450.09
   Z"
-/>
-<path fill="#83539d" d="
+        />
+        <path
+          fill="#83539d"
+          d="
   M 302.22 450.09
   Q 302.85 450.54 303.59 450.29
   Q 300.32 466.60 293.06 481.23
@@ -5843,8 +6649,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.94 1.84 -31.0 0 0 301.35 450.74
   Q 302.50 450.73 302.22 450.09
   Z"
-/>
-<path fill="#339acc" d="
+        />
+        <path
+          fill="#339acc"
+          d="
   M 423.05 534.33
   Q 422.84 534.58 422.59 534.56
   A 0.47 0.45 57.5 0 0 422.41 535.46
@@ -5898,8 +6706,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 421.44 596.46 420.23 533.74
   Q 421.73 533.75 423.05 534.33
   Z"
-/>
-<path fill="#2482b6" d="
+        />
+        <path
+          fill="#2482b6"
+          d="
   M 423.05 534.33
   C 437.83 540.47 454.88 546.80 467.64 551.94
   Q 553.69 586.62 641.40 621.71
@@ -5919,8 +6729,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.47 0.45 57.5 0 1 422.59 534.56
   Q 422.84 534.58 423.05 534.33
   Z"
-/>
-<path fill="#2482b6" d="
+        />
+        <path
+          fill="#2482b6"
+          d="
   M 849.31 835.47
   L 419.18 662.26
   L 419.34 659.21
@@ -5961,8 +6773,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.15 0.15 0.0 0 1 849.61 835.43
   Q 849.42 835.46 849.31 835.47
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 849.31 835.47
   Q 850.62 835.61 851.25 835.93
   L 855.35 877.52
@@ -5998,10 +6812,12 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 416.29 738.31 416.25 745.62
   A 0.15 0.15 0.0 0 0 416.55 745.66
   Z"
-/>
-</g>
-<g>
-<path fill="#6a4181" d="
+        />
+      </g>
+      <g>
+        <path
+          fill="#6a4181"
+          d="
   M 260.37 437.31
   A 2.15 2.14 -73.6 0 1 261.66 439.69
   Q 258.55 456.07 257.74 473.76
@@ -6037,8 +6853,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 257.55 437.72 252.94 437.32 250.86 439.04
   Q 249.73 439.97 248.61 441.39
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 532.26 495.91
   A 0.22 0.22 0.0 0 0 531.82 495.97
   L 531.56 528.09
@@ -6087,8 +6905,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 551.21 528.99
   A 0.55 0.55 0.0 0 0 551.85 528.45
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 513.69 463.21
   A 0.31 0.31 0.0 0 1 514.04 463.52
   Q 513.97 485.68 513.51 506.25
@@ -6124,8 +6944,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 513.02 466.73 512.77 465.34
   A 0.88 0.87 -10.7 0 0 511.74 464.64
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 562.35 463.34
   C 572.91 464.42 586.24 464.84 590.35 476.90
   Q 591.68 480.81 591.81 485.25
@@ -6146,8 +6968,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 575.90 466.26 564.66 464.94
   A 0.60 0.59 3.0 0 0 564.00 465.53
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 609.34 540.22
   L 600.26 538.19
   A 1.63 1.63 0.0 0 1 598.98 536.60
@@ -6169,8 +6993,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 0 607.71 474.03
   L 600.96 472.53
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 617.55 520.66
   L 626.75 523.36
   A 1.17 1.16 9.9 0 1 627.59 524.55
@@ -6218,8 +7044,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 642.69 501.15
   A 0.78 0.78 0.0 0 0 643.69 500.42
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 662.76 529.84
   L 662.98 555.40
   A 0.43 0.42 -81.8 0 1 662.44 555.81
@@ -6246,8 +7074,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 660.83 553.88
   A 0.46 0.45 -81.9 0 0 661.41 553.44
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 684.97 497.01
   A 0.24 0.23 7.7 0 1 685.27 496.79
   L 694.78 499.58
@@ -6284,8 +7114,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.49 0.48 -85.4 0 0 712.64 506.08
   L 705.35 504.46
   Z"
-/>
-<path fill="#6a4181" d="
+        />
+        <path
+          fill="#6a4181"
+          d="
   M 184.08 506.41
   C 184.22 511.80 183.67 516.02 183.37 521.14
   Q 182.27 539.64 180.58 551.18
@@ -6311,8 +7143,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 183.17 507.37 183.48 506.34
   A 0.31 0.30 -38.0 0 1 184.08 506.41
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 738.46 522.90
   L 738.92 578.32
   A 0.80 0.80 0.0 0 1 737.95 579.11
@@ -6349,8 +7183,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.72 0.72 0.0 0 0 746.78 521.83
   L 746.72 514.62
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 764.08 526.19
   A 0.20 0.19 1.4 0 0 763.86 526.39
   L 763.97 539.78
@@ -6403,8 +7239,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 767.99 516.98 763.28 516.31 754.62 515.27
   A 0.37 0.36 3.5 0 0 754.21 515.63
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 784.00 516.41
   Q 796.84 515.66 800.95 516.09
   C 811.01 517.16 813.52 525.03 813.83 533.75
@@ -6426,8 +7264,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 793.50 516.94 785.46 518.13
   A 0.69 0.68 85.2 0 0 784.88 518.82
   Z"
-/>
-<path fill="#f6e7bf" d="
+        />
+        <path
+          fill="#f6e7bf"
+          d="
   M 416.55 745.66
   A 0.15 0.15 0.0 0 1 416.25 745.62
   Q 416.29 738.31 417.10 733.10
@@ -6442,10 +7282,12 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.12 1.12 0.0 0 1 435.12 670.78
   Q 426.43 709.97 416.55 745.66
   Z"
-/>
-</g>
-<g>
-<path fill="#f6e7bf" d="
+        />
+      </g>
+      <g>
+        <path
+          fill="#f6e7bf"
+          d="
   M 248.61 441.39
   Q 249.73 439.97 250.86 439.04
   C 252.94 437.32 257.55 437.72 260.03 438.18
@@ -6470,8 +7312,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 224.55 485.60 234.44 485.17 238.87 478.62
   C 241.97 474.02 242.80 469.99 243.38 464.25
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 551.21 528.99
   L 543.96 527.86
   A 1.62 1.61 -4.3 0 1 542.65 526.74
@@ -6498,8 +7342,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 551.85 528.45
   A 0.55 0.55 0.0 0 1 551.21 528.99
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 512.77 465.34
   Q 513.02 466.73 512.93 467.69
   C 511.56 482.66 512.20 501.11 512.05 511.75
@@ -6517,8 +7363,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 511.74 464.64
   A 0.88 0.87 -10.7 0 1 512.77 465.34
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 564.66 464.94
   Q 575.90 466.26 580.59 468.04
   C 587.42 470.64 590.24 477.46 590.25 484.51
@@ -6538,8 +7386,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 581.32 475.55 572.81 474.96
   A 0.63 0.62 -87.8 0 0 572.15 475.58
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 600.96 472.53
   L 607.71 474.03
   A 0.68 0.68 0.0 0 1 608.24 474.69
@@ -6550,8 +7400,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 600.13 473.20
   A 0.68 0.68 0.0 0 1 600.96 472.53
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 643.69 500.42
   A 0.78 0.78 0.0 0 1 642.69 501.15
   L 636.87 499.44
@@ -6576,8 +7428,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 633.95 479.57 639.16 482.52 641.75 489.29
   Q 643.85 494.77 643.69 500.42
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 661.41 553.44
   A 0.46 0.45 -81.9 0 1 660.83 553.88
   L 653.68 551.78
@@ -6600,8 +7454,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 664.20 498.64
   A 2.12 2.12 0.0 0 0 661.02 500.49
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 705.35 504.46
   L 712.64 506.08
   A 0.49 0.48 -85.4 0 1 713.01 506.53
@@ -6621,8 +7477,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 705.81 527.75 705.00 504.76
   A 0.30 0.29 -84.7 0 1 705.35 504.46
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 746.72 514.62
   L 746.78 521.83
   A 0.72 0.72 0.0 0 1 745.91 522.54
@@ -6641,8 +7499,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 746.16 513.93
   A 0.72 0.72 0.0 0 1 746.72 514.62
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 754.62 515.27
   C 763.28 516.31 767.99 516.98 775.82 516.99
   A 1.22 1.21 -89.8 0 1 777.03 518.22
@@ -6669,8 +7529,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 754.21 515.63
   A 0.37 0.36 3.5 0 1 754.62 515.27
   Z"
-/>
-<path fill="#933b0a" d="
+        />
+        <path
+          fill="#933b0a"
+          d="
   M 785.46 518.13
   Q 793.50 516.94 799.74 517.21
   Q 800.20 517.23 803.22 517.91
@@ -6692,10 +7554,12 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 794.78 525.93
   A 0.98 0.98 0.0 0 0 793.79 526.90
   Z"
-/>
-</g>
-<g>
-<path fill="#313030" d="
+        />
+      </g>
+      <g>
+        <path
+          fill="#313030"
+          d="
   M 240.18 449.93
   C 245.30 451.84 243.86 459.48 243.38 464.25
   C 242.80 469.99 241.97 474.02 238.87 478.62
@@ -6711,8 +7575,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 242.93 454.37 242.25 452.97
   A 2.87 2.76 9.4 0 0 241.63 452.14
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 572.15 475.58
   A 0.63 0.62 -87.8 0 1 572.81 474.96
   Q 581.32 475.55 581.92 483.21
@@ -6732,8 +7598,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 575.66 476.48
   A 2.01 2.00 13.0 0 0 572.76 478.29
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 661.02 500.49
   A 2.12 2.12 0.0 0 1 664.20 498.64
   L 665.87 499.60
@@ -6751,8 +7619,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 669.40 509.41 669.72 501.30 662.91 499.91
   A 0.37 0.37 0.0 0 0 662.46 500.28
   Z"
-/>
-<path fill="#010102" d="
+        />
+        <path
+          fill="#010102"
+          d="
   M 793.79 526.90
   A 0.98 0.98 0.0 0 1 794.78 525.93
   L 796.84 525.94
@@ -6773,10 +7643,12 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 796.12 527.02
   A 1.05 1.05 0.0 0 0 795.06 528.07
   Z"
-/>
-</g>
-<g>
-<path fill="#83539d" d="
+        />
+      </g>
+      <g>
+        <path
+          fill="#83539d"
+          d="
   M 242.25 452.97
   Q 242.93 454.37 242.81 458.26
   C 242.55 466.20 240.95 484.21 228.62 481.91
@@ -6785,8 +7657,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 238.90 449.62 241.63 452.14
   A 2.87 2.76 9.4 0 1 242.25 452.97
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 572.76 478.29
   A 2.01 2.00 13.0 0 1 575.66 476.48
   L 576.83 477.06
@@ -6797,8 +7671,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.00 2.00 0.0 0 1 573.11 520.37
   L 572.76 478.29
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 662.91 499.91
   C 669.72 501.30 669.40 509.41 668.89 515.49
   A 2.88 2.87 1.7 0 1 666.09 518.13
@@ -6807,8 +7683,10 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 662.46 500.28
   A 0.37 0.37 0.0 0 1 662.91 499.91
   Z"
-/>
-<path fill="#fffdf4" d="
+        />
+        <path
+          fill="#fffdf4"
+          d="
   M 795.06 528.07
   A 1.05 1.05 0.0 0 1 796.12 527.02
   L 796.82 527.03
@@ -6819,10 +7697,8 @@ export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.05 1.05 0.0 0 1 794.86 567.91
   L 795.06 528.07
   Z"
-/>
-</g>
-</svg>
-
-
+        />
+      </g>
+    </svg>
   )
 }

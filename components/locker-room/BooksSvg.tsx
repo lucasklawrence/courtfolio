@@ -5,11 +5,13 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-
-    return(
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#813a1d" vectorEffect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#813a1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 867.87 212.46
   A 0.33 0.33 0.0 0 0 867.74 211.83
   Q 867.50 211.82 863.80 211.75
@@ -29,8 +31,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 664.40 275.08 708.63 261.62
   Q 754.72 247.60 867.23 212.75
   Q 867.33 212.72 867.87 212.46"
-/>
-<path stroke="#86837d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#86837d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 857.64 232.22
   Q 748.40 265.11 643.22 298.47
   C 636.96 300.46 631.08 302.35 625.81 305.56
@@ -44,8 +49,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 853.12 297.40 852.39 271.57 855.27 246.86
   C 855.78 242.47 856.94 237.32 858.07 232.63
   A 0.34 0.34 0.0 0 0 857.64 232.22"
-/>
-<path stroke="#813a1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#813a1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.89 302.54
   Q 601.27 302.53 589.50 301.74
   Q 567.06 300.24 460.48 292.52
@@ -63,12 +71,18 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 585.54 372.98 585.29 355.13 588.11 339.01
   C 590.36 326.16 595.73 313.19 604.09 302.97
   A 0.26 0.26 0.0 0 0 603.89 302.54"
-/>
-<path stroke="#6e2f18" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6e2f18"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 627.77 418.96
   Q 626.73 418.93 625.04 419.69"
-/>
-<path stroke="#813a1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#813a1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.04 419.69
   L 620.86 420.27
   A 0.39 0.39 0.0 0 0 620.76 421.02
@@ -84,8 +98,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 744.82 378.57 720.07 387.21
   Q 674.62 403.07 633.34 417.00
   Q 630.80 417.86 627.77 418.96"
-/>
-<path stroke="#db531f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#db531f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.04 419.69
   L 626.60 421.20
   A 1.62 1.62 0.0 0 0 627.48 421.64
@@ -108,8 +125,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 681.59 401.67 658.47 409.90
   Q 656.95 410.44 632.72 418.71
   Q 629.39 419.84 627.77 418.96"
-/>
-<path stroke="#1b1d1e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b1d1e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 651.45 552.22
   Q 642.93 537.69 641.17 521.07
   Q 639.04 500.99 643.04 481.27
@@ -170,8 +190,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 0 628.03 550.01
   L 651.11 552.73
   A 0.34 0.34 0.0 0 0 651.45 552.22"
-/>
-<path stroke="#86837d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#86837d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 881.41 380.26
   C 818.25 401.89 743.27 428.61 683.06 450.64
   C 670.57 455.21 664.11 466.09 660.40 478.33
@@ -183,8 +206,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 879.83 449.81 878.27 434.25
   Q 875.55 407.14 881.67 380.49
   A 0.20 0.20 0.0 0 0 881.41 380.26"
-/>
-<path stroke="#1b1d1e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1b1d1e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 674.90 564.16
   Q 680.95 567.72 687.76 566.55
   C 696.00 565.15 701.34 563.13 709.64 560.27
@@ -211,8 +237,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 700.50 553.51 687.29 558.79
   Q 680.85 561.36 674.98 563.39
   A 0.43 0.43 0.0 0 0 674.90 564.16"
-/>
-<path stroke="#826421" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#826421"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 673.59 595.05
   C 679.98 591.96 686.32 589.97 694.07 586.92
   Q 704.51 582.81 720.14 576.33
@@ -226,8 +255,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 707.85 576.91 685.83 585.36
   Q 678.14 588.31 673.22 594.59
   A 0.30 0.30 0.0 0 0 673.59 595.05"
-/>
-<path stroke="#826421" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#826421"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 664.63 581.13
   Q 437.73 557.84 172.00 528.95
   C 165.94 528.29 159.83 527.30 155.60 530.62
@@ -245,8 +277,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 636.70 641.69 647.24 610.90
   C 650.97 599.98 656.88 588.94 664.76 581.51
   A 0.22 0.22 0.0 0 0 664.63 581.13"
-/>
-<path stroke="#86837d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#86837d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 872.37 529.82
   Q 869.91 530.73 809.11 556.51
   C 768.37 573.78 726.01 591.16 686.26 607.78
@@ -261,8 +296,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 869.91 587.62 869.40 571.67
   C 868.98 558.40 869.88 543.68 872.87 530.26
   A 0.38 0.38 0.0 0 0 872.37 529.82"
-/>
-<path stroke="#826421" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#826421"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 680.25 707.95
   Q 688.35 711.67 697.18 709.13
   Q 713.20 704.52 731.59 696.10
@@ -278,8 +316,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 705.26 697.97 693.11 703.01
   C 688.74 704.82 684.71 705.89 680.30 707.23
   A 0.39 0.39 0.0 0 0 680.25 707.95"
-/>
-<path stroke="#142536" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#142536"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 690.73 735.75
   Q 696.40 734.02 700.76 732.00
   C 726.18 720.28 751.06 708.51 773.02 698.72
@@ -295,8 +336,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 716.16 719.24 713.33 720.25
   C 706.03 722.87 693.14 727.22 690.09 735.05
   A 0.53 0.52 -87.7 0 0 690.73 735.75"
-/>
-<path stroke="#142536" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#142536"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 672.08 850.55
   Q 661.40 833.70 659.07 813.47
   Q 656.45 790.78 660.58 768.78
@@ -331,8 +375,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 631.79 848.61 644.27 849.76 656.00 850.66
   Q 664.01 851.27 671.73 851.19
   A 0.42 0.42 0.0 0 0 672.08 850.55"
-/>
-<path stroke="#86837d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#86837d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 876.78 668.58
   A 0.36 0.36 0.0 0 0 876.28 668.17
   Q 780.59 711.47 704.53 746.52
@@ -347,8 +394,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 876.75 737.03 875.71 731.57
   Q 872.63 715.35 873.30 698.75
   C 873.76 687.47 874.59 677.58 876.78 668.58"
-/>
-<path stroke="#142536" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#142536"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 689.64 851.50
   A 0.48 0.48 0.0 0 0 689.44 852.36
   C 700.07 860.28 722.27 848.45 732.15 843.39
@@ -361,8 +411,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 758.92 818.05 716.44 840.16
   Q 704.26 846.50 697.45 848.89
   Q 690.58 851.31 689.64 851.50"
-/>
-<path stroke="#ece3d6" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ece3d6"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.50 363.09
   A 0.19 0.19 0.0 0 0 603.87 363.08
   Q 605.14 345.11 616.69 331.43
@@ -381,8 +434,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 606.87 332.46 604.79 339.32 604.11 347.00
   Q 603.95 348.77 603.51 351.99
   Q 602.74 357.55 603.50 363.09"
-/>
-<path stroke="#813a1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#813a1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 170.47 332.71
   C 170.80 349.27 174.53 365.01 183.05 379.79
   A 3.77 3.77 0.0 0 0 188.59 380.91
@@ -394,8 +450,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 186.60 283.81
   A 3.77 3.77 0.0 0 0 181.11 285.15
   C 173.20 300.27 170.13 316.14 170.47 332.71"
-/>
-<path stroke="#813a1d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#813a1d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 553.28 363.51
   C 553.48 378.30 555.93 392.12 561.92 405.35
   Q 563.47 408.77 564.97 410.62
@@ -409,8 +468,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.91 1.86 -82.2 0 0 563.69 316.10
   Q 562.24 317.99 560.78 321.44
   C 555.16 334.83 553.08 348.72 553.28 363.51"
-/>
-<path stroke="#db531f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#db531f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 164.77 376.92
   C 167.50 380.20 170.36 384.59 174.91 385.85
   Q 180.48 387.39 185.69 387.37
@@ -484,8 +546,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 180.33 377.35 178.59 377.99 177.02 377.70
   Q 170.78 376.53 165.15 376.17
   A 0.46 0.46 0.0 0 0 164.77 376.92"
-/>
-<path stroke="#ece3d6" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ece3d6"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 659.26 503.58
   Q 659.26 503.55 659.11 501.43
   A 10.64 10.56 54.1 0 1 659.85 496.69
@@ -506,85 +571,121 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 657.93 481.62 658.50 502.00
   Q 658.52 502.57 658.63 503.57
   A 0.32 0.32 0.0 0 0 659.26 503.58"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 757.61 558.83
   Q 757.20 558.75 757.12 558.76
   A 0.27 0.25 -50.6 0 0 757.15 559.27
   Q 757.41 559.24 757.66 559.03
   A 0.11 0.11 0.0 0 0 757.61 558.83"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 755.2567 559.7632
   A 1.09 0.27 -18.0 0 0 754.1366 559.8432
   A 1.09 0.27 -18.0 0 0 753.1833 560.4368
   A 1.09 0.27 -18.0 0 0 754.3034 560.3568
   A 1.09 0.27 -18.0 0 0 755.2567 559.7632"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 753.0119 560.6509
   A 0.70 0.20 -23.5 0 0 752.2903 560.7466
   A 0.70 0.20 -23.5 0 0 751.7281 561.2091
   A 0.70 0.20 -23.5 0 0 752.4497 561.1134
   A 0.70 0.20 -23.5 0 0 753.0119 560.6509"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 749.77 562.36
   Q 749.99 562.37 750.40 562.02
   A 0.21 0.20 23.0 0 0 750.25 561.66
   Q 750.07 561.67 749.66 561.89
   A 0.25 0.25 0.0 0 0 749.77 562.36"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 726.2723 571.7880
   A 0.68 0.22 -16.4 0 0 725.5579 571.7690
   A 0.68 0.22 -16.4 0 0 724.9677 572.1720
   A 0.68 0.22 -16.4 0 0 725.6821 572.1910
   A 0.68 0.22 -16.4 0 0 726.2723 571.7880"
-/>
-<path stroke="#dc7d23" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dc7d23"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 721.22 573.75
   Q 720.99 573.77 720.94 573.87
   A 0.09 0.09 0.0 0 0 721.03 573.99
   L 721.34 573.98
   A 0.15 0.10 28.4 0 0 721.22 573.75"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.9499 574.6901
   A 2.13 0.27 -20.9 0 0 716.8637 575.1978
   A 2.13 0.27 -20.9 0 0 714.9701 576.2099
   A 2.13 0.27 -20.9 0 0 717.0563 575.7022
   A 2.13 0.27 -20.9 0 0 718.9499 574.6901"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 710.9851 577.8091
   A 0.54 0.21 -20.7 0 0 710.4058 577.8036
   A 0.54 0.21 -20.7 0 0 709.9749 578.1909
   A 0.54 0.21 -20.7 0 0 710.5542 578.1964
   A 0.54 0.21 -20.7 0 0 710.9851 577.8091"
-/>
-<path stroke="#dc7d23" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dc7d23"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 707.86 579.35
   Q 708.04 579.34 708.78 579.00
   A 0.16 0.16 0.0 0 0 708.70 578.70
   Q 707.92 578.77 707.72 578.90
   A 0.25 0.24 27.9 0 0 707.86 579.35"
-/>
-<path stroke="#dc7d23" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dc7d23"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 706.4464 579.7449
   A 0.77 0.24 -17.0 0 0 705.6398 579.7405
   A 0.77 0.24 -17.0 0 0 704.9736 580.1951
   A 0.77 0.24 -17.0 0 0 705.7802 580.1995
   A 0.77 0.24 -17.0 0 0 706.4464 579.7449"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 704.0143 580.6828
   A 2.77 0.27 -21.1 0 0 701.3328 581.4281
   A 2.77 0.27 -21.1 0 0 698.8457 582.6772
   A 2.77 0.27 -21.1 0 0 701.5272 581.9319
   A 2.77 0.27 -21.1 0 0 704.0143 580.6828"
-/>
-<path stroke="#826421" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#826421"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 163.28 593.64
   C 163.65 609.41 166.84 625.41 174.07 639.37
   C 175.77 642.64 179.26 644.94 182.07 641.76
@@ -594,8 +695,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 181.28 548.59 181.07 546.06 179.75 544.68
   C 176.79 541.64 173.41 544.11 171.87 547.46
   C 165.32 561.75 162.90 577.87 163.28 593.64"
-/>
-<path stroke="#826421" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#826421"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.08 643.22
   C 608.18 659.26 610.77 676.28 617.99 690.25
   Q 619.08 692.36 620.60 693.56
@@ -607,8 +711,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.52 3.20 38.8 0 0 619.98 592.74
   Q 618.47 593.96 617.41 596.08
   C 610.36 610.14 607.98 627.19 608.08 643.22"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 648.30 692.63
   Q 637.97 692.63 628.92 689.76
   A 0.60 0.60 0.0 0 0 628.16 690.15
@@ -673,8 +780,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.53 0.53 0.0 0 0 656.73 704.18
   L 648.86 692.93
   A 0.67 0.67 0.0 0 0 648.30 692.63"
-/>
-<path stroke="#ece3d6" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ece3d6"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 658.00 652.41
   Q 659.39 645.47 660.50 642.88
   C 664.22 634.15 672.90 629.54 681.33 626.05
@@ -697,8 +807,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.12 0.12 0.0 0 0 657.30 652.70
   L 657.56 652.74
   A 0.41 0.40 -81.5 0 0 658.00 652.41"
-/>
-<path stroke="#e0a423" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0a423"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 684.34 707.80
   Q 688.39 709.58 692.56 708.80
   Q 697.68 707.85 704.42 705.63
@@ -716,8 +829,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 701.13 701.12 691.22 705.20
   Q 687.89 706.56 684.46 706.98
   A 0.43 0.43 0.0 0 0 684.34 707.80"
-/>
-<path stroke="#142536" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#142536"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 167.79 773.78
   A 4.77 4.77 0.0 0 0 170.39 767.58
   Q 165.77 756.14 164.30 750.26
@@ -732,8 +848,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 156.85 761.07 161.40 771.56
   A 4.57 4.57 0.0 0 0 167.34 773.96
   L 167.79 773.78"
-/>
-<path stroke="#142536" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#142536"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 644.64 836.55
   Q 644.86 833.60 643.76 830.99
   C 638.13 817.61 636.40 801.46 636.84 786.99
@@ -746,8 +865,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 634.01 833.61 636.35 839.22 639.61 839.65
   Q 642.46 840.03 644.29 837.53
   A 1.85 1.83 -25.7 0 0 644.64 836.55"
-/>
-<path stroke="#ece3d6" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ece3d6"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 874.58 671.72
   A 0.89 0.89 0.0 0 0 873.33 670.78
   Q 854.38 679.53 830.05 690.56
@@ -765,9 +887,11 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 855.54 694.46 869.44 689.15
   C 871.45 688.38 872.20 687.30 872.58 685.38
   Q 872.63 685.13 874.58 671.72"
-/>
-</g>
-<path fill="#141616" d="
+        />
+      </g>
+      <path
+        fill="#141616"
+        d="
   M 134.42 643.34
   Q 122.32 625.04 119.52 602.74
   Q 118.48 594.51 118.21 589.25
@@ -1198,8 +1322,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 704.26 846.50 697.45 848.89
   Q 690.58 851.31 689.64 851.50
   Z"
-/>
-<path fill="#ed5e24" d="
+      />
+      <path
+        fill="#ed5e24"
+        d="
   M 867.87 212.46
   Q 867.33 212.72 867.23 212.75
   Q 754.72 247.60 708.63 261.62
@@ -1220,8 +1346,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 867.50 211.82 867.74 211.83
   A 0.33 0.33 0.0 0 1 867.87 212.46
   Z"
-/>
-<path fill="#f8f0e4" d="
+      />
+      <path
+        fill="#f8f0e4"
+        d="
   M 857.64 232.22
   A 0.34 0.34 0.0 0 1 858.07 232.63
   C 856.94 237.32 855.78 242.47 855.27 246.86
@@ -1255,8 +1383,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 603.95 348.77 603.51 351.99
   Q 602.74 357.55 603.50 363.09
   Z"
-/>
-<path fill="#dfd5c8" d="
+      />
+      <path
+        fill="#dfd5c8"
+        d="
   M 603.50 363.09
   Q 602.74 357.55 603.51 351.99
   Q 603.95 348.77 604.11 347.00
@@ -1276,8 +1406,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 605.14 345.11 603.87 363.08
   A 0.19 0.19 0.0 0 1 603.50 363.09
   Z"
-/>
-<path fill="#ed5e24" d="
+      />
+      <path
+        fill="#ed5e24"
+        d="
   M 603.89 302.54
   A 0.26 0.26 0.0 0 1 604.09 302.97
   C 595.73 313.19 590.36 326.16 588.11 339.01
@@ -1396,8 +1528,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 170.78 376.53 165.15 376.17
   A 0.46 0.46 0.0 0 0 164.77 376.92
   Z"
-/>
-<path fill="#141616" d="
+      />
+      <path
+        fill="#141616"
+        d="
   M 179.83 332.52
   C 180.13 346.97 183.55 361.14 190.26 374.36
   A 5.13 5.13 0.0 0 1 188.79 380.76
@@ -1410,8 +1544,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.13 5.13 0.0 0 1 188.54 290.28
   C 182.38 303.76 179.54 318.06 179.83 332.52
   Z"
-/>
-<path fill="#141616" d="
+      />
+      <path
+        fill="#141616"
+        d="
   M 562.84 363.38
   C 562.99 374.38 564.50 385.08 567.73 394.52
   Q 568.56 396.95 571.40 404.45
@@ -1426,8 +1562,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 567.65 329.66 566.89 332.12
   C 563.91 341.64 562.69 352.37 562.84 363.38
   Z"
-/>
-<path fill="#ed5e24" d="
+      />
+      <path
+        fill="#ed5e24"
+        d="
   M 625.04 419.69
   L 626.60 421.20
   A 1.62 1.62 0.0 0 0 627.48 421.64
@@ -1465,8 +1603,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.39 0.39 0.0 0 1 620.86 420.27
   L 625.04 419.69
   Z"
-/>
-<path fill="#c84719" d="
+      />
+      <path
+        fill="#c84719"
+        d="
   M 625.04 419.69
   Q 626.73 418.93 627.77 418.96
   Q 629.39 419.84 632.72 418.71
@@ -1491,8 +1631,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.62 1.62 0.0 0 1 626.60 421.20
   L 625.04 419.69
   Z"
-/>
-<path fill="#212426" d="
+      />
+      <path
+        fill="#212426"
+        d="
   M 651.11 552.73
   L 628.03 550.01
   A 0.68 0.68 0.0 0 1 627.44 549.44
@@ -1554,8 +1696,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 642.93 537.69 651.45 552.22
   A 0.34 0.34 0.0 0 1 651.11 552.73
   Z"
-/>
-<path fill="#c84719" d="
+      />
+      <path
+        fill="#c84719"
+        d="
   M 164.77 376.92
   A 0.46 0.46 0.0 0 1 165.15 376.17
   Q 170.78 376.53 177.02 377.70
@@ -1630,8 +1774,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 180.48 387.39 174.91 385.85
   C 170.36 384.59 167.50 380.20 164.77 376.92
   Z"
-/>
-<path fill="#f8f0e4" d="
+      />
+      <path
+        fill="#f8f0e4"
+        d="
   M 881.41 380.26
   A 0.20 0.20 0.0 0 1 881.67 380.49
   Q 875.55 407.14 878.27 434.25
@@ -1665,8 +1811,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 658.52 502.57 658.63 503.57
   A 0.32 0.32 0.0 0 0 659.26 503.58
   Z"
-/>
-<path fill="#dfd5c8" d="
+      />
+      <path
+        fill="#dfd5c8"
+        d="
   M 658.63 503.57
   Q 658.52 502.57 658.50 502.00
   Q 657.93 481.62 667.73 464.99
@@ -1688,8 +1836,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 659.26 503.55 659.26 503.58
   A 0.32 0.32 0.0 0 1 658.63 503.57
   Z"
-/>
-<path fill="#212426" d="
+      />
+      <path
+        fill="#212426"
+        d="
   M 674.90 564.16
   A 0.43 0.43 0.0 0 1 674.98 563.39
   Q 680.85 561.36 687.29 558.79
@@ -1717,8 +1867,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 701.34 563.13 696.00 565.15 687.76 566.55
   Q 680.95 567.72 674.90 564.16
   Z"
-/>
-<path fill="#efb22c" d="
+      />
+      <path
+        fill="#efb22c"
+        d="
   M 673.59 595.05
   A 0.30 0.30 0.0 0 1 673.22 594.59
   Q 678.14 588.31 685.83 585.36
@@ -1799,8 +1951,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.77 0.27 -21.1 0 0 701.5272 581.9319
   A 2.77 0.27 -21.1 0 0 704.0143 580.6828
   Z"
-/>
-<path fill="#efb22c" d="
+      />
+      <path
+        fill="#efb22c"
+        d="
   M 664.63 581.13
   A 0.22 0.22 0.0 0 1 664.76 581.51
   C 656.88 588.94 650.97 599.98 647.24 610.90
@@ -1906,8 +2060,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 648.86 692.93
   A 0.67 0.67 0.0 0 0 648.30 692.63
   Z"
-/>
-<path fill="#f8f0e4" d="
+      />
+      <path
+        fill="#f8f0e4"
+        d="
   M 872.37 529.82
   A 0.38 0.38 0.0 0 1 872.87 530.26
   C 869.88 543.68 868.98 558.40 869.40 571.67
@@ -1946,8 +2102,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 657.56 652.74
   A 0.41 0.40 -81.5 0 0 658.00 652.41
   Z"
-/>
-<path fill="#dfd5c8" d="
+      />
+      <path
+        fill="#dfd5c8"
+        d="
   M 658.00 652.41
   A 0.41 0.40 -81.5 0 1 657.56 652.74
   L 657.30 652.70
@@ -1971,8 +2129,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 672.90 629.54 664.22 634.15 660.50 642.88
   Q 659.39 645.47 658.00 652.41
   Z"
-/>
-<path fill="#141616" d="
+      />
+      <path
+        fill="#141616"
+        d="
   M 172.91 593.41
   C 173.27 608.23 176.08 622.80 182.63 636.20
   C 183.41 637.79 183.33 640.32 182.07 641.76
@@ -1983,47 +2143,106 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 181.07 546.06 181.28 548.59 180.58 550.21
   C 174.67 563.91 172.56 578.60 172.91 593.41
   Z"
-/>
-<path fill="#d1951a" d="
+      />
+      <path
+        fill="#d1951a"
+        d="
   M 757.66 559.03
   Q 757.41 559.24 757.15 559.27
   A 0.27 0.25 -50.6 0 1 757.12 558.76
   Q 757.20 558.75 757.61 558.83
   A 0.11 0.11 0.0 0 1 757.66 559.03
   Z"
-/>
-<ellipse fill="#d1951a" cx="0.00" cy="0.00" transform="translate(754.22,560.10) rotate(-18.0)" rx="1.09" ry="0.27"/>
-<ellipse fill="#d1951a" cx="0.00" cy="0.00" transform="translate(752.37,560.93) rotate(-23.5)" rx="0.70" ry="0.20"/>
-<path fill="#d1951a" d="
+      />
+      <ellipse
+        fill="#d1951a"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(754.22,560.10) rotate(-18.0)"
+        rx="1.09"
+        ry="0.27"
+      />
+      <ellipse
+        fill="#d1951a"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(752.37,560.93) rotate(-23.5)"
+        rx="0.70"
+        ry="0.20"
+      />
+      <path
+        fill="#d1951a"
+        d="
   M 749.66 561.89
   Q 750.07 561.67 750.25 561.66
   A 0.21 0.20 23.0 0 1 750.40 562.02
   Q 749.99 562.37 749.77 562.36
   A 0.25 0.25 0.0 0 1 749.66 561.89
   Z"
-/>
-<ellipse fill="#d1951a" cx="0.00" cy="0.00" transform="translate(725.62,571.98) rotate(-16.4)" rx="0.68" ry="0.22"/>
-<path fill="#c84719" d="
+      />
+      <ellipse
+        fill="#d1951a"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(725.62,571.98) rotate(-16.4)"
+        rx="0.68"
+        ry="0.22"
+      />
+      <path
+        fill="#c84719"
+        d="
   M 721.34 573.98
   L 721.03 573.99
   A 0.09 0.09 0.0 0 1 720.94 573.87
   Q 720.99 573.77 721.22 573.75
   A 0.15 0.10 28.4 0 1 721.34 573.98
   Z"
-/>
-<ellipse fill="#d1951a" cx="0.00" cy="0.00" transform="translate(716.96,575.45) rotate(-20.9)" rx="2.13" ry="0.27"/>
-<ellipse fill="#d1951a" cx="0.00" cy="0.00" transform="translate(710.48,578.00) rotate(-20.7)" rx="0.54" ry="0.21"/>
-<path fill="#c84719" d="
+      />
+      <ellipse
+        fill="#d1951a"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(716.96,575.45) rotate(-20.9)"
+        rx="2.13"
+        ry="0.27"
+      />
+      <ellipse
+        fill="#d1951a"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(710.48,578.00) rotate(-20.7)"
+        rx="0.54"
+        ry="0.21"
+      />
+      <path
+        fill="#c84719"
+        d="
   M 707.72 578.90
   Q 707.92 578.77 708.70 578.70
   A 0.16 0.16 0.0 0 1 708.78 579.00
   Q 708.04 579.34 707.86 579.35
   A 0.25 0.24 27.9 0 1 707.72 578.90
   Z"
-/>
-<ellipse fill="#c84719" cx="0.00" cy="0.00" transform="translate(705.71,579.97) rotate(-17.0)" rx="0.77" ry="0.24"/>
-<ellipse fill="#d1951a" cx="0.00" cy="0.00" transform="translate(701.43,581.68) rotate(-21.1)" rx="2.77" ry="0.27"/>
-<path fill="#141616" d="
+      />
+      <ellipse
+        fill="#c84719"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(705.71,579.97) rotate(-17.0)"
+        rx="0.77"
+        ry="0.24"
+      />
+      <ellipse
+        fill="#d1951a"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(701.43,581.68) rotate(-21.1)"
+        rx="2.77"
+        ry="0.27"
+      />
+      <path
+        fill="#141616"
+        d="
   M 617.83 643.16
   C 617.92 657.65 620.11 670.98 625.48 684.23
   C 627.00 687.97 628.19 691.56 624.34 693.74
@@ -2036,8 +2255,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 627.59 594.64 626.45 598.25 624.98 602.00
   C 619.77 615.32 617.74 628.67 617.83 643.16
   Z"
-/>
-<path fill="#efb22c" d="
+      />
+      <path
+        fill="#efb22c"
+        d="
   M 680.25 707.95
   A 0.39 0.39 0.0 0 1 680.30 707.23
   C 684.71 705.89 688.74 704.82 693.11 703.01
@@ -2072,8 +2293,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 687.89 706.56 684.46 706.98
   A 0.43 0.43 0.0 0 0 684.34 707.80
   Z"
-/>
-<path fill="#d1951a" d="
+      />
+      <path
+        fill="#d1951a"
+        d="
   M 684.34 707.80
   A 0.43 0.43 0.0 0 1 684.46 706.98
   Q 687.89 706.56 691.22 705.20
@@ -2092,8 +2315,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 697.68 707.85 692.56 708.80
   Q 688.39 709.58 684.34 707.80
   Z"
-/>
-<path fill="#d1951a" d="
+      />
+      <path
+        fill="#d1951a"
+        d="
   M 648.86 692.93
   L 656.73 704.18
   A 0.53 0.53 0.0 0 1 656.25 705.01
@@ -2159,8 +2384,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 637.97 692.63 648.30 692.63
   A 0.67 0.67 0.0 0 1 648.86 692.93
   Z"
-/>
-<path fill="#133456" d="
+      />
+      <path
+        fill="#133456"
+        d="
   M 690.73 735.75
   A 0.53 0.52 -87.7 0 1 690.09 735.05
   C 693.14 727.22 706.03 722.87 713.33 720.25
@@ -2177,8 +2404,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 751.06 708.51 726.18 720.28 700.76 732.00
   Q 696.40 734.02 690.73 735.75
   Z"
-/>
-<path fill="#133456" d="
+      />
+      <path
+        fill="#133456"
+        d="
   M 672.08 850.55
   A 0.42 0.42 0.0 0 1 671.73 851.19
   Q 664.01 851.27 656.00 850.66
@@ -2242,8 +2471,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 642.46 840.03 644.29 837.53
   A 1.85 1.83 -25.7 0 0 644.64 836.55
   Z"
-/>
-<path fill="#f8f0e4" d="
+      />
+      <path
+        fill="#f8f0e4"
+        d="
   M 876.78 668.58
   C 874.59 677.58 873.76 687.47 873.30 698.75
   Q 872.63 715.35 875.71 731.57
@@ -2277,8 +2508,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 871.45 688.38 872.20 687.30 872.58 685.38
   Q 872.63 685.13 874.58 671.72
   Z"
-/>
-<path fill="#dfd5c8" d="
+      />
+      <path
+        fill="#dfd5c8"
+        d="
   M 874.58 671.72
   Q 872.63 685.13 872.58 685.38
   C 872.20 687.30 871.45 688.38 869.44 689.15
@@ -2297,8 +2530,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 854.38 679.53 873.33 670.78
   A 0.89 0.89 0.0 0 1 874.58 671.72
   Z"
-/>
-<path fill="#141616" d="
+      />
+      <path
+        fill="#141616"
+        d="
   M 167.79 773.78
   L 167.34 773.96
   A 4.57 4.57 0.0 0 1 161.40 771.56
@@ -2314,8 +2549,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 165.77 756.14 170.39 767.58
   A 4.77 4.77 0.0 0 1 167.79 773.78
   Z"
-/>
-<path fill="#141616" d="
+      />
+      <path
+        fill="#141616"
+        d="
   M 644.29 837.53
   Q 642.46 840.03 639.61 839.65
   C 636.35 839.22 634.01 833.61 633.04 830.69
@@ -2329,8 +2566,10 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 644.86 833.60 644.64 836.55
   A 1.85 1.83 -25.7 0 1 644.29 837.53
   Z"
-/>
-<path fill="#133456" d="
+      />
+      <path
+        fill="#133456"
+        d="
   M 689.64 851.50
   Q 690.58 851.31 697.45 848.89
   Q 704.26 846.50 716.44 840.16
@@ -2344,8 +2583,7 @@ export const BooksSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 722.27 848.45 700.07 860.28 689.44 852.36
   A 0.48 0.48 0.0 0 1 689.64 851.50
   Z"
-/>
-</svg>
-
-    )
+      />
+    </svg>
+  )
 }

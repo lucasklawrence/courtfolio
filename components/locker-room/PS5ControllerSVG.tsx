@@ -5,21 +5,34 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-  return (<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 485.72 238.50
   Q 507.38 239.23 529.05 238.53"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 558.03 239.24
   Q 561.79 240.37 565.73 239.46"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.44 240.10
   Q 586.68 241.17 591.07 240.61"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 697.55 253.14
   Q 697.52 254.02 696.22 254.02
   Q 694.09 254.02 689.69 252.80
@@ -133,8 +146,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 264.78 654.20 267.12 649.99
   C 270.07 644.68 272.67 637.92 275.88 632.43
   Q 276.61 631.18 277.81 632.03"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 278.98 631.23
   L 280.24 632.14
   A 1.22 1.21 27.0 0 0 282.10 631.54
@@ -155,12 +171,18 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 687.33 585.50 691.50 586.07
   C 713.18 589.02 730.70 604.68 739.49 624.49
   Q 741.94 630.02 741.24 634.06"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 96.35 649.61
   L 96.09 631.17"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 792.56 769.18
   L 793.99 770.21
   A 1.08 1.04 14.6 0 1 794.43 770.93
@@ -210,12 +232,18 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 709.03 239.05 704.83 244.45
   Q 704.56 244.80 702.11 248.90
   Q 700.76 251.15 698.80 252.95"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.46 238.36
   L 486.22 238.39"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.92 351.37
   Q 349.19 338.97 339.14 289.30
   Q 337.48 281.07 336.72 278.29
@@ -245,8 +273,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 322.18 448.55 342.33 424.58
   Q 347.50 418.43 351.84 409.28
   C 360.67 390.62 356.41 371.68 351.92 351.37"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 116.36 470.70
   Q 117.76 467.54 118.46 462.06
   A 5.25 4.99 60.7 0 1 118.75 460.92
@@ -254,37 +285,55 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.21 0.21 0.0 0 0 119.16 456.25
   L 115.45 470.38
   A 0.48 0.48 0.0 0 0 116.36 470.70"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 115.04 475.04
   L 113.08 484.01
   A 0.32 0.32 0.0 0 0 113.52 484.37
   Q 114.01 484.16 114.12 483.67
   Q 114.59 481.45 115.28 476.82"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 115.28 476.82
   Q 115.40 472.39 115.04 475.04"
-/>
-<path stroke="#484848" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484848"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 115.28 476.82
   Q 115.00 475.89 115.04 475.04"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 113.10 485.23
   Q 111.68 491.07 111.75 491.78
   A 0.37 0.37 0.0 0 0 112.46 491.88
   Q 113.90 488.20 113.39 485.24
   A 0.15 0.15 0.0 0 0 113.10 485.23"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 111.3354 494.9778
   A 3.36 0.46 -84.1 0 0 110.5324 498.2727
   A 3.36 0.46 -84.1 0 0 110.6446 501.6622
   A 3.36 0.46 -84.1 0 0 111.4476 498.3673
   A 3.36 0.46 -84.1 0 0 111.3354 494.9778"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 107.5991 521.5113
   A 0.25 0.25 0.0 0 0 107.3883 521.2274
   L 107.3685 521.2245
@@ -294,15 +343,21 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 105.5915 533.3955
   A 0.25 0.25 0.0 0 0 105.8753 533.1847
   L 107.5991 521.5113"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 105.4188 535.2242
   A 6.88 0.33 -83.5 0 0 104.3121 542.0226
   A 6.88 0.33 -83.5 0 0 103.8612 548.8958
   A 6.88 0.33 -83.5 0 0 104.9679 542.0974
   A 6.88 0.33 -83.5 0 0 105.4188 535.2242"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 102.89 553.00
   Q 102.76 553.49 102.71 558.53
   A 6.58 6.51 -38.0 0 1 102.52 560.01
@@ -312,15 +367,21 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 4.09 4.02 -35.0 0 1 102.78 560.31
   Q 103.71 557.65 103.35 553.04
   A 0.24 0.23 -39.7 0 0 102.89 553.00"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 101.1879 572.2125
   A 4.46 0.28 -88.1 0 0 100.7602 576.6607
   A 4.46 0.28 -88.1 0 0 100.8921 581.1275
   A 4.46 0.28 -88.1 0 0 101.3198 576.6793
   A 4.46 0.28 -88.1 0 0 101.1879 572.2125"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 100.6461 583.2571
   A 0.26 0.26 0.0 0 0 100.3973 582.9864
   L 100.3773 582.9856
@@ -330,8 +391,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 99.8227 596.6944
   A 0.26 0.26 0.0 0 0 100.0934 596.4455
   L 100.6461 583.2571"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 99.3178 598.7606
   A 0.26 0.26 0.0 0 0 99.0582 598.5002
   L 98.9382 598.4999
@@ -341,8 +405,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 98.9418 665.2001
   A 0.26 0.26 0.0 0 0 99.2022 664.9405
   L 99.3178 598.7606"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 100.0326 667.1349
   A 0.27 0.27 0.0 0 0 99.7427 666.8864
   L 99.6430 666.8941
@@ -352,15 +419,21 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 101.3170 687.3459
   A 0.27 0.27 0.0 0 0 101.5655 687.0560
   L 100.0326 667.1349"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 101.6959 687.7190
   A 6.96 0.42 -96.8 0 0 102.1030 694.6797
   A 6.96 0.42 -96.8 0 0 103.3441 701.5410
   A 6.96 0.42 -96.8 0 0 102.9370 694.5803
   A 6.96 0.42 -96.8 0 0 101.6959 687.7190"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 104.4979 703.7240
   A 0.49 0.49 0.0 0 0 103.9373 703.3166
   L 103.8780 703.3260
@@ -370,8 +443,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 105.2420 711.5540
   A 0.49 0.49 0.0 0 0 105.6493 710.9933
   L 104.4979 703.7240"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 105.84 713.77
   C 105.60 715.66 106.37 717.22 106.69 719.01
   Q 107.84 725.59 111.27 734.07
@@ -387,15 +463,21 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 3.63 3.48 -56.3 0 1 107.39 719.11
   Q 107.36 716.68 106.15 713.73
   A 0.16 0.16 0.0 0 0 105.84 713.77"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 121.77 754.88
   Q 121.96 755.41 122.10 755.52
   A 0.26 0.26 0.0 0 0 122.52 755.36
   Q 122.60 754.94 122.03 754.65
   A 0.19 0.19 0.0 0 0 121.77 754.88"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 851.97 309.49
   C 845.93 296.66 838.40 280.44 825.64 275.85
   Q 816.63 272.61 803.27 269.24
@@ -421,78 +503,111 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 916.98 535.28 910.75 498.50
   Q 900.85 440.08 883.11 387.58
   Q 868.83 345.34 851.97 309.49"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 834.8196 278.8206
   A 0.57 0.42 -142.2 0 0 835.0126 279.5019
   A 0.57 0.42 -142.2 0 0 835.7204 279.5194
   A 0.57 0.42 -142.2 0 0 835.5274 278.8381
   A 0.57 0.42 -142.2 0 0 834.8196 278.8206"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 836.44 280.25
   A 0.19 0.19 0.0 0 0 836.25 280.06
   A 0.19 0.19 0.0 0 0 836.06 280.25
   A 0.19 0.19 0.0 0 0 836.25 280.44
   A 0.19 0.19 0.0 0 0 836.44 280.25"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 837.60 281.13
   A 0.42 0.42 0.0 0 0 837.18 280.71
   A 0.42 0.42 0.0 0 0 836.76 281.13
   A 0.42 0.42 0.0 0 0 837.18 281.55
   A 0.42 0.42 0.0 0 0 837.60 281.13"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 856.2511 313.1997
   A 1.59 0.30 -113.3 0 0 856.6045 314.7787
   A 1.59 0.30 -113.3 0 0 857.5089 316.1203
   A 1.59 0.30 -113.3 0 0 857.1555 314.5413
   A 1.59 0.30 -113.3 0 0 856.2511 313.1997"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 858.2771 317.6390
   A 4.28 0.32 -113.3 0 0 859.6761 321.6966
   A 4.28 0.32 -113.3 0 0 861.6629 325.5010
   A 4.28 0.32 -113.3 0 0 860.2639 321.4434
   A 4.28 0.32 -113.3 0 0 858.2771 317.6390"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 862.0252 326.3957
   A 4.24 0.32 -114.3 0 0 863.4784 330.3917
   A 4.24 0.32 -114.3 0 0 865.5148 334.1243
   A 4.24 0.32 -114.3 0 0 864.0616 330.1283
   A 4.24 0.32 -114.3 0 0 862.0252 326.3957"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 867.74 339.21
   Q 867.79 338.79 866.26 335.97
   A 0.09 0.09 0.0 0 0 866.10 336.04
   L 867.19 339.28
   A 0.28 0.28 0.0 0 0 867.74 339.21"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 867.9154 340.2214
   A 1.81 0.27 -113.6 0 0 868.3926 341.9881
   A 1.81 0.27 -113.6 0 0 869.3646 343.5386
   A 1.81 0.27 -113.6 0 0 868.8874 341.7719
   A 1.81 0.27 -113.6 0 0 867.9154 340.2214"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 876.06 361.18
   Q 876.04 361.71 876.41 362.37
   A 0.17 0.17 0.0 0 0 876.72 362.26
   Q 876.68 362.00 876.34 361.13
   A 0.15 0.14 -55.0 0 0 876.06 361.18"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 882.81 378.29
   Q 882.83 378.04 882.57 377.49
   A 0.27 0.27 0.0 0 0 882.06 377.56
   Q 882.02 377.78 882.32 378.39
   A 0.26 0.26 0.0 0 0 882.81 378.29"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 883.91 383.21
   Q 884.49 384.97 885.25 386.84
   A 0.17 0.16 -36.5 0 0 885.53 386.88
@@ -502,22 +617,31 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.17 0.16 -36.5 0 0 882.93 379.32
   Q 882.82 379.46 882.88 379.70
   Q 883.36 381.51 883.91 383.21"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 888.00 394.60
   Q 888.18 397.61 888.80 396.81
   A 0.30 0.29 -34.0 0 0 888.85 396.57
   L 888.26 394.56
   A 0.13 0.13 0.0 0 0 888.00 394.60"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 888.8487 397.2334
   A 1.25 0.31 -106.8 0 0 888.9132 398.5196
   A 1.25 0.31 -106.8 0 0 889.5713 399.6266
   A 1.25 0.31 -106.8 0 0 889.5068 398.3404
   A 1.25 0.31 -106.8 0 0 888.8487 397.2334"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 889.89 401.19
   A 0.20 0.20 0.0 0 0 889.76 401.43
   L 896.23 423.55
@@ -529,8 +653,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 891.64 405.14 890.64 401.37
   A 0.37 0.36 74.0 0 0 890.18 401.11
   L 889.89 401.19"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 899.13 434.06
   Q 899.61 435.87 900.09 437.75
   Q 901.31 442.55 901.32 442.58
@@ -542,36 +669,51 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.32 0.31 21.5 0 0 896.80 425.58
   Q 896.80 425.61 898.13 430.39
   Q 898.65 432.25 899.13 434.06"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 901.9565 443.4269
   A 2.01 0.49 -101.0 0 0 901.8590 445.4935
   A 2.01 0.49 -101.0 0 0 902.7235 447.3731
   A 2.01 0.49 -101.0 0 0 902.8210 445.3065
   A 2.01 0.49 -101.0 0 0 901.9565 443.4269"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 904.71 455.74
   Q 905.09 455.65 904.89 454.75
   Q 903.67 449.25 903.30 449.33
   Q 902.92 449.41 904.13 454.92
   Q 904.33 455.82 904.71 455.74"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 904.8993 456.2030
   A 1.37 0.36 -104.4 0 0 904.8913 457.6195
   A 1.37 0.36 -104.4 0 0 905.5807 458.8570
   A 1.37 0.36 -104.4 0 0 905.5887 457.4405
   A 1.37 0.36 -104.4 0 0 904.8993 456.2030"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 905.88 460.37
   Q 905.85 459.34 905.80 459.25
   A 0.24 0.24 0.0 0 0 905.34 459.32
   Q 905.20 460.21 905.41 460.52
   A 0.26 0.26 0.0 0 0 905.88 460.37"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 907.05 468.10
   Q 907.61 471.48 908.60 474.79
   A 0.17 0.17 0.0 0 0 908.93 474.75
@@ -583,78 +725,111 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 905.75 463.64 906.73 466.10
   A 2.39 2.20 34.9 0 1 906.90 466.86
   Q 906.92 467.28 907.05 468.10"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 909.3325 477.1762
   A 1.75 0.35 -97.8 0 0 909.2232 478.9575
   A 1.75 0.35 -97.8 0 0 909.8075 480.6438
   A 1.75 0.35 -97.8 0 0 909.9168 478.8625
   A 1.75 0.35 -97.8 0 0 909.3325 477.1762"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 910.1833 481.8493
   A 1.88 0.36 -95.7 0 0 910.0118 483.7558
   A 1.88 0.36 -95.7 0 0 910.5567 485.5907
   A 1.88 0.36 -95.7 0 0 910.7282 483.6842
   A 1.88 0.36 -95.7 0 0 910.1833 481.8493"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 912.1509 492.2176
   A 1.66 0.28 -95.5 0 0 912.0313 493.8968
   A 1.66 0.28 -95.5 0 0 912.4691 495.5224
   A 1.66 0.28 -95.5 0 0 912.5887 493.8432
   A 1.66 0.28 -95.5 0 0 912.1509 492.2176"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 913.21 500.59
   Q 913.22 501.13 913.34 501.36
   A 0.26 0.26 0.0 0 0 913.82 501.22
   Q 913.78 500.79 913.61 500.48
   A 0.21 0.21 0.0 0 0 913.21 500.59"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 913.9889 503.3659
   A 3.28 0.45 -97.2 0 0 913.9535 506.6764
   A 3.28 0.45 -97.2 0 0 914.8111 509.8741
   A 3.28 0.45 -97.2 0 0 914.8465 506.5636
   A 3.28 0.45 -97.2 0 0 913.9889 503.3659"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 915.2436 511.1222
   A 2.30 0.28 -95.9 0 0 915.2015 513.4388
   A 2.30 0.28 -95.9 0 0 915.7164 515.6978
   A 2.30 0.28 -95.9 0 0 915.7585 513.3812
   A 2.30 0.28 -95.9 0 0 915.2436 511.1222"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 919.4732 540.9519
   A 1.16 0.18 -93.3 0 0 919.3603 542.1204
   A 1.16 0.18 -93.3 0 0 919.6068 543.2681
   A 1.16 0.18 -93.3 0 0 919.7197 542.0996
   A 1.16 0.18 -93.3 0 0 919.4732 540.9519"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 919.7888 544.1547
   A 2.69 0.30 -96.0 0 0 919.7716 546.8614
   A 2.69 0.30 -96.0 0 0 920.3512 549.5053
   A 2.69 0.30 -96.0 0 0 920.3684 546.7986
   A 2.69 0.30 -96.0 0 0 919.7888 544.1547"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 920.52 550.23
   Q 920.53 550.17 920.45 549.95
   A 0.08 0.08 0.0 0 0 920.31 549.94
   Q 920.23 550.09 920.25 550.23
   A 0.14 0.14 0.0 0 0 920.52 550.23"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 920.4834 551.5735
   A 1.08 0.15 -94.6 0 0 920.4205 552.6620
   A 1.08 0.15 -94.6 0 0 920.6566 553.7265
   A 1.08 0.15 -94.6 0 0 920.7195 552.6380
   A 1.08 0.15 -94.6 0 0 920.4834 551.5735"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 921.8757 562.1675
   A 0.31 0.31 0.0 0 0 921.5389 561.8868
   L 921.5189 561.8886
@@ -664,8 +839,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 923.2011 580.1514
   A 0.31 0.31 0.0 0 0 923.4817 579.8145
   L 921.8757 562.1675"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 919.65 704.92
   Q 920.89 701.31 920.60 697.69
   A 1.57 1.54 -33.7 0 1 920.78 696.82
@@ -684,8 +862,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.20 0.17 -40.3 0 1 920.77 696.50
   L 919.28 704.83
   A 0.19 0.19 0.0 0 0 919.65 704.92"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 917.94 710.22
   C 916.81 716.77 915.08 723.11 912.80 730.16
   A 0.27 0.26 -73.5 0 0 912.98 730.50
@@ -695,15 +876,21 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.07 0.05 20.3 0 0 918.89 710.07
   L 918.49 709.85
   A 0.46 0.45 -78.7 0 0 917.94 710.22"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 881.58 772.99
   L 880.84 773.47
   A 0.33 0.33 0.0 0 0 881.11 774.07
   Q 881.55 773.95 882.00 773.51
   A 0.34 0.33 6.3 0 0 881.58 772.99"
-/>
-<path stroke="#484848" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484848"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 364.31 375.13
   C 358.37 383.92 360.64 393.55 365.31 402.42
   C 370.91 413.06 383.35 420.79 394.62 424.14
@@ -713,8 +900,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 659.46 402.98 661.64 395.42
   Q 663.85 387.75 662.68 381.61
   Q 662.15 378.79 659.80 375.24"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 659.80 375.24
   Q 661.04 368.42 662.59 361.39
   C 666.77 342.43 670.50 323.37 674.33 304.46
@@ -739,8 +929,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 346.29 259.92 343.46 268.89 344.85 277.13
   Q 347.09 290.39 352.66 317.73
   Q 358.51 346.50 364.31 375.13"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 659.80 375.24
   Q 652.29 403.56 625.49 412.96
   C 622.48 414.01 619.75 414.02 616.81 414.62
@@ -749,34 +942,49 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 405.50 415.07 400.49 413.83
   C 384.50 409.86 371.40 398.05 366.29 382.26
   Q 365.18 378.81 364.31 375.13"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 356.62 446.40
   Q 350.22 447.31 346.36 450.60
   C 342.79 453.65 338.61 456.68 335.72 459.97
   Q 321.27 476.40 321.58 498.34
   Q 321.67 505.06 321.68 505.15
   Q 321.98 508.60 323.53 511.65"
-/>
-<path stroke="#484848" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484848"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 323.53 511.65
   Q 329.70 533.51 348.37 544.87
   C 366.30 555.78 389.26 555.55 406.72 543.67
   C 444.55 517.91 435.69 460.49 393.26 445.93
   Q 375.71 439.90 356.62 446.40"
-/>
-<path stroke="#363635" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#363635"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 323.53 511.65
   C 316.70 483.95 330.53 457.33 356.62 446.40"
-/>
-<path stroke="#484848" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484848"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 634.6022 444.8000
   A 54.65 54.51 -103.5 0 0 594.3561 510.6651
   A 54.65 54.51 -103.5 0 0 660.1178 551.0800
   A 54.65 54.51 -103.5 0 0 700.3639 485.2149
   A 54.65 54.51 -103.5 0 0 634.6022 444.8000"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.43 499.35
   A 0.48 0.48 0.0 0 1 522.07 498.61
   L 523.76 496.02
@@ -792,8 +1000,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 535.84 509.16 533.61 503.78
   A 2.03 1.98 -79.8 0 0 533.15 503.10
   C 530.54 500.55 525.98 499.67 522.43 499.35"
-/>
-<path stroke="#484848" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484848"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.1712 550.8336
   A 4.85 4.85 0.0 0 0 524.3381 545.9667
   L 497.5983 545.8734
@@ -803,8 +1014,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 524.3017 556.4066
   A 4.85 4.85 0.0 0 0 529.1686 551.5736
   L 529.1712 550.8336"
-/>
-<path stroke="#242424" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#242424"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 806.71 780.65
   Q 807.82 778.77 806.91 776.39
   Q 806.21 774.54 806.20 774.51
@@ -814,8 +1028,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 775.17 690.96 772.02 683.20
   Q 761.78 657.93 747.72 634.02
   Q 747.39 633.45 746.80 634.22"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 672.70 259.57
   C 667.97 255.27 662.21 254.29 656.05 253.70
   Q 624.85 250.67 615.15 250.21
@@ -839,8 +1056,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 666.73 335.83 674.58 295.55
   Q 676.97 283.30 678.09 275.33
   Q 679.44 265.72 672.70 259.57"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 721.6577 288.2991
   A 10.88 10.88 0.0 0 0 712.6572 275.8195
   L 711.5319 275.6373
@@ -850,36 +1070,51 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 705.4881 320.0827
   A 10.88 10.88 0.0 0 0 717.9677 311.0822
   L 721.6577 288.2991"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 768.2827 294.5938
   A 30.69 30.09 -98.2 0 0 742.8776 329.2617
   A 30.69 30.09 -98.2 0 0 777.0373 355.3462
   A 30.69 30.09 -98.2 0 0 802.4424 320.6783
   A 30.69 30.09 -98.2 0 0 768.2827 294.5938"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 713.5192 356.7156
   A 30.17 29.78 -88.9 0 0 683.1655 386.3083
   A 30.17 29.78 -88.9 0 0 712.3608 417.0444
   A 30.17 29.78 -88.9 0 0 742.7145 387.4517
   A 30.17 29.78 -88.9 0 0 713.5192 356.7156"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 863.21 386.83
   A 30.18 30.18 0.0 0 0 833.03 356.65
   A 30.18 30.18 0.0 0 0 802.85 386.83
   A 30.18 30.18 0.0 0 0 833.03 417.01
   A 30.18 30.18 0.0 0 0 863.21 386.83"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 802.97 448.67
   A 30.07 30.07 0.0 0 0 772.90 418.60
   A 30.07 30.07 0.0 0 0 742.83 448.67
   A 30.07 30.07 0.0 0 0 772.90 478.74
   A 30.07 30.07 0.0 0 0 802.97 448.67"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 304.03 300.01
   C 305.43 307.61 306.71 319.50 316.80 320.24
   C 325.72 320.89 329.54 314.24 328.36 306.24
@@ -887,8 +1122,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 325.39 289.40 324.52 285.48
   C 322.76 277.59 316.82 272.75 308.72 276.55
   C 299.56 280.85 302.62 292.40 304.03 300.01"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 237.61 368.50
   C 244.67 375.24 249.44 378.97 258.17 371.92
   C 267.30 364.55 274.24 355.97 275.02 343.97
@@ -897,8 +1135,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 242.79 313.68 225.76 313.25 224.58 329.24
   Q 223.99 337.23 225.01 345.98
   C 226.12 355.59 230.95 362.13 237.61 368.50"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 184.73 409.32
   C 188.20 412.70 193.48 412.65 198.01 412.51
   C 208.17 412.19 217.58 410.98 225.60 404.87
@@ -910,8 +1151,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 189.47 360.25 183.60 362.00 180.90 368.91
   C 178.57 374.89 178.58 382.13 178.70 388.23
   C 178.85 396.18 179.44 404.16 184.73 409.32"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 262.19 384.40
   C 261.52 388.55 265.20 392.98 267.84 396.06
   C 272.35 401.32 277.83 407.45 283.69 409.35
@@ -922,8 +1166,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 300.62 359.62 292.79 360.49
   C 287.45 361.08 283.80 361.39 280.07 363.59
   C 273.13 367.67 263.51 376.09 262.19 384.40"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 250.77 456.62
   C 265.10 456.46 275.84 454.95 276.22 437.60
   C 276.40 428.98 275.32 419.79 270.62 412.77
@@ -931,8 +1178,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 242.54 396.68 233.78 407.22 229.95 413.22
   C 225.41 420.35 224.53 429.56 224.91 438.18
   C 225.67 455.51 236.44 456.78 250.77 456.62"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.1118 284.9115
   A 7.70 7.70 0.0 0 0 312.1267 278.7593
   L 311.4780 278.8807
@@ -942,8 +1192,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 319.2420 316.7793
   A 7.70 7.70 0.0 0 0 325.3942 307.7942
   L 321.1118 284.9115"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.3473 287.9106
   A 7.77 7.77 0.0 0 0 711.9351 278.9871
   L 711.2640 278.8772
@@ -953,15 +1206,21 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 705.7360 316.8428
   A 7.77 7.77 0.0 0 0 714.6595 310.4306
   L 718.3473 287.9106"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 769.1884 297.7659
   A 27.38 26.76 -97.2 0 0 746.0710 328.2839
   A 27.38 26.76 -97.2 0 0 776.0516 352.0941
   A 27.38 26.76 -97.2 0 0 799.1690 321.5761
   A 27.38 26.76 -97.2 0 0 769.1884 297.7659"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 754.87 335.33
   A 1.51 1.51 0.0 0 0 756.18 337.57
   L 788.18 337.74
@@ -969,8 +1228,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 773.67 306.11
   A 1.51 1.51 0.0 0 0 771.02 306.10
   L 754.87 335.33"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 772.22 334.30
   Q 776.61 334.31 784.53 334.30
   A 0.29 0.29 0.0 0 0 784.78 333.87
@@ -980,8 +1242,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 766.43 322.26 759.67 333.81
   A 0.29 0.29 0.0 0 0 759.92 334.24
   Q 767.84 334.29 772.22 334.30"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 244.84 370.40
   C 248.03 372.80 250.69 372.98 253.97 370.72
   Q 261.37 365.61 267.80 356.54
@@ -993,22 +1258,31 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 228.15 326.39 227.98 330.42
   Q 227.59 339.66 228.62 346.93
   C 229.99 356.67 237.24 364.66 244.84 370.40"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 713.6503 360.0805
   A 26.87 26.37 -88.4 0 0 686.5403 386.2037
   A 26.87 26.37 -88.4 0 0 712.1497 413.7995
   A 26.87 26.37 -88.4 0 0 739.2597 387.6763
   A 26.87 26.37 -88.4 0 0 713.6503 360.0805"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 859.89 386.84
   A 26.89 26.89 0.0 0 0 833.00 359.95
   A 26.89 26.89 0.0 0 0 806.11 386.84
   A 26.89 26.89 0.0 0 0 833.00 413.73
   A 26.89 26.89 0.0 0 0 859.89 386.84"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 234.96 388.54
   C 235.93 386.99 235.98 384.66 234.99 383.02
   Q 232.49 378.83 227.58 373.18
@@ -1018,8 +1292,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 190.33 408.99 194.23 409.06
   Q 204.68 409.25 213.73 406.97
   C 222.85 404.68 230.09 396.31 234.96 388.54"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 265.70 385.53
   C 266.52 391.45 275.35 399.59 280.25 403.53
   C 286.21 408.31 297.55 409.12 305.38 409.07
@@ -1029,8 +1306,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 299.06 363.25 289.99 364.21
   Q 282.41 365.02 275.94 370.65
   C 272.13 373.96 265.13 381.34 265.70 385.53"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 729.00 374.18
   A 2.98 2.98 0.0 0 0 726.02 371.20
   L 700.90 371.20
@@ -1040,22 +1320,31 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 726.02 402.26
   A 2.98 2.98 0.0 0 0 729.00 399.28
   L 729.00 374.18"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 830.0069 369.1536
   A 17.70 17.50 -99.9 0 0 815.8106 389.5988
   A 17.70 17.50 -99.9 0 0 836.0931 404.0264
   A 17.70 17.50 -99.9 0 0 850.2894 383.5812
   A 17.70 17.50 -99.9 0 0 830.0069 369.1536"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 833.4666 372.2463
   A 14.38 14.08 -88.3 0 0 818.9662 386.2023
   A 14.38 14.08 -88.3 0 0 832.6134 400.9937
   A 14.38 14.08 -88.3 0 0 847.1138 387.0377
   A 14.38 14.08 -88.3 0 0 833.4666 372.2463"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 725.5400 375.3688
   A 0.67 0.67 0.0 0 0 724.8688 374.7000
   L 701.9288 374.7400
@@ -1065,8 +1354,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 724.9112 398.9800
   A 0.67 0.67 0.0 0 0 725.5800 398.3088
   L 725.5400 375.3688"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 250.69 453.35
   C 261.90 453.25 272.49 452.42 272.70 438.24
   C 272.86 427.84 271.82 418.32 264.80 410.48
@@ -1074,15 +1366,21 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 245.46 400.03 238.76 407.36 235.85 410.72
   C 228.97 418.69 228.09 428.22 228.42 438.62
   C 228.88 452.80 239.48 453.45 250.69 453.35"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 799.55 448.68
   A 26.68 26.68 0.0 0 0 772.87 422.00
   A 26.68 26.68 0.0 0 0 746.19 448.68
   A 26.68 26.68 0.0 0 0 772.87 475.36
   A 26.68 26.68 0.0 0 0 799.55 448.68"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 760.15 461.62
   A 0.81 0.81 0.0 0 0 761.06 461.46
   L 771.97 450.55
@@ -1108,36 +1406,51 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 758.03 459.45
   A 0.81 0.81 0.0 0 0 758.27 460.76
   L 760.15 461.62"
-/>
-<path stroke="#484848" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484848"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 380.1919 454.1552
   A 44.24 44.07 -85.2 0 0 332.5746 494.5523
   A 44.24 44.07 -85.2 0 0 372.7881 542.3248
   A 44.24 44.07 -85.2 0 0 420.4054 501.9277
   A 44.24 44.07 -85.2 0 0 380.1919 454.1552"
-/>
-<path stroke="#484848" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484848"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 691.61 498.08
   A 44.16 44.16 0.0 0 0 647.45 453.92
   A 44.16 44.16 0.0 0 0 603.29 498.08
   A 44.16 44.16 0.0 0 0 647.45 542.24
   A 44.16 44.16 0.0 0 0 691.61 498.08"
-/>
-<path stroke="#484848" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484848"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 361.0224 469.7875
   A 32.33 31.64 -118.2 0 0 348.4156 513.2315
   A 32.33 31.64 -118.2 0 0 391.5776 526.7725
   A 32.33 31.64 -118.2 0 0 404.1844 483.3285
   A 32.33 31.64 -118.2 0 0 361.0224 469.7875"
-/>
-<path stroke="#484848" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484848"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 679.28 498.02
   A 32.09 32.09 0.0 0 0 647.19 465.93
   A 32.09 32.09 0.0 0 0 615.10 498.02
   A 32.09 32.09 0.0 0 0 647.19 530.11
   A 32.09 32.09 0.0 0 0 679.28 498.02"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 505.36 500.76
   Q 504.71 500.71 498.25 501.47
   C 495.77 501.77 491.37 503.13 490.98 505.95
@@ -1159,8 +1472,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 507.43 480.94 505.83 487.25 505.96 493.76
   Q 506.08 500.13 506.07 500.22
   A 0.67 0.66 7.7 0 1 505.36 500.76"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.87 506.55
   L 513.93 508.29
   A 0.67 0.67 0.0 0 0 514.63 508.93
@@ -1170,8 +1486,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 7.43 1.34 -2.0 0 0 517.66 505.74
   L 514.52 505.85
   A 0.67 0.67 0.0 0 0 513.87 506.55"
-/>
-<path stroke="#868686" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#868686"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.0686 507.5084
   A 1.24 1.24 0.0 0 0 504.8816 506.2175
   L 499.3265 505.9847
@@ -1181,9 +1500,11 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 504.7735 508.7953
   A 1.24 1.24 0.0 0 0 506.0644 507.6083
   L 506.0686 507.5084"
-/>
-</g>
-<path fill="#121111" d="
+        />
+      </g>
+      <path
+        fill="#121111"
+        d="
   M 485.72 238.50
   Q 507.38 239.23 529.05 238.53
   L 558.03 239.24
@@ -1542,8 +1863,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 122.60 754.94 122.03 754.65
   A 0.19 0.19 0.0 0 0 121.77 754.88
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 792.56 769.18
   L 793.99 770.21
   A 1.08 1.04 14.6 0 1 794.43 770.93
@@ -1900,8 +2223,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 881.55 773.95 882.00 773.51
   A 0.34 0.33 6.3 0 0 881.58 772.99
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 697.55 253.14
   L 698.80 252.95
   Q 700.76 251.15 702.11 248.90
@@ -2182,34 +2507,44 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.33 0.33 0.0 0 0 807.14 782.45
   Q 807.32 781.19 806.71 780.65
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 487.46 238.36
   L 486.22 238.39
   L 487.46 238.36
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 529.05 238.53
   Q 507.38 239.23 485.72 238.50
   Q 485.95 238.34 486.22 238.39
   L 487.46 238.36
   L 529.05 238.53
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 565.73 239.46
   Q 561.79 240.37 558.03 239.24
   L 565.73 239.46
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 591.07 240.61
   Q 586.68 241.17 582.44 240.10
   L 591.07 240.61
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 659.80 375.24
   Q 652.29 403.56 625.49 412.96
   C 622.48 414.01 619.75 414.02 616.81 414.62
@@ -2266,8 +2601,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 676.97 283.30 678.09 275.33
   Q 679.44 265.72 672.70 259.57
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 672.70 259.57
   Q 679.44 265.72 678.09 275.33
   Q 676.97 283.30 674.58 295.55
@@ -2292,8 +2629,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 624.85 250.67 656.05 253.70
   C 662.21 254.29 667.97 255.27 672.70 259.57
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 825.64 275.85
   C 838.40 280.44 845.93 296.66 851.97 309.49
   Q 868.83 345.34 883.11 387.58
@@ -2354,8 +2693,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 30.07 30.07 0.0 0 0 772.90 478.74
   A 30.07 30.07 0.0 0 0 802.97 448.67
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 351.92 351.37
   C 356.41 371.68 360.67 390.62 351.84 409.28
   Q 347.50 418.43 342.33 424.58
@@ -2434,8 +2775,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 225.41 420.35 224.53 429.56 224.91 438.18
   C 225.67 455.51 236.44 456.78 250.77 456.62
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 326.58 295.84
   Q 327.77 302.27 328.36 306.24
   C 329.54 314.24 325.72 320.89 316.80 320.24
@@ -2454,8 +2797,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 7.70 7.70 0.0 0 0 325.3942 307.7942
   L 321.1118 284.9115
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 717.9677 311.0822
   A 10.88 10.88 0.0 0 1 705.4881 320.0827
   L 704.3628 319.9005
@@ -2476,13 +2821,38 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 7.77 7.77 0.0 0 0 714.6595 310.4306
   L 718.3473 287.9106
   Z"
-/>
-<rect fill="#fafafa" x="-8.03" y="-19.34" transform="translate(315.36,297.83) rotate(-10.6)" width="16.06" height="38.68" rx="7.70"/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(835.27,279.17) rotate(-142.2)" rx="0.57" ry="0.42"/>
-<rect fill="#fafafa" x="-8.11" y="-19.18" transform="translate(708.50,297.86) rotate(9.3)" width="16.22" height="38.36" rx="7.77"/>
-<circle fill="#5a5a59" cx="836.25" cy="280.25" r="0.19"/>
-<circle fill="#363636" cx="837.18" cy="281.13" r="0.42"/>
-<path fill="#121111" d="
+      />
+      <rect
+        fill="#fafafa"
+        x="-8.03"
+        y="-19.34"
+        transform="translate(315.36,297.83) rotate(-10.6)"
+        width="16.06"
+        height="38.68"
+        rx="7.70"
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(835.27,279.17) rotate(-142.2)"
+        rx="0.57"
+        ry="0.42"
+      />
+      <rect
+        fill="#fafafa"
+        x="-8.11"
+        y="-19.18"
+        transform="translate(708.50,297.86) rotate(9.3)"
+        width="16.22"
+        height="38.36"
+        rx="7.77"
+      />
+      <circle fill="#5a5a59" cx="836.25" cy="280.25" r="0.19" />
+      <circle fill="#363636" cx="837.18" cy="281.13" r="0.42" />
+      <path
+        fill="#121111"
+        d="
   M 768.2827 294.5938
   A 30.69 30.09 -98.2 0 1 802.4424 320.6783
   A 30.69 30.09 -98.2 0 1 777.0373 355.3462
@@ -2495,8 +2865,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 27.38 26.76 -97.2 0 0 799.1690 321.5761
   A 27.38 26.76 -97.2 0 0 769.1884 297.7659
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 769.1884 297.7659
   A 27.38 26.76 -97.2 0 1 799.1690 321.5761
   A 27.38 26.76 -97.2 0 1 776.0516 352.0941
@@ -2511,8 +2883,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 1.51 1.51 0.0 0 0 771.02 306.10
   L 754.87 335.33
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 754.87 335.33
   L 771.02 306.10
   A 1.51 1.51 0.0 0 1 773.67 306.11
@@ -2531,8 +2905,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.29 0.29 0.0 0 0 759.92 334.24
   Q 767.84 334.29 772.22 334.30
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 772.28 310.76
   Q 772.37 310.76 772.44 310.92
   Q 778.08 322.29 784.78 333.87
@@ -2543,9 +2919,18 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 766.43 322.26 772.12 310.92
   Q 772.20 310.76 772.28 310.76
   Z"
-/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(856.88,314.66) rotate(-113.3)" rx="1.59" ry="0.30"/>
-<path fill="#121111" d="
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(856.88,314.66) rotate(-113.3)"
+        rx="1.59"
+        ry="0.30"
+      />
+      <path
+        fill="#121111"
+        d="
   M 258.17 371.92
   C 249.44 378.97 244.67 375.24 237.61 368.50
   C 230.95 362.13 226.12 355.59 225.01 345.98
@@ -2567,8 +2952,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 227.59 339.66 228.62 346.93
   C 229.99 356.67 237.24 364.66 244.84 370.40
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 253.97 370.72
   C 250.69 372.98 248.03 372.80 244.84 370.40
   C 237.24 364.66 229.99 356.67 228.62 346.93
@@ -2581,19 +2968,44 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 269.49 354.14 267.80 356.54
   Q 261.37 365.61 253.97 370.72
   Z"
-/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(859.97,321.57) rotate(-113.3)" rx="4.28" ry="0.32"/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(863.77,330.26) rotate(-114.3)" rx="4.24" ry="0.32"/>
-<path fill="#5a5a59" d="
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(859.97,321.57) rotate(-113.3)"
+        rx="4.28"
+        ry="0.32"
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(863.77,330.26) rotate(-114.3)"
+        rx="4.24"
+        ry="0.32"
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 867.19 339.28
   L 866.10 336.04
   A 0.09 0.09 0.0 0 1 866.26 335.97
   Q 867.79 338.79 867.74 339.21
   A 0.28 0.28 0.0 0 1 867.19 339.28
   Z"
-/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(868.64,341.88) rotate(-113.6)" rx="1.81" ry="0.27"/>
-<path fill="#121111" d="
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(868.64,341.88) rotate(-113.6)"
+        rx="1.81"
+        ry="0.27"
+      />
+      <path
+        fill="#121111"
+        d="
   M 713.5192 356.7156
   A 30.17 29.78 -88.9 0 1 742.7145 387.4517
   A 30.17 29.78 -88.9 0 1 712.3608 417.0444
@@ -2606,8 +3018,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 26.87 26.37 -88.4 0 0 739.2597 387.6763
   A 26.87 26.37 -88.4 0 0 713.6503 360.0805
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 863.21 386.83
   A 30.18 30.18 0.0 0 1 833.03 417.01
   A 30.18 30.18 0.0 0 1 802.85 386.83
@@ -2620,8 +3034,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 26.89 26.89 0.0 0 0 833.00 413.73
   A 26.89 26.89 0.0 0 0 859.89 386.84
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 184.73 409.32
   C 179.44 404.16 178.85 396.18 178.70 388.23
   C 178.58 382.13 178.57 374.89 180.90 368.91
@@ -2644,8 +3060,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 204.68 409.25 213.73 406.97
   C 222.85 404.68 230.09 396.31 234.96 388.54
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 262.19 384.40
   C 263.51 376.09 273.13 367.67 280.07 363.59
   C 283.80 361.39 287.45 361.08 292.79 360.49
@@ -2667,8 +3085,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 282.41 365.02 275.94 370.65
   C 272.13 373.96 265.13 381.34 265.70 385.53
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 713.6503 360.0805
   A 26.87 26.37 -88.4 0 1 739.2597 387.6763
   A 26.87 26.37 -88.4 0 1 712.1497 413.7995
@@ -2685,8 +3105,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 2.98 2.98 0.0 0 0 729.00 399.28
   L 729.00 374.18
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 859.89 386.84
   A 26.89 26.89 0.0 0 1 833.00 413.73
   A 26.89 26.89 0.0 0 1 806.11 386.84
@@ -2699,16 +3121,20 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 17.70 17.50 -99.9 0 0 850.2894 383.5812
   A 17.70 17.50 -99.9 0 0 830.0069 369.1536
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 876.34 361.13
   Q 876.68 362.00 876.72 362.26
   A 0.17 0.17 0.0 0 1 876.41 362.37
   Q 876.04 361.71 876.06 361.18
   A 0.15 0.14 -55.0 0 1 876.34 361.13
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 234.99 383.02
   C 235.98 384.66 235.93 386.99 234.96 388.54
   C 230.09 396.31 222.85 404.68 213.73 406.97
@@ -2719,8 +3145,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 209.35 363.58 219.23 363.60 227.58 373.18
   Q 232.49 378.83 234.99 383.02
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 265.70 385.53
   C 265.13 381.34 272.13 373.96 275.94 370.65
   Q 282.41 365.02 289.99 364.21
@@ -2731,8 +3159,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 297.55 409.12 286.21 408.31 280.25 403.53
   C 275.35 399.59 266.52 391.45 265.70 385.53
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 830.0069 369.1536
   A 17.70 17.50 -99.9 0 1 850.2894 383.5812
   A 17.70 17.50 -99.9 0 1 836.0931 404.0264
@@ -2745,8 +3175,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 14.38 14.08 -88.3 0 0 847.1138 387.0377
   A 14.38 14.08 -88.3 0 0 833.4666 372.2463
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 729.00 399.28
   A 2.98 2.98 0.0 0 1 726.02 402.26
   L 700.90 402.26
@@ -2767,10 +3199,27 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.67 0.67 0.0 0 0 725.5800 398.3088
   L 725.5400 375.3688
   Z"
-/>
-<ellipse fill="#fafafa" cx="0.00" cy="0.00" transform="translate(833.04,386.62) rotate(-88.3)" rx="14.38" ry="14.08"/>
-<rect fill="#fafafa" x="-12.14" y="-12.14" transform="translate(713.42,386.86) rotate(-0.1)" width="24.28" height="24.28" rx="0.67"/>
-<path fill="#5a5a59" d="
+      />
+      <ellipse
+        fill="#fafafa"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(833.04,386.62) rotate(-88.3)"
+        rx="14.38"
+        ry="14.08"
+      />
+      <rect
+        fill="#fafafa"
+        x="-12.14"
+        y="-12.14"
+        transform="translate(713.42,386.86) rotate(-0.1)"
+        width="24.28"
+        height="24.28"
+        rx="0.67"
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 364.31 375.13
   Q 365.18 378.81 366.29 382.26
   C 371.40 398.05 384.50 409.86 400.49 413.83
@@ -2788,16 +3237,20 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 383.35 420.79 370.91 413.06 365.31 402.42
   C 360.64 393.55 358.37 383.92 364.31 375.13
   Z"
-/>
-<path fill="#5a5a59" d="
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 882.32 378.39
   Q 882.02 377.78 882.06 377.56
   A 0.27 0.27 0.0 0 1 882.57 377.49
   Q 882.83 378.04 882.81 378.29
   A 0.26 0.26 0.0 0 1 882.32 378.39
   Z"
-/>
-<path fill="#5a5a59" d="
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 884.54 383.00
   Q 885.10 384.70 885.58 386.51
   Q 885.64 386.74 885.53 386.88
@@ -2808,16 +3261,20 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.17 0.16 -36.5 0 1 883.21 379.36
   Q 883.97 381.24 884.54 383.00
   Z"
-/>
-<path fill="#5a5a59" d="
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 888.26 394.56
   L 888.85 396.57
   A 0.30 0.29 -34.0 0 1 888.80 396.81
   Q 888.18 397.61 888.00 394.60
   A 0.13 0.13 0.0 0 1 888.26 394.56
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 250.10 396.59
   C 257.67 396.51 266.66 406.85 270.62 412.77
   C 275.32 419.79 276.40 428.98 276.22 437.60
@@ -2834,9 +3291,18 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 228.97 418.69 228.09 428.22 228.42 438.62
   C 228.88 452.80 239.48 453.45 250.69 453.35
   Z"
-/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(889.21,398.43) rotate(-106.8)" rx="1.25" ry="0.31"/>
-<path fill="#fafafa" d="
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(889.21,398.43) rotate(-106.8)"
+        rx="1.25"
+        ry="0.31"
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 250.23 399.99
   C 255.01 399.95 261.84 407.16 264.80 410.48
   C 271.82 418.32 272.86 427.84 272.70 438.24
@@ -2845,8 +3311,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 228.09 428.22 228.97 418.69 235.85 410.72
   C 238.76 407.36 245.46 400.03 250.23 399.99
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 889.89 401.19
   L 890.18 401.11
   A 0.37 0.36 74.0 0 1 890.64 401.37
@@ -2859,8 +3327,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 889.76 401.43
   A 0.20 0.20 0.0 0 1 889.89 401.19
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 802.97 448.67
   A 30.07 30.07 0.0 0 1 772.90 478.74
   A 30.07 30.07 0.0 0 1 742.83 448.67
@@ -2873,8 +3343,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 26.68 26.68 0.0 0 0 772.87 475.36
   A 26.68 26.68 0.0 0 0 799.55 448.68
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 799.55 448.68
   A 26.68 26.68 0.0 0 1 772.87 475.36
   A 26.68 26.68 0.0 0 1 746.19 448.68
@@ -2907,8 +3379,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.81 0.81 0.0 0 0 758.27 460.76
   L 760.15 461.62
   Z"
-/>
-<path fill="#5a5a59" d="
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 899.86 433.86
   Q 900.67 436.89 900.98 439.21
   C 901.12 440.32 902.09 441.66 901.92 442.51
@@ -2921,8 +3395,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 897.92 425.99 897.75 427.64 898.17 428.67
   Q 899.06 430.84 899.86 433.86
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 760.15 461.62
   L 758.27 460.76
   A 0.81 0.81 0.0 0 1 758.03 459.45
@@ -2949,8 +3425,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   L 761.06 461.46
   A 0.81 0.81 0.0 0 1 760.15 461.62
   Z"
-/>
-<path fill="#5a5a59" d="
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 323.53 511.65
   C 316.70 483.95 330.53 457.33 356.62 446.40
   Q 375.71 439.90 393.26 445.93
@@ -2964,8 +3442,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 44.24 44.07 -85.2 0 0 420.4054 501.9277
   A 44.24 44.07 -85.2 0 0 380.1919 454.1552
   Z"
-/>
-<path fill="#5a5a59" d="
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 634.6022 444.8000
   A 54.65 54.51 -103.5 0 1 700.3639 485.2149
   A 54.65 54.51 -103.5 0 1 660.1178 551.0800
@@ -2978,9 +3458,18 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 44.16 44.16 0.0 0 0 647.45 542.24
   A 44.16 44.16 0.0 0 0 691.61 498.08
   Z"
-/>
-<ellipse fill="#363636" cx="0.00" cy="0.00" transform="translate(902.34,445.40) rotate(-101.0)" rx="2.01" ry="0.49"/>
-<path fill="#121111" d="
+      />
+      <ellipse
+        fill="#363636"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(902.34,445.40) rotate(-101.0)"
+        rx="2.01"
+        ry="0.49"
+      />
+      <path
+        fill="#121111"
+        d="
   M 356.62 446.40
   C 330.53 457.33 316.70 483.95 323.53 511.65
   Q 321.98 508.60 321.68 505.15
@@ -2989,16 +3478,20 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   C 338.61 456.68 342.79 453.65 346.36 450.60
   Q 350.22 447.31 356.62 446.40
   Z"
-/>
-<path fill="#5a5a59" d="
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 903.30 449.33
   Q 903.67 449.25 904.89 454.75
   Q 905.09 455.65 904.71 455.74
   Q 904.33 455.82 904.13 454.92
   Q 902.92 449.41 903.30 449.33
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 380.1919 454.1552
   A 44.24 44.07 -85.2 0 1 420.4054 501.9277
   A 44.24 44.07 -85.2 0 1 372.7881 542.3248
@@ -3011,8 +3504,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 32.33 31.64 -118.2 0 0 404.1844 483.3285
   A 32.33 31.64 -118.2 0 0 361.0224 469.7875
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 691.61 498.08
   A 44.16 44.16 0.0 0 1 647.45 542.24
   A 44.16 44.16 0.0 0 1 603.29 498.08
@@ -3025,8 +3520,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 32.09 32.09 0.0 0 0 647.19 530.11
   A 32.09 32.09 0.0 0 0 679.28 498.02
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 116.36 470.70
   A 0.48 0.48 0.0 0 1 115.45 470.38
   L 119.16 456.25
@@ -3035,17 +3532,28 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 5.25 4.99 60.7 0 0 118.46 462.06
   Q 117.76 467.54 116.36 470.70
   Z"
-/>
-<ellipse fill="#363636" cx="0.00" cy="0.00" transform="translate(905.24,457.53) rotate(-104.4)" rx="1.37" ry="0.36"/>
-<path fill="#363636" d="
+      />
+      <ellipse
+        fill="#363636"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(905.24,457.53) rotate(-104.4)"
+        rx="1.37"
+        ry="0.36"
+      />
+      <path
+        fill="#363636"
+        d="
   M 905.41 460.52
   Q 905.20 460.21 905.34 459.32
   A 0.24 0.24 0.0 0 1 905.80 459.25
   Q 905.85 459.34 905.88 460.37
   A 0.26 0.26 0.0 0 1 905.41 460.52
   Z"
-/>
-<path fill="#5a5a59" d="
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 907.67 468.01
   Q 907.81 468.83 907.83 469.25
   A 2.39 2.20 34.9 0 0 908.00 470.01
@@ -3058,16 +3566,27 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.17 0.17 0.0 0 1 906.13 461.31
   Q 907.13 464.63 907.67 468.01
   Z"
-/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(376.30,498.28) rotate(-118.2)" rx="32.33" ry="31.64"/>
-<circle fill="#5a5a59" cx="647.19" cy="498.02" r="32.09"/>
-<path fill="#5a5a59" d="
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(376.30,498.28) rotate(-118.2)"
+        rx="32.33"
+        ry="31.64"
+      />
+      <circle fill="#5a5a59" cx="647.19" cy="498.02" r="32.09" />
+      <path
+        fill="#5a5a59"
+        d="
   M 115.28 476.82
   Q 115.00 475.89 115.04 475.04
   Q 115.40 472.39 115.28 476.82
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 115.04 475.04
   Q 115.00 475.89 115.28 476.82
   Q 114.59 481.45 114.12 483.67
@@ -3075,9 +3594,18 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.32 0.32 0.0 0 1 113.08 484.01
   L 115.04 475.04
   Z"
-/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(909.57,478.91) rotate(-97.8)" rx="1.75" ry="0.35"/>
-<path fill="#121111" d="
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(909.57,478.91) rotate(-97.8)"
+        rx="1.75"
+        ry="0.35"
+      />
+      <path
+        fill="#121111"
+        d="
   M 522.43 499.35
   C 525.98 499.67 530.54 500.55 533.15 503.10
   A 2.03 1.98 -79.8 0 1 533.61 503.78
@@ -3116,8 +3644,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 506.08 500.13 506.07 500.22
   A 0.67 0.66 7.7 0 1 505.36 500.76
   Z"
-/>
-<path fill="#fafafa" d="
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 506.07 500.22
   Q 506.08 500.13 505.96 493.76
   C 505.83 487.25 507.43 480.94 515.55 482.01
@@ -3160,28 +3690,62 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 1.24 1.24 0.0 0 0 506.0644 507.6083
   L 506.0686 507.5084
   Z"
-/>
-<ellipse fill="#363636" cx="0.00" cy="0.00" transform="translate(910.37,483.72) rotate(-95.7)" rx="1.88" ry="0.36"/>
-<path fill="#363636" d="
+      />
+      <ellipse
+        fill="#363636"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(910.37,483.72) rotate(-95.7)"
+        rx="1.88"
+        ry="0.36"
+      />
+      <path
+        fill="#363636"
+        d="
   M 113.39 485.24
   Q 113.90 488.20 112.46 491.88
   A 0.37 0.37 0.0 0 1 111.75 491.78
   Q 111.68 491.07 113.10 485.23
   A 0.15 0.15 0.0 0 1 113.39 485.24
   Z"
-/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(912.31,493.87) rotate(-95.5)" rx="1.66" ry="0.28"/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(110.99,498.32) rotate(-84.1)" rx="3.36" ry="0.46"/>
-<path fill="#363636" d="
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(912.31,493.87) rotate(-95.5)"
+        rx="1.66"
+        ry="0.28"
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(110.99,498.32) rotate(-84.1)"
+        rx="3.36"
+        ry="0.46"
+      />
+      <path
+        fill="#363636"
+        d="
   M 913.61 500.48
   Q 913.78 500.79 913.82 501.22
   A 0.26 0.26 0.0 0 1 913.34 501.36
   Q 913.22 501.13 913.21 500.59
   A 0.21 0.21 0.0 0 1 913.61 500.48
   Z"
-/>
-<ellipse fill="#363636" cx="0.00" cy="0.00" transform="translate(914.40,506.62) rotate(-97.2)" rx="3.28" ry="0.45"/>
-<path fill="#121111" d="
+      />
+      <ellipse
+        fill="#363636"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(914.40,506.62) rotate(-97.2)"
+        rx="3.28"
+        ry="0.45"
+      />
+      <path
+        fill="#121111"
+        d="
   M 513.87 506.55
   A 0.67 0.67 0.0 0 1 514.52 505.85
   L 517.66 505.74
@@ -3192,24 +3756,87 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.67 0.67 0.0 0 1 513.93 508.29
   L 513.87 506.55
   Z"
-/>
-<rect fill="#121111" x="-4.02" y="-1.29" transform="translate(502.05,507.39) rotate(2.4)" width="8.04" height="2.58" rx="1.24"/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(915.48,513.41) rotate(-95.9)" rx="2.30" ry="0.28"/>
-<rect fill="#5a5a59" x="-0.26" y="-6.15" transform="translate(106.48,527.31) rotate(8.4)" width="0.52" height="12.30" rx="0.25"/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(104.64,542.06) rotate(-83.5)" rx="6.88" ry="0.33"/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(919.54,542.11) rotate(-93.3)" rx="1.16" ry="0.18"/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(920.07,546.83) rotate(-96.0)" rx="2.69" ry="0.30"/>
-<rect fill="#5a5a59" x="-18.22" y="-5.22" transform="translate(510.95,551.14) rotate(0.2)" width="36.44" height="10.44" rx="4.85"/>
-<path fill="#5a5a59" d="
+      />
+      <rect
+        fill="#121111"
+        x="-4.02"
+        y="-1.29"
+        transform="translate(502.05,507.39) rotate(2.4)"
+        width="8.04"
+        height="2.58"
+        rx="1.24"
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(915.48,513.41) rotate(-95.9)"
+        rx="2.30"
+        ry="0.28"
+      />
+      <rect
+        fill="#5a5a59"
+        x="-0.26"
+        y="-6.15"
+        transform="translate(106.48,527.31) rotate(8.4)"
+        width="0.52"
+        height="12.30"
+        rx="0.25"
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(104.64,542.06) rotate(-83.5)"
+        rx="6.88"
+        ry="0.33"
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(919.54,542.11) rotate(-93.3)"
+        rx="1.16"
+        ry="0.18"
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(920.07,546.83) rotate(-96.0)"
+        rx="2.69"
+        ry="0.30"
+      />
+      <rect
+        fill="#5a5a59"
+        x="-18.22"
+        y="-5.22"
+        transform="translate(510.95,551.14) rotate(0.2)"
+        width="36.44"
+        height="10.44"
+        rx="4.85"
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 920.25 550.23
   Q 920.23 550.09 920.31 549.94
   A 0.08 0.08 0.0 0 1 920.45 549.95
   Q 920.53 550.17 920.52 550.23
   A 0.14 0.14 0.0 0 1 920.25 550.23
   Z"
-/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(920.57,552.65) rotate(-94.6)" rx="1.08" ry="0.15"/>
-<path fill="#5a5a59" d="
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(920.57,552.65) rotate(-94.6)"
+        rx="1.08"
+        ry="0.15"
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 103.35 553.04
   Q 103.71 557.65 102.78 560.31
   A 4.09 4.02 -35.0 0 0 102.56 561.50
@@ -3220,10 +3847,27 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 102.76 553.49 102.89 553.00
   A 0.24 0.23 -39.7 0 1 103.35 553.04
   Z"
-/>
-<rect fill="#5a5a59" x="-0.32" y="-9.17" transform="translate(922.36,571.02) rotate(-5.2)" width="0.64" height="18.34" rx="0.31"/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(101.04,576.67) rotate(-88.1)" rx="4.46" ry="0.28"/>
-<path fill="#fafafa" d="
+      />
+      <rect
+        fill="#5a5a59"
+        x="-0.32"
+        y="-9.17"
+        transform="translate(922.36,571.02) rotate(-5.2)"
+        width="0.64"
+        height="18.34"
+        rx="0.31"
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(101.04,576.67) rotate(-88.1)"
+        rx="4.46"
+        ry="0.28"
+      />
+      <path
+        fill="#fafafa"
+        d="
   M 919.28 704.83
   L 920.77 696.50
   A 0.20 0.17 -40.3 0 0 920.78 696.44
@@ -3243,16 +3887,36 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 920.89 701.31 919.65 704.92
   A 0.19 0.19 0.0 0 1 919.28 704.83
   Z"
-/>
-<rect fill="#5a5a59" x="-0.27" y="-6.86" transform="translate(100.10,589.84) rotate(2.4)" width="0.54" height="13.72" rx="0.26"/>
-<rect fill="#5a5a59" x="-0.32" y="-33.35" transform="translate(98.94,631.85) rotate(0.1)" width="0.64" height="66.70" rx="0.26"/>
-<path fill="#5a5a59" d="
+      />
+      <rect
+        fill="#5a5a59"
+        x="-0.27"
+        y="-6.86"
+        transform="translate(100.10,589.84) rotate(2.4)"
+        width="0.54"
+        height="13.72"
+        rx="0.26"
+      />
+      <rect
+        fill="#5a5a59"
+        x="-0.32"
+        y="-33.35"
+        transform="translate(98.94,631.85) rotate(0.1)"
+        width="0.64"
+        height="66.70"
+        rx="0.26"
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 96.35 649.61
   L 96.09 631.17
   L 96.35 649.61
   Z"
-/>
-<path fill="#121111" d="
+      />
+      <path
+        fill="#121111"
+        d="
   M 806.71 780.65
   Q 799.33 757.47 794.06 743.70
   Q 785.39 721.02 776.42 698.46
@@ -3267,11 +3931,36 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 806.21 774.54 806.91 776.39
   Q 807.82 778.77 806.71 780.65
   Z"
-/>
-<rect fill="#5a5a59" x="-0.32" y="-10.26" transform="translate(100.48,677.12) rotate(-4.4)" width="0.64" height="20.52" rx="0.27"/>
-<ellipse fill="#5a5a59" cx="0.00" cy="0.00" transform="translate(102.52,694.63) rotate(-96.8)" rx="6.96" ry="0.42"/>
-<rect fill="#363636" x="-0.52" y="-4.17" transform="translate(104.56,707.44) rotate(-9.0)" width="1.04" height="8.34" rx="0.49"/>
-<path fill="#5a5a59" d="
+      />
+      <rect
+        fill="#5a5a59"
+        x="-0.32"
+        y="-10.26"
+        transform="translate(100.48,677.12) rotate(-4.4)"
+        width="0.64"
+        height="20.52"
+        rx="0.27"
+      />
+      <ellipse
+        fill="#5a5a59"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(102.52,694.63) rotate(-96.8)"
+        rx="6.96"
+        ry="0.42"
+      />
+      <rect
+        fill="#363636"
+        x="-0.52"
+        y="-4.17"
+        transform="translate(104.56,707.44) rotate(-9.0)"
+        width="1.04"
+        height="8.34"
+        rx="0.49"
+      />
+      <path
+        fill="#5a5a59"
+        d="
   M 917.94 710.22
   A 0.46 0.45 -78.7 0 1 918.49 709.85
   L 918.89 710.07
@@ -3282,8 +3971,10 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   A 0.27 0.26 -73.5 0 1 912.80 730.16
   C 915.08 723.11 916.81 716.77 917.94 710.22
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 105.84 713.77
   A 0.16 0.16 0.0 0 1 106.15 713.73
   Q 107.36 716.68 107.39 719.11
@@ -3300,22 +3991,27 @@ export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props =
   Q 107.84 725.59 106.69 719.01
   C 106.37 717.22 105.60 715.66 105.84 713.77
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 121.77 754.88
   A 0.19 0.19 0.0 0 1 122.03 754.65
   Q 122.60 754.94 122.52 755.36
   A 0.26 0.26 0.0 0 1 122.10 755.52
   Q 121.96 755.41 121.77 754.88
   Z"
-/>
-<path fill="#363636" d="
+      />
+      <path
+        fill="#363636"
+        d="
   M 881.58 772.99
   A 0.34 0.33 6.3 0 1 882.00 773.51
   Q 881.55 773.95 881.11 774.07
   A 0.33 0.33 0.0 0 1 880.84 773.47
   L 881.58 772.99
   Z"
-/>
-</svg>
-)}
+      />
+    </svg>
+  )
+}

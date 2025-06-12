@@ -120,7 +120,6 @@ export function HomeBody() {
               >
                 🏟️ View the Rafters
               </Link>
-              
             </CourtZone>
           ),
           'zone-86': (
@@ -131,7 +130,6 @@ export function HomeBody() {
               >
                 👟 Enter Locker Room
               </Link>
-              
             </CourtZone>
           ),
         }}

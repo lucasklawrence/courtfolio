@@ -6,11 +6,7 @@ import React from 'react'
  */
 export const ScoutingReportSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
-    <svg
-      viewBox="0 0 400 300"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" {...props}>
       <defs>
         <style>
           {`
@@ -38,17 +34,33 @@ export const ScoutingReportSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
       </text>
 
       {/* Labels and values */}
-      <text className="label" x="40" y="100">Tech Stack IQ:</text>
-      <text className="value" x="360" y="100">Elite</text>
+      <text className="label" x="40" y="100">
+        Tech Stack IQ:
+      </text>
+      <text className="value" x="360" y="100">
+        Elite
+      </text>
 
-      <text className="label" x="40" y="130">Court Vision:</text>
-      <text className="value" x="360" y="130">Full Stack Flow</text>
+      <text className="label" x="40" y="130">
+        Court Vision:
+      </text>
+      <text className="value" x="360" y="130">
+        Full Stack Flow
+      </text>
 
-      <text className="label" x="40" y="160">Communication:</text>
-      <text className="value" x="360" y="160">Coachable</text>
+      <text className="label" x="40" y="160">
+        Communication:
+      </text>
+      <text className="value" x="360" y="160">
+        Coachable
+      </text>
 
-      <text className="label" x="40" y="190">Intangibles:</text>
-      <text className="value" x="360" y="190">Team Culture Builder</text>
+      <text className="label" x="40" y="190">
+        Intangibles:
+      </text>
+      <text className="value" x="360" y="190">
+        Team Culture Builder
+      </text>
 
       {/* Sticky note with slight rotation */}
       <g transform="rotate(-3, 290, 235)">
@@ -63,9 +75,15 @@ export const ScoutingReportSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
           stroke="#222"
           strokeWidth="2"
         />
-        <text className="sticky-text" x="240" y="220">High upside.</text>
-        <text className="sticky-text" x="240" y="240">Proven leader.</text>
-        <text className="sticky-text" x="240" y="260">Ready now.</text>
+        <text className="sticky-text" x="240" y="220">
+          High upside.
+        </text>
+        <text className="sticky-text" x="240" y="240">
+          Proven leader.
+        </text>
+        <text className="sticky-text" x="240" y="260">
+          Ready now.
+        </text>
       </g>
     </svg>
   )

@@ -5,9 +5,13 @@ import React from 'react'
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-    return(<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#081623" vectorEffect="non-scaling-stroke" d="
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#081623"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 804.00 583.92
   Q 803.00 584.71 801.97 583.53
   Q 799.99 581.24 799.64 580.86
@@ -151,8 +155,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 231.65 572.55 220.97 583.31
   Q 220.54 583.74 220.23 583.56
   Q 219.92 583.38 219.90 582.77"
-/>
-<path stroke="#081623" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#081623"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 804.10 584.52
   Q 805.23 584.72 805.93 584.22
   Q 806.55 583.78 806.56 582.55
@@ -211,8 +218,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 217.98 579.56 217.42 582.55
   A 0.85 0.85 0.0 0 0 218.13 583.55
   Q 218.72 583.64 219.01 583.28"
-/>
-<path stroke="#836d31" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#836d31"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 195.42 455.86
   L 222.56 455.86
   A 0.93 0.92 -86.9 0 0 223.48 455.03
@@ -238,8 +248,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 201.22 402.33 197.93 429.13
   Q 196.93 437.35 194.96 455.34
   A 0.47 0.46 -86.7 0 0 195.42 455.86"
-/>
-<path stroke="#103c60" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#103c60"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 220.93 478.78
   L 194.87 478.88
   A 0.99 0.99 0.0 0 0 193.88 479.87
@@ -249,8 +262,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.46 5.63 89.8 0 0 222.04 514.60
   L 221.92 479.77
   A 0.99 0.99 0.0 0 0 220.93 478.78"
-/>
-<path stroke="#103c60" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#103c60"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 828.70 478.91
   L 802.06 478.87
   A 0.82 0.82 0.0 0 0 801.24 479.69
@@ -260,8 +276,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 7.03 6.10 -89.9 0 0 829.46 514.10
   L 829.52 479.73
   A 0.82 0.82 0.0 0 0 828.70 478.91"
-/>
-<path stroke="#103c60" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#103c60"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 724.59 546.16
   A 0.58 0.57 16.1 0 0 724.18 545.43
   Q 711.70 542.46 703.24 540.54
@@ -279,8 +298,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 600.01 841.06 614.34 845.10 625.49 846.92
   A 1.46 1.46 0.0 0 0 627.11 845.94
   L 724.59 546.16"
-/>
-<path stroke="#103c60" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#103c60"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 299.97 546.55
   L 398.31 846.03
   A 1.28 1.28 0.0 0 0 399.89 846.86
@@ -295,8 +317,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 339.66 537.70 329.86 538.30 321.07 540.38
   Q 313.06 542.29 300.63 545.36
   A 0.93 0.92 -16.2 0 0 299.97 546.55"
-/>
-<path stroke="#836d31" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#836d31"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 261.44 572.66
   A 0.37 0.37 0.0 0 0 261.33 573.05
   L 349.20 845.61
@@ -306,8 +331,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 281.85 554.67
   A 0.37 0.37 0.0 0 0 281.25 554.51
   L 261.44 572.66"
-/>
-<path stroke="#836d31" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#836d31"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 646.92 849.55
   A 0.46 0.45 7.0 0 0 647.41 850.17
   L 674.08 846.32
@@ -319,8 +347,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 742.24 557.07 734.56 581.02
   Q 700.35 687.67 648.59 845.09
   Q 648.06 846.73 646.92 849.55"
-/>
-<path stroke="#103c60" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#103c60"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 243.64 588.74
   Q 238.16 593.84 235.97 595.72
   Q 222.09 607.68 219.36 610.69
@@ -336,8 +367,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 279.91 697.19 258.92 632.64 246.63 594.62
   Q 245.57 591.33 244.24 588.84
   A 0.39 0.38 -35.2 0 0 243.64 588.74"
-/>
-<path stroke="#103c60" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#103c60"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 696.10 845.16
   A 0.37 0.37 0.0 0 0 696.44 845.69
   Q 709.21 845.55 722.98 843.45
@@ -352,8 +386,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 735.21 726.91 728.13 749.26 721.32 769.72
   Q 709.71 804.57 702.13 828.13
   Q 697.95 841.10 696.10 845.16"
-/>
-<path stroke="#ec9b21" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ec9b21"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 802.43 454.04
   L 826.12 454.04
   A 0.50 0.50 0.0 0 0 826.62 453.49
@@ -425,8 +462,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 797.41 426.16 799.01 432.88 799.92 441.64
   Q 800.87 450.80 801.13 452.90
   A 1.31 1.30 -3.5 0 0 802.43 454.04"
-/>
-<path stroke="#ec9b21" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ec9b21"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 374.37 848.46
   A 1.11 1.11 0.0 0 0 375.61 847.02
   L 281.54 558.08
@@ -436,8 +476,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 350.20 843.93
   A 1.11 1.11 0.0 0 0 351.08 844.69
   L 374.37 848.46"
-/>
-<path stroke="#ec9b21" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ec9b21"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 761.82 574.18
   L 745.51 558.28
   A 1.30 1.30 0.0 0 0 743.37 558.81
@@ -451,9 +494,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 758.01 584.87 761.33 576.00
   Q 761.67 575.11 761.87 574.84
   A 0.50 0.49 40.9 0 0 761.82 574.18"
-/>
-</g>
-<path fill="#010102" d="
+        />
+      </g>
+      <path
+        fill="#010102"
+        d="
   M 804.00 583.92
   Q 803.00 584.71 801.97 583.53
   Q 799.99 581.24 799.64 580.86
@@ -676,8 +721,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 771.18 550.86 798.71 578.04
   Q 802.34 581.63 804.00 583.92
   Z"
-/>
-<path fill="#0e2a44" d="
+      />
+      <path
+        fill="#0e2a44"
+        d="
   M 804.00 583.92
   Q 803.90 584.09 804.10 584.52
   Q 805.23 584.72 805.93 584.22
@@ -1013,8 +1060,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 709.71 804.57 702.13 828.13
   Q 697.95 841.10 696.10 845.16
   Z"
-/>
-<path fill="#f8b01d" fillOpacity="0.996" d="
+      />
+      <path
+        fill="#f8b01d"
+        fillOpacity="0.996"
+        d="
   M 195.42 455.86
   A 0.47 0.46 -86.7 0 1 194.96 455.34
   Q 196.93 437.35 197.93 429.13
@@ -1113,8 +1163,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 800.87 450.80 801.13 452.90
   A 1.31 1.30 -3.5 0 0 802.43 454.04
   Z"
-/>
-<path fill="#e08624" d="
+      />
+      <path
+        fill="#e08624"
+        d="
   M 802.43 454.04
   A 1.31 1.30 -3.5 0 1 801.13 452.90
   Q 800.87 450.80 799.92 441.64
@@ -1187,8 +1239,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.50 0.50 0.0 0 1 826.12 454.04
   L 802.43 454.04
   Z"
-/>
-<path fill="#010102" d="
+      />
+      <path
+        fill="#010102"
+        d="
   M 804.10 584.52
   Q 804.29 584.74 804.67 584.54
   A 0.60 0.59 -14.5 0 0 804.98 584.02
@@ -1280,8 +1334,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 806.55 583.78 805.93 584.22
   Q 805.23 584.72 804.10 584.52
   Z"
-/>
-<path fill="#124d7b" d="
+      />
+      <path
+        fill="#124d7b"
+        d="
   M 220.93 478.78
   A 0.99 0.99 0.0 0 1 221.92 479.77
   L 222.04 514.60
@@ -1292,8 +1348,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.99 0.99 0.0 0 1 194.87 478.88
   L 220.93 478.78
   Z"
-/>
-<path fill="#124d7b" d="
+      />
+      <path
+        fill="#124d7b"
+        d="
   M 828.70 478.91
   A 0.82 0.82 0.0 0 1 829.52 479.73
   L 829.46 514.10
@@ -1304,8 +1362,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.82 0.82 0.0 0 1 802.06 478.87
   L 828.70 478.91
   Z"
-/>
-<path fill="#124d7b" d="
+      />
+      <path
+        fill="#124d7b"
+        d="
   M 724.59 546.16
   L 627.11 845.94
   A 1.46 1.46 0.0 0 1 625.49 846.92
@@ -1324,8 +1384,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 711.70 542.46 724.18 545.43
   A 0.58 0.57 16.1 0 1 724.59 546.16
   Z"
-/>
-<path fill="#124d7b" d="
+      />
+      <path
+        fill="#124d7b"
+        d="
   M 299.97 546.55
   A 0.93 0.92 -16.2 0 1 300.63 545.36
   Q 313.06 542.29 321.07 540.38
@@ -1341,8 +1403,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.28 1.28 0.0 0 1 398.31 846.03
   L 299.97 546.55
   Z"
-/>
-<path fill="#f8b01d" fillOpacity="0.996" d="
+      />
+      <path
+        fill="#f8b01d"
+        fillOpacity="0.996"
+        d="
   M 261.44 572.66
   L 281.25 554.51
   A 0.37 0.37 0.0 0 1 281.85 554.67
@@ -1363,8 +1428,11 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.11 1.11 0.0 0 0 351.08 844.69
   L 374.37 848.46
   Z"
-/>
-<path fill="#f8b01d" fillOpacity="0.996" d="
+      />
+      <path
+        fill="#f8b01d"
+        fillOpacity="0.996"
+        d="
   M 646.92 849.55
   Q 648.06 846.73 648.59 845.09
   Q 700.35 687.67 734.56 581.02
@@ -1391,8 +1459,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 761.67 575.11 761.87 574.84
   A 0.50 0.49 40.9 0 0 761.82 574.18
   Z"
-/>
-<path fill="#e08624" d="
+      />
+      <path
+        fill="#e08624"
+        d="
   M 374.37 848.46
   L 351.08 844.69
   A 1.11 1.11 0.0 0 1 350.20 843.93
@@ -1403,8 +1473,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 375.61 847.02
   A 1.11 1.11 0.0 0 1 374.37 848.46
   Z"
-/>
-<path fill="#e08624" d="
+      />
+      <path
+        fill="#e08624"
+        d="
   M 761.87 574.84
   Q 761.67 575.11 761.33 576.00
   Q 758.01 584.87 740.85 639.12
@@ -1419,8 +1491,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 761.82 574.18
   A 0.50 0.49 40.9 0 1 761.87 574.84
   Z"
-/>
-<path fill="#124d7b" d="
+      />
+      <path
+        fill="#124d7b"
+        d="
   M 244.24 588.84
   Q 245.57 591.33 246.63 594.62
   C 258.92 632.64 279.91 697.19 296.56 749.13
@@ -1437,8 +1511,10 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 238.16 593.84 243.64 588.74
   A 0.39 0.38 -35.2 0 1 244.24 588.84
   Z"
-/>
-<path fill="#124d7b" d="
+      />
+      <path
+        fill="#124d7b"
+        d="
   M 696.10 845.16
   Q 697.95 841.10 702.13 828.13
   Q 709.71 804.57 721.32 769.72
@@ -1454,7 +1530,7 @@ export const HeadphonesSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 709.21 845.55 696.44 845.69
   A 0.37 0.37 0.0 0 1 696.10 845.16
   Z"
-/>
-</svg>
-)
+      />
+    </svg>
+  )
 }
