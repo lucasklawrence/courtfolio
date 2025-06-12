@@ -113,12 +113,22 @@ export function HomeBody() {
             </foreignObject>
           ),
           'zone-85': (
-            <CourtZone x={1120} y={60} width={220} height={200}>
+            <CourtZone x={1020} y={60} width={220} height={200}>
               <Link
                 href="/banners"
                 className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
               >
                 🏟️ View the Rafters
+              </Link>
+            </CourtZone>
+          ),
+          'zone-86': (
+            <CourtZone x={1270} y={60} width={300} height={200}>
+              <Link
+                href="/locker-room"
+                className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
+              >
+                👟 Enter Locker Room
               </Link>
             </CourtZone>
           ),
