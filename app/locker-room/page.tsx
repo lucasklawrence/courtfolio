@@ -122,7 +122,7 @@ export default function LockerRoomPage() {
                 x={980}
                 y={82}
                 width={300}
-                height={370}
+                height={150}
                 zoneId="zone-355"
                 onClick={setSelectedZone}
               >
@@ -170,7 +170,7 @@ export default function LockerRoomPage() {
                 x={1250}
                 y={82}
                 width={300}
-                height={370}
+                height={100}
                 zoneId="zone-363"
                 onClick={setSelectedZone}
               >
