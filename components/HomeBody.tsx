@@ -17,7 +17,6 @@ import { useHasSeenTour } from '@/utils/useHasSeenTour'
 import { FreeRoamPlayer } from './FreeRoamPlayer'
 import { SafeSvgHtml } from './SafeSvgHtml'
 
-
 export function HomeBody() {
   const router = useRouter()
 
@@ -222,45 +221,57 @@ export function HomeBody() {
 
   if (tourActive) {
     zoneContent['zone-1000'] = (
- <>
-  {/* 1. Highlight in its own precise spot */}
-  {tourSteps[tourStep].glow && (
-    <CourtZone
-      x={tourSteps[tourStep].glow.x}
-      y={tourSteps[tourStep].glow.y}
-      width={tourSteps[tourStep].glow.width}
-      height={tourSteps[tourStep].glow.height}
-    >
-      <SafeSvgHtml>
-        <div className="w-full h-full rounded-lg border-2 border-yellow-300/70 shadow-[0_0_20px_6px_rgba(252,211,77,0.5)] animate-pulse pointer-events-none" />
-      </SafeSvgHtml>
-    </CourtZone>
-  )}
+      <>
+        {/* 1. Highlight in its own precise spot */}
+        {tourSteps[tourStep].glow && (
+          <CourtZone
+            x={tourSteps[tourStep].glow.x}
+            y={tourSteps[tourStep].glow.y}
+            width={tourSteps[tourStep].glow.width}
+            height={tourSteps[tourStep].glow.height}
+          >
+            <SafeSvgHtml>
+              <div
+                className="w-full h-full rounded-lg border-2 border-yellow-300/90 animate-pulse pointer-events-none"
+                style={{
+                  boxShadow: `
+      0 0 20px 6px rgba(252, 211, 77, 0.5),
+      0 0 40px 10px rgba(252, 211, 77, 0.3),
+      0 0 60px 16px rgba(252, 211, 77, 0.2)
+    `,
+                  backgroundColor: 'rgba(252, 211, 77, 0.06)',
+                  position: 'relative',
+                  zIndex: 2,
+                }}
+              />
+            </SafeSvgHtml>
+          </CourtZone>
+        )}
 
-  {/* 2. Sprite container in its own zone */}
-  <CourtZone x={0} y={0} width={1600} height={1000}>
-    <SafeSvgHtml>
-      <div className="relative w-full h-full pointer-events-auto">
-        <CourtTutorialSprite
-          stepData={tourSteps[tourStep]}
-          onNext={() => {
-            if (tourStep < tourSteps.length - 1) {
-              setTourStep(prev => prev + 1)
-            } else {
-              setTourActive(false)
-              markAsSeen()
-            }
-          }}
-          onSkip={() => {
-            setTourActive(false)
-            markAsSeen()
-          }}
-        />
-      </div>
-    </SafeSvgHtml>
-  </CourtZone>
-</>
-)
+        {/* 2. Sprite container in its own zone */}
+        <CourtZone x={0} y={0} width={1600} height={1000}>
+          <SafeSvgHtml>
+            <div className="relative w-full h-full pointer-events-auto">
+              <CourtTutorialSprite
+                stepData={tourSteps[tourStep]}
+                onNext={() => {
+                  if (tourStep < tourSteps.length - 1) {
+                    setTourStep(prev => prev + 1)
+                  } else {
+                    setTourActive(false)
+                    markAsSeen()
+                  }
+                }}
+                onSkip={() => {
+                  setTourActive(false)
+                  markAsSeen()
+                }}
+              />
+            </div>
+          </SafeSvgHtml>
+        </CourtZone>
+      </>
+    )
   } else {
     zoneContent['zone-101'] = (
       <CourtZone x={1050} y={870} width={180} height={70}>

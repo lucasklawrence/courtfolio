@@ -1,4 +1,3 @@
-
 export function GlowingHighlight({
   x,
   y,
@@ -11,9 +10,8 @@ export function GlowingHighlight({
   height: number
 }) {
   return (
-
     <div
-      className="absolute z-10 pointer-events-none rounded-lg border-2 border-yellow-300/70 shadow-[0_0_20px_6px_rgba(252,211,77,0.5)] animate-pulse"
+      className="z-10 pointer-events-none rounded-lg border-2 border-yellow-300/70 shadow-[0_0_20px_6px_rgba(252,211,77,0.5)] animate-pulse"
       style={{
         left: `${x}px`,
         top: `${y}px`,
