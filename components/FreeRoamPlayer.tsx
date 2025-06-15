@@ -43,19 +43,17 @@ export function FreeRoamPlayer() {
 
       if (keysPressed.has('w')) dy -= speed
       if (keysPressed.has('s')) dy += speed
-      if (keysPressed.has('a')) {
-        dx -= speed
-        setFacingLeft(true)
-      }
-      if (keysPressed.has('d')) {
-        dx += speed
-        setFacingLeft(false)
-      }
+      if (keysPressed.has('a')) dx -= speed
+      if (keysPressed.has('d')) dx += speed
 
       if (dx !== 0 || dy !== 0) {
         lastMoveTime.current = Date.now()
         setIsShootingPose(false)
         setIsMoving(true)
+      }
+
+      if (dx !== 0) {
+        setFacingLeft(dx < 0)
       }
 
       const nextX = Math.max(0, Math.min(x.get() + dx, COURT_WIDTH - PLAYER_WIDTH))
@@ -92,7 +90,10 @@ export function FreeRoamPlayer() {
       const clampedX = Math.max(0, Math.min(newX, COURT_WIDTH - PLAYER_WIDTH))
       const clampedY = Math.max(0, Math.min(newY, COURT_HEIGHT - PLAYER_HEIGHT))
 
-      setFacingLeft(clampedX < x.get())
+      if (clampedX !== x.get()) {
+        setFacingLeft(clampedX < x.get())
+      }
+
       lastMoveTime.current = Date.now()
       setIsShootingPose(false)
       setIsMoving(true)
@@ -100,7 +101,6 @@ export function FreeRoamPlayer() {
       x.set(clampedX)
       y.set(clampedY)
 
-      // Stop animation after delay
       setTimeout(() => {
         setIsMoving(false)
         lastMoveTime.current = Date.now()
@@ -150,6 +150,11 @@ export function FreeRoamPlayer() {
     ? dribbleFrames[frameIndex]
     : idleFrame
 
+  let shouldFlip = facingLeft
+  if (isShootingPose) {
+    shouldFlip = !shouldFlip;
+
+  }
   return (
     <div ref={containerRef} className="absolute w-full h-full">
       <motion.div
@@ -159,7 +164,7 @@ export function FreeRoamPlayer() {
       >
         <img
           src={currentSprite}
-          className={`w-[80px] h-auto ${facingLeft ? 'scale-x-[-1]' : ''}`}
+          className={`w-[80px] h-[80-px] object-contain ${shouldFlip ? 'scale-x-[-1]' : ''}`}
           draggable={false}
         />
       </motion.div>
