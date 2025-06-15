@@ -35,14 +35,10 @@ export default function LockerRoomPage() {
         <LockerRoomSvg
           zoneContent={{
             'zone-323': (
-              <LockerZone
-                x={400}
-                y={10}
-                width={850}
-                height={200}
-              >
-                      <h1 className="text-3xl font-bold mb-4">Locker Room - Select an item to get more info</h1>
-
+              <LockerZone x={400} y={10} width={850} height={200}>
+                <h1 className="text-3xl font-bold mb-4">
+                  Locker Room - Select an item to get more info
+                </h1>
               </LockerZone>
             ),
             'zone-324': (

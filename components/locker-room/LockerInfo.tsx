@@ -1,7 +1,4 @@
-export const lockerZoneTooltips: Record<
-  string,
-  { title: string; description: string }
-> = {
+export const lockerZoneTooltips: Record<string, { title: string; description: string }> = {
   'zone-324': {
     title: '📊 Scouting Report',
     description: 'Breaking down opponents, ideas, and next moves.',
@@ -95,7 +92,6 @@ export const lockerZoneTooltips: Record<
     description: 'Always ready for co-op.',
   },
 }
-
 
 export const LockerInfo = ({ zoneId }: { zoneId: string }) => {
   const info = lockerZoneTooltips[zoneId]
