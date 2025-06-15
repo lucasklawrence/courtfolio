@@ -8,20 +8,17 @@ import { SafeSvgHtml } from '@/components/SafeSvgHtml'
 export function ZoneContactSafari() {
   return (
     <SafeSvgHtml>
-      <div
-        style={{
-          backgroundColor: 'rgba(88, 44, 13, 0.85)', // warm dark backdrop
-          color: 'white',
-          padding: '1rem',
-          borderRadius: '0.5rem',
-          border: '1px solid rgba(255, 165, 0, 0.3)',
-          fontSize: '0.75rem',
-          lineHeight: '1.25rem',
-          boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
-          display: 'flex',
-          gap: '1rem',
-        }}
-      >
+    <div
+      style={{
+        backgroundColor: 'transparent',
+        color: 'white',
+        padding: '1rem',
+        borderRadius: '0.5rem',
+        fontSize: '0.75rem',
+        textAlign: 'center',
+        fontFamily: '"Patrick Hand", cursive',
+      }}
+    >
         {/* Left side */}
         <div style={{ flex: 1 }}>
           <h3 style={{ fontSize: '1rem', fontWeight: 'bold', color: '#FDBA74', margin: 0 }}>
