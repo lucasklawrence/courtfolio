@@ -16,14 +16,19 @@ export function FreeRoamPlayer() {
   const springY = useSpring(y, { stiffness: 50, damping: 10 })
 
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const lastMoveTime = useRef(Date.now())
+
   const [facingLeft, setFacingLeft] = useState(false)
   const [isMoving, setIsMoving] = useState(false)
   const [frameIndex, setFrameIndex] = useState(0)
+  const [isShootingPose, setIsShootingPose] = useState(false)
 
-  const spriteFrames = [
+  const dribbleFrames = [
     '/sprites/LucasDribbling2.png',
     '/sprites/LucasDribbling3.png',
   ]
+  const idleFrame = '/sprites/LucasIdle4.png'
+  const shootingFrame = '/sprites/LucasShooting.png'
 
   // WASD controls
   useEffect(() => {
@@ -47,10 +52,14 @@ export function FreeRoamPlayer() {
         setFacingLeft(false)
       }
 
+      if (dx !== 0 || dy !== 0) {
+        lastMoveTime.current = Date.now()
+        setIsShootingPose(false)
+        setIsMoving(true)
+      }
+
       const nextX = Math.max(0, Math.min(x.get() + dx, COURT_WIDTH - PLAYER_WIDTH))
       const nextY = Math.max(0, Math.min(y.get() + dy, COURT_HEIGHT - PLAYER_HEIGHT))
-
-      if (dx !== 0 || dy !== 0) setIsMoving(true)
 
       x.set(nextX)
       y.set(nextY)
@@ -58,7 +67,10 @@ export function FreeRoamPlayer() {
 
     const handleKeyUp = (e: KeyboardEvent) => {
       keysPressed.delete(e.key)
-      if (keysPressed.size === 0) setIsMoving(false)
+      if (keysPressed.size === 0) {
+        setIsMoving(false)
+        lastMoveTime.current = Date.now()
+      }
     }
 
     window.addEventListener('keydown', handleKeyDown)
@@ -69,7 +81,7 @@ export function FreeRoamPlayer() {
     }
   }, [x, y])
 
-  // click-to-move
+  // Click-to-move
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (!containerRef.current) return
@@ -80,15 +92,19 @@ export function FreeRoamPlayer() {
       const clampedX = Math.max(0, Math.min(newX, COURT_WIDTH - PLAYER_WIDTH))
       const clampedY = Math.max(0, Math.min(newY, COURT_HEIGHT - PLAYER_HEIGHT))
 
-      if (clampedX < x.get()) setFacingLeft(true)
-      else setFacingLeft(false)
-
+      setFacingLeft(clampedX < x.get())
+      lastMoveTime.current = Date.now()
+      setIsShootingPose(false)
       setIsMoving(true)
+
       x.set(clampedX)
       y.set(clampedY)
 
-      // Stop movement after a delay
-      setTimeout(() => setIsMoving(false), 600)
+      // Stop animation after delay
+      setTimeout(() => {
+        setIsMoving(false)
+        lastMoveTime.current = Date.now()
+      }, 600)
     }
 
     const container = containerRef.current
@@ -101,11 +117,38 @@ export function FreeRoamPlayer() {
     if (!isMoving) return
 
     const interval = setInterval(() => {
-      setFrameIndex((prev) => (prev + 1) % spriteFrames.length)
+      setFrameIndex(prev => (prev + 1) % dribbleFrames.length)
     }, 150)
 
     return () => clearInterval(interval)
   }, [isMoving])
+
+  // Idle → shooting pose trigger
+  useEffect(() => {
+    const checkIdle = setInterval(() => {
+      if (!isMoving && !isShootingPose) {
+        const now = Date.now()
+        const idleTime = now - lastMoveTime.current
+
+        if (idleTime > 4000) {
+          setIsShootingPose(true)
+
+          setTimeout(() => {
+            setIsShootingPose(false)
+            lastMoveTime.current = Date.now()
+          }, 1800)
+        }
+      }
+    }, 1000)
+
+    return () => clearInterval(checkIdle)
+  }, [isMoving, isShootingPose])
+
+  const currentSprite = isShootingPose
+    ? shootingFrame
+    : isMoving
+    ? dribbleFrames[frameIndex]
+    : idleFrame
 
   return (
     <div ref={containerRef} className="absolute w-full h-full">
@@ -115,7 +158,7 @@ export function FreeRoamPlayer() {
         transition={{ type: 'spring' }}
       >
         <img
-          src={spriteFrames[frameIndex]}
+          src={currentSprite}
           className={`w-[80px] h-auto ${facingLeft ? 'scale-x-[-1]' : ''}`}
           draggable={false}
         />
