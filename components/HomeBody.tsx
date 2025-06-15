@@ -222,23 +222,25 @@ export function HomeBody() {
 
   if (tourActive) {
     zoneContent['zone-1000'] = (
-  <CourtZone x={0} y={0} width={1600} height={1000}>
-    <div className="relative w-full h-full">
-      {/* Glowing box inside correct coordinate space */}
-      {tourSteps[tourStep].glow && (
-        <div
-          className="absolute rounded-lg border-2 border-yellow-300/70 shadow-[0_0_20px_6px_rgba(252,211,77,0.5)] animate-pulse pointer-events-none"
-          style={{
-            left: tourSteps[tourStep].glow.x,
-            top: tourSteps[tourStep].glow.y,
-            width: tourSteps[tourStep].glow.width,
-            height: tourSteps[tourStep].glow.height,
-          }}
-        />
-      )}
+ <>
+  {/* 1. Highlight in its own precise spot */}
+  {tourSteps[tourStep].glow && (
+    <CourtZone
+      x={tourSteps[tourStep].glow.x}
+      y={tourSteps[tourStep].glow.y}
+      width={tourSteps[tourStep].glow.width}
+      height={tourSteps[tourStep].glow.height}
+    >
+      <SafeSvgHtml>
+        <div className="w-full h-full rounded-lg border-2 border-yellow-300/70 shadow-[0_0_20px_6px_rgba(252,211,77,0.5)] animate-pulse pointer-events-none" />
+      </SafeSvgHtml>
+    </CourtZone>
+  )}
 
-      {/* Sprite */}
-      <div className="pointer-events-auto">
+  {/* 2. Sprite container in its own zone */}
+  <CourtZone x={0} y={0} width={1600} height={1000}>
+    <SafeSvgHtml>
+      <div className="relative w-full h-full pointer-events-auto">
         <CourtTutorialSprite
           stepData={tourSteps[tourStep]}
           onNext={() => {
@@ -255,8 +257,9 @@ export function HomeBody() {
           }}
         />
       </div>
-    </div>
+    </SafeSvgHtml>
   </CourtZone>
+</>
 )
   } else {
     zoneContent['zone-101'] = (
