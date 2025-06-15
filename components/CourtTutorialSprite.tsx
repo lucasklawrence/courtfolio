@@ -1,31 +1,47 @@
 'use client'
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 type StepData = {
   x: number
   y: number
   img: string
-  text: string
+  text: string,
+  facingLeft?: boolean
 }
 
 export function CourtTutorialSprite({
   stepData,
   onNext,
   onSkip,
+  onEnd,
 }: {
   stepData: StepData
   onNext: () => void
   onSkip: () => void
+  onEnd?: (x: number, y: number) => void // optional if you use free roam transition
 }) {
   const x = useMotionValue(stepData.x)
   const y = useMotionValue(stepData.y)
-
   const springX = useSpring(x, { stiffness: 120, damping: 14 })
   const springY = useSpring(y, { stiffness: 120, damping: 14 })
 
+  const prevX = useRef(stepData.x)
+  const [facingLeft, setFacingLeft] = useState(false)
+
   useEffect(() => {
+   if (typeof stepData.facingLeft === 'boolean') {
+  setFacingLeft(stepData.facingLeft)
+} else {
+  if (stepData.x < prevX.current) {
+    setFacingLeft(true)
+  } else if (stepData.x > prevX.current) {
+    setFacingLeft(false)
+  }
+}
+    prevX.current = stepData.x
+
     x.set(stepData.x)
     y.set(stepData.y)
   }, [stepData.x, stepData.y])
@@ -38,7 +54,11 @@ export function CourtTutorialSprite({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <img src={stepData.img} alt="Sprite" className="w-[80px] h-auto" />
+      <img
+        src={stepData.img}
+        alt="Sprite"
+        className={`w-[80px] h-auto ${facingLeft ? 'scale-x-[-1]' : ''}`}
+      />
 
       <div className="relative -top-20 left-20 w-[180px]">
         <div className="bg-white text-black text-xs font-semibold px-3 py-2 rounded-xl shadow-lg border border-gray-200 relative">
@@ -48,13 +68,19 @@ export function CourtTutorialSprite({
 
         <div className="mt-2 flex gap-2">
           <button
-            onClick={onNext}
+            onClick={() => {
+              if (onEnd) onEnd(stepData.x, stepData.y)
+              onNext()
+            }}
             className="px-2 py-1 text-white bg-orange-600 rounded text-xs hover:bg-orange-700 transition"
           >
             →
           </button>
           <button
-            onClick={onSkip}
+            onClick={() => {
+              if (onEnd) onEnd(stepData.x, stepData.y)
+              onSkip()
+            }}
             className="px-2 py-1 text-xs bg-gray-300 text-gray-800 rounded hover:bg-gray-200 transition"
           >
             Skip

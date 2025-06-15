@@ -67,6 +67,8 @@ export function HomeBody() {
       img: '/sprites/LucasHoldingBall.png',
       text: 'This is my bio — quick overview of who I am.',
       glow: { x: 350, y: 110, width: 380, height: 140 },
+      facingLeft: false
+
     },
     {
       x: 810,
@@ -74,6 +76,8 @@ export function HomeBody() {
       img: '/sprites/LucasSpinningBall.png',
       text: 'Stats don’t lie. Here’s the résumé highlight reel.',
       glow: { x: 800, y: 110, width: 280, height: 135 },
+            facingLeft: false
+
     },
     {
       x: 1270,
@@ -88,6 +92,8 @@ export function HomeBody() {
       img: '/sprites/LucasShooting.png',
       text: 'Check the rafters — career moments and banners.',
       glow: { x: 1020, y: 60, width: 220, height: 40 },
+            facingLeft: false
+
     },
     {
       x: 1050,
@@ -102,6 +108,8 @@ export function HomeBody() {
       img: '/sprites/LucasDribbling.png',
       text: 'Explore the plays — featured projects live here.',
       glow: { x: 800, y: 700, width: 250, height: 100 },
+            facingLeft: false, 
+
     },
     {
       x: 610,
@@ -109,6 +117,8 @@ export function HomeBody() {
       img: '/sprites/LucasDefense.png',
       text: 'Want to connect? Head to the front office.',
       glow: { x: 610, y: 940, width: 320, height: 55 },
+            facingLeft: false, 
+
     },
     {
       x: 130,
@@ -116,6 +126,7 @@ export function HomeBody() {
       img: '/sprites/LucasDribbling.png',
       text: 'My core principles — this lineup shows how I play.',
       glow: { x: 110, y: 425, width: 230, height: 140 },
+            facingLeft: false,
     },
     {
       x: 610,
