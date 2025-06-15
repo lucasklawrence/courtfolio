@@ -14,6 +14,7 @@ import { LogoSvg } from './LogoSvg'
 import { CourtTitleSolo } from './CourtTitleSolo'
 import { CourtTutorialSprite } from './CourtTutorialSprite'
 import { useHasSeenTour } from '@/utils/useHasSeenTour'
+import { FreeRoamPlayer } from './FreeRoamPlayer'
 
 function GlowingHighlight({
   x,
@@ -294,9 +295,22 @@ export function HomeBody() {
 )
   }
 
-  return (
-    <CourtContainer>
-      <CourtSvg className="w-full h-full" onZoneClick={() => {}} zoneContent={zoneContent} />
-    </CourtContainer>
-  )
+return (
+  <CourtContainer>
+    {/* Court SVG layer */}
+    <CourtSvg
+      className="w-full h-full"
+      onZoneClick={() => {}}
+      zoneContent={zoneContent}
+    />
+
+    {/* Player overlay, only if not touring */}
+    {!tourActive && (
+      <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
+        <FreeRoamPlayer />
+      </div>
+    )}
+  </CourtContainer>
+)
+
 }
