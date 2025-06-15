@@ -225,14 +225,12 @@ export function HomeBody() {
       <>
         {/* 1. Highlight in its own precise spot */}
         {tourSteps[tourStep].glow && (
-            <SvgGlowHighlight
- x={tourSteps[tourStep].glow.x}
-          y={tourSteps[tourStep].glow.y}
-              width={tourSteps[tourStep].glow.width}
-              height={tourSteps[tourStep].glow.height}
-            />
-      )}
-
+          <SvgGlowHighlight
+            x={tourSteps[tourStep].glow.x}
+            y={tourSteps[tourStep].glow.y}
+            width={tourSteps[tourStep].glow.width}
+            height={tourSteps[tourStep].glow.height}
+          />
         )}
 
         {/* 2. Sprite container in its own zone */}
