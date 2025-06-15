@@ -28,7 +28,7 @@ export function FreeRoamPlayer() {
     '/sprites/LucasDribbling3.png',
   ]
   const idleFrame = '/sprites/LucasIdle4.png'
-  const shootingFrame = '/sprites/LucasShooting.png'
+  const shootingFrame = '/sprites/LucasShooting2.png'
 
   // WASD controls
   useEffect(() => {

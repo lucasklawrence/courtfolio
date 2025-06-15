@@ -15,6 +15,7 @@ import { CourtTitleSolo } from './CourtTitleSolo'
 import { CourtTutorialSprite } from './CourtTutorialSprite'
 import { useHasSeenTour } from '@/utils/useHasSeenTour'
 import { FreeRoamPlayer } from './FreeRoamPlayer'
+import { SafeSvgHtml } from './SafeSvgHtml'
 
 function GlowingHighlight({
   x,
@@ -155,7 +156,7 @@ export function HomeBody() {
     ),
     'zone-78': (
       <foreignObject x={610} y={940} width={320} height={70}>
-        <div xmlns="http://www.w3.org/1999/xhtml">
+        <SafeSvgHtml>
           <div className="flex flex-col items-center justify-center bg-white/90 text-black rounded-xl px-4 py-2 shadow-lg text-xs font-medium space-y-1 hover:bg-orange-100 transition">
             <div className="text-[10px] text-neutral-500 uppercase tracking-wide">
               🕵️ Scouting Area
@@ -175,7 +176,7 @@ export function HomeBody() {
               </button>
             </div>
           </div>
-        </div>
+        </SafeSvgHtml>
       </foreignObject>
     ),
     'zone-90': (
@@ -275,7 +276,7 @@ export function HomeBody() {
   } else {
     zoneContent['zone-101'] = (
   <CourtZone x={1050} y={870} width={180} height={70}>
-    <div xmlns="http://www.w3.org/1999/xhtml">
+    <SafeSvgHtml>
       <div className="flex flex-col items-center">
         {!tourActive && hasSeen && (
           <button
@@ -290,7 +291,7 @@ export function HomeBody() {
           </button>
         )}
       </div>
-    </div>
+    </SafeSvgHtml>
   </CourtZone>
 )
   }
