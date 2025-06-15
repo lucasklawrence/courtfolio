@@ -12,60 +12,108 @@ import { ZoneBioCard } from './ZoneBioCard'
 import { ZoneCareerStats } from './ZoneCareerStats'
 import { LogoSvg } from './LogoSvg'
 import { CourtTitleSolo } from './CourtTitleSolo'
-import { CourtTutorialSprite } from './CourtTutorial'
+import { CourtTutorialSprite } from './CourtTutorialSprite'
+
+function GlowingHighlight({
+  x,
+  y,
+  width,
+  height,
+}: {
+  x: number
+  y: number
+  width: number
+  height: number
+}) {
+  return (
+    <div
+      className="absolute z-0 rounded-lg border-2 border-yellow-300/70 shadow-[0_0_20px_6px_rgba(252,211,77,0.5)] animate-pulse"
+      style={{
+        left: x,
+        top: y,
+        width,
+        height,
+      }}
+    />
+  )
+}
 
 export function HomeBody() {
   const router = useRouter()
   const [tourStep, setTourStep] = useState(0)
 const [tourActive, setTourActive] = useState(true)
-
 const tourSteps = [
   {
-    x: 550, y: 315,
+    x: 610, y: 355,
     img: '/sprites/LucasDefense.png',
     text: 'Welcome to the court — I’m Lucas.',
+      glow: { x: 350, y: 110, width: 380, height: 140 }, // 👈 matches CourtZone for Bio
+
   },
   {
-    x: 370, y: 120,
+    x: 370, y: 250,
     img: '/sprites/LucasHoldingBall.png',
     text: 'This is my bio — quick overview of who I am.',
+          glow: { x: 350, y: 110, width: 380, height: 140 }, // 👈 matches CourtZone for Bio
+
   },
   {
-    x: 810, y: 120,
+    x: 810, y: 250,
     img: '/sprites/LucasSpinningBall.png',
     text: 'Stats don’t lie. Here’s the résumé highlight reel.',
+          glow: { x: 800, y: 110, width: 280, height: 135 }, // 👈 matches CourtZone for Bio
+
   },
   {
-    x: 130, y: 450,
-    img: '/sprites/LucasDribbling.png',
-    text: 'My core principles — this lineup shows how I play.',
-  },
-  {
-    x: 1195, y: 450,
-    img: '/sprites/LucasDribbling.png',
-    text: 'Tech stack lineup. These are my go-to tools.',
-  },
-  {
-    x: 820, y: 720,
-    img: '/sprites/LucasDribbling.png',
-    text: 'Explore the plays — featured projects live here.',
-  },
-  {
-    x: 610, y: 940,
-    img: '/sprites/LucasDefense.png',
-    text: 'Want to connect? You’ll find contact info here.',
-  },
-  {
-    x: 1270, y: 60,
+    x: 1270, y: 110,
     img: '/sprites/LucasShooting.png',
     text: 'Head to the locker room for more personal flavor.',
+    glow: { x: 1270, y: 60, width: 240, height: 40 }, // 👈 matches CourtZone for Bio
+
   },
   {
-    x: 1020, y: 60,
+    x: 1020, y: 110,
     img: '/sprites/LucasShooting.png',
     text: 'Check the rafters — career moments and banners.',
+          glow: { x: 350, y: 110, width: 380, height: 160 }, // 👈 matches CourtZone for Bio
+
+  },
+  {
+    x: 1050, y: 350,
+    img: '/sprites/LucasDribbling.png',
+    text: 'Tech stack lineup. These are my go-to tools.',
+          glow: { x: 350, y: 110, width: 380, height: 160 }, // 👈 matches CourtZone for Bio
+
+  },
+  {
+    x: 650, y: 640,
+    img: '/sprites/LucasDribbling.png',
+    text: 'Explore the plays — featured projects live here.',
+          glow: { x: 350, y: 110, width: 380, height: 160 }, // 👈 matches CourtZone for Bio
+
+  },
+  {
+    x: 610, y: 840,
+    img: '/sprites/LucasDefense.png',
+    text: 'Want to connect? Head to the front office.',
+          glow: { x: 350, y: 110, width: 380, height: 160 }, // 👈 matches CourtZone for Bio
+
+  },
+  {
+    x: 130, y: 575,
+    img: '/sprites/LucasDribbling.png',
+    text: 'My core principles — this lineup shows how I play.',
+          glow: { x: 350, y: 110, width: 380, height: 160 }, // 👈 matches CourtZone for Bio
+
+  },
+  {
+    x: 610, y: 355,
+    img: '/sprites/LucasDefense.png',
+    text: 'That’s the full tour. Go explore the court!',
+
   },
 ]
+
 
   return (
     <CourtContainer>
@@ -177,7 +225,7 @@ const tourSteps = [
             <CourtZone x={1270} y={60} width={300} height={200}>
               <Link
                 href="/locker-room"
-                className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
+                className="bg-[#42210b] z-10 text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
               >
                 👟 Enter Locker Room
               </Link>
@@ -185,6 +233,10 @@ const tourSteps = [
           ),
           'zone-1000': (
   <CourtZone x={0} y={0} width={1600} height={1000}>
+        {/* 🔦 Show glow behind current target */}
+    {tourActive && tourSteps[tourStep].glow && (
+      <GlowingHighlight {...tourSteps[tourStep].glow} />
+    )}
     {tourActive && (
       <CourtTutorialSprite
         stepData={tourSteps[tourStep]}

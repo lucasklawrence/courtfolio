@@ -1,20 +1,42 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { useEffect } from 'react'
+
+type StepData = {
+  x: number
+  y: number
+  img: string
+  text: string
+}
 
 export function CourtTutorialSprite({
   stepData,
   onNext,
 }: {
-  stepData: { x: number; y: number; img: string; text: string }
+  stepData: StepData
   onNext: () => void
 }) {
+  // Motion values for sprite position
+  const x = useMotionValue(stepData.x)
+  const y = useMotionValue(stepData.y)
+
+  // Smooth spring animation
+  const springX = useSpring(x, { stiffness: 120, damping: 14 })
+  const springY = useSpring(y, { stiffness: 120, damping: 14 })
+
+  // Update position when stepData changes
+  useEffect(() => {
+    x.set(stepData.x)
+    y.set(stepData.y)
+  }, [stepData.x, stepData.y])
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 120, damping: 12 }}
-      style={{ x: stepData.x, y: stepData.y }}
+      style={{
+        x: springX,
+        y: springY,
+      }}
       className="absolute"
     >
       <img
@@ -23,6 +45,7 @@ export function CourtTutorialSprite({
         className="w-[80px] h-auto pointer-events-none"
       />
 
+      {/* Speech Bubble */}
       <div className="relative -top-20 left-20 w-[180px]">
         <div className="bg-white text-black text-xs font-semibold px-3 py-2 rounded-xl shadow-lg border border-gray-200 relative">
           <p>{stepData.text}</p>
