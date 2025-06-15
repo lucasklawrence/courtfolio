@@ -4,7 +4,7 @@ import { CourtSvg } from './CourtSvg'
 import { useRouter } from 'next/navigation'
 import { ReplayIntroButton } from './ReplayIntroButton'
 import { CourtContainer } from './CourtContainer'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ZoneProjects } from './ZoneProjects'
 import { CourtZone } from './CourtZone'
 import Link from 'next/link'
@@ -13,6 +13,7 @@ import { ZoneCareerStats } from './ZoneCareerStats'
 import { LogoSvg } from './LogoSvg'
 import { CourtTitleSolo } from './CourtTitleSolo'
 import { CourtTutorialSprite } from './CourtTutorialSprite'
+import { useHasSeenTour } from '@/utils/useHasSeenTour'
 
 function GlowingHighlight({
   x,
@@ -40,9 +41,18 @@ function GlowingHighlight({
 
 export function HomeBody() {
   const router = useRouter()
-  const [tourStep, setTourStep] = useState(0)
-  const [tourActive, setTourActive] = useState(true)
 
+  const { hasSeen, markAsSeen, reset } = useHasSeenTour()
+  // Replace your tourActive init
+  const [tourActive, setTourActive] = useState(false)
+  const [tourStep, setTourStep] = useState(0)
+
+  // Show tour once when component mounts
+  useEffect(() => {
+    if (hasSeen === false) {
+      setTourActive(true)
+    }
+  }, [hasSeen])
   const tourSteps = [
     {
       x: 610,
@@ -229,33 +239,53 @@ export function HomeBody() {
     zoneContent['zone-1000'] = (
       <CourtZone x={0} y={0} width={1600} height={1000}>
         <div className="relative z-0 w-full h-full pointer-events-none">
-          {tourSteps[tourStep].glow && (
-            <GlowingHighlight {...tourSteps[tourStep].glow} />
-          )}
+          {tourSteps[tourStep].glow && <GlowingHighlight {...tourSteps[tourStep].glow} />}
           <div className="pointer-events-auto">
             <CourtTutorialSprite
-              stepData={tourSteps[tourStep]}
-              onNext={() => {
-                if (tourStep < tourSteps.length - 1) {
-                  setTourStep(prev => prev + 1)
-                } else {
-                  setTourActive(false)
-                }
-              }}
-            />
+  stepData={tourSteps[tourStep]}
+  onNext={() => {
+    if (tourStep < tourSteps.length - 1) {
+      setTourStep(prev => prev + 1)
+    } else {
+      setTourActive(false)
+      markAsSeen()
+    }
+  }}
+  onSkip={() => {
+    setTourActive(false)
+    markAsSeen()
+  }}
+/>
           </div>
         </div>
       </CourtZone>
     )
+  } else {
+    zoneContent['zone-101'] = (
+  <CourtZone x={1050} y={870} width={180} height={70}>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <div className="flex flex-col items-center">
+        {!tourActive && hasSeen && (
+          <button
+            onClick={() => {
+              reset()
+              setTourStep(0)
+              setTourActive(true)
+            }}
+      className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer"
+          >
+            🔁 Replay Tour
+          </button>
+        )}
+      </div>
+    </div>
+  </CourtZone>
+)
   }
 
   return (
     <CourtContainer>
-      <CourtSvg
-        className="w-full h-full"
-        onZoneClick={() => {}}
-        zoneContent={zoneContent}
-      />
+      <CourtSvg className="w-full h-full" onZoneClick={() => {}} zoneContent={zoneContent} />
     </CourtContainer>
   )
 }
