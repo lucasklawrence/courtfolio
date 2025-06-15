@@ -4,7 +4,7 @@ import { CourtSvg } from './CourtSvg'
 import { useRouter } from 'next/navigation'
 import { ReplayIntroButton } from './ReplayIntroButton'
 import { CourtContainer } from './CourtContainer'
-import React from 'react'
+import React, { useState } from 'react'
 import { ZoneProjects } from './ZoneProjects'
 import { CourtZone } from './CourtZone'
 import Link from 'next/link'
@@ -12,9 +12,60 @@ import { ZoneBioCard } from './ZoneBioCard'
 import { ZoneCareerStats } from './ZoneCareerStats'
 import { LogoSvg } from './LogoSvg'
 import { CourtTitleSolo } from './CourtTitleSolo'
+import { CourtTutorialSprite } from './CourtTutorial'
 
 export function HomeBody() {
   const router = useRouter()
+  const [tourStep, setTourStep] = useState(0)
+const [tourActive, setTourActive] = useState(true)
+
+const tourSteps = [
+  {
+    x: 550, y: 315,
+    img: '/sprites/LucasDefense.png',
+    text: 'Welcome to the court — I’m Lucas.',
+  },
+  {
+    x: 370, y: 120,
+    img: '/sprites/LucasHoldingBall.png',
+    text: 'This is my bio — quick overview of who I am.',
+  },
+  {
+    x: 810, y: 120,
+    img: '/sprites/LucasSpinningBall.png',
+    text: 'Stats don’t lie. Here’s the résumé highlight reel.',
+  },
+  {
+    x: 130, y: 450,
+    img: '/sprites/LucasDribbling.png',
+    text: 'My core principles — this lineup shows how I play.',
+  },
+  {
+    x: 1195, y: 450,
+    img: '/sprites/LucasDribbling.png',
+    text: 'Tech stack lineup. These are my go-to tools.',
+  },
+  {
+    x: 820, y: 720,
+    img: '/sprites/LucasDribbling.png',
+    text: 'Explore the plays — featured projects live here.',
+  },
+  {
+    x: 610, y: 940,
+    img: '/sprites/LucasDefense.png',
+    text: 'Want to connect? You’ll find contact info here.',
+  },
+  {
+    x: 1270, y: 60,
+    img: '/sprites/LucasShooting.png',
+    text: 'Head to the locker room for more personal flavor.',
+  },
+  {
+    x: 1020, y: 60,
+    img: '/sprites/LucasShooting.png',
+    text: 'Check the rafters — career moments and banners.',
+  },
+]
 
   return (
     <CourtContainer>
@@ -132,6 +183,23 @@ export function HomeBody() {
               </Link>
             </CourtZone>
           ),
+          'zone-1000': (
+  <CourtZone x={0} y={0} width={1600} height={1000}>
+    {tourActive && (
+      <CourtTutorialSprite
+        stepData={tourSteps[tourStep]}
+        onNext={() => {
+          if (tourStep < tourSteps.length - 1) {
+            setTourStep(prev => prev + 1)
+          } else {
+            setTourActive(false)
+          }
+        }}
+      />
+    )}
+  </CourtZone>
+)
+
         }}
       />
     </CourtContainer>
