@@ -10,15 +10,14 @@ export function ZoneContactSafari() {
     <SafeSvgHtml>
       <div
         style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.06)', // subtle white overlay
-          color: '#111',
+          backgroundColor: 'rgba(255, 255, 255, 0.6)', // soft neutral tint for legibility
+          color: '#222',
           padding: '1rem',
-          borderRadius: '0.5rem',
+          borderRadius: '0.25rem',
           fontSize: '0.75rem',
-          fontFamily: '"Patrick Hand", cursive',
-          display: 'flex',
-          gap: '1rem',
           lineHeight: '1.25rem',
+          textAlign: 'left',
+          boxShadow: 'none',
         }}
       >
         {/* Left side */}
