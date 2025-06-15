@@ -2,30 +2,27 @@
 
 import { SafeSvgHtml } from '@/components/SafeSvgHtml'
 
-/**
- * Safari-safe version of the Contact zone using inline styles and no backdrop filter.
- */
 export function ZoneContactSafari() {
   return (
     <SafeSvgHtml>
       <div
         style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.6)', // soft neutral tint for legibility
-          color: '#222',
-          padding: '1rem',
-          borderRadius: '0.25rem',
+          display: 'flex',
+          gap: '1rem',
           fontSize: '0.75rem',
           lineHeight: '1.25rem',
+          color: '#222',
+          padding: '0.5rem',
+          fontFamily: 'sans-serif',
           textAlign: 'left',
-          boxShadow: 'none',
         }}
       >
-        {/* Left side */}
+        {/* Left column */}
         <div style={{ flex: 1 }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 'bold', color: '#f97316', margin: 0 }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 'bold', color: '#fb923c', margin: 0 }}>
             📋 Scouting Inquiry
           </h3>
-          <p style={{ marginTop: '0.25rem', color: '#222' }}>
+          <p style={{ marginTop: '0.25rem' }}>
             Let’s connect — for dream teams, pick-up ideas, or just a chat.
           </p>
           <ul style={{ paddingLeft: 0, listStyle: 'none', marginTop: '0.5rem' }}>
@@ -33,7 +30,7 @@ export function ZoneContactSafari() {
               <strong>Email:</strong>{' '}
               <a
                 href="mailto:lucasklawrence@gmail.com"
-                style={{ color: '#f97316', textDecoration: 'underline' }}
+                style={{ color: '#0369a1', textDecoration: 'underline' }}
               >
                 lucasklawrence@gmail.com
               </a>
@@ -43,7 +40,7 @@ export function ZoneContactSafari() {
               <a
                 href="https://linkedin.com/in/lucasklawrence"
                 target="_blank"
-                style={{ color: '#f97316', textDecoration: 'underline' }}
+                style={{ color: '#0369a1', textDecoration: 'underline' }}
               >
                 /lucasklawrence
               </a>
@@ -51,7 +48,7 @@ export function ZoneContactSafari() {
           </ul>
 
           <div style={{ marginTop: '0.75rem' }}>
-            <h4 style={{ color: '#f97316', fontWeight: 'bold', marginBottom: '0.25rem' }}>
+            <h4 style={{ color: '#fb923c', fontWeight: 'bold', marginBottom: '0.25rem' }}>
               Scouting Report
             </h4>
             <ul style={{ paddingLeft: '1.25rem', margin: 0 }}>
@@ -63,10 +60,10 @@ export function ZoneContactSafari() {
           </div>
         </div>
 
-        {/* Right side */}
+        {/* Right column */}
         <div style={{ width: '45%' }}>
           <div>
-            <h4 style={{ color: '#f97316', fontWeight: 'bold', marginBottom: '0.25rem' }}>
+            <h4 style={{ color: '#fb923c', fontWeight: 'bold', marginBottom: '0.25rem' }}>
               Season Highlights
             </h4>
             <ul style={{ paddingLeft: '1.25rem', margin: 0 }}>
@@ -76,7 +73,7 @@ export function ZoneContactSafari() {
           </div>
 
           <div style={{ marginTop: '0.75rem' }}>
-            <h4 style={{ color: '#f97316', fontWeight: 'bold', marginBottom: '0.25rem' }}>
+            <h4 style={{ color: '#fb923c', fontWeight: 'bold', marginBottom: '0.25rem' }}>
               Shot Range
             </h4>
             <ul style={{ paddingLeft: '1.25rem', margin: 0 }}>
@@ -88,7 +85,7 @@ export function ZoneContactSafari() {
           </div>
 
           <div style={{ marginTop: '0.75rem' }}>
-            <h4 style={{ color: '#f97316', fontWeight: 'bold', marginBottom: '0.25rem' }}>
+            <h4 style={{ color: '#fb923c', fontWeight: 'bold', marginBottom: '0.25rem' }}>
               Free Agent Notes
             </h4>
             <ul style={{ paddingLeft: '1.25rem', margin: 0 }}>
