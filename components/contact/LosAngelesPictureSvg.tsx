@@ -17,7 +17,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
       <g stroke-width="2.00" fill="none" stroke-linecap="butt">
         <path
           stroke="#a08760"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 492.63
   C 1511.72 494.72 1491.60 502.94 1465.90 512.34
@@ -35,7 +35,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#907954"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1065.98 539.49
   Q 1065.59 539.70 1065.22 539.43
@@ -53,7 +53,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9c7e59"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 970.72 366.02
   L 941.75 365.69
@@ -62,7 +62,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#907954"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 940.06 438.90
   L 939.47 538.44
@@ -141,7 +141,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#a89269"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 318.86 470.30
   Q 304.02 464.62 289.47 459.29
@@ -152,7 +152,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#99825e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 200.21 456.14
   C 192.15 457.79 188.47 457.65 178.62 457.52
@@ -162,7 +162,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#a89269"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 73.51 425.90
   Q 57.64 422.01 38.00 422.48
@@ -170,14 +170,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 940.06 438.90
   L 946.40 455.86"
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 946.40 455.86
   Q 946.03 494.92 946.09 534.14
@@ -191,7 +191,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 961.56 686.23
   L 977.23 686.49
@@ -200,7 +200,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 977.51 635.32
   Q 977.66 626.25 977.56 618.07
@@ -214,21 +214,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 972.92 452.81
   L 981.04 446.41"
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 981.04 446.41
   L 992.89 445.84"
         />
         <path
           stroke="#3a3322"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 992.89 445.84
   Q 997.00 448.26 998.89 452.92
@@ -242,7 +242,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#59482d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1048.39 395.79
   L 1051.54 395.58
@@ -253,7 +253,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1020.71 372.88
   L 1016.28 372.69
@@ -264,7 +264,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 976.80 367.42
   L 969.55 367.37
@@ -273,14 +273,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1065.98 539.49
   L 1065.53 540.47"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1065.53 540.47
   Q 1064.92 540.62 1064.89 541.25
@@ -288,7 +288,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4f5432"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1065.04 546.72
   L 1064.89 586.25
@@ -322,42 +322,42 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3c3c28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1268.50 665.27
   L 1268.43 670.95"
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1268.43 670.95
   L 1268.56 676.40"
         />
         <path
           stroke="#564d3a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1268.56 676.40
   L 1268.75 691.94"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1268.75 691.94
   L 1268.75 695.62"
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1268.75 695.62
   L 1268.90 702.47"
         />
         <path
           stroke="#39472e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1268.90 702.47
   L 1268.71 733.20
@@ -366,7 +366,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1284.74 734.43
   L 1282.02 738.26
@@ -375,7 +375,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6d644c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1325.02 740.40
   L 1262.08 741.01
@@ -400,21 +400,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1326.44 752.59
   L 1335.81 737.00"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1335.81 737.00
   L 1340.34 736.61"
         />
         <path
           stroke="#75613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1340.34 736.61
   Q 1347.03 736.42 1353.02 737.42
@@ -427,21 +427,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1389.24 757.19
   L 1388.97 745.78"
         />
         <path
           stroke="#75613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1388.97 745.78
   L 1388.85 735.69"
         />
         <path
           stroke="#59482d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1388.85 735.69
   Q 1389.60 723.33 1389.49 710.27
@@ -450,7 +450,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#75613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1395.09 703.62
   L 1415.73 703.16
@@ -459,7 +459,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3d3b28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1416.42 621.73
   Q 1415.49 621.51 1415.68 621.01
@@ -467,7 +467,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1416.22 614.64
   L 1416.11 605.75
@@ -476,7 +476,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1358.25 603.99
   L 1354.08 604.43
@@ -485,21 +485,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3d3b28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1353.65 612.00
   Q 1353.37 612.89 1353.64 613.53"
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1353.64 613.53
   L 1346.54 614.33"
         />
         <path
           stroke="#4f5432"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1346.54 614.33
   C 1345.76 608.79 1343.76 600.52 1351.96 599.44
@@ -512,21 +512,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e4224"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1424.61 648.79
   L 1424.53 659.04"
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1424.53 659.04
   L 1424.57 679.29"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1424.57 679.29
   L 1424.32 683.58
@@ -537,21 +537,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1447.38 676.11
   L 1447.62 658.71"
         />
         <path
           stroke="#3e4224"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1447.62 658.71
   L 1447.90 652.50"
         />
         <path
           stroke="#4f5432"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1447.90 652.50
   Q 1447.95 638.31 1447.99 624.16
@@ -563,21 +563,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e4224"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1510.55 663.20
   Q 1510.54 663.66 1510.52 664.13"
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1510.52 664.13
   L 1510.65 679.46"
         />
         <path
           stroke="#39472e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1510.65 679.46
   Q 1510.64 680.92 1511.49 681.01
@@ -585,7 +585,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1514.63 681.26
   Q 1516.95 683.40 1517.41 685.24
@@ -593,7 +593,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1516.84 687.91
   Q 1514.33 686.96 1513.00 686.97
@@ -611,21 +611,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1516.01 760.50
   Q 1520.45 765.57 1525.75 765.16"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1525.75 765.16
   Q 1531.34 765.85 1536.00 764.72"
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 770.40
   Q 1531.76 770.40 1524.25 770.98
@@ -642,14 +642,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1504.00 824.77
   Q 1491.01 831.43 1476.44 833.30"
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1476.44 833.30
   L 1464.27 834.38
@@ -675,21 +675,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1516.45 837.15
   C 1522.90 837.24 1529.62 837.82 1536.00 836.73"
         />
         <path
           stroke="#7e6b4d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 844.45
   Q 1535.82 844.64 1535.69 844.97"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1535.69 844.97
   L 1535.29 844.74
@@ -698,7 +698,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d2a16"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1497.46 844.84
   Q 1484.19 844.33 1476.32 844.76
@@ -719,7 +719,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1496.57 911.32
   Q 1503.69 913.63 1510.75 915.21
@@ -728,7 +728,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#282a0f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 915.58
   C 1532.95 917.12 1530.06 919.90 1527.62 921.04
@@ -739,7 +739,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#22240e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1453.90 950.47
   C 1449.31 952.21 1443.26 954.04 1439.78 956.51
@@ -750,7 +750,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1403.41 1024.00
   Q 1402.29 1018.98 1401.34 1013.90
@@ -784,7 +784,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#282a0f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1380.43 1024.00
   Q 1377.25 1016.51 1372.80 1012.69
@@ -812,7 +812,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#22240e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1083.99 954.13
   C 1076.55 951.70 1070.84 954.33 1063.19 957.17
@@ -820,14 +820,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#282a0f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1055.98 956.00
   Q 1058.72 951.60 1063.31 949.33"
         />
         <path
           stroke="#393119"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1063.31 949.33
   Q 1066.76 947.80 1070.20 946.18
@@ -841,7 +841,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#332b17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1045.79 912.26
   Q 1040.50 912.44 1036.15 913.38
@@ -851,7 +851,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1022.46 921.04
   C 1021.07 916.97 1021.07 912.55 1024.32 909.53
@@ -878,7 +878,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#332b17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1021.56 924.45
   Q 1023.95 925.75 1026.14 927.46
@@ -888,14 +888,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#282a0f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1042.44 946.28
   Q 1042.53 957.68 1039.76 968.80"
         />
         <path
           stroke="#22240e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1039.76 968.80
   C 1039.88 975.30 1043.08 976.41 1048.93 980.02
@@ -905,7 +905,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#282a0f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1069.36 1024.00
   C 1067.09 1017.13 1065.23 1010.52 1060.75 1004.80
@@ -954,7 +954,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#22240e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 576.90 958.25
   L 575.96 1001.38
@@ -963,7 +963,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#282a0f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 571.29 1000.19
   C 570.97 991.28 570.10 981.99 570.24 973.54
@@ -983,7 +983,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#22240e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 345.89 916.71
   C 341.19 921.11 335.40 928.07 335.31 934.79
@@ -995,7 +995,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#282a0f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 358.14 1024.00
   C 355.93 1017.60 350.62 1013.45 344.49 1011.04
@@ -1027,7 +1027,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 0.00 879.51
   Q 8.34 879.90 10.76 880.44
@@ -1054,14 +1054,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7e6b4d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 0.23 847.68
   Q 0.17 847.08 0.00 846.87"
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 0.00 838.37
   Q 4.23 838.89 5.61 838.88
@@ -1071,7 +1071,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 64.51 813.53
   L 64.12 802.81
@@ -1097,7 +1097,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e4224"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 0.00 749.00
   L 6.00 750.07
@@ -1119,14 +1119,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 172.67 572.11
   Q 179.21 572.12 185.02 570.35"
         />
         <path
           stroke="#4c5435"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 185.02 570.35
   Q 186.17 570.93 188.50 571.04
@@ -1136,14 +1136,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 232.60 581.70
   L 232.57 586.69"
         />
         <path
           stroke="#3e4224"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 232.57 586.69
   L 232.31 680.82
@@ -1164,14 +1164,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 263.06 591.39
   Q 263.27 588.26 264.59 586.30"
         />
         <path
           stroke="#4c5435"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 264.59 586.30
   L 283.83 586.40
@@ -1184,35 +1184,35 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4f5432"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 318.94 529.76
   L 318.94 474.78"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 318.94 474.78
   L 318.86 470.30"
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.71 216.15
   L 706.17 224.74"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 706.17 224.74
   Q 704.80 229.45 705.08 233.89"
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.08 233.89
   Q 701.25 236.49 698.48 236.82
@@ -1222,14 +1222,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 685.94 243.79
   L 686.56 279.95"
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 686.56 279.95
   Q 686.25 290.56 686.30 301.16
@@ -1241,7 +1241,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 676.16 346.46
   L 675.73 531.85
@@ -1250,7 +1250,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 711.34 532.35
   Q 721.34 531.91 731.00 531.71
@@ -1260,7 +1260,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.17 553.11
   Q 745.30 548.37 741.38 544.90
@@ -1271,7 +1271,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.89 550.85
   C 732.48 549.19 733.00 544.09 732.90 539.52
@@ -1280,7 +1280,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 675.25 538.69
   C 670.19 537.83 670.74 541.84 670.32 545.12
@@ -1296,42 +1296,42 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 683.66 703.95
   L 687.72 704.41"
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 687.72 704.41
   L 693.30 707.12"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.30 707.12
   Q 694.56 713.66 693.93 720.72"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.93 720.72
   L 742.22 721.21"
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 742.22 721.21
   L 749.79 721.34"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 749.79 721.34
   Q 753.73 721.57 757.58 721.03
@@ -1339,182 +1339,182 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.15 716.67
   L 760.40 707.36"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.40 707.36
   L 760.45 702.33"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.45 702.33
   L 760.45 682.93"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.45 682.93
   L 760.43 678.18"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.43 678.18
   L 760.42 672.97"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.42 672.97
   L 760.48 665.59"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.48 665.59
   L 760.45 660.90"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.45 660.90
   L 760.41 654.36"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.41 654.36
   L 760.42 648.12"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.42 648.12
   L 760.42 641.77"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.42 641.77
   L 760.42 635.60"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.42 635.60
   L 760.42 630.42"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.42 630.42
   L 760.43 623.88"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.43 623.88
   L 760.42 616.99"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.42 616.99
   L 760.43 610.26"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.43 610.26
   L 760.41 604.29"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.41 604.29
   L 760.41 597.51"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.41 597.51
   L 760.41 591.50"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.41 591.50
   L 760.47 586.07"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.47 586.07
   L 760.48 580.37"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.48 580.37
   L 760.36 479.62"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.36 479.62
   Q 760.72 477.33 760.37 475.61"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.37 475.61
   L 760.40 470.98"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.40 470.98
   L 760.32 463.88"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.32 463.88
   L 760.26 444.19"
         />
         <path
           stroke="#75613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.26 444.19
   Q 760.36 436.74 760.21 429.25
@@ -1535,7 +1535,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 777.67 343.74
   Q 780.06 340.56 783.55 339.32
@@ -1544,7 +1544,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 777.61 336.42
   Q 778.02 292.25 777.66 248.40
@@ -1553,14 +1553,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 756.49 241.33
   L 760.30 239.73"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.30 239.73
   Q 762.27 240.06 762.57 239.43
@@ -1568,7 +1568,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 761.84 231.20
   L 762.12 224.00
@@ -1577,21 +1577,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.72 223.32
   Q 764.02 218.40 762.77 212.92"
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 762.77 212.92
   L 762.83 207.78"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 762.83 207.78
   L 762.87 192.29
@@ -1600,14 +1600,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4d4630"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.98 190.48
   L 728.79 190.65"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 728.79 190.65
   C 722.34 190.48 715.00 189.83 708.66 190.90
@@ -1616,7 +1616,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705a40"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 728.79 190.65
   L 723.78 190.88
@@ -1629,35 +1629,35 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.68 215.43
   Q 718.23 216.59 705.71 216.15"
         />
         <path
           stroke="#826748"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.72 223.32
   L 732.25 223.99"
         />
         <path
           stroke="#5f5039"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 732.25 223.99
   L 730.79 224.11"
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.79 224.11
   Q 718.33 223.67 706.17 224.74"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.98 190.48
   L 737.18 190.71
@@ -1672,14 +1672,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5f5039"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 762.77 212.92
   Q 764.15 215.78 758.01 215.02"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 758.01 215.02
   Q 758.49 214.48 759.42 214.58
@@ -1692,35 +1692,35 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5f5039"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 738.76 215.24
   L 730.68 215.43"
         />
         <path
           stroke="#826748"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 758.01 215.02
   L 738.76 215.24"
         />
         <path
           stroke="#705a40"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.79 224.11
   Q 729.10 230.08 732.01 235.04"
         />
         <path
           stroke="#5b4833"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 732.01 235.04
   Q 729.94 235.09 728.48 235.67"
         />
         <path
           stroke="#503d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 728.48 235.67
   L 705.92 235.69
@@ -1729,14 +1729,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#65553e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 754.74 234.82
   L 732.01 235.04"
         />
         <path
           stroke="#886c4d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 761.84 231.20
   L 761.62 234.19
@@ -1745,7 +1745,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 754.74 234.82
   Q 750.48 234.89 746.60 233.89
@@ -1759,7 +1759,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#453827"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.30 239.73
   L 729.82 240.10
@@ -1768,21 +1768,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c6144"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 756.49 241.33
   L 729.16 241.45"
         />
         <path
           stroke="#5c482f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.16 241.45
   L 725.73 241.47"
         />
         <path
           stroke="#503d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 725.73 241.47
   L 717.59 242.33
@@ -1792,14 +1792,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c6144"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 777.61 336.42
   Q 776.99 337.91 771.90 337.20"
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 771.90 337.20
   Q 772.62 334.80 771.77 332.75
@@ -1810,14 +1810,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c6144"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 764.94 337.28
   L 758.99 337.36"
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 758.99 337.36
   Q 760.26 334.55 759.29 332.62
@@ -1828,14 +1828,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c6144"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.39 337.48
   L 746.31 337.53"
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.31 337.53
   L 746.56 333.15
@@ -1846,14 +1846,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c6144"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 739.76 337.59
   L 734.46 337.63"
         />
         <path
           stroke="#9f7c54"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.46 337.63
   Q 734.48 336.46 734.66 335.47
@@ -1882,7 +1882,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.31 295.82
   C 729.49 291.93 733.72 294.25 734.29 290.50
@@ -1892,7 +1892,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9f7c54"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.26 285.14
   Q 728.98 283.80 729.38 282.71
@@ -1909,7 +1909,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 732.21 265.39
   Q 730.76 265.47 730.03 264.73
@@ -1922,14 +1922,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9f7c54"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.55 246.03
   L 729.16 241.45"
         />
         <path
           stroke="#72583a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 725.73 241.47
   Q 725.53 245.59 725.58 249.55
@@ -1938,14 +1938,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#503d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 725.96 337.81
   L 720.51 337.95"
         />
         <path
           stroke="#5c472f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 720.51 337.95
   L 719.72 333.24
@@ -1956,7 +1956,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#503d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 713.97 338.19
   L 688.20 338.25
@@ -1965,7 +1965,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c6545"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.55 246.03
   L 729.23 264.41
@@ -1974,56 +1974,56 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c6545"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.26 285.14
   L 729.31 295.82"
         />
         <path
           stroke="#5c482f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.46 337.63
   L 725.96 337.81"
         />
         <path
           stroke="#453723"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 713.97 338.19
   L 720.51 337.95"
         />
         <path
           stroke="#51452d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 739.76 337.59
   L 746.31 337.53"
         />
         <path
           stroke="#51452d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.39 337.48
   L 758.99 337.36"
         />
         <path
           stroke="#51452d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 764.94 337.28
   Q 768.77 337.83 771.90 337.20"
         />
         <path
           stroke="#816644"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 777.67 343.74
   L 711.58 344.17"
         />
         <path
           stroke="#503d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 711.58 344.17
   Q 694.97 343.57 677.98 344.46
@@ -2031,21 +2031,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#93714f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 711.49 436.46
   L 711.34 532.35"
         />
         <path
           stroke="#c49a69"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.26 444.19
   Q 759.72 444.56 759.20 444.71"
         />
         <path
           stroke="#a2835a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.20 444.71
   Q 759.28 442.79 758.67 440.93
@@ -2054,21 +2054,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#c49a69"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.18 441.08
   Q 749.74 443.14 747.03 442.19"
         />
         <path
           stroke="#a2835a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.03 442.19
   Q 746.24 439.00 740.04 440.21"
         />
         <path
           stroke="#c49a69"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 740.04 440.21
   Q 739.90 439.67 739.05 440.11
@@ -2077,7 +2077,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#a2835a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.77 441.73
   C 732.92 439.82 730.53 440.11 728.84 440.13
@@ -2085,21 +2085,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#c49a69"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 726.85 442.29
   L 722.73 441.95"
         />
         <path
           stroke="#a2835a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.73 441.95
   C 722.11 439.93 717.86 440.28 715.98 440.30"
         />
         <path
           stroke="#c49a69"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 715.98 440.30
   L 714.13 441.31
@@ -2112,7 +2112,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#98764f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 711.49 436.46
   Q 711.40 431.23 711.40 426.00
@@ -2121,7 +2121,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 715.98 440.30
   Q 714.03 443.10 715.09 447.63
@@ -2132,7 +2132,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 726.85 442.29
   L 726.80 446.83
@@ -2143,7 +2143,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 740.04 440.21
   Q 739.08 440.48 739.01 441.76
@@ -2155,7 +2155,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.18 441.08
   L 751.10 447.72
@@ -2165,7 +2165,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.32 463.88
   L 752.96 463.48
@@ -2178,7 +2178,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.37 475.61
   L 752.50 475.17
@@ -2189,7 +2189,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.48 580.37
   Q 758.52 579.34 757.20 579.60
@@ -2199,7 +2199,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.41 591.50
   L 757.71 591.17
@@ -2210,7 +2210,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.41 604.29
   Q 758.03 603.28 756.34 603.84
@@ -2221,7 +2221,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.42 616.99
   L 756.38 617.44
@@ -2232,7 +2232,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.42 630.42
   Q 758.35 629.71 757.51 629.79
@@ -2243,7 +2243,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.42 641.77
   Q 758.19 640.89 756.73 641.28
@@ -2254,7 +2254,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.41 654.36
   L 756.97 654.20
@@ -2265,7 +2265,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.48 665.59
   Q 758.18 664.73 756.85 665.10
@@ -2278,7 +2278,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.43 678.18
   Q 758.33 677.60 757.13 677.78
@@ -2289,7 +2289,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.45 702.33
   Q 758.29 701.64 757.05 702.03
@@ -2300,7 +2300,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.15 716.67
   L 759.88 717.16
@@ -2314,14 +2314,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.99 713.43
   L 748.06 707.66"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.06 707.66
   Q 749.82 707.68 750.60 707.23
@@ -2330,14 +2330,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.03 701.49
   L 748.03 695.88"
         />
         <path
           stroke="#a68564"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.03 695.88
   Q 749.53 696.48 750.53 696.19
@@ -2348,14 +2348,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.02 690.73
   L 748.10 683.50"
         />
         <path
           stroke="#a68564"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.10 683.50
   L 749.92 683.17
@@ -2364,14 +2364,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.00 677.97
   L 748.04 670.75"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.04 670.75
   C 751.80 672.48 751.57 668.47 751.17 666.42
@@ -2380,14 +2380,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.00 665.76
   L 747.99 660.76"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.99 660.76
   C 752.07 661.73 751.29 658.13 751.05 655.67
@@ -2396,14 +2396,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.96 654.66
   L 748.02 647.49"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.02 647.49
   L 749.70 648.28
@@ -2414,14 +2414,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.94 641.60
   L 747.97 623.29"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.97 623.29
   Q 748.63 622.95 749.81 623.93
@@ -2432,14 +2432,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.05 617.47
   L 748.04 610.91"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.04 610.91
   Q 752.19 612.25 751.08 605.30
@@ -2448,14 +2448,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.08 603.72
   L 748.01 597.87"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.01 597.87
   Q 749.48 598.00 750.44 597.49
@@ -2464,14 +2464,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.02 591.75
   L 748.05 585.60"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.05 585.60
   Q 751.90 588.38 751.05 581.37
@@ -2480,14 +2480,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.04 579.82
   L 748.14 573.58"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.14 573.58
   Q 752.68 575.20 751.27 567.39
@@ -2496,14 +2496,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.06 566.79
   L 748.12 560.86"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.12 560.86
   Q 752.27 562.48 751.11 555.82
@@ -2512,98 +2512,98 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.30 554.46
   Q 748.32 553.41 748.17 553.11"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.30 554.46
   L 748.12 560.86"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.06 566.79
   L 748.14 573.58"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.04 579.82
   L 748.05 585.60"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.02 591.75
   L 748.01 597.87"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.08 603.72
   L 748.04 610.91"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.05 617.47
   L 747.97 623.29"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.94 641.60
   L 748.02 647.49"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.96 654.66
   L 747.99 660.76"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.00 665.76
   L 748.04 670.75"
         />
         <path
           stroke="#5f563b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.00 677.97
   L 748.10 683.50"
         />
         <path
           stroke="#5f563b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.02 690.73
   L 748.03 695.88"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.03 701.49
   L 748.06 707.66"
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.99 713.43
   L 747.87 720.36
@@ -2612,14 +2612,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#564f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 742.22 721.21
   Q 742.52 719.66 742.28 717.98"
         />
         <path
           stroke="#5a502e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 742.28 717.98
   Q 742.23 610.70 742.36 562.75
@@ -2629,21 +2629,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#796641"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.89 550.85
   L 738.72 551.07"
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 738.72 551.07
   Q 739.26 552.47 737.17 552.84"
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.17 552.84
   Q 735.91 552.62 734.90 552.96
@@ -2652,63 +2652,63 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.25 560.98
   L 734.45 566.36"
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.45 566.36
   L 734.32 573.29"
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.32 573.29
   L 734.28 580.06"
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.28 580.06
   L 734.24 587.27"
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.24 587.27
   L 734.05 592.94"
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.05 592.94
   L 734.06 597.54"
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.06 597.54
   L 734.03 604.43"
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.03 604.43
   L 733.94 610.32"
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.94 610.32
   L 733.71 622.16
@@ -2716,63 +2716,63 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.95 642.45
   L 733.89 646.27"
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.89 646.27
   L 734.11 667.06"
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.11 667.06
   L 734.13 670.20"
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.13 670.20
   L 733.72 678.83"
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.72 678.83
   Q 733.95 679.40 733.72 680.25"
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.72 680.25
   L 733.71 692.20"
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.71 692.20
   Q 733.98 693.19 733.71 694.34"
         />
         <path
           stroke="#a17f56"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.71 694.34
   L 733.96 714.91"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.96 714.91
   L 733.48 718.08
@@ -2801,7 +2801,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.30 707.12
   Q 696.17 704.57 694.71 701.42
@@ -2812,7 +2812,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#93714f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 683.66 703.95
   Q 683.44 700.33 677.19 700.76
@@ -2829,7 +2829,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 676.38 683.66
   L 681.01 683.61
@@ -2840,7 +2840,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#93714f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 676.29 678.02
   L 676.40 671.86
@@ -2902,7 +2902,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 676.56 586.21
   Q 678.94 587.31 681.76 586.74
@@ -2913,7 +2913,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#93714f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 676.22 579.72
   L 676.26 574.51
@@ -2936,7 +2936,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7e6847"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 742.28 717.98
   Q 740.34 717.83 739.91 715.62
@@ -2945,7 +2945,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.71 694.34
   Q 734.97 696.63 738.28 696.24
@@ -2958,7 +2958,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.72 680.25
   Q 734.27 681.31 734.42 682.56
@@ -2972,7 +2972,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.13 670.20
   Q 736.11 671.26 737.95 671.01
@@ -2983,7 +2983,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.89 646.27
   C 734.32 648.76 737.14 648.46 738.99 648.07
@@ -2994,7 +2994,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.71 622.16
   Q 734.16 623.97 736.25 623.96
@@ -3008,7 +3008,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.94 610.32
   Q 735.85 611.01 738.82 610.64
@@ -3019,7 +3019,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.06 597.54
   Q 735.92 598.65 739.31 598.09
@@ -3030,7 +3030,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.24 587.27
   L 739.03 587.02
@@ -3041,7 +3041,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.32 573.29
   Q 736.93 574.86 739.79 573.51
@@ -3052,7 +3052,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.25 560.98
   Q 736.57 561.57 739.10 561.32
@@ -3061,21 +3061,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675538"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 676.22 579.72
   L 676.56 586.21"
         />
         <path
           stroke="#705a40"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 676.29 678.02
   L 676.38 683.66"
         />
         <path
           stroke="#564d3a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 877.16 287.47
   L 841.56 289.49
@@ -3086,7 +3086,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3c3c28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 877.02 307.42
   Q 878.44 307.30 878.81 308.06
@@ -3108,7 +3108,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6d644c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 920.57 307.06
   Q 921.07 304.09 921.01 301.24
@@ -3118,14 +3118,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#887c5f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 920.57 307.06
   L 892.96 307.16"
         />
         <path
           stroke="#a38d70"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 892.96 307.16
   L 879.50 307.12
@@ -3134,14 +3134,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#72654d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 892.96 307.16
   L 877.02 307.42"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.39 389.79
   C 579.46 389.83 598.51 389.28 617.44 390.39
@@ -3161,7 +3161,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 565.21 294.67
   C 550.96 294.13 541.79 293.45 533.09 294.32
@@ -3173,7 +3173,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3f4232"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 565.21 294.67
   L 557.62 294.85
@@ -3184,7 +3184,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 829.11 404.20
   A 0.61 0.61 0.0 0 0 829.72 404.84
@@ -3202,7 +3202,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 520.25 390.03
   Q 524.01 391.02 525.79 389.52
@@ -3213,7 +3213,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 519.93 347.24
   L 474.81 347.20
@@ -3239,14 +3239,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 519.93 347.24
   L 520.25 390.03"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 371.50 363.03
   Q 350.12 363.02 329.26 362.95
@@ -3258,28 +3258,28 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d2b1d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 334.00 601.66
   L 342.54 601.71"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 342.54 601.71
   L 345.94 601.86"
         />
         <path
           stroke="#2d2b1d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 345.94 601.86
   Q 350.57 603.17 352.93 607.29"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 352.93 607.29
   L 352.87 686.70
@@ -3288,42 +3288,42 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d2b1d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 360.77 687.53
   L 367.79 687.70"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 367.79 687.70
   L 370.53 687.81"
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 370.53 687.81
   L 378.66 687.55"
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 378.66 687.55
   L 385.82 687.52"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 385.82 687.52
   L 393.01 687.49"
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 393.01 687.49
   Q 394.83 688.10 397.80 687.77
@@ -3332,14 +3332,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 398.57 627.05
   L 405.62 625.29"
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 405.62 625.29
   L 413.50 625.33
@@ -3352,7 +3352,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#69563a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 405.62 625.29
   L 405.56 383.34
@@ -3363,7 +3363,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#69563a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 393.01 687.49
   L 393.11 382.68
@@ -3374,14 +3374,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#635135"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 378.66 687.55
   L 378.72 415.96"
         />
         <path
           stroke="#69563a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 378.72 415.96
   L 378.78 381.62
@@ -3392,7 +3392,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4a3e2b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 378.72 415.96
   Q 376.46 407.97 375.76 399.77
@@ -3406,7 +3406,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#453b2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 367.79 687.70
   Q 368.19 682.11 368.20 679.74
@@ -3419,7 +3419,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#453b2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 352.93 607.29
   Q 353.43 604.40 353.47 602.67
@@ -3435,7 +3435,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#453b2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 342.54 601.71
   Q 341.42 600.08 341.39 598.62
@@ -3449,7 +3449,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#625439"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 468.04 379.72
   A 0.88 0.88 0.0 0 0 467.16 378.84
@@ -3463,7 +3463,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 552.97 395.77
   Q 537.20 394.56 529.36 395.83
@@ -3480,7 +3480,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 614.31 454.07
   Q 615.46 454.37 615.44 453.00
@@ -3490,7 +3490,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#453827"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 614.31 454.07
   Q 610.76 453.31 608.86 450.83
@@ -3531,7 +3531,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 649.27 544.69
   Q 651.64 543.58 654.14 542.93
@@ -3549,203 +3549,203 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.18 408.91
   L 1014.14 414.40"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.14 414.40
   L 1014.15 423.06"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.15 423.06
   Q 1013.49 426.56 1014.20 430.26"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.20 430.26
   L 1014.30 437.76"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.30 437.76
   Q 1013.62 440.46 1014.24 443.31"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.24 443.31
   L 1014.19 452.42"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.19 452.42
   L 1014.26 459.21"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.26 459.21
   L 1014.30 465.20"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.30 465.20
   L 1014.32 471.72"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.32 471.72
   L 1014.29 478.55"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.29 478.55
   L 1014.38 486.36"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.38 486.36
   L 1014.35 494.35"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.35 494.35
   Q 1013.68 497.30 1014.37 500.33"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.37 500.33
   L 1014.34 507.04"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.34 507.04
   L 1014.36 514.77"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.36 514.77
   L 1014.39 522.11"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.39 522.11
   L 1014.41 529.21"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.41 529.21
   L 1014.51 536.68"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.51 536.68
   L 1014.54 543.10"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.54 543.10
   L 1014.40 551.12"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.40 551.12
   Q 1013.77 554.43 1014.43 557.88"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.43 557.88
   L 1014.54 565.42"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.54 565.42
   L 1014.57 571.60"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.57 571.60
   L 1014.50 579.71"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.50 579.71
   L 1014.51 586.71"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.51 586.71
   L 1014.56 593.63"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.56 593.63
   L 1014.49 600.19"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.49 600.19
   L 1014.63 607.86"
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.63 607.86
   Q 1014.23 609.94 1014.69 612.67
@@ -3754,7 +3754,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1053.24 613.22
   L 1058.51 613.28
@@ -3769,7 +3769,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1053.24 613.22
   Q 1053.74 611.32 1053.25 609.94
@@ -3780,7 +3780,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.49 600.19
   L 1052.07 600.43
@@ -3791,7 +3791,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.51 586.71
   L 1051.57 586.68
@@ -3802,7 +3802,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.57 571.60
   L 1052.56 571.84
@@ -3813,7 +3813,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.43 557.88
   L 1052.55 558.00
@@ -3824,7 +3824,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.54 543.10
   Q 1019.63 543.70 1025.75 543.53
@@ -3836,7 +3836,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.41 529.21
   L 1051.93 529.45
@@ -3847,7 +3847,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.36 514.77
   L 1052.01 514.67
@@ -3859,7 +3859,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.37 500.33
   L 1052.59 500.25
@@ -3870,7 +3870,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.38 486.36
   Q 1014.51 485.25 1016.69 485.72
@@ -3884,7 +3884,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.32 471.72
   L 1052.53 472.01
@@ -3895,7 +3895,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.26 459.21
   L 1052.25 459.16
@@ -3906,7 +3906,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.24 443.31
   Q 1016.48 443.81 1020.00 443.82
@@ -3918,7 +3918,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.20 430.26
   L 1052.66 430.23
@@ -3929,7 +3929,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.14 414.40
   L 1051.74 414.68
@@ -3940,7 +3940,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 823.74 411.28
   L 783.65 411.25
@@ -3979,14 +3979,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 824.79 736.97
   L 826.27 736.87"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 826.27 736.87
   L 850.24 737.36
@@ -3995,168 +3995,168 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.12 711.49
   Q 853.09 707.78 852.64 703.53"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.64 703.53
   L 853.02 697.22"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 853.02 697.22
   L 853.12 689.84"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 853.12 689.84
   L 852.95 682.54"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.95 682.54
   L 852.76 675.24"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.76 675.24
   L 852.71 667.89"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.71 667.89
   L 852.69 661.36"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.69 661.36
   L 852.72 654.13"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.72 654.13
   L 852.72 646.14"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.72 646.14
   L 852.57 639.04"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.57 639.04
   L 852.47 630.47"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.47 630.47
   L 852.64 623.94"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.64 623.94
   L 852.65 616.13"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.65 616.13
   L 852.73 609.31"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.73 609.31
   L 852.69 601.58"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.69 601.58
   L 852.63 594.16"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.63 594.16
   L 852.67 586.58"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.67 586.58
   L 852.68 579.70"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.68 579.70
   L 852.72 572.57"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.72 572.57
   L 852.52 564.54"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.52 564.54
   L 852.75 558.24"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.75 558.24
   L 852.87 551.36"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.87 551.36
   L 854.05 544.46"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 854.05 544.46
   Q 854.85 543.44 855.95 543.20
@@ -4164,7 +4164,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.48 542.35
   L 875.11 542.22
@@ -4177,14 +4177,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.46 428.39
   L 868.06 419.33"
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 868.06 419.33
   L 868.15 412.08
@@ -4193,7 +4193,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#51523d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 868.06 419.33
   L 824.60 419.88
@@ -4202,14 +4202,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4b503c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 822.96 415.97
   L 823.74 411.28"
         />
         <path
           stroke="#51523d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.46 428.39
   Q 864.90 426.84 861.50 426.87
@@ -4224,14 +4224,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#454433"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 825.30 732.58
   L 826.27 736.87"
         />
         <path
           stroke="#3b3d2b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 822.96 415.97
   Q 823.25 436.33 822.86 456.70
@@ -4244,7 +4244,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.48 542.35
   L 870.11 537.66
@@ -4257,7 +4257,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.87 551.36
   L 834.24 551.36
@@ -4268,7 +4268,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.52 564.54
   L 834.62 565.07
@@ -4279,7 +4279,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.68 579.70
   L 834.19 579.65
@@ -4290,7 +4290,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.63 594.16
   L 835.07 594.04
@@ -4303,7 +4303,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.73 609.31
   L 835.20 608.92
@@ -4314,7 +4314,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.64 623.94
   L 834.55 623.61
@@ -4325,7 +4325,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.57 639.04
   Q 844.17 638.29 835.22 639.01
@@ -4336,7 +4336,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.72 654.13
   Q 844.37 653.08 835.94 654.26
@@ -4347,7 +4347,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.71 667.89
   L 835.11 668.02
@@ -4358,7 +4358,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.95 682.54
   L 835.00 683.23
@@ -4369,7 +4369,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 853.02 697.22
   L 834.55 697.36
@@ -4380,7 +4380,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.12 711.49
   Q 848.70 712.88 847.03 714.53
@@ -4390,7 +4390,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3c3c28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 467.33 412.85
   C 454.92 411.61 443.04 411.99 420.61 411.91
@@ -4410,7 +4410,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 569.92 459.06
   Q 555.84 459.10 541.70 459.63
@@ -4425,14 +4425,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3322"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 568.08 724.78
   L 573.96 725.01"
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 573.96 725.01
   L 619.80 724.56
@@ -4445,7 +4445,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3322"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 641.84 683.45
   Q 642.10 680.47 642.12 677.48
@@ -4459,7 +4459,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d2b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 641.84 683.45
   C 640.00 689.67 637.97 695.78 633.78 698.54
@@ -4470,7 +4470,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#463727"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 568.08 724.78
   Q 567.37 690.67 567.72 656.50
@@ -4483,70 +4483,70 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3d3b28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.31 601.95
   L 1007.23 595.28"
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.23 595.28
   L 1007.25 586.36"
         />
         <path
           stroke="#3d3b28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.25 586.36
   L 1007.26 580.26"
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.26 580.26
   L 1007.35 572.02"
         />
         <path
           stroke="#3d3b28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.35 572.02
   L 1007.36 563.45"
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.36 563.45
   L 1007.30 529.62"
         />
         <path
           stroke="#3d3b28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.30 529.62
   L 1007.20 522.55"
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.20 522.55
   L 1007.19 514.45"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.19 514.45
   L 1007.27 507.45"
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.27 507.45
   L 1007.45 461.73
@@ -4561,7 +4561,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#745b3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.27 507.45
   Q 1006.37 507.35 1005.87 506.96
@@ -4572,7 +4572,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.20 522.55
   Q 1004.85 521.50 1003.37 522.57
@@ -4581,7 +4581,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.36 563.45
   L 1007.26 564.81
@@ -4594,7 +4594,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.26 580.26
   L 1005.23 579.56
@@ -4605,7 +4605,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.23 595.28
   L 1005.05 594.92
@@ -4616,7 +4616,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 858.79 726.43
   L 859.07 733.10
@@ -4627,42 +4627,42 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.47 724.78
   L 911.25 719.78"
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.25 719.78
   L 910.43 710.62"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 910.43 710.62
   L 909.98 704.35"
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.98 704.35
   L 909.86 698.40"
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.86 698.40
   L 911.40 689.94"
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.40 689.94
   Q 912.02 688.18 914.13 687.65
@@ -4670,7 +4670,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#39321f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 923.05 686.44
   L 954.79 686.46
@@ -4680,7 +4680,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 952.78 639.96
   L 952.71 551.19
@@ -4689,7 +4689,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#39321f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.55 546.37
   Q 928.99 545.21 921.50 545.69
@@ -4707,7 +4707,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4e32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.55 546.37
   C 928.51 548.74 917.24 547.49 908.61 548.27
@@ -4719,7 +4719,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.97 563.34
   C 891.12 564.98 879.25 563.96 871.31 564.11
@@ -4732,7 +4732,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4e32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.03 571.13
   L 901.64 571.45
@@ -4741,7 +4741,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.54 579.11
   Q 887.43 579.49 873.66 579.37
@@ -4754,14 +4754,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4e32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.54 586.75
   Q 897.47 589.75 899.54 593.85"
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.54 593.85
   Q 886.35 594.06 873.05 593.69
@@ -4774,14 +4774,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4e32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.96 601.24
   Q 898.36 605.48 899.50 608.48"
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.50 608.48
   Q 894.71 609.36 892.77 609.30
@@ -4794,14 +4794,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4e32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 904.00 616.03
   Q 898.71 618.50 899.78 623.60"
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.78 623.60
   Q 886.89 623.65 873.52 623.47
@@ -4814,14 +4814,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4e32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 901.28 630.66
   Q 898.54 630.31 899.91 637.86"
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.91 637.86
   L 867.12 638.49
@@ -4833,7 +4833,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4e32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.08 645.47
   C 898.38 647.28 899.09 649.68 899.01 651.83
@@ -4845,14 +4845,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 923.05 686.44
   L 921.44 682.62"
         />
         <path
           stroke="#644b2c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 921.44 682.62
   Q 923.94 682.75 925.57 681.37
@@ -4861,7 +4861,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 927.15 674.62
   Q 934.73 674.74 942.73 674.20
@@ -4872,7 +4872,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#644b2c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 932.48 668.01
   L 936.86 661.51
@@ -4883,7 +4883,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 898.22 668.09
   Q 896.50 668.04 894.68 668.19
@@ -4896,14 +4896,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#644b2c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.10 674.90
   L 899.36 682.02"
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.36 682.02
   L 865.32 682.78
@@ -4914,14 +4914,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#644b2c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.46 689.88
   Q 897.64 693.94 899.62 696.45"
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.62 696.45
   L 865.22 697.30
@@ -4933,14 +4933,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5c472f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.03 703.27
   Q 897.28 709.73 900.22 711.19"
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.22 711.19
   Q 885.76 710.96 870.51 711.05
@@ -4953,70 +4953,70 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5c472f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.40 718.60
   Q 898.85 721.79 898.97 725.82"
         />
         <path
           stroke="#4b3c27"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 898.97 725.82
   L 858.79 726.43"
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.98 704.35
   Q 906.77 702.48 900.03 703.27"
         />
         <path
           stroke="#5e472b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 932.48 668.01
   Q 915.24 668.95 898.22 668.09"
         />
         <path
           stroke="#5e472b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.40 689.94
   Q 905.26 689.09 899.46 689.88"
         />
         <path
           stroke="#5e472b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 927.15 674.62
   L 899.10 674.90"
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 910.43 710.62
   Q 906.66 712.03 900.22 711.19"
         />
         <path
           stroke="#5e472b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.86 698.40
   L 899.62 696.45"
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.25 719.78
   Q 908.09 717.17 900.40 718.60"
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.47 724.78
   Q 911.47 725.53 911.29 726.01
@@ -5025,14 +5025,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e472b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 921.44 682.62
   L 899.36 682.02"
         />
         <path
           stroke="#564a31"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.08 645.47
   L 943.79 645.13
@@ -5043,7 +5043,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#564a31"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 901.28 630.66
   L 946.13 630.51
@@ -5054,7 +5054,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#564a31"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 904.00 616.03
   L 945.41 615.58
@@ -5065,7 +5065,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#564a31"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.96 601.24
   L 945.39 600.39
@@ -5076,7 +5076,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#564a31"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 899.54 586.75
   L 944.99 586.22
@@ -5087,7 +5087,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#564a31"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.03 571.13
   L 943.62 570.62
@@ -5098,7 +5098,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1181.06 564.85
   Q 1178.80 565.77 1178.76 567.76
@@ -5111,126 +5111,126 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1145.41 599.56
   L 1145.79 609.48"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1145.79 609.48
   L 1145.77 612.86"
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1145.77 612.86
   L 1145.57 622.31"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1145.57 622.31
   L 1145.54 626.98"
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1145.54 626.98
   L 1146.42 636.48"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1146.42 636.48
   L 1146.50 641.63"
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1146.50 641.63
   Q 1145.61 647.16 1146.56 652.61"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1146.56 652.61
   L 1146.79 657.39"
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1146.79 657.39
   L 1147.88 666.30"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1147.88 666.30
   L 1148.27 671.59"
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.27 671.59
   L 1148.30 678.26"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.30 678.26
   Q 1147.66 681.72 1148.23 685.46"
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.23 685.46
   L 1148.37 693.09"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.37 693.09
   L 1148.10 700.10"
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.10 700.10
   L 1148.27 707.56"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.27 707.56
   L 1148.10 713.46"
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.10 713.46
   L 1148.06 726.04"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.06 726.04
   L 1147.67 730.48
@@ -5240,7 +5240,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4e3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1181.51 731.22
   L 1182.72 730.29
@@ -5251,14 +5251,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1191.91 681.56
   Q 1195.35 663.45 1197.32 645.25"
         />
         <path
           stroke="#4c4e3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1197.32 645.25
   Q 1200.26 639.09 1206.88 640.88
@@ -5267,77 +5267,77 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1209.96 646.41
   L 1211.40 652.05"
         />
         <path
           stroke="#4c4e3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1211.40 652.05
   L 1212.70 659.48"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1212.70 659.48
   L 1213.54 662.92"
         />
         <path
           stroke="#4c4e3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1213.54 662.92
   L 1215.53 672.18"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1215.53 672.18
   L 1217.04 678.78"
         />
         <path
           stroke="#4c4e3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1217.04 678.78
   L 1221.32 699.27"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1221.32 699.27
   L 1223.20 706.66"
         />
         <path
           stroke="#4c4e3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1223.20 706.66
   L 1224.46 712.70"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1224.46 712.70
   L 1226.10 720.36"
         />
         <path
           stroke="#4c4e3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1226.10 720.36
   L 1227.19 725.74"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1227.19 725.74
   L 1227.14 731.51
@@ -5347,7 +5347,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4e3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1252.53 732.26
   L 1261.11 734.64
@@ -5360,14 +5360,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1231.69 579.84
   Q 1230.54 576.36 1230.71 572.89"
         />
         <path
           stroke="#4c4e3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1230.71 572.89
   Q 1231.50 569.64 1230.74 566.20
@@ -5376,7 +5376,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#606150"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1230.71 572.89
   Q 1213.57 573.01 1196.50 572.97
@@ -5386,7 +5386,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#606150"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1231.69 579.84
   Q 1211.28 579.95 1190.63 579.89
@@ -5403,7 +5403,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.06 726.04
   L 1148.64 722.96
@@ -5417,7 +5417,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.27 707.56
   L 1167.15 707.61
@@ -5428,7 +5428,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.37 693.09
   L 1167.84 694.13
@@ -5439,7 +5439,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.30 678.26
   L 1166.63 678.82
@@ -5450,7 +5450,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1147.88 666.30
   Q 1147.57 664.29 1148.96 664.34
@@ -5462,7 +5462,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1146.56 652.61
   Q 1147.07 651.08 1149.51 651.01
@@ -5475,7 +5475,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1146.42 636.48
   Q 1156.36 635.62 1167.36 636.58
@@ -5486,7 +5486,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1145.57 622.31
   Q 1145.56 620.73 1146.26 619.96
@@ -5499,7 +5499,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1145.79 609.48
   Q 1145.82 607.65 1146.99 607.54
@@ -5513,7 +5513,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1252.53 732.26
   L 1253.53 729.54
@@ -5523,7 +5523,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1226.10 720.36
   L 1252.74 720.21
@@ -5534,7 +5534,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1223.20 706.66
   L 1253.69 706.25
@@ -5545,7 +5545,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1217.04 678.78
   Q 1234.41 680.26 1252.34 679.30
@@ -5556,7 +5556,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1213.54 662.92
   L 1215.25 665.18
@@ -5569,7 +5569,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1211.40 652.05
   Q 1211.75 651.55 1212.09 651.72
@@ -5585,7 +5585,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6c6f5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1197.32 645.25
   L 1189.41 645.89
@@ -5604,7 +5604,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 289.35 584.69
   A 1.97 1.97 0.0 0 0 291.22 586.67
@@ -5618,7 +5618,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e321c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 163.09 578.22
   Q 162.52 577.94 161.25 578.01
@@ -5635,14 +5635,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#332b17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 136.03 710.83
   Q 139.43 712.89 139.58 716.99"
         />
         <path
           stroke="#413721"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 139.58 716.99
   L 139.56 723.54
@@ -5651,7 +5651,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4529"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 166.04 725.06
   Q 170.98 725.01 175.94 725.00
@@ -5662,7 +5662,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#573c22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 202.05 743.57
   L 226.46 743.73
@@ -5672,14 +5672,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3d3b28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 225.84 595.26
   L 225.81 585.88"
         />
         <path
           stroke="#5d4529"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 225.81 585.88
   Q 226.15 583.06 225.36 580.72
@@ -5690,7 +5690,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a5b3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 225.81 585.88
   L 224.66 587.04
@@ -5703,14 +5703,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.92 594.13
   L 215.78 601.21"
         />
         <path
           stroke="#7a5b3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 215.78 601.21
   L 175.42 601.31
@@ -5721,14 +5721,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 219.25 607.59
   Q 218.71 611.06 216.71 614.34"
         />
         <path
           stroke="#805939"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 216.71 614.34
   L 174.18 614.39
@@ -5739,14 +5739,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.97 621.08
   Q 215.89 624.50 214.98 628.15"
         />
         <path
           stroke="#805939"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.98 628.15
   L 175.20 628.23
@@ -5757,14 +5757,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 211.62 635.06
   Q 215.89 637.70 213.94 641.60"
         />
         <path
           stroke="#7a5b3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 213.94 641.60
   L 174.17 641.84
@@ -5775,14 +5775,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.45 648.20
   L 214.19 655.60"
         />
         <path
           stroke="#805939"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.19 655.60
   L 173.78 655.78
@@ -5793,14 +5793,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.87 662.05
   L 215.03 669.17"
         />
         <path
           stroke="#805939"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 215.03 669.17
   L 174.95 669.36
@@ -5811,14 +5811,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.21 675.94
   Q 214.52 679.13 213.52 682.23"
         />
         <path
           stroke="#805939"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 213.52 682.23
   L 174.09 682.38
@@ -5829,14 +5829,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.96 689.29
   L 214.02 696.34"
         />
         <path
           stroke="#805939"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.02 696.34
   L 174.56 696.32
@@ -5847,14 +5847,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.92 703.20
   Q 216.20 708.19 211.68 710.59"
         />
         <path
           stroke="#805939"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 211.68 710.59
   C 204.20 710.45 195.44 709.83 189.10 710.12
@@ -5866,7 +5866,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#945d35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.95 716.56
   L 217.79 717.14
@@ -5877,7 +5877,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7e5834"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 166.04 725.06
   Q 165.78 724.43 165.79 724.23
@@ -5888,14 +5888,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7b5230"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 163.44 580.37
   Q 163.56 579.60 163.09 578.22"
         />
         <path
           stroke="#7a5132"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.95 716.56
   Q 217.12 715.05 217.68 713.27
@@ -5904,7 +5904,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a5132"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.92 703.20
   L 218.99 702.72
@@ -5915,7 +5915,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a5132"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.96 689.29
   L 218.36 689.24
@@ -5926,7 +5926,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a5132"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.21 675.94
   L 217.90 675.67
@@ -5937,7 +5937,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a5132"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.87 662.05
   Q 216.90 661.65 218.57 661.25
@@ -5948,7 +5948,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#745335"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.45 648.20
   Q 216.65 648.41 218.66 647.88
@@ -5959,7 +5959,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a5132"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 211.62 635.06
   L 218.42 634.89
@@ -5970,7 +5970,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a5132"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.97 621.08
   Q 217.10 621.25 219.09 620.62
@@ -5981,7 +5981,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#745335"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 219.25 607.59
   C 220.62 606.47 220.54 603.54 219.86 601.94
@@ -5990,14 +5990,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e4528"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 163.44 580.37
   Q 160.25 608.17 155.02 635.51"
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 155.02 635.51
   Q 156.35 632.10 155.54 628.69
@@ -6011,7 +6011,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e4528"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 140.41 635.71
   Q 139.14 638.22 139.43 640.97
@@ -6020,7 +6020,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 146.80 641.76
   L 115.46 642.22
@@ -6031,14 +6031,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e4528"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 134.57 648.92
   C 133.92 652.08 136.04 653.97 138.84 655.13"
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 138.84 655.13
   L 115.89 655.08
@@ -6049,7 +6049,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e4528"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 136.24 662.59
   L 134.74 664.46
@@ -6058,7 +6058,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 138.06 669.24
   L 112.91 670.54
@@ -6069,14 +6069,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e4528"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 132.00 676.29
   Q 130.35 679.70 133.28 682.51"
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 133.28 682.51
   L 116.46 683.06
@@ -6087,14 +6087,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e4528"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 151.76 690.05
   Q 148.24 692.75 150.76 696.26"
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 150.76 696.26
   L 115.47 696.62
@@ -6105,7 +6105,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e4528"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 141.02 703.83
   Q 137.55 704.03 134.68 705.31
@@ -6114,14 +6114,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 141.72 710.31
   L 136.03 710.83"
         />
         <path
           stroke="#533e23"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 139.58 716.99
   L 155.54 717.10
@@ -6132,7 +6132,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#533e23"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 141.02 703.83
   L 155.12 703.44
@@ -6143,7 +6143,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#533e23"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 151.76 690.05
   L 154.81 689.74
@@ -6154,7 +6154,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#533e23"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 132.00 676.29
   L 154.30 676.12
@@ -6165,7 +6165,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#533e23"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 136.24 662.59
   L 154.19 662.34
@@ -6176,7 +6176,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#533e23"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 134.57 648.92
   L 153.57 648.54
@@ -6187,21 +6187,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#533e23"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 140.41 635.71
   L 155.02 635.51"
         />
         <path
           stroke="#745335"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 225.84 595.26
   Q 222.67 592.99 214.92 594.13"
         />
         <path
           stroke="#564d3a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 288.33 601.49
   Q 289.89 601.90 290.48 601.90
@@ -6213,7 +6213,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 287.50 592.60
   Q 279.54 591.79 270.29 592.40
@@ -6224,21 +6224,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#675a45"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 287.50 592.60
   L 288.33 601.49"
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1065.20 600.35
   Q 1064.77 611.27 1066.01 622.79"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1066.01 622.79
   L 1066.38 691.56
@@ -6247,7 +6247,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4529"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1086.92 691.95
   L 1113.24 692.25
@@ -6256,7 +6256,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1113.97 621.96
   Q 1113.07 615.25 1112.10 607.72
@@ -6264,7 +6264,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#625439"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1109.33 600.31
   Q 1110.10 597.62 1108.94 595.29
@@ -6273,7 +6273,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1090.35 593.71
   L 1066.00 593.68
@@ -6282,28 +6282,28 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#86704c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1090.35 593.71
   L 1090.36 600.48"
         />
         <path
           stroke="#4e4932"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1090.36 600.48
   L 1065.20 600.35"
         />
         <path
           stroke="#674d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1113.97 621.96
   L 1088.54 622.02"
         />
         <path
           stroke="#4d412f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1088.54 622.02
   Q 1083.80 622.06 1075.75 622.97
@@ -6311,14 +6311,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6c5d43"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1109.33 600.31
   L 1090.36 600.48"
         />
         <path
           stroke="#805939"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1086.92 691.95
   Q 1088.78 687.34 1088.80 679.00
@@ -6326,7 +6326,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 249.24 731.47
   Q 249.12 722.50 249.07 712.30
@@ -6348,7 +6348,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 300.14 727.99
   L 300.76 769.74
@@ -6361,7 +6361,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 326.99 736.04
   Q 327.07 725.05 327.08 714.25
@@ -6381,14 +6381,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#735f3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 326.99 736.04
   Q 314.07 730.15 300.14 727.99"
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 461.71 611.19
   Q 455.41 611.29 449.58 611.51
@@ -6399,7 +6399,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 462.72 624.99
   L 499.61 624.71
@@ -6411,14 +6411,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#554e34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 462.72 624.99
   L 461.71 611.19"
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1009.07 671.34
   L 1023.12 671.93
@@ -6427,7 +6427,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#573c22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1023.88 660.29
   Q 1024.01 647.18 1024.13 634.06
@@ -6435,14 +6435,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1025.93 628.87
   Q 1030.14 626.56 1035.44 627.79"
         />
         <path
           stroke="#7b613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1035.44 627.79
   L 1057.15 628.00
@@ -6453,14 +6453,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.46 618.34
   L 1008.51 618.28"
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1008.51 618.28
   Q 997.91 618.21 985.15 619.72
@@ -6476,7 +6476,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9b754c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1008.51 618.28
   Q 1008.09 621.27 1008.07 624.75
@@ -6485,7 +6485,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#cb9a69"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1014.46 618.34
   Q 1013.72 618.55 1013.75 618.95
@@ -6501,7 +6501,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#a6754c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1025.93 628.87
   Q 1024.18 625.81 1020.24 627.23
@@ -6513,7 +6513,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1504.5794 622.4555
   A 1.92 1.92 0.0 0 0 1502.6561 620.5388
@@ -6527,7 +6527,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3d3b28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 404.06 688.64
   C 411.88 688.07 420.60 688.69 428.47 688.38
@@ -6546,7 +6546,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#534325"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1057.59 634.77
   Q 1047.08 634.39 1033.58 634.95
@@ -6562,21 +6562,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#75613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1196.77 732.23
   Q 1197.23 732.22 1197.43 732.33"
         />
         <path
           stroke="#59482d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1197.43 732.33
   C 1204.93 731.97 1209.35 731.99 1216.12 733.67"
         />
         <path
           stroke="#75613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1216.12 733.67
   Q 1217.65 738.07 1222.61 736.66
@@ -6585,7 +6585,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7e6b4d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1222.05 732.56
   Q 1215.88 701.06 1209.22 670.10
@@ -6597,7 +6597,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#d2a877"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1222.05 732.56
   Q 1217.66 718.90 1214.88 704.87
@@ -6615,7 +6615,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#ae8557"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1216.12 733.67
   C 1215.91 730.92 1210.69 730.01 1209.18 729.81
@@ -6636,7 +6636,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#564d3a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 97.1590 652.3754
   A 1.46 1.46 0.0 0 0 95.6964 650.9179
@@ -6650,7 +6650,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1127.03 669.70
   L 1122.50 669.67
@@ -6661,7 +6661,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1128.81 693.35
   L 1134.84 696.76
@@ -6674,7 +6674,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1141.55 731.64
   L 1142.35 731.64
@@ -6685,14 +6685,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1140.57 669.41
   Q 1133.76 668.06 1127.03 669.70"
         />
         <path
           stroke="#564a31"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1140.57 669.41
   Q 1139.48 669.34 1138.82 669.66
@@ -6704,7 +6704,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e472b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1128.81 693.35
   L 1128.38 670.31
@@ -6713,7 +6713,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#413721"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1022.39 676.79
   Q 1018.96 677.50 1015.42 677.34
@@ -6730,7 +6730,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#75613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1455.89 701.15
   L 1455.89 692.26
@@ -6744,28 +6744,28 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 949.69 737.49
   L 952.26 743.16"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 952.26 743.16
   L 952.76 749.55"
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 952.76 749.55
   L 952.90 759.96"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 952.90 759.96
   L 952.83 793.62
@@ -6783,14 +6783,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#353728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 993.85 698.21
   C 991.83 697.54 989.14 697.40 988.08 695.26"
         />
         <path
           stroke="#393d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 988.08 695.26
   C 986.89 691.74 983.67 692.11 980.00 692.16
@@ -6803,7 +6803,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4d4f3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 988.08 695.26
   Q 987.61 699.90 987.59 702.82
@@ -6817,7 +6817,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4d4f3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 952.90 759.96
   L 952.97 753.62
@@ -6833,7 +6833,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#494a36"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 952.26 743.16
   L 980.71 743.25
@@ -6844,7 +6844,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 21.46 758.38
   Q 25.41 761.14 27.34 758.34
@@ -6852,14 +6852,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7e6b4d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 30.05 756.76
   Q 35.96 755.48 41.60 758.05"
         />
         <path
           stroke="#625439"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 41.60 758.05
   Q 45.94 761.16 48.32 766.25
@@ -6869,7 +6869,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7e6b4d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 62.05 767.97
   Q 61.41 763.05 61.40 761.75
@@ -6883,21 +6883,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#907954"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 93.95 694.80
   L 28.52 694.97"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 28.52 694.97
   Q 25.13 693.50 22.17 694.11"
         />
         <path
           stroke="#7e6b4d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 22.17 694.11
   Q 16.78 693.37 12.38 695.50
@@ -6909,7 +6909,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#ad8a62"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 22.17 694.11
   Q 22.25 697.69 21.54 706.50
@@ -6920,14 +6920,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#bf9869"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 28.52 694.97
   Q 28.63 695.78 28.49 695.94"
         />
         <path
           stroke="#ad8a62"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 28.49 695.94
   Q 28.20 697.68 28.19 698.75
@@ -6937,7 +6937,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#c09b71"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 62.05 767.97
   Q 62.14 769.14 61.84 769.74
@@ -6955,7 +6955,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#edc08c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 93.95 694.80
   Q 94.74 695.99 90.72 695.96
@@ -6963,7 +6963,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7b613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 369.01 705.90
   Q 373.60 707.68 375.39 711.34
@@ -6974,14 +6974,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 386.51 761.42
   C 391.26 765.24 392.00 769.75 392.07 775.53"
         />
         <path
           stroke="#59482d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 392.07 775.53
   Q 392.42 785.67 391.78 795.75
@@ -6997,7 +6997,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7b613f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 430.36 777.49
   L 433.38 777.37
@@ -7012,7 +7012,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4529"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 369.74 694.50
   L 354.30 694.66
@@ -7023,7 +7023,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b88252"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 369.74 694.50
   L 369.30 694.79
@@ -7034,7 +7034,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b48556"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 430.36 777.49
   Q 429.30 776.45 431.83 776.06
@@ -7049,7 +7049,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#cb9a69"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 400.18 761.97
   Q 394.04 760.16 387.94 760.09
@@ -7058,7 +7058,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#a98157"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 392.07 775.53
   Q 392.08 776.37 392.31 776.85
@@ -7071,7 +7071,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#625439"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1130.82 731.41
   L 1129.78 701.85
@@ -7091,7 +7091,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1052.86 700.43
   L 1021.69 700.34
@@ -7102,7 +7102,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1053.60 720.32
   L 1075.25 720.27
@@ -7113,14 +7113,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1053.60 720.32
   Q 1052.42 710.73 1052.86 700.43"
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 269.17 784.74
   C 272.22 779.36 279.88 778.46 286.09 778.82
@@ -7142,7 +7142,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1429.60 764.58
   C 1435.15 764.51 1443.65 764.09 1445.85 770.74
@@ -7161,7 +7161,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2a2d1f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1427.40 709.03
   L 1398.24 709.25
@@ -7174,14 +7174,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4a4d3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1427.40 709.03
   L 1429.60 764.58"
         />
         <path
           stroke="#3e321c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 658.89 711.24
   L 627.89 711.83
@@ -7197,7 +7197,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#614d2d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 658.94 781.81
   Q 669.38 781.88 680.19 782.02
@@ -7209,14 +7209,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7f5a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 658.94 781.81
   L 658.89 711.24"
         />
         <path
           stroke="#614d2d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 351.55 761.02
   L 369.18 761.11
@@ -7227,7 +7227,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 351.57 712.14
   L 334.34 712.66
@@ -7238,14 +7238,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d653a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 351.57 712.14
   L 351.55 761.02"
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 95.22 716.69
   Q 84.01 716.18 72.02 716.75
@@ -7259,7 +7259,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 95.70 774.57
   Q 97.78 777.91 100.06 781.20
@@ -7267,7 +7267,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#322e1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 102.30 788.99
   Q 102.69 790.63 103.75 790.81
@@ -7277,56 +7277,56 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#413721"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 119.55 785.74
   Q 118.66 780.67 120.92 776.19"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 120.92 776.19
   L 124.51 772.41"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 124.51 772.41
   L 133.28 766.21"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 133.28 766.21
   L 132.75 759.95"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 132.75 759.95
   L 132.77 754.37"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 132.77 754.37
   L 132.70 747.61"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 132.70 747.61
   L 132.84 742.74"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 132.84 742.74
   L 132.57 717.38
@@ -7335,7 +7335,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#72583a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 132.84 742.74
   L 104.81 742.19
@@ -7346,7 +7346,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#72583a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 132.77 754.37
   L 105.46 754.36
@@ -7359,7 +7359,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#72583a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 133.28 766.21
   L 104.65 766.63
@@ -7370,7 +7370,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705636"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 120.92 776.19
   Q 117.56 779.11 113.12 779.38
@@ -7384,14 +7384,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#614d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 110.18 787.84
   Q 106.00 789.17 102.30 788.99"
         />
         <path
           stroke="#614d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 95.70 774.57
   Q 96.13 771.22 96.11 769.25
@@ -7401,21 +7401,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#534129"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 119.55 785.74
   Q 115.51 788.58 110.18 787.84"
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1022.26 732.31
   L 1021.78 737.08"
         />
         <path
           stroke="#3a3322"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1021.78 737.08
   L 1021.30 791.73
@@ -7434,7 +7434,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#564d3a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1102.23 802.00
   Q 1105.25 801.59 1107.42 801.71
@@ -7443,14 +7443,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1131.06 805.48
   L 1132.69 806.77"
         />
         <path
           stroke="#564d3a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1132.69 806.77
   Q 1135.66 810.08 1139.07 811.43
@@ -7471,7 +7471,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3d3b28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1208.74 797.30
   Q 1211.56 797.63 1213.08 796.63
@@ -7482,21 +7482,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#564d3a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1208.22 738.48
   L 1101.68 738.96"
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1101.68 738.96
   L 1098.07 732.32"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1098.07 732.32
   Q 1098.28 729.07 1097.71 727.17
@@ -7507,7 +7507,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#503d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1098.07 732.32
   Q 1091.82 732.67 1085.60 732.44
@@ -7516,14 +7516,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#63513e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1101.68 738.96
   Q 1101.61 739.25 1101.36 739.50"
         />
         <path
           stroke="#463727"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1101.36 739.50
   L 1100.25 739.23
@@ -7532,14 +7532,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1208.22 738.48
   L 1208.74 797.30"
         />
         <path
           stroke="#7a694d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1132.69 806.77
   Q 1137.01 804.01 1135.88 800.51
@@ -7550,7 +7550,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705b47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1101.36 739.50
   Q 1101.11 741.24 1101.10 743.01
@@ -7559,21 +7559,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 728.69 793.15
   L 732.96 792.83"
         />
         <path
           stroke="#573c22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 732.96 792.83
   L 739.05 793.12"
         />
         <path
           stroke="#3e321c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 739.05 793.12
   Q 742.96 793.23 747.50 793.41
@@ -7585,7 +7585,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#573c22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 766.77 775.58
   Q 766.64 759.01 766.91 743.37
@@ -7593,7 +7593,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 769.75 737.73
   L 775.08 736.86
@@ -7602,7 +7602,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#573c22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 769.96 728.28
   Q 767.36 727.82 764.50 727.84
@@ -7610,14 +7610,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.83 728.23
   L 731.72 728.25"
         />
         <path
           stroke="#332b17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 731.72 728.25
   Q 719.73 728.09 707.75 728.35
@@ -7632,7 +7632,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3f301c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 731.72 728.25
   Q 730.00 734.65 729.97 741.03
@@ -7640,14 +7640,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e472b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 769.96 728.28
   L 769.75 737.73"
         />
         <path
           stroke="#744a29"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 766.77 775.58
   Q 762.69 774.36 757.82 773.94
@@ -7658,7 +7658,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#634126"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 732.96 792.83
   Q 732.82 761.44 733.01 730.25
@@ -7666,14 +7666,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#614d2d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 593.95 730.27
   L 481.22 730.42"
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 481.22 730.42
   Q 460.98 730.33 441.23 731.76
@@ -7686,7 +7686,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#39321f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 471.40 765.39
   Q 476.75 767.28 479.20 763.22
@@ -7696,7 +7696,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#614d2d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 517.31 760.29
   L 518.93 763.18
@@ -7713,7 +7713,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e321c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 593.82 753.90
   L 619.94 753.34
@@ -7724,7 +7724,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7f5a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 593.82 753.90
   Q 593.70 752.92 592.82 752.87
@@ -7737,7 +7737,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a5b37"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 517.31 760.29
   C 517.44 754.53 516.53 748.73 511.13 745.62
@@ -7746,14 +7746,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#84613d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 481.22 730.42
   Q 480.39 736.34 482.14 740.18"
         />
         <path
           stroke="#5c472f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 482.14 740.18
   Q 475.81 741.12 473.90 747.61
@@ -7763,14 +7763,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 139.13 740.59
   L 139.19 745.96"
         />
         <path
           stroke="#4f432a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 139.19 745.96
   Q 139.91 755.10 138.97 763.89
@@ -7785,7 +7785,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#72583a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 139.19 745.96
   Q 151.32 746.64 164.68 745.84
@@ -7796,7 +7796,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#414532"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1219.50 795.87
   Q 1229.53 796.81 1232.70 796.95
@@ -7817,7 +7817,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#51472c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 249.78 742.43
   L 249.61 739.80
@@ -7831,7 +7831,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#59482d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 888.68 812.26
   Q 892.85 812.65 896.12 812.67
@@ -7851,7 +7851,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 888.05 740.96
   L 860.45 739.80
@@ -7866,14 +7866,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705336"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 888.05 740.96
   L 888.68 812.26"
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1301.26 784.71
   A 1.49 1.48 -76.1 0 1 1299.75 785.63
@@ -7914,7 +7914,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e321c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 791.37 782.26
   Q 796.72 785.78 800.58 791.40
@@ -7924,7 +7924,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#573c22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 807.51 796.46
   Q 811.66 793.68 815.54 792.02
@@ -7942,7 +7942,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#744a29"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 807.51 796.46
   Q 805.71 789.00 800.74 784.73
@@ -7950,7 +7950,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 227.05 794.96
   Q 231.07 799.86 229.77 803.27
@@ -7961,7 +7961,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#59482d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 241.70 794.82
   Q 245.33 793.06 249.75 793.36
@@ -7971,7 +7971,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 258.72 793.47
   Q 260.05 793.61 261.26 793.19
@@ -7983,7 +7983,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#59482d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 258.13 749.91
   L 183.06 750.14
@@ -7998,7 +7998,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#85613a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 258.13 749.91
   Q 258.01 765.89 257.74 781.67
@@ -8006,14 +8006,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c5d3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 241.70 794.82
   L 227.05 794.96"
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 578.59 760.20
   Q 561.52 759.87 544.19 760.40
@@ -8027,7 +8027,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#444028"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 579.90 784.01
   Q 583.63 786.89 584.39 788.62
@@ -8043,14 +8043,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#554e34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 579.90 784.01
   L 578.59 760.20"
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 362.97 834.27
   L 365.83 839.66
@@ -8060,7 +8060,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d2a16"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 398.23 849.36
   L 399.34 859.69
@@ -8073,7 +8073,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#393119"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 431.04 906.94
   Q 441.17 903.79 449.90 898.95
@@ -8097,7 +8097,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d2a16"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 433.05 856.07
   Q 427.45 855.16 420.72 855.11
@@ -8107,7 +8107,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 406.79 850.90
   Q 422.99 850.20 428.60 850.47
@@ -8121,7 +8121,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.74 813.94
   L 576.56 814.24
@@ -8163,7 +8163,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3d1c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.74 813.94
   Q 553.04 805.41 545.76 801.69
@@ -8187,21 +8187,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#363318"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 406.79 850.90
   L 398.23 849.36"
         />
         <path
           stroke="#46371a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 433.05 856.07
   L 431.04 906.94"
         />
         <path
           stroke="#614d2d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 346.14 768.51
   L 348.93 775.35
@@ -8221,7 +8221,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 274.95 818.29
   C 282.58 818.52 291.05 818.06 297.73 818.24
@@ -8237,7 +8237,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 344.15 802.53
   C 344.89 793.43 345.02 783.75 342.58 774.89
@@ -8260,7 +8260,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3d1c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 344.15 802.53
   C 341.82 800.75 339.46 798.04 337.10 796.87
@@ -8270,7 +8270,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 128.31 777.59
   C 127.81 781.95 127.04 791.43 132.97 791.67
@@ -8289,7 +8289,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3c3c28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1441.13 811.97
   L 1439.77 773.26
@@ -8309,14 +8309,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 872.36 824.71
   Q 869.37 825.34 867.12 824.70"
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.12 824.70
   Q 863.97 816.32 855.21 815.26
@@ -8333,7 +8333,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.15 797.68
   C 755.15 804.47 755.37 810.22 755.32 819.87
@@ -8361,7 +8361,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1030.63 846.35
   C 1031.86 837.02 1034.11 829.18 1043.21 825.20
@@ -8389,7 +8389,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3d1c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1030.63 846.35
   Q 1026.36 840.14 1019.81 838.44
@@ -8413,7 +8413,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3d1c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.12 824.70
   L 866.34 830.24
@@ -8442,7 +8442,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 749.25 843.79
   Q 749.05 816.77 748.74 804.80
@@ -8471,7 +8471,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#292d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1277.96 864.17
   Q 1296.92 864.52 1315.86 863.94
@@ -8491,7 +8491,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1447.01 834.49
   Q 1449.27 833.16 1450.64 831.59
@@ -8528,7 +8528,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3d1c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1447.01 834.49
   C 1442.27 835.70 1436.49 836.18 1432.46 837.85
@@ -8550,7 +8550,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 206.01 839.63
   Q 206.34 836.95 205.10 828.78
@@ -8578,7 +8578,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1261.53 799.75
   Q 1261.56 799.89 1261.52 800.06
@@ -8611,7 +8611,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 199.73 802.66
   A 0.36 0.35 -46.1 0 0 199.74 803.32
@@ -8625,7 +8625,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 111.26 879.87
   A 0.28 0.28 0.0 0 0 111.60 879.60
@@ -8650,7 +8650,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#383423"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 582.19 812.07
   A 2.08 2.08 0.0 0 0 584.24 814.53
@@ -8664,7 +8664,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#31341a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1076.84 904.13
   Q 1076.64 892.90 1076.04 880.97
@@ -8714,7 +8714,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#332b17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 582.22 820.63
   Q 568.45 820.93 554.75 820.45
@@ -8726,7 +8726,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e321c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 582.53 855.14
   Q 586.24 856.39 587.23 858.83
@@ -8748,7 +8748,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 582.53 855.14
   Q 581.94 851.99 581.98 850.39
@@ -8756,7 +8756,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 335.00 840.53
   Q 334.82 834.99 334.23 830.81
@@ -8770,7 +8770,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#372f1e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 214.47 828.59
   A 2.90 2.89 79.5 0 0 212.68 831.21
@@ -8787,7 +8787,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 234.23 898.22
   Q 238.60 898.60 244.00 898.29
@@ -8811,7 +8811,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#332b17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 232.94 847.38
   C 226.40 846.11 220.28 847.61 213.07 847.41
@@ -8834,7 +8834,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5e4424"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 232.94 847.38
   Q 232.91 870.70 232.81 894.13
@@ -8842,7 +8842,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#59482d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 654.72 919.00
   Q 654.98 916.19 654.75 889.75
@@ -8859,7 +8859,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.69 915.19
   A 1.19 1.19 0.0 0 0 817.00 914.04
@@ -8890,7 +8890,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1048.52 871.82
   Q 1038.45 864.62 1029.46 857.34
@@ -8908,7 +8908,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#534325"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1360.57 865.63
   L 1366.48 865.53
@@ -8934,7 +8934,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#413721"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1105.64 903.98
   C 1112.00 904.64 1113.56 907.90 1113.67 914.11
@@ -8957,7 +8957,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#332b17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1105.78 858.08
   Q 1098.57 857.58 1090.73 858.18
@@ -8968,14 +8968,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#533e23"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1105.78 858.08
   L 1105.64 903.98"
         />
         <path
           stroke="#3e321c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 860.15 925.74
   Q 864.50 926.13 868.71 924.18
@@ -8994,7 +8994,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2d291a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1259.13 872.09
   L 1192.87 872.27
@@ -9008,7 +9008,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1259.64 911.72
   Q 1265.18 911.87 1270.51 910.55
@@ -9028,14 +9028,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#503d2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1259.64 911.72
   L 1259.13 872.09"
         />
         <path
           stroke="#534325"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 349.96 906.55
   L 398.18 906.52
@@ -9048,7 +9048,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#433925"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 346.67 872.03
   L 314.79 872.02
@@ -9065,7 +9065,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#765735"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 346.67 872.03
   Q 347.22 873.47 348.54 874.66
@@ -9076,7 +9076,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e321c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 110.20 887.95
   L 83.60 889.00
@@ -9089,7 +9089,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 112.26 927.57
   Q 122.97 932.06 129.40 936.35
@@ -9097,7 +9097,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#393119"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 154.16 948.64
   Q 159.20 951.66 164.10 949.32
@@ -9138,7 +9138,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c3d22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 162.81 939.75
   L 162.02 927.87
@@ -9152,14 +9152,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#644a26"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 162.81 939.75
   Q 157.80 943.67 154.16 948.64"
         />
         <path
           stroke="#694a29"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 112.26 927.57
   C 110.39 920.52 110.91 913.56 110.88 906.56
@@ -9167,7 +9167,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#313221"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.06 923.19
   L 852.06 893.86
@@ -9181,7 +9181,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#39321f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 322.81 930.94
   C 319.10 928.15 314.88 926.32 310.51 924.27
@@ -9201,7 +9201,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 744.7518 226.6075
   A 1.38 1.38 0.0 0 0 743.3863 225.2131
@@ -9215,7 +9215,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.61 226.25
   L 751.65 229.59
@@ -9229,7 +9229,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 765.65 264.64
   Q 768.59 264.74 770.32 264.27
@@ -9245,7 +9245,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.1532 248.2790
   A 2.13 2.13 0.0 0 0 745.0721 246.1012
@@ -9259,7 +9259,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 753.24 264.73
   L 757.60 264.73
@@ -9273,7 +9273,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.0632 257.1866
   A 1.65 1.65 0.0 0 0 745.4075 255.5423
@@ -9287,7 +9287,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.0819 268.0267
   A 2.05 2.05 0.0 0 0 745.0790 265.9307
@@ -9301,7 +9301,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 771.9135 267.7679
   A 1.55 1.55 0.0 0 0 770.3798 266.2017
@@ -9315,7 +9315,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.4422 268.0201
   A 1.44 1.44 0.0 0 0 758.0559 266.5283
@@ -9329,7 +9329,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.9652 276.3329
   A 1.64 1.64 0.0 0 0 745.3570 274.6617
@@ -9343,7 +9343,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 770.56 274.76
   L 766.25 274.55
@@ -9357,7 +9357,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 757.73 274.96
   L 753.51 274.87
@@ -9371,7 +9371,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 770.58 285.35
   L 766.60 285.37
@@ -9385,7 +9385,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.9959 287.0724
   A 1.64 1.64 0.0 0 0 745.3360 285.4525
@@ -9399,7 +9399,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.4518 287.5177
   A 1.80 1.80 0.0 0 0 757.6739 285.6958
@@ -9413,7 +9413,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.6076 297.8154
   A 1.61 1.61 0.0 0 0 758.0117 296.1914
@@ -9427,7 +9427,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.0331 297.8762
   A 1.66 1.66 0.0 0 0 745.3673 296.2220
@@ -9441,7 +9441,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 764.75 297.33
   L 764.83 302.41
@@ -9455,7 +9455,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.0518 309.9350
   A 1.79 1.79 0.0 0 0 745.2370 308.1702
@@ -9469,7 +9469,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.41 309.74
   L 751.59 314.77
@@ -9483,7 +9483,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 772.04 310.32
   A 1.95 1.95 0.0 0 0 770.09 308.37
@@ -9497,7 +9497,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.8766 321.2129
   A 2.19 2.19 0.0 0 0 744.6263 319.0849
@@ -9511,7 +9511,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.1530 321.3154
   A 2.03 2.03 0.0 0 0 757.1054 319.3032
@@ -9525,7 +9525,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 772.4642 321.6059
   A 2.14 2.14 0.0 0 0 770.2835 319.5073
@@ -9539,7 +9539,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5c472f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 720.3032 248.0466
   A 1.30 1.30 0.0 0 0 719.0377 246.7130
@@ -9553,7 +9553,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4732"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.8912 248.7237
   A 1.68 1.68 0.0 0 0 704.2141 247.0407
@@ -9567,7 +9567,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 720.4201 267.2305
   A 1.25 1.25 0.0 0 0 719.1921 265.9589
@@ -9581,7 +9581,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 720.0194 275.7876
   A 1.02 1.02 0.0 0 0 718.9870 274.7801
@@ -9595,7 +9595,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 719.8859 287.1800
   A 1.19 1.19 0.0 0 0 718.6631 286.0237
@@ -9609,7 +9609,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 719.8705 297.3012
   A 1.09 1.09 0.0 0 0 718.7767 296.2150
@@ -9623,7 +9623,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 719.97 314.76
   L 720.03 309.54
@@ -9637,7 +9637,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 706.6171 321.5165
   A 1.66 1.66 0.0 0 0 704.9922 319.8221
@@ -9651,7 +9651,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 719.6936 320.8971
   A 1.02 1.02 0.0 0 0 718.6524 319.8987
@@ -9665,7 +9665,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.9094 333.6596
   A 0.93 0.93 0.0 0 0 705.0588 332.6565
@@ -9679,7 +9679,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 785.29 345.95
   A 0.82 0.81 -3.1 0 0 784.48 345.23
@@ -9692,7 +9692,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#98764f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 723.1214 346.8007
   A 1.70 1.70 0.0 0 0 721.3432 345.1826
@@ -9706,7 +9706,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#997d52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.51 345.36
   L 727.91 345.34
@@ -9720,7 +9720,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 739.29 346.97
   L 739.54 351.95
@@ -9734,7 +9734,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d714d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.25 347.26
   L 751.31 351.63
@@ -9748,7 +9748,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 771.21 345.29
   L 764.97 345.27
@@ -9762,7 +9762,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 726.82 361.11
   L 726.88 365.59
@@ -9776,7 +9776,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.4272 361.9406
   A 1.68 1.68 0.0 0 0 745.8069 360.2030
@@ -9790,7 +9790,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d714d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.29 361.35
   L 751.41 365.42
@@ -9804,7 +9804,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d714d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 772.4328 361.8478
   A 1.69 1.69 0.0 0 0 770.7457 360.1548
@@ -9818,7 +9818,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d714d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 776.36 361.29
   L 776.44 365.39
@@ -9832,7 +9832,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.6103 361.7842
   A 1.64 1.64 0.0 0 0 720.9308 360.1847
@@ -9846,7 +9846,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d714d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 776.17 371.86
   L 776.32 376.31
@@ -9860,7 +9860,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.4355 372.0089
   A 1.62 1.62 0.0 0 0 757.8268 370.3776
@@ -9874,7 +9874,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 771.9028 372.0451
   A 1.86 1.86 0.0 0 0 770.0363 370.1916
@@ -9888,7 +9888,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.9361 372.1722
   A 1.69 1.69 0.0 0 0 721.2432 370.4852
@@ -9902,7 +9902,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 735.1923 372.6334
   A 2.05 2.05 0.0 0 0 733.1784 370.5479
@@ -9916,7 +9916,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.2380 371.9104
   A 1.40 1.40 0.0 0 0 745.8138 370.5350
@@ -9930,7 +9930,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d714d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.3893 383.4283
   A 1.72 1.72 0.0 0 0 757.6935 381.6844
@@ -9944,7 +9944,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.3416 383.3016
   A 1.44 1.44 0.0 0 0 745.9270 381.8367
@@ -9958,7 +9958,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d714d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 763.16 383.24
   L 763.30 388.06
@@ -9972,7 +9972,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d714d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 776.24 383.01
   L 776.18 387.93
@@ -9986,7 +9986,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 723.2961 383.7593
   A 1.75 1.75 0.0 0 0 721.5159 382.0401
@@ -10000,7 +10000,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 735.1139 383.3872
   A 1.40 1.40 0.0 0 0 733.7163 381.9847
@@ -10014,7 +10014,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 784.5985 394.5374
   A 2.35 2.35 0.0 0 0 782.2200 392.2162
@@ -10028,7 +10028,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.6511 394.5787
   A 1.93 1.93 0.0 0 0 757.7483 392.6220
@@ -10042,7 +10042,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 762.89 394.08
   L 762.79 399.20
@@ -10056,7 +10056,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 735.3771 394.9898
   A 1.78 1.78 0.0 0 0 733.6221 393.1851
@@ -10070,7 +10070,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.4873 394.6120
   A 1.60 1.60 0.0 0 0 745.9070 392.9925
@@ -10084,7 +10084,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 723.5018 394.8781
   A 1.63 1.63 0.0 0 0 721.8576 393.2624
@@ -10098,7 +10098,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.18 405.86
   L 751.14 410.62
@@ -10112,7 +10112,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 735.0322 406.5991
   A 1.86 1.86 0.0 0 0 733.1950 404.7165
@@ -10126,7 +10126,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.3585 406.1282
   A 1.56 1.56 0.0 0 0 745.7903 404.5764
@@ -10140,7 +10140,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d714d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 764.30 412.08
   L 769.95 411.81
@@ -10154,7 +10154,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 723.4058 406.7995
   A 1.99 1.99 0.0 0 0 721.3985 404.8269
@@ -10168,7 +10168,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 751.25 416.99
   L 751.13 422.53
@@ -10182,7 +10182,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#997d52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 727.16 417.04
   L 727.02 422.48
@@ -10196,7 +10196,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.2336 417.9960
   A 1.69 1.69 0.0 0 0 745.5884 416.2623
@@ -10210,7 +10210,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 723.0138 418.3450
   A 2.01 2.01 0.0 0 0 720.9968 416.3420
@@ -10224,7 +10224,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.1949 430.4180
   A 1.66 1.66 0.0 0 0 745.5465 428.7465
@@ -10238,7 +10238,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.29 430.56
   A 1.83 1.83 0.0 0 0 757.46 428.73
@@ -10252,7 +10252,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#997d52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.9770 431.0422
   A 2.15 2.15 0.0 0 0 720.8233 428.8960
@@ -10266,7 +10266,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#997d52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 727.16 430.23
   L 727.05 435.09
@@ -10280,7 +10280,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5d4732"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 694.9700 351.3688
   A 3.20 1.05 -0.2 0 0 691.7663 350.3300
@@ -10290,7 +10290,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 694.2115 361.3933
   A 1.46 1.46 0.0 0 0 692.7262 359.9590
@@ -10304,7 +10304,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 706.03 365.90
   L 706.06 360.95
@@ -10318,7 +10318,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 694.2141 371.8356
   A 1.48 1.48 0.0 0 0 692.7366 370.3530
@@ -10332,7 +10332,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 706.0975 371.5837
   A 1.42 1.42 0.0 0 0 704.6701 370.1712
@@ -10346,7 +10346,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.58 389.28
   L 693.34 389.34
@@ -10360,7 +10360,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.4367 383.2532
   A 1.02 1.02 0.0 0 0 704.4329 382.2173
@@ -10374,7 +10374,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.11 400.71
   L 692.91 400.73
@@ -10388,7 +10388,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 700.57 400.31
   L 704.99 400.44
@@ -10402,7 +10402,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 706.0438 406.9034
   A 1.91 1.91 0.0 0 0 704.2190 404.9119
@@ -10416,7 +10416,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.9941 406.3269
   A 1.09 1.09 0.0 0 0 692.9428 405.1995
@@ -10430,7 +10430,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.7323 417.7993
   A 1.64 1.64 0.0 0 0 704.0696 416.1823
@@ -10444,7 +10444,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.64 416.75
   A 1.76 1.76 0.0 0 0 688.08 418.42
@@ -10458,7 +10458,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.7991 430.6955
   A 1.71 1.71 0.0 0 0 692.1622 428.9153
@@ -10472,7 +10472,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.4882 430.3557
   A 1.41 1.41 0.0 0 0 704.0709 428.9531
@@ -10486,7 +10486,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.6492 441.4604
   A 1.07 1.07 0.0 0 0 692.5830 440.3867
@@ -10500,7 +10500,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.06 446.83
   A 1.39 1.38 -17.6 0 0 705.96 445.10
@@ -10514,7 +10514,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.9990 454.2752
   A 1.61 1.61 0.0 0 0 692.4346 452.6208
@@ -10528,7 +10528,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 700.61 453.62
   Q 699.81 454.53 700.03 457.68
@@ -10542,7 +10542,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.9423 465.6410
   A 1.41 1.41 0.0 0 0 692.5546 464.2090
@@ -10556,7 +10556,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.7449 465.4758
   A 1.29 1.29 0.0 0 0 704.4708 464.1702
@@ -10570,7 +10570,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.9000 477.2609
   A 1.31 1.31 0.0 0 0 692.6153 475.9260
@@ -10584,7 +10584,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.4098 477.8925
   A 1.33 1.33 0.0 0 0 704.0614 476.5812
@@ -10598,7 +10598,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.4240 487.8775
   A 1.51 1.51 0.0 0 0 691.9433 486.3388
@@ -10612,7 +10612,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.5856 487.8729
   A 1.23 1.23 0.0 0 0 704.3794 486.6196
@@ -10626,7 +10626,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.4619 499.9023
   A 1.24 1.24 0.0 0 0 692.2393 498.6451
@@ -10640,7 +10640,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.6271 499.7782
   A 1.26 1.26 0.0 0 0 704.3367 498.5494
@@ -10654,7 +10654,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5c472f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.8229 510.8057
   A 1.32 1.32 0.0 0 0 692.5052 509.4834
@@ -10668,7 +10668,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.5991 510.6553
   A 1.35 1.35 0.0 0 0 704.2562 509.2982
@@ -10682,7 +10682,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 693.9477 522.3201
   A 1.64 1.64 0.0 0 0 692.2625 520.7265
@@ -10696,7 +10696,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.9010 522.5012
   A 1.40 1.40 0.0 0 0 704.6204 520.9912
@@ -10710,7 +10710,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3d3625"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 976.80 367.42
   L 942.63 368.34
@@ -10721,14 +10721,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#453827"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 945.89 410.79
   L 945.80 420.52"
         />
         <path
           stroke="#3d3625"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 945.80 420.52
   L 945.51 445.54
@@ -10737,14 +10737,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c6144"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 972.92 452.81
   L 970.03 453.01"
         />
         <path
           stroke="#51452d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 970.03 453.01
   L 947.50 453.12
@@ -10753,7 +10753,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6a5638"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1020.71 372.88
   L 993.28 373.27
@@ -10762,14 +10762,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4a402e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 992.73 443.53
   Q 992.60 444.56 992.89 445.84"
         />
         <path
           stroke="#49412e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 945.80 420.52
   L 947.25 429.36
@@ -10791,7 +10791,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73573a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1048.39 395.79
   Q 1045.89 393.84 1046.49 390.25
@@ -10808,7 +10808,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 816.0444 434.7196
   A 1.30 1.30 0.0 0 0 814.7512 433.4128
@@ -10822,7 +10822,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.7928 451.1133
   A 1.59 1.59 0.0 0 0 814.2056 449.5205
@@ -10836,7 +10836,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.9018 465.0834
   A 1.33 1.33 0.0 0 0 814.5671 463.7581
@@ -10850,7 +10850,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.8849 480.6166
   A 2.17 2.17 0.0 0 0 813.7225 478.4391
@@ -10864,7 +10864,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.7769 494.8670
   A 1.56 1.56 0.0 0 0 814.2142 493.3097
@@ -10878,7 +10878,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 816.1242 510.0108
   A 2.58 2.58 0.0 0 0 813.5308 507.4444
@@ -10892,7 +10892,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.9740 522.5327
   A 1.28 1.28 0.0 0 0 814.6962 521.2504
@@ -10906,7 +10906,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.8830 537.6746
   A 1.85 1.85 0.0 0 0 814.0266 535.8310
@@ -10920,7 +10920,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.7087 552.9400
   A 1.86 1.86 0.0 0 0 813.8358 551.0931
@@ -10934,7 +10934,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.8123 566.5407
   A 1.61 1.61 0.0 0 0 814.2136 564.9195
@@ -10948,7 +10948,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.92 581.31
   A 1.96 1.96 0.0 0 0 813.96 579.35
@@ -10962,7 +10962,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.7055 595.9959
   A 2.18 2.18 0.0 0 0 813.5066 593.8350
@@ -10976,7 +10976,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.5533 610.2728
   A 1.95 1.95 0.0 0 0 813.6067 608.3194
@@ -10990,7 +10990,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.7546 625.2744
   A 1.89 1.89 0.0 0 0 813.8580 623.3910
@@ -11004,7 +11004,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.12 644.52
   L 815.12 639.86
@@ -11018,7 +11018,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.5905 655.0283
   A 1.63 1.63 0.0 0 0 813.9691 653.3898
@@ -11032,7 +11032,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.4468 669.0734
   A 1.33 1.33 0.0 0 0 814.1098 667.7504
@@ -11046,7 +11046,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.5693 684.3724
   A 1.73 1.73 0.0 0 0 813.8302 682.6515
@@ -11060,7 +11060,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 777.96 704.34
   A 0.66 0.66 0.0 0 0 778.62 705.03
@@ -11075,7 +11075,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2b301f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.67 713.76
   A 1.60 1.60 0.0 0 0 814.07 712.16
@@ -11089,7 +11089,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 465.4143 421.8653
   A 1.99 1.99 0.0 0 0 463.4278 419.8719
@@ -11103,7 +11103,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 465.67 443.30
   L 465.73 436.16
@@ -11117,7 +11117,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 465.9182 453.3536
   A 2.60 2.60 0.0 0 0 463.3594 450.7131
@@ -11131,7 +11131,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 465.51 466.41
   A 2.39 2.39 0.0 0 0 463.08 463.89
@@ -11145,7 +11145,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 464.90 480.67
   A 1.59 1.59 0.0 0 0 463.31 479.07
@@ -11159,7 +11159,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 465.1864 496.1690
   A 2.18 2.18 0.0 0 0 463.0140 493.9814
@@ -11173,7 +11173,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 425.63 513.99
   A 1.54 1.54 0.0 0 0 427.16 515.36
@@ -11187,7 +11187,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 465.14 522.17
   A 1.31 1.31 0.0 0 0 463.83 520.86
@@ -11201,7 +11201,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 464.98 538.13
   L 465.00 533.61
@@ -11215,7 +11215,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 465.2851 547.6831
   A 2.10 2.10 0.0 0 0 463.1596 545.6089
@@ -11229,7 +11229,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 465.95 563.35
   A 1.97 1.97 0.0 0 0 463.98 561.38
@@ -11243,7 +11243,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4c4a34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 426.69 584.51
   Q 429.40 585.72 433.10 585.93
@@ -11258,7 +11258,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#424534"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 73.51 425.90
   Q 72.99 426.05 72.81 426.43
@@ -11275,7 +11275,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#676c47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 318.94 474.78
   Q 318.16 475.23 317.34 476.83
@@ -11288,7 +11288,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#595d47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 188.43 466.21
   Q 181.78 466.17 178.59 465.63
@@ -11296,7 +11296,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646c4a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 154.02 462.03
   Q 123.78 449.83 92.91 439.50
@@ -11309,14 +11309,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#968462"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 0.25 438.06
   Q 0.18 437.58 0.00 437.37"
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 870.55 438.23
   A 2.34 2.34 0.0 0 0 868.21 435.89
@@ -11330,7 +11330,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.32 452.38
   A 2.13 2.13 0.0 0 0 867.19 450.25
@@ -11344,7 +11344,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.3265 465.8075
   A 1.62 1.62 0.0 0 0 867.7037 464.1904
@@ -11358,7 +11358,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.3923 479.9759
   A 1.58 1.58 0.0 0 0 867.8068 478.4014
@@ -11372,7 +11372,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.17 495.52
   A 2.21 2.21 0.0 0 0 866.96 493.31
@@ -11386,7 +11386,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.68 509.47
   A 1.63 1.63 0.0 0 0 868.05 507.84
@@ -11400,7 +11400,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#555744"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.4030 523.9426
   A 2.09 2.09 0.0 0 0 867.3167 521.8490
@@ -11414,7 +11414,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6c7451"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 154.02 462.03
   Q 157.35 464.46 158.33 464.91
@@ -11427,7 +11427,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a8352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 219.45 487.04
   Q 223.63 491.38 224.76 493.44
@@ -11437,14 +11437,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646342"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 264.59 586.30
   L 232.60 581.70"
         />
         <path
           stroke="#646342"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 185.02 570.35
   Q 151.05 559.94 118.89 546.11
@@ -11459,14 +11459,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#a99b6d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 0.00 438.50
   L 0.25 438.06"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.7678 453.4696
   A 1.55 1.55 0.0 0 0 745.2341 451.9034
@@ -11480,7 +11480,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.7050 453.6549
   A 1.94 1.94 0.0 0 0 757.7718 451.7082
@@ -11494,7 +11494,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.7963 453.6237
   A 1.53 1.53 0.0 0 0 732.2373 452.1234
@@ -11508,7 +11508,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.5968 454.1653
   A 1.84 1.84 0.0 0 0 720.7957 452.2872
@@ -11522,7 +11522,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.6696 465.4778
   A 2.04 2.04 0.0 0 0 720.6655 463.4025
@@ -11536,7 +11536,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.7478 465.1121
   A 1.67 1.67 0.0 0 0 745.1013 463.4190
@@ -11550,7 +11550,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.6219 465.1348
   A 1.62 1.62 0.0 0 0 732.0190 463.4979
@@ -11564,7 +11564,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.4596 477.0799
   A 1.52 1.52 0.0 0 0 720.9799 475.5206
@@ -11578,7 +11578,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.6321 476.9859
   A 1.59 1.59 0.0 0 0 732.0449 475.3931
@@ -11592,7 +11592,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.2909 477.1213
   A 1.61 1.61 0.0 0 0 744.7093 475.4834
@@ -11606,7 +11606,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.2560 488.1214
   A 1.72 1.72 0.0 0 0 731.5420 486.3954
@@ -11620,7 +11620,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 721.10 486.66
   L 716.60 486.50
@@ -11634,7 +11634,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.5849 488.4285
   A 1.85 1.85 0.0 0 0 744.7544 486.5592
@@ -11648,7 +11648,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.1996 488.0622
   A 1.56 1.56 0.0 0 0 757.6126 486.5297
@@ -11662,7 +11662,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.0322 499.7067
   A 1.39 1.39 0.0 0 0 720.6182 498.3412
@@ -11676,7 +11676,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.5555 499.9029
   A 1.42 1.42 0.0 0 0 745.1605 498.4583
@@ -11690,7 +11690,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.37 499.30
   A 1.07 1.07 0.0 0 0 758.30 498.23
@@ -11704,7 +11704,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.0661 499.8317
   A 1.54 1.54 0.0 0 0 731.4889 498.3298
@@ -11718,7 +11718,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.0025 510.8107
   A 1.71 1.71 0.0 0 0 720.2835 509.1097
@@ -11732,7 +11732,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.4809 510.5408
   A 1.39 1.39 0.0 0 0 732.1080 509.1339
@@ -11746,7 +11746,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.72 510.40
   A 1.24 1.24 0.0 0 0 745.48 509.16
@@ -11760,7 +11760,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.3407 510.4288
   A 1.23 1.23 0.0 0 0 758.1043 509.2052
@@ -11774,7 +11774,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.7680 522.0739
   A 1.73 1.73 0.0 0 0 745.0260 520.3560
@@ -11788,7 +11788,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.3282 522.3108
   A 1.84 1.84 0.0 0 0 720.4978 520.4611
@@ -11802,7 +11802,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.7505 522.0209
   A 1.75 1.75 0.0 0 0 731.9702 520.3017
@@ -11816,7 +11816,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.3668 521.8831
   A 1.48 1.48 0.0 0 0 757.8842 520.4056
@@ -11830,7 +11830,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 740.19 539.40
   L 745.87 538.94
@@ -11844,7 +11844,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.3182 533.3017
   A 1.33 1.33 0.0 0 0 757.9561 532.0046
@@ -11858,7 +11858,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.4286 544.8451
   A 1.26 1.26 0.0 0 0 758.1446 543.6096
@@ -11872,7 +11872,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.4276 556.2884
   A 1.68 1.68 0.0 0 0 757.7301 554.6261
@@ -11886,7 +11886,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.5101 567.5966
   A 1.06 1.06 0.0 0 0 758.4538 566.5330
@@ -11900,7 +11900,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 750.84 629.81
   L 749.06 629.83
@@ -11914,7 +11914,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.4623 691.2938
   A 1.53 1.53 0.0 0 0 757.9270 689.7692
@@ -11928,14 +11928,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 970.03 453.01
   L 969.48 631.17"
         />
         <path
           stroke="#735f3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 969.48 631.17
   L 968.00 642.43
@@ -11945,7 +11945,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9f7c54"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 977.51 635.32
   Q 973.86 633.59 970.53 633.44
@@ -11954,7 +11954,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6f744f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 219.45 487.04
   L 218.65 482.33
@@ -11963,7 +11963,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#463727"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.9626 471.8120
   A 2.31 2.31 0.0 0 0 635.6445 469.5101
@@ -11977,7 +11977,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.00 485.92
   A 2.11 2.11 0.0 0 0 634.89 483.81
@@ -11991,7 +11991,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.4349 499.9685
   A 2.24 2.24 0.0 0 0 635.2027 497.7207
@@ -12005,7 +12005,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.3510 512.1511
   A 1.29 1.29 0.0 0 0 636.0565 510.8657
@@ -12019,7 +12019,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 574.70 524.92
   L 574.70 531.84
@@ -12033,7 +12033,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.3664 539.3654
   A 1.43 1.43 0.0 0 0 635.9339 537.9379
@@ -12047,7 +12047,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.3965 553.7895
   A 1.80 1.80 0.0 0 0 635.6028 551.9833
@@ -12061,7 +12061,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.3913 566.6812
   A 1.34 1.34 0.0 0 0 636.0466 565.3459
@@ -12075,7 +12075,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.2176 580.8273
   A 1.46 1.46 0.0 0 0 635.7500 579.3750
@@ -12089,7 +12089,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.0059 594.8757
   A 1.34 1.34 0.0 0 0 635.6636 593.5381
@@ -12103,7 +12103,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.4820 609.1999
   A 1.47 1.47 0.0 0 0 636.0068 607.7351
@@ -12117,7 +12117,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.35 620.84
   A 1.28 1.28 0.0 0 0 636.07 619.56
@@ -12131,7 +12131,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.1531 632.4008
   A 1.49 1.49 0.0 0 0 635.6476 630.9265
@@ -12145,7 +12145,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.5132 646.6453
   A 1.67 1.67 0.0 0 0 635.8461 644.9723
@@ -12159,7 +12159,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.4265 660.2647
   A 1.79 1.79 0.0 0 0 635.6334 658.4778
@@ -12173,7 +12173,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 636.9208 674.3452
   A 1.95 1.95 0.0 0 0 634.9606 672.4055
@@ -12187,7 +12187,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#473a2a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.16 688.96
   A 3.19 3.18 -1.6 0 0 633.98 685.96
@@ -12201,7 +12201,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#494a36"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 494.12
   Q 1523.92 495.11 1517.52 496.67
@@ -12224,7 +12224,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#676c47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 500.53
   Q 1522.34 501.83 1512.94 504.68
@@ -12244,7 +12244,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6d7141"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 659.18
   L 1512.93 660.34
@@ -12255,7 +12255,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6d7141"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1447.90 652.50
   Q 1437.20 650.81 1426.82 652.18
@@ -12266,7 +12266,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5b5837"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1346.54 614.33
   Q 1333.71 615.05 1320.83 614.71
@@ -12277,7 +12277,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6a6c45"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1287.12 662.95
   Q 1283.60 663.45 1277.59 663.23
@@ -12285,7 +12285,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#565131"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 172.67 572.11
   Q 168.81 569.78 166.06 569.09
@@ -12299,7 +12299,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.2394 554.9732
   A 1.86 1.86 0.0 0 0 693.3957 553.0970
@@ -12313,7 +12313,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 706.0243 554.6635
   A 1.58 1.58 0.0 0 0 704.4278 553.1001
@@ -12327,7 +12327,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 718.5888 554.5744
   A 1.50 1.50 0.0 0 0 717.0706 553.0928
@@ -12341,7 +12341,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.7188 555.2978
   A 1.90 1.90 0.0 0 0 728.8760 553.3423
@@ -12355,7 +12355,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 694.9713 568.0874
   A 1.64 1.64 0.0 0 0 693.3256 566.4531
@@ -12369,7 +12369,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#886c4d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.9532 568.0476
   A 1.42 1.42 0.0 0 0 704.5407 566.6202
@@ -12383,7 +12383,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 711.10 568.03
   L 711.18 573.21
@@ -12397,7 +12397,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.4137 568.3067
   A 1.79 1.79 0.0 0 0 728.6269 566.5135
@@ -12411,7 +12411,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.0182 581.1921
   A 1.57 1.57 0.0 0 0 693.4619 579.6085
@@ -12425,7 +12425,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 698.84 580.70
   L 698.88 585.86
@@ -12439,7 +12439,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 718.1176 581.4309
   A 1.66 1.66 0.0 0 0 716.4721 579.7565
@@ -12453,7 +12453,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.6818 581.5975
   A 1.81 1.81 0.0 0 0 728.8845 579.7749
@@ -12467,7 +12467,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 687.69 592.97
   L 687.65 597.61
@@ -12481,7 +12481,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 698.86 593.30
   L 698.82 597.24
@@ -12495,7 +12495,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 716.68 592.14
   L 712.32 592.14
@@ -12509,7 +12509,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.5862 593.9705
   A 1.68 1.68 0.0 0 0 728.9689 592.2301
@@ -12523,7 +12523,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.6216 606.1990
   A 1.79 1.79 0.0 0 0 703.8888 604.3537
@@ -12537,7 +12537,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 718.0220 606.2722
   A 1.92 1.92 0.0 0 0 716.1358 604.3189
@@ -12551,7 +12551,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.4625 606.2668
   A 2.07 2.07 0.0 0 0 728.3961 604.1932
@@ -12565,7 +12565,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 694.9430 606.2121
   A 1.75 1.75 0.0 0 0 693.2083 604.4469
@@ -12579,7 +12579,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.0259 618.4543
   A 1.72 1.72 0.0 0 0 693.2940 616.7463
@@ -12593,7 +12593,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.6339 618.2460
   A 1.50 1.50 0.0 0 0 704.1365 616.7434
@@ -12607,7 +12607,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 718.0667 618.7346
   A 1.76 1.76 0.0 0 0 716.3533 616.9291
@@ -12621,7 +12621,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.0133 618.7171
   A 1.73 1.73 0.0 0 0 728.2773 616.9931
@@ -12635,7 +12635,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 717.8867 631.2238
   A 1.63 1.63 0.0 0 0 716.2538 629.5967
@@ -12649,7 +12649,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 694.8567 631.6931
   A 1.78 1.78 0.0 0 0 693.1080 629.8823
@@ -12663,7 +12663,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.73 631.31
   A 1.64 1.64 0.0 0 0 704.09 629.67
@@ -12677,7 +12677,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.0330 631.5366
   A 1.71 1.71 0.0 0 0 728.3260 629.8236
@@ -12691,7 +12691,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.2163 642.9046
   A 1.68 1.68 0.0 0 0 693.5159 641.2452
@@ -12705,7 +12705,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.6384 642.7368
   A 1.52 1.52 0.0 0 0 704.1398 641.1958
@@ -12719,7 +12719,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 717.7464 642.7139
   A 1.46 1.46 0.0 0 0 716.2839 641.2564
@@ -12733,7 +12733,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.2394 642.7898
   A 1.54 1.54 0.0 0 0 728.6754 641.2741
@@ -12747,7 +12747,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.4044 655.4334
   A 1.49 1.49 0.0 0 0 703.9249 653.9331
@@ -12761,7 +12761,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.0556 655.7102
   A 1.75 1.75 0.0 0 0 693.3395 653.9270
@@ -12775,7 +12775,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 718.1069 655.7867
   A 1.83 1.83 0.0 0 0 716.3254 653.9094
@@ -12789,7 +12789,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.3476 655.6709
   A 1.65 1.65 0.0 0 0 728.7150 654.0037
@@ -12803,7 +12803,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 694.8745 666.8129
   A 1.76 1.76 0.0 0 0 693.1206 665.0468
@@ -12817,7 +12817,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.6128 666.6616
   A 1.45 1.45 0.0 0 0 704.1934 665.1815
@@ -12831,7 +12831,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 717.8793 666.7755
   A 1.70 1.70 0.0 0 0 716.1912 665.0637
@@ -12845,7 +12845,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.9701 666.8656
   A 1.91 1.91 0.0 0 0 728.0270 664.9892
@@ -12859,7 +12859,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 694.8552 679.3924
   A 1.41 1.41 0.0 0 0 693.4501 677.9775
@@ -12873,7 +12873,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.6425 679.8248
   A 1.62 1.62 0.0 0 0 704.0683 678.1602
@@ -12887,7 +12887,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 717.6639 679.5197
   A 1.35 1.35 0.0 0 0 716.3377 678.1464
@@ -12901,7 +12901,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.7654 679.8408
   A 1.54 1.54 0.0 0 0 728.2471 678.2794
@@ -12915,7 +12915,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 694.7928 690.5075
   A 1.52 1.52 0.0 0 0 693.2675 688.9928
@@ -12929,7 +12929,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.6479 690.5067
   A 1.39 1.39 0.0 0 0 704.2362 689.1387
@@ -12943,7 +12943,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 718.0867 690.6828
   A 1.59 1.59 0.0 0 0 716.5022 689.0872
@@ -12957,7 +12957,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 730.2342 691.1143
   A 1.76 1.76 0.0 0 0 728.4897 689.3390
@@ -12971,7 +12971,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.6069 702.3142
   A 1.57 1.57 0.0 0 0 704.0342 700.7469
@@ -12985,7 +12985,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 718.1530 702.3664
   A 1.62 1.62 0.0 0 0 716.5359 700.7435
@@ -12999,7 +12999,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#947952"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 722.38 701.66
   L 722.30 706.46
@@ -13013,7 +13013,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.4380 555.6520
   A 1.84 1.84 0.0 0 0 659.6239 553.7865
@@ -13027,7 +13027,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.91 555.72
   A 1.94 1.94 0.0 0 0 669.97 553.78
@@ -13041,7 +13041,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.24 573.17
   L 661.05 567.63
@@ -13055,7 +13055,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.9770 567.9334
   A 1.52 1.52 0.0 0 0 670.4490 566.4214
@@ -13069,7 +13069,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.5341 581.3752
   A 1.86 1.86 0.0 0 0 659.6580 579.5316
@@ -13083,7 +13083,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.6095 581.1020
   A 1.46 1.46 0.0 0 0 670.1217 579.6703
@@ -13097,7 +13097,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.4890 593.4011
   A 1.52 1.52 0.0 0 0 669.9297 591.9214
@@ -13111,7 +13111,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.3425 593.3776
   A 1.57 1.57 0.0 0 0 659.6951 591.8890
@@ -13125,7 +13125,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.3303 605.3240
   A 1.49 1.49 0.0 0 0 659.8613 603.8133
@@ -13139,7 +13139,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.9118 605.7082
   A 1.72 1.72 0.0 0 0 670.1650 604.0155
@@ -13153,7 +13153,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.54 622.77
   L 661.54 618.45
@@ -13167,7 +13167,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.9624 618.7292
   A 1.88 1.88 0.0 0 0 670.1055 616.8264
@@ -13181,7 +13181,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.4032 631.1471
   A 1.58 1.58 0.0 0 0 659.8177 629.5727
@@ -13195,7 +13195,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.6594 631.1642
   A 1.44 1.44 0.0 0 0 670.2119 629.7317
@@ -13209,7 +13209,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.5992 642.8308
   A 1.57 1.57 0.0 0 0 660.0210 641.2691
@@ -13223,7 +13223,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.6578 642.7628
   A 1.57 1.57 0.0 0 0 670.0579 641.2232
@@ -13237,7 +13237,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 660.43 653.83
   L 655.60 653.83
@@ -13251,7 +13251,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.7545 655.3108
   A 1.62 1.62 0.0 0 0 670.1459 653.6795
@@ -13265,7 +13265,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.2485 665.9221
   A 1.02 1.02 0.0 0 0 660.2022 664.9292
@@ -13279,7 +13279,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.8089 666.4609
   A 1.53 1.53 0.0 0 0 670.2950 664.9149
@@ -13293,7 +13293,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.3024 679.4962
   A 1.65 1.65 0.0 0 0 659.6553 677.8434
@@ -13307,7 +13307,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.63 679.29
   A 1.49 1.49 0.0 0 0 670.14 677.80
@@ -13321,7 +13321,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#55432e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 661.3831 690.8764
   A 1.72 1.72 0.0 0 0 659.6661 689.1534
@@ -13335,7 +13335,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.9468 690.9046
   A 1.74 1.74 0.0 0 0 670.2037 689.1676
@@ -13349,7 +13349,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 738.55 629.74
   L 735.36 630.08
@@ -13363,7 +13363,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 739.7680 655.5349
   A 1.61 1.61 0.0 0 0 738.1219 653.9618
@@ -13377,7 +13377,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6e5d3f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 739.8963 702.7422
   A 1.63 1.63 0.0 0 0 738.3183 701.0618
@@ -13391,7 +13391,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3e3f32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.84 593.21
   L 1168.84 593.45
@@ -13405,7 +13405,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 114.35 589.33
   L 115.57 593.19
@@ -13419,7 +13419,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 155.7257 603.0909
   A 1.56 1.56 0.0 0 0 154.1711 601.5255
@@ -13433,7 +13433,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#50391e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 155.28 614.38
   L 115.12 614.74
@@ -13447,7 +13447,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1187.56 588.22
   L 1187.83 591.51
@@ -13461,7 +13461,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1256.58 606.19
   L 1256.64 600.99
@@ -13475,7 +13475,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#6c6f5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1255.08 614.18
   A 1.74 1.74 0.0 0 0 1253.34 612.44
@@ -13489,7 +13489,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1254.26 627.48
   A 1.65 1.65 0.0 0 0 1252.61 625.83
@@ -13503,7 +13503,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1186.43 633.55
   L 1186.43 637.71
@@ -13517,7 +13517,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#646752"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1219.82 686.15
   Q 1219.68 687.11 1220.11 687.78
@@ -13532,28 +13532,28 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#565131"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 263.06 591.39
   Q 247.70 589.82 232.57 586.69"
         />
         <path
           stroke="#8d7352"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1416.22 614.64
   L 1359.05 614.41"
         />
         <path
           stroke="#9d7e5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1359.05 614.41
   L 1358.25 603.99"
         />
         <path
           stroke="#6a5c43"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1359.05 614.41
   Q 1357.43 614.30 1355.38 614.32
@@ -13562,28 +13562,28 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#927852"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1416.42 621.73
   L 1351.98 621.74"
         />
         <path
           stroke="#4a3f2d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1351.98 621.74
   Q 1351.73 617.69 1353.64 613.53"
         />
         <path
           stroke="#816644"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1351.98 621.74
   L 1341.04 622.08"
         />
         <path
           stroke="#5c482f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1341.04 622.08
   Q 1337.36 621.68 1334.75 621.67
@@ -13591,7 +13591,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4d3c25"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1297.01 621.80
   Q 1294.25 620.93 1293.94 622.94
@@ -13604,14 +13604,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5c482f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1331.62 734.16
   L 1335.81 737.00"
         />
         <path
           stroke="#796950"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1326.44 752.59
   Q 1326.67 748.51 1326.86 744.75
@@ -13619,7 +13619,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#464c32"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1284.74 734.43
   L 1287.08 734.21
@@ -13628,21 +13628,21 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#373424"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1287.30 702.72
   L 1287.06 695.94"
         />
         <path
           stroke="#5a4a35"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1287.06 695.94
   L 1287.25 690.52"
         />
         <path
           stroke="#63513e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1287.25 690.52
   L 1287.30 676.05
@@ -13651,7 +13651,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#48412d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1268.43 670.95
   Q 1272.09 673.04 1274.74 673.12
@@ -13661,7 +13661,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#705636"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1297.01 621.80
   C 1296.83 634.09 1296.16 646.87 1297.15 658.74
@@ -13674,7 +13674,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#ae8557"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1395.09 703.62
   Q 1387.62 703.04 1380.23 703.74
@@ -13694,7 +13694,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#a68456"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1388.97 745.78
   C 1385.82 745.59 1382.47 745.43 1379.56 744.53
@@ -13713,7 +13713,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#a48054"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1340.34 736.61
   Q 1340.67 733.93 1341.03 731.37
@@ -13722,7 +13722,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1400.25 633.13
   L 1405.87 632.97
@@ -13736,7 +13736,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1378.9482 628.7683
   A 2.31 2.31 0.0 0 0 1376.7665 626.3368
@@ -13750,7 +13750,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1393.2279 628.5728
   A 1.98 1.98 0.0 0 0 1391.2444 626.5962
@@ -13764,7 +13764,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1357.95 627.87
   L 1357.44 631.21
@@ -13778,7 +13778,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1364.8802 640.8958
   A 2.03 2.03 0.0 0 0 1362.7841 638.9343
@@ -13792,7 +13792,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1378.6523 641.1229
   A 2.11 2.11 0.0 0 0 1376.5240 639.0314
@@ -13806,7 +13806,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1393.4151 640.6655
   A 1.76 1.76 0.0 0 0 1391.6490 638.9116
@@ -13820,7 +13820,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1398.86 640.49
   L 1398.86 643.93
@@ -13834,7 +13834,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1379.7963 654.4838
   A 2.49 2.49 0.0 0 0 1377.4082 651.8959
@@ -13848,7 +13848,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1393.63 654.05
   A 2.21 2.21 0.0 0 0 1391.42 651.84
@@ -13862,7 +13862,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1407.9134 653.8519
   A 2.27 2.27 0.0 0 0 1405.5390 651.6914
@@ -13876,7 +13876,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1364.8067 654.3896
   A 2.12 2.12 0.0 0 0 1362.6756 652.2807
@@ -13890,7 +13890,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1365.4567 666.0468
   A 2.41 2.41 0.0 0 0 1363.1366 663.5501
@@ -13904,7 +13904,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1379.1497 665.7360
   A 1.93 1.93 0.0 0 0 1377.1535 663.8745
@@ -13918,7 +13918,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1407.55 665.65
   A 1.77 1.77 0.0 0 0 1405.78 663.88
@@ -13932,7 +13932,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1394.0508 666.2206
   A 2.29 2.29 0.0 0 0 1391.7212 663.9709
@@ -13946,7 +13946,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1365.0397 679.4942
   A 2.32 2.32 0.0 0 0 1362.7605 677.1341
@@ -13960,7 +13960,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1379.6887 679.9716
   A 2.63 2.63 0.0 0 0 1377.2388 677.1730
@@ -13974,7 +13974,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1408.0523 679.2333
   A 1.90 1.90 0.0 0 0 1406.1993 677.2874
@@ -13988,7 +13988,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1394.0154 679.3714
   A 1.95 1.95 0.0 0 0 1392.1241 677.3644
@@ -14002,7 +14002,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1365.0539 692.2230
   A 2.20 2.20 0.0 0 0 1362.8616 690.0153
@@ -14016,7 +14016,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1379.1881 692.8133
   A 2.38 2.38 0.0 0 0 1376.9272 690.3199
@@ -14030,7 +14030,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1399.95 697.51
   L 1406.55 697.28
@@ -14044,7 +14044,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1393.6327 692.2777
   A 1.82 1.82 0.0 0 0 1391.8158 690.4545
@@ -14058,7 +14058,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1365.0339 707.7727
   A 2.52 2.52 0.0 0 0 1362.6079 705.1621
@@ -14072,7 +14072,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1365.4167 720.5752
   A 2.28 2.28 0.0 0 0 1363.1287 718.3032
@@ -14086,7 +14086,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1373.31 725.72
   L 1377.39 725.31
@@ -14100,7 +14100,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1379.7889 733.9064
   A 1.78 1.78 0.0 0 0 1377.8833 732.2615
@@ -14114,7 +14114,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#b79163"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1365.20 738.03
   L 1365.67 733.98
@@ -14128,7 +14128,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#735f3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1316.9031 652.5158
   A 0.90 0.90 0.0 0 0 1315.9844 651.6348
@@ -14142,7 +14142,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#735f3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1315.88 688.85
   L 1310.78 689.04
@@ -14156,7 +14156,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#735f3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1318.02 704.32
   A 0.77 0.77 0.0 0 0 1317.26 703.51
@@ -14170,14 +14170,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#554d2d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1447.62 658.71
   L 1424.53 659.04"
         />
         <path
           stroke="#5a442e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1447.38 676.11
   Q 1439.87 676.05 1432.59 676.08
@@ -14185,14 +14185,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#504c2c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 663.28
   L 1510.52 664.13"
         />
         <path
           stroke="#4b5136"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 668.28
   L 1511.35 668.71
@@ -14201,28 +14201,28 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4a5539"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 692.79
   C 1530.84 691.91 1526.35 692.82 1523.74 697.78"
         />
         <path
           stroke="#42502f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1523.74 697.78
   C 1523.86 690.38 1525.13 680.01 1514.63 681.26"
         />
         <path
           stroke="#836e55"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1287.25 690.52
   L 1268.75 691.94"
         />
         <path
           stroke="#3a3b22"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1523.74 697.78
   Q 1523.36 708.13 1524.42 718.41
@@ -14231,14 +14231,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#87744f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 726.38
   L 1535.74 727.23"
         />
         <path
           stroke="#4a4e33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1535.74 727.23
   L 1525.18 726.64
@@ -14248,7 +14248,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#4d492a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1516.01 760.50
   Q 1516.67 760.65 1517.03 760.35
@@ -14258,14 +14258,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#58513a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1287.06 695.94
   Q 1277.85 697.07 1268.75 695.62"
         />
         <path
           stroke="#494a36"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 981.25 700.29
   A 1.34 1.34 0.0 0 0 979.89 699.10
@@ -14279,7 +14279,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#494a36"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 981.3093 712.6122
   A 1.54 1.54 0.0 0 0 979.7612 711.0802
@@ -14293,7 +14293,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#494a36"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 922.09 728.99
   Q 926.26 730.12 930.46 730.29
@@ -14308,14 +14308,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#445338"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1287.30 702.72
   Q 1278.73 700.88 1268.90 702.47"
         />
         <path
           stroke="#595d47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1477.95 715.85
   C 1473.48 714.24 1469.28 713.64 1464.26 713.74
@@ -14333,7 +14333,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#595d47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1458.54 734.95
   L 1476.04 734.95
@@ -14347,7 +14347,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#595d47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1453.3138 729.4936
   A 2.03 2.03 0.0 0 0 1451.3016 727.4460
@@ -14361,7 +14361,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#595d47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1458.23 746.05
   A 1.90 1.90 0.0 0 0 1460.20 747.95
@@ -14375,7 +14375,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#595d47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1454.8052 743.4105
   A 1.71 1.71 0.0 0 0 1453.0337 741.7643
@@ -14389,7 +14389,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#595d47"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1439.34 760.98
   A 1.18 1.17 -0.8 0 0 1440.51 762.11
@@ -14404,7 +14404,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#72583a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 130.5196 729.6695
   A 1.68 1.68 0.0 0 0 128.8221 728.0072
@@ -14418,14 +14418,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#9e8c6a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1535.74 727.23
   Q 1535.87 727.18 1536.00 727.13"
         />
         <path
           stroke="#72583a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 167.4614 753.9730
   A 2.00 2.00 0.0 0 0 165.4440 751.9905
@@ -14439,7 +14439,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1128.44 745.78
   L 1128.50 750.65
@@ -14453,7 +14453,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1168.6046 746.7313
   A 2.79 2.79 0.0 0 0 1165.9389 743.8222
@@ -14467,7 +14467,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1120.2026 746.7656
   A 3.07 3.07 0.0 0 0 1117.0638 743.7661
@@ -14481,7 +14481,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1144.83 745.71
   L 1144.85 750.75
@@ -14495,7 +14495,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1174.72 745.59
   L 1174.62 750.49
@@ -14509,7 +14509,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1200.1806 746.0865
   A 2.35 2.35 0.0 0 0 1197.8183 743.7489
@@ -14523,7 +14523,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1120.2828 760.9006
   A 2.79 2.79 0.0 0 0 1117.5568 758.0481
@@ -14537,7 +14537,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1136.9849 761.0643
   A 2.64 2.64 0.0 0 0 1134.3357 758.4335
@@ -14551,7 +14551,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1166.91 759.01
   L 1162.50 758.74
@@ -14565,7 +14565,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1199.8529 760.9973
   A 2.47 2.47 0.0 0 0 1197.3872 758.5230
@@ -14579,7 +14579,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1153.1634 760.9570
   A 2.09 2.09 0.0 0 0 1151.0770 758.8634
@@ -14593,7 +14593,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1184.3839 761.5449
   A 2.55 2.55 0.0 0 0 1181.8788 758.9507
@@ -14607,7 +14607,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1119.5384 776.2897
   A 2.33 2.33 0.0 0 0 1117.2247 773.9435
@@ -14621,7 +14621,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1136.4468 776.3301
   A 2.20 2.20 0.0 0 0 1134.2934 774.0845
@@ -14635,7 +14635,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1153.1533 776.2297
   A 2.20 2.20 0.0 0 0 1150.9920 773.9916
@@ -14649,7 +14649,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1168.8548 776.2865
   A 2.23 2.23 0.0 0 0 1166.6680 774.0141
@@ -14663,7 +14663,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1200.3423 776.5357
   A 2.28 2.28 0.0 0 0 1198.1309 774.1891
@@ -14677,7 +14677,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1184.2294 776.5851
   A 2.37 2.37 0.0 0 0 1181.8347 774.2401
@@ -14691,7 +14691,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1177.69 788.78
   L 1177.75 793.28
@@ -14705,7 +14705,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1193.59 788.56
   L 1193.57 793.54
@@ -14719,7 +14719,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1111.18 788.99
   L 1111.16 793.15
@@ -14733,7 +14733,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1135.80 792.74
   L 1135.37 788.95
@@ -14747,7 +14747,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1151.82 787.32
   L 1147.03 787.18
@@ -14761,7 +14761,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1168.7559 788.7057
   A 1.44 1.44 0.0 0 0 1167.3723 787.2114
@@ -14775,7 +14775,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7a694d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1167.85 800.20
   L 1163.00 799.65
@@ -14789,7 +14789,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#73634d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1183.24 799.83
   L 1179.40 799.93
@@ -14803,7 +14803,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#886742"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 896.72 750.43
   L 896.74 754.33
@@ -14817,7 +14817,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#886742"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 939.29 769.58
   L 939.29 765.68
@@ -14831,7 +14831,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#886742"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 898.03 783.91
   Q 903.76 784.74 919.81 785.22
@@ -14847,7 +14847,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7d6440"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 253.4895 759.6883
   A 1.17 1.17 0.0 0 0 252.3134 758.5245
@@ -14861,7 +14861,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#7c5d3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 253.5495 777.3119
   A 1.49 1.49 0.0 0 0 252.0388 775.8429
@@ -14875,7 +14875,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3d1c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 64.51 813.53
   Q 59.96 812.26 57.98 809.26
@@ -14886,7 +14886,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3d1c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 802.51
   C 1532.56 803.00 1528.20 803.09 1525.38 804.00
@@ -14897,7 +14897,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#926f44"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 353.31 786.38
   A 5.69 5.68 74.6 0 0 356.99 788.48
@@ -14912,7 +14912,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3a3d1c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1476.44 833.30
   Q 1491.23 831.89 1506.09 832.67
@@ -14921,7 +14921,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#5c492b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1497.46 844.84
   Q 1496.29 844.82 1496.30 845.49
@@ -14929,28 +14929,28 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#ad8a62"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1535.69 844.97
   Q 1535.82 845.10 1536.00 845.17"
         />
         <path
           stroke="#a1805d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 0.00 847.75
   Q 0.11 847.72 0.23 847.68"
         />
         <path
           stroke="#5e4424"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1022.46 921.04
   Q 1022.34 922.67 1021.56 924.45"
         />
         <path
           stroke="#2a2a08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1022.24 1024.00
   Q 1020.85 1017.57 1018.92 1014.11
@@ -14989,7 +14989,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2a2a08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 143.75 1024.00
   Q 143.39 1021.10 142.99 1019.80
@@ -15007,14 +15007,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2a2a08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 571.29 1000.19
   Q 571.67 1012.24 574.12 1024.00"
         />
         <path
           stroke="#2a2a08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 538.76 1024.00
   C 535.71 1021.25 534.31 1018.66 532.29 1015.47
@@ -15039,7 +15039,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2a2a08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1290.75 1024.00
   Q 1287.25 1019.35 1284.00 1018.15
@@ -15069,14 +15069,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#413713"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1063.31 949.33
   L 1050.29 948.42"
         />
         <path
           stroke="#4b381b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1050.29 948.42
   C 1047.33 944.09 1046.81 938.90 1046.56 933.44
@@ -15084,14 +15084,14 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#3b3111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1050.29 948.42
   Q 1046.12 948.37 1042.44 946.28"
         />
         <path
           stroke="#2a2a08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 949.88
   Q 1519.89 958.21 1514.80 961.87
@@ -15104,7 +15104,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#2a2a08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1055.98 956.00
   C 1052.97 960.97 1051.77 966.37 1050.29 971.91
@@ -15113,7 +15113,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
         />
         <path
           stroke="#806b46"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 1023.47
   Q 1535.73 1023.67 1535.62 1024.00"

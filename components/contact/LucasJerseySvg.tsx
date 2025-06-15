@@ -15,7 +15,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
       <g stroke-width="2.00" fill="none" stroke-linecap="butt">
         <path
           stroke="#361c41"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 680.79 293.82
   A 0.28 0.28 0.0 0 0 680.67 293.39
@@ -44,14 +44,14 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#8d5f24"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 532.87 1261.76
   L 552.77 1261.62"
         />
         <path
           stroke="#8d7525"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 552.77 1261.62
   Q 577.20 1260.95 595.75 1259.66
@@ -105,7 +105,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#fbb627"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 552.77 1261.62
   Q 551.47 1259.97 554.01 1260.01
@@ -133,7 +133,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#ecad28"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 803.85 1226.02
   L 825.56 1220.59
@@ -176,7 +176,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#fbb627"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 797.06 619.90
   Q 781.78 606.11 776.52 599.98
@@ -282,7 +282,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#ec9727"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 797.06 619.90
   Q 796.73 627.80 796.36 635.46
@@ -301,7 +301,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#361c41"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 201.56 627.12
   C 216.28 617.13 230.42 603.35 241.71 590.48
@@ -325,7 +325,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#361c41"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 822.81 626.15
   Q 823.62 620.60 823.94 611.63
@@ -349,7 +349,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a45e44"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 479.61 570.08
   L 493.12 569.33
@@ -376,7 +376,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a45e44"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 562.80 529.73
   L 563.41 517.20
@@ -407,7 +407,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a45e44"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 437.56 523.80
   A 0.33 0.31 10.8 0 1 437.70 523.99
@@ -440,7 +440,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a45e44"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 601.59 538.91
   L 600.12 483.45
@@ -468,7 +468,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#fbb627"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 644.14 553.79
   C 644.24 555.62 642.93 557.64 642.51 559.36
@@ -506,7 +506,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a45e44"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 395.15 566.55
   L 401.99 582.46
@@ -529,7 +529,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#fbb627"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 692.23 505.60
   A 1.00 0.98 11.0 0 0 691.31 506.21
@@ -566,7 +566,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a45e44"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 337.80 602.81
   A 0.66 0.66 0.0 0 0 338.64 603.20
@@ -584,7 +584,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a45e44"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 492.98 490.59
   L 493.06 513.41
@@ -598,7 +598,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a47445"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 654.01 527.34
   L 666.80 531.40
@@ -628,7 +628,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a45e44"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 385.96 554.73
   Q 387.76 554.21 389.61 553.75
@@ -644,7 +644,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#a47445"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 716.65 530.38
   A 0.67 0.67 0.0 0 0 717.53 530.02
@@ -674,14 +674,14 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
         />
         <path
           stroke="#361c41"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 483.86 725.71
   Q 484.33 725.01 483.90 724.43"
         />
         <path
           stroke="#361c41"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 483.96 707.28
   L 483.92 697.50"

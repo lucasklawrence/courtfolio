@@ -38,14 +38,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
       <g stroke-width="2.00" fill="none" stroke-linecap="butt">
         <path
           stroke="#6f6f66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 634.48
   Q 1535.43 633.86 1534.79 634.00"
         />
         <path
           stroke="#cec5b3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1534.79 634.00
   Q 1535.02 633.30 1534.60 632.86
@@ -58,7 +58,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#6f6f66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1403.69 584.02
   Q 1408.72 575.75 1412.93 566.71
@@ -92,7 +92,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#a9a598"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1363.72 416.75
   Q 1356.19 429.50 1352.15 443.39
@@ -101,7 +101,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#cec5b3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1339.28 484.01
   Q 1332.84 462.37 1324.55 442.78
@@ -115,14 +115,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#6f6f66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1294.25 406.41
   C 1292.42 407.00 1292.92 409.27 1292.85 410.72"
         />
         <path
           stroke="#cec5b3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1292.85 410.72
   Q 1291.39 411.50 1291.80 414.51
@@ -131,7 +131,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#a9a598"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1303.08 480.64
   Q 1289.75 468.62 1286.15 465.11
@@ -142,7 +142,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#cec5b3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1282.41 486.74
   L 1281.25 486.93
@@ -179,7 +179,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#64635c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 993.29 532.84
   Q 768.78 532.85 544.29 532.86
@@ -189,7 +189,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#6f6f66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 456.81 631.39
   Q 455.97 633.06 454.51 633.85
@@ -200,7 +200,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#cec5b3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 433.16 625.43
   Q 434.81 625.65 435.26 622.39
@@ -236,14 +236,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#6f6f66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1.04 633.99
   Q 0.41 634.05 0.00 634.53"
         />
         <path
           stroke="#64635c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 420.38 68.57
   Q 418.59 69.48 418.59 72.75
@@ -255,7 +255,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#cec5b3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1117.04 349.21
   Q 1117.93 345.78 1117.93 339.88
@@ -272,7 +272,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#7a7364"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1117.04 349.21
   Q 1117.06 211.57 1117.02 73.93
@@ -282,7 +282,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#a9a598"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 412.94 77.28
   A 1.79 1.78 67.3 0 0 412.43 78.53
@@ -327,7 +327,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#a9a598"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1176.56 336.27
   Q 1176.54 336.51 1176.47 336.69
@@ -352,7 +352,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#6f6f66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1384.96 337.01
   Q 1387.55 337.31 1389.92 336.38
@@ -367,7 +367,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f5e54"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1384.96 337.01
   Q 1282.73 336.90 1180.50 337.05
@@ -375,14 +375,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#64635c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 150.50 125.32
   L 149.78 129.70"
         />
         <path
           stroke="#a9a598"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 149.78 129.70
   Q 146.94 129.82 144.73 132.51
@@ -399,14 +399,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#64635c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 357.02 310.91
   Q 361.31 311.16 361.66 308.34"
         />
         <path
           stroke="#cec5b3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 361.66 308.34
   Q 362.70 310.39 362.71 307.00
@@ -419,7 +419,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#7a7364"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 361.66 308.34
   Q 361.67 218.22 361.42 128.23
@@ -428,7 +428,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#555249"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 357.02 310.91
   Q 255.40 310.73 153.74 311.08
@@ -437,7 +437,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2c2922"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 421.44 419.60
   A 1.15 1.15 0.0 0 0 422.57 420.60
@@ -486,7 +486,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2c2922"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 434.53 86.94
   Q 434.47 233.87 434.55 380.75
@@ -496,7 +496,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1088.95 406.42
   L 1100.63 406.86
@@ -511,7 +511,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#1b1c18"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1088.95 406.42
   Q 1093.19 406.21 1097.23 405.40
@@ -529,7 +529,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#7c776e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1098.64 86.73
   A 0.45 0.45 0.0 0 0 1098.19 86.28
@@ -543,7 +543,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#e6dac5"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 441.42 88.76
   A 0.33 0.32 -0.0 0 0 441.75 89.08
@@ -574,7 +574,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f492b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1388.50 104.72
   A 1.16 1.16 0.0 0 0 1387.34 103.56
@@ -588,7 +588,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f492b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1374.15 120.74
   A 2.37 2.37 0.0 0 0 1371.78 118.37
@@ -602,7 +602,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#736b5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1367.09 314.97
   L 1370.40 315.01
@@ -613,7 +613,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#857f6f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1198.20 122.00
   L 1196.85 121.99
@@ -624,7 +624,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#d3c2a7"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1198.20 122.00
   Q 1199.08 122.69 1198.83 123.32
@@ -640,7 +640,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#594329"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 358.55 129.29
   A 0.74 0.74 0.0 0 0 357.81 128.55
@@ -654,7 +654,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#594329"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 346.38 142.18
   A 1.47 1.47 0.0 0 0 344.91 140.71
@@ -668,7 +668,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#7a7364"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 343.20 144.45
   A 0.50 0.50 0.0 0 0 342.70 143.95
@@ -682,7 +682,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#d3c2a7"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 341.94 145.71
   A 0.16 0.16 0.0 0 0 341.78 145.55
@@ -700,7 +700,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#b1b091"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 187.83 234.32
   L 187.73 274.84
@@ -711,7 +711,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#c7c7b7"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 323.95 220.95
   L 323.91 162.17
@@ -724,7 +724,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#94a18d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 323.95 220.95
   Q 312.77 221.48 302.07 223.23
@@ -736,7 +736,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#857f6f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1403.69 584.02
   L 1402.19 586.81
@@ -748,7 +748,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 637.70
   L 1411.64 637.67
@@ -759,7 +759,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1536.00 672.86
   L 1406.95 672.61
@@ -800,7 +800,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3f3d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1111.70 972.47
   C 1107.01 971.09 1102.78 967.91 1102.78 962.50
@@ -819,7 +819,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 935.36 1024.00
   C 934.15 1022.44 933.17 1020.97 931.69 1019.57
@@ -834,7 +834,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 793.54 1024.00
   L 793.51 907.80
@@ -852,7 +852,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 728.83 1024.00
   L 728.56 976.41
@@ -865,7 +865,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3f3d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 586.78 1024.00
   Q 587.42 1022.44 589.62 1020.13
@@ -893,7 +893,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 315.56 807.59
   L 329.77 790.15
@@ -905,7 +905,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3f3d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 277.29 797.38
   Q 274.78 820.40 271.94 843.25
@@ -919,7 +919,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 257.85 795.94
   Q 260.69 769.34 260.42 742.50
@@ -934,7 +934,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 0.00 669.38
   L 0.30 669.21
@@ -953,7 +953,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#857f6f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1.04 633.99
   L 240.34 633.92
@@ -973,14 +973,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#1b1c18"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 456.81 631.39
   L 459.36 634.00"
         />
         <path
           stroke="#634f33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 459.36 634.00
   Q 371.74 743.54 284.01 853.01
@@ -996,14 +996,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#1b1c18"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1077.25 636.01
   Q 1080.18 636.24 1082.92 637.69"
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1082.92 637.69
   L 1105.73 666.41
@@ -1014,7 +1014,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#1b1c18"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1105.83 637.42
   Q 1105.96 636.09 1105.37 634.84
@@ -1023,7 +1023,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#857f6f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1103.44 634.06
   Q 1104.60 634.20 1105.64 633.99
@@ -1039,7 +1039,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f5e54"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1283.22 488.64
   L 1308.45 495.42
@@ -1048,7 +1048,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#857f6f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1307.29 490.88
   Q 1299.26 455.51 1294.07 420.26
@@ -1056,7 +1056,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#857f6f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1294.25 406.41
   C 1299.31 406.45 1309.94 420.38 1312.73 424.51
@@ -1065,7 +1065,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f5e54"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1339.50 490.07
   Q 1346.21 515.39 1348.82 541.44
@@ -1076,7 +1076,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3f462b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1382.84 378.22
   Q 1380.18 381.42 1378.61 384.63
@@ -1101,7 +1101,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3f462b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1295.20 409.42
   C 1296.32 414.63 1296.55 421.17 1297.53 427.10
@@ -1129,7 +1129,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3f462b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1415.12 453.47
   Q 1407.67 463.21 1402.60 472.82
@@ -1151,7 +1151,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2b3a36"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1255.15 686.98
   Q 1260.66 688.84 1265.97 687.72
@@ -1167,7 +1167,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2f423e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1311.72 501.11
   C 1306.72 497.76 1301.28 496.17 1295.48 494.78
@@ -1187,7 +1187,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#355452"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1311.72 501.11
   Q 1304.55 501.68 1300.23 506.73
@@ -1199,7 +1199,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2b3a36"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 225.20 500.14
   C 221.24 501.55 219.22 506.01 217.81 509.92
@@ -1220,7 +1220,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2f423e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 277.11 688.25
   Q 292.88 684.88 304.82 680.34
@@ -1240,7 +1240,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#355452"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 277.11 688.25
   Q 277.59 681.41 277.32 679.53
@@ -1254,7 +1254,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3f462b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1375.04 607.65
   Q 1378.06 607.91 1382.04 606.42
@@ -1275,7 +1275,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3f462b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1343.01 607.27
   C 1341.26 599.94 1338.01 591.70 1335.80 584.14
@@ -1291,7 +1291,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f5e54"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1318.20 587.06
   L 1308.36 570.01
@@ -1308,7 +1308,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f492b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1320.17 590.98
   Q 1314.46 592.27 1309.73 595.00
@@ -1342,7 +1342,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1392.87 602.66
   A 0.76 0.76 0.0 0 0 1393.58 603.54
@@ -1354,7 +1354,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1315.04 600.58
   A 0.46 0.45 44.0 0 0 1315.06 601.33
@@ -1366,7 +1366,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 425.89 637.58
   A 0.32 0.32 0.0 0 0 425.57 637.92
@@ -1378,7 +1378,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3f3d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1290.62 637.52
   A 0.51 0.51 0.0 0 0 1290.12 637.92
@@ -1392,7 +1392,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1111.15 638.99
   Q 1110.57 640.11 1110.49 642.76
@@ -1408,7 +1408,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 423.03 639.58
   A 0.54 0.53 -16.1 0 0 422.22 639.14
@@ -1422,7 +1422,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1127.26 645.03
   L 1127.26 668.93
@@ -1436,7 +1436,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 343.88 668.71
   A 0.40 0.40 0.0 0 0 344.02 669.48
@@ -1448,7 +1448,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1251.47 734.49
   L 1252.80 690.26
@@ -1470,7 +1470,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 282.50 734.70
   C 285.90 732.77 289.87 730.13 293.28 728.55
@@ -1490,7 +1490,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2b3a36"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 279.40 742.97
   C 276.20 749.55 274.72 759.27 278.88 765.58
@@ -1501,7 +1501,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2f423e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 352.11 762.30
   L 421.28 676.44
@@ -1514,7 +1514,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#355452"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 352.11 762.30
   Q 336.94 760.30 332.48 759.33
@@ -1524,7 +1524,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2b3a36"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1183.37 762.57
   L 1201.53 786.04
@@ -1536,7 +1536,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#2f423e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1253.95 743.48
   Q 1252.26 740.35 1251.10 739.13
@@ -1551,7 +1551,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#355452"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1253.95 743.48
   Q 1246.54 744.05 1240.19 746.69
@@ -1560,7 +1560,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1255.14 690.94
   Q 1255.29 692.17 1255.26 692.75
@@ -1585,7 +1585,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 261.07 690.28
   Q 261.12 691.27 261.16 692.19
@@ -1613,7 +1613,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#564328"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 767.63 874.02
   Q 340.88 874.03 301.25 874.17
@@ -1635,7 +1635,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 427.74 906.65
   L 412.04 906.95
@@ -1649,7 +1649,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1122.16 907.09
   L 1108.51 906.66
@@ -1663,7 +1663,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#bfb5a0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1339.28 484.01
   L 1340.13 489.79
@@ -1672,7 +1672,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#bfb5a0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1307.29 490.88
   Q 1305.21 489.56 1305.07 484.75
@@ -1680,14 +1680,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#bfb5a0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1283.22 488.64
   Q 1284.79 488.23 1282.41 486.74"
         />
         <path
           stroke="#7a7364"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1103.44 634.06
   Q 1093.06 633.90 1082.62 633.91
@@ -1701,14 +1701,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#3a372f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1105.83 637.42
   L 1082.92 637.69"
         />
         <path
           stroke="#594329"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1077.25 636.01
   L 1067.91 624.04
@@ -1721,7 +1721,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#543d21"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1016.46 701.82
   C 995.11 710.18 970.17 710.69 948.74 701.56
@@ -1730,7 +1730,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#594329"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 929.72 661.12
   Q 929.66 632.36 929.80 603.40
@@ -1753,7 +1753,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#695f50"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 933.07 603.43
   Q 932.95 639.77 933.06 674.81
@@ -1762,7 +1762,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#7a7364"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 934.03 680.60
   Q 936.32 692.06 947.54 697.55
@@ -1779,7 +1779,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#d3c2a7"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 934.03 680.60
   Q 938.98 692.46 949.22 697.11
@@ -1793,14 +1793,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#64635c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1036.30 619.98
   Q 1041.42 619.09 1046.20 620.35"
         />
         <path
           stroke="#7a7364"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1046.20 620.35
   Q 1051.09 623.47 1052.52 628.24
@@ -1818,7 +1818,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#cec5b3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1046.20 620.35
   Q 1049.17 619.84 1051.50 623.50
@@ -1846,7 +1846,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#594329"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1034.81 663.77
   Q 1043.25 659.38 1047.73 651.05
@@ -1858,7 +1858,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#9d703c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 929.72 661.12
   Q 916.48 661.18 904.18 665.76
@@ -1872,7 +1872,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#9d703c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 704.55 592.09
   L 701.98 592.26
@@ -1881,7 +1881,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#634f33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.91 603.67
   Q 681.75 603.57 676.92 603.87
@@ -1894,7 +1894,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#9d703c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 593.74 626.50
   C 588.35 626.47 586.74 630.04 585.39 634.89
@@ -1923,7 +1923,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#634f33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 871.95 831.98
   Q 882.83 832.40 886.00 831.80
@@ -1943,7 +1943,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f492b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 871.95 831.98
   Q 718.44 831.91 564.91 831.98
@@ -1957,7 +1957,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f492b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.91 603.67
   L 701.37 603.79
@@ -1966,7 +1966,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#9d703c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 906.38 735.11
   Q 904.18 735.22 903.16 736.49
@@ -1984,7 +1984,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#634f33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 990.06 828.59
   Q 992.97 830.32 996.64 830.36
@@ -1996,7 +1996,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f492b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 990.06 828.59
   Q 976.22 820.32 964.84 808.15
@@ -2006,7 +2006,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#444339"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 665.93 626.49
   Q 665.38 628.26 664.85 630.79
@@ -2019,7 +2019,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#525945"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 776.55 626.95
   Q 773.32 619.12 770.02 611.38
@@ -2036,14 +2036,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#71745c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 776.55 626.95
   L 665.93 626.49"
         />
         <path
           stroke="#443623"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 655.06 629.70
   L 660.59 629.67
@@ -2052,7 +2052,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#564328"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.83 621.84
   L 665.98 616.73
@@ -2066,7 +2066,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#443623"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 546.54 814.66
   Q 544.41 823.32 551.61 827.09
@@ -2077,7 +2077,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#564328"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 895.19 813.35
   Q 895.50 809.56 894.47 805.77
@@ -2104,7 +2104,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#755129"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 895.19 813.35
   Q 891.83 817.65 887.45 819.54
@@ -2117,7 +2117,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#755129"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.83 621.84
   Q 662.20 621.11 663.23 619.13
@@ -2126,7 +2126,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#857f6f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 783.24 632.93
   Q 782.50 632.73 782.00 632.92
@@ -2139,7 +2139,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#878379"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 656.33 632.86
   L 615.11 632.85
@@ -2154,7 +2154,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#e6dac5"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 656.33 632.86
   Q 657.63 634.26 652.94 634.24
@@ -2180,7 +2180,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#7a7364"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 992.47 596.04
   C 979.22 595.67 968.44 595.88 956.64 597.92
@@ -2195,7 +2195,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#d3c2a7"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1026.40 595.01
   Q 1026.59 594.07 1025.25 593.01
@@ -2206,7 +2206,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#695f50"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1026.40 595.01
   Q 1024.11 599.14 1020.96 601.31
@@ -2215,7 +2215,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#525945"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.6995 594.9661
   A 8.18 7.67 -2.9 0 0 721.1420 587.7198
@@ -2225,7 +2225,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5f492b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 716.8123 594.9961
   A 4.81 4.39 -175.9 0 0 721.2961 599.7188
@@ -2235,7 +2235,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#392a19"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1013.95 602.54
   Q 1011.26 601.75 1008.49 600.95
@@ -2260,7 +2260,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5e574a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 257.85 795.94
   Q 252.44 793.53 246.74 792.14
@@ -2293,7 +2293,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5e574a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1020.50 1024.00
   C 1021.46 1017.76 1017.27 1012.27 1014.69 1007.09
@@ -2309,14 +2309,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 914.18 748.42
   L 917.15 753.21"
         />
         <path
           stroke="#3f3d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 917.15 753.21
   Q 918.56 755.51 920.32 757.43
@@ -2324,14 +2324,14 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 968.07 807.77
   L 971.09 810.81"
         />
         <path
           stroke="#3f3d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 971.09 810.81
   Q 980.18 819.92 991.28 826.28
@@ -2341,28 +2341,28 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 980.24 802.38
   Q 978.64 799.67 976.38 798.02"
         />
         <path
           stroke="#3f3d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 976.38 798.02
   L 926.62 745.66"
         />
         <path
           stroke="#36352c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 926.62 745.66
   L 921.86 740.99"
         />
         <path
           stroke="#3f3d33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 921.86 740.99
   C 918.56 737.99 913.90 733.78 910.02 732.65
@@ -2371,7 +2371,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#504a3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 921.86 740.99
   Q 917.86 742.69 916.46 744.98
@@ -2379,21 +2379,21 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#504a3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 926.62 745.66
   Q 921.15 747.03 917.15 753.21"
         />
         <path
           stroke="#504a3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 976.38 798.02
   Q 969.86 800.48 968.07 807.77"
         />
         <path
           stroke="#504a3d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 980.24 802.38
   Q 976.78 804.49 973.76 806.99
@@ -2401,7 +2401,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
         />
         <path
           stroke="#5e574a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 315.56 807.59
   C 308.56 803.36 301.28 802.53 293.76 800.89
