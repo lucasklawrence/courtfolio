@@ -20,7 +20,7 @@ export function ZoneContactSafari() {
         {/* Left column */}
         <div style={{ flex: 1 }}>
           <h3 style={{ fontSize: '1rem', fontWeight: 'bold', color: '#fb923c', margin: 0 }}>
-            📋 Scouting Inquiry
+            Scouting Inquiry
           </h3>
           <p style={{ marginTop: '0.25rem' }}>
             Let’s connect — for dream teams, pick-up ideas, or just a chat.
