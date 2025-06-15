@@ -17,29 +17,6 @@ import { useHasSeenTour } from '@/utils/useHasSeenTour'
 import { FreeRoamPlayer } from './FreeRoamPlayer'
 import { SafeSvgHtml } from './SafeSvgHtml'
 
-function GlowingHighlight({
-  x,
-  y,
-  width,
-  height,
-}: {
-  x: number
-  y: number
-  width: number
-  height: number
-}) {
-  return (
-    <div
-      className="absolute z-0 rounded-lg border-2 border-yellow-300/70 shadow-[0_0_20px_6px_rgba(252,211,77,0.5)] animate-pulse pointer-events-none"
-      style={{
-        left: x,
-        top: y,
-        width,
-        height,
-      }}
-    />
-  )
-}
 
 export function HomeBody() {
   const router = useRouter()
@@ -69,8 +46,7 @@ export function HomeBody() {
       img: '/sprites/LucasHoldingBall.png',
       text: 'This is my bio — quick overview of who I am.',
       glow: { x: 350, y: 110, width: 380, height: 140 },
-      facingLeft: false
-
+      facingLeft: false,
     },
     {
       x: 810,
@@ -78,8 +54,7 @@ export function HomeBody() {
       img: '/sprites/LucasSpinningBall.png',
       text: 'Stats don’t lie. Here’s the résumé highlight reel.',
       glow: { x: 800, y: 110, width: 280, height: 135 },
-            facingLeft: false
-
+      facingLeft: false,
     },
     {
       x: 1270,
@@ -94,8 +69,7 @@ export function HomeBody() {
       img: '/sprites/LucasShooting.png',
       text: 'Check the rafters — career moments and banners.',
       glow: { x: 1020, y: 60, width: 220, height: 40 },
-            facingLeft: false
-
+      facingLeft: false,
     },
     {
       x: 1050,
@@ -110,8 +84,7 @@ export function HomeBody() {
       img: '/sprites/LucasDribbling.png',
       text: 'Explore the plays — featured projects live here.',
       glow: { x: 800, y: 700, width: 250, height: 100 },
-            facingLeft: false, 
-
+      facingLeft: false,
     },
     {
       x: 610,
@@ -119,8 +92,7 @@ export function HomeBody() {
       img: '/sprites/LucasDefense.png',
       text: 'Want to connect? Head to the front office.',
       glow: { x: 610, y: 940, width: 320, height: 55 },
-            facingLeft: false, 
-
+      facingLeft: false,
     },
     {
       x: 130,
@@ -128,7 +100,7 @@ export function HomeBody() {
       img: '/sprites/LucasDribbling.png',
       text: 'My core principles — this lineup shows how I play.',
       glow: { x: 110, y: 425, width: 230, height: 140 },
-            facingLeft: false,
+      facingLeft: false,
     },
     {
       x: 610,
@@ -250,68 +222,76 @@ export function HomeBody() {
 
   if (tourActive) {
     zoneContent['zone-1000'] = (
-      <CourtZone x={0} y={0} width={1600} height={1000}>
-        <div className="relative z-0 w-full h-full pointer-events-none">
-          {tourSteps[tourStep].glow && <GlowingHighlight {...tourSteps[tourStep].glow} />}
-          <div className="pointer-events-auto">
-            <CourtTutorialSprite
-  stepData={tourSteps[tourStep]}
-  onNext={() => {
-    if (tourStep < tourSteps.length - 1) {
-      setTourStep(prev => prev + 1)
-    } else {
-      setTourActive(false)
-      markAsSeen()
-    }
-  }}
-  onSkip={() => {
-    setTourActive(false)
-    markAsSeen()
-  }}
-/>
-          </div>
-        </div>
-      </CourtZone>
-    )
-  } else {
-    zoneContent['zone-101'] = (
-  <CourtZone x={1050} y={870} width={180} height={70}>
-    <SafeSvgHtml>
-      <div className="flex flex-col items-center">
-        {!tourActive && hasSeen && (
-          <button
-            onClick={() => {
-              reset()
-              setTourStep(0)
-              setTourActive(true)
-            }}
-      className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer"
-          >
-            🔁 Replay Tour
-          </button>
-        )}
+  <CourtZone x={0} y={0} width={1600} height={1000}>
+    <div className="relative w-full h-full">
+      {/* Glowing box inside correct coordinate space */}
+      {tourSteps[tourStep].glow && (
+        <div
+          className="absolute rounded-lg border-2 border-yellow-300/70 shadow-[0_0_20px_6px_rgba(252,211,77,0.5)] animate-pulse pointer-events-none"
+          style={{
+            left: tourSteps[tourStep].glow.x,
+            top: tourSteps[tourStep].glow.y,
+            width: tourSteps[tourStep].glow.width,
+            height: tourSteps[tourStep].glow.height,
+          }}
+        />
+      )}
+
+      {/* Sprite */}
+      <div className="pointer-events-auto">
+        <CourtTutorialSprite
+          stepData={tourSteps[tourStep]}
+          onNext={() => {
+            if (tourStep < tourSteps.length - 1) {
+              setTourStep(prev => prev + 1)
+            } else {
+              setTourActive(false)
+              markAsSeen()
+            }
+          }}
+          onSkip={() => {
+            setTourActive(false)
+            markAsSeen()
+          }}
+        />
       </div>
-    </SafeSvgHtml>
+    </div>
   </CourtZone>
 )
+  } else {
+    zoneContent['zone-101'] = (
+      <CourtZone x={1050} y={870} width={180} height={70}>
+        <SafeSvgHtml>
+          <div className="flex flex-col items-center">
+            {!tourActive && hasSeen && (
+              <button
+                onClick={() => {
+                  reset()
+                  setTourStep(0)
+                  setTourActive(true)
+                }}
+                className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer"
+              >
+                🔁 Replay Tour
+              </button>
+            )}
+          </div>
+        </SafeSvgHtml>
+      </CourtZone>
+    )
   }
 
-return (
-  <CourtContainer>
-    {/* Court SVG layer */}
-    <CourtSvg
-      className="w-full h-full"
-      onZoneClick={() => {}}
-      zoneContent={zoneContent}
-    />
+  return (
+    <CourtContainer>
+      {/* Court SVG layer */}
+      <CourtSvg className="w-full h-full" onZoneClick={() => {}} zoneContent={zoneContent} />
 
-    {/* Player overlay, only if not touring */}
-    {!tourActive && (
-      <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
-        <FreeRoamPlayer />
-      </div>
-    )}
-  </CourtContainer>
-)
-
+      {/* Player overlay, only if not touring */}
+      {!tourActive && (
+        <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
+          <FreeRoamPlayer />
+        </div>
+      )}
+    </CourtContainer>
+  )
 }

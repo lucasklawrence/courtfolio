@@ -7,7 +7,7 @@ type StepData = {
   x: number
   y: number
   img: string
-  text: string,
+  text: string
   facingLeft?: boolean
 }
 
@@ -31,15 +31,15 @@ export function CourtTutorialSprite({
   const [facingLeft, setFacingLeft] = useState(false)
 
   useEffect(() => {
-   if (typeof stepData.facingLeft === 'boolean') {
-  setFacingLeft(stepData.facingLeft)
-} else {
-  if (stepData.x < prevX.current) {
-    setFacingLeft(true)
-  } else if (stepData.x > prevX.current) {
-    setFacingLeft(false)
-  }
-}
+    if (typeof stepData.facingLeft === 'boolean') {
+      setFacingLeft(stepData.facingLeft)
+    } else {
+      if (stepData.x < prevX.current) {
+        setFacingLeft(true)
+      } else if (stepData.x > prevX.current) {
+        setFacingLeft(false)
+      }
+    }
     prevX.current = stepData.x
 
     x.set(stepData.x)

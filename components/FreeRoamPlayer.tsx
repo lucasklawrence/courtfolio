@@ -23,10 +23,7 @@ export function FreeRoamPlayer() {
   const [frameIndex, setFrameIndex] = useState(0)
   const [isShootingPose, setIsShootingPose] = useState(false)
 
-  const dribbleFrames = [
-    '/sprites/LucasDribbling2.png',
-    '/sprites/LucasDribbling3.png',
-  ]
+  const dribbleFrames = ['/sprites/LucasDribbling2.png', '/sprites/LucasDribbling3.png']
   const idleFrame = '/sprites/LucasIdle4.png'
   const shootingFrame = '/sprites/LucasShooting2.png'
 
@@ -147,13 +144,12 @@ export function FreeRoamPlayer() {
   const currentSprite = isShootingPose
     ? shootingFrame
     : isMoving
-    ? dribbleFrames[frameIndex]
-    : idleFrame
+      ? dribbleFrames[frameIndex]
+      : idleFrame
 
   let shouldFlip = facingLeft
   if (isShootingPose) {
-    shouldFlip = !shouldFlip;
-
+    shouldFlip = !shouldFlip
   }
   return (
     <div ref={containerRef} className="absolute w-full h-full">
