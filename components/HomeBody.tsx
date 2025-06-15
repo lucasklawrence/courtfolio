@@ -225,27 +225,27 @@ export function HomeBody() {
         {/* 1. Highlight in its own precise spot */}
         {tourSteps[tourStep].glow && (
           <CourtZone
-            x={tourSteps[tourStep].glow.x}
-            y={tourSteps[tourStep].glow.y}
-            width={tourSteps[tourStep].glow.width}
-            height={tourSteps[tourStep].glow.height}
-          >
-            <SafeSvgHtml>
-              <div
-                className="w-full h-full rounded-lg border-2 border-yellow-300/90 animate-pulse pointer-events-none"
-                style={{
-                  boxShadow: `
-      0 0 20px 6px rgba(252, 211, 77, 0.5),
-      0 0 40px 10px rgba(252, 211, 77, 0.3),
-      0 0 60px 16px rgba(252, 211, 77, 0.2)
-    `,
-                  backgroundColor: 'rgba(252, 211, 77, 0.06)',
-                  position: 'relative',
-                  zIndex: 2,
-                }}
-              />
-            </SafeSvgHtml>
-          </CourtZone>
+  x={tourSteps[tourStep].glow.x}
+  y={tourSteps[tourStep].glow.y}
+  width={tourSteps[tourStep].glow.width}
+  height={tourSteps[tourStep].glow.height}
+>
+  <SafeSvgHtml>
+    <div
+      className="w-full h-full rounded-lg pointer-events-none animate-pulse"
+      style={{
+        backgroundColor: 'rgba(252, 211, 77, 0.04)',
+        border: '2px solid rgba(252, 211, 77, 0.9)',
+        boxShadow: `
+          0 0 25px 10px rgba(252, 211, 77, 0.5),
+          0 0 60px 20px rgba(252, 211, 77, 0.3),
+          0 0 100px 30px rgba(252, 211, 77, 0.2)
+        `,
+      }}
+    />
+  </SafeSvgHtml>
+</CourtZone>
+
         )}
 
         {/* 2. Sprite container in its own zone */}
