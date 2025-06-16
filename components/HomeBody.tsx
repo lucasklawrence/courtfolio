@@ -294,7 +294,7 @@ export function HomeBody() {
 
       {/* Player overlay, only if not touring */}
       {!tourActive && (
-        <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full z-50">
           <FreeRoamPlayer boundsRef={svgRef} />
         </div>
       )}

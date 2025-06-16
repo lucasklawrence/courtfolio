@@ -3,14 +3,25 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 
+/** Court dimensions in SVG viewBox space */
 const COURT_X = 270
 const COURT_Y = 60
 const COURT_WIDTH = 1040
 const COURT_HEIGHT = 835
+
+/** Rendered player sprite dimensions in screen pixels */
 const PLAYER_WIDTH = 80
 const PLAYER_HEIGHT = 80
 
+/**
+ * FreeRoamPlayer allows movement across an SVG-rendered court
+ * via WASD or arrow keys, or by clicking a location to move there.
+ * Movement is smoothed using Framer Motion springs and walk animations.
+ *
+ * @param boundsRef - Ref to the court's SVG element, used for bounding and scaling
+ */
 export function FreeRoamPlayer({ boundsRef }: { boundsRef: React.RefObject<SVGSVGElement> }) {
+  // Reactive position state
   const x = useMotionValue(600)
   const y = useMotionValue(600)
 
@@ -20,38 +31,45 @@ export function FreeRoamPlayer({ boundsRef }: { boundsRef: React.RefObject<SVGSV
   const containerRef = useRef<HTMLDivElement | null>(null)
   const lastMoveTime = useRef(Date.now())
 
+  // Animation state
   const [facingLeft, setFacingLeft] = useState(false)
   const [isMoving, setIsMoving] = useState(false)
   const [frameIndex, setFrameIndex] = useState(0)
   const [isShootingPose, setIsShootingPose] = useState(false)
 
+  // Sprites
   const dribbleFrames = ['/sprites/LucasDribbling2.png', '/sprites/LucasDribbling3.png']
   const idleFrame = '/sprites/LucasIdle4.png'
   const shootingFrame = '/sprites/LucasShooting2.png'
 
-  // WASD controls
+  /**
+   * WASD + Arrow key movement support.
+   * Applies bounds scaled to current SVG render size.
+   */
   useEffect(() => {
     const speed = 8
     const keysPressed = new Set<string>()
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Prevent browser scrolling
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault()
+      }
+
       keysPressed.add(e.key)
 
       let dx = 0
       let dy = 0
 
-      if (keysPressed.has('w')) dy -= speed
-      if (keysPressed.has('s')) dy += speed
-      if (keysPressed.has('a')) dx -= speed
-      if (keysPressed.has('d')) dx += speed
+      if (keysPressed.has('w') || keysPressed.has('ArrowUp')) dy -= speed
+      if (keysPressed.has('s') || keysPressed.has('ArrowDown')) dy += speed
+      if (keysPressed.has('a') || keysPressed.has('ArrowLeft')) dx -= speed
+      if (keysPressed.has('d') || keysPressed.has('ArrowRight')) dx += speed
 
       if (dx !== 0 || dy !== 0) {
         lastMoveTime.current = Date.now()
         setIsShootingPose(false)
         setIsMoving(true)
-      }
-
-      if (dx !== 0) {
         setFacingLeft(dx < 0)
       }
 
@@ -59,8 +77,6 @@ export function FreeRoamPlayer({ boundsRef }: { boundsRef: React.RefObject<SVGSV
       if (!svg) return
 
       const bounds = svg.getBoundingClientRect()
-
-      // Translate the viewBox coords (100,60,1400x880) into actual screen pixels
       const scaleX = bounds.width / 1600
       const scaleY = bounds.height / 1000
 
@@ -95,19 +111,19 @@ export function FreeRoamPlayer({ boundsRef }: { boundsRef: React.RefObject<SVGSV
     }
   }, [x, y])
 
-  // Click-to-move
+  /**
+   * Click-to-move interaction.
+   * Uses screen-space clamped SVG bounds and animates at a slower pace.
+   */
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const svg = boundsRef.current
       if (!svg) return
 
       const bounds = svg.getBoundingClientRect()
-
-      // Step 1: get click position in screen pixels relative to the SVG
       const rawX = e.clientX - bounds.left
       const rawY = e.clientY - bounds.top
 
-      // Step 2: scale COURT bounds to screen space
       const scaleX = bounds.width / 1600
       const scaleY = bounds.height / 1000
 
@@ -119,25 +135,38 @@ export function FreeRoamPlayer({ boundsRef }: { boundsRef: React.RefObject<SVGSV
       const maxX = pxCOURT_X + pxCOURT_WIDTH - PLAYER_WIDTH
       const maxY = pxCOURT_Y + pxCOURT_HEIGHT - PLAYER_HEIGHT
 
-      // Step 3: clamp to court area
-      const clampedX = Math.max(pxCOURT_X, Math.min(rawX, maxX))
-      const clampedY = Math.max(pxCOURT_Y, Math.min(rawY, maxY))
+      const targetX = Math.max(pxCOURT_X, Math.min(rawX, maxX))
+      const targetY = Math.max(pxCOURT_Y, Math.min(rawY, maxY))
 
-      if (clampedX !== x.get()) {
-        setFacingLeft(clampedX < x.get())
-      }
-
-      lastMoveTime.current = Date.now()
+      setFacingLeft(targetX < x.get())
       setIsShootingPose(false)
       setIsMoving(true)
 
-      x.set(clampedX)
-      y.set(clampedY)
+      const speed = 2.5
+      const threshold = 1.5
 
-      setTimeout(() => {
-        setIsMoving(false)
-        lastMoveTime.current = Date.now()
-      }, 600)
+      let animationFrameId: number
+
+      const step = () => {
+        const dx = targetX - x.get()
+        const dy = targetY - y.get()
+        const distance = Math.sqrt(dx * dx + dy * dy)
+
+        if (distance < threshold) {
+          setIsMoving(false)
+          cancelAnimationFrame(animationFrameId)
+          return
+        }
+
+        const angle = Math.atan2(dy, dx)
+        x.set(x.get() + Math.cos(angle) * speed)
+        y.set(y.get() + Math.sin(angle) * speed)
+
+        animationFrameId = requestAnimationFrame(step)
+      }
+
+      step()
+      return () => cancelAnimationFrame(animationFrameId)
     }
 
     const container = containerRef.current
@@ -145,7 +174,9 @@ export function FreeRoamPlayer({ boundsRef }: { boundsRef: React.RefObject<SVGSV
     return () => container?.removeEventListener('click', handleClick)
   }, [x, y, boundsRef])
 
-  // Walk cycle animation
+  /**
+   * Loop sprite walk frames when player is moving.
+   */
   useEffect(() => {
     if (!isMoving) return
 
@@ -156,7 +187,9 @@ export function FreeRoamPlayer({ boundsRef }: { boundsRef: React.RefObject<SVGSV
     return () => clearInterval(interval)
   }, [isMoving])
 
-  // Idle → shooting pose trigger
+  /**
+   * Auto-switch to shooting pose after 4s of idle.
+   */
   useEffect(() => {
     const checkIdle = setInterval(() => {
       if (!isMoving && !isShootingPose) {
@@ -177,11 +210,12 @@ export function FreeRoamPlayer({ boundsRef }: { boundsRef: React.RefObject<SVGSV
     return () => clearInterval(checkIdle)
   }, [isMoving, isShootingPose])
 
+  // Choose appropriate sprite based on animation state
   const currentSprite = isShootingPose
     ? shootingFrame
     : isMoving
-      ? dribbleFrames[frameIndex]
-      : idleFrame
+    ? dribbleFrames[frameIndex]
+    : idleFrame
 
   const shouldFlip = isShootingPose ? !facingLeft : facingLeft
 
