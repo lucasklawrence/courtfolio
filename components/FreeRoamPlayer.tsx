@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 
-const COURT_WIDTH = 1600
-const COURT_HEIGHT = 1000
+const COURT_X = 270
+const COURT_Y = 60
+const COURT_WIDTH = 1040
+const COURT_HEIGHT = 835
 const PLAYER_WIDTH = 80
 const PLAYER_HEIGHT = 80
 
-export function FreeRoamPlayer() {
+export function FreeRoamPlayer({ boundsRef }: { boundsRef: React.RefObject<SVGSVGElement> }) {
   const x = useMotionValue(600)
   const y = useMotionValue(600)
 
@@ -53,8 +55,25 @@ export function FreeRoamPlayer() {
         setFacingLeft(dx < 0)
       }
 
-      const nextX = Math.max(0, Math.min(x.get() + dx, COURT_WIDTH - PLAYER_WIDTH))
-      const nextY = Math.max(0, Math.min(y.get() + dy, COURT_HEIGHT - PLAYER_HEIGHT))
+      const svg = boundsRef.current
+      if (!svg) return
+
+      const bounds = svg.getBoundingClientRect()
+
+      // Translate the viewBox coords (100,60,1400x880) into actual screen pixels
+      const scaleX = bounds.width / 1600
+      const scaleY = bounds.height / 1000
+
+      const pxCOURT_X = COURT_X * scaleX
+      const pxCOURT_Y = COURT_Y * scaleY
+      const pxCOURT_WIDTH = COURT_WIDTH * scaleX
+      const pxCOURT_HEIGHT = COURT_HEIGHT * scaleY
+
+      const maxX = pxCOURT_X + pxCOURT_WIDTH - PLAYER_WIDTH
+      const maxY = pxCOURT_Y + pxCOURT_HEIGHT - PLAYER_HEIGHT
+
+      const nextX = Math.max(pxCOURT_X, Math.min(x.get() + dx, maxX))
+      const nextY = Math.max(pxCOURT_Y, Math.min(y.get() + dy, maxY))
 
       x.set(nextX)
       y.set(nextY)
@@ -79,13 +98,30 @@ export function FreeRoamPlayer() {
   // Click-to-move
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      const newX = e.clientX - rect.left
-      const newY = e.clientY - rect.top
+      const svg = boundsRef.current
+      if (!svg) return
 
-      const clampedX = Math.max(0, Math.min(newX, COURT_WIDTH - PLAYER_WIDTH))
-      const clampedY = Math.max(0, Math.min(newY, COURT_HEIGHT - PLAYER_HEIGHT))
+      const bounds = svg.getBoundingClientRect()
+
+      // Step 1: get click position in screen pixels relative to the SVG
+      const rawX = e.clientX - bounds.left
+      const rawY = e.clientY - bounds.top
+
+      // Step 2: scale COURT bounds to screen space
+      const scaleX = bounds.width / 1600
+      const scaleY = bounds.height / 1000
+
+      const pxCOURT_X = COURT_X * scaleX
+      const pxCOURT_Y = COURT_Y * scaleY
+      const pxCOURT_WIDTH = COURT_WIDTH * scaleX
+      const pxCOURT_HEIGHT = COURT_HEIGHT * scaleY
+
+      const maxX = pxCOURT_X + pxCOURT_WIDTH - PLAYER_WIDTH
+      const maxY = pxCOURT_Y + pxCOURT_HEIGHT - PLAYER_HEIGHT
+
+      // Step 3: clamp to court area
+      const clampedX = Math.max(pxCOURT_X, Math.min(rawX, maxX))
+      const clampedY = Math.max(pxCOURT_Y, Math.min(rawY, maxY))
 
       if (clampedX !== x.get()) {
         setFacingLeft(clampedX < x.get())
@@ -107,7 +143,7 @@ export function FreeRoamPlayer() {
     const container = containerRef.current
     container?.addEventListener('click', handleClick)
     return () => container?.removeEventListener('click', handleClick)
-  }, [x, y])
+  }, [x, y, boundsRef])
 
   // Walk cycle animation
   useEffect(() => {
@@ -147,10 +183,8 @@ export function FreeRoamPlayer() {
       ? dribbleFrames[frameIndex]
       : idleFrame
 
-  let shouldFlip = facingLeft
-  if (isShootingPose) {
-    shouldFlip = !shouldFlip
-  }
+  const shouldFlip = isShootingPose ? !facingLeft : facingLeft
+
   return (
     <div ref={containerRef} className="absolute w-full h-full">
       <motion.div
@@ -160,7 +194,7 @@ export function FreeRoamPlayer() {
       >
         <img
           src={currentSprite}
-          className={`w-[80px] h-[80-px] object-contain ${shouldFlip ? 'scale-x-[-1]' : ''}`}
+          className={`w-[80px] h-[80px] object-contain ${shouldFlip ? 'scale-x-[-1]' : ''}`}
           draggable={false}
         />
       </motion.div>

@@ -4,7 +4,7 @@ import { CourtSvg } from './CourtSvg'
 import { useRouter } from 'next/navigation'
 import { ReplayIntroButton } from './ReplayIntroButton'
 import { CourtContainer } from './CourtContainer'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ZoneProjects } from './ZoneProjects'
 import { CourtZone } from './CourtZone'
 import Link from 'next/link'
@@ -280,15 +280,22 @@ export function HomeBody() {
     )
   }
 
+  const svgRef = useRef<SVGSVGElement>(null)
+
   return (
     <CourtContainer>
       {/* Court SVG layer */}
-      <CourtSvg className="w-full h-full" onZoneClick={() => {}} zoneContent={zoneContent} />
+      <CourtSvg
+        ref={svgRef}
+        className="w-full h-full"
+        onZoneClick={() => {}}
+        zoneContent={zoneContent}
+      />
 
       {/* Player overlay, only if not touring */}
       {!tourActive && (
         <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
-          <FreeRoamPlayer />
+          <FreeRoamPlayer boundsRef={svgRef} />
         </div>
       )}
     </CourtContainer>
