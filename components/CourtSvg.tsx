@@ -5,6 +5,8 @@ import React, { forwardRef } from 'react'
 import { useCallback } from 'react'
 type CourtSvgProps = {
   onZoneClick?: (zoneId: string) => void
+  onClick?: React.MouseEventHandler<SVGSVGElement>
+  onTouchStart?: React.TouchEventHandler<SVGSVGElement>
   className?: string
   zoneContent?: Record<string, React.ReactNode>
 }
@@ -14,7 +16,7 @@ type CourtSvgProps = {
  * Allows content injection per zone via `zoneContent`.
  */
 export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
-  ({ onZoneClick, className, zoneContent = {} }, ref) => {
+  ({ onZoneClick, className, onTouchStart, onClick, zoneContent = {} }, ref) => {
     const handleClick = useCallback(
       (zoneId: string) => {
         if (onZoneClick) {
@@ -28,6 +30,8 @@ export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
       <svg
         viewBox="0 0 1536 1024"
         ref={ref}
+        onClick={onClick}
+        onTouchStart={onTouchStart}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
         className="w-full h-full object-contain"
