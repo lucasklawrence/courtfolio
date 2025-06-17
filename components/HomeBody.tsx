@@ -36,12 +36,23 @@ export function HomeBody() {
     }
   }, [hasSeen])
   const tourSteps = [
+     {
+      x: 820,
+      y: 825,
+      img: '/sprites/LucasDefense.png',
+      text: 'Welcome! I’m Lucas — I’ll walk you through this court. Tap the orange buttons below to continue.',
+      glow: { x: 1019, y: 865, width: 133, height: 43 },
+            facingLeft: false,
+
+    },
     {
       x: 610,
       y: 355,
       img: '/sprites/LucasDefense.png',
-      text: 'Welcome to the court — I’m Lucas.',
+      text: 'This court is my creative space. Some areas are live — others are warming up.',
       glow: { x: 350, y: 110, width: 380, height: 140 },
+            facingLeft: false,
+
     },
     {
       x: 370,
@@ -65,6 +76,7 @@ export function HomeBody() {
       img: '/sprites/LucasShooting.png',
       text: 'Head to the locker room for more personal flavor.',
       glow: { x: 1270, y: 60, width: 240, height: 40 },
+            facingLeft: true
     },
     {
       x: 1020,
@@ -72,7 +84,7 @@ export function HomeBody() {
       img: '/sprites/LucasShooting.png',
       text: 'Check the rafters — career moments and banners.',
       glow: { x: 1020, y: 60, width: 220, height: 40 },
-      facingLeft: false,
+      facingLeft: true,
     },
     {
       x: 1050,
@@ -240,6 +252,38 @@ export function HomeBody() {
         )}
       </>
     )
+    if (tourActive) {
+  zoneContent['zone-9000'] = (
+    <CourtZone x={950} y={865} width={200} height={40}>
+      <SafeSvgHtml>
+        <div className="flex justify-end items-center gap-3 w-full h-full">
+          <button
+            onClick={() => {
+              if (tourStep < tourSteps.length - 1) {
+                setTourStep(tourStep + 1)
+              } else {
+                setTourActive(false)
+                markAsSeen()
+              }
+            }}
+className="px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+          >
+            →
+          </button>
+          <button
+            onClick={() => {
+              setTourActive(false)
+              markAsSeen()
+            }}
+className="px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+          >
+            Skip
+          </button>
+        </div>
+      </SafeSvgHtml>
+    </CourtZone>
+  )
+}
   } else {
     zoneContent['zone-101'] = (
       <CourtZone x={1050} y={870} width={180} height={70}>
@@ -275,22 +319,10 @@ export function HomeBody() {
       />
 
       {tourActive && (
-  <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-auto">
+<div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
     <CourtTutorialSprite
       svgRef={svgRef}
       stepData={tourSteps[tourStep]}
-      onNext={() => {
-        if (tourStep < tourSteps.length - 1) {
-          setTourStep(prev => prev + 1)
-        } else {
-          setTourActive(false)
-          markAsSeen()
-        }
-      }}
-      onSkip={() => {
-        setTourActive(false)
-        markAsSeen()
-      }}
     />
   </div>
 )}

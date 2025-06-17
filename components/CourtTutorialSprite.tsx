@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { SpeechBubble } from './SpeechBubble'
 
 type StepData = {
   x: number
@@ -13,17 +14,11 @@ type StepData = {
 
 export function CourtTutorialSprite({
   stepData,
-  svgRef,
-  onNext,
-  onSkip,
-  onEnd,
+  svgRef
 }: {
   stepData: StepData
   svgRef: React.RefObject<SVGSVGElement | null>
-  onNext: () => void
-  onSkip: () => void
-  onEnd?: (x: number, y: number) => void
-}) {
+  }) {
   const prevX = useRef(stepData.x)
   const [facingLeft, setFacingLeft] = useState(false)
 
@@ -99,44 +94,12 @@ const screenPt = pt.matrixTransform(ctm ?? new DOMMatrix())
   }}
   draggable={false}
 />
-
-     <div
-  style={{
-    position: 'absolute',
-    top: 0,
-    left: 90 * scale, // shift right of sprite
-    width: 'max-content',
-    maxWidth: 250,
-  }}
+<SpeechBubble
+  text={stepData.text}
+  scale={scale}
+  facingLeft={facingLeft}
 >
-  <div style={{ transform: `scale(${scale})`, transformOrigin: 'top left' }}>
-<div className="bg-white text-black text-sm font-semibold px-2.5 py-2 rounded-xl shadow-lg border border-gray-200 relative">
-<p className="text-sm sm:text-base leading-snug">{stepData.text}</p>
-      <div className="absolute left-[-10px] top-[30px] w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-r-[10px] border-r-white" />
-    </div>
-
-    <div className="mt-2 flex gap-2">
-      <button
-        onClick={() => {
-          if (onEnd) onEnd(stepData.x, stepData.y)
-          onNext()
-        }}
-        className="px-2 py-1 text-white bg-orange-600 rounded text-xs hover:bg-orange-700 transition"
-      >
-        →
-      </button>
-      <button
-        onClick={() => {
-          if (onEnd) onEnd(stepData.x, stepData.y)
-          onSkip()
-        }}
-        className="px-2 py-1 text-xs bg-gray-300 text-gray-800 rounded hover:bg-gray-200 transition"
-      >
-        Skip
-      </button>
-    </div>
-  </div>
-</div>
+</SpeechBubble>
 
     </motion.div>
   )
