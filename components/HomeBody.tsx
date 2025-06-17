@@ -238,27 +238,6 @@ export function HomeBody() {
         {tourSteps[tourStep].glow && (
           <SvgGlowHighlight {...tourSteps[tourStep].glow} />
         )}
-        <CourtZone x={0} y={0} width={1600} height={1000}>
-          <SafeSvgHtml>
-            <div className="relative w-full h-full pointer-events-auto">
-              <CourtTutorialSprite
-                stepData={tourSteps[tourStep]}
-                onNext={() => {
-                  if (tourStep < tourSteps.length - 1) {
-                    setTourStep(prev => prev + 1)
-                  } else {
-                    setTourActive(false)
-                    markAsSeen()
-                  }
-                }}
-                onSkip={() => {
-                  setTourActive(false)
-                  markAsSeen()
-                }}
-              />
-            </div>
-          </SafeSvgHtml>
-        </CourtZone>
       </>
     )
   } else {
@@ -284,6 +263,7 @@ export function HomeBody() {
     )
   } 
 
+
  return (
     <CourtContainer>
       <CourtSvg ref={svgRef} className="w-full h-full" zoneContent={zoneContent} ripples={ripples}/>
@@ -294,6 +274,28 @@ export function HomeBody() {
         setRipples={setRipples}
       />
 
+      {tourActive && (
+  <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-auto">
+    <CourtTutorialSprite
+      svgRef={svgRef}
+      stepData={tourSteps[tourStep]}
+      onNext={() => {
+        if (tourStep < tourSteps.length - 1) {
+          setTourStep(prev => prev + 1)
+        } else {
+          setTourActive(false)
+          markAsSeen()
+        }
+      }}
+      onSkip={() => {
+        setTourActive(false)
+        markAsSeen()
+      }}
+    />
+  </div>
+)}
+
+
       {!tourActive && (
         <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
           <FreeRoamPlayer boundsRef={svgRef} target={clickTarget} />
@@ -301,4 +303,12 @@ export function HomeBody() {
       )}
     </CourtContainer>
   )
+}
+
+function svgPointToScreen(svg: SVGSVGElement, x: number, y: number) {
+  const pt = svg.createSVGPoint()
+  pt.x = x
+  pt.y = y
+  const screenPt = pt.matrixTransform(svg.getScreenCTM())
+  return { x: screenPt.x, y: screenPt.y }
 }

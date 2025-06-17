@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 type StepData = {
   x: number
@@ -13,22 +13,35 @@ type StepData = {
 
 export function CourtTutorialSprite({
   stepData,
+  svgRef,
   onNext,
   onSkip,
   onEnd,
 }: {
   stepData: StepData
+  svgRef: React.RefObject<SVGSVGElement | null>
   onNext: () => void
   onSkip: () => void
-  onEnd?: (x: number, y: number) => void // optional if you use free roam transition
+  onEnd?: (x: number, y: number) => void
 }) {
-  const x = useMotionValue(stepData.x)
-  const y = useMotionValue(stepData.y)
-  const springX = useSpring(x, { stiffness: 120, damping: 14 })
-  const springY = useSpring(y, { stiffness: 120, damping: 14 })
-
   const prevX = useRef(stepData.x)
   const [facingLeft, setFacingLeft] = useState(false)
+
+  const [screenX, screenY] = useMemo(() => {
+    const svg = svgRef.current
+    if (!svg) return [0, 0]
+    const pt = svg.createSVGPoint()
+    pt.x = stepData.x
+    pt.y = stepData.y
+const ctm = svg.getScreenCTM()
+const screenPt = pt.matrixTransform(ctm ?? new DOMMatrix())
+    return [screenPt.x, screenPt.y]
+  }, [stepData.x, stepData.y, svgRef.current])
+
+  const x = useMotionValue(screenX)
+  const y = useMotionValue(screenY)
+  const springX = useSpring(x, { stiffness: 120, damping: 14 })
+  const springY = useSpring(y, { stiffness: 120, damping: 14 })
 
   useEffect(() => {
     if (typeof stepData.facingLeft === 'boolean') {
@@ -42,14 +55,14 @@ export function CourtTutorialSprite({
     }
     prevX.current = stepData.x
 
-    x.set(stepData.x)
-    y.set(stepData.y)
-  }, [stepData.x, stepData.y])
+    x.set(screenX)
+    y.set(screenY)
+  }, [stepData.x, stepData.y, screenX, screenY])
 
   return (
     <motion.div
       style={{ x: springX, y: springY }}
-      className="absolute"
+      className="absolute pointer-events-auto z-50"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -57,7 +70,13 @@ export function CourtTutorialSprite({
       <img
         src={stepData.img}
         alt="Sprite"
-        className={`w-[80px] h-auto ${facingLeft ? 'scale-x-[-1]' : ''}`}
+        style={{
+          width: 80,
+          height: 'auto',
+          objectFit: 'contain',
+          transform: facingLeft ? 'scaleX(-1)' : 'scaleX(1)',
+        }}
+        draggable={false}
       />
 
       <div className="relative -top-20 left-20 w-[180px]">
