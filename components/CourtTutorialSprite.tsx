@@ -27,6 +27,23 @@ export function CourtTutorialSprite({
   const prevX = useRef(stepData.x)
   const [facingLeft, setFacingLeft] = useState(false)
 
+  const [scale, setScale] = useState(1)
+
+useEffect(() => {
+  const svg = svgRef.current
+  if (!svg) return
+
+  const updateScale = () => {
+    const viewBoxWidth = 1600 // your SVG viewBox width
+    const pixelWidth = svg.clientWidth
+    setScale(pixelWidth / viewBoxWidth)
+  }
+
+  updateScale()
+  window.addEventListener('resize', updateScale)
+  return () => window.removeEventListener('resize', updateScale)
+}, [svgRef])
+
   const [screenX, screenY] = useMemo(() => {
     const svg = svgRef.current
     if (!svg) return [0, 0]
@@ -68,16 +85,16 @@ const screenPt = pt.matrixTransform(ctm ?? new DOMMatrix())
       transition={{ duration: 0.3 }}
     >
       <img
-        src={stepData.img}
-        alt="Sprite"
-        style={{
-          width: 80,
-          height: 'auto',
-          objectFit: 'contain',
-          transform: facingLeft ? 'scaleX(-1)' : 'scaleX(1)',
-        }}
-        draggable={false}
-      />
+  src={stepData.img}
+  alt="Sprite"
+  style={{
+    width: 80 * scale,
+    height: 80 * scale,
+    objectFit: 'contain',
+    transform: `${facingLeft ? 'scaleX(-1)' : 'scaleX(1)'}`,
+  }}
+  draggable={false}
+/>
 
       <div className="relative -top-20 left-20 w-[180px]">
         <div className="bg-white text-black text-xs font-semibold px-3 py-2 rounded-xl shadow-lg border border-gray-200 relative">
