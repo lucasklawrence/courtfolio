@@ -50,11 +50,11 @@ export function HomeBody() {
       img: '/sprites/LucasDefense.png',
       text: 'This court is my creative space. Some areas are live — others are warming up.',
       glow: {
-        x: 650, // centerX - radius
-        y: 380, // centerY - radius
+        x: 650,
+        y: 380,
         width: 220,
         height: 250,
-        shape: 'circle', // optional, if you want to style differently
+        shape: 'circle',
       },
     },
     {
