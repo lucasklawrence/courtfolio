@@ -319,6 +319,7 @@ export function HomeBody() {
         svgRef={svgRef}
         setClickTarget={tourActive ? () => {} : setClickTarget}
         setRipples={tourActive ? () => {} : setRipples}
+        disabled={tourActive}
       />
 
       {tourActive && (

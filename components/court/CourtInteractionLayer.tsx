@@ -1,3 +1,4 @@
+import { disableInstantTransitions } from 'framer-motion'
 import React, { useEffect } from 'react'
 
 type Ripple = { id: number; x: number; y: number }
@@ -6,14 +7,18 @@ type CourtInteractionLayerProps = {
   svgRef: React.RefObject<SVGSVGElement | null>
   setClickTarget: (pt: { x: number; y: number }) => void
   setRipples: React.Dispatch<React.SetStateAction<Ripple[]>>
+  disabled?: boolean
 }
 
 export function CourtInteractionLayer({
   svgRef,
   setClickTarget,
   setRipples,
+  disabled,
 }: CourtInteractionLayerProps) {
   const handleEvent = (e: React.MouseEvent | React.TouchEvent) => {
+    if (disabled) return
+
     const target = e.target as HTMLElement
     if (
       target.closest('button') ||
@@ -60,7 +65,7 @@ export function CourtInteractionLayer({
       svg.removeEventListener('click', handleEvent as any)
       svg.removeEventListener('touchstart', handleEvent as any)
     }
-  }, [svgRef])
+  }, [svgRef, disabled])
 
   return null
 }
