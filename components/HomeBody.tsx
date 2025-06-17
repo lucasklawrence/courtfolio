@@ -286,7 +286,7 @@ export function HomeBody() {
 
  return (
     <CourtContainer>
-      <CourtSvg ref={svgRef} className="w-full h-full" zoneContent={zoneContent} />
+      <CourtSvg ref={svgRef} className="w-full h-full" zoneContent={zoneContent} ripples={ripples}/>
 
       <CourtInteractionLayer
         svgRef={svgRef}

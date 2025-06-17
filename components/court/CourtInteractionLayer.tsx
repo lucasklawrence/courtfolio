@@ -24,22 +24,28 @@ export function CourtInteractionLayer({
       target.closest('.ui-ignore')
     ) return
 
-    const svg = svgRef.current
-    if (!svg) return
+   const svg = svgRef.current
+if (!svg) return
 
-    const bounds = svg.getBoundingClientRect()
-    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX
-    const clientY = 'touches' in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY
-    const x = clientX - bounds.left
-    const y = clientY - bounds.top
+const bounds = svg.getBoundingClientRect()
+const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX
+const clientY = 'touches' in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY
 
-    setClickTarget({ x, y })
+// For ripple: convert to viewBox coordinates
+const pt = svg.createSVGPoint()
+pt.x = clientX
+pt.y = clientY
+const svgPoint = pt.matrixTransform(svg.getScreenCTM()?.inverse())
 
-    const id = Date.now()
-    setRipples(prev => [...prev, { id, x, y }])
-    setTimeout(() => {
-      setRipples(prev => prev.filter(r => r.id !== id))
-    }, 600)
+const rippleX = svgPoint.x
+const rippleY = svgPoint.y
+
+// For player: use pixel coords relative to SVG container
+const playerX = clientX - bounds.left
+const playerY = clientY - bounds.top
+
+setClickTarget({ x: playerX, y: playerY }) // player uses pixel space
+setRipples(prev => [...prev, { id: Date.now(), x: rippleX, y: rippleY }])
   }
 
   useEffect(() => {
