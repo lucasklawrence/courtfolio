@@ -14,7 +14,6 @@ export function CourtInteractionLayer({
   setRipples,
 }: CourtInteractionLayerProps) {
   const handleEvent = (e: React.MouseEvent | React.TouchEvent) => {
-
     const target = e.target as HTMLElement
     if (
       target.closest('button') ||

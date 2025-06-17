@@ -317,8 +317,8 @@ export function HomeBody() {
 
       <CourtInteractionLayer
         svgRef={svgRef}
-        setClickTarget={setClickTarget}
-        setRipples={setRipples}
+        setClickTarget={tourActive ? () => {} : setClickTarget}
+        setRipples={tourActive ? () => {} : setRipples}
       />
 
       {tourActive && (
