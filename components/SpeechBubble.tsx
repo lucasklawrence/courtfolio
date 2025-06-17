@@ -65,14 +65,12 @@ export const SpeechBubble: React.FC<SpeechBubbleProps> = ({
             }}
           />
         </div>
-
-{children && (
-  <div className="mt-2 flex gap-2 justify-end">
-    <div className="flex gap-2">
-      {children}
-    </div>
-  </div>
-)}      </div>
+        {children && (
+          <div className="mt-2 flex gap-2 justify-end">
+            <div className="flex gap-2">{children}</div>
+          </div>
+        )}{' '}
+      </div>
     </div>
   )
 }

@@ -9,9 +9,7 @@ import React from 'react'
 export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="fixed inset-0 bg-neutral-900 flex items-center justify-center overflow-hidden">
-      <div className="relative w-full h-full max-w-[100vw] max-h-[100dvh]">
-        {children}
-      </div>
+      <div className="relative w-full h-full max-w-[100vw] max-h-[100dvh]">{children}</div>
     </div>
   )
 }

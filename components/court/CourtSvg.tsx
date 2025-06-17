@@ -32,7 +32,6 @@ type CourtSvgProps = {
   ripples?: { id: number; x: number; y: number }[]
 }
 
-
 /**
  * Inline SVG of a basketball court with zone interactivity.
  * Allows content injection per zone via `zoneContent`.
@@ -2947,20 +2946,19 @@ export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
         {Object.entries(zoneContent).map(([zoneId, content]) => (
           <g key={zoneId}>{content}</g>
         ))}
-       {ripples?.map(r => (
-  <motion.circle
-    key={r.id}
-    initial={{ r: 0, opacity: 0.8 }}
-    animate={{ r: 40, opacity: 0 }}
-    transition={{ duration: 0.6, ease: 'easeOut' }}
-    cx={r.x}
-    cy={r.y}
-    fill="rgba(252, 211, 77, 0.5)"
-    stroke="rgba(252, 211, 77, 1)"
-    strokeWidth={2}
-  />
-))}
-
+        {ripples?.map(r => (
+          <motion.circle
+            key={r.id}
+            initial={{ r: 0, opacity: 0.8 }}
+            animate={{ r: 40, opacity: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            cx={r.x}
+            cy={r.y}
+            fill="rgba(252, 211, 77, 0.5)"
+            stroke="rgba(252, 211, 77, 1)"
+            strokeWidth={2}
+          />
+        ))}
       </svg>
     )
   }

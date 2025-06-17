@@ -14,34 +14,34 @@ type StepData = {
 
 export function CourtTutorialSprite({
   stepData,
-  svgRef
+  svgRef,
 }: {
   stepData: StepData
   svgRef: React.RefObject<SVGSVGElement | null>
-  }) {
+}) {
   const prevX = useRef(stepData.x)
   const [facingLeft, setFacingLeft] = useState(false)
 
   const [scale, setScale] = useState(1)
 
-useEffect(() => {
-  const svg = svgRef.current
-  if (!svg) return
+  useEffect(() => {
+    const svg = svgRef.current
+    if (!svg) return
 
-  const updateScale = () => {
-    const viewBoxWidth = 1600
-    const pixelWidth = svg.clientWidth
-    const rawScale = pixelWidth / viewBoxWidth
+    const updateScale = () => {
+      const viewBoxWidth = 1600
+      const pixelWidth = svg.clientWidth
+      const rawScale = pixelWidth / viewBoxWidth
 
-    // Cap scale between 0.5 and 1.0
-    const clampedScale = Math.min(Math.max(rawScale, 0.5), 1)
-    setScale(clampedScale)
-  }
+      // Cap scale between 0.5 and 1.0
+      const clampedScale = Math.min(Math.max(rawScale, 0.5), 1)
+      setScale(clampedScale)
+    }
 
-  updateScale()
-  window.addEventListener('resize', updateScale)
-  return () => window.removeEventListener('resize', updateScale)
-}, [svgRef])
+    updateScale()
+    window.addEventListener('resize', updateScale)
+    return () => window.removeEventListener('resize', updateScale)
+  }, [svgRef])
 
   const [screenX, screenY] = useMemo(() => {
     const svg = svgRef.current
@@ -49,8 +49,8 @@ useEffect(() => {
     const pt = svg.createSVGPoint()
     pt.x = stepData.x
     pt.y = stepData.y
-const ctm = svg.getScreenCTM()
-const screenPt = pt.matrixTransform(ctm ?? new DOMMatrix())
+    const ctm = svg.getScreenCTM()
+    const screenPt = pt.matrixTransform(ctm ?? new DOMMatrix())
     return [screenPt.x, screenPt.y]
   }, [stepData.x, stepData.y, svgRef.current])
 
@@ -84,23 +84,17 @@ const screenPt = pt.matrixTransform(ctm ?? new DOMMatrix())
       transition={{ duration: 0.3 }}
     >
       <img
-  src={stepData.img}
-  alt="Sprite"
-  style={{
-    width: 80 * scale,
-    height: 80 * scale,
-    objectFit: 'contain',
-    transform: `${facingLeft ? 'scaleX(-1)' : 'scaleX(1)'}`,
-  }}
-  draggable={false}
-/>
-<SpeechBubble
-  text={stepData.text}
-  scale={scale}
-  facingLeft={facingLeft}
->
-</SpeechBubble>
-
+        src={stepData.img}
+        alt="Sprite"
+        style={{
+          width: 80 * scale,
+          height: 80 * scale,
+          objectFit: 'contain',
+          transform: `${facingLeft ? 'scaleX(-1)' : 'scaleX(1)'}`,
+        }}
+        draggable={false}
+      />
+      <SpeechBubble text={stepData.text} scale={scale} facingLeft={facingLeft}></SpeechBubble>
     </motion.div>
   )
 }
