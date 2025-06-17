@@ -3,7 +3,7 @@
 import { CourtSvg } from '@/components/court/CourtSvg'
 import { BackToCourtButton } from '@/components/BackToCourtButton'
 import React from 'react'
-import { CourtContainer } from '@/components/CourtContainer'
+import { CourtContainer } from '@/components/court/CourtContainer'
 import { CourtZone } from '@/components/CourtZone'
 import { ZoneFantasy } from '@/components/ZoneFantasy'
 import { ZoneBars } from '@/components/ZoneBars'

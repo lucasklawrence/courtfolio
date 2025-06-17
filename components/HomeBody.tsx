@@ -3,7 +3,7 @@
 import { CourtSvg } from './court/CourtSvg'
 import { useRouter } from 'next/navigation'
 import { ReplayIntroButton } from './ReplayIntroButton'
-import { CourtContainer } from './CourtContainer'
+import { CourtContainer } from './court/CourtContainer'
 import React, { useEffect, useRef, useState } from 'react'
 import { ZoneProjects } from './ZoneProjects'
 import { CourtZone } from './CourtZone'
