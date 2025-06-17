@@ -14,7 +14,6 @@ export function CourtInteractionLayer({
   setRipples,
 }: CourtInteractionLayerProps) {
   const handleEvent = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault()
 
     const target = e.target as HTMLElement
     if (
@@ -24,6 +23,8 @@ export function CourtInteractionLayer({
       target.closest('.ui-ignore')
     )
       return
+
+    e.preventDefault()
 
     const svg = svgRef.current
     if (!svg) return
