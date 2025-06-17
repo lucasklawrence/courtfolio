@@ -304,11 +304,3 @@ export function HomeBody() {
     </CourtContainer>
   )
 }
-
-function svgPointToScreen(svg: SVGSVGElement, x: number, y: number) {
-  const pt = svg.createSVGPoint()
-  pt.x = x
-  pt.y = y
-  const screenPt = pt.matrixTransform(svg.getScreenCTM())
-  return { x: screenPt.x, y: screenPt.y }
-}
