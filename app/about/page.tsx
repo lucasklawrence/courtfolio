@@ -1,6 +1,6 @@
 'use client'
 
-import { CourtSvg } from '@/components/CourtSvg'
+import { CourtSvg } from '@/components/court/CourtSvg'
 import { CourtTitle } from '@/components/CourtTitle'
 import { BackToCourtButton } from '@/components/BackToCourtButton'
 import { CourtContainer } from '@/components/CourtContainer'

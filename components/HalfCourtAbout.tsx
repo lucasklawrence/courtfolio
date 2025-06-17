@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { CourtSvg } from './CourtSvg'
+import { CourtSvg } from './court/CourtSvg'
 
 export function HalfCourtAbout() {
   return (

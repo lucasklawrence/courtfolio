@@ -1,6 +1,6 @@
 'use client'
 
-import { CourtSvg } from './CourtSvg'
+import { CourtSvg } from './court/CourtSvg'
 import { useRouter } from 'next/navigation'
 import { ReplayIntroButton } from './ReplayIntroButton'
 import { CourtContainer } from './CourtContainer'
@@ -14,20 +14,22 @@ import { LogoSvg } from './LogoSvg'
 import { CourtTitleSolo } from './CourtTitleSolo'
 import { CourtTutorialSprite } from './CourtTutorialSprite'
 import { useHasSeenTour } from '@/utils/useHasSeenTour'
-import { FreeRoamPlayer } from './FreeRoamPlayer'
+import { FreeRoamPlayer } from './court/FreeRoamPlayer'
 import { SafeSvgHtml } from './SafeSvgHtml'
 import { SvgGlowHighlight } from './SvgGlowingHighlight'
+import { CourtInteractionLayer } from './court/CourtInteractionLayer'
 
 export function HomeBody() {
   const router = useRouter()
-
   const { hasSeen, markAsSeen, reset } = useHasSeenTour()
-  // Replace your tourActive init
+
   const [tourActive, setTourActive] = useState(false)
   const [tourStep, setTourStep] = useState(0)
   const [clickTarget, setClickTarget] = useState<{ x: number; y: number } | null>(null)
+  const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([])
 
-  // Show tour once when component mounts
+  const svgRef = useRef<SVGSVGElement>(null)
+
   useEffect(() => {
     if (hasSeen === false) {
       setTourActive(true)
@@ -230,20 +232,12 @@ export function HomeBody() {
     ),
   }
 
-  if (tourActive) {
+   if (tourActive) {
     zoneContent['zone-1000'] = (
       <>
-        {/* 1. Highlight in its own precise spot */}
         {tourSteps[tourStep].glow && (
-          <SvgGlowHighlight
-            x={tourSteps[tourStep].glow.x}
-            y={tourSteps[tourStep].glow.y}
-            width={tourSteps[tourStep].glow.width}
-            height={tourSteps[tourStep].glow.height}
-          />
+          <SvgGlowHighlight {...tourSteps[tourStep].glow} />
         )}
-
-        {/* 2. Sprite container in its own zone */}
         <CourtZone x={0} y={0} width={1600} height={1000}>
           <SafeSvgHtml>
             <div className="relative w-full h-full pointer-events-auto">
@@ -288,85 +282,18 @@ export function HomeBody() {
         </SafeSvgHtml>
       </CourtZone>
     )
-  }
+  } 
 
-  const handleCourtTapOrClick = (
-    e: React.MouseEvent<SVGSVGElement> | React.TouchEvent<SVGSVGElement>
-  ) => {
-    // Prevent text selection or unwanted focus
-    e.preventDefault()
-
-    const target = e.target as HTMLElement
-    if (
-      target.closest('button') ||
-      target.closest('a') ||
-      target.closest('[role="button"]') ||
-      target.closest('.ui-ignore')
-    ) {
-      return
-    }
-
-    const svg = svgRef.current
-    if (!svg) return
-
-    const bounds = svg.getBoundingClientRect()
-
-    // 👇 Normalize touch vs mouse
-    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX
-    const clientY = 'touches' in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY
-
-    const rawX = clientX - bounds.left
-    const rawY = clientY - bounds.top
-
-    console.log('📍 Click or Tap:', { x: rawX, y: rawY })
-    setClickTarget({ x: rawX, y: rawY })
-  }
-
-  const svgRef = useRef<SVGSVGElement>(null)
-
-  return (
+ return (
     <CourtContainer>
-      {/* Court SVG layer */}
-      <CourtSvg
-        ref={svgRef}
-        className="w-full h-full"
-        onZoneClick={() => {}}
-        onTouchStart={handleCourtTapOrClick}
-        onClick={e => {
-          // Prevent focusing things like foreignObject contents
-          e.preventDefault()
-          if (document.activeElement instanceof HTMLElement) {
-            document.activeElement.blur()
-          }
-          const svg = svgRef.current
-          if (!svg) return
+      <CourtSvg ref={svgRef} className="w-full h-full" zoneContent={zoneContent} />
 
-          const target = e.target as HTMLElement
-
-          console.log('Clicked element:', target)
-          console.log('Tag:', target.tagName)
-          console.log('Classes:', target.className)
-          console.log('Inside button?', !!target.closest('button'))
-
-          if (
-            target.closest('button') ||
-            target.closest('a') ||
-            target.closest('[role="button"]') ||
-            target.closest('.ui-ignore')
-          ) {
-            return
-          }
-
-          const bounds = svg.getBoundingClientRect()
-          const rawX = e.clientX - bounds.left
-          const rawY = e.clientY - bounds.top
-
-          setClickTarget({ x: rawX, y: rawY })
-        }}
-        zoneContent={zoneContent}
+      <CourtInteractionLayer
+        svgRef={svgRef}
+        setClickTarget={setClickTarget}
+        setRipples={setRipples}
       />
 
-      {/* Player overlay, only if not touring */}
       {!tourActive && (
         <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
           <FreeRoamPlayer boundsRef={svgRef} target={clickTarget} />

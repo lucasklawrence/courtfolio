@@ -3,20 +3,41 @@
 import React, { forwardRef } from 'react'
 
 import { useCallback } from 'react'
+
+/**
+ * Props for the CourtSvg component, which renders the main interactive court SVG.
+ */
 type CourtSvgProps = {
-  onZoneClick?: (zoneId: string) => void
-  onClick?: React.MouseEventHandler<SVGSVGElement>
-  onTouchStart?: React.TouchEventHandler<SVGSVGElement>
+  /**
+   * Optional Tailwind or CSS class names to apply to the SVG container.
+   */
   className?: string
+
+  /**
+   * Mapping of zone IDs to React content that should be rendered in those zones.
+   * Zone IDs correspond to structured <CourtZone> or <foreignObject> overlays.
+   */
   zoneContent?: Record<string, React.ReactNode>
+
+  /**
+   * Callback invoked when a zone is clicked, passing the zone's unique ID.
+   */
+  onZoneClick?: (zoneId: string) => void
+
+  /**
+   * Array of ripple effects to display, typically triggered by user clicks or taps.
+   * Each ripple includes a unique ID and SVG x/y coordinates.
+   */
+  ripples?: { id: number; x: number; y: number }[]
 }
+
 
 /**
  * Inline SVG of a basketball court with zone interactivity.
  * Allows content injection per zone via `zoneContent`.
  */
 export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
-  ({ onZoneClick, className, onTouchStart, onClick, zoneContent = {} }, ref) => {
+  ({ className = '', onZoneClick, ripples, zoneContent = {} }, ref) => {
     const handleClick = useCallback(
       (zoneId: string) => {
         if (onZoneClick) {
@@ -30,8 +51,6 @@ export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
       <svg
         viewBox="0 0 1536 1024"
         ref={ref}
-        onClick={onClick}
-        onTouchStart={onTouchStart}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
         className="w-full h-full object-contain"
@@ -2927,6 +2946,35 @@ export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
         {Object.entries(zoneContent).map(([zoneId, content]) => (
           <g key={zoneId}>{content}</g>
         ))}
+        {ripples?.map(r => (
+  <circle
+    key={r.id}
+    cx={r.x}
+    cy={r.y}
+    r={40}
+    fill="rgba(252, 211, 77, 0.5)"
+    stroke="rgba(252, 211, 77, 1)"
+    strokeWidth={2}
+  >
+    <animate
+      attributeName="r"
+      from="0"
+      to="40"
+      dur="0.6s"
+      fill="freeze"
+      keyTimes="0;1"
+      values="0;40"
+    />
+    <animate
+      attributeName="opacity"
+      from="0.8"
+      to="0"
+      dur="0.6s"
+      fill="freeze"
+    />
+  </circle>
+))}
+
       </svg>
     )
   }

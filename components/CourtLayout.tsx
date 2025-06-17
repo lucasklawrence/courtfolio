@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode } from 'react'
-import { CourtSvg } from './CourtSvg'
+import { CourtSvg } from './court/CourtSvg'
 
 type CourtLayoutProps = {
   children: ReactNode
