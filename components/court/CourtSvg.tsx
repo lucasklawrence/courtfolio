@@ -53,7 +53,7 @@ export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
         ref={ref}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
-        className="w-full h-full object-contain"
+        className="w-full h-full"
       >
         <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
           <g id="zone-0" onClick={() => console.log('Clicked zone 0')}>
