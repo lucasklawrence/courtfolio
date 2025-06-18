@@ -9,7 +9,7 @@ export function SvgGlowHighlight({
   y: number
   width: number
   height: number
-  shape?: 'rect' | 'circle'
+  shape?: string
 }) {
   const commonProps = {
     fill: 'rgba(252, 211, 77, 0.08)',
