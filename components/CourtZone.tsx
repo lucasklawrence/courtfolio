@@ -20,13 +20,13 @@ export function CourtZone({
   width,
   height,
   children,
-  className
+  className,
 }: {
   x: number
   y: number
   width: number
   height: number
-  children: React.ReactNode,
+  children: React.ReactNode
   className?: string
 }) {
   return (

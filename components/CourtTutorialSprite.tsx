@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SpeechBubble } from './SpeechBubble'
 
 type StepData = {
@@ -21,12 +21,14 @@ export function CourtTutorialSprite({
 }) {
   const prevX = useRef(stepData.x)
   const [facingLeft, setFacingLeft] = useState(false)
-
   const [scale, setScale] = useState(1)
+  const [screenX, setScreenX] = useState(0)
+  const [screenY, setScreenY] = useState(0)
 
-  const isShortScreen = typeof window !== 'undefined' && window.innerHeight < 700;
-  const yOffset = isShortScreen ? 50 : 0;
+  const isShortScreen = typeof window !== 'undefined' && window.innerHeight < 700
+  const yOffset = isShortScreen ? 50 : 0
 
+  // Scale calculation (same as before)
   useEffect(() => {
     const svg = svgRef.current
     if (!svg) return
@@ -35,8 +37,6 @@ export function CourtTutorialSprite({
       const viewBoxWidth = 1600
       const pixelWidth = svg.clientWidth
       const rawScale = pixelWidth / viewBoxWidth
-
-      // Cap scale between 0.5 and 1.0
       const clampedScale = Math.min(Math.max(rawScale, 0.5), 1)
       setScale(clampedScale)
     }
@@ -46,22 +46,35 @@ export function CourtTutorialSprite({
     return () => window.removeEventListener('resize', updateScale)
   }, [svgRef])
 
-  const [screenX, screenY] = useMemo(() => {
+  // Recalculate position on step change or resize
+  useEffect(() => {
     const svg = svgRef.current
-    if (!svg) return [0, 0]
-    const pt = svg.createSVGPoint()
-    pt.x = stepData.x
-    pt.y = stepData.y
-    const ctm = svg.getScreenCTM()
-    const screenPt = pt.matrixTransform(ctm ?? new DOMMatrix())
-    return [screenPt.x, screenPt.y]
-  }, [stepData.x, stepData.y, svgRef.current])
+    if (!svg) return
+
+    const updateScreenCoords = () => {
+      const pt = svg.createSVGPoint()
+      pt.x = stepData.x
+      pt.y = stepData.y
+      const ctm = svg.getScreenCTM()
+      const screenPt = pt.matrixTransform(ctm ?? new DOMMatrix())
+      setScreenX(screenPt.x)
+      setScreenY(screenPt.y)
+    }
+
+    updateScreenCoords()
+    window.addEventListener('resize', updateScreenCoords)
+
+    return () => {
+      window.removeEventListener('resize', updateScreenCoords)
+    }
+  }, [stepData.x, stepData.y, svgRef])
 
   const x = useMotionValue(screenX)
-  const y = useMotionValue(screenY + yOffset);
+  const y = useMotionValue(screenY + yOffset)
   const springX = useSpring(x, { stiffness: 120, damping: 14 })
   const springY = useSpring(y, { stiffness: 120, damping: 14 })
 
+  // Flip logic
   useEffect(() => {
     if (typeof stepData.facingLeft === 'boolean') {
       setFacingLeft(stepData.facingLeft)
@@ -75,8 +88,8 @@ export function CourtTutorialSprite({
     prevX.current = stepData.x
 
     x.set(screenX)
-    y.set(screenY)
-  }, [stepData.x, stepData.y, screenX, screenY])
+    y.set(screenY + yOffset)
+  }, [stepData.x, stepData.y, screenX, screenY, yOffset])
 
   return (
     <motion.div
@@ -97,7 +110,7 @@ export function CourtTutorialSprite({
         }}
         draggable={false}
       />
-      <SpeechBubble text={stepData.text} scale={scale} facingLeft={facingLeft}></SpeechBubble>
+      <SpeechBubble text={stepData.text} scale={scale} facingLeft={facingLeft} />
     </motion.div>
   )
 }

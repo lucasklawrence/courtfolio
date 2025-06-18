@@ -27,6 +27,7 @@ export function HomeBody() {
   const [tourStep, setTourStep] = useState(0)
   const [clickTarget, setClickTarget] = useState<{ x: number; y: number } | null>(null)
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([])
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
 
   const svgRef = useRef<SVGSVGElement>(null)
 
@@ -332,6 +333,20 @@ export function HomeBody() {
         <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
           <FreeRoamPlayer boundsRef={svgRef} target={clickTarget} />
         </div>
+      )}
+
+      {isMobile && tourActive && (
+        <div
+          className="absolute inset-0 z-[90] cursor-pointer"
+          onClick={() => {
+            if (tourStep < tourSteps.length - 1) {
+              setTourStep(tourStep + 1)
+            } else {
+              setTourActive(false)
+              markAsSeen()
+            }
+          }}
+        ></div>
       )}
     </CourtContainer>
   )
