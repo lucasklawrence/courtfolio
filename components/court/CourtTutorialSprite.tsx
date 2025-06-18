@@ -26,8 +26,9 @@ export function CourtTutorialSprite({
   const [screenX, setScreenX] = useState(0)
   const [screenY, setScreenY] = useState(0)
 
-  const { height } = useWindowSize()
-  const isShortScreen = height < 700
+  const { width, height } = useWindowSize()
+  const aspectRatio = width / height
+  const isShortScreen = height < 700 || aspectRatio > 1.6
   const yOffset = isShortScreen ? 50 : 0
 
   // Scale calculation
@@ -45,7 +46,12 @@ export function CourtTutorialSprite({
 
     updateScale()
     window.addEventListener('resize', updateScale)
-    return () => window.removeEventListener('resize', updateScale)
+    window.addEventListener('orientationchange', updateScale)
+
+    return () => {
+      window.removeEventListener('resize', updateScale)
+      window.removeEventListener('orientationchange', updateScale)
+    }
   }, [svgRef])
 
   // Recalculate position on step change or resize
@@ -65,9 +71,11 @@ export function CourtTutorialSprite({
 
     updateScreenCoords()
     window.addEventListener('resize', updateScreenCoords)
+    window.addEventListener('orientationchange', updateScreenCoords)
 
     return () => {
       window.removeEventListener('resize', updateScreenCoords)
+      window.removeEventListener('orientationchange', updateScreenCoords)
     }
   }, [stepData.x, stepData.y, svgRef])
 

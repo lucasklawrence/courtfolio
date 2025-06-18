@@ -337,18 +337,22 @@ export function HomeBody() {
       )}
 
       {isMobile && tourActive && (
-        <div
-          className="absolute inset-0 z-[90] cursor-pointer"
-          onClick={() => {
-            if (tourStep < tourSteps.length - 1) {
-              setTourStep(tourStep + 1)
-            } else {
-              setTourActive(false)
-              markAsSeen()
-            }
-          }}
-        ></div>
-      )}
+  <div
+    className="fixed top-0 left-0 w-screen h-screen z-[100] cursor-pointer"
+    style={{
+      touchAction: 'manipulation',
+      WebkitTapHighlightColor: 'transparent',
+    }}
+    onClick={() => {
+      if (tourStep < tourSteps.length - 1) {
+        setTourStep(tourStep + 1);
+      } else {
+        setTourActive(false);
+        markAsSeen();
+      }
+    }}
+  ></div>
+)}
     </CourtContainer>
   )
 }
