@@ -225,26 +225,30 @@ export function HomeBody() {
     ),
     'zone-85': (
       <CourtZone x={1020} y={60} width={220} height={200} className="ui-layer z-[110]">
-        <div className="relative z-10">
-          <Link
-            href="/banners"
-            className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
-          >
-            🏟️ View the Rafters
-          </Link>
-        </div>
+        <SafeSvgHtml>
+          <div className="relative z-10">
+            <Link
+              href="/banners"
+              className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
+            >
+              🏟️ View the Rafters
+            </Link>
+          </div>
+        </SafeSvgHtml>
       </CourtZone>
     ),
     'zone-86': (
       <CourtZone x={1270} y={60} width={300} height={200} className="ui-layer z-[110]">
-        <div className="relative z-10">
-          <Link
-            href="/locker-room"
-            className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
-          >
-            👟 Enter Locker Room
-          </Link>
-        </div>
+        <SafeSvgHtml>
+          <div className="relative z-10">
+            <Link
+              href="/locker-room"
+              className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
+            >
+              👟 Enter Locker Room
+            </Link>
+          </div>
+        </SafeSvgHtml>
       </CourtZone>
     ),
   }
@@ -337,22 +341,22 @@ export function HomeBody() {
       )}
 
       {isMobile && tourActive && (
-  <div
-    className="fixed top-0 left-0 w-screen h-screen z-[100] cursor-pointer"
-    style={{
-      touchAction: 'manipulation',
-      WebkitTapHighlightColor: 'transparent',
-    }}
-    onClick={() => {
-      if (tourStep < tourSteps.length - 1) {
-        setTourStep(tourStep + 1);
-      } else {
-        setTourActive(false);
-        markAsSeen();
-      }
-    }}
-  ></div>
-)}
+        <div
+          className="fixed top-0 left-0 w-screen h-screen z-[100] cursor-pointer"
+          style={{
+            touchAction: 'manipulation',
+            WebkitTapHighlightColor: 'transparent',
+          }}
+          onClick={() => {
+            if (tourStep < tourSteps.length - 1) {
+              setTourStep(tourStep + 1)
+            } else {
+              setTourActive(false)
+              markAsSeen()
+            }
+          }}
+        ></div>
+      )}
     </CourtContainer>
   )
 }
