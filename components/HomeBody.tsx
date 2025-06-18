@@ -253,7 +253,7 @@ export function HomeBody() {
     )
     if (tourActive) {
       zoneContent['zone-9000'] = (
-        <CourtZone x={950} y={865} width={200} height={40}>
+        <CourtZone x={950} y={865} width={200} height={40} className="ui-layer z-[100]">
           <SafeSvgHtml>
             <div className="flex justify-end items-center gap-3 w-full h-full">
               <button

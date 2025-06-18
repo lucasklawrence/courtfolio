@@ -24,6 +24,9 @@ export function CourtTutorialSprite({
 
   const [scale, setScale] = useState(1)
 
+  const isShortScreen = typeof window !== 'undefined' && window.innerHeight < 700;
+  const yOffset = isShortScreen ? 50 : 0;
+
   useEffect(() => {
     const svg = svgRef.current
     if (!svg) return
@@ -55,7 +58,7 @@ export function CourtTutorialSprite({
   }, [stepData.x, stepData.y, svgRef.current])
 
   const x = useMotionValue(screenX)
-  const y = useMotionValue(screenY)
+  const y = useMotionValue(screenY + yOffset);
   const springX = useSpring(x, { stiffness: 120, damping: 14 })
   const springY = useSpring(y, { stiffness: 120, damping: 14 })
 
