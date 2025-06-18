@@ -12,12 +12,12 @@ import { ZoneBioCard } from './ZoneBioCard'
 import { ZoneCareerStats } from './ZoneCareerStats'
 import { LogoSvg } from './LogoSvg'
 import { CourtTitleSolo } from './CourtTitleSolo'
-import { CourtTutorialSprite } from './CourtTutorialSprite'
 import { useHasSeenTour } from '@/utils/useHasSeenTour'
 import { FreeRoamPlayer } from './court/FreeRoamPlayer'
 import { SafeSvgHtml } from './SafeSvgHtml'
 import { SvgGlowHighlight } from './SvgGlowingHighlight'
 import { CourtInteractionLayer } from './court/CourtInteractionLayer'
+import { CourtTutorialSprite } from './court/CourtTutorialSprite'
 
 export function HomeBody() {
   const router = useRouter()
@@ -27,8 +27,8 @@ export function HomeBody() {
   const [tourStep, setTourStep] = useState(0)
   const [clickTarget, setClickTarget] = useState<{ x: number; y: number } | null>(null)
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([])
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
-
+  const { width, height } = useWindowSize()
+  const isMobile = width <= 768
   const svgRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {

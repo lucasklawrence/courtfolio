@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { SpeechBubble } from '../SpeechBubble'
+import { useWindowSize } from '@/utils/useWindowSize'
 
 type StepData = {
   x: number
@@ -25,7 +26,8 @@ export function CourtTutorialSprite({
   const [screenX, setScreenX] = useState(0)
   const [screenY, setScreenY] = useState(0)
 
-  const isShortScreen = typeof window !== 'undefined' && window.innerHeight < 700
+  const { height } = useWindowSize()
+  const isShortScreen = height < 700
   const yOffset = isShortScreen ? 50 : 0
 
   // Scale calculation
