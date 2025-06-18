@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import { SpeechBubble } from './SpeechBubble'
+import { SpeechBubble } from '../SpeechBubble'
 
 type StepData = {
   x: number
@@ -28,7 +28,7 @@ export function CourtTutorialSprite({
   const isShortScreen = typeof window !== 'undefined' && window.innerHeight < 700
   const yOffset = isShortScreen ? 50 : 0
 
-  // Scale calculation (same as before)
+  // Scale calculation
   useEffect(() => {
     const svg = svgRef.current
     if (!svg) return
