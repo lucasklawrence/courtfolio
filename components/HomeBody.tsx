@@ -253,7 +253,7 @@ export function HomeBody() {
     zoneContent['zone-1000'] = (
       <>{tourSteps[tourStep].glow && <SvgGlowHighlight {...tourSteps[tourStep].glow} />}</>
     )
-    if (tourActive) {
+    if (!isMobile) {
       zoneContent['zone-9000'] = (
         <CourtZone x={950} y={865} width={200} height={40} className="ui-layer z-[100]">
           <SafeSvgHtml>
