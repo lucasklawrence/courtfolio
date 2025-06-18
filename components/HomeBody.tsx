@@ -18,6 +18,7 @@ import { SafeSvgHtml } from './SafeSvgHtml'
 import { SvgGlowHighlight } from './SvgGlowingHighlight'
 import { CourtInteractionLayer } from './court/CourtInteractionLayer'
 import { CourtTutorialSprite } from './court/CourtTutorialSprite'
+import { useWindowSize } from '@/utils/useWindowSize'
 
 export function HomeBody() {
   const router = useRouter()
