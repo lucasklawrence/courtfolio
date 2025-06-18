@@ -224,7 +224,7 @@ export function HomeBody() {
       </foreignObject>
     ),
     'zone-85': (
-      <CourtZone x={1020} y={60} width={220} height={200}>
+      <CourtZone x={1020} y={60} width={220} height={200} className="ui-layer z-[110]">
         <div className="relative z-10">
           <Link
             href="/banners"
@@ -236,7 +236,7 @@ export function HomeBody() {
       </CourtZone>
     ),
     'zone-86': (
-      <CourtZone x={1270} y={60} width={300} height={200}>
+      <CourtZone x={1270} y={60} width={300} height={200} className="ui-layer z-[110]">
         <div className="relative z-10">
           <Link
             href="/locker-room"
