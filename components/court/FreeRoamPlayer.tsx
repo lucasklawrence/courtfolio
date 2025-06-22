@@ -13,8 +13,8 @@ export function FreeRoamPlayer({
   boundsRef: React.RefObject<SVGSVGElement | null>
   target: { x: number; y: number } | null
 }) {
-  const x = useMotionValue(600)
-  const y = useMotionValue(600)
+  const x = useMotionValue(730)
+  const y = useMotionValue(1340)
   const springX = useSpring(x, { stiffness: 50, damping: 10 })
   const springY = useSpring(y, { stiffness: 50, damping: 10 })
 
