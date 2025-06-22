@@ -12,7 +12,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
       viewBox="0.00 0.00 1024.00 1536.00"
       preserveAspectRatio="xMidYMid meet"
     >
-      <g stroke-width="2.00" fill="none" stroke-linecap="butt">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
         <path
           stroke="#361c41"
           vectorEffect="non-scaling-stroke"
@@ -1904,7 +1904,7 @@ export const LucasJerseySvg: React.FC<React.SVGProps<SVGSVGElement>> = props => 
   Q 796.73 627.80 797.06 619.90
   Z"
       />
-      <g fill="#fccd29" fill-opacity="0.996">
+      <g fill="#fccd29" fillOpacity="0.996">
         <path
           d="
   M 552.77 1261.62
