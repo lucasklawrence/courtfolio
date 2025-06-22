@@ -1,4 +1,5 @@
-import { disableInstantTransitions } from 'framer-motion'
+'use client'
+
 import React, { useEffect } from 'react'
 
 type Ripple = { id: number; x: number; y: number }
@@ -16,7 +17,7 @@ export function CourtInteractionLayer({
   setRipples,
   disabled,
 }: CourtInteractionLayerProps) {
-  const handleEvent = (e: React.MouseEvent | React.TouchEvent) => {
+  const handlePointerUp = (e: PointerEvent) => {
     if (disabled) return
 
     const target = e.target as HTMLElement
@@ -28,29 +29,34 @@ export function CourtInteractionLayer({
     )
       return
 
-    e.preventDefault()
+    if (e.pointerType === 'touch' && e.isPrimary) {
+      // This is a single-finger tap — allow move
+      // Do NOT block pinch zoom (multi-finger)
+    } else if (e.pointerType === 'mouse') {
+      // Normal mouse click
+    } else {
+      return
+    }
 
     const svg = svgRef.current
     if (!svg) return
 
     const bounds = svg.getBoundingClientRect()
-    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX
-    const clientY = 'touches' in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY
 
     // For ripple: convert to viewBox coordinates
     const pt = svg.createSVGPoint()
-    pt.x = clientX
-    pt.y = clientY
+    pt.x = e.clientX
+    pt.y = e.clientY
     const svgPoint = pt.matrixTransform(svg.getScreenCTM()?.inverse())
 
     const rippleX = svgPoint.x
     const rippleY = svgPoint.y
 
     // For player: use pixel coords relative to SVG container
-    const playerX = clientX - bounds.left
-    const playerY = clientY - bounds.top
+    const playerX = e.clientX - bounds.left
+    const playerY = e.clientY - bounds.top
 
-    setClickTarget({ x: playerX, y: playerY }) // player uses pixel space
+    setClickTarget({ x: playerX, y: playerY })
     setRipples(prev => [...prev, { id: Date.now(), x: rippleX, y: rippleY }])
   }
 
@@ -58,12 +64,10 @@ export function CourtInteractionLayer({
     const svg = svgRef.current
     if (!svg) return
 
-    svg.addEventListener('click', handleEvent as any)
-    svg.addEventListener('touchstart', handleEvent as any)
+    svg.addEventListener('pointerup', handlePointerUp)
 
     return () => {
-      svg.removeEventListener('click', handleEvent as any)
-      svg.removeEventListener('touchstart', handleEvent as any)
+      svg.removeEventListener('pointerup', handlePointerUp)
     }
   }, [svgRef, disabled])
 
