@@ -102,6 +102,8 @@ export const tourSteps: TourStep[] = [
     text: 'Head to the locker room for more personal flavor.',
     glow: { x: 1270, y: 60, width: 240, height: 40 },
     facingLeft: false,
+       targetId: "enter-locker-room",
+    paddingFactor: 0.99
   },
   {
     x: 200,
@@ -110,6 +112,8 @@ export const tourSteps: TourStep[] = [
     text: 'Check the rafters — career moments and banners.',
     glow: { x: 1020, y: 60, width: 220, height: 40 },
     facingLeft: false,
+        targetId: "view-rafters",
+    paddingFactor: 0.99
   },
   {
     x: 200,

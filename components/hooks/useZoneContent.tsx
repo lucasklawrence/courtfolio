@@ -139,33 +139,31 @@ export function useZoneContent({
       </foreignObject>
     ),
     'zone-85': (
-      <CourtZone x={1020} y={60} width={220} height={200} className="ui-layer z-[110]">
-        <SafeSvgHtml>
-          <div className="relative z-10">
-            <Link
-              href="/banners"
-              className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
-            >
-              🏟️ View the Rafters
-            </Link>
-          </div>
-        </SafeSvgHtml>
-      </CourtZone>
-    ),
-    'zone-86': (
-      <CourtZone x={1270} y={60} width={300} height={200} className="ui-layer z-[110]">
-        <SafeSvgHtml>
-          <div className="relative z-10">
-            <Link
-              href="/locker-room"
-              className="bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition transform text-center text-base sm:text-lg"
-            >
-              👟 Enter Locker Room
-            </Link>
-          </div>
-        </SafeSvgHtml>
-      </CourtZone>
-    ),
+  <CourtZone x={1020} y={40} width={220} height={100} className="ui-layer z-[110]">
+    <SafeSvgHtml>
+        <button
+         id="view-rafters"
+          onClick={() => { window.location.href = '/banners' }}
+          className="cursor-pointer bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition text-center text-base sm:text-lg"
+        >
+          🏟️ View the Rafters
+        </button>
+    </SafeSvgHtml>
+  </CourtZone>
+),
+'zone-86': (
+  <CourtZone x={1270} y={40} width={300} height={100} className="ui-layer z-[110]">
+    <SafeSvgHtml>
+        <button
+        id="enter-locker-room"
+          onClick={() => { window.location.href = '/locker-room' }}
+          className="cursor-pointer  bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition text-center text-base sm:text-lg"
+        >
+          👟 Enter Locker Room
+        </button>
+    </SafeSvgHtml>
+  </CourtZone>
+),
   }), [router])
 
   const zoneContent: ZoneContentMap = { ...baseZones }
