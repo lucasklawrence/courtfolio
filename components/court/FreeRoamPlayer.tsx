@@ -3,9 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
-
-const PLAYER_WIDTH = 80
-const PLAYER_HEIGHT = 80
+import { useCourtResizeClamp } from '@/utils/hooks/useCourtResizeClamp'
+import { PLAYER_SIZE } from '@/constants/playerSize'
 
 export function FreeRoamPlayer({
   boundsRef,
@@ -31,7 +30,10 @@ export function FreeRoamPlayer({
   const idleFrame = '/sprites/LucasIdle4.png'
   const shootingFrame = '/sprites/LucasShooting2.png'
 
-  // Keyboard movement (unchanged)
+  // Resize clamp — keep player on court when resized
+  useCourtResizeClamp(boundsRef, x, y, PLAYER_SIZE, PLAYER_SIZE)
+
+  // Keyboard movement
   useEffect(() => {
     const speed = 8
     const keysPressed = new Set<string>()
@@ -71,8 +73,8 @@ export function FreeRoamPlayer({
         x.get() + dx,
         y.get() + dy,
         bounds,
-        PLAYER_WIDTH,
-        PLAYER_HEIGHT
+        PLAYER_SIZE,
+        PLAYER_SIZE
       )
 
       x.set(nextX)
@@ -95,7 +97,7 @@ export function FreeRoamPlayer({
     }
   }, [x, y, boundsRef])
 
-  // Respond to click target
+  // Click-to-move
   useEffect(() => {
     if (!target) return
     const svg = boundsRef.current
@@ -106,8 +108,8 @@ export function FreeRoamPlayer({
       target.x,
       target.y,
       bounds,
-      PLAYER_WIDTH,
-      PLAYER_HEIGHT
+      PLAYER_SIZE,
+      PLAYER_SIZE
     )
 
     setFacingLeft(targetX < x.get())
@@ -139,7 +141,7 @@ export function FreeRoamPlayer({
     }
 
     step()
-  }, [target])
+  }, [target, x, y, boundsRef])
 
   // Walk cycle
   useEffect(() => {
@@ -179,13 +181,15 @@ export function FreeRoamPlayer({
   return (
     <div className="absolute w-full h-full pointer-events-none">
       <motion.div
-        className="absolute z-50 pointer-events-none" // add this
+        className="absolute z-50 pointer-events-none"
         style={{ x: springX, y: springY }}
         transition={{ type: 'spring' }}
       >
         <img
           src={currentSprite}
-          className={`w-[80px] h-[80px] object-contain ${shouldFlip ? 'scale-x-[-1]' : ''}`}
+          className={`w-[${PLAYER_SIZE}px] h-[${PLAYER_SIZE}px] object-contain ${
+            shouldFlip ? 'scale-x-[-1]' : ''
+          }`}
           draggable={false}
         />
       </motion.div>
