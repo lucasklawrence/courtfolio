@@ -1,92 +1,155 @@
-export const tourSteps = [
-    {
-      x: 820,
-      y: 825,
-      img: '/sprites/LucasDefense.png',
-      text: 'Welcome! I’m Lucas — I’ll walk you through this court. Tap the orange buttons below to continue.',
-      glow: { x: 1019, y: 865, width: 133, height: 43 },
-      facingLeft: false,
-    },
-    {
-      x: 610,
-      y: 355,
-      img: '/sprites/LucasDefense.png',
-      text: 'This court is my creative space. Some areas are live — others are warming up.',
-      glow: {
-        x: 650,
-        y: 380,
-        width: 220,
-        height: 250,
-        shape: 'circle',
-      },
-    },
-    {
-      x: 370,
-      y: 250,
-      img: '/sprites/LucasHoldingBall.png',
-      text: 'This is my bio — quick overview of who I am.',
-      glow: { x: 350, y: 110, width: 380, height: 140 },
-      facingLeft: false,
-    },
-    {
-      x: 810,
-      y: 250,
-      img: '/sprites/LucasSpinningBall.png',
-      text: 'Stats don’t lie. Here’s the résumé highlight reel.',
-      glow: { x: 800, y: 110, width: 280, height: 135 },
-      facingLeft: false,
-    },
-    {
-      x: 1270,
-      y: 110,
-      img: '/sprites/LucasShooting.png',
-      text: 'Head to the locker room for more personal flavor.',
-      glow: { x: 1270, y: 60, width: 240, height: 40 },
-      facingLeft: true,
-    },
-    {
-      x: 1020,
-      y: 110,
-      img: '/sprites/LucasShooting.png',
-      text: 'Check the rafters — career moments and banners.',
-      glow: { x: 1020, y: 60, width: 220, height: 40 },
-      facingLeft: true,
-    },
-    {
-      x: 1050,
-      y: 350,
-      img: '/sprites/LucasDribbling.png',
-      text: 'Tech stack lineup. These are my go-to tools.',
-      glow: { x: 1175, y: 425, width: 230, height: 135 },
-    },
-    {
+/**
+ * Represents a single step in the guided court tour.
+ */
+export interface TourStep {
+  /**
+   * X position of the tutorial sprite on the court.
+   */
+  x: number
+
+  /**
+   * Y position of the tutorial sprite on the court.
+   */
+  y: number
+
+  /**
+   * Path to the sprite image for this step.
+   */
+  img: string
+
+  /**
+   * Text message displayed for this step.
+   */
+  text: string
+
+  /**
+   * Optional glowing highlight area for this step.
+   */
+  glow?: {
+    /**
+     * X position of the highlight box.
+     */
+    x: number
+
+    /**
+     * Y position of the highlight box.
+     */
+    y: number
+
+    /**
+     * Width of the highlight box.
+     */
+    width: number
+
+    /**
+     * Height of the highlight box.
+     */
+    height: number
+
+    /**
+     * Optional shape of the highlight (default is rectangle).
+     */
+    shape?: string
+  }
+
+  /**
+   * Whether the tutorial sprite should face left (default is right).
+   */
+  facingLeft?: boolean
+}
+
+/**
+ * Full array of guided tour steps for the court intro.
+ */
+export const tourSteps: TourStep[] = [
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasIdle4.png',
+    text: 'Welcome! I’m Lucas — I’ll walk you through this court. Tap the orange buttons below to continue.',
+    glow: { x: 1019, y: 865, width: 133, height: 43 },
+    facingLeft: false,
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasSpinningBall2.png',
+    text: 'This court is my creative space. Some areas are live — others are warming up.',
+    glow: {
       x: 650,
-      y: 640,
-      img: '/sprites/LucasDribbling.png',
-      text: 'Explore the plays — featured projects live here.',
-      glow: { x: 800, y: 700, width: 250, height: 100 },
-      facingLeft: false,
+      y: 380,
+      width: 220,
+      height: 250,
+      shape: 'circle',
     },
-    {
-      x: 610,
-      y: 840,
-      img: '/sprites/LucasDefense.png',
-      text: 'Want to connect? Head to the front office.',
-      glow: { x: 610, y: 940, width: 320, height: 55 },
-      facingLeft: false,
-    },
-    {
-      x: 130,
-      y: 575,
-      img: '/sprites/LucasDribbling.png',
-      text: 'My core principles — this lineup shows how I play.',
-      glow: { x: 110, y: 425, width: 230, height: 140 },
-      facingLeft: false,
-    },
-    {
-      x: 610,
-      y: 355,
-      img: '/sprites/LucasDefense.png',
-      text: 'That’s the full tour. Go explore the court!',
-    },
-  ]
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasIdle4.png',
+    text: 'This is my bio — quick overview of who I am.',
+    glow: { x: 350, y: 110, width: 380, height: 140 },
+    facingLeft: false,
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasSpinningBall2.png',
+    text: 'Stats don’t lie. Here’s the résumé highlight reel.',
+    glow: { x: 800, y: 110, width: 280, height: 135 },
+    facingLeft: false,
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasShooting.png',
+    text: 'Head to the locker room for more personal flavor.',
+    glow: { x: 1270, y: 60, width: 240, height: 40 },
+    facingLeft: false,
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasIdle4.png',
+    text: 'Check the rafters — career moments and banners.',
+    glow: { x: 1020, y: 60, width: 220, height: 40 },
+    facingLeft: false,
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasSpinningBall2.png',
+    text: 'Tech stack lineup. These are my go-to tools.',
+    glow: { x: 1175, y: 425, width: 230, height: 135 },
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasIdle4.png',
+    text: 'Explore the plays — featured projects live here.',
+    glow: { x: 800, y: 700, width: 250, height: 100 },
+    facingLeft: false,
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasSpinningBall2.png',
+    text: 'Want to connect? Head to the front office.',
+    glow: { x: 610, y: 940, width: 320, height: 55 },
+    facingLeft: false,
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasIdle4.png',
+    text: 'My core principles — this lineup shows how I play.',
+    glow: { x: 110, y: 425, width: 230, height: 140 },
+    facingLeft: false,
+  },
+  {
+    x: 200,
+    y: 800,
+    img: '/sprites/LucasSpinningBall2.png',
+    text: 'That’s the full tour. Go explore the court!',
+  },
+]
