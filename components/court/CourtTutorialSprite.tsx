@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { SpeechBubble } from '../SpeechBubble'
 import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
+import { PLAYER_SIZE } from '@/constants/playerSize'
 
 type StepData = {
   x: number
@@ -65,7 +66,7 @@ export function CourtTutorialSprite({
       const screenPt = pt.matrixTransform(ctm ?? new DOMMatrix())
 
       const bounds = getScaledCourtBounds(svg)
-      const playerSize = 80 * scale
+      const playerSize = PLAYER_SIZE * scale
 
       const clamped = clampToCourt(
         screenPt.x,
@@ -115,8 +116,8 @@ export function CourtTutorialSprite({
         src={stepData.img}
         alt="Sprite"
         style={{
-          width: 80 * scale,
-          height: 80 * scale,
+          width: PLAYER_SIZE * scale,
+          height: PLAYER_SIZE * scale,
           objectFit: 'contain',
           transform: `${facingLeft ? 'scaleX(-1)' : 'scaleX(1)'}`,
         }}
