@@ -66,7 +66,7 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasSpinningBall2.png',
+    img: '/sprites/LucasSpinningBall7.png',
     text: 'This court is my creative space. Some areas are live — others are warming up.',
     glow: {
       x: 650,
@@ -79,7 +79,7 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasIdle4.png',
+    img: '/sprites/LucasIdle5.png',
     text: 'This is my bio — quick overview of who I am.',
     glow: { x: 350, y: 110, width: 380, height: 140 },
     facingLeft: false,
@@ -89,7 +89,7 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasSpinningBall2.png',
+    img: '/sprites/LucasSpinningBall7.png',
     text: 'Stats don’t lie. Here’s the résumé highlight reel.',
     glow: { x: 800, y: 110, width: 280, height: 135 },
     facingLeft: false,
@@ -99,7 +99,7 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasShooting.png',
+    img: '/sprites/LucasIdle4.png',
     text: 'Head to the locker room for more personal flavor.',
     glow: { x: 1270, y: 60, width: 240, height: 40 },
     facingLeft: false,
@@ -109,7 +109,7 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasIdle4.png',
+    img: '/sprites/LucasSpinningBall7.png',
     text: 'Check the rafters — career moments and banners.',
     glow: { x: 1020, y: 60, width: 220, height: 40 },
     facingLeft: false,
@@ -119,7 +119,7 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasSpinningBall2.png',
+    img: '/sprites/LucasIdle5.png',
     text: 'Tech stack lineup. These are my go-to tools.',
     glow: { x: 1175, y: 425, width: 230, height: 135 },
     targetId: 'tech-stack-lineup',
@@ -128,7 +128,7 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasIdle4.png',
+    img: '/sprites/LucasSpinningBall7.png',
     text: 'Explore the plays — featured projects live here.',
     glow: { x: 800, y: 700, width: 250, height: 100 },
     facingLeft: false,
@@ -138,7 +138,7 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasSpinningBall2.png',
+    img: '/sprites/LucasIdle4.png',
     text: 'Want to connect? Head to the front office.',
     glow: { x: 610, y: 940, width: 320, height: 55 },
     facingLeft: false,
@@ -148,7 +148,7 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasIdle4.png',
+    img: '/sprites/LucasSpinningBall7.png',
     text: 'My core principles — this lineup shows how I play.',
     glow: { x: 110, y: 425, width: 230, height: 140 },
     facingLeft: false,
@@ -158,7 +158,16 @@ export const tourSteps: TourStep[] = [
   {
     x: 200,
     y: 800,
-    img: '/sprites/LucasSpinningBall2.png',
+    img: '/sprites/LucasIdle5.png',
     text: 'That’s the full tour. Go explore the court!',
   },
+  {
+  x: 200,
+  y: 800,
+  img: '/sprites/LucasSpinningBall7.png',
+  text: 'You can move around — use arrow keys, WASD, or click anywhere on the court.',
+  mobileText: 'Tap anywhere to move around the court.',
+  glow: undefined,
+  facingLeft: false,
+},
 ]

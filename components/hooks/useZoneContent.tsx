@@ -90,7 +90,7 @@ export function useZoneContent({
       'zone-90': (
         <foreignObject x={110} y={425} width={230} height={500}>
           <div id="principles-lineup">
-            <div className="p-4 bg-orange-900/30 text-white text-xs font-semibold rounded-md border border-orange-400/30 shadow-sm tracking-wide space-y-1">
+            <div className="p-3 bg-orange-900/30 text-white text-xs font-bold rounded-md border border-orange-300/40 shadow-sm tracking-wide">
               <h3 className="font-bold text-sm">🧠 Principles Lineup</h3>
               <ul className="list-disc list-inside">
                 <li>#7 Clean Code (PG)</li>
