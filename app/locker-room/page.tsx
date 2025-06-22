@@ -23,7 +23,7 @@ import { StrawHatSvg } from '@/components/locker-room/StrawHatSvg'
 import { JerseysSVG } from '@/components/locker-room/JerseysSvg'
 import { LaptopSvg } from '@/components/locker-room/LaptopSvg'
 import { ScoutingReportSvg } from '@/components/locker-room/ScoutingReportSvg'
-import { BackToCourtButton } from '@/components/BackToCourtButton'
+import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { LockerInfo } from '@/components/locker-room/LockerInfo'
 
 export default function LockerRoomPage() {

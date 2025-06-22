@@ -1,6 +1,6 @@
 'use client'
 
-import { BackToCourtButton } from '@/components/BackToCourtButton'
+import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import React from 'react'
 import { CourtZone } from '@/components/CourtZone'
 import { ZoneContact } from '@/components/contact/ZoneContact'

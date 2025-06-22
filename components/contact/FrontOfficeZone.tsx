@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeSvgHtml } from '../SafeSvgHtml'
+import { SafeSvgHtml } from '../common/SafeSvgHtml'
 
 type Props = {
   x: number

@@ -1,5 +1,5 @@
 'use client'
-import { SafeSvgHtml } from './SafeSvgHtml'
+import { SafeSvgHtml } from './common/SafeSvgHtml'
 
 /**
  * Modern version of the Bio Card using styled <div> inside SafeSvgHtml

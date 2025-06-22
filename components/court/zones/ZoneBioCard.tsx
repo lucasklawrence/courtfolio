@@ -1,7 +1,7 @@
 'use client'
 
-import { ZoneBioCardSafari } from './ZoneBioCardSafari'
-import { ZoneBioCardModern } from './ZoneBioCardModern'
+import { ZoneBioCardSafari } from '../ZoneBioCardSafari'
+import { ZoneBioCardModern } from '../ZoneBioCardModern'
 import { isSafari } from '@/utils/isSafari'
 
 /**

@@ -3,14 +3,14 @@
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
 import Link from 'next/link'
-import { CourtZone } from '../CourtZone'
-import { ZoneBioCard } from '../ZoneBioCard'
-import { ZoneCareerStats } from '../ZoneCareerStats'
-import { ZoneProjects } from '../ZoneProjects'
-import { ReplayIntroButton } from '../ReplayIntroButton'
-import { CourtTitleSolo } from '../CourtTitleSolo'
-import { SafeSvgHtml } from '../SafeSvgHtml'
-import { LogoSvg } from '../LogoSvg'
+import { CourtZone } from '../../components/CourtZone'
+import { ZoneBioCard } from '../../components/ZoneBioCard'
+import { ZoneCareerStats } from '../../components/ZoneCareerStats'
+import { ZoneProjects } from '../../components/ZoneProjects'
+import { ReplayIntroButton } from '../../components/common/ReplayIntroButton'
+import { CourtTitleSolo } from '../../components/CourtTitleSolo'
+import { SafeSvgHtml } from '../../components/common/SafeSvgHtml'
+import { LogoSvg } from '../../components/common/LogoSvg'
 
 type ZoneContentMap = Record<string, React.ReactNode>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { SafeSvgHtml } from './SafeSvgHtml'
+import { SafeSvgHtml } from './common/SafeSvgHtml'
 
 /**
  * Modern version of Fantasy Football AI project zone.

@@ -2,7 +2,7 @@
 
 import { isSafari } from '@/utils/isSafari'
 import { ZoneBarsSafari } from './ZoneBarsSafari'
-import { ZoneBarsModern } from './ZoneBarsModern'
+import { ZoneBarsModern } from '../ZoneBarsModern'
 
 /**
  * Browser-agnostic wrapper that renders the appropriate

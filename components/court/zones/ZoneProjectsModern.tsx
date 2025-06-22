@@ -1,4 +1,4 @@
-import { SafeSvgHtml } from './SafeSvgHtml'
+import { SafeSvgHtml } from './common/SafeSvgHtml'
 import { useRouter } from 'next/navigation'
 
 export function ZoneProjectsModern() {

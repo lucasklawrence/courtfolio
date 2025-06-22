@@ -1,6 +1,6 @@
 'use client'
 
-import { FreeRoamPlayer } from './court/FreeRoamPlayer'
+import { FreeRoamPlayer } from './FreeRoamPlayer'
 
 type Props = {
   active: boolean

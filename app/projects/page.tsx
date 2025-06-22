@@ -1,7 +1,7 @@
 'use client'
 
 import { CourtSvg } from '@/components/court/CourtSvg'
-import { BackToCourtButton } from '@/components/BackToCourtButton'
+import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import React from 'react'
 import { CourtContainer } from '@/components/court/CourtContainer'
 import { CourtZone } from '@/components/CourtZone'
@@ -9,7 +9,7 @@ import { ZoneFantasy } from '@/components/ZoneFantasy'
 import { ZoneBars } from '@/components/ZoneBars'
 import { ZoneBioCard } from '@/components/ZoneBioCard'
 import { ZoneCareerStats } from '@/components/ZoneCareerStats'
-import { LogoSvg } from '@/components/LogoSvg'
+import { LogoSvg } from '@/components/common/LogoSvg'
 import { CourtTitleSolo } from '@/components/CourtTitleSolo'
 
 export default function ProjectPage() {
