@@ -1,6 +1,3 @@
-/**
- * Represents a single step in the guided court tour.
- */
 export interface TourStep {
   /**
    * X position of the tutorial sprite on the court.
@@ -23,40 +20,35 @@ export interface TourStep {
   text: string
 
   /**
-   * Optional glowing highlight area for this step.
+   * Optional alternate text to use on mobile.
+   */
+  mobileText?: string
+
+  /**
+   * Optional target DOM element id — used to measure glow position.
+   * If provided, this overrides the static glow box.
+   */
+  targetId?: string
+
+  /**
+   * Static glowing highlight (desktop fallback).
    */
   glow?: {
-    /**
-     * X position of the highlight box.
-     */
     x: number
-
-    /**
-     * Y position of the highlight box.
-     */
     y: number
-
-    /**
-     * Width of the highlight box.
-     */
     width: number
-
-    /**
-     * Height of the highlight box.
-     */
     height: number
-
-    /**
-     * Optional shape of the highlight (default is rectangle).
-     */
     shape?: string
   }
 
   /**
    * Whether the tutorial sprite should face left (default is right).
    */
-  facingLeft?: boolean
+  facingLeft?: boolean,
+
+  paddingFactor?: number
 }
+
 
 /**
  * Full array of guided tour steps for the court intro.
@@ -90,6 +82,8 @@ export const tourSteps: TourStep[] = [
     text: 'This is my bio — quick overview of who I am.',
     glow: { x: 350, y: 110, width: 380, height: 140 },
     facingLeft: false,
+    targetId:"bio-card",
+    paddingFactor: 0.99
   },
   {
     x: 200,
@@ -98,6 +92,8 @@ export const tourSteps: TourStep[] = [
     text: 'Stats don’t lie. Here’s the résumé highlight reel.',
     glow: { x: 800, y: 110, width: 280, height: 135 },
     facingLeft: false,
+    targetId: "career-stats-card",
+    paddingFactor: 0.99
   },
   {
     x: 200,
@@ -121,6 +117,8 @@ export const tourSteps: TourStep[] = [
     img: '/sprites/LucasSpinningBall2.png',
     text: 'Tech stack lineup. These are my go-to tools.',
     glow: { x: 1175, y: 425, width: 230, height: 135 },
+      targetId: 'tech-stack-lineup',
+      paddingFactor: 0.99
   },
   {
     x: 200,
@@ -129,6 +127,8 @@ export const tourSteps: TourStep[] = [
     text: 'Explore the plays — featured projects live here.',
     glow: { x: 800, y: 700, width: 250, height: 100 },
     facingLeft: false,
+    targetId:"projects",
+    paddingFactor: 0.99
   },
   {
     x: 200,
@@ -137,6 +137,8 @@ export const tourSteps: TourStep[] = [
     text: 'Want to connect? Head to the front office.',
     glow: { x: 610, y: 940, width: 320, height: 55 },
     facingLeft: false,
+    targetId: "scouting-area",
+    paddingFactor: 0.99
   },
   {
     x: 200,
@@ -145,6 +147,8 @@ export const tourSteps: TourStep[] = [
     text: 'My core principles — this lineup shows how I play.',
     glow: { x: 110, y: 425, width: 230, height: 140 },
     facingLeft: false,
+    targetId: "principles-lineup",
+    paddingFactor: 0.99
   },
   {
     x: 200,

@@ -2,7 +2,7 @@
 
 import { CourtSvg } from './court/CourtSvg'
 import { CourtContainer } from './court/CourtContainer'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useMemo } from 'react'
 import { useHasSeenTour } from '@/utils/useHasSeenTour'
 import { CourtInteractionLayer } from './court/CourtInteractionLayer'
 import { tourSteps } from '@/constants/tourSteps'
@@ -12,10 +12,11 @@ import { TutorialOverlay } from './TutorialOverlay'
 import { useTourState } from './hooks/useTourState'
 import { useZoneContent } from './hooks/useZoneContent'
 import { useIsMobile } from '@/utils/hooks/useIsMobile'
+import { useElementRect } from '@/utils/hooks/useElementRect'
 
 export function HomeBody() {
   const { hasSeen, markAsSeen, reset } = useHasSeenTour()
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile()
   const svgRef = useRef<SVGSVGElement>(null)
 
   const {
@@ -41,6 +42,27 @@ export function HomeBody() {
     reset,
   })
 
+  const displayedSteps = useMemo(() => {
+    return tourSteps.map((step, index) => ({
+      ...step,
+      glow: isMobile && index === 0 ? undefined : step.glow,
+      text: isMobile && step.mobileText ? step.mobileText : step.text,
+    }))
+  }, [isMobile])
+
+  const currentStep = displayedSteps[tourStep]
+  const targetRect = useElementRect(currentStep.targetId)
+
+  const computedGlow = targetRect
+    ? {
+        x: targetRect.left,
+        y: targetRect.top,
+        width: targetRect.width,
+        height: targetRect.height,
+        shape: 'rectangle',
+      }
+    : currentStep.glow
+
   return (
     <CourtContainer>
       <CourtSvg
@@ -57,8 +79,19 @@ export function HomeBody() {
         disabled={tourActive}
       />
 
-      <TutorialOverlay active={tourActive} stepData={tourSteps[tourStep]} svgRef={svgRef} />
-      <FreeRoamOverlay active={!tourActive} target={clickTarget} svgRef={svgRef} />
+      <TutorialOverlay
+        active={tourActive}
+        stepData={currentStep}
+        glow={computedGlow}
+        svgRef={svgRef}
+      />
+
+      <FreeRoamOverlay
+        active={!tourActive}
+        target={clickTarget}
+        svgRef={svgRef}
+      />
+
       <MobileAdvanceOverlay
         active={tourActive && isMobile}
         onAdvance={

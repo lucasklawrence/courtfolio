@@ -36,7 +36,7 @@ export function CourtTutorialSprite({
     if (!svg) return
 
     const updateScale = () => {
-      const viewBoxWidth = 1600
+      const viewBoxWidth = 1536
       const pixelWidth = svg.clientWidth
       const rawScale = pixelWidth / viewBoxWidth
       const clampedScale = Math.min(Math.max(rawScale, 0.5), 1)

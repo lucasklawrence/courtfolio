@@ -25,6 +25,7 @@ export function FreeRoamPlayer({
   const [isMoving, setIsMoving] = useState(false)
   const [frameIndex, setFrameIndex] = useState(0)
   const [isShootingPose, setIsShootingPose] = useState(false)
+  const [scale, setScale] = useState(1)
 
   const dribbleFrames = ['/sprites/LucasDribbling2.png', '/sprites/LucasDribbling3.png']
   const idleFrame = '/sprites/LucasIdle4.png'
@@ -32,6 +33,29 @@ export function FreeRoamPlayer({
 
   // Resize clamp — keep player on court when resized
   useCourtResizeClamp(boundsRef, x, y, PLAYER_SIZE, PLAYER_SIZE)
+
+  // Dynamic scale calculation
+  useEffect(() => {
+    const svg = boundsRef.current
+    if (!svg) return
+
+    const updateScale = () => {
+      const viewBoxWidth = 1536
+      const pixelWidth = svg.clientWidth
+      const rawScale = pixelWidth / viewBoxWidth
+      const clampedScale = Math.min(Math.max(rawScale, 0.5), 1)
+      setScale(clampedScale)
+    }
+
+    updateScale()
+    window.addEventListener('resize', updateScale)
+    window.addEventListener('orientationchange', updateScale)
+
+    return () => {
+      window.removeEventListener('resize', updateScale)
+      window.removeEventListener('orientationchange', updateScale)
+    }
+  }, [boundsRef])
 
   // Keyboard movement
   useEffect(() => {
@@ -173,8 +197,8 @@ export function FreeRoamPlayer({
   const currentSprite = isShootingPose
     ? shootingFrame
     : isMoving
-      ? dribbleFrames[frameIndex]
-      : idleFrame
+    ? dribbleFrames[frameIndex]
+    : idleFrame
 
   const shouldFlip = isShootingPose ? !facingLeft : facingLeft
 
@@ -187,9 +211,12 @@ export function FreeRoamPlayer({
       >
         <img
           src={currentSprite}
-          className={`w-[${PLAYER_SIZE}px] h-[${PLAYER_SIZE}px] object-contain ${
-            shouldFlip ? 'scale-x-[-1]' : ''
-          }`}
+          style={{
+            width: PLAYER_SIZE * scale,
+            height: PLAYER_SIZE * scale,
+            objectFit: 'contain',
+            transform: shouldFlip ? 'scaleX(-1)' : 'scaleX(1)'
+          }}
           draggable={false}
         />
       </motion.div>
