@@ -59,6 +59,8 @@ export const tourSteps: TourStep[] = [
     y: 800,
     img: '/sprites/LucasIdle4.png',
     text: 'Welcome! I’m Lucas — I’ll walk you through this court. Tap the orange buttons below to continue.',
+    mobileText: 'Welcome! I’m Lucas — I’ll walk you through this court. Tap anywhere to continue.',
+
     glow: { x: 1019, y: 865, width: 133, height: 43 },
     facingLeft: false,
   },
