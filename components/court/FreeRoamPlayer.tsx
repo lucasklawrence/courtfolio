@@ -197,8 +197,8 @@ export function FreeRoamPlayer({
   const currentSprite = isShootingPose
     ? shootingFrame
     : isMoving
-    ? dribbleFrames[frameIndex]
-    : idleFrame
+      ? dribbleFrames[frameIndex]
+      : idleFrame
 
   const shouldFlip = isShootingPose ? !facingLeft : facingLeft
 
@@ -215,7 +215,7 @@ export function FreeRoamPlayer({
             width: PLAYER_SIZE * scale,
             height: PLAYER_SIZE * scale,
             objectFit: 'contain',
-            transform: shouldFlip ? 'scaleX(-1)' : 'scaleX(1)'
+            transform: shouldFlip ? 'scaleX(-1)' : 'scaleX(1)',
           }}
           draggable={false}
         />

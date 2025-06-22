@@ -54,8 +54,6 @@ export function getScaledFloorBounds(svg: SVGSVGElement): ScaledCourtBounds {
   }
 }
 
-
-
 /**
  * Clamps a screen-space position to the playable area of the court.
  *

@@ -16,6 +16,7 @@ type Props = {
     shape?: string
   }
   svgRef: React.RefObject<SVGSVGElement | null>
+  onPositionChange?: (pt: { x: number; y: number }) => void
 }
 
 function getGlowBoundsFromTarget(targetId: string, svg: SVGSVGElement | null, paddingFactor = 1.1) {
@@ -48,7 +49,7 @@ function getGlowBoundsFromTarget(targetId: string, svg: SVGSVGElement | null, pa
   return { x, y, width, height }
 }
 
-export function TutorialOverlay({ active, stepData, glow, svgRef }: Props) {
+export function TutorialOverlay({ active, stepData, glow, svgRef, onPositionChange }: Props) {
   const glowBounds = useMemo(() => {
     if (stepData.targetId && svgRef.current) {
       return getGlowBoundsFromTarget(
@@ -80,7 +81,11 @@ export function TutorialOverlay({ active, stepData, glow, svgRef }: Props) {
         </svg>
       )}
 
-      <CourtTutorialSprite svgRef={svgRef} stepData={stepData} />
+      <CourtTutorialSprite
+        svgRef={svgRef}
+        stepData={stepData}
+        onPositionChange={onPositionChange}
+      />
     </div>
   )
 }

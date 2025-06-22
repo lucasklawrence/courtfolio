@@ -21,7 +21,7 @@ export function useTourState({ hasSeen, markAsSeen }: Props) {
   // Go to next step
   const nextStep = useCallback(() => {
     if (tourStep < tourSteps.length - 1) {
-      setTourStep((prev) => prev + 1)
+      setTourStep(prev => prev + 1)
     } else {
       stopTour()
     }

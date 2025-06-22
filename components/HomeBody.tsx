@@ -19,16 +19,17 @@ export function HomeBody() {
   const isMobile = useIsMobile()
   const svgRef = useRef<SVGSVGElement>(null)
 
-  const {
-    tourActive,
-    tourStep,
-    startTour,
-    nextStep,
-    stopTour,
-  } = useTourState({ hasSeen, markAsSeen })
+  const { tourActive, tourStep, startTour, nextStep, stopTour } = useTourState({
+    hasSeen,
+    markAsSeen,
+  })
 
   const [clickTarget, setClickTarget] = useState<{ x: number; y: number } | null>(null)
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([])
+  const [lastTutorialPos, setLastTutorialPos] = useState<{ x: number; y: number }>({
+    x: 650,
+    y: 1500,
+  })
 
   const zoneContent = useZoneContent({
     tourActive,
@@ -84,21 +85,18 @@ export function HomeBody() {
         stepData={currentStep}
         glow={computedGlow}
         svgRef={svgRef}
+        onPositionChange={setLastTutorialPos}
       />
 
       <FreeRoamOverlay
         active={!tourActive}
-        target={clickTarget}
+        target={clickTarget ?? lastTutorialPos}
         svgRef={svgRef}
       />
 
       <MobileAdvanceOverlay
         active={tourActive && isMobile}
-        onAdvance={
-          tourStep < tourSteps.length - 1
-            ? nextStep
-            : stopTour
-        }
+        onAdvance={tourStep < tourSteps.length - 1 ? nextStep : stopTour}
       />
     </CourtContainer>
   )

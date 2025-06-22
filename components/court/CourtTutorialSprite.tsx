@@ -17,9 +17,11 @@ type StepData = {
 export function CourtTutorialSprite({
   stepData,
   svgRef,
+  onPositionChange,
 }: {
   stepData: StepData
   svgRef: React.RefObject<SVGSVGElement | null>
+  onPositionChange?: (pt: { x: number; y: number }) => void
 }) {
   const prevX = useRef(stepData.x)
   const [facingLeft, setFacingLeft] = useState(false)
@@ -68,16 +70,14 @@ export function CourtTutorialSprite({
       const bounds = getScaledCourtBounds(svg)
       const playerSize = PLAYER_SIZE * scale
 
-      const clamped = clampToCourt(
-        screenPt.x,
-        screenPt.y,
-        bounds,
-        playerSize,
-        playerSize
-      )
+      const clamped = clampToCourt(screenPt.x, screenPt.y, bounds, playerSize, playerSize)
 
       x.set(clamped.x)
       y.set(clamped.y)
+
+      if (onPositionChange) {
+        onPositionChange({ x: clamped.x, y: clamped.y })
+      }
     }
 
     updateScreenCoords()
@@ -88,7 +88,7 @@ export function CourtTutorialSprite({
       window.removeEventListener('resize', updateScreenCoords)
       window.removeEventListener('orientationchange', updateScreenCoords)
     }
-  }, [stepData.x, stepData.y, svgRef, scale, x, y])
+  }, [stepData.x, stepData.y, svgRef, scale, x, y, onPositionChange])
 
   // Flip logic
   useEffect(() => {
