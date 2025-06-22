@@ -63,7 +63,7 @@ export function TutorialOverlay({ active, stepData, glow, svgRef }: Props) {
   if (!active) return null
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full z-50 pointer-events-none">
+    <div className="absolute top-0 left-0 w-full h-full z-40 pointer-events-none">
       {glowBounds && (
         <svg
           className="absolute top-0 left-0 w-full h-full z-40 pointer-events-none"

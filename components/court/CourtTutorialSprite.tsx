@@ -107,7 +107,7 @@ export function CourtTutorialSprite({
   return (
     <motion.div
       style={{ x: springX, y: springY }}
-      className="absolute pointer-events-auto z-50"
+      className="absolute pointer-events-none z-50"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
