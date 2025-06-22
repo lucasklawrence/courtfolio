@@ -3,7 +3,6 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { SpeechBubble } from '../SpeechBubble'
-import { useWindowSize } from '@/utils/useWindowSize'
 import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
 
 type StepData = {
@@ -24,11 +23,6 @@ export function CourtTutorialSprite({
   const prevX = useRef(stepData.x)
   const [facingLeft, setFacingLeft] = useState(false)
   const [scale, setScale] = useState(1)
-
-  const { width, height } = useWindowSize()
-  const aspectRatio = width / height
-  const isShortScreen = height < 700 || aspectRatio > 1.6
-  const yOffset = isShortScreen ? 50 : 0
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -82,7 +76,7 @@ export function CourtTutorialSprite({
       )
 
       x.set(clamped.x)
-      y.set(clamped.y + yOffset)
+      y.set(clamped.y)
     }
 
     updateScreenCoords()
@@ -93,7 +87,7 @@ export function CourtTutorialSprite({
       window.removeEventListener('resize', updateScreenCoords)
       window.removeEventListener('orientationchange', updateScreenCoords)
     }
-  }, [stepData.x, stepData.y, svgRef, yOffset, scale, x, y])
+  }, [stepData.x, stepData.y, svgRef, scale, x, y])
 
   // Flip logic
   useEffect(() => {
