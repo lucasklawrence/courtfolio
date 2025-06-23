@@ -13,6 +13,7 @@ import { useZoneContent } from '../utils/hooks/useZoneContent'
 import { useIsMobile } from '@/utils/hooks/useIsMobile'
 import { useElementRect } from '@/utils/hooks/useElementRect'
 import { TutorialOverlay } from './court/TutorialOverlay'
+import { CourtZoomWrapper } from './court/CourtZoomWrapper'
 
 export function HomeBody() {
   const { hasSeen, markAsSeen, reset } = useHasSeenTour()
@@ -66,13 +67,14 @@ export function HomeBody() {
 
   return (
     <CourtContainer>
-      <CourtSvg
-        ref={svgRef}
-        className="w-full h-full"
-        zoneContent={zoneContent}
-        ripples={ripples}
-      />
-
+      <CourtZoomWrapper>
+        <CourtSvg
+          ref={svgRef}
+          className="w-full h-full"
+          zoneContent={zoneContent}
+          ripples={ripples}
+        />
+      </CourtZoomWrapper>
       <CourtInteractionLayer
         svgRef={svgRef}
         setClickTarget={tourActive ? () => {} : setClickTarget}
