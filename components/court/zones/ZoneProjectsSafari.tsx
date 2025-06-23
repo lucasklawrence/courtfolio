@@ -1,4 +1,4 @@
-import { SafeSvgHtml } from './common/SafeSvgHtml'
+import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
 import { useRouter } from 'next/navigation'
 
 export function ZoneProjectsSafari() {

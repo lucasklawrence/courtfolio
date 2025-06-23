@@ -1,9 +1,9 @@
 'use client'
 
 import { useMemo } from 'react'
-import { CourtTutorialSprite } from './court/CourtTutorialSprite'
 import { TourStep } from '@/constants/tourSteps'
-import { SvgGlowHighlight } from './SvgGlowingHighlight'
+import { CourtTutorialSprite } from './CourtTutorialSprite'
+import { SvgGlowHighlight } from '../common/SvgGlowingHighlight'
 
 type Props = {
   active: boolean

@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { useHasSeenIntro } from '@/utils/useHasSeenIntro'
-import { TunnelHero } from '@/components/TunnelHero'
 import { AnimatePresence, motion } from 'framer-motion'
 import { HomeBody } from '@/components/HomeBody'
+import { TunnelHero } from '@/components/court/TunnelHero'
 
 export default function HomePage() {
   const { ready, showIntro } = useHasSeenIntro()

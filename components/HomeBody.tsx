@@ -7,12 +7,12 @@ import { useHasSeenTour } from '@/utils/useHasSeenTour'
 import { CourtInteractionLayer } from './court/CourtInteractionLayer'
 import { tourSteps } from '@/constants/tourSteps'
 import { FreeRoamOverlay } from './court/FreeRoamOverlay'
-import { MobileAdvanceOverlay } from './MobileAdvanceOverlay'
-import { TutorialOverlay } from './TutorialOverlay'
+import { MobileAdvanceOverlay } from './court/MobileAdvanceOverlay'
 import { useTourState } from '../utils/hooks/useTourState'
 import { useZoneContent } from '../utils/hooks/useZoneContent'
 import { useIsMobile } from '@/utils/hooks/useIsMobile'
 import { useElementRect } from '@/utils/hooks/useElementRect'
+import { TutorialOverlay } from './court/TutorialOverlay'
 
 export function HomeBody() {
   const { hasSeen, markAsSeen, reset } = useHasSeenTour()

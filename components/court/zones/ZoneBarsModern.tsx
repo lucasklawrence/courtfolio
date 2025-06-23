@@ -1,6 +1,7 @@
 'use client'
 
-import { SafeSvgHtml } from './common/SafeSvgHtml'
+import { SafeSvgHtml } from "@/components/common/SafeSvgHtml"
+
 
 /**
  * Modern version of Bars of the Day project zone.

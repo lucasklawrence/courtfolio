@@ -2,7 +2,7 @@
 
 import { isSafari } from '@/utils/isSafari'
 import { ZoneFantasySafari } from './ZoneFantasySafari'
-import { ZoneFantasyModern } from '../ZoneFantasyModern'
+import { ZoneFantasyModern } from './ZoneFantasyModern'
 
 /**
  * Wrapper that selects the correct Fantasy Football AI zone component

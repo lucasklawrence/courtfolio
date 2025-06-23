@@ -2,15 +2,14 @@
 
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
-import Link from 'next/link'
-import { CourtZone } from '../../components/CourtZone'
-import { ZoneBioCard } from '../../components/ZoneBioCard'
-import { ZoneCareerStats } from '../../components/ZoneCareerStats'
-import { ZoneProjects } from '../../components/ZoneProjects'
 import { ReplayIntroButton } from '../../components/common/ReplayIntroButton'
-import { CourtTitleSolo } from '../../components/CourtTitleSolo'
 import { SafeSvgHtml } from '../../components/common/SafeSvgHtml'
 import { LogoSvg } from '../../components/common/LogoSvg'
+import { CourtTitleSolo } from '@/components/court/CourtTitleSolo'
+import { CourtZone } from '@/components/court/CourtZone'
+import { ZoneBioCard } from '@/components/court/zones/ZoneBioCard'
+import { ZoneCareerStats } from '@/components/court/zones/ZoneCareerStats'
+import { ZoneProjects } from '@/components/court/zones/ZoneProjects'
 
 type ZoneContentMap = Record<string, React.ReactNode>
 

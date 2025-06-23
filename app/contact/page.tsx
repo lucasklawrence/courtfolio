@@ -1,13 +1,13 @@
 'use client'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
-import React from 'react'
-import { CourtZone } from '@/components/CourtZone'
-import { ZoneContact } from '@/components/contact/ZoneContact'
 import { FrontOfficeSvg } from '@/components/contact/FrontOfficeSvg'
-import { LucasJerseySvg } from '@/components/contact/LucasJerseySvg'
-import { LosAngelesPictureSvg } from '@/components/contact/LosAngelesPictureSvg'
 import { FrontOfficeZone } from '@/components/contact/FrontOfficeZone'
+import { LosAngelesPictureSvg } from '@/components/contact/LosAngelesPictureSvg'
+import { LucasJerseySvg } from '@/components/contact/LucasJerseySvg'
+import { ZoneContact } from '@/components/contact/ZoneContact'
+import { CourtZone } from '@/components/court/CourtZone'
+import React from 'react'
 
 export default function ContactPage() {
   return (

@@ -2,9 +2,9 @@
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import { SpeechBubble } from '../SpeechBubble'
 import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
 import { PLAYER_SIZE } from '@/constants/playerSize'
+import { SpeechBubble } from '../common/SpeechBubble'
 
 type StepData = {
   x: number
