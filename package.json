@@ -27,5 +27,18 @@
     "prettier": "^3.5.3",
     "tailwindcss": "^4.1.10",
     "typescript": "^5"
+  },
+  "browserslist": {
+    "production": [
+      "defaults",
+      "not IE 11",
+      "not Safari < 14"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
+
 }
