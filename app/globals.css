@@ -39,7 +39,8 @@ html, body {
 }
 
 html, body {
+  overflow: visible;
   touch-action: pan-x pan-y;
-  overscroll-behavior: contain;
   user-select: auto;
+  overscroll-behavior: contain;
 }
