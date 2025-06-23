@@ -36,8 +36,8 @@ export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ childr
         : 'w-[min(100vw,calc(100vh*1.5))] h-[min(100vh,calc(100vw/1.5))]'
 
   return (
-    <div className="min-h-screen overflow-auto bg-neutral-900 touch-pan-x touch-pan-y">
-      <div className="flex items-center justify-center min-h-screen">
+    <div className="min-h-screen overflow-y-scroll bg-neutral-900 touch-pan-x touch-pan-y">
+      <div className="flex items-center justify-center min-h-[105vh]">
         <div className={`relative ${sizeClass}`}>{children}</div>
       </div>
     </div>
