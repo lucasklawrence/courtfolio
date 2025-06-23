@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
 import { useCourtResizeClamp } from '@/utils/hooks/useCourtResizeClamp'
 import { PLAYER_SIZE } from '@/constants/playerSize'
+import { useMotionValueEvent } from 'framer-motion'
 
 export function FreeRoamPlayer({
   boundsRef,
@@ -167,14 +168,18 @@ export function FreeRoamPlayer({
     step()
   }, [target, x, y, boundsRef])
 
+  const lastFrameTime = useRef(0)
+
   // Walk cycle
-  useEffect(() => {
+  useMotionValueEvent(x, 'change', () => {
     if (!isMoving) return
-    const interval = setInterval(() => {
+
+    const now = Date.now()
+    if (now - lastFrameTime.current > 150) {
       setFrameIndex(prev => (prev + 1) % dribbleFrames.length)
-    }, 150)
-    return () => clearInterval(interval)
-  }, [isMoving])
+      lastFrameTime.current = now
+    }
+  })
 
   // Idle shooting pose
   useEffect(() => {
