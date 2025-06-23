@@ -210,14 +210,13 @@ export function FreeRoamPlayer({
           x: x.get(),
           y: y.get(),
           scale: scale,
-        }}
-        style={{
-          transform: `scaleX(${shouldFlip ? -1 : 1})`,
+          scaleX: shouldFlip ? -1 : 1,
         }}
         transition={{
           type: 'spring',
           stiffness: 50,
           damping: 10,
+          scaleX: { duration: 0 }, // instant flip
         }}
       >
         <img
