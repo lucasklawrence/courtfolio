@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
 import { PLAYER_SIZE } from '@/constants/playerSize'
 import { SpeechBubble } from '../common/SpeechBubble'
+import { useElementSize } from '@/utils/hooks/useElementSize'
 
 type StepData = {
   x: number
@@ -31,6 +32,8 @@ export function CourtTutorialSprite({
   const y = useMotionValue(0)
   const springX = useSpring(x, { stiffness: 120, damping: 14 })
   const springY = useSpring(y, { stiffness: 120, damping: 14 })
+
+  const svgSize = useElementSize(svgRef)
 
   // Scale calculation
   useEffect(() => {
@@ -88,7 +91,7 @@ export function CourtTutorialSprite({
       window.removeEventListener('resize', updateScreenCoords)
       window.removeEventListener('orientationchange', updateScreenCoords)
     }
-  }, [stepData.x, stepData.y, svgRef, scale, x, y, onPositionChange])
+  }, [stepData.x, stepData.y, svgRef, scale, x, y, onPositionChange, svgSize])
 
   // Flip logic
   useEffect(() => {
