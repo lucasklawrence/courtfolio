@@ -206,16 +206,25 @@ export function FreeRoamPlayer({
     <div className="absolute w-full h-full pointer-events-none">
       <motion.div
         className="absolute z-50 pointer-events-none"
-        style={{ x: springX, y: springY }}
-        transition={{ type: 'spring' }}
+        animate={{
+          x: x.get(),
+          y: y.get(),
+          scale: scale,
+          scaleX: shouldFlip ? -1 : 1,
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 50,
+          damping: 10,
+          scaleX: { duration: 0 }, // instant flip
+        }}
       >
         <img
           src={currentSprite}
           style={{
-            width: PLAYER_SIZE * scale,
-            height: PLAYER_SIZE * scale,
+            width: PLAYER_SIZE,
+            height: PLAYER_SIZE,
             objectFit: 'contain',
-            transform: shouldFlip ? 'scaleX(-1)' : 'scaleX(1)',
           }}
           draggable={false}
         />
