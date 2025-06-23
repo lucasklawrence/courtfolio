@@ -1,5 +1,6 @@
 'use client'
 
+import { useIsMobile } from '@/utils/hooks/useIsMobile'
 import React from 'react'
 
 /**
@@ -7,11 +8,19 @@ import React from 'react'
  * centered and constrained to fit the viewport height with full width.
  */
 export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const isMobile = useIsMobile()
+
   return (
     <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center touch-pan-x touch-pan-y">
-      <div className="relative w-[min(100vw,calc(100svh*1.5))] h-[min(100svh,calc(100vw/1.5))]">
-        {children}
-      </div>
+      {isMobile ? (
+        <div className="relative w-[min(100vw,calc(100svh*1.5))] h-[min(100svh,calc(100vw/1.5))]">
+          {children}
+        </div>
+      ) : (
+        <div className="relative w-[min(100vw,calc(100vh*1.5))] h-[min(100vh,calc(100vw/1.5))]">
+          {children}
+        </div>
+      )}
     </div>
   )
 }
