@@ -28,19 +28,18 @@ export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [])
 
-  const sizeClass = isMobile && isLandscape
-    ? 'w-screen h-screen'
-    : isMobile
-      ? 'w-[min(100vw,calc(100svh*1.5))] h-[min(100svh,calc(100vw/1.5))]'
-      : 'w-[min(100vw,calc(100vh*1.5))] h-[min(100vh,calc(100vw/1.5))]'
+  const sizeClass =
+    isMobile && isLandscape
+      ? 'w-screen h-screen'
+      : isMobile
+        ? 'w-[min(100vw,calc(100svh*1.5))] h-[min(100svh,calc(100vw/1.5))]'
+        : 'w-[min(100vw,calc(100vh*1.5))] h-[min(100vh,calc(100vw/1.5))]'
 
   return (
-    <main className="min-h-screen overflow-auto bg-neutral-900 touch-pan-x touch-pan-y">
+    <div className="min-h-screen overflow-y-scroll bg-neutral-900 touch-pan-x touch-pan-y">
       <div className="flex items-center justify-center min-h-screen">
-        <div className={`relative ${sizeClass}`}>
-          {children}
-        </div>
+        <div className={`relative ${sizeClass}`}>{children}</div>
       </div>
-    </main>
+    </div>
   )
 }
