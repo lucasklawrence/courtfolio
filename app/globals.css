@@ -31,3 +31,16 @@ html, body {
   width: 100%;
   height: 100%;
 }
+
+.ui-layer {
+  position: absolute;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+html, body {
+  overflow: visible;
+  touch-action: pan-x pan-y;
+  user-select: auto;
+  overscroll-behavior: contain;
+}

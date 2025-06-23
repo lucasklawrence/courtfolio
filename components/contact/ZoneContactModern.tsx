@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { SafeSvgHtml } from '@/components/SafeSvgHtml'
+import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
 
 export function ZoneContactModern() {
   return (

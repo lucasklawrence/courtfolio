@@ -57,7 +57,9 @@ export default function RootLayout({
         {/* Optional: theme color for mobile browsers */}
         <meta name="theme-color" content="#000000" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased touch-pan-x touch-pan-y`}
+      >
         {children}
         <Analytics />
       </body>

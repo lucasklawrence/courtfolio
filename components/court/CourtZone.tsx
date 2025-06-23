@@ -20,15 +20,17 @@ export function CourtZone({
   width,
   height,
   children,
+  className,
 }: {
   x: number
   y: number
   width: number
   height: number
   children: React.ReactNode
+  className?: string
 }) {
   return (
-    <foreignObject x={x} y={y} width={width} height={height}>
+    <foreignObject x={x} y={y} width={width} height={height} className={className}>
       {children}
     </foreignObject>
   )

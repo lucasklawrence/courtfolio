@@ -14,7 +14,7 @@ export const LosAngelesPictureSvg: React.FC<React.SVGProps<SVGSVGElement>> = pro
       height="100%"
       preserveAspectRatio="xMidYMid meet"
     >
-      <g stroke-width="2.00" fill="none" stroke-linecap="butt">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
         <path
           stroke="#a08760"
           vectorEffect="non-scaling-stroke"

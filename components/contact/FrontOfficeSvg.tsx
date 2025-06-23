@@ -35,7 +35,7 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
       preserveAspectRatio="xMidYMid meet"
       className={className}
     >
-      <g stroke-width="2.00" fill="none" stroke-linecap="butt">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
         <path
           stroke="#6f6f66"
           vectorEffect="non-scaling-stroke"

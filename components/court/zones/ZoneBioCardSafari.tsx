@@ -1,7 +1,7 @@
 'use client'
 
+import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
 import React from 'react'
-import { SafeSvgHtml } from './SafeSvgHtml'
 
 /**
  * Safari-safe version of the Bio Card using inline styles only

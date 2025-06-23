@@ -1,16 +1,16 @@
 'use client'
 
-import { CourtSvg } from '@/components/CourtSvg'
-import { BackToCourtButton } from '@/components/BackToCourtButton'
+import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { LogoSvg } from '@/components/common/LogoSvg'
+import { CourtContainer } from '@/components/court/CourtContainer'
+import { CourtSvg } from '@/components/court/CourtSvg'
+import { CourtTitleSolo } from '@/components/court/CourtTitleSolo'
+import { CourtZone } from '@/components/court/CourtZone'
+import { ZoneBars } from '@/components/court/zones/ZoneBars'
+import { ZoneBioCard } from '@/components/court/zones/ZoneBioCard'
+import { ZoneCareerStats } from '@/components/court/zones/ZoneCareerStats'
+import { ZoneFantasy } from '@/components/court/zones/ZoneFantasy'
 import React from 'react'
-import { CourtContainer } from '@/components/CourtContainer'
-import { CourtZone } from '@/components/CourtZone'
-import { ZoneFantasy } from '@/components/ZoneFantasy'
-import { ZoneBars } from '@/components/ZoneBars'
-import { ZoneBioCard } from '@/components/ZoneBioCard'
-import { ZoneCareerStats } from '@/components/ZoneCareerStats'
-import { LogoSvg } from '@/components/LogoSvg'
-import { CourtTitleSolo } from '@/components/CourtTitleSolo'
 
 export default function ProjectPage() {
   return (

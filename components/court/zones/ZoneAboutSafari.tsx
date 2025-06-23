@@ -1,7 +1,7 @@
-import { SafeSvgHtml } from './SafeSvgHtml'
+import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
 import { useRouter } from 'next/navigation'
 
-export function ZoneAboutModern() {
+export function ZoneAboutSafari() {
   const router = useRouter()
 
   return (
@@ -11,8 +11,7 @@ export function ZoneAboutModern() {
         style={{
           width: '100%',
           height: '100%',
-          backgroundColor: 'rgba(38, 20, 4, 0.7)',
-          backdropFilter: 'blur(4px)',
+          backgroundColor: '#261404',
           color: 'white',
           fontWeight: 600,
           fontSize: '0.875rem',
@@ -21,13 +20,6 @@ export function ZoneAboutModern() {
           border: '1px solid rgba(255, 165, 0, 0.3)',
           textAlign: 'center',
           cursor: 'pointer',
-          transition: 'color 0.2s ease-in-out',
-        }}
-        onMouseOver={e => {
-          ;(e.currentTarget as HTMLButtonElement).style.color = '#FDBA74'
-        }}
-        onMouseOut={e => {
-          ;(e.currentTarget as HTMLButtonElement).style.color = 'white'
         }}
       >
         ⛹️‍♂️ About Me

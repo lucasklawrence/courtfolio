@@ -1,6 +1,6 @@
 'use client'
 
-import { SafeSvgHtml } from '@/components/SafeSvgHtml'
+import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
 
 /**
  * Safari-compatible version of Fantasy Football AI zone.

@@ -1,6 +1,6 @@
 'use client'
 
-import { BannerCard, BannerProps } from '@/components/BannerCard'
+import { BannerCard, BannerProps } from '@/components/common/BannerCard'
 import { motion } from 'framer-motion'
 
 type BannerSection = {
