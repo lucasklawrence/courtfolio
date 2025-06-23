@@ -179,7 +179,7 @@ export function useZoneContent({
             <div className="flex justify-end items-center gap-3 w-full h-full">
               <button
                 onClick={nextStep}
-                className="px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
               >
                 →
               </button>
@@ -188,7 +188,7 @@ export function useZoneContent({
                   stopTour()
                   markAsSeen()
                 }}
-                className="px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
               >
                 Skip
               </button>
