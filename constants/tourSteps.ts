@@ -90,7 +90,7 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasSpinningBall7.png',
-    text: 'Stats don’t lie. Here’s the résumé highlight reel.',
+    text: 'Stats don’t lie. Here’s the resume highlight reel.',
     glow: { x: 800, y: 110, width: 280, height: 135 },
     facingLeft: false,
     targetId: 'career-stats-card',

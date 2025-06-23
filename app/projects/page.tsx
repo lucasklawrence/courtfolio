@@ -1,6 +1,5 @@
 'use client'
 
-
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { LogoSvg } from '@/components/common/LogoSvg'
 import { CourtContainer } from '@/components/court/CourtContainer'
