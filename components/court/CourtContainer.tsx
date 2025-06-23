@@ -37,7 +37,7 @@ export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ childr
 
   return (
     <div className="min-h-screen overflow-y-scroll bg-neutral-900 touch-pan-x touch-pan-y">
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-[101vh]">
         <div className={`relative ${sizeClass}`}>{children}</div>
       </div>
     </div>
