@@ -52,7 +52,7 @@ export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
         viewBox="0 0 1536 1024"
         ref={ref}
         xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMidYMid slice"
         className="w-full h-full touch-pan-x touch-pan-y"
       >
         <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
