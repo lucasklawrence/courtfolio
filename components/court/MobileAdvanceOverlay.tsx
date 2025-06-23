@@ -21,12 +21,17 @@ export function MobileAdvanceOverlay({ active, onAdvance }: Props) {
 
   return (
     <div
-      className="fixed top-0 left-0 w-screen h-screen z-[100] cursor-pointer"
+      className="fixed inset-0 z-[100]"
       style={{
-        touchAction: 'pan-x pan-y', // allows pinch-to-zoom
-        WebkitTapHighlightColor: 'transparent',
+        touchAction: 'pan-x pan-y',
+        pointerEvents: 'auto',
       }}
-      onPointerUp={handlePointerUp}
+      onPointerUp={e => {
+        // Only trigger if tapping outside of .ui-allow-click
+        if (!(e.target as HTMLElement).closest('.ui-allow-click')) {
+          onAdvance()
+        }
+      }}
     />
   )
 }
