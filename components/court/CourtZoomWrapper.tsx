@@ -48,28 +48,6 @@ export const CourtZoomWrapper: React.FC<{ children: React.ReactNode }> = ({ chil
       >
         {children}
       </animated.div>
-
-      {/* Optional zoom controls */}
-      <div className="absolute bottom-16 right-4 z-50 flex flex-col gap-1 bg-white/80 p-1 rounded-md shadow-md text-xs md:text-base md:gap-2 md:p-2">
-        <button
-          onClick={() => api.start({ scale: Math.min(scale.get() * 1.2, 3) })}
-          className="text-black px-2 py-1 rounded bg-white hover:bg-gray-200 ui-allow-click"
-        >
-          +
-        </button>
-        <button
-          onClick={() => api.start({ scale: Math.max(scale.get() * 0.8, 0.5) })}
-          className="text-black px-2 py-1 rounded bg-white hover:bg-gray-200 ui-allow-click"
-        >
-          –
-        </button>
-        <button
-          onClick={reset}
-          className="text-black px-2 py-1 rounded bg-white hover:bg-gray-200 ui-allow-click"
-        >
-          Reset
-        </button>
-      </div>
     </div>
   )
 }
