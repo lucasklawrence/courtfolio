@@ -1,7 +1,7 @@
 import React from 'react'
 
 /**
- * SVG component for Scouts Cape basketball jersey.
+ * SVG component for Scouts Cape.
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const ScoutsCapeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {

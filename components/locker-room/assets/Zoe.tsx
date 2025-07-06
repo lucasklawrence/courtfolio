@@ -1,7 +1,7 @@
 import React from 'react'
 
 /**
- * SVG component for Next Job basketball jersey.
+ * SVG component for Zoe Sleeping.
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const ZoeSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {

@@ -4,16 +4,28 @@ import { useEffect, useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Typewriter } from 'react-simple-typewriter'
 
-type TunnelHeroProps = {
-  onIntroEnd: () => void
-}
-
-export function TunnelHero({ onIntroEnd }: TunnelHeroProps) {
+/**
+ * TunnelHero
+ *
+ * Displays the introductory hero animation with motion effects, typewriter text,
+ * and a manual skip button. Automatically ends after a timeout.
+ *
+ * @component
+ * @param {Object} props
+ * @param {() => void} props.onIntroEnd - Callback to invoke when the intro completes or is skipped.
+ *
+ * @example
+ * <TunnelHero onIntroEnd={() => setIntroDone(true)} />
+ */
+export function TunnelHero({ onIntroEnd }: { onIntroEnd: () => void }) {
   const [showTyping, setShowTyping] = useState(false)
 
+  const TYPING_DELAY = 1000 // ms before typewriter starts
+  const INTRO_TIMEOUT = 20000 // ms before auto-complete
+
   useEffect(() => {
-    const typingTimeout = setTimeout(() => setShowTyping(true), 1000) // delay to sync with motion
-    const endTimeout = setTimeout(() => onIntroEnd(), 20000)
+    const typingTimeout = setTimeout(() => setShowTyping(true), TYPING_DELAY)
+    const endTimeout = setTimeout(() => onIntroEnd(), INTRO_TIMEOUT)
 
     return () => {
       clearTimeout(typingTimeout)

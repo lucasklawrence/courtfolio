@@ -1,7 +1,7 @@
 import React from 'react'
 
 /**
- * SVG component for Mythical 5 trophy.
+ * SVG component for Higher Division trophy.
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const HigherDivisionTrophySVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {

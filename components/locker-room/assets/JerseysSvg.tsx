@@ -1,7 +1,7 @@
 import React from 'react'
 
 /**
- * SVG component for Dad's basketball jersey.
+ * SVG component for set of jerseys.
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const JerseysSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {

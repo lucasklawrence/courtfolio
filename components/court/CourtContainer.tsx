@@ -1,39 +1,27 @@
 'use client'
 
-import { useIsMobile } from '@/utils/hooks/useIsMobile'
 import React, { useEffect, useState } from 'react'
+import { useIsMobile } from '@/utils/hooks/useIsMobile'
 
 /**
- * CourtContainer ensures the basketball court scales responsively,
- * centered and constrained to fit the viewport height with full width.
- * Provides scroll path for iOS Safari to enable pinch-to-zoom.
- * In landscape mobile, uses full viewport to avoid tight layout.
+ * CourtContainer
+ *
+ * Wraps the main court layout and ensures it maintains a responsive 2:3 aspect ratio.
+ * Handles screen orientation and sizing logic for mobile/desktop, including landscape support.
  */
 export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const isMobile = useIsMobile()
   const [isLandscape, setIsLandscape] = useState(false)
 
   useEffect(() => {
-    const updateOrientation = () => {
-      setIsLandscape(window.innerWidth > window.innerHeight)
-    }
-
+    const mediaQuery = window.matchMedia('(orientation: landscape)')
+    const updateOrientation = () => setIsLandscape(mediaQuery.matches)
     updateOrientation()
-    window.addEventListener('resize', updateOrientation)
-    window.addEventListener('orientationchange', updateOrientation)
-
-    return () => {
-      window.removeEventListener('resize', updateOrientation)
-      window.removeEventListener('orientationchange', updateOrientation)
-    }
+    mediaQuery.addEventListener('change', updateOrientation)
+    return () => mediaQuery.removeEventListener('change', updateOrientation)
   }, [])
 
-  const sizeClass =
-    isMobile && isLandscape
-      ? 'w-screen h-screen'
-      : isMobile
-        ? 'w-[min(100vw,calc(100svh*1.5))] h-[min(100svh,calc(100vw/1.5))]'
-        : 'w-[min(100vw,calc(100vh*1.5))] h-[min(100vh,calc(100vw/1.5))]'
+  const sizeClass = getCourtSizeClass(isMobile, isLandscape)
 
   return (
     <div className="min-h-screen overflow-y-scroll bg-neutral-900 touch-pan-x touch-pan-y">
@@ -42,4 +30,18 @@ export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ childr
       </div>
     </div>
   )
+}
+
+/**
+ * Computes the width/height Tailwind class string based on screen state.
+ *
+ * Maintains a 2:3 (w:h) ratio with a min() lock to prevent overflow.
+ */
+function getCourtSizeClass(isMobile: boolean, isLandscape: boolean): string {
+  if (isMobile && isLandscape) return 'w-screen h-screen'
+
+  const width = 'min(100vw,calc(100vh*1.5))'
+  const height = 'min(100vh,calc(100vw/1.5))'
+
+  return `w-[${width}] h-[${height}]`
 }

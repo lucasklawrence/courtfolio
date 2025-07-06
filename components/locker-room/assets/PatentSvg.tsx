@@ -1,7 +1,7 @@
 import React from 'react'
 
 /**
- * SVG component for Mythical 5 trophy.
+ * SVG component for Patent.
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
