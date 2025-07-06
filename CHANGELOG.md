@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hall of Strategy** – Architecture write-ups
 - **Press Room** – Blog & media entries, changelog, etc
 
+## [0.1.2] – 2025-07-06
+### Fixed
+- Readme cleanup
+
 ---
 
 ## [0.1.1] – 2025-07-06
@@ -21,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 ## [0.1.0] – 2025-07-06
+
 ### Added
 - Full-court SVG layout with interactive zone navigation
 - Mobile + desktop layout, orientation-aware with zoom/pan support

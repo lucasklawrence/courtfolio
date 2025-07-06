@@ -2,17 +2,17 @@
 
 **Court Vision** – A basketball-themed portfolio that blends design, interaction, and technical storytelling.
 
-🏀 [Live Site → lucasklawrence.com](https://lucasklawrence.com)
+[Live Site → lucasklawrence.com](https://lucasklawrence.com)
 
 ---
 
-## 📸 Overview
+## Overview
 
 This portfolio reimagines the developer showcase as a full-court experience. Explore zones like the Locker Room, Rafters, and Front Office — each revealing a different side of the story: technical depth, creativity, and personality.
 
 ---
 
-## 🎯 Features
+## Features
 
 - **Interactive Court Layout** – SVG-based basketball court with zone navigation
 - **TunnelHero Intro** – Animated onboarding with motion and typewriter text
@@ -34,11 +34,9 @@ This portfolio reimagines the developer showcase as a full-court experience. Exp
 - **Mobile-First UX** – Touch gestures, orientation handling, zoom support
 - **Accessible** – Pointer-safe buttons, motion preferences, keyboard support
 
-> 🎬 **Film Room** – *Coming Soon*
-
 ---
 
-## 💻 Tech Stack
+## Tech Stack
 
 - **Next.js** (App Router)
 - **TypeScript**
@@ -50,7 +48,7 @@ This portfolio reimagines the developer showcase as a full-court experience. Exp
 
 ---
 
-## 📦 Folder Structure
+## Folder Structure
 
 ```
 .
@@ -80,8 +78,8 @@ No `.env` needed — everything lives in the repo.
 
 Connect via the Front Office in the site, or directly:
 
-- 📧 [lucasklawrence@gmail.com](mailto:lucasklawrence@gmail.com)
-- 💼 [linkedin.com/in/lucaslawrence](https://linkedin.com/in/lucaslawrence)
+- [lucasklawrence@gmail.com](mailto:lucasklawrence@gmail.com)
+- [linkedin.com/in/lucasklawrence](https://linkedin.com/in/lucasklawrence)
 
 ---
 
