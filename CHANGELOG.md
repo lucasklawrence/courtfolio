@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),  
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [Unreleased]
 
 - **Film Room** – Project deep dives
 - **Hall of Strategy** – Architecture write-ups
@@ -13,19 +13,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.1.1] – 2025-07-06
+### Fixed
+- Restored correct layout sizing and `className` syntax in `CourtContainer.tsx`
+- Ensured correct mobile scaling using `svh` and working `isLandscape` fallback
+
+---
+
 ## [0.1.0] – 2025-07-06
-
-Clean up Release to make repo public.
-
-### Core Features
+### Added
 - Full-court SVG layout with interactive zone navigation
 - Mobile + desktop layout, orientation-aware with zoom/pan support
 
-### Intro Experience
-- TunnelHero intro with animated text and CTA button
-- CourtTutorialSprite: guided tour using highlights and speech bubbles
+#### Intro Experience
+- `TunnelHero` animated intro with CTA
+- `CourtTutorialSprite`: guided tour with highlights and speech bubbles
 
-### Locker Room
+#### Locker Room
 - Stylized SVG locker wall with themed categories:
   - Hoops
   - Personal
@@ -33,15 +37,15 @@ Clean up Release to make repo public.
   - Canoga
   - Next Team
 
-### Front Office (Contact Page)
+#### Front Office (Contact Page)
 - Scouting-room metaphor with:
   - Scouting report and "shot range" skills list
   - Resume download clipboard
   - Email and LinkedIn contact
   - Framed jersey and LA skyline artwork
 
-### Banner Wall ("The Rafters")
-- Achievements split into:
-    - Tech
-    - Personal
-    - Basketball
+#### Banner Wall ("The Rafters")
+- Achievement zones for:
+  - Tech
+  - Personal
+  - Basketball
