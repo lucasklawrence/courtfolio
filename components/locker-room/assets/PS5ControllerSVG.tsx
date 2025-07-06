@@ -1,7 +1,7 @@
 import React from 'react'
 
 /**
- * SVG component for Mythical 5 trophy.
+ * SVG component for PS5 controller.
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const PS5ControllerSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {

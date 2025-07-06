@@ -1,23 +1,24 @@
 'use client'
 
-import { CourtSvg } from './court/CourtSvg'
+import React, { useMemo, useRef, useState } from 'react'
 import { CourtContainer } from './court/CourtContainer'
-import React, { useRef, useState, useMemo } from 'react'
-import { useHasSeenTour } from '@/utils/useHasSeenTour'
+import { CourtSvg } from './court/CourtSvg'
 import { CourtInteractionLayer } from './court/CourtInteractionLayer'
-import { tourSteps } from '@/constants/tourSteps'
+import { TutorialOverlay } from './court/TutorialOverlay'
 import { FreeRoamOverlay } from './court/FreeRoamOverlay'
 import { MobileAdvanceOverlay } from './court/MobileAdvanceOverlay'
-import { useTourState } from '../utils/hooks/useTourState'
-import { useZoneContent } from '../utils/hooks/useZoneContent'
+
 import { useIsMobile } from '@/utils/hooks/useIsMobile'
+import { useTourState } from '@/utils/hooks/useTourState'
+import { useZoneContent } from '@/utils/hooks/useZoneContent'
 import { useElementRect } from '@/utils/hooks/useElementRect'
-import { TutorialOverlay } from './court/TutorialOverlay'
+import { useHasSeenTour } from '@/utils/useHasSeenTour'
+import { tourSteps } from '@/constants/tourSteps'
 
 export function HomeBody() {
-  const { hasSeen, markAsSeen, reset } = useHasSeenTour()
-  const isMobile = useIsMobile()
   const svgRef = useRef<SVGSVGElement>(null)
+  const isMobile = useIsMobile()
+  const { hasSeen, markAsSeen, reset } = useHasSeenTour()
 
   const { tourActive, tourStep, startTour, nextStep, stopTour } = useTourState({
     hasSeen,
@@ -26,10 +27,7 @@ export function HomeBody() {
 
   const [clickTarget, setClickTarget] = useState<{ x: number; y: number } | null>(null)
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([])
-  const [lastTutorialPos, setLastTutorialPos] = useState<{ x: number; y: number }>({
-    x: 650,
-    y: 1500,
-  })
+  const [lastTutorialPos, setLastTutorialPos] = useState({ x: 650, y: 1500 })
 
   const zoneContent = useZoneContent({
     tourActive,
@@ -43,26 +41,31 @@ export function HomeBody() {
     reset,
   })
 
-  const displayedSteps = useMemo(() => {
-    return tourSteps.map((step, index) => ({
-      ...step,
-      glow: isMobile && index === 0 ? undefined : step.glow,
-      text: isMobile && step.mobileText ? step.mobileText : step.text,
-    }))
-  }, [isMobile])
+  const displayedSteps = useMemo(
+    () =>
+      tourSteps.map((step, index) => ({
+        ...step,
+        glow: isMobile && index === 0 ? undefined : step.glow,
+        text: isMobile && step.mobileText ? step.mobileText : step.text,
+      })),
+    [isMobile]
+  )
 
-  const currentStep = displayedSteps[tourStep]
-  const targetRect = useElementRect(currentStep.targetId)
+  const currentStep = displayedSteps[tourStep] ?? tourSteps[0] // fallback just in case
+  const targetRect = useElementRect(currentStep?.targetId)
 
-  const computedGlow = targetRect
-    ? {
+  const computedGlow = useMemo(() => {
+    if (targetRect) {
+      return {
         x: targetRect.left,
         y: targetRect.top,
         width: targetRect.width,
         height: targetRect.height,
-        shape: 'rectangle',
+        shape: 'rectangle' as const,
       }
-    : currentStep.glow
+    }
+    return currentStep?.glow
+  }, [targetRect, currentStep?.glow])
 
   return (
     <CourtContainer>

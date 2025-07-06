@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 
 type Ripple = { id: number; x: number; y: number }
 
@@ -15,50 +15,47 @@ export function CourtInteractionLayer({
   svgRef,
   setClickTarget,
   setRipples,
-  disabled,
+  disabled = false,
 }: CourtInteractionLayerProps) {
-  const handlePointerUp = (e: PointerEvent) => {
-    if (disabled) return
+  const handlePointerUp = useCallback(
+    (e: PointerEvent) => {
+      if (disabled) return
 
-    const target = e.target as HTMLElement
-    if (
-      target.closest('button') ||
-      target.closest('a') ||
-      target.closest('[role="button"]') ||
-      target.closest('.ui-ignore')
-    )
-      return
+      const target = e.target as HTMLElement
+      if (
+        target.closest('button') ||
+        target.closest('a') ||
+        target.closest('[role="button"]') ||
+        target.closest('.ui-ignore')
+      ) {
+        return
+      }
 
-    if (e.pointerType === 'touch' && e.isPrimary) {
-      // This is a single-finger tap — allow move
-      // Do NOT block pinch zoom (multi-finger)
-    } else if (e.pointerType === 'mouse') {
-      // Normal mouse click
-    } else {
-      return
-    }
+      if (e.pointerType === 'touch' && !e.isPrimary) return
+      if (e.pointerType !== 'touch' && e.pointerType !== 'mouse') return
 
-    const svg = svgRef.current
-    if (!svg) return
+      const svg = svgRef.current
+      if (!svg) return
 
-    const bounds = svg.getBoundingClientRect()
+      const bounds = svg.getBoundingClientRect()
 
-    // For ripple: convert to viewBox coordinates
-    const pt = svg.createSVGPoint()
-    pt.x = e.clientX
-    pt.y = e.clientY
-    const svgPoint = pt.matrixTransform(svg.getScreenCTM()?.inverse())
+      // Convert pointer location to SVG coordinate space
+      const pt = svg.createSVGPoint()
+      pt.x = e.clientX
+      pt.y = e.clientY
 
-    const rippleX = svgPoint.x
-    const rippleY = svgPoint.y
+      const svgCoords = pt.matrixTransform(svg.getScreenCTM()?.inverse())
+      const rippleX = svgCoords.x
+      const rippleY = svgCoords.y
 
-    // For player: use pixel coords relative to SVG container
-    const playerX = e.clientX - bounds.left
-    const playerY = e.clientY - bounds.top
+      const localX = e.clientX - bounds.left
+      const localY = e.clientY - bounds.top
 
-    setClickTarget({ x: playerX, y: playerY })
-    setRipples(prev => [...prev, { id: Date.now(), x: rippleX, y: rippleY }])
-  }
+      setClickTarget({ x: localX, y: localY })
+      setRipples(prev => [...prev, { id: Date.now(), x: rippleX, y: rippleY }])
+    },
+    [svgRef, disabled, setClickTarget, setRipples]
+  )
 
   useEffect(() => {
     const svg = svgRef.current
@@ -69,7 +66,7 @@ export function CourtInteractionLayer({
     return () => {
       svg.removeEventListener('pointerup', handlePointerUp)
     }
-  }, [svgRef, disabled])
+  }, [handlePointerUp])
 
   return null
 }

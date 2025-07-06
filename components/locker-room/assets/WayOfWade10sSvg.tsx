@@ -1,7 +1,7 @@
 import React from 'react'
 
 /**
- * SVG component for Mythical 5 trophy.
+ * SVG component for WoW 10s.
  * Can be scaled or positioned freely using Tailwind or inline styles.
  */
 export const WayOfWade10sSVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
