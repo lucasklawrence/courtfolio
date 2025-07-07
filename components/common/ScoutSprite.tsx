@@ -11,14 +11,8 @@ export const ScoutSprite = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.2, duration: 0.6 }}
     >
-<div className="relative w-200 h-200 sm:w-56 sm:h-56">
-
-        <Image
-          src="/sprites/Scout.png"
-          alt="Tech Scout"
-          fill
-          className="object-contain"
-        />
+      <div className="relative w-200 h-200 sm:w-56 sm:h-56">
+        <Image src="/sprites/Scout.png" alt="Tech Scout" fill className="object-contain" />
       </div>
     </motion.div>
   )

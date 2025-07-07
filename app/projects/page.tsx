@@ -18,10 +18,10 @@ export default function ProjectPage() {
           Lucas Lawrence // Tech Stack Binder
         </div>
 
-   {/* Scout Sprite */}
-     <div className="absolute right-4 bottom-4">
-    <ScoutSprite />
-  </div>
+        {/* Scout Sprite */}
+        <div className="absolute right-4 bottom-4">
+          <ScoutSprite />
+        </div>
         {/* Optional section tabs */}
         <div className="flex gap-6 text-yellow-200 text-xs font-mono px-6 pb-6 uppercase tracking-widest">
           <button className="underline underline-offset-2">All</button>
@@ -37,8 +37,7 @@ export default function ProjectPage() {
       </div>
 
       <div className="absolute bottom-10 right-10 text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
-      <BackToCourtButton/>
-
+        <BackToCourtButton />
       </div>
 
       {/* Page marker */}
