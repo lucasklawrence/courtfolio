@@ -38,7 +38,8 @@ const goNext = () => {
   if (currentSlide < slides.length - 1) {
     setCurrentSlide(currentSlide + 1)
   } else {
-    onBackToSelect() // finish the project, return to selector
+    onBackToSelect()
+    setCurrentSlide(0) // finish the project, return to selector
   }
 }
   const goPrev = () => setCurrentSlide(Math.max(currentSlide - 1, 0))

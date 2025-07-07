@@ -4,6 +4,7 @@ export interface Project {
   tagline?: string           // Short one-liner for selector UI
   description?: string       // Optional long description
   coverImage?: string        // Thumbnail/visual asset
+  icon?: string // favicon of project
   slides?: SlideSection[]    // Optional: array of sections to render in slideshow
 }
 
@@ -12,4 +13,9 @@ export interface SlideSection {
   content: any               // Renderable content — can vary by type
   heading?: string
   subtext?: string
+    reaction?: {
+  speaker: 'audience' | 'sprite' | 'coach'
+  text: string
+  position?: { x: number, y: number }
+    }
 }
