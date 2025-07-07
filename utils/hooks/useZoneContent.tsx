@@ -60,7 +60,7 @@ export function useZoneContent({
         </CourtZone>
       ),
       'zone-78': (
-        <foreignObject x={610} y={940} width={320} height={70}>
+        <foreignObject x={110} y={855} width={320} height={70}>
           <SafeSvgHtml>
             <div id="scouting-area">
               <div className="flex flex-col items-center justify-center bg-white/90 text-black rounded-xl px-4 py-2 shadow-lg text-xs font-medium space-y-1 hover:bg-orange-100 transition">
@@ -72,7 +72,7 @@ export function useZoneContent({
                     onClick={() => router.push('/contact')}
                     className="cursor-pointer hover:text-orange-500 transition"
                   >
-                    📫 Contact Me
+                    📫 Go to Front Office
                   </button>
                   <button
                     onClick={() => window.open('/LucasLawrenceResume.pdf', '_blank')}
@@ -136,7 +136,7 @@ export function useZoneContent({
         </foreignObject>
       ),
       'zone-85': (
-        <CourtZone x={1020} y={40} width={220} height={100} className="ui-layer z-[110]">
+        <CourtZone x={1170} y={120} width={220} height={100} className="ui-layer z-[110]">
           <SafeSvgHtml>
             <button
               id="view-rafters"
@@ -151,7 +151,7 @@ export function useZoneContent({
         </CourtZone>
       ),
       'zone-86': (
-        <CourtZone x={1270} y={40} width={300} height={100} className="ui-layer z-[110]">
+        <CourtZone x={1160} y={200} width={250} height={100} className="ui-layer z-[110]">
           <SafeSvgHtml>
             <button
               id="enter-locker-room"
@@ -161,6 +161,21 @@ export function useZoneContent({
               className="cursor-pointer  bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition text-center text-base sm:text-lg"
             >
               👟 Enter Locker Room
+            </button>
+          </SafeSvgHtml>
+        </CourtZone>
+      ),
+       'enter-film-room': (
+        <CourtZone x={1170} y={280} width={250} height={100} className="ui-layer z-[110]">
+          <SafeSvgHtml>
+            <button
+              id="enter-film-room"
+              onClick={() => {
+                window.location.href = '/film-room'
+              }}
+              className="cursor-pointer  bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition text-center text-base sm:text-lg"
+            >
+              👟 Enter Film Room
             </button>
           </SafeSvgHtml>
         </CourtZone>
