@@ -6,10 +6,7 @@ export function useAudienceCommentary(projectSlug: string | null) {
       'That timing animation goes hard!',
       'I love how the bars flow with the beat.',
     ],
-    'courtfolio': [
-      'This whole site is a flex.',
-      'SVG game strong on this one.',
-    ],
+    courtfolio: ['This whole site is a flex.', 'SVG game strong on this one.'],
     'fantasy-football-ai': [
       'He’s cooking up trade advice like an analyst.',
       'Next-gen GM vibes right here.',

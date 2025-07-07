@@ -1,4 +1,4 @@
-import { Project } from "./project";
+import { Project } from './project'
 
 export const courtfolio: Project = {
   slug: 'courtfolio',
@@ -11,13 +11,13 @@ export const courtfolio: Project = {
       type: 'text',
       heading: 'Courtfolio: A Personal Site Reimagined',
       subtext: 'Tech portfolio meets basketball court',
-      content: `Inspired by the game, built with precision. The Courtfolio transforms a standard resume into an immersive SVG-based experience — blending technical chops with design instincts.`
+      content: `Inspired by the game, built with precision. The Courtfolio transforms a standard resume into an immersive SVG-based experience — blending technical chops with design instincts.`,
     },
     {
       type: 'image',
       heading: 'Interactive Court Layout',
       subtext: 'SVG zones for navigation',
-      content: '/images/projects/courtfolio/court-layout.png'
+      content: '/images/projects/courtfolio/court-layout.png',
     },
     {
       type: 'text',
@@ -27,13 +27,13 @@ export const courtfolio: Project = {
 - Lineup zones for Principles and Tech Stack  
 - Animated tutorial sprite with Framer Motion  
 - Locker Room for personal flavor.
-- This film room for project deep dives.`
+- This film room for project deep dives.`,
     },
     {
       type: 'image',
       heading: 'Court Tutorial Sprite',
       subtext: 'Animated guide for first-time visitors',
-      content: '/images/projects/courtfolio/tutorial-sprite.gif'
+      content: '/images/projects/courtfolio/tutorial-sprite.gif',
     },
     {
       type: 'code',
@@ -43,12 +43,12 @@ export const courtfolio: Project = {
 <LockerRoomSvg zoneContent={{
   91: <TechStackLineup />,
   90: <PrinciplesLineup />
-}} />`
+}} />`,
     },
     {
       type: 'quote',
       heading: 'Why a court?',
-      content: `Basketball’s been my north star — the court is a perfect metaphor for how I approach systems: fluid, strategic, expressive.`
-    }
-  ]
+      content: `Basketball’s been my north star — the court is a perfect metaphor for how I approach systems: fluid, strategic, expressive.`,
+    },
+  ],
 }

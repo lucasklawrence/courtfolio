@@ -6,36 +6,57 @@ import React from 'react'
  */
 export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
-   <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 536.58 205.55
   L 536.61 362.45"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 543.48 419.28
   Q 542.72 436.50 543.47 453.73"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 536.40 461.71
   Q 533.53 460.85 531.27 461.61"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 767.65 842.28
   Q 766.63 847.99 767.42 854.54"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 207.53 870.03
   Q 208.07 867.45 207.08 865.18"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 531.51 404.10
   Q 529.37 404.94 527.99 404.85
   Q 507.81 403.54 487.73 400.84
   A 0.77 0.76 -70.6 0 0 486.97 401.21
   Q 486.09 402.72 486.06 404.88"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.06 404.88
   Q 480.84 405.86 479.18 405.69
   Q 472.01 404.92 469.58 404.89
@@ -172,8 +193,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 752.64 661.02 752.62 661.05
   A 0.29 0.08 1.2 0 1 752.35 661.12
   L 748.66 661.16"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 748.66 661.16
   L 697.13 656.25
   A 1.34 1.34 0.0 0 0 695.70 657.29
@@ -211,8 +235,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 246.14 470.86 246.12 476.00
   Q 245.79 592.85 246.05 667.50
   Q 246.08 675.85 245.83 680.73"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 245.83 680.73
   L 245.15 680.86
   A 0.38 0.37 -3.8 0 1 244.71 680.48
@@ -235,14 +262,20 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 485.92 411.35 484.48 410.39
   A 0.45 0.45 0.0 0 1 484.52 409.63
   Q 485.81 408.92 487.35 409.76"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.35 409.76
   L 534.13 414.43
   A 0.86 0.86 0.0 0 0 535.08 413.55
   L 534.87 405.46"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 534.87 405.46
   Q 534.80 255.62 534.75 105.77
   Q 534.75 103.51 536.41 102.37
@@ -278,20 +311,32 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 532.02 84.65 532.02 90.25
   Q 531.98 326.99 532.06 385.75
   Q 532.07 396.39 531.51 404.10"
-/>
-<path stroke="#3c3d3c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c3d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 534.87 405.46
   L 531.51 404.10"
-/>
-<path stroke="#3c3d3c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c3d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.06 404.88
   L 487.35 409.76"
-/>
-<path stroke="#3c3d3c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c3d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 245.83 680.73
   Q 245.37 680.60 245.95 681.44"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 245.95 681.44
   Q 243.96 682.13 242.57 681.20
   A 1.14 1.11 16.9 0 1 242.07 680.29
@@ -324,16 +369,25 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 758.54 664.81 763.66 664.09 766.79 662.23
   A 0.25 0.25 0.0 0 0 766.63 661.77
   L 754.73 663.23"
-/>
-<path stroke="#3c3d3c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c3d3c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 754.73 663.23
   Q 753.99 660.95 748.66 661.16"
-/>
-<path stroke="#484743" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484743"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.93 690.53
   L 451.46 700.89"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 754.73 663.23
   Q 737.00 667.27 719.81 670.96
   Q 706.43 673.82 647.62 686.07
@@ -343,16 +397,22 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 534.81 708.99 522.51 707.67
   Q 512.74 706.63 507.39 706.20
   C 488.73 704.70 470.09 702.76 451.46 700.89"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 451.46 700.89
   Q 452.71 701.08 453.42 700.87
   A 0.42 0.42 0.0 0 0 453.34 700.05
   Q 398.00 694.77 342.89 689.53
   A 0.55 0.54 -2.7 0 0 342.30 690.17
   Q 342.35 690.45 342.93 690.53"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.93 690.53
   L 304.63 686.96
   A 0.44 0.44 0.0 0 1 304.25 686.42
@@ -378,8 +438,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 301.21 685.11
   A 1.04 1.03 2.3 0 1 300.09 686.14
   L 245.95 681.44"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.75 402.77
   Q 529.16 403.27 529.58 403.32
   A 0.63 0.62 -83.3 0 0 530.28 402.76
@@ -394,8 +457,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 490.53 399.40 492.99 399.49
   Q 511.27 400.16 527.86 402.28
   A 1.40 1.39 73.7 0 1 528.75 402.77"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 536.01 98.76
   C 550.55 97.20 567.25 95.47 579.88 87.37
   C 583.53 85.02 588.28 80.02 584.08 75.87
@@ -419,8 +485,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.27 2.26 -84.1 0 1 534.99 85.43
   L 535.41 98.25
   A 0.54 0.53 -4.4 0 0 536.01 98.76"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.25 97.35
   Q 546.71 96.08 555.00 94.76
   C 563.31 93.44 582.12 88.83 584.53 79.13
@@ -444,8 +513,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 534.44 81.55 537.32 82.35 536.91 86.22
   Q 536.49 90.09 536.62 96.81
   A 0.55 0.55 0.0 0 0 537.25 97.35"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 687.97 656.76
   A 0.24 0.24 0.0 0 0 687.74 656.52
   Q 678.71 656.08 678.49 656.05
@@ -498,8 +570,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 681.74 657.00 687.69 657.44
   A 0.26 0.26 0.0 0 0 687.97 657.18
   L 687.97 656.76"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 789.47 665.10
   A 2.68 2.68 0.0 0 0 786.54 663.23
   Q 779.99 664.12 772.11 666.09
@@ -517,8 +592,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 789.99 827.54 789.99 824.75
   Q 790.10 735.27 790.02 669.76
   Q 790.01 666.86 789.47 665.10"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 540.32 717.44
   A 3.54 3.53 -8.4 0 0 537.53 715.37
   Q 535.38 715.11 496.24 711.39
@@ -567,8 +645,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 530.62 877.02 540.90 878.78 540.93 873.24
   Q 541.10 846.04 540.38 718.27
   Q 540.38 717.57 540.32 717.44"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 762.07 841.19
   A 1.13 1.13 0.0 0 0 760.79 840.07
   Q 754.21 840.96 741.50 843.52
@@ -596,8 +677,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 701.61 870.16 759.97 856.15
   A 2.73 2.73 0.0 0 0 762.07 853.49
   L 762.07 841.19"
-/>
-<path stroke="#7a796c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a796c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.56 657.16
   C 664.08 656.82 651.32 655.42 637.25 654.35
   Q 624.97 653.42 611.43 652.28
@@ -613,8 +697,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.65 5.33 -46.6 0 0 534.62 687.80
   L 677.60 657.55
   A 0.20 0.20 0.0 0 0 677.56 657.16"
-/>
-<path stroke="#d9d6c4" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d9d6c4"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 664.93 658.54
   Q 656.95 656.64 649.15 656.88
   A 3.83 3.80 50.4 0 1 648.24 656.79
@@ -648,8 +735,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 530.52 686.42 536.30 686.34 543.64 684.76
   Q 610.94 670.28 664.93 658.75
   A 0.11 0.11 0.0 0 0 664.93 658.54"
-/>
-<path stroke="#605e5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#605e5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 787.26 664.97
   Q 786.57 664.85 785.51 664.96
   Q 782.71 665.25 772.45 667.65
@@ -668,8 +758,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 787.20 828.94 788.54 827.47 788.51 824.74
   Q 787.69 750.44 788.12 665.99
   A 1.04 1.03 5.0 0 0 787.26 664.97"
-/>
-<path stroke="#a7a49b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a7a49b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.01 874.38
   A 1.09 1.09 0.0 0 0 549.32 875.45
   L 786.14 827.59
@@ -679,120 +772,171 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 548.87 716.07
   A 1.09 1.09 0.0 0 0 548.01 717.13
   L 548.01 874.38"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 778.4065 675.3660
   A 0.75 0.50 -27.3 0 0 777.5107 675.2657
   A 0.75 0.50 -27.3 0 0 777.0735 676.0540
   A 0.75 0.50 -27.3 0 0 777.9693 676.1543
   A 0.75 0.50 -27.3 0 0 778.4065 675.3660"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 776.19 684.53
   Q 776.21 684.32 776.06 684.06
   A 0.50 0.45 48.0 0 0 775.25 683.98
   Q 775.03 684.33 775.11 684.62
   A 0.55 0.55 0.0 0 0 776.19 684.53"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 765.16 690.93
   A 0.28 0.28 0.0 0 0 765.66 691.00
   Q 765.97 690.54 765.80 690.15
   Q 765.60 689.70 765.20 690.05
   Q 764.96 690.27 765.16 690.93"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 741.2503 695.2532
   A 1.03 0.36 -135.9 0 0 741.7395 696.2285
   A 1.03 0.36 -135.9 0 0 742.7297 696.6868
   A 1.03 0.36 -135.9 0 0 742.2405 695.7115
   A 1.03 0.36 -135.9 0 0 741.2503 695.2532"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 701.53 700.74
   Q 702.22 701.04 702.65 700.85
   A 0.40 0.40 0.0 0 0 702.58 700.09
   Q 702.01 699.96 701.55 700.13
   A 0.33 0.33 0.0 0 0 701.53 700.74"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 671.94 701.00
   Q 671.85 701.31 672.05 701.83
   A 0.56 0.55 -41.9 0 0 673.06 701.88
   Q 673.12 701.75 672.98 701.21
   A 0.60 0.50 51.2 0 0 671.94 701.00"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 724.29 704.25
   A 0.58 0.58 0.0 0 0 723.71 703.67
   A 0.58 0.58 0.0 0 0 723.13 704.25
   A 0.58 0.58 0.0 0 0 723.71 704.83
   A 0.58 0.58 0.0 0 0 724.29 704.25"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 659.64 704.02
   Q 659.12 703.89 658.52 704.14
   A 0.39 0.39 0.0 0 0 658.54 704.88
   Q 659.16 705.05 659.67 704.81
   A 0.44 0.40 -49.6 0 0 659.64 704.02"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 753.8491 708.3130
   A 0.94 0.59 -12.1 0 0 752.8063 707.9331
   A 0.94 0.59 -12.1 0 0 752.0109 708.7070
   A 0.94 0.59 -12.1 0 0 753.0537 709.0869
   A 0.94 0.59 -12.1 0 0 753.8491 708.3130"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 678.02 714.38
   A 0.49 0.49 0.0 0 0 677.53 713.89
   A 0.49 0.49 0.0 0 0 677.04 714.38
   A 0.49 0.49 0.0 0 0 677.53 714.87
   A 0.49 0.49 0.0 0 0 678.02 714.38"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 652.7001 721.5726
   A 0.60 0.46 -181.2 0 0 653.3096 722.0199
   A 0.60 0.46 -181.2 0 0 653.8999 721.5474
   A 0.60 0.46 -181.2 0 0 653.2904 721.1001
   A 0.60 0.46 -181.2 0 0 652.7001 721.5726"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.3994 722.3993
   A 0.78 0.54 -171.1 0 0 565.0865 723.0535
   A 0.78 0.54 -171.1 0 0 565.9406 722.6407
   A 0.78 0.54 -171.1 0 0 565.2535 721.9865
   A 0.78 0.54 -171.1 0 0 564.3994 722.3993"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 716.24 723.32
   Q 715.88 723.26 715.44 723.32
   A 0.22 0.22 0.0 0 0 715.36 723.72
   Q 715.82 724.01 716.28 723.85
   A 0.28 0.28 0.0 0 0 716.24 723.32"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.9200 725.5293
   A 0.89 0.45 -180.6 0 0 585.8147 725.9700
   A 0.89 0.45 -180.6 0 0 586.7000 725.5107
   A 0.89 0.45 -180.6 0 0 585.8053 725.0700
   A 0.89 0.45 -180.6 0 0 584.9200 725.5293"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 568.90 729.45
   Q 568.85 729.18 568.58 729.12
   A 0.30 0.30 0.0 0 0 568.24 729.54
   Q 568.38 729.83 568.65 729.79
   Q 568.95 729.74 568.90 729.45"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 710.05 729.66
   A 0.38 0.34 1.3 0 0 709.54 729.18
   Q 709.25 729.32 709.24 729.57
   A 0.19 0.19 0.0 0 0 709.36 729.76
   Q 709.86 729.94 710.05 729.66"
-/>
-<path stroke="#a7a49b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a7a49b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 656.6196 734.4282
   A 5.21 5.21 0.0 0 0 650.4402 730.4152
   L 580.6201 745.2560
@@ -802,29 +946,41 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 652.6399 740.7640
   A 5.21 5.21 0.0 0 0 656.6529 734.5847
   L 656.6196 734.4282"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 585.89 732.97
   A 0.36 0.29 59.9 0 0 585.80 733.56
   Q 586.26 733.96 586.60 733.80
   A 0.36 0.33 -41.5 0 0 586.66 733.19
   Q 586.26 732.96 585.89 732.97"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.13 736.39
   A 0.36 0.35 58.1 0 0 695.75 736.54
   Q 696.51 735.60 696.01 735.27
   A 0.56 0.45 28.7 0 0 695.22 735.41
   Q 695.02 735.92 695.13 736.39"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.8459 743.4017
   A 0.56 0.46 -29.8 0 0 712.1314 743.2808
   A 0.56 0.46 -29.8 0 0 711.8741 743.9583
   A 0.56 0.46 -29.8 0 0 712.5886 744.0792
   A 0.56 0.46 -29.8 0 0 712.8459 743.4017"
-/>
-<path stroke="#a7a49b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a7a49b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 657.3868 750.4700
   A 4.55 4.55 0.0 0 0 651.9903 746.9655
   L 580.6833 762.1222
@@ -834,57 +990,81 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 654.1567 757.1578
   A 4.55 4.55 0.0 0 0 657.6613 751.7612
   L 657.3868 750.4700"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 670.3676 747.2013
   A 0.49 0.36 -110.6 0 0 670.2030 747.7867
   A 0.49 0.36 -110.6 0 0 670.7124 748.1187
   A 0.49 0.36 -110.6 0 0 670.8770 747.5333
   A 0.49 0.36 -110.6 0 0 670.3676 747.2013"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 732.0178 752.3920
   A 0.52 0.31 -5.3 0 0 731.4714 752.1313
   A 0.52 0.31 -5.3 0 0 730.9822 752.4880
   A 0.52 0.31 -5.3 0 0 731.5286 752.7487
   A 0.52 0.31 -5.3 0 0 732.0178 752.3920"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 716.0730 752.7780
   A 0.53 0.44 -125.4 0 0 716.0213 753.4649
   A 0.53 0.44 -125.4 0 0 716.6870 753.6420
   A 0.53 0.44 -125.4 0 0 716.7387 752.9551
   A 0.53 0.44 -125.4 0 0 716.0730 752.7780"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 688.1055 754.6162
   A 0.67 0.51 -111.4 0 0 687.8752 755.4261
   A 0.67 0.51 -111.4 0 0 688.5945 755.8638
   A 0.67 0.51 -111.4 0 0 688.8248 755.0539
   A 0.67 0.51 -111.4 0 0 688.1055 754.6162"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 776.85 757.55
   A 0.54 0.54 0.0 0 0 776.31 757.01
   A 0.54 0.54 0.0 0 0 775.77 757.55
   A 0.54 0.54 0.0 0 0 776.31 758.09
   A 0.54 0.54 0.0 0 0 776.85 757.55"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 749.10 761.55
   A 0.33 0.32 -36.0 0 0 749.71 761.64
   Q 749.81 761.43 749.65 761.24
   A 0.18 0.18 0.0 0 0 749.48 761.18
   Q 749.06 761.27 749.10 761.55"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 692.07 762.80
   A 0.28 0.28 0.0 0 0 692.54 762.98
   Q 692.81 762.72 692.75 762.44
   A 0.33 0.33 0.0 0 0 692.10 762.49
   Q 692.07 762.79 692.07 762.80"
-/>
-<path stroke="#a7a49b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a7a49b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.76 771.26
   Q 615.92 771.59 612.80 772.35
   Q 609.59 773.14 607.86 773.48
@@ -902,48 +1082,69 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 648.94 764.52 642.79 765.96
   Q 637.53 767.19 632.18 768.24
   C 627.33 769.19 622.56 770.40 617.76 771.26"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 681.57 765.94
   Q 682.25 766.05 682.59 765.83
   A 0.56 0.51 -57.8 0 0 682.41 764.83
   Q 681.97 764.81 681.39 765.42
   A 0.31 0.31 0.0 0 0 681.57 765.94"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 707.01 767.48
   C 707.03 768.24 708.34 767.77 707.72 767.00
   Q 707.50 766.71 707.20 766.88
   Q 706.99 767.00 707.01 767.48"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 737.33 767.72
   Q 737.06 767.81 736.91 768.44
   Q 736.84 768.74 737.18 768.86
   Q 737.71 769.05 737.87 768.39
   A 0.54 0.45 -88.7 0 0 737.33 767.72"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 714.13 768.79
   A 0.34 0.33 51.0 0 0 714.77 768.87
   Q 714.86 768.62 714.76 768.36
   Q 714.62 768.00 714.28 768.27
   Q 714.05 768.44 714.13 768.79"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 753.95 770.40
   Q 753.96 770.24 753.78 770.13
   C 753.31 769.84 753.01 770.60 753.28 770.76
   A 0.44 0.44 0.0 0 0 753.95 770.40"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 678.67 776.15
   Q 678.40 775.95 677.90 776.17
   A 0.39 0.39 0.0 0 0 677.95 776.90
   Q 678.24 776.98 678.52 776.88
   A 0.44 0.40 -35.7 0 0 678.67 776.15"
-/>
-<path stroke="#a7a49b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a7a49b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 659.0380 784.0922
   A 5.13 5.13 0.0 0 0 652.9398 780.1622
   L 582.2140 795.4536
@@ -953,103 +1154,148 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 655.1460 790.3664
   A 5.13 5.13 0.0 0 0 659.0761 784.2681
   L 659.0380 784.0922"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.36 781.03
   A 0.56 0.54 -83.5 0 0 678.09 780.43
   Q 678.01 779.78 677.62 779.97
   Q 677.14 780.21 677.18 780.70
   Q 677.20 780.96 677.36 781.03"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 721.6069 782.1287
   A 0.50 0.41 -70.5 0 0 721.0535 782.4631
   A 0.50 0.41 -70.5 0 0 721.2731 783.0713
   A 0.50 0.41 -70.5 0 0 721.8265 782.7369
   A 0.50 0.41 -70.5 0 0 721.6069 782.1287"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 754.2993 784.3064
   A 0.50 0.39 -129.9 0 0 754.3208 784.9402
   A 0.50 0.39 -129.9 0 0 754.9407 785.0736
   A 0.50 0.39 -129.9 0 0 754.9192 784.4398
   A 0.50 0.39 -129.9 0 0 754.2993 784.3064"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 669.51 785.87
   Q 669.82 785.95 670.03 785.75
   A 0.38 0.30 -62.6 0 0 669.91 785.13
   Q 669.50 785.14 669.35 785.58
   A 0.23 0.22 16.6 0 0 669.51 785.87"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 727.50 786.89
   Q 727.88 786.89 727.80 786.30
   A 0.23 0.21 15.7 0 0 727.70 786.14
   Q 727.59 786.06 727.40 786.14
   A 0.41 0.37 -55.4 0 0 727.50 786.89"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 771.62 800.44
   Q 771.21 800.63 771.13 801.22
   A 0.53 0.52 84.5 0 0 771.82 801.79
   Q 772.38 801.59 772.37 801.01
   A 0.59 0.52 78.6 0 0 771.62 800.44"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 750.20 803.09
   Q 749.93 803.54 750.20 803.75
   A 0.41 0.36 -84.9 0 0 750.74 803.24
   Q 750.65 803.04 750.38 803.01
   A 0.18 0.17 19.7 0 0 750.20 803.09"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 683.25 808.41
   Q 682.87 808.95 683.07 809.65
   A 0.51 0.42 -37.9 0 0 683.90 809.67
   Q 684.15 809.33 683.86 808.49
   A 0.35 0.34 -37.1 0 0 683.25 808.41"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 632.34 815.81
   A 0.57 0.51 73.4 0 0 632.77 814.90
   Q 632.45 814.48 632.16 814.67
   Q 631.74 814.95 631.99 815.46
   Q 632.15 815.78 632.34 815.81"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 672.57 816.20
   A 0.73 0.42 0.9 0 0 673.55 816.79
   Q 673.80 816.71 673.79 816.42
   Q 673.77 816.00 673.41 816.00
   Q 672.75 816.01 672.57 816.20"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.17 819.20
   Q 602.86 819.08 602.42 819.34
   A 0.27 0.27 0.0 0 0 602.53 819.84
   Q 602.82 819.86 602.96 819.81
   A 0.40 0.28 -36.7 0 0 603.17 819.20"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 758.8683 822.4764
   A 0.83 0.45 -3.7 0 0 758.0110 822.0809
   A 0.83 0.45 -3.7 0 0 757.2117 822.5836
   A 0.83 0.45 -3.7 0 0 758.0690 822.9791
   A 0.83 0.45 -3.7 0 0 758.8683 822.4764"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 621.54 845.01
   Q 621.92 844.92 621.85 844.61
   Q 621.77 844.16 621.32 844.12
   Q 620.85 844.09 620.75 844.29
   A 0.65 0.53 3.3 0 0 621.54 845.01"
-/>
-<path stroke="#484743" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484743"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 539.36 872.80
   L 538.99 734.95"
-/>
-<path stroke="#7a796c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a796c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 538.99 734.95
   L 538.89 717.95
   A 0.81 0.80 2.8 0 0 538.16 717.15
@@ -1064,8 +1310,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 249.12 846.84 289.50 850.96
   Q 343.70 856.49 536.00 875.64
   Q 539.33 875.97 539.36 872.80"
-/>
-<path stroke="#c1bfad" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c1bfad"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 538.99 734.95
   Q 538.65 735.65 538.73 736.62
   A 0.24 0.23 0.1 0 1 538.47 736.87
@@ -1083,120 +1332,171 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 538.86 872.51 538.28 871.42 538.54 870.37
   A 0.25 0.24 -50.6 0 1 539.00 870.32
   Q 539.49 871.39 539.36 872.80"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 215.60 700.24
   Q 216.30 700.31 216.77 700.00
   A 0.49 0.42 39.4 0 0 216.64 699.22
   Q 216.09 698.95 215.45 699.42
   A 0.47 0.42 -58.1 0 0 215.60 700.24"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 222.18 701.42
   Q 221.69 701.02 220.62 700.85
   A 0.32 0.32 0.0 0 0 220.31 701.36
   Q 220.76 701.95 222.03 701.87
   A 0.26 0.25 -26.7 0 0 222.18 701.42"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 232.2641 702.2627
   A 0.99 0.58 -31.5 0 0 231.1170 702.2855
   A 0.99 0.58 -31.5 0 0 230.5759 703.2973
   A 0.99 0.58 -31.5 0 0 231.7230 703.2745
   A 0.99 0.58 -31.5 0 0 232.2641 702.2627"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 307.09 704.88
   A 0.22 0.22 0.0 0 0 307.45 705.06
   Q 307.86 704.74 307.83 704.31
   A 0.29 0.28 -29.2 0 0 307.31 704.17
   Q 307.09 704.45 307.09 704.88"
-/>
-<path stroke="#484743" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#484743"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 194.48 705.57
   Q 194.54 705.76 194.96 705.86
   Q 195.43 705.97 195.67 705.52
   Q 195.86 705.20 195.19 705.05
   A 0.57 0.43 0.8 0 0 194.48 705.57"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 331.91 705.39
   A 0.49 0.49 0.0 0 0 331.42 704.90
   A 0.49 0.49 0.0 0 0 330.93 705.39
   A 0.49 0.49 0.0 0 0 331.42 705.88
   A 0.49 0.49 0.0 0 0 331.91 705.39"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 319.3679 705.8271
   A 0.78 0.46 -31.1 0 0 318.4624 705.8361
   A 0.78 0.46 -31.1 0 0 318.0321 706.6329
   A 0.78 0.46 -31.1 0 0 318.9376 706.6239
   A 0.78 0.46 -31.1 0 0 319.3679 705.8271"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 306.52 705.95
   L 305.86 706.33
   A 0.27 0.27 0.0 0 0 305.88 706.81
   Q 306.58 707.14 307.01 706.47
   A 0.37 0.37 0.0 0 0 306.52 705.95"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 317.11 709.89
   A 0.49 0.42 -80.2 0 0 317.80 709.32
   Q 317.62 708.84 317.23 709.02
   A 0.29 0.27 88.2 0 0 317.08 709.19
   Q 316.95 709.70 317.11 709.89"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.64 709.83
   Q 343.12 710.03 343.71 709.80
   A 0.40 0.39 47.3 0 0 343.73 709.08
   Q 343.33 708.87 342.70 709.19
   A 0.38 0.32 -44.4 0 0 342.64 709.83"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 207.74 711.44
   A 0.78 0.60 19.7 0 0 206.42 711.86
   Q 206.56 712.15 207.40 712.51
   A 0.29 0.28 -62.9 0 0 207.76 712.39
   Q 208.07 711.84 207.74 711.44"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 326.3378 711.3343
   A 0.53 0.42 -113.6 0 0 326.1651 711.9881
   A 0.53 0.42 -113.6 0 0 326.7622 712.3057
   A 0.53 0.42 -113.6 0 0 326.9349 711.6519
   A 0.53 0.42 -113.6 0 0 326.3378 711.3343"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 329.4870 711.5902
   A 0.61 0.42 -88.4 0 0 329.0502 712.1883
   A 0.61 0.42 -88.4 0 0 329.4530 712.8098
   A 0.61 0.42 -88.4 0 0 329.8898 712.2117
   A 0.61 0.42 -88.4 0 0 329.4870 711.5902"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 319.98 712.44
   Q 319.84 712.00 319.60 711.99
   A 0.41 0.38 50.5 0 0 319.56 712.77
   Q 319.77 712.82 319.95 712.60
   A 0.17 0.16 56.6 0 0 319.98 712.44"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 348.87 712.42
   A 0.41 0.41 0.0 0 0 348.46 712.01
   A 0.41 0.41 0.0 0 0 348.05 712.42
   A 0.41 0.41 0.0 0 0 348.46 712.83
   A 0.41 0.41 0.0 0 0 348.87 712.42"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 362.7169 713.4327
   A 0.65 0.50 -166.9 0 0 363.2367 714.0670
   A 0.65 0.50 -166.9 0 0 363.9831 713.7273
   A 0.65 0.50 -166.9 0 0 363.4633 713.0930
   A 0.65 0.50 -166.9 0 0 362.7169 713.4327"
-/>
-<path stroke="#a7a49b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a7a49b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 264.16 714.82
   Q 262.47 714.61 259.32 714.80
   Q 249.17 715.42 240.35 719.50
@@ -1219,348 +1519,498 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 293.59 726.68 291.96 724.95 289.27 723.36
   Q 280.36 718.11 271.21 715.77
   C 268.78 715.14 266.88 715.15 264.16 714.82"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 498.32 720.93
   Q 498.02 720.97 497.89 721.45
   A 0.78 0.60 80.2 0 0 498.88 722.37
   Q 499.07 722.16 498.87 721.33
   Q 498.76 720.88 498.32 720.93"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 319.65 722.86
   C 320.14 722.73 319.69 721.69 319.27 722.02
   A 0.48 0.46 -70.3 0 0 319.65 722.86"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.09 724.38
   A 0.49 0.49 0.0 0 0 383.60 723.89
   A 0.49 0.49 0.0 0 0 383.11 724.38
   A 0.49 0.49 0.0 0 0 383.60 724.87
   A 0.49 0.49 0.0 0 0 384.09 724.38"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 360.86 724.57
   A 0.55 0.54 -37.2 0 0 359.81 724.44
   Q 359.63 724.90 360.27 724.99
   Q 360.91 725.07 360.86 724.57"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 468.4522 724.2191
   A 0.64 0.53 -99.7 0 0 468.0376 724.9393
   A 0.64 0.53 -99.7 0 0 468.6678 725.4809
   A 0.64 0.53 -99.7 0 0 469.0824 724.7607
   A 0.64 0.53 -99.7 0 0 468.4522 724.2191"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 346.20 726.13
   Q 346.52 725.98 346.43 725.77
   Q 346.13 725.13 345.39 725.12
   Q 345.00 725.11 344.96 725.37
   A 0.87 0.78 -10.4 0 0 346.20 726.13"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.25 726.69
   Q 430.37 726.89 430.90 726.90
   A 0.49 0.43 -15.0 0 0 431.36 726.22
   Q 431.18 725.97 430.61 726.06
   A 0.46 0.41 -18.5 0 0 430.25 726.69"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.64 726.15
   Q 350.83 726.12 350.66 726.29
   A 0.34 0.34 0.0 0 0 350.91 726.87
   Q 351.74 726.84 351.86 726.74
   A 0.34 0.34 0.0 0 0 351.64 726.15"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 335.6129 727.9956
   A 1.35 0.48 -163.9 0 0 336.7769 728.8312
   A 1.35 0.48 -163.9 0 0 338.2071 728.7444
   A 1.35 0.48 -163.9 0 0 337.0431 727.9088
   A 1.35 0.48 -163.9 0 0 335.6129 727.9956"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 457.91 728.36
   Q 457.84 728.18 457.49 728.11
   A 0.49 0.44 -2.4 0 0 456.91 728.67
   Q 457.01 728.96 457.64 728.82
   Q 458.04 728.72 457.91 728.36"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 207.27 729.89
   A 0.47 0.40 36.0 0 0 207.45 730.64
   Q 208.03 730.87 208.23 730.52
   Q 208.45 730.14 208.07 729.97
   Q 207.51 729.73 207.27 729.89"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 354.91 730.53
   A 0.44 0.44 0.0 0 0 354.47 730.09
   A 0.44 0.44 0.0 0 0 354.03 730.53
   A 0.44 0.44 0.0 0 0 354.47 730.97
   A 0.44 0.44 0.0 0 0 354.91 730.53"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 200.08 732.49
   Q 200.08 732.51 200.15 732.85
   C 200.20 733.13 200.67 733.18 200.86 733.17
   A 0.48 0.42 75.7 0 0 201.20 732.50
   Q 201.08 732.21 200.76 732.11
   A 0.53 0.47 12.6 0 0 200.08 732.49"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.76 734.98
   A 0.34 0.32 -3.4 0 0 522.22 735.36
   Q 522.89 735.09 522.90 734.62
   Q 522.92 734.00 522.33 734.22
   Q 521.97 734.35 521.76 734.98"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 348.12 735.40
   A 0.49 0.49 0.0 0 0 347.63 734.91
   A 0.49 0.49 0.0 0 0 347.14 735.40
   A 0.49 0.49 0.0 0 0 347.63 735.89
   A 0.49 0.49 0.0 0 0 348.12 735.40"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 312.93 737.41
   A 0.53 0.53 0.0 0 0 312.40 736.88
   A 0.53 0.53 0.0 0 0 311.87 737.41
   A 0.53 0.53 0.0 0 0 312.40 737.94
   A 0.53 0.53 0.0 0 0 312.93 737.41"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 348.10 738.60
   A 0.57 0.57 0.0 0 0 347.10 738.33
   Q 346.76 738.75 347.24 739.53
   A 0.40 0.39 43.6 0 0 347.92 739.52
   Q 348.16 739.06 348.10 738.60"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.09 744.67
   A 0.52 0.52 0.0 0 0 403.57 744.15
   A 0.52 0.52 0.0 0 0 403.05 744.67
   A 0.52 0.52 0.0 0 0 403.57 745.19
   A 0.52 0.52 0.0 0 0 404.09 744.67"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 342.40 746.18
   Q 342.91 745.77 342.83 745.07
   A 0.36 0.36 0.0 0 0 342.11 745.08
   L 342.02 745.97
   A 0.24 0.24 0.0 0 0 342.40 746.18"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 463.38 749.07
   Q 463.65 749.23 463.98 748.78
   A 0.48 0.40 -70.0 0 0 463.71 748.03
   Q 463.34 748.05 463.20 748.39
   Q 463.01 748.85 463.38 749.07"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 370.82 749.48
   A 0.31 0.31 0.0 0 0 370.51 749.17
   A 0.31 0.31 0.0 0 0 370.20 749.48
   A 0.31 0.31 0.0 0 0 370.51 749.79
   A 0.31 0.31 0.0 0 0 370.82 749.48"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 321.95 752.40
   A 0.48 0.48 0.0 0 0 321.47 751.92
   A 0.48 0.48 0.0 0 0 320.99 752.40
   A 0.48 0.48 0.0 0 0 321.47 752.88
   A 0.48 0.48 0.0 0 0 321.95 752.40"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.82 761.38
   A 0.33 0.32 -35.3 0 0 524.23 761.29
   Q 523.92 761.75 524.13 762.00
   C 524.51 762.46 524.89 761.63 524.82 761.38"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.43 762.33
   Q 430.22 762.42 430.32 762.74
   A 0.11 0.10 84.9 0 0 430.40 762.81
   Q 430.55 762.85 430.68 762.61
   A 0.20 0.20 0.0 0 0 430.43 762.33"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 355.62 767.04
   A 0.52 0.47 -39.1 0 0 355.74 766.27
   Q 355.31 765.86 354.68 766.36
   A 0.31 0.30 46.5 0 0 354.67 766.84
   Q 355.22 767.29 355.62 767.04"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.68 770.80
   A 0.43 0.41 36.8 0 0 350.56 770.06
   Q 349.80 769.79 349.23 770.50
   A 0.38 0.38 0.0 0 0 349.54 771.11
   Q 350.29 771.07 350.68 770.80"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 385.43 772.57
   A 0.31 0.30 24.4 0 0 385.91 772.39
   Q 386.13 771.33 385.03 770.92
   A 0.47 0.47 0.0 0 0 384.39 771.33
   Q 384.36 771.80 385.43 772.57"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 422.04 774.57
   Q 422.00 773.51 421.70 773.27
   A 0.64 0.53 17.1 0 0 420.67 773.70
   Q 420.80 774.25 421.53 774.83
   A 0.31 0.31 0.0 0 0 422.04 774.57"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.75 776.25
   Q 513.16 775.72 512.30 776.29
   A 0.48 0.48 0.0 0 0 512.38 777.13
   Q 512.72 777.27 513.68 776.80
   A 0.33 0.33 0.0 0 0 513.75 776.25"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.2800 777.5638
   A 0.73 0.37 -180.3 0 0 476.0119 777.9300
   A 0.73 0.37 -180.3 0 0 476.7400 777.5562
   A 0.73 0.37 -180.3 0 0 476.0081 777.1900
   A 0.73 0.37 -180.3 0 0 475.2800 777.5638"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.37 777.99
   A 0.55 0.49 -44.5 0 0 337.31 778.86
   Q 337.51 779.00 337.81 778.92
   A 0.45 0.39 61.3 0 0 337.96 778.22
   Q 337.62 777.82 337.37 777.99"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 457.56 784.39
   A 0.71 0.71 0.0 0 0 456.85 783.68
   A 0.71 0.71 0.0 0 0 456.14 784.39
   A 0.71 0.71 0.0 0 0 456.85 785.10
   A 0.71 0.71 0.0 0 0 457.56 784.39"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 353.79 793.46
   A 0.26 0.26 0.0 0 0 353.53 793.20
   A 0.26 0.26 0.0 0 0 353.27 793.46
   A 0.26 0.26 0.0 0 0 353.53 793.72
   A 0.26 0.26 0.0 0 0 353.79 793.46"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.91 793.42
   Q 433.77 793.23 433.40 793.24
   A 0.21 0.21 0.0 0 0 433.26 793.60
   Q 433.43 793.77 433.51 793.81
   A 0.30 0.27 -2.1 0 0 433.91 793.42"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.42 793.16
   Q 450.16 793.27 450.12 793.41
   A 0.34 0.32 74.9 0 0 450.67 793.74
   Q 450.82 793.58 450.68 793.26
   A 0.21 0.20 -23.2 0 0 450.42 793.16"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 325.93 798.53
   Q 326.00 798.28 325.69 798.04
   Q 325.19 797.66 324.77 798.02
   Q 324.59 798.17 324.76 798.50
   A 0.67 0.59 42.7 0 0 325.93 798.53"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 385.6537 805.2069
   A 0.62 0.41 -76.6 0 0 385.1112 805.7150
   A 0.62 0.41 -76.6 0 0 385.3663 806.4131
   A 0.62 0.41 -76.6 0 0 385.9088 805.9050
   A 0.62 0.41 -76.6 0 0 385.6537 805.2069"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.63 809.04
   A 0.56 0.50 -41.6 0 0 384.74 808.12
   Q 384.54 807.99 384.27 808.48
   Q 384.05 808.86 384.38 809.05
   Q 384.48 809.11 384.63 809.04"
-/>
-<path stroke="#a7a49b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a7a49b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 485.6349 810.2783
   A 23.92 21.61 -97.0 0 0 467.1011 836.6536
   A 23.92 21.61 -97.0 0 0 491.4651 857.7617
   A 23.92 21.61 -97.0 0 0 509.9989 831.3864
   A 23.92 21.61 -97.0 0 0 485.6349 810.2783"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 465.66 811.01
   A 0.69 0.44 -6.6 0 0 464.79 811.71
   Q 464.97 811.87 465.44 811.80
   Q 465.80 811.74 465.82 811.39
   Q 465.84 811.05 465.66 811.01"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 210.96 812.55
   A 0.56 0.56 0.0 0 0 210.40 811.99
   A 0.56 0.56 0.0 0 0 209.84 812.55
   A 0.56 0.56 0.0 0 0 210.40 813.11
   A 0.56 0.56 0.0 0 0 210.96 812.55"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 402.83 815.90
   Q 402.91 815.79 402.94 815.61
   A 0.38 0.36 77.7 0 0 402.38 815.23
   Q 402.16 815.38 402.22 815.72
   A 0.36 0.33 59.2 0 0 402.83 815.90"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 204.5409 817.6034
   A 0.84 0.71 -138.5 0 0 204.6995 818.6918
   A 0.84 0.71 -138.5 0 0 205.7991 818.7166
   A 0.84 0.71 -138.5 0 0 205.6405 817.6282
   A 0.84 0.71 -138.5 0 0 204.5409 817.6034"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 365.22 818.11
   Q 365.14 818.41 365.13 818.48
   A 0.32 0.31 -26.1 0 0 365.71 818.67
   Q 365.90 818.37 365.77 818.09
   A 0.30 0.28 41.1 0 0 365.22 818.11"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 388.14 821.79
   A 0.56 0.54 65.6 0 0 387.14 821.40
   Q 386.99 821.62 387.15 822.10
   Q 387.30 822.54 387.71 822.37
   Q 388.08 822.23 388.14 821.79"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.98 824.80
   Q 449.08 824.42 448.69 824.29
   Q 448.15 824.11 448.09 824.58
   Q 448.01 825.13 448.24 825.27
   A 0.61 0.46 -69.4 0 0 448.98 824.80"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 372.5782 831.8809
   A 0.81 0.40 -87.3 0 0 372.1404 832.6712
   A 0.81 0.40 -87.3 0 0 372.5018 833.4991
   A 0.81 0.40 -87.3 0 0 372.9396 832.7088
   A 0.81 0.40 -87.3 0 0 372.5782 831.8809"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 277.0095 835.7443
   A 0.80 0.63 -144.4 0 0 277.2933 836.7223
   A 0.80 0.63 -144.4 0 0 278.3105 836.6757
   A 0.80 0.63 -144.4 0 0 278.0267 835.6977
   A 0.80 0.63 -144.4 0 0 277.0095 835.7443"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 456.99 836.44
   Q 456.84 836.95 457.18 837.70
   A 0.40 0.35 -49.3 0 0 457.87 837.60
   Q 458.10 837.02 457.87 836.44
   A 0.48 0.46 43.9 0 0 456.99 836.44"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 423.16 841.30
   Q 423.28 841.03 423.31 840.70
   Q 423.34 840.44 423.18 840.31
@@ -1568,78 +2018,111 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 422.16 840.02 422.08 840.61
   Q 422.01 841.17 422.34 841.42
   A 0.57 0.49 32.3 0 0 423.16 841.30"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.56 843.82
   Q 341.65 843.72 341.65 843.46
   A 0.14 0.13 10.1 0 0 341.54 843.32
   Q 341.33 843.27 341.24 843.64
   A 0.19 0.19 0.0 0 0 341.56 843.82"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 443.94 845.84
   A 0.46 0.37 21.0 0 0 443.54 845.14
   Q 443.27 845.16 443.17 845.34
   Q 443.03 845.59 443.28 845.75
   Q 443.67 846.01 443.94 845.84"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 383.3277 849.4439
   A 0.67 0.35 -4.8 0 0 382.6307 849.1512
   A 0.67 0.35 -4.8 0 0 381.9923 849.5561
   A 0.67 0.35 -4.8 0 0 382.6893 849.8488
   A 0.67 0.35 -4.8 0 0 383.3277 849.4439"
-/>
-<path stroke="#5f5f5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f5f5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 379.46 849.84
   Q 378.55 849.06 378.47 849.10
   A 0.43 0.43 0.0 0 0 378.42 849.87
   Q 379.19 850.32 379.31 850.31
   A 0.27 0.27 0.0 0 0 379.46 849.84"
-/>
-<path stroke="#6c6c67" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c6c67"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.68 857.83
   Q 453.98 858.00 454.56 857.86
   A 0.38 0.38 0.0 0 0 454.64 857.15
   Q 454.36 857.00 453.75 857.16
   A 0.37 0.36 51.3 0 0 453.68 857.83"
-/>
-<path stroke="#605e5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#605e5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 255.4965 716.4173
   A 55.99 52.13 -97.0 0 0 210.5786 778.3430
   A 55.99 52.13 -97.0 0 0 269.1435 827.5627
   A 55.99 52.13 -97.0 0 0 314.0614 765.6370
   A 55.99 52.13 -97.0 0 0 255.4965 716.4173"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 255.3202 718.1208
   A 54.38 50.38 -97.3 0 0 212.2584 778.4615
   A 54.38 50.38 -97.3 0 0 269.1398 825.9992
   A 54.38 50.38 -97.3 0 0 312.2016 765.6585
   A 54.38 50.38 -97.3 0 0 255.3202 718.1208"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 255.2485 723.0076
   A 49.65 45.67 -98.2 0 0 217.1269 778.6639
   A 49.65 45.67 -98.2 0 0 269.4115 821.2924
   A 49.65 45.67 -98.2 0 0 307.5331 765.6361
   A 49.65 45.67 -98.2 0 0 255.2485 723.0076"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 257.2598 724.8515
   A 47.74 43.79 -96.0 0 0 218.6999 776.9073
   A 47.74 43.79 -96.0 0 0 267.2402 819.8085
   A 47.74 43.79 -96.0 0 0 305.8001 767.7527
   A 47.74 43.79 -96.0 0 0 257.2598 724.8515"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 258.3453 737.6892
   A 34.06 28.70 -97.6 0 0 234.4021 775.2458
   A 34.06 28.70 -97.6 0 0 267.3547 805.2108
   A 34.06 28.70 -97.6 0 0 291.2979 767.6542
   A 34.06 28.70 -97.6 0 0 258.3453 737.6892"
-/>
-<path stroke="#605e5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#605e5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 655.8079 734.6082
   A 4.07 4.07 0.0 0 0 650.9751 731.4818
   L 580.6334 746.5617
@@ -1649,8 +2132,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 652.7066 739.5583
   A 4.07 4.07 0.0 0 0 655.8330 734.7255
   L 655.8079 734.6082"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 654.3181 734.9683
   A 2.34 2.34 0.0 0 0 651.5396 733.1708
   L 580.8068 748.3346
@@ -1660,15 +2146,21 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 652.5332 737.8054
   A 2.34 2.34 0.0 0 0 654.3307 735.0269
   L 654.3181 734.9683"
-/>
-<path stroke="#7a796c" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a796c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 258.3851 741.4149
   A 30.29 25.42 -98.4 0 0 237.6627 775.0934
   A 30.29 25.42 -98.4 0 0 267.2349 801.3451
   A 30.29 25.42 -98.4 0 0 287.9573 767.6666
   A 30.29 25.42 -98.4 0 0 258.3851 741.4149"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 264.10 803.94
   Q 267.98 803.98 269.42 803.24
   A 0.13 0.13 0.0 0 0 269.35 802.99
@@ -1678,8 +2170,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 262.27 803.10 258.86 802.88
   A 0.13 0.13 0.0 0 0 258.79 803.14
   Q 260.22 803.90 264.10 803.94"
-/>
-<path stroke="#605e5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#605e5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 656.4052 750.8052
   A 3.59 3.59 0.0 0 0 652.1473 748.0401
   L 580.7229 763.2218
@@ -1689,8 +2184,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 653.8771 756.1782
   A 3.59 3.59 0.0 0 0 656.6422 751.9203
   L 656.4052 750.8052"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 654.8399 751.4172
   A 2.12 2.12 0.0 0 0 652.3226 749.7886
   L 581.2964 765.0153
@@ -1700,8 +2198,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 653.3036 754.3647
   A 2.12 2.12 0.0 0 0 654.9321 751.8474
   L 654.8399 751.4172"
-/>
-<path stroke="#605e5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#605e5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 579.01 785.04
   A 3.06 3.06 0.0 0 0 582.69 788.33
   L 654.78 773.08
@@ -1711,8 +2212,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 581.66 780.00
   A 3.06 3.06 0.0 0 0 579.25 782.69
   L 579.01 785.04"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 655.85 768.49
   A 1.72 1.72 0.0 0 0 653.78 766.64
   L 582.11 781.81
@@ -1722,8 +2226,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 654.36 771.37
   A 1.72 1.72 0.0 0 0 655.72 769.85
   L 655.85 768.49"
-/>
-<path stroke="#605e5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#605e5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 658.1152 784.3467
   A 4.10 4.10 0.0 0 0 653.2414 781.2057
   L 582.1246 796.5817
@@ -1733,8 +2240,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 654.9954 789.3183
   A 4.10 4.10 0.0 0 0 658.1364 784.4444
   L 658.1152 784.3467"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 656.4243 784.5720
   A 2.15 2.15 0.0 0 0 653.8686 782.9249
   L 582.1067 798.4404
@@ -1744,36 +2254,51 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 654.8533 787.4796
   A 2.15 2.15 0.0 0 0 656.5004 784.9239
   L 656.4243 784.5720"
-/>
-<path stroke="#605e5a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#605e5a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 485.8574 811.3312
   A 22.91 20.60 -96.8 0 0 468.1149 836.5191
   A 22.91 20.60 -96.8 0 0 491.2826 856.8288
   A 22.91 20.60 -96.8 0 0 509.0251 831.6409
   A 22.91 20.60 -96.8 0 0 485.8574 811.3312"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.6867 812.9505
   A 21.15 18.78 -95.0 0 0 469.8215 835.6568
   A 21.15 18.78 -95.0 0 0 490.3733 855.0895
   A 21.15 18.78 -95.0 0 0 507.2385 832.3832
   A 21.15 18.78 -95.0 0 0 486.6867 812.9505"
-/>
-<path stroke="#181918" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#181918"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 485.8846 818.7835
   A 15.43 14.03 -100.4 0 0 474.8705 836.4927
   A 15.43 14.03 -100.4 0 0 491.4554 849.1365
   A 15.43 14.03 -100.4 0 0 502.4695 831.4273
   A 15.43 14.03 -100.4 0 0 485.8846 818.7835"
-/>
-<path stroke="#56392a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#56392a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.6832 820.2124
   A 13.93 12.39 -98.2 0 0 476.4067 835.7672
   A 13.93 12.39 -98.2 0 0 490.6568 847.7876
   A 13.93 12.39 -98.2 0 0 500.9333 832.2328
   A 13.93 12.39 -98.2 0 0 486.6832 820.2124"
-/>
-<path stroke="#252625" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#252625"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 760.73 842.20
   A 0.39 0.39 0.0 0 0 760.27 841.82
   C 755.90 842.60 751.08 843.29 747.20 844.08
@@ -1808,10 +2333,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 753.65 856.12 756.70 855.95 759.47 854.94
   A 1.90 1.90 0.0 0 0 760.73 853.15
   L 760.73 842.20"
-/>
-</g>
-<g fill="#8f8d84">
-<path d="
+        />
+      </g>
+      <g fill="#8f8d84">
+        <path
+          d="
   M 548.01 874.38
   L 548.01 717.13
   A 1.09 1.09 0.0 0 1 548.87 716.07
@@ -2138,8 +2664,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 620.85 844.09 620.75 844.29
   A 0.65 0.53 3.3 0 0 621.54 845.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 538.99 734.95
   L 539.36 872.80
   Q 539.49 871.39 539.00 870.32
@@ -2607,8 +3134,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 454.36 857.00 453.75 857.16
   A 0.37 0.36 51.3 0 0 453.68 857.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 451.46 700.89
   L 342.93 690.53
   Q 342.35 690.45 342.30 690.17
@@ -2617,10 +3145,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.42 0.0 0 1 453.42 700.87
   Q 452.71 701.08 451.46 700.89
   Z"
-/>
-</g>
-<g fill="#494a49">
-<path d="
+        />
+      </g>
+      <g fill="#494a49">
+        <path
+          d="
   M 536.62 96.81
   Q 536.49 90.09 536.91 86.22
   C 537.32 82.35 534.44 81.55 530.97 81.11
@@ -2645,8 +3174,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 546.71 96.08 537.25 97.35
   A 0.55 0.55 0.0 0 1 536.62 96.81
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 527.86 402.28
   Q 511.27 400.16 492.99 399.49
   Q 490.53 399.40 490.54 397.33
@@ -2662,8 +3192,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 529.16 403.27 528.75 402.77
   A 1.40 1.39 73.7 0 0 527.86 402.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 748.66 661.16
   Q 753.99 660.95 754.73 663.23
   Q 737.00 667.27 719.81 670.96
@@ -2741,8 +3272,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.34 1.34 0.0 0 1 697.13 656.25
   L 748.66 661.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 531.51 404.10
   L 534.87 405.46
   L 535.08 413.55
@@ -2754,139 +3286,215 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 507.81 403.54 527.99 404.85
   Q 529.37 404.94 531.51 404.10
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(777.74,675.71) rotate(-27.3)" rx="0.75" ry="0.50"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(777.74,675.71) rotate(-27.3)"
+          rx="0.75"
+          ry="0.50"
+        />
+        <path
+          d="
   M 776.19 684.53
   A 0.55 0.55 0.0 0 1 775.11 684.62
   Q 775.03 684.33 775.25 683.98
   A 0.50 0.45 48.0 0 1 776.06 684.06
   Q 776.21 684.32 776.19 684.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 765.16 690.93
   Q 764.96 690.27 765.20 690.05
   Q 765.60 689.70 765.80 690.15
   Q 765.97 690.54 765.66 691.00
   A 0.28 0.28 0.0 0 1 765.16 690.93
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(741.99,695.97) rotate(-135.9)" rx="1.03" ry="0.36"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(741.99,695.97) rotate(-135.9)"
+          rx="1.03"
+          ry="0.36"
+        />
+        <path
+          d="
   M 215.60 700.24
   A 0.47 0.42 -58.1 0 1 215.45 699.42
   Q 216.09 698.95 216.64 699.22
   A 0.49 0.42 39.4 0 1 216.77 700.00
   Q 216.30 700.31 215.60 700.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 701.53 700.74
   A 0.33 0.33 0.0 0 1 701.55 700.13
   Q 702.01 699.96 702.58 700.09
   A 0.40 0.40 0.0 0 1 702.65 700.85
   Q 702.22 701.04 701.53 700.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 222.18 701.42
   A 0.26 0.25 -26.7 0 1 222.03 701.87
   Q 220.76 701.95 220.31 701.36
   A 0.32 0.32 0.0 0 1 220.62 700.85
   Q 221.69 701.02 222.18 701.42
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(231.42,702.78) rotate(-31.5)" rx="0.99" ry="0.58"/>
-<circle cx="723.71" cy="704.25" r="0.58"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(231.42,702.78) rotate(-31.5)"
+          rx="0.99"
+          ry="0.58"
+        />
+        <circle cx="723.71" cy="704.25" r="0.58" />
+        <path
+          d="
   M 307.09 704.88
   Q 307.09 704.45 307.31 704.17
   A 0.29 0.28 -29.2 0 1 307.83 704.31
   Q 307.86 704.74 307.45 705.06
   A 0.23 0.22 19.1 0 1 307.09 704.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 659.64 704.02
   A 0.44 0.40 -49.6 0 1 659.67 704.81
   Q 659.16 705.05 658.54 704.88
   A 0.39 0.39 0.0 0 1 658.52 704.14
   Q 659.12 703.89 659.64 704.02
   Z"
-/>
-<circle cx="331.42" cy="705.39" r="0.49"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(318.70,706.23) rotate(-31.1)" rx="0.78" ry="0.46"/>
-<path d="
+        />
+        <circle cx="331.42" cy="705.39" r="0.49" />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(318.70,706.23) rotate(-31.1)"
+          rx="0.78"
+          ry="0.46"
+        />
+        <path
+          d="
   M 306.52 705.95
   A 0.37 0.37 0.0 0 1 307.01 706.47
   Q 306.58 707.14 305.88 706.81
   A 0.27 0.27 0.0 0 1 305.86 706.33
   L 306.52 705.95
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(752.93,708.51) rotate(-12.1)" rx="0.94" ry="0.59"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(752.93,708.51) rotate(-12.1)"
+          rx="0.94"
+          ry="0.59"
+        />
+        <path
+          d="
   M 342.64 709.83
   A 0.38 0.32 -44.4 0 1 342.70 709.19
   Q 343.33 708.87 343.73 709.08
   A 0.40 0.39 47.3 0 1 343.71 709.80
   Q 343.12 710.03 342.64 709.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 207.74 711.44
   Q 208.07 711.84 207.76 712.39
   A 0.29 0.28 -62.9 0 1 207.40 712.51
   Q 206.56 712.15 206.42 711.86
   A 0.78 0.60 19.7 0 1 207.74 711.44
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(326.55,711.82) rotate(-113.6)" rx="0.53" ry="0.42"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(326.55,711.82) rotate(-113.6)"
+          rx="0.53"
+          ry="0.42"
+        />
+        <path
+          d="
   M 319.95 712.60
   Q 319.77 712.82 319.56 712.77
   A 0.41 0.38 50.5 0 1 319.60 711.99
   Q 319.84 712.00 319.98 712.44
   A 0.17 0.16 56.6 0 1 319.95 712.60
   Z"
-/>
-<circle cx="348.46" cy="712.42" r="0.41"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(363.35,713.58) rotate(-166.9)" rx="0.65" ry="0.50"/>
-<circle cx="677.53" cy="714.38" r="0.49"/>
-<path d="
+        />
+        <circle cx="348.46" cy="712.42" r="0.41" />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(363.35,713.58) rotate(-166.9)"
+          rx="0.65"
+          ry="0.50"
+        />
+        <circle cx="677.53" cy="714.38" r="0.49" />
+        <path
+          d="
   M 498.87 721.33
   Q 499.07 722.16 498.88 722.37
   A 0.78 0.60 80.2 0 1 497.89 721.45
   Q 498.02 720.97 498.32 720.93
   Q 498.76 720.88 498.87 721.33
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(653.30,721.56) rotate(-181.2)" rx="0.60" ry="0.46"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(653.30,721.56) rotate(-181.2)"
+          rx="0.60"
+          ry="0.46"
+        />
+        <path
+          d="
   M 319.65 722.86
   A 0.48 0.46 -70.3 0 1 319.27 722.02
   C 319.69 721.69 320.14 722.73 319.65 722.86
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(565.17,722.52) rotate(-171.1)" rx="0.78" ry="0.54"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(565.17,722.52) rotate(-171.1)"
+          rx="0.78"
+          ry="0.54"
+        />
+        <path
+          d="
   M 716.28 723.85
   Q 715.82 724.01 715.36 723.72
   A 0.22 0.22 0.0 0 1 715.44 723.32
   Q 715.88 723.26 716.24 723.32
   A 0.28 0.28 0.0 0 1 716.28 723.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 360.86 724.57
   Q 360.91 725.07 360.27 724.99
   Q 359.63 724.90 359.81 724.44
   A 0.55 0.54 -37.2 0 1 360.86 724.57
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(468.56,724.85) rotate(-99.7)" rx="0.64" ry="0.53"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(468.56,724.85) rotate(-99.7)"
+          rx="0.64"
+          ry="0.53"
+        />
+        <path
+          d="
   M 257.2598 724.8515
   A 47.74 43.79 -96.0 0 1 305.8001 767.7527
   A 47.74 43.79 -96.0 0 1 267.2402 819.8085
@@ -2899,302 +3507,392 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 34.06 28.70 -97.6 0 0 291.2979 767.6542
   A 34.06 28.70 -97.6 0 0 258.3453 737.6892
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(585.81,725.52) rotate(-180.6)" rx="0.89" ry="0.45"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(585.81,725.52) rotate(-180.6)"
+          rx="0.89"
+          ry="0.45"
+        />
+        <path
+          d="
   M 346.20 726.13
   A 0.87 0.78 -10.4 0 1 344.96 725.37
   Q 345.00 725.11 345.39 725.12
   Q 346.13 725.13 346.43 725.77
   Q 346.52 725.98 346.20 726.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 430.25 726.69
   A 0.46 0.41 -18.5 0 1 430.61 726.06
   Q 431.18 725.97 431.36 726.22
   A 0.49 0.43 -15.0 0 1 430.90 726.90
   Q 430.37 726.89 430.25 726.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 351.86 726.74
   Q 351.74 726.84 350.91 726.87
   A 0.34 0.34 0.0 0 1 350.66 726.29
   Q 350.83 726.12 351.64 726.15
   A 0.34 0.34 0.0 0 1 351.86 726.74
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(336.91,728.37) rotate(-163.9)" rx="1.35" ry="0.48"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(336.91,728.37) rotate(-163.9)"
+          rx="1.35"
+          ry="0.48"
+        />
+        <path
+          d="
   M 457.91 728.36
   Q 458.04 728.72 457.64 728.82
   Q 457.01 728.96 456.91 728.67
   A 0.49 0.44 -2.4 0 1 457.49 728.11
   Q 457.84 728.18 457.91 728.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 710.05 729.66
   Q 709.86 729.94 709.36 729.76
   A 0.19 0.19 0.0 0 1 709.24 729.57
   Q 709.25 729.32 709.54 729.18
   A 0.38 0.34 1.3 0 1 710.05 729.66
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 207.27 729.89
   Q 207.51 729.73 208.07 729.97
   Q 208.45 730.14 208.23 730.52
   Q 208.03 730.87 207.45 730.64
   A 0.47 0.40 36.0 0 1 207.27 729.89
   Z"
-/>
-<circle cx="354.47" cy="730.53" r="0.44"/>
-<path d="
+        />
+        <circle cx="354.47" cy="730.53" r="0.44" />
+        <path
+          d="
   M 585.89 732.97
   Q 586.26 732.96 586.66 733.19
   A 0.36 0.33 -41.5 0 1 586.60 733.80
   Q 586.26 733.96 585.80 733.56
   A 0.36 0.29 59.9 0 1 585.89 732.97
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 521.76 734.98
   Q 521.97 734.35 522.33 734.22
   Q 522.92 734.00 522.90 734.62
   Q 522.89 735.09 522.22 735.36
   A 0.34 0.32 -3.4 0 1 521.76 734.98
   Z"
-/>
-<circle cx="347.63" cy="735.40" r="0.49"/>
-<path d="
+        />
+        <circle cx="347.63" cy="735.40" r="0.49" />
+        <path
+          d="
   M 695.13 736.39
   Q 695.02 735.92 695.22 735.41
   A 0.56 0.45 28.7 0 1 696.01 735.27
   Q 696.51 735.60 695.75 736.54
   A 0.36 0.35 58.1 0 1 695.13 736.39
   Z"
-/>
-<circle cx="312.40" cy="737.41" r="0.53"/>
-<path d="
+        />
+        <circle cx="312.40" cy="737.41" r="0.53" />
+        <path
+          d="
   M 348.10 738.60
   Q 348.16 739.06 347.92 739.52
   A 0.40 0.39 43.6 0 1 347.24 739.53
   Q 346.76 738.75 347.10 738.33
   A 0.57 0.57 0.0 0 1 348.10 738.60
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(712.36,743.68) rotate(-29.8)" rx="0.56" ry="0.46"/>
-<circle cx="403.57" cy="744.67" r="0.52"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(712.36,743.68) rotate(-29.8)"
+          rx="0.56"
+          ry="0.46"
+        />
+        <circle cx="403.57" cy="744.67" r="0.52" />
+        <path
+          d="
   M 342.02 745.97
   L 342.11 745.08
   A 0.36 0.36 0.0 0 1 342.83 745.07
   Q 342.91 745.77 342.40 746.18
   A 0.24 0.24 0.0 0 1 342.02 745.97
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(670.54,747.66) rotate(-110.6)" rx="0.49" ry="0.36"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(670.54,747.66) rotate(-110.6)"
+          rx="0.49"
+          ry="0.36"
+        />
+        <path
+          d="
   M 463.38 749.07
   Q 463.01 748.85 463.20 748.39
   Q 463.34 748.05 463.71 748.03
   A 0.48 0.40 -70.0 0 1 463.98 748.78
   Q 463.65 749.23 463.38 749.07
   Z"
-/>
-<circle cx="370.51" cy="749.48" r="0.31"/>
-<circle cx="321.47" cy="752.40" r="0.48"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(731.50,752.44) rotate(-5.3)" rx="0.52" ry="0.31"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(716.38,753.21) rotate(-125.4)" rx="0.53" ry="0.44"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(688.35,755.24) rotate(-111.4)" rx="0.67" ry="0.51"/>
-<circle cx="776.31" cy="757.55" r="0.54"/>
-<path d="
+        />
+        <circle cx="370.51" cy="749.48" r="0.31" />
+        <circle cx="321.47" cy="752.40" r="0.48" />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(731.50,752.44) rotate(-5.3)"
+          rx="0.52"
+          ry="0.31"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(716.38,753.21) rotate(-125.4)"
+          rx="0.53"
+          ry="0.44"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(688.35,755.24) rotate(-111.4)"
+          rx="0.67"
+          ry="0.51"
+        />
+        <circle cx="776.31" cy="757.55" r="0.54" />
+        <path
+          d="
   M 524.82 761.38
   C 524.89 761.63 524.51 762.46 524.13 762.00
   Q 523.92 761.75 524.23 761.29
   A 0.33 0.32 -35.3 0 1 524.82 761.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 749.10 761.55
   Q 749.06 761.27 749.48 761.18
   A 0.18 0.18 0.0 0 1 749.65 761.24
   Q 749.81 761.43 749.71 761.64
   A 0.33 0.32 -36.0 0 1 749.10 761.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 430.43 762.33
   A 0.20 0.20 0.0 0 1 430.68 762.61
   Q 430.55 762.85 430.40 762.81
   A 0.11 0.10 84.9 0 1 430.32 762.74
   Q 430.22 762.42 430.43 762.33
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 692.07 762.80
   Q 692.07 762.79 692.10 762.49
   A 0.33 0.33 0.0 0 1 692.75 762.44
   Q 692.81 762.72 692.54 762.98
   A 0.28 0.28 0.0 0 1 692.07 762.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 681.57 765.94
   A 0.31 0.31 0.0 0 1 681.39 765.42
   Q 681.97 764.81 682.41 764.83
   A 0.56 0.51 -57.8 0 1 682.59 765.83
   Q 682.25 766.05 681.57 765.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 355.62 767.04
   Q 355.22 767.29 354.67 766.84
   A 0.31 0.30 46.5 0 1 354.68 766.36
   Q 355.31 765.86 355.74 766.27
   A 0.52 0.47 -39.1 0 1 355.62 767.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 707.72 767.00
   C 708.34 767.77 707.03 768.24 707.01 767.48
   Q 706.99 767.00 707.20 766.88
   Q 707.50 766.71 707.72 767.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 737.33 767.72
   A 0.54 0.45 -88.7 0 1 737.87 768.39
   Q 737.71 769.05 737.18 768.86
   Q 736.84 768.74 736.91 768.44
   Q 737.06 767.81 737.33 767.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 714.13 768.79
   Q 714.05 768.44 714.28 768.27
   Q 714.62 768.00 714.76 768.36
   Q 714.86 768.62 714.77 768.87
   A 0.34 0.33 51.0 0 1 714.13 768.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 350.68 770.80
   Q 350.29 771.07 349.54 771.11
   A 0.38 0.38 0.0 0 1 349.23 770.50
   Q 349.80 769.79 350.56 770.06
   A 0.43 0.41 36.8 0 1 350.68 770.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 753.95 770.40
   A 0.44 0.44 0.0 0 1 753.28 770.76
   C 753.01 770.60 753.31 769.84 753.78 770.13
   Q 753.96 770.24 753.95 770.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 385.43 772.57
   Q 384.36 771.80 384.39 771.33
   A 0.47 0.47 0.0 0 1 385.03 770.92
   Q 386.13 771.33 385.91 772.39
   A 0.31 0.30 24.4 0 1 385.43 772.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 421.53 774.83
   Q 420.80 774.25 420.67 773.70
   A 0.64 0.53 17.1 0 1 421.70 773.27
   Q 422.00 773.51 422.04 774.57
   A 0.31 0.31 0.0 0 1 421.53 774.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 513.68 776.80
   Q 512.72 777.27 512.38 777.13
   A 0.48 0.48 0.0 0 1 512.30 776.29
   Q 513.16 775.72 513.75 776.25
   A 0.33 0.33 0.0 0 1 513.68 776.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 678.67 776.15
   A 0.44 0.40 -35.7 0 1 678.52 776.88
   Q 678.24 776.98 677.95 776.90
   A 0.39 0.39 0.0 0 1 677.90 776.17
   Q 678.40 775.95 678.67 776.15
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(476.01,777.56) rotate(-180.3)" rx="0.73" ry="0.37"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(476.01,777.56) rotate(-180.3)"
+          rx="0.73"
+          ry="0.37"
+        />
+        <path
+          d="
   M 337.37 777.99
   Q 337.62 777.82 337.96 778.22
   A 0.45 0.39 61.3 0 1 337.81 778.92
   Q 337.51 779.00 337.31 778.86
   A 0.55 0.49 -44.5 0 1 337.37 777.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 677.36 781.03
   Q 677.20 780.96 677.18 780.70
   Q 677.14 780.21 677.62 779.97
   Q 678.01 779.78 678.09 780.43
   A 0.56 0.54 -83.5 0 1 677.36 781.03
   Z"
-/>
-<circle cx="456.85" cy="784.39" r="0.71"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(754.62,784.69) rotate(-129.9)" rx="0.50" ry="0.39"/>
-<path d="
+        />
+        <circle cx="456.85" cy="784.39" r="0.71" />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(754.62,784.69) rotate(-129.9)"
+          rx="0.50"
+          ry="0.39"
+        />
+        <path
+          d="
   M 669.35 785.58
   Q 669.50 785.14 669.91 785.13
   A 0.38 0.30 -62.6 0 1 670.03 785.75
   Q 669.82 785.95 669.51 785.87
   A 0.23 0.22 16.6 0 1 669.35 785.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 727.50 786.89
   A 0.41 0.37 -55.4 0 1 727.40 786.14
   Q 727.59 786.06 727.70 786.14
   A 0.23 0.21 15.7 0 1 727.80 786.30
   Q 727.88 786.89 727.50 786.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 433.91 793.42
   A 0.30 0.27 -2.1 0 1 433.51 793.81
   Q 433.43 793.77 433.26 793.60
   A 0.21 0.21 0.0 0 1 433.40 793.24
   Q 433.77 793.23 433.91 793.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 450.68 793.26
   Q 450.82 793.58 450.67 793.74
   A 0.34 0.32 74.9 0 1 450.12 793.41
   Q 450.16 793.27 450.42 793.16
   A 0.21 0.20 -23.2 0 1 450.68 793.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 325.93 798.53
   A 0.67 0.59 42.7 0 1 324.76 798.50
   Q 324.59 798.17 324.77 798.02
   Q 325.19 797.66 325.69 798.04
   Q 326.00 798.28 325.93 798.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 771.62 800.44
   A 0.59 0.52 78.6 0 1 772.37 801.01
   Q 772.38 801.59 771.82 801.79
   A 0.53 0.52 84.5 0 1 771.13 801.22
   Q 771.21 800.63 771.62 800.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 264.10 803.27
   Q 265.70 803.29 265.75 803.26
   Q 265.94 803.14 269.35 802.99
@@ -3205,109 +3903,146 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 262.27 803.10 262.46 803.22
   Q 262.51 803.26 264.10 803.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 750.38 803.01
   Q 750.65 803.04 750.74 803.24
   A 0.41 0.36 -84.9 0 1 750.20 803.75
   Q 749.93 803.54 750.20 803.09
   A 0.18 0.17 19.7 0 1 750.38 803.01
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(385.51,805.81) rotate(-76.6)" rx="0.62" ry="0.41"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(385.51,805.81) rotate(-76.6)"
+          rx="0.62"
+          ry="0.41"
+        />
+        <path
+          d="
   M 384.63 809.04
   Q 384.48 809.11 384.38 809.05
   Q 384.05 808.86 384.27 808.48
   Q 384.54 807.99 384.74 808.12
   A 0.56 0.50 -41.6 0 1 384.63 809.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 683.86 808.49
   Q 684.15 809.33 683.90 809.67
   A 0.51 0.42 -37.9 0 1 683.07 809.65
   Q 682.87 808.95 683.25 808.41
   A 0.35 0.34 -37.1 0 1 683.86 808.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 465.66 811.01
   Q 465.84 811.05 465.82 811.39
   Q 465.80 811.74 465.44 811.80
   Q 464.97 811.87 464.79 811.71
   A 0.69 0.44 -6.6 0 1 465.66 811.01
   Z"
-/>
-<circle cx="210.40" cy="812.55" r="0.56"/>
-<path d="
+        />
+        <circle cx="210.40" cy="812.55" r="0.56" />
+        <path
+          d="
   M 632.34 815.81
   Q 632.15 815.78 631.99 815.46
   Q 631.74 814.95 632.16 814.67
   Q 632.45 814.48 632.77 814.90
   A 0.57 0.51 73.4 0 1 632.34 815.81
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 402.83 815.90
   A 0.36 0.33 59.2 0 1 402.22 815.72
   Q 402.16 815.38 402.38 815.23
   A 0.38 0.36 77.7 0 1 402.94 815.61
   Q 402.91 815.79 402.83 815.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 672.57 816.20
   Q 672.75 816.01 673.41 816.00
   Q 673.77 816.00 673.79 816.42
   Q 673.80 816.71 673.55 816.79
   A 0.73 0.42 0.9 0 1 672.57 816.20
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(205.17,818.16) rotate(-138.5)" rx="0.84" ry="0.71"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(205.17,818.16) rotate(-138.5)"
+          rx="0.84"
+          ry="0.71"
+        />
+        <path
+          d="
   M 365.22 818.11
   A 0.30 0.28 41.1 0 1 365.77 818.09
   Q 365.90 818.37 365.71 818.67
   A 0.32 0.31 -26.1 0 1 365.13 818.48
   Q 365.14 818.41 365.22 818.11
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 603.17 819.20
   A 0.40 0.28 -36.7 0 1 602.96 819.81
   Q 602.82 819.86 602.53 819.84
   A 0.27 0.27 0.0 0 1 602.42 819.34
   Q 602.86 819.08 603.17 819.20
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 388.14 821.79
   Q 388.08 822.23 387.71 822.37
   Q 387.30 822.54 387.15 822.10
   Q 386.99 821.62 387.14 821.40
   A 0.56 0.54 65.6 0 1 388.14 821.79
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(758.04,822.53) rotate(-3.7)" rx="0.83" ry="0.45"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(758.04,822.53) rotate(-3.7)"
+          rx="0.83"
+          ry="0.45"
+        />
+        <path
+          d="
   M 448.98 824.80
   A 0.61 0.46 -69.4 0 1 448.24 825.27
   Q 448.01 825.13 448.09 824.58
   Q 448.15 824.11 448.69 824.29
   Q 449.08 824.42 448.98 824.80
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(277.66,836.21) rotate(-144.4)" rx="0.80" ry="0.63"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(277.66,836.21) rotate(-144.4)"
+          rx="0.80"
+          ry="0.63"
+        />
+        <path
+          d="
   M 456.99 836.44
   A 0.48 0.46 43.9 0 1 457.87 836.44
   Q 458.10 837.02 457.87 837.60
   A 0.40 0.35 -49.3 0 1 457.18 837.70
   Q 456.84 836.95 456.99 836.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 423.16 841.30
   A 0.57 0.49 32.3 0 1 422.34 841.42
   Q 422.01 841.17 422.08 840.61
@@ -3316,8 +4051,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 423.34 840.44 423.31 840.70
   Q 423.28 841.03 423.16 841.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 760.73 842.20
   L 760.73 853.15
   A 1.90 1.90 0.0 0 1 759.47 854.94
@@ -3353,48 +4089,54 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 751.08 843.29 755.90 842.60 760.27 841.82
   A 0.39 0.39 0.0 0 1 760.73 842.20
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 767.65 842.28
   L 767.42 854.54
   Q 766.63 847.99 767.65 842.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 341.56 843.82
   A 0.19 0.19 0.0 0 1 341.24 843.64
   Q 341.33 843.27 341.54 843.32
   A 0.14 0.13 10.1 0 1 341.65 843.46
   Q 341.65 843.72 341.56 843.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 621.54 845.01
   A 0.65 0.53 3.3 0 1 620.75 844.29
   Q 620.85 844.09 621.32 844.12
   Q 621.77 844.16 621.85 844.61
   Q 621.92 844.92 621.54 845.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 443.94 845.84
   Q 443.67 846.01 443.28 845.75
   Q 443.03 845.59 443.17 845.34
   Q 443.27 845.16 443.54 845.14
   A 0.46 0.37 21.0 0 1 443.94 845.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 453.68 857.83
   A 0.37 0.36 51.3 0 1 453.75 857.16
   Q 454.36 857.00 454.64 857.15
   A 0.38 0.38 0.0 0 1 454.56 857.86
   Q 453.98 858.00 453.68 857.83
   Z"
-/>
-</g>
-<g fill="#010101">
-<path d="
+        />
+      </g>
+      <g fill="#010101">
+        <path
+          d="
   M 536.58 205.55
   L 536.61 362.45
   L 537.15 412.20
@@ -3765,8 +4507,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 511.27 400.16 527.86 402.28
   A 1.40 1.39 73.7 0 1 528.75 402.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 536.01 98.76
   A 0.54 0.53 -4.4 0 1 535.41 98.25
   L 534.99 85.43
@@ -3815,8 +4558,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 536.49 90.09 536.62 96.81
   A 0.55 0.55 0.0 0 0 537.25 97.35
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 342.93 690.53
   L 451.46 700.89
   C 470.09 702.76 488.73 704.70 507.39 706.20
@@ -3883,8 +4627,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.44 0.44 0.0 0 0 304.63 686.96
   L 342.93 690.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 687.69 657.44
   Q 681.74 657.00 680.42 657.64
   Q 677.25 659.16 673.70 659.92
@@ -3954,8 +4699,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 677.60 657.55
   A 0.20 0.20 0.0 0 0 677.56 657.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 789.47 665.10
   Q 790.01 666.86 790.02 669.76
   Q 790.10 735.27 789.99 824.75
@@ -3993,8 +4739,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 787.69 750.44 788.12 665.99
   A 1.04 1.03 5.0 0 0 787.26 664.97
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 540.32 717.44
   Q 540.38 717.57 540.38 718.27
   Q 541.10 846.04 540.93 873.24
@@ -4060,16 +4807,18 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 343.70 856.49 536.00 875.64
   Q 539.33 875.97 539.36 872.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 194.48 705.57
   A 0.57 0.43 0.8 0 1 195.19 705.05
   Q 195.86 705.20 195.67 705.52
   Q 195.43 705.97 194.96 705.86
   Q 194.54 705.76 194.48 705.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 255.4965 716.4173
   A 55.99 52.13 -97.0 0 1 314.0614 765.6370
   A 55.99 52.13 -97.0 0 1 269.1435 827.5627
@@ -4082,8 +4831,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 54.38 50.38 -97.3 0 0 312.2016 765.6585
   A 54.38 50.38 -97.3 0 0 255.3202 718.1208
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 255.2485 723.0076
   A 49.65 45.67 -98.2 0 1 307.5331 765.6361
   A 49.65 45.67 -98.2 0 1 269.4115 821.2924
@@ -4096,8 +4846,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 47.74 43.79 -96.0 0 0 305.8001 767.7527
   A 47.74 43.79 -96.0 0 0 257.2598 724.8515
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 655.8330 734.7255
   A 4.07 4.07 0.0 0 1 652.7066 739.5583
   L 582.3649 754.6382
@@ -4118,8 +4869,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.34 2.34 0.0 0 0 654.3307 735.0269
   L 654.3181 734.9683
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 258.3453 737.6892
   A 34.06 28.70 -97.6 0 1 291.2979 767.6542
   A 34.06 28.70 -97.6 0 1 267.3547 805.2108
@@ -4142,8 +4894,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.13 0.13 0.0 0 0 258.79 803.14
   Q 260.22 803.90 264.10 803.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 656.6422 751.9203
   A 3.59 3.59 0.0 0 1 653.8771 756.1782
   L 582.4527 771.3599
@@ -4164,8 +4917,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.12 2.12 0.0 0 0 654.9321 751.8474
   L 654.8399 751.4172
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 579.01 785.04
   L 579.25 782.69
   A 3.06 3.06 0.0 0 1 581.66 780.00
@@ -4186,8 +4940,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.72 1.72 0.0 0 0 655.72 769.85
   L 655.85 768.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 658.1364 784.4444
   A 4.10 4.10 0.0 0 1 654.9954 789.3183
   L 583.8786 804.6943
@@ -4208,8 +4963,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.15 2.15 0.0 0 0 656.5004 784.9239
   L 656.4243 784.5720
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 485.8574 811.3312
   A 22.91 20.60 -96.8 0 1 509.0251 831.6409
   A 22.91 20.60 -96.8 0 1 491.2826 856.8288
@@ -4222,8 +4978,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 21.15 18.78 -95.0 0 0 507.2385 832.3832
   A 21.15 18.78 -95.0 0 0 486.6867 812.9505
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 485.8846 818.7835
   A 15.43 14.03 -100.4 0 1 502.4695 831.4273
   A 15.43 14.03 -100.4 0 1 491.4554 849.1365
@@ -4236,8 +4993,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 13.93 12.39 -98.2 0 0 500.9333 832.2328
   A 13.93 12.39 -98.2 0 0 486.6832 820.2124
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 762.07 841.19
   L 762.07 853.49
   A 2.73 2.73 0.0 0 1 759.97 856.15
@@ -4301,10 +5059,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.90 1.90 0.0 0 0 760.73 853.15
   L 760.73 842.20
   Z"
-/>
-</g>
-<g fill="#bebbb2">
-<path d="
+        />
+      </g>
+      <g fill="#bebbb2">
+        <path
+          d="
   M 664.93 658.54
   A 0.11 0.11 0.0 0 1 664.93 658.75
   Q 610.94 670.28 543.64 684.76
@@ -4339,8 +5098,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.83 3.80 50.4 0 0 649.15 656.88
   Q 656.95 656.64 664.93 658.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 787.26 664.97
   A 1.04 1.03 5.0 0 1 788.12 665.99
   Q 787.69 750.44 788.51 824.74
@@ -4370,8 +5130,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.09 1.09 0.0 0 0 548.01 717.13
   L 548.01 874.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 264.16 714.82
   C 266.88 715.15 268.78 715.14 271.21 715.77
   Q 280.36 718.11 289.27 723.36
@@ -4401,8 +5162,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 55.99 52.13 -97.0 0 0 314.0614 765.6370
   A 55.99 52.13 -97.0 0 0 255.4965 716.4173
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 656.6529 734.5847
   A 5.21 5.21 0.0 0 1 652.6399 740.7640
   L 582.8198 755.6048
@@ -4423,8 +5185,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.07 4.07 0.0 0 0 655.8330 734.7255
   L 655.8079 734.6082
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 657.6613 751.7612
   A 4.55 4.55 0.0 0 1 654.1567 757.1578
   L 582.8497 772.3145
@@ -4445,8 +5208,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.59 3.59 0.0 0 0 656.6422 751.9203
   L 656.4052 750.8052
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 617.76 771.26
   C 622.56 770.40 627.33 769.19 632.18 768.24
   Q 637.53 767.19 642.79 765.96
@@ -4475,8 +5239,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.06 3.06 0.0 0 0 579.25 782.69
   L 579.01 785.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 659.0761 784.2681
   A 5.13 5.13 0.0 0 1 655.1460 790.3664
   L 584.4202 805.6578
@@ -4497,8 +5262,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.10 4.10 0.0 0 0 658.1364 784.4444
   L 658.1152 784.3467
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 485.6349 810.2783
   A 23.92 21.61 -97.0 0 1 509.9989 831.3864
   A 23.92 21.61 -97.0 0 1 491.4651 857.7617
@@ -4511,10 +5277,11 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 22.91 20.60 -96.8 0 0 509.0251 831.6409
   A 22.91 20.60 -96.8 0 0 485.8574 811.3312
   Z"
-/>
-</g>
-<g fill="#2f302f">
-<path d="
+        />
+      </g>
+      <g fill="#2f302f">
+        <path
+          d="
   M 534.87 405.46
   L 531.51 404.10
   Q 532.07 396.39 532.06 385.75
@@ -4576,14 +5343,16 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 535.41 98.25
   A 0.54 0.53 -4.4 0 0 536.01 98.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 536.58 205.55
   L 536.61 362.45
   L 536.58 205.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 486.06 404.88
   L 487.35 409.76
   Q 485.81 408.92 484.52 409.63
@@ -4924,37 +5693,48 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.73 2.73 0.0 0 0 762.07 853.49
   L 762.07 841.19
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 543.48 419.28
   L 543.47 453.73
   Q 542.72 436.50 543.48 419.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 536.40 461.71
   Q 533.88 462.12 531.27 461.61
   Q 533.53 460.85 536.40 461.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 671.94 701.00
   A 0.60 0.50 51.2 0 1 672.98 701.21
   Q 673.12 701.75 673.06 701.88
   A 0.56 0.55 -41.9 0 1 672.05 701.83
   Q 671.85 701.31 671.94 701.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 317.11 709.89
   Q 316.95 709.70 317.08 709.19
   A 0.29 0.27 88.2 0 1 317.23 709.02
   Q 317.62 708.84 317.80 709.32
   A 0.49 0.42 -80.2 0 1 317.11 709.89
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(329.47,712.20) rotate(-88.4)" rx="0.61" ry="0.42"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(329.47,712.20) rotate(-88.4)"
+          rx="0.61"
+          ry="0.42"
+        />
+        <path
+          d="
   M 255.3202 718.1208
   A 54.38 50.38 -97.3 0 1 312.2016 765.6585
   A 54.38 50.38 -97.3 0 1 269.1398 825.9992
@@ -4967,17 +5747,19 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 49.65 45.67 -98.2 0 0 307.5331 765.6361
   A 49.65 45.67 -98.2 0 0 255.2485 723.0076
   Z"
-/>
-<circle cx="383.60" cy="724.38" r="0.49"/>
-<path d="
+        />
+        <circle cx="383.60" cy="724.38" r="0.49" />
+        <path
+          d="
   M 568.90 729.45
   Q 568.95 729.74 568.65 729.79
   Q 568.38 729.83 568.24 729.54
   A 0.30 0.30 0.0 0 1 568.58 729.12
   Q 568.85 729.18 568.90 729.45
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 200.08 732.49
   A 0.53 0.47 12.6 0 1 200.76 732.11
   Q 201.08 732.21 201.20 732.50
@@ -4985,10 +5767,25 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 200.67 733.18 200.20 733.13 200.15 732.85
   Q 200.08 732.51 200.08 732.49
   Z"
-/>
-<rect x="-38.51" y="-2.37" transform="translate(616.67,743.07) rotate(-12.1)" width="77.02" height="4.74" rx="2.34"/>
-<rect x="-38.44" y="-2.34" transform="translate(617.30,759.69) rotate(-12.1)" width="76.88" height="4.68" rx="2.12"/>
-<path d="
+        />
+        <rect
+          x="-38.51"
+          y="-2.37"
+          transform="translate(616.67,743.07) rotate(-12.1)"
+          width="77.02"
+          height="4.74"
+          rx="2.34"
+        />
+        <rect
+          x="-38.44"
+          y="-2.34"
+          transform="translate(617.30,759.69) rotate(-12.1)"
+          width="76.88"
+          height="4.68"
+          rx="2.12"
+        />
+        <path
+          d="
   M 655.85 768.49
   L 655.72 769.85
   A 1.72 1.72 0.0 0 1 654.36 771.37
@@ -4999,11 +5796,25 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 653.78 766.64
   A 1.72 1.72 0.0 0 1 655.85 768.49
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(721.44,782.60) rotate(-70.5)" rx="0.50" ry="0.41"/>
-<rect x="-38.86" y="-2.33" transform="translate(618.48,792.96) rotate(-12.2)" width="77.72" height="4.66" rx="2.15"/>
-<circle cx="353.53" cy="793.46" r="0.26"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(721.44,782.60) rotate(-70.5)"
+          rx="0.50"
+          ry="0.41"
+        />
+        <rect
+          x="-38.86"
+          y="-2.33"
+          transform="translate(618.48,792.96) rotate(-12.2)"
+          width="77.72"
+          height="4.66"
+          rx="2.15"
+        />
+        <circle cx="353.53" cy="793.46" r="0.26" />
+        <path
+          d="
   M 486.6867 812.9505
   A 21.15 18.78 -95.0 0 1 507.2385 832.3832
   A 21.15 18.78 -95.0 0 1 490.3733 855.0895
@@ -5016,26 +5827,41 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 15.43 14.03 -100.4 0 0 502.4695 831.4273
   A 15.43 14.03 -100.4 0 0 485.8846 818.7835
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(372.54,832.69) rotate(-87.3)" rx="0.81" ry="0.40"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(382.66,849.50) rotate(-4.8)" rx="0.67" ry="0.35"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(372.54,832.69) rotate(-87.3)"
+          rx="0.81"
+          ry="0.40"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(382.66,849.50) rotate(-4.8)"
+          rx="0.67"
+          ry="0.35"
+        />
+        <path
+          d="
   M 379.31 850.31
   Q 379.19 850.32 378.42 849.87
   A 0.43 0.43 0.0 0 1 378.47 849.10
   Q 378.55 849.06 379.46 849.84
   A 0.27 0.27 0.0 0 1 379.31 850.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 207.53 870.03
   Q 206.80 867.77 207.08 865.18
   Q 208.07 867.45 207.53 870.03
   Z"
-/>
-</g>
-<g fill="#f3f0d6">
-<path d="
+        />
+      </g>
+      <g fill="#f3f0d6">
+        <path
+          d="
   M 677.56 657.16
   A 0.20 0.20 0.0 0 1 677.60 657.55
   L 534.62 687.80
@@ -5086,8 +5912,9 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 610.94 670.28 664.93 658.75
   A 0.11 0.11 0.0 0 0 664.93 658.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 538.99 734.95
   Q 538.65 735.65 538.73 736.62
   A 0.24 0.23 0.1 0 1 538.47 736.87
@@ -5119,11 +5946,23 @@ export const ProjectorSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.81 0.80 2.8 0 1 538.89 717.95
   L 538.99 734.95
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(262.81,771.38) rotate(-98.4)" rx="30.29" ry="25.42"/>
-</g>
-<ellipse fill="#ab7052" cx="0.00" cy="0.00" transform="translate(488.67,834.00) rotate(-98.2)" rx="13.93" ry="12.39"/>
-</svg>
-
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(262.81,771.38) rotate(-98.4)"
+          rx="30.29"
+          ry="25.42"
+        />
+      </g>
+      <ellipse
+        fill="#ab7052"
+        cx="0.00"
+        cy="0.00"
+        transform="translate(488.67,834.00) rotate(-98.2)"
+        rx="13.93"
+        ry="12.39"
+      />
+    </svg>
   )
 }

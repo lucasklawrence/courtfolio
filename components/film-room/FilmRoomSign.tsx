@@ -7,8 +7,11 @@ import React from 'react'
 export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1536.00 1024.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 374.86 784.54
   Q 374.56 785.18 372.76 785.80
   A 1.60 1.57 -10.2 0 0 371.68 787.32
@@ -152,8 +155,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.53 0.53 0.0 0 0 372.12 785.56
   Q 373.04 785.71 374.30 784.18
   A 0.34 0.34 0.0 0 1 374.86 784.54"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 741.16 106.43
   C 738.89 109.17 737.74 113.30 736.13 116.05
   Q 733.84 119.95 721.69 142.42
@@ -237,8 +243,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.76 2.74 69.7 0 0 754.35 105.84
   Q 747.29 106.94 742.17 106.06
   A 1.07 1.06 -64.9 0 0 741.16 106.43"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.21 885.01
   Q 383.92 885.02 384.00 885.55
   Q 384.13 886.37 386.20 886.35
@@ -275,8 +284,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1119.19 644.15 1119.13 618.90
   Q 1119.11 610.51 1119.10 603.65
   Q 1119.09 602.30 1118.01 601.04"
-/>
-<path stroke="#584235" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#584235"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1118.01 601.04
   Q 1118.03 600.89 1117.99 600.76
   A 0.26 0.25 -7.2 0 0 1117.74 600.57
@@ -285,14 +297,20 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 383.92 884.43
   A 0.59 0.56 26.5 0 0 384.05 884.79
   L 384.21 885.01"
-/>
-<path stroke="#452f23" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#452f23"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1118.01 601.04
   L 1117.89 884.66
   A 0.91 0.91 0.0 0 1 1116.98 885.57
   L 384.21 885.01"
-/>
-<path stroke="#584235" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#584235"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1089.87 627.79
   A 0.59 0.59 0.0 0 0 1089.28 627.20
   L 408.31 627.20
@@ -302,8 +320,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1089.28 855.14
   A 0.59 0.59 0.0 0 0 1089.87 854.55
   L 1089.87 627.79"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 881.12 844.72
   Q 879.87 844.99 880.34 845.68
   A 0.27 0.25 59.1 0 0 880.66 845.77
@@ -364,8 +385,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 854.83 843.82 868.98 844.36 877.97 844.08
   Q 880.95 843.99 881.25 844.26
   A 0.27 0.27 0.0 0 1 881.12 844.72"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 421.77 841.65
   A 0.69 0.69 0.0 0 0 422.46 842.34
   L 1078.06 842.34
@@ -375,8 +399,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 422.46 638.97
   A 0.69 0.69 0.0 0 0 421.77 639.66
   L 421.77 841.65"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 423.03 840.26
   A 0.69 0.69 0.0 0 0 423.72 840.95
   L 1076.38 840.95
@@ -386,8 +413,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 423.72 640.28
   A 0.69 0.69 0.0 0 0 423.03 640.97
   L 423.03 840.26"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 839.08 667.97
   A 0.56 0.55 -43.1 0 0 839.85 667.99
   Q 845.09 663.17 850.64 657.36
@@ -398,8 +428,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 838.87 667.17
   A 0.39 0.38 -43.4 0 0 838.85 667.72
   L 839.08 667.97"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 638.9903 673.1183
   A 0.55 0.55 0.0 0 0 638.2164 673.0411
   L 632.3816 677.8168
@@ -409,8 +442,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 638.9384 673.9232
   A 0.55 0.55 0.0 0 0 639.0157 673.1493
   L 638.9903 673.1183"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 852.43 798.64
   C 860.82 798.65 868.52 796.60 875.04 791.17
   C 881.43 785.85 883.85 775.11 883.93 767.00
@@ -422,12 +458,18 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 820.88 750.87 820.99 766.94
   C 821.05 775.05 823.45 785.79 829.84 791.13
   C 836.34 796.56 844.04 798.63 852.43 798.64"
-/>
-<path stroke="#695e4d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#695e4d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 461.98 688.47
   L 461.78 760.28"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 461.78 760.28
   L 460.96 760.19
   A 0.96 0.95 -7.7 0 0 460.28 761.07
@@ -458,26 +500,38 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 517.81 691.41 517.95 684.06
   Q 517.98 682.75 517.27 682.01
   Q 517.05 681.77 516.23 682.81"
-/>
-<path stroke="#695e4d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#695e4d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 516.23 682.81
   Q 516.33 681.74 515.70 681.85"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 515.70 681.85
   L 515.94 681.22
   A 0.90 0.89 10.7 0 0 515.10 680.00
   L 464.56 680.00
   A 3.94 3.94 0.0 0 0 460.89 682.51
   Q 459.41 686.31 461.98 688.47"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 515.70 681.85
   L 462.98 681.84
   A 0.80 0.80 0.0 0 0 462.18 682.61
   L 461.98 688.47"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 516.23 682.81
   L 516.34 700.11
   A 1.16 1.15 -90.0 0 1 515.19 701.27
@@ -496,8 +550,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 463.04 796.96
   A 1.49 1.49 0.0 0 1 461.55 795.46
   L 461.78 760.28"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 589.07 798.42
   L 606.93 798.12
   A 2.42 2.42 0.0 0 0 609.31 795.71
@@ -524,8 +581,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 582.40 798.49 584.15 797.72 585.21 798.23
   C 586.41 798.81 587.82 797.58 588.78 798.32
   A 0.43 0.39 61.5 0 0 589.07 798.42"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 682.52 738.64
   Q 683.02 741.27 683.04 746.00
   Q 683.13 769.37 682.92 794.99
@@ -585,8 +645,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 677.94 753.93 679.43 749.05
   C 680.50 745.56 680.89 742.17 682.13 738.61
   A 0.20 0.20 0.0 0 1 682.52 738.64"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 750.79 681.39
   Q 749.89 685.02 749.99 695.50
   Q 750.11 708.51 749.97 762.95
@@ -619,8 +682,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 767.60 679.77 762.64 680.05
   C 759.02 680.26 754.56 679.30 751.26 680.82
   A 0.86 0.85 85.0 0 0 750.79 681.39"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 954.98 739.89
   C 954.66 736.92 955.24 734.17 955.15 730.76
   Q 954.87 720.18 955.04 712.50
@@ -641,14 +707,20 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 954.75 768.09 954.76 767.65
   Q 954.83 751.03 955.05 743.53
   Q 955.12 741.25 954.98 739.89"
-/>
-<path stroke="#695e4d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#695e4d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1050.01 758.67
   L 1049.88 682.91
   A 0.91 0.89 15.0 0 0 1049.42 682.13
   Q 1048.84 681.79 1047.94 681.78"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1047.94 681.78
   Q 1048.55 681.29 1048.71 681.01
   A 0.63 0.63 0.0 0 0 1048.17 680.06
@@ -703,21 +775,30 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1051.07 786.04 1051.48 778.83
   C 1051.75 774.22 1051.10 769.27 1051.25 764.26
   Q 1051.36 760.44 1050.01 758.67"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1047.94 681.78
   L 1026.60 681.59
   A 1.95 1.94 6.9 0 0 1024.69 683.08
   Q 1017.85 710.86 1011.28 737.76
   Q 1009.96 743.16 1009.44 747.20"
-/>
-<path stroke="#8d8775" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8d8775"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1009.44 747.20
   L 1008.46 750.26
   A 0.30 0.29 -54.2 0 1 1007.94 750.35
   Q 1007.72 750.05 1007.57 749.52"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1007.57 749.52
   Q 1002.35 726.72 991.84 685.59
   Q 991.04 682.48 990.37 681.86
@@ -729,14 +810,20 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 984.61 796.96
   A 1.42 1.42 0.0 0 0 986.03 795.54
   L 985.80 728.73"
-/>
-<path stroke="#8d8775" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8d8775"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 985.80 728.73
   Q 985.92 728.52 986.11 728.42
   A 0.33 0.33 0.0 0 1 986.38 728.40
   Q 986.64 728.50 986.64 728.75"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 986.64 728.75
   L 1004.21 796.25
   A 0.95 0.94 82.3 0 0 1005.12 796.95
@@ -745,12 +832,18 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 1014.66 792.11 1015.30 787.12 1016.28 783.46
   Q 1020.43 767.95 1023.67 754.27
   C 1025.43 746.84 1028.17 737.67 1030.25 729.25"
-/>
-<path stroke="#8d8775" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8d8775"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1030.25 729.25
   Q 1031.53 729.06 1031.03 731.27"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1031.03 731.27
   Q 1030.52 738.05 1030.53 740.75
   Q 1030.69 771.11 1030.45 795.78
@@ -758,8 +851,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1040.66 797.14 1047.88 796.90
   Q 1050.21 796.82 1050.18 794.50
   Q 1049.92 776.95 1050.01 758.67"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1030.25 729.25
   Q 1028.00 729.25 1027.88 733.26
   A 5.43 5.42 54.8 0 1 1027.61 734.82
@@ -774,8 +870,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 992.47 743.73 987.76 728.21
   A 0.42 0.41 -16.9 0 0 987.24 727.94
   Q 986.74 728.09 986.64 728.75"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1007.57 749.52
   Q 1007.62 750.39 1007.37 750.39
   Q 1006.30 750.37 1006.06 749.31
@@ -795,8 +894,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 984.51 731.32 983.84 730.44 983.82 728.94
   A 0.57 0.56 -20.4 0 1 984.02 728.51
   Q 984.71 727.96 985.80 728.73"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1031.03 731.27
   L 1032.24 735.41
   A 1.36 0.96 -61.8 0 1 1032.28 735.73
@@ -811,8 +913,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1012.64 738.42
   A 3.22 3.14 -38.5 0 0 1012.54 739.21
   Q 1012.43 744.54 1009.44 747.20"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.31 798.23
   L 545.45 798.26
   A 3.44 3.44 0.0 0 0 548.89 794.83
@@ -822,8 +927,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 6.68 5.56 -89.9 0 0 525.06 686.65
   L 524.87 794.79
   A 3.44 3.44 0.0 0 0 528.31 798.23"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 614.03 746.47
   A 0.34 0.34 0.0 0 0 613.71 746.07
   Q 613.53 746.06 613.25 746.09
@@ -843,8 +951,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 613.04 747.58 613.86 747.65
   A 0.28 0.28 0.0 0 0 614.14 747.26
   Q 613.97 746.88 614.03 746.47"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.01 764.67
   A 0.48 0.47 59.9 0 0 603.65 764.85
   Q 606.58 763.19 608.12 760.48
@@ -858,8 +969,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 606.08 762.14 603.14 764.06
   A 0.44 0.44 0.0 0 0 603.00 764.66
   L 603.01 764.67"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.10 771.26
   Q 588.46 771.81 587.08 773.82
   A 0.18 0.18 0.0 0 0 587.30 774.09
@@ -869,8 +983,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.51 0.51 0.0 0 0 594.98 766.84
   Q 591.86 768.74 590.64 770.83
   A 0.98 0.96 -82.9 0 1 590.10 771.26"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 588.6396 769.8055
   A 0.57 0.57 0.0 0 0 587.8359 769.7437
   L 584.1762 772.8804
@@ -880,8 +997,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 588.6038 770.6396
   A 0.57 0.57 0.0 0 0 588.6656 769.8359
   L 588.6396 769.8055"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 497.16 776.50
   Q 497.42 776.76 497.91 776.93
   A 0.41 0.41 0.0 0 0 498.45 776.64
@@ -897,8 +1017,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 496.99 775.21
   A 0.41 0.41 0.0 0 0 496.71 775.76
   Q 496.89 776.24 497.16 776.50"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 512.34 791.79
   Q 512.57 790.78 511.98 790.12
   A 0.95 0.91 72.9 0 0 511.41 789.80
@@ -938,15 +1061,21 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.37 0.37 0.0 0 0 511.92 792.01
   L 512.01 792.02
   A 0.30 0.29 -79.5 0 0 512.34 791.79"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.3155 794.2413
   A 2.98 0.51 -44.5 0 0 520.8325 795.9662
   A 2.98 0.51 -44.5 0 0 519.0645 798.4187
   A 2.98 0.51 -44.5 0 0 521.5475 796.6938
   A 2.98 0.51 -44.5 0 0 523.3155 794.2413"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 822.31 794.40
   Q 819.49 796.34 818.72 796.63
   A 2.53 2.40 10.7 0 0 817.85 797.19
@@ -959,8 +1088,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 817.29 798.02 822.27 795.62
   Q 822.89 795.32 822.93 794.75
   A 0.40 0.40 0.0 0 0 822.31 794.40"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 675.61 804.90
   A 0.42 0.41 -43.5 0 0 676.19 804.91
   L 682.83 798.60
@@ -970,8 +1102,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 675.44 804.13
   A 0.41 0.40 -43.5 0 0 675.42 804.70
   L 675.61 804.90"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 570.77 807.69
   Q 572.00 807.18 572.70 806.46
   Q 575.44 803.63 578.49 800.76
@@ -990,8 +1125,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.54 0.54 0.0 0 1 576.86 801.07
   L 570.44 807.18
   A 0.31 0.31 0.0 0 0 570.77 807.69"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 569.54 809.69
   Q 569.45 810.52 568.55 811.27
   Q 563.74 815.25 561.62 818.01
@@ -1033,8 +1171,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 573.08 807.77 572.59 808.87
   Q 572.28 809.57 570.45 809.07
   A 0.73 0.72 -79.0 0 0 569.54 809.69"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 931.37 799.87
   Q 929.21 800.18 927.31 801.88
   Q 924.91 804.03 923.58 805.44
@@ -1050,8 +1191,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.90 0.87 -88.2 0 1 920.90 808.34
   C 925.09 806.19 927.96 802.80 931.57 800.36
   A 0.27 0.27 0.0 0 0 931.37 799.87"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 628.2411 800.4459
   A 0.49 0.49 0.0 0 0 627.5522 800.3710
   L 623.9361 803.2785
@@ -1061,8 +1205,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 628.2039 801.1815
   A 0.49 0.49 0.0 0 0 628.2787 800.4926
   L 628.2411 800.4459"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 821.98 801.09
   Q 821.78 801.17 819.01 803.74
   Q 817.01 805.59 813.33 808.09
@@ -1082,8 +1229,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 811.94 810.36 815.45 807.96
   Q 818.43 805.93 822.26 801.49
   A 0.25 0.25 0.0 0 0 821.98 801.09"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 824.75 803.03
   Q 822.37 802.32 821.73 804.85
   Q 821.58 805.43 820.78 805.37
@@ -1101,8 +1251,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.91 0.84 -13.8 0 0 821.63 806.50
   Q 822.32 804.69 824.75 803.94
   A 0.48 0.47 -45.3 0 0 824.75 803.03"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 819.83 810.79
   A 0.47 0.46 49.8 0 0 820.48 810.85
   L 828.90 803.76
@@ -1112,8 +1265,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 819.70 810.31
   A 0.21 0.21 0.0 0 0 819.67 810.60
   L 819.83 810.79"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1012.85 832.82
   A 0.24 0.23 -45.8 0 0 1013.19 832.81
   Q 1015.21 830.65 1017.38 829.48
@@ -1184,8 +1340,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1014.22 829.71 1012.56 832.23
   A 0.28 0.26 39.6 0 0 1012.60 832.57
   L 1012.85 832.82"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 673.57 805.56
   Q 673.52 805.66 673.48 805.96
   A 1.15 1.14 75.8 0 1 673.04 806.70
@@ -1200,8 +1359,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 672.94 807.95 674.66 806.38
   Q 675.02 806.05 675.00 805.63
   A 0.80 0.68 -37.6 0 0 673.57 805.56"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 684.90 808.99
   L 685.85 807.60
   A 0.15 0.14 -65.9 0 0 685.77 807.38
@@ -1242,8 +1404,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.41 0.41 0.0 0 1 683.28 810.53
   Q 684.05 809.42 684.59 809.22
   A 0.62 0.58 -79.5 0 0 684.90 808.99"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 902.96 808.07
   L 902.75 807.87
   A 0.44 0.43 -46.3 0 0 902.13 807.89
@@ -1253,8 +1418,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.43 0.43 0.0 0 0 896.15 815.83
   L 902.97 808.70
   A 0.45 0.44 -46.3 0 0 902.96 808.07"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 567.94 809.49
   L 567.80 809.31
   A 0.34 0.34 0.0 0 0 567.32 809.28
@@ -1264,8 +1432,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.34 0.34 0.0 0 0 562.02 814.92
   L 567.90 809.98
   A 0.35 0.34 -40.1 0 0 567.94 809.49"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 627.45 809.38
   L 624.73 811.23
   A 2.94 2.93 -86.3 0 0 624.14 811.75
@@ -1291,15 +1462,21 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.21 0.21 0.0 0 0 627.77 809.67
   L 627.60 809.41
   A 0.11 0.11 0.0 0 0 627.45 809.38"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 918.6723 812.5267
   A 1.20 0.44 -47.4 0 0 917.5361 813.1122
   A 1.20 0.44 -47.4 0 0 917.0477 814.2933
   A 1.20 0.44 -47.4 0 0 918.1839 813.7078
   A 1.20 0.44 -47.4 0 0 918.6723 812.5267"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1064.59 823.22
   Q 1064.89 823.21 1065.60 823.11
   A 0.56 0.53 -69.2 0 0 1065.93 822.95
@@ -1309,8 +1486,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.19 0.19 0.0 0 0 1075.33 812.64
   L 1064.49 822.95
   A 0.16 0.15 -66.3 0 0 1064.59 823.22"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 606.75 814.90
   Q 606.63 814.28 605.93 813.84
   A 0.54 0.53 33.7 0 0 605.21 813.98
@@ -1327,8 +1507,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 600.25 819.80 605.08 815.56
   Q 605.72 814.99 606.29 815.26
   A 0.33 0.33 0.0 0 0 606.75 814.90"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1034.47 822.42
   Q 1036.88 820.56 1037.10 820.35
   Q 1039.04 818.52 1041.59 816.58
@@ -1343,8 +1526,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1030.33 823.93 1030.35 824.01
   A 0.50 0.49 75.4 0 0 1030.94 824.36
   Q 1032.37 824.03 1034.47 822.42"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 809.35 820.63
   A 0.15 0.15 0.0 0 0 809.61 820.50
   Q 809.16 817.97 806.81 817.37
@@ -1364,8 +1550,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 804.04 820.15 805.48 819.96 806.03 819.07
   A 1.02 1.02 0.0 0 1 807.62 818.89
   L 809.35 820.63"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 842.65 827.29
   A 0.51 0.51 0.0 0 0 843.34 828.01
   Q 846.95 825.72 849.15 822.49
@@ -1376,8 +1565,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.91 0.89 -80.9 0 0 849.35 820.77
   Q 847.85 823.20 847.09 823.62
   Q 844.02 825.31 842.65 827.29"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 943.52 821.10
   A 0.54 0.52 55.9 0 0 942.79 820.95
   L 932.40 827.98
@@ -1387,8 +1579,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 943.61 821.66
   A 0.24 0.24 0.0 0 0 943.68 821.33
   L 943.52 821.10"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.17 839.38
   Q 525.48 839.35 526.87 837.82
   Q 529.49 834.94 532.91 831.92
@@ -1399,8 +1594,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 534.96 828.81 530.68 832.72
   C 528.37 834.83 526.40 837.36 524.01 838.81
   A 0.31 0.30 -61.0 0 0 524.17 839.38"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 623.49 833.46
   L 623.64 833.64
   A 0.20 0.20 0.0 0 0 623.92 833.65
@@ -1410,8 +1608,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.34 0.34 0.0 0 0 631.31 826.16
   L 623.53 832.85
   A 0.44 0.43 49.4 0 0 623.49 833.46"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 658.26 827.08
   Q 657.93 827.22 656.93 827.86
   A 1.95 1.94 -4.4 0 0 656.18 828.73
@@ -1423,8 +1624,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.90 0.87 12.3 0 0 652.45 834.82
   L 658.70 827.70
   A 0.39 0.39 0.0 0 0 658.26 827.08"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 654.10 838.82
   Q 655.89 838.17 657.27 837.03
   Q 661.13 833.84 663.93 830.22
@@ -1434,8 +1638,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.72 3.28 -78.3 0 1 656.36 836.43
   Q 654.24 837.68 653.80 838.47
   A 0.25 0.24 4.7 0 0 654.10 838.82"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 491.00 834.09
   A 0.36 0.35 -39.4 0 0 490.51 834.05
   L 484.47 839.02
@@ -1445,8 +1652,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 491.10 834.76
   A 0.35 0.34 -39.4 0 0 491.15 834.28
   L 491.00 834.09"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 542.2430 834.3642
   A 0.40 0.40 0.0 0 0 541.6827 834.2865
   L 536.4506 838.2435
@@ -1456,8 +1666,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 542.1894 834.9565
   A 0.40 0.40 0.0 0 0 542.2672 834.3961
   L 542.2430 834.3642"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 844.43 796.56
   C 857.85 799.00 875.65 795.75 880.32 780.84
   Q 882.13 775.09 882.23 771.47
@@ -1468,8 +1681,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 823.51 695.18 822.45 705.77 822.39 717.50
   Q 822.17 755.44 822.42 767.75
   C 822.73 782.65 828.95 793.75 844.43 796.56"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 607.81 776.55
   L 581.86 776.55
   A 0.54 0.53 90.0 0 1 581.33 776.01
@@ -1483,14 +1699,20 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.98 0.98 0.0 0 0 608.04 796.06
   L 608.04 776.78
   A 0.23 0.23 0.0 0 0 607.81 776.55"
-/>
-<path stroke="#8d8775" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8d8775"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 639.25 724.02
   Q 639.23 723.44 639.28 723.27
   A 0.33 0.32 47.9 0 1 639.91 723.31
   L 642.62 735.28"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 642.62 735.28
   L 657.41 795.50
   A 2.06 2.05 -8.0 0 0 659.48 797.06
@@ -1500,12 +1722,18 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 669.63 780.87 678.90 745.62
   C 679.89 741.86 680.36 738.59 681.49 735.21
   C 682.69 731.59 683.30 727.39 684.06 723.42"
-/>
-<path stroke="#8d8775" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8d8775"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 684.06 723.42
   Q 684.58 723.47 685.00 724.37"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 685.00 724.37
   C 684.88 729.14 684.53 734.04 684.57 738.54
   Q 684.81 765.84 684.60 792.42
@@ -1519,12 +1747,18 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 680.97 681.50 680.30 684.30
   Q 676.05 702.00 667.38 735.08
   Q 665.00 744.16 663.88 751.05"
-/>
-<path stroke="#8d8775" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8d8775"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 663.88 751.05
   Q 663.55 752.20 663.13 751.73"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 663.13 751.73
   L 646.14 682.56
   A 1.13 1.12 83.1 0 0 645.05 681.70
@@ -1535,8 +1769,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 638.78 796.98
   A 0.99 0.99 0.0 0 0 639.77 795.99
   L 639.25 724.02"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 663.13 751.73
   Q 661.93 752.68 661.23 749.89
   Q 657.58 735.31 656.22 729.08
@@ -1554,8 +1791,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 637.74 743.28 638.49 734.51 637.84 724.94
   Q 637.79 724.18 638.19 723.93
   Q 638.55 723.69 639.25 724.02"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 684.06 723.42
   Q 683.15 722.41 682.53 724.28
   Q 682.24 725.14 682.12 726.59
@@ -1571,8 +1811,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 643.74 733.37
   A 0.53 0.53 0.0 0 0 642.69 733.48
   L 642.62 735.28"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 685.00 724.37
   Q 686.24 725.10 686.32 727.13
   Q 686.38 728.76 686.06 733.21
@@ -1592,14 +1835,20 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 665.63 750.27
   A 1.11 1.06 74.8 0 1 665.34 750.80
   Q 664.69 751.43 663.88 751.05"
-/>
-<path stroke="#8d8775" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8d8775"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 772.37 744.66
   Q 772.42 744.45 772.61 744.30
   A 0.52 0.49 -55.7 0 1 773.02 744.21
   Q 773.54 744.33 773.86 744.67"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 773.86 744.67
   L 791.93 795.92
   A 1.58 1.58 0.0 0 0 793.42 796.98
@@ -1619,8 +1868,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 770.97 797.01
   A 1.19 1.19 0.0 0 0 772.16 795.82
   L 772.37 744.66"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 773.86 744.67
   Q 775.09 743.30 776.28 746.82
   Q 780.05 757.87 782.30 763.35
@@ -1645,8 +1897,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 770.52 777.90 770.95 764.03 770.81 746.99
   Q 770.80 745.89 771.11 745.00
   Q 771.67 743.39 772.37 744.66"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 953.31 710.27
   C 953.16 704.28 952.09 698.37 949.45 693.28
   C 941.27 677.52 909.11 676.76 900.84 692.86
@@ -1656,8 +1911,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 910.50 796.39 918.70 797.14
   C 935.97 798.73 953.64 792.92 953.68 772.24
   Q 953.78 729.06 953.31 710.27"
-/>
-<path stroke="#8d8775" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8d8775"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 547.6156 683.3368
   A 1.62 1.62 0.0 0 0 546.0013 681.7112
   L 528.3414 681.6495
@@ -1667,8 +1925,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 545.5986 797.0505
   A 1.62 1.62 0.0 0 0 547.2243 795.4361
   L 547.6156 683.3368"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 905.58 790.73
   Q 906.18 790.75 906.54 791.01
   Q 910.30 793.84 913.13 794.62
@@ -1690,8 +1951,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.33 0.28 -84.8 0 1 905.45 790.10
   Q 905.52 790.31 905.43 790.49
   A 0.17 0.16 14.3 0 0 905.58 790.73"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 833.47 688.68
   Q 825.43 696.08 824.59 707.49
   Q 824.02 715.28 824.04 719.01
@@ -1710,8 +1974,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 861.81 681.87 850.77 682.71
   Q 844.95 683.15 841.48 684.17
   Q 836.90 685.52 833.47 688.68"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.56 683.83
   Q 564.14 685.12 564.14 686.77
   Q 564.20 738.03 564.20 738.27
@@ -1729,8 +1996,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.59 0.59 0.0 0 0 579.49 682.98
   L 565.74 682.98
   A 1.24 1.24 0.0 0 0 564.56 683.83"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 513.98 683.06
   L 464.76 683.06
   A 0.80 0.79 -0.0 0 0 463.96 683.85
@@ -1754,8 +2024,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.86 0.86 0.0 0 0 515.05 699.07
   L 515.15 684.23
   A 1.17 1.16 0.2 0 0 513.98 683.06"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 864.82 714.12
   Q 864.24 711.66 864.09 707.81
   C 863.91 702.85 861.79 698.44 856.35 697.60
@@ -1768,8 +2041,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 864.40 770.20 864.40 767.71
   Q 864.49 733.40 864.87 714.56
   A 2.08 1.86 41.8 0 0 864.82 714.12"
-/>
-<path stroke="#8d8775" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8d8775"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 772.44 699.79
   L 772.22 731.89
   A 0.86 0.86 0.0 0 0 773.07 732.75
@@ -1779,8 +2055,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 11.55 10.26 -89.6 0 0 780.27 698.98
   L 773.31 698.93
   A 0.86 0.86 0.0 0 0 772.44 699.79"
-/>
-<path stroke="#131312" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#131312"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 914.11 739.75
   C 914.10 745.93 914.24 754.95 914.09 761.88
   Q 913.98 767.10 915.08 773.24
@@ -1794,8 +2073,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 921.49 697.91 916.66 699.84 915.67 703.92
   C 914.54 708.49 914.16 712.55 914.15 717.58
   Q 914.11 729.80 914.11 739.75"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 862.9642 707.9167
   A 9.24 9.24 0.0 0 0 853.7404 698.6606
   L 853.1004 698.6595
@@ -1805,8 +2087,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 853.5996 779.2805
   A 9.24 9.24 0.0 0 0 862.8558 770.0566
   L 862.9642 707.9167"
-/>
-<path stroke="#7a7463" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7a7463"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 933.8543 707.7368
   A 8.63 8.63 0.0 0 0 925.2696 699.0617
   L 924.8297 699.0594
@@ -1816,8 +2101,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 924.8503 779.1406
   A 8.63 8.63 0.0 0 0 933.5254 770.5559
   L 933.8543 707.7368"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 861.4604 707.3485
   A 7.34 7.34 0.0 0 0 854.1461 699.9829
   L 852.6061 699.9775
@@ -1827,8 +2115,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 853.8739 777.9625
   A 7.34 7.34 0.0 0 0 861.2395 770.6481
   L 861.4604 707.3485"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 774.15 700.60
   L 773.73 731.13
   A 0.32 0.32 0.0 0 0 774.04 731.46
@@ -1838,8 +2129,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 9.76 9.07 -89.2 0 0 780.15 700.36
   L 774.48 700.28
   A 0.32 0.32 0.0 0 0 774.15 700.60"
-/>
-<path stroke="#e3d2b0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e3d2b0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 917.29 766.13
   Q 917.88 770.50 917.83 772.27
   C 917.60 779.49 927.81 778.85 930.57 774.34
@@ -1858,9 +2152,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 916.93 747.75 917.30 753.04
   Q 917.41 754.58 917.23 765.25
   A 6.90 5.34 -56.2 0 0 917.29 766.13"
-/>
-</g>
-<path fill="#8a5e46" d="
+        />
+      </g>
+      <path
+        fill="#8a5e46"
+        d="
   M 1118.01 601.04
   L 1117.89 884.66
   A 0.91 0.91 0.0 0 1 1116.98 885.57
@@ -1883,9 +2179,10 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.59 0.59 0.0 0 0 1089.87 854.55
   L 1089.87 627.79
   Z"
-/>
-<g fill="#262524">
-<path d="
+      />
+      <g fill="#262524">
+        <path
+          d="
   M 374.86 784.54
   A 0.34 0.34 0.0 0 0 374.30 784.18
   Q 373.04 785.71 372.12 785.56
@@ -2158,8 +2455,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.59 0.56 26.5 0 0 384.05 884.79
   L 384.21 885.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1089.87 627.79
   L 1089.87 854.55
   A 0.59 0.59 0.0 0 1 1089.28 855.14
@@ -2231,9 +2529,17 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 880.95 843.99 881.25 844.26
   A 0.27 0.27 0.0 0 1 881.12 844.72
   Z"
-/>
-<rect x="-10.45" y="-57.67" transform="translate(536.97,739.35) rotate(0.2)" width="20.90" height="115.34" rx="1.62"/>
-<path d="
+        />
+        <rect
+          x="-10.45"
+          y="-57.67"
+          transform="translate(536.97,739.35) rotate(0.2)"
+          width="20.90"
+          height="115.34"
+          rx="1.62"
+        />
+        <path
+          d="
   M 685.00 724.37
   Q 684.58 723.47 684.06 723.42
   Q 683.15 722.41 682.53 724.28
@@ -2289,8 +2595,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 686.38 728.76 686.32 727.13
   Q 686.24 725.10 685.00 724.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 841.48 684.17
   Q 844.95 683.15 850.77 682.71
   Q 861.81 681.87 870.18 687.39
@@ -2323,8 +2630,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 864.49 733.40 864.87 714.56
   A 2.08 1.86 41.8 0 0 864.82 714.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1007.57 749.52
   Q 1007.72 750.05 1007.94 750.35
   A 0.30 0.29 -54.2 0 0 1008.46 750.26
@@ -2378,8 +2686,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1006.30 750.37 1007.37 750.39
   Q 1007.62 750.39 1007.57 749.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 464.76 683.06
   L 513.98 683.06
   A 1.17 1.16 0.2 0 1 515.15 684.23
@@ -2404,8 +2713,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 463.96 683.85
   A 0.80 0.79 0.0 0 1 464.76 683.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 564.56 683.83
   A 1.24 1.24 0.0 0 1 565.74 682.98
   L 579.49 682.98
@@ -2424,8 +2734,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 564.20 738.03 564.14 686.77
   Q 564.14 685.12 564.56 683.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 773.86 744.67
   Q 773.54 744.33 773.02 744.21
   A 0.52 0.49 -55.7 0 0 772.61 744.30
@@ -2464,8 +2775,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 773.31 698.93
   A 0.86 0.86 0.0 0 0 772.44 699.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 905.43 790.49
   Q 905.52 790.31 905.45 790.10
   A 0.33 0.28 -84.8 0 0 905.36 789.97
@@ -2502,10 +2814,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 914.54 708.49 914.16 712.55 914.15 717.58
   Q 914.11 729.80 914.11 739.75
   Z"
-/>
-</g>
-<g fill="#d1bb99">
-<path d="
+        />
+      </g>
+      <g fill="#d1bb99">
+        <path
+          d="
   M 423.03 840.26
   L 423.03 640.97
   A 0.69 0.69 0.0 0 1 423.72 640.28
@@ -3395,9 +3708,17 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.40 0.40 0.0 0 0 542.2672 834.3961
   L 542.2430 834.3642
   Z"
-/>
-<rect x="-8.11" y="-38.99" transform="translate(853.24,738.97) rotate(0.2)" width="16.22" height="77.98" rx="7.34"/>
-<path d="
+        />
+        <rect
+          x="-8.11"
+          y="-38.99"
+          transform="translate(853.24,738.97) rotate(0.2)"
+          width="16.22"
+          height="77.98"
+          rx="7.34"
+        />
+        <path
+          d="
   M 774.15 700.60
   A 0.32 0.32 0.0 0 1 774.48 700.28
   L 780.15 700.36
@@ -3408,8 +3729,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.32 0.32 0.0 0 1 773.73 731.13
   L 774.15 700.60
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 917.23 765.25
   Q 917.41 754.58 917.30 753.04
   Q 916.93 747.75 917.14 742.02
@@ -3429,10 +3751,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 917.88 770.50 917.29 766.13
   A 6.90 5.34 -56.2 0 1 917.23 765.25
   Z"
-/>
-</g>
-<g fill="#000000">
-<path d="
+        />
+      </g>
+      <g fill="#000000">
+        <path
+          d="
   M 766.19 102.43
   Q 839.08 234.82 858.11 269.62
   Q 906.77 358.62 955.95 448.26
@@ -3619,8 +3942,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 373.04 785.71 374.30 784.18
   A 0.34 0.34 0.0 0 1 374.86 784.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 741.16 106.43
   A 1.07 1.06 -64.9 0 1 742.17 106.06
   Q 747.29 106.94 754.35 105.84
@@ -3728,8 +4052,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 491.29 570.55 483.22 584.99
   Q 482.76 585.82 482.52 586.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 384.21 885.01
   L 1116.98 885.57
   A 0.91 0.91 0.0 0 0 1117.89 884.66
@@ -3770,8 +4095,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 384.13 886.37 384.00 885.55
   Q 383.92 885.02 384.21 885.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 881.25 844.26
   Q 880.95 843.99 877.97 844.08
   C 868.98 844.36 854.83 843.82 845.24 844.13
@@ -3843,8 +4169,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.69 0.69 0.0 0 0 421.77 639.66
   L 421.77 841.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 949.45 693.28
   C 952.09 698.37 953.16 704.28 953.31 710.27
   Q 953.78 729.06 953.68 772.24
@@ -3877,8 +4204,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 905.52 790.31 905.43 790.49
   A 0.17 0.16 14.3 0 0 905.58 790.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 844.43 796.56
   C 828.95 793.75 822.73 782.65 822.42 767.75
   Q 822.17 755.44 822.39 717.50
@@ -3909,8 +4237,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 844.95 683.15 841.48 684.17
   Q 836.90 685.52 833.47 688.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 607.81 776.55
   A 0.23 0.23 0.0 0 1 608.04 776.78
   L 608.04 796.06
@@ -3943,8 +4272,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 565.74 682.98
   A 1.24 1.24 0.0 0 0 564.56 683.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 663.13 751.73
   Q 661.93 752.68 661.23 749.89
   Q 657.58 735.31 656.22 729.08
@@ -3972,8 +4302,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.13 1.12 83.1 0 1 646.14 682.56
   L 663.13 751.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 685.00 724.37
   Q 686.24 725.10 686.32 727.13
   Q 686.38 728.76 686.06 733.21
@@ -4006,8 +4337,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 684.81 765.84 684.57 738.54
   C 684.53 734.04 684.88 729.14 685.00 724.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 773.86 744.67
   Q 775.09 743.30 776.28 746.82
   Q 780.05 757.87 782.30 763.35
@@ -4051,8 +4383,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.58 1.58 0.0 0 1 791.93 795.92
   L 773.86 744.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1007.57 749.52
   Q 1007.62 750.39 1007.37 750.39
   Q 1006.30 750.37 1006.06 749.31
@@ -4083,8 +4416,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 991.04 682.48 991.84 685.59
   Q 1002.35 726.72 1007.57 749.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1047.94 681.78
   Q 1048.84 681.79 1049.42 682.13
   A 0.91 0.89 15.0 0 1 1049.88 682.91
@@ -4113,8 +4447,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.95 1.94 6.9 0 1 1026.60 681.59
   L 1047.94 681.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 515.70 681.85
   Q 516.33 681.74 516.23 682.81
   L 516.34 700.11
@@ -4163,8 +4498,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 515.15 684.23
   A 1.17 1.16 0.2 0 0 513.98 683.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 864.87 714.56
   Q 864.49 733.40 864.40 767.71
   Q 864.40 770.20 863.31 773.79
@@ -4188,8 +4524,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 9.24 9.24 0.0 0 0 862.8558 770.0566
   L 862.9642 707.9167
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 914.11 739.75
   Q 914.11 729.80 914.15 717.58
   C 914.16 712.55 914.54 708.49 915.67 703.92
@@ -4214,8 +4551,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 8.63 8.63 0.0 0 0 933.5254 770.5559
   L 933.8543 707.7368
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 684.06 723.42
   C 683.30 727.39 682.69 731.59 681.49 735.21
   C 680.36 738.59 679.89 741.86 678.90 745.62
@@ -4240,8 +4578,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 682.24 725.14 682.53 724.28
   Q 683.15 722.41 684.06 723.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1030.25 729.25
   C 1028.17 737.67 1025.43 746.84 1023.67 754.27
   Q 1020.43 767.95 1016.28 783.46
@@ -4264,10 +4603,11 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 5.43 5.42 54.8 0 0 1027.88 733.26
   Q 1028.00 729.25 1030.25 729.25
   Z"
-/>
-</g>
-<g fill="#f5e9c7" fillOpacity="0.996">
-<path d="
+        />
+      </g>
+      <g fill="#f5e9c7" fillOpacity="0.996">
+        <path
+          d="
   M 421.77 841.65
   L 421.77 639.66
   A 0.69 0.69 0.0 0 1 422.46 638.97
@@ -4288,8 +4628,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.69 0.69 0.0 0 0 423.03 640.97
   L 423.03 840.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 839.08 667.97
   L 838.85 667.72
   A 0.39 0.38 -43.4 0 1 838.87 667.17
@@ -4301,9 +4642,17 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 845.09 663.17 839.85 667.99
   A 0.56 0.55 -43.1 0 1 839.08 667.97
   Z"
-/>
-<rect x="-4.32" y="-0.57" transform="translate(635.66,675.87) rotate(-39.3)" width="8.64" height="1.14" rx="0.55"/>
-<path d="
+        />
+        <rect
+          x="-4.32"
+          y="-0.57"
+          transform="translate(635.66,675.87) rotate(-39.3)"
+          width="8.64"
+          height="1.14"
+          rx="0.55"
+        />
+        <path
+          d="
   M 852.55 679.62
   C 865.82 679.63 877.39 686.27 881.64 699.14
   Q 883.99 706.25 884.01 714.50
@@ -4327,8 +4676,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 822.17 755.44 822.42 767.75
   C 822.73 782.65 828.95 793.75 844.43 796.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 515.70 681.85
   L 462.98 681.84
   A 0.80 0.80 0.0 0 0 462.18 682.61
@@ -4339,8 +4689,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.90 0.89 10.7 0 1 515.94 681.22
   L 515.70 681.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 588.78 798.32
   C 587.82 797.58 586.41 798.81 585.21 798.23
   C 584.15 797.72 582.40 798.49 580.98 798.30
@@ -4382,8 +4733,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 608.04 776.78
   A 0.23 0.23 0.0 0 0 607.81 776.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 682.52 738.64
   A 0.20 0.20 0.0 0 0 682.13 738.61
   C 680.89 742.17 680.50 745.56 679.43 749.05
@@ -4480,8 +4832,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.99 0.99 0.0 0 0 639.77 795.99
   L 639.25 724.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 751.26 680.82
   C 754.56 679.30 759.02 680.26 762.64 680.05
   Q 767.60 679.77 779.74 680.00
@@ -4538,8 +4891,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.19 1.19 0.0 0 0 772.16 795.82
   L 772.37 744.66
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 955.05 743.53
   Q 954.83 751.03 954.76 767.65
   Q 954.75 768.09 954.87 771.79
@@ -4571,8 +4925,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 935.97 798.73 953.64 792.92 953.68 772.24
   Q 953.78 729.06 953.31 710.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1047.94 681.78
   L 1026.60 681.59
   A 1.95 1.94 6.9 0 0 1024.69 683.08
@@ -4662,8 +5017,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.63 0.63 0.0 0 1 1048.71 681.01
   Q 1048.55 681.29 1047.94 681.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 528.31 798.23
   A 3.44 3.44 0.0 0 1 524.87 794.79
   L 525.06 686.65
@@ -4684,8 +5040,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.62 1.62 0.0 0 0 547.2243 795.4361
   L 547.6156 683.3368
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 461.78 760.28
   L 461.55 795.46
   A 1.49 1.49 0.0 0 0 463.04 796.96
@@ -4734,8 +5091,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.96 0.95 -7.7 0 1 460.96 760.19
   L 461.78 760.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 862.8558 770.0566
   A 9.24 9.24 0.0 0 1 853.5996 779.2805
   L 852.9596 779.2794
@@ -4756,8 +5114,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 7.34 7.34 0.0 0 0 861.2395 770.6481
   L 861.4604 707.3485
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 772.44 699.79
   A 0.86 0.86 0.0 0 1 773.31 698.93
   L 780.27 698.98
@@ -4778,8 +5137,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 774.48 700.28
   A 0.32 0.32 0.0 0 0 774.15 700.60
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 933.5254 770.5559
   A 8.63 8.63 0.0 0 1 924.8503 779.1406
   L 924.4104 779.1383
@@ -4809,8 +5169,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 917.41 754.58 917.23 765.25
   A 6.90 5.34 -56.2 0 0 917.29 766.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 614.03 746.47
   Q 613.97 746.88 614.14 747.26
   A 0.28 0.28 0.0 0 1 613.86 747.65
@@ -4831,8 +5192,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 613.53 746.06 613.71 746.07
   A 0.34 0.34 0.0 0 1 614.03 746.47
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 603.01 764.67
   L 603.00 764.66
   A 0.44 0.44 0.0 0 1 603.14 764.06
@@ -4847,8 +5209,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 606.58 763.19 603.65 764.85
   A 0.48 0.47 59.9 0 1 603.01 764.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 590.64 770.83
   Q 591.86 768.74 594.98 766.84
   A 0.51 0.51 0.0 0 1 595.60 767.63
@@ -4859,9 +5222,17 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 588.46 771.81 590.10 771.26
   A 0.98 0.96 -82.9 0 0 590.64 770.83
   Z"
-/>
-<rect x="-2.98" y="-0.59" transform="translate(586.39,771.76) rotate(-40.6)" width="5.96" height="1.18" rx="0.57"/>
-<path d="
+        />
+        <rect
+          x="-2.98"
+          y="-0.59"
+          transform="translate(586.39,771.76) rotate(-40.6)"
+          width="5.96"
+          height="1.18"
+          rx="0.57"
+        />
+        <path
+          d="
   M 500.44 773.15
   Q 500.48 773.18 500.50 773.21
   A 0.21 0.18 -67.2 0 1 500.54 773.33
@@ -4878,8 +5249,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.21 0.18 -24.0 0 1 500.38 773.09
   Q 500.41 773.11 500.44 773.15
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 512.34 791.79
   A 0.30 0.29 -79.5 0 1 512.01 792.02
   L 511.92 792.01
@@ -4920,9 +5292,16 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.95 0.91 72.9 0 1 511.98 790.12
   Q 512.57 790.78 512.34 791.79
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(521.19,796.33) rotate(-44.5)" rx="2.98" ry="0.51"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(521.19,796.33) rotate(-44.5)"
+          rx="2.98"
+          ry="0.51"
+        />
+        <path
+          d="
   M 822.93 794.75
   Q 822.89 795.32 822.27 795.62
   Q 817.29 798.02 812.39 804.93
@@ -4936,8 +5315,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 819.49 796.34 822.31 794.40
   A 0.40 0.40 0.0 0 1 822.93 794.75
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 675.61 804.90
   L 675.42 804.70
   A 0.41 0.40 -43.5 0 1 675.44 804.13
@@ -4948,8 +5328,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 676.19 804.91
   A 0.42 0.41 -43.5 0 1 675.61 804.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 570.77 807.69
   A 0.31 0.31 0.0 0 1 570.44 807.18
   L 576.86 801.07
@@ -4969,8 +5350,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 575.44 803.63 572.70 806.46
   Q 572.00 807.18 570.77 807.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 569.54 809.69
   A 0.73 0.72 -79.0 0 1 570.45 809.07
   Q 572.28 809.57 572.59 808.87
@@ -5013,8 +5395,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 563.74 815.25 568.55 811.27
   Q 569.45 810.52 569.54 809.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 931.37 799.87
   A 0.27 0.27 0.0 0 1 931.57 800.36
   C 927.96 802.80 925.09 806.19 920.90 808.34
@@ -5031,9 +5414,17 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 924.91 804.03 927.31 801.88
   Q 929.21 800.18 931.37 799.87
   Z"
-/>
-<rect x="-2.81" y="-0.52" transform="translate(626.07,802.23) rotate(-38.8)" width="5.62" height="1.04" rx="0.49"/>
-<path d="
+        />
+        <rect
+          x="-2.81"
+          y="-0.52"
+          transform="translate(626.07,802.23) rotate(-38.8)"
+          width="5.62"
+          height="1.04"
+          rx="0.49"
+        />
+        <path
+          d="
   M 822.26 801.49
   Q 818.43 805.93 815.45 807.96
   Q 811.94 810.36 811.39 811.32
@@ -5054,8 +5445,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 821.78 801.17 821.98 801.09
   A 0.25 0.25 0.0 0 1 822.26 801.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 824.75 803.03
   A 0.48 0.47 -45.3 0 1 824.75 803.94
   Q 822.32 804.69 821.63 806.50
@@ -5074,8 +5466,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 821.58 805.43 821.73 804.85
   Q 822.37 802.32 824.75 803.03
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 819.83 810.79
   L 819.67 810.60
   A 0.21 0.21 0.0 0 1 819.70 810.31
@@ -5086,8 +5479,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 820.48 810.85
   A 0.47 0.46 49.8 0 1 819.83 810.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1012.56 832.23
   Q 1014.22 829.71 1016.69 828.75
   A 1.79 1.77 -82.3 0 0 1017.49 828.13
@@ -5159,8 +5553,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1012.60 832.57
   A 0.28 0.26 39.6 0 1 1012.56 832.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 673.57 805.56
   A 0.80 0.68 -37.6 0 1 675.00 805.63
   Q 675.02 806.05 674.66 806.38
@@ -5176,8 +5571,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.15 1.14 75.8 0 0 673.48 805.96
   Q 673.52 805.66 673.57 805.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 684.59 809.22
   Q 684.05 809.42 683.28 810.53
   A 0.41 0.41 0.0 0 0 683.57 811.17
@@ -5219,8 +5615,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 684.90 808.99
   A 0.62 0.58 -79.5 0 1 684.59 809.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 902.96 808.07
   A 0.45 0.44 -46.3 0 1 902.97 808.70
   L 896.15 815.83
@@ -5231,8 +5628,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.44 0.43 -46.3 0 1 902.75 807.87
   L 902.96 808.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 567.94 809.49
   A 0.35 0.34 -40.1 0 1 567.90 809.98
   L 562.02 814.92
@@ -5243,8 +5641,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.34 0.34 0.0 0 1 567.80 809.31
   L 567.94 809.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 627.45 809.38
   A 0.11 0.11 0.0 0 1 627.60 809.41
   L 627.77 809.67
@@ -5271,9 +5670,16 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.94 2.93 -86.3 0 1 624.73 811.23
   L 627.45 809.38
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(917.86,813.41) rotate(-47.4)" rx="1.20" ry="0.44"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(917.86,813.41) rotate(-47.4)"
+          rx="1.20"
+          ry="0.44"
+        />
+        <path
+          d="
   M 1064.49 822.95
   L 1075.33 812.64
   A 0.19 0.19 0.0 0 1 1075.65 812.75
@@ -5284,8 +5690,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1064.89 823.21 1064.59 823.22
   A 0.16 0.15 -66.3 0 1 1064.49 822.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 606.29 815.26
   Q 605.72 814.99 605.08 815.56
   Q 600.25 819.80 595.19 823.96
@@ -5303,8 +5710,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 606.63 814.28 606.75 814.90
   A 0.33 0.33 0.0 0 1 606.29 815.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1034.47 822.42
   Q 1032.37 824.03 1030.94 824.36
   A 0.50 0.49 75.4 0 1 1030.35 824.01
@@ -5320,8 +5728,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1039.04 818.52 1037.10 820.35
   Q 1036.88 820.56 1034.47 822.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 809.35 820.63
   L 807.62 818.89
   A 1.02 1.02 0.0 0 0 806.03 819.07
@@ -5342,8 +5751,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 809.16 817.97 809.61 820.50
   A 0.15 0.15 0.0 0 1 809.35 820.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 842.65 827.29
   Q 844.02 825.31 847.09 823.62
   Q 847.85 823.20 849.35 820.77
@@ -5355,8 +5765,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 846.95 825.72 843.34 828.01
   A 0.51 0.51 0.0 0 1 842.65 827.29
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 943.52 821.10
   L 943.68 821.33
   A 0.24 0.24 0.0 0 1 943.61 821.66
@@ -5367,8 +5778,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 942.79 820.95
   A 0.54 0.52 55.9 0 1 943.52 821.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 524.17 839.38
   A 0.31 0.30 -61.0 0 1 524.01 838.81
   C 526.40 837.36 528.37 834.83 530.68 832.72
@@ -5380,8 +5792,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 529.49 834.94 526.87 837.82
   Q 525.48 839.35 524.17 839.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 623.49 833.46
   A 0.44 0.43 49.4 0 1 623.53 832.85
   L 631.31 826.16
@@ -5392,8 +5805,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.20 0.20 0.0 0 1 623.64 833.64
   L 623.49 833.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 658.26 827.08
   A 0.39 0.39 0.0 0 1 658.70 827.70
   L 652.45 834.82
@@ -5406,8 +5820,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.95 1.94 -4.4 0 1 656.93 827.86
   Q 657.93 827.22 658.26 827.08
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 653.80 838.47
   Q 654.24 837.68 656.36 836.43
   A 3.72 3.28 -78.3 0 0 656.96 835.98
@@ -5418,8 +5833,9 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 655.89 838.17 654.10 838.82
   A 0.25 0.24 4.7 0 1 653.80 838.47
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 491.00 834.09
   L 491.15 834.28
   A 0.35 0.34 -39.4 0 1 491.10 834.76
@@ -5430,10 +5846,16 @@ export const FilmRoomSignSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 490.51 834.05
   A 0.36 0.35 -39.4 0 1 491.00 834.09
   Z"
-/>
-<rect x="-3.68" y="-0.42" transform="translate(539.32,836.60) rotate(-37.1)" width="7.36" height="0.84" rx="0.40"/>
-</g>
-</svg>
-
+        />
+        <rect
+          x="-3.68"
+          y="-0.42"
+          transform="translate(539.32,836.60) rotate(-37.1)"
+          width="7.36"
+          height="0.84"
+          rx="0.40"
+        />
+      </g>
+    </svg>
   )
 }

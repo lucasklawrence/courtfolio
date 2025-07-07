@@ -15,9 +15,7 @@ export const SlideRenderer: React.FC<Props> = ({ section }) => {
           {heading}
         </h3>
       )}
-      {subtext && (
-        <p className="text-center text-gray-400 mb-4 italic">{subtext}</p>
-      )}
+      {subtext && <p className="text-center text-gray-400 mb-4 italic">{subtext}</p>}
 
       {(() => {
         switch (type) {
@@ -51,11 +49,7 @@ export const SlideRenderer: React.FC<Props> = ({ section }) => {
           case 'demo':
             return (
               <div className="w-full h-[400px] border border-gray-600 rounded overflow-hidden">
-                <iframe
-                  src={content}
-                  className="w-full h-full"
-                  allow="autoplay; fullscreen"
-                />
+                <iframe src={content} className="w-full h-full" allow="autoplay; fullscreen" />
               </div>
             )
 
@@ -68,9 +62,7 @@ export const SlideRenderer: React.FC<Props> = ({ section }) => {
 
           default:
             return (
-              <p className="text-red-500 text-sm text-center italic">
-                Unknown slide type: {type}
-              </p>
+              <p className="text-red-500 text-sm text-center italic">Unknown slide type: {type}</p>
             )
         }
       })()}

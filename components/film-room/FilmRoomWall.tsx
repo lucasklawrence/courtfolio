@@ -7,12 +7,18 @@ import React from 'react'
 export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1024.00">
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 802.25 0.00
   Q 802.12 0.23 801.81 0.40"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 801.81 0.40
   Q 799.99 0.91 799.08 2.31
   A 0.16 0.16 0.0 0 0 799.20 2.56
@@ -54,12 +60,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 159.19 56.87 152.07 58.88
   A 6.14 5.68 33.2 0 1 150.88 59.08
   L 136.93 59.92"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 136.93 59.92
   L 127.76 59.92"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 127.76 59.92
   Q 121.11 58.88 113.98 58.92
   C 111.92 58.94 109.80 59.44 107.64 59.83
@@ -73,19 +85,28 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 41.42 60.60 39.95 61.08
   A 0.37 0.36 55.1 0 0 39.84 61.71
   Q 40.10 61.93 40.50 61.93"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 40.50 61.93
   L 0.00 61.91"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 141.6600 21.5265
   A 0.33 0.10 -179.4 0 0 141.9890 21.6300
   A 0.33 0.10 -179.4 0 0 142.3200 21.5335
   A 0.33 0.10 -179.4 0 0 141.9910 21.4300
   A 0.33 0.10 -179.4 0 0 141.6600 21.5265"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 659.2793 22.7852
   A 0.26 0.26 0.0 0 0 659.0175 22.5270
   L 612.3186 22.8530
@@ -95,8 +116,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 659.0214 23.0870
   A 0.26 0.26 0.0 0 0 659.2796 22.8252
   L 659.2793 22.7852"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.2597 44.4438
   A 0.37 0.37 0.0 0 0 579.8877 44.0757
   L 547.6882 44.2443
@@ -106,8 +130,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 579.8918 44.8557
   A 0.37 0.37 0.0 0 0 580.2599 44.4838
   L 580.2597 44.4438"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 43.10 59.31
   Q 35.83 57.42 27.83 57.50
   Q 15.44 57.61 1.14 58.55
@@ -115,14 +142,20 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 4.24 59.28 7.92 60.04 11.85 60.05
   Q 33.98 60.10 43.06 59.63
   A 0.16 0.16 0.0 0 0 43.10 59.31"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 802.74 0.00
   Q 803.83 0.23 803.83 1.06
   Q 803.99 25.66 803.90 50.25
   Q 803.87 56.21 804.07 62.55"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 804.07 62.55
   Q 830.06 62.29 855.68 62.38
   Q 857.50 62.39 859.25 62.39
@@ -131,12 +164,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 994.35 61.92 1006.45 62.47 1018.89 61.69
   A 1.80 1.78 -62.9 0 0 1019.74 61.41
   Q 1020.86 60.71 1022.31 60.73"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1022.31 60.73
   L 1022.78 61.03"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1022.78 61.03
   Q 1022.99 61.56 1022.65 61.88
   Q 1022.33 62.17 1021.79 62.10
@@ -145,24 +184,36 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1020.14 138.05
   A 0.56 0.55 -88.4 0 0 1020.66 138.61
   L 1024.00 138.83"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 139.97
   L 670.96 140.17
   A 0.36 0.35 90.0 0 0 670.61 140.53
   L 670.61 198.45
   A 0.54 0.54 0.0 0 0 671.15 198.99
   L 672.30 198.98"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 672.30 198.98
   L 929.54 198.89"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 929.54 198.89
   L 1024.00 198.88"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 200.20
   L 861.68 200.11
   A 1.01 1.01 0.0 0 0 860.67 201.12
@@ -186,8 +237,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 630.34 272.15 492.32 272.37
   A 0.48 0.48 0.0 0 0 491.84 272.85
   L 491.72 337.82"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 491.72 337.82
   L 491.44 340.91
   A 0.78 0.77 -87.3 0 0 492.21 341.76
@@ -216,12 +270,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 956.56 340.98 1000.43 340.99
   Q 1001.91 340.99 1012.06 340.76
   Q 1017.90 340.63 1023.71 340.99"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.71 340.99
   L 1024.00 341.14"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 342.09
   L 747.76 342.45
   A 0.63 0.63 0.0 0 0 747.13 343.08
@@ -251,32 +311,47 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 805.97 393.35 795.42 393.42
   C 790.79 393.45 784.80 394.38 779.77 394.32
   Q 764.70 394.14 754.28 394.63"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 754.28 394.63
   L 747.64 395.38
   A 0.63 0.62 86.3 0 0 747.10 396.00
   L 747.10 410.98
   A 0.36 0.36 0.0 0 1 746.41 411.13
   Q 745.92 410.03 745.95 408.36"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 745.95 408.36
   L 728.28 407.20"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 728.28 407.20
   Q 736.89 406.55 745.38 407.43
   A 0.42 0.42 0.0 0 0 745.84 407.01
   L 745.84 343.48
   A 0.57 0.57 0.0 0 0 745.27 342.91
   L 366.02 342.89"
-/>
-<path stroke="#1f150b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1f150b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 366.02 342.89
   L 380.82 342.10"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 380.82 342.10
   L 446.78 341.95
   A 0.14 0.14 0.0 0 0 446.92 341.81
@@ -289,26 +364,41 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 474.58 341.89 490.20 341.72
   A 0.63 0.62 86.6 0 0 490.81 341.03
   L 490.44 337.70"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 490.44 337.70
   L 490.38 272.65
   A 0.48 0.48 0.0 0 0 489.90 272.17
   L 373.03 272.47"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 373.03 272.47
   L 23.79 272.43"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 23.79 272.43
   L 0.00 272.21"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 271.26
   L 0.53 270.91"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.53 270.91
   Q 0.91 271.07 1.31 271.07
   Q 186.46 271.17 221.56 271.13
@@ -326,54 +416,81 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 639.48 270.87 640.75 270.91
   Q 646.20 271.09 683.62 271.15
   Q 686.26 271.15 688.77 270.82"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 688.77 270.82
   Q 751.43 271.23 814.04 271.15
   C 821.36 271.14 828.85 270.57 835.84 270.98
   C 844.63 271.50 850.89 270.98 858.50 271.74
   A 0.59 0.59 0.0 0 0 859.15 271.19
   Q 859.18 270.74 858.97 270.21"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 858.97 270.21
   L 859.32 200.58
   A 0.28 0.28 0.0 0 0 859.04 200.30
   L 462.46 200.31"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.46 200.31
   L 0.00 200.19"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 199.03
   Q 0.18 198.88 0.31 198.84"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.31 198.84
   L 668.39 198.92
   A 0.53 0.52 90.0 0 0 668.91 198.39
   L 668.90 150.02"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 668.90 150.02
   L 668.90 140.55
   A 0.41 0.41 0.0 0 0 668.49 140.14
   L 0.00 140.25"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 138.88
   L 407.16 138.83
   A 0.64 0.64 0.0 0 0 407.80 138.11
   L 407.39 134.95"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 407.39 134.95
   L 407.02 64.55
   A 0.53 0.52 0.6 0 0 406.50 64.03
   L 0.00 63.32"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 40.50 61.93
   Q 139.75 62.15 239.00 62.15
   Q 258.19 62.15 279.00 62.16
@@ -394,8 +511,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 790.33 62.74 802.18 62.60
   A 0.43 0.42 -1.3 0 0 802.60 62.17
   L 801.81 0.40"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 411.90 63.93
   L 409.41 64.04
   A 0.56 0.56 0.0 0 0 408.87 64.60
@@ -406,8 +526,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1018.17 138.85
   A 0.67 0.67 0.0 0 0 1018.83 138.29
   Q 1019.13 136.40 1018.73 134.20"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1018.73 134.20
   L 1018.76 63.73
   A 0.51 0.50 0.0 0 0 1018.25 63.23
@@ -418,8 +541,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 666.03 63.94 657.01 63.79
   Q 649.11 63.65 642.00 63.66
   Q 527.02 63.84 411.90 63.93"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1018.73 134.20
   Q 1005.73 134.60 992.91 135.30
   C 986.13 135.67 980.14 134.85 973.04 134.97
@@ -457,47 +583,71 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.89 2.89 0.0 0 1 415.00 107.94
   Q 415.57 97.24 415.82 81.04
   Q 415.93 73.70 411.90 63.93"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 879.48 0.00
   Q 894.32 0.26 909.16 0.36
   C 916.82 0.41 925.24 1.15 933.35 0.62
   C 937.66 0.33 944.79 0.82 950.63 0.00"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 134.38
   L 1023.11 61.37
   A 0.25 0.23 -72.2 0 0 1023.02 61.18
   Q 1022.91 61.10 1022.78 61.03"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1022.31 60.73
   Q 1016.87 59.48 1010.52 59.40
   Q 996.76 59.22 989.21 59.33"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 989.21 59.33
   L 973.71 59.02"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 973.71 59.02
   Q 952.85 59.22 932.00 59.21
   C 927.33 59.20 924.03 59.45 920.33 59.23
   C 915.00 58.92 910.15 59.42 904.89 59.22
   Q 898.10 58.96 890.65 59.10
   C 877.85 59.34 865.86 59.34 853.47 59.63"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 853.47 59.63
   L 822.07 59.60"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 822.07 59.60
   L 805.87 59.46
   A 0.62 0.61 -83.5 0 0 805.27 59.94
   Q 804.89 61.73 804.07 62.55"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 980.89 8.01
   Q 974.56 7.57 966.09 8.01
   Q 956.14 8.52 955.10 8.53
@@ -531,8 +681,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 963.78 9.00 970.39 8.61 980.78 8.27
   Q 980.95 8.27 980.99 8.15
   A 0.11 0.11 0.0 0 0 980.89 8.01"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 863.8826 41.3094
   A 0.26 0.26 0.0 0 0 863.6300 41.0422
   L 811.9301 39.5981
@@ -542,27 +695,39 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 863.6099 41.7619
   A 0.26 0.26 0.0 0 0 863.8770 41.5093
   L 863.8826 41.3094"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 868.5300 39.8760
   A 2.01 0.15 -0.4 0 0 866.5190 39.7400
   A 2.01 0.15 -0.4 0 0 864.5100 39.9040
   A 2.01 0.15 -0.4 0 0 866.5210 40.0400
   A 2.01 0.15 -0.4 0 0 868.5300 39.8760"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 809.05 40.50
   A 0.02 0.02 0.0 0 0 809.03 40.48
   A 0.02 0.02 0.0 0 0 809.01 40.50
   A 0.02 0.02 0.0 0 0 809.03 40.52
   A 0.02 0.02 0.0 0 0 809.05 40.50"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 809.92 40.54
   Q 809.84 40.44 809.77 40.51
   Q 809.85 40.61 809.92 40.54"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 946.7582 41.6687
   A 0.26 0.26 0.0 0 0 946.4959 41.4110
   L 898.5978 41.8290
@@ -572,15 +737,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 946.5022 42.1310
   A 0.26 0.26 0.0 0 0 946.7600 41.8687
   L 946.7582 41.6687"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 870.14 43.30
   Q 871.17 43.41 871.19 43.37
   A 0.59 0.59 0.0 0 0 870.65 42.53
   L 870.18 42.53
   A 0.39 0.39 0.0 0 0 870.14 43.30"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 969.8183 43.9139
   A 0.29 0.29 0.0 0 0 969.5228 43.6295
   L 955.9253 43.8906
@@ -590,8 +761,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 969.5347 44.2494
   A 0.29 0.29 0.0 0 0 969.8191 43.9539
   L 969.8183 43.9139"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1017.7389 46.3886
   A 0.35 0.35 0.0 0 0 1017.3846 46.0429
   L 991.6666 46.3571
@@ -601,44 +775,65 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1017.3934 46.7629
   A 0.35 0.35 0.0 0 0 1017.7391 46.4086
   L 1017.7389 46.3886"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1003.2400 58.6375
   A 0.24 0.07 -0.6 0 0 1002.9993 58.5700
   A 0.24 0.07 -0.6 0 0 1002.7600 58.6425
   A 0.24 0.07 -0.6 0 0 1003.0007 58.7100
   A 0.24 0.07 -0.6 0 0 1003.2400 58.6375"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 127.76 59.92
   Q 132.49 61.01 136.93 59.92"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 989.21 59.33
   L 973.71 59.02"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 822.07 59.60
   L 821.62 59.79
   A 0.32 0.32 0.0 0 0 821.74 60.40
   L 853.69 60.40
   A 0.31 0.31 0.0 0 0 853.83 59.82
   Q 853.75 59.78 853.47 59.63"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 407.39 134.95
   Q 407.29 136.02 406.92 135.85
   Q 406.78 135.78 406.61 135.69
   A 0.68 0.68 0.0 0 0 406.29 135.61
   L 369.29 135.84"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 369.29 135.84
   Q 349.19 135.60 329.10 136.31
   C 324.80 136.46 320.24 135.75 316.25 135.79
   Q 305.16 135.90 294.01 135.97"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 294.01 135.97
   Q 275.44 135.75 256.82 135.61
   C 248.17 135.55 239.33 135.87 230.58 135.81
@@ -646,12 +841,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 173.18 135.78 142.00 135.66
   Q 140.14 135.65 138.32 135.63
   Q 124.12 135.43 110.04 136.10"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 110.04 136.10
   L 102.82 136.24"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 102.82 136.24
   Q 103.06 136.11 102.49 136.12
   Q 82.04 136.26 60.75 135.91
@@ -662,8 +863,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 31.02 135.63 23.78 135.70
   Q 19.24 135.74 14.73 135.63
   Q 7.35 135.44 0.00 135.45"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 89.92
   Q 5.36 89.25 11.00 88.99
   Q 15.86 88.77 20.25 89.14
@@ -706,8 +910,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.54 0.47 -49.1 0 0 32.38 85.04
   C 27.99 86.11 24.16 85.85 19.78 86.12
   Q 9.83 86.74 0.00 85.33"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 186.09 79.74
   Q 191.65 80.56 195.26 80.77
   Q 196.45 80.84 203.27 80.53
@@ -741,8 +948,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 209.40 79.10 190.00 79.16
   Q 186.18 79.17 186.01 79.26
   A 0.26 0.25 -54.7 0 0 186.09 79.74"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 186.78 116.73
   Q 192.89 117.59 198.77 117.25
   A 5.03 4.37 43.3 0 1 199.74 117.29
@@ -776,8 +986,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.22 0.22 0.0 0 0 186.61 116.45
   L 186.60 116.49
   A 0.22 0.21 -83.1 0 0 186.78 116.73"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 402.0097 116.4646
   A 0.26 0.26 0.0 0 0 401.7492 116.2050
   L 384.6093 116.2350
@@ -787,8 +1000,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 401.7507 117.0650
   A 0.26 0.26 0.0 0 0 402.0103 116.8046
   L 402.0097 116.4646"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 119.76 117.74
   Q 117.59 118.20 116.86 116.94
   A 0.53 0.51 -14.9 0 0 116.39 116.68
@@ -802,8 +1018,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 89.25 119.18 92.28 118.53 95.83 118.84
   Q 98.47 119.07 103.66 118.77
   Q 110.50 118.36 117.14 118.52"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 117.14 118.52
   Q 123.47 118.78 132.50 117.53
   C 138.03 116.77 145.60 118.00 150.27 117.97
@@ -814,12 +1033,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 154.34 116.60 149.83 116.64
   C 144.71 116.69 135.68 115.91 129.50 116.77
   Q 122.92 117.68 119.76 117.74"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 117.14 118.52
   Q 117.70 117.95 119.76 117.74"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 679.7796 78.7887
   A 0.30 0.30 0.0 0 0 679.4817 78.4866
   L 637.4827 78.1934
@@ -829,8 +1054,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 679.4773 79.1266
   A 0.30 0.30 0.0 0 0 679.7793 78.8287
   L 679.7796 78.7887"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 684.19 80.23
   Q 686.59 80.55 688.98 79.97
   A 2.20 1.90 33.3 0 1 689.52 79.90
@@ -857,8 +1085,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 695.85 79.14 691.06 79.48
   Q 687.81 79.71 684.21 79.88
   A 0.18 0.17 -42.1 0 0 684.19 80.23"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.06 80.72
   Q 509.67 80.51 507.28 80.47
   Q 505.33 80.43 497.19 80.69
@@ -871,15 +1102,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 473.34 82.68 506.38 80.92
   C 507.30 80.87 509.70 81.37 509.99 81.30
   A 0.32 0.31 52.3 0 0 510.06 80.72"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 896.3986 80.4332
   A 4.78 0.36 -1.4 0 0 891.6112 80.1901
   A 4.78 0.36 -1.4 0 0 886.8414 80.6668
   A 4.78 0.36 -1.4 0 0 891.6288 80.9099
   A 4.78 0.36 -1.4 0 0 896.3986 80.4332"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 625.9099 82.5480
   A 0.25 0.25 0.0 0 0 625.6612 82.2967
   L 607.8215 82.2033
@@ -889,34 +1126,49 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 625.6585 82.8167
   A 0.25 0.25 0.0 0 0 625.9098 82.5680
   L 625.9099 82.5480"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 615.00 87.24
   L 614.63 87.33
   A 0.01 0.01 0.0 0 0 614.64 87.35
   Q 614.81 87.36 615.00 87.24"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 615.00 87.24
   Q 616.62 87.51 617.92 87.03
   A 0.17 0.16 36.5 0 0 617.87 86.71
   Q 616.44 86.63 615.00 87.24"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 609.12 87.71
   Q 608.74 87.60 606.83 88.03
   A 0.13 0.13 0.0 0 0 606.87 88.28
   L 609.11 87.97
   A 0.13 0.13 0.0 0 0 609.12 87.71"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.7823 88.5098
   A 1.43 0.25 -11.3 0 0 602.3310 88.5448
   A 1.43 0.25 -11.3 0 0 600.9777 89.0702
   A 1.43 0.25 -11.3 0 0 602.4290 89.0352
   A 1.43 0.25 -11.3 0 0 603.7823 88.5098"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 850.16 98.06
   Q 854.01 97.97 857.21 97.49
   C 862.73 96.65 865.63 96.94 872.32 96.79
@@ -940,22 +1192,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.26 0.26 0.0 0 0 849.82 97.74
   L 849.82 97.75
   A 0.33 0.33 0.0 0 0 850.16 98.06"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 500.4081 96.9268
   A 5.47 0.23 -1.5 0 0 494.9340 96.8401
   A 5.47 0.23 -1.5 0 0 489.4719 97.2132
   A 5.47 0.23 -1.5 0 0 494.9460 97.2999
   A 5.47 0.23 -1.5 0 0 500.4081 96.9268"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 489.0290 97.6254
   A 0.30 0.05 -4.7 0 0 488.7259 97.6002
   A 0.30 0.05 -4.7 0 0 488.4310 97.6746
   A 0.30 0.05 -4.7 0 0 488.7341 97.6998
   A 0.30 0.05 -4.7 0 0 489.0290 97.6254"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.8119 97.6208
   A 0.27 0.27 0.0 0 0 487.5061 97.3921
   L 472.0854 99.6142
@@ -965,8 +1226,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 487.5946 98.0058
   A 0.27 0.27 0.0 0 0 487.8233 97.7000
   L 487.8119 97.6208"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 691.91 115.68
   Q 690.05 115.30 688.15 116.11
   Q 687.63 116.32 682.85 116.41
@@ -980,8 +1244,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 683.74 116.89 686.79 116.59
   Q 688.63 116.41 691.87 116.21
   A 0.27 0.27 0.0 0 0 691.91 115.68"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 940.43 119.33
   Q 944.80 119.25 949.25 119.18
   Q 953.89 119.11 956.67 118.81
@@ -995,8 +1262,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.02 0.01 -49.3 0 0 924.19 119.44
   Q 926.98 119.63 931.62 119.52
   Q 936.06 119.41 940.43 119.33"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 916.07 119.31
   Q 915.44 119.20 914.81 119.67
   A 0.05 0.05 0.0 0 0 914.82 119.76
@@ -1004,20 +1274,29 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.31 0.13 -13.4 0 0 915.14 119.84
   L 916.06 119.70
   A 0.20 0.20 0.0 0 0 916.07 119.31"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 920.19 119.76
   Q 920.67 120.05 921.03 120.02
   A 0.20 0.20 0.0 0 0 921.04 119.62
   Q 920.65 119.56 920.19 119.76"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 920.19 119.76
   Q 919.96 119.61 919.70 119.63
   A 0.01 0.00 47.9 0 0 919.70 119.64
   L 920.19 119.76"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 899.61 120.15
   L 899.61 120.35
   A 0.10 0.10 0.0 0 0 899.72 120.45
@@ -1027,19 +1306,28 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.81 0.18 -1.4 0 0 910.63 119.78
   L 899.71 120.05
   A 0.10 0.10 0.0 0 0 899.61 120.15"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 425.4040 121.6777
   A 0.42 0.15 -187.9 0 0 425.8406 121.7686
   A 0.42 0.15 -187.9 0 0 426.2360 121.5623
   A 0.42 0.15 -187.9 0 0 425.7994 121.4714
   A 0.42 0.15 -187.9 0 0 425.4040 121.6777"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 102.82 136.24
   Q 106.52 136.75 110.04 136.10"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 294.01 135.97
   Q 307.85 136.72 321.75 136.36
   Q 324.32 136.30 325.87 136.93
@@ -1050,8 +1338,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 371.92 136.23
   A 0.22 0.22 0.0 0 0 371.72 135.99
   L 369.29 135.84"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 190.71
   C 1020.78 194.21 1017.07 194.59 1012.27 194.49
   Q 1003.88 194.31 997.56 193.43
@@ -1060,17 +1351,26 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 973.28 194.46 970.34 196.34
   A 1.83 1.78 28.0 0 1 969.37 196.62
   L 955.04 196.67"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 955.04 196.67
   Q 949.18 194.75 944.79 194.73
   C 931.22 194.66 918.71 193.69 904.46 196.25"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 904.46 196.25
   Q 896.81 195.28 889.05 196.22"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 889.05 196.22
   Q 884.55 195.20 880.68 195.33
   C 871.65 195.62 856.89 196.80 844.48 196.20
@@ -1085,8 +1385,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 680.82 195.33 672.29 196.56
   A 0.67 0.67 0.0 0 0 671.72 197.20
   Q 671.69 198.08 672.30 198.98"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 782.34 154.57
   Q 773.80 153.22 770.27 153.24
   Q 756.61 153.33 747.22 154.33
@@ -1117,8 +1420,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.07 0.07 0.0 0 0 782.56 155.14
   L 782.58 154.86
   A 0.28 0.27 6.8 0 0 782.34 154.57"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 871.15 157.36
   A 0.13 0.13 0.0 0 0 871.01 157.24
   Q 861.00 158.03 851.49 157.54
@@ -1136,8 +1442,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 861.60 158.55 870.95 157.62
   A 0.23 0.23 0.0 0 0 871.16 157.37
   L 871.15 157.36"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1022.73 158.63
   A 0.51 0.51 0.0 0 0 1022.22 158.12
   L 977.62 158.12
@@ -1147,8 +1456,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1022.22 159.18
   A 0.51 0.51 0.0 0 0 1022.73 158.67
   L 1022.73 158.63"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 954.26 176.09
   Q 943.15 175.61 938.77 176.07
   Q 932.82 176.70 928.59 176.51
@@ -1187,8 +1499,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.13 0.13 0.0 0 0 954.40 176.25
   L 954.40 176.24
   A 0.14 0.14 0.0 0 0 954.26 176.09"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.4714 180.6109
   A 0.26 0.26 0.0 0 0 1023.2395 180.3256
   L 1012.1386 179.1784
@@ -1198,8 +1513,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1023.1614 181.0816
   A 0.26 0.26 0.0 0 0 1023.4467 180.8497
   L 1023.4714 180.6109"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 668.90 150.02
   L 666.46 141.32
   A 0.23 0.23 0.0 0 0 666.01 141.32
@@ -1235,20 +1553,32 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.75 4.56 41.0 0 0 287.52 196.52
   Q 284.97 196.88 283.25 196.77
   Q 270.74 196.03 258.71 196.76"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 258.71 196.76
   L 247.83 196.92"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 247.83 196.92
   L 240.47 196.88"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 240.47 196.88
   L 208.45 196.91"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 208.45 196.91
   Q 197.05 196.47 185.50 196.61
   C 166.38 196.85 148.14 196.72 131.44 196.69
@@ -1261,8 +1591,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 0.71 197.49
   A 0.30 0.29 -43.0 0 1 0.69 198.03
   Q 0.21 198.22 0.31 198.84"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 87.26 177.64
   C 85.88 178.12 82.73 176.18 80.37 176.44
   Q 78.50 176.65 77.65 176.64
@@ -1279,8 +1612,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.84 4.80 -39.5 0 1 82.32 177.02
   Q 87.21 178.51 87.57 178.15
   A 0.31 0.30 -76.5 0 0 87.26 177.64"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.8381 175.8916
   A 0.27 0.27 0.0 0 0 521.5644 175.6254
   L 486.5278 176.1146
@@ -1290,8 +1626,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 521.5722 176.1854
   A 0.27 0.27 0.0 0 0 521.8384 175.9116
   L 521.8381 175.8916"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 622.73 180.03
   Q 631.00 179.30 634.15 178.55
   Q 636.96 177.87 640.47 178.23
@@ -1303,15 +1642,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.66 2.49 -54.4 0 0 628.51 177.07
   L 622.57 179.36
   A 0.35 0.35 0.0 0 0 622.73 180.03"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 174.76 177.68
   Q 170.10 177.16 165.28 177.86
   L 165.27 177.87
   Q 169.87 177.92 174.46 177.88
   Q 174.78 177.88 174.76 177.68"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 174.76 177.68
   Q 180.91 178.93 184.74 178.46
   Q 190.32 177.77 193.18 179.00
@@ -1327,8 +1672,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 196.17 178.31 192.75 177.95
   C 191.79 177.85 189.90 177.46 188.72 177.50
   Q 181.78 177.71 174.76 177.68"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 244.5591 176.1359
   A 0.39 0.39 0.0 0 0 244.1651 175.7500
   L 221.2463 175.9900
@@ -1338,22 +1686,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 244.1737 176.5700
   A 0.39 0.39 0.0 0 0 244.5596 176.1759
   L 244.5591 176.1359"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 361.0756 178.4726
   A 3.16 0.30 -176.6 0 0 364.2122 178.9595
   A 3.16 0.30 -176.6 0 0 367.3844 178.8474
   A 3.16 0.30 -176.6 0 0 364.2478 178.3605
   A 3.16 0.30 -176.6 0 0 361.0756 178.4726"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 554.21 180.62
   Q 550.35 183.81 558.75 182.21
   Q 560.92 181.79 567.99 182.35
   A 1.91 1.90 -49.9 0 0 568.66 182.29
   L 575.58 180.56"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.58 180.56
   Q 572.93 180.21 571.20 180.15
   C 568.48 180.05 566.54 179.26 564.13 179.38
@@ -1366,14 +1723,20 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 537.75 180.98 542.60 179.44
   A 1.33 1.30 -38.4 0 1 543.66 179.55
   C 546.84 181.41 550.73 180.81 554.21 180.62"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.58 180.56
   Q 571.46 181.01 568.74 180.73
   Q 563.91 180.21 563.69 180.22
   Q 558.95 180.27 554.21 180.62"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 617.3034 179.1662
   A 0.27 0.27 0.0 0 0 617.0188 178.9117
   L 600.6044 179.8294
@@ -1383,12 +1746,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 617.0556 179.5706
   A 0.27 0.27 0.0 0 0 617.3101 179.2860
   L 617.3034 179.1662"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 461.00 183.11
   L 457.90 185.27"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 457.90 185.27
   C 452.87 185.34 447.01 184.38 442.98 184.32
   C 439.77 184.27 434.38 184.21 429.35 183.72
@@ -1398,31 +1767,49 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.19 0.19 0.0 0 0 399.78 184.40
   Q 413.29 183.73 426.75 184.15
   Q 428.39 184.20 433.75 184.92"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.75 184.92
   Q 435.43 186.80 437.90 187.56"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 437.90 187.56
   L 450.96 188.45"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.96 188.45
   Q 456.78 188.28 463.68 188.32
   Q 467.51 188.34 470.48 186.20"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 470.48 186.20
   C 474.43 186.06 478.36 186.19 479.94 185.57
   A 0.22 0.22 0.0 0 0 479.88 185.14
   L 478.80 185.06"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 478.80 185.06
   L 475.77 183.43"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.77 183.43
   Q 478.61 183.14 481.06 181.64
   A 1.87 1.85 30.4 0 1 482.08 181.38
@@ -1434,24 +1821,39 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.17 2.12 21.0 0 0 480.35 180.97
   Q 479.83 181.47 479.39 181.58
   Q 470.41 183.88 461.00 183.11"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.77 183.43
   Q 468.24 184.55 461.00 183.11"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 457.90 185.27
   L 478.80 185.06"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 470.48 186.20
   C 458.17 186.70 446.03 184.96 433.75 184.92"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 450.96 188.45
   Q 443.99 186.70 437.90 187.56"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 185.92 181.81
   Q 187.37 181.73 187.92 181.67
   A 0.02 0.02 0.0 0 0 187.92 181.63
@@ -1459,8 +1861,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 185.17 181.40 183.91 181.86
   A 0.02 0.02 0.0 0 0 183.91 181.90
   Q 184.46 181.90 185.92 181.81"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 399.1067 181.2635
   A 0.26 0.26 0.0 0 0 398.8271 181.0247
   L 378.8489 182.5970
@@ -1470,8 +1875,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 398.8711 181.5830
   A 0.26 0.26 0.0 0 0 399.1099 181.3034
   L 399.1067 181.2635"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.1156 181.5804
   A 0.27 0.27 0.0 0 0 602.8400 181.3161
   L 576.6857 181.8640
@@ -1481,22 +1889,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 602.8543 181.9960
   A 0.27 0.27 0.0 0 0 603.1185 181.7204
   L 603.1156 181.5804"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 188.2846 181.7289
   A 2.24 0.28 -171.5 0 0 190.4586 182.3369
   A 2.24 0.28 -171.5 0 0 192.7154 182.3911
   A 2.24 0.28 -171.5 0 0 190.5414 181.7831
   A 2.24 0.28 -171.5 0 0 188.2846 181.7289"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 368.2511 182.0482
   A 4.86 0.23 -178.8 0 0 373.1052 182.3799
   A 4.86 0.23 -178.8 0 0 377.9689 182.2518
   A 4.86 0.23 -178.8 0 0 373.1148 181.9201
   A 4.86 0.23 -178.8 0 0 368.2511 182.0482"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.80 185.32
   Q 548.26 185.31 548.09 185.53
   A 0.20 0.20 0.0 0 0 548.25 185.85
@@ -1505,8 +1922,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 567.57 185.40 567.57 185.38
   A 0.09 0.07 1.0 0 0 567.50 185.32
   L 564.70 185.18"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.70 185.18
   L 568.31 184.82
   A 0.66 0.66 0.0 0 0 568.39 183.52
@@ -1514,29 +1934,44 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 555.44 183.53 548.57 184.14
   A 0.51 0.51 0.0 0 0 548.18 184.91
   Q 548.34 185.17 548.80 185.32"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.70 185.18
   L 548.80 185.32"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 433.7049 187.6134
   A 1.91 0.20 -175.9 0 0 435.5957 187.9495
   A 1.91 0.20 -175.9 0 0 437.5151 187.8866
   A 1.91 0.20 -175.9 0 0 435.6243 187.5505
   A 1.91 0.20 -175.9 0 0 433.7049 187.6134"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 208.45 196.91
   L 240.96 197.40
   A 0.30 0.29 74.0 0 0 241.21 196.94
   Q 241.14 196.82 240.47 196.88"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 247.83 196.92
   Q 253.53 198.27 258.71 196.76"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 929.54 198.89
   L 925.26 198.60
   A 0.43 0.43 0.0 0 1 925.24 197.74
@@ -1550,12 +1985,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.49 0.12 -11.5 0 0 945.21 196.69
   Q 946.40 196.47 948.28 196.79
   Q 949.67 197.03 955.04 196.67"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 889.05 196.22
   L 904.46 196.25"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.46 200.31
   L 462.19 200.68
   A 0.44 0.44 0.0 0 0 462.53 201.38
@@ -1566,8 +2007,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 495.32 201.38 501.66 200.62 504.69 202.00
   A 0.28 0.28 0.0 0 1 504.71 202.50
   C 499.20 205.39 496.06 207.89 495.33 214.12"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 495.33 214.12
   Q 487.50 214.83 479.70 214.49
   Q 468.27 214.01 466.28 214.16
@@ -1585,14 +2029,20 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 446.85 214.92 449.33 215.98 451.70 216.08
   Q 456.75 216.28 465.17 215.64
   C 471.82 215.13 479.38 215.91 486.49 215.96"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.49 215.96
   Q 481.03 221.82 474.81 226.89
   C 469.94 230.86 463.98 234.14 458.36 237.46
   Q 453.09 240.56 448.90 247.91"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.90 247.91
   Q 445.12 248.25 441.64 248.62
   Q 454.01 247.97 465.80 249.65
@@ -1601,16 +2051,25 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 483.92 250.39
   A 0.16 0.16 0.0 0 0 483.77 250.22
   L 476.77 249.46"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.77 249.46
   Q 481.89 248.19 486.90 248.91"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.90 248.91
   L 529.20 249.02"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.20 249.02
   L 522.47 249.25
   A 0.19 0.19 0.0 0 0 522.39 249.61
@@ -1625,8 +2084,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 546.81 266.95
   A 0.24 0.24 0.0 0 1 546.54 267.14
   Q 538.46 265.94 531.17 268.50"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 531.17 268.50
   C 524.75 268.98 518.57 268.13 512.13 268.13
   C 507.69 268.12 502.11 268.89 498.59 269.11
@@ -1642,8 +2104,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 282.77 267.72 274.14 268.30
   Q 264.15 268.97 258.34 268.74
   Q 247.99 268.32 245.27 268.38"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 245.27 268.38
   L 257.55 268.12
   A 0.32 0.32 0.0 0 0 257.86 267.80
@@ -1662,14 +2127,20 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 72.88 268.02 58.47 267.18 48.81 267.19
   Q 48.77 267.19 39.44 266.85
   Q 30.54 266.52 21.70 267.99"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 21.70 267.99
   L 0.87 269.10
   A 0.65 0.64 0.5 0 0 0.26 269.69
   Q 0.21 270.24 0.53 270.91"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 24.90 219.96
   Q 38.33 219.95 46.75 220.27
   Q 48.01 220.32 48.93 219.95
@@ -1681,22 +2152,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.14 0.14 0.0 0 0 0.88 219.98
   Q 1.80 220.35 3.06 220.29
   Q 11.48 219.96 24.90 219.96"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 51.9877 219.5965
   A 1.17 0.13 -3.6 0 0 50.8118 219.5403
   A 1.17 0.13 -3.6 0 0 49.6523 219.7435
   A 1.17 0.13 -3.6 0 0 50.8282 219.7997
   A 1.17 0.13 -3.6 0 0 51.9877 219.5965"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 54.27 219.91
   Q 54.48 219.92 54.63 219.79
   A 0.21 0.20 -47.4 0 0 54.62 219.47
   Q 54.40 219.30 54.26 219.30
   A 0.31 0.31 0.0 0 0 54.27 219.91"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 34.00 222.50
   C 34.35 222.00 38.04 223.01 39.94 222.47
   C 41.35 222.08 42.42 222.97 43.81 222.95
@@ -1708,13 +2188,19 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 40.54 221.62 39.30 222.21 37.85 222.07
   Q 34.23 221.70 33.87 222.43
   A 0.08 0.07 -15.6 0 0 34.00 222.50"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 28.59 222.36
   Q 28.75 222.49 28.93 222.39
   Q 28.78 222.26 28.59 222.36"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 139.93 224.12
   A 0.17 0.17 0.0 0 0 139.76 223.97
   L 99.50 223.56
@@ -1743,15 +2229,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 139.80 224.28
   A 0.13 0.13 0.0 0 0 139.93 224.15
   L 139.93 224.12"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 33.5161 222.5611
   A 1.26 0.17 -4.5 0 0 32.2467 222.4905
   A 1.26 0.17 -4.5 0 0 31.0039 222.7589
   A 1.26 0.17 -4.5 0 0 32.2733 222.8295
   A 1.26 0.17 -4.5 0 0 33.5161 222.5611"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 223.2599 224.2888
   A 0.28 0.28 0.0 0 0 222.9814 224.0073
   L 155.2423 223.6527
@@ -1761,8 +2253,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 222.9777 224.7073
   A 0.28 0.28 0.0 0 0 223.2592 224.4288
   L 223.2599 224.2888"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 153.9900 224.0722
   A 0.21 0.21 0.0 0 0 153.7807 223.8615
   L 141.4808 223.8185
@@ -1772,8 +2267,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 153.7792 224.3015
   A 0.21 0.21 0.0 0 0 153.9899 224.0922
   L 153.9900 224.0722"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 358.35 241.62
   Q 356.89 241.10 352.90 242.77
   A 1.69 1.62 27.7 0 1 352.59 242.86
@@ -1791,8 +2289,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 351.91 243.49 352.32 243.68
   Q 354.93 244.89 358.02 244.53
   A 1.50 1.50 0.0 0 0 358.35 241.62"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 284.15 245.54
   Q 292.25 244.68 299.61 245.49
   C 303.49 245.92 307.15 245.48 312.14 245.43
@@ -1812,8 +2313,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.08 0.08 0.0 0 0 283.89 244.95
   L 283.83 245.17
   A 0.30 0.30 0.0 0 0 284.15 245.54"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 280.9420 245.8466
   A 0.27 0.27 0.0 0 0 280.6792 245.5696
   L 260.8660 245.0508
@@ -1823,8 +2327,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 280.6540 246.5292
   A 0.27 0.27 0.0 0 0 280.9310 246.2664
   L 280.9420 245.8466"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 435.28 251.27
   A 0.39 0.38 16.3 0 0 435.02 250.80
   Q 432.54 250.02 429.19 249.55
@@ -1854,8 +2361,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 434.79 251.57
   A 0.42 0.41 -74.1 0 0 435.28 251.29
   L 435.28 251.27"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 91.66 252.05
   L 118.23 253.14
   A 2.62 2.60 -56.2 0 0 119.47 252.89
@@ -1883,22 +2393,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.55 0.55 0.0 0 0 92.45 252.92
   L 91.55 252.58
   A 0.27 0.27 0.0 0 1 91.66 252.05"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 215.2615 253.4124
   A 1.49 0.27 -177.4 0 0 216.7378 253.7497
   A 1.49 0.27 -177.4 0 0 218.2385 253.5476
   A 1.49 0.27 -177.4 0 0 216.7622 253.2103
   A 1.49 0.27 -177.4 0 0 215.2615 253.4124"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 134.7316 254.6899
   A 0.36 0.18 -22.9 0 0 134.3300 254.6642
   A 0.36 0.18 -22.9 0 0 134.0684 254.9701
   A 0.36 0.18 -22.9 0 0 134.4700 254.9958
   A 0.36 0.18 -22.9 0 0 134.7316 254.6899"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.71 340.99
   Q 1023.82 339.50 1023.37 338.37
   A 0.90 0.89 -7.8 0 0 1022.64 337.82
@@ -1930,8 +2449,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 552.92 340.85 541.25 339.45 530.86 339.99
   C 521.83 340.46 511.64 339.67 501.19 340.05
   Q 496.04 340.24 491.72 337.82"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 895.67 225.09
   Q 908.63 225.50 920.84 220.80
   Q 928.90 217.70 937.25 217.61
@@ -1953,8 +2475,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.23 0.23 0.0 0 0 895.33 224.72
   L 895.33 224.74
   A 0.36 0.35 90.0 0 0 895.67 225.09"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1007.77 221.28
   C 1002.68 221.50 997.69 222.40 992.57 222.24
   A 0.35 0.35 0.0 0 0 992.21 222.59
@@ -1968,8 +2493,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1023.38 221.24
   A 0.35 0.35 0.0 0 0 1022.99 220.92
   C 1017.90 221.53 1012.86 221.06 1007.77 221.28"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.5682 272.5450
   A 0.42 0.42 0.0 0 0 1023.1431 272.1302
   L 978.9664 272.6699
@@ -1979,27 +2507,39 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1023.1536 272.9901
   A 0.42 0.42 0.0 0 0 1023.5684 272.5650
   L 1023.5682 272.5450"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 669.1277 291.0167
   A 18.67 0.40 -0.9 0 0 650.4537 290.9100
   A 18.67 0.40 -0.9 0 0 631.7923 291.6033
   A 18.67 0.40 -0.9 0 0 650.4663 291.7100
   A 18.67 0.40 -0.9 0 0 669.1277 291.0167"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 670.47 291.62
   Q 672.46 292.44 674.64 292.28
   A 0.18 0.17 52.3 0 0 674.68 291.94
   Q 672.76 291.24 670.47 291.62"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 670.47 291.62
   Q 670.28 291.24 670.05 291.21
   A 0.16 0.12 49.7 0 0 670.07 291.49
   Q 670.28 291.56 670.47 291.62"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 726.4098 292.0509
   A 0.27 0.27 0.0 0 0 726.1394 291.7814
   L 681.9194 291.8586
@@ -2009,8 +2549,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 726.1406 292.4814
   A 0.27 0.27 0.0 0 0 726.4101 292.2109
   L 726.4098 292.0509"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 909.62 291.42
   A 0.25 0.25 0.0 0 0 909.31 291.23
   Q 901.71 293.27 899.73 293.41
@@ -2032,8 +2575,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 901.14 294.00 906.56 292.68 909.59 291.82
   A 0.14 0.13 -15.4 0 0 909.68 291.67
   L 909.62 291.42"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 727.14 292.06
   L 728.13 292.62
   A 1.04 1.00 -27.7 0 0 728.61 292.76
@@ -2060,8 +2606,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.10 3.10 0.0 0 1 728.94 292.24
   Q 727.28 291.65 727.27 291.65
   A 0.22 0.22 0.0 0 0 727.14 292.06"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1008.6740 293.4839
   A 0.26 0.26 0.0 0 0 1008.4318 293.2073
   L 984.7440 291.6339
@@ -2071,8 +2620,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1008.3960 293.7461
   A 0.26 0.26 0.0 0 0 1008.6727 293.5039
   L 1008.6740 293.4839"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 613.3414 292.7191
   A 0.42 0.42 0.0 0 0 612.9035 292.3179
   L 576.5981 293.9030
@@ -2082,8 +2634,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 612.9419 293.1970
   A 0.42 0.42 0.0 0 0 613.3432 292.7591
   L 613.3414 292.7191"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 981.44 293.35
   A 0.25 0.25 0.0 0 0 981.19 293.11
   Q 973.41 293.18 968.54 293.24
@@ -2099,22 +2654,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 981.25 293.99
   A 0.23 0.22 88.7 0 0 981.46 293.76
   L 981.44 293.35"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 646.0889 293.8268
   A 3.18 0.22 -1.5 0 0 642.9042 293.6901
   A 3.18 0.22 -1.5 0 0 639.7311 293.9932
   A 3.18 0.22 -1.5 0 0 642.9158 294.1299
   A 3.18 0.22 -1.5 0 0 646.0889 293.8268"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 656.4899 295.8900
   A 1.64 0.17 -0.7 0 0 654.8479 295.7400
   A 1.64 0.17 -0.7 0 0 653.2101 295.9300
   A 1.64 0.17 -0.7 0 0 654.8521 296.0800
   A 1.64 0.17 -0.7 0 0 656.4899 295.8900"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 840.1788 296.9789
   A 0.27 0.27 0.0 0 0 839.9046 296.7132
   L 828.8460 296.8869
@@ -2124,8 +2688,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 839.9140 297.3131
   A 0.27 0.27 0.0 0 0 840.1798 297.0389
   L 840.1788 296.9789"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.14 306.40
   L 535.82 313.00
   A 3.20 3.09 -57.3 0 0 535.27 313.13
@@ -2138,8 +2705,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 569.79 309.63 580.66 307.66
   Q 583.54 307.15 584.19 306.49
   A 0.06 0.05 17.6 0 0 584.14 306.40"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 858.97 270.21
   Q 857.91 270.17 857.73 266.90
   A 0.14 0.14 0.0 0 0 857.60 266.77
@@ -2150,15 +2720,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 855.51 267.04
   A 0.87 0.87 0.0 0 1 855.99 268.60
   Q 855.89 268.68 854.90 268.63"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 854.90 268.63
   L 849.07 268.86
   A 0.58 0.21 25.1 0 1 848.96 268.85
   Q 844.19 268.35 838.50 269.09
   Q 837.88 269.17 837.72 268.78"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 837.72 268.78
   Q 836.14 267.86 834.28 268.16
   A 0.05 0.04 77.6 0 1 834.23 268.12
@@ -2180,24 +2756,36 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 705.70 266.50 688.59 266.74
   C 680.41 266.85 674.19 265.11 666.30 265.94
   C 656.93 266.93 649.98 268.00 639.04 268.46"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 639.04 268.46
   L 637.51 268.38"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 637.51 268.38
   Q 629.12 266.70 620.80 268.26"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 620.80 268.26
   Q 607.76 268.31 594.74 268.67
   Q 591.82 268.75 585.41 268.25
   Q 580.75 267.88 576.10 268.12
   Q 566.10 268.62 553.61 268.41
   C 546.18 268.28 538.66 268.47 531.17 268.50"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.20 249.02
   Q 536.41 248.63 543.62 248.79
   C 549.40 248.92 554.89 248.59 560.17 248.43
@@ -2218,13 +2806,19 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 556.01 247.90 549.64 247.91
   Q 516.21 247.98 507.50 247.96
   Q 497.17 247.93 486.90 248.91"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.77 249.46
   Q 472.32 249.72 465.07 248.64
   Q 459.51 247.81 448.90 247.91"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.49 215.96
   Q 504.15 214.65 512.50 214.92
   Q 523.36 215.27 529.50 215.40
@@ -2244,8 +2838,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 577.28 217.09 570.97 217.76 565.49 217.00
   C 560.50 216.30 556.14 216.50 549.82 215.88
   Q 522.60 213.22 495.33 214.12"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 725.47 224.70
   L 759.28 225.15
   A 2.92 2.83 51.7 0 1 760.03 225.25
@@ -2266,8 +2863,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.21 0.20 85.2 0 0 725.32 224.55
   L 725.32 224.56
   A 0.15 0.15 0.0 0 0 725.47 224.70"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 703.44 228.39
   A 0.07 0.07 0.0 0 0 703.51 228.45
   Q 714.21 227.72 715.50 227.80
@@ -2288,8 +2888,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 721.92 226.30 712.58 227.31 703.50 227.47
   A 0.22 0.22 0.0 0 0 703.29 227.74
   L 703.44 228.39"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 794.7900 226.6274
   A 0.38 0.38 0.0 0 0 794.4107 226.2467
   L 786.7107 226.2333
@@ -2299,8 +2902,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 794.4093 227.0467
   A 0.38 0.38 0.0 0 0 794.7900 226.6674
   L 794.7900 226.6274"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 810.4688 229.2677
   A 0.27 0.27 0.0 0 0 810.2218 228.9765
   L 795.2523 227.7458
@@ -2310,15 +2916,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 810.1677 229.6342
   A 0.27 0.27 0.0 0 0 810.4589 229.3873
   L 810.4688 229.2677"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 830.15 230.44
   A 2.90 0.37 0.0 0 0 827.25 230.07
   A 2.90 0.37 0.0 0 0 824.35 230.44
   A 2.90 0.37 0.0 0 0 827.25 230.81
   A 2.90 0.37 0.0 0 0 830.15 230.44"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 800.43 244.56
   Q 807.03 245.29 813.32 244.04
   A 4.57 4.36 -46.4 0 1 814.58 243.98
@@ -2337,22 +2949,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.17 0.17 0.0 0 0 800.34 244.44
   L 800.33 244.45
   A 0.11 0.11 0.0 0 0 800.43 244.56"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 802.5401 258.4017
   A 4.06 0.29 -179.6 0 0 806.5980 258.7200
   A 4.06 0.29 -179.6 0 0 810.6599 258.4583
   A 4.06 0.29 -179.6 0 0 806.6020 258.1400
   A 4.06 0.29 -179.6 0 0 802.5401 258.4017"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 850.3888 258.2587
   A 0.98 0.27 -172.3 0 0 851.3238 258.6576
   A 0.98 0.27 -172.3 0 0 852.3312 258.5213
   A 0.98 0.27 -172.3 0 0 851.3962 258.1224
   A 0.98 0.27 -172.3 0 0 850.3888 258.2587"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 837.72 268.78
   L 836.43 268.89
   A 0.07 0.05 -5.2 0 0 836.39 268.92
@@ -2361,13 +2982,19 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 856.14 269.66
   A 0.35 0.35 0.0 0 0 856.36 269.04
   Q 855.94 268.71 854.90 268.63"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 688.77 270.82
   Q 678.54 268.24 672.26 268.63
   Q 655.65 269.67 639.04 268.46"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 818.67 268.50
   L 809.41 267.07
   A 0.05 0.05 0.0 0 0 809.35 267.11
@@ -2377,15 +3004,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.12 0.12 0.0 0 0 818.66 268.76
   L 818.69 268.52
   A 0.02 0.02 0.0 0 0 818.67 268.50"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 701.0696 267.8916
   A 0.39 0.07 -2.7 0 0 700.6767 267.8401
   A 0.39 0.07 -2.7 0 0 700.2904 267.9284
   A 0.39 0.07 -2.7 0 0 700.6833 267.9799
   A 0.39 0.07 -2.7 0 0 701.0696 267.8916"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 245.27 268.38
   Q 233.61 267.28 221.94 267.81
   Q 207.09 268.48 204.20 268.48
@@ -2394,29 +3027,44 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 132.36 269.14 120.06 267.79 110.58 267.95
   Q 96.59 268.19 75.30 268.13
   C 61.55 268.09 39.58 268.43 21.70 267.99"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 637.51 268.38
   Q 629.08 269.29 620.80 268.26"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 23.79 272.43
   L 20.70 273.07
   A 0.30 0.30 0.0 0 0 20.76 273.67
   L 195.59 273.89"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 195.59 273.89
   Q 194.91 276.35 198.62 275.26
   Q 200.41 274.73 202.04 273.78"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 202.04 273.78
   L 373.29 273.87
   A 0.43 0.43 0.0 0 0 373.69 273.28
   Q 373.53 272.87 373.03 272.47"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 490.44 337.70
   Q 465.34 338.30 440.07 338.39
   C 430.97 338.42 423.10 337.46 414.36 337.80
@@ -2443,12 +3091,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 38.92 339.46 28.76 338.54 21.42 338.39
   Q 12.99 338.21 4.53 339.19
   Q 3.28 339.34 0.32 340.59"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.32 340.59
   L 0.00 341.88"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 209.4398 287.2139
   A 0.69 0.69 0.0 0 0 208.7474 286.5263
   L 149.3277 286.7337
@@ -2458,15 +3112,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 208.7523 287.9263
   A 0.69 0.69 0.0 0 0 209.4398 287.2339
   L 209.4398 287.2139"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 168.3107 295.4530
   A 4.01 0.49 -178.9 0 0 172.3106 296.0199
   A 4.01 0.49 -178.9 0 0 176.3293 295.6070
   A 4.01 0.49 -178.9 0 0 172.3294 295.0401
   A 4.01 0.49 -178.9 0 0 168.3107 295.4530"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 109.03 301.30
   Q 104.54 301.44 100.00 300.95
   Q 98.31 300.76 88.25 301.64
@@ -2494,8 +3154,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 80.73 303.05 89.53 303.04 97.65 302.44
   Q 101.26 302.18 105.52 302.84
   Q 108.84 303.36 112.80 302.29"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 112.80 302.29
   Q 118.30 301.12 123.94 300.96
   Q 130.68 300.76 133.26 300.33
@@ -2505,12 +3168,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.33 0.33 0.0 0 0 143.28 298.11
   Q 135.88 298.36 128.50 298.41
   C 122.17 298.45 115.42 299.87 109.03 301.30"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 112.80 302.29
   L 109.03 301.30"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 323.08 304.67
   A 0.48 0.47 -1.2 0 0 323.56 305.12
   Q 326.75 305.11 329.57 304.85
@@ -2538,12 +3207,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 323.36 304.04
   A 0.30 0.29 -1.9 0 0 323.07 304.34
   L 323.08 304.67"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 202.04 273.78
   L 195.59 273.89"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 380.82 342.10
   Q 362.98 341.36 345.15 341.63
   C 325.58 341.93 308.53 341.68 292.50 341.73
@@ -2551,17 +3226,26 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 183.85 342.11 180.25 342.03
   Q 164.84 341.66 136.84 341.85
   Q 133.06 341.87 129.26 342.36"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 129.26 342.36
   L 128.80 343.30"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 128.80 343.30
   Q 128.47 342.89 128.25 342.89
   Q 100.42 343.27 72.51 343.01"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 72.51 343.01
   Q 80.75 341.33 89.16 341.75
   A 0.25 0.25 0.0 0 0 89.42 341.51
@@ -2569,46 +3253,76 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.23 0.23 0.0 0 0 89.19 341.26
   Q 62.15 341.20 35.11 341.06
   C 25.03 341.01 11.91 341.26 0.32 340.59"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 72.51 343.01
   L 0.00 343.03"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 366.02 342.89
   L 130.97 342.95"
-/>
-<path stroke="#1f150b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1f150b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 130.97 342.95
   Q 130.28 342.44 129.26 342.36"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 411.72
   L 1023.73 411.90"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.73 411.90
   L 937.78 411.88"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 937.78 411.88
   Q 933.99 410.39 930.49 411.82"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 930.49 411.82
   L 908.54 411.86"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 908.54 411.86
   L 909.53 410.82"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 909.53 410.82
   Q 909.81 410.65 909.92 410.45
   Q 910.05 410.22 909.84 409.98
   Q 909.63 409.76 909.28 409.62"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 909.28 409.62
   Q 916.62 408.10 919.55 408.36
   Q 931.35 409.40 943.50 407.75
@@ -2624,8 +3338,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 781.38 407.07 771.17 408.80 761.09 408.16
   C 758.05 407.97 753.63 407.63 752.67 404.26
   Q 751.22 399.25 754.28 394.63"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 908.75 357.99
   Q 903.93 358.86 899.99 358.68
   Q 898.82 358.63 898.28 358.96
@@ -2635,8 +3352,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 918.83 357.98 919.37 357.65
   A 0.18 0.17 29.6 0 0 919.28 357.32
   Q 912.50 357.29 908.75 357.99"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 892.62 359.61
   Q 887.79 359.44 877.94 360.05
   Q 866.23 360.76 860.47 360.69
@@ -2651,8 +3371,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 838.19 360.48 851.87 361.50 860.73 361.31
   Q 874.86 361.01 892.62 360.09
   A 0.24 0.24 0.0 0 0 892.62 359.61"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 785.1297 359.9821
   A 0.26 0.26 0.0 0 0 784.8616 359.7304
   L 767.6901 360.2700
@@ -2662,24 +3385,36 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 784.8899 360.6300
   A 0.26 0.26 0.0 0 0 785.1416 360.3619
   L 785.1297 359.9821"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 130.97 342.95
   Q 130.60 342.78 130.32 343.01
   A 0.28 0.27 72.6 0 0 130.21 343.23
   L 130.00 407.74"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 130.00 407.74
   L 129.88 410.75
   A 1.17 1.17 0.0 0 0 131.05 411.97
   L 908.54 411.86"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 930.49 411.82
   L 937.78 411.88"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.73 411.90
   Q 1024.03 412.76 1023.45 413.05
   A 0.23 0.11 18.4 0 1 1023.38 413.06
@@ -2688,8 +3423,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 331.97 482.48
   A 0.56 0.55 -85.8 0 0 332.44 483.03
   Q 333.38 483.18 334.38 482.94"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 334.38 482.94
   Q 342.66 483.39 355.00 483.20
   Q 361.26 483.10 382.66 483.26
@@ -2711,16 +3449,25 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 662.82 484.50
   A 1.11 1.11 0.0 0 0 661.71 485.60
   L 661.41 557.02"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.41 557.02
   Q 660.46 557.28 660.33 556.25"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 660.33 556.25
   L 660.26 551.87"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 660.26 551.87
   L 660.60 485.20
   A 0.67 0.67 0.0 0 0 659.93 484.52
@@ -2733,30 +3480,45 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 313.92 484.67 287.25 484.68
   Q 147.11 484.71 8.50 484.57
   Q 4.25 484.57 0.00 484.52"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 483.13
   L 131.31 483.07"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 131.31 483.07
   L 329.75 483.20
   A 0.72 0.72 0.0 0 0 330.47 482.48
   L 330.47 413.62
   A 0.68 0.68 0.0 0 0 329.79 412.94
   L 0.00 412.84"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 411.82
   L 128.45 411.69
   A 0.50 0.50 0.0 0 0 128.95 411.19
   L 128.88 343.47"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 128.88 343.47
   Q 128.84 343.38 128.80 343.30"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 128.88 343.47
   L 125.71 343.76
   A 0.53 0.52 83.3 0 0 125.24 344.36
@@ -2782,34 +3544,49 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 125.02 404.93
   A 2.01 2.01 0.0 0 1 123.15 406.91
   L 114.77 407.52"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 114.77 407.52
   L 95.31 406.90"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 95.31 406.90
   Q 92.45 407.26 89.61 407.34
   Q 73.62 407.81 57.68 407.65
   Q 43.20 407.50 31.37 407.88
   Q 17.61 408.32 5.07 408.53
   Q 2.52 408.58 0.00 409.01"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 124.8284 352.3816
   A 0.53 0.18 -94.5 0 0 124.6906 352.9241
   A 0.53 0.18 -94.5 0 0 124.9116 353.4384
   A 0.53 0.18 -94.5 0 0 125.0494 352.8959
   A 0.53 0.18 -94.5 0 0 124.8284 352.3816"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 96.7197 364.5873
   A 4.31 0.46 -0.7 0 0 92.4044 364.1800
   A 4.31 0.46 -0.7 0 0 88.1003 364.6927
   A 4.31 0.46 -0.7 0 0 92.4156 365.1000
   A 4.31 0.46 -0.7 0 0 96.7197 364.5873"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 87.19 391.62
   C 80.43 391.40 70.78 391.67 61.98 391.09
   Q 54.77 390.62 42.24 390.68
@@ -2823,12 +3600,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 71.57 392.28 77.45 392.08 87.03 391.83
   Q 87.19 391.82 87.24 391.69
   A 0.06 0.05 12.7 0 0 87.19 391.62"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 728.28 407.20
   L 724.45 407.46"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 724.45 407.46
   C 714.95 406.99 703.39 407.60 696.05 407.45
   C 687.68 407.27 682.14 407.21 674.76 407.53
@@ -2838,14 +3621,20 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 597.74 407.69 591.40 407.14 585.87 407.39
   Q 579.90 407.67 572.00 407.43
   Q 570.93 407.40 567.71 407.82"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 567.71 407.82
   Q 543.66 406.34 519.58 406.99
   Q 503.70 407.42 496.27 407.40
   Q 484.61 407.36 472.95 407.33"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.95 407.33
   Q 465.09 407.00 457.19 407.36
   Q 450.92 407.64 446.72 407.39
@@ -2857,30 +3646,45 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 321.40 407.03 304.26 407.68
   Q 292.36 408.12 262.35 407.22
   Q 232.21 406.30 175.88 407.91"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 175.88 407.91
   L 143.17 407.50"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 143.17 407.50
   L 130.00 407.74"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 155.3312 345.3472
   A 0.30 0.17 -185.2 0 0 155.6454 345.4893
   A 0.30 0.17 -185.2 0 0 155.9288 345.2928
   A 0.30 0.17 -185.2 0 0 155.6146 345.1507
   A 0.30 0.17 -185.2 0 0 155.3312 345.3472"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 135.5399 346.4027
   A 0.30 0.12 -1.4 0 0 135.2371 346.2900
   A 0.30 0.12 -1.4 0 0 134.9401 346.4173
   A 0.30 0.12 -1.4 0 0 135.2429 346.5300
   A 0.30 0.12 -1.4 0 0 135.5399 346.4027"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 132.10 366.13
   A 0.24 0.24 0.0 0 0 132.37 366.37
   Q 138.99 365.42 145.70 365.75
@@ -2943,8 +3747,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 136.61 365.58 132.42 364.88
   A 0.28 0.27 4.5 0 0 132.10 365.15
   L 132.10 366.13"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.52 380.01
   Q 602.64 380.03 605.52 377.92
   Q 607.32 376.60 614.62 376.31
@@ -2967,8 +3774,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 634.68 374.05 616.78 375.27
   Q 608.05 375.86 600.25 377.96
   A 1.04 1.04 0.0 0 0 600.52 380.01"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 250.90 394.22
   A 0.10 0.10 0.0 0 0 250.80 394.12
   C 239.16 393.52 228.02 392.78 216.16 393.53
@@ -2987,8 +3797,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 247.19 394.91 250.88 394.52
   A 0.04 0.03 90.0 0 0 250.91 394.48
   L 250.90 394.22"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.04 396.04
   Q 354.15 396.57 357.51 396.31
   Q 360.37 396.09 368.85 396.17
@@ -3011,8 +3824,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 434.59 395.29 432.24 395.49 429.33 395.48
   Q 379.71 395.36 351.08 395.51
   A 0.27 0.27 0.0 0 0 351.04 396.04"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.99 395.77
   Q 598.59 396.25 599.98 396.21
   C 607.77 395.98 616.24 396.51 624.33 396.13
@@ -3032,8 +3848,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 599.83 395.35 598.38 395.86 597.56 395.70
   Q 594.34 395.08 591.98 395.47
   A 0.15 0.15 0.0 0 0 591.99 395.77"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 690.7294 396.4299
   A 0.26 0.26 0.0 0 0 690.4730 396.1663
   L 666.6553 395.8337
@@ -3043,34 +3862,52 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 690.4647 396.7663
   A 0.26 0.26 0.0 0 0 690.7283 396.5099
   L 690.7294 396.4299"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 95.31 406.90
   C 102.14 408.44 108.23 409.19 114.77 407.52"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 909.28 409.62
   L 903.78 409.70
   A 0.17 0.16 1.8 0 0 903.61 409.85
   L 903.61 409.86
   A 0.16 0.16 0.0 0 0 903.75 410.03
   L 909.53 410.82"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 143.17 407.50
   Q 159.72 409.85 175.88 407.91"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.95 407.33
   Q 480.51 409.09 484.47 409.00
   Q 497.23 408.69 526.33 408.90
   Q 542.28 409.01 567.71 407.82"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 724.45 407.46
   Q 735.08 409.00 745.95 408.36"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 479.88
   Q 1018.74 479.77 1017.36 479.59
   C 1011.25 478.83 1009.01 478.65 1003.50 479.55
@@ -3116,8 +3953,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 376.19 479.22 362.34 478.55
   C 357.11 478.30 349.25 479.58 340.29 480.06
   Q 336.36 480.28 334.38 482.94"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 876.64 421.70
   Q 877.73 421.80 878.74 421.63
   A 0.09 0.05 34.1 0 0 878.68 421.51
@@ -3125,8 +3965,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.39 0.25 -15.8 0 0 878.35 421.39
   L 876.63 421.57
   A 0.07 0.06 42.6 0 0 876.64 421.70"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 719.96 436.32
   Q 714.60 436.35 709.25 435.96
   Q 707.52 435.84 704.40 436.29
@@ -3177,8 +4020,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 709.57 437.55 713.62 438.00
   A 2.78 2.64 41.3 0 0 714.39 437.97
   L 718.30 437.32"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.30 437.32
   L 729.78 436.14
   A 8.65 8.49 31.5 0 0 731.78 435.68
@@ -3209,16 +4055,22 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 736.99 433.08 732.76 434.85
   A 2.65 2.32 -55.9 0 1 732.15 435.01
   L 719.96 436.32"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 718.30 437.32
   Q 718.13 437.25 717.95 437.22
   Q 717.63 437.18 717.63 437.09
   Q 717.63 436.89 717.65 436.77
   A 0.32 0.31 -87.2 0 1 717.91 436.53
   L 719.96 436.32"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.2799 426.5361
   A 0.37 0.37 0.0 0 0 559.9138 426.1623
   L 549.9344 426.0578
@@ -3228,8 +4080,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 559.9056 426.9422
   A 0.37 0.37 0.0 0 0 560.2795 426.5761
   L 560.2799 426.5361"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.0355 431.2366
   A 0.27 0.27 0.0 0 0 472.7513 430.9816
   L 432.1708 433.1794
@@ -3239,8 +4094,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 472.7892 431.6806
   A 0.27 0.27 0.0 0 0 473.0442 431.3964
   L 473.0355 431.2366"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 508.25 434.78
   L 513.32 433.77
   A 0.42 0.41 -2.0 0 0 513.65 433.42
@@ -3281,8 +4139,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.71 1.64 -51.8 0 0 516.19 434.98
   Q 514.56 435.49 508.28 435.15
   A 0.19 0.19 0.0 0 1 508.25 434.78"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 383.98 434.62
   Q 385.86 434.68 388.00 434.74
   Q 404.55 435.22 415.94 435.88
@@ -3296,15 +4157,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.38 0.38 0.0 0 0 352.00 433.91
   Q 363.41 433.95 379.96 434.49
   Q 382.10 434.56 383.98 434.62"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.47 433.10
   A 0.10 0.10 0.0 0 0 430.54 433.29
   Q 430.78 433.26 430.79 433.25
   A 0.09 0.09 0.0 0 0 430.78 433.10
   Q 430.61 433.01 430.47 433.10"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.3693 433.6155
   A 0.26 0.26 0.0 0 0 429.1057 433.3592
   L 420.3865 433.4809
@@ -3314,29 +4181,41 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 429.1135 433.9191
   A 0.26 0.26 0.0 0 0 429.3698 433.6555
   L 429.3693 433.6155"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 471.5463 433.7721
   A 1.44 0.29 -7.9 0 0 470.0801 433.6828
   A 1.44 0.29 -7.9 0 0 468.6937 434.1679
   A 1.44 0.29 -7.9 0 0 470.1599 434.2572
   A 1.44 0.29 -7.9 0 0 471.5463 433.7721"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 930.8473 434.2048
   A 2.87 0.37 -175.9 0 0 933.6835 434.7791
   A 2.87 0.37 -175.9 0 0 936.5727 434.6152
   A 2.87 0.37 -175.9 0 0 933.7365 434.0409
   A 2.87 0.37 -175.9 0 0 930.8473 434.2048"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 463.62 435.14
   Q 467.43 435.15 467.43 434.89
   Q 467.43 434.64 463.62 434.63
   Q 459.80 434.62 459.80 434.88
   Q 459.80 435.13 463.62 435.14"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 432.6601 435.7432
   A 0.26 0.26 0.0 0 0 432.4005 435.4827
   L 417.8206 435.4573
@@ -3346,8 +4225,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 432.3994 436.1227
   A 0.26 0.26 0.0 0 0 432.6599 435.8632
   L 432.6601 435.7432"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 944.49 439.67
   L 937.11 436.28
   A 0.06 0.06 0.0 0 0 937.03 436.31
@@ -3357,8 +4239,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.82 1.06 24.7 0 0 944.50 439.79
   L 944.52 439.75
   A 0.06 0.06 0.0 0 0 944.49 439.67"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1004.36 447.18
   L 1023.07 446.18
   A 0.47 0.47 0.0 0 0 1023.51 445.63
@@ -3387,8 +4272,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.30 0.29 1.0 0 0 1010.49 448.06
   Q 1005.80 447.87 1004.33 447.41
   A 0.12 0.12 0.0 0 1 1004.36 447.18"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 990.37 448.62
   L 990.33 447.96
   A 0.18 0.18 0.0 0 0 990.14 447.80
@@ -3398,8 +4286,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.99 0.37 -3.7 0 0 989.26 448.87
   L 990.21 448.81
   A 0.18 0.18 0.0 0 0 990.37 448.62"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 828.09 457.04
   A 0.49 0.49 0.0 0 0 828.60 457.51
   Q 836.11 457.16 850.00 456.43
@@ -3427,8 +4318,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 845.27 454.49 837.08 456.05 828.63 456.42
   A 0.56 0.56 0.0 0 0 828.09 457.02
   L 828.09 457.04"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 338.25 464.98
   C 345.46 464.72 352.34 465.62 359.91 465.65
   C 370.53 465.71 375.41 466.15 382.83 465.70
@@ -3496,8 +4390,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 364.67 464.02 358.37 464.05
   C 350.05 464.08 339.39 463.65 338.12 464.61
   A 0.21 0.21 0.0 0 0 338.25 464.98"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 131.31 483.07
   Q 127.68 481.22 125.16 480.99
   C 115.02 480.06 102.93 481.28 92.83 480.51
@@ -3505,8 +4402,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 51.49 480.31 50.39 480.29
   C 45.05 480.22 39.68 480.74 34.13 480.64
   Q 17.06 480.33 0.00 480.41"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 145.55 438.57
   L 151.54 439.44
   A 0.11 0.10 89.6 0 1 151.63 439.54
@@ -3557,15 +4457,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.27 0.27 0.0 0 0 145.23 438.12
   L 145.23 438.14
   A 0.38 0.38 0.0 0 0 145.55 438.57"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 76.1794 433.1068
   A 3.99 0.33 -7.1 0 0 72.1792 433.2725
   A 3.99 0.33 -7.1 0 0 68.2606 434.0932
   A 3.99 0.33 -7.1 0 0 72.2608 433.9275
   A 3.99 0.33 -7.1 0 0 76.1794 433.1068"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 15.90 440.61
   Q 16.04 440.82 16.38 440.84
   C 23.06 441.25 29.19 439.93 35.65 438.81
@@ -3576,8 +4482,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 39.66 436.52 36.13 437.15
   Q 24.10 439.29 16.10 440.17
   A 0.28 0.28 0.0 0 0 15.90 440.61"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 221.6186 466.1578
   A 0.26 0.26 0.0 0 0 221.3559 465.9006
   L 177.5383 466.3595
@@ -3587,19 +4496,28 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 221.3617 466.4605
   A 0.26 0.26 0.0 0 0 221.6190 466.1978
   L 221.6186 466.1578"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 118.8500 466.5421
   A 4.52 0.44 -179.9 0 0 123.3692 466.9900
   A 4.52 0.44 -179.9 0 0 127.8900 466.5579
   A 4.52 0.44 -179.9 0 0 123.3708 466.1100
   A 4.52 0.44 -179.9 0 0 118.8500 466.5421"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 557.75
   Q 1023.76 557.61 1023.73 557.17"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.73 557.17
   L 1023.25 553.66
   A 0.68 0.66 -4.7 0 0 1022.56 553.09
@@ -3630,32 +4548,50 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 8.74 8.63 47.8 0 1 826.11 555.40
   Q 819.29 554.26 818.07 554.25
   Q 815.34 554.22 807.07 555.72"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 807.07 555.72
   L 780.95 555.75"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 780.95 555.75
   Q 778.00 555.87 775.14 555.18
   Q 772.72 554.60 771.30 554.79
   Q 769.37 555.04 767.47 555.69"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 767.47 555.69
   L 761.23 555.76"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 761.23 555.76
   Q 754.07 555.65 746.97 555.04
   Q 740.50 554.47 735.10 554.72
   Q 726.45 555.12 717.80 555.37"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 717.80 555.37
   L 695.66 556.08"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.66 556.08
   L 686.07 556.50
   A 0.61 0.59 63.1 0 1 685.66 556.36
@@ -3669,23 +4605,35 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.29 0.29 0.0 0 0 680.09 556.29
   C 680.69 556.43 681.61 556.53 682.63 556.63
   C 679.98 556.65 677.67 556.95 675.27 557.95"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 675.27 557.95
   L 661.55 557.89"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.55 557.89
   L 661.41 557.02"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 899.5848 481.3316
   A 2.30 0.36 -176.3 0 0 901.8568 481.8392
   A 2.30 0.36 -176.3 0 0 904.1752 481.6284
   A 2.30 0.36 -176.3 0 0 901.9032 481.1208
   A 2.30 0.36 -176.3 0 0 899.5848 481.3316"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 982.98 500.65
   A 0.34 0.34 0.0 0 0 982.88 499.99
   L 953.85 500.59
@@ -3708,8 +4656,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.02 3.89 34.6 0 1 955.56 501.77
   Q 971.07 502.01 974.24 501.73
   Q 981.44 501.09 982.98 500.65"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 886.94 508.84
   C 888.16 509.14 889.08 510.03 890.20 509.48
   Q 891.72 508.72 892.49 509.45
@@ -3727,34 +4678,49 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 887.83 508.61 887.49 508.45
   Q 886.97 508.20 886.92 508.21
   A 0.33 0.33 0.0 0 0 886.94 508.84"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 883.79 508.76
   Q 884.34 508.84 884.79 508.77
   A 0.24 0.24 0.0 0 0 884.83 508.31
   Q 884.41 508.18 883.76 508.39
   A 0.19 0.19 0.0 0 0 883.79 508.76"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 727.2146 509.2899
   A 6.73 0.39 -2.3 0 0 720.4743 509.1703
   A 6.73 0.39 -2.3 0 0 713.7654 509.8301
   A 6.73 0.39 -2.3 0 0 720.5057 509.9497
   A 6.73 0.39 -2.3 0 0 727.2146 509.2899"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 730.54 509.23
   Q 730.75 509.44 731.00 509.55
   A 0.08 0.08 0.0 0 0 731.06 509.40
   Q 730.82 509.30 730.54 509.23"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 730.54 509.23
   Q 729.94 508.75 729.24 508.91
   A 0.22 0.22 0.0 0 0 729.23 509.33
   Q 729.74 509.48 730.54 509.23"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 746.6057 509.1937
   A 0.26 0.26 0.0 0 0 746.3324 508.9476
   L 733.6299 509.6134
@@ -3764,8 +4730,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 746.3701 509.6666
   A 0.26 0.26 0.0 0 0 746.6162 509.3934
   L 746.6057 509.1937"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 880.44 509.94
   L 876.02 509.07
   A 1.58 1.48 46.9 0 0 875.56 509.04
@@ -3780,15 +4749,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 848.99 510.84 850.65 510.86
   Q 862.59 511.03 880.38 510.64
   A 0.35 0.35 0.0 0 0 880.44 509.94"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 821.5899 509.9311
   A 0.64 0.17 -0.8 0 0 820.9476 509.7700
   A 0.64 0.17 -0.8 0 0 820.3101 509.9489
   A 0.64 0.17 -0.8 0 0 820.9524 510.1100
   A 0.64 0.17 -0.8 0 0 821.5899 509.9311"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 712.9051 511.1962
   A 0.26 0.26 0.0 0 0 712.6297 510.9526
   L 693.7251 512.1088
@@ -3798,22 +4773,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 712.6749 511.6912
   A 0.26 0.26 0.0 0 0 712.9186 511.4158
   L 712.9051 511.1962"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 730.8258 511.5468
   A 1.46 0.26 -8.0 0 0 729.3438 511.4925
   A 1.46 0.26 -8.0 0 0 727.9342 511.9532
   A 1.46 0.26 -8.0 0 0 729.4162 512.0075
   A 1.46 0.26 -8.0 0 0 730.8258 511.5468"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 720.02 511.94
   Q 720.03 512.43 722.74 512.00
   Q 723.84 511.83 723.84 511.89
   Q 723.84 511.94 722.74 511.80
   Q 720.01 511.45 720.02 511.94"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 741.75 515.65
   Q 743.30 515.90 744.69 515.43
   Q 746.66 514.76 756.63 514.63
@@ -3825,22 +4809,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 757.73 512.67 753.56 513.38
   C 748.33 514.26 745.83 514.04 741.77 514.56
   A 0.55 0.55 0.0 0 0 741.75 515.65"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 716.89 513.84
   Q 716.74 513.82 716.69 513.91
   A 0.08 0.08 0.0 0 0 716.76 514.02
   Q 716.90 514.02 716.98 514.04
   A 0.15 0.08 31.7 0 0 716.89 513.84"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 679.8341 514.1959
   A 3.48 0.33 -7.0 0 0 676.3398 514.2925
   A 3.48 0.33 -7.0 0 0 672.9259 515.0441
   A 3.48 0.33 -7.0 0 0 676.4202 514.9475
   A 3.48 0.33 -7.0 0 0 679.8341 514.1959"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 944.68 530.91
   Q 947.97 530.14 948.63 530.16
   Q 958.71 530.37 975.93 530.32
@@ -3881,8 +4874,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 958.23 532.91 947.22 531.86
   Q 945.26 531.67 944.62 531.31
   A 0.22 0.22 0.0 0 1 944.68 530.91"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 752.75 537.70
   L 752.83 536.70
   A 0.20 0.20 0.0 0 0 752.65 536.48
@@ -3892,8 +4888,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 6.70 0.65 4.5 0 0 742.71 537.11
   L 752.54 537.88
   A 0.20 0.20 0.0 0 0 752.75 537.70"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 809.24 540.45
   Q 809.65 541.48 809.53 541.79
   A 0.24 0.24 0.0 0 0 809.75 542.11
@@ -3916,8 +4915,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 840.92 539.76 831.18 539.38
   C 823.72 539.09 817.20 539.94 809.47 540.10
   A 0.26 0.25 -11.9 0 0 809.24 540.45"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 660.26 551.87
   Q 646.57 553.18 632.97 553.18
   C 621.58 553.18 612.34 553.87 601.97 554.23
@@ -3935,8 +4937,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.23 2.91 -37.4 0 1 529.77 553.35
   Q 525.34 552.27 523.95 552.55
   C 516.58 554.02 506.87 552.84 498.04 553.76"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 498.04 553.76
   C 488.92 554.04 479.22 553.38 470.79 553.75
   Q 460.80 554.18 452.31 553.89
@@ -3947,8 +4952,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 366.45 553.33 364.19 552.97
   A 7.40 6.78 -38.7 0 0 362.83 552.88
   L 333.29 553.64"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 333.29 553.64
   Q 328.85 553.62 324.45 553.03
   Q 322.34 552.75 319.72 551.54
@@ -3960,8 +4968,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 280.91 552.17 281.08 552.25
   A 0.26 0.26 0.0 0 1 281.13 552.69
   L 280.71 553.02"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 280.71 553.02
   Q 274.19 553.27 267.73 554.29
   Q 265.03 554.72 263.97 554.61
@@ -3985,15 +4996,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 5.14 553.80 1.33 554.26
   A 0.99 0.96 -80.7 0 0 0.55 554.84
   L 0.00 556.11"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 135.5000 506.1110
   A 1.29 0.20 -0.4 0 0 134.2086 505.9200
   A 1.29 0.20 -0.4 0 0 132.9200 506.1290
   A 1.29 0.20 -0.4 0 0 134.2114 506.3200
   A 1.29 0.20 -0.4 0 0 135.5000 506.1110"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 195.88 510.63
   Q 192.39 510.68 190.41 509.80
   A 3.30 3.18 58.0 0 0 189.33 509.53
@@ -4027,8 +5044,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 185.58 509.62 193.75 511.33
   Q 195.34 511.66 196.06 511.16
   A 0.29 0.29 0.0 0 0 195.88 510.63"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 228.60 514.96
   C 225.07 514.30 220.98 512.20 217.88 511.64
   Q 211.57 510.52 203.95 510.35
@@ -4041,8 +5061,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.14 4.12 66.6 0 1 223.28 513.76
   Q 225.81 515.39 228.59 515.20
   A 0.12 0.12 0.0 0 0 228.60 514.96"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.36 511.91
   A 0.05 0.03 -9.2 0 0 590.32 511.89
   Q 577.07 512.18 572.75 511.96
@@ -4066,22 +5089,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 576.32 513.35 590.30 512.72
   A 0.31 0.31 0.0 0 0 590.56 512.25
   L 590.36 511.91"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 18.3993 510.8401
   A 4.58 0.29 -1.0 0 0 13.8149 510.6300
   A 4.58 0.29 -1.0 0 0 9.2407 510.9999
   A 4.58 0.29 -1.0 0 0 13.8251 511.2100
   A 4.58 0.29 -1.0 0 0 18.3993 510.8401"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 9.5100 513.8190
   A 6.28 0.24 -179.9 0 0 15.7896 514.0700
   A 6.28 0.24 -179.9 0 0 22.0700 513.8410
   A 6.28 0.24 -179.9 0 0 15.7904 513.5900
   A 6.28 0.24 -179.9 0 0 9.5100 513.8190"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 571.4288 514.7903
   A 0.48 0.48 0.0 0 0 570.9581 514.3012
   L 555.2210 513.9990
@@ -4091,8 +5123,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 570.9390 515.3010
   A 0.48 0.48 0.0 0 0 571.4281 514.8303
   L 571.4288 514.7903"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.14 518.59
   Q 447.06 519.20 449.52 518.92
   C 454.15 518.41 459.93 518.35 463.75 517.37
@@ -4106,8 +5141,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.44 2.40 22.8 0 1 463.33 516.43
   L 445.17 518.30
   A 0.15 0.15 0.0 0 0 445.14 518.59"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 235.15 516.86
   Q 237.24 517.92 241.05 518.09
   Q 243.27 518.18 251.71 517.82
@@ -4139,8 +5177,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 265.87 516.03 260.17 516.61
   Q 247.67 517.89 235.31 516.32
   A 0.29 0.28 61.9 0 0 235.15 516.86"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 611.6965 516.6000
   A 0.27 0.27 0.0 0 0 611.4131 516.3440
   L 591.0193 517.3772
@@ -4150,8 +5191,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 611.4607 517.2828
   A 0.27 0.27 0.0 0 0 611.7167 516.9995
   L 611.6965 516.6000"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 141.56 536.60
   A 0.26 0.26 0.0 0 0 141.31 536.32
   Q 134.92 535.89 128.94 536.66
@@ -4186,8 +5230,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 136.09 536.71 141.24 536.91
   A 0.31 0.31 0.0 0 0 141.56 536.61
   L 141.56 536.60"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 525.21 537.34
   Q 524.40 537.89 523.97 538.53
   A 0.42 0.42 0.0 0 0 524.31 539.18
@@ -4197,8 +5244,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 558.66 538.33
   A 0.18 0.18 0.0 0 0 558.43 538.20
   Q 557.12 538.63 556.68 537.87"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.68 537.87
   L 560.36 537.88
   A 0.33 0.33 0.0 0 0 560.46 537.23
@@ -4213,12 +5263,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.26 0.26 0.0 0 0 489.83 537.86
   Q 510.62 538.23 516.72 537.71
   Q 522.68 537.21 525.21 537.34"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.68 537.87
   L 525.21 537.34"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 589.15 537.12
   L 571.27 536.24
   A 0.04 0.04 0.0 0 0 571.23 536.28
@@ -4228,8 +5284,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 8.81 1.24 2.8 0 0 589.19 537.20
   L 589.19 537.16
   A 0.04 0.04 0.0 0 0 589.15 537.12"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 424.26 540.31
   Q 424.25 540.53 424.24 540.59
   A 0.78 0.78 0.0 0 1 423.49 541.22
@@ -4286,8 +5345,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.97 1.22 -31.7 0 0 432.88 539.54
   L 424.60 539.97
   A 0.36 0.35 -89.1 0 0 424.26 540.31"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 228.7220 539.3333
   A 0.26 0.26 0.0 0 0 228.4670 539.0683
   L 215.1095 538.8118
@@ -4297,8 +5359,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 228.4505 539.9282
   A 0.26 0.26 0.0 0 0 228.7155 539.6732
   L 228.7220 539.3333"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 51.01 541.35
   Q 46.84 540.69 45.49 540.70
   Q 34.98 540.78 28.39 540.68
@@ -4317,15 +5382,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.10 0.09 -81.7 0 0 51.14 541.56
   Q 51.15 541.53 51.16 541.51
   A 0.18 0.14 8.2 0 0 51.01 541.35"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.9112 539.5866
   A 0.22 0.10 -173.9 0 0 585.1194 539.7094
   A 0.22 0.10 -173.9 0 0 585.3488 539.6334
   A 0.22 0.10 -173.9 0 0 585.1406 539.5106
   A 0.22 0.10 -173.9 0 0 584.9112 539.5866"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 308.31 543.78
   L 308.24 543.11
   A 0.18 0.18 0.0 0 0 308.05 542.94
@@ -4335,15 +5406,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 8.57 0.41 -5.6 0 0 303.48 544.44
   L 308.15 543.98
   A 0.18 0.18 0.0 0 0 308.31 543.78"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 333.29 553.64
   Q 323.27 554.48 313.24 554.07
   C 307.14 553.82 302.48 554.95 296.48 554.26
   Q 294.85 554.07 288.22 553.45
   Q 284.48 553.09 280.71 553.02"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.73 557.17
   Q 1018.60 557.30 1013.51 557.15
   Q 1006.57 556.94 996.85 557.11
@@ -4355,8 +5432,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 810.58 558.09 805.34 557.90
   C 799.36 557.69 794.97 557.98 787.51 557.97
   Q 731.41 557.93 675.27 557.95"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.66 556.08
   Q 705.15 556.70 714.18 556.23
   Q 719.37 555.95 722.30 556.05
@@ -4365,8 +5445,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 730.69 555.47
   A 0.17 0.16 0.0 0 0 730.52 555.31
   L 717.80 555.37"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 761.23 555.76
   L 756.25 556.06
   A 0.14 0.13 84.0 0 0 756.13 556.22
@@ -4375,8 +5458,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 767.85 556.24
   A 0.19 0.19 0.0 0 0 767.93 555.88
   Q 767.77 555.81 767.47 555.69"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 780.95 555.75
   L 777.30 555.93
   A 0.23 0.22 87.5 0 0 777.09 556.17
@@ -4385,22 +5471,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 807.68 556.29
   A 0.23 0.23 0.0 0 0 807.90 556.13
   Q 808.05 555.60 807.07 555.72"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 752.02 555.87
   Q 749.52 555.19 750.45 556.08
   A 0.70 0.69 67.6 0 0 750.90 556.27
   L 751.97 556.28
   A 0.21 0.21 0.0 0 0 752.02 555.87"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 817.8000 556.3772
   A 0.32 0.12 -179.5 0 0 818.1190 556.5000
   A 0.32 0.12 -179.5 0 0 818.4400 556.3828
   A 0.32 0.12 -179.5 0 0 818.1210 556.2600
   A 0.32 0.12 -179.5 0 0 817.8000 556.3772"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 660.33 556.25
   Q 657.67 554.70 655.46 554.84
   Q 640.05 555.86 625.49 555.55
@@ -4409,8 +5504,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 579.22 556.51 567.88 556.28 544.66 556.11
   C 533.32 556.02 522.98 555.32 511.95 555.71
   C 507.03 555.88 503.27 554.13 498.04 553.76"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 661.55 557.89
   Q 628.04 558.00 594.53 557.81
   C 591.08 557.79 588.43 558.28 585.42 558.05
@@ -4427,8 +5525,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 106.63 557.94 103.25 557.91
   Q 97.99 557.85 15.50 557.82
   Q 4.57 557.82 0.00 558.19"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 596.38
   L 1023.63 580.03
   A 1.18 1.18 0.0 0 0 1022.45 578.88
@@ -4458,8 +5559,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 894.32 626.41
   A 0.41 0.41 0.0 0 0 894.79 626.82
   L 899.47 626.12"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 899.47 626.12
   L 894.76 627.31
   A 0.79 0.79 0.0 0 0 894.16 628.08
@@ -4468,38 +5572,56 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 895.54 628.33
   A 0.87 0.86 -84.0 0 1 896.40 627.63
   L 917.46 627.93"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 917.46 627.93
   Q 910.53 627.96 903.60 628.22
   Q 898.61 628.41 896.62 630.16
   A 0.22 0.22 0.0 0 0 896.77 630.55
   L 971.28 630.36"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 971.28 630.36
   L 1024.00 630.37"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 631.70
   C 1001.88 632.29 973.95 631.86 957.66 631.94
   Q 890.70 632.26 823.75 632.07
   Q 810.04 632.04 795.69 632.01
   Q 708.61 631.83 621.55 631.96"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 621.55 631.96
   L 276.80 631.85"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 276.80 631.85
   L 68.57 631.82
   A 0.55 0.55 0.0 0 0 68.02 632.37
   L 68.02 698.35
   A 0.53 0.53 0.0 0 0 68.55 698.88
   L 143.80 698.98"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 143.80 698.98
   Q 151.56 699.23 167.50 699.18
   Q 210.36 699.03 340.61 699.09
@@ -4521,46 +5643,73 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 977.95 699.60 987.50 699.28
   Q 993.77 699.08 1003.01 699.20
   Q 1013.35 699.33 1023.65 699.17"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.65 699.17
   Q 1023.83 699.43 1024.00 699.50"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 700.63
   Q 1023.76 700.78 1023.66 701.05"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.66 701.05
   L 582.94 701.02"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.94 701.02
   L 558.93 701.13
   A 0.49 0.48 90.0 0 0 558.45 701.62
   L 558.45 766.78
   A 0.16 0.16 0.0 0 0 558.61 766.94
   L 727.78 766.94"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 727.78 766.94
   L 1024.00 766.92"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 768.23
   L 0.00 768.30"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 767.26
   Q 0.16 767.14 0.23 766.96"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.23 766.96
   L 556.75 767.01
   A 0.43 0.43 0.0 0 0 557.18 766.58
   L 556.89 701.57"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.89 701.57
   Q 555.01 700.91 552.79 701.02
   Q 549.74 701.16 549.70 701.16
@@ -4576,24 +5725,36 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 73.03 700.85 69.79 700.44 66.53 700.60
   Q 63.27 700.77 59.95 700.76
   Q 29.97 700.68 0.00 700.64"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 699.09
   L 66.36 699.12
   A 0.56 0.56 0.0 0 0 66.92 698.54
   L 66.57 689.20"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 66.57 689.20
   L 66.56 632.89"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 66.56 632.89
   L 66.66 632.40
   A 0.70 0.69 5.1 0 0 65.97 631.58
   L 0.00 631.48"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 630.76
   Q 0.31 630.06 1.00 630.05
   Q 36.55 629.74 73.51 630.16
@@ -4605,48 +5766,75 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 194.38 610.85 194.71 559.72
   A 0.57 0.57 0.0 0 0 194.17 559.15
   L 191.94 559.05"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 191.94 559.05
   L 179.47 559.05"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 179.47 559.05
   L 0.00 559.20"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 195.93 626.94
   L 195.78 629.75
   A 0.35 0.35 0.0 0 0 196.13 630.12
   L 744.77 630.65"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 744.77 630.65
   L 822.29 630.52"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 822.29 630.52
   L 832.04 630.45"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.04 630.45
   L 892.31 630.54
   A 0.57 0.57 0.0 0 0 892.88 629.97
   L 892.88 559.74
   A 0.54 0.54 0.0 0 0 892.34 559.20
   L 888.03 559.18"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 888.03 559.18
   L 816.71 559.36"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 816.71 559.36
   L 196.51 559.05
   A 0.50 0.49 -89.4 0 0 196.01 559.55
   L 195.93 626.94"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 816.71 559.36
   Q 816.03 559.64 815.25 559.82
   Q 814.37 560.03 815.08 560.47
@@ -4654,12 +5842,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 825.53 561.21 831.62 561.82 839.22 561.55
   Q 847.11 561.26 870.63 561.48
   Q 879.00 561.56 888.03 559.18"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.04 630.45
   Q 827.17 629.77 822.29 630.52"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 744.77 630.65
   Q 748.39 628.76 753.66 628.54
   Q 765.59 628.06 782.59 627.29
@@ -4694,16 +5888,22 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 246.35 628.42 236.20 627.23
   C 227.25 626.19 221.34 626.14 211.60 625.40
   Q 207.59 625.10 195.93 626.94"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 179.47 559.05
   L 179.40 560.07
   A 0.84 0.84 0.0 0 0 180.24 560.97
   L 191.77 560.90
   A 0.77 0.77 0.0 0 0 192.40 559.69
   L 191.94 559.05"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 23.64 579.46
   C 30.13 579.85 34.02 580.52 39.15 580.26
   C 44.72 579.98 47.25 579.67 53.54 580.26
@@ -4736,8 +5936,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 21.11 20.73 -44.7 0 1 33.15 579.23
   C 31.31 578.99 26.29 578.00 23.59 579.16
   A 0.16 0.16 0.0 0 0 23.64 579.46"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 11.82 611.80
   Q 13.00 611.94 17.62 611.52
   Q 18.03 611.48 24.87 611.75
@@ -4771,8 +5974,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 24.76 610.83 20.11 610.91
   Q 13.68 611.02 11.81 611.30
   A 0.25 0.25 0.0 0 0 11.82 611.80"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 96.68 627.91
   Q 92.33 627.74 86.27 627.88
   Q 82.87 627.95 80.16 626.99
@@ -4788,8 +5994,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.16 0.16 0.0 0 0 96.92 628.17
   L 96.92 628.16
   A 0.25 0.24 2.3 0 0 96.68 627.91"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 139.4495 628.2766
   A 0.32 0.32 0.0 0 0 139.1340 627.9521
   L 127.3752 627.7879
@@ -4799,14 +6008,20 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 139.1248 628.6121
   A 0.32 0.32 0.0 0 0 139.4493 628.2966
   L 139.4495 628.2766"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 603.99
   L 1023.35 607.99
   A 0.67 0.67 0.0 0 1 1022.75 608.55
   L 1015.03 609.25"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1015.03 609.25
   Q 998.18 609.06 981.30 609.20
   C 975.85 609.24 971.64 609.92 967.08 609.77
@@ -4822,8 +6037,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 964.65 610.60 967.96 610.84 971.99 610.43
   Q 975.35 610.09 980.15 610.08
   Q 997.69 610.02 1015.20 609.98"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1015.20 609.98
   L 1022.75 610.62
   A 1.11 1.10 -89.4 0 1 1023.76 611.66
@@ -4834,8 +6052,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 960.50 625.53 947.59 625.68
   Q 923.58 625.95 919.68 625.76
   Q 907.24 625.13 899.47 626.12"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 944.90 560.27
   L 944.92 560.91
   A 0.11 0.11 0.0 0 0 945.03 561.01
@@ -4844,8 +6065,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 6.21 0.43 -1.5 0 0 946.15 560.13
   L 945.01 560.15
   A 0.11 0.11 0.0 0 0 944.90 560.27"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 964.60 575.26
   Q 957.58 575.84 952.07 574.50
   A 7.99 7.73 50.1 0 0 949.99 574.28
@@ -4867,22 +6091,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 950.76 576.73 952.41 576.25 954.65 576.54
   Q 959.82 577.20 964.67 575.63
   A 0.19 0.19 0.0 0 0 964.60 575.26"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 967.2967 577.7928
   A 2.43 0.32 -3.0 0 0 964.8533 577.6004
   A 2.43 0.32 -3.0 0 0 962.4433 578.0472
   A 2.43 0.32 -3.0 0 0 964.8867 578.2396
   A 2.43 0.32 -3.0 0 0 967.2967 577.7928"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 883.8977 564.3862
   A 1.92 0.45 -2.8 0 0 881.9580 564.0305
   A 1.92 0.45 -2.8 0 0 880.0623 564.5738
   A 1.92 0.45 -2.8 0 0 882.0020 564.9295
   A 1.92 0.45 -2.8 0 0 883.8977 564.3862"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 577.85 587.92
   C 581.05 588.19 584.99 587.55 588.08 586.69
   Q 593.44 585.19 594.99 585.05
@@ -4934,8 +6167,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 8.67 8.42 34.5 0 0 590.62 584.73
   Q 584.93 586.10 577.85 586.80
   A 0.56 0.56 0.0 0 0 577.85 587.92"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 837.49 575.26
   L 837.50 576.40
   A 0.14 0.14 0.0 0 0 837.64 576.54
@@ -4945,12 +6181,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 45.35 0.70 -0.5 0 0 839.87 575.10
   L 837.62 575.12
   A 0.14 0.14 0.0 0 0 837.49 575.26"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 308.91 580.23
   Q 316.02 582.55 324.56 582.04"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 324.56 582.04
   Q 333.95 582.78 343.39 583.37
   C 349.05 583.72 355.56 583.23 361.23 584.65
@@ -5055,33 +6297,48 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 293.78 579.09 297.07 580.07
   Q 298.25 580.42 300.95 580.24
   Q 305.00 579.96 308.91 580.23"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 324.56 582.04
   L 308.91 580.23"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.7377 578.8784
   A 1.63 0.38 -166.1 0 0 562.2287 579.6389
   A 1.63 0.38 -166.1 0 0 563.9023 579.6616
   A 1.63 0.38 -166.1 0 0 562.4113 578.9011
   A 1.63 0.38 -166.1 0 0 560.7377 578.8784"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 295.84 581.17
   Q 294.44 581.01 293.28 581.51
   A 0.27 0.27 0.0 0 0 293.32 582.02
   Q 294.44 582.27 295.90 581.63
   A 0.24 0.24 0.0 0 0 295.84 581.17"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 868.9015 595.3998
   A 2.72 0.38 -178.1 0 0 871.6074 595.8698
   A 2.72 0.38 -178.1 0 0 874.3385 595.5802
   A 2.72 0.38 -178.1 0 0 871.6326 595.1102
   A 2.72 0.38 -178.1 0 0 868.9015 595.3998"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 761.33 601.91
   C 766.36 601.71 771.84 600.82 777.27 601.13
   C 783.67 601.50 787.26 602.02 792.61 601.73
@@ -5095,8 +6352,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.33 0.33 0.0 0 0 760.89 601.32
   L 760.95 601.62
   A 0.38 0.38 0.0 0 0 761.33 601.91"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 839.0697 604.2201
   A 0.29 0.29 0.0 0 0 838.7823 603.9276
   L 816.4231 603.7324
@@ -5106,15 +6366,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 838.7769 604.5476
   A 0.29 0.29 0.0 0 0 839.0694 604.2601
   L 839.0697 604.2201"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 839.2833 604.3566
   A 2.73 0.16 -177.2 0 0 842.0022 604.6498
   A 2.73 0.16 -177.2 0 0 844.7367 604.6234
   A 2.73 0.16 -177.2 0 0 842.0178 604.3302
   A 2.73 0.16 -177.2 0 0 839.2833 604.3566"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 257.45 606.93
   Q 253.20 606.84 248.99 607.20
   C 243.34 607.68 237.77 607.38 232.93 606.96
@@ -5126,8 +6392,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.01 0.01 0.0 0 0 257.66 607.47
   L 257.67 607.16
   A 0.23 0.23 0.0 0 0 257.45 606.93"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 666.83 609.14
   Q 662.14 608.55 655.47 609.09
   Q 644.95 609.95 635.20 609.50
@@ -5144,22 +6413,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.14 0.14 0.0 0 0 666.95 609.30
   L 666.95 609.29
   A 0.14 0.14 0.0 0 0 666.83 609.14"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.13 608.62
   Q 531.99 608.61 531.99 608.47
   Q 531.99 608.33 529.13 608.34
   Q 526.27 608.34 526.27 608.49
   Q 526.27 608.63 529.13 608.62"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 403.9836 608.6510
   A 3.05 0.24 -177.2 0 0 407.0183 609.0397
   A 3.05 0.24 -177.2 0 0 410.0764 608.9490
   A 3.05 0.24 -177.2 0 0 407.0417 608.5603
   A 3.05 0.24 -177.2 0 0 403.9836 608.6510"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 442.0226 609.5255
   A 0.26 0.26 0.0 0 0 441.7413 609.2887
   L 422.7908 610.9133
@@ -5169,22 +6447,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 441.7892 609.8467
   A 0.26 0.26 0.0 0 0 442.0260 609.5654
   L 442.0226 609.5255"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 830.7599 612.4851
   A 3.56 0.40 -0.4 0 0 827.1972 612.1100
   A 3.56 0.40 -0.4 0 0 823.6401 612.5349
   A 3.56 0.40 -0.4 0 0 827.2028 612.9100
   A 3.56 0.40 -0.4 0 0 830.7599 612.4851"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 673.9754 612.2627
   A 1.27 0.21 -174.7 0 0 675.2206 612.5891
   A 1.27 0.21 -174.7 0 0 676.5046 612.4973
   A 1.27 0.21 -174.7 0 0 675.2594 612.1709
   A 1.27 0.21 -174.7 0 0 673.9754 612.2627"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 839.45 627.95
   L 839.45 626.65
   A 0.11 0.11 0.0 0 0 839.34 626.54
@@ -5193,26 +6480,38 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 42.01 0.76 0.3 0 0 827.30 628.00
   L 839.34 628.06
   A 0.11 0.11 0.0 0 0 839.45 627.95"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 971.28 630.36
   C 964.60 627.89 959.27 628.06 951.33 628.11
   Q 934.39 628.23 917.46 627.93"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1015.20 609.98
   Q 1015.56 609.92 1015.58 609.65
   A 0.16 0.14 -76.9 0 0 1015.51 609.52
   L 1015.03 609.25"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 66.56 632.89
   Q 64.10 637.14 64.08 642.41
   Q 64.06 653.02 64.73 662.50
   Q 64.99 666.17 64.90 673.01
   Q 64.78 681.17 66.57 689.20"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 276.80 631.85
   L 275.78 632.10
   A 0.27 0.27 0.0 0 0 275.85 632.63
@@ -5249,16 +6548,22 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 619.93 632.37 617.12 632.38
   L 617.12 632.37
   Q 619.61 632.68 621.55 631.96"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 684.48
   L 1016.26 683.97
   A 0.28 0.28 0.0 0 0 1015.96 684.25
   L 1015.96 684.55
   A 0.31 0.31 0.0 0 0 1016.19 684.85
   Q 1020.12 685.84 1024.00 685.12"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1023.65 699.17
   C 1021.53 695.92 1017.66 694.92 1014.05 695.01
   C 1003.85 695.26 996.59 695.99 986.61 695.23
@@ -5303,8 +6608,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.38 0.38 0.0 0 0 69.54 698.18
   C 95.72 698.08 108.16 697.88 122.89 698.03
   C 129.87 698.10 137.12 697.02 143.80 698.98"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 982.72 632.38
   Q 982.72 631.99 978.85 632.15
   A 0.39 0.18 7.0 0 0 978.58 632.24
@@ -5312,8 +6620,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 978.53 632.45 978.58 632.51
   A 0.39 0.18 -6.9 0 0 978.85 632.60
   Q 982.72 632.77 982.72 632.38"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1012.03 644.74
   Q 1005.40 645.30 999.76 645.23
   Q 998.87 645.22 995.73 646.21
@@ -5341,8 +6652,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.54 0.54 0.0 0 1 1006.50 646.03
   Q 1009.85 646.18 1012.13 645.12
   A 0.20 0.20 0.0 0 0 1012.03 644.74"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 789.94 651.32
   Q 781.50 650.85 772.97 651.19
   C 771.10 651.26 769.13 650.74 767.36 650.85
@@ -5358,8 +6672,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 747.59 652.06 750.14 652.67 753.01 651.96
   A 2.60 2.30 -48.4 0 1 753.59 651.89
   L 792.28 652.63"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 792.28 652.63
   Q 811.20 656.17 830.50 654.00
   A 0.32 0.32 0.0 0 0 830.52 653.37
@@ -5385,12 +6702,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 795.02 650.69
   A 0.72 0.72 0.0 0 1 794.29 651.39
   L 789.94 651.32"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 792.28 652.63
   Q 794.54 651.62 789.94 651.32"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 623.0593 649.6390
   A 0.38 0.38 0.0 0 0 622.6887 649.2498
   L 615.3509 649.0705
@@ -5400,8 +6723,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 622.6691 650.0495
   A 0.38 0.38 0.0 0 0 623.0583 649.6789
   L 623.0593 649.6390"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 931.42 650.16
   Q 931.34 650.30 931.45 650.51
   A 0.10 0.09 -4.7 0 0 931.52 650.56
@@ -5423,15 +6749,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.13 1.93 -47.9 0 1 941.18 650.22
   L 931.57 650.07
   A 0.16 0.14 -72.7 0 0 931.42 650.16"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1013.1307 650.2449
   A 4.70 0.46 -3.6 0 0 1008.4111 650.0809
   A 4.70 0.46 -3.6 0 0 1003.7493 650.8351
   A 4.70 0.46 -3.6 0 0 1008.4689 650.9991
   A 4.70 0.46 -3.6 0 0 1013.1307 650.2449"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 832.00 656.98
   Q 839.53 657.78 847.62 657.43
   Q 851.99 657.24 857.53 658.42
@@ -5467,8 +6799,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.16 0.16 0.0 0 0 831.84 656.77
   L 831.84 656.78
   A 0.18 0.18 0.0 0 0 832.00 656.98"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 223.84 664.82
   C 233.76 665.02 241.47 666.09 250.87 665.93
   Q 252.52 665.90 270.00 665.56
@@ -5495,8 +6830,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.19 0.18 -1.7 0 0 223.57 664.55
   L 223.57 664.56
   A 0.27 0.27 0.0 0 0 223.84 664.82"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 212.07 664.72
   Q 208.81 663.83 193.49 664.38
   Q 180.96 664.84 159.42 661.93
@@ -5513,8 +6851,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 195.31 665.66 211.67 664.96
   C 211.83 664.95 211.95 665.00 212.10 664.93
   A 0.11 0.11 0.0 0 0 212.07 664.72"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 689.04 670.92
   Q 692.35 671.37 695.76 671.34
   Q 699.99 671.30 716.99 670.63
@@ -5535,8 +6876,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 696.67 670.80 695.52 670.68
   Q 691.47 670.27 689.04 670.56
   A 0.18 0.18 0.0 0 0 689.04 670.92"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.32 672.43
   L 608.28 671.91
   A 0.18 0.18 0.0 0 0 608.08 671.74
@@ -5545,8 +6889,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 7.32 0.44 -4.8 0 0 598.41 673.44
   L 608.16 672.62
   A 0.18 0.18 0.0 0 0 608.32 672.43"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.9190 675.5070
   A 0.37 0.37 0.0 0 0 591.5394 675.1468
   L 541.6365 676.4535
@@ -5556,8 +6903,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 591.5635 676.0665
   A 0.37 0.37 0.0 0 0 591.9237 675.6869
   L 591.9190 675.5070"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 439.0050 681.3339
   A 0.36 0.36 0.0 0 0 438.6278 680.9920
   L 432.5551 681.2890
@@ -5567,8 +6917,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 438.6649 681.7510
   A 0.36 0.36 0.0 0 0 439.0069 681.3739
   L 439.0050 681.3339"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 999.58 687.39
   L 985.82 689.42
   A 0.15 0.14 83.7 0 0 985.70 689.58
@@ -5583,8 +6936,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1017.16 687.46 1011.28 687.97
   A 2.60 2.37 -40.5 0 1 1010.65 687.95
   L 1006.97 687.38"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1006.97 687.38
   L 1008.79 687.30
   A 0.59 0.58 -41.2 0 0 1008.87 686.14
@@ -5592,12 +6948,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 997.41 685.39 997.56 685.40 997.72 685.42
   A 0.40 0.39 -6.4 0 1 998.07 685.69
   Q 998.41 686.77 999.58 687.39"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1006.97 687.38
   L 999.58 687.39"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.89 701.57
   L 551.10 702.26
   A 1.58 1.50 19.1 0 0 550.24 702.65
@@ -5609,12 +6971,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 546.51 714.31
   A 0.47 0.47 0.0 0 1 546.09 714.80
   C 540.59 715.39 536.47 715.41 532.72 717.97"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.72 717.97
   L 512.46 718.94"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 512.46 718.94
   C 507.37 718.94 501.88 718.35 497.19 718.75
   Q 491.32 719.24 486.92 718.89
@@ -5631,12 +6999,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 400.48 726.09 400.82 726.31
   A 0.27 0.26 56.4 0 0 400.99 726.35
   L 412.85 725.37"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.85 725.37
   Q 411.69 726.12 411.53 727.07"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 411.53 727.07
   L 410.84 727.31
   A 0.19 0.19 0.0 0 0 410.83 727.66
@@ -5647,12 +7021,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 430.99 725.95
   A 0.19 0.18 -71.7 0 0 430.89 725.73
   Q 429.04 724.98 427.01 725.18"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.01 725.18
   Q 427.22 724.66 427.21 723.82"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.21 723.82
   Q 434.41 722.84 441.62 722.16
   Q 443.51 721.99 445.83 720.91
@@ -5661,12 +7041,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 6.20 5.50 38.1 0 0 476.96 720.25
   C 483.63 719.24 488.91 719.99 495.44 719.79
   C 503.58 719.53 511.63 720.03 519.73 719.79"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.73 719.79
   L 526.00 719.98"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 526.00 719.98
   L 518.63 721.92
   A 0.28 0.26 -10.9 0 0 518.42 722.21
@@ -5738,12 +7124,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 14.27 14.18 -49.6 0 1 209.61 763.59
   Q 204.90 763.21 187.15 763.42
   Q 181.60 763.49 177.67 764.74"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 177.67 764.74
   L 151.46 764.99"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 151.46 764.99
   L 139.03 764.93
   A 2.80 1.07 -12.2 0 1 138.05 764.78
@@ -5761,8 +7153,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 5.96 764.64 0.86 764.81
   A 0.60 0.60 0.0 0 0 0.28 765.39
   L 0.23 766.96"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 178.91 718.70
   A 0.40 0.39 -1.9 0 0 178.47 718.30
   Q 171.30 719.09 164.10 719.23
@@ -5787,8 +7182,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 163.03 720.18 178.51 719.46
   A 0.41 0.40 -89.2 0 0 178.90 719.07
   L 178.91 718.70"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 252.8720 715.4793
   A 0.27 0.27 0.0 0 0 252.6053 715.2060
   L 240.1662 715.0540
@@ -5798,16 +7196,22 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 252.5938 716.1460
   A 0.27 0.27 0.0 0 0 252.8671 715.8793
   L 252.8720 715.4793"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 180.87 717.85
   Q 187.89 715.79 193.75 716.15
   Q 193.93 716.16 194.04 715.95
   A 0.15 0.15 0.0 0 0 193.92 715.73
   Q 186.50 715.01 180.79 717.64
   A 0.11 0.11 0.0 0 0 180.87 717.85"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 263.82 720.96
   L 264.03 719.88
   A 0.26 0.26 0.0 0 0 263.82 719.58
@@ -5817,22 +7221,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 9.19 0.72 10.9 0 0 256.79 719.87
   L 263.51 721.17
   A 0.26 0.26 0.0 0 0 263.82 720.96"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 186.0376 719.0883
   A 2.16 0.28 -2.7 0 0 183.8668 718.9103
   A 2.16 0.28 -2.7 0 0 181.7224 719.2917
   A 2.16 0.28 -2.7 0 0 183.8932 719.4697
   A 2.16 0.28 -2.7 0 0 186.0376 719.0883"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 243.0026 722.5186
   A 10.20 1.02 -178.7 0 0 253.1769 723.7697
   A 10.20 1.02 -178.7 0 0 263.3974 722.9814
   A 10.20 1.02 -178.7 0 0 253.2231 721.7303
   A 10.20 1.02 -178.7 0 0 243.0026 722.5186"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 357.03 741.77
   A 0.12 0.11 -2.6 0 0 356.91 741.67
   Q 348.66 741.58 332.84 741.41
@@ -5868,8 +7281,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 352.97 742.38 356.89 741.95
   A 0.16 0.16 0.0 0 0 357.03 741.78
   L 357.03 741.77"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.9504 742.8002
   A 0.25 0.25 0.0 0 0 487.6791 742.5734
   L 468.2364 744.3086
@@ -5877,8 +7293,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.25 0.25 0.0 0 0 468.2809 744.8066
   L 487.7236 743.0714
   A 0.25 0.25 0.0 0 0 487.9504 742.8002"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 182.92 746.12
   Q 178.90 745.47 170.57 745.47
   A 8.08 7.98 51.1 0 1 168.79 745.27
@@ -5918,8 +7337,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 164.14 744.96 168.45 746.06
   Q 169.94 746.44 182.89 746.45
   A 0.17 0.17 0.0 0 0 182.92 746.12"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 409.35 748.21
   L 423.74 748.90
   A 1.15 1.03 36.7 0 0 424.07 748.87
@@ -5938,36 +7360,54 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.10 4.09 -46.5 0 1 422.08 748.49
   Q 416.60 747.40 409.35 748.02
   A 0.10 0.09 -45.5 0 0 409.35 748.21"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 478.97 746.18
   L 484.58 746.28
   A 0.10 0.10 0.0 0 0 484.60 746.08
   Q 481.87 745.48 478.97 746.18"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 478.97 746.18
   Q 478.77 746.13 478.66 746.17
   A 0.09 0.08 -38.3 0 0 478.64 746.32
   Q 478.84 746.45 478.97 746.18"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 727.78 766.94
   Q 728.11 766.01 729.23 765.43"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 729.23 765.43
   L 749.75 765.59
   A 0.21 0.20 0.0 0 0 749.96 765.39
   L 749.96 765.08
   A 0.13 0.13 0.0 0 0 749.84 764.95
   L 747.47 764.71"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 747.47 764.71
   L 759.97 764.78"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 759.97 764.78
   Q 758.67 764.63 757.96 765.00
   A 0.24 0.24 0.0 0 0 758.07 765.46
@@ -5976,13 +7416,19 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 790.53 765.05
   A 0.17 0.17 0.0 0 0 790.36 764.88
   L 779.54 764.69"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 779.54 764.69
   C 786.83 762.33 792.60 762.33 799.53 762.13
   Q 803.01 762.02 813.72 764.69"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 813.72 764.69
   L 810.15 765.07
   A 0.19 0.19 0.0 0 0 809.98 765.27
@@ -5990,16 +7436,25 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.19 0.19 0.0 0 0 810.17 765.46
   Q 833.83 765.47 857.50 765.28
   Q 863.62 765.23 859.99 764.71"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 859.99 764.71
   L 866.77 764.98"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 866.77 764.98
   Q 879.47 765.87 892.76 765.11"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 892.76 765.11
   Q 895.34 764.47 898.35 763.52
   Q 899.96 763.01 902.81 763.50
@@ -6037,16 +7492,22 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1023.81 749.34
   A 0.70 0.69 -89.6 0 0 1023.12 748.63
   L 1016.70 748.62"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1016.70 748.62
   L 1022.41 748.45
   A 0.53 0.53 0.0 0 0 1022.93 747.92
   L 1022.93 747.54
   A 0.55 0.54 -0.5 0 0 1022.37 747.00
   L 1000.00 747.28"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1000.00 747.28
   Q 1001.49 744.38 1005.67 744.67
   Q 1011.83 745.09 1017.48 745.80
@@ -6096,8 +7557,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1023.82 705.97
   A 1.72 1.63 -57.5 0 0 1023.68 705.25
   Q 1022.73 703.07 1023.66 701.05"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.94 701.02
   L 589.09 701.41
   A 0.18 0.18 0.0 0 1 589.12 701.76
@@ -6139,27 +7603,39 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 658.70 763.02 662.14 763.15
   A 0.88 0.87 -10.7 0 1 662.91 763.67
   L 663.46 764.88"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 663.46 764.88
   L 657.18 764.95
   A 0.23 0.21 90.0 0 0 656.97 765.18
   A 0.23 0.22 88.6 0 0 657.19 765.40
   L 687.08 765.03"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 687.08 765.03
   Q 688.21 763.77 690.04 763.91
   Q 699.34 764.61 706.27 763.59
   Q 708.23 763.31 712.35 764.07
   A 6.80 6.18 47.8 0 0 713.59 764.19
   L 727.99 764.38"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 727.99 764.38
   Q 727.68 765.51 729.23 765.43"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 598.8997 765.0318
   A 0.37 0.37 0.0 0 0 598.5284 764.6631
   L 560.2087 764.7969
@@ -6169,8 +7645,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 598.5313 765.5031
   A 0.37 0.37 0.0 0 0 598.9001 765.1318
   L 598.8997 765.0318"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 640.51 764.94
   L 624.66 764.60
   L 624.65 764.79
@@ -6178,14 +7657,20 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 638.35 765.49
   A 2.15 0.41 1.2 0 0 640.51 765.13
   L 640.51 764.94"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1000.00 747.28
   L 991.24 747.55
   A 2.80 2.65 46.7 0 1 990.72 747.52
   Q 986.85 746.93 983.04 748.00"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 983.04 748.00
   Q 977.19 748.22 971.35 748.06
   Q 961.25 747.78 959.69 747.87
@@ -6196,38 +7681,62 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 938.31 748.89 943.49 748.13 948.45 748.56
   C 954.20 749.06 960.24 748.61 966.52 748.81
   Q 975.54 749.10 984.53 748.75"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 984.53 748.75
   L 1016.70 748.62"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 892.76 765.11
   L 866.77 764.98"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 859.99 764.71
   L 813.72 764.69"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 779.54 764.69
   L 759.97 764.78"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 747.47 764.71
   L 727.99 764.38"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 687.08 765.03
   L 663.46 764.88"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.25 750.00
   Q 560.38 750.05 560.50 750.10
   Q 560.51 750.10 560.50 750.10
   Q 560.38 750.05 560.25 750.00"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 646.1795 710.5387
   A 0.44 0.44 0.0 0 0 645.7349 710.1034
   L 634.9155 710.2167
@@ -6237,8 +7746,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 645.7445 711.0233
   A 0.44 0.44 0.0 0 0 646.1799 710.5787
   L 646.1795 710.5387"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 778.17 718.25
   Q 777.79 717.86 777.21 717.90
   C 772.33 718.21 767.69 717.36 762.99 717.12
@@ -6270,15 +7782,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 753.06 717.44 763.05 718.32
   Q 771.93 719.10 777.97 718.77
   A 0.31 0.30 66.5 0 0 778.17 718.25"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.4501 712.5042
   A 2.27 0.38 -179.6 0 0 610.7173 712.9000
   A 2.27 0.38 -179.6 0 0 612.9899 712.5358
   A 2.27 0.38 -179.6 0 0 610.7227 712.1400
   A 2.27 0.38 -179.6 0 0 608.4501 712.5042"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 609.43 715.37
   Q 605.47 713.27 601.60 714.76
   A 1.35 1.08 -51.3 0 1 601.20 714.85
@@ -6291,8 +7809,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.12 0.12 0.0 0 0 609.37 716.08
   L 609.54 715.65
   A 0.23 0.22 -66.6 0 0 609.43 715.37"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1013.72 715.78
   A 0.22 0.22 0.0 0 1 1013.50 716.07
   L 1009.21 715.90
@@ -6304,15 +7825,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1013.66 715.41
   A 0.05 0.04 80.3 0 0 1013.62 715.47
   L 1013.72 715.78"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 688.4300 717.5680
   A 2.30 0.38 -0.3 0 0 686.1280 717.2000
   A 2.30 0.38 -0.3 0 0 683.8300 717.5920
   A 2.30 0.38 -0.3 0 0 686.1320 717.9600
   A 2.30 0.38 -0.3 0 0 688.4300 717.5680"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 867.69 721.29
   Q 860.82 720.82 859.56 720.73
   Q 856.39 720.51 851.44 720.71
@@ -6330,15 +7857,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 839.08 722.15 851.52 721.51
   C 857.17 721.22 861.90 722.04 867.69 721.62
   A 0.17 0.17 0.0 0 0 867.69 721.29"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 577.2840 719.3107
   A 2.42 0.39 -176.7 0 0 579.6776 719.8394
   A 2.42 0.39 -176.7 0 0 582.1160 719.5893
   A 2.42 0.39 -176.7 0 0 579.7224 719.0606
   A 2.42 0.39 -176.7 0 0 577.2840 719.3107"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1004.4260 723.8593
   A 0.77 0.77 0.0 0 0 1003.7556 723.0012
   L 990.9716 721.4315
@@ -6348,8 +7881,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1003.5484 724.6885
   A 0.77 0.77 0.0 0 0 1004.4065 724.0181
   L 1004.4260 723.8593"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 896.90 723.27
   A 0.20 0.20 0.0 0 0 897.09 723.49
   Q 900.28 723.63 903.49 723.92
@@ -6365,15 +7901,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 896.97 723.06
   A 0.07 0.07 0.0 0 0 896.89 723.14
   L 896.90 723.27"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.7090 724.4049
   A 0.32 0.16 -4.5 0 0 561.3774 724.2705
   A 0.32 0.16 -4.5 0 0 561.0710 724.4551
   A 0.32 0.16 -4.5 0 0 561.4026 724.5895
   A 0.32 0.16 -4.5 0 0 561.7090 724.4049"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 700.1531 738.1350
   A 0.27 0.27 0.0 0 0 699.8711 737.8776
   L 690.5008 738.3031
@@ -6383,8 +7925,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 699.8992 738.4969
   A 0.27 0.27 0.0 0 0 700.1567 738.2150
   L 700.1531 738.1350"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 746.2341 742.2537
   A 0.27 0.27 0.0 0 0 746.0703 741.9088
   L 738.3643 739.1648
@@ -6394,22 +7939,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 745.8757 742.4552
   A 0.27 0.27 0.0 0 0 746.2207 742.2914
   L 746.2341 742.2537"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.9365 741.3183
   A 1.50 0.42 -171.5 0 0 593.3579 741.9554
   A 1.50 0.42 -171.5 0 0 594.9035 741.7617
   A 1.50 0.42 -171.5 0 0 593.4821 741.1246
   A 1.50 0.42 -171.5 0 0 591.9365 741.3183"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.85 744.83
   A 0.19 0.19 0.0 0 0 560.66 744.64
   A 0.19 0.19 0.0 0 0 560.47 744.83
   A 0.19 0.19 0.0 0 0 560.66 745.02
   A 0.19 0.19 0.0 0 0 560.85 744.83"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 976.66 745.69
   L 976.64 745.29
   A 0.14 0.14 0.0 0 0 976.49 745.16
@@ -6419,8 +7973,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 8.25 0.24 -3.6 0 0 976.38 745.85
   L 976.53 745.84
   A 0.14 0.14 0.0 0 0 976.66 745.69"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 919.53 747.80
   Q 915.18 748.07 910.99 747.14
   A 0.69 0.61 48.6 0 0 910.83 747.12
@@ -6467,29 +8024,41 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.54 2.52 -38.8 0 1 911.26 747.70
   Q 915.93 748.80 919.57 748.06
   A 0.13 0.13 0.0 0 0 919.53 747.80"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 925.85 748.60
   Q 926.09 748.74 926.24 748.71
   A 0.38 0.38 0.0 0 0 926.25 747.96
   Q 926.13 747.94 925.83 748.17
   A 0.26 0.26 0.0 0 0 925.85 748.60"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 619.9335 749.5571
   A 0.40 0.15 -172.4 0 0 620.3102 749.7587
   A 0.40 0.15 -172.4 0 0 620.7265 749.6629
   A 0.40 0.15 -172.4 0 0 620.3498 749.4613
   A 0.40 0.15 -172.4 0 0 619.9335 749.5571"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 813.9700 750.4817
   A 0.32 0.11 -180.3 0 0 814.2906 750.5900
   A 0.32 0.11 -180.3 0 0 814.6100 750.4783
   A 0.32 0.11 -180.3 0 0 814.2894 750.3700
   A 0.32 0.11 -180.3 0 0 813.9700 750.4817"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 999.68 750.99
   Q 1000.72 751.06 1001.29 751.04
   A 0.36 0.36 0.0 0 0 1001.32 750.32
@@ -6497,48 +8066,72 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 999.53 750.10 998.13 750.11
   A 0.36 0.36 0.0 0 0 998.07 750.82
   Q 998.63 750.93 999.68 750.99"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 880.82 761.46
   L 880.34 761.37
   A 0.23 0.22 -22.8 0 0 880.17 761.78
   Q 880.62 762.07 880.90 761.65
   A 0.13 0.12 22.9 0 0 880.82 761.46"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 151.46 764.99
   Q 151.60 765.36 152.02 765.36
   Q 165.52 765.46 179.21 765.33
   A 0.24 0.24 0.0 0 0 179.31 764.88
   Q 178.73 764.62 177.67 764.74"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 526.00 719.98
   Q 528.34 720.02 530.62 719.31
   A 4.75 4.52 35.9 0 1 532.19 719.10
   Q 534.63 719.18 537.24 718.61
   A 0.24 0.24 0.0 0 0 537.19 718.14
   L 532.72 717.97"
-/>
-<path stroke="#1f150b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1f150b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.73 719.79
   Q 520.78 718.88 518.75 718.92
   Q 515.61 718.97 512.46 718.94"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.21 723.82
   Q 419.91 723.80 412.85 725.37"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.01 725.18
   Q 420.29 725.22 413.45 726.91
   Q 412.51 727.14 411.53 727.07"
-/>
-<path stroke="#1f150b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1f150b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 984.53 748.75
   Q 985.21 747.94 983.04 748.00"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 842.13
   L 1023.58 840.21
   A 0.52 0.52 0.0 0 0 1022.86 839.85
@@ -6588,15 +8181,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 46.44 839.85 29.71 838.95
   Q 23.40 838.61 19.11 838.62
   C 13.09 838.63 6.01 838.36 0.00 840.77"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 72.8984 779.9717
   A 1.70 0.22 -6.7 0 0 71.1843 779.9515
   A 1.70 0.22 -6.7 0 0 69.5216 780.3683
   A 1.70 0.22 -6.7 0 0 71.2357 780.3885
   A 1.70 0.22 -6.7 0 0 72.8984 779.9717"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 68.90 780.23
   A 0.14 0.14 0.0 0 0 68.74 780.11
   Q 60.89 781.37 53.22 781.09
@@ -6611,43 +8210,61 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 54.86 781.74 58.83 782.45 63.20 781.38
   Q 65.96 780.70 68.64 780.55
   A 0.28 0.27 84.4 0 0 68.90 780.23"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 86.9005 781.0114
   A 3.36 0.23 -179.0 0 0 90.2560 781.3000
   A 3.36 0.23 -179.0 0 0 93.6195 781.1286
   A 3.36 0.23 -179.0 0 0 90.2640 780.8400
   A 3.36 0.23 -179.0 0 0 86.9005 781.0114"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 83.5412 781.9760
   A 1.92 0.26 -5.5 0 0 81.6051 781.9012
   A 1.92 0.26 -5.5 0 0 79.7188 782.3440
   A 1.92 0.26 -5.5 0 0 81.6549 782.4188
   A 1.92 0.26 -5.5 0 0 83.5412 781.9760"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 95.6807 782.0567
   A 2.79 0.25 -178.7 0 0 98.4643 782.3699
   A 2.79 0.25 -178.7 0 0 101.2593 782.1833
   A 2.79 0.25 -178.7 0 0 98.4757 781.8701
   A 2.79 0.25 -178.7 0 0 95.6807 782.0567"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 64.1041 782.5516
   A 4.32 0.37 -177.5 0 0 68.4039 783.1096
   A 4.32 0.37 -177.5 0 0 72.7359 782.9284
   A 4.32 0.37 -177.5 0 0 68.4361 782.3704
   A 4.32 0.37 -177.5 0 0 64.1041 782.5516"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 104.24 781.98
   Q 103.29 781.87 103.27 781.88
   A 0.26 0.26 0.0 0 0 103.31 782.37
   Q 103.85 782.51 104.27 782.38
   A 0.21 0.20 -50.0 0 0 104.24 781.98"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 402.85 797.62
   Q 412.13 798.07 415.79 797.79
   Q 425.47 797.05 443.35 794.54
@@ -6708,8 +8325,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.13 0.13 0.0 0 0 402.74 797.49
   L 402.74 797.50
   A 0.12 0.11 5.0 0 0 402.85 797.62"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 87.40 784.34
   Q 88.91 784.37 90.89 784.50
   A 0.07 0.07 0.0 0 0 90.91 784.35
@@ -6717,15 +8337,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 85.82 783.76 83.89 784.18
   A 0.07 0.07 0.0 0 0 83.91 784.32
   Q 85.89 784.30 87.40 784.34"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 133.8880 783.9747
   A 3.99 0.26 -1.8 0 0 129.8918 783.8401
   A 3.99 0.26 -1.8 0 0 125.9120 784.2253
   A 3.99 0.26 -1.8 0 0 129.9082 784.3599
   A 3.99 0.26 -1.8 0 0 133.8880 783.9747"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 125.1471 784.0615
   A 0.27 0.27 0.0 0 0 124.8651 783.8040
   L 103.8867 784.7566
@@ -6735,29 +8361,41 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 124.8933 784.4234
   A 0.27 0.27 0.0 0 0 125.1507 784.1414
   L 125.1471 784.0615"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 741.0544 784.5228
   A 0.66 0.14 -168.0 0 0 741.6709 784.7969
   A 0.66 0.14 -168.0 0 0 742.3456 784.7972
   A 0.66 0.14 -168.0 0 0 741.7291 784.5231
   A 0.66 0.14 -168.0 0 0 741.0544 784.5228"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 91.8312 784.7610
   A 4.05 0.27 -178.6 0 0 95.8734 785.1299
   A 4.05 0.27 -178.6 0 0 99.9288 784.9590
   A 4.05 0.27 -178.6 0 0 95.8866 784.5901
   A 4.05 0.27 -178.6 0 0 91.8312 784.7610"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 653.9541 788.8728
   A 1.68 0.19 -176.0 0 0 655.6167 789.1795
   A 1.68 0.19 -176.0 0 0 657.3059 789.1072
   A 1.68 0.19 -176.0 0 0 655.6433 788.8005
   A 1.68 0.19 -176.0 0 0 653.9541 788.8728"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 736.6285 789.3842
   A 0.48 0.48 0.0 0 0 736.1377 788.9152
   L 730.4192 789.0450
@@ -6767,15 +8405,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 736.1608 789.9350
   A 0.48 0.48 0.0 0 0 736.6298 789.4442
   L 736.6285 789.3842"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 642.2851 789.9012
   A 1.45 0.18 -4.7 0 0 640.8253 789.8406
   A 1.45 0.18 -4.7 0 0 639.3949 790.1388
   A 1.45 0.18 -4.7 0 0 640.8547 790.1994
   A 1.45 0.18 -4.7 0 0 642.2851 789.9012"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 722.98 800.79
   Q 728.94 801.37 734.72 799.87
   A 3.72 3.70 -45.2 0 1 736.48 799.86
@@ -6791,8 +8435,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 756.64 797.03 752.16 798.06 749.02 798.22
   Q 734.59 798.98 722.98 800.47
   A 0.16 0.16 0.0 0 0 722.98 800.79"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 991.69 805.51
   L 986.33 804.46
   A 1.10 0.93 -40.3 0 0 985.98 804.46
@@ -6834,8 +8481,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.22 3.99 -50.5 0 0 978.62 807.99
   Q 984.36 806.15 991.67 805.83
   A 0.16 0.16 0.0 0 0 991.69 805.51"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 298.5646 807.4100
   A 0.33 0.33 0.0 0 0 298.2061 807.1113
   L 253.5905 811.1716
@@ -6845,8 +8495,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 298.2695 807.8084
   A 0.33 0.33 0.0 0 0 298.5683 807.4498
   L 298.5646 807.4100"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 141.10 810.56
   Q 145.26 810.31 149.40 809.88
   A 0.01 0.01 0.0 0 0 149.40 809.86
@@ -6858,22 +8511,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 132.78 810.83 132.77 810.85
   A 0.01 0.01 0.0 0 0 132.78 810.86
   Q 136.94 810.81 141.10 810.56"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 152.3019 809.8753
   A 3.46 0.34 -178.1 0 0 155.7487 810.3298
   A 3.46 0.34 -178.1 0 0 159.2181 810.1047
   A 3.46 0.34 -178.1 0 0 155.7713 809.6502
   A 3.46 0.34 -178.1 0 0 152.3019 809.8753"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 131.2181 810.9043
   A 4.86 0.32 -1.6 0 0 126.3511 810.7201
   A 4.86 0.32 -1.6 0 0 121.5019 811.1757
   A 4.86 0.32 -1.6 0 0 126.3689 811.3599
   A 4.86 0.32 -1.6 0 0 131.2181 810.9043"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 222.90 813.60
   Q 218.47 813.56 216.63 813.76
   A 11.42 11.40 -43.6 0 1 213.66 813.69
@@ -6884,8 +8546,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 210.26 813.73 212.28 814.44 215.01 814.39
   Q 219.10 814.32 222.91 814.17
   A 0.29 0.28 44.1 0 0 222.90 813.60"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 252.3605 813.2068
   A 0.26 0.26 0.0 0 0 252.0692 812.9825
   L 229.5781 815.9035
@@ -6895,8 +8560,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 252.1619 813.6965
   A 0.26 0.26 0.0 0 0 252.3863 813.4051
   L 252.3605 813.2068"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 101.27 815.95
   Q 98.33 815.67 90.74 817.29
   Q 76.95 820.23 75.67 820.53
@@ -6913,15 +8581,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 78.60 821.54 87.25 819.14 98.22 816.65
   C 99.04 816.47 100.73 816.69 101.32 816.50
   A 0.28 0.28 0.0 0 0 101.27 815.95"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 226.1397 818.0387
   A 2.63 0.29 -0.9 0 0 223.5054 817.7900
   A 2.63 0.29 -0.9 0 0 220.8803 818.1213
   A 2.63 0.29 -0.9 0 0 223.5146 818.3700
   A 2.63 0.29 -0.9 0 0 226.1397 818.0387"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 517.49 819.24
   A 0.45 0.45 0.0 0 0 517.39 818.35
   L 507.26 818.35
@@ -6985,12 +8659,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.40 0.39 -40.5 0 1 505.70 820.11
   Q 507.85 819.32 510.26 819.50
   Q 514.86 819.84 517.49 819.24"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 844.17
   Q 1019.63 845.27 1014.94 844.13"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1014.94 844.13
   L 1019.26 843.54
   A 0.31 0.30 75.2 0 0 1019.50 843.12
@@ -7004,120 +8684,195 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 784.93 843.07 590.50 842.84
   Q 577.83 842.83 565.25 842.84
   Q 433.72 842.98 302.23 842.95"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 302.23 842.95
   Q 287.21 841.63 272.23 842.05
   Q 271.60 842.07 271.34 842.98"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 271.34 842.98
   L 0.00 843.03"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 302.23 842.95
   L 271.34 842.98"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1014.94 844.13
   L 840.79 844.49"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 840.79 844.49
   L 764.43 844.47"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 764.43 844.47
   L 514.96 844.40
   A 0.69 0.69 0.0 0 0 514.27 845.06
   L 514.24 845.99"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 514.24 845.99
   Q 514.28 874.15 514.44 902.39
   C 514.46 906.19 514.93 910.39 514.28 914.54
   A 0.28 0.28 0.0 0 0 514.56 914.86
   L 938.98 914.84"
-/>
-<path stroke="#1f150b" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1f150b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 938.98 914.84
   L 943.69 914.86"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 943.69 914.86
   L 1015.27 914.87"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1015.27 914.87
   L 1024.00 915.03"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 916.12
   L 703.53 916.25
   A 0.50 0.49 -0.0 0 0 703.03 916.74
   L 703.03 983.03"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 703.03 983.03
   Q 703.19 983.73 703.01 983.91
   A 0.92 0.92 0.0 0 1 701.43 983.28
   Q 701.21 951.01 701.41 918.71"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 701.41 918.71
   L 701.48 916.80
   A 0.50 0.50 0.0 0 0 701.00 916.28
   L 695.29 916.10"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.29 916.10
   L 353.67 916.22"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 353.67 916.22
   L 253.30 916.38"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 253.30 916.38
   L 207.55 916.39"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 207.55 916.39
   L 100.70 916.38"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 100.70 916.38
   L 0.00 916.04"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.00 914.96
   L 512.78 914.84
   A 0.49 0.49 0.0 0 0 513.27 914.30
   L 512.95 910.77"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 512.95 910.77
   L 512.56 862.80"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 512.56 862.80
   L 513.00 844.74
   A 0.32 0.32 0.0 0 0 512.68 844.41
   L 502.72 844.49"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 502.72 844.49
   L 322.29 844.52"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 322.29 844.52
   L 299.28 844.50"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 299.28 844.50
   L 0.00 844.66"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1015.27 914.87
   Q 1015.80 914.51 1016.76 914.57
   A 0.19 0.19 0.0 0 0 1016.91 914.24
@@ -7213,8 +8968,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.50 0.50 0.0 0 1 518.31 870.51
   Q 518.74 869.91 518.77 869.50
   Q 518.97 866.53 520.46 864.17"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 520.46 864.17
   L 529.37 863.30
   A 6.43 6.36 -42.7 0 1 531.04 863.36
@@ -7277,8 +9035,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 543.13 862.46 541.06 862.70
   A 16.16 16.02 46.1 0 1 536.51 862.59
   Q 529.04 861.35 521.57 862.32"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.57 862.32
   L 520.46 862.09
   A 0.37 0.37 0.0 0 1 520.45 861.37
@@ -7291,14 +9052,20 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 522.20 856.68
   A 0.78 0.78 0.0 0 1 521.57 855.89
   Q 521.86 848.59 514.24 845.99"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 764.43 844.47
   Q 769.26 845.90 775.99 845.93
   Q 814.90 846.10 834.77 845.87
   Q 837.54 845.84 840.79 844.49"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 784.37 852.47
   A 0.92 0.90 -11.8 0 0 785.35 853.10
   Q 797.47 851.63 809.61 851.83
@@ -7306,16 +9073,22 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 801.38 849.17 793.56 850.45 784.87 851.57
   A 0.63 0.63 0.0 0 0 784.34 852.38
   L 784.37 852.47"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 875.52 860.05
   L 896.89 860.90
   A 0.11 0.10 2.9 0 0 897.00 860.81
   L 897.06 860.53
   A 0.30 0.30 0.0 0 0 896.77 860.17
   L 878.25 859.50"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 878.25 859.50
   Q 874.08 858.09 868.93 857.68
   Q 859.54 856.91 853.60 857.36
@@ -7327,33 +9100,48 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 864.87 859.20 864.88 859.23
   A 1.04 1.02 -2.0 0 0 865.72 860.00
   Q 870.59 860.76 875.52 860.05"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 878.25 859.50
   Q 871.19 859.66 875.52 860.05"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 806.4870 858.4197
   A 2.04 0.50 -3.1 0 0 804.4230 858.0307
   A 2.04 0.50 -3.1 0 0 802.4130 858.6403
   A 2.04 0.50 -3.1 0 0 804.4770 859.0293
   A 2.04 0.50 -3.1 0 0 806.4870 858.4197"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 827.7273 858.4373
   A 1.61 0.50 -3.3 0 0 826.0912 858.0308
   A 1.61 0.50 -3.3 0 0 824.5127 858.6227
   A 1.61 0.50 -3.3 0 0 826.1488 859.0292
   A 1.61 0.50 -3.3 0 0 827.7273 858.4373"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 899.5200 859.2872
   A 1.63 0.29 -179.9 0 0 901.1495 859.5800
   A 1.63 0.29 -179.9 0 0 902.7800 859.2928
   A 1.63 0.29 -179.9 0 0 901.1505 859.0000
   A 1.63 0.29 -179.9 0 0 899.5200 859.2872"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 937.05 860.77
   A 0.31 0.30 -9.3 0 0 937.34 860.97
   L 958.62 861.09
@@ -7383,8 +9171,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 949.89 859.54 937.20 860.48
   A 0.19 0.19 0.0 0 0 937.04 860.73
   L 937.05 860.77"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 939.72 863.27
   Q 937.79 862.07 935.54 862.12
   A 0.47 0.46 69.1 0 1 935.19 861.96
@@ -7403,8 +9194,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.52 4.44 -47.5 0 0 933.78 863.15
   Q 936.43 862.31 939.62 863.48
   A 0.12 0.12 0.0 0 0 939.72 863.27"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 784.68 873.68
   Q 790.36 873.45 795.86 871.41
   A 3.27 3.12 32.3 0 1 796.86 871.21
@@ -7446,29 +9240,41 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.04 0.04 0.0 0 1 784.49 873.56
   L 784.46 873.48
   A 0.21 0.21 0.0 0 0 784.68 873.68"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 731.0800 873.6375
   A 0.18 0.01 -179.2 0 0 731.2599 873.6500
   A 0.18 0.01 -179.2 0 0 731.4400 873.6425
   A 0.18 0.01 -179.2 0 0 731.2601 873.6300
   A 0.18 0.01 -179.2 0 0 731.0800 873.6375"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 749.15 875.42
   A 0.03 0.03 0.0 0 0 749.12 875.39
   A 0.03 0.03 0.0 0 0 749.09 875.42
   A 0.03 0.03 0.0 0 0 749.12 875.45
   A 0.03 0.03 0.0 0 0 749.15 875.42"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 751.10 875.24
   Q 750.86 875.21 749.84 875.42
   A 0.10 0.10 0.0 0 0 749.86 875.61
   L 751.08 875.56
   A 0.16 0.16 0.0 0 0 751.10 875.24"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 891.25 895.98
   A 0.18 0.17 83.8 0 0 891.42 896.12
   Q 911.22 896.24 929.00 895.10
@@ -7488,15 +9294,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 893.62 895.44 891.48 895.48
   A 0.28 0.28 0.0 0 0 891.22 895.82
   L 891.25 895.98"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 963.1900 893.5010
   A 1.71 0.38 -179.7 0 0 964.8980 893.8900
   A 1.71 0.38 -179.7 0 0 966.6100 893.5190
   A 1.71 0.38 -179.7 0 0 964.9020 893.1300
   A 1.71 0.38 -179.7 0 0 963.1900 893.5010"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 950.6699 894.1545
   A 0.64 0.64 0.0 0 0 950.0276 893.5167
   L 942.4077 893.5433
@@ -7506,8 +9318,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 950.0323 894.8567
   A 0.64 0.64 0.0 0 0 950.6701 894.2145
   L 950.6699 894.1545"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.87 895.91
   L 560.86 896.51
   A 0.15 0.15 0.0 0 0 561.00 896.67
@@ -7516,13 +9331,19 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 23.08 0.45 1.5 0 0 561.20 895.77
   L 561.03 895.77
   A 0.15 0.15 0.0 0 0 560.87 895.91"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 299.28 844.50
   Q 309.41 846.99 319.85 845.88
   Q 321.50 845.70 322.29 844.52"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 502.72 844.49
   Q 496.63 846.06 490.20 845.80
   Q 488.17 845.72 487.19 846.15
@@ -7541,8 +9362,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 509.23 849.41 510.16 848.97
   A 0.67 0.67 0.0 0 1 511.12 849.59
   L 510.87 857.94"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.87 857.94
   L 509.69 856.40
   A 0.40 0.40 0.0 0 0 508.98 856.63
@@ -7581,12 +9405,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 507.09 859.56 509.42 858.48
   A 0.41 0.41 0.0 0 1 509.98 858.76
   Q 510.18 859.58 510.89 859.79"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.89 859.79
   Q 511.33 861.52 512.56 862.80"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 512.95 910.77
   Q 508.99 909.86 505.28 908.79
   C 501.28 907.63 498.24 907.46 494.40 907.38
@@ -7615,21 +9445,30 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 235.05 910.75 230.56 910.63 227.26 910.90
   Q 214.13 911.96 200.68 911.17
   C 195.57 910.87 190.03 911.15 184.71 911.26"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 184.71 911.26
   Q 167.24 909.57 149.75 910.17
   Q 147.95 910.24 136.68 910.23
   Q 127.96 910.23 119.43 911.97"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 119.43 911.97
   Q 110.83 911.43 102.18 911.42
   C 95.88 911.42 91.51 910.39 85.16 910.84
   C 78.60 911.30 69.44 910.76 61.68 911.15
   C 40.86 912.19 18.88 907.70 0.00 911.78"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 442.49 860.51
   Q 440.36 860.61 439.61 861.20
   A 1.07 1.07 0.0 0 1 438.73 861.41
@@ -7656,8 +9495,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.66 0.63 -39.4 0 0 440.08 862.23
   L 442.58 860.79
   A 0.15 0.15 0.0 0 0 442.49 860.51"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 187.29 867.40
   Q 186.51 867.20 185.07 868.28
   A 1.75 1.75 0.0 0 1 183.83 868.63
@@ -7691,8 +9533,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 176.49 869.33 182.29 869.43
   C 183.70 869.45 185.54 869.03 187.19 868.83
   A 0.73 0.73 0.0 0 0 187.29 867.40"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 281.31 870.70
   A 0.02 0.02 0.0 0 0 281.33 870.72
   L 293.94 871.24
@@ -7717,16 +9562,22 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 281.51 870.11
   A 0.22 0.22 0.0 0 0 281.29 870.34
   L 281.31 870.70"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 193.71 869.11
   Q 194.96 869.33 196.44 868.73
   C 196.56 868.68 196.70 868.59 196.73 868.47
   A 0.10 0.09 -75.9 0 0 196.66 868.35
   Q 194.88 867.99 193.71 868.20
   A 0.46 0.46 0.0 0 0 193.71 869.11"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 64.13 870.69
   L 59.35 870.01
   A 5.72 5.08 15.3 0 1 58.56 869.84
@@ -7735,8 +9586,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 47.65 869.59 51.52 868.96 54.75 869.66
   C 57.32 870.21 62.33 871.65 64.16 870.96
   A 0.14 0.14 0.0 0 0 64.13 870.69"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 279.8573 870.0871
   A 0.27 0.27 0.0 0 0 279.5974 869.8074
   L 263.3883 869.2131
@@ -7746,22 +9600,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 279.5717 870.5069
   A 0.27 0.27 0.0 0 0 279.8514 870.2470
   L 279.8573 870.0871"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 36.8473 869.6304
   A 1.41 0.24 -157.5 0 0 38.0582 870.3917
   A 1.41 0.24 -157.5 0 0 39.4527 870.7096
   A 1.41 0.24 -157.5 0 0 38.2418 869.9483
   A 1.41 0.24 -157.5 0 0 36.8473 869.6304"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 255.9101 869.8836
   A 2.35 0.25 -179.6 0 0 258.2583 870.1500
   A 2.35 0.25 -179.6 0 0 260.6099 869.9164
   A 2.35 0.25 -179.6 0 0 258.2617 869.6500
   A 2.35 0.25 -179.6 0 0 255.9101 869.8836"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 374.33 876.68
   A 0.19 0.19 0.0 0 0 374.22 876.32
   Q 365.02 876.84 355.24 874.34
@@ -7778,8 +9641,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 353.89 875.36 356.02 875.71
   Q 365.68 877.27 371.79 877.29
   Q 373.29 877.29 374.33 876.68"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 268.30 871.94
   Q 266.98 871.64 266.18 871.71
   Q 261.96 872.09 258.29 872.28
@@ -7797,8 +9663,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 250.32 872.37 252.65 872.55
   Q 259.73 873.08 268.29 872.20
   A 0.13 0.13 0.0 0 0 268.30 871.94"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 429.14 883.48
   Q 422.07 882.73 411.07 882.59
   Q 405.15 882.51 394.47 880.92
@@ -7812,15 +9681,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.06 0.05 -79.8 0 0 429.20 884.12
   L 429.29 883.69
   A 0.18 0.17 -81.0 0 0 429.14 883.48"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.1627 885.3718
   A 25.73 0.41 -178.2 0 0 455.8671 886.5898
   A 25.73 0.41 -178.2 0 0 481.5973 886.9882
   A 25.73 0.41 -178.2 0 0 455.8929 885.7702
   A 25.73 0.41 -178.2 0 0 430.1627 885.3718"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 65.56 896.35
   L 65.52 896.79
   A 0.13 0.13 0.0 0 0 65.64 896.93
@@ -7830,8 +9705,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 29.14 0.31 5.6 0 0 65.99 896.26
   L 65.70 896.23
   A 0.13 0.13 0.0 0 0 65.56 896.35"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 304.46 900.00
   Q 304.37 901.14 305.51 901.11
   Q 317.23 900.81 322.80 901.74
@@ -7840,8 +9718,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 336.80 901.43 339.06 900.56
   Q 339.48 900.40 339.48 900.09
   Q 339.48 899.78 339.19 899.43"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 339.19 899.43
   L 340.00 898.87
   A 0.04 0.04 0.0 0 0 339.98 898.80
@@ -7850,13 +9731,19 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 245.66 899.99
   A 0.02 0.02 0.0 0 0 245.68 900.01
   L 304.46 900.00"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 339.19 899.43
   Q 334.65 899.99 331.75 899.95
   Q 318.10 899.77 304.46 900.00"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 168.1682 899.6608
   A 0.26 0.26 0.0 0 0 167.9127 899.3963
   L 135.1177 898.8238
@@ -7866,15 +9753,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 167.9023 899.9962
   A 0.26 0.26 0.0 0 0 168.1668 899.7408
   L 168.1682 899.6608"
-/>
-<path stroke="#593c20" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#593c20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 109.1181 899.6018
   A 4.95 0.21 -1.6 0 0 104.1641 899.5301
   A 4.95 0.21 -1.6 0 0 99.2219 899.8782
   A 4.95 0.21 -1.6 0 0 104.1759 899.9499
   A 4.95 0.21 -1.6 0 0 109.1181 899.6018"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 499.7800 905.5190
   A 0.33 0.33 0.0 0 0 499.4524 905.1867
   L 491.7925 905.1333
@@ -7884,45 +9777,69 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 499.4475 905.8867
   A 0.33 0.33 0.0 0 0 499.7798 905.5590
   L 499.7800 905.5190"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 510.89 859.79
   Q 511.27 858.40 510.87 857.94"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 521.57 862.32
   Q 520.62 862.99 520.46 864.17"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 943.69 914.86
   Q 942.63 913.43 939.20 914.14
   A 0.31 0.26 -73.1 0 0 939.03 914.25
   Q 938.86 914.48 938.98 914.84"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 119.43 911.97
   C 131.83 912.05 144.55 911.51 156.46 912.45
   C 165.31 913.14 175.43 911.90 184.71 911.26"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 100.70 916.38
   Q 104.00 918.07 108.53 917.99
   Q 122.33 917.77 138.63 918.01
   Q 157.06 918.28 168.72 918.15
   Q 192.24 917.89 201.76 917.79
   Q 204.26 917.76 207.55 916.39"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 253.30 916.38
   Q 259.21 917.90 267.24 917.89
   Q 302.60 917.84 337.96 917.83
   Q 347.43 917.82 353.67 916.22"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.29 916.10
   L 698.22 917.07"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 698.22 917.07
   Q 695.40 922.44 695.78 928.14
   C 696.56 939.75 697.40 946.28 696.40 955.23
@@ -8014,12 +9931,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 16.62 977.96 8.79 980.76 1.04 981.46
   A 0.81 0.81 0.0 0 0 0.32 982.09
   Q 0.04 983.34 0.38 984.80"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 0.38 984.80
   L 0.00 985.36"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 263.9152 926.9500
   A 0.26 0.26 0.0 0 0 263.6381 926.7083
   L 209.8630 930.3744
@@ -8029,8 +9952,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 263.7170 927.8656
   A 0.26 0.26 0.0 0 0 263.9588 927.5886
   L 263.9152 926.9500"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 327.0584 933.7453
   A 0.44 0.44 0.0 0 0 326.6372 933.2872
   L 321.0621 933.0536
@@ -8040,8 +9966,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 326.5979 934.2264
   A 0.44 0.44 0.0 0 0 327.0559 933.8052
   L 327.0584 933.7453"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 293.34 939.63
   A 0.23 0.23 0.0 0 0 293.56 939.85
   Q 299.71 940.07 300.96 939.97
@@ -8061,8 +9990,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 306.06 939.51 299.45 938.79 293.44 939.24
   A 0.12 0.12 0.0 0 0 293.33 939.36
   L 293.34 939.63"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 146.74 950.79
   Q 144.29 948.71 142.26 948.77
   Q 123.13 949.31 121.15 949.37
@@ -8075,8 +10007,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 133.31 950.67 142.94 950.56
   Q 144.22 950.54 146.63 951.02
   A 0.13 0.13 0.0 0 0 146.74 950.79"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 505.2496 951.9579
   A 0.33 0.33 0.0 0 0 504.9168 951.6307
   L 495.9171 951.7093
@@ -8086,8 +10021,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 504.9229 952.3307
   A 0.33 0.33 0.0 0 0 505.2500 951.9979
   L 505.2496 951.9579"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 537.05 954.17
   A 0.33 0.33 0.0 0 0 537.06 954.82
   Q 547.05 955.86 558.30 954.59
@@ -8099,8 +10037,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 573.39 953.16 563.42 952.43
   C 558.69 952.08 550.29 953.86 543.42 953.91
   Q 538.90 953.94 537.05 954.17"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 917.24
   L 1018.46 918.16
   A 0.36 0.36 0.0 0 0 1018.45 918.87
@@ -8180,43 +10121,64 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 987.25 982.76 978.47 982.32 970.83 981.81
   Q 963.79 981.35 956.14 981.42
   Q 942.42 981.54 928.69 982.08"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 928.69 982.08
   C 924.77 982.22 920.53 981.44 917.09 981.61
   C 912.56 981.84 908.98 982.17 903.72 981.89
   Q 896.76 981.53 889.79 981.27"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 889.79 981.27
   Q 882.04 979.92 874.05 981.72"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 874.05 981.72
   C 861.65 982.29 849.31 983.01 837.00 982.40
   Q 807.23 980.91 777.45 982.12
   Q 766.14 982.57 753.97 982.27
   Q 742.11 981.98 730.50 981.60"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 730.50 981.60
   Q 722.39 978.91 713.54 978.85
   C 709.68 978.83 706.09 979.22 703.87 982.51"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 703.87 982.51
   Q 704.01 983.32 703.81 983.74
   A 0.34 0.33 -39.3 0 1 703.18 983.68
   L 703.03 983.03"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 997.04 920.86
   A 0.24 0.24 0.0 0 0 997.06 920.38
   Q 995.62 920.15 994.60 920.28
   A 0.28 0.28 0.0 0 0 994.60 920.84
   Q 995.65 920.97 997.04 920.86"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 704.08 926.89
   L 704.08 928.31
   A 0.21 0.21 0.0 0 0 704.29 928.52
@@ -8226,27 +10188,39 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 7.30 0.87 -0.3 0 0 704.50 926.68
   L 704.29 926.68
   A 0.21 0.21 0.0 0 0 704.08 926.89"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 745.41 928.28
   Q 745.68 928.33 747.70 927.58
   A 0.18 0.18 0.0 0 0 747.66 927.23
   Q 746.32 927.01 745.29 927.61
   A 0.36 0.36 0.0 0 0 745.41 928.28"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 791.69 931.13
   L 813.98 932.08"
-/>
-<path stroke="#78532d" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#78532d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 813.98 932.08
   L 808.92 933.31
   A 0.42 0.41 79.2 0 0 808.61 933.77
   L 808.64 934.04
   A 0.38 0.38 0.0 0 0 809.08 934.36
   L 816.53 933.12"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 816.53 933.12
   C 822.48 933.45 828.62 932.74 834.17 933.12
   Q 844.37 933.84 854.59 934.42
@@ -8267,23 +10241,35 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 827.03 931.24 822.59 931.59 820.27 931.86
   A 7.02 6.98 -43.1 0 1 818.30 931.80
   C 810.38 930.45 802.30 930.42 794.33 929.83"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 794.33 929.83
   Q 789.69 929.89 785.23 929.13
   Q 783.58 928.85 782.13 929.44
   A 0.35 0.35 0.0 0 0 782.23 930.11
   C 785.75 930.45 788.21 932.29 791.69 931.13"
-/>
-<path stroke="#49311a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49311a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 794.33 929.83
   Q 789.38 929.91 791.69 931.13"
-/>
-<path stroke="#54391e" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#54391e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 816.53 933.12
   Q 815.32 932.18 813.98 932.08"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 758.5290 929.7698
   A 0.35 0.35 0.0 0 0 758.1864 929.4125
   L 747.4487 929.1876
@@ -8293,8 +10279,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 758.1713 930.1324
   A 0.35 0.35 0.0 0 0 758.5285 929.7898
   L 758.5290 929.7698"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 917.83 930.13
   L 917.90 930.45
   A 0.27 0.26 81.3 0 0 918.18 930.66
@@ -8307,15 +10296,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 930.38 930.14 930.35 930.14
   L 917.90 930.04
   A 0.07 0.07 0.0 0 0 917.83 930.13"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 714.8912 930.4088
   A 2.04 0.49 -178.0 0 0 716.9129 930.9697
   A 2.04 0.49 -178.0 0 0 718.9688 930.5512
   A 2.04 0.49 -178.0 0 0 716.9471 929.9903
   A 2.04 0.49 -178.0 0 0 714.8912 930.4088"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 760.32 932.78
   C 766.65 933.48 770.58 933.83 775.51 932.53
   Q 777.60 931.98 781.12 931.93
@@ -8335,15 +10330,21 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.28 0.28 0.0 0 0 760.27 932.23
   L 760.12 932.44
   A 0.25 0.24 -76.5 0 0 760.32 932.78"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 884.4376 930.4013
   A 1.64 0.41 -3.1 0 0 882.7778 930.0806
   A 1.64 0.41 -3.1 0 0 881.1624 930.5787
   A 1.64 0.41 -3.1 0 0 882.8222 930.8994
   A 1.64 0.41 -3.1 0 0 884.4376 930.4013"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 707.54 934.85
   Q 713.31 935.17 717.34 934.75
   Q 719.93 934.48 721.71 934.69
@@ -8361,8 +10362,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.25 3.24 38.9 0 1 714.42 934.09
   Q 710.31 933.67 707.50 934.20
   A 0.33 0.33 0.0 0 0 707.54 934.85"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 976.55 935.67
   C 980.27 936.03 983.55 935.51 986.55 936.25
   A 1.85 1.80 45.7 0 0 987.35 936.27
@@ -8377,14 +10381,20 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 998.45 934.63 996.30 934.01 994.01 934.02
   Q 984.03 934.05 976.54 935.19
   A 0.24 0.24 0.0 0 0 976.55 935.67"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 883.23 967.38
   L 881.50 967.41
   A 0.11 0.11 0.0 0 0 881.47 967.63
   Q 882.38 967.84 883.23 967.38"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 883.23 967.38
   Q 891.87 969.18 900.72 969.09
   Q 905.19 969.05 907.79 969.07
@@ -8405,8 +10415,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 932.98 968.67 920.50 968.34
   Q 912.70 968.14 901.59 968.48
   C 895.44 968.67 889.38 967.98 883.23 967.38"
-/>
-<path stroke="#5f4123" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5f4123"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 792.0202 968.5221
   A 0.27 0.27 0.0 0 0 791.7507 968.2517
   L 766.9108 968.2083
@@ -8416,58 +10429,94 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 791.7492 969.0917
   A 0.27 0.27 0.0 0 0 792.0197 968.8221
   L 792.0202 968.5221"
-/>
-<path stroke="#6d4b29" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6d4b29"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 701.41 918.71
   L 698.22 917.07"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 703.87 982.51
   L 730.50 981.60"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 874.05 981.72
   L 889.79 981.27"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 928.69 982.08
   L 935.30 984.57"
-/>
-<path stroke="#2d1e11" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1e11"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 935.30 984.57
   L 0.38 984.80"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 984.59
   L 935.30 984.57"
-/>
-<path stroke="#422f1a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#422f1a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1024.00 985.88
   L 1002.45 986.00"
-/>
-<path stroke="#3c2a17" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2a17"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1002.45 986.00
   L 550.34 986.00
   A 0.52 0.52 0.0 0 0 549.82 986.51
   L 549.74 1023.72"
-/>
-<path stroke="#382615" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#382615"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 549.74 1023.72
   Q 548.45 1023.80 548.44 1023.51
   Q 547.90 1004.95 548.38 986.86
   A 0.78 0.78 0.0 0 0 547.60 986.06
   L 0.00 986.25"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1002.45 986.00
   Q 1005.65 987.18 1009.79 987.18
   Q 1019.36 987.16 1024.00 986.92"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 549.62 1024.00
   Q 549.68 1023.86 549.74 1023.72"
-/>
-<path stroke="#724e2a" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#724e2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 861.95 1009.76
   Q 866.81 1010.26 869.59 1009.84
   Q 877.54 1008.65 885.70 1008.09
@@ -8475,8 +10524,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.15 0.15 0.0 0 0 887.76 1007.47
   Q 883.42 1006.61 882.29 1006.68
   Q 873.98 1007.22 865.72 1007.82"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 865.72 1007.82
   Q 858.53 1007.97 851.38 1008.16
   Q 848.50 1008.24 847.20 1008.54
@@ -8554,12 +10606,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 852.71 1010.96
   A 3.98 3.88 36.5 0 0 854.39 1010.73
   Q 858.12 1009.36 861.95 1009.76"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 865.72 1007.82
   C 865.54 1009.28 863.08 1009.59 861.95 1009.76"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 1014.70 1007.28
   L 1014.83 1006.09
   A 0.13 0.13 0.0 0 0 1014.71 1005.95
@@ -8569,8 +10627,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 15.45 0.52 6.1 0 0 1006.00 1006.48
   L 1014.55 1007.40
   A 0.13 0.13 0.0 0 0 1014.70 1007.28"
-/>
-<path stroke="#7c562f" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c562f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 930.00 1006.53
   L 929.95 1004.75
   A 0.27 0.27 0.0 0 0 929.68 1004.49
@@ -8580,8 +10641,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 26.03 0.97 -1.4 0 0 928.07 1006.85
   L 929.73 1006.80
   A 0.27 0.27 0.0 0 0 930.00 1006.53"
-/>
-<path stroke="#674626" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#674626"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 980.2698 1005.4645
   A 0.44 0.44 0.0 0 0 979.8275 1005.0268
   L 963.3277 1005.1132
@@ -8591,8 +10655,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 979.8323 1005.9468
   A 0.44 0.44 0.0 0 0 980.2700 1005.5045
   L 980.2698 1005.4645"
-/>
-<path stroke="#624224" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624224"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 517.58 1006.23
   Q 508.62 1004.89 501.87 1005.33
   C 488.54 1006.21 481.59 1006.95 468.44 1007.20
@@ -8633,10 +10700,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.26 0.26 0.0 0 0 517.76 1006.49
   L 517.76 1006.47
   A 0.22 0.21 -83.1 0 0 517.58 1006.23"
-/>
-</g>
-<g fill="#6d4a28">
-<path d="
+        />
+      </g>
+      <g fill="#6d4a28">
+        <path
+          d="
   M 802.25 0.00
   Q 802.12 0.23 801.81 0.40
   Q 799.99 0.91 799.08 2.31
@@ -8730,16 +10798,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 33.98 60.10 43.06 59.63
   A 0.16 0.16 0.0 0 0 43.10 59.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 950.63 0.00
   C 944.79 0.82 937.66 0.33 933.35 0.62
   C 925.24 1.15 916.82 0.41 909.16 0.36
   Q 894.32 0.26 879.48 0.00
   L 950.63 0.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1018.73 134.20
   Q 1005.73 134.60 992.91 135.30
   C 986.13 135.67 980.14 134.85 973.04 134.97
@@ -8979,8 +11049,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.42 0.15 -187.9 0 0 425.7994 121.4714
   A 0.42 0.15 -187.9 0 0 425.4040 121.6777
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 668.90 150.02
   L 666.46 141.32
   A 0.23 0.23 0.0 0 0 666.01 141.32
@@ -9228,8 +11299,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.91 0.20 -175.9 0 0 435.6243 187.5505
   A 1.91 0.20 -175.9 0 0 433.7049 187.6134
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 190.71
   L 1024.00 198.88
   L 929.54 198.89
@@ -9253,14 +11325,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1003.88 194.31 1012.27 194.49
   C 1017.07 194.59 1020.78 194.21 1024.00 190.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 904.46 196.25
   L 889.05 196.22
   Q 896.81 195.28 904.46 196.25
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 200.20
   L 1024.00 341.14
   L 1023.71 340.99
@@ -9507,11 +11581,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 583.54 307.15 584.19 306.49
   A 0.06 0.05 17.6 0 0 584.14 306.40
   Z"
-/>
-<ellipse cx="827.25" cy="230.44" rx="2.90" ry="0.37"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(216.75,253.48) rotate(-177.4)" rx="1.49" ry="0.27"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(134.40,254.83) rotate(-22.9)" rx="0.36" ry="0.18"/>
-<path d="
+        />
+        <ellipse cx="827.25" cy="230.44" rx="2.90" ry="0.37" />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(216.75,253.48) rotate(-177.4)"
+          rx="1.49"
+          ry="0.27"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(134.40,254.83) rotate(-22.9)"
+          rx="0.36"
+          ry="0.18"
+        />
+        <path
+          d="
   M 837.72 268.78
   L 836.43 268.89
   A 0.07 0.05 -5.2 0 0 836.39 268.92
@@ -9573,8 +11660,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.39 0.07 -2.7 0 0 700.6833 267.9799
   A 0.39 0.07 -2.7 0 0 701.0696 267.8916
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 245.27 268.38
   Q 233.61 267.28 221.94 267.81
   Q 207.09 268.48 204.20 268.48
@@ -9601,14 +11689,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.32 0.32 0.0 0 1 257.55 268.12
   L 245.27 268.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 637.51 268.38
   Q 629.08 269.29 620.80 268.26
   Q 629.12 266.70 637.51 268.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 23.79 272.43
   L 20.70 273.07
   A 0.30 0.30 0.0 0 0 20.76 273.67
@@ -9730,8 +11820,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.30 0.29 -1.9 0 0 323.07 304.34
   L 323.08 304.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 342.09
   L 1024.00 411.72
   L 1023.73 411.90
@@ -9820,15 +11911,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.26 0.26 0.0 0 0 785.1416 360.3619
   L 785.1297 359.9821
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(124.87,352.91) rotate(-94.5)" rx="0.53" ry="0.18"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(124.87,352.91) rotate(-94.5)"
+          rx="0.53"
+          ry="0.18"
+        />
+        <path
+          d="
   M 114.77 407.52
   C 108.23 409.19 102.14 408.44 95.31 406.90
   L 114.77 407.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 567.71 407.82
   Q 542.28 409.01 526.33 408.90
   Q 497.23 408.69 484.47 409.00
@@ -9837,21 +11936,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 503.70 407.42 519.58 406.99
   Q 543.66 406.34 567.71 407.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 175.88 407.91
   Q 159.72 409.85 143.17 407.50
   L 175.88 407.91
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 728.28 407.20
   L 745.95 408.36
   Q 735.08 409.00 724.45 407.46
   L 728.28 407.20
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 131.31 483.07
   Q 127.68 481.22 125.16 480.99
   C 115.02 480.06 102.93 481.28 92.83 480.51
@@ -9950,8 +12052,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.52 0.44 -179.9 0 0 123.3708 466.1100
   A 4.52 0.44 -179.9 0 0 118.8500 466.5421
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 479.88
   L 1024.00 557.75
   Q 1023.76 557.61 1023.73 557.17
@@ -10290,9 +12393,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 823.72 539.09 817.20 539.94 809.47 540.10
   A 0.26 0.25 -11.9 0 0 809.24 540.45
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(585.13,539.61) rotate(-173.9)" rx="0.22" ry="0.10"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(585.13,539.61) rotate(-173.9)"
+          rx="0.22"
+          ry="0.10"
+        />
+        <path
+          d="
   M 308.31 543.78
   A 0.18 0.18 0.0 0 1 308.15 543.98
   L 303.48 544.44
@@ -10303,8 +12413,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.18 0.18 0.0 0 1 308.24 543.11
   L 308.31 543.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 333.29 553.64
   Q 323.27 554.48 313.24 554.07
   C 307.14 553.82 302.48 554.95 296.48 554.26
@@ -10321,8 +12432,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 322.34 552.75 324.45 553.03
   Q 328.85 553.62 333.29 553.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 660.26 551.87
   L 660.33 556.25
   Q 657.67 554.70 655.46 554.84
@@ -10349,8 +12461,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 612.34 553.87 621.58 553.18 632.97 553.18
   Q 646.57 553.18 660.26 551.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 179.47 559.05
   L 179.40 560.07
   A 0.84 0.84 0.0 0 0 180.24 560.97
@@ -10463,8 +12576,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.32 0.32 0.0 0 0 139.4493 628.2966
   L 139.4495 628.2766
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 816.71 559.36
   Q 816.03 559.64 815.25 559.82
   Q 814.37 560.03 815.08 560.47
@@ -10810,8 +12924,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 839.34 628.06
   A 0.11 0.11 0.0 0 0 839.45 627.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 603.99
   L 1024.00 630.37
   L 971.28 630.36
@@ -10840,8 +12955,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.67 0.67 0.0 0 0 1023.35 607.99
   L 1024.00 603.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 66.56 632.89
   Q 64.10 637.14 64.08 642.41
   Q 64.06 653.02 64.73 662.50
@@ -10855,8 +12971,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.70 0.69 5.1 0 1 66.66 632.40
   L 66.56 632.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 276.80 631.85
   L 275.78 632.10
   A 0.27 0.27 0.0 0 0 275.85 632.63
@@ -11219,8 +13336,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.40 0.39 -6.4 0 1 998.07 685.69
   Q 998.41 686.77 999.58 687.39
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 556.89 701.57
   L 551.10 702.26
   A 1.58 1.50 19.1 0 0 550.24 702.65
@@ -11546,8 +13664,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.09 0.08 -38.3 0 0 478.64 746.32
   Q 478.84 746.45 478.97 746.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 700.63
   L 1024.00 766.92
   L 727.78 766.94
@@ -11666,10 +13785,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1022.73 703.07 1023.66 701.05
   Q 1023.76 700.78 1024.00 700.63
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(579.70,719.45) rotate(-176.7)" rx="2.42" ry="0.39"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(814.29,750.48) rotate(-180.3)" rx="0.32" ry="0.11"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(579.70,719.45) rotate(-176.7)"
+          rx="2.42"
+          ry="0.39"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(814.29,750.48) rotate(-180.3)"
+          rx="0.32"
+          ry="0.11"
+        />
+        <path
+          d="
   M 1024.00 768.23
   L 1024.00 842.13
   L 1023.58 840.21
@@ -12093,15 +14225,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 507.85 819.32 510.26 819.50
   Q 514.86 819.84 517.49 819.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 302.23 842.95
   L 271.34 842.98
   Q 271.60 842.07 272.23 842.05
   Q 287.21 841.63 302.23 842.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1014.94 844.13
   Q 1019.63 845.27 1024.00 844.17
   L 1024.00 915.03
@@ -12477,8 +14611,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 561.03 895.77
   A 0.15 0.15 0.0 0 0 560.87 895.91
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 184.71 911.26
   C 175.43 911.90 165.31 913.14 156.46 912.45
   C 144.55 911.51 131.83 912.05 119.43 911.97
@@ -12486,8 +14621,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 147.95 910.24 149.75 910.17
   Q 167.24 909.57 184.71 911.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 100.70 916.38
   Q 104.00 918.07 108.53 917.99
   Q 122.33 917.77 138.63 918.01
@@ -12669,8 +14805,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 558.69 952.08 550.29 953.86 543.42 953.91
   Q 538.90 953.94 537.05 954.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 917.24
   L 1024.00 984.59
   L 935.30 984.57
@@ -12754,16 +14891,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.36 0.36 0.0 0 1 1018.46 918.16
   L 1024.00 917.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 745.41 928.28
   A 0.36 0.36 0.0 0 1 745.29 927.61
   Q 746.32 927.01 747.66 927.23
   A 0.18 0.18 0.0 0 1 747.70 927.58
   Q 745.68 928.33 745.41 928.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 816.53 933.12
   L 809.08 934.36
   A 0.38 0.38 0.0 0 1 808.64 934.04
@@ -12772,21 +14911,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 813.98 932.08
   Q 815.32 932.18 816.53 933.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 730.50 981.60
   L 703.87 982.51
   C 706.09 979.22 709.68 978.83 713.54 978.85
   Q 722.39 978.91 730.50 981.60
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 889.79 981.27
   L 874.05 981.72
   Q 882.04 979.92 889.79 981.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 549.74 1023.72
   Q 549.68 1023.86 549.62 1024.00
   L 0.00 1024.00
@@ -12837,8 +14979,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 517.76 1006.47
   A 0.22 0.21 -83.1 0 0 517.58 1006.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 861.95 1009.76
   C 863.08 1009.59 865.54 1009.28 865.72 1007.82
   Q 873.98 1007.22 882.29 1006.68
@@ -12848,10 +14991,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 877.54 1008.65 869.59 1009.84
   Q 866.81 1010.26 861.95 1009.76
   Z"
-/>
-</g>
-<g fill="#825b32">
-<path d="
+        />
+      </g>
+      <g fill="#825b32">
+        <path
+          d="
   M 879.48 0.00
   Q 894.32 0.26 909.16 0.36
   C 916.82 0.41 925.24 1.15 933.35 0.62
@@ -12981,8 +15125,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.24 0.07 -0.6 0 0 1003.0007 58.7100
   A 0.24 0.07 -0.6 0 0 1003.2400 58.6375
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 407.39 134.95
   Q 407.29 136.02 406.92 135.85
   Q 406.78 135.78 406.61 135.69
@@ -13155,8 +15300,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 144.71 116.69 135.68 115.91 129.50 116.77
   Q 122.92 117.68 119.76 117.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 139.97
   L 1024.00 190.71
   C 1020.78 194.21 1017.07 194.59 1012.27 194.49
@@ -13296,8 +15442,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.26 0.26 0.0 0 0 1023.4467 180.8497
   L 1023.4714 180.6109
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 575.58 180.56
   L 568.66 182.29
   A 1.91 1.90 -49.9 0 1 567.99 182.35
@@ -13307,8 +15454,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 563.91 180.21 568.74 180.73
   Q 571.46 181.01 575.58 180.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 564.70 185.18
   L 548.80 185.32
   Q 548.34 185.17 548.18 184.91
@@ -13318,16 +15466,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.66 0.66 0.0 0 1 568.31 184.82
   L 564.70 185.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 461.00 183.11
   Q 468.24 184.55 475.77 183.43
   L 478.80 185.06
   L 457.90 185.27
   L 461.00 183.11
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 858.97 270.21
   Q 857.91 270.17 857.73 266.90
   A 0.14 0.14 0.0 0 0 857.60 266.77
@@ -13537,8 +15687,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.98 0.27 -172.3 0 0 851.3962 258.1224
   A 0.98 0.27 -172.3 0 0 850.3888 258.2587
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 373.03 272.47
   Q 373.53 272.87 373.69 273.28
   A 0.43 0.43 0.0 0 1 373.29 273.87
@@ -13549,8 +15700,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 23.79 272.43
   L 373.03 272.47
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 72.51 343.01
   Q 100.42 343.27 128.25 342.89
   Q 128.47 342.89 128.80 343.30
@@ -13614,8 +15766,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 87.19 391.82 87.24 391.69
   A 0.06 0.05 12.7 0 0 87.19 391.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 130.97 342.95
   L 366.02 342.89
   L 745.27 342.91
@@ -13821,8 +15974,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.26 0.26 0.0 0 0 690.7283 396.5099
   L 690.7294 396.4299
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 556.68 537.87
   Q 557.12 538.63 558.43 538.20
   A 0.18 0.18 0.0 0 1 558.66 538.33
@@ -13834,8 +15988,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 524.40 537.89 525.21 537.34
   L 556.68 537.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 596.38
   L 1024.00 603.99
   L 1023.35 607.99
@@ -13930,8 +16085,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.43 0.32 -3.0 0 0 964.8867 578.2396
   A 2.43 0.32 -3.0 0 0 967.2967 577.7928
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 621.55 631.96
   Q 619.61 632.68 617.12 632.37
   L 617.12 632.38
@@ -13970,8 +16126,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 276.80 631.85
   L 621.55 631.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 982.72 632.38
   Q 982.72 632.77 978.85 632.60
   A 0.39 0.18 -6.9 0 1 978.58 632.51
@@ -13980,8 +16137,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.39 0.18 7.0 0 1 978.85 632.15
   Q 982.72 631.99 982.72 632.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1023.66 701.05
   Q 1022.73 703.07 1023.68 705.25
   A 1.72 1.63 -57.5 0 1 1023.82 705.97
@@ -14395,8 +16553,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 880.62 762.07 880.90 761.65
   A 0.13 0.12 22.9 0 0 880.82 761.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 427.21 723.82
   Q 427.22 724.66 427.01 725.18
   Q 420.29 725.22 413.45 726.91
@@ -14404,8 +16563,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 411.69 726.12 412.85 725.37
   Q 419.91 723.80 427.21 723.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 512.56 862.80
   Q 511.33 861.52 510.89 859.79
   Q 511.27 858.40 510.87 857.94
@@ -14430,23 +16590,26 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.32 0.32 0.0 0 1 513.00 844.74
   L 512.56 862.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 322.29 844.52
   Q 321.50 845.70 319.85 845.88
   Q 309.41 846.99 299.28 844.50
   L 322.29 844.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 840.79 844.49
   Q 837.54 845.84 834.77 845.87
   Q 814.90 846.10 775.99 845.93
   Q 769.26 845.90 764.43 844.47
   L 840.79 844.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 339.19 899.43
   Q 339.48 899.78 339.48 900.09
   Q 339.48 900.40 339.06 900.56
@@ -14458,8 +16621,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 318.10 899.77 331.75 899.95
   Q 334.65 899.99 339.19 899.43
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 916.12
   L 1024.00 917.24
   L 1018.46 918.16
@@ -14732,16 +16896,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.27 0.27 0.0 0 0 792.0197 968.8221
   L 792.0202 968.5221
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 353.67 916.22
   Q 347.43 917.82 337.96 917.83
   Q 302.60 917.84 267.24 917.89
   Q 259.21 917.90 253.30 916.38
   L 353.67 916.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 695.29 916.10
   L 701.00 916.28
   A 0.50 0.50 0.0 0 1 701.48 916.80
@@ -14749,16 +16915,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 698.22 917.07
   L 695.29 916.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 985.88
   L 1024.00 986.92
   Q 1019.36 987.16 1009.79 987.18
   Q 1005.65 987.18 1002.45 986.00
   L 1024.00 985.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1014.70 1007.28
   A 0.13 0.13 0.0 0 1 1014.55 1007.40
   L 1006.00 1006.48
@@ -14769,8 +16937,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.13 0.13 0.0 0 1 1014.83 1006.09
   L 1014.70 1007.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 930.00 1006.53
   A 0.27 0.27 0.0 0 1 929.73 1006.80
   L 928.07 1006.85
@@ -14781,10 +16950,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.27 0.27 0.0 0 1 929.95 1004.75
   L 930.00 1006.53
   Z"
-/>
-</g>
-<g fill="#020202">
-<path d="
+        />
+      </g>
+      <g fill="#020202">
+        <path
+          d="
   M 802.74 0.00
   Q 803.83 0.23 803.83 1.06
   Q 803.99 25.66 803.90 50.25
@@ -15006,11 +17176,33 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 649.11 63.65 642.00 63.66
   Q 527.02 63.84 411.90 63.93
   Z"
-/>
-<rect x="-23.61" y="-0.28" transform="translate(635.67,22.97) rotate(-0.4)" width="47.22" height="0.56" rx="0.26"/>
-<rect x="-26.12" y="-0.36" transform="translate(837.77,40.68) rotate(1.6)" width="52.24" height="0.72" rx="0.26"/>
-<rect x="-24.21" y="-0.36" transform="translate(922.55,41.98) rotate(-0.5)" width="48.42" height="0.72" rx="0.26"/>
-<path d="
+        />
+        <rect
+          x="-23.61"
+          y="-0.28"
+          transform="translate(635.67,22.97) rotate(-0.4)"
+          width="47.22"
+          height="0.56"
+          rx="0.26"
+        />
+        <rect
+          x="-26.12"
+          y="-0.36"
+          transform="translate(837.77,40.68) rotate(1.6)"
+          width="52.24"
+          height="0.72"
+          rx="0.26"
+        />
+        <rect
+          x="-24.21"
+          y="-0.36"
+          transform="translate(922.55,41.98) rotate(-0.5)"
+          width="48.42"
+          height="0.72"
+          rx="0.26"
+        />
+        <path
+          d="
   M 853.47 59.63
   Q 853.75 59.78 853.83 59.82
   A 0.31 0.31 0.0 0 1 853.69 60.40
@@ -15019,15 +17211,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 822.07 59.60
   L 853.47 59.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 136.93 59.92
   Q 132.49 61.01 127.76 59.92
   L 136.93 59.92
   Z"
-/>
-<rect x="-21.30" y="-0.32" transform="translate(658.48,78.66) rotate(0.4)" width="42.60" height="0.64" rx="0.30"/>
-<path d="
+        />
+        <rect
+          x="-21.30"
+          y="-0.32"
+          transform="translate(658.48,78.66) rotate(0.4)"
+          width="42.60"
+          height="0.64"
+          rx="0.30"
+        />
+        <path
+          d="
   M 509.99 81.30
   C 509.70 81.37 507.30 80.87 506.38 80.92
   Q 473.34 82.68 468.03 83.33
@@ -15041,10 +17242,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 509.67 80.51 510.06 80.72
   A 0.32 0.31 52.3 0 1 509.99 81.30
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(494.94,97.07) rotate(-1.5)" rx="5.47" ry="0.23"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(488.73,97.65) rotate(-4.7)" rx="0.30" ry="0.05"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(494.94,97.07) rotate(-1.5)"
+          rx="5.47"
+          ry="0.23"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(488.73,97.65) rotate(-4.7)"
+          rx="0.30"
+          ry="0.05"
+        />
+        <path
+          d="
   M 186.78 116.73
   A 0.22 0.21 -83.1 0 1 186.60 116.49
   L 186.61 116.45
@@ -15079,8 +17293,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 5.03 4.37 43.3 0 0 198.77 117.25
   Q 192.89 117.59 186.78 116.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 940.42 118.69
   Q 943.46 118.63 946.21 118.81
   C 949.80 119.04 953.14 118.50 956.42 118.73
@@ -15095,15 +17310,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 927.70 118.99 931.06 119.40 934.65 119.03
   Q 937.38 118.75 940.42 118.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 920.19 119.76
   L 919.70 119.64
   A 0.01 0.00 47.9 0 1 919.70 119.63
   Q 919.96 119.61 920.19 119.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 899.61 120.15
   A 0.10 0.10 0.0 0 1 899.71 120.05
   L 910.63 119.78
@@ -15114,8 +17331,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.10 0.10 0.0 0 1 899.61 120.35
   L 899.61 120.15
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 782.34 154.57
   A 0.28 0.27 6.8 0 1 782.58 154.86
   L 782.56 155.14
@@ -15147,8 +17365,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 756.61 153.33 770.27 153.24
   Q 773.80 153.22 782.34 154.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 87.57 178.15
   Q 87.21 178.51 82.32 177.02
   A 4.84 4.80 -39.5 0 0 80.38 176.84
@@ -15166,9 +17385,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 82.73 176.18 85.88 178.12 87.26 177.64
   A 0.31 0.30 -76.5 0 1 87.57 178.15
   Z"
-/>
-<rect x="-17.79" y="-0.28" transform="translate(504.05,176.15) rotate(-0.8)" width="35.58" height="0.56" rx="0.27"/>
-<path d="
+        />
+        <rect
+          x="-17.79"
+          y="-0.28"
+          transform="translate(504.05,176.15) rotate(-0.8)"
+          width="35.58"
+          height="0.56"
+          rx="0.27"
+        />
+        <path
+          d="
   M 954.26 176.09
   A 0.14 0.14 0.0 0 1 954.40 176.24
   L 954.40 176.25
@@ -15208,8 +17435,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 932.82 176.70 938.77 176.07
   Q 943.15 175.61 954.26 176.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 575.58 180.56
   Q 571.46 181.01 568.74 180.73
   Q 563.91 180.21 563.69 180.22
@@ -15226,12 +17454,40 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 566.54 179.26 568.48 180.05 571.20 180.15
   Q 572.93 180.21 575.58 180.56
   Z"
-/>
-<rect x="-8.49" y="-0.33" transform="translate(608.83,179.70) rotate(-3.2)" width="16.98" height="0.66" rx="0.27"/>
-<rect x="-10.28" y="-0.28" transform="translate(388.86,182.09) rotate(-4.5)" width="20.56" height="0.56" rx="0.26"/>
-<rect x="-13.35" y="-0.34" transform="translate(589.77,181.93) rotate(-1.2)" width="26.70" height="0.68" rx="0.27"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(373.11,182.15) rotate(-178.8)" rx="4.86" ry="0.23"/>
-<path d="
+        />
+        <rect
+          x="-8.49"
+          y="-0.33"
+          transform="translate(608.83,179.70) rotate(-3.2)"
+          width="16.98"
+          height="0.66"
+          rx="0.27"
+        />
+        <rect
+          x="-10.28"
+          y="-0.28"
+          transform="translate(388.86,182.09) rotate(-4.5)"
+          width="20.56"
+          height="0.56"
+          rx="0.26"
+        />
+        <rect
+          x="-13.35"
+          y="-0.34"
+          transform="translate(589.77,181.93) rotate(-1.2)"
+          width="26.70"
+          height="0.68"
+          rx="0.27"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(373.11,182.15) rotate(-178.8)"
+          rx="4.86"
+          ry="0.23"
+        />
+        <path
+          d="
   M 457.90 185.27
   L 478.80 185.06
   L 479.88 185.14
@@ -15247,8 +17503,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 434.38 184.21 439.77 184.27 442.98 184.32
   C 447.01 184.38 452.87 185.34 457.90 185.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 24.90 219.41
   Q 25.13 219.41 25.25 219.41
   Q 35.10 219.48 48.89 219.68
@@ -15261,8 +17518,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 14.71 219.49 24.56 219.41
   Q 24.67 219.41 24.90 219.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 33.87 222.43
   Q 34.23 221.70 37.85 222.07
   C 39.30 222.21 40.54 221.62 41.69 222.13
@@ -15275,13 +17533,48 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 38.04 223.01 34.35 222.00 34.00 222.50
   A 0.08 0.07 -15.6 0 1 33.87 222.43
   Z"
-/>
-<rect x="-6.36" y="-0.22" transform="translate(147.63,224.06) rotate(0.2)" width="12.72" height="0.44" rx="0.21"/>
-<rect x="-22.51" y="-0.43" transform="translate(1001.06,272.83) rotate(-0.7)" width="45.02" height="0.86" rx="0.42"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(650.46,291.31) rotate(-0.9)" rx="18.67" ry="0.40"/>
-<rect x="-22.38" y="-0.35" transform="translate(704.03,292.17) rotate(-0.1)" width="44.76" height="0.70" rx="0.27"/>
-<rect x="-5.80" y="-0.30" transform="translate(834.38,297.10) rotate(-0.9)" width="11.60" height="0.60" rx="0.27"/>
-<path d="
+        />
+        <rect
+          x="-6.36"
+          y="-0.22"
+          transform="translate(147.63,224.06) rotate(0.2)"
+          width="12.72"
+          height="0.44"
+          rx="0.21"
+        />
+        <rect
+          x="-22.51"
+          y="-0.43"
+          transform="translate(1001.06,272.83) rotate(-0.7)"
+          width="45.02"
+          height="0.86"
+          rx="0.42"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(650.46,291.31) rotate(-0.9)"
+          rx="18.67"
+          ry="0.40"
+        />
+        <rect
+          x="-22.38"
+          y="-0.35"
+          transform="translate(704.03,292.17) rotate(-0.1)"
+          width="44.76"
+          height="0.70"
+          rx="0.27"
+        />
+        <rect
+          x="-5.80"
+          y="-0.30"
+          transform="translate(834.38,297.10) rotate(-0.9)"
+          width="11.60"
+          height="0.60"
+          rx="0.27"
+        />
+        <path
+          d="
   M 130.97 342.95
   Q 130.60 342.78 130.32 343.01
   A 0.28 0.27 72.6 0 0 130.21 343.23
@@ -15347,8 +17640,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 129.26 342.36
   Q 130.28 342.44 130.97 342.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 892.62 360.09
   Q 874.86 361.01 860.73 361.31
   C 851.87 361.50 838.19 360.48 827.35 360.53
@@ -15364,8 +17658,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 887.79 359.44 892.62 359.61
   A 0.24 0.24 0.0 0 1 892.62 360.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 351.08 395.51
   Q 379.71 395.36 429.33 395.48
   C 432.24 395.49 434.59 395.29 437.00 395.27
@@ -15389,11 +17684,32 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 354.15 396.57 351.04 396.04
   A 0.27 0.27 0.0 0 1 351.08 395.51
   Z"
-/>
-<rect x="-12.17" y="-0.30" transform="translate(678.56,396.30) rotate(0.8)" width="24.34" height="0.60" rx="0.26"/>
-<rect x="-20.59" y="-0.35" transform="translate(452.48,432.43) rotate(-3.1)" width="41.18" height="0.70" rx="0.27"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(720.49,509.56) rotate(-2.3)" rx="6.73" ry="0.39"/>
-<path d="
+        />
+        <rect
+          x="-12.17"
+          y="-0.30"
+          transform="translate(678.56,396.30) rotate(0.8)"
+          width="24.34"
+          height="0.60"
+          rx="0.26"
+        />
+        <rect
+          x="-20.59"
+          y="-0.35"
+          transform="translate(452.48,432.43) rotate(-3.1)"
+          width="41.18"
+          height="0.70"
+          rx="0.27"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(720.49,509.56) rotate(-2.3)"
+          rx="6.73"
+          ry="0.39"
+        />
+        <path
+          d="
   M 228.59 515.20
   Q 225.81 515.39 223.28 513.76
   A 4.14 4.12 66.6 0 0 221.83 513.18
@@ -15407,9 +17723,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 220.98 512.20 225.07 514.30 228.60 514.96
   A 0.12 0.12 0.0 0 1 228.59 515.20
   Z"
-/>
-<rect x="-9.73" y="-0.37" transform="translate(703.20,511.90) rotate(-3.5)" width="19.46" height="0.74" rx="0.26"/>
-<path d="
+        />
+        <rect
+          x="-9.73"
+          y="-0.37"
+          transform="translate(703.20,511.90) rotate(-3.5)"
+          width="19.46"
+          height="0.74"
+          rx="0.26"
+        />
+        <path
+          d="
   M 807.07 555.72
   Q 808.05 555.60 807.90 556.13
   A 0.23 0.23 0.0 0 1 807.68 556.29
@@ -15420,8 +17744,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 780.95 555.75
   L 807.07 555.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1023.73 557.17
   Q 1023.76 557.61 1024.00 557.75
   L 1024.00 596.38
@@ -15592,9 +17917,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.50 0.49 -89.4 0 0 196.01 559.55
   L 195.93 626.94
   Z"
-/>
-<rect x="-11.47" y="-0.31" transform="translate(827.60,604.14) rotate(0.5)" width="22.94" height="0.62" rx="0.29"/>
-<path d="
+        />
+        <rect
+          x="-11.47"
+          y="-0.31"
+          transform="translate(827.60,604.14) rotate(0.5)"
+          width="22.94"
+          height="0.62"
+          rx="0.29"
+        />
+        <path
+          d="
   M 257.45 606.93
   A 0.23 0.23 0.0 0 1 257.67 607.16
   L 257.66 607.47
@@ -15607,8 +17940,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 237.77 607.38 243.34 607.68 248.99 607.20
   Q 253.20 606.84 257.45 606.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 666.83 609.14
   A 0.14 0.14 0.0 0 1 666.95 609.29
   L 666.95 609.30
@@ -15626,9 +17960,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 644.95 609.95 655.47 609.09
   Q 662.14 608.55 666.83 609.14
   Z"
-/>
-<rect x="-9.77" y="-0.28" transform="translate(432.29,610.38) rotate(-4.9)" width="19.54" height="0.56" rx="0.26"/>
-<path d="
+        />
+        <rect
+          x="-9.77"
+          y="-0.28"
+          transform="translate(432.29,610.38) rotate(-4.9)"
+          width="19.54"
+          height="0.56"
+          rx="0.26"
+        />
+        <path
+          d="
   M 512.46 718.94
   Q 515.61 718.97 518.75 718.92
   Q 520.78 718.88 519.73 719.79
@@ -15656,8 +17998,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 491.32 719.24 497.19 718.75
   C 501.88 718.35 507.37 718.94 512.46 718.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 867.69 721.62
   C 861.90 722.04 857.17 721.22 851.52 721.51
   Q 839.08 722.15 824.43 721.05
@@ -15676,8 +18019,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 860.82 720.82 867.69 721.29
   A 0.17 0.17 0.0 0 1 867.69 721.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 896.97 723.06
   L 904.66 723.66
   A 2.52 2.49 32.9 0 0 906.05 723.37
@@ -15694,8 +18038,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 896.89 723.14
   A 0.07 0.07 0.0 0 1 896.97 723.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 356.89 741.95
   Q 352.97 742.38 352.70 742.38
   Q 333.40 742.34 321.80 741.62
@@ -15732,8 +18077,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 357.03 741.78
   A 0.16 0.16 0.0 0 1 356.89 741.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 182.89 746.45
   Q 169.94 746.44 168.45 746.06
   Q 164.14 744.96 161.19 745.96
@@ -15774,8 +18120,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 178.90 745.47 182.92 746.12
   A 0.17 0.17 0.0 0 1 182.89 746.45
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 409.35 748.02
   Q 416.60 747.40 422.08 748.49
   A 4.10 4.09 -46.5 0 0 423.89 748.44
@@ -15795,8 +18142,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 409.35 748.21
   A 0.10 0.09 -45.5 0 1 409.35 748.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 919.57 748.06
   Q 915.93 748.80 911.26 747.70
   A 2.54 2.52 -38.8 0 0 910.59 747.63
@@ -15844,8 +18192,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 915.18 748.07 919.53 747.80
   A 0.13 0.13 0.0 0 1 919.57 748.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 983.04 748.00
   Q 985.21 747.94 984.53 748.75
   Q 975.54 749.10 966.52 748.81
@@ -15858,8 +18207,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 961.25 747.78 971.35 748.06
   Q 977.19 748.22 983.04 748.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 663.46 764.88
   L 687.08 765.03
   L 657.19 765.40
@@ -15867,15 +18217,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.23 0.21 90.0 0 1 657.18 764.95
   L 663.46 764.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 892.76 765.11
   Q 879.47 765.87 866.77 764.98
   L 892.76 765.11
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(68.42,782.74) rotate(-177.5)" rx="4.32" ry="0.37"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(68.42,782.74) rotate(-177.5)"
+          rx="4.32"
+          ry="0.37"
+        />
+        <path
+          d="
   M 87.41 783.80
   Q 89.01 783.84 90.91 784.35
   A 0.07 0.07 0.0 0 1 90.89 784.50
@@ -15884,9 +18242,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.07 0.07 0.0 0 1 83.89 784.18
   Q 85.82 783.76 87.41 783.80
   Z"
-/>
-<rect x="-22.73" y="-0.35" transform="translate(275.93,809.49) rotate(-5.2)" width="45.46" height="0.70" rx="0.33"/>
-<path d="
+        />
+        <rect
+          x="-22.73"
+          y="-0.35"
+          transform="translate(275.93,809.49) rotate(-5.2)"
+          width="45.46"
+          height="0.70"
+          rx="0.33"
+        />
+        <path
+          d="
   M 141.10 810.56
   Q 136.94 810.81 132.78 810.86
   A 0.01 0.01 0.0 0 1 132.77 810.85
@@ -15899,9 +18265,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.01 0.01 0.0 0 1 149.40 809.88
   Q 145.26 810.31 141.10 810.56
   Z"
-/>
-<rect x="-11.60" y="-0.36" transform="translate(240.87,814.80) rotate(-7.4)" width="23.20" height="0.72" rx="0.26"/>
-<path d="
+        />
+        <rect
+          x="-11.60"
+          y="-0.36"
+          transform="translate(240.87,814.80) rotate(-7.4)"
+          width="23.20"
+          height="0.72"
+          rx="0.26"
+        />
+        <path
+          d="
   M 1014.94 844.13
   L 840.79 844.49
   L 764.43 844.47
@@ -15957,8 +18331,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.31 0.30 75.2 0 1 1019.26 843.54
   L 1014.94 844.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 878.25 859.50
   L 896.77 860.17
   A 0.30 0.30 0.0 0 1 897.06 860.53
@@ -15967,9 +18342,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 875.52 860.05
   Q 871.19 859.66 878.25 859.50
   Z"
-/>
-<rect x="-8.38" y="-0.35" transform="translate(271.48,869.86) rotate(2.1)" width="16.76" height="0.70" rx="0.27"/>
-<path d="
+        />
+        <rect
+          x="-8.38"
+          y="-0.35"
+          transform="translate(271.48,869.86) rotate(2.1)"
+          width="16.76"
+          height="0.70"
+          rx="0.27"
+        />
+        <path
+          d="
   M 268.29 872.20
   Q 259.73 873.08 252.65 872.55
   Q 250.32 872.37 244.41 873.00
@@ -15988,9 +18371,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 266.98 871.64 268.30 871.94
   A 0.13 0.13 0.0 0 1 268.29 872.20
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(455.88,886.18) rotate(-178.2)" rx="25.73" ry="0.41"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(455.88,886.18) rotate(-178.2)"
+          rx="25.73"
+          ry="0.41"
+        />
+        <path
+          d="
   M 65.56 896.35
   A 0.13 0.13 0.0 0 1 65.70 896.23
   L 65.99 896.26
@@ -16001,8 +18391,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.13 0.13 0.0 0 1 65.52 896.79
   L 65.56 896.35
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 883.23 967.38
   C 889.38 967.98 895.44 968.67 901.59 968.48
   Q 912.70 968.14 920.50 968.34
@@ -16024,8 +18415,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 905.19 969.05 900.72 969.09
   Q 891.87 969.18 883.23 967.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 935.30 984.57
   L 1024.00 984.59
   L 1024.00 985.88
@@ -16041,10 +18433,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 0.38 984.80
   L 935.30 984.57
   Z"
-/>
-</g>
-<g fill="#573a1f">
-<path d="
+        />
+      </g>
+      <g fill="#573a1f">
+        <path
+          d="
   M 801.81 0.40
   L 802.60 62.17
   A 0.43 0.42 -1.3 0 1 802.18 62.60
@@ -16119,10 +18512,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.16 0.16 0.0 0 1 799.08 2.31
   Q 799.99 0.91 801.81 0.40
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(141.99,21.53) rotate(-179.4)" rx="0.33" ry="0.10"/>
-<rect x="-13.21" y="-0.36" transform="translate(1004.53,46.56) rotate(-0.7)" width="26.42" height="0.72" rx="0.35"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(141.99,21.53) rotate(-179.4)"
+          rx="0.33"
+          ry="0.10"
+        />
+        <rect
+          x="-13.21"
+          y="-0.36"
+          transform="translate(1004.53,46.56) rotate(-0.7)"
+          width="26.42"
+          height="0.72"
+          rx="0.35"
+        />
+        <path
+          d="
   M 43.06 59.63
   Q 33.98 60.10 11.85 60.05
   C 7.92 60.04 4.24 59.28 1.13 58.81
@@ -16131,8 +18538,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 35.83 57.42 43.10 59.31
   A 0.16 0.16 0.0 0 1 43.06 59.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 973.71 59.02
   L 989.21 59.33
   Q 996.76 59.22 1010.52 59.40
@@ -16158,8 +18566,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 924.03 59.45 927.33 59.20 932.00 59.21
   Q 952.85 59.22 973.71 59.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.00 134.38
   L 1024.00 138.83
   L 1020.66 138.61
@@ -16173,8 +18582,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.25 0.23 -72.2 0 1 1023.11 61.37
   L 1024.00 134.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 411.90 63.93
   Q 415.93 73.70 415.82 81.04
   Q 415.57 97.24 415.00 107.94
@@ -16222,8 +18632,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.56 0.56 0.0 0 1 409.41 64.04
   L 411.90 63.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 0.00 89.92
   L 0.00 85.33
   Q 9.83 86.74 19.78 86.12
@@ -16268,18 +18679,41 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 15.86 88.77 11.00 88.99
   Q 5.36 89.25 0.00 89.92
   Z"
-/>
-<rect x="-9.17" y="-0.26" transform="translate(616.74,82.51) rotate(0.3)" width="18.34" height="0.52" rx="0.25"/>
-<path d="
+        />
+        <rect
+          x="-9.17"
+          y="-0.26"
+          transform="translate(616.74,82.51) rotate(0.3)"
+          width="18.34"
+          height="0.52"
+          rx="0.25"
+        />
+        <path
+          d="
   M 615.00 87.24
   Q 616.44 86.63 617.87 86.71
   A 0.17 0.16 36.5 0 1 617.92 87.03
   Q 616.62 87.51 615.00 87.24
   Z"
-/>
-<rect x="-8.06" y="-0.31" transform="translate(479.84,98.81) rotate(-8.2)" width="16.12" height="0.62" rx="0.27"/>
-<rect x="-8.83" y="-0.43" transform="translate(393.18,116.65) rotate(-0.1)" width="17.66" height="0.86" rx="0.26"/>
-<path d="
+        />
+        <rect
+          x="-8.06"
+          y="-0.31"
+          transform="translate(479.84,98.81) rotate(-8.2)"
+          width="16.12"
+          height="0.62"
+          rx="0.27"
+        />
+        <rect
+          x="-8.83"
+          y="-0.43"
+          transform="translate(393.18,116.65) rotate(-0.1)"
+          width="17.66"
+          height="0.86"
+          rx="0.26"
+        />
+        <path
+          d="
   M 119.76 117.74
   Q 117.70 117.95 117.14 118.52
   Q 110.50 118.36 103.66 118.77
@@ -16295,9 +18729,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.53 0.51 -14.9 0 1 116.86 116.94
   Q 117.59 118.20 119.76 117.74
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(425.82,121.62) rotate(-187.9)" rx="0.42" ry="0.15"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(425.82,121.62) rotate(-187.9)"
+          rx="0.42"
+          ry="0.15"
+        />
+        <path
+          d="
   M 102.82 136.24
   Q 106.52 136.75 110.04 136.10
   Q 124.12 135.43 138.32 135.63
@@ -16333,8 +18774,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 82.04 136.26 102.49 136.12
   Q 103.06 136.11 102.82 136.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 668.90 150.02
   L 668.91 198.39
   A 0.53 0.52 -90.0 0 1 668.39 198.92
@@ -16390,8 +18832,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.23 0.23 0.0 0 1 666.46 141.32
   L 668.90 150.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 622.73 180.03
   A 0.35 0.35 0.0 0 1 622.57 179.36
   L 628.51 177.07
@@ -16404,11 +18847,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 636.96 177.87 634.15 178.55
   Q 631.00 179.30 622.73 180.03
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(364.23,178.66) rotate(-176.6)" rx="3.16" ry="0.30"/>
-<rect x="-5.84" y="-0.38" transform="translate(1017.65,180.13) rotate(5.9)" width="11.68" height="0.76" rx="0.26"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(190.50,182.06) rotate(-171.5)" rx="2.24" ry="0.28"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(364.23,178.66) rotate(-176.6)"
+          rx="3.16"
+          ry="0.30"
+        />
+        <rect
+          x="-5.84"
+          y="-0.38"
+          transform="translate(1017.65,180.13) rotate(5.9)"
+          width="11.68"
+          height="0.76"
+          rx="0.26"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(190.50,182.06) rotate(-171.5)"
+          rx="2.24"
+          ry="0.28"
+        />
+        <path
+          d="
   M 955.04 196.67
   Q 949.67 197.03 948.28 196.79
   Q 946.40 196.47 945.21 196.69
@@ -16440,8 +18903,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 918.71 193.69 931.22 194.66 944.79 194.73
   Q 949.18 194.75 955.04 196.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 895.67 225.09
   A 0.36 0.35 90.0 0 1 895.33 224.74
   L 895.33 224.72
@@ -16464,9 +18928,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 928.90 217.70 920.84 220.80
   Q 908.63 225.50 895.67 225.09
   Z"
-/>
-<rect x="-4.23" y="-0.40" transform="translate(790.56,226.64) rotate(0.1)" width="8.46" height="0.80" rx="0.38"/>
-<path d="
+        />
+        <rect
+          x="-4.23"
+          y="-0.40"
+          transform="translate(790.56,226.64) rotate(0.1)"
+          width="8.46"
+          height="0.80"
+          rx="0.38"
+        />
+        <path
+          d="
   M 91.55 252.58
   L 92.45 252.92
   A 0.55 0.55 0.0 0 1 92.35 253.97
@@ -16495,8 +18967,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 91.66 252.05
   A 0.27 0.27 0.0 0 0 91.55 252.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 245.27 268.38
   Q 247.99 268.32 258.34 268.74
   Q 264.15 268.97 274.14 268.30
@@ -16548,8 +19021,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 207.09 268.48 221.94 267.81
   Q 233.61 267.28 245.27 268.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 818.67 268.50
   A 0.02 0.02 0.0 0 1 818.69 268.52
   L 818.66 268.76
@@ -16560,10 +19034,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.05 0.05 0.0 0 1 809.41 267.07
   L 818.67 268.50
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(700.68,267.91) rotate(-2.7)" rx="0.39" ry="0.07"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(172.32,295.53) rotate(-178.9)" rx="4.01" ry="0.49"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(700.68,267.91) rotate(-2.7)"
+          rx="0.39"
+          ry="0.07"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(172.32,295.53) rotate(-178.9)"
+          rx="4.01"
+          ry="0.49"
+        />
+        <path
+          d="
   M 112.80 302.29
   L 109.03 301.30
   C 115.42 299.87 122.17 298.45 128.50 298.41
@@ -16575,8 +19062,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 130.68 300.76 123.94 300.96
   Q 118.30 301.12 112.80 302.29
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 584.19 306.49
   Q 583.54 307.15 580.66 307.66
   Q 569.79 309.63 557.02 311.52
@@ -16590,8 +19078,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 584.14 306.40
   A 0.06 0.05 17.6 0 1 584.19 306.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1023.71 340.99
   Q 1017.90 340.63 1012.06 340.76
   Q 1001.91 340.99 1000.43 340.99
@@ -16651,8 +19140,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.90 0.89 -7.8 0 1 1023.37 338.37
   Q 1023.82 339.50 1023.71 340.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 490.44 337.70
   L 490.81 341.03
   A 0.63 0.62 86.6 0 1 490.20 341.72
@@ -16706,8 +19196,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 423.10 337.46 430.97 338.42 440.07 338.39
   Q 465.34 338.30 490.44 337.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 128.88 343.47
   L 128.95 411.19
   A 0.50 0.50 0.0 0 1 128.45 411.69
@@ -16744,9 +19235,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.53 0.52 83.3 0 1 125.71 343.76
   L 128.88 343.47
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(92.41,364.64) rotate(-0.7)" rx="4.31" ry="0.46"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(92.41,364.64) rotate(-0.7)"
+          rx="4.31"
+          ry="0.46"
+        />
+        <path
+          d="
   M 754.28 394.63
   Q 751.22 399.25 752.67 404.26
   C 753.63 407.63 758.05 407.97 761.09 408.16
@@ -16801,15 +19299,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.63 0.62 86.3 0 1 747.64 395.38
   L 754.28 394.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 937.78 411.88
   L 930.49 411.82
   Q 933.99 410.39 937.78 411.88
   Z"
-/>
-<rect x="-5.36" y="-0.39" transform="translate(554.92,426.50) rotate(0.6)" width="10.72" height="0.78" rx="0.37"/>
-<path d="
+        />
+        <rect
+          x="-5.36"
+          y="-0.39"
+          transform="translate(554.92,426.50) rotate(0.6)"
+          width="10.72"
+          height="0.78"
+          rx="0.37"
+        />
+        <path
+          d="
   M 508.28 435.15
   Q 514.56 435.49 516.19 434.98
   A 1.71 1.64 -51.8 0 1 516.76 434.90
@@ -16851,8 +19358,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 508.25 434.78
   A 0.19 0.19 0.0 0 0 508.28 435.15
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 145.55 438.57
   A 0.38 0.38 0.0 0 1 145.23 438.14
   L 145.23 438.12
@@ -16904,16 +19412,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.11 0.10 89.6 0 0 151.54 439.44
   L 145.55 438.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 463.62 434.63
   Q 467.43 434.64 467.43 434.89
   Q 467.43 435.15 463.62 435.14
   Q 459.80 435.13 459.80 434.88
   Q 459.80 434.62 463.62 434.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 719.96 436.32
   L 717.91 436.53
   A 0.32 0.31 -87.2 0 0 717.65 436.77
@@ -16970,8 +19480,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 707.52 435.84 709.25 435.96
   Q 714.60 436.35 719.96 436.32
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 944.49 439.67
   A 0.06 0.06 0.0 0 1 944.52 439.75
   L 944.50 439.79
@@ -16982,8 +19493,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.06 0.06 0.0 0 1 937.11 436.28
   L 944.49 439.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 16.10 440.17
   Q 24.10 439.29 36.13 437.15
   Q 39.66 436.52 53.80 437.00
@@ -16995,8 +19507,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 16.04 440.82 15.90 440.61
   A 0.28 0.28 0.0 0 1 16.10 440.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 338.12 464.61
   C 339.39 463.65 350.05 464.08 358.37 464.05
   Q 364.67 464.02 370.12 464.68
@@ -17065,9 +19578,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 352.34 465.62 345.46 464.72 338.25 464.98
   A 0.21 0.21 0.0 0 1 338.12 464.61
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(123.37,466.55) rotate(-179.9)" rx="4.52" ry="0.44"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(123.37,466.55) rotate(-179.9)"
+          rx="4.52"
+          ry="0.44"
+        />
+        <path
+          d="
   M 131.31 483.07
   L 0.00 483.13
   L 0.00 480.41
@@ -17078,9 +19598,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 102.93 481.28 115.02 480.06 125.16 480.99
   Q 127.68 481.22 131.31 483.07
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(901.88,481.48) rotate(-176.3)" rx="2.30" ry="0.36"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(901.88,481.48) rotate(-176.3)"
+          rx="2.30"
+          ry="0.36"
+        />
+        <path
+          d="
   M 982.98 500.65
   Q 981.44 501.09 974.24 501.73
   Q 971.07 502.01 955.56 501.77
@@ -17104,8 +19631,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 982.88 499.99
   A 0.34 0.34 0.0 0 1 982.98 500.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 741.77 514.56
   C 745.83 514.04 748.33 514.26 753.56 513.38
   Q 757.73 512.67 779.25 512.50
@@ -17118,10 +19646,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 743.30 515.90 741.75 515.65
   A 0.55 0.55 0.0 0 1 741.77 514.56
   Z"
-/>
-<rect x="-8.35" y="-0.50" transform="translate(563.08,514.65) rotate(1.1)" width="16.70" height="1.00" rx="0.48"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(676.38,514.62) rotate(-7.0)" rx="3.48" ry="0.33"/>
-<path d="
+        />
+        <rect
+          x="-8.35"
+          y="-0.50"
+          transform="translate(563.08,514.65) rotate(1.1)"
+          width="16.70"
+          height="1.00"
+          rx="0.48"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(676.38,514.62) rotate(-7.0)"
+          rx="3.48"
+          ry="0.33"
+        />
+        <path
+          d="
   M 445.17 518.30
   L 463.33 516.43
   A 2.44 2.40 22.8 0 0 464.58 515.93
@@ -17136,8 +19678,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 447.06 519.20 445.14 518.59
   A 0.15 0.15 0.0 0 1 445.17 518.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 235.15 516.86
   A 0.29 0.28 61.9 0 1 235.31 516.32
   Q 247.67 517.89 260.17 516.61
@@ -17170,8 +19713,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 243.27 518.18 241.05 518.09
   Q 237.24 517.92 235.15 516.86
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 944.62 531.31
   Q 945.26 531.67 947.22 531.86
   Q 958.23 532.91 965.88 534.23
@@ -17213,8 +19757,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 947.97 530.14 944.68 530.91
   A 0.22 0.22 0.0 0 0 944.62 531.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 752.75 537.70
   A 0.20 0.20 0.0 0 1 752.54 537.88
   L 742.71 537.11
@@ -17225,8 +19770,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.20 0.20 0.0 0 1 752.83 536.70
   L 752.75 537.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 589.15 537.12
   A 0.04 0.04 0.0 0 1 589.19 537.16
   L 589.19 537.20
@@ -17237,8 +19783,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.04 0.04 0.0 0 1 571.27 536.24
   L 589.15 537.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 424.60 539.97
   L 432.88 539.54
   A 1.97 1.22 -31.7 0 1 433.15 539.54
@@ -17296,9 +19843,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 424.25 540.53 424.26 540.31
   A 0.36 0.35 -89.1 0 1 424.60 539.97
   Z"
-/>
-<rect x="-6.94" y="-0.43" transform="translate(221.78,539.37) rotate(1.1)" width="13.88" height="0.86" rx="0.26"/>
-<path d="
+        />
+        <rect
+          x="-6.94"
+          y="-0.43"
+          transform="translate(221.78,539.37) rotate(1.1)"
+          width="13.88"
+          height="0.86"
+          rx="0.26"
+        />
+        <path
+          d="
   M 809.24 540.45
   A 0.26 0.25 -11.9 0 1 809.47 540.10
   C 817.20 539.94 823.72 539.09 831.18 539.38
@@ -17322,8 +19877,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.24 0.24 0.0 0 1 809.53 541.79
   Q 809.65 541.48 809.24 540.45
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1023.73 557.17
   Q 1018.60 557.30 1013.51 557.15
   Q 1006.57 556.94 996.85 557.11
@@ -17416,8 +19972,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.32 0.12 -179.5 0 0 818.1210 556.2600
   A 0.32 0.12 -179.5 0 0 817.8000 556.3772
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 280.71 553.02
   Q 284.48 553.09 288.22 553.45
   Q 294.85 554.07 296.48 554.26
@@ -17480,9 +20037,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 265.03 554.72 267.73 554.29
   Q 274.19 553.27 280.71 553.02
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(881.98,564.48) rotate(-2.8)" rx="1.92" ry="0.45"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(881.98,564.48) rotate(-2.8)"
+          rx="1.92"
+          ry="0.45"
+        />
+        <path
+          d="
   M 837.49 575.26
   A 0.14 0.14 0.0 0 1 837.62 575.12
   L 839.87 575.10
@@ -17493,8 +20057,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.14 0.14 0.0 0 1 837.50 576.40
   L 837.49 575.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 23.59 579.16
   C 26.29 578.00 31.31 578.99 33.15 579.23
   A 21.11 20.73 -44.7 0 0 38.54 579.21
@@ -17528,24 +20093,39 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 34.02 580.52 30.13 579.85 23.64 579.46
   A 0.16 0.16 0.0 0 1 23.59 579.16
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(562.32,579.27) rotate(-166.1)" rx="1.63" ry="0.38"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(562.32,579.27) rotate(-166.1)"
+          rx="1.63"
+          ry="0.38"
+        />
+        <path
+          d="
   M 324.56 582.04
   Q 316.02 582.55 308.91 580.23
   L 324.56 582.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 295.90 581.63
   Q 294.44 582.27 293.32 582.02
   A 0.27 0.27 0.0 0 1 293.28 581.51
   Q 294.44 581.01 295.84 581.17
   A 0.24 0.24 0.0 0 1 295.90 581.63
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(871.62,595.49) rotate(-178.1)" rx="2.72" ry="0.38"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(871.62,595.49) rotate(-178.1)"
+          rx="2.72"
+          ry="0.38"
+        />
+        <path
+          d="
   M 761.33 601.91
   A 0.38 0.38 0.0 0 1 760.95 601.62
   L 760.89 601.32
@@ -17560,9 +20140,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 787.26 602.02 783.67 601.50 777.27 601.13
   C 771.84 600.82 766.36 601.71 761.33 601.91
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(827.20,612.51) rotate(-0.4)" rx="3.56" ry="0.40"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(827.20,612.51) rotate(-0.4)"
+          rx="3.56"
+          ry="0.40"
+        />
+        <path
+          d="
   M 744.77 630.65
   L 196.13 630.12
   A 0.35 0.35 0.0 0 1 195.78 629.75
@@ -17601,8 +20188,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 765.59 628.06 753.66 628.54
   Q 748.39 628.76 744.77 630.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 839.45 627.95
   A 0.11 0.11 0.0 0 1 839.34 628.06
   L 827.30 628.00
@@ -17612,8 +20200,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.11 0.11 0.0 0 1 839.45 626.65
   L 839.45 627.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 96.68 627.91
   A 0.25 0.24 2.3 0 1 96.92 628.16
   L 96.92 628.17
@@ -17630,8 +20219,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 82.87 627.95 86.27 627.88
   Q 92.33 627.74 96.68 627.91
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 917.46 627.93
   Q 934.39 628.23 951.33 628.11
   C 959.27 628.06 964.60 627.89 971.28 630.36
@@ -17640,14 +20230,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 898.61 628.41 903.60 628.22
   Q 910.53 627.96 917.46 627.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 832.04 630.45
   L 822.29 630.52
   Q 827.17 629.77 832.04 630.45
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 66.56 632.89
   L 66.57 689.20
   Q 64.78 681.17 64.90 673.01
@@ -17655,8 +20247,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 64.06 653.02 64.08 642.41
   Q 64.10 637.14 66.56 632.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 792.28 652.63
   Q 794.54 651.62 789.94 651.32
   L 794.29 651.39
@@ -17684,10 +20277,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.32 0.32 0.0 0 1 830.50 654.00
   Q 811.20 656.17 792.28 652.63
   Z"
-/>
-<rect x="-4.05" y="-0.40" transform="translate(619.01,649.56) rotate(1.4)" width="8.10" height="0.80" rx="0.38"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(1008.44,650.54) rotate(-3.6)" rx="4.70" ry="0.46"/>
-<path d="
+        />
+        <rect
+          x="-4.05"
+          y="-0.40"
+          transform="translate(619.01,649.56) rotate(1.4)"
+          width="8.10"
+          height="0.80"
+          rx="0.38"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(1008.44,650.54) rotate(-3.6)"
+          rx="4.70"
+          ry="0.46"
+        />
+        <path
+          d="
   M 223.84 664.82
   A 0.27 0.27 0.0 0 1 223.57 664.56
   L 223.57 664.55
@@ -17715,9 +20322,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 252.52 665.90 250.87 665.93
   C 241.47 666.09 233.76 665.02 223.84 664.82
   Z"
-/>
-<rect x="-3.40" y="-0.38" transform="translate(435.61,681.52) rotate(-2.8)" width="6.80" height="0.76" rx="0.36"/>
-<path d="
+        />
+        <rect
+          x="-3.40"
+          y="-0.38"
+          transform="translate(435.61,681.52) rotate(-2.8)"
+          width="6.80"
+          height="0.76"
+          rx="0.36"
+        />
+        <path
+          d="
   M 1023.65 699.17
   Q 1013.35 699.33 1003.01 699.20
   Q 993.77 699.08 987.50 699.28
@@ -17783,8 +20398,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 996.59 695.99 1003.85 695.26 1014.05 695.01
   C 1017.66 694.92 1021.53 695.92 1023.65 699.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 556.89 701.57
   L 557.18 766.58
   A 0.43 0.43 0.0 0 1 556.75 767.01
@@ -17895,15 +20511,61 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.58 1.50 19.1 0 1 551.10 702.26
   L 556.89 701.57
   Z"
-/>
-<rect x="-5.85" y="-0.46" transform="translate(640.33,710.62) rotate(-0.6)" width="11.70" height="0.92" rx="0.44"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(610.72,712.52) rotate(-179.6)" rx="2.27" ry="0.38"/>
-<rect x="-6.49" y="-0.47" transform="translate(246.38,715.60) rotate(0.7)" width="12.98" height="0.94" rx="0.27"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(686.13,717.58) rotate(-0.3)" rx="2.30" ry="0.38"/>
-<rect x="-7.21" y="-0.85" transform="translate(997.26,723.06) rotate(7.0)" width="14.42" height="1.70" rx="0.77"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(593.42,741.54) rotate(-171.5)" rx="1.50" ry="0.42"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(741.70,784.66) rotate(-168.0)" rx="0.66" ry="0.14"/>
-<path d="
+        />
+        <rect
+          x="-5.85"
+          y="-0.46"
+          transform="translate(640.33,710.62) rotate(-0.6)"
+          width="11.70"
+          height="0.92"
+          rx="0.44"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(610.72,712.52) rotate(-179.6)"
+          rx="2.27"
+          ry="0.38"
+        />
+        <rect
+          x="-6.49"
+          y="-0.47"
+          transform="translate(246.38,715.60) rotate(0.7)"
+          width="12.98"
+          height="0.94"
+          rx="0.27"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(686.13,717.58) rotate(-0.3)"
+          rx="2.30"
+          ry="0.38"
+        />
+        <rect
+          x="-7.21"
+          y="-0.85"
+          transform="translate(997.26,723.06) rotate(7.0)"
+          width="14.42"
+          height="1.70"
+          rx="0.77"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(593.42,741.54) rotate(-171.5)"
+          rx="1.50"
+          ry="0.42"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(741.70,784.66) rotate(-168.0)"
+          rx="0.66"
+          ry="0.14"
+        />
+        <path
+          d="
   M 1024.00 842.13
   L 1024.00 844.17
   Q 1019.63 845.27 1014.94 844.13
@@ -17972,8 +20634,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.52 0.52 0.0 0 1 1023.58 840.21
   L 1024.00 842.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 521.57 862.32
   Q 520.62 862.99 520.46 864.17
   Q 518.97 866.53 518.77 869.50
@@ -18090,8 +20753,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.37 0.37 0.0 0 0 520.46 862.09
   L 521.57 862.32
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 510.87 857.94
   Q 511.27 858.40 510.89 859.79
   Q 510.18 859.58 509.98 858.76
@@ -18132,8 +20796,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.40 0.40 0.0 0 1 509.69 856.40
   L 510.87 857.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 878.25 859.50
   Q 871.19 859.66 875.52 860.05
   Q 870.59 860.76 865.72 860.00
@@ -18147,10 +20812,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 859.54 856.91 868.93 857.68
   Q 874.08 858.09 878.25 859.50
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(804.45,858.53) rotate(-3.1)" rx="2.04" ry="0.50"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(826.12,858.53) rotate(-3.3)" rx="1.61" ry="0.50"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(804.45,858.53) rotate(-3.1)"
+          rx="2.04"
+          ry="0.50"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(826.12,858.53) rotate(-3.3)"
+          rx="1.61"
+          ry="0.50"
+        />
+        <path
+          d="
   M 281.31 870.70
   L 281.29 870.34
   A 0.22 0.22 0.0 0 1 281.51 870.11
@@ -18176,8 +20854,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 281.33 870.72
   A 0.02 0.02 0.0 0 1 281.31 870.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 374.33 876.68
   Q 373.29 877.29 371.79 877.29
   Q 365.68 877.27 356.02 875.71
@@ -18195,9 +20874,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 365.02 876.84 374.22 876.32
   A 0.19 0.19 0.0 0 1 374.33 876.68
   Z"
-/>
-<rect x="-4.16" y="-0.35" transform="translate(495.62,905.51) rotate(0.4)" width="8.32" height="0.70" rx="0.33"/>
-<path d="
+        />
+        <rect
+          x="-4.16"
+          y="-0.35"
+          transform="translate(495.62,905.51) rotate(0.4)"
+          width="8.32"
+          height="0.70"
+          rx="0.33"
+        />
+        <path
+          d="
   M 512.95 910.77
   L 513.27 914.30
   A 0.49 0.49 0.0 0 1 512.78 914.84
@@ -18237,8 +20924,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 498.24 907.46 501.28 907.63 505.28 908.79
   Q 508.99 909.86 512.95 910.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 701.41 918.71
   Q 701.21 951.01 701.43 983.28
   A 0.92 0.92 0.0 0 0 703.01 983.91
@@ -18349,8 +21037,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 695.40 922.44 698.22 917.07
   L 701.41 918.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 704.08 926.89
   A 0.21 0.21 0.0 0 1 704.29 926.68
   L 704.50 926.68
@@ -18361,8 +21050,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.21 0.21 0.0 0 1 704.08 928.31
   L 704.08 926.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 794.33 929.83
   Q 789.38 929.91 791.69 931.13
   C 788.21 932.29 785.75 930.45 782.23 930.11
@@ -18370,8 +21060,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 783.58 928.85 785.23 929.13
   Q 789.69 929.89 794.33 929.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 917.90 930.04
   L 930.35 930.14
   Q 930.38 930.14 930.41 930.14
@@ -18385,9 +21076,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 917.83 930.13
   A 0.07 0.07 0.0 0 1 917.90 930.04
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(716.93,930.48) rotate(-178.0)" rx="2.04" ry="0.49"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(716.93,930.48) rotate(-178.0)"
+          rx="2.04"
+          ry="0.49"
+        />
+        <path
+          d="
   M 760.32 932.78
   A 0.25 0.24 -76.5 0 1 760.12 932.44
   L 760.27 932.23
@@ -18408,9 +21106,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 777.60 931.98 775.51 932.53
   C 770.58 933.83 766.65 933.48 760.32 932.78
   Z"
-/>
-<rect x="-3.23" y="-0.47" transform="translate(323.83,933.64) rotate(2.4)" width="6.46" height="0.94" rx="0.44"/>
-<path d="
+        />
+        <rect
+          x="-3.23"
+          y="-0.47"
+          transform="translate(323.83,933.64) rotate(2.4)"
+          width="6.46"
+          height="0.94"
+          rx="0.44"
+        />
+        <path
+          d="
   M 976.55 935.67
   A 0.24 0.24 0.0 0 1 976.54 935.19
   Q 984.03 934.05 994.01 934.02
@@ -18426,8 +21132,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.85 1.80 45.7 0 1 986.55 936.25
   C 983.55 935.51 980.27 936.03 976.55 935.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 146.63 951.02
   Q 144.22 950.54 142.94 950.56
   Q 133.31 950.67 128.71 951.19
@@ -18441,8 +21148,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 144.29 948.71 146.74 950.79
   A 0.13 0.13 0.0 0 1 146.63 951.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 537.05 954.17
   Q 538.90 953.94 543.42 953.91
   C 550.29 953.86 558.69 952.08 563.42 952.43
@@ -18455,8 +21163,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 547.05 955.86 537.06 954.82
   A 0.33 0.33 0.0 0 1 537.05 954.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 865.72 1007.82
   C 865.54 1009.28 863.08 1009.59 861.95 1009.76
   Q 858.12 1009.36 854.39 1010.73
@@ -18536,8 +21245,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 848.50 1008.24 851.38 1008.16
   Q 858.53 1007.97 865.72 1007.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 517.58 1006.23
   A 0.22 0.21 -83.1 0 1 517.76 1006.47
   L 517.76 1006.49
@@ -18579,18 +21289,33 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 481.59 1006.95 488.54 1006.21 501.87 1005.33
   Q 508.62 1004.89 517.58 1006.23
   Z"
-/>
-<rect x="-8.69" y="-0.46" transform="translate(971.58,1005.53) rotate(-0.3)" width="17.38" height="0.92" rx="0.44"/>
-</g>
-<g fill="#76512c">
-<path d="
+        />
+        <rect
+          x="-8.69"
+          y="-0.46"
+          transform="translate(971.58,1005.53) rotate(-0.3)"
+          width="17.38"
+          height="0.92"
+          rx="0.44"
+        />
+      </g>
+      <g fill="#76512c">
+        <path
+          d="
   M 989.21 59.33
   L 973.71 59.02
   L 989.21 59.33
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(1003.00,58.64) rotate(-0.6)" rx="0.24" ry="0.07"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(1003.00,58.64) rotate(-0.6)"
+          rx="0.24"
+          ry="0.07"
+        />
+        <path
+          d="
   M 470.48 186.20
   Q 467.51 188.34 463.68 188.32
   Q 456.78 188.28 450.96 188.45
@@ -18598,8 +21323,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 435.43 186.80 433.75 184.92
   C 446.03 184.96 458.17 186.70 470.48 186.20
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 462.46 200.31
   L 462.19 200.68
   A 0.44 0.44 0.0 0 0 462.53 201.38
@@ -18902,17 +21628,31 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.36 0.18 -22.9 0 0 134.4700 254.9958
   A 0.36 0.18 -22.9 0 0 134.7316 254.6899
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 202.04 273.78
   Q 200.41 274.73 198.62 275.26
   Q 194.91 276.35 195.59 273.89
   L 202.04 273.78
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(155.63,345.32) rotate(-185.2)" rx="0.30" ry="0.17"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(135.24,346.41) rotate(-1.4)" rx="0.30" ry="0.12"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(155.63,345.32) rotate(-185.2)"
+          rx="0.30"
+          ry="0.17"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(135.24,346.41) rotate(-1.4)"
+          rx="0.30"
+          ry="0.12"
+        />
+        <path
+          d="
   M 1024.00 411.72
   L 1024.00 479.88
   Q 1018.74 479.77 1017.36 479.59
@@ -19320,8 +22060,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 350.05 464.08 339.39 463.65 338.12 464.61
   A 0.21 0.21 0.0 0 0 338.25 464.98
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 660.26 551.87
   Q 646.57 553.18 632.97 553.18
   C 621.58 553.18 612.34 553.87 601.97 554.23
@@ -19718,8 +22459,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 308.15 543.98
   A 0.18 0.18 0.0 0 0 308.31 543.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 191.94 559.05
   L 192.40 559.69
   A 0.77 0.77 0.0 0 1 191.77 560.90
@@ -19728,8 +22470,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 179.47 559.05
   L 191.94 559.05
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 888.03 559.18
   Q 879.00 561.56 870.63 561.48
   Q 847.11 561.26 839.22 561.55
@@ -19739,8 +22482,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 816.03 559.64 816.71 559.36
   L 888.03 559.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 944.90 560.27
   A 0.11 0.11 0.0 0 1 945.01 560.15
   L 946.15 560.13
@@ -19750,8 +22494,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.11 0.11 0.0 0 1 944.92 560.91
   L 944.90 560.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1006.97 687.38
   L 999.58 687.39
   Q 998.41 686.77 998.07 685.69
@@ -19761,8 +22506,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.59 0.58 -41.2 0 1 1008.79 687.30
   L 1006.97 687.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 582.94 701.02
   L 589.09 701.41
   A 0.18 0.18 0.0 0 1 589.12 701.76
@@ -19839,8 +22585,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.15 0.41 1.2 0 0 640.51 765.13
   L 640.51 764.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1013.72 715.78
   L 1013.62 715.47
   A 0.05 0.04 80.3 0 1 1013.66 715.41
@@ -19853,8 +22600,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1013.50 716.07
   A 0.22 0.22 0.0 0 0 1013.72 715.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 263.82 720.96
   A 0.26 0.26 0.0 0 1 263.51 721.17
   L 256.79 719.87
@@ -19865,12 +22613,32 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.26 0.26 0.0 0 1 264.03 719.88
   L 263.82 720.96
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(253.20,722.75) rotate(-178.7)" rx="10.20" ry="1.02"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(561.39,724.43) rotate(-4.5)" rx="0.32" ry="0.16"/>
-<rect x="-4.36" y="-0.29" transform="translate(742.12,740.81) rotate(19.6)" width="8.72" height="0.58" rx="0.27"/>
-<circle cx="560.66" cy="744.83" r="0.19"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(253.20,722.75) rotate(-178.7)"
+          rx="10.20"
+          ry="1.02"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(561.39,724.43) rotate(-4.5)"
+          rx="0.32"
+          ry="0.16"
+        />
+        <rect
+          x="-4.36"
+          y="-0.29"
+          transform="translate(742.12,740.81) rotate(19.6)"
+          width="8.72"
+          height="0.58"
+          rx="0.27"
+        />
+        <circle cx="560.66" cy="744.83" r="0.19" />
+        <path
+          d="
   M 976.66 745.69
   A 0.14 0.14 0.0 0 1 976.53 745.84
   L 976.38 745.85
@@ -19881,16 +22649,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.14 0.14 0.0 0 1 976.64 745.29
   L 976.66 745.69
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(620.33,749.61) rotate(-172.4)" rx="0.40" ry="0.15"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(620.33,749.61) rotate(-172.4)"
+          rx="0.40"
+          ry="0.15"
+        />
+        <path
+          d="
   M 560.25 750.00
   Q 560.38 750.05 560.50 750.10
   Q 560.51 750.10 560.50 750.10
   Q 560.38 750.05 560.25 750.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 999.73 750.11
   Q 999.93 750.13 1001.32 750.32
   A 0.36 0.36 0.0 0 1 1001.29 751.04
@@ -19899,9 +22675,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.36 0.36 0.0 0 1 998.13 750.11
   Q 999.53 750.10 999.73 750.11
   Z"
-/>
-<rect x="-3.34" y="-0.51" transform="translate(733.29,789.49) rotate(-1.3)" width="6.68" height="1.02" rx="0.48"/>
-<path d="
+        />
+        <rect
+          x="-3.34"
+          y="-0.51"
+          transform="translate(733.29,789.49) rotate(-1.3)"
+          width="6.68"
+          height="1.02"
+          rx="0.48"
+        />
+        <path
+          d="
   M 299.28 844.50
   Q 309.41 846.99 319.85 845.88
   Q 321.50 845.70 322.29 844.52
@@ -20230,8 +23014,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.33 0.33 0.0 0 0 499.7798 905.5590
   L 499.7800 905.5190
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 784.87 851.57
   C 793.56 850.45 801.38 849.17 809.69 851.24
   A 0.30 0.30 0.0 0 1 809.61 851.83
@@ -20240,10 +23025,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 784.34 852.38
   A 0.63 0.63 0.0 0 1 784.87 851.57
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(964.90,893.51) rotate(-179.7)" rx="1.71" ry="0.38"/>
-<rect x="-4.45" y="-0.67" transform="translate(946.22,894.20) rotate(-0.2)" width="8.90" height="1.34" rx="0.64"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(964.90,893.51) rotate(-179.7)"
+          rx="1.71"
+          ry="0.38"
+        />
+        <rect
+          x="-4.45"
+          y="-0.67"
+          transform="translate(946.22,894.20) rotate(-0.2)"
+          width="8.90"
+          height="1.34"
+          rx="0.64"
+        />
+        <path
+          d="
   M 207.55 916.39
   Q 204.26 917.76 201.76 917.79
   Q 192.24 917.89 168.72 918.15
@@ -20252,17 +23051,25 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 104.00 918.07 100.70 916.38
   L 207.55 916.39
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 997.04 920.86
   Q 995.65 920.97 994.60 920.84
   A 0.28 0.28 0.0 0 1 994.60 920.28
   Q 995.62 920.15 997.06 920.38
   A 0.24 0.24 0.0 0 1 997.04 920.86
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(882.80,930.49) rotate(-3.1)" rx="1.64" ry="0.41"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(882.80,930.49) rotate(-3.1)"
+          rx="1.64"
+          ry="0.41"
+        />
+        <path
+          d="
   M 1002.45 986.00
   Q 1005.65 987.18 1009.79 987.18
   Q 1019.36 987.16 1024.00 986.92
@@ -20387,10 +23194,11 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.44 0.44 0.0 0 0 980.2700 1005.5045
   L 980.2698 1005.4645
   Z"
-/>
-</g>
-<g fill="#3b2714">
-<path d="
+        />
+      </g>
+      <g fill="#3b2714">
+        <path
+          d="
   M 980.99 8.15
   Q 980.95 8.27 980.78 8.27
   C 970.39 8.61 963.78 9.00 953.56 9.49
@@ -20425,26 +23233,49 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 974.56 7.57 980.89 8.01
   A 0.11 0.11 0.0 0 1 980.99 8.15
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(866.52,39.89) rotate(-0.4)" rx="2.01" ry="0.15"/>
-<circle cx="809.03" cy="40.50" r="0.02"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(866.52,39.89) rotate(-0.4)"
+          rx="2.01"
+          ry="0.15"
+        />
+        <circle cx="809.03" cy="40.50" r="0.02" />
+        <path
+          d="
   M 809.92 40.54
   Q 809.85 40.61 809.77 40.51
   Q 809.84 40.44 809.92 40.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 870.18 42.53
   L 870.65 42.53
   A 0.59 0.59 0.0 0 1 871.19 43.37
   Q 871.17 43.41 870.14 43.30
   A 0.39 0.39 0.0 0 1 870.18 42.53
   Z"
-/>
-<rect x="-7.09" y="-0.31" transform="translate(962.73,44.07) rotate(-1.1)" width="14.18" height="0.62" rx="0.29"/>
-<rect x="-16.47" y="-0.39" transform="translate(563.79,44.55) rotate(-0.3)" width="32.94" height="0.78" rx="0.37"/>
-<path d="
+        />
+        <rect
+          x="-7.09"
+          y="-0.31"
+          transform="translate(962.73,44.07) rotate(-1.1)"
+          width="14.18"
+          height="0.62"
+          rx="0.29"
+        />
+        <rect
+          x="-16.47"
+          y="-0.39"
+          transform="translate(563.79,44.55) rotate(-0.3)"
+          width="32.94"
+          height="0.78"
+          rx="0.37"
+        />
+        <path
+          d="
   M 186.01 79.26
   Q 186.18 79.17 190.00 79.16
   Q 209.40 79.10 225.75 79.14
@@ -20479,8 +23310,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 191.65 80.56 186.09 79.74
   A 0.26 0.25 -54.7 0 1 186.01 79.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 684.21 79.88
   Q 687.81 79.71 691.06 79.48
   Q 695.85 79.14 697.94 79.15
@@ -20508,25 +23340,40 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 686.59 80.55 684.19 80.23
   A 0.18 0.17 -42.1 0 1 684.21 79.88
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(891.62,80.55) rotate(-1.4)" rx="4.78" ry="0.36"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(891.62,80.55) rotate(-1.4)"
+          rx="4.78"
+          ry="0.36"
+        />
+        <path
+          d="
   M 615.00 87.24
   Q 614.81 87.36 614.64 87.35
   A 0.01 0.01 0.0 0 1 614.63 87.33
   L 615.00 87.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 609.11 87.97
   L 606.87 88.28
   A 0.13 0.13 0.0 0 1 606.83 88.03
   Q 608.74 87.60 609.12 87.71
   A 0.13 0.13 0.0 0 1 609.11 87.97
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(602.38,88.79) rotate(-11.3)" rx="1.43" ry="0.25"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(602.38,88.79) rotate(-11.3)"
+          rx="1.43"
+          ry="0.25"
+        />
+        <path
+          d="
   M 850.16 98.06
   A 0.33 0.33 0.0 0 1 849.82 97.75
   L 849.82 97.74
@@ -20551,8 +23398,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 865.63 96.94 862.73 96.65 857.21 97.49
   Q 854.01 97.97 850.16 98.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 691.87 116.21
   Q 688.63 116.41 686.79 116.59
   Q 683.74 116.89 681.69 116.92
@@ -20567,8 +23415,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 690.05 115.30 691.91 115.68
   A 0.27 0.27 0.0 0 1 691.87 116.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 117.14 118.52
   Q 117.70 117.95 119.76 117.74
   Q 122.92 117.68 129.50 116.77
@@ -20581,8 +23430,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 145.60 118.00 138.03 116.77 132.50 117.53
   Q 123.47 118.78 117.14 118.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 916.06 119.70
   L 915.14 119.84
   A 0.31 0.13 -13.4 0 1 914.88 119.80
@@ -20591,15 +23441,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 915.44 119.20 916.07 119.31
   A 0.20 0.20 0.0 0 1 916.06 119.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 920.19 119.76
   Q 920.65 119.56 921.04 119.62
   A 0.20 0.20 0.0 0 1 921.03 120.02
   Q 920.67 120.05 920.19 119.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 369.29 135.84
   L 371.72 135.99
   A 0.22 0.22 0.0 0 1 371.92 136.23
@@ -20614,14 +23466,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 320.24 135.75 324.80 136.46 329.10 136.31
   Q 349.19 135.60 369.29 135.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 110.04 136.10
   Q 106.52 136.75 102.82 136.24
   L 110.04 136.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 870.95 157.62
   Q 861.60 158.55 852.22 158.05
   Q 842.98 157.55 839.26 157.83
@@ -20640,9 +23494,10 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 871.16 157.37
   A 0.23 0.23 0.0 0 1 870.95 157.62
   Z"
-/>
-<rect x="977.11" y="158.12" width="45.62" height="1.06" rx="0.51"/>
-<path d="
+        />
+        <rect x="977.11" y="158.12" width="45.62" height="1.06" rx="0.51" />
+        <path
+          d="
   M 174.76 177.68
   Q 181.78 177.71 188.72 177.50
   C 189.90 177.46 191.79 177.85 192.75 177.95
@@ -20659,17 +23514,26 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 190.32 177.77 184.74 178.46
   Q 180.91 178.93 174.76 177.68
   Z"
-/>
-<rect x="-11.85" y="-0.41" transform="translate(232.71,176.28) rotate(-0.6)" width="23.70" height="0.82" rx="0.39"/>
-<path d="
+        />
+        <rect
+          x="-11.85"
+          y="-0.41"
+          transform="translate(232.71,176.28) rotate(-0.6)"
+          width="23.70"
+          height="0.82"
+          rx="0.39"
+        />
+        <path
+          d="
   M 174.76 177.68
   Q 174.78 177.88 174.46 177.88
   Q 169.87 177.92 165.27 177.87
   L 165.28 177.86
   Q 170.10 177.16 174.76 177.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 475.77 183.43
   Q 468.24 184.55 461.00 183.11
   Q 470.41 183.88 479.39 181.58
@@ -20683,8 +23547,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.87 1.85 30.4 0 0 481.06 181.64
   Q 478.61 183.14 475.77 183.43
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 185.89 181.36
   Q 186.61 181.32 187.92 181.63
   A 0.02 0.02 0.0 0 1 187.92 181.67
@@ -20693,8 +23558,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.02 0.02 0.0 0 1 183.91 181.86
   Q 185.17 181.40 185.89 181.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 564.70 185.18
   L 567.50 185.32
   A 0.09 0.07 1.0 0 1 567.57 185.38
@@ -20705,29 +23571,39 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 548.26 185.31 548.80 185.32
   L 564.70 185.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 450.96 188.45
   L 437.90 187.56
   Q 443.99 186.70 450.96 188.45
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(435.61,187.75) rotate(-175.9)" rx="1.91" ry="0.20"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(435.61,187.75) rotate(-175.9)"
+          rx="1.91"
+          ry="0.20"
+        />
+        <path
+          d="
   M 240.47 196.88
   Q 241.14 196.82 241.21 196.94
   A 0.30 0.29 74.0 0 1 240.96 197.40
   L 208.45 196.91
   L 240.47 196.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 258.71 196.76
   Q 253.53 198.27 247.83 196.92
   L 258.71 196.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 486.49 215.96
   C 479.38 215.91 471.82 215.13 465.17 215.64
   Q 456.75 216.28 451.70 216.08
@@ -20764,17 +23640,25 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 523.36 215.27 512.50 214.92
   Q 504.15 214.65 486.49 215.96
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(50.82,219.67) rotate(-3.6)" rx="1.17" ry="0.13"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(50.82,219.67) rotate(-3.6)"
+          rx="1.17"
+          ry="0.13"
+        />
+        <path
+          d="
   M 54.26 219.30
   Q 54.40 219.30 54.62 219.47
   A 0.21 0.20 -47.4 0 1 54.63 219.79
   Q 54.48 219.92 54.27 219.91
   A 0.31 0.31 0.0 0 1 54.26 219.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1007.80 221.92
   Q 1007.52 221.94 1007.25 221.97
   Q 999.92 222.94 992.57 222.96
@@ -20789,14 +23673,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1015.73 222.26 1008.35 221.93
   Q 1008.07 221.91 1007.80 221.92
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 28.59 222.36
   Q 28.78 222.26 28.93 222.39
   Q 28.75 222.49 28.59 222.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 139.93 224.12
   L 139.93 224.15
   A 0.13 0.13 0.0 0 1 139.80 224.28
@@ -20826,10 +23712,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 139.76 223.97
   A 0.17 0.17 0.0 0 1 139.93 224.12
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(32.26,222.66) rotate(-4.5)" rx="1.26" ry="0.17"/>
-<rect x="-34.15" y="-0.35" transform="translate(189.11,224.18) rotate(0.3)" width="68.30" height="0.70" rx="0.28"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(32.26,222.66) rotate(-4.5)"
+          rx="1.26"
+          ry="0.17"
+        />
+        <rect
+          x="-34.15"
+          y="-0.35"
+          transform="translate(189.11,224.18) rotate(0.3)"
+          width="68.30"
+          height="0.70"
+          rx="0.28"
+        />
+        <path
+          d="
   M 725.47 224.70
   A 0.15 0.15 0.0 0 1 725.32 224.56
   L 725.32 224.55
@@ -20851,8 +23751,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 2.92 2.83 51.7 0 0 759.28 225.15
   L 725.47 224.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 703.44 228.39
   L 703.29 227.74
   A 0.22 0.22 0.0 0 1 703.50 227.47
@@ -20874,9 +23775,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 714.21 227.72 703.51 228.45
   A 0.07 0.07 0.0 0 1 703.44 228.39
   Z"
-/>
-<rect x="-7.78" y="-0.33" transform="translate(802.71,228.69) rotate(4.7)" width="15.56" height="0.66" rx="0.27"/>
-<path d="
+        />
+        <rect
+          x="-7.78"
+          y="-0.33"
+          transform="translate(802.71,228.69) rotate(4.7)"
+          width="15.56"
+          height="0.66"
+          rx="0.27"
+        />
+        <path
+          d="
   M 358.02 244.53
   Q 354.93 244.89 352.32 243.68
   Q 351.91 243.49 351.32 244.27
@@ -20895,8 +23804,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 356.89 241.10 358.35 241.62
   A 1.50 1.50 0.0 0 1 358.02 244.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 800.43 244.56
   A 0.11 0.11 0.0 0 1 800.33 244.45
   L 800.34 244.44
@@ -20916,8 +23826,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 4.57 4.36 -46.4 0 0 813.32 244.04
   Q 807.03 245.29 800.43 244.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 284.15 245.54
   A 0.30 0.30 0.0 0 1 283.83 245.17
   L 283.89 244.95
@@ -20938,9 +23849,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 307.15 245.48 303.49 245.92 299.61 245.49
   Q 292.25 244.68 284.15 245.54
   Z"
-/>
-<rect x="-10.18" y="-0.48" transform="translate(270.76,245.79) rotate(1.5)" width="20.36" height="0.96" rx="0.27"/>
-<path d="
+        />
+        <rect
+          x="-10.18"
+          y="-0.48"
+          transform="translate(270.76,245.79) rotate(1.5)"
+          width="20.36"
+          height="0.96"
+          rx="0.27"
+        />
+        <path
+          d="
   M 435.28 251.27
   L 435.28 251.29
   A 0.42 0.41 -74.1 0 1 434.79 251.57
@@ -20971,8 +23890,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 432.54 250.02 435.02 250.80
   A 0.39 0.38 16.3 0 1 435.28 251.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 529.20 249.02
   L 486.90 248.91
   Q 497.17 247.93 507.50 247.96
@@ -20995,8 +23915,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 554.89 248.59 549.40 248.92 543.62 248.79
   Q 536.41 248.63 529.20 249.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 476.77 249.46
   L 483.77 250.22
   A 0.16 0.16 0.0 0 1 483.92 250.39
@@ -21008,10 +23929,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 459.51 247.81 465.07 248.64
   Q 472.32 249.72 476.77 249.46
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(806.60,258.43) rotate(-179.6)" rx="4.06" ry="0.29"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(851.36,258.39) rotate(-172.3)" rx="0.98" ry="0.27"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(806.60,258.43) rotate(-179.6)"
+          rx="4.06"
+          ry="0.29"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(851.36,258.39) rotate(-172.3)"
+          rx="0.98"
+          ry="0.27"
+        />
+        <path
+          d="
   M 854.90 268.63
   Q 855.94 268.71 856.36 269.04
   A 0.35 0.35 0.0 0 1 856.14 269.66
@@ -21025,23 +23959,33 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.58 0.21 25.1 0 0 849.07 268.86
   L 854.90 268.63
   Z"
-/>
-<rect x="-30.40" y="-0.70" transform="translate(179.04,287.33) rotate(-0.2)" width="60.80" height="1.40" rx="0.69"/>
-<path d="
+        />
+        <rect
+          x="-30.40"
+          y="-0.70"
+          transform="translate(179.04,287.33) rotate(-0.2)"
+          width="60.80"
+          height="1.40"
+          rx="0.69"
+        />
+        <path
+          d="
   M 670.47 291.62
   Q 670.28 291.56 670.07 291.49
   A 0.16 0.12 49.7 0 1 670.05 291.21
   Q 670.28 291.24 670.47 291.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 670.47 291.62
   Q 672.76 291.24 674.68 291.94
   A 0.18 0.17 52.3 0 1 674.64 292.28
   Q 672.46 292.44 670.47 291.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 909.59 291.82
   C 906.56 292.68 901.14 294.00 897.71 294.40
   C 892.76 294.97 889.42 295.71 884.72 296.26
@@ -21064,8 +24008,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 909.68 291.67
   A 0.14 0.13 -15.4 0 1 909.59 291.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 727.27 291.65
   Q 727.28 291.65 728.94 292.24
   A 3.10 3.10 0.0 0 0 730.01 292.41
@@ -21093,10 +24038,25 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 727.14 292.06
   A 0.22 0.22 0.0 0 1 727.27 291.65
   Z"
-/>
-<rect x="-12.13" y="-0.27" transform="translate(996.57,292.69) rotate(3.8)" width="24.26" height="0.54" rx="0.26"/>
-<rect x="-18.59" y="-0.44" transform="translate(594.77,293.55) rotate(-2.5)" width="37.18" height="0.88" rx="0.42"/>
-<path d="
+        />
+        <rect
+          x="-12.13"
+          y="-0.27"
+          transform="translate(996.57,292.69) rotate(3.8)"
+          width="24.26"
+          height="0.54"
+          rx="0.26"
+        />
+        <rect
+          x="-18.59"
+          y="-0.44"
+          transform="translate(594.77,293.55) rotate(-2.5)"
+          width="37.18"
+          height="0.88"
+          rx="0.42"
+        />
+        <path
+          d="
   M 981.25 293.99
   L 955.02 294.73
   A 7.07 6.95 49.1 0 1 953.53 294.61
@@ -21113,10 +24073,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 981.46 293.76
   A 0.23 0.22 88.7 0 1 981.25 293.99
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(642.91,293.91) rotate(-1.5)" rx="3.18" ry="0.22"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(654.85,295.91) rotate(-0.7)" rx="1.64" ry="0.17"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(642.91,293.91) rotate(-1.5)"
+          rx="3.18"
+          ry="0.22"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(654.85,295.91) rotate(-0.7)"
+          rx="1.64"
+          ry="0.17"
+        />
+        <path
+          d="
   M 109.03 301.30
   L 112.80 302.29
   Q 108.84 303.36 105.52 302.84
@@ -21146,8 +24119,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 98.31 300.76 100.00 300.95
   Q 104.54 301.44 109.03 301.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 323.08 304.67
   L 323.07 304.34
   A 0.30 0.29 -1.9 0 1 323.36 304.04
@@ -21176,8 +24150,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 326.75 305.11 323.56 305.12
   A 0.48 0.47 -1.2 0 1 323.08 304.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 72.51 343.01
   L 0.00 343.03
   L 0.00 341.88
@@ -21189,8 +24164,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.25 0.25 0.0 0 1 89.16 341.75
   Q 80.75 341.33 72.51 343.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 380.82 342.10
   L 366.02 342.89
   L 130.97 342.95
@@ -21202,8 +24178,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 308.53 341.68 325.58 341.93 345.15 341.63
   Q 362.98 341.36 380.82 342.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 908.75 357.99
   Q 912.50 357.29 919.28 357.32
   A 0.18 0.17 29.6 0 1 919.37 357.65
@@ -21214,9 +24191,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 898.82 358.63 899.99 358.68
   Q 903.93 358.86 908.75 357.99
   Z"
-/>
-<rect x="-8.85" y="-0.45" transform="translate(776.29,360.45) rotate(-1.8)" width="17.70" height="0.90" rx="0.26"/>
-<path d="
+        />
+        <rect
+          x="-8.85"
+          y="-0.45"
+          transform="translate(776.29,360.45) rotate(-1.8)"
+          width="17.70"
+          height="0.90"
+          rx="0.26"
+        />
+        <path
+          d="
   M 132.42 364.88
   Q 136.61 365.58 140.91 364.47
   A 3.39 3.21 -50.6 0 1 141.86 364.35
@@ -21280,8 +24265,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 132.10 365.15
   A 0.28 0.27 4.5 0 1 132.42 364.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 600.25 377.96
   Q 608.05 375.86 616.78 375.27
   Q 634.68 374.05 637.75 374.06
@@ -21305,8 +24291,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 602.64 380.03 600.52 380.01
   A 1.04 1.04 0.0 0 1 600.25 377.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 87.24 391.69
   Q 87.19 391.82 87.03 391.83
   C 77.45 392.08 71.57 392.28 62.18 391.75
@@ -21321,8 +24308,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 70.78 391.67 80.43 391.40 87.19 391.62
   A 0.06 0.05 12.7 0 1 87.24 391.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 250.88 394.52
   Q 247.19 394.91 236.76 394.24
   C 228.49 393.72 215.10 394.26 205.62 394.18
@@ -21342,8 +24330,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 250.91 394.48
   A 0.04 0.03 90.0 0 1 250.88 394.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 591.98 395.47
   Q 594.34 395.08 597.56 395.70
   C 598.38 395.86 599.83 395.35 600.76 395.35
@@ -21364,8 +24353,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 598.59 396.25 591.99 395.77
   A 0.15 0.15 0.0 0 1 591.98 395.47
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 909.28 409.62
   Q 909.63 409.76 909.84 409.98
   Q 910.05 410.22 909.92 410.45
@@ -21376,8 +24366,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.17 0.16 1.8 0 1 903.78 409.70
   L 909.28 409.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 876.63 421.57
   L 878.35 421.39
   A 0.39 0.25 -15.8 0 1 878.62 421.47
@@ -21386,8 +24377,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 877.73 421.80 876.64 421.70
   A 0.07 0.06 42.6 0 1 876.63 421.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 718.30 437.32
   Q 718.13 437.25 717.95 437.22
   Q 717.63 437.18 717.63 437.09
@@ -21424,9 +24416,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 8.65 8.49 31.5 0 1 729.78 436.14
   L 718.30 437.32
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(72.22,433.60) rotate(-7.1)" rx="3.99" ry="0.33"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(72.22,433.60) rotate(-7.1)"
+          rx="3.99"
+          ry="0.33"
+        />
+        <path
+          d="
   M 384.02 433.32
   Q 400.04 433.88 415.99 435.10
   A 0.38 0.38 0.0 0 1 416.34 435.51
@@ -21441,20 +24440,48 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.38 0.38 0.0 0 1 352.00 433.13
   Q 368.00 432.90 384.02 433.32
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 430.47 433.10
   Q 430.61 433.01 430.78 433.10
   A 0.09 0.09 0.0 0 1 430.79 433.25
   Q 430.78 433.26 430.54 433.29
   A 0.10 0.10 0.0 0 1 430.47 433.10
   Z"
-/>
-<rect x="-4.62" y="-0.28" transform="translate(424.75,433.70) rotate(-0.8)" width="9.24" height="0.56" rx="0.26"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(470.12,433.97) rotate(-7.9)" rx="1.44" ry="0.29"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(933.71,434.41) rotate(-175.9)" rx="2.87" ry="0.37"/>
-<rect x="-7.55" y="-0.32" transform="translate(425.11,435.79) rotate(0.1)" width="15.10" height="0.64" rx="0.26"/>
-<path d="
+        />
+        <rect
+          x="-4.62"
+          y="-0.28"
+          transform="translate(424.75,433.70) rotate(-0.8)"
+          width="9.24"
+          height="0.56"
+          rx="0.26"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(470.12,433.97) rotate(-7.9)"
+          rx="1.44"
+          ry="0.29"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(933.71,434.41) rotate(-175.9)"
+          rx="2.87"
+          ry="0.37"
+        />
+        <rect
+          x="-7.55"
+          y="-0.32"
+          transform="translate(425.11,435.79) rotate(0.1)"
+          width="15.10"
+          height="0.64"
+          rx="0.26"
+        />
+        <path
+          d="
   M 1004.33 447.41
   Q 1005.80 447.87 1010.49 448.06
   A 0.30 0.29 1.0 0 1 1010.78 448.35
@@ -21484,8 +24511,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 1004.36 447.18
   A 0.12 0.12 0.0 0 0 1004.33 447.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 990.37 448.62
   A 0.18 0.18 0.0 0 1 990.21 448.81
   L 989.26 448.87
@@ -21496,8 +24524,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.18 0.18 0.0 0 1 990.33 447.96
   L 990.37 448.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 828.09 457.04
   L 828.09 457.02
   A 0.56 0.56 0.0 0 1 828.63 456.42
@@ -21526,10 +24555,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 836.11 457.16 828.60 457.51
   A 0.49 0.49 0.0 0 1 828.09 457.04
   Z"
-/>
-<rect x="-22.17" y="-0.28" transform="translate(199.45,466.41) rotate(-0.6)" width="44.34" height="0.56" rx="0.26"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(134.21,506.12) rotate(-0.4)" rx="1.29" ry="0.20"/>
-<path d="
+        />
+        <rect
+          x="-22.17"
+          y="-0.28"
+          transform="translate(199.45,466.41) rotate(-0.6)"
+          width="44.34"
+          height="0.56"
+          rx="0.26"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(134.21,506.12) rotate(-0.4)"
+          rx="1.29"
+          ry="0.20"
+        />
+        <path
+          d="
   M 196.06 511.16
   Q 195.34 511.66 193.75 511.33
   Q 185.58 509.62 179.32 509.47
@@ -21564,8 +24607,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 192.39 510.68 195.88 510.63
   A 0.29 0.29 0.0 0 1 196.06 511.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 886.92 508.21
   Q 886.97 508.20 887.49 508.45
   Q 887.83 508.61 888.04 508.61
@@ -21584,24 +24628,34 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 889.08 510.03 888.16 509.14 886.94 508.84
   A 0.33 0.33 0.0 0 1 886.92 508.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 883.76 508.39
   Q 884.41 508.18 884.83 508.31
   A 0.24 0.24 0.0 0 1 884.79 508.77
   Q 884.34 508.84 883.79 508.76
   A 0.19 0.19 0.0 0 1 883.76 508.39
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 730.54 509.23
   Q 729.74 509.48 729.23 509.33
   A 0.22 0.22 0.0 0 1 729.24 508.91
   Q 729.94 508.75 730.54 509.23
   Z"
-/>
-<rect x="-6.62" y="-0.36" transform="translate(740.00,509.64) rotate(-3.0)" width="13.24" height="0.72" rx="0.26"/>
-<path d="
+        />
+        <rect
+          x="-6.62"
+          y="-0.36"
+          transform="translate(740.00,509.64) rotate(-3.0)"
+          width="13.24"
+          height="0.72"
+          rx="0.26"
+        />
+        <path
+          d="
   M 880.38 510.64
   Q 862.59 511.03 850.65 510.86
   Q 848.99 510.84 847.61 510.46
@@ -21617,16 +24671,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 880.44 509.94
   A 0.35 0.35 0.0 0 1 880.38 510.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 730.54 509.23
   Q 730.82 509.30 731.06 509.40
   A 0.08 0.08 0.0 0 1 731.00 509.55
   Q 730.75 509.44 730.54 509.23
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(820.95,509.94) rotate(-0.8)" rx="0.64" ry="0.17"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(820.95,509.94) rotate(-0.8)"
+          rx="0.64"
+          ry="0.17"
+        />
+        <path
+          d="
   M 590.30 512.72
   Q 576.32 513.35 557.52 512.81
   Q 556.66 512.78 554.08 513.10
@@ -21651,28 +24713,56 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 590.56 512.25
   A 0.31 0.31 0.0 0 1 590.30 512.72
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(13.82,510.92) rotate(-1.0)" rx="4.58" ry="0.29"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(729.38,511.75) rotate(-8.0)" rx="1.46" ry="0.26"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(13.82,510.92) rotate(-1.0)"
+          rx="4.58"
+          ry="0.29"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(729.38,511.75) rotate(-8.0)"
+          rx="1.46"
+          ry="0.26"
+        />
+        <path
+          d="
   M 723.84 511.89
   Q 723.84 511.83 722.74 512.00
   Q 720.03 512.43 720.02 511.94
   Q 720.01 511.45 722.74 511.80
   Q 723.84 511.94 723.84 511.89
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(15.79,513.83) rotate(-179.9)" rx="6.28" ry="0.24"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(15.79,513.83) rotate(-179.9)"
+          rx="6.28"
+          ry="0.24"
+        />
+        <path
+          d="
   M 716.98 514.04
   Q 716.90 514.02 716.76 514.02
   A 0.08 0.08 0.0 0 1 716.69 513.91
   Q 716.74 513.82 716.89 513.84
   A 0.15 0.08 31.7 0 1 716.98 514.04
   Z"
-/>
-<rect x="-10.48" y="-0.47" transform="translate(601.24,517.33) rotate(-2.9)" width="20.96" height="0.94" rx="0.27"/>
-<path d="
+        />
+        <rect
+          x="-10.48"
+          y="-0.47"
+          transform="translate(601.24,517.33) rotate(-2.9)"
+          width="20.96"
+          height="0.94"
+          rx="0.27"
+        />
+        <path
+          d="
   M 141.56 536.60
   L 141.56 536.61
   A 0.31 0.31 0.0 0 1 141.24 536.91
@@ -21708,8 +24798,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 134.92 535.89 141.31 536.32
   A 0.26 0.26 0.0 0 1 141.56 536.60
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 556.68 537.87
   L 525.21 537.34
   Q 522.68 537.21 516.72 537.71
@@ -21726,8 +24817,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.33 0.33 0.0 0 1 560.36 537.88
   L 556.68 537.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 51.16 541.51
   Q 51.15 541.53 51.14 541.56
   A 0.10 0.09 -81.7 0 1 51.05 541.63
@@ -21747,8 +24839,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 46.84 540.69 51.01 541.35
   A 0.18 0.14 8.2 0 1 51.16 541.51
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 695.66 556.08
   L 717.80 555.37
   L 730.52 555.31
@@ -21759,16 +24852,18 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 719.37 555.95 714.18 556.23
   Q 705.15 556.70 695.66 556.08
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 751.97 556.28
   L 750.90 556.27
   A 0.70 0.69 67.6 0 1 750.45 556.08
   Q 749.52 555.19 752.02 555.87
   A 0.21 0.21 0.0 0 1 751.97 556.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 767.47 555.69
   Q 767.77 555.81 767.93 555.88
   A 0.19 0.19 0.0 0 1 767.85 556.24
@@ -21779,9 +24874,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 761.23 555.76
   L 767.47 555.69
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(818.12,556.38) rotate(-179.5)" rx="0.32" ry="0.12"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(818.12,556.38) rotate(-179.5)"
+          rx="0.32"
+          ry="0.12"
+        />
+        <path
+          d="
   M 577.85 586.80
   Q 584.93 586.10 590.62 584.73
   A 8.67 8.42 34.5 0 1 591.92 584.51
@@ -21834,8 +24936,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 584.99 587.55 581.05 588.19 577.85 587.92
   A 0.56 0.56 0.0 0 1 577.85 586.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 964.60 575.26
   A 0.19 0.19 0.0 0 1 964.67 575.63
   Q 959.82 577.20 954.65 576.54
@@ -21858,8 +24961,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 7.99 7.73 50.1 0 1 952.07 574.50
   Q 957.58 575.84 964.60 575.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 324.56 582.04
   L 308.91 580.23
   Q 305.00 579.96 300.95 580.24
@@ -21966,10 +25070,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 355.56 583.23 349.05 583.72 343.39 583.37
   Q 333.95 582.78 324.56 582.04
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(964.87,577.92) rotate(-3.0)" rx="2.43" ry="0.32"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(842.01,604.49) rotate(-177.2)" rx="2.73" ry="0.16"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(964.87,577.92) rotate(-3.0)"
+          rx="2.43"
+          ry="0.32"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(842.01,604.49) rotate(-177.2)"
+          rx="2.73"
+          ry="0.16"
+        />
+        <path
+          d="
   M 11.81 611.30
   Q 13.68 611.02 20.11 610.91
   Q 24.76 610.83 28.33 611.13
@@ -22004,17 +25121,25 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 13.00 611.94 11.82 611.80
   A 0.25 0.25 0.0 0 1 11.81 611.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 529.13 608.34
   Q 531.99 608.33 531.99 608.47
   Q 531.99 608.61 529.13 608.62
   Q 526.27 608.63 526.27 608.49
   Q 526.27 608.34 529.13 608.34
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(407.03,608.80) rotate(-177.2)" rx="3.05" ry="0.24"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(407.03,608.80) rotate(-177.2)"
+          rx="3.05"
+          ry="0.24"
+        />
+        <path
+          d="
   M 1015.03 609.25
   L 1015.51 609.52
   A 0.16 0.14 -76.9 0 1 1015.58 609.65
@@ -22034,10 +25159,24 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 971.64 609.92 975.85 609.24 981.30 609.20
   Q 998.18 609.06 1015.03 609.25
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(675.24,612.38) rotate(-174.7)" rx="1.27" ry="0.21"/>
-<rect x="-6.20" y="-0.33" transform="translate(133.25,628.20) rotate(0.8)" width="12.40" height="0.66" rx="0.32"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(675.24,612.38) rotate(-174.7)"
+          rx="1.27"
+          ry="0.21"
+        />
+        <rect
+          x="-6.20"
+          y="-0.33"
+          transform="translate(133.25,628.20) rotate(0.8)"
+          width="12.40"
+          height="0.66"
+          rx="0.32"
+        />
+        <path
+          d="
   M 1012.13 645.12
   Q 1009.85 646.18 1006.50 646.03
   A 0.54 0.54 0.0 0 0 1005.96 646.74
@@ -22066,8 +25205,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 1005.40 645.30 1012.03 644.74
   A 0.20 0.20 0.0 0 1 1012.13 645.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 931.57 650.07
   L 941.18 650.22
   A 2.13 1.93 -47.9 0 0 941.58 650.18
@@ -22090,8 +25230,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 931.34 650.30 931.42 650.16
   A 0.16 0.14 -72.7 0 1 931.57 650.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 789.94 651.32
   Q 794.54 651.62 792.28 652.63
   L 753.59 651.89
@@ -22109,8 +25250,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   C 769.13 650.74 771.10 651.26 772.97 651.19
   Q 781.50 650.85 789.94 651.32
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 832.00 656.98
   A 0.18 0.18 0.0 0 1 831.84 656.78
   L 831.84 656.77
@@ -22147,8 +25289,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 851.99 657.24 847.62 657.43
   Q 839.53 657.78 832.00 656.98
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 212.10 664.93
   C 211.95 665.00 211.83 664.95 211.67 664.96
   Q 195.31 665.66 182.24 665.26
@@ -22166,8 +25309,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 208.81 663.83 212.07 664.72
   A 0.11 0.11 0.0 0 1 212.10 664.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 689.04 670.56
   Q 691.47 670.27 695.52 670.68
   Q 696.67 670.80 701.97 670.39
@@ -22189,8 +25333,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 692.35 671.37 689.04 670.92
   A 0.18 0.18 0.0 0 1 689.04 670.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 608.32 672.43
   A 0.18 0.18 0.0 0 1 608.16 672.62
   L 598.41 673.44
@@ -22200,9 +25345,17 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.18 0.18 0.0 0 1 608.28 671.91
   L 608.32 672.43
   Z"
-/>
-<rect x="-25.33" y="-0.46" transform="translate(566.60,676.26) rotate(-1.5)" width="50.66" height="0.92" rx="0.37"/>
-<path d="
+        />
+        <rect
+          x="-25.33"
+          y="-0.46"
+          transform="translate(566.60,676.26) rotate(-1.5)"
+          width="50.66"
+          height="0.92"
+          rx="0.37"
+        />
+        <path
+          d="
   M 1024.00 684.48
   L 1024.00 685.12
   Q 1020.12 685.84 1016.19 684.85
@@ -22211,8 +25364,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.28 0.28 0.0 0 1 1016.26 683.97
   L 1024.00 684.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1006.97 687.38
   L 1010.65 687.95
   A 2.60 2.37 -40.5 0 0 1011.28 687.97
@@ -22229,8 +25383,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 999.58 687.39
   L 1006.97 687.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 777.97 718.77
   Q 771.93 719.10 763.05 718.32
   Q 753.06 717.44 748.16 717.51
@@ -22263,8 +25418,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 777.79 717.86 778.17 718.25
   A 0.31 0.30 66.5 0 1 777.97 718.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 178.91 718.70
   L 178.90 719.07
   A 0.41 0.40 -89.2 0 1 178.51 719.46
@@ -22290,8 +25446,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 171.30 719.09 178.47 718.30
   A 0.40 0.39 -1.9 0 1 178.91 718.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 609.43 715.37
   A 0.23 0.22 -66.6 0 1 609.54 715.65
   L 609.37 716.08
@@ -22305,8 +25462,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 1.35 1.08 -51.3 0 0 601.60 714.76
   Q 605.47 713.27 609.43 715.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 180.79 717.64
   Q 186.50 715.01 193.92 715.73
   A 0.15 0.15 0.0 0 1 194.04 715.95
@@ -22314,8 +25472,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 187.89 715.79 180.87 717.85
   A 0.11 0.11 0.0 0 1 180.79 717.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 532.72 717.97
   L 537.19 718.14
   A 0.24 0.24 0.0 0 1 537.24 718.61
@@ -22327,9 +25486,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 515.61 718.97 512.46 718.94
   L 532.72 717.97
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(183.88,719.19) rotate(-2.7)" rx="2.16" ry="0.28"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(183.88,719.19) rotate(-2.7)"
+          rx="2.16"
+          ry="0.28"
+        />
+        <path
+          d="
   M 427.01 725.18
   Q 429.04 724.98 430.89 725.73
   A 0.19 0.18 -71.7 0 1 430.99 725.95
@@ -22343,24 +25509,41 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 412.51 727.14 413.45 726.91
   Q 420.29 725.22 427.01 725.18
   Z"
-/>
-<rect x="-4.96" y="-0.31" transform="translate(695.20,738.40) rotate(-2.6)" width="9.92" height="0.62" rx="0.27"/>
-<rect x="-10.01" y="-0.25" transform="translate(477.98,743.69) rotate(-5.1)" width="20.02" height="0.50" rx="0.25"/>
-<path d="
+        />
+        <rect
+          x="-4.96"
+          y="-0.31"
+          transform="translate(695.20,738.40) rotate(-2.6)"
+          width="9.92"
+          height="0.62"
+          rx="0.27"
+        />
+        <rect
+          x="-10.01"
+          y="-0.25"
+          transform="translate(477.98,743.69) rotate(-5.1)"
+          width="20.02"
+          height="0.50"
+          rx="0.25"
+        />
+        <path
+          d="
   M 478.97 746.18
   Q 478.84 746.45 478.64 746.32
   A 0.09 0.08 -38.3 0 1 478.66 746.17
   Q 478.77 746.13 478.97 746.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 478.97 746.18
   Q 481.87 745.48 484.60 746.08
   A 0.10 0.10 0.0 0 1 484.58 746.28
   L 478.97 746.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1016.70 748.62
   L 984.53 748.75
   Q 985.21 747.94 983.04 748.00
@@ -22373,25 +25556,35 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.53 0.53 0.0 0 1 1022.41 748.45
   L 1016.70 748.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 925.83 748.17
   Q 926.13 747.94 926.25 747.96
   A 0.38 0.38 0.0 0 1 926.24 748.71
   Q 926.09 748.74 925.85 748.60
   A 0.26 0.26 0.0 0 1 925.83 748.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 880.90 761.65
   Q 880.62 762.07 880.17 761.78
   A 0.23 0.22 -22.8 0 1 880.34 761.37
   L 880.82 761.46
   A 0.13 0.12 22.9 0 1 880.90 761.65
   Z"
-/>
-<rect x="-19.53" y="-0.42" transform="translate(579.37,765.15) rotate(-0.2)" width="39.06" height="0.84" rx="0.37"/>
-<path d="
+        />
+        <rect
+          x="-19.53"
+          y="-0.42"
+          transform="translate(579.37,765.15) rotate(-0.2)"
+          width="39.06"
+          height="0.84"
+          rx="0.37"
+        />
+        <path
+          d="
   M 640.51 764.94
   L 640.51 765.13
   A 2.15 0.41 1.2 0 1 638.35 765.49
@@ -22400,8 +25593,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 624.66 764.60
   L 640.51 764.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 859.99 764.71
   Q 863.62 765.23 857.50 765.28
   Q 833.83 765.47 810.17 765.46
@@ -22411,8 +25605,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 813.72 764.69
   L 859.99 764.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 177.67 764.74
   Q 178.73 764.62 179.31 764.88
   A 0.24 0.24 0.0 0 1 179.21 765.33
@@ -22420,8 +25615,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 151.60 765.36 151.46 764.99
   L 177.67 764.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 747.47 764.71
   L 749.84 764.95
   A 0.13 0.13 0.0 0 1 749.96 765.08
@@ -22431,8 +25627,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 727.68 765.51 727.99 764.38
   L 747.47 764.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 779.54 764.69
   L 790.36 764.88
   A 0.17 0.17 0.0 0 1 790.53 765.05
@@ -22443,9 +25640,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 758.67 764.63 759.97 764.78
   L 779.54 764.69
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(71.21,780.17) rotate(-6.7)" rx="1.70" ry="0.22"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(71.21,780.17) rotate(-6.7)"
+          rx="1.70"
+          ry="0.22"
+        />
+        <path
+          d="
   M 68.64 780.55
   Q 65.96 780.70 63.20 781.38
   C 58.83 782.45 54.86 781.74 51.03 782.57
@@ -22461,19 +25665,39 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.14 0.14 0.0 0 1 68.90 780.23
   A 0.28 0.27 84.4 0 1 68.64 780.55
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(90.26,781.07) rotate(-179.0)" rx="3.36" ry="0.23"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(81.63,782.16) rotate(-5.5)" rx="1.92" ry="0.26"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(98.47,782.12) rotate(-178.7)" rx="2.79" ry="0.25"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(90.26,781.07) rotate(-179.0)"
+          rx="3.36"
+          ry="0.23"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(81.63,782.16) rotate(-5.5)"
+          rx="1.92"
+          ry="0.26"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(98.47,782.12) rotate(-178.7)"
+          rx="2.79"
+          ry="0.25"
+        />
+        <path
+          d="
   M 104.27 782.38
   Q 103.85 782.51 103.31 782.37
   A 0.26 0.26 0.0 0 1 103.27 781.88
   Q 103.29 781.87 104.24 781.98
   A 0.21 0.20 -50.0 0 1 104.27 782.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 402.85 797.62
   A 0.12 0.11 5.0 0 1 402.74 797.50
   L 402.74 797.49
@@ -22535,13 +25759,45 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 425.47 797.05 415.79 797.79
   Q 412.13 798.07 402.85 797.62
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(129.90,784.10) rotate(-1.8)" rx="3.99" ry="0.26"/>
-<rect x="-10.77" y="-0.31" transform="translate(114.39,784.59) rotate(-2.6)" width="21.54" height="0.62" rx="0.27"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(95.88,784.86) rotate(-178.6)" rx="4.05" ry="0.27"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(655.63,788.99) rotate(-176.0)" rx="1.68" ry="0.19"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(640.84,790.02) rotate(-4.7)" rx="1.45" ry="0.18"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(129.90,784.10) rotate(-1.8)"
+          rx="3.99"
+          ry="0.26"
+        />
+        <rect
+          x="-10.77"
+          y="-0.31"
+          transform="translate(114.39,784.59) rotate(-2.6)"
+          width="21.54"
+          height="0.62"
+          rx="0.27"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(95.88,784.86) rotate(-178.6)"
+          rx="4.05"
+          ry="0.27"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(655.63,788.99) rotate(-176.0)"
+          rx="1.68"
+          ry="0.19"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(640.84,790.02) rotate(-4.7)"
+          rx="1.45"
+          ry="0.18"
+        />
+        <path
+          d="
   M 722.98 800.47
   Q 734.59 798.98 749.02 798.22
   C 752.16 798.06 756.64 797.03 759.09 797.05
@@ -22558,8 +25814,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 728.94 801.37 722.98 800.79
   A 0.16 0.16 0.0 0 1 722.98 800.47
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 991.67 805.83
   Q 984.36 806.15 978.62 807.99
   A 4.22 3.99 -50.5 0 1 977.10 808.18
@@ -22602,10 +25859,23 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 991.69 805.51
   A 0.16 0.16 0.0 0 1 991.67 805.83
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(155.76,809.99) rotate(-178.1)" rx="3.46" ry="0.34"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(126.36,811.04) rotate(-1.6)" rx="4.86" ry="0.32"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(155.76,809.99) rotate(-178.1)"
+          rx="3.46"
+          ry="0.34"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(126.36,811.04) rotate(-1.6)"
+          rx="4.86"
+          ry="0.32"
+        />
+        <path
+          d="
   M 222.91 814.17
   Q 219.10 814.32 215.01 814.39
   C 212.28 814.44 210.26 813.73 207.78 813.62
@@ -22617,8 +25887,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 218.47 813.56 222.90 813.60
   A 0.29 0.28 44.1 0 1 222.91 814.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 101.32 816.50
   C 100.73 816.69 99.04 816.47 98.22 816.65
   C 87.25 819.14 78.60 821.54 68.83 822.16
@@ -22636,9 +25907,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 98.33 815.67 101.27 815.95
   A 0.28 0.28 0.0 0 1 101.32 816.50
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(223.51,818.08) rotate(-0.9)" rx="2.63" ry="0.29"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(223.51,818.08) rotate(-0.9)"
+          rx="2.63"
+          ry="0.29"
+        />
+        <path
+          d="
   M 517.49 819.24
   Q 514.86 819.84 510.26 819.50
   Q 507.85 819.32 505.70 820.11
@@ -22703,9 +25981,16 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 517.39 818.35
   A 0.45 0.45 0.0 0 1 517.49 819.24
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(901.15,859.29) rotate(-179.9)" rx="1.63" ry="0.29"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(901.15,859.29) rotate(-179.9)"
+          rx="1.63"
+          ry="0.29"
+        />
+        <path
+          d="
   M 442.58 860.79
   L 440.08 862.23
   A 0.66 0.63 -39.4 0 1 439.34 862.17
@@ -22733,8 +26018,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 440.36 860.61 442.49 860.51
   A 0.15 0.15 0.0 0 1 442.58 860.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 937.05 860.77
   L 937.04 860.73
   A 0.19 0.19 0.0 0 1 937.20 860.48
@@ -22765,8 +26051,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 937.34 860.97
   A 0.31 0.30 -9.3 0 1 937.05 860.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 939.72 863.27
   A 0.12 0.12 0.0 0 1 939.62 863.48
   Q 936.43 862.31 933.78 863.15
@@ -22786,8 +26073,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.47 0.46 69.1 0 0 935.54 862.12
   Q 937.79 862.07 939.72 863.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 520.46 864.17
   Q 520.62 862.99 521.57 862.32
   Q 529.04 861.35 536.51 862.59
@@ -22852,8 +26140,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 6.43 6.36 -42.7 0 0 529.37 863.30
   L 520.46 864.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 187.19 868.83
   C 185.54 869.03 183.70 869.45 182.29 869.43
   Q 176.49 869.33 174.29 869.65
@@ -22888,8 +26177,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 186.51 867.20 187.29 867.40
   A 0.73 0.73 0.0 0 1 187.19 868.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 784.68 873.68
   A 0.21 0.21 0.0 0 1 784.46 873.48
   L 784.49 873.56
@@ -22932,8 +26222,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 3.27 3.12 32.3 0 0 795.86 871.41
   Q 790.36 873.45 784.68 873.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 193.71 868.20
   Q 194.88 867.99 196.66 868.35
   A 0.10 0.09 -75.9 0 1 196.73 868.47
@@ -22941,8 +26232,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 194.96 869.33 193.71 869.11
   A 0.46 0.46 0.0 0 1 193.71 868.20
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 64.16 870.96
   C 62.33 871.65 57.32 870.21 54.75 869.66
   C 51.52 868.96 47.65 869.59 44.36 869.26
@@ -22952,20 +26244,40 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 64.13 870.69
   A 0.14 0.14 0.0 0 1 64.16 870.96
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(38.15,870.17) rotate(-157.5)" rx="1.41" ry="0.24"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(258.26,869.90) rotate(-179.6)" rx="2.35" ry="0.25"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(731.26,873.64) rotate(-179.2)" rx="0.18" ry="0.01"/>
-<circle cx="749.12" cy="875.42" r="0.03"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(38.15,870.17) rotate(-157.5)"
+          rx="1.41"
+          ry="0.24"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(258.26,869.90) rotate(-179.6)"
+          rx="2.35"
+          ry="0.25"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(731.26,873.64) rotate(-179.2)"
+          rx="0.18"
+          ry="0.01"
+        />
+        <circle cx="749.12" cy="875.42" r="0.03" />
+        <path
+          d="
   M 751.08 875.56
   L 749.86 875.61
   A 0.10 0.10 0.0 0 1 749.84 875.42
   Q 750.86 875.21 751.10 875.24
   A 0.16 0.16 0.0 0 1 751.08 875.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 429.14 883.48
   A 0.18 0.17 -81.0 0 1 429.29 883.69
   L 429.20 884.12
@@ -22980,8 +26292,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 405.15 882.51 411.07 882.59
   Q 422.07 882.73 429.14 883.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 891.48 895.48
   Q 893.62 895.44 894.88 895.31
   C 900.62 894.69 912.34 895.55 920.82 894.77
@@ -23002,8 +26315,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 891.22 895.82
   A 0.28 0.28 0.0 0 1 891.48 895.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 560.87 895.91
   A 0.15 0.15 0.0 0 1 561.03 895.77
   L 561.20 895.77
@@ -23013,8 +26327,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.15 0.15 0.0 0 1 560.86 896.51
   L 560.87 895.91
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 339.19 899.43
   Q 334.65 899.99 331.75 899.95
   Q 318.10 899.77 304.46 900.00
@@ -23026,20 +26341,49 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   A 0.04 0.04 0.0 0 1 340.00 898.87
   L 339.19 899.43
   Z"
-/>
-<rect x="-16.66" y="-0.30" transform="translate(151.51,899.41) rotate(1.0)" width="33.32" height="0.60" rx="0.26"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(104.17,899.74) rotate(-1.6)" rx="4.95" ry="0.21"/>
-<path d="
+        />
+        <rect
+          x="-16.66"
+          y="-0.30"
+          transform="translate(151.51,899.41) rotate(1.0)"
+          width="33.32"
+          height="0.60"
+          rx="0.26"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(104.17,899.74) rotate(-1.6)"
+          rx="4.95"
+          ry="0.21"
+        />
+        <path
+          d="
   M 943.69 914.86
   L 938.98 914.84
   Q 938.86 914.48 939.03 914.25
   A 0.31 0.26 -73.1 0 1 939.20 914.14
   Q 942.63 913.43 943.69 914.86
   Z"
-/>
-<rect x="-27.21" y="-0.58" transform="translate(236.79,929.12) rotate(-3.9)" width="54.42" height="1.16" rx="0.26"/>
-<rect x="-5.72" y="-0.36" transform="translate(752.81,929.66) rotate(1.2)" width="11.44" height="0.72" rx="0.35"/>
-<path d="
+        />
+        <rect
+          x="-27.21"
+          y="-0.58"
+          transform="translate(236.79,929.12) rotate(-3.9)"
+          width="54.42"
+          height="1.16"
+          rx="0.26"
+        />
+        <rect
+          x="-5.72"
+          y="-0.36"
+          transform="translate(752.81,929.66) rotate(1.2)"
+          width="11.44"
+          height="0.72"
+          rx="0.35"
+        />
+        <path
+          d="
   M 794.33 929.83
   C 802.30 930.42 810.38 930.45 818.30 931.80
   A 7.02 6.98 -43.1 0 0 820.27 931.86
@@ -23064,8 +26408,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 791.69 931.13
   Q 789.38 929.91 794.33 929.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 707.54 934.85
   A 0.33 0.33 0.0 0 1 707.50 934.20
   Q 710.31 933.67 714.42 934.09
@@ -23084,8 +26429,9 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   Q 719.93 934.48 717.34 934.75
   Q 713.31 935.17 707.54 934.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 293.44 939.24
   C 299.45 938.79 306.06 939.51 311.25 939.60
   C 326.70 939.88 342.14 939.73 357.70 940.78
@@ -23106,18 +26452,32 @@ export const FilmRoomWallSvg: React.FC<React.SVGProps<SVGSVGElement>> = props =>
   L 293.33 939.36
   A 0.12 0.12 0.0 0 1 293.44 939.24
   Z"
-/>
-<rect x="-4.83" y="-0.35" transform="translate(500.42,952.02) rotate(-0.5)" width="9.66" height="0.70" rx="0.33"/>
-<path d="
+        />
+        <rect
+          x="-4.83"
+          y="-0.35"
+          transform="translate(500.42,952.02) rotate(-0.5)"
+          width="9.66"
+          height="0.70"
+          rx="0.33"
+        />
+        <path
+          d="
   M 883.23 967.38
   Q 882.38 967.84 881.47 967.63
   A 0.11 0.11 0.0 0 1 881.50 967.41
   L 883.23 967.38
   Z"
-/>
-<rect x="-12.69" y="-0.42" transform="translate(779.33,968.65) rotate(0.1)" width="25.38" height="0.84" rx="0.27"/>
-</g>
-</svg>
-
+        />
+        <rect
+          x="-12.69"
+          y="-0.42"
+          transform="translate(779.33,968.65) rotate(0.1)"
+          width="25.38"
+          height="0.84"
+          rx="0.27"
+        />
+      </g>
+    </svg>
   )
 }

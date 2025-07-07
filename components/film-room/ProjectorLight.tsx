@@ -15,67 +15,109 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
       className={className}
       {...rest}
     >
-<g strokeWidth="2.00" fill="none" strokeLinecap="butt">
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 535.49 97.31
   C 539.39 102.59 543.50 105.31 549.57 108.17"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.10 139.28
   Q 564.03 139.69 564.15 140.04"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.47 141.69
   Q 564.34 142.25 564.55 142.80"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 697.49 452.21
   Q 697.18 453.00 697.77 453.22"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 755.08 909.71
   C 750.16 909.41 746.50 910.81 741.99 911.43
   C 740.15 911.68 738.51 912.35 736.95 913.14
   A 1.45 0.88 -36.6 0 1 736.77 913.21
   L 729.02 915.27"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 707.68 932.07
   Q 704.15 933.45 701.19 931.80
   A 2.01 2.00 -54.3 0 0 698.71 932.21
   L 696.21 934.97"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 694.74 932.99
   Q 695.11 932.50 694.70 932.32"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 689.71 937.13
   Q 689.61 936.78 689.26 936.88"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 683.14 935.96
   Q 682.91 935.44 682.46 935.34
   A 0.80 0.79 46.9 0 1 682.51 933.78
   Q 683.07 933.69 683.93 933.31"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 690.38 933.49
   C 685.37 931.74 680.49 933.40 676.22 935.86"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 653.16 937.21
   Q 653.32 936.71 653.20 936.21"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 649.36 935.61
   Q 647.91 936.32 647.21 935.46"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 637.90 936.23
   Q 637.54 937.02 638.00 937.26"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 630.72 937.06
   L 630.88 934.91
   A 0.33 0.33 0.0 0 0 630.29 934.67
@@ -96,26 +138,41 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 619.99 937.98 619.90 938.27
   A 0.28 0.28 0.0 0 0 620.07 938.61
   Q 620.29 938.69 620.50 938.64"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 616.09 937.80
   Q 615.70 936.26 615.04 936.34"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.96 939.01
   Q 603.67 938.84 603.28 938.85"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.47 937.67
   Q 583.47 936.39 581.44 935.70
   A 1.10 1.09 -79.4 0 0 579.99 936.70
   L 579.85 940.16"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 563.52 937.48
   Q 561.47 937.21 559.99 937.71"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 553.52 938.13
   Q 549.32 937.28 545.01 937.49
   C 535.08 937.98 528.49 938.07 520.96 940.93
@@ -130,54 +187,87 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 524.09 941.77 523.81 941.63
   Q 523.69 941.57 523.23 941.63
   Q 517.62 942.44 512.01 943.15"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 501.77 942.73
   Q 498.51 942.10 495.24 943.31"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.62 940.10
   L 471.25 939.87"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 470.46 939.53
   Q 469.94 939.24 469.29 939.46"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.29 939.46
   Q 468.84 939.52 468.49 939.75"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 468.49 939.75
   Q 468.10 939.72 467.72 939.97"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 465.31 943.88
   Q 455.81 940.62 445.15 942.06
   A 4.30 3.71 -42.8 0 1 444.30 942.09
   Q 438.33 941.67 430.59 938.51
   Q 425.02 936.23 417.76 937.68"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 413.25 938.17
   Q 412.66 937.98 412.05 938.08"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 391.25 935.07
   Q 391.43 934.72 391.10 934.39
   Q 390.93 934.22 390.54 934.28"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 377.23 934.42
   Q 375.23 933.74 375.51 934.82"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 366.62 935.33
   Q 365.72 935.43 365.47 935.12
   Q 365.16 934.72 365.85 934.37
   Q 366.27 934.16 366.78 934.02"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.23 932.52
   L 367.02 932.19
   A 0.48 0.47 -30.7 0 0 366.38 932.03
@@ -186,14 +276,20 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 362.42 933.92 362.53 933.73
   A 0.69 0.69 0.0 0 0 362.32 932.82
   L 358.50 930.22"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 356.82 930.74
   Q 355.07 931.72 353.43 931.97
   A 0.71 0.71 0.0 0 1 352.69 931.60
   Q 351.75 929.86 350.32 930.81"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 349.79 931.29
   Q 348.95 931.69 348.58 931.56
   Q 346.50 930.80 344.67 930.39
@@ -201,30 +297,48 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 344.54 930.26 344.51 930.10
   A 0.19 0.19 0.0 0 0 344.22 929.99
   Q 341.77 931.71 340.87 933.55"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 337.76 934.12
   Q 335.64 933.29 334.42 931.75
   A 1.53 1.53 0.0 0 0 331.69 932.58
   L 331.60 933.76"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 311.97 924.20
   L 312.22 923.73"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 308.06 918.41
   Q 307.62 918.11 306.93 918.26"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 265.47 906.89
   L 264.54 906.81"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 253.97 903.41
   L 253.03 903.28"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 249.75 902.68
   Q 248.37 900.67 247.68 900.08
   Q 246.86 899.40 246.00 900.22
@@ -232,8 +346,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 238.91 899.73
   A 0.54 0.54 0.0 0 1 238.45 899.02
   C 241.02 891.66 230.70 893.21 227.20 894.09"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 225.34 893.23
   Q 224.52 892.23 222.06 891.18
   Q 221.12 890.78 220.10 888.91
@@ -241,12 +358,18 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 218.42 888.17
   A 1.84 1.83 74.2 0 1 217.51 887.66
   C 215.56 885.59 213.33 881.97 209.99 882.52"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 194.59 855.72
   Q 194.76 855.28 194.55 854.96"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 249.05 674.25
   Q 255.06 665.85 257.52 663.09
   C 265.69 653.93 272.66 657.35 278.27 666.84
@@ -771,40 +894,64 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.65 0.64 -38.2 0 0 310.60 576.01
   Q 305.82 581.03 298.93 582.14
   Q 293.77 582.98 291.79 579.59"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 391.55 324.06
   Q 392.26 323.72 391.49 322.92"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.30 306.26
   Q 394.51 305.91 394.44 305.46"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.48 305.34
   Q 394.94 303.60 394.29 302.92"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.29 302.73
   Q 394.32 302.29 394.04 301.96"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.03 301.80
   Q 394.13 301.30 394.01 300.78"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 394.23 300.29
   Q 394.49 300.28 394.57 300.27
   A 0.45 0.44 -14.8 0 0 394.93 299.66
   Q 394.62 298.94 394.39 299.23"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 393.97 294.07
   Q 394.28 293.91 394.37 293.74
   Q 394.42 293.63 394.36 293.25
   Q 394.31 292.93 394.05 292.96"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 528.72 122.60
   Q 527.85 128.90 527.74 135.27
   Q 527.25 162.35 527.54 195.36
@@ -847,8 +994,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.20 0.19 20.9 0 0 529.09 122.63
   Q 528.97 122.53 528.85 122.51
   A 0.11 0.10 -77.8 0 0 528.72 122.60"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 574.66 581.37
   L 574.38 581.86
   A 0.76 0.75 35.1 0 0 574.55 582.82
@@ -1224,8 +1374,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 1.16 1.15 33.5 0 0 572.81 582.38
   L 574.32 581.09
   A 0.22 0.22 0.0 0 1 574.66 581.37"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 489.23 832.55
   Q 489.18 832.15 489.17 832.11
   A 0.56 0.56 0.0 0 0 488.11 832.44
@@ -1624,8 +1777,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.45 0.45 0.0 0 1 489.43 791.34
   L 489.43 832.54
   A 0.10 0.10 0.0 0 1 489.23 832.55"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 550.70 346.32
   Q 551.42 346.02 552.40 346.10
   A 0.71 0.70 2.2 0 0 553.17 345.39
@@ -1738,8 +1894,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.34 0.34 0.0 0 0 551.40 346.84
   L 550.80 346.84
   A 0.27 0.27 0.0 0 1 550.70 346.32"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 517.11 443.34
   Q 517.87 445.42 516.22 447.56
   A 0.58 0.58 0.0 0 0 516.10 447.99
@@ -2054,8 +2213,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.47 0.47 0.0 0 1 522.02 442.88
   L 517.43 442.88
   A 0.35 0.34 80.3 0 0 517.11 443.34"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.48 618.50
   Q 462.08 616.94 461.17 615.64
   A 0.52 0.52 0.0 0 0 460.23 615.96
@@ -2207,8 +2369,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.81 0.81 0.0 0 0 463.26 618.22
   Q 463.23 618.35 463.07 618.60
   A 0.33 0.33 0.0 0 1 462.48 618.50"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 572.64 652.04
   L 577.17 651.54
   A 0.60 0.59 -3.3 0 0 577.70 650.95
@@ -2930,8 +3095,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 573.42 653.15 573.08 652.86
   Q 572.97 652.77 572.53 652.48
   A 0.24 0.24 0.0 0 1 572.64 652.04"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 647.10 670.91
   Q 656.34 670.07 666.59 671.20
   Q 666.66 671.21 666.90 670.98
@@ -3267,8 +3435,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.66 0.66 0.0 0 0 649.84 672.04
   L 647.12 671.88
   A 0.49 0.49 0.0 0 1 647.10 670.91"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.97 710.20
   L 395.66 709.71
   A 0.56 0.56 0.0 0 1 395.35 708.94
@@ -3417,8 +3588,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.81 0.80 13.5 0 1 395.35 716.97
   Q 395.86 712.45 397.11 710.64
   A 0.29 0.29 0.0 0 0 396.97 710.20"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 451.22 574.38
   A 0.29 0.28 -22.7 0 0 451.38 574.00
   Q 450.10 571.23 452.98 568.94
@@ -3690,8 +3864,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 447.90 575.31
   A 0.25 0.25 0.0 0 0 448.24 575.55
   L 451.22 574.38"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 350.03 507.01
   Q 349.05 508.22 349.07 509.83
   Q 349.23 528.03 348.94 556.59
@@ -3766,8 +3943,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.63 0.63 0.0 0 0 350.64 724.38
   L 350.64 507.22
   A 0.34 0.34 0.0 0 0 350.03 507.01"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 724.43 889.41
   L 731.02 889.59
   A 0.35 0.35 0.0 0 0 731.37 889.26
@@ -4388,8 +4568,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.54 0.53 66.6 0 1 725.54 892.92
   Q 725.33 891.16 724.28 889.70
   A 0.18 0.18 0.0 0 1 724.43 889.41"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.72 676.62
   Q 519.94 676.86 520.14 676.64
   A 0.19 0.18 -50.6 0 0 520.12 676.36
@@ -4708,8 +4891,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 520.45 685.75 520.49 684.15
   Q 520.60 679.86 519.68 676.64
   A 0.02 0.02 0.0 0 1 519.72 676.62"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 672.06 728.77
   L 672.87 728.94
   A 0.68 0.68 0.0 0 1 673.41 729.66
@@ -4731,8 +4917,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.59 0.59 0.0 0 1 673.17 727.98
   L 672.03 728.42
   A 0.18 0.18 0.0 0 0 672.06 728.77"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 778.39 835.77
   Q 778.98 837.00 779.64 837.40
   A 0.59 0.58 -59.6 0 0 780.47 837.18
@@ -4970,8 +5159,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 776.48 871.83 776.71 840.68
   Q 776.73 838.04 777.87 835.77
   A 0.29 0.29 0.0 0 1 778.39 835.77"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 414.49 715.00
   Q 413.54 714.66 412.77 713.22
   A 0.24 0.24 0.0 0 0 412.32 713.32
@@ -5057,8 +5249,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 414.02 714.39 414.35 714.57
   Q 414.62 714.71 414.67 714.78
   A 0.15 0.15 0.0 0 1 414.49 715.00"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 271.96 866.35
   Q 271.90 861.78 272.48 860.84
   A 0.42 0.41 19.0 0 0 272.17 860.21
@@ -5334,8 +5529,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.32 0.32 0.0 0 1 269.57 861.72
   Q 269.79 864.79 271.39 866.57
   A 0.33 0.33 0.0 0 0 271.96 866.35"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 349.67 725.89
   C 348.86 734.57 348.86 743.29 348.97 750.91
   C 349.23 768.06 348.33 786.59 348.95 800.77
@@ -5350,8 +5548,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 350.54 769.68 350.72 736.27
   Q 350.75 728.71 349.88 725.87
   A 0.11 0.11 0.0 0 0 349.67 725.89"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 602.23 725.78
   A 0.40 0.39 38.8 0 0 601.45 725.86
   L 601.45 868.98
@@ -5364,8 +5565,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 603.76 780.43 603.37 762.98
   Q 602.91 742.13 603.05 731.75
   Q 603.08 729.49 602.23 725.78"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 629.99 793.72
   L 629.99 775.48
   A 0.61 0.61 0.0 0 0 629.38 774.87
@@ -5404,8 +5608,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 1.43 1.42 -16.5 0 0 607.57 794.25
   L 629.46 794.25
   A 0.53 0.53 0.0 0 0 629.99 793.72"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 418.08 852.55
   Q 418.11 854.45 419.23 855.67
   A 0.58 0.58 0.0 0 1 419.19 856.49
@@ -5677,8 +5884,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.30 0.30 0.0 0 1 418.91 852.33
   Q 418.84 852.36 418.53 852.24
   A 0.33 0.33 0.0 0 0 418.08 852.55"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 634.98 734.19
   Q 633.44 737.24 633.42 738.58
   Q 633.24 746.36 633.27 751.78
@@ -5764,8 +5974,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   C 634.91 776.39 635.46 765.83 635.41 755.65
   Q 635.29 734.34 635.29 734.25
   A 0.16 0.16 0.0 0 0 634.98 734.19"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 376.40 802.74
   Q 377.22 802.48 377.15 802.24
   A 0.29 0.29 0.0 0 1 377.39 801.87
@@ -5913,8 +6126,11 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.59 0.58 61.0 0 0 381.86 802.00
   Q 379.64 803.86 376.43 803.22
   A 0.25 0.25 0.0 0 1 376.40 802.74"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.71 817.59
   C 579.73 822.25 579.42 825.49 581.85 829.84
   A 0.44 0.44 0.0 0 0 582.67 829.64
@@ -5928,36 +6144,50 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.39 0.38 -89.1 0 1 580.04 816.62
   Q 580.09 816.92 580.34 816.99
   A 0.50 0.50 0.0 0 1 580.71 817.59"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 797.6286 849.8600
   A 0.39 0.08 -90.2 0 0 797.5500 850.2503
   A 0.39 0.08 -90.2 0 0 797.6314 850.6400
   A 0.39 0.08 -90.2 0 0 797.7100 850.2497
   A 0.39 0.08 -90.2 0 0 797.6286 849.8600"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 274.29 907.65
   Q 274.51 907.78 274.62 907.78
   A 0.28 0.18 37.0 0 0 274.45 907.34
   Q 274.28 907.31 274.04 907.37"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 602.92 936.95
   Q 602.22 936.24 601.92 935.52
   A 0.27 0.26 34.6 0 0 601.41 935.61
   Q 601.37 936.47 602.68 937.25
   A 0.19 0.19 0.0 0 0 602.92 936.95"
-/>
-<path stroke="#f9f0e0" vectorEffect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f9f0e0"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.95 937.44
   Q 603.78 937.19 603.42 937.19
   A 0.22 0.22 0.0 0 0 603.22 937.51
   Q 603.39 937.84 603.60 937.88
   A 0.32 0.29 -8.9 0 0 603.95 937.44"
-/>
-</g>
-<path fill="#fbf7e2" d="
+        />
+      </g>
+      <path
+        fill="#fbf7e2"
+        d="
   M 535.49 97.31
   C 539.39 102.59 543.50 105.31 549.57 108.17
   Q 553.85 113.21 555.00 115.28
@@ -12235,9 +12465,10 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 485.71 939.29 486.30 938.47
   A 0.35 0.35 0.0 0 0 486.00 937.92
   Z"
-/>
-<g fill="#f7e8dd">
-<path d="
+      />
+      <g fill="#f7e8dd">
+        <path
+          d="
   M 549.57 108.17
   C 543.50 105.31 539.39 102.59 535.49 97.31
   Q 539.22 98.31 540.47 99.27
@@ -12249,8 +12480,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 540.58 101.82 540.61 101.86
   A 0.10 0.02 73.1 0 0 540.59 101.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 528.85 122.51
   Q 528.97 122.53 529.09 122.63
   A 0.20 0.19 20.9 0 1 529.16 122.78
@@ -12294,28 +12526,32 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 527.85 128.90 528.72 122.60
   A 0.11 0.10 -77.8 0 1 528.85 122.51
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 564.15 140.04
   Q 564.03 139.69 564.10 139.28
   L 564.15 140.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 564.55 142.80
   Q 564.34 142.25 564.47 141.69
   Q 564.91 141.99 564.55 142.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 594.94 230.42
   Q 595.21 231.45 594.96 231.79
   A 1.03 0.96 -22.6 0 1 593.13 231.11
   Q 593.24 230.59 594.29 230.11
   A 0.47 0.47 0.0 0 1 594.94 230.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 574.32 581.09
   L 572.81 582.38
   A 1.16 1.15 33.5 0 1 571.70 582.60
@@ -12692,24 +12928,27 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 574.66 581.37
   A 0.22 0.22 0.0 0 0 574.32 581.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 393.97 294.07
   Q 394.15 293.57 394.05 292.96
   Q 394.31 292.93 394.36 293.25
   Q 394.42 293.63 394.37 293.74
   Q 394.28 293.91 393.97 294.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 394.23 300.29
   Q 394.41 299.76 394.39 299.23
   Q 394.62 298.94 394.93 299.66
   A 0.45 0.44 -14.8 0 1 394.57 300.27
   Q 394.49 300.28 394.23 300.29
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 489.43 832.54
   L 489.43 791.34
   A 0.45 0.45 0.0 0 0 488.53 791.29
@@ -13109,8 +13348,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 489.18 832.15 489.23 832.55
   A 0.10 0.10 0.0 0 0 489.43 832.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 550.80 346.84
   L 551.40 346.84
   A 0.34 0.34 0.0 0 1 551.73 347.25
@@ -13224,38 +13464,44 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 551.42 346.02 550.70 346.32
   A 0.27 0.27 0.0 0 0 550.80 346.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 394.01 300.78
   Q 394.13 301.30 394.03 301.80
   Q 393.53 301.60 394.01 300.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 394.29 302.73
   Q 394.00 302.44 394.04 301.96
   Q 394.32 302.29 394.29 302.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 394.48 305.34
   Q 393.85 304.61 394.29 302.92
   Q 394.94 303.60 394.48 305.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 394.44 305.46
   Q 394.51 305.91 394.30 306.26
   Q 394.14 305.77 394.44 305.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 391.55 324.06
   Q 391.68 323.46 391.49 322.92
   Q 392.26 323.72 391.55 324.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 517.43 442.88
   L 522.02 442.88
   A 0.47 0.47 0.0 0 0 522.39 442.70
@@ -13571,8 +13817,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 517.87 445.42 517.11 443.34
   A 0.35 0.34 80.3 0 1 517.43 442.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 463.07 618.60
   Q 463.23 618.35 463.26 618.22
   A 0.81 0.81 0.0 0 1 464.27 617.61
@@ -13725,8 +13972,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 462.08 616.94 462.48 618.50
   A 0.33 0.33 0.0 0 0 463.07 618.60
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 572.53 652.48
   Q 572.97 652.77 573.08 652.86
   Q 573.42 653.15 573.62 653.07
@@ -14449,8 +14697,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 572.64 652.04
   A 0.24 0.24 0.0 0 0 572.53 652.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 647.12 671.88
   L 649.84 672.04
   A 0.66 0.66 0.0 0 1 650.46 672.70
@@ -14787,14 +15036,16 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 656.34 670.07 647.10 670.91
   A 0.49 0.49 0.0 0 0 647.12 671.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 697.77 453.22
   Q 697.18 453.00 697.49 452.21
   Q 697.78 452.66 697.77 453.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 397.11 710.64
   Q 395.86 712.45 395.35 716.97
   A 0.81 0.80 13.5 0 0 395.87 717.81
@@ -14944,8 +15195,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 396.97 710.20
   A 0.29 0.29 0.0 0 1 397.11 710.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 451.22 574.38
   L 448.24 575.55
   A 0.25 0.25 0.0 0 1 447.90 575.31
@@ -15218,8 +15470,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 450.10 571.23 451.38 574.00
   A 0.29 0.28 -22.7 0 1 451.22 574.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 350.64 507.22
   L 350.64 724.38
   A 0.63 0.63 0.0 0 1 349.87 725.00
@@ -15295,8 +15548,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 349.05 508.22 350.03 507.01
   A 0.34 0.34 0.0 0 1 350.64 507.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 249.05 674.25
   Q 249.24 673.06 248.99 671.93
   A 1.05 1.04 61.1 0 1 249.26 670.98
@@ -15845,8 +16099,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   C 272.66 657.35 265.69 653.93 257.52 663.09
   Q 255.06 665.85 249.05 674.25
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 724.43 889.41
   A 0.18 0.18 0.0 0 0 724.28 889.70
   Q 725.33 891.16 725.54 892.92
@@ -16468,8 +16723,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.35 0.35 0.0 0 1 731.02 889.59
   L 724.43 889.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 519.68 676.64
   Q 520.60 679.86 520.49 684.15
   Q 520.45 685.75 522.77 690.07
@@ -16789,8 +17045,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 519.94 676.86 519.72 676.62
   A 0.02 0.02 0.0 0 0 519.68 676.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 672.03 728.42
   L 673.17 727.98
   A 0.59 0.59 0.0 0 0 673.32 726.96
@@ -16813,8 +17070,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 672.06 728.77
   A 0.18 0.18 0.0 0 1 672.03 728.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 777.87 835.77
   Q 776.73 838.04 776.71 840.68
   Q 776.48 871.83 776.35 873.88
@@ -17053,8 +17311,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 778.98 837.00 778.39 835.77
   A 0.29 0.29 0.0 0 0 777.87 835.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 414.67 714.78
   Q 414.62 714.71 414.35 714.57
   Q 414.02 714.39 414.48 714.05
@@ -17141,8 +17400,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 413.54 714.66 414.49 715.00
   A 0.15 0.15 0.0 0 0 414.67 714.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 271.39 866.57
   Q 269.79 864.79 269.57 861.72
   A 0.32 0.32 0.0 0 0 269.23 861.42
@@ -17419,8 +17679,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 271.90 861.78 271.96 866.35
   A 0.33 0.33 0.0 0 1 271.39 866.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 349.88 725.87
   Q 350.75 728.71 350.72 736.27
   Q 350.54 769.68 350.68 794.91
@@ -17436,8 +17697,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   C 348.86 743.29 348.86 734.57 349.67 725.89
   A 0.11 0.11 0.0 0 1 349.88 725.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 602.23 725.78
   Q 603.08 729.49 603.05 731.75
   Q 602.91 742.13 603.37 762.98
@@ -17451,8 +17713,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 601.45 725.86
   A 0.40 0.39 38.8 0 1 602.23 725.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 629.46 794.25
   L 607.57 794.25
   A 1.43 1.42 -16.5 0 1 606.38 793.61
@@ -17492,8 +17755,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 629.99 793.72
   A 0.53 0.53 0.0 0 1 629.46 794.25
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 418.53 852.24
   Q 418.84 852.36 418.91 852.33
   A 0.30 0.30 0.0 0 0 418.94 851.82
@@ -17766,8 +18030,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 418.11 854.45 418.08 852.55
   A 0.33 0.33 0.0 0 1 418.53 852.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 635.29 734.25
   Q 635.29 734.34 635.41 755.65
   C 635.46 765.83 634.91 776.39 635.39 786.12
@@ -17854,9 +18119,16 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 633.44 737.24 634.98 734.19
   A 0.16 0.16 0.0 0 1 635.29 734.25
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(804.53,757.48) rotate(-121.7)" rx="2.50" ry="0.44"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(804.53,757.48) rotate(-121.7)"
+          rx="2.50"
+          ry="0.44"
+        />
+        <path
+          d="
   M 376.43 803.22
   Q 379.64 803.86 381.86 802.00
   A 0.59 0.58 61.0 0 1 382.79 802.27
@@ -18005,8 +18277,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 377.22 802.48 376.40 802.74
   A 0.25 0.25 0.0 0 0 376.43 803.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 580.34 816.99
   Q 580.09 816.92 580.04 816.62
   A 0.39 0.38 -89.1 0 0 579.73 816.29
@@ -18021,15 +18294,23 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   C 579.42 825.49 579.73 822.25 580.71 817.59
   A 0.50 0.50 0.0 0 0 580.34 816.99
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(797.63,850.25) rotate(-90.2)" rx="0.39" ry="0.08"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(797.63,850.25) rotate(-90.2)"
+          rx="0.39"
+          ry="0.08"
+        />
+        <path
+          d="
   M 194.59 855.72
   L 194.55 854.96
   Q 194.76 855.28 194.59 855.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 225.34 893.23
   L 227.60 895.42
   A 0.29 0.28 17.3 0 0 228.08 895.17
@@ -18066,24 +18347,27 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 221.12 890.78 222.06 891.18
   Q 224.52 892.23 225.34 893.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 218.34 892.31
   Q 218.21 892.44 217.77 892.35
   A 0.27 0.27 0.0 0 1 217.81 891.82
   Q 217.88 891.82 218.26 891.95
   A 0.22 0.22 0.0 0 1 218.34 892.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 237.06 900.86
   Q 236.95 901.01 236.73 900.98
   A 0.19 0.19 0.0 0 1 236.68 900.62
   Q 236.88 900.52 237.05 900.73
   A 0.10 0.10 0.0 0 1 237.06 900.86
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 236.44 901.60
   A 0.25 0.25 0.0 0 1 236.73 901.41
   L 237.85 901.64
@@ -18094,28 +18378,32 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.25 0.25 0.0 0 1 236.20 902.71
   L 236.44 901.60
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 253.97 903.41
   Q 253.47 903.43 253.03 903.28
   L 253.97 903.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 265.47 906.89
   L 264.54 906.81
   L 265.47 906.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 274.29 907.65
   L 274.04 907.37
   Q 274.28 907.31 274.45 907.34
   A 0.28 0.18 37.0 0 1 274.62 907.78
   Q 274.51 907.78 274.29 907.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 755.08 909.71
   L 742.08 914.56
   A 0.54 0.47 -48.9 0 1 741.86 914.59
@@ -18127,22 +18415,25 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   C 738.51 912.35 740.15 911.68 741.99 911.43
   C 746.50 910.81 750.16 909.41 755.08 909.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 308.06 918.41
   Q 307.63 918.53 306.93 918.26
   Q 307.62 918.11 308.06 918.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 312.22 923.73
   L 311.97 924.20
   Q 311.76 923.94 311.87 923.68
   A 0.22 0.17 -11.4 0 1 311.93 923.61
   Q 312.13 923.47 312.22 923.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 349.79 931.29
   L 350.07 931.96
   A 0.44 0.43 76.8 0 0 350.48 932.22
@@ -18195,8 +18486,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 345.79 930.97 345.09 931.16
   A 0.29 0.29 0.0 0 0 345.02 931.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 337.76 934.12
   L 334.04 934.66
   A 0.59 0.58 73.8 0 1 333.43 934.32
@@ -18209,8 +18501,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 1.53 1.53 0.0 0 1 334.42 931.75
   Q 335.64 933.29 337.76 934.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 707.68 932.07
   Q 705.09 934.56 701.37 934.45
   A 0.10 0.10 0.0 0 0 701.26 934.57
@@ -18226,14 +18519,16 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 2.01 2.00 -54.3 0 1 701.19 931.80
   Q 704.15 933.45 707.68 932.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 694.74 932.99
   Q 694.80 932.79 694.70 932.32
   Q 695.11 932.50 694.74 932.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 690.38 933.49
   Q 686.64 932.35 683.93 933.31
   Q 683.07 933.69 682.51 933.78
@@ -18245,21 +18540,24 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 677.46 935.04 676.22 935.86
   C 680.49 933.40 685.37 931.74 690.38 933.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 377.23 934.42
   Q 376.22 934.18 375.51 934.82
   Q 375.23 933.74 377.23 934.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 391.25 935.07
   L 390.54 934.28
   Q 390.93 934.22 391.10 934.39
   Q 391.43 934.72 391.25 935.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 630.72 937.06
   Q 629.94 935.63 628.80 938.44
   A 0.59 0.58 21.0 0 1 628.05 938.77
@@ -18290,16 +18588,18 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.33 0.33 0.0 0 1 630.88 934.91
   L 630.72 937.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 602.92 936.95
   A 0.19 0.19 0.0 0 1 602.68 937.25
   Q 601.37 936.47 601.41 935.61
   A 0.27 0.26 34.6 0 1 601.92 935.52
   Q 602.22 936.24 602.92 936.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 649.36 935.61
   Q 647.44 938.44 645.28 939.30
   A 0.44 0.43 80.2 0 1 644.69 938.88
@@ -18308,8 +18608,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 646.32 936.20 647.21 935.46
   Q 647.91 936.32 649.36 935.61
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 584.47 937.67
   Q 583.79 938.72 584.49 940.71
   A 0.42 0.41 -20.5 0 1 584.24 941.23
@@ -18322,8 +18623,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 1.10 1.09 -79.4 0 1 581.44 935.70
   Q 583.47 936.39 584.47 937.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 465.31 943.88
   Q 464.77 943.67 463.61 943.97
   A 1.35 1.33 10.6 0 0 462.87 944.47
@@ -18364,8 +18666,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 420.60 939.71 420.86 939.82
   Q 420.99 939.88 421.77 939.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 616.09 937.80
   L 615.03 939.39
   A 0.54 0.54 0.0 0 1 614.24 939.51
@@ -18374,35 +18677,46 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   Q 615.38 937.30 615.04 936.34
   Q 615.70 936.26 616.09 937.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 637.90 936.23
   L 638.00 937.26
   Q 637.54 937.02 637.90 936.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 653.20 936.21
   Q 653.32 936.71 653.16 937.21
   Q 653.06 936.69 653.20 936.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 386.72 936.86
   L 387.29 936.86
   A 0.14 0.13 34.3 0 1 387.34 937.12
   Q 386.87 937.29 386.64 937.06
   A 0.12 0.12 0.0 0 1 386.72 936.86
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 689.71 937.13
   Q 689.48 936.94 689.26 936.88
   Q 689.61 936.78 689.71 937.13
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(358.25,937.47) rotate(-17.7)" rx="0.85" ry="0.37"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(358.25,937.47) rotate(-17.7)"
+          rx="0.85"
+          ry="0.37"
+        />
+        <path
+          d="
   M 553.52 938.13
   L 544.27 938.81
   A 1.64 1.49 27.8 0 0 543.69 938.96
@@ -18428,8 +18742,9 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   C 528.49 938.07 535.08 937.98 545.01 937.49
   Q 549.32 937.28 553.52 938.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 650.41 936.97
   Q 651.02 936.97 651.89 938.14
   A 0.48 0.48 0.0 0 1 651.67 938.87
@@ -18438,36 +18753,41 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.48 0.48 0.0 0 1 648.94 938.14
   Q 649.81 936.97 650.41 936.97
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 603.95 937.44
   A 0.32 0.29 -8.9 0 1 603.60 937.88
   Q 603.39 937.84 603.22 937.51
   A 0.22 0.22 0.0 0 1 603.42 937.19
   Q 603.78 937.19 603.95 937.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 563.52 937.48
   Q 561.94 938.20 559.99 937.71
   Q 561.47 937.21 563.52 937.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 413.25 938.17
   L 412.05 938.08
   Q 412.66 937.98 413.25 938.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 565.41 938.85
   Q 565.19 938.70 565.17 938.53
   A 0.41 0.22 -89.9 0 1 565.44 938.02
   Q 565.52 938.06 565.74 938.58
   A 0.22 0.22 0.0 0 1 565.41 938.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 417.23 941.03
   Q 414.84 940.48 412.44 940.86
   A 0.22 0.21 81.2 0 1 412.19 940.67
@@ -18477,32 +18797,37 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.81 0.81 0.0 0 1 416.98 939.47
   L 417.23 941.03
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 603.96 939.01
   L 603.28 938.85
   Q 603.67 938.84 603.96 939.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 470.46 939.53
   L 469.29 939.46
   Q 469.94 939.24 470.46 939.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 469.29 939.46
   Q 468.97 939.75 468.49 939.75
   Q 468.84 939.52 469.29 939.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 468.49 939.75
   Q 468.24 940.00 467.72 939.97
   Q 468.10 939.72 468.49 939.75
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 472.62 940.10
   C 472.95 941.71 474.57 941.72 475.44 940.68
   Q 476.27 939.68 477.05 940.15
@@ -18512,32 +18837,36 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   L 471.25 939.87
   L 472.62 940.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 631.87 940.13
   A 0.21 0.20 -4.7 0 1 631.61 940.43
   Q 631.43 940.34 631.40 940.31
   A 0.16 0.16 0.0 0 1 631.47 940.04
   Q 631.74 939.95 631.87 940.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 501.77 942.73
   Q 500.88 942.41 500.58 944.70
   A 0.26 0.26 0.0 0 1 500.15 944.86
   Q 498.36 943.22 495.24 943.31
   Q 498.51 942.10 501.77 942.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 479.89 943.44
   L 481.09 942.74
   A 0.36 0.36 0.0 0 1 481.47 943.35
   Q 480.64 943.91 479.97 943.83
   A 0.21 0.21 0.0 0 1 479.89 943.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 449.53 945.94
   A 0.82 0.51 -35.4 0 1 450.02 944.77
   Q 450.73 944.50 450.93 945.12
@@ -18548,9 +18877,8 @@ export const ProjectorLightSvg: React.FC<React.SVGProps<SVGSVGElement>> = props 
   A 0.51 0.49 0.7 0 1 453.24 946.16
   Q 450.95 946.47 449.53 945.94
   Z"
-/>
-</g>
-</svg>
-
+        />
+      </g>
+    </svg>
   )
 }

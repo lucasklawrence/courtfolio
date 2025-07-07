@@ -34,14 +34,14 @@ export const ProjectSlideRenderer: React.FC<Props> = ({
     )
   }
 
-const goNext = () => {
-  if (currentSlide < slides.length - 1) {
-    setCurrentSlide(currentSlide + 1)
-  } else {
-    onBackToSelect()
-    setCurrentSlide(0) // finish the project, return to selector
+  const goNext = () => {
+    if (currentSlide < slides.length - 1) {
+      setCurrentSlide(currentSlide + 1)
+    } else {
+      onBackToSelect()
+      setCurrentSlide(0) // finish the project, return to selector
+    }
   }
-}
   const goPrev = () => setCurrentSlide(Math.max(currentSlide - 1, 0))
 
   return (

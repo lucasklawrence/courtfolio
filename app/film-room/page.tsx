@@ -31,16 +31,16 @@ export default function FilmRoomPage() {
   const currentReaction = selectedProject?.slides?.[currentSlide]?.reaction ?? null
 
   // Show reaction and auto-dismiss after 3 seconds
-useEffect(() => {
-  if (currentReaction) {
-    setVisibleReaction(currentReaction)
-    const timer = setTimeout(() => setVisibleReaction(null), 3000)
-    return () => clearTimeout(timer)
-  } else {
-    // Ensure bubble is cleared if new slide has no reaction
-    setVisibleReaction(null)
-  }
-}, [currentReaction])
+  useEffect(() => {
+    if (currentReaction) {
+      setVisibleReaction(currentReaction)
+      const timer = setTimeout(() => setVisibleReaction(null), 3000)
+      return () => clearTimeout(timer)
+    } else {
+      // Ensure bubble is cleared if new slide has no reaction
+      setVisibleReaction(null)
+    }
+  }, [currentReaction])
 
   const zoneContent = {
     'zone-screen': (
@@ -56,8 +56,8 @@ useEffect(() => {
               />
             ) : (
               <ProjectSelector
-                onSelect={(slug) => {
-                  const project = projects.find((p) => p.slug === slug)
+                onSelect={slug => {
+                  const project = projects.find(p => p.slug === slug)
                   if (project) setSelectedProject(project)
                 }}
               />

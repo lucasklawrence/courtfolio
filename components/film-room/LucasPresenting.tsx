@@ -7,17 +7,28 @@ import React from 'react'
 export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1536.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 555.30 55.90
   Q 558.37 61.41 559.76 59.06"
-/>
-<path stroke="#251c11" stroke-opacity="0.541" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#251c11"
+          strokeOpacity="0.541"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 664.71 1501.96
   Q 650.48 1504.34 646.37 1504.62
   Q 636.28 1505.30 620.19 1503.69"
-/>
-<path stroke="#251c11" stroke-opacity="0.541" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#251c11"
+          strokeOpacity="0.541"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 587.49 1492.97
   L 583.82 1489.13
   A 1.83 1.80 -76.5 0 1 583.40 1488.43
@@ -30,8 +41,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.98 2.94 -57.1 0 0 579.65 1446.13
   C 579.04 1444.32 579.25 1443.17 579.04 1441.58
   Q 577.51 1429.98 578.04 1418.20"
-/>
-<path stroke="#251c11" stroke-opacity="0.541" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#251c11"
+          strokeOpacity="0.541"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 495.84 1412.04
   L 494.55 1423.57
   A 0.86 0.78 -53.5 0 0 494.59 1423.97
@@ -43,23 +58,38 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 453.66 1447.04 436.70 1451.22
   Q 431.65 1452.46 417.53 1458.77
   Q 402.45 1465.51 392.76 1468.59"
-/>
-<path stroke="#251c11" stroke-opacity="0.541" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#251c11"
+          strokeOpacity="0.541"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 372.47 1473.96
   L 362.95 1475.29"
-/>
-<path stroke="#251c11" stroke-opacity="0.541" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#251c11"
+          strokeOpacity="0.541"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 356.73 1476.07
   Q 354.69 1476.06 352.79 1476.73"
-/>
-<path stroke="#251c11" stroke-opacity="0.541" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#251c11"
+          strokeOpacity="0.541"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 351.46 1476.82
   C 346.77 1476.68 341.89 1477.02 337.54 1476.47
   C 330.68 1475.62 324.59 1475.44 317.21 1473.73
   Q 310.23 1472.11 306.19 1471.06
   Q 303.04 1470.25 299.06 1468.46"
-/>
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 424.57 209.28
   Q 425.61 208.35 426.47 208.86
   A 0.63 0.63 0.0 0 1 426.77 209.36
@@ -72,24 +102,33 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 423.70 199.16
   A 0.55 0.54 86.4 0 0 423.23 199.70
   L 423.26 205.00"
-/>
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 423.89 169.81
   L 424.03 171.95
   A 1.11 1.11 0.0 0 0 424.52 172.79
   L 425.54 173.49
   A 0.55 0.55 0.0 0 1 425.35 174.48
   L 424.94 174.57"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 424.94 174.57
   Q 424.28 173.94 423.75 174.45
   A 0.56 0.53 73.2 0 0 423.57 174.81
   Q 423.24 178.56 423.98 181.78
   C 424.84 185.56 423.98 190.72 424.80 194.48
   Q 426.72 203.33 431.53 214.96"
-/>
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 431.53 214.96
   Q 431.84 216.95 433.47 217.18
   A 0.59 0.57 80.8 0 0 434.05 216.34
@@ -117,8 +156,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 452.57 111.72 453.08 110.31
   A 0.71 0.70 39.0 0 1 454.34 110.18
   Q 454.40 110.28 454.31 110.84"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 454.31 110.84
   Q 453.05 112.85 452.26 113.52
   Q 446.24 118.58 440.38 123.97
@@ -137,14 +179,20 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 439.37 224.58 440.60 229.41
   Q 444.93 246.35 452.35 258.87
   Q 458.84 269.82 470.28 277.74"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 470.28 277.74
   Q 470.14 278.97 467.72 277.72
   A 0.23 0.23 0.0 0 0 467.39 277.96
   L 468.11 281.80"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 468.11 281.80
   C 468.50 286.08 469.47 290.34 469.60 294.45
   Q 469.91 304.50 470.92 315.56
@@ -157,49 +205,73 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 558.61 303.85 563.65 300.29
   A 3.44 3.42 72.7 0 0 565.09 297.53
   L 565.46 264.41"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 565.46 264.41
   L 566.10 258.96
   A 0.44 0.44 0.0 0 0 565.64 258.47
   Q 564.72 258.53 564.65 257.68"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.65 257.68
   Q 573.25 245.28 576.84 230.62
   Q 578.07 225.55 579.24 220.04"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 579.24 220.04
   Q 580.19 221.41 580.12 223.89
   A 0.39 0.38 84.7 0 0 580.58 224.28
   Q 581.81 224.04 582.85 224.19"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 582.85 224.19
   Q 588.13 223.09 592.04 219.06
   A 4.22 4.20 -8.9 0 0 592.67 218.20
   Q 598.68 207.36 600.61 195.05"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.61 195.05
   Q 601.67 184.49 600.64 176.92
   Q 600.22 173.81 596.68 171.37
   A 0.67 0.67 0.0 0 0 595.87 171.41
   Q 591.37 175.24 590.87 176.40
   Q 588.84 181.09 586.61 185.53"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.61 185.53
   L 585.32 186.06"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 585.32 186.06
   Q 582.66 184.67 582.51 182.48
   Q 581.50 167.59 580.07 157.47
   Q 579.35 152.47 575.15 141.04"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.15 141.04
   Q 576.76 140.67 577.03 142.47
   A 0.50 0.49 82.4 0 0 577.58 142.90
@@ -220,8 +292,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 595.78 166.80
   A 0.53 0.53 0.0 0 0 596.24 166.17
   L 595.95 164.76"
-/>
-<path stroke="#624c32" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624c32"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 595.95 164.76
   L 598.32 156.14
   A 6.93 6.77 54.9 0 0 598.56 154.67
@@ -243,14 +318,20 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 558.11 61.79 554.32 57.49 549.34 55.46
   A 0.28 0.28 0.0 0 0 548.99 55.87
   Q 553.29 63.02 555.18 70.52"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 555.18 70.52
   Q 555.44 73.34 554.71 75.19
   A 0.27 0.26 -48.5 0 1 554.23 75.22
   L 553.06 72.98"
-/>
-<path stroke="#624c32" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624c32"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 553.06 72.98
   Q 547.08 62.71 538.90 56.85
   Q 525.96 47.58 508.54 47.00
@@ -266,8 +347,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.13 2.05 85.4 0 0 437.08 87.33
   Q 437.41 87.27 438.20 86.64
   Q 441.30 84.17 445.17 83.56"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.17 83.56
   L 447.71 83.37
   A 0.68 0.68 0.0 0 1 448.25 84.52
@@ -280,13 +364,19 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 422.65 120.07
   A 0.92 0.92 0.0 0 1 424.18 120.76
   L 424.14 130.13"
-/>
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 424.14 130.13
   Q 422.65 141.06 423.02 153.18
   Q 423.14 157.04 422.66 161.06"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 553.06 72.98
   Q 551.23 72.71 550.27 71.25
   C 545.68 64.29 539.63 57.44 532.37 53.90
@@ -299,8 +389,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 474.93 55.56 468.58 58.26 463.69 64.97
   C 460.43 69.45 459.05 71.83 455.14 74.34
   C 451.39 76.75 444.72 78.66 445.17 83.56"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.61 195.05
   L 600.07 194.87
   A 0.54 0.53 -75.9 0 0 599.38 195.29
@@ -309,8 +402,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 588.09 220.14 587.99 219.25
   Q 587.93 218.80 587.56 218.69
   Q 587.17 218.57 586.79 218.64"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.79 218.64
   Q 585.23 219.13 585.02 218.25
   Q 584.71 216.89 584.15 215.20
@@ -318,12 +414,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 583.78 207.36 584.69 200.18
   Q 584.85 198.88 586.16 193.15
   Q 587.06 189.22 586.61 185.53"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 468.11 281.80
   Q 469.21 281.69 469.70 282.59"
-/>
-<path stroke="#dd9a70" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dd9a70"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.70 282.59
   L 470.08 287.34
   A 3.14 2.88 -59.6 0 0 470.27 288.22
@@ -340,26 +442,41 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 559.34 280.08 560.10 276.08 563.60 271.94
   A 1.66 1.61 -22.4 0 0 564.00 271.02
   Q 564.26 268.45 563.42 266.32"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 565.46 264.41
   Q 564.76 263.41 563.42 266.32"
-/>
-<path stroke="#a96b44" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a96b44"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 563.42 266.32
   L 559.01 269.75
   A 0.38 0.37 -22.9 0 1 558.41 269.51
   L 557.92 266.14"
-/>
-<path stroke="#835134" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#835134"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 576.89 123.97
   Q 576.89 119.39 574.48 116.77"
-/>
-<path stroke="#95694c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#95694c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 572.66 113.47
   Q 572.60 112.46 572.02 111.49"
-/>
-<path stroke="#968373" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#968373"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 572.02 111.49
   C 569.68 105.36 565.77 100.78 560.79 95.98
   Q 559.06 94.30 556.63 93.38
@@ -372,8 +489,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 521.13 87.18 518.76 87.55
   Q 515.95 87.98 507.43 88.60
   Q 497.66 89.30 486.81 93.53"
-/>
-<path stroke="#95694c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#95694c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.81 93.53
   Q 484.72 93.12 482.90 95.29
   C 481.17 97.34 480.01 100.84 479.03 103.48
@@ -388,12 +508,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 453.95 113.94 455.94 110.04
   A 0.31 0.31 0.0 0 0 455.57 109.61
   Q 454.93 109.82 454.31 110.84"
-/>
-<path stroke="#95694c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#95694c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 431.53 214.96
   L 432.22 214.68"
-/>
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 432.22 214.68
   Q 432.40 214.92 432.52 214.91
   A 0.76 0.71 82.9 0 0 433.17 214.02
@@ -402,16 +528,25 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 431.03 183.55 430.20 179.46 429.22 176.23
   A 1.13 0.97 72.4 0 0 427.94 175.44
   Q 427.78 175.49 427.78 176.08"
-/>
-<path stroke="#835134" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#835134"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.78 176.08
   Q 426.61 175.07 425.44 175.04"
-/>
-<path stroke="#95694c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#95694c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 425.44 175.04
   Q 425.19 174.91 424.94 174.57"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 555.18 70.52
   L 554.68 63.12
   A 0.82 0.82 0.0 0 1 556.03 62.45
@@ -419,12 +554,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 560.47 70.63 561.28 70.68
   A 1.18 1.18 0.0 0 1 562.28 71.35
   Q 563.33 73.54 562.80 75.18"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 562.80 75.18
   Q 560.47 76.42 562.77 78.25"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 562.77 78.25
   Q 568.31 81.18 574.44 82.55
   A 1.74 1.70 64.0 0 1 574.75 82.66
@@ -439,24 +580,36 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 595.84 160.31 595.31 164.28
   A 0.38 0.36 -65.4 0 0 595.42 164.61
   Q 595.67 164.86 595.95 164.76"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.15 141.04
   Q 573.74 136.40 573.94 133.99
   Q 574.67 125.56 574.16 122.97
   Q 573.22 118.23 572.66 113.47"
-/>
-<path stroke="#613a20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#613a20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 572.66 113.47
   Q 574.64 115.54 574.48 116.77"
-/>
-<path stroke="#a96b44" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a96b44"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 574.48 116.77
   L 576.02 129.05
   A 0.33 0.33 0.0 0 0 576.66 129.13
   Q 577.60 126.56 576.89 123.97"
-/>
-<path stroke="#613a20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#613a20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 576.89 123.97
   L 579.96 124.11
   A 1.54 1.53 67.3 0 1 580.95 124.52
@@ -495,34 +648,52 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 438.06 114.58 432.14 120.78
   A 2.73 2.55 8.3 0 1 431.32 121.35
   Q 426.45 123.45 424.14 130.13"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 585.32 186.06
   Q 583.33 203.31 579.24 220.04"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.65 257.68
   L 557.92 266.14"
-/>
-<path stroke="#dd9a70" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dd9a70"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 557.92 266.14
   Q 553.88 270.35 550.01 274.51
   Q 547.88 276.80 541.50 281.63"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 541.50 281.63
   L 529.79 287.04
   A 2.17 1.23 -8.9 0 1 529.52 287.15
   Q 526.68 288.00 518.85 290.11
   C 501.46 294.80 483.68 289.10 470.28 277.74"
-/>
-<path stroke="#bc9e83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9e83"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.79 218.64
   Q 587.55 218.48 587.63 218.97
   A 1.55 1.55 0.0 0 1 586.02 220.77
   Q 583.01 220.63 582.85 224.19"
-/>
-<path stroke="#dd9a70" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dd9a70"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 425.44 175.04
   Q 425.35 179.19 426.32 183.09
   A 0.72 0.44 49.7 0 1 426.35 183.28
@@ -533,30 +704,45 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 426.71 177.43
   A 0.52 0.50 75.0 0 1 427.01 176.89
   L 427.87 176.52"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.87 176.52
   L 429.72 186.61
   A 7.52 6.98 -52.3 0 1 429.84 187.93
   Q 429.66 201.46 432.22 214.68"
-/>
-<path stroke="#624c32" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624c32"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 562.77 78.25
   Q 563.87 78.13 562.80 75.18"
-/>
-<path stroke="#a96b44" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a96b44"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.70 282.59
   Q 482.72 292.85 498.21 297.72
   Q 507.15 300.53 515.80 296.91
   Q 522.62 294.05 527.18 290.08
   A 8.49 8.39 12.1 0 1 529.31 288.72
   Q 535.71 285.85 541.50 281.63"
-/>
-<path stroke="#754d33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#754d33"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 427.78 176.08
   L 427.87 176.52"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 572.02 111.49
   Q 571.96 111.97 571.40 111.91
   A 0.46 0.46 0.0 0 1 571.03 111.67
@@ -571,8 +757,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.99 1.96 72.1 0 1 529.71 92.56
   Q 524.37 88.40 517.49 88.97
   Q 502.38 90.24 486.81 93.53"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.73 259.53
   C 577.38 257.60 580.58 259.53 582.67 260.47
   A 2.52 2.47 56.3 0 0 583.67 260.68
@@ -924,8 +1113,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.77 1.74 42.3 0 0 573.85 258.08
   L 574.62 259.42
   A 0.68 0.68 0.0 0 0 575.73 259.53"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 457.93 410.10
   L 461.46 410.30
   A 1.13 1.13 0.0 0 0 462.63 409.36
@@ -940,8 +1132,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 458.87 395.54 458.59 396.59
   Q 456.94 402.62 456.85 408.94
   A 1.15 1.14 2.4 0 0 457.93 410.10"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 233.19 413.23
   Q 232.96 415.90 231.20 416.98
   A 1.30 1.30 0.0 0 1 230.26 417.13
@@ -955,13 +1150,19 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 144.46 380.85 141.40 383.86
   A 0.71 0.70 52.3 0 0 141.29 384.73
   Q 142.83 387.23 145.28 388.35"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 145.28 388.35
   Q 145.51 389.50 144.77 389.51
   Q 142.89 389.54 142.02 389.72"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 142.02 389.72
   Q 139.29 387.31 134.25 387.07
   Q 129.95 386.86 127.10 389.27
@@ -969,30 +1170,45 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 127.51 396.29 131.07 397.65
   Q 140.02 401.08 150.24 406.78
   Q 153.08 408.37 161.11 413.57"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 161.11 413.57
   Q 152.06 410.48 147.20 407.02
   Q 138.34 400.72 129.45 400.70"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 129.45 400.70
   Q 125.56 401.81 126.62 405.38
   Q 128.13 410.47 131.30 413.70
   Q 133.02 415.45 138.92 418.24
   Q 143.48 420.39 147.77 423.08"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 147.77 423.08
   Q 145.77 423.33 143.69 422.78
   A 0.15 0.15 0.0 0 0 143.54 423.03
   Q 145.21 424.87 144.37 425.46"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 144.37 425.46
   Q 140.49 423.21 136.87 422.88"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 136.87 422.88
   Q 135.28 423.15 135.23 424.00
   C 134.85 430.62 139.49 433.97 144.36 438.20
@@ -1002,12 +1218,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.03 1.99 -3.3 0 0 229.21 500.97
   C 234.33 502.84 241.60 501.78 246.40 499.32
   Q 259.10 492.83 263.84 479.21"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 263.84 479.21
   Q 263.61 472.37 261.51 464.92"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 261.51 464.92
   C 261.17 455.85 261.43 446.10 260.34 437.50
   Q 259.40 430.15 258.04 426.16
@@ -1019,8 +1241,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 223.91 371.92 223.53 377.76
   C 222.95 386.82 225.47 394.93 228.33 403.93
   Q 229.90 408.90 233.19 413.23"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 261.51 464.92
   Q 261.36 465.32 261.18 465.36
   Q 260.57 465.49 260.29 464.91
@@ -1040,8 +1265,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 227.07 395.07 228.83 401.16
   Q 229.28 402.71 231.17 407.14
   Q 232.47 410.20 233.19 413.23"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 263.84 479.21
   Q 260.50 483.76 257.45 488.02
   Q 253.90 492.98 251.30 494.75
@@ -1055,8 +1283,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 168.51 457.60 148.15 440.11
   C 144.18 436.70 138.87 433.55 136.82 428.21
   Q 136.41 427.12 136.87 422.88"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 144.37 425.46
   Q 148.32 427.74 152.45 430.15
   Q 156.92 432.74 160.26 435.29
@@ -1065,8 +1296,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 178.64 447.83 177.81 445.99
   Q 177.45 445.16 175.15 443.04
   Q 162.62 431.45 147.77 423.08"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 129.45 400.70
   Q 136.87 403.66 140.22 405.78
   Q 152.15 413.33 160.34 417.63
@@ -1075,8 +1309,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.28 0.27 7.8 0 0 184.34 430.57
   Q 184.11 429.52 182.60 428.40
   Q 170.87 419.71 161.11 413.57"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 142.02 389.72
   L 166.45 403.65
   A 2.93 2.69 63.4 0 0 167.29 403.97
@@ -1097,8 +1334,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 184.36 406.15 170.78 400.82
   C 165.55 398.77 161.45 395.42 156.20 393.14
   Q 150.74 390.78 145.28 388.35"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 271.85 466.99
   Q 270.84 473.73 271.24 481.56
   A 3.24 3.13 -38.5 0 1 271.09 482.70
@@ -1120,8 +1360,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 276.60 477.32 276.10 475.37
   C 275.30 472.29 274.26 468.91 272.37 466.83
   A 0.30 0.30 0.0 0 0 271.85 466.99"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 736.80 777.11
   Q 736.76 769.03 738.48 762.60
   C 740.90 753.53 738.34 748.97 730.07 744.91
@@ -1138,8 +1381,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 723.82 773.24 726.66 774.38
   Q 731.65 776.37 736.36 777.47
   A 0.37 0.36 -83.7 0 0 736.80 777.11"
-/>
-<path stroke="#754d33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#754d33"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 710.40 776.36
   Q 703.33 775.88 696.44 777.11
   C 693.23 777.68 690.88 779.03 687.58 780.48
@@ -1148,14 +1394,20 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.81 0.81 0.0 0 0 704.03 781.47
   C 705.18 778.72 708.89 778.08 710.57 777.12
   A 0.41 0.41 0.0 0 0 710.40 776.36"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 732.62 791.51
   Q 732.88 790.95 733.09 790.69
   A 0.68 0.68 0.0 0 1 734.30 791.11
   L 734.34 795.04"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 734.34 795.04
   L 734.54 800.87
   A 1.06 1.05 57.6 0 1 734.43 801.38
@@ -1163,12 +1415,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.25 0.25 0.0 0 0 734.10 803.12
   Q 734.79 802.64 734.99 801.68
   Q 735.74 798.11 735.95 794.89"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 735.95 794.89
   L 735.27 790.96"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 735.27 790.96
   Q 734.51 785.54 729.86 781.88
   Q 728.34 780.68 725.54 780.03
@@ -1193,19 +1451,30 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 732.72 803.02 732.69 802.95
   A 1.79 1.77 42.0 0 1 732.64 802.10
   Q 733.56 796.92 732.62 791.51"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 735.27 790.96
   Q 731.06 784.90 726.81 781.90
   Q 726.43 781.63 726.11 781.95
   A 0.36 0.36 0.0 0 0 726.14 782.48
   Q 730.75 786.19 732.62 791.51"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 735.95 794.89
   Q 734.80 794.69 734.34 795.04"
-/>
-<path stroke="#735f43" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#735f43"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 395.62 1078.74
   Q 396.63 1085.07 397.57 1091.79
   C 398.32 1097.11 397.98 1101.32 398.41 1106.76
@@ -1247,20 +1516,29 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 482.09 871.86 482.06 871.86
   C 478.23 871.18 472.61 867.60 467.62 865.89
   Q 465.18 865.05 462.79 864.09"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 462.79 864.09
   L 470.94 864.08
   A 0.57 0.53 -59.6 0 0 471.24 863.99
   Q 471.99 863.53 471.61 862.32
   A 0.57 0.56 79.8 0 1 472.11 861.59
   L 473.00 861.54"
-/>
-<path stroke="#735f43" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#735f43"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.00 861.54
   L 485.28 864.34"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 485.28 864.34
   Q 486.79 865.54 487.98 866.75
   Q 499.28 878.19 502.83 893.71
@@ -1281,8 +1559,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 588.45 1359.28 597.95 1359.26
   Q 600.17 1359.26 607.31 1356.95
   Q 613.00 1355.11 619.19 1353.89"
-/>
-<path stroke="#735f43" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#735f43"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 619.19 1353.89
   Q 627.54 1352.94 631.18 1353.57
   C 638.37 1354.81 642.97 1355.88 648.75 1353.49
@@ -1325,12 +1606,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 573.87 801.53 559.63 802.57
   Q 553.65 803.01 528.51 805.11
   Q 517.35 806.04 498.78 805.51"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 498.78 805.51
   L 493.97 805.37"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.97 805.37
   Q 477.62 805.44 466.75 804.03
   Q 461.16 803.30 457.28 802.99
@@ -1347,22 +1634,34 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 388.57 1036.23 388.77 1041.08 389.65 1046.16
   Q 390.23 1049.52 391.32 1058.02
   Q 392.63 1068.40 395.62 1078.74"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.97 805.37
   L 493.93 806.67"
-/>
-<path stroke="#c99a6f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c99a6f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.93 806.67
   Q 492.43 806.69 490.76 806.24
   A 1.59 1.54 -36.3 0 0 490.33 806.18
   L 472.30 805.73"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.30 805.73
   Q 470.57 804.81 467.95 805.22"
-/>
-<path stroke="#c99a6f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c99a6f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 467.95 805.22
   Q 462.63 804.32 457.22 804.04
   Q 453.43 803.85 451.33 803.49
@@ -1371,8 +1670,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 374.71 788.52 368.62 785.29
   A 0.49 0.48 -77.8 0 0 367.91 785.75
   L 368.52 795.53"
-/>
-<path stroke="#daac80" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#daac80"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 368.52 795.53
   Q 369.10 815.16 368.97 834.80
   Q 368.92 843.23 369.40 850.18
@@ -1395,12 +1697,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 391.53 1049.34 391.62 1050.42
   Q 391.88 1053.47 392.94 1059.01
   Q 394.80 1068.71 395.62 1078.74"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 467.95 805.22
   L 468.57 811.94"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 468.57 811.94
   Q 467.13 812.46 466.50 812.47
   C 459.44 812.69 452.83 812.46 446.05 811.35
@@ -1409,8 +1717,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 5.99 5.71 54.5 0 0 392.74 801.54
   Q 387.25 801.14 383.14 799.84
   Q 373.77 796.90 368.52 795.53"
-/>
-<path stroke="#daac80" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#daac80"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 619.19 1353.89
   Q 620.27 1352.54 615.58 1353.67
   C 612.07 1354.51 608.38 1355.57 604.61 1356.88
@@ -1455,12 +1766,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 488.04 864.62 485.69 863.52
   A 0.37 0.37 0.0 0 0 485.31 863.55
   Q 484.91 863.85 485.28 864.34"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.00 861.54
   L 452.58 853.09"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 452.58 853.09
   L 445.30 851.28
   A 1.80 0.94 22.8 0 1 445.06 851.21
@@ -1542,19 +1859,28 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 459.73 863.75
   A 0.35 0.35 0.0 0 1 459.77 863.09
   L 460.34 862.92"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.34 862.92
   L 462.79 864.09"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 468.57 811.94
   Q 470.17 822.31 472.88 832.36
   C 474.89 839.82 475.20 847.88 480.14 854.22
   A 0.25 0.25 0.0 0 0 480.57 853.99
   Q 479.53 850.86 479.94 847.46"
-/>
-<path stroke="#daac80" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#daac80"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.94 847.46
   Q 480.57 848.30 480.32 849.38
   A 0.16 0.15 -80.0 0 0 480.45 849.57
@@ -1563,14 +1889,20 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 480.95 845.08 480.27 840.75
   Q 478.55 829.89 476.05 820.01
   Q 475.06 816.12 475.40 812.39"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.40 812.39
   L 475.88 812.23
   A 2.23 2.11 -49.9 0 1 476.75 812.13
   Q 485.31 812.93 493.96 812.21"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.96 812.21
   Q 493.81 828.18 490.02 843.49
   A 1.97 1.25 66.0 0 0 489.97 843.83
@@ -1585,8 +1917,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.10 1.05 57.9 0 0 498.46 830.89
   Q 499.16 824.87 499.14 823.57
   Q 498.99 815.64 499.20 813.13"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 499.20 813.13
   Q 503.66 813.88 505.31 813.91
   Q 526.84 814.29 540.00 813.52
@@ -1693,43 +2028,70 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.52 1.76 36.6 0 1 525.12 806.56
   Q 522.51 806.31 518.92 806.62
   C 512.41 807.18 505.62 806.97 499.03 807.13"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 499.03 807.13
   Q 499.08 806.23 498.78 805.51"
-/>
-<path stroke="#c99a6f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c99a6f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 475.40 812.39
   L 473.95 812.02"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.50 810.14
   Q 474.55 809.33 473.60 808.12
   Q 472.79 807.08 472.52 807.68"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.30 805.73
   Q 471.75 807.47 472.52 807.68"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 472.52 807.68
   L 473.50 810.14"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.50 810.14
   Q 473.97 811.06 473.95 812.02"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.95 812.02
   Q 473.73 813.91 474.14 816.02
   Q 475.68 823.91 477.46 831.75
   C 478.70 837.20 479.34 842.14 479.94 847.46"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.96 812.21
   L 493.93 806.67"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 452.58 853.09
   L 451.46 853.20
   A 0.33 0.33 0.0 0 0 451.32 853.81
@@ -1740,19 +2102,28 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 449.41 855.52
   A 0.72 0.72 0.0 0 0 448.90 856.85
   L 460.34 862.92"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 499.20 813.13
   L 499.03 807.13"
-/>
-<path stroke="#624c32" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624c32"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 685.48 797.36
   Q 690.55 798.26 692.00 797.90
   C 695.18 797.09 697.88 797.42 700.86 798.19
   A 0.58 0.57 5.7 0 0 701.58 797.61
   L 701.37 792.96"
-/>
-<path stroke="#735f43" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#735f43"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 701.37 792.96
   L 701.23 787.11
   A 1.44 1.44 0.0 0 0 700.23 785.78
@@ -1761,8 +2132,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 683.25 790.28 683.45 796.37
   Q 683.48 797.18 684.11 797.40
   Q 684.72 797.61 685.48 797.36"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 701.37 792.96
   Q 701.15 793.53 700.77 793.41
   Q 699.99 793.17 700.13 792.30
@@ -1771,50 +2145,71 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 694.68 785.44 689.87 786.53 685.70 787.93
   A 1.70 1.70 0.0 0 0 684.55 789.34
   Q 683.98 794.01 685.48 797.36"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 674.31 865.03
   Q 675.25 884.40 670.73 900.24
   Q 668.22 909.04 661.20 922.78
   Q 660.11 924.92 659.85 926.07
   C 659.25 928.78 660.21 932.58 662.83 933.67
   C 668.84 936.15 673.37 927.57 676.29 924.11"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 676.29 924.11
   Q 677.19 925.13 676.06 927.14
   A 0.80 0.80 0.0 0 0 677.26 928.15
   Q 677.67 927.82 678.20 927.31
   Q 678.56 926.97 678.84 927.17
   Q 679.06 927.33 679.13 927.82"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 679.13 927.82
   L 675.68 932.76
   A 0.38 0.38 0.0 0 0 676.07 933.35
   Q 679.77 932.62 682.69 929.92
   Q 687.63 925.37 692.66 920.14"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 692.66 920.14
   Q 694.26 920.58 691.75 923.34
   A 0.43 0.42 -39.6 0 0 691.70 923.83
   Q 691.93 924.21 692.56 924.17
   A 0.50 0.50 0.0 0 0 692.92 923.99
   Q 694.20 922.54 695.63 921.83"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.63 921.83
   L 694.99 923.88
   A 0.98 0.98 0.0 0 0 696.34 925.07
   Q 699.50 923.61 701.74 921.24
   Q 709.38 913.16 713.39 902.82"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 713.39 902.82
   L 716.29 906.74"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 716.29 906.74
   Q 718.97 907.28 720.71 903.93
   C 724.41 896.81 727.12 887.92 729.65 879.51
@@ -1849,8 +2244,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 672.36 860.58 672.85 860.53
   A 0.72 0.69 82.2 0 1 673.59 861.12
   L 674.31 865.03"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 716.29 906.74
   Q 720.28 896.71 720.85 893.82
   Q 722.86 883.76 726.29 873.78
@@ -1858,8 +2256,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.32 0.31 -42.5 0 0 725.74 871.19
   Q 722.17 877.02 721.66 878.69
   Q 717.95 890.89 713.39 902.82"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 695.63 921.83
   Q 696.89 919.73 698.61 916.94
   Q 702.66 910.37 704.89 904.44
@@ -1869,8 +2270,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 710.30 876.81 709.67 878.40
   Q 709.27 879.44 704.72 894.77
   Q 700.58 908.72 692.66 920.14"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 679.13 927.82
   Q 684.61 919.22 688.78 909.94
   Q 690.76 905.54 691.42 902.58
@@ -1885,8 +2289,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 692.79 888.20 690.59 895.96
   C 688.86 902.07 685.85 908.50 683.57 913.31
   Q 681.17 918.37 677.62 922.57"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.62 922.57
   Q 677.58 922.25 677.46 922.04
   A 0.53 0.53 0.0 0 0 676.61 921.90
@@ -1902,47 +2309,77 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 675.81 865.00
   A 0.51 0.51 0.0 0 0 674.86 864.75
   Q 674.61 865.16 674.31 865.03"
-/>
-<path stroke="#bc9e83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9e83"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 677.62 922.57
   L 676.29 924.11"
-/>
-<path stroke="#53361f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#53361f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 717.4416 908.2197
   A 1.05 0.49 -32.9 0 0 716.2938 908.3786
   A 1.05 0.49 -32.9 0 0 715.6784 909.3603
   A 1.05 0.49 -32.9 0 0 716.8262 909.2014
   A 1.05 0.49 -32.9 0 0 717.4416 908.2197"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 408.57 1343.67
   Q 408.00 1348.45 406.76 1348.24"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 406.76 1348.24
   Q 393.71 1344.71 388.50 1355.74"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 388.50 1355.74
   L 385.36 1358.93"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 385.36 1358.93
   Q 381.27 1361.49 378.21 1366.39"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 378.21 1366.39
   L 375.93 1367.94"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 375.93 1367.94
   Q 370.90 1371.24 367.14 1376.40"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.14 1376.40
   Q 367.73 1376.95 367.00 1377.50"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.00 1377.50
   L 350.94 1390.09
   A 4.08 3.88 1.4 0 0 350.51 1390.48
@@ -1960,19 +2397,28 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 487.70 1415.11 488.44 1411.81
   A 3.63 3.58 -41.4 0 0 488.52 1410.68
   L 484.92 1372.96"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 484.92 1372.96
   Q 484.07 1368.50 484.51 1362.50
   Q 484.92 1356.92 482.83 1349.69"
-/>
-<path stroke="#735f43" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#735f43"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.83 1349.69
   L 482.01 1347.08
   A 0.85 0.84 45.9 0 0 480.41 1347.05
   L 479.37 1350.04"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.37 1350.04
   C 478.45 1352.91 478.97 1356.12 477.82 1358.56
   Q 477.31 1359.66 477.02 1361.43
@@ -1980,12 +2426,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 463.95 1366.17 456.18 1364.56
   C 452.58 1363.81 450.04 1363.17 447.73 1361.19
   Q 446.84 1360.43 445.98 1360.57"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.98 1360.57
   L 445.10 1360.29"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.10 1360.29
   L 442.80 1359.19
   A 0.78 0.77 -73.8 0 1 442.37 1358.39
@@ -1993,8 +2445,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.12 1.12 0.0 0 0 442.45 1356.21
   C 437.32 1345.62 426.03 1340.96 415.00 1339.95
   Q 410.51 1339.54 408.57 1343.67"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 445.10 1360.29
   C 444.30 1363.22 442.68 1367.46 440.11 1369.24
   C 437.72 1370.90 436.36 1371.71 434.13 1373.86
@@ -2014,15 +2470,22 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 363.90 1412.49 370.10 1416.29
   A 1.94 1.93 -28.3 0 0 371.01 1416.56
   C 373.33 1416.66 375.88 1414.92 377.85 1413.68"
-/>
-<path stroke="#cbb496" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cbb496"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 377.85 1413.68
   Q 379.91 1414.54 381.39 1412.92
   C 382.01 1412.23 382.49 1412.21 383.25 1412.43
   A 0.90 0.89 -60.6 0 0 384.17 1412.17
   Q 384.69 1411.60 384.57 1411.11"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.57 1411.11
   Q 389.61 1407.25 395.29 1405.25
   A 1.62 1.61 47.6 0 1 396.49 1405.31
@@ -2062,8 +2525,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 429.68 1429.82 437.17 1426.60
   Q 441.12 1424.89 455.31 1420.28
   Q 464.32 1417.36 473.45 1413.92"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 473.45 1413.92
   Q 473.55 1415.98 470.59 1417.80
   A 1.68 1.67 64.3 0 0 469.90 1419.79
@@ -2075,30 +2541,43 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 479.12 1428.65 482.29 1427.53
   Q 485.10 1426.53 485.46 1423.25
   Q 486.05 1417.86 486.04 1414.97"
-/>
-<path stroke="#dcc7a7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcc7a7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.04 1414.97
   L 487.03 1410.78
   A 0.57 0.57 0.0 0 0 486.29 1410.11
   L 482.94 1411.25
   A 0.47 0.47 0.0 0 1 482.33 1410.92
   L 482.21 1410.46"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.21 1410.46
   Q 483.99 1409.58 485.92 1409.10
   Q 486.64 1408.91 486.80 1408.51
   Q 486.98 1408.04 486.76 1407.39"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.76 1407.39
   Q 487.13 1405.72 487.07 1405.24
   Q 485.46 1392.53 484.59 1381.53
   C 484.36 1378.58 483.11 1376.00 483.61 1373.21
   Q 483.73 1372.57 484.10 1372.55
   Q 484.48 1372.53 484.92 1372.96"
-/>
-<path stroke="#92897d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92897d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 367.00 1377.50
   Q 371.61 1377.03 374.18 1377.83
   Q 379.38 1379.44 384.62 1380.65
@@ -2110,8 +2589,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 393.50 1388.65 397.56 1388.02
   Q 398.14 1387.93 398.32 1387.45
   Q 398.48 1386.99 398.13 1386.48"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 398.13 1386.48
   Q 398.03 1384.84 399.86 1383.68
   Q 401.28 1382.78 403.16 1383.18
@@ -2149,41 +2632,63 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 410.85 1345.22 409.60 1345.29
   A 0.86 0.85 83.8 0 1 408.70 1344.56
   L 408.57 1343.67"
-/>
-<path stroke="#daac80" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#daac80"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.04 1414.97
   Q 482.21 1415.40 478.91 1413.74
   A 0.42 0.42 0.0 0 1 478.75 1413.14
   L 479.96 1411.30"
-/>
-<path stroke="#af886b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#af886b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 486.76 1407.39
   L 482.30 1408.61"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.30 1408.61
   Q 480.03 1408.19 479.10 1407.33
   Q 478.63 1406.90 478.05 1404.08
   Q 477.27 1400.33 476.49 1396.63
   A 6.20 6.03 41.6 0 1 476.37 1395.00
   L 476.75 1388.17"
-/>
-<path stroke="#af886b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#af886b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.75 1388.17
   Q 476.91 1386.48 477.95 1384.92
   C 479.83 1382.08 480.76 1379.67 482.35 1377.06
   A 0.41 0.41 0.0 0 0 481.80 1376.49
   Q 481.06 1376.90 480.31 1377.79"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 480.31 1377.79
   L 479.70 1376.71"
-/>
-<path stroke="#af886b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#af886b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.70 1376.71
   Q 481.49 1374.99 482.22 1373.37"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.70 1376.71
   L 475.44 1380.55
   A 1.56 1.54 -82.3 0 1 475.13 1380.79
@@ -2203,8 +2708,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 475.65 1384.74 475.61 1383.04
   C 475.57 1381.55 477.39 1381.19 478.27 1380.33
   Q 479.44 1379.17 480.31 1377.79"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.75 1388.17
   L 472.90 1393.46
   A 2.51 1.40 -51.7 0 1 472.67 1393.73
@@ -2225,24 +2734,40 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 418.52 1432.37 420.13 1431.57
   Q 442.48 1420.40 463.92 1415.13
   Q 468.38 1414.03 482.30 1408.61"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.21 1410.46
   Q 480.83 1410.61 479.96 1411.30"
-/>
-<path stroke="#af886b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#af886b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.96 1411.30
   Q 475.84 1412.12 473.45 1413.92"
-/>
-<path stroke="#8a7051" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8a7051"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 384.57 1411.11
   Q 379.67 1411.18 377.85 1413.68"
-/>
-<path stroke="#504438" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#504438"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 398.13 1386.48
   Q 396.71 1386.16 396.29 1385.58"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.29 1385.58
   Q 398.64 1383.59 399.58 1383.35
   Q 400.73 1383.05 401.92 1382.58
@@ -2250,8 +2775,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 403.63 1377.78 401.12 1376.13
   Q 397.50 1373.76 393.47 1371.92
   C 388.28 1369.54 381.84 1368.71 375.93 1367.94"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 378.21 1366.39
   Q 380.91 1365.43 383.22 1365.84
   C 386.78 1366.47 390.70 1367.03 393.79 1368.55
@@ -2268,8 +2797,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 407.81 1363.77 408.32 1362.37 406.69 1361.80
   Q 402.99 1360.50 396.85 1359.47
   C 393.56 1358.91 389.23 1359.31 385.36 1358.93"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 388.50 1355.74
   Q 388.45 1356.83 390.33 1355.88
   A 1.96 1.86 31.9 0 1 391.25 1355.69
@@ -2281,8 +2814,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 426.51 1358.57 425.67 1356.76 424.26 1355.69
   C 420.31 1352.65 416.77 1350.27 411.87 1349.25
   Q 409.13 1348.68 406.76 1348.24"
-/>
-<path stroke="#daac80" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#daac80"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.83 1349.69
   Q 481.47 1352.68 482.74 1356.34
   A 2.63 2.59 -54.6 0 1 482.89 1357.27
@@ -2290,14 +2826,20 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 483.18 1369.30 483.54 1369.84
   A 0.65 0.64 48.4 0 1 483.50 1370.62
   Q 482.65 1371.63 482.22 1373.37"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 482.22 1373.37
   Q 482.65 1370.93 482.07 1370.15
   A 0.43 0.43 0.0 0 0 481.31 1370.33
   Q 480.72 1373.28 479.37 1373.33"
-/>
-<path stroke="#dcc7a7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcc7a7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.37 1373.33
   Q 478.58 1370.63 476.64 1368.83
   A 1.39 1.36 -73.3 0 1 476.21 1368.01
@@ -2307,13 +2849,20 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 480.53 1350.78
   A 0.69 0.68 -87.4 0 0 479.89 1350.07
   L 479.37 1350.04"
-/>
-<path stroke="#92897d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92897d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 396.29 1385.58
   C 390.26 1379.07 382.26 1376.84 373.95 1375.35
   Q 371.52 1374.91 367.14 1376.40"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 479.37 1373.33
   Q 476.61 1378.33 471.82 1380.59
   Q 462.97 1384.75 456.66 1387.87
@@ -2324,8 +2873,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 436.32 1374.20 438.98 1372.24 442.30 1370.27
   A 2.52 2.49 -7.2 0 0 443.42 1368.84
   L 445.98 1360.57"
-/>
-<path stroke="#735f43" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#735f43"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 406.87 1342.76
   L 404.37 1345.00
   A 0.28 0.27 -42.1 0 0 404.34 1345.39
@@ -2333,8 +2885,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.49 0.48 51.1 0 0 405.22 1345.73
   Q 406.74 1344.71 407.19 1342.95
   A 0.20 0.19 -13.8 0 0 406.87 1342.76"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 464.01 1354.80
   Q 463.10 1354.99 462.15 1356.12
   A 0.69 0.68 4.8 0 0 463.02 1357.15
@@ -2347,16 +2902,25 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 451.82 1353.63 455.26 1354.60 459.63 1354.39
   Q 463.94 1354.17 464.14 1354.36
   A 0.26 0.26 0.0 0 1 464.01 1354.80"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.41 1370.77
   L 600.07 1373.49"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.07 1373.49
   Q 600.14 1374.16 599.21 1374.10"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 599.21 1374.10
   Q 598.07 1373.83 598.19 1372.65
   A 0.73 0.73 0.0 0 0 597.68 1371.88
@@ -2373,8 +2937,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 585.22 1425.07 585.32 1431.50
   A 0.23 0.23 0.0 0 0 585.78 1431.56
   Q 586.85 1427.80 590.01 1426.31"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 590.01 1426.31
   Q 590.83 1425.80 590.99 1426.48
   Q 591.24 1427.46 590.33 1428.18
@@ -2386,8 +2953,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 590.05 1432.51
   A 0.64 0.63 89.1 0 1 590.69 1431.84
   Q 591.14 1431.84 591.50 1431.98"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.50 1431.98
   Q 585.30 1446.72 586.82 1462.75
   Q 587.43 1469.14 587.17 1470.75
@@ -2398,16 +2968,22 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 648.03 1496.12 661.52 1494.06
   Q 666.53 1493.29 672.21 1490.70
   C 680.75 1486.81 681.49 1479.15 682.03 1470.38"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 682.03 1470.38
   Q 682.51 1469.71 682.59 1467.91
   A 0.53 0.53 0.0 0 0 681.89 1467.39
   L 680.57 1467.84
   A 0.51 0.51 0.0 0 1 679.94 1467.13
   Q 680.02 1466.96 680.21 1466.75"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 680.21 1466.75
   Q 682.47 1463.08 681.05 1456.23
   Q 679.59 1449.11 677.47 1443.60
@@ -2424,8 +3000,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 639.38 1361.06 633.11 1360.38
   Q 617.12 1358.67 602.97 1364.17
   C 599.21 1365.64 601.19 1368.21 600.41 1370.77"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 680.21 1466.75
   Q 675.62 1471.82 670.50 1474.33
   A 2.83 2.79 -81.6 0 0 669.69 1474.94
@@ -2436,12 +3016,19 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 665.28 1474.84 661.79 1476.23
   A 6.46 6.27 -61.1 0 1 660.64 1476.58
   C 644.37 1479.88 626.29 1480.81 610.02 1476.84"
-/>
-<path stroke="#dcc7a7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcc7a7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 610.02 1476.84
   Q 607.17 1475.54 604.85 1475.53"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 604.85 1475.53
   L 597.23 1472.86
   A 2.83 2.74 73.9 0 1 596.34 1472.35
@@ -2455,8 +3042,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 619.45 1482.36 638.75 1482.68 658.40 1479.59
   Q 666.91 1478.25 675.72 1474.95
   Q 678.94 1473.74 682.03 1470.38"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 591.50 1431.98
   Q 592.75 1428.83 594.33 1426.28
   Q 594.87 1425.41 594.84 1421.41
@@ -2467,33 +3058,49 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 594.15 1422.59 592.34 1423.05
   A 1.22 1.21 -82.3 0 0 591.62 1423.60
   L 590.01 1426.31"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 599.21 1374.10
   Q 600.70 1374.90 602.04 1374.08
   A 1.20 1.19 -12.9 0 0 602.61 1373.18
   Q 602.69 1372.49 602.93 1371.64
   Q 603.23 1370.62 602.44 1370.59
   Q 601.94 1370.58 601.22 1371.26"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.22 1371.26
   Q 600.39 1371.20 600.41 1370.77"
-/>
-<path stroke="#af886b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#af886b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 600.07 1373.49
   Q 601.15 1373.75 601.77 1372.94
   A 0.76 0.74 47.0 0 0 601.79 1372.07
   L 601.22 1371.26"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 604.85 1475.53
   Q 601.79 1475.63 598.68 1474.72
   A 0.29 0.29 0.0 0 0 598.36 1475.17
   Q 599.17 1476.28 600.63 1476.69
   Q 605.62 1478.10 610.02 1476.84"
-/>
-<path stroke="#735f43" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#735f43"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 599.13 1371.72
   A 0.39 0.38 -88.4 0 0 599.64 1371.23
   L 598.27 1367.21
@@ -2503,15 +3110,21 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 597.83 1369.59 597.65 1370.37
   A 0.82 0.81 -72.5 0 0 598.13 1371.30
   L 599.13 1371.72"
-/>
-<path stroke="#613a20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#613a20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.0462 72.3458
   A 5.22 0.79 -13.0 0 0 500.7823 72.7502
   A 5.22 0.79 -13.0 0 0 495.8738 74.6942
   A 5.22 0.79 -13.0 0 0 501.1377 74.2898
   A 5.22 0.79 -13.0 0 0 506.0462 72.3458"
-/>
-<path stroke="#613a20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#613a20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 527.07 87.06
   Q 526.73 85.29 525.66 84.40
   C 523.83 82.89 522.53 79.67 521.10 78.73
@@ -2526,8 +3139,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.14 1.12 -11.5 0 1 526.03 86.72
   Q 526.29 87.14 526.69 87.35
   A 0.27 0.26 -81.8 0 0 527.07 87.06"
-/>
-<path stroke="#613a20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#613a20"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 430.29 169.42
   Q 429.89 165.02 430.13 163.74
   Q 431.58 156.05 431.42 151.22
@@ -2541,20 +3157,29 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.46 0.45 85.8 0 0 429.47 169.88
   L 429.85 169.89
   A 0.43 0.43 0.0 0 0 430.29 169.42"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 484.3524 95.6049
   A 3.36 0.50 -64.2 0 0 482.4398 98.4124
   A 3.36 0.50 -64.2 0 0 481.4276 101.6551
   A 3.36 0.50 -64.2 0 0 483.3402 98.8476
   A 3.36 0.50 -64.2 0 0 484.3524 95.6049"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 517.26 152.25
   Q 518.12 154.83 520.93 153.93
   Q 523.77 153.03 525.18 153.12"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 525.18 153.12
   Q 537.28 148.77 549.14 149.28
   A 3.92 3.92 0.0 0 1 550.10 149.44
@@ -2570,8 +3195,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 515.83 150.86 516.45 152.67
   A 0.39 0.38 -34.6 0 0 517.11 152.79
   Q 517.16 152.73 517.26 152.25"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 525.18 153.12
   Q 536.07 147.19 548.68 147.84
   A 5.81 5.27 51.6 0 1 549.95 148.05
@@ -2584,8 +3212,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 545.82 140.25 536.05 141.25
   C 528.73 142.00 523.68 143.59 518.68 148.17
   Q 516.75 149.93 517.26 152.25"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 443.14 155.21
   L 443.09 156.28
   A 0.69 0.69 0.0 0 0 444.10 156.93
@@ -2594,45 +3225,63 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 480.42 154.43 480.66 154.49
   C 482.64 154.98 484.08 155.80 486.24 156.73
   Q 487.95 157.45 489.07 154.67"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 489.07 154.67
   Q 490.52 152.04 487.92 149.31
   C 483.30 144.48 474.79 143.27 467.74 142.13
   C 457.54 140.48 447.44 144.03 442.60 153.38
   A 3.52 3.22 67.3 0 0 442.27 154.30
   Q 441.74 156.71 443.14 155.21"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 489.07 154.67
   Q 488.10 151.13 487.23 150.27
   Q 484.34 147.44 480.45 146.32
   Q 472.73 144.09 464.74 143.40
   Q 449.79 142.12 443.14 155.21"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.68 215.08
   Q 525.03 211.78 523.13 204.01
   A 3.16 3.03 23.2 0 0 522.73 203.07
   Q 520.54 199.61 516.87 196.96
   A 0.52 0.52 0.0 0 0 516.10 197.59
   Q 517.55 200.81 519.82 203.24"
-/>
-<path stroke="#c99a6f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c99a6f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.82 203.24
   Q 520.35 204.65 519.75 206.00
   A 0.95 0.95 0.0 0 1 519.03 206.55
   Q 517.27 206.82 516.04 207.72"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 516.04 207.72
   L 507.07 213.28
   A 1.96 1.03 -9.4 0 0 506.82 213.47
   C 504.34 215.72 502.56 217.55 498.95 216.07
   Q 497.55 215.50 492.31 212.19
   Q 488.75 209.95 487.23 206.59"
-/>
-<path stroke="#c99a6f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c99a6f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.23 206.59
   Q 487.78 204.70 488.37 204.13
   Q 492.86 199.69 492.90 193.39
@@ -2667,8 +3316,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 505.79 222.77 508.42 222.19
   Q 509.69 221.91 513.39 218.90
   Q 515.22 217.42 519.68 215.08"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 487.23 206.59
   Q 486.90 205.54 486.12 205.61
   A 0.49 0.43 22.1 0 0 485.89 205.69
@@ -2688,13 +3340,19 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 517.14 210.06
   A 0.70 0.70 0.0 0 1 516.49 208.95
   Q 517.25 207.91 516.04 207.72"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 519.82 203.24
   Q 521.58 205.27 521.80 209.01
   Q 521.97 212.00 519.68 215.08"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.88 165.75
   C 531.69 162.36 537.84 160.08 545.59 160.95
   A 0.26 0.26 0.0 0 0 545.88 160.70
@@ -2704,8 +3362,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.06 0.05 67.5 0 0 524.41 165.03
   L 524.62 165.64
   A 0.19 0.19 0.0 0 0 524.88 165.75"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 478.14 165.61
   C 475.57 160.39 466.51 161.27 462.42 163.06
   Q 460.85 163.74 460.11 164.77
@@ -2714,8 +3375,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 476.69 164.77 476.96 165.22
   Q 477.50 166.12 477.73 166.16
   A 0.39 0.38 81.9 0 0 478.14 165.61"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 527.31 172.96
   L 531.03 171.21
   A 0.46 0.46 0.0 0 1 531.67 171.52
@@ -2730,8 +3394,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 553.64 172.94
   A 1.91 1.78 -24.3 0 0 554.29 173.16
   Q 557.02 173.54 556.64 172.01"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.64 172.01
   Q 557.20 171.43 556.87 171.15
   Q 549.14 164.46 539.67 164.73
@@ -2740,31 +3407,46 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 526.88 174.80
   A 0.68 0.68 0.0 0 0 528.03 174.58
   Q 528.50 173.28 527.31 172.96"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.64 172.01
   Q 554.60 172.14 554.00 171.77
   Q 550.46 169.58 546.79 167.71"
-/>
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.79 167.71
   Q 541.34 164.35 535.89 167.19
   A 1.06 1.06 0.0 0 0 535.32 168.21
   Q 535.53 170.77 535.71 174.52
   C 535.94 179.51 541.29 178.98 544.03 176.60
   C 545.62 175.23 545.16 172.79 544.19 171.17"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.19 171.17
   C 543.65 168.64 540.73 168.66 539.20 170.49"
-/>
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 539.20 170.49
   Q 538.82 170.68 538.60 170.64
   A 0.70 0.67 -62.1 0 1 538.27 169.49
   C 539.94 167.70 544.06 167.74 546.21 168.62"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.21 168.62
   L 546.68 174.53
   A 2.23 2.22 -33.5 0 1 546.43 175.74
@@ -2772,19 +3454,28 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 534.13 181.07 533.28 174.65 533.77 169.34
   A 0.59 0.59 0.0 0 0 533.00 168.72
   Q 529.67 169.83 527.31 172.96"
-/>
-<path stroke="#968373" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#968373"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.79 167.71
   Q 546.46 167.75 546.29 167.86
   Q 546.13 167.96 546.13 168.22
   Q 546.13 168.47 546.21 168.62"
-/>
-<path stroke="#968373" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#968373"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 539.20 170.49
   Q 539.41 171.63 540.74 171.51
   Q 542.44 171.36 544.19 171.17"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 456.00 173.01
   Q 455.90 173.57 456.06 173.82
   A 0.67 0.66 47.6 0 0 457.13 173.88
@@ -2798,8 +3489,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 476.91 173.36 477.30 173.63
   A 0.43 0.42 17.9 0 0 477.97 173.29
   L 477.98 172.79"
-/>
-<path stroke="#95694c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#95694c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.98 172.79
   Q 479.42 173.97 480.24 175.68
   A 0.58 0.58 0.0 0 0 481.34 175.49
@@ -2810,8 +3504,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 452.81 174.85
   A 0.72 0.71 -43.7 0 0 454.00 174.87
   Q 454.76 173.79 456.00 173.01"
-/>
-<path stroke="#968373" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#968373"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 477.98 172.79
   Q 476.79 171.24 475.13 170.93
   A 0.40 0.39 89.0 0 0 474.67 171.41
@@ -2820,15 +3517,21 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 460.02 178.32 462.69 170.49
   A 0.50 0.50 0.0 0 0 462.06 169.85
   Q 458.67 170.91 456.00 173.01"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 523.13 172.18
   A 0.55 0.48 78.9 0 0 523.88 172.77
   Q 524.11 172.60 524.18 172.04
   A 0.42 0.35 -5.8 0 0 523.65 171.69
   Q 523.18 171.81 523.13 172.18"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 549.20 236.95
   C 551.92 235.17 553.26 227.07 550.78 224.58
   Q 544.54 218.32 536.15 216.61
@@ -2840,8 +3543,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 549.16 228.62 549.65 230.13
   Q 550.28 232.10 548.81 236.66
   A 0.26 0.26 0.0 0 0 549.20 236.95"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.83 219.18
   Q 468.59 219.36 466.42 220.70
   Q 457.57 226.16 460.74 236.55
@@ -2852,15 +3558,21 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.92 1.92 0.0 0 1 463.21 225.15
   L 469.85 219.21
   A 0.02 0.02 0.0 0 0 469.83 219.18"
-/>
-<path stroke="#c99a6f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c99a6f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.59 219.80
   A 0.37 0.37 0.0 0 0 476.40 219.09
   Q 474.70 219.41 473.18 220.79
   A 0.09 0.08 13.6 0 0 473.27 220.93
   L 476.59 219.80"
-/>
-<path stroke="#87654b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#87654b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 542.68 229.86
   Q 538.90 228.58 534.26 229.16
   Q 521.85 230.68 514.97 231.28
@@ -2873,21 +3585,30 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 495.24 249.24 506.81 248.60
   Q 528.23 247.40 543.02 231.19
   A 0.82 0.82 0.0 0 0 542.68 229.86"
-/>
-<path stroke="#dd9a70" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dd9a70"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 460.9550 239.6591
   A 1.71 0.47 -120.0 0 0 461.4030 241.3750
   A 1.71 0.47 -120.0 0 0 462.6650 242.6209
   A 1.71 0.47 -120.0 0 0 462.2170 240.9050
   A 1.71 0.47 -120.0 0 0 460.9550 239.6591"
-/>
-<path stroke="#dd9a70" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dd9a70"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 493.06 256.07
   Q 493.01 257.68 495.02 259.24
   Q 500.15 263.21 506.24 262.50
   C 510.96 261.95 515.54 260.83 518.06 256.70"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.06 256.70
   Q 519.00 255.38 518.52 254.15
   A 0.50 0.50 0.0 0 0 517.79 253.91
@@ -2901,15 +3622,21 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 489.86 250.74
   A 0.06 0.05 -32.3 0 0 489.84 250.81
   L 493.06 256.07"
-/>
-<path stroke="#a96b44" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a96b44"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 518.06 256.70
   C 514.79 257.52 511.77 257.00 508.91 256.92
   Q 505.13 256.81 501.40 256.87
   A 4.89 4.78 -36.6 0 1 499.86 256.66
   Q 496.33 255.59 493.06 256.07"
-/>
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 560.60 148.41
   Q 556.07 143.12 549.06 141.48
   A 3.75 3.69 48.3 0 0 547.85 141.40
@@ -2923,8 +3650,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 12.25 12.25 0.0 0 1 550.42 147.02
   L 559.71 149.78
   A 0.85 0.85 0.0 0 0 560.60 148.41"
-/>
-<path stroke="#2d1b0f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2d1b0f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 446.11 154.26
   Q 447.42 152.87 449.56 152.34
   A 2.29 2.13 18.7 0 0 450.29 152.01
@@ -2938,8 +3668,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.57 0.56 42.6 0 0 445.37 154.28
   L 445.38 154.30
   A 0.53 0.53 0.0 0 0 446.11 154.26"
-/>
-<path stroke="#968373" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#968373"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 468.62 172.65
   L 471.39 173.34
   A 0.38 0.38 0.0 0 0 471.85 172.89
@@ -2947,8 +3680,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 471.13 170.98 470.25 171.35
   Q 469.35 171.73 468.55 172.22
   A 0.24 0.24 0.0 0 0 468.62 172.65"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 595.37 189.62
   Q 595.45 189.92 596.31 189.93
   A 0.67 0.66 2.3 0 0 596.98 189.32
@@ -2964,22 +3700,31 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 593.40 204.37 593.15 201.45
   Q 592.62 195.43 593.79 189.73
   A 0.83 0.79 -47.6 0 1 595.37 189.62"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 584.4730 208.6643
   A 1.43 1.25 -169.7 0 0 585.6565 210.1499
   A 1.43 1.25 -169.7 0 0 587.2870 209.1757
   A 1.43 1.25 -169.7 0 0 586.1035 207.6901
   A 1.43 1.25 -169.7 0 0 584.4730 208.6643"
-/>
-<path stroke="#a96b44" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a96b44"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 548.8526 224.6683
   A 1.65 0.51 -120.5 0 0 549.2506 226.3488
   A 1.65 0.51 -120.5 0 0 550.5274 227.5117
   A 1.65 0.51 -120.5 0 0 550.1294 225.8312
   A 1.65 0.51 -120.5 0 0 548.8526 224.6683"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 481.08 237.22
   Q 485.62 242.94 493.17 245.21
   C 496.56 246.23 502.50 246.84 505.71 246.76
@@ -2990,18 +3735,27 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 524.78 232.74 519.41 232.84
   C 512.20 232.97 506.19 234.87 499.14 234.27
   Q 490.27 233.53 480.85 231.57"
-/>
-<path stroke="#624c32" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#624c32"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 480.85 231.57
   Q 479.52 230.86 476.90 230.90
   A 0.46 0.46 0.0 0 0 476.46 231.44
   Q 477.14 234.89 481.08 237.22"
-/>
-<path stroke="#cbb496" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cbb496"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 480.85 231.57
   Q 480.07 232.87 481.08 237.22"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 561.86 333.02
   Q 563.61 332.68 568.37 330.33
   Q 578.96 325.10 590.25 319.38
@@ -3014,8 +3768,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 576.59 323.97 571.86 326.29
   Q 566.94 328.71 561.75 332.78
   A 0.14 0.14 0.0 0 0 561.86 333.02"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 412.90 433.31
   L 412.57 430.64
   A 0.92 0.92 0.0 0 0 412.07 429.93
@@ -3062,12 +3819,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.21 0.20 1.5 0 1 413.22 433.31
   L 412.93 433.33
   A 0.04 0.03 75.1 0 1 412.90 433.31"
-/>
-<path stroke="#92897d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92897d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 529.14 440.01
   L 532.74 439.77"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.74 439.77
   Q 532.68 440.56 533.56 440.26
   Q 534.61 439.91 534.75 438.62
@@ -3113,8 +3876,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 520.79 473.48 522.58 473.62
   A 4.12 4.11 -85.8 0 0 526.99 469.81
   L 529.14 440.01"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 532.74 439.77
   Q 533.85 437.44 533.64 433.88
   A 1.03 1.03 0.0 0 0 532.65 432.92
@@ -3131,8 +3897,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 525.74 467.51 525.89 464.83
   Q 527.15 441.87 527.19 440.98
   Q 527.27 439.67 529.14 440.01"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 449.08 430.12
   L 443.37 430.36
   A 2.41 2.41 0.0 0 0 442.02 430.84
@@ -3148,8 +3917,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.74 0.74 0.0 0 1 448.71 461.20
   L 450.40 431.47
   A 1.28 1.28 0.0 0 0 449.08 430.12"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 470.41 432.19
   A 0.62 0.61 11.1 0 0 469.99 431.57
   Q 466.05 430.29 461.91 431.86
@@ -3165,8 +3937,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 469.25 462.91
   A 0.59 0.58 3.9 0 1 468.70 462.29
   L 470.41 432.19"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 556.61 472.78
   Q 556.76 471.93 556.66 470.51
   Q 555.81 458.65 553.73 445.98
@@ -3188,8 +3963,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.10 1.02 -28.6 0 0 549.82 474.49
   L 554.43 474.56
   A 2.18 2.18 0.0 0 0 556.61 472.78"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 575.67 459.50
   A 2.42 2.42 0.0 0 0 573.01 461.39
   Q 572.51 463.68 571.60 464.80
@@ -3212,8 +3990,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 581.77 466.83 582.37 462.22
   A 1.88 1.87 -82.8 0 0 580.74 460.12
   L 575.67 459.50"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 595.60 464.39
   Q 596.25 465.18 596.55 466.51
   Q 597.66 471.51 598.37 473.85
@@ -3241,8 +4022,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 588.11 476.63 594.14 477.68 593.98 472.30
   Q 593.89 469.37 594.94 464.54
   A 0.38 0.37 32.0 0 1 595.60 464.39"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.53 499.20
   L 399.74 498.62
   A 1.45 1.44 5.3 0 1 398.47 497.10
@@ -3283,8 +4067,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.99 2.98 -3.0 0 0 405.63 504.80
   L 405.40 500.13
   A 1.00 0.99 -88.3 0 0 404.53 499.20"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 437.17 481.61
   A 2.72 2.72 0.0 0 0 434.37 483.94
   Q 432.41 497.36 432.89 509.39
@@ -3300,8 +4087,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 443.71 483.60
   A 1.73 1.73 0.0 0 0 442.05 481.80
   L 437.17 481.61"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.50 516.06
   L 463.82 515.74
   A 1.58 1.57 -86.7 0 1 462.34 514.07
@@ -3318,8 +4108,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.82 1.82 0.0 0 0 470.90 523.95
   L 471.57 518.52
   A 2.21 2.20 5.0 0 0 469.50 516.06"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 506.63 496.00
   Q 507.45 491.08 504.60 487.10
   C 500.50 481.37 491.44 482.16 487.08 486.85
@@ -3342,8 +4135,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.07 1.05 82.7 0 0 498.76 496.78
   Q 502.90 497.53 505.97 496.72
   A 0.91 0.91 0.0 0 0 506.63 496.00"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 508.93 494.67
   C 508.08 500.65 508.32 506.31 507.82 512.12
   Q 507.46 516.47 509.56 521.35
@@ -3356,8 +4152,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 517.49 482.71 512.13 488.09
   A 3.28 3.10 -10.7 0 0 511.53 488.92
   Q 509.06 493.80 508.93 494.67"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 559.26 486.66
   C 557.76 484.98 555.00 485.46 552.40 485.64
   A 2.27 2.26 2.6 0 0 550.33 487.53
@@ -3382,8 +4181,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.35 0.94 -53.2 0 0 559.93 490.78
   L 559.62 487.47
   A 1.36 1.34 -69.4 0 0 559.26 486.66"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 585.30 490.98
   A 1.13 1.12 -30.6 0 1 583.41 490.51
   Q 583.22 489.81 582.51 489.28
@@ -3423,8 +4225,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 596.48 487.32 587.23 487.75
   A 0.78 0.77 7.0 0 0 586.53 488.29
   Q 585.89 490.38 585.30 490.98"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 724.64 601.56
   Q 721.91 603.49 718.08 605.09
   C 715.09 606.33 712.53 607.89 710.15 609.41
@@ -3451,8 +4256,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 3.00 2.96 54.5 0 1 720.55 598.29
   L 724.45 599.92
   A 0.94 0.94 0.0 0 1 724.64 601.56"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 393.20 617.27
   Q 395.89 616.12 397.39 616.12
   C 407.37 616.06 416.33 615.73 425.86 616.12
@@ -3509,8 +4317,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 387.45 640.23 390.60 628.37
   Q 392.08 622.79 392.67 617.98
   A 0.89 0.88 81.9 0 1 393.20 617.27"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 564.50 630.69
   C 563.38 637.29 565.31 644.57 566.05 650.85
   C 567.31 661.57 570.57 671.14 573.82 681.63
@@ -3523,15 +4334,21 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 571.12 664.69 569.33 660.64 568.09 652.84
   Q 565.63 637.42 565.07 630.72
   A 0.29 0.29 0.0 0 0 564.50 630.69"
-/>
-<path stroke="#c99a6f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c99a6f"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 199.6611 413.5761
   A 1.01 0.45 -41.1 0 0 198.6042 413.9009
   A 1.01 0.45 -41.1 0 0 198.1389 414.9039
   A 1.01 0.45 -41.1 0 0 199.1958 414.5791
   A 1.01 0.45 -41.1 0 0 199.6611 413.5761"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 229.57 454.39
   L 226.72 451.54
   A 2.56 2.54 -76.8 0 1 226.10 450.53
@@ -3542,8 +4359,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 217.82 434.49 225.45 451.24
   Q 226.48 453.49 229.38 454.67
   A 0.17 0.17 0.0 0 0 229.57 454.39"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 243.89 470.74
   Q 242.49 467.36 239.90 464.39
   A 1.33 1.30 73.0 0 0 239.11 463.96
@@ -3568,8 +4388,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.32 0.31 65.9 0 0 243.67 471.27
   L 243.68 471.26
   A 0.40 0.39 -23.7 0 0 243.89 470.74"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 175.88 406.84
   C 179.24 408.84 181.78 410.31 185.37 413.16
   Q 188.89 415.95 194.00 417.39
@@ -3581,8 +4404,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.53 0.53 0.0 0 0 175.71 406.05
   L 175.69 406.09
   A 0.54 0.54 0.0 0 0 175.88 406.84"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 410.47 430.54
   L 395.60 431.29
   A 0.72 0.71 -88.6 0 0 394.93 431.94
@@ -3605,8 +4431,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.91 0.91 0.0 0 0 410.99 436.38
   L 411.28 431.35
   A 0.77 0.77 0.0 0 0 410.47 430.54"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 421.80 431.68
   A 0.91 0.91 0.0 0 0 420.85 430.73
   L 415.99 430.98
@@ -3624,8 +4453,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 423.23 463.42
   A 3.07 3.07 0.0 0 1 420.18 460.17
   L 421.80 431.68"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 488.65 459.90
   Q 488.49 463.39 489.15 466.32
   C 490.35 471.67 496.19 472.37 500.64 471.85
@@ -3646,8 +4478,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.03 1.03 0.0 0 0 494.64 459.08
   L 489.75 458.89
   A 1.06 1.06 0.0 0 0 488.65 459.90"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 448.30 431.55
   L 443.31 431.35
   A 1.26 1.25 -83.9 0 0 442.03 432.39
@@ -3662,8 +4497,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.40 0.39 3.5 0 1 447.09 462.76
   L 448.83 432.13
   A 0.55 0.55 0.0 0 0 448.30 431.55"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 476.43 465.59
   A 1.19 1.19 0.0 0 0 475.19 464.26
   L 468.43 464.60
@@ -3677,8 +4515,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 474.60 471.51
   A 1.19 1.19 0.0 0 0 475.83 470.46
   L 476.43 465.59"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 546.55 464.99
   A 1.33 1.33 0.0 0 1 547.82 466.16
   L 548.54 472.03
@@ -3696,8 +4537,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 539.80 465.95
   A 1.33 1.33 0.0 0 1 541.18 464.78
   L 546.55 464.99"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 580.58 446.96
   A 1.22 1.22 0.0 0 0 581.74 445.81
   C 581.91 442.97 581.06 436.46 578.24 435.18
@@ -3718,8 +4562,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 574.96 445.97
   A 1.38 1.37 -5.2 0 0 576.40 447.17
   L 580.58 446.96"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 544.88 443.84
   L 541.99 457.50
   A 0.56 0.55 4.8 0 0 542.56 458.17
@@ -3727,8 +4574,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.63 0.63 0.0 0 0 546.84 457.24
   Q 545.59 450.04 545.78 443.94
   A 0.46 0.45 -38.4 0 0 544.88 443.84"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 594.09 449.76
   L 594.84 436.51
   A 1.43 1.43 0.0 0 0 593.49 435.00
@@ -3754,8 +4604,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 598.86 441.19 595.77 446.41
   C 595.13 447.49 595.08 449.18 594.48 449.91
   A 0.22 0.22 0.0 0 1 594.09 449.76"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 397.97 499.93
   A 1.16 1.15 -87.8 0 1 396.86 498.72
   L 397.13 491.90
@@ -3779,8 +4632,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 404.19 501.35
   A 1.17 1.16 2.2 0 0 403.06 500.14
   L 397.97 499.93"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 410.08 484.41
   Q 409.51 493.68 408.64 508.84
   Q 408.20 516.48 409.69 519.00
@@ -3799,8 +4655,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.22 1.21 0.4 0 0 415.74 482.98
   L 411.29 483.21
   A 1.28 1.28 0.0 0 0 410.08 484.41"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 440.77 515.37
   L 442.52 484.49
   A 1.40 1.40 0.0 0 0 441.10 483.01
@@ -3814,8 +4673,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.57 1.56 3.4 0 0 448.33 516.48
   L 441.50 516.18
   A 0.77 0.77 0.0 0 1 440.77 515.37"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 469.98 518.36
   A 1.21 1.21 0.0 0 0 468.82 517.08
   L 462.08 516.81
@@ -3829,8 +4691,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 468.45 524.29
   A 1.21 1.21 0.0 0 0 469.71 523.15
   L 469.98 518.36"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 504.88 511.70
   A 1.25 1.25 0.0 0 0 503.70 510.37
   L 500.10 510.17
@@ -3847,8 +4712,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 482.92 503.52 484.42 516.01
   Q 485.56 525.52 494.99 524.85
   C 503.48 524.25 504.44 518.87 504.88 511.70"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 531.7899 496.2980
   A 10.21 10.21 0.0 0 0 522.2601 485.4504
   L 521.0825 485.3743
@@ -3858,8 +4726,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 519.6375 526.0057
   A 10.21 10.21 0.0 0 0 530.4851 516.4759
   L 531.7899 496.2980"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 524.4801 496.2138
   A 3.50 3.50 0.0 0 0 521.1874 492.5182
   L 520.9677 492.5055
@@ -3869,8 +4740,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 519.6723 518.7945
   A 3.50 3.50 0.0 0 0 523.3679 515.5018
   L 524.4801 496.2138"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 539.47 486.34
   A 1.88 1.88 0.0 0 0 537.48 488.13
   Q 537.21 493.62 536.09 512.00
@@ -3887,8 +4761,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 544.72 488.17
   A 1.53 1.53 0.0 0 0 543.28 486.55
   L 539.47 486.34"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 571.79 510.79
   A 1.93 1.92 86.3 0 1 573.71 512.48
   L 575.31 525.41
@@ -3909,8 +4786,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 570.06 511.88
   A 1.13 1.13 0.0 0 1 571.19 510.79
   L 571.79 510.79"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 601.68 496.38
   L 606.19 496.64
   A 1.70 1.69 0.2 0 0 607.98 494.87
@@ -3929,8 +4809,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 599.88 521.11 599.96 516.78
   Q 600.14 505.76 601.07 496.90
   A 0.58 0.58 0.0 0 1 601.68 496.38"
-/>
-<path stroke="#92897d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92897d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 570.73 495.00
   L 570.37 503.93
   A 0.56 0.56 0.0 0 0 570.91 504.52
@@ -3940,8 +4823,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 4.16 4.02 -87.7 0 0 573.29 494.54
   L 571.31 494.46
   A 0.56 0.56 0.0 0 0 570.73 495.00"
-/>
-<path stroke="#292119" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#292119"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 522.9030 496.2480
   A 2.03 2.03 0.0 0 0 520.9783 494.1179
   L 520.8585 494.1119
@@ -3951,8 +4837,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 519.8015 517.3481
   A 2.03 2.03 0.0 0 0 521.9316 515.4234
   L 522.9030 496.2480"
-/>
-<path stroke="#dcc7a7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcc7a7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 716.2191 784.2488
   A 0.49 0.49 0.0 0 0 715.5386 784.1178
   L 711.3983 786.9210
@@ -3962,14 +4851,20 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 716.1217 784.9790
   A 0.49 0.49 0.0 0 0 716.2527 784.2985
   L 716.2191 784.2488"
-/>
-<path stroke="#92897d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92897d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 719.89 789.92
   Q 720.08 788.81 719.73 787.97
   A 0.31 0.31 0.0 0 0 719.17 787.96
   Q 718.79 788.75 719.87 790.06"
-/>
-<path stroke="#cbb496" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cbb496"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 719.87 790.06
   Q 720.51 791.59 721.48 792.97
   C 722.74 794.74 722.90 795.55 723.04 797.52
@@ -3991,12 +4886,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 722.87 791.31
   A 0.48 0.48 0.0 0 1 722.41 792.10
   Q 720.76 791.74 719.89 789.92"
-/>
-<path stroke="#6b563d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b563d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 719.87 790.06
   Q 719.88 789.99 719.89 789.92"
-/>
-<path stroke="#cbb496" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cbb496"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 717.96 807.44
   L 715.67 805.46
   A 3.82 3.73 -84.4 0 1 714.82 804.40
@@ -4008,8 +4909,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 712.69 802.40 714.28 805.19
   Q 715.46 807.26 717.54 808.12
   A 0.40 0.40 0.0 0 0 717.96 807.44"
-/>
-<path stroke="#92897d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92897d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 729.4921 801.2227
   A 0.49 0.49 0.0 0 0 728.8075 801.1154
   L 724.3797 804.3442
@@ -4019,31 +4923,46 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 729.4203 801.9558
   A 0.49 0.49 0.0 0 0 729.5275 801.2711
   L 729.4921 801.2227"
-/>
-<path stroke="#92897d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92897d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 721.05 807.23
   A 0.88 0.85 33.5 0 0 722.39 806.98
   Q 722.59 806.57 722.44 806.39
   A 0.94 0.85 27.7 0 0 720.82 806.81
   Q 720.82 807.03 721.05 807.23"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 404.70 1105.60
   Q 405.05 1108.16 406.27 1110.62"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 406.27 1110.62
   L 403.28 1110.79"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 403.28 1110.79
   L 402.10 1106.38
   A 0.30 0.30 0.0 0 0 401.68 1106.18
   L 401.42 1106.29
   A 0.13 0.13 0.0 0 0 401.35 1106.45
   L 402.46 1110.35"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 402.46 1110.35
   Q 402.86 1110.80 402.96 1111.08
   A 0.62 0.62 0.0 0 1 401.99 1111.78
@@ -4056,12 +4975,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 419.05 1143.48 420.57 1141.93
   A 1.19 1.19 0.0 0 0 420.81 1140.61
   L 414.04 1125.66"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 414.04 1125.66
   L 405.30 1105.17"
-/>
-<path stroke="#7c684e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c684e"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 405.30 1105.17
   C 403.46 1101.35 401.52 1098.45 400.74 1093.81
   A 0.44 0.10 58.3 0 0 400.71 1093.72
@@ -4071,27 +4996,42 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.03 1.94 35.5 0 1 399.87 1095.18
   Q 399.86 1095.68 400.06 1096.45
   Q 401.46 1101.67 404.70 1105.60"
-/>
-<path stroke="#5d3f2a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5d3f2a"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 405.30 1105.17
   Q 404.89 1105.87 404.70 1105.60"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 414.04 1125.66
   Q 414.03 1128.13 412.19 1123.66
   Q 409.44 1117.02 406.27 1110.62"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 403.28 1110.79
   Q 402.92 1110.49 402.46 1110.35"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 623.75 1137.85
   C 620.40 1135.00 617.20 1131.41 614.33 1129.16
   C 610.77 1126.34 607.71 1123.77 604.18 1120.65
   C 598.99 1116.06 592.43 1112.30 586.55 1108.59"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.55 1108.59
   Q 583.76 1107.12 580.64 1106.94
   A 0.71 0.71 0.0 0 0 580.14 1108.20
@@ -4102,16 +5042,22 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 616.89 1138.09 622.59 1142.29
   A 0.68 0.67 18.7 0 0 623.67 1141.76
   L 623.75 1137.85"
-/>
-<path stroke="#966b42" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#966b42"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 586.55 1108.59
   Q 585.39 1108.58 586.94 1109.81
   Q 591.51 1113.45 596.35 1115.91
   C 600.65 1118.09 607.60 1125.14 613.83 1129.28
   Q 615.05 1130.09 617.47 1132.95
   Q 620.10 1136.06 623.75 1137.85"
-/>
-<path stroke="#a77d54" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a77d54"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 566.22 1119.34
   Q 566.24 1119.49 568.70 1124.45
   C 570.07 1127.22 570.70 1130.58 572.35 1133.16
@@ -4122,8 +5068,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 10.53 10.43 18.2 0 1 572.00 1129.22
   Q 569.76 1123.22 566.52 1119.20
   A 0.17 0.17 0.0 0 0 566.22 1119.34"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 409.07 1299.04
   A 0.02 0.02 0.0 0 0 409.04 1299.07
   Q 410.96 1301.11 411.01 1301.06
@@ -4146,8 +5095,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 409.08 1298.29 409.99 1298.79
   A 0.22 0.21 59.3 0 1 409.89 1299.20
   Q 409.25 1299.19 409.07 1299.04"
-/>
-<path stroke="#b59467" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b59467"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 613.56 1329.86
   L 611.38 1329.72
   A 0.19 0.19 0.0 0 1 611.20 1329.53
@@ -4172,15 +5124,22 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.44 0.44 0.0 0 0 614.02 1330.45
   L 614.02 1330.43
   A 0.50 0.50 0.0 0 0 613.56 1329.86"
-/>
-<path stroke="#bb835c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bb835c"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 671.50 858.93
   Q 671.70 859.18 673.18 858.50
   Q 674.37 857.94 673.74 857.15
   Q 673.10 856.35 672.30 857.40
   Q 671.30 858.68 671.50 858.93"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 388.36 1391.95
   L 386.47 1394.14
   A 1.17 1.16 47.8 0 1 384.64 1394.05
@@ -4200,15 +5159,22 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.22 0.22 0.0 0 0 388.86 1392.21
   L 388.67 1391.96
   A 0.20 0.20 0.0 0 0 388.36 1391.95"
-/>
-<path stroke="#cbb496" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cbb496"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 406.16 1385.63
   A 0.54 0.54 0.0 0 0 405.62 1385.09
   A 0.54 0.54 0.0 0 0 405.08 1385.63
   A 0.54 0.54 0.0 0 0 405.62 1386.17
   A 0.54 0.54 0.0 0 0 406.16 1385.63"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 347.68 1394.58
   A 0.44 0.44 0.0 0 0 347.62 1395.44
   Q 353.49 1397.08 359.21 1396.83
@@ -4225,8 +5191,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 367.85 1397.89 365.16 1396.05
   A 3.83 3.83 0.0 0 0 363.90 1395.50
   Q 355.65 1393.55 347.68 1394.58"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 341.34 1411.88
   Q 342.23 1413.09 342.95 1413.35
   A 0.74 0.73 -83.4 0 0 343.93 1412.57
@@ -4238,8 +5208,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.61 0.61 0.0 0 1 342.41 1411.51
   L 341.71 1411.34
   A 0.35 0.35 0.0 0 0 341.34 1411.88"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 387.22 1415.74
   Q 386.15 1416.26 386.19 1416.73
   A 0.96 0.95 6.0 0 0 386.86 1417.55
@@ -4268,16 +5242,23 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.46 1.17 28.8 0 0 384.87 1413.01
   Q 384.77 1414.42 387.20 1415.32
   A 0.23 0.23 0.0 0 1 387.22 1415.74"
-/>
-<path stroke="#dcc7a7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcc7a7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 360.71 1415.04
   Q 360.44 1414.95 360.28 1415.31
   Q 360.08 1415.75 360.47 1415.91
   Q 360.89 1416.07 361.17 1416.00
   A 0.41 0.35 -28.4 0 0 361.41 1415.38
   Q 361.25 1415.22 360.71 1415.04"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 360.71 1417.72
   Q 359.62 1418.17 359.23 1418.99
   Q 358.87 1419.76 358.57 1419.87
@@ -4289,21 +5270,30 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.55 0.54 -10.6 0 0 357.03 1421.67
   Q 359.96 1420.88 361.08 1418.08
   A 0.28 0.28 0.0 0 0 360.71 1417.72"
-/>
-<path stroke="#f0cdaf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0cdaf"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 376.60 1417.08
   A 0.46 0.38 -85.4 0 0 377.12 1416.54
   Q 377.04 1416.18 376.83 1416.15
   C 376.26 1416.09 376.26 1416.90 376.60 1417.08"
-/>
-<path stroke="#dcc7a7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcc7a7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 376.8982 1418.1938
   A 1.03 0.46 -80.6 0 0 376.2762 1419.1349
   A 1.03 0.46 -80.6 0 0 376.5618 1420.2262
   A 1.03 0.46 -80.6 0 0 377.1838 1419.2851
   A 1.03 0.46 -80.6 0 0 376.8982 1418.1938"
-/>
-<path stroke="#cbb496" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cbb496"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 336.88 1456.79
   L 336.92 1455.82
   A 0.24 0.24 0.0 0 0 336.69 1455.57
@@ -4313,8 +5303,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.81 0.63 2.6 0 0 332.60 1456.84
   L 336.62 1457.02
   A 0.24 0.24 0.0 0 0 336.88 1456.79"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 422.77 1366.70
   Q 423.56 1367.21 423.98 1366.72
   C 424.75 1365.81 427.14 1364.96 428.79 1364.14
@@ -4325,8 +5318,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.23 1.20 -3.1 0 0 426.29 1363.78
   Q 425.30 1365.55 422.88 1366.11
   A 0.33 0.33 0.0 0 0 422.77 1366.70"
-/>
-<path stroke="#cbb496" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cbb496"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 456.18 1366.75
   L 455.98 1368.76
   A 0.25 0.25 0.0 0 0 456.21 1369.03
@@ -4335,22 +5331,32 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 8.84 1.26 5.5 0 0 456.66 1366.54
   L 456.45 1366.52
   A 0.25 0.25 0.0 0 0 456.18 1366.75"
-/>
-<path stroke="#dcc7a7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcc7a7"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 453.1501 1368.4134
   A 0.95 0.36 -179.0 0 0 454.0937 1368.7899
   A 0.95 0.36 -179.0 0 0 455.0499 1368.4466
   A 0.95 0.36 -179.0 0 0 454.1063 1368.0701
   A 0.95 0.36 -179.0 0 0 453.1501 1368.4134"
-/>
-<path stroke="#cbb496" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cbb496"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 603.0439 1366.0261
   A 1.57 0.58 -81.8 0 0 602.2459 1367.4973
   A 1.57 0.58 -81.8 0 0 602.5961 1369.1339
   A 1.57 0.58 -81.8 0 0 603.3941 1367.6627
   A 1.57 0.58 -81.8 0 0 603.0439 1366.0261"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 645.89 1370.01
   Q 645.46 1370.23 645.31 1371.52
   A 0.59 0.59 0.0 0 1 644.56 1372.02
@@ -4391,16 +5397,26 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 649.44 1368.43 649.51 1367.86
   A 0.58 0.57 -83.8 0 0 648.99 1367.21
   Q 648.03 1367.11 647.80 1366.67"
-/>
-<path stroke="#887f72" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#887f72"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 647.80 1366.67
   Q 645.18 1364.71 645.89 1370.01"
-/>
-<path stroke="#473a2d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#473a2d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 647.80 1366.67
   Q 647.62 1368.97 645.89 1370.01"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 606.15 1398.63
   Q 605.20 1399.07 604.55 1398.81
   A 0.52 0.52 0.0 0 1 604.65 1397.82
@@ -4462,8 +5478,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.25 1.23 50.8 0 1 606.86 1401.98
   Q 605.63 1401.20 606.64 1399.14
   A 0.38 0.37 -89.2 0 0 606.15 1398.63"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 607.86 1424.11
   Q 608.28 1429.05 612.57 1428.71
   A 3.39 3.29 -59.2 0 0 613.72 1428.40
@@ -4527,8 +5547,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 610.94 1424.39 610.60 1424.90 609.78 1425.18
   Q 609.22 1425.37 608.37 1423.95
   A 0.27 0.27 0.0 0 0 607.86 1424.11"
-/>
-<path stroke="#cbb496" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cbb496"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 589.37 1404.14
   Q 589.31 1406.42 588.94 1407.16
   Q 586.83 1411.27 587.17 1416.26
@@ -4544,14 +5567,21 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.11 2.05 -39.2 0 0 589.90 1406.53
   L 589.61 1404.12
   A 0.12 0.12 0.0 0 0 589.37 1404.14"
-/>
-<path stroke="#92897d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#92897d"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 607.63 1421.56
   Q 611.12 1422.13 612.80 1418.53
   A 0.28 0.28 0.0 0 0 612.36 1418.20
   Q 610.69 1419.72 608.32 1420.30"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.32 1420.30
   Q 608.36 1418.38 610.53 1417.01
   Q 613.76 1414.95 617.45 1413.73
@@ -4571,12 +5601,19 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 606.55 1410.10 606.93 1413.02 607.70 1414.58
   A 1.80 1.69 35.1 0 1 607.87 1415.41
   L 607.63 1421.56"
-/>
-<path stroke="#504438" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#504438"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 608.32 1420.30
   Q 607.80 1420.45 607.63 1421.56"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 672.62 1436.73
   Q 672.71 1438.17 673.30 1440.03
   C 674.30 1443.16 673.68 1446.23 671.53 1449.17
@@ -4598,8 +5635,12 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 675.07 1447.00 675.19 1445.70
   Q 675.62 1441.08 673.10 1436.59
   A 0.26 0.26 0.0 0 0 672.62 1436.73"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 611.52 1439.75
   L 611.29 1440.26
   A 0.17 0.17 0.0 0 0 611.38 1440.48
@@ -4609,101 +5650,144 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 10.44 0.34 24.3 0 0 611.94 1439.75
   L 611.75 1439.66
   A 0.17 0.17 0.0 0 0 611.52 1439.75"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 639.7947 1445.2627
   A 2.06 0.59 -4.1 0 0 637.6978 1444.8215
   A 2.06 0.59 -4.1 0 0 635.6853 1445.5573
   A 2.06 0.59 -4.1 0 0 637.7822 1445.9985
   A 2.06 0.59 -4.1 0 0 639.7947 1445.2627"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 636.22 1449.60
   Q 636.31 1450.22 637.23 1449.97
   Q 639.64 1449.34 639.61 1449.12
   Q 639.58 1448.90 637.09 1448.96
   Q 636.14 1448.99 636.22 1449.60"
-/>
-<path stroke="#b1a392" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a392"
+          strokeOpacity="0.996"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 640.0983 1465.4313
   A 0.99 0.48 -3.4 0 0 639.0815 1465.0108
   A 0.99 0.48 -3.4 0 0 638.1217 1465.5487
   A 0.99 0.48 -3.4 0 0 639.1385 1465.9692
   A 0.99 0.48 -3.4 0 0 640.0983 1465.4313"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 604.0365 1385.4162
   A 1.60 0.62 -25.3 0 0 602.3250 1385.5395
   A 1.60 0.62 -25.3 0 0 601.1435 1386.7838
   A 1.60 0.62 -25.3 0 0 602.8550 1386.6605
   A 1.60 0.62 -25.3 0 0 604.0365 1385.4162"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 651.59 1393.26
   L 650.49 1391.82
   A 0.47 0.47 0.0 0 0 649.66 1392.22
   Q 649.92 1393.25 651.25 1393.73
   A 0.30 0.30 0.0 0 0 651.59 1393.26"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 604.3515 1399.9137
   A 1.45 0.51 -111.8 0 0 604.4165 1401.4494
   A 1.45 0.51 -111.8 0 0 605.4285 1402.6063
   A 1.45 0.51 -111.8 0 0 605.3635 1401.0706
   A 1.45 0.51 -111.8 0 0 604.3515 1399.9137"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 607.19 1403.30
   Q 606.12 1403.07 605.90 1403.72
   A 1.13 0.85 89.8 0 0 607.03 1405.22
   Q 607.84 1404.70 607.62 1403.72
   A 0.55 0.55 0.0 0 0 607.19 1403.30"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 656.1651 1418.4773
   A 1.11 0.85 -138.0 0 0 656.4212 1419.8517
   A 1.11 0.85 -138.0 0 0 657.8149 1419.9627
   A 1.11 0.85 -138.0 0 0 657.5588 1418.5883
   A 1.11 0.85 -138.0 0 0 656.1651 1418.4773"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 612.31 1426.21
   Q 611.90 1425.86 610.97 1425.90
   A 0.51 0.50 -84.9 0 0 610.49 1426.31
   Q 610.35 1427.05 611.16 1427.27
   A 0.94 0.65 -8.0 0 0 612.31 1426.21"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 652.3900 1412.5060
   A 0.86 0.41 -180.4 0 0 653.2529 1412.9100
   A 0.86 0.41 -180.4 0 0 654.1100 1412.4940
   A 0.86 0.41 -180.4 0 0 653.2471 1412.0900
   A 0.86 0.41 -180.4 0 0 652.3900 1412.5060"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 388.9713 1420.8239
   A 0.84 0.56 -43.3 0 0 387.9759 1420.9924
   A 0.84 0.56 -43.3 0 0 387.7487 1421.9761
   A 0.84 0.56 -43.3 0 0 388.7441 1421.8076
   A 0.84 0.56 -43.3 0 0 388.9713 1420.8239"
-/>
-<path stroke="#9b8263" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9b8263"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 368.2806 1430.3017
   A 2.64 0.44 -11.1 0 0 365.6053 1430.3782
   A 2.64 0.44 -11.1 0 0 363.0994 1431.3183
   A 2.64 0.44 -11.1 0 0 365.7747 1431.2418
   A 2.64 0.44 -11.1 0 0 368.2806 1430.3017"
-/>
-<path stroke="#af886b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#af886b"
+          vectorEffect="non-scaling-stroke"
+          d="
   M 593.1409 1423.9650
   A 1.87 0.77 -64.3 0 0 591.6362 1425.3161
   A 1.87 0.77 -64.3 0 0 591.5191 1427.3350
   A 1.87 0.77 -64.3 0 0 593.0238 1425.9839
   A 1.87 0.77 -64.3 0 0 593.1409 1423.9650"
-/>
-</g>
-<g fill="#322a24">
-<path d="
+        />
+      </g>
+      <g fill="#322a24">
+        <path
+          d="
   M 575.73 259.53
   A 0.68 0.68 0.0 0 1 574.62 259.42
   L 573.85 258.08
@@ -5540,8 +6624,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 565.63 637.42 565.07 630.72
   A 0.29 0.29 0.0 0 0 564.50 630.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 457.93 410.10
   A 1.15 1.14 2.4 0 1 456.85 408.94
   Q 456.94 402.62 458.59 396.59
@@ -5557,8 +6642,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.13 1.13 0.0 0 1 461.46 410.30
   L 457.93 410.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 272.37 466.83
   C 274.26 468.91 275.30 472.29 276.10 475.37
   Q 276.60 477.32 278.06 480.17
@@ -5581,9 +6667,17 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 270.84 473.73 271.85 466.99
   A 0.30 0.30 0.0 0 1 272.37 466.83
   Z"
-/>
-<rect x="-2.09" y="-11.63" transform="translate(520.33,505.73) rotate(2.9)" width="4.18" height="23.26" rx="2.03"/>
-<path d="
+        />
+        <rect
+          x="-2.09"
+          y="-11.63"
+          transform="translate(520.33,505.73) rotate(2.9)"
+          width="4.18"
+          height="23.26"
+          rx="2.03"
+        />
+        <path
+          d="
   M 570.73 495.00
   A 0.56 0.56 0.0 0 1 571.31 494.46
   L 573.29 494.54
@@ -5594,8 +6688,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.56 0.56 0.0 0 1 570.37 503.93
   L 570.73 495.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 736.80 777.11
   A 0.37 0.36 -83.7 0 1 736.36 777.47
   Q 731.65 776.37 726.66 774.38
@@ -5613,33 +6708,44 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 738.34 748.97 740.90 753.53 738.48 762.60
   Q 736.76 769.03 736.80 777.11
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 719.89 789.92
   Q 719.88 789.99 719.87 790.06
   Q 718.79 788.75 719.17 787.96
   A 0.31 0.31 0.0 0 1 719.73 787.97
   Q 720.08 788.81 719.89 789.92
   Z"
-/>
-<rect x="-3.23" y="-0.52" transform="translate(726.90,803.15) rotate(-36.1)" width="6.46" height="1.04" rx="0.49"/>
-<path d="
+        />
+        <rect
+          x="-3.23"
+          y="-0.52"
+          transform="translate(726.90,803.15) rotate(-36.1)"
+          width="6.46"
+          height="1.04"
+          rx="0.49"
+        />
+        <path
+          d="
   M 721.05 807.23
   Q 720.82 807.03 720.82 806.81
   A 0.94 0.85 27.7 0 1 722.44 806.39
   Q 722.59 806.57 722.39 806.98
   A 0.88 0.85 33.5 0 1 721.05 807.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 250.02 1003.53
   A 0.89 0.61 -75.9 0 1 249.53 1002.20
   Q 249.87 1001.63 250.28 1001.92
   Q 250.77 1002.26 250.60 1002.68
   Q 250.29 1003.43 250.02 1003.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 405.30 1105.17
   Q 404.89 1105.87 404.70 1105.60
   Q 401.46 1101.67 400.06 1096.45
@@ -5651,8 +6757,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.44 0.10 58.3 0 1 400.74 1093.81
   C 401.52 1098.45 403.46 1101.35 405.30 1105.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 396.29 1385.58
   Q 396.71 1386.16 398.13 1386.48
   Q 398.48 1386.99 398.32 1387.45
@@ -5669,19 +6776,28 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 371.52 1374.91 373.95 1375.35
   C 382.26 1376.84 390.26 1379.07 396.29 1385.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 607.63 1421.56
   Q 607.80 1420.45 608.32 1420.30
   Q 610.69 1419.72 612.36 1418.20
   A 0.28 0.28 0.0 0 1 612.80 1418.53
   Q 611.12 1422.13 607.63 1421.56
   Z"
-/>
-</g>
-<g fill="#c6a678">
-<rect x="-2.99" y="-0.52" transform="translate(713.76,785.95) rotate(-34.1)" width="5.98" height="1.04" rx="0.49"/>
-<path d="
+        />
+      </g>
+      <g fill="#c6a678">
+        <rect
+          x="-2.99"
+          y="-0.52"
+          transform="translate(713.76,785.95) rotate(-34.1)"
+          width="5.98"
+          height="1.04"
+          rx="0.49"
+        />
+        <path
+          d="
   M 701.37 792.96
   Q 701.15 793.53 700.77 793.41
   Q 699.99 793.17 700.13 792.30
@@ -5698,8 +6814,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.44 1.44 0.0 0 1 701.23 787.11
   L 701.37 792.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 619.19 1353.89
   Q 620.27 1352.54 615.58 1353.67
   C 612.07 1354.51 608.38 1355.57 604.61 1356.88
@@ -6172,15 +7289,17 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 614.02 1330.43
   A 0.50 0.50 0.0 0 0 613.56 1329.86
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 473.50 810.14
   L 472.52 807.68
   Q 472.79 807.08 473.60 808.12
   Q 474.55 809.33 473.50 810.14
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 406.87 1342.76
   A 0.20 0.19 -13.8 0 1 407.19 1342.95
   Q 406.74 1344.71 405.22 1345.73
@@ -6189,8 +7308,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.28 0.27 -42.1 0 1 404.37 1345.00
   L 406.87 1342.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 482.83 1349.69
   Q 481.47 1352.68 482.74 1356.34
   A 2.63 2.59 -54.6 0 1 482.89 1357.27
@@ -6213,8 +7333,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.85 0.84 45.9 0 1 482.01 1347.08
   L 482.83 1349.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 422.77 1366.70
   A 0.33 0.33 0.0 0 1 422.88 1366.11
   Q 425.30 1365.55 426.29 1363.78
@@ -6226,8 +7347,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 427.14 1364.96 424.75 1365.81 423.98 1366.72
   Q 423.56 1367.21 422.77 1366.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 599.13 1371.72
   L 598.13 1371.30
   A 0.82 0.81 -72.5 0 1 597.65 1370.37
@@ -6238,27 +7360,48 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 599.64 1371.23
   A 0.39 0.38 -88.4 0 1 599.13 1371.72
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(454.10,1368.43) rotate(-179.0)" rx="0.95" ry="0.36"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(602.59,1386.10) rotate(-25.3)" rx="1.60" ry="0.62"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(454.10,1368.43) rotate(-179.0)"
+          rx="0.95"
+          ry="0.36"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(602.59,1386.10) rotate(-25.3)"
+          rx="1.60"
+          ry="0.62"
+        />
+        <path
+          d="
   M 651.59 1393.26
   A 0.30 0.30 0.0 0 1 651.25 1393.73
   Q 649.92 1393.25 649.66 1392.22
   A 0.47 0.47 0.0 0 1 650.49 1391.82
   L 651.59 1393.26
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(604.89,1401.26) rotate(-111.8)" rx="1.45" ry="0.51"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(604.89,1401.26) rotate(-111.8)"
+          rx="1.45"
+          ry="0.51"
+        />
+        <path
+          d="
   M 607.62 1403.72
   Q 607.84 1404.70 607.03 1405.22
   A 1.13 0.85 89.8 0 1 605.90 1403.72
   Q 606.12 1403.07 607.19 1403.30
   A 0.55 0.55 0.0 0 1 607.62 1403.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 486.04 1414.97
   Q 482.21 1415.40 478.91 1413.74
   A 0.42 0.42 0.0 0 1 478.75 1413.14
@@ -6270,9 +7413,16 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.57 0.57 0.0 0 1 487.03 1410.78
   L 486.04 1414.97
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(653.25,1412.50) rotate(-180.4)" rx="0.86" ry="0.41"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(653.25,1412.50) rotate(-180.4)"
+          rx="0.86"
+          ry="0.41"
+        />
+        <path
+          d="
   M 360.71 1415.04
   Q 361.25 1415.22 361.41 1415.38
   A 0.41 0.35 -28.4 0 1 361.17 1416.00
@@ -6280,20 +7430,46 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 360.08 1415.75 360.28 1415.31
   Q 360.44 1414.95 360.71 1415.04
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(376.73,1419.21) rotate(-80.6)" rx="1.03" ry="0.46"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(656.99,1419.22) rotate(-138.0)" rx="1.11" ry="0.85"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(388.36,1421.40) rotate(-43.3)" rx="0.84" ry="0.56"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(376.73,1419.21) rotate(-80.6)"
+          rx="1.03"
+          ry="0.46"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(656.99,1419.22) rotate(-138.0)"
+          rx="1.11"
+          ry="0.85"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(388.36,1421.40) rotate(-43.3)"
+          rx="0.84"
+          ry="0.56"
+        />
+        <path
+          d="
   M 612.31 1426.21
   A 0.94 0.65 -8.0 0 1 611.16 1427.27
   Q 610.35 1427.05 610.49 1426.31
   A 0.51 0.50 -84.9 0 1 610.97 1425.90
   Q 611.90 1425.86 612.31 1426.21
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(365.69,1430.81) rotate(-11.1)" rx="2.64" ry="0.44"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(365.69,1430.81) rotate(-11.1)"
+          rx="2.64"
+          ry="0.44"
+        />
+        <path
+          d="
   M 604.85 1475.53
   Q 607.17 1475.54 610.02 1476.84
   Q 605.62 1478.10 600.63 1476.69
@@ -6301,10 +7477,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.29 0.29 0.0 0 1 598.68 1474.72
   Q 601.79 1475.63 604.85 1475.53
   Z"
-/>
-</g>
-<g fill="#f2e8d7" fill-opacity="0.996">
-<path d="
+        />
+      </g>
+      <g fill="#f2e8d7" fill-opacity="0.996">
+        <path
+          d="
   M 572.02 111.49
   Q 571.96 111.97 571.40 111.91
   A 0.46 0.46 0.0 0 1 571.03 111.67
@@ -6331,8 +7508,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 559.06 94.30 560.79 95.98
   C 565.77 100.78 569.68 105.36 572.02 111.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 525.18 153.12
   Q 536.07 147.19 548.68 147.84
   A 5.81 5.27 51.6 0 1 549.95 148.05
@@ -6360,8 +7538,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 3.92 3.92 0.0 0 0 549.14 149.28
   Q 537.28 148.77 525.18 153.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 489.07 154.67
   Q 488.10 151.13 487.23 150.27
   Q 484.34 147.44 480.45 146.32
@@ -6373,8 +7552,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 474.79 143.27 483.30 144.48 487.92 149.31
   Q 490.52 152.04 489.07 154.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 546.79 167.71
   Q 550.46 169.58 554.00 171.77
   Q 554.60 172.14 556.64 172.01
@@ -6401,15 +7581,17 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 546.13 167.96 546.29 167.86
   Q 546.46 167.75 546.79 167.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 544.19 171.17
   Q 542.44 171.36 540.74 171.51
   Q 539.41 171.63 539.20 170.49
   C 540.73 168.66 543.65 168.64 544.19 171.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 477.98 172.79
   L 477.97 173.29
   A 0.43 0.42 17.9 0 1 477.30 173.63
@@ -6431,8 +7613,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.40 0.39 89.0 0 1 475.13 170.93
   Q 476.79 171.24 477.98 172.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 468.55 172.22
   Q 469.35 171.73 470.25 171.35
   Q 471.13 170.98 471.48 171.86
@@ -6441,8 +7624,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 468.62 172.65
   A 0.24 0.24 0.0 0 1 468.55 172.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 600.61 195.05
   Q 598.68 207.36 592.67 218.20
   A 4.22 4.20 -8.9 0 1 592.04 219.06
@@ -6458,8 +7642,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.54 0.53 -75.9 0 1 600.07 194.87
   L 600.61 195.05
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 481.08 237.22
   Q 480.07 232.87 480.85 231.57
   Q 490.27 233.53 499.14 234.27
@@ -6472,8 +7657,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 502.50 246.84 496.56 246.23 493.17 245.21
   Q 485.62 242.94 481.08 237.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 261.51 464.92
   Q 261.36 465.32 261.18 465.36
   Q 260.57 465.49 260.29 464.91
@@ -6504,8 +7690,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 259.40 430.15 260.34 437.50
   C 261.43 446.10 261.17 455.85 261.51 464.92
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 136.87 422.88
   Q 136.41 427.12 136.82 428.21
   C 138.87 433.55 144.18 436.70 148.15 440.11
@@ -6528,8 +7715,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 139.49 433.97 134.85 430.62 135.23 424.00
   Q 135.28 423.15 136.87 422.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 410.47 430.54
   A 0.77 0.77 0.0 0 1 411.28 431.35
   L 410.99 436.38
@@ -6553,8 +7741,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.72 0.71 -88.6 0 1 395.60 431.29
   L 410.47 430.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 421.80 431.68
   L 420.18 460.17
   A 3.07 3.07 0.0 0 0 423.23 463.42
@@ -6573,8 +7762,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 420.85 430.73
   A 0.91 0.91 0.0 0 1 421.80 431.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 488.65 459.90
   A 1.06 1.06 0.0 0 1 489.75 458.89
   L 494.64 459.08
@@ -6596,8 +7786,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 496.19 472.37 490.35 471.67 489.15 466.32
   Q 488.49 463.39 488.65 459.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 448.30 431.55
   A 0.55 0.55 0.0 0 1 448.83 432.13
   L 447.09 462.76
@@ -6613,8 +7804,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.26 1.25 -83.9 0 1 443.31 431.35
   L 448.30 431.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 476.43 465.59
   L 475.83 470.46
   A 1.19 1.19 0.0 0 1 474.60 471.51
@@ -6629,8 +7821,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 475.19 464.26
   A 1.19 1.19 0.0 0 1 476.43 465.59
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 532.74 439.77
   L 529.14 440.01
   Q 527.27 439.67 527.19 440.98
@@ -6649,8 +7842,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.03 1.03 0.0 0 1 533.64 433.88
   Q 533.85 437.44 532.74 439.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 546.55 464.99
   L 541.18 464.78
   A 1.33 1.33 0.0 0 0 539.80 465.95
@@ -6677,8 +7871,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 545.59 450.04 545.78 443.94
   A 0.46 0.45 -38.4 0 0 544.88 443.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 580.58 446.96
   L 576.40 447.17
   A 1.38 1.37 -5.2 0 1 574.96 445.97
@@ -6700,8 +7895,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 581.06 436.46 581.91 442.97 581.74 445.81
   A 1.22 1.22 0.0 0 1 580.58 446.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 594.48 449.91
   C 595.08 449.18 595.13 447.49 595.77 446.41
   Q 598.86 441.19 601.12 436.43
@@ -6728,8 +7924,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 594.09 449.76
   A 0.22 0.22 0.0 0 0 594.48 449.91
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 397.97 499.93
   L 403.06 500.14
   A 1.17 1.16 2.2 0 1 404.19 501.35
@@ -6754,8 +7951,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 396.86 498.72
   A 1.16 1.15 -87.8 0 0 397.97 499.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 410.08 484.41
   A 1.28 1.28 0.0 0 1 411.29 483.21
   L 415.74 482.98
@@ -6775,8 +7973,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 408.20 516.48 408.64 508.84
   Q 409.51 493.68 410.08 484.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 440.77 515.37
   A 0.77 0.77 0.0 0 0 441.50 516.18
   L 448.33 516.48
@@ -6791,8 +7990,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.40 1.40 0.0 0 1 442.52 484.49
   L 440.77 515.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 469.98 518.36
   L 469.71 523.15
   A 1.21 1.21 0.0 0 1 468.45 524.29
@@ -6807,8 +8007,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 468.82 517.08
   A 1.21 1.21 0.0 0 1 469.98 518.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 504.88 511.70
   C 504.44 518.87 503.48 524.25 494.99 524.85
   Q 485.56 525.52 484.42 516.01
@@ -6826,8 +8027,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 503.70 510.37
   A 1.25 1.25 0.0 0 1 504.88 511.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 530.4851 516.4759
   A 10.21 10.21 0.0 0 1 519.6375 526.0057
   L 518.4599 525.9296
@@ -6848,8 +8050,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 3.50 3.50 0.0 0 0 523.3679 515.5018
   L 524.4801 496.2138
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 539.47 486.34
   L 543.28 486.55
   A 1.53 1.53 0.0 0 1 544.72 488.17
@@ -6867,8 +8070,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 537.21 493.62 537.48 488.13
   A 1.88 1.88 0.0 0 1 539.47 486.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 571.79 510.79
   L 571.19 510.79
   A 1.13 1.13 0.0 0 0 570.06 511.88
@@ -6900,8 +8104,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 571.31 494.46
   A 0.56 0.56 0.0 0 0 570.73 495.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 601.07 496.90
   Q 600.14 505.76 599.96 516.78
   Q 599.88 521.11 598.93 527.27
@@ -6921,8 +8126,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 601.68 496.38
   A 0.58 0.58 0.0 0 0 601.07 496.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 735.27 790.96
   Q 731.06 784.90 726.81 781.90
   Q 726.43 781.63 726.11 781.95
@@ -7015,8 +8221,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.94 0.85 27.7 0 0 720.82 806.81
   Q 720.82 807.03 721.05 807.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 735.95 794.89
   Q 735.74 798.11 734.99 801.68
   Q 734.79 802.64 734.10 803.12
@@ -7026,8 +8233,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 734.34 795.04
   Q 734.80 794.69 735.95 794.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 677.62 922.57
   L 676.29 924.11
   C 673.37 927.57 668.84 936.15 662.83 933.67
@@ -7050,8 +8258,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.53 0.53 0.0 0 1 677.46 922.04
   Q 677.58 922.25 677.62 922.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 445.10 1360.29
   C 444.30 1363.22 442.68 1367.46 440.11 1369.24
   C 437.72 1370.90 436.36 1371.71 434.13 1373.86
@@ -7329,8 +8538,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 336.62 1457.02
   A 0.24 0.24 0.0 0 0 336.88 1456.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 406.76 1348.24
   Q 409.13 1348.68 411.87 1349.25
   C 416.77 1350.27 420.31 1352.65 424.26 1355.69
@@ -7344,8 +8554,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 388.45 1356.83 388.50 1355.74
   Q 393.71 1344.71 406.76 1348.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 479.37 1350.04
   L 479.89 1350.07
   A 0.69 0.68 -87.4 0 1 480.53 1350.78
@@ -7386,8 +8597,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.95 0.36 -179.0 0 0 454.1063 1368.0701
   A 0.95 0.36 -179.0 0 0 453.1501 1368.4134
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 385.36 1358.93
   C 389.23 1359.31 393.56 1358.91 396.85 1359.47
   Q 402.99 1360.50 406.69 1361.80
@@ -7406,8 +8618,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 380.91 1365.43 378.21 1366.39
   Q 381.27 1361.49 385.36 1358.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 680.21 1466.75
   Q 675.62 1471.82 670.50 1474.33
   A 2.83 2.79 -81.6 0 0 669.69 1474.94
@@ -7749,8 +8962,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.99 0.48 -3.4 0 0 639.1385 1465.9692
   A 0.99 0.48 -3.4 0 0 640.0983 1465.4313
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 375.93 1367.94
   C 381.84 1368.71 388.28 1369.54 393.47 1371.92
   Q 397.50 1373.76 401.12 1376.13
@@ -7762,8 +8976,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 371.52 1374.91 367.14 1376.40
   Q 370.90 1371.24 375.93 1367.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 479.70 1376.71
   L 480.31 1377.79
   Q 479.44 1379.17 478.27 1380.33
@@ -7785,8 +9000,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.56 1.54 -82.3 0 0 475.44 1380.55
   L 479.70 1376.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 476.75 1388.17
   L 476.37 1395.00
   A 6.20 6.03 41.6 0 0 476.49 1396.63
@@ -7813,10 +9029,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.51 1.40 -51.7 0 0 472.90 1393.46
   L 476.75 1388.17
   Z"
-/>
-</g>
-<g fill="#87542f">
-<path d="
+        />
+      </g>
+      <g fill="#87542f">
+        <path
+          d="
   M 553.06 72.98
   L 554.23 75.22
   A 0.27 0.26 -48.5 0 0 554.71 75.19
@@ -7927,9 +9144,16 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 539.63 57.44 545.68 64.29 550.27 71.25
   Q 551.23 72.71 553.06 72.98
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(500.96,73.52) rotate(-13.0)" rx="5.22" ry="0.79"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(500.96,73.52) rotate(-13.0)"
+          rx="5.22"
+          ry="0.79"
+        />
+        <path
+          d="
   M 526.69 87.35
   Q 526.29 87.14 526.03 86.72
   A 1.14 1.12 -11.5 0 0 525.20 86.18
@@ -7945,9 +9169,16 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 526.73 85.29 527.07 87.06
   A 0.27 0.26 -81.8 0 1 526.69 87.35
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(482.89,98.63) rotate(-64.2)" rx="3.36" ry="0.50"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(482.89,98.63) rotate(-64.2)"
+          rx="3.36"
+          ry="0.50"
+        />
+        <path
+          d="
   M 430.29 169.42
   A 0.43 0.43 0.0 0 1 429.85 169.89
   L 429.47 169.88
@@ -7962,8 +9193,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 431.58 156.05 430.13 163.74
   Q 429.89 165.02 430.29 169.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 595.37 189.62
   A 0.83 0.79 -47.6 0 0 593.79 189.73
   Q 592.62 195.43 593.15 201.45
@@ -7980,8 +9212,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.67 0.66 2.3 0 1 596.31 189.93
   Q 595.45 189.92 595.37 189.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 586.61 185.53
   Q 587.06 189.22 586.16 193.15
   Q 584.85 198.88 584.69 200.18
@@ -7998,8 +9231,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 583.33 203.31 585.32 186.06
   L 586.61 185.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 519.68 215.08
   Q 521.97 212.00 521.80 209.01
   Q 521.58 205.27 519.82 203.24
@@ -8009,8 +9243,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 3.16 3.03 23.2 0 1 523.13 204.01
   Q 525.03 211.78 519.68 215.08
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 487.23 206.59
   Q 488.75 209.95 492.31 212.19
   Q 497.55 215.50 498.95 216.07
@@ -8036,9 +9271,16 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.49 0.43 22.1 0 1 486.12 205.61
   Q 486.90 205.54 487.23 206.59
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(585.88,208.92) rotate(-169.7)" rx="1.43" ry="1.25"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(585.88,208.92) rotate(-169.7)"
+          rx="1.43"
+          ry="1.25"
+        />
+        <path
+          d="
   M 548.81 236.66
   Q 550.28 232.10 549.65 230.13
   Q 549.16 228.62 547.52 224.42
@@ -8057,8 +9299,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.65 0.51 -120.5 0 0 550.1294 225.8312
   A 1.65 0.51 -120.5 0 0 548.8526 224.6683
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 469.85 219.21
   L 463.21 225.15
   A 1.92 1.92 0.0 0 0 462.70 225.87
@@ -8070,8 +9313,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 468.59 219.36 469.83 219.18
   A 0.02 0.02 0.0 0 1 469.85 219.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 518.06 256.70
   C 514.79 257.52 511.77 257.00 508.91 256.92
   Q 505.13 256.81 501.40 256.87
@@ -8090,8 +9334,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.50 0.50 0.0 0 1 518.52 254.15
   Q 519.00 255.38 518.06 256.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 564.65 257.68
   Q 564.72 258.53 565.64 258.47
   A 0.44 0.44 0.0 0 1 566.10 258.96
@@ -8102,8 +9347,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 557.92 266.14
   L 564.65 257.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 470.28 277.74
   C 483.68 289.10 501.46 294.80 518.85 290.11
   Q 526.68 288.00 529.52 287.15
@@ -8119,8 +9365,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.23 0.23 0.0 0 1 467.72 277.72
   Q 470.14 278.97 470.28 277.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 142.02 389.72
   Q 142.89 389.54 144.77 389.51
   Q 145.51 389.50 145.28 388.35
@@ -8156,8 +9403,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 175.69 406.09
   A 0.54 0.54 0.0 0 0 175.88 406.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 161.11 413.57
   Q 170.87 419.71 182.60 428.40
   Q 184.11 429.52 184.34 430.57
@@ -8169,8 +9417,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 138.34 400.72 147.20 407.02
   Q 152.06 410.48 161.11 413.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 229.38 454.67
   Q 226.48 453.49 225.45 451.24
   Q 217.82 434.49 227.35 419.44
@@ -8182,8 +9431,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 229.57 454.39
   A 0.17 0.17 0.0 0 1 229.38 454.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 147.77 423.08
   Q 162.62 431.45 175.15 443.04
   Q 177.45 445.16 177.81 445.99
@@ -8196,8 +9446,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.15 0.15 0.0 0 1 143.69 422.78
   Q 145.77 423.33 147.77 423.08
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 243.89 470.74
   A 0.40 0.39 -23.7 0 1 243.68 471.26
   L 243.67 471.27
@@ -8223,8 +9474,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.33 1.30 73.0 0 1 239.90 464.39
   Q 242.49 467.36 243.89 470.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 472.30 805.73
   Q 471.75 807.47 472.52 807.68
   L 473.50 810.14
@@ -8239,8 +9491,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 467.95 805.22
   Q 470.57 804.81 472.30 805.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 498.78 805.51
   Q 499.08 806.23 499.03 807.13
   L 499.20 813.13
@@ -8261,8 +9514,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 493.97 805.37
   L 498.78 805.51
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 452.58 853.09
   L 473.00 861.54
   L 472.11 861.59
@@ -8281,16 +9535,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.33 0.33 0.0 0 1 451.46 853.20
   L 452.58 853.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 673.74 857.15
   Q 674.37 857.94 673.18 858.50
   Q 671.70 859.18 671.50 858.93
   Q 671.30 858.68 672.30 857.40
   Q 673.10 856.35 673.74 857.15
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 679.13 927.82
   Q 679.06 927.33 678.84 927.17
   Q 678.56 926.97 678.20 927.31
@@ -8312,8 +9568,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 690.76 905.54 688.78 909.94
   Q 684.61 919.22 679.13 927.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 716.29 906.74
   L 713.39 902.82
   Q 717.95 890.89 721.66 878.69
@@ -8323,8 +9580,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 722.86 883.76 720.85 893.82
   Q 720.28 896.71 716.29 906.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 695.63 921.83
   Q 694.20 922.54 692.92 923.99
   A 0.50 0.50 0.0 0 1 692.56 924.17
@@ -8340,9 +9598,16 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 702.66 910.37 698.61 916.94
   Q 696.89 919.73 695.63 921.83
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(716.56,908.79) rotate(-32.9)" rx="1.05" ry="0.49"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(716.56,908.79) rotate(-32.9)"
+          rx="1.05"
+          ry="0.49"
+        />
+        <path
+          d="
   M 414.04 1125.66
   Q 414.03 1128.13 412.19 1123.66
   Q 409.44 1117.02 406.27 1110.62
@@ -8350,8 +9615,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 404.89 1105.87 405.30 1105.17
   L 414.04 1125.66
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 403.28 1110.79
   Q 402.92 1110.49 402.46 1110.35
   L 401.35 1106.45
@@ -8360,8 +9626,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.30 0.30 0.0 0 1 402.10 1106.38
   L 403.28 1110.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 586.55 1108.59
   C 592.43 1112.30 598.99 1116.06 604.18 1120.65
   C 607.71 1123.77 610.77 1126.34 614.33 1129.16
@@ -8372,8 +9639,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 591.51 1113.45 586.94 1109.81
   Q 585.39 1108.58 586.55 1108.59
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 566.52 1119.20
   Q 569.76 1123.22 572.00 1129.22
   A 10.53 10.43 18.2 0 0 573.12 1131.41
@@ -8385,10 +9653,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 566.24 1119.49 566.22 1119.34
   A 0.17 0.17 0.0 0 1 566.52 1119.20
   Z"
-/>
-</g>
-<g fill="#eeb288">
-<path d="
+        />
+      </g>
+      <g fill="#eeb288">
+        <path
+          d="
   M 572.02 111.49
   Q 572.60 112.46 572.66 113.47
   Q 573.22 118.23 574.16 122.97
@@ -8672,8 +9941,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.06 0.05 -32.3 0 0 489.84 250.81
   L 493.06 256.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 600.61 195.05
   L 600.07 194.87
   A 0.54 0.53 -75.9 0 0 599.38 195.29
@@ -8716,8 +9986,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.43 1.25 -169.7 0 0 586.1035 207.6901
   A 1.43 1.25 -169.7 0 0 584.4730 208.6643
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 424.94 174.57
   Q 425.19 174.91 425.44 175.04
   Q 425.35 179.19 426.32 183.09
@@ -8739,8 +10010,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.56 0.53 73.2 0 1 423.75 174.45
   Q 424.28 173.94 424.94 174.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 565.46 264.41
   L 565.09 297.53
   A 3.44 3.42 72.7 0 1 563.65 300.29
@@ -8771,8 +10043,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 564.26 268.45 563.42 266.32
   Q 564.76 263.41 565.46 264.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 261.51 464.92
   Q 263.61 472.37 263.84 479.21
   Q 260.50 483.76 257.45 488.02
@@ -8904,8 +10177,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 243.68 471.26
   A 0.40 0.39 -23.7 0 0 243.89 470.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 175.88 406.84
   A 0.54 0.54 0.0 0 1 175.69 406.09
   L 175.71 406.05
@@ -8918,8 +10192,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 188.89 415.95 185.37 413.16
   C 181.78 410.31 179.24 408.84 175.88 406.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 493.97 805.37
   L 493.93 806.67
   Q 492.43 806.69 490.76 806.24
@@ -8970,8 +10245,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 461.16 803.30 466.75 804.03
   Q 477.62 805.44 493.97 805.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 716.29 906.74
   Q 720.28 896.71 720.85 893.82
   Q 722.86 883.76 726.29 873.78
@@ -9062,8 +10338,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 673.10 856.35 672.30 857.40
   Q 671.30 858.68 671.50 858.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 475.40 812.39
   Q 475.06 816.12 476.05 820.01
   Q 478.55 829.89 480.27 840.75
@@ -9077,8 +10354,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 473.73 813.91 473.95 812.02
   L 475.40 812.39
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 619.19 1353.89
   Q 613.00 1355.11 607.31 1356.95
   Q 600.17 1359.26 597.95 1359.26
@@ -9143,8 +10421,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 608.38 1355.57 612.07 1354.51 615.58 1353.67
   Q 620.27 1352.54 619.19 1353.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 482.83 1349.69
   Q 484.92 1356.92 484.51 1362.50
   Q 484.07 1368.50 484.92 1372.96
@@ -9172,8 +10451,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.63 2.59 -54.6 0 0 482.74 1356.34
   Q 481.47 1352.68 482.83 1349.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 600.41 1370.77
   Q 600.39 1371.20 601.22 1371.26
   L 601.79 1372.07
@@ -9181,8 +10461,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 601.15 1373.75 600.07 1373.49
   L 600.41 1370.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 479.96 1411.30
   L 478.75 1413.14
   A 0.42 0.42 0.0 0 0 478.91 1413.74
@@ -9199,18 +10480,26 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 473.55 1415.98 473.45 1413.92
   Q 475.84 1412.12 479.96 1411.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 376.60 1417.08
   C 376.26 1416.90 376.26 1416.09 376.83 1416.15
   Q 377.04 1416.18 377.12 1416.54
   A 0.46 0.38 -85.4 0 1 376.60 1417.08
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(592.33,1425.65) rotate(-64.3)" rx="1.87" ry="0.77"/>
-</g>
-<g fill="#a48155">
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(592.33,1425.65) rotate(-64.3)"
+          rx="1.87"
+          ry="0.77"
+        />
+      </g>
+      <g fill="#a48155">
+        <path
+          d="
   M 553.06 72.98
   Q 551.23 72.71 550.27 71.25
   C 545.68 64.29 539.63 57.44 532.37 53.90
@@ -9238,8 +10527,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 525.96 47.58 538.90 56.85
   Q 547.08 62.71 553.06 72.98
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 595.95 164.76
   Q 595.67 164.86 595.42 164.61
   A 0.38 0.36 -65.4 0 1 595.31 164.28
@@ -9282,8 +10572,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 6.93 6.77 54.9 0 1 598.32 156.14
   L 595.95 164.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 487.23 206.59
   Q 486.90 205.54 486.12 205.61
   A 0.49 0.43 22.1 0 0 485.89 205.69
@@ -9342,25 +10633,34 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 492.86 199.69 488.37 204.13
   Q 487.78 204.70 487.23 206.59
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 476.59 219.80
   L 473.27 220.93
   A 0.09 0.08 13.6 0 1 473.18 220.79
   Q 474.70 219.41 476.40 219.09
   A 0.37 0.37 0.0 0 1 476.59 219.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 480.85 231.57
   Q 480.07 232.87 481.08 237.22
   Q 477.14 234.89 476.46 231.44
   A 0.46 0.46 0.0 0 1 476.90 230.90
   Q 479.52 230.86 480.85 231.57
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(198.90,414.24) rotate(-41.1)" rx="1.01" ry="0.45"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(198.90,414.24) rotate(-41.1)"
+          rx="1.01"
+          ry="0.45"
+        />
+        <path
+          d="
   M 467.95 805.22
   L 468.57 811.94
   Q 467.13 812.46 466.50 812.47
@@ -9378,8 +10678,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 453.43 803.85 457.22 804.04
   Q 462.63 804.32 467.95 805.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 701.37 792.96
   L 701.58 797.61
   A 0.58 0.57 5.7 0 1 700.86 798.19
@@ -9393,8 +10694,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 699.99 793.17 700.77 793.41
   Q 701.15 793.53 701.37 792.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 719.87 790.06
   Q 719.88 789.99 719.89 789.92
   Q 720.76 791.74 722.41 792.10
@@ -9418,8 +10720,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 722.90 795.55 722.74 794.74 721.48 792.97
   Q 720.51 791.59 719.87 790.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 499.20 813.13
   L 499.03 807.13
   C 505.62 806.97 512.41 807.18 518.92 806.62
@@ -9528,8 +10831,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 526.84 814.29 505.31 813.91
   Q 503.66 813.88 499.20 813.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 717.96 807.44
   A 0.40 0.40 0.0 0 1 717.54 808.12
   Q 715.46 807.26 714.28 805.19
@@ -9542,8 +10846,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 3.82 3.73 -84.4 0 0 715.67 805.46
   L 717.96 807.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 493.93 806.67
   L 493.96 812.21
   Q 485.31 812.93 476.75 812.13
@@ -9558,8 +10863,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.59 1.54 -36.3 0 1 490.76 806.24
   Q 492.43 806.69 493.93 806.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 452.58 853.09
   L 451.46 853.20
   A 0.33 0.33 0.0 0 0 451.32 853.81
@@ -9651,8 +10957,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.80 0.94 22.8 0 0 445.30 851.28
   L 452.58 853.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 586.55 1108.59
   Q 585.39 1108.58 586.94 1109.81
   Q 591.51 1113.45 596.35 1115.91
@@ -9669,8 +10976,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.71 0.71 0.0 0 1 580.64 1106.94
   Q 583.76 1107.12 586.55 1108.59
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 402.46 1110.35
   Q 402.92 1110.49 403.28 1110.79
   L 406.27 1110.62
@@ -9688,8 +10996,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.62 0.62 0.0 0 0 402.96 1111.08
   Q 402.86 1110.80 402.46 1110.35
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 409.07 1299.04
   Q 409.25 1299.19 409.89 1299.20
   A 0.22 0.21 59.3 0 0 409.99 1298.79
@@ -9713,8 +11022,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 410.96 1301.11 409.04 1299.07
   A 0.02 0.02 0.0 0 1 409.07 1299.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 613.56 1329.86
   A 0.50 0.50 0.0 0 1 614.02 1330.43
   L 614.02 1330.45
@@ -9740,9 +11050,16 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.19 0.19 0.0 0 0 611.38 1329.72
   L 613.56 1329.86
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(602.82,1367.58) rotate(-81.8)" rx="1.57" ry="0.58"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(602.82,1367.58) rotate(-81.8)"
+          rx="1.57"
+          ry="0.58"
+        />
+        <path
+          d="
   M 456.18 1366.75
   A 0.25 0.25 0.0 0 1 456.45 1366.52
   L 456.66 1366.54
@@ -9752,9 +11069,10 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.25 0.25 0.0 0 1 455.98 1368.76
   L 456.18 1366.75
   Z"
-/>
-<circle cx="405.62" cy="1385.63" r="0.54"/>
-<path d="
+        />
+        <circle cx="405.62" cy="1385.63" r="0.54" />
+        <path
+          d="
   M 589.61 1404.12
   L 589.90 1406.53
   A 2.11 2.05 -39.2 0 1 589.79 1407.49
@@ -9771,8 +11089,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 589.31 1406.42 589.37 1404.14
   A 0.12 0.12 0.0 0 1 589.61 1404.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 384.57 1411.11
   Q 384.69 1411.60 384.17 1412.17
   A 0.90 0.89 -60.6 0 1 383.25 1412.43
@@ -9780,8 +11099,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 379.91 1414.54 377.85 1413.68
   Q 379.67 1411.18 384.57 1411.11
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 336.88 1456.79
   A 0.24 0.24 0.0 0 1 336.62 1457.02
   L 332.60 1456.84
@@ -9792,10 +11112,11 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.24 0.24 0.0 0 1 336.92 1455.82
   L 336.88 1456.79
   Z"
-/>
-</g>
-<g fill="#1f170e">
-<path d="
+        />
+      </g>
+      <g fill="#1f170e">
+        <path
+          d="
   M 555.30 55.90
   Q 558.37 61.41 559.76 59.06
   C 563.67 63.09 566.35 68.67 568.61 73.46
@@ -11392,14 +12713,16 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.82 0.81 -72.5 0 0 598.13 1371.30
   L 599.13 1371.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 562.80 75.18
   Q 563.87 78.13 562.77 78.25
   Q 560.47 76.42 562.80 75.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 525.18 153.12
   Q 523.77 153.03 520.93 153.93
   Q 518.12 154.83 517.26 152.25
@@ -11429,8 +12752,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 559.71 149.78
   A 0.85 0.85 0.0 0 0 560.60 148.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 489.07 154.67
   Q 487.95 157.45 486.24 156.73
   C 484.08 155.80 482.64 154.98 480.66 154.49
@@ -11458,8 +12782,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 445.38 154.30
   A 0.53 0.53 0.0 0 0 446.11 154.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 524.88 165.75
   A 0.19 0.19 0.0 0 1 524.62 165.64
   L 524.41 165.03
@@ -11470,8 +12795,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.26 0.26 0.0 0 1 545.59 160.95
   C 537.84 160.08 531.69 162.36 524.88 165.75
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 477.73 166.16
   Q 477.50 166.12 476.96 165.22
   Q 476.69 164.77 476.20 164.61
@@ -11481,8 +12807,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 466.51 161.27 475.57 160.39 478.14 165.61
   A 0.39 0.38 81.9 0 1 477.73 166.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 556.64 172.01
   Q 554.60 172.14 554.00 171.77
   Q 550.46 169.58 546.79 167.71
@@ -11509,16 +12836,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 549.14 164.46 556.87 171.15
   Q 557.20 171.43 556.64 172.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 523.13 172.18
   Q 523.18 171.81 523.65 171.69
   A 0.42 0.35 -5.8 0 1 524.18 172.04
   Q 524.11 172.60 523.88 172.77
   A 0.55 0.48 78.9 0 1 523.13 172.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 432.22 214.68
   Q 429.66 201.46 429.84 187.93
   A 7.52 6.98 -52.3 0 0 429.72 186.61
@@ -11532,8 +12861,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.76 0.71 82.9 0 1 432.52 214.91
   Q 432.40 214.92 432.22 214.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 542.68 229.86
   A 0.82 0.82 0.0 0 1 543.02 231.19
   Q 528.23 247.40 506.81 248.60
@@ -11561,8 +12891,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.46 0.46 0.0 0 0 476.46 231.44
   Q 477.14 234.89 481.08 237.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 561.75 332.78
   Q 566.94 328.71 571.86 326.29
   Q 576.59 323.97 579.68 322.21
@@ -11576,8 +12907,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 563.61 332.68 561.86 333.02
   A 0.14 0.14 0.0 0 1 561.75 332.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 412.90 433.31
   A 0.04 0.03 75.1 0 0 412.93 433.33
   L 413.22 433.31
@@ -11666,8 +12998,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 3.07 3.07 0.0 0 1 420.18 460.17
   L 421.80 431.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 532.74 439.77
   Q 533.85 437.44 533.64 433.88
   A 1.03 1.03 0.0 0 0 532.65 432.92
@@ -11750,8 +13083,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 489.75 458.89
   A 1.06 1.06 0.0 0 0 488.65 459.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 449.08 430.12
   A 1.28 1.28 0.0 0 1 450.40 431.47
   L 448.71 461.20
@@ -11783,8 +13117,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 448.83 432.13
   A 0.55 0.55 0.0 0 0 448.30 431.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 470.41 432.19
   L 468.70 462.29
   A 0.59 0.58 3.9 0 0 469.25 462.91
@@ -11815,8 +13150,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.19 1.19 0.0 0 0 475.83 470.46
   L 476.43 465.59
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 556.61 472.78
   A 2.18 2.18 0.0 0 1 554.43 474.56
   L 549.82 474.49
@@ -11857,8 +13193,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.33 1.33 0.0 0 1 541.18 464.78
   L 546.55 464.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 575.67 459.50
   L 580.74 460.12
   A 1.88 1.87 -82.8 0 1 582.37 462.22
@@ -11903,8 +13240,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.38 1.37 -5.2 0 0 576.40 447.17
   L 580.58 446.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 594.94 464.54
   Q 593.89 469.37 593.98 472.30
   C 594.14 477.68 588.11 476.63 585.00 475.66
@@ -11959,8 +13297,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 595.13 447.49 595.08 449.18 594.48 449.91
   A 0.22 0.22 0.0 0 1 594.09 449.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 544.88 443.84
   A 0.46 0.45 -38.4 0 1 545.78 443.94
   Q 545.59 450.04 546.84 457.24
@@ -11969,8 +13308,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.56 0.55 4.8 0 1 541.99 457.50
   L 544.88 443.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 405.40 500.13
   L 405.63 504.80
   A 2.99 2.98 -3.0 0 1 402.79 507.94
@@ -12055,8 +13395,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 411.29 483.21
   A 1.28 1.28 0.0 0 0 410.08 484.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 437.17 481.61
   L 442.05 481.80
   A 1.73 1.73 0.0 0 1 443.71 483.60
@@ -12087,8 +13428,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 441.50 516.18
   A 0.77 0.77 0.0 0 1 440.77 515.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 469.50 516.06
   A 2.21 2.20 5.0 0 1 471.57 518.52
   L 470.90 523.95
@@ -12120,8 +13462,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.21 1.21 0.0 0 0 469.71 523.15
   L 469.98 518.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 506.63 496.00
   A 0.91 0.91 0.0 0 1 505.97 496.72
   Q 502.90 497.53 498.76 496.78
@@ -12162,8 +13505,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 485.56 525.52 494.99 524.85
   C 503.48 524.25 504.44 518.87 504.88 511.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 508.93 494.67
   Q 509.06 493.80 511.53 488.92
   A 3.28 3.10 -10.7 0 1 512.13 488.09
@@ -12187,8 +13531,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 10.21 10.21 0.0 0 0 530.4851 516.4759
   L 531.7899 496.2980
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 559.62 487.47
   L 559.93 490.78
   A 1.35 0.94 -53.2 0 1 559.92 491.05
@@ -12231,8 +13576,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.53 1.53 0.0 0 0 543.28 486.55
   L 539.47 486.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 585.30 490.98
   Q 585.89 490.38 586.53 488.29
   A 0.78 0.77 7.0 0 1 587.23 487.75
@@ -12313,8 +13659,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 600.14 505.76 601.07 496.90
   A 0.58 0.58 0.0 0 1 601.68 496.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 523.3679 515.5018
   A 3.50 3.50 0.0 0 1 519.6723 518.7945
   L 519.4526 518.7818
@@ -12335,8 +13682,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.03 2.03 0.0 0 0 521.9316 515.4234
   L 522.9030 496.2480
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 724.64 601.56
   A 0.94 0.94 0.0 0 0 724.45 599.92
   L 720.55 598.29
@@ -12364,8 +13712,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 712.53 607.89 715.09 606.33 718.08 605.09
   Q 721.91 603.49 724.64 601.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 392.67 617.98
   Q 392.08 622.79 390.60 628.37
   Q 387.45 640.23 384.44 649.78
@@ -12423,8 +13772,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 395.89 616.12 393.20 617.27
   A 0.89 0.88 81.9 0 0 392.67 617.98
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 564.50 630.69
   A 0.29 0.29 0.0 0 1 565.07 630.72
   Q 565.63 637.42 568.09 652.84
@@ -12438,16 +13788,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 570.57 671.14 567.31 661.57 566.05 650.85
   C 565.31 644.57 563.38 637.29 564.50 630.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 647.80 1366.67
   Q 647.62 1368.97 645.89 1370.01
   Q 645.18 1364.71 647.80 1366.67
   Z"
-/>
-</g>
-<g fill="#6d5d3b" fill-opacity="0.082">
-<path d="
+        />
+      </g>
+      <g fill="#6d5d3b" fill-opacity="0.082">
+        <path
+          d="
   M 578.04 1418.20
   Q 577.51 1429.98 579.04 1441.58
   C 579.25 1443.17 579.04 1444.32 579.65 1446.13
@@ -12512,8 +13864,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 341.59 1476.96 341.95 1477.98
   A 1.35 1.28 62.1 0 0 343.96 1478.66
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 664.71 1501.96
   Q 662.26 1503.34 659.50 1503.32
   A 0.43 0.42 -9.2 0 0 659.09 1503.88
@@ -12541,11 +13894,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 636.28 1505.30 646.37 1504.62
   Q 650.48 1504.34 664.71 1501.96
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(588.67,1504.91) rotate(-8.6)" rx="0.47" ry="0.21"/>
-</g>
-<g fill="#6f5e4d" fill-opacity="0.996">
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(588.67,1504.91) rotate(-8.6)"
+          rx="0.47"
+          ry="0.21"
+        />
+      </g>
+      <g fill="#6f5e4d" fill-opacity="0.996">
+        <path
+          d="
   M 735.27 790.96
   L 735.95 794.89
   Q 734.80 794.69 734.34 795.04
@@ -12557,8 +13917,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 726.43 781.63 726.81 781.90
   Q 731.06 784.90 735.27 790.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 408.57 1343.67
   L 408.70 1344.56
   A 0.86 0.85 83.8 0 0 409.60 1345.29
@@ -12643,8 +14004,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 425.30 1365.55 422.88 1366.11
   A 0.33 0.33 0.0 0 0 422.77 1366.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 464.14 1354.36
   Q 463.94 1354.17 459.63 1354.39
   C 455.26 1354.60 451.82 1353.63 447.95 1351.58
@@ -12658,8 +14020,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 463.10 1354.99 464.01 1354.80
   A 0.26 0.26 0.0 0 0 464.14 1354.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 445.98 1360.57
   L 443.42 1368.84
   A 2.52 2.49 -7.2 0 1 442.30 1370.27
@@ -12780,8 +14143,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 442.68 1367.46 444.30 1363.22 445.10 1360.29
   L 445.98 1360.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 645.89 1370.01
   Q 647.62 1368.97 647.80 1366.67
   Q 648.03 1367.11 648.99 1367.21
@@ -12830,8 +14194,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.60 0.62 -25.3 0 0 602.8550 1386.6605
   A 1.60 0.62 -25.3 0 0 604.0365 1385.4162
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 599.21 1374.10
   Q 600.14 1374.16 600.07 1373.49
   Q 601.15 1373.75 601.77 1372.94
@@ -12843,8 +14208,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.20 1.19 -12.9 0 1 602.04 1374.08
   Q 600.70 1374.90 599.21 1374.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 606.15 1398.63
   A 0.38 0.37 -89.2 0 1 606.64 1399.14
   Q 605.63 1401.20 606.86 1401.98
@@ -12925,8 +14291,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 607.84 1404.70 607.62 1403.72
   A 0.55 0.55 0.0 0 0 607.19 1403.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 608.37 1423.95
   Q 609.22 1425.37 609.78 1425.18
   C 610.60 1424.90 610.94 1424.39 611.40 1424.27
@@ -13003,8 +14370,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 610.35 1427.05 611.16 1427.27
   A 0.94 0.65 -8.0 0 0 612.31 1426.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 388.36 1391.95
   A 0.20 0.20 0.0 0 1 388.67 1391.96
   L 388.86 1392.21
@@ -13025,8 +14393,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.17 1.16 47.8 0 0 386.47 1394.14
   L 388.36 1391.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 347.68 1394.58
   Q 355.65 1393.55 363.90 1395.50
   A 3.83 3.83 0.0 0 1 365.16 1396.05
@@ -13044,8 +14413,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 353.49 1397.08 347.62 1395.44
   A 0.44 0.44 0.0 0 1 347.68 1394.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 608.32 1420.30
   Q 607.80 1420.45 607.63 1421.56
   L 607.87 1415.41
@@ -13073,8 +14443,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.86 0.41 -180.4 0 0 653.2471 1412.0900
   A 0.86 0.41 -180.4 0 0 652.3900 1412.5060
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 341.71 1411.34
   L 342.41 1411.51
   A 0.61 0.61 0.0 0 0 343.17 1410.88
@@ -13087,8 +14458,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 342.23 1413.09 341.34 1411.88
   A 0.35 0.35 0.0 0 1 341.71 1411.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 387.22 1415.74
   A 0.23 0.23 0.0 0 0 387.20 1415.32
   Q 384.77 1414.42 384.87 1413.01
@@ -13130,8 +14502,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.64 0.44 -11.1 0 0 365.7747 1431.2418
   A 2.64 0.44 -11.1 0 0 368.2806 1430.3017
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 360.71 1417.72
   A 0.28 0.28 0.0 0 1 361.08 1418.08
   Q 359.96 1420.88 357.03 1421.67
@@ -13144,8 +14517,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 358.87 1419.76 359.23 1418.99
   Q 359.62 1418.17 360.71 1417.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 591.50 1431.98
   Q 591.14 1431.84 590.69 1431.84
   A 0.64 0.63 89.1 0 0 590.05 1432.51
@@ -13173,8 +14547,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.87 0.77 -64.3 0 0 593.0238 1425.9839
   A 1.87 0.77 -64.3 0 0 593.1409 1423.9650
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 672.62 1436.73
   A 0.26 0.26 0.0 0 1 673.10 1436.59
   Q 675.62 1441.08 675.19 1445.70
@@ -13197,8 +14572,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 673.68 1446.23 674.30 1443.16 673.30 1440.03
   Q 672.71 1438.17 672.62 1436.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 611.52 1439.75
   A 0.17 0.17 0.0 0 1 611.75 1439.66
   L 611.94 1439.75
@@ -13209,18 +14585,32 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.17 0.17 0.0 0 1 611.29 1440.26
   L 611.52 1439.75
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(637.74,1445.41) rotate(-4.1)" rx="2.06" ry="0.59"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(637.74,1445.41) rotate(-4.1)"
+          rx="2.06"
+          ry="0.59"
+        />
+        <path
+          d="
   M 639.61 1449.12
   Q 639.64 1449.34 637.23 1449.97
   Q 636.31 1450.22 636.22 1449.60
   Q 636.14 1448.99 637.09 1448.96
   Q 639.58 1448.90 639.61 1449.12
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(639.11,1465.49) rotate(-3.4)" rx="0.99" ry="0.48"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(639.11,1465.49) rotate(-3.4)"
+          rx="0.99"
+          ry="0.48"
+        />
+        <path
+          d="
   M 604.85 1475.53
   Q 601.79 1475.63 598.68 1474.72
   A 0.29 0.29 0.0 0 0 598.36 1475.17
@@ -13253,18 +14643,20 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.83 2.74 73.9 0 0 597.23 1472.86
   L 604.85 1475.53
   Z"
-/>
-</g>
-<g fill="#cb8258">
-<path d="
+        />
+      </g>
+      <g fill="#cb8258">
+        <path
+          d="
   M 574.48 116.77
   Q 576.89 119.39 576.89 123.97
   Q 577.60 126.56 576.66 129.13
   A 0.33 0.33 0.0 0 1 576.02 129.05
   L 574.48 116.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 427.78 176.08
   L 427.87 176.52
   L 427.01 176.89
@@ -13278,10 +14670,23 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 425.35 179.19 425.44 175.04
   Q 426.61 175.07 427.78 176.08
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(549.69,226.09) rotate(-120.5)" rx="1.65" ry="0.51"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(461.81,241.14) rotate(-120.0)" rx="1.71" ry="0.47"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(549.69,226.09) rotate(-120.5)"
+          rx="1.65"
+          ry="0.51"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(461.81,241.14) rotate(-120.0)"
+          rx="1.71"
+          ry="0.47"
+        />
+        <path
+          d="
   M 518.06 256.70
   C 515.54 260.83 510.96 261.95 506.24 262.50
   Q 500.15 263.21 495.02 259.24
@@ -13291,8 +14696,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 505.13 256.81 508.91 256.92
   C 511.77 257.00 514.79 257.52 518.06 256.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 557.92 266.14
   L 558.41 269.51
   A 0.38 0.37 -22.9 0 0 559.01 269.75
@@ -13320,8 +14726,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 547.88 276.80 550.01 274.51
   Q 553.88 270.35 557.92 266.14
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 710.40 776.36
   A 0.41 0.41 0.0 0 1 710.57 777.12
   C 708.89 778.08 705.18 778.72 704.03 781.47
@@ -13331,16 +14738,18 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   C 690.88 779.03 693.23 777.68 696.44 777.11
   Q 703.33 775.88 710.40 776.36
   Z"
-/>
-</g>
-<g fill="#3b1f10">
-<path d="
+        />
+      </g>
+      <g fill="#3b1f10">
+        <path
+          d="
   M 555.30 55.90
   L 559.76 59.06
   Q 558.37 61.41 555.30 55.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 576.89 123.97
   Q 576.89 119.39 574.48 116.77
   Q 574.64 115.54 572.66 113.47
@@ -13486,8 +14895,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   L 429.85 169.89
   A 0.43 0.43 0.0 0 0 430.29 169.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 560.60 148.41
   A 0.85 0.85 0.0 0 1 559.71 149.78
   L 550.42 147.02
@@ -13502,8 +14912,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 3.75 3.69 48.3 0 1 549.06 141.48
   Q 556.07 143.12 560.60 148.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 446.11 154.26
   A 0.53 0.53 0.0 0 1 445.38 154.30
   L 445.37 154.28
@@ -13518,8 +14929,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 2.29 2.13 18.7 0 1 449.56 152.34
   Q 447.42 152.87 446.11 154.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 546.79 167.71
   Q 546.46 167.75 546.29 167.86
   Q 546.13 167.96 546.13 168.22
@@ -13535,8 +14947,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 1.06 1.06 0.0 0 1 535.89 167.19
   Q 541.34 164.35 546.79 167.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 477.98 172.79
   Q 476.79 171.24 475.13 170.93
   A 0.40 0.39 89.0 0 0 474.67 171.41
@@ -13563,8 +14976,9 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   Q 469.35 171.73 468.55 172.22
   A 0.24 0.24 0.0 0 0 468.62 172.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 424.57 209.28
   Q 423.32 207.16 423.26 205.00
   L 423.23 199.70
@@ -13579,9 +14993,8 @@ export const LucasPresentingSvg: React.FC<React.SVGProps<SVGSVGElement>> = props
   A 0.63 0.63 0.0 0 0 426.47 208.86
   Q 425.61 208.35 424.57 209.28
   Z"
-/>
-</g>
-</svg>
-
+        />
+      </g>
+    </svg>
   )
 }

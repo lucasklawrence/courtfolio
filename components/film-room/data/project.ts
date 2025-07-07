@@ -1,21 +1,21 @@
 export interface Project {
-  slug: string               // URL-safe ID, e.g., 'bars-of-the-day'
-  title: string              // Display title
-  tagline?: string           // Short one-liner for selector UI
-  description?: string       // Optional long description
-  coverImage?: string        // Thumbnail/visual asset
+  slug: string // URL-safe ID, e.g., 'bars-of-the-day'
+  title: string // Display title
+  tagline?: string // Short one-liner for selector UI
+  description?: string // Optional long description
+  coverImage?: string // Thumbnail/visual asset
   icon?: string // favicon of project
-  slides?: SlideSection[]    // Optional: array of sections to render in slideshow
+  slides?: SlideSection[] // Optional: array of sections to render in slideshow
 }
 
 export interface SlideSection {
   type: 'text' | 'image' | 'code' | 'demo' | 'quote'
-  content: any               // Renderable content — can vary by type
+  content: any // Renderable content — can vary by type
   heading?: string
   subtext?: string
-    reaction?: {
-  speaker: 'audience' | 'sprite' | 'coach'
-  text: string
-  position?: { x: number, y: number }
-    }
+  reaction?: {
+    speaker: 'audience' | 'sprite' | 'coach'
+    text: string
+    position?: { x: number; y: number }
+  }
 }

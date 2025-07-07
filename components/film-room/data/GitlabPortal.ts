@@ -1,4 +1,4 @@
-import { Project } from "./project";
+import { Project } from './project'
 
 export const gitlabPortalProject: Project = {
   slug: 'gitlab-portal',
@@ -13,13 +13,13 @@ It helps engineering leads, PMs, and execs monitor epic progress, issue dependen
       heading: 'GitLab Management Portal',
       subtext: 'Built for internal planning, progress tracking, and executive visibility',
       content: `A high-level view of engineering execution across GitLab epics, issues, and merge requests.
-Supports epic swimlanes, dependency trees, milestone rollups, and more — all via React + TypeScript.`
+Supports epic swimlanes, dependency trees, milestone rollups, and more — all via React + TypeScript.`,
     },
     {
       type: 'image',
       heading: 'Epic Swimlanes + Dependency Trees',
       subtext: 'Visualize issue hierarchies and blocking relationships in one view',
-      content: '/images/projects/gitlab-swimlane-tree.png'
+      content: '/images/projects/gitlab-swimlane-tree.png',
     },
     {
       type: 'code',
@@ -34,13 +34,13 @@ Supports epic swimlanes, dependency trees, milestone rollups, and more — all v
 │   └── dashboard/
 ├── services/
 ├── hooks/
-└── common/`
+└── common/`,
     },
     {
       type: 'quote',
       heading: 'Engineering Feedback',
       subtext: 'From internal stakeholders',
-      content: `This made cross-team planning meetings so much smoother. I can see blockers, team loads, and progress at a glance.`
-    }
-  ]
+      content: `This made cross-team planning meetings so much smoother. I can see blockers, team loads, and progress at a glance.`,
+    },
+  ],
 }
