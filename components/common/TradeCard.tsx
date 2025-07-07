@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import clsx from "clsx"
+import { BackToCourtButton } from "./BackToCourtButton"
 
 export type TradeCardProps = {
   name: string
@@ -16,6 +17,8 @@ export type TradeCardProps = {
   moment: string
   featured?: boolean
   experimental?: boolean
+  status?: "coming-soon" | "in-progress"
+
 }
 
 export const TradeCard: React.FC<TradeCardProps> = ({
@@ -29,6 +32,7 @@ export const TradeCard: React.FC<TradeCardProps> = ({
   moment,
   featured = false,
   experimental = false,
+  status
 }) => {
   const rarityClass = featured
     ? "border-yellow-400 shadow-[0_0_20px_4px_rgba(255,255,0,0.4)]"
@@ -40,13 +44,23 @@ export const TradeCard: React.FC<TradeCardProps> = ({
     <motion.div
       whileHover={{ scale: 1.05, rotate: -1 }}
       className={clsx(
-        "relative rounded-xl border p-4 bg-neutral-900 text-white w-full max-w-xs flex flex-col items-center transition-all",
+        "relative rounded-xl border p-4 bg-neutral-900 text-white w-full max-w-xs flex flex-col items-center transition-all overflow-hidden",
         rarityClass
       )}
     >
+      {featured && (
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="foil-shine w-full h-full absolute top-0 left-0" />
+        </div>
+      )}
+
       <div className="w-full aspect-video relative rounded-md overflow-hidden border border-neutral-600 bg-black">
-        <Image src={thumbnailUrl} alt={name} fill className="object-cover" />
-      </div>
+<Image
+  src={thumbnailUrl}
+  alt={name}
+  fill
+  className="object-cover"
+/>     </div>
 
       <h3 className="mt-4 text-lg font-bold text-center leading-tight">{name}</h3>
       <p className="text-sm text-neutral-400 italic text-center">{tagline}</p>
@@ -75,6 +89,38 @@ export const TradeCard: React.FC<TradeCardProps> = ({
           🧪 Experimental
         </div>
       )}
+
+      {status === "coming-soon" && (
+        <div className="absolute top-2 right-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded shadow">
+    ⏳ Coming Soon
+  </div>
+)}
+
+{status === "in-progress" && (
+        <div className="absolute top-2 right-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded shadow">
+    🚧 In Progress
+  </div>
+)}
+
+      <style jsx>{`
+        .foil-shine {
+          background: linear-gradient(120deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.05) 100%);
+          transform: rotate(25deg);
+          animation: shine 2.5s infinite linear;
+          opacity: 0.6;
+          mix-blend-mode: screen;
+        }
+
+        @keyframes shine {
+          0% {
+            transform: translateX(-100%) rotate(25deg);
+          }
+          100% {
+            transform: translateX(100%) rotate(25deg);
+          }
+        }
+      `}</style>
+
     </motion.div>
   )
-}
+} 
