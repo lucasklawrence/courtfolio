@@ -38,7 +38,7 @@ const projects: TradeCardProps[] = [
     year: 2025,
     moment: 'Displays one rap bar per day with archive view',
     featured: true,
-    href: "https://barsoftheday.com"
+    href: 'https://barsoftheday.com',
   },
   {
     name: 'Skip Trace Portal',
