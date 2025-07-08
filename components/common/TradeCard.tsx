@@ -17,7 +17,7 @@ export type TradeCardProps = {
   moment: string
   featured?: boolean
   experimental?: boolean
-  status?: 'coming-soon' | 'in-progress'
+  status?: 'coming-soon' | 'in-progress' | undefined
 }
 
 export const TradeCard: React.FC<TradeCardProps> = ({
@@ -67,13 +67,6 @@ export const TradeCard: React.FC<TradeCardProps> = ({
         </div>
         <div className="text-yellow-100 text-xs">🔥 {moment}</div>
       </div>
-
-      <Link
-        href={`/film-room/${slug}`}
-        className="mt-4 px-4 py-2 text-sm bg-yellow-400 text-black rounded-md font-bold hover:bg-yellow-300"
-      >
-        🎞️ View Film
-      </Link>
 
       {featured && (
         <div className="absolute top-2 right-2 text-xs bg-yellow-300 text-black px-2 py-0.5 rounded shadow">

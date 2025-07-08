@@ -1,8 +1,33 @@
 'use client'
 
 import { TradeCard } from './TradeCard'
+import type { TradeCardProps } from './TradeCard'
 
-const projects = [
+const projects: TradeCardProps[] = [
+   {
+    name: 'Courtfolio',
+    slug: 'courtfolio',
+    tagline: 'A basketball-themed portfolio that plays like a game',
+    thumbnailUrl: '/thumbnails/CourtfolioThumbnail.png',
+    stack: ['Next.js', 'SVG', 'Framer Motion', 'Tailwind CSS'],
+    impact: 'Interactive showcase of work and creativity',
+    year: 2025,
+    moment: 'Mapped entire site onto a basketball court with animated SVGs',
+    featured: true,
+  },
+   {
+    name: 'GitLab Management Portal',
+    slug: 'gitlab-portal',
+    tagline: 'Visualize GitLab project plans with trees, swimlanes, and Gantt charts',
+    thumbnailUrl: '/thumbnails/GitlabThumbnail.png',
+    stack: ['Next.js', 'TypeScript', 'React', 'Framer Motion', 'Tailwind CSS', 'Vitest'],
+    impact:
+      'Streamlines planning by transforming GitLab epics and issues into interactive trees and timelines',
+    year: 2025,
+    moment:
+      'Built a dependency-aware Gantt chart and tree view with milestone filtering and progress tracking',
+    featured: true,
+  },
   {
     name: 'Bars of the Day',
     slug: 'bars-of-the-day',
@@ -13,17 +38,6 @@ const projects = [
     year: 2025,
     moment: 'Synced lyrics to audio playback',
     featured: true,
-  },
-  {
-    name: 'Fantasy Football AI',
-    slug: 'fantasy-football-ai',
-    tagline: 'AI-driven draft & weekly picks',
-    thumbnailUrl: '/thumbnails/FantasyThumbnail.png',
-    stack: ['Python', 'React', 'ML'],
-    impact: 'Won 2024 league',
-    year: 2024,
-    moment: 'Predicted breakout players weekly',
-    status: 'coming-soon',
   },
   {
     name: 'Skip Trace Portal',
@@ -37,29 +51,16 @@ const projects = [
     status: 'in-progress',
   },
   {
-    name: 'Courtfolio',
-    slug: 'courtfolio',
-    tagline: 'A basketball-themed portfolio that plays like a game',
-    thumbnailUrl: '/thumbnails/CourtfolioThumbnail.png',
-    stack: ['Next.js', 'SVG', 'Framer Motion', 'Tailwind CSS'],
-    impact: 'Interactive showcase of work and creativity',
-    year: 2025,
-    moment: 'Mapped entire site onto a basketball court with animated SVGs',
-    featured: true,
-  },
-  {
-    name: 'GitLab Management Portal',
-    slug: 'gitlab-portal',
-    tagline: 'Visualize GitLab project plans with trees, swimlanes, and Gantt charts',
-    thumbnailUrl: '/thumbnails/GitlabThumbnail.png',
-    stack: ['Next.js', 'TypeScript', 'React', 'Framer Motion', 'Tailwind CSS', 'Vitest'],
-    impact:
-      'Streamlines planning by transforming GitLab epics and issues into interactive trees and timelines',
-    year: 2025,
-    moment:
-      'Built a dependency-aware Gantt chart and tree view with milestone filtering and progress tracking',
-    featured: true,
-  },
+    name: 'Fantasy Football AI',
+    slug: 'fantasy-football-ai',
+    tagline: 'AI-driven draft & weekly picks',
+    thumbnailUrl: '/thumbnails/FantasyThumbnail.png',
+    stack: ['Python', 'React', 'ML'],
+    impact: 'Won 2024 league',
+    year: 2024,
+    moment: 'Predicted breakout players weekly',
+    status: 'coming-soon',
+  }
 ]
 
 export const ProjectGallery = () => {
