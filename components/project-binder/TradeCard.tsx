@@ -18,6 +18,7 @@ export type TradeCardProps = {
   featured?: boolean
   experimental?: boolean
   status?: 'coming-soon' | 'in-progress' | undefined
+  href?: string
 }
 
 export const TradeCard: React.FC<TradeCardProps> = ({
@@ -32,6 +33,7 @@ export const TradeCard: React.FC<TradeCardProps> = ({
   featured = false,
   experimental = false,
   status,
+  href
 }) => {
   const rarityClass = featured
     ? 'border-yellow-400 shadow-[0_0_20px_4px_rgba(255,255,0,0.4)]'
@@ -168,6 +170,17 @@ export const TradeCard: React.FC<TradeCardProps> = ({
           }
         }
       `}</style>
+
+{href && (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-4 text-xs text-yellow-300 underline hover:text-yellow-100 transition"
+  >
+    View Project
+  </a>
+)}
     </motion.div>
   )
 }
