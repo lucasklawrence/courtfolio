@@ -10,6 +10,7 @@ import { CourtZone } from '@/components/court/CourtZone'
 import { ZoneBioCard } from '@/components/court/zones/ZoneBioCard'
 import { ZoneCareerStats } from '@/components/court/zones/ZoneCareerStats'
 import { ZoneProjects } from '@/components/court/zones/ZoneProjects'
+import { ZoneEntryButton } from '@/components/common/ZoneEntryButton'
 
 type ZoneContentMap = Record<string, React.ReactNode>
 
@@ -40,27 +41,27 @@ export function useZoneContent({
 
   const baseZones = useMemo<ZoneContentMap>(
     () => ({
-      'zone-106': (
+      'bio': (
         <CourtZone x={350} y={110} width={380} height={160}>
           <div id="bio-card">
             <ZoneBioCard />
           </div>
         </CourtZone>
       ),
-      'zone-107': (
+      'career-stats': (
         <CourtZone x={800} y={110} width={280} height={160}>
           <div id="career-stats-card">
             <ZoneCareerStats />
           </div>
         </CourtZone>
       ),
-      'zone-108': (
+      'logo': (
         <CourtZone x={610} y={355} width={300} height={300}>
           <LogoSvg />
         </CourtZone>
       ),
-      'zone-78': (
-        <foreignObject x={110} y={855} width={320} height={70}>
+      'scouting': (
+        <CourtZone x={110} y={930} width={320} height={70}>
           <SafeSvgHtml>
             <div id="scouting-area">
               <div className="flex flex-col items-center justify-center bg-white/90 text-black rounded-xl px-4 py-2 shadow-lg text-xs font-medium space-y-1 hover:bg-orange-100 transition">
@@ -84,9 +85,9 @@ export function useZoneContent({
               </div>
             </div>
           </SafeSvgHtml>
-        </foreignObject>
+        </CourtZone>
       ),
-      'zone-90': (
+      'principles-lineup': (
         <foreignObject x={110} y={425} width={230} height={500}>
           <div id="principles-lineup">
             <div className="p-3 bg-orange-900/30 text-white text-xs font-bold rounded-md border border-orange-300/40 shadow-sm tracking-wide">
@@ -102,7 +103,7 @@ export function useZoneContent({
           </div>
         </foreignObject>
       ),
-      'zone-91': (
+      'tech-stack-lineup': (
         <foreignObject x={1175} y={425} width={230} height={500}>
           <div id="tech-stack-lineup">
             <div className="p-3 bg-orange-900/30 text-white text-xs font-bold rounded-md border border-orange-300/40 shadow-sm tracking-wide">
@@ -118,68 +119,42 @@ export function useZoneContent({
           </div>
         </foreignObject>
       ),
-      'zone-99': (
+      'replay-intro': (
         <foreignObject x="1210" y="870" width="180" height="70">
           <ReplayIntroButton />
         </foreignObject>
       ),
-      'zone-84': (
-        <CourtZone x={800} y={700} width={250} height={120}>
-          <div id="projects">
-            <ZoneProjects />
-          </div>
-        </CourtZone>
-      ),
-      'zone-50': (
+      'court-title': (
         <foreignObject x="600" y="20" width="350" height="100">
           <CourtTitleSolo title="Welcome to the Court" />
         </foreignObject>
       ),
-      'zone-85': (
-        <CourtZone x={1170} y={120} width={220} height={100} className="ui-layer z-[110]">
-          <SafeSvgHtml>
-            <button
-              id="view-rafters"
-              onClick={() => {
-                window.location.href = '/banners'
-              }}
-              className="cursor-pointer bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition text-center text-base sm:text-lg"
-            >
-              🏟️ View the Rafters
-            </button>
-          </SafeSvgHtml>
-        </CourtZone>
-      ),
-      'zone-86': (
-        <CourtZone x={1160} y={200} width={250} height={100} className="ui-layer z-[110]">
-          <SafeSvgHtml>
-            <button
-              id="enter-locker-room"
-              onClick={() => {
-                window.location.href = '/locker-room'
-              }}
-              className="cursor-pointer  bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition text-center text-base sm:text-lg"
-            >
-              👟 Enter Locker Room
-            </button>
-          </SafeSvgHtml>
-        </CourtZone>
-      ),
-       'enter-film-room': (
-        <CourtZone x={1170} y={280} width={250} height={100} className="ui-layer z-[110]">
-          <SafeSvgHtml>
-            <button
-              id="enter-film-room"
-              onClick={() => {
-                window.location.href = '/film-room'
-              }}
-              className="cursor-pointer  bg-[#42210b] text-yellow-300 font-semibold px-5 py-3 rounded-xl shadow hover:bg-[#5a3015] transition text-center text-base sm:text-lg"
-            >
-              👟 Enter Film Room
-            </button>
-          </SafeSvgHtml>
-        </CourtZone>
-      ),
+      'right-entry-zone': (
+  <CourtZone x={1150} y={120} width={400} height={300} className="ui-layer z-[110]">
+    <SafeSvgHtml>
+      <div className="flex flex-col gap-3 items-center w-fit">
+        <ZoneEntryButton
+          icon="🏟️"
+          label="View The Rafters"
+          id="view-rafters"
+          onClick={() => (window.location.href = '/banners')}
+        />
+        <ZoneEntryButton
+          icon="🧳"
+          label="Enter Locker Room"
+          id="enter-locker-room"
+          onClick={() => (window.location.href = '/locker-room')}
+        />
+        <ZoneEntryButton
+          icon="🎨"
+          label="Explore Projects"
+          id="projects"
+          onClick={() => (window.location.href = '/projects')}
+        />
+      </div>
+    </SafeSvgHtml>
+  </CourtZone>
+),
     }),
     [router]
   )

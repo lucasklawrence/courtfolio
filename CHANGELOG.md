@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hall of Strategy** – Architecture write-ups
 - **Press Room** – Blog & media entries, changelog, etc
 
+## [0.1.3] – 2025-07-07
+
+### Changed
+- Changed button layout for navigating to new zones based on feedback
+- Changed location of contact me section, make navigating to front office stand out more
+- Updated tour to match changed layout
+
 ## [0.1.2] – 2025-07-06
 ### Fixed
 - Readme cleanup
