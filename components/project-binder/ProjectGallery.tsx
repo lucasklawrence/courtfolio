@@ -4,18 +4,18 @@ import { TradeCard } from './TradeCard'
 import type { TradeCardProps } from './TradeCard'
 
 const projects: TradeCardProps[] = [
-   {
+  {
     name: 'Courtfolio',
     slug: 'courtfolio',
     tagline: 'A basketball-themed portfolio that plays like a game',
-    thumbnailUrl: '/thumbnails/CourtfolioThumbnail.png',
+    thumbnailUrl: '/thumbnails/CourtFolioThumbnail.png',
     stack: ['Next.js', 'SVG', 'Framer Motion', 'Tailwind CSS'],
     impact: 'Interactive showcase of work and creativity',
     year: 2025,
     moment: 'Mapped entire site onto a basketball court with animated SVGs',
     featured: true,
   },
-   {
+  {
     name: 'GitLab Management Portal',
     slug: 'gitlab-portal',
     tagline: 'Visualize GitLab project plans with trees, swimlanes, and Gantt charts',
@@ -31,12 +31,12 @@ const projects: TradeCardProps[] = [
   {
     name: 'Bars of the Day',
     slug: 'bars-of-the-day',
-    tagline: 'Rap meets timing',
-    thumbnailUrl: '/thumbnails/BarsofTheDayThumbnail.png',
+    tagline: 'Daily rap bars with style',
+    thumbnailUrl: '/thumbnails/BarsOfTheDayThumbnail.png',
     stack: ['Next.js', 'Tailwind', 'Supabase'],
-    impact: 'Used in portfolio',
+    impact: 'Daily creative expression and portfolio flair',
     year: 2025,
-    moment: 'Synced lyrics to audio playback',
+    moment: 'Displays one rap bar per day with archive view',
     featured: true,
   },
   {
@@ -57,10 +57,10 @@ const projects: TradeCardProps[] = [
     thumbnailUrl: '/thumbnails/FantasyThumbnail.png',
     stack: ['Python', 'React', 'ML'],
     impact: 'Won 2024 league',
-    year: 2024,
-    moment: 'Predicted breakout players weekly',
+    year: 2026,
+    moment: 'Predict breakout players weekly',
     status: 'coming-soon',
-  }
+  },
 ]
 
 export const ProjectGallery = () => {

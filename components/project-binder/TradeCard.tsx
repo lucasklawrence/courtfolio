@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { BackToCourtButton } from './BackToCourtButton'
+import { BackToCourtButton } from '../common/BackToCourtButton'
 
 export type TradeCardProps = {
   name: string

@@ -1,49 +1,48 @@
 'use client'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
-import { ProjectGallery } from '@/components/common/ProjectGallery'
-import { ScoutSprite } from '@/components/common/ScoutSprite'
+import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
 import React from 'react'
 
 export default function ProjectPage() {
   return (
-    <div className="relative min-h-screen bg-[url('/textures/binder-leather.png')] bg-cover bg-center px-6 md:px-24 py-12">
-      {/* Binder ring divider */}
-      <div className="absolute inset-y-0 left-1/2 w-[2px] bg-neutral-800/40 shadow-inner z-0" />
+    <div className="bg-[url('/textures/binder-leather.png')] bg-center bg-cover bg-no-repeat min-h-screen flex flex-col relative">
+      {/* Binder Ring */}
+      <div className="hidden md:block absolute inset-y-0 left-1/2 w-[2px] bg-neutral-800/40 shadow-inner z-0" />
 
-      {/* Content wrapper */}
-      <div className="relative z-10 w-full">
+      {/* Overlay buttons (moved to top) */}
+      <div className="w-full px-4 pt-4 pb-2 z-10">
+        <div className="max-w-7xl mx-auto w-full flex justify-between">
+          <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
+            Page 1
+          </div>
+          <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
+            <BackToCourtButton />
+          </div>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <main className="flex-grow">
         {/* Binder label */}
-        <div className="text-yellow-200 uppercase tracking-wide text-sm px-6 pb-4 font-mono">
-          Lucas Lawrence // Tech Stack Binder
+        <div className="max-w-7xl mx-auto px-4 pt-2 pb-1">
+          <div className="text-yellow-200 uppercase tracking-wide text-sm font-mono">
+            Lucas Lawrence // Tech Stack Binder
+          </div>
         </div>
 
-        {/* Scout Sprite */}
-        <div className="absolute right-4 bottom-4">
-          <ScoutSprite />
-        </div>
-        {/* Optional section tabs */}
-        <div className="flex gap-6 text-yellow-200 text-xs font-mono px-6 pb-6 uppercase tracking-widest">
-          <button className="underline underline-offset-2">All</button>
-          <button className="opacity-70 hover:opacity-100">2024</button>
-          <button className="opacity-70 hover:opacity-100">2025</button>
-          <button className="opacity-70 hover:opacity-100">Featured</button>
+        {/* Tabs */}
+        <div className="max-w-7xl mx-auto px-4 pb-2">
+          <div className="flex gap-3 text-yellow-200 text-xs font-mono uppercase tracking-widest">
+            <button className="underline underline-offset-2">All</button>
+          </div>
         </div>
 
-        {/* Card grid */}
-        <div className="max-w-7xl mx-auto">
+        {/* Project cards */}
+        <div className="max-w-7xl mx-auto px-4 pb-4">
           <ProjectGallery />
         </div>
-      </div>
-
-      <div className="absolute bottom-10 right-10 text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
-        <BackToCourtButton />
-      </div>
-
-      {/* Page marker */}
-      <div className="absolute bottom-0 left-0 text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
-        Page 1 // Film Ready
-      </div>
+      </main>
     </div>
   )
 }
