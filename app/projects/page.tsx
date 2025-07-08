@@ -4,6 +4,20 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
 import React from 'react'
 
+/**
+ * Renders the Project Binder page of the portfolio site.
+ *
+ * This page displays a trading card–style grid of featured projects inside a themed binder layout.
+ * It includes a background texture, binder ring styling, and top overlays for navigation and labeling.
+ *
+ * Key features:
+ * - Project cards styled as collectible items
+ * - Background leather texture and binder ring
+ * - "Back to Court" and page marker overlay at the top
+ * - Responsive layout for all screen sizes
+ *
+ * @returns {JSX.Element} The rendered ProjectPage component
+ */
 export default function ProjectPage() {
   return (
     <div className="bg-[url('/textures/binder-leather.png')] bg-center bg-cover bg-no-repeat min-h-screen flex flex-col relative">
