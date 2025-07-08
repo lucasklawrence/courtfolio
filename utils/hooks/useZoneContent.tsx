@@ -41,7 +41,7 @@ export function useZoneContent({
 
   const baseZones = useMemo<ZoneContentMap>(
     () => ({
-      'bio': (
+      bio: (
         <CourtZone x={350} y={110} width={380} height={160}>
           <div id="bio-card">
             <ZoneBioCard />
@@ -55,12 +55,12 @@ export function useZoneContent({
           </div>
         </CourtZone>
       ),
-      'logo': (
+      logo: (
         <CourtZone x={610} y={355} width={300} height={300}>
           <LogoSvg />
         </CourtZone>
       ),
-      'scouting': (
+      scouting: (
         <CourtZone x={110} y={930} width={320} height={70}>
           <SafeSvgHtml>
             <div id="scouting-area">
@@ -130,31 +130,31 @@ export function useZoneContent({
         </foreignObject>
       ),
       'right-entry-zone': (
-  <CourtZone x={1150} y={120} width={400} height={300} className="ui-layer z-[110]">
-    <SafeSvgHtml>
-      <div className="flex flex-col gap-3 items-center w-fit">
-        <ZoneEntryButton
-          icon="🏟️"
-          label="View The Rafters"
-          id="view-rafters"
-          onClick={() => (window.location.href = '/banners')}
-        />
-        <ZoneEntryButton
-          icon="🧳"
-          label="Enter Locker Room"
-          id="enter-locker-room"
-          onClick={() => (window.location.href = '/locker-room')}
-        />
-        <ZoneEntryButton
-          icon="🎨"
-          label="Explore Projects"
-          id="projects"
-          onClick={() => (window.location.href = '/projects')}
-        />
-      </div>
-    </SafeSvgHtml>
-  </CourtZone>
-),
+        <CourtZone x={1150} y={120} width={400} height={300} className="ui-layer z-[110]">
+          <SafeSvgHtml>
+            <div className="flex flex-col gap-3 items-center w-fit">
+              <ZoneEntryButton
+                icon="🏟️"
+                label="View The Rafters"
+                id="view-rafters"
+                onClick={() => (window.location.href = '/banners')}
+              />
+              <ZoneEntryButton
+                icon="🧳"
+                label="Enter Locker Room"
+                id="enter-locker-room"
+                onClick={() => (window.location.href = '/locker-room')}
+              />
+              <ZoneEntryButton
+                icon="🎨"
+                label="Explore Projects"
+                id="projects"
+                onClick={() => (window.location.href = '/projects')}
+              />
+            </div>
+          </SafeSvgHtml>
+        </CourtZone>
+      ),
     }),
     [router]
   )
