@@ -85,6 +85,7 @@ const projects: TradeCardProps[] = [
 export const ProjectGallery = () => {
   const isSingleColumn = useSingleColumn()
 
+  console.log('is single column %b', isSingleColumn)
   return (
     <div className="relative min-h-screen bg-[url('/textures/binder-leather.jpg')] bg-cover bg-center px-6 md:px-24 py-12 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-6">
@@ -93,7 +94,7 @@ export const ProjectGallery = () => {
         ))}
       </div>
 
-      {isSingleColumn && (
+      {!isSingleColumn && (
         <div className="absolute inset-y-0 left-1/2 w-[2px] bg-neutral-800/30 shadow-inner z-0" />
       )}
     </div>

@@ -21,9 +21,7 @@ import React from 'react'
 export default function ProjectPage() {
   return (
     <div className="bg-[url('/textures/binder-leather.png')] bg-center bg-cover bg-no-repeat min-h-screen flex flex-col relative">
-      {/* Binder Ring */}
-      <div className="hidden md:block absolute inset-y-0 left-1/2 w-[2px] bg-neutral-800/40 shadow-inner z-0" />
-
+      
       {/* Overlay buttons (moved to top) */}
       <div className="w-full px-4 pt-4 pb-2 z-10">
         <div className="max-w-7xl mx-auto w-full flex justify-between">
