@@ -66,6 +66,22 @@ const projects: TradeCardProps[] = [
   },
 ]
 
+/**
+ * Renders a gallery of featured projects as stylized trading cards inside a binder layout.
+ *
+ * This component displays a responsive grid of `TradeCard` components, styled to evoke a collectible binder.
+ * A vertical binder ring is conditionally rendered at the center when in single-column (mobile) view
+ * to enhance the visual metaphor on smaller screens.
+ *
+ * Key Features:
+ * - Responsive grid layout: 1 column on mobile, 2+ on larger screens
+ * - Trading card–style project tiles with animation and status effects
+ * - Conditional vertical binder ring for 1-column layout (mobile)
+ * - Background uses leather texture with inset shadow styling
+ *
+ * @component
+ * @returns {JSX.Element} A styled gallery of interactive project cards
+ */
 export const ProjectGallery = () => {
   const isSingleColumn = useSingleColumn()
 
