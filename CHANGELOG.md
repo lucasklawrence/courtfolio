@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hall of Strategy** – Architecture write-ups
 - **Press Room** – Blog & media entries, changelog, etc
 
+## [0.2.0] - 2025-07-07
+
+### Changed
+- Project page is now binder with trading cards for high level overview
+- Update tour and entry point button to reflect change
+
 ## [0.1.3] – 2025-07-07
 
 ### Changed

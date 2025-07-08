@@ -120,7 +120,7 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasSpinningBall7.png',
-    text: 'Explore the plays — featured projects live here.',
+    text: 'Projects laid out like trading cards — explore builds that shaped my game.',
     glow: { x: 800, y: 700, width: 250, height: 100 },
     facingLeft: false,
     targetId: 'projects',

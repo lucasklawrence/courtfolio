@@ -147,7 +147,7 @@ export function useZoneContent({
               />
               <ZoneEntryButton
                 icon="🎨"
-                label="Explore Projects"
+                label="View Project Binder"
                 id="projects"
                 onClick={() => (window.location.href = '/projects')}
               />

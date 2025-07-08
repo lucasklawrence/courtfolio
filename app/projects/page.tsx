@@ -1,64 +1,60 @@
 'use client'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
-import { LogoSvg } from '@/components/common/LogoSvg'
-import { CourtContainer } from '@/components/court/CourtContainer'
-import { CourtSvg } from '@/components/court/CourtSvg'
-import { CourtTitleSolo } from '@/components/court/CourtTitleSolo'
-import { CourtZone } from '@/components/court/CourtZone'
-import { ZoneBars } from '@/components/court/zones/ZoneBars'
-import { ZoneBioCard } from '@/components/court/zones/ZoneBioCard'
-import { ZoneCareerStats } from '@/components/court/zones/ZoneCareerStats'
-import { ZoneFantasy } from '@/components/court/zones/ZoneFantasy'
+import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
 import React from 'react'
 
+/**
+ * Renders the Project Binder page of the portfolio site.
+ *
+ * This page displays a trading card–style grid of featured projects inside a themed binder layout.
+ * It includes a background texture, binder ring styling, and top overlays for navigation and labeling.
+ *
+ * Key features:
+ * - Project cards styled as collectible items
+ * - Background leather texture and binder ring
+ * - "Back to Court" and page marker overlay at the top
+ * - Responsive layout for all screen sizes
+ *
+ * @returns {JSX.Element} The rendered ProjectPage component
+ */
 export default function ProjectPage() {
   return (
-    <CourtContainer>
-      {/* 🏀 Court Background */}
-      <CourtSvg
-        zoneContent={{
-          'zone-106': (
-            <CourtZone x={350} y={110} width={380} height={160}>
-              <ZoneBioCard />
-            </CourtZone>
-          ),
+    <div className="bg-[url('/textures/binder-leather.png')] bg-center bg-cover bg-no-repeat min-h-screen flex flex-col relative">
+      
+      {/* Overlay buttons (moved to top) */}
+      <div className="w-full px-4 pt-4 pb-2 z-10">
+        <div className="max-w-7xl mx-auto w-full flex justify-between">
+          <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
+            Page 1
+          </div>
+          <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
+            <BackToCourtButton />
+          </div>
+        </div>
+      </div>
 
-          // Stats Overview
-          'zone-107': (
-            <CourtZone x={800} y={110} width={280} height={160}>
-              <ZoneCareerStats />
-            </CourtZone>
-          ),
-          // Logo
-          'zone-108': (
-            <CourtZone x={610} y={355} width={300} height={300}>
-              <LogoSvg />
-            </CourtZone>
-          ),
-          'zone-90': (
-            <CourtZone x={350} y={700} width={360} height={140}>
-              <ZoneBars />
-            </CourtZone>
-          ),
-          'zone-91': (
-            <CourtZone x={800} y={700} width={360} height={140}>
-              <ZoneFantasy />
-            </CourtZone>
-          ),
-          'zone-99': (
-            <foreignObject x="1220" y="873" width="340" height="70">
-              <BackToCourtButton />
-            </foreignObject>
-          ),
-          // Court Title
-          'zone-50': (
-            <foreignObject x="600" y="20" width="350" height="100">
-              <CourtTitleSolo title="Highlight Reel" />
-            </foreignObject>
-          ),
-        }}
-      />
-    </CourtContainer>
+      {/* Main content */}
+      <main className="flex-grow">
+        {/* Binder label */}
+        <div className="max-w-7xl mx-auto px-4 pt-2 pb-1">
+          <div className="text-yellow-200 uppercase tracking-wide text-sm font-mono">
+            Lucas Lawrence // Tech Stack Binder
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <div className="max-w-7xl mx-auto px-4 pb-2">
+          <div className="flex gap-3 text-yellow-200 text-xs font-mono uppercase tracking-widest">
+            <button className="underline underline-offset-2">All</button>
+          </div>
+        </div>
+
+        {/* Project cards */}
+        <div className="max-w-7xl mx-auto px-4 pb-4">
+          <ProjectGallery />
+        </div>
+      </main>
+    </div>
   )
 }
