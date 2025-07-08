@@ -45,15 +45,13 @@ export const ZoneEntryButton: React.FC<ZoneEntryButtonProps> = ({
   className = '',
 }) => {
   return (
-    <motion.button
+    <button
       id={id}
       onClick={onClick}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
       className={`cursor-pointer flex items-center gap-3 text-yellow-300 bg-[#42210b] hover:bg-[#5a3015] px-6 py-3 rounded-xl shadow-md border border-yellow-400 font-semibold transition duration-200 text-base sm:text-lg ${className}`}
     >
       <span className="text-m">{icon}</span>
       <span className="whitespace-nowrap">{label}</span>
-    </motion.button>
+    </button>
   )
 }
