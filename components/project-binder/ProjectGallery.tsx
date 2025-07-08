@@ -59,7 +59,7 @@ const projects: TradeCardProps[] = [
     thumbnailUrl: '/thumbnails/FantasyThumbnail.png',
     stack: ['Python', 'React', 'ML'],
     impact: 'Won 2024 league',
-    year: 2026,
+    year: 2025,
     moment: 'Predict breakout players weekly',
     status: 'coming-soon',
   },
