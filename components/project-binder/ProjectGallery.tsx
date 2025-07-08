@@ -14,7 +14,7 @@ const projects: TradeCardProps[] = [
     year: 2025,
     moment: 'Mapped the entire site onto a basketball court and themed rooms with SVGs',
     featured: true,
-    href:'/'
+    href: '/',
   },
   {
     name: 'GitLab Management Portal',

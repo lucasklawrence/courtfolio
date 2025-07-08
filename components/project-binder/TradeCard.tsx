@@ -2,25 +2,73 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import clsx from 'clsx'
-import { BackToCourtButton } from '../common/BackToCourtButton'
+import { FoilShineOverlay } from './FoilShineOverlay'
+import { RarityBadge } from './RarityBadge'
+import { StatusOverlay } from './StatusOverlay'
 
+/**
+ * Props for the `TradeCard` component, which renders a stylized project card
+ * similar to a collectible trading card.
+ *
+ * Used to showcase a project in the portfolio binder view with flair effects,
+ * project metadata, and optional deep link support.
+ */
 export type TradeCardProps = {
+  /** Project title displayed prominently on the card */
   name: string
+
+  /** Slug identifier (used for internal routing or references) */
   slug: string
+
+  /** Short one-line hook or description of the project */
   tagline: string
+
+  /** URL to the project’s thumbnail image (ideally 16:9 ratio) */
   thumbnailUrl: string
+
+  /** Technologies used in the project (e.g. ['Next.js', 'Tailwind']) */
   stack: string[]
+
+  /** Brief statement on the project’s impact or outcome */
   impact: string
+
+  /** Year the project was created or launched */
   year: number
+
+  /** Highlight moment or unique trait of the project */
   moment: string
+
+  /** Adds a special border and foil shine effect if true */
   featured?: boolean
+
+  /** Adds a purple glow and experimental badge if true */
   experimental?: boolean
-  status?: 'coming-soon' | 'in-progress' | undefined
+
+  /** Optional development status badge with shine overlay */
+  status?: 'coming-soon' | 'in-progress'
+
+  /** Optional external or internal URL — shown as a "View Project" link */
   href?: string
 }
 
+/**
+ * Renders a single project as a stylized trading card, used in the project binder view.
+ *
+ * The card visually communicates project metadata (title, stack, impact, year),
+ * and conditionally applies rare "foil" effects, status overlays, or experimental highlights.
+ *
+ * Key features:
+ * - Framer Motion hover animation
+ * - Optional rarity effects: featured (gold), experimental (purple)
+ * - Optional status overlays: "Coming Soon", "In Progress"
+ * - Thumbnail image + tech stack + moment of note
+ * - Optional "View Project" external link rendered inside the card body
+ *
+ * @component
+ * @param {TradeCardProps} props - Project metadata and display configuration
+ * @returns {JSX.Element} A fully styled interactive project card component
+ */
 export const TradeCard: React.FC<TradeCardProps> = ({
   name,
   slug,
@@ -49,11 +97,7 @@ export const TradeCard: React.FC<TradeCardProps> = ({
         rarityClass
       )}
     >
-      {featured && (
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="foil-shine w-full h-full absolute top-0 left-0" />
-        </div>
-      )}
+      {featured && <FoilShineOverlay />}
 
       <div className="w-full aspect-video relative rounded-md overflow-hidden border border-neutral-600 bg-black">
         <Image src={thumbnailUrl} alt={name} fill className="object-cover" />{' '}
@@ -70,106 +114,9 @@ export const TradeCard: React.FC<TradeCardProps> = ({
         <div className="text-yellow-100 text-xs">🔥 {moment}</div>
       </div>
 
-      {featured && (
-        <div className="absolute top-2 right-2 text-xs bg-yellow-300 text-black px-2 py-0.5 rounded shadow">
-          ⭐ Featured
-        </div>
-      )}
+      <RarityBadge featured={featured} experimental={experimental} />
 
-      {experimental && (
-        <div className="absolute top-2 left-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded shadow">
-          🧪 Experimental
-        </div>
-      )}
-
-      {status === 'coming-soon' && (
-        <>
-          <div className="absolute inset-0 pointer-events-none z-10">
-            <div className="coming-soon-shine w-full h-full absolute top-0 left-0" />
-          </div>
-          <div className="absolute top-2 right-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded shadow z-30">
-            ⏳ Coming Soon
-          </div>
-        </>
-      )}
-
-      {status === 'in-progress' && (
-        <div className="absolute inset-0 pointer-events-none z-10">
-          <div className="in-progress-shine w-full h-full absolute top-0 left-0" />
-          <div className="absolute top-2 right-2 text-xs bg-purple-600 text-white px-2 py-0.5 rounded shadow">
-            🚧 In Progress
-          </div>
-        </div>
-      )}
-
-      <style jsx>{`
-        .foil-shine {
-          background: linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0.05) 0%,
-            rgba(255, 255, 255, 0.4) 50%,
-            rgba(255, 255, 255, 0.05) 100%
-          );
-          transform: rotate(25deg);
-          animation: shine 2.5s infinite linear;
-          opacity: 0.6;
-          mix-blend-mode: screen;
-        }
-
-        @keyframes shine {
-          0% {
-            transform: translateX(-100%) rotate(25deg);
-          }
-          100% {
-            transform: translateX(100%) rotate(25deg);
-          }
-        }
-      `}</style>
-      <style jsx>{`
-        .in-progress-shine {
-          background: linear-gradient(
-            135deg,
-            rgba(0, 120, 255, 0.05) 0%,
-            rgba(0, 120, 255, 0.15) 50%,
-            rgba(0, 120, 255, 0.05) 100%
-          );
-          transform: rotate(10deg);
-          animation: inProgressShine 4s infinite linear;
-          opacity: 0.3;
-          mix-blend-mode: screen;
-        }
-
-        @keyframes inProgressShine {
-          0% {
-            transform: translateX(-100%) rotate(10deg);
-          }
-          100% {
-            transform: translateX(100%) rotate(10deg);
-          }
-        }
-      `}</style>
-      <style jsx>{`
-        .coming-soon-shine {
-          background: linear-gradient(
-            90deg,
-            rgba(180, 100, 255, 0.05) 0%,
-            rgba(180, 100, 255, 0.3) 50%,
-            rgba(180, 100, 255, 0.05) 100%
-          );
-          animation: comingSoonSweep 5s infinite ease-in-out;
-          opacity: 0.25;
-          mix-blend-mode: screen;
-        }
-
-        @keyframes comingSoonSweep {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-      `}</style>
+      {status && <StatusOverlay status={status} />}
 
       {href && (
         <a
