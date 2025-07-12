@@ -66,10 +66,7 @@ export function CourtInteractionLayer({
       if (e.pointerType !== 'touch' && e.pointerType !== 'mouse') return
 
       // Ignore secondary touch points or wide touches (pinch, multi-finger)
-      if (
-        e.pointerType === 'touch' &&
-        (!e.isPrimary || e.width > 40 || e.height > 40)
-      ) {
+      if (e.pointerType === 'touch' && (!e.isPrimary || e.width > 40 || e.height > 40)) {
         return
       }
 
