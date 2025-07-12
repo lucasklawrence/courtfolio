@@ -25,11 +25,11 @@ import React from 'react'
  */
 export default function ContactPage() {
   return (
-    <main className="h-screen w-screen bg-neutral-900 text-white flex items-center justify-center overflow-hidden">
+    <main className="h-screen w-screen bg-neutral-900 text-white flex items-center justify-center">
       <FrontOfficeSvg
         className="h-full w-auto max-w-none"
         zoneContent={{
-          'whiteboard': (
+          whiteboard: (
             <CourtZone x={450} y={100} width={650} height={300}>
               <ZoneContact />
             </CourtZone>
@@ -39,7 +39,7 @@ export default function ContactPage() {
               <BackToCourtButton />
             </foreignObject>
           ),
-          'resume': (
+          resume: (
             <foreignObject x="550" y="620" width="350" height="100">
               <div className="w-full h-full flex flex-col justify-center items-center">
                 <a
@@ -58,25 +58,23 @@ export default function ContactPage() {
           ),
           'sign-here': (
             <foreignObject x="645" y="735" width="350" height="40">
-              <foreignObject x="645" y="835" width="350" height="40">
+              <div
+                className="w-full h-full flex flex-col justify-end items-start"
+                style={{
+                  fontFamily: '"Patrick Hand", cursive',
+                  fontSize: '14px',
+                  color: '#333',
+                }}
+              >
+                <span>x </span>
                 <div
-                  className="w-full h-full flex flex-col justify-end items-start"
                   style={{
-                    fontFamily: '"Patrick Hand", cursive',
-                    fontSize: '14px',
-                    color: '#333',
+                    width: '160px',
+                    borderBottom: '1px solid #444',
+                    marginTop: '2px',
                   }}
-                >
-                  <span>x </span>
-                  <div
-                    style={{
-                      width: '160px',
-                      borderBottom: '1px solid #444',
-                      marginTop: '2px',
-                    }}
-                  />
-                </div>
-              </foreignObject>
+                />
+              </div>
             </foreignObject>
           ),
           'right-frame': (
