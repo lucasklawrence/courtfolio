@@ -24,15 +24,14 @@ export function LockerZone({ x, y, width, height, zoneId, onClick, children }: P
   }
 
   return (
-    <foreignObject
-      x={x}
-      y={y}
-      width={width}
-      height={height}
+    <g
+      transform={`translate(${x}, ${y})`}
       onClick={handleClick}
-      className={onClick ? 'cursor-pointer' : undefined}
+      className="pointer-events-auto cursor-pointer"
     >
-      <SafeSvgHtml>{children}</SafeSvgHtml>
-    </foreignObject>
+      <foreignObject width={width} height={height}>
+        <SafeSvgHtml>{children}</SafeSvgHtml>
+      </foreignObject>
+    </g>
   )
 }
