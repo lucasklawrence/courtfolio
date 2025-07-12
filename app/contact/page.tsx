@@ -27,7 +27,6 @@ export default function ContactPage() {
   return (
     <main className="h-screen w-screen bg-neutral-900 text-white flex items-center justify-center">
       <FrontOfficeSvg
-        className="h-full w-auto max-w-none"
         zoneContent={{
           whiteboard: (
             <CourtZone x={450} y={100} width={650} height={300}>

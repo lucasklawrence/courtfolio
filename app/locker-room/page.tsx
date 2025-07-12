@@ -44,71 +44,71 @@ export default function LockerRoomPage() {
   const [selectedZone, setSelectedZone] = useState<string | null>(null)
 
   return (
-    <main className="w-screen h-screen bg-neutral-900 text-white" style={{ touchAction: 'auto' }}>
+    <main className="w-screen h-screen bg-neutral-900 text-white">
       <LockerRoomSvg
         zoneContent={{
-          'zone-323': (
+          'title': (
             <LockerZone x={400} y={10} width={850} height={200}>
               <h1 className="text-3xl font-bold mb-4">
                 Locker Room - Select an item to get more info
               </h1>
             </LockerZone>
           ),
-          'zone-324': (
+          'scout-report': (
             <LockerZone
               x={1220}
               y={630}
               width={150}
               height={200}
-              zoneId="zone-324"
+              zoneId="scout-report"
               onClick={setSelectedZone}
             >
               <ScoutingReportSvg />
             </LockerZone>
           ),
-          'zone-325': (
+          'laptop': (
             <LockerZone
               x={980}
               y={130}
               width={150}
               height={150}
-              zoneId="zone-325"
+              zoneId="laptop"
               onClick={setSelectedZone}
             >
               <LaptopSvg />
             </LockerZone>
           ),
-          'zone-327': (
+          'jerseys': (
             <LockerZone
               x={58}
               y={285}
               width={340}
               height={370}
-              zoneId="zone-327"
+              zoneId="jerseys"
               onClick={setSelectedZone}
             >
               <JerseysSVG />
             </LockerZone>
           ),
-          'zone-328': (
+          'straw-hat': (
             <LockerZone
               x={430}
               y={150}
               width={160}
               height={200}
-              zoneId="zone-328"
+              zoneId="straw-hat"
               onClick={setSelectedZone}
             >
               <StrawHatSvg />
             </LockerZone>
           ),
-          'zone-330': (
+          'duffel-bag': (
             <LockerZone
               x={1180}
               y={120}
               width={250}
               height={200}
-              zoneId="zone-330"
+              zoneId="duffel-bag"
               onClick={setSelectedZone}
             >
               <DuffelBagSvg />
