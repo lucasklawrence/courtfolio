@@ -25,12 +25,26 @@ import { ScoutingReportSvg } from '@/components/locker-room/assets/ScoutingRepor
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { LockerInfo } from '@/components/locker-room/LockerInfo'
 
+/**
+ * Renders the Locker Room page of the basketball-themed portfolio.
+ *
+ * This interactive page displays a stylized locker room using an SVG background,
+ * with clickable zones representing different items (e.g., jerseys, shoes, devices).
+ * Each zone shows contextual information or media when selected.
+ *
+ * Features:
+ * - SVG-based layout with `LockerRoomSvg`
+ * - Interactive zones rendered via `LockerZone` components
+ * - Clickable items open metadata or illustrations in an overlay
+ * - “Back to Court” button for navigation
+ *
+ * @returns {JSX.Element} The rendered Locker Room page
+ */ 
 export default function LockerRoomPage() {
   const [selectedZone, setSelectedZone] = useState<string | null>(null)
 
   return (
     <main className="min-h-screen bg-neutral-900 text-white flex flex-col items-center justify-center p-4">
-      <div className="relative w-full">
         <LockerRoomSvg
           zoneContent={{
             'zone-323': (
@@ -330,7 +344,6 @@ export default function LockerRoomPage() {
             ),
           }}
         />
-      </div>
     </main>
   )
 }
