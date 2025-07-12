@@ -23,10 +23,16 @@ export function MobileAdvanceOverlay({ active, onAdvance }: Props) {
     <div
       className="fixed top-0 left-0 w-screen h-screen z-[100] cursor-pointer"
       style={{
-        touchAction: 'pan-x pan-y', // allows pinch-to-zoom
+        touchAction: 'manipulation',
+        pointerEvents: 'auto',
         WebkitTapHighlightColor: 'transparent',
       }}
-      onPointerUp={handlePointerUp}
+      onPointerUp={e => {
+        // skip if multiple fingers — let pinch happen
+        if (e.pointerType === 'touch' && e.isPrimary && e.width < 50) {
+          onAdvance()
+        }
+      }}
     />
   )
 }

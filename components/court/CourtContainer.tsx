@@ -4,10 +4,24 @@ import { useIsMobile } from '@/utils/hooks/useIsMobile'
 import React, { useEffect, useState } from 'react'
 
 /**
- * CourtContainer ensures the basketball court scales responsively,
- * centered and constrained to fit the viewport height with full width.
- * Provides scroll path for iOS Safari to enable pinch-to-zoom.
- * In landscape mobile, uses full viewport to avoid tight layout.
+ * CourtContainer
+ *
+ * A responsive wrapper for the basketball court layout that maintains aspect ratio
+ * and full-viewport presentation across devices, while enabling mobile gestures.
+ *
+ * ## Responsibilities:
+ * - 🖼️ Maintains a centered court layout with constrained aspect ratio (1.5:1).
+ * - 📱 Dynamically adjusts layout for mobile portrait vs. landscape orientations.
+ * - 🧭 Enables native pan and pinch-to-zoom gestures via `touch-action` styles.
+ * - 🧼 Provides a scrollable wrapper on iOS to avoid gesture blocking.
+ *
+ * ## Layout Behavior:
+ * - Mobile portrait: Fits within `100svh` and scales width proportionally.
+ * - Mobile landscape: Uses full screen (`w-screen h-screen`) to avoid letterboxing.
+ * - Desktop: Scales based on `100vh` height to maintain aspect ratio.
+ *
+ * @param children - The child elements (court SVG and overlays) to render inside the container.
+ * @returns A responsive layout wrapper with gesture support and adaptive scaling.
  */
 export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const isMobile = useIsMobile()
@@ -36,7 +50,7 @@ export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ childr
         : 'w-[min(100vw,calc(100vh*1.5))] h-[min(100vh,calc(100vw/1.5))]'
 
   return (
-    <div className="min-h-screen overflow-y-scroll bg-neutral-900 touch-pan-x touch-pan-y">
+    <div className="min-h-screen overflow-y-scroll bg-neutral-900 touch-pan-x touch-pan-y touch-pinch-zoom">
       <div className="flex items-center justify-center min-h-[105vh]">
         <div className={`relative ${sizeClass}`}>{children}</div>
       </div>

@@ -221,7 +221,11 @@ export function FreeRoamPlayer({
           type: 'spring',
           stiffness: 50,
           damping: 10,
-          scaleX: { duration: 0 }, // instant flip
+          scaleX: { duration: 0 },
+        }}
+        style={{
+          touchAction: 'auto',
+          willChange: 'auto',
         }}
       >
         <img
