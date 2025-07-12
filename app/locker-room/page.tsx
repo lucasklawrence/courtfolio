@@ -333,14 +333,14 @@ export default function LockerRoomPage() {
             </LockerZone>
           ),
           'zone-99': (
-            <foreignObject x="1220" y="970" width="340" height="70">
+            <LockerZone x={1220} y={970} width={340} height={70}>
               <BackToCourtButton />
-            </foreignObject>
+            </LockerZone>
           ),
           'zone-380': (
-            <foreignObject x="670" y="150" width="220" height="140">
+            <LockerZone x={670} y={150} width={220} height={140}>
               {!!selectedZone && <LockerInfo zoneId={selectedZone} />}
-            </foreignObject>
+            </LockerZone>
           ),
         }}
       />
