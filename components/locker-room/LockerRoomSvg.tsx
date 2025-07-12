@@ -28,13 +28,12 @@ export const LockerRoomSvg: React.FC<LockerRoomSvgProps> = ({
     [onZoneClick]
   )
   return (
-    <svg
-      version="1.1"
-      viewBox="0 0 1536 1024"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-      style={{ touchAction: 'auto' }}
-    >
+      <svg
+        viewBox="0 0 1536 1024"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid meet"
+        className="w-full h-full touch-pan-x touch-pan-y touch-pinch-zoom"
+      >
       <g fill="none" strokeLinecap="butt" strokeWidth="2.00">
         <g id="grouped-lockers">
           <g id="item-1" onClick={() => handleClick('item-1')}>
