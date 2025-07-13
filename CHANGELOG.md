@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hall of Strategy** – Architecture write-ups
 - **Press Room** – Blog & media entries, changelog, etc
 
+## [0.2.2] - 2025-07-13
+
+### Fixed
+- Fixed pinch to zoom on mobile for locker room and contact page
+
 ## [0.2.1] - 2025-07-12
 
 ### Fixed
