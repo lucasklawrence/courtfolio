@@ -23,7 +23,7 @@ import React, { useEffect, useState } from 'react'
  * @param children - The child elements (court SVG and overlays) to render inside the container.
  * @returns A responsive layout wrapper with gesture support and adaptive scaling.
  */
-export const CourtContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const SvgLayoutContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const isMobile = useIsMobile()
   const [isLandscape, setIsLandscape] = useState(false)
 

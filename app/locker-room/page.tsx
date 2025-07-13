@@ -24,6 +24,7 @@ import { LaptopSvg } from '@/components/locker-room/assets/LaptopSvg'
 import { ScoutingReportSvg } from '@/components/locker-room/assets/ScoutingReportSvg'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { LockerInfo } from '@/components/locker-room/LockerInfo'
+import { SvgLayoutContainer } from '@/components/common/SvgLayoutContainer'
 
 /**
  * Renders the Locker Room page of the basketball-themed portfolio.
@@ -44,10 +45,10 @@ export default function LockerRoomPage() {
   const [selectedZone, setSelectedZone] = useState<string | null>(null)
 
   return (
-    <main className="w-screen h-screen bg-neutral-900 text-white">
+    <SvgLayoutContainer>
       <LockerRoomSvg
         zoneContent={{
-          'title': (
+          title: (
             <LockerZone x={400} y={10} width={850} height={200}>
               <h1 className="text-3xl font-bold mb-4">
                 Locker Room - Select an item to get more info
@@ -66,7 +67,7 @@ export default function LockerRoomPage() {
               <ScoutingReportSvg />
             </LockerZone>
           ),
-          'laptop': (
+          laptop: (
             <LockerZone
               x={980}
               y={130}
@@ -78,7 +79,7 @@ export default function LockerRoomPage() {
               <LaptopSvg />
             </LockerZone>
           ),
-          'jerseys': (
+          jerseys: (
             <LockerZone
               x={58}
               y={285}
@@ -344,6 +345,6 @@ export default function LockerRoomPage() {
           ),
         }}
       />
-    </main>
+    </SvgLayoutContainer>
   )
 }

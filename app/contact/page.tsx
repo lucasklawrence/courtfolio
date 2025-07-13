@@ -7,6 +7,7 @@ import { LosAngelesPictureSvg } from '@/components/contact/LosAngelesPictureSvg'
 import { LucasJerseySvg } from '@/components/contact/LucasJerseySvg'
 import { ZoneContact } from '@/components/contact/ZoneContact'
 import { CourtZone } from '@/components/court/CourtZone'
+import { SvgLayoutContainer } from '@/components/common/SvgLayoutContainer'
 import React from 'react'
 
 /**
@@ -25,7 +26,7 @@ import React from 'react'
  */
 export default function ContactPage() {
   return (
-    <main className="h-screen w-screen bg-neutral-900 text-white flex items-center justify-center">
+    <SvgLayoutContainer>
       <FrontOfficeSvg
         zoneContent={{
           whiteboard: (
@@ -88,6 +89,6 @@ export default function ContactPage() {
           ),
         }}
       />
-    </main>
+    </SvgLayoutContainer>
   )
 }
