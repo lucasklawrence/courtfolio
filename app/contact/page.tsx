@@ -6,7 +6,6 @@ import { FrontOfficeZone } from '@/components/contact/FrontOfficeZone'
 import { LosAngelesPictureSvg } from '@/components/contact/LosAngelesPictureSvg'
 import { LucasJerseySvg } from '@/components/contact/LucasJerseySvg'
 import { ZoneContact } from '@/components/contact/ZoneContact'
-import { CourtZone } from '@/components/court/CourtZone'
 import { SvgLayoutContainer } from '@/components/common/SvgLayoutContainer'
 import React from 'react'
 
@@ -30,17 +29,17 @@ export default function ContactPage() {
       <FrontOfficeSvg
         zoneContent={{
           whiteboard: (
-            <CourtZone x={450} y={100} width={650} height={300}>
+            <FrontOfficeZone x={450} y={100} width={650} height={300}>
               <ZoneContact />
-            </CourtZone>
+            </FrontOfficeZone>
           ),
           'back-to-court': (
-            <foreignObject x="1320" y="980" width="340" height="70">
+            <FrontOfficeZone x={1320} y={980} width={340} height={70}>
               <BackToCourtButton />
-            </foreignObject>
+            </FrontOfficeZone>
           ),
           resume: (
-            <foreignObject x="550" y="620" width="350" height="100">
+            <FrontOfficeZone x={550} y={620} width={350} height={100}>
               <div className="w-full h-full flex flex-col justify-center items-center">
                 <a
                   href="/LucasLawrenceResume.pdf"
@@ -54,10 +53,10 @@ export default function ContactPage() {
                   View Full Resume (PDF)
                 </a>
               </div>
-            </foreignObject>
+            </FrontOfficeZone>
           ),
           'sign-here': (
-            <foreignObject x="645" y="735" width="350" height="40">
+            <FrontOfficeZone x={645} y={735} width={350} height={40}>
               <div
                 className="w-full h-full flex flex-col justify-end items-start"
                 style={{
@@ -75,7 +74,7 @@ export default function ContactPage() {
                   }}
                 />
               </div>
-            </foreignObject>
+            </FrontOfficeZone>
           ),
           'right-frame': (
             <FrontOfficeZone x={1210} y={110} width={150} height={250}>
