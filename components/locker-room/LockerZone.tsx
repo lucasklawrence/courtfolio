@@ -20,19 +20,19 @@ type Props = {
  */
 export function LockerZone({ x, y, width, height, zoneId, onClick, children }: Props) {
   const handleClick = () => {
+    console.log('in handle click ' + zoneId)
     if (zoneId && onClick) onClick(zoneId)
   }
 
   return (
-    <foreignObject
-      x={x}
-      y={y}
-      width={width}
-      height={height}
+    <g
+      transform={`translate(${x}, ${y})`}
       onClick={handleClick}
       className={onClick ? 'cursor-pointer' : undefined}
     >
-      <SafeSvgHtml>{children}</SafeSvgHtml>
-    </foreignObject>
+      <foreignObject width={width} height={height}>
+        <SafeSvgHtml>{children}</SafeSvgHtml>
+      </foreignObject>
+    </g>
   )
 }

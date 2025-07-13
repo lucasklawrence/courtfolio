@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useMemo, useRef, useState } from 'react'
-import { CourtContainer } from './court/CourtContainer'
+import { SvgLayoutContainer } from './common/SvgLayoutContainer'
 import { CourtSvg } from './court/CourtSvg'
 import { CourtInteractionLayer } from './court/CourtInteractionLayer'
 import { TutorialOverlay } from './court/TutorialOverlay'
@@ -68,7 +68,7 @@ export function HomeBody() {
   }, [targetRect, currentStep?.glow])
 
   return (
-    <CourtContainer>
+    <SvgLayoutContainer>
       <CourtSvg
         ref={svgRef}
         className="w-full h-full"
@@ -101,6 +101,6 @@ export function HomeBody() {
         active={tourActive && isMobile}
         onAdvance={tourStep < tourSteps.length - 1 ? nextStep : stopTour}
       />
-    </CourtContainer>
+    </SvgLayoutContainer>
   )
 }

@@ -29,11 +29,10 @@ export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
   )
   return (
     <svg
-      version="1.1"
-      viewBox="0.00 0.00 1536.00 1024.00"
+      viewBox="0 0 1536 1024"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
-      className={className}
+      className="w-full h-auto max-w-none touch-pan-x touch-pan-y touch-pinch-zoom"
     >
       <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
         <path
