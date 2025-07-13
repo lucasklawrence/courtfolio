@@ -115,230 +115,228 @@ export default function LockerRoomPage() {
               <DuffelBagSvg />
             </LockerZone>
           ),
-          'zone-342': (
+          'dad-jersey': (
             <LockerZone
               x={630}
               y={250}
               width={300}
               height={370}
-              zoneId="zone-342"
+              zoneId="dad-jersey"
               onClick={setSelectedZone}
             >
               <DadJerseySVG />
             </LockerZone>
           ),
-          'zone-355': (
+          'locker-placard-4': (
             <LockerZone
               x={980}
               y={82}
               width={300}
               height={150}
-              zoneId="zone-355"
+              zoneId="locker-placard-4"
               onClick={setSelectedZone}
             >
               <LockerPlacardSVG label="Canoga" />
             </LockerZone>
           ),
-          'zone-356': (
+          'locker-placard-2': (
             <LockerZone
               x={440}
               y={82}
               width={300}
               height={100}
-              zoneId="zone-356"
+              zoneId="locker-placard-2"
               onClick={setSelectedZone}
             >
               <LockerPlacardSVG label="Personal" />
             </LockerZone>
           ),
-          'zone-357': (
+          'locker-placard-1': (
             <LockerZone
               x={150}
               y={82}
               width={300}
               height={370}
-              zoneId="zone-357"
+              zoneId="locker-placard-1"
               onClick={setSelectedZone}
             >
               <LockerPlacardSVG label="Hoops" />
             </LockerZone>
           ),
-          'zone-360': (
+          'locker-placard-3': (
             <LockerZone
               x={710}
               y={82}
               width={300}
               height={370}
-              zoneId="zone-360"
+              zoneId="locker-placard-3"
               onClick={setSelectedZone}
             >
               <LockerPlacardSVG label="Wild Card" />
             </LockerZone>
           ),
-          'zone-363': (
+          'locker-placard-5': (
             <LockerZone
               x={1250}
               y={82}
               width={300}
               height={100}
-              zoneId="zone-363"
+              zoneId="locker-placard-5"
               onClick={setSelectedZone}
             >
               <LockerPlacardSVG label="Next Team" />
             </LockerZone>
           ),
-          'zone-361': (
+          'question-jersey': (
             <LockerZone
               x={1170}
               y={280}
               width={250}
               height={320}
-              zoneId="zone-361"
+              zoneId="question-jersey"
               onClick={setSelectedZone}
             >
               <QuestionJerseySVG className="w-16 h-auto opacity-90 hover:opacity-100" />
             </LockerZone>
           ),
-          'zone-441': (
+          'zoe': (
             <LockerZone
               x={670}
               y={790}
               width={250}
               height={320}
-              zoneId="zone-441"
+              zoneId="zoe"
               onClick={setSelectedZone}
             >
               <ZoeSvg />
             </LockerZone>
           ),
-          'zone-358': (
+          'higher-division-trophy': (
             <LockerZone
               x={220}
               y={120}
               width={100}
               height={180}
-              zoneId="zone-358"
+              zoneId="higher-division-trophy"
               onClick={setSelectedZone}
             >
               <HigherDivisionTrophySVG />
             </LockerZone>
           ),
-          'zone-344': (
+          'basketball': (
             <LockerZone
               x={90}
               y={650}
               width={100}
               height={180}
-              zoneId="zone-344"
+              zoneId="basketball"
               onClick={setSelectedZone}
             >
               <BasketballSvg />
             </LockerZone>
           ),
-          'zone-397': (
+          'patent': (
             <LockerZone
               x={950}
               y={410}
               width={170}
               height={250}
-              zoneId="zone-397"
+              zoneId="patent"
               onClick={setSelectedZone}
             >
               <PatentSvg />
             </LockerZone>
           ),
-          'zone-400': (
+          'headphones': (
             <LockerZone
               x={510}
               y={670}
               width={100}
               height={100}
-              zoneId="zone-400"
+              zoneId="headphones"
               onClick={setSelectedZone}
             >
-              <InteractiveLockerItem>
                 <HeadphonesSvg />
-              </InteractiveLockerItem>
             </LockerZone>
           ),
-          'zone-437': (
+          'melo-2': (
             <LockerZone
               x={150}
               y={800}
               width={150}
               height={180}
-              zoneId="zone-437"
+              zoneId="melo-2"
               onClick={setSelectedZone}
             >
               <Melo2sSvg />
             </LockerZone>
           ),
-          'zone-439': (
+          'way-of-wade-10': (
             <LockerZone
               x={440}
               y={800}
               width={160}
               height={190}
-              zoneId="zone-439"
+              zoneId="way-of-wade-10"
               onClick={setSelectedZone}
             >
               <WayOfWade10sSVG />
             </LockerZone>
           ),
-          'zone-443': (
+          'harden-7': (
             <LockerZone
               x={960}
               y={820}
               width={160}
               height={190}
-              zoneId="zone-443"
+              zoneId="harden-7"
               onClick={setSelectedZone}
             >
               <Harden7sSVG />
             </LockerZone>
           ),
-          'zone-376': (
+          'ps5': (
             <LockerZone
               x={630}
               y={620}
               width={160}
               height={190}
-              zoneId="zone-376"
+              zoneId="ps5"
               onClick={setSelectedZone}
             >
               <PlayStation5SVG />
             </LockerZone>
           ),
-          'zone-378': (
+          'ps5-controller-1': (
             <LockerZone
               x={740}
               y={700}
               width={80}
               height={80}
-              zoneId="zone-378"
+              zoneId="ps5-controller-1"
               onClick={setSelectedZone}
             >
               <PS5ControllerSVG />
             </LockerZone>
           ),
-          'zone-379': (
+          'ps5-controller-2': (
             <LockerZone
               x={820}
               y={700}
               width={80}
               height={80}
-              zoneId="zone-379"
+              zoneId="ps5-controller-2"
               onClick={setSelectedZone}
             >
               <PS5ControllerSVG />
             </LockerZone>
           ),
-          'zone-99': (
+          'back-to-court': (
             <LockerZone x={1220} y={970} width={340} height={70}>
               <BackToCourtButton />
             </LockerZone>
           ),
-          'zone-380': (
+          'locker-info': (
             <LockerZone x={670} y={150} width={220} height={140}>
               {!!selectedZone && <LockerInfo zoneId={selectedZone} />}
             </LockerZone>
