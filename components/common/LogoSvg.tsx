@@ -40,7 +40,7 @@ export function LogoSvg(): JSX.Element {
       >
         <textPath href="#circlePath" startOffset="50%" textAnchor="middle">
           {
-            'HOOPER \u00A0• PATENT HOLDER \u00A0• CREATIVE ENGINEER \u00A0• HIP-HOP HEAD \u00A0• SYSTEMS THINKER \u00A0• CODE STORYTELLER \u00A0• FANTASY GM \u00A0• RHYTHM FOCUSED • HOOPER \u00A0• PATENT HOLDER \u00A0'
+            'HOOPER \u00A0• PATENT HOLDER \u00A0• CREATIVE ENGINEER \u00A0• HIP-HOP HEAD \u00A0• SYSTEMS THINKER \u00A0• CODE STORYTELLER \u00A0• FANTASY GM \u00A0• RHYTHM FOCUSED \u00A0•'
           }
         </textPath>
       </text>

@@ -42,7 +42,7 @@ export function ZoneContactSafari() {
                 target="_blank"
                 style={{ color: '#0369a1', textDecoration: 'underline' }}
               >
-                /lucasklawrence
+                /in/lucasklawrence
               </a>
             </li>
           </ul>
