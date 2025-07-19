@@ -112,7 +112,7 @@ const groupedBanners: BannerSection[] = [
       },
     ],
   },
-   {
+  {
     label: '🏈 Fantasy',
     icon: '🏈',
     banners: [
@@ -129,7 +129,7 @@ const groupedBanners: BannerSection[] = [
         category: 'fantasy',
       },
     ],
-  }
+  },
 ]
 
 /**

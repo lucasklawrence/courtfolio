@@ -51,10 +51,8 @@ export type TradeCardProps = {
   href?: string
 
   /** If true, shows a legacy ribbon */
-legacy?: boolean
+  legacy?: boolean
 }
-
-
 
 /**
  * Renders a stylized project card used in the portfolio binder layout.
@@ -84,13 +82,13 @@ export const TradeCard: React.FC<TradeCardProps> = ({
   experimental = false,
   status,
   href,
-  legacy = false
+  legacy = false,
 }) => {
   const rarityClass = featured
     ? 'border-yellow-400'
     : experimental
-    ? 'border-purple-500'
-    : 'border-neutral-700'
+      ? 'border-purple-500'
+      : 'border-neutral-700'
 
   return (
     <motion.div

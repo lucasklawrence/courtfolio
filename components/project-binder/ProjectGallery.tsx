@@ -44,28 +44,30 @@ const projects: TradeCardProps[] = [
     href: 'https://barsoftheday.com',
   },
   {
-  name: 'R-Learning Snake',
-  slug: 'r-learning-snake',
-  tagline: 'Snake that learns through reinforcement',
-  thumbnailUrl: '/thumbnails/SnakeThumbnail.png',
-  stack: ['Python', 'PyGame', 'Reinforcement Learning'],
-  impact: 'Taught an AI agent to master classic Snake via trial and error',
-  year: 2019,
-  moment: 'The agent starts clueless and learns to survive and grow over time',
-  featured: true,
-},
-{
-  name: 'OCR Document Scanner',
-  slug: 'ocr-scanner',
-  tagline: 'Realtime document OCR pipeline on DSP hardware',
-  thumbnailUrl: '/thumbnails/OCRThumbnail.png',
-  stack: ['C', 'TI DSP Board', 'Image Processing'],
-  impact: 'Senior capstone at UCLA — built a full embedded pipeline for document classification and OCR',
-  year: 2016,
-  moment: 'Captured document images on board, ran preprocessing, and extracted structured text via embedded logic',
-  featured: false,
-  legacy: true
-},
+    name: 'R-Learning Snake',
+    slug: 'r-learning-snake',
+    tagline: 'Snake that learns through reinforcement',
+    thumbnailUrl: '/thumbnails/SnakeThumbnail.png',
+    stack: ['Python', 'PyGame', 'Reinforcement Learning'],
+    impact: 'Taught an AI agent to master classic Snake via trial and error',
+    year: 2019,
+    moment: 'The agent starts clueless and learns to survive and grow over time',
+    featured: true,
+  },
+  {
+    name: 'OCR Document Scanner',
+    slug: 'ocr-scanner',
+    tagline: 'Realtime document OCR pipeline on DSP hardware',
+    thumbnailUrl: '/thumbnails/OCRThumbnail.png',
+    stack: ['C', 'TI DSP Board', 'Image Processing'],
+    impact:
+      'Senior capstone at UCLA — built a full embedded pipeline for document classification and OCR',
+    year: 2016,
+    moment:
+      'Captured document images on board, ran preprocessing, and extracted structured text via embedded logic',
+    featured: false,
+    legacy: true,
+  },
   {
     name: 'Skip Trace Portal',
     slug: 'skip-trace',
@@ -107,18 +109,18 @@ export const ProjectGallery = () => {
       <div className="mx-auto w-full max-w-[1600px]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 sm:px-4">
           {/* Left Column */}
-<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-  {leftColumn.map(project => (
-    <TradeCard key={project.slug} {...project} />
-  ))}
-</div>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
+            {leftColumn.map(project => (
+              <TradeCard key={project.slug} {...project} />
+            ))}
+          </div>
 
           {/* Right Column */}
-<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-  {rightColumn.map(project => (
-    <TradeCard key={project.slug} {...project} />
-  ))}
-</div>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
+            {rightColumn.map(project => (
+              <TradeCard key={project.slug} {...project} />
+            ))}
+          </div>
         </div>
       </div>
 

@@ -22,8 +22,6 @@ export type SectionContainerProps = {
  */
 export const SectionContainer = ({ children, className = '' }: SectionContainerProps) => {
   return (
-    <div className={clsx('mx-auto w-full max-w-[1600px] px-2 sm:px-4', className)}>
-      {children}
-    </div>
+    <div className={clsx('mx-auto w-full max-w-[1600px] px-2 sm:px-4', className)}>{children}</div>
   )
 }
