@@ -3,6 +3,7 @@
 import { useSingleColumn } from '@/utils/hooks/useSingleColumn'
 import { TradeCard } from './TradeCard'
 import type { TradeCardProps } from './TradeCard'
+import { tr } from 'framer-motion/client'
 
 const projects: TradeCardProps[] = [
   {
@@ -43,6 +44,31 @@ const projects: TradeCardProps[] = [
     href: 'https://barsoftheday.com',
   },
   {
+    name: 'R-Learning Snake',
+    slug: 'r-learning-snake',
+    tagline: 'Snake that learns through reinforcement',
+    thumbnailUrl: '/thumbnails/SnakeThumbnail.png',
+    stack: ['Python', 'PyGame', 'Reinforcement Learning'],
+    impact: 'Taught an AI agent to master classic Snake via trial and error',
+    year: 2019,
+    moment: 'The agent starts clueless and learns to survive and grow over time',
+    featured: true,
+  },
+  {
+    name: 'OCR Document Scanner',
+    slug: 'ocr-scanner',
+    tagline: 'Realtime document OCR pipeline on DSP hardware',
+    thumbnailUrl: '/thumbnails/OcrThumbnail.png',
+    stack: ['C', 'TI DSP Board', 'Image Processing'],
+    impact:
+      'Senior capstone at UCLA — built a full embedded pipeline for document classification and OCR',
+    year: 2016,
+    moment:
+      'Captured document images on board, ran preprocessing, and extracted structured text via embedded logic',
+    featured: false,
+    legacy: true,
+  },
+  {
     name: 'Skip Trace Portal',
     slug: 'skip-trace',
     tagline: 'Case management for legal research',
@@ -65,37 +91,41 @@ const projects: TradeCardProps[] = [
     status: 'coming-soon',
   },
 ]
-
 /**
- * Renders a gallery of featured projects as stylized trading cards inside a binder layout.
+ * Renders a full-width binder layout with a responsive split-column design.
  *
- * This component displays a responsive grid of `TradeCard` components, styled to evoke a collectible binder.
- * A vertical binder ring is conditionally rendered at the center when in single-column (mobile) view
- * to enhance the visual metaphor on smaller screens.
- *
- * Key Features:
- * - Responsive grid layout: 1 column on mobile, 2+ on larger screens
- * - Trading card–style project tiles with animation and status effects
- * - Conditional vertical binder ring for 1-column layout (mobile)
- * - Background uses leather texture with inset shadow styling
- *
- * @component
- * @returns {JSX.Element} A styled gallery of interactive project cards
+ * Projects are split evenly into left/right columns to preserve binder symmetry.
+ * On small screens, the layout collapses into a single vertical column.
  */
 export const ProjectGallery = () => {
   const isSingleColumn = useSingleColumn()
 
-  console.log('is single column %b', isSingleColumn)
+  const mid = Math.ceil(projects.length / 2)
+  const leftColumn = projects.slice(0, mid)
+  const rightColumn = projects.slice(mid)
+
   return (
-    <div className="relative min-h-screen bg-[url('/textures/binder-leather.jpg')] bg-cover bg-center px-6 md:px-24 py-12 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-6">
-        {projects.map(project => (
-          <TradeCard key={project.slug} {...project} />
-        ))}
+    <div className="relative min-h-screen bg-[url('/textures/binder-leather.jpg')] bg-cover bg-center px-2 sm:px-6 py-12 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]">
+      <div className="mx-auto w-full max-w-[1600px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 sm:px-4">
+          {/* Left Column */}
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
+            {leftColumn.map(project => (
+              <TradeCard key={project.slug} {...project} />
+            ))}
+          </div>
+
+          {/* Right Column */}
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
+            {rightColumn.map(project => (
+              <TradeCard key={project.slug} {...project} />
+            ))}
+          </div>
+        </div>
       </div>
 
       {!isSingleColumn && (
-        <div className="absolute inset-y-0 left-1/2 w-[2px] bg-neutral-800/30 shadow-inner z-0" />
+        <div className="absolute inset-y-0 left-1/2 w-[2px] bg-neutral-800/30 shadow-inner z-10 pointer-events-none" />
       )}
     </div>
   )

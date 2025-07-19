@@ -1,6 +1,7 @@
 'use client'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { SectionContainer } from '@/components/common/SectionContainer'
 import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
 import React from 'react'
 
@@ -10,48 +11,36 @@ import React from 'react'
  * This page displays a trading card–style grid of featured projects inside a themed binder layout.
  * It includes a background texture, binder ring styling, and top overlays for navigation and labeling.
  *
- * Key features:
- * - Project cards styled as collectible items
- * - Background leather texture and binder ring
- * - "Back to Court" and page marker overlay at the top
- * - Responsive layout for all screen sizes
- *
  * @returns {JSX.Element} The rendered ProjectPage component
  */
 export default function ProjectPage() {
   return (
     <div className="bg-[url('/textures/binder-leather.png')] bg-center bg-cover bg-no-repeat min-h-screen flex flex-col relative">
-      <div className="w-full px-4 pt-4 pb-2 z-10">
-        <div className="max-w-7xl mx-auto w-full flex justify-between">
-          <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
-            Page 1
-          </div>
-          <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
-            <BackToCourtButton />
-          </div>
+      {/* Header Controls */}
+      <SectionContainer className="pt-4 pb-2 z-10 flex justify-between">
+        <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
+          Page 1
         </div>
-      </div>
+        <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
+          <BackToCourtButton />
+        </div>
+      </SectionContainer>
 
       {/* Main content */}
-      <main className="flex-grow">
-        {/* Binder label */}
-        <div className="max-w-7xl mx-auto px-4 pt-2 pb-1">
+      <main className="flex-grow w-full">
+        <SectionContainer className="pt-2 pb-1">
           <div className="text-yellow-200 uppercase tracking-wide text-sm font-mono">
             Lucas Lawrence // Tech Stack Binder
           </div>
-        </div>
+        </SectionContainer>
 
-        {/* Tabs */}
-        <div className="max-w-7xl mx-auto px-4 pb-2">
+        <SectionContainer className="pb-2">
           <div className="flex gap-3 text-yellow-200 text-xs font-mono uppercase tracking-widest">
             <button className="underline underline-offset-2">All</button>
           </div>
-        </div>
+        </SectionContainer>
 
-        {/* Project cards */}
-        <div className="max-w-7xl mx-auto px-4 pb-4">
-          <ProjectGallery />
-        </div>
+        <ProjectGallery />
       </main>
     </div>
   )

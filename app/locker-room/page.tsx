@@ -72,7 +72,7 @@ export default function LockerRoomPage() {
               x={980}
               y={130}
               width={150}
-              height={150}
+              height={250}
               zoneId="laptop"
               onClick={setSelectedZone}
             >
@@ -132,7 +132,7 @@ export default function LockerRoomPage() {
               x={980}
               y={82}
               width={300}
-              height={150}
+              height={50}
               zoneId="locker-placard-4"
               onClick={setSelectedZone}
             >
@@ -156,7 +156,7 @@ export default function LockerRoomPage() {
               x={150}
               y={82}
               width={300}
-              height={370}
+              height={100}
               zoneId="locker-placard-1"
               onClick={setSelectedZone}
             >
@@ -199,7 +199,7 @@ export default function LockerRoomPage() {
               <QuestionJerseySVG className="w-16 h-auto opacity-90 hover:opacity-100" />
             </LockerZone>
           ),
-          'zoe': (
+          zoe: (
             <LockerZone
               x={670}
               y={790}
@@ -223,7 +223,7 @@ export default function LockerRoomPage() {
               <HigherDivisionTrophySVG />
             </LockerZone>
           ),
-          'basketball': (
+          basketball: (
             <LockerZone
               x={90}
               y={650}
@@ -235,7 +235,7 @@ export default function LockerRoomPage() {
               <BasketballSvg />
             </LockerZone>
           ),
-          'patent': (
+          patent: (
             <LockerZone
               x={950}
               y={410}
@@ -247,7 +247,7 @@ export default function LockerRoomPage() {
               <PatentSvg />
             </LockerZone>
           ),
-          'headphones': (
+          headphones: (
             <LockerZone
               x={510}
               y={670}
@@ -256,7 +256,7 @@ export default function LockerRoomPage() {
               zoneId="headphones"
               onClick={setSelectedZone}
             >
-                <HeadphonesSvg />
+              <HeadphonesSvg />
             </LockerZone>
           ),
           'melo-2': (
@@ -295,7 +295,7 @@ export default function LockerRoomPage() {
               <Harden7sSVG />
             </LockerZone>
           ),
-          'ps5': (
+          ps5: (
             <LockerZone
               x={630}
               y={620}

@@ -3,11 +3,11 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
     title: 'Scouting Report',
     description: 'Breaking down opponents, ideas, and next moves.',
   },
-  'laptop': {
+  laptop: {
     title: 'Laptop',
     description: 'Where the magic gets built. Code, design, deploy.',
   },
-  'jereseys': {
+  jereseys: {
     title: 'Jerseys',
     description: 'Past teams, moments, and messages—each with a story.',
   },
@@ -47,7 +47,7 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
     title: 'Question Jersey',
     description: 'Something’s brewing. Maybe your logo fits here?',
   },
-  'zoe': {
+  zoe: {
     title: 'Zoë',
     description: 'Mascot and co-pilot through the late nights.',
   },
@@ -55,15 +55,15 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
     title: 'Higher Division Trophy',
     description: 'Pushed up a league. Earned through leadership and grit.',
   },
-  'basketball': {
+  basketball: {
     title: 'Game Ball',
     description: 'Center of it all. Energy, focus, and readiness.',
   },
-  'patent': {
+  patent: {
     title: 'Patent',
     description: 'Innovation that’s earned legal protection.',
   },
-  'headphones': {
+  headphones: {
     title: 'Headphones',
     description: 'Flow mode. Beats and code go hand in hand.',
   },
@@ -79,7 +79,7 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
     title: 'Harden Vol. 7',
     description: 'Decisive moves and isolation excellence.',
   },
-  'ps5': {
+  ps5: {
     title: 'PS5 Console',
     description: 'Play is serious too. Precision, tactics, fun.',
   },

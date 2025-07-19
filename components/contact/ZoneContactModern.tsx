@@ -41,7 +41,7 @@ export function ZoneContactModern() {
                   target="_blank"
                   className="underline text-blue-700"
                 >
-                  /lucasklawrence
+                  /in/lucasklawrence
                 </a>
               </li>
             </ul>
