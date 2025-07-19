@@ -72,7 +72,7 @@ export default function LockerRoomPage() {
               x={980}
               y={130}
               width={150}
-              height={150}
+              height={250}
               zoneId="laptop"
               onClick={setSelectedZone}
             >
@@ -132,7 +132,7 @@ export default function LockerRoomPage() {
               x={980}
               y={82}
               width={300}
-              height={150}
+              height={50}
               zoneId="locker-placard-4"
               onClick={setSelectedZone}
             >
@@ -156,7 +156,7 @@ export default function LockerRoomPage() {
               x={150}
               y={82}
               width={300}
-              height={370}
+              height={100}
               zoneId="locker-placard-1"
               onClick={setSelectedZone}
             >

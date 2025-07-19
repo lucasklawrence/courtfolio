@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fixed blur on project cards on hover due to gpu acceleration with motion div
 - Words around court logo overlapped to look like there was a typo
+- Laptop and Canoga clickable areas in locker room
 
 ### Changed
 - Updated resume, lead engineer instead of acting lead
