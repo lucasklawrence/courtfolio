@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hall of Strategy** – Architecture write-ups
 - **Press Room** – Blog & media entries, changelog, etc
 
+## [0.2.3] - 2025-07-19
+
+### Added
+- More Banners to rafters
+- OCR and R-Learning Snake Projects
+
+### Fixed
+- Fixed blur on project cards on hover due to gpu acceleration with motion div
+- Words around court logo overlapped to look like there was a typo
+
+### Changed
+- Updated resume, lead engineer instead of acting lead
+- Updated contact page to match /in/ for LinkedIn links
+
 ## [0.2.2] - 2025-07-13
 
 ### Fixed
