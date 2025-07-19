@@ -58,7 +58,7 @@ const projects: TradeCardProps[] = [
     name: 'OCR Document Scanner',
     slug: 'ocr-scanner',
     tagline: 'Realtime document OCR pipeline on DSP hardware',
-    thumbnailUrl: '/thumbnails/OCRThumbnail.png',
+    thumbnailUrl: '/thumbnails/OcrThumbnail.png',
     stack: ['C', 'TI DSP Board', 'Image Processing'],
     impact:
       'Senior capstone at UCLA — built a full embedded pipeline for document classification and OCR',
