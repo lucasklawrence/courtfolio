@@ -32,6 +32,20 @@ const projects: TradeCardProps[] = [
     featured: true,
   },
   {
+    name: 'Dad Memorial Site',
+    slug: 'dad-memorial',
+    tagline: 'A tribute to the greatest influence on the man I’ve become',
+    thumbnailUrl: '/thumbnails/DadMemorial.png',
+    stack: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'Supabase'],
+    impact:
+      'Honors my dad’s life with a Memory Wall and Letter section — a place for our family to contribute, share, and remember together',
+    year: 2025,
+    moment:
+      'Shipped a respectful, low-friction flow for posting memories with admin review (Supabase Auth + RLS) and crafted elegant letter/tribute card components with subtle motion.',
+    featured: true,
+    href: 'https://flolawrence.life',
+  },
+  {
     name: 'Bars of the Day',
     slug: 'bars-of-the-day',
     tagline: 'Daily rap bars with style',

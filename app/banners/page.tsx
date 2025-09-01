@@ -74,6 +74,12 @@ const groupedBanners: BannerSection[] = [
         icon: '🎤',
         category: 'personal',
       },
+      {
+        year: '2025',
+        title: 'Launched Memorial Site for Dad',
+        icon: '🕯️',
+        category: 'personal',
+      },
     ],
   },
   {
@@ -108,6 +114,12 @@ const groupedBanners: BannerSection[] = [
         year: '2025',
         title: 'KBL Season 6 — All Star Champs',
         icon: '⭐',
+        category: 'basketball',
+      },
+      {
+        year: '2025',
+        title: 'KBL Season 7 — Season Champs',
+        icon: '👑',
         category: 'basketball',
       },
     ],
