@@ -38,7 +38,7 @@ const projects: TradeCardProps[] = [
     thumbnailUrl: '/thumbnails/DadMemorial.png',
     stack: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'Supabase'],
     impact:
-      'Honors my dad’s life with a Memory Wall and Letter section — a place for our family to contribute, share, and remember together.',
+      'Honors my dad’s life with a Memory Wall and Letter section — a place for our family to contribute, share, and remember together',
     year: 2025,
     moment:
       'Shipped a respectful, low-friction flow for posting memories with admin review (Supabase Auth + RLS) and crafted elegant letter/tribute card components with subtle motion.',
