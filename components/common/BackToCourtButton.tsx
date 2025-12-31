@@ -11,7 +11,7 @@ export function BackToCourtButton() {
       href="/"
       className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-black text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer"
     >
-      Back to Home Court
+      🏀 Back to Home Court
     </Link>
   )
 }
