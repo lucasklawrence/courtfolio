@@ -22,16 +22,7 @@ type Props = {
  * If `zoneId` and `onClick` are provided, clicking this zone will trigger selection.
  * Keyboard: Enter/Space also trigger selection for accessibility when clickable.
  */
-export function LockerZone({
-  x,
-  y,
-  width,
-  height,
-  zoneId,
-  onClick,
-  ariaLabel,
-  children,
-}: Props) {
+export function LockerZone({ x, y, width, height, zoneId, onClick, ariaLabel, children }: Props) {
   const handleClick = () => {
     if (zoneId && onClick) onClick(zoneId)
   }
@@ -45,7 +36,7 @@ export function LockerZone({
   }
 
   const isInteractive = Boolean(zoneId && onClick)
-  const label = ariaLabel ?? (zoneId ? lockerZoneTooltips[zoneId]?.title ?? zoneId : undefined)
+  const label = ariaLabel ?? (zoneId ? (lockerZoneTooltips[zoneId]?.title ?? zoneId) : undefined)
 
   return (
     <g
