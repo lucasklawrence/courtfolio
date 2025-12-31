@@ -6,7 +6,6 @@ import { DadJerseySVG } from '@/components/locker-room/assets/DadJerseySvg'
 import { LockerZone } from '@/components/locker-room/LockerZone'
 import { LockerPlacardSVG } from '@/components/locker-room/LockerPlacardSvg'
 import { InteractiveLockerItem } from '@/components/locker-room/InteractiveLockerItem'
-import { QuestionJerseySVG } from '@/components/locker-room/assets/QuestionJerseySvg'
 import { ZoeSvg } from '@/components/locker-room/assets/Zoe'
 import { BasketballSvg } from '@/components/locker-room/assets/basketballSvg'
 import { Melo2sSvg } from '@/components/locker-room/assets/Melo2s'
@@ -23,11 +22,10 @@ import { LaptopSvg } from '@/components/locker-room/assets/LaptopSvg'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { LockerInfo } from '@/components/locker-room/LockerInfo'
 import { SvgLayoutContainer } from '@/components/common/SvgLayoutContainer'
-import { SnapchatBasketball } from '@/components/locker-room/assets/snapBasketball'
-import { DuffelBagSvg } from '@/components/locker-room/assets/DuffelBagSvg'
-import { Snapchat4Jersey } from '@/components/locker-room/assets/Snap4Jersey'
 import { Yellow4Jersey } from '@/components/locker-room/assets/Yellow4Jersey'
 import { SnapGhost } from '@/components/locker-room/assets/SnapGhost'
+import { KindSmartCreativeBooks } from '@/components/locker-room/assets/KindSmartCreativeBooks'
+import { SnapchatShoes } from '@/components/locker-room/assets/SnapShoes'
 
 /**
  * Renders the Locker Room page of the basketball-themed portfolio.
@@ -58,16 +56,16 @@ export default function LockerRoomPage() {
               </h1>
             </LockerZone>
           ),
-          'snap-basketball': (
+          'snap-shoes': (
             <LockerZone
-              x={1220}
-              y={630}
-              width={150}
-              height={200}
-              zoneId="scout-report"
+              x={1170}
+              y={790}
+              width={250}
+              height={300}
+              zoneId="snap-shoes"
               onClick={setSelectedZone}
             >
-              <SnapchatBasketball />
+              <SnapchatShoes />
             </LockerZone>
           ),
           laptop: (
@@ -106,16 +104,16 @@ export default function LockerRoomPage() {
               <StrawHatSvg />
             </LockerZone>
           ),
-          'duffel-bag': (
+          'snap-values': (
             <LockerZone
               x={1180}
-              y={120}
+              y={143}
               width={250}
               height={200}
-              zoneId="duffel-bag"
+              zoneId="snap-values"
               onClick={setSelectedZone}
             >
-              <DuffelBagSvg />
+              <KindSmartCreativeBooks />
             </LockerZone>
           ),
           'dad-jersey': (
@@ -204,8 +202,8 @@ export default function LockerRoomPage() {
           ),
            'ghost-logo-jersey': (
             <LockerZone
-              x={1150}
-              y={250}
+              x={1265}
+              y={400}
               width={290}
               height={390}
               zoneId="ghost-logo-jersey"
