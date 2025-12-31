@@ -204,18 +204,18 @@ export default function LockerRoomPage() {
           ),
           'ghost-logo-jersey': (
             <LockerZone
-              x={1265}
-              y={400}
-              width={290}
-              height={390}
+              x={1215}
+              y={300}
+              width={75}
+              height={75}
               zoneId="ghost-logo-jersey"
               onClick={setSelectedZone}
               useForeignObject={false}
             >
               <g transform="translate(45 95)">
                 <SnapGhost
-                  width="200"
-                  height="200"
+                  width="75"
+                  height="75"
                   preserveAspectRatio="xMidYMid meet"
                   className="opacity-90 hover:opacity-100"
                 />
