@@ -212,7 +212,12 @@ export default function LockerRoomPage() {
               onClick={setSelectedZone}
               useForeignObject={!isSafari()}
             >
-              <SnapGhost className="w-16 h-auto opacity-90 hover:opacity-100" />
+              <SnapGhost
+                width="100%"
+                height="100%"
+                preserveAspectRatio="xMidYMid meet"
+                className="opacity-90 hover:opacity-100"
+              />
             </LockerZone>
           ),
           zoe: (
