@@ -1,3 +1,5 @@
+'use client'
+
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FrontOfficeSvg } from '@/components/contact/FrontOfficeSvg'
 import { FrontOfficeZone } from '@/components/contact/FrontOfficeZone'
