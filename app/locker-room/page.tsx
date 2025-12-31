@@ -27,6 +27,7 @@ import { SnapGhost } from '@/components/locker-room/assets/SnapGhost'
 import { KindSmartCreativeBooks } from '@/components/locker-room/assets/KindSmartCreativeBooks'
 import { SnapchatShoes } from '@/components/locker-room/assets/SnapShoes'
 import { LockerZoneId } from '@/components/locker-room/types'
+import { isSafari } from '@/utils/isSafari'
 
 /**
  * Renders the Locker Room page of the basketball-themed portfolio.
@@ -209,6 +210,7 @@ export default function LockerRoomPage() {
               height={390}
               zoneId="ghost-logo-jersey"
               onClick={setSelectedZone}
+              useForeignObject={!isSafari()}
             >
               <SnapGhost className="w-16 h-auto opacity-90 hover:opacity-100" />
             </LockerZone>

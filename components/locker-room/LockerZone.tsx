@@ -11,6 +11,8 @@ type Props = {
   zoneId?: LockerZoneId
   onClick?: (zoneId: LockerZoneId) => void
   ariaLabel?: string
+  /** Render content inside a foreignObject (HTML) or directly as SVG when false. */
+  useForeignObject?: boolean
   children: React.ReactNode
 }
 
@@ -22,7 +24,17 @@ type Props = {
  * If `zoneId` and `onClick` are provided, clicking this zone will trigger selection.
  * Keyboard: Enter/Space also trigger selection for accessibility when clickable.
  */
-export function LockerZone({ x, y, width, height, zoneId, onClick, ariaLabel, children }: Props) {
+export function LockerZone({
+  x,
+  y,
+  width,
+  height,
+  zoneId,
+  onClick,
+  ariaLabel,
+  useForeignObject = true,
+  children,
+}: Props) {
   const handleClick = () => {
     if (zoneId && onClick) onClick(zoneId)
   }
@@ -48,9 +60,13 @@ export function LockerZone({ x, y, width, height, zoneId, onClick, ariaLabel, ch
       aria-label={isInteractive ? label : undefined}
       className={isInteractive ? 'cursor-pointer' : undefined}
     >
-      <foreignObject width={width} height={height}>
-        <SafeSvgHtml>{children}</SafeSvgHtml>
-      </foreignObject>
+      {useForeignObject ? (
+        <foreignObject width={width} height={height}>
+          <SafeSvgHtml>{children}</SafeSvgHtml>
+        </foreignObject>
+      ) : (
+        <g>{children}</g>
+      )}
     </g>
   )
 }
