@@ -10,7 +10,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.580"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1276.61 680.25
   C 1269.50 689.04 1259.38 695.30 1248.68 700.04"
@@ -18,7 +18,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.698"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1248.68 700.04
   C 1241.06 703.42 1233.46 705.37 1225.09 707.70
@@ -29,7 +29,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.780"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1170.03 717.63
   C 1146.83 720.56 1133.84 722.09 1112.28 723.90
@@ -52,7 +52,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.698"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1001.67 744.43
   L 963.25 753.72"
@@ -60,7 +60,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.780"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 963.25 753.72
   L 960.45 754.50"
@@ -68,7 +68,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.698"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 960.45 754.50
   Q 951.00 756.39 941.59 758.47
@@ -81,7 +81,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.780"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 873.84 768.81
   Q 868.57 769.16 863.45 769.71
@@ -114,7 +114,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.698"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 598.37 735.21
   Q 590.43 730.71 582.13 726.49
@@ -125,7 +125,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.780"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 541.52 699.52
   Q 538.48 695.81 535.26 692.29
@@ -168,7 +168,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.698"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 344.47 653.78
   L 331.05 646.53"
@@ -176,7 +176,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#000000"
           strokeOpacity="0.580"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 331.05 646.53
   L 322.34 640.48
@@ -186,7 +186,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 499.66 469.80
   Q 500.33 468.81 499.01 468.26
@@ -194,35 +194,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 518.68 453.16
   Q 520.87 453.98 522.07 452.01"
         />
         <path
           stroke="#3c2f20"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 522.20 452.00
   Q 523.51 451.71 523.29 451.26"
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 547.47 435.87
   Q 549.76 435.90 551.32 434.21"
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 575.34 411.75
   Q 578.02 412.17 579.40 409.99"
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 726.50 242.01
   Q 703.43 272.99 681.36 304.86
@@ -230,7 +230,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 670.88 321.40
   L 664.24 332.52
@@ -244,7 +244,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 676.70 336.01
   Q 677.00 336.30 677.25 336.41
@@ -253,7 +253,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 673.44 337.13
   Q 661.53 336.48 651.88 338.39
@@ -261,7 +261,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 638.69 344.23
   C 634.55 346.51 635.90 349.56 637.97 352.58
@@ -274,7 +274,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 638.65 350.95
   Q 640.07 351.74 641.30 351.97
@@ -283,35 +283,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 642.95 354.79
   L 643.00 355.24"
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 643.00 355.24
   Q 641.47 356.13 640.71 357.72"
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 640.71 357.72
   L 638.57 358.80"
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 638.57 358.80
   Q 638.15 358.65 637.80 358.14"
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.80 358.14
   Q 639.46 356.72 639.49 355.08
@@ -320,7 +320,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 635.89 359.07
   L 632.38 360.48
@@ -333,21 +333,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 633.25 362.02
   L 631.16 362.89"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 631.16 362.89
   Q 622.60 364.09 614.97 368.73"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 614.97 368.73
   Q 611.94 369.82 610.87 371.88
@@ -356,7 +356,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 616.12 379.85
   L 617.65 380.16
@@ -365,35 +365,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 616.05 382.31
   Q 615.62 383.52 613.45 384.57"
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 613.45 384.57
   Q 612.72 385.84 610.66 386.87"
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 610.66 386.87
   L 601.02 388.92"
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 601.02 388.92
   L 590.13 393.45"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 590.13 393.45
   Q 587.42 394.89 585.12 397.50
@@ -404,14 +404,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 589.62 403.49
   Q 589.47 404.04 589.88 404.62"
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 589.88 404.62
   Q 588.97 406.01 587.56 406.88
@@ -420,7 +420,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 581.13 412.68
   Q 580.11 413.42 578.45 413.64
@@ -428,35 +428,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 574.52 414.19
   L 572.19 415.00"
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 572.19 415.00
   Q 571.30 415.02 570.53 415.52"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 570.53 415.52
   Q 569.40 415.66 568.97 416.07"
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 568.97 416.07
   Q 564.00 416.42 559.98 419.06"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 559.98 419.06
   Q 555.81 420.76 554.20 423.95
@@ -464,28 +464,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 555.80 427.51
   Q 556.88 429.21 558.41 430.02"
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 558.41 430.02
   Q 559.72 429.56 560.15 430.66"
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.15 430.66
   Q 557.60 433.51 552.60 436.36"
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 552.60 436.36
   Q 550.85 435.86 550.17 437.19
@@ -494,21 +494,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 545.05 438.22
   L 543.76 438.77"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 543.76 438.77
   C 536.00 439.69 531.36 439.97 525.54 442.55"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 525.54 442.55
   Q 524.15 443.02 524.09 443.75
@@ -516,7 +516,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 526.23 449.16
   L 527.01 450.61
@@ -531,21 +531,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 523.77 456.22
   Q 512.50 454.93 503.94 458.71"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 503.94 458.71
   Q 500.58 460.28 498.93 462.13"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 498.93 462.13
   Q 498.97 464.56 500.03 465.95
@@ -556,14 +556,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.03 484.12
   Q 567.10 487.10 573.48 491.86"
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 573.48 491.86
   Q 574.34 492.06 574.42 492.66
@@ -572,7 +572,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 573.17 493.39
   Q 569.07 491.97 564.73 491.93
@@ -581,14 +581,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 559.04 497.46
   Q 559.45 501.14 557.49 501.80"
         />
         <path
           stroke="#80807f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 557.49 501.80
   Q 550.11 503.26 542.83 501.36
@@ -612,7 +612,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 331.24 562.13
   Q 338.64 564.32 345.87 566.75
@@ -621,7 +621,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 376.09 592.94
   Q 381.07 603.79 386.87 612.13
@@ -629,21 +629,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 388.31 612.96
   L 392.97 618.10"
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 392.97 618.10
   Q 392.78 619.54 392.47 619.30"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 392.47 619.30
   Q 391.02 617.90 387.74 615.50
@@ -651,14 +651,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 371.99 594.00
   Q 368.37 585.75 362.78 580.30"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 362.78 580.30
   C 355.81 573.86 346.60 570.03 338.23 567.79
@@ -667,7 +667,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 311.55 560.04
   Q 311.20 559.87 310.92 559.96
@@ -676,14 +676,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 304.35 575.02
   Q 299.11 589.91 301.49 606.01"
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 301.49 606.01
   C 302.88 614.91 308.70 623.44 315.42 629.34
@@ -692,14 +692,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 407.25 668.96
   L 441.50 675.61"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 441.50 675.61
   Q 463.28 678.62 478.00 679.67
@@ -710,28 +710,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 531.83 639.15
   L 540.81 621.83"
         />
         <path
           stroke="#675e4b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 540.81 621.83
   L 541.62 619.55"
         />
         <path
           stroke="#3c2f20"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 541.62 619.55
   L 542.87 617.25"
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 542.87 617.25
   Q 545.14 615.45 547.42 613.43
@@ -739,7 +739,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 562.95 604.47
   Q 563.19 605.56 560.90 606.97
@@ -748,7 +748,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#80807f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.98 609.07
   Q 555.03 612.16 549.51 616.01
@@ -758,7 +758,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 549.56 621.80
   C 563.69 629.26 581.01 635.01 597.09 640.76
@@ -767,7 +767,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 613.75 652.42
   Q 618.32 659.24 621.58 666.80
@@ -776,14 +776,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c2f20"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 631.17 687.91
   L 633.10 692.29"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 633.10 692.29
   L 637.43 698.08
@@ -800,14 +800,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 617.34 666.40
   Q 614.48 659.24 610.35 653.94"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 610.35 653.94
   C 605.32 647.05 598.50 644.48 591.48 642.01
@@ -818,14 +818,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 538.67 632.93
   L 535.41 639.80"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 535.41 639.80
   Q 532.86 646.39 530.58 655.07
@@ -833,7 +833,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 532.56 679.24
   C 540.05 694.23 552.58 703.32 566.58 712.50
@@ -843,7 +843,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.04 750.74
   Q 695.61 760.11 726.50 763.05
@@ -865,7 +865,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1230.64 633.72
   Q 1237.36 627.32 1241.15 617.13
@@ -877,14 +877,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1232.75 573.90
   L 1231.62 570.31"
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1231.62 570.31
   Q 1231.79 570.13 1231.65 569.74
@@ -901,14 +901,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1072.60 467.15
   L 1040.33 450.76"
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1040.33 450.76
   Q 1036.06 447.18 1030.92 445.39
@@ -919,7 +919,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1027.58 446.89
   C 1025.15 445.58 1021.63 447.47 1019.73 447.01
@@ -928,7 +928,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1001.60 439.67
   Q 1001.19 439.08 1000.60 438.92
@@ -937,21 +937,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1000.07 437.45
   Q 999.87 436.75 999.27 436.25"
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 999.27 436.25
   Q 999.59 435.75 1000.08 435.45"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1000.08 435.45
   Q 1003.13 437.35 1006.25 439.26
@@ -959,7 +959,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1016.95 443.37
   Q 1020.26 444.51 1023.47 443.82
@@ -968,7 +968,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1027.25 440.50
   Q 1027.90 440.31 1028.26 440.83
@@ -977,7 +977,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1031.37 440.13
   L 1029.38 442.60
@@ -992,21 +992,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1189.52 467.81
   Q 1195.13 464.70 1197.00 457.41"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1197.00 457.41
   L 1198.93 453.02"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1198.93 453.02
   Q 1202.12 445.33 1204.82 437.56
@@ -1023,7 +1023,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1153.27 421.84
   Q 1144.71 420.50 1136.53 420.89
@@ -1032,7 +1032,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1134.46 421.78
   Q 1117.20 422.49 1102.46 412.27
@@ -1040,7 +1040,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1094.28 406.91
   Q 1090.01 404.17 1086.88 401.62
@@ -1050,14 +1050,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1082.48 395.29
   L 1087.65 398.41"
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1087.65 398.41
   Q 1088.94 399.76 1091.00 399.80
@@ -1087,21 +1087,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1171.27 398.21
   L 1176.27 389.08"
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1176.27 389.08
   C 1179.45 384.98 1181.99 379.89 1181.52 374.53"
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1181.52 374.53
   C 1183.04 370.46 1185.20 366.28 1186.52 362.60
@@ -1109,7 +1109,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1192.55 342.06
   C 1195.26 337.35 1190.77 336.38 1187.78 335.09
@@ -1131,7 +1131,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1090.27 397.78
   Q 1090.91 396.79 1089.45 396.06
@@ -1139,21 +1139,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1080.27 391.23
   Q 1072.73 386.35 1064.49 386.00"
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1064.49 386.00
   Q 1047.28 382.93 1031.05 389.33"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1031.05 389.33
   Q 1025.03 391.26 1018.66 395.17
@@ -1162,7 +1162,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 994.60 413.10
   C 992.81 413.32 992.42 411.58 990.71 412.29
@@ -1171,21 +1171,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 992.41 415.37
   L 981.30 411.67"
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 981.30 411.67
   Q 981.85 411.08 982.81 410.67"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 982.81 410.67
   L 988.68 412.36
@@ -1194,7 +1194,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1012.77 392.30
   Q 1015.20 390.69 1020.16 386.92
@@ -1202,7 +1202,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1026.14 383.40
   Q 1032.81 382.36 1038.81 380.92
@@ -1214,7 +1214,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1078.45 368.16
   Q 1081.07 365.40 1082.27 362.77
@@ -1223,7 +1223,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1076.75 312.15
   Q 1072.84 310.00 1068.67 308.34
@@ -1231,7 +1231,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1045.80 300.31
   Q 1028.81 295.00 1011.52 290.66
@@ -1240,7 +1240,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 994.59 290.76
   Q 992.21 292.89 989.65 296.65
@@ -1248,7 +1248,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 982.39 307.97
   Q 979.23 313.32 968.92 329.93
@@ -1257,7 +1257,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.33 382.24
   L 927.37 402.30
@@ -1266,49 +1266,49 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 935.00 402.72
   Q 933.63 403.83 932.22 404.16"
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 932.22 404.16
   Q 931.04 404.15 929.75 404.65"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 929.75 404.65
   L 927.24 404.84"
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 927.24 404.84
   Q 915.05 406.08 904.72 413.34"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 904.72 413.34
   L 900.10 417.06"
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.10 417.06
   Q 898.49 418.71 900.81 421.28"
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.81 421.28
   L 903.36 423.81
@@ -1317,7 +1317,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 905.00 422.20
   Q 905.81 422.32 906.40 423.42
@@ -1326,21 +1326,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.76 423.31
   Q 908.52 426.24 904.51 429.18"
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 904.51 429.18
   Q 904.56 430.17 902.72 431.00"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 902.72 431.00
   Q 897.83 431.68 893.14 433.65
@@ -1348,7 +1348,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 880.54 440.14
   L 873.20 445.57
@@ -1361,21 +1361,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 878.44 448.74
   Q 880.35 448.85 881.76 450.25"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 881.76 450.25
   L 875.76 454.44"
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 875.76 454.44
   Q 873.17 456.11 870.38 456.35
@@ -1385,21 +1385,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 861.83 458.81
   L 851.71 462.34"
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 851.71 462.34
   L 847.83 463.81"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 847.83 463.81
   Q 840.72 466.68 834.56 471.19
@@ -1408,14 +1408,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 838.68 475.37
   Q 840.26 475.18 840.46 475.74"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 840.46 475.74
   C 836.21 478.69 832.01 482.33 827.40 484.45
@@ -1428,7 +1428,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 829.93 483.99
   Q 830.14 484.01 830.30 484.05
@@ -1437,14 +1437,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 830.22 485.52
   L 828.76 486.85"
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 828.76 486.85
   Q 828.00 487.92 826.57 487.91
@@ -1453,28 +1453,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 820.41 488.82
   L 817.47 489.53"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 817.47 489.53
   L 808.56 491.80"
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 808.56 491.80
   Q 803.87 493.26 799.13 496.47"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 799.13 496.47
   Q 797.10 497.43 793.67 500.17
@@ -1482,42 +1482,42 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 793.18 502.36
   Q 794.25 504.09 796.18 505.04"
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 796.18 505.04
   Q 797.34 506.77 799.37 506.23"
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 799.37 506.23
   Q 801.19 506.19 801.06 507.05"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 801.06 507.05
   L 795.45 510.70"
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 795.45 510.70
   Q 794.89 510.77 794.45 511.36"
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 794.45 511.36
   Q 790.52 509.93 784.83 511.61
@@ -1526,7 +1526,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 792.93 513.76
   L 794.20 514.34
@@ -1535,42 +1535,42 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 792.06 515.01
   L 786.27 514.23"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 786.27 514.23
   Q 772.89 512.68 759.95 517.16"
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 759.95 517.16
   L 753.80 519.63"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 753.80 519.63
   Q 750.32 520.64 747.71 524.01"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.71 524.01
   Q 747.14 524.55 747.42 525.26"
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.42 525.26
   Q 748.56 527.39 750.77 528.24
@@ -1580,7 +1580,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 765.55 528.69
   Q 774.29 529.80 782.80 532.23
@@ -1589,21 +1589,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 832.46 551.45
   L 834.48 552.54"
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 834.48 552.54
   Q 834.69 553.28 833.93 553.55"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 833.93 553.55
   Q 829.52 552.74 825.01 552.03
@@ -1616,21 +1616,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 837.57 572.59
   Q 840.08 573.82 844.59 573.90"
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 844.59 573.90
   Q 842.77 574.96 840.64 575.38"
         />
         <path
           stroke="#80807f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 840.64 575.38
   Q 831.71 573.79 827.42 572.08
@@ -1647,21 +1647,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 713.39 550.30
   Q 708.49 549.59 709.96 548.04"
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 709.96 548.04
   L 713.54 546.68"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 713.54 546.68
   C 717.89 544.99 722.39 543.60 726.45 541.56
@@ -1672,14 +1672,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.16 527.87
   Q 744.38 526.02 744.87 522.25"
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 744.87 522.25
   Q 753.63 515.28 763.59 513.10
@@ -1710,7 +1710,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 773.86 390.02
   Q 768.98 387.08 764.28 384.49
@@ -1718,28 +1718,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 761.27 384.75
   Q 748.64 388.54 737.48 381.54"
         />
         <path
           stroke="#6f6a62"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.48 381.54
   L 733.23 378.96"
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.23 378.96
   Q 731.46 377.37 729.28 376.52"
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.28 376.52
   L 729.15 375.95
@@ -1748,7 +1748,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 734.99 377.09
   Q 741.00 381.65 749.51 383.49
@@ -1756,35 +1756,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 764.45 379.60
   Q 765.52 378.91 766.22 377.11"
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 766.22 377.11
   L 767.48 378.02"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 767.48 378.02
   L 766.86 379.49"
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 766.86 379.49
   L 766.12 380.91"
         />
         <path
           stroke="#7f6807"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 766.12 380.91
   Q 765.37 381.04 764.57 381.92
@@ -1794,14 +1794,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.87 407.09
   L 822.23 410.12"
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 822.23 410.12
   C 832.92 415.43 844.66 418.97 856.18 422.60
@@ -1814,7 +1814,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 897.55 415.73
   Q 899.07 413.36 902.16 411.42
@@ -1826,7 +1826,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.79 360.63
   Q 939.08 358.06 938.60 354.84
@@ -1835,7 +1835,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 936.69 339.69
   L 935.74 320.58
@@ -1847,7 +1847,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 934.17 323.43
   Q 934.01 317.68 933.45 311.74
@@ -1876,21 +1876,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 738.73 355.30
   Q 738.39 356.15 737.73 356.48"
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.73 356.48
   L 727.29 351.51"
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 727.29 351.51
   L 726.95 350.62
@@ -1899,7 +1899,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 727.56 349.93
   Q 728.05 350.12 728.52 350.07
@@ -1909,7 +1909,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7d5e08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 765.26 321.03
   Q 773.63 316.88 782.70 318.45
@@ -1918,7 +1918,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 797.77 321.02
   L 802.62 323.19
@@ -1927,7 +1927,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 803.83 322.22
   Q 814.37 303.83 818.73 282.92
@@ -1936,14 +1936,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 793.48 253.31
   L 782.19 248.58"
         />
         <path
           stroke="#807f65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 782.19 248.58
   Q 772.80 245.43 763.27 242.22
@@ -1951,14 +1951,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807c49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 743.80 237.76
   Q 733.01 234.53 726.50 242.01"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 743.80 237.76
   L 740.19 238.13
@@ -1967,7 +1967,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 758.28 243.33
   Q 749.57 242.39 740.92 240.72
@@ -1976,7 +1976,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 782.19 248.58
   L 782.94 250.25
@@ -1986,7 +1986,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 793.48 253.31
   L 782.68 252.64
@@ -1997,14 +1997,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 747.87 274.12
   C 745.73 269.99 742.18 268.93 737.61 268.55"
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.61 268.55
   C 731.09 266.78 726.86 268.23 720.92 271.69
@@ -2017,21 +2017,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.88 322.41
   Q 671.80 322.48 671.73 322.55"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.73 322.55
   L 670.88 321.40"
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.80 276.46
   C 744.39 291.02 736.21 308.33 732.45 316.90
@@ -2039,7 +2039,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 803.83 322.22
   Q 803.12 322.46 802.83 322.28
@@ -2051,14 +2051,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 810.24 266.21
   L 809.04 264.93"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 809.04 264.93
   Q 803.28 260.52 796.21 258.31
@@ -2068,14 +2068,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 765.93 314.28
   Q 762.51 317.77 765.26 321.03"
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 727.56 349.93
   Q 726.34 349.06 724.89 348.60
@@ -2083,7 +2083,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 711.01 343.97
   Q 695.26 338.19 678.75 335.92
@@ -2091,7 +2091,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.73 322.55
   L 671.63 323.48
@@ -2100,7 +2100,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 704.22 336.02
   C 707.40 337.34 710.39 337.97 713.07 340.51
@@ -2121,14 +2121,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.80 276.46
   L 747.87 274.12"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.61 268.55
   Q 739.56 278.02 731.86 283.65
@@ -2141,7 +2141,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 809.04 264.93
   L 801.33 261.82
@@ -2152,7 +2152,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 810.24 266.21
   Q 806.14 273.81 802.84 281.80
@@ -2165,7 +2165,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 711.01 343.97
   L 710.68 344.04
@@ -2176,21 +2176,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2af66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 709.53 345.05
   Q 691.98 339.00 673.44 337.13"
         />
         <path
           stroke="#ae9165"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 709.53 345.05
   L 725.96 350.95"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 725.96 350.95
   Q 725.69 351.17 725.70 351.27
@@ -2217,14 +2217,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 649.79 341.21
   Q 647.27 341.58 645.12 342.70"
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 645.12 342.70
   Q 642.24 343.51 639.66 345.39
@@ -2233,21 +2233,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 725.96 350.95
   Q 726.53 351.37 727.29 351.51"
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.73 356.48
   L 758.93 367.54"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 758.93 367.54
   Q 758.94 368.48 758.75 368.96
@@ -2261,7 +2261,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 723.04 354.65
   C 714.00 349.96 704.58 347.58 696.02 344.82
@@ -2272,21 +2272,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 758.93 367.54
   L 760.66 368.80"
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 760.66 368.80
   L 763.78 373.84"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 763.78 373.84
   Q 759.48 372.00 755.61 370.93
@@ -2300,7 +2300,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 717.59 365.24
   Q 705.75 359.79 693.42 355.61
@@ -2308,14 +2308,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 657.81 350.65
   C 649.90 350.04 645.22 349.46 638.65 350.95"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 723.04 354.65
   Q 704.48 347.52 684.86 344.37
@@ -2324,14 +2324,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 766.22 377.11
   Q 767.01 371.40 760.66 368.80"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 717.59 365.24
   L 726.54 370.26
@@ -2342,35 +2342,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.28 376.52
   Q 728.20 376.27 727.00 374.96"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 727.00 374.96
   Q 726.72 373.70 725.71 373.60"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 725.71 373.60
   L 724.26 372.47"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 724.26 372.47
   Q 723.78 371.50 723.28 371.66"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 723.28 371.66
   Q 721.28 370.32 719.47 368.87
@@ -2382,21 +2382,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 696.31 368.72
   L 705.08 364.30"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.08 364.30
   Q 705.81 363.83 705.98 363.34"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.98 363.34
   L 706.87 363.03
@@ -2410,14 +2410,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 763.78 373.84
   L 764.45 379.60"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 657.81 350.65
   L 643.72 352.11
@@ -2426,14 +2426,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 934.17 323.43
   Q 933.88 335.81 935.28 347.73"
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 935.28 347.73
   Q 935.43 349.69 934.85 350.60
@@ -2442,7 +2442,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 932.49 328.75
   Q 932.15 316.42 928.74 304.62
@@ -2459,14 +2459,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 754.42 363.36
   L 738.73 355.30"
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 932.49 328.75
   C 928.71 338.74 925.91 349.48 922.85 357.37
@@ -2480,14 +2480,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad7907"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 767.48 378.02
   C 770.32 371.23 759.26 365.85 754.42 363.36"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.98 363.34
   Q 703.20 362.27 700.76 363.45
@@ -2502,7 +2502,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 696.31 368.72
   L 689.77 371.04
@@ -2511,7 +2511,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 700.13 380.38
   Q 688.38 373.77 681.78 371.21
@@ -2522,7 +2522,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 647.57 360.59
   Q 647.13 360.35 646.90 359.80
@@ -2537,21 +2537,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 723.28 371.66
   Q 711.92 375.41 701.40 381.01"
         />
         <path
           stroke="#ecc86a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.23 378.96
   Q 732.22 378.82 731.88 379.53"
         />
         <path
           stroke="#e4bc53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 731.88 379.53
   C 728.15 377.27 725.30 378.42 721.28 380.42
@@ -2566,7 +2566,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 724.26 372.47
   Q 723.70 372.61 723.36 373.19
@@ -2584,7 +2584,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 727.00 374.96
   L 719.70 378.23
@@ -2595,7 +2595,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 936.69 339.69
   Q 935.68 339.26 936.07 341.47
@@ -2603,14 +2603,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 936.74 354.95
   L 935.28 347.73"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 936.74 354.95
   Q 936.30 355.80 936.36 357.16
@@ -2626,7 +2626,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 815.87 407.09
   Q 813.52 404.54 811.03 403.20
@@ -2636,7 +2636,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 647.57 360.59
   Q 645.08 360.65 643.01 359.95
@@ -2646,21 +2646,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 700.13 380.38
   Q 700.51 380.75 701.40 381.01"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 701.40 381.01
   Q 703.34 383.04 705.28 383.71"
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.28 383.71
   L 709.26 386.33"
@@ -2668,7 +2668,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#96704c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 709.26 386.33
   Q 711.63 387.90 713.68 389.81
@@ -2676,35 +2676,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 713.97 390.96
   L 713.78 392.78"
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 713.78 392.78
   Q 713.19 393.19 712.36 391.79"
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 712.36 391.79
   Q 711.87 390.65 711.23 390.30"
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 711.23 390.30
   Q 700.40 381.37 686.80 375.34"
         />
         <path
           stroke="#ae9165"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 686.80 375.34
   Q 679.21 371.94 670.69 368.44
@@ -2712,28 +2712,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 662.40 366.02
   Q 656.28 363.01 649.58 363.13"
         />
         <path
           stroke="#ae9165"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 649.58 363.13
   Q 649.55 362.99 649.10 362.91"
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 649.10 362.91
   C 643.76 361.31 638.72 361.93 633.25 362.02"
         />
         <path
           stroke="#d7c9ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 731.88 379.53
   L 736.35 383.59
@@ -2744,14 +2744,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 721.94 393.47
   Q 718.61 391.48 717.41 392.53"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 717.41 392.53
   L 716.45 391.73
@@ -2760,7 +2760,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.48 381.54
   Q 735.16 381.67 738.02 384.00
@@ -2769,21 +2769,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 742.50 386.06
   C 736.42 387.50 731.24 390.12 725.57 392.22"
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 725.57 392.22
   Q 723.62 393.28 721.94 393.47"
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.79 360.63
   L 937.94 370.73
@@ -2801,14 +2801,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdd6d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 649.58 363.13
   L 662.40 366.02"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 686.80 375.34
   Q 686.80 376.24 688.43 376.99
@@ -2825,14 +2825,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 640.71 364.76
   Q 633.91 364.27 627.87 365.34"
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 627.87 365.34
   Q 622.49 366.58 616.12 369.56
@@ -2840,7 +2840,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 684.19 379.43
   Q 691.64 382.52 698.63 386.41
@@ -2848,14 +2848,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 712.36 391.79
   Q 710.31 398.03 702.26 398.90"
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 702.26 398.90
   Q 697.91 399.97 693.37 396.90
@@ -2864,7 +2864,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 624.77 375.80
   Q 620.30 375.52 616.45 376.90
@@ -2873,14 +2873,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 616.48 378.59
   L 616.12 379.85"
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.01 416.44
   L 728.28 416.39
@@ -2891,21 +2891,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.20 403.51
   L 688.52 402.42"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.52 402.42
   Q 686.92 400.19 688.44 399.73"
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.78 400.92
   C 690.67 402.37 691.89 405.38 693.53 405.95
@@ -2923,28 +2923,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 715.97 393.46
   Q 714.81 392.23 713.78 392.78"
         />
         <path
           stroke="#fcdd6d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 649.10 362.91
   L 631.16 362.89"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.80 358.14
   Q 636.66 359.61 635.89 359.07"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 711.23 390.30
   Q 711.31 390.96 711.23 391.40
@@ -2953,7 +2953,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 705.02 388.46
   C 701.34 384.87 696.95 383.67 692.61 381.59
@@ -2961,7 +2961,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 684.19 379.43
   Q 679.02 376.75 673.36 375.20
@@ -2970,7 +2970,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 715.97 393.46
   L 714.67 393.06
@@ -2985,28 +2985,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4ca3b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 700.26 403.20
   Q 697.51 402.09 695.87 400.05"
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 761.27 384.75
   Q 767.16 388.19 773.86 390.02"
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 744.87 522.25
   Q 744.31 522.59 744.15 521.26"
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 744.15 521.26
   Q 750.85 515.59 759.14 512.73
@@ -3032,21 +3032,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 868.17 432.15
   L 848.72 425.75"
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 848.72 425.75
   L 831.05 419.63"
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 831.05 419.63
   L 824.00 416.55
@@ -3055,7 +3055,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 812.48 425.63
   L 801.49 418.65
@@ -3064,7 +3064,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 808.99 426.04
   Q 809.34 427.02 809.13 427.16
@@ -3096,7 +3096,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 790.04 436.23
   L 777.33 426.92
@@ -3107,14 +3107,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 783.62 433.27
   C 762.83 440.90 746.45 446.30 729.79 457.85"
         />
         <path
           stroke="#fffddf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.79 457.85
   Q 721.75 459.38 713.92 461.42
@@ -3127,14 +3127,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.82 446.56
   Q 689.21 446.22 688.81 446.50"
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.81 446.50
   Q 695.30 446.12 699.49 440.45
@@ -3143,7 +3143,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 681.76 414.28
   Q 689.89 413.49 697.92 414.83
@@ -3154,14 +3154,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.20 403.51
   Q 693.73 409.95 700.46 413.92"
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 700.46 413.92
   Q 704.87 418.20 709.48 419.25
@@ -3171,7 +3171,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 729.01 416.44
   C 731.14 414.91 733.66 413.27 733.91 410.41
@@ -3180,7 +3180,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 725.57 392.22
   Q 731.57 394.48 738.18 390.98
@@ -3188,21 +3188,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 640.71 364.76
   Q 653.50 367.08 665.34 372.45"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 665.34 372.45
   L 627.87 365.34"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 702.26 398.90
   L 707.89 398.82
@@ -3215,14 +3215,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9834"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.87 400.05
   Q 695.80 399.84 695.28 399.69"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.28 399.69
   Q 693.75 398.44 691.92 398.15
@@ -3231,14 +3231,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.78 400.92
   Q 688.97 399.54 688.44 399.73"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.44 399.73
   Q 689.01 399.38 689.11 399.05
@@ -3248,7 +3248,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.43 403.70
   Q 670.58 403.31 669.86 402.55
@@ -3257,7 +3257,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 669.98 402.08
   Q 673.01 401.75 674.75 401.01
@@ -3265,14 +3265,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 685.03 397.20
   Q 686.44 396.41 687.72 396.32"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 687.72 396.32
   Q 688.29 396.27 688.47 396.16
@@ -3282,7 +3282,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 672.23 386.04
   Q 668.43 383.17 662.75 381.75
@@ -3291,7 +3291,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 626.55 377.38
   L 624.18 377.07
@@ -3300,7 +3300,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 687.72 396.32
   Q 687.18 396.36 686.81 396.26
@@ -3312,7 +3312,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 664.46 400.83
   Q 650.52 391.43 635.18 386.85
@@ -3320,7 +3320,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 622.26 384.66
   L 619.14 384.13
@@ -3331,21 +3331,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 626.55 377.38
   L 623.61 377.65"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 623.61 377.65
   Q 620.13 378.78 616.48 378.59"
         />
         <path
           stroke="#dcaf53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.52 402.42
   C 687.20 402.31 685.75 402.06 684.67 402.94
@@ -3358,14 +3358,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 681.76 414.28
   L 681.08 413.74"
         />
         <path
           stroke="#ffe13a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.28 399.69
   L 694.59 399.83
@@ -3376,7 +3376,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d7c9ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 848.72 425.75
   Q 847.12 425.93 848.84 427.06
@@ -3386,21 +3386,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ecc86a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 744.15 521.26
   Q 740.10 517.74 735.22 515.45"
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 735.22 515.45
   Q 737.36 514.67 733.93 512.97"
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 733.93 512.97
   Q 739.34 511.37 742.71 509.19
@@ -3414,7 +3414,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d0c7bb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 785.89 476.50
   Q 787.64 478.71 790.74 474.08
@@ -3423,14 +3423,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 787.98 474.29
   Q 788.09 473.11 787.15 472.40"
         />
         <path
           stroke="#ac9a83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 787.15 472.40
   L 789.68 469.53
@@ -3442,7 +3442,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 794.28 456.37
   Q 793.72 456.17 793.22 454.51
@@ -3451,7 +3451,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d0c7bb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 790.68 452.37
   Q 791.29 452.41 791.77 452.27
@@ -3460,7 +3460,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 808.99 426.04
   L 820.55 431.40
@@ -3471,7 +3471,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 831.05 419.63
   C 831.27 422.54 835.01 423.79 837.27 424.64
@@ -3480,7 +3480,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d5cec6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 791.71 451.32
   L 785.37 449.35
@@ -3493,7 +3493,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4f0d2"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 739.72 455.55
   Q 730.10 457.91 721.17 462.23
@@ -3504,7 +3504,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 783.62 433.27
   L 789.29 437.00
@@ -3513,21 +3513,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2aa34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.81 446.50
   C 681.87 446.11 677.29 442.82 671.67 439.24"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.67 439.24
   Q 666.89 436.08 663.72 430.92"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.72 430.92
   L 663.64 424.86
@@ -3542,7 +3542,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 666.79 423.62
   Q 664.58 424.88 665.60 428.10
@@ -3553,14 +3553,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 673.13 437.69
   Q 675.22 439.85 678.45 441.33"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 678.45 441.33
   C 686.32 446.19 694.60 446.43 699.40 437.34
@@ -3569,28 +3569,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 698.28 429.93
   L 696.92 428.13"
         />
         <path
           stroke="#d2aa34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 696.92 428.13
   L 688.52 421.44"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.52 421.44
   L 680.48 415.29"
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 746.16 527.87
   Q 745.18 530.67 742.55 532.08
@@ -3598,21 +3598,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ecc86a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 710.39 545.53
   L 706.79 543.77"
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 706.79 543.77
   L 689.73 536.08"
         />
         <path
           stroke="#ecc86a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.73 536.08
   L 682.63 530.68
@@ -3623,14 +3623,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.82 446.56
   Q 686.59 447.38 683.51 446.23"
         />
         <path
           stroke="#e0dcbd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 739.72 455.55
   Q 738.20 456.12 737.38 457.05
@@ -3643,14 +3643,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7deb0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 728.43 464.17
   Q 727.86 464.39 727.73 464.62"
         />
         <path
           stroke="#fffddf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 727.73 464.62
   Q 726.47 463.54 724.68 464.30
@@ -3661,7 +3661,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#efe9c7"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 656.32 473.92
   C 646.38 472.25 638.47 473.94 629.34 475.16
@@ -3669,7 +3669,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9d65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 621.32 478.56
   Q 622.24 474.36 619.48 471.30
@@ -3679,14 +3679,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffe76c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 613.23 467.99
   L 612.02 467.99"
         />
         <path
           stroke="#e7deb0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 606.03 462.06
   L 604.01 459.07
@@ -3706,14 +3706,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 635.42 461.07
   Q 636.97 463.50 640.34 463.86"
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 641.61 464.40
   Q 645.89 467.28 649.26 467.83
@@ -3729,7 +3729,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 685.03 397.20
   L 685.37 396.60
@@ -3740,21 +3740,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.43 403.70
   L 672.47 405.02"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 672.47 405.02
   Q 671.96 405.09 671.66 405.57"
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 672.23 386.04
   Q 657.22 381.39 645.20 380.02
@@ -3763,14 +3763,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 622.26 384.66
   L 613.45 384.57"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 664.46 400.83
   L 671.66 405.57"
@@ -3778,49 +3778,49 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#96704c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.66 405.57
   L 681.08 413.74"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 681.08 413.74
   L 680.23 414.90"
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 680.23 414.90
   L 672.68 408.76"
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 672.68 408.76
   L 663.74 402.22"
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.74 402.22
   L 656.37 397.92"
         />
         <path
           stroke="#ae8b33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 656.37 397.92
   Q 651.01 394.03 644.54 392.11"
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 644.54 392.11
   L 641.22 390.53
@@ -3829,42 +3829,42 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 631.87 387.88
   Q 628.93 386.51 625.08 386.94"
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 625.08 386.94
   Q 624.66 387.01 624.32 386.90"
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 624.32 386.90
   Q 619.14 385.27 613.91 386.72"
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 613.91 386.72
   Q 612.44 387.07 610.66 386.87"
         />
         <path
           stroke="#d5cec6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 787.98 474.29
   L 785.89 476.50"
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 794.28 456.37
   Q 795.62 460.31 793.16 463.16
@@ -3873,7 +3873,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 749.51 498.21
   C 746.32 499.12 743.67 501.98 741.78 503.13
@@ -3885,14 +3885,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 735.22 515.45
   L 712.00 503.43"
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 712.00 503.43
   Q 691.80 493.79 669.84 490.02
@@ -3903,7 +3903,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 623.54 495.34
   Q 621.91 494.58 620.83 496.78
@@ -3913,21 +3913,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.06 517.71
   L 680.65 524.23"
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 680.65 524.23
   Q 682.96 525.83 684.29 527.76"
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 684.29 527.76
   L 672.27 536.60
@@ -3938,7 +3938,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 621.76 560.03
   C 615.87 562.06 610.14 564.43 604.22 566.30
@@ -3960,7 +3960,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.75 559.52
   Q 680.55 556.81 689.21 553.80
@@ -3969,28 +3969,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 710.39 545.53
   L 712.92 545.57"
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 712.92 545.57
   Q 713.55 546.30 713.54 546.68"
         />
         <path
           stroke="#918b8a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 709.96 548.04
   L 702.23 551.04"
         />
         <path
           stroke="#bc9c7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 702.23 551.04
   Q 661.46 564.42 633.11 575.61
@@ -3999,7 +3999,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 579.47 596.93
   Q 573.31 599.58 567.19 602.15
@@ -4007,7 +4007,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 542.87 617.25
   Q 522.84 617.50 503.00 617.60
@@ -4017,7 +4017,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 439.05 614.66
   L 437.59 613.84
@@ -4026,14 +4026,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 438.46 613.58
   L 465.02 615.02"
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 465.02 615.02
   Q 469.42 614.92 481.25 615.58
@@ -4046,14 +4046,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 552.30 608.18
   Q 555.66 607.15 559.25 604.38"
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 559.25 604.38
   L 562.37 602.55
@@ -4064,14 +4064,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 488.50 607.27
   L 475.71 607.12"
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 475.71 607.12
   C 469.62 607.08 463.11 607.31 457.43 607.01
@@ -4084,7 +4084,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 380.30 597.62
   L 377.65 593.24
@@ -4093,7 +4093,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffefa"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 331.24 562.13
   C 338.18 561.00 345.42 560.72 352.04 558.37
@@ -4111,14 +4111,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 520.00 498.91
   L 541.67 506.64"
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 541.67 506.64
   Q 548.13 508.47 550.00 508.58
@@ -4127,7 +4127,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 568.99 509.76
   L 581.64 509.97
@@ -4139,14 +4139,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4cf82"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 582.85 490.09
   L 579.95 488.55"
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 579.95 488.55
   Q 581.68 487.39 583.70 488.21
@@ -4157,21 +4157,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 585.52 480.49
   L 590.45 481.26"
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 590.45 481.26
   Q 592.98 482.26 595.85 481.55"
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 595.85 481.55
   Q 596.93 481.75 598.39 481.50
@@ -4181,35 +4181,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9c7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 604.54 481.07
   Q 604.42 480.87 604.89 481.03"
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 604.89 481.03
   Q 610.64 484.85 616.51 482.47"
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 616.51 482.47
   Q 627.98 483.51 639.08 481.43"
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 639.08 481.43
   L 664.56 480.44"
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 664.56 480.44
   C 668.89 480.55 673.13 480.80 677.43 480.35
@@ -4225,14 +4225,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 704.33 475.29
   L 703.56 474.21"
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 790.68 452.37
   Q 789.10 451.85 788.25 451.97
@@ -4240,7 +4240,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c8bba4"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 778.26 452.44
   Q 779.24 452.21 779.55 451.98
@@ -4256,7 +4256,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b1a18e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 787.15 472.40
   C 784.26 474.96 781.47 477.95 778.70 480.21
@@ -4266,14 +4266,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4ca3b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.52 421.44
   L 687.98 422.51"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 687.98 422.51
   L 683.36 419.24
@@ -4282,7 +4282,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 668.06 407.65
   L 671.30 409.93
@@ -4293,28 +4293,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 680.23 414.90
   Q 680.38 415.04 680.48 415.29"
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 680.48 415.29
   Q 680.58 417.76 682.94 419.77"
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 682.94 419.77
   L 683.71 420.98"
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 683.71 420.98
   L 683.82 422.39
@@ -4330,7 +4330,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.19 424.43
   Q 657.26 413.82 647.97 408.77
@@ -4338,21 +4338,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 599.80 399.90
   Q 594.36 399.25 592.23 401.41"
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 592.23 401.41
   Q 589.32 402.23 589.62 403.49"
         />
         <path
           stroke="#ffe450"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 687.17 433.22
   C 681.92 434.59 679.40 432.90 675.05 432.04
@@ -4367,7 +4367,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 674.49 434.31
   Q 679.49 436.97 685.13 436.13
@@ -4377,7 +4377,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 698.28 429.93
   C 697.80 435.66 695.68 439.53 689.62 439.62
@@ -4389,14 +4389,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.19 424.43
   L 675.17 427.38"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 675.17 427.38
   L 678.80 430.72
@@ -4405,7 +4405,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 677.66 431.57
   Q 675.58 430.25 670.75 425.75
@@ -4413,7 +4413,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 666.79 423.62
   Q 666.18 423.32 665.20 422.29
@@ -4421,7 +4421,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 662.77 420.99
   Q 658.88 418.04 654.94 415.13
@@ -4438,7 +4438,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 592.23 401.41
   Q 592.53 401.58 593.28 401.41
@@ -4451,14 +4451,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7d87e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.67 439.24
   L 673.29 441.30"
         />
         <path
           stroke="#d7c9ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 673.29 441.30
   L 665.77 436.65
@@ -4467,14 +4467,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7deb0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 655.42 441.14
   L 650.67 441.87"
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 650.67 441.87
   L 649.60 441.55
@@ -4483,21 +4483,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 645.87 440.27
   L 643.06 439.12"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 641.68 433.82
   L 648.35 431.82"
         />
         <path
           stroke="#dcaf53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.72 430.92
   Q 663.06 430.43 663.13 428.90
@@ -4506,7 +4506,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 648.35 431.82
   Q 648.70 431.27 648.59 430.96
@@ -4515,7 +4515,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 696.92 428.13
   L 695.42 432.47
@@ -4524,14 +4524,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.20 434.95
   Q 687.93 434.09 687.17 433.22"
         />
         <path
           stroke="#ffe13a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 687.17 433.22
   C 688.65 432.28 690.95 432.43 691.64 430.70
@@ -4539,7 +4539,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 662.77 420.99
   Q 663.16 421.58 663.02 422.05
@@ -4549,7 +4549,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.06 429.73
   L 636.89 431.46
@@ -4558,21 +4558,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 640.34 433.00
   Q 640.26 434.08 641.68 433.82"
         />
         <path
           stroke="#e4bc53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 641.68 433.82
   Q 639.98 433.82 639.71 435.58"
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 639.71 435.58
   Q 638.29 434.24 634.84 431.94
@@ -4581,7 +4581,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 689.73 536.08
   Q 694.16 539.33 698.88 541.88
@@ -4589,7 +4589,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.75 559.52
   C 666.18 554.31 660.79 550.87 652.88 551.57
@@ -4598,7 +4598,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 712.00 503.43
   Q 711.54 503.30 711.32 503.47
@@ -4609,7 +4609,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 671.06 517.71
   Q 670.74 513.15 674.45 510.32
@@ -4622,14 +4622,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#efe495"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 673.29 441.30
   Q 677.16 445.03 683.51 446.23"
         />
         <path
           stroke="#efe9c7"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 683.51 446.23
   L 668.16 443.62
@@ -4640,7 +4640,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 613.23 467.99
   L 618.79 472.47
@@ -4652,7 +4652,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 596.27 475.72
   Q 596.53 474.68 597.14 474.66
@@ -4660,7 +4660,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 778.26 452.44
   Q 770.90 453.34 768.76 453.78
@@ -4673,7 +4673,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c8bba4"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 703.56 474.21
   Q 690.39 477.00 676.95 477.52
@@ -4683,7 +4683,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 660.29 474.99
   C 666.38 475.48 672.89 476.28 678.57 476.09
@@ -4693,7 +4693,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 645.87 440.27
   Q 651.14 444.04 656.02 447.72
@@ -4701,14 +4701,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2af66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.74 457.19
   L 663.96 458.99"
         />
         <path
           stroke="#d2aa34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.96 458.99
   Q 659.15 467.28 649.16 466.07
@@ -4717,35 +4717,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2af66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 641.61 464.40
   Q 641.25 463.76 640.34 463.86"
         />
         <path
           stroke="#d2aa34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 640.34 463.86
   Q 638.27 461.82 635.42 461.07"
         />
         <path
           stroke="#d2af66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 635.42 461.07
   Q 629.14 457.00 624.70 451.30"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 624.70 451.30
   Q 624.63 451.09 624.57 450.88"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 624.57 450.88
   Q 624.14 448.73 622.47 447.64
@@ -4757,7 +4757,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 624.20 443.48
   Q 623.59 443.55 623.61 443.92
@@ -4765,21 +4765,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 626.23 448.04
   Q 624.54 447.76 626.58 450.51"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 626.58 450.51
   Q 628.21 453.96 631.54 456.19"
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 631.54 456.19
   Q 634.40 458.34 637.93 459.53
@@ -4801,7 +4801,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 636.80 447.74
   Q 640.52 448.87 643.45 445.67
@@ -4810,28 +4810,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffddf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 650.67 441.87
   C 655.22 444.61 664.64 451.38 663.74 457.19"
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 660.29 474.99
   L 659.30 474.62"
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 659.30 474.62
   Q 657.62 474.53 656.32 473.92"
         />
         <path
           stroke="#d0c7bb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 659.30 474.62
   L 656.56 474.63
@@ -4846,7 +4846,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eed269"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 616.51 482.47
   L 616.65 481.85"
@@ -4854,14 +4854,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a47d4c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 600.79 457.39
   L 606.03 462.06"
         />
         <path
           stroke="#bc9d65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 606.03 462.06
   L 608.60 464.31
@@ -4870,7 +4870,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 612.02 467.99
   L 612.11 468.33
@@ -4883,7 +4883,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 598.73 474.24
   Q 597.51 474.52 597.06 474.11
@@ -4892,14 +4892,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 597.81 473.22
   Q 597.93 473.10 598.05 472.97"
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 598.05 472.97
   L 604.72 470.26
@@ -4912,21 +4912,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 567.98 442.65
   Q 556.89 438.16 545.05 438.22"
         />
         <path
           stroke="#ac8863"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 621.32 478.56
   Q 620.10 480.69 616.65 481.85"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 616.65 481.85
   Q 611.60 482.36 606.49 480.99
@@ -4935,7 +4935,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a47d4c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 604.54 481.07
   Q 604.46 480.44 604.01 480.35
@@ -4943,49 +4943,49 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 624.32 386.90
   L 613.91 386.72"
         />
         <path
           stroke="#f4cf82"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 625.08 386.94
   Q 628.51 388.28 631.87 387.88"
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 644.54 392.11
   L 656.37 397.92"
         />
         <path
           stroke="#fffac3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.74 402.22
   Q 664.23 404.70 663.49 404.02"
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.49 404.02
   L 647.96 396.00"
         />
         <path
           stroke="#fffac3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 647.96 396.00
   Q 639.56 391.44 629.71 390.21"
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 629.71 390.21
   Q 623.31 388.39 617.74 388.65
@@ -4995,7 +4995,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d0c7bb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 552.30 608.18
   Q 539.55 607.37 519.76 607.84
@@ -5004,7 +5004,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#96704c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 568.99 509.76
   Q 568.85 509.72 568.74 509.67
@@ -5013,7 +5013,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 574.97 508.41
   C 582.18 508.78 587.49 507.77 591.43 501.73
@@ -5022,21 +5022,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 588.23 495.74
   L 583.71 492.57"
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 590.92 480.79
   Q 590.86 481.14 590.45 481.26"
         />
         <path
           stroke="#675e4b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 585.52 480.49
   Q 584.89 479.94 583.98 479.73"
@@ -5044,7 +5044,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#6b3001"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 583.89 598.49
   Q 582.16 598.56 580.53 598.40
@@ -5052,7 +5052,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c8bba4"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 559.25 604.38
   Q 550.32 604.25 545.97 604.97
@@ -5061,7 +5061,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d7c9ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 509.54 607.23
   Q 498.10 607.36 494.00 607.63
@@ -5070,7 +5070,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a48e6c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 541.62 619.55
   Q 541.69 618.58 541.05 618.73
@@ -5099,7 +5099,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 539.72 621.61
   Q 537.20 622.26 535.50 622.30
@@ -5109,21 +5109,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 582.85 490.09
   Q 581.86 490.34 582.30 491.78"
         />
         <path
           stroke="#f4cd50"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 582.30 491.78
   Q 578.99 489.83 577.17 490.28"
         />
         <path
           stroke="#d0c7bb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 475.71 607.12
   L 472.65 607.32
@@ -5137,7 +5137,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d0c7bb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 438.46 613.58
   L 394.38 609.31
@@ -5146,21 +5146,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#9d8c79"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 395.81 610.59
   L 389.24 610.24"
         />
         <path
           stroke="#4e2a10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 704.02 553.74
   Q 703.36 552.14 702.23 551.04"
         />
         <path
           stroke="#c8bba4"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 664.56 480.44
   L 656.21 480.06
@@ -5173,7 +5173,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e0cd62"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 380.30 597.62
   Q 383.02 604.02 387.56 609.24
@@ -5182,7 +5182,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bca029"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 389.24 610.24
   Q 388.48 610.02 388.23 609.97
@@ -5191,21 +5191,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 388.84 612.04
   Q 388.19 612.50 388.31 612.96"
         />
         <path
           stroke="#b38d5a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 557.56 501.95
   Q 558.44 502.63 559.64 503.02"
         />
         <path
           stroke="#c8bba4"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 566.65 506.86
   Q 565.82 507.19 565.17 507.13
@@ -5215,28 +5215,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 595.85 481.55
   Q 594.83 479.77 590.92 480.79"
         />
         <path
           stroke="#675e4b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 590.92 480.79
   L 587.30 478.45"
         />
         <path
           stroke="#d2b080"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 557.49 501.80
   Q 557.53 501.88 557.56 501.95"
         />
         <path
           stroke="#e0dcd8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 557.56 501.95
   Q 557.44 503.47 556.49 503.62
@@ -5251,14 +5251,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ac9a83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 439.05 614.66
   L 395.81 610.59"
         />
         <path
           stroke="#dcaf53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 579.95 488.55
   L 575.94 487.79
@@ -5268,21 +5268,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#96704c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 574.25 483.14
   L 573.47 482.74"
         />
         <path
           stroke="#d2aa34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 687.98 422.51
   L 691.45 426.46"
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 691.45 426.46
   Q 691.40 427.41 690.97 428.21
@@ -5292,21 +5292,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 629.71 390.21
   Q 638.54 394.15 647.96 396.00"
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.49 404.02
   L 668.06 407.65"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 668.06 407.65
   C 661.61 406.89 657.91 402.93 652.40 400.67
@@ -5326,7 +5326,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 683.71 420.98
   Q 687.40 423.42 688.40 425.52
@@ -5337,7 +5337,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 688.20 434.95
   L 681.32 435.50
@@ -5347,28 +5347,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#96704c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 639.71 435.58
   L 643.06 439.12"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 643.06 439.12
   Q 642.01 439.76 640.92 439.82"
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 640.92 439.82
   Q 640.25 438.50 639.27 437.83"
         />
         <path
           stroke="#ae9165"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 639.27 437.83
   Q 636.41 434.70 633.00 432.55
@@ -5377,56 +5377,56 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8b33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 615.94 422.04
   Q 610.99 419.14 605.55 417.95"
         />
         <path
           stroke="#ae9165"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 605.55 417.95
   Q 591.37 413.91 576.87 414.28"
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 576.87 414.28
   L 574.52 414.19"
         />
         <path
           stroke="#865d17"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 592.49 472.80
   L 596.27 475.72"
         />
         <path
           stroke="#917417"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 596.27 475.72
   L 602.01 478.22"
         />
         <path
           stroke="#4e2a10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 602.01 478.22
   Q 601.88 479.28 599.71 478.98"
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 640.92 439.82
   Q 641.47 440.53 641.17 441.63"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 641.17 441.63
   Q 633.55 440.06 627.11 437.06
@@ -5436,14 +5436,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 641.17 441.63
   Q 643.04 442.04 642.31 443.69"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 642.31 443.69
   Q 641.49 443.88 639.08 445.08
@@ -5451,14 +5451,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 635.19 446.07
   C 632.66 446.38 631.46 445.08 629.27 444.87"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 629.27 444.87
   Q 618.57 437.37 612.04 435.21
@@ -5469,7 +5469,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 613.12 437.17
   Q 602.11 441.80 595.82 443.63
@@ -5482,7 +5482,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 620.72 442.07
   L 622.79 444.40
@@ -5491,7 +5491,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 614.74 448.06
   C 607.91 447.43 602.07 449.30 595.76 450.13
@@ -5500,14 +5500,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4bc53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 601.28 456.72
   Q 600.95 457.01 600.79 457.39"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 600.79 457.39
   C 595.00 453.53 591.17 451.83 586.38 448.93
@@ -5519,7 +5519,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 564.62 429.05
   Q 561.89 431.10 560.15 433.11
@@ -5530,28 +5530,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 629.27 444.87
   Q 631.35 449.07 635.19 446.07"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 642.31 443.69
   L 642.63 445.17"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 642.63 445.17
   L 636.80 447.74"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 636.80 447.74
   Q 636.83 447.14 636.29 447.79
@@ -5560,7 +5560,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 635.93 449.43
   L 631.36 449.06
@@ -5571,7 +5571,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 626.23 448.04
   Q 625.24 447.29 623.98 447.23
@@ -5580,7 +5580,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 624.10 444.74
   Q 625.48 446.14 626.89 446.66
@@ -5589,28 +5589,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 624.20 443.48
   Q 622.65 442.40 620.72 442.07"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 620.72 442.07
   L 615.24 438.28"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 615.24 438.28
   Q 614.22 438.01 613.12 437.17"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 613.12 437.17
   Q 606.66 434.95 600.85 432.92
@@ -5620,28 +5620,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 566.99 429.02
   Q 564.49 428.66 564.62 429.05"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 564.62 429.05
   Q 561.75 428.38 560.15 430.66"
         />
         <path
           stroke="#dcaf53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 624.57 450.88
   Q 621.26 451.06 617.71 452.48"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 617.71 452.48
   Q 618.93 451.59 620.10 451.22
@@ -5656,7 +5656,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#dcaf53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 602.73 456.52
   Q 602.50 456.99 602.00 457.10
@@ -5664,14 +5664,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 631.54 456.19
   Q 630.77 452.21 626.58 450.51"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 617.71 452.48
   Q 612.61 454.53 606.43 454.95
@@ -5679,21 +5679,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 597.81 473.22
   Q 594.96 472.15 592.49 472.80"
         />
         <path
           stroke="#917417"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 592.49 472.80
   C 587.59 469.83 584.02 466.89 578.03 463.73"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 567.74 446.27
   Q 571.07 447.35 573.88 449.19
@@ -5704,7 +5704,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 592.43 458.54
   Q 595.45 460.60 599.04 461.47
@@ -5714,14 +5714,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 593.26 457.36
   L 576.31 446.61"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 598.05 472.97
   Q 598.48 470.94 599.65 470.67
@@ -5732,7 +5732,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 565.04 456.11
   Q 556.46 452.88 547.66 450.38
@@ -5741,14 +5741,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 567.98 442.65
   L 567.03 442.93"
         />
         <path
           stroke="#fcdd6d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 567.03 442.93
   L 553.30 439.19
@@ -5757,7 +5757,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8e6a18"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 576.93 464.35
   Q 585.49 468.93 592.67 475.49
@@ -5766,14 +5766,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 599.71 478.98
   Q 599.68 479.08 599.65 479.18"
         />
         <path
           stroke="#e4bc53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 599.65 479.18
   Q 595.90 479.41 590.60 476.40
@@ -5782,14 +5782,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 585.96 476.07
   Q 591.59 474.28 587.78 474.10"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 587.78 474.10
   L 584.96 470.69
@@ -5800,7 +5800,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 588.23 495.74
   C 583.98 498.82 578.63 499.12 573.42 498.86
@@ -5808,14 +5808,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.20 498.04
   L 559.04 497.46"
         />
         <path
           stroke="#e4bc53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 574.97 508.41
   L 572.01 508.34
@@ -5824,21 +5824,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ddba61"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 566.65 506.86
   Q 561.53 506.13 559.64 503.02"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 559.64 503.02
   L 561.76 503.49"
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 561.76 503.49
   L 571.81 506.21
@@ -5848,21 +5848,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.79 499.36
   L 560.20 498.04"
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 582.30 491.78
   Q 582.87 491.79 583.71 492.57"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 583.71 492.57
   Q 584.22 493.24 584.17 493.84
@@ -5871,21 +5871,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 565.04 456.11
   L 578.03 463.73"
         />
         <path
           stroke="#643d11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 578.03 463.73
   Q 577.00 463.50 576.93 464.35"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 576.93 464.35
   C 571.98 461.45 566.76 458.12 561.56 456.44
@@ -5905,7 +5905,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 572.54 472.37
   L 576.18 475.26
@@ -5916,7 +5916,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 586.18 474.65
   L 585.26 475.12
@@ -5925,21 +5925,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 585.96 476.07
   Q 586.63 477.15 587.52 477.83"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 587.52 477.83
   Q 587.51 478.19 587.30 478.45"
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 587.30 478.45
   L 584.56 478.02
@@ -5948,21 +5948,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 581.42 477.94
   Q 577.60 478.01 573.49 475.46"
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 573.49 475.46
   Q 565.41 467.96 554.95 464.83"
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 554.95 464.83
   Q 549.55 463.26 544.14 460.88
@@ -5972,14 +5972,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 581.42 477.94
   Q 583.36 478.14 583.98 479.73"
         />
         <path
           stroke="#dcaf53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 583.98 479.73
   Q 583.32 480.10 582.71 479.64
@@ -5990,7 +5990,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 573.47 482.74
   Q 572.27 483.27 571.97 482.06
@@ -6002,28 +6002,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e0dcd8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1088.69 526.17
   Q 1086.95 523.54 1084.78 522.21"
         />
         <path
           stroke="#e7decb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1084.79 528.46
   Q 1085.27 529.26 1085.10 529.46"
         />
         <path
           stroke="#efeae1"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1085.10 529.46
   Q 1085.35 537.62 1080.63 540.65"
         />
         <path
           stroke="#bcafa0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1080.63 540.65
   Q 1083.09 535.73 1083.39 531.55
@@ -6037,28 +6037,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#efeae1"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1024.71 579.55
   L 1011.73 582.49"
         />
         <path
           stroke="#f4d087"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1034.04 604.57
   L 993.54 584.81"
         />
         <path
           stroke="#ffe786"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 993.54 584.81
   L 982.43 580.31"
         />
         <path
           stroke="#fff088"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 982.43 580.31
   Q 979.97 579.14 977.19 578.31
@@ -6066,7 +6066,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffe786"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 948.67 570.82
   Q 938.28 568.03 927.97 566.72
@@ -6077,14 +6077,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff9b2"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 870.98 573.17
   Q 869.93 574.23 868.41 574.76"
         />
         <path
           stroke="#e0dcd8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 868.41 574.76
   L 854.63 577.85
@@ -6101,7 +6101,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4f1ec"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 773.03 560.00
   L 767.81 560.52
@@ -6110,7 +6110,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffefa"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 772.82 565.12
   Q 764.41 570.12 757.04 573.49
@@ -6129,14 +6129,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae917f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.98 609.07
   L 583.89 598.49"
         />
         <path
           stroke="#bc9e80"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 583.89 598.49
   Q 613.39 586.74 643.04 575.30
@@ -6145,14 +6145,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#918c8f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 704.02 553.74
   L 713.39 550.30"
         />
         <path
           stroke="#ae917f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 840.64 575.38
   Q 848.96 577.18 857.17 575.77
@@ -6160,21 +6160,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff9b2"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 864.64 573.09
   Q 868.04 572.82 870.48 570.23"
         />
         <path
           stroke="#efeae1"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 890.35 562.47
   L 897.31 560.45"
         />
         <path
           stroke="#e7decb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 897.31 560.45
   C 901.04 559.34 905.23 557.60 908.54 556.94
@@ -6184,28 +6184,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9e80"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 947.54 548.92
   Q 968.30 543.43 987.51 533.67"
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 539.72 621.61
   Q 540.21 621.49 540.81 621.83"
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 406.98 628.34
   L 392.97 618.10"
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 574.25 483.14
   L 573.27 487.75
@@ -6214,21 +6214,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 577.17 490.28
   Q 578.71 491.75 578.75 492.41"
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 578.75 492.41
   Q 576.16 494.58 573.17 493.39"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 560.79 499.36
   Q 560.18 499.34 560.19 499.75
@@ -6236,28 +6236,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4d06c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 576.87 414.28
   Q 575.41 415.04 573.83 415.05"
         />
         <path
           stroke="#f4ca3b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 573.83 415.05
   Q 572.93 415.18 572.19 415.00"
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 605.55 417.95
   Q 610.56 421.20 615.94 422.04"
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 639.27 437.83
   Q 638.89 439.19 637.00 437.35
@@ -6266,14 +6266,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 626.20 430.43
   L 619.78 426.82"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 619.78 426.82
   Q 613.71 423.13 610.12 422.13
@@ -6282,21 +6282,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 589.51 417.10
   Q 579.19 415.02 568.82 418.18"
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 568.82 418.18
   L 566.34 418.74"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 566.34 418.74
   L 564.60 418.60
@@ -6305,14 +6305,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 570.53 415.52
   Q 572.54 415.95 573.83 415.05"
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 589.51 417.10
   Q 596.76 419.66 604.20 421.32
@@ -6321,7 +6321,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 626.20 430.43
   Q 621.49 429.64 617.13 427.82
@@ -6330,7 +6330,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 566.34 418.74
   Q 563.74 419.84 561.04 420.27
@@ -6339,14 +6339,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 567.03 442.93
   L 576.31 446.61"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 576.31 446.61
   Q 576.23 448.75 575.51 448.48
@@ -6354,7 +6354,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 567.74 446.27
   Q 555.86 441.16 546.24 441.00
@@ -6364,21 +6364,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 593.26 457.36
   Q 592.98 458.14 592.43 458.54"
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 587.78 474.10
   Q 586.91 473.91 586.18 474.65"
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 554.95 464.83
   Q 556.27 466.42 559.05 467.18
@@ -6396,14 +6396,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 573.49 475.46
   Q 573.55 478.00 572.30 480.04"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 572.30 480.04
   C 568.44 476.23 565.13 475.50 559.58 474.88
@@ -6414,7 +6414,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 572.30 480.04
   L 571.39 481.26
@@ -6434,14 +6434,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.62 577.16
   L 872.75 578.96"
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 872.75 578.96
   C 886.46 585.03 898.99 587.96 911.49 593.43
@@ -6450,14 +6450,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 960.47 618.26
   L 963.71 620.64"
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 963.71 620.64
   Q 966.70 623.22 970.12 625.36
@@ -6466,7 +6466,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 975.21 634.48
   L 975.18 634.96
@@ -6507,14 +6507,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4cf82"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 954.72 653.15
   L 929.65 665.49"
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 929.65 665.49
   Q 925.55 666.55 921.72 668.67
@@ -6523,7 +6523,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 914.08 670.69
   Q 888.82 672.81 863.57 673.90
@@ -6533,42 +6533,42 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 696.96 686.48
   L 674.96 687.40"
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 674.96 687.40
   L 632.98 687.57"
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 632.98 687.57
   Q 631.97 686.88 631.52 686.09"
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 631.52 686.09
   Q 632.67 685.56 633.57 685.61"
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 633.57 685.61
   L 664.18 685.63"
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 664.18 685.63
   Q 689.44 685.64 714.38 682.93
@@ -6577,7 +6577,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.78 678.03
   C 689.20 677.02 682.08 676.22 676.12 675.00
@@ -6585,7 +6585,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 644.72 665.81
   Q 642.92 663.15 640.69 661.80
@@ -6595,21 +6595,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 618.43 657.31
   Q 617.32 653.79 613.75 652.42"
         />
         <path
           stroke="#f4cf82"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1027.58 446.89
   L 1038.45 451.28"
         />
         <path
           stroke="#fffac3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1038.45 451.28
   C 1040.14 452.33 1042.03 452.61 1043.56 453.65
@@ -6621,21 +6621,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1231.62 570.31
   Q 1231.15 570.61 1231.10 570.74"
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1231.10 570.74
   Q 1228.02 569.92 1227.64 572.40"
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1227.64 572.40
   Q 1225.34 574.55 1224.16 577.15
@@ -6647,28 +6647,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9c7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1104.15 608.42
   Q 1080.49 614.48 1057.21 622.18"
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1057.21 622.18
   L 1056.44 620.90"
         />
         <path
           stroke="#f4cf82"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1056.44 620.90
   L 1048.45 614.16"
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1048.45 614.16
   Q 1053.35 615.65 1057.02 619.22
@@ -6701,7 +6701,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1099.53 495.35
   C 1093.30 491.72 1086.35 488.51 1080.80 484.80
@@ -6714,7 +6714,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1103.15 497.95
   L 1104.54 499.45
@@ -6723,7 +6723,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1099.52 500.31
   Q 1079.89 492.54 1061.59 481.83
@@ -6734,7 +6734,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1098.80 500.69
   C 1094.89 502.15 1085.91 497.33 1080.65 494.70
@@ -6747,7 +6747,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1065.52 510.40
   Q 1058.48 506.67 1050.63 506.55
@@ -6757,14 +6757,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 992.83 525.37
   Q 992.61 525.61 991.93 525.73"
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 991.93 525.73
   Q 979.87 529.28 976.20 530.53
@@ -6773,14 +6773,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.07 547.35
   L 917.57 550.08"
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 917.57 550.08
   Q 902.27 552.66 897.40 553.07
@@ -6790,7 +6790,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 875.44 561.76
   L 873.67 565.56
@@ -6801,7 +6801,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffefa"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 890.35 562.47
   Q 888.89 565.64 883.87 566.96
@@ -6809,14 +6809,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 870.48 570.23
   Q 871.43 568.82 871.77 567.18"
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 871.77 567.18
   C 871.66 564.81 873.83 562.01 874.55 559.52
@@ -6826,14 +6826,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 854.91 541.27
   Q 855.55 539.88 856.56 540.15"
         />
         <path
           stroke="#fffddf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 856.56 540.15
   Q 857.07 541.00 857.39 541.14
@@ -6849,21 +6849,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 891.91 540.13
   Q 893.55 541.21 895.75 541.13"
         />
         <path
           stroke="#bc9c7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 895.75 541.13
   Q 899.34 542.15 903.25 541.66"
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 903.25 541.66
   Q 905.02 542.63 907.16 541.89
@@ -6871,7 +6871,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 916.00 527.03
   Q 912.77 521.52 907.41 517.33
@@ -6879,14 +6879,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 896.95 510.22
   L 896.95 509.26"
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 896.95 509.26
   L 900.12 511.21
@@ -6897,7 +6897,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4cf82"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 912.64 506.62
   L 922.41 501.99
@@ -6908,14 +6908,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9c7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 921.49 496.82
   Q 921.62 497.16 921.96 497.51"
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 921.96 497.51
   Q 922.44 499.24 923.70 500.29
@@ -6924,7 +6924,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 953.17 512.52
   Q 958.05 511.75 960.15 510.64
@@ -6935,7 +6935,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7ddc6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 951.77 481.54
   Q 956.53 482.23 959.42 480.14
@@ -6949,14 +6949,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e9c275"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1048.45 614.16
   L 1034.04 604.57"
         />
         <path
           stroke="#f4f1ec"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1034.04 604.57
   Q 1022.06 596.00 1010.65 591.08
@@ -6967,7 +6967,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1011.73 582.49
   Q 1011.24 582.80 1010.71 582.97
@@ -6978,7 +6978,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#dcd0b9"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1026.97 581.92
   Q 1032.17 580.70 1036.84 578.57
@@ -6992,7 +6992,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4f1ec"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1084.79 528.46
   L 1081.23 520.55
@@ -7001,7 +7001,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d5cec6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1084.78 522.21
   Q 1084.24 522.14 1084.18 522.23
@@ -7015,7 +7015,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4f1ec"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1088.69 526.17
   Q 1089.15 524.51 1087.32 521.23
@@ -7026,21 +7026,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#dcd0b9"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1068.07 512.47
   Q 1070.05 511.88 1065.52 510.40"
         />
         <path
           stroke="#e0d68c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 868.41 574.76
   L 867.62 577.16"
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.62 577.16
   Q 863.17 577.45 858.58 578.29
@@ -7054,7 +7054,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7decb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1068.07 512.47
   L 1055.21 511.83"
@@ -7062,14 +7062,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a48e6c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1055.21 511.83
   Q 1058.74 511.98 1059.79 511.06"
         />
         <path
           stroke="#d7c9ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1059.79 511.06
   L 1062.61 510.85
@@ -7082,14 +7082,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d5cec6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 773.03 560.00
   Q 781.20 565.13 788.96 568.38"
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 788.96 568.38
   Q 794.13 571.92 798.31 574.94
@@ -7102,7 +7102,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 948.67 570.82
   Q 938.88 569.69 929.39 568.63
@@ -7112,7 +7112,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffe13a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 881.71 571.64
   Q 876.48 573.00 871.25 574.14
@@ -7120,7 +7120,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 993.54 584.81
   Q 993.34 584.91 993.18 584.97
@@ -7130,7 +7130,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.96 592.79
   Q 986.96 598.29 971.55 612.96
@@ -7138,7 +7138,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ac9a83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1024.71 579.55
   Q 1031.84 577.66 1040.56 573.32
@@ -7148,14 +7148,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a47d4c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 947.54 548.92
   Q 946.15 548.13 946.55 547.46"
         />
         <path
           stroke="#bcafa0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1055.21 511.83
   Q 1044.66 512.86 1038.12 514.62
@@ -7165,7 +7165,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#794e21"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 987.51 533.67
   Q 987.65 533.21 987.46 533.06
@@ -7173,14 +7173,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b1a18e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 986.50 532.87
   L 995.89 528.61"
         />
         <path
           stroke="#d7c9ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1026.97 581.92
   L 1026.47 581.82
@@ -7195,14 +7195,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d7c9ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 897.31 560.45
   Q 896.47 560.00 896.00 559.34"
         />
         <path
           stroke="#dcd0b9"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 896.00 559.34
   Q 901.35 557.98 906.62 556.14
@@ -7217,7 +7217,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 982.43 580.31
   C 982.47 589.68 975.48 594.74 969.41 600.61
@@ -7225,7 +7225,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 872.75 578.96
   Q 874.67 577.48 877.50 578.99
@@ -7246,21 +7246,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8b33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 870.55 567.34
   Q 868.71 570.95 864.64 573.09"
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1056.44 620.90
   Q 1055.77 621.68 1054.31 620.95"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1054.31 620.95
   Q 1051.73 617.07 1047.70 615.05
@@ -7270,7 +7270,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 339.28 575.09
   L 333.37 574.14
@@ -7283,7 +7283,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 392.47 619.30
   C 395.74 623.15 399.84 625.55 404.94 628.64
@@ -7292,7 +7292,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 406.98 628.34
   Q 415.38 633.43 424.50 637.02
@@ -7301,7 +7301,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 467.46 640.87
   L 462.78 641.09
@@ -7319,7 +7319,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 303.23 592.89
   Q 302.63 599.22 303.16 605.81
@@ -7328,7 +7328,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 467.46 640.87
   C 481.26 640.96 495.77 641.36 508.96 640.57
@@ -7338,14 +7338,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 441.50 675.61
   Q 442.61 674.96 442.99 674.17"
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 442.99 674.17
   Q 456.19 676.60 464.43 677.14
@@ -7359,7 +7359,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 525.29 672.02
   Q 524.60 666.25 524.93 660.45
@@ -7374,21 +7374,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#917d19"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1055.72 622.93
   L 1036.54 629.68"
         />
         <path
           stroke="#807109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1036.54 629.68
   L 982.48 650.20"
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 982.48 650.20
   Q 966.73 656.20 950.83 661.98
@@ -7398,7 +7398,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bca029"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 920.93 670.23
   Q 919.40 669.97 917.80 670.50
@@ -7407,7 +7407,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 929.65 665.49
   Q 933.77 666.28 936.79 663.59
@@ -7417,7 +7417,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a48e6c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 674.96 687.40
   Q 676.21 687.39 676.25 687.59
@@ -7464,7 +7464,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4e276"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 618.43 657.31
   Q 619.84 659.35 620.90 661.56
@@ -7472,14 +7472,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bca029"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 632.98 687.57
   L 631.17 687.91"
         />
         <path
           stroke="#f4eba0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 975.45 635.42
   L 974.54 643.24
@@ -7490,14 +7490,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e9c275"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 975.26 644.81
   L 954.72 653.15"
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 644.72 665.81
   Q 640.23 668.47 637.82 671.46
@@ -7505,7 +7505,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 695.78 678.03
   Q 690.04 679.89 685.55 680.08
@@ -7514,7 +7514,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1054.31 620.95
   Q 1039.88 627.15 1025.09 632.21
@@ -7529,7 +7529,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 940.45 661.87
   Q 955.81 653.58 973.36 647.06
@@ -7537,14 +7537,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1cf75"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 975.26 644.81
   L 976.23 644.72"
         />
         <path
           stroke="#fcd73b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 976.23 644.72
   Q 978.92 644.40 980.08 642.48
@@ -7553,21 +7553,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1cf75"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 975.45 635.42
   Q 975.58 634.93 975.21 634.48"
         />
         <path
           stroke="#ae8b33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1232.13 575.35
   L 1226.62 583.37"
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1226.62 583.37
   Q 1218.86 587.90 1209.53 589.78"
@@ -7575,7 +7575,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#6b4121"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1209.53 589.78
   Q 1209.02 589.99 1208.93 589.89
@@ -7587,7 +7587,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1209.53 589.78
   Q 1184.97 596.22 1177.28 597.55
@@ -7596,14 +7596,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#794e21"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1111.81 609.81
   L 1104.15 608.42"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 923.52 492.65
   Q 923.06 492.67 922.90 492.86
@@ -7612,14 +7612,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#6b3001"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 923.11 495.38
   Q 921.39 493.95 921.96 497.51"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 921.49 496.82
   L 920.74 493.87
@@ -7632,28 +7632,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4cd50"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1040.33 450.76
   Q 1040.20 451.63 1038.45 451.28"
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 912.08 523.88
   L 910.66 522.33"
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 889.51 508.65
   L 873.02 500.48"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 874.67 504.83
   Q 877.22 506.68 880.16 507.58
@@ -7674,14 +7674,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 889.51 508.65
   Q 901.28 513.64 910.66 522.33"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 910.66 522.33
   Q 906.73 523.19 910.99 525.09
@@ -7690,7 +7690,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 912.08 523.88
   L 915.13 527.51
@@ -7699,7 +7699,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 903.25 541.66
   C 907.59 539.62 912.03 538.93 914.55 534.09
@@ -7713,14 +7713,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 873.11 523.61
   Q 873.41 522.86 873.80 522.70"
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 873.80 522.70
   L 883.04 527.51
@@ -7734,7 +7734,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 906.21 520.48
   Q 904.55 520.23 902.91 521.05
@@ -7746,14 +7746,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 808.05 502.18
   L 798.02 503.27"
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 798.02 503.27
   Q 796.72 503.34 795.47 502.62
@@ -7762,7 +7762,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b18f6e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 986.50 532.87
   Q 969.60 541.12 951.56 546.57
@@ -7770,14 +7770,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#dcd0b9"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 946.55 547.46
   L 938.07 547.35"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 999.27 436.25
   Q 998.67 435.91 998.18 435.88
@@ -7786,14 +7786,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9c7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1001.60 439.67
   Q 999.75 439.78 997.81 438.93"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 997.81 438.93
   Q 993.33 437.20 989.53 438.82
@@ -7823,14 +7823,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 990.59 432.22
   Q 989.97 430.91 988.67 431.26"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 988.67 431.26
   L 985.28 429.12
@@ -7841,7 +7841,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ac9a83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1059.79 511.06
   Q 1052.87 510.45 1050.19 510.99
@@ -7851,7 +7851,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 995.89 528.61
   Q 994.97 527.56 993.81 527.42
@@ -7862,7 +7862,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#dcaf53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 912.64 506.62
   Q 910.67 506.11 914.36 504.68
@@ -7877,7 +7877,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 903.31 502.82
   L 908.27 500.93
@@ -7891,7 +7891,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#96704c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1231.10 570.74
   L 1227.33 577.67
@@ -7901,7 +7901,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a48e6c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1224.45 580.69
   Q 1223.67 581.31 1223.17 581.30
@@ -7910,14 +7910,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b1a18e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1099.53 495.35
   Q 1101.67 496.44 1103.15 497.95"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 951.77 481.54
   L 946.24 479.96
@@ -7926,14 +7926,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2aa34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 871.77 567.18
   L 870.55 567.34"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 870.55 567.34
   L 870.62 566.40
@@ -7942,7 +7942,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 868.68 566.76
   Q 872.91 562.31 872.57 557.58
@@ -7952,28 +7952,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2aa34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 861.94 547.43
   L 855.04 543.65"
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 896.00 559.34
   L 875.44 561.76"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 977.97 452.01
   Q 982.02 452.83 983.89 452.17"
         />
         <path
           stroke="#bc9c7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 983.89 452.17
   Q 986.19 453.39 988.58 454.21
@@ -7998,14 +7998,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a47d4c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 973.51 477.71
   L 967.04 473.78"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 967.04 473.78
   L 964.43 471.30
@@ -8017,21 +8017,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a47d4c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 951.21 469.62
   L 941.55 474.01"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 941.55 474.01
   Q 940.81 473.70 940.81 473.01"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 940.81 473.01
   Q 948.47 468.46 956.97 465.69
@@ -8044,14 +8044,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 946.69 457.18
   Q 946.18 456.65 945.54 456.68"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 945.54 456.68
   Q 943.35 455.07 942.32 454.69
@@ -8062,7 +8062,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 878.44 448.74
   Q 879.11 448.11 880.45 447.73
@@ -8072,7 +8072,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 965.30 466.19
   Q 968.07 468.34 969.62 468.67
@@ -8088,7 +8088,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 983.38 465.69
   L 984.31 464.70
@@ -8099,14 +8099,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9834"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 977.94 455.24
   L 964.16 448.05"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 959.93 445.77
   Q 955.20 443.22 948.66 440.57
@@ -8114,7 +8114,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 941.03 438.81
   Q 941.65 438.95 942.14 438.85
@@ -8123,21 +8123,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#4e2a10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1056.66 625.87
   L 1055.72 622.93"
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1055.72 622.93
   Q 1056.45 622.38 1057.21 622.18"
         />
         <path
           stroke="#e7deb0"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 880.44 533.54
   C 878.26 533.08 877.05 530.95 875.32 530.23
@@ -8150,14 +8150,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 854.91 541.27
   L 853.05 539.76"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 881.60 495.40
   Q 880.43 496.96 876.70 496.30
@@ -8170,14 +8170,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 897.28 500.71
   L 895.96 501.26"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 895.96 501.26
   L 888.17 502.89
@@ -8186,14 +8186,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 891.20 505.67
   L 893.59 506.33"
         />
         <path
           stroke="#e4bc53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 893.59 506.33
   Q 893.14 507.60 894.38 507.91
@@ -8201,14 +8201,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 896.95 510.22
   L 872.78 498.71"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 872.78 498.71
   Q 864.55 493.16 858.37 491.64
@@ -8219,7 +8219,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 830.22 485.52
   Q 834.27 483.29 837.85 480.34
@@ -8231,14 +8231,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 997.81 438.93
   L 995.82 439.27"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 995.82 439.27
   Q 990.22 440.68 984.56 443.63
@@ -8249,7 +8249,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 977.97 452.01
   Q 975.97 450.24 973.81 449.60
@@ -8264,28 +8264,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b1a18e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1099.52 500.31
   Q 1099.71 500.89 1098.80 500.69"
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 892.96 539.95
   Q 892.30 539.85 891.91 540.13"
         />
         <path
           stroke="#bc9834"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 895.75 541.13
   Q 894.76 540.16 892.96 539.95"
         />
         <path
           stroke="#bc9d65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 892.96 539.95
   Q 886.19 537.70 880.44 533.54"
@@ -8293,7 +8293,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#a47d4c"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 880.44 533.54
   Q 878.81 532.53 877.83 530.99
@@ -8302,7 +8302,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4cf82"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 995.82 439.27
   L 1000.59 441.22
@@ -8315,28 +8315,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 893.59 506.33
   Q 898.44 503.81 903.31 502.82"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 953.17 512.52
   Q 953.47 511.52 953.24 510.67"
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 953.24 510.67
   L 957.83 509.56"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 957.83 509.56
   Q 960.61 508.92 963.29 507.04
@@ -8344,7 +8344,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 965.45 501.03
   Q 966.45 499.43 966.10 497.73
@@ -8354,7 +8354,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad7907"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 868.68 566.76
   Q 865.99 571.66 859.26 573.23
@@ -8362,7 +8362,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 837.57 572.59
   Q 831.30 568.68 824.03 566.47
@@ -8375,14 +8375,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffe450"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.73 553.42
   L 862.55 548.48"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 371.99 594.00
   L 365.29 589.00
@@ -8392,7 +8392,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 358.67 604.87
   Q 358.89 603.75 359.83 601.63
@@ -8403,7 +8403,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 339.28 575.09
   L 344.17 574.94
@@ -8415,7 +8415,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 311.55 560.04
   Q 310.86 561.15 311.02 561.98
@@ -8425,7 +8425,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 323.32 565.80
   L 312.77 563.95
@@ -8434,7 +8434,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 309.73 567.93
   Q 307.16 571.94 306.05 576.17
@@ -8443,7 +8443,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 525.29 672.02
   Q 504.73 671.79 492.77 670.91
@@ -8466,14 +8466,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 407.73 667.70
   L 407.25 668.96"
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 442.99 674.17
   Q 435.11 673.37 427.40 671.66
@@ -8482,14 +8482,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 990.38 650.57
   L 982.48 650.20"
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1032.28 634.59
   L 1036.54 629.68"
@@ -8497,7 +8497,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#6b4121"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 917.31 673.58
   L 915.03 673.74
@@ -8512,21 +8512,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 608.93 655.41
   Q 612.47 661.25 617.34 666.40"
         />
         <path
           stroke="#bca029"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 633.10 692.29
   L 633.26 691.67"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 849.95 733.31
   Q 861.59 733.55 873.14 734.59
@@ -8545,21 +8545,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 532.32 674.83
   L 532.56 679.24"
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 961.66 703.70
   L 969.14 709.18"
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 969.14 709.18
   Q 967.76 709.45 966.69 709.16
@@ -8570,14 +8570,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 972.09 711.50
   Q 974.47 711.54 974.96 712.67"
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 974.96 712.67
   L 947.47 718.14
@@ -8587,7 +8587,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 957.45 717.06
   L 965.76 721.48
@@ -8596,14 +8596,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 985.33 720.53
   Q 987.00 720.63 988.23 721.37"
         />
         <path
           stroke="#f4cf82"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 988.23 721.37
   L 988.33 721.70
@@ -8612,7 +8612,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 954.30 725.11
   C 947.17 725.69 939.43 726.84 932.97 727.18
@@ -8624,7 +8624,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 849.95 733.31
   Q 836.33 734.01 822.65 734.63
@@ -8645,7 +8645,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bcae9b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 633.26 691.67
   Q 633.27 690.79 633.71 690.88
@@ -8661,7 +8661,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 917.31 673.58
   Q 930.27 671.78 942.77 667.78
@@ -8669,28 +8669,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 990.38 650.57
   L 1032.28 634.59"
         />
         <path
           stroke="#918b8a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1032.28 634.59
   L 1056.66 625.87"
         />
         <path
           stroke="#bc9c7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1056.66 625.87
   Q 1083.90 616.80 1111.81 609.81"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1230.64 633.72
   Q 1238.51 618.17 1240.59 613.15
@@ -8713,7 +8713,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 959.42 702.46
   C 954.61 699.60 951.75 696.35 946.79 694.19
@@ -8731,21 +8731,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1232.36 580.78
   Q 1235.13 575.96 1232.13 575.35"
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1232.13 575.35
   Q 1232.66 574.48 1232.75 573.90"
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1232.36 580.78
   Q 1232.53 580.17 1232.41 579.97
@@ -8754,21 +8754,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad7907"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 887.93 476.11
   Q 904.40 480.32 919.45 490.29"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 919.45 490.29
   Q 908.44 496.50 897.28 500.71"
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 897.28 500.71
   L 896.67 499.96
@@ -8779,7 +8779,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 908.98 486.27
   Q 908.07 484.35 906.58 485.33
@@ -8788,7 +8788,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 881.60 495.40
   Q 887.85 491.48 895.17 489.18
@@ -8800,7 +8800,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 846.93 476.67
   L 839.41 478.00
@@ -8809,7 +8809,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 932.95 504.75
   L 924.85 499.15
@@ -8818,14 +8818,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 923.11 495.38
   Q 922.61 494.18 922.99 493.25"
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 922.99 493.25
   Q 924.53 492.63 925.24 493.71
@@ -8835,7 +8835,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 928.09 495.94
   C 928.10 498.87 933.20 500.15 935.73 500.82
@@ -8848,21 +8848,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 935.79 498.98
   Q 937.87 497.98 940.98 498.02"
         />
         <path
           stroke="#d2aa34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 935.79 498.98
   L 928.09 495.94"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 925.88 492.27
   Q 925.07 492.88 923.52 492.65"
@@ -8870,49 +8870,49 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#6b3001"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 923.52 492.65
   Q 921.07 489.89 919.45 490.29"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 872.78 498.71
   L 873.02 500.48"
         />
         <path
           stroke="#d2ac4a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 873.02 500.48
   L 871.26 499.70"
         />
         <path
           stroke="#d2af66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 871.26 499.70
   L 869.01 498.83"
         />
         <path
           stroke="#d2aa34"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.01 498.83
   Q 866.70 497.37 863.89 497.03"
         />
         <path
           stroke="#d2af66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 863.89 497.03
   L 847.98 491.82"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 847.98 491.82
   Q 844.10 489.31 839.41 489.65
@@ -8925,21 +8925,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2af66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 830.04 489.42
   Q 826.39 488.76 822.85 489.31"
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 822.85 489.31
   L 820.41 488.82"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 809.35 493.87
   Q 807.33 494.86 804.93 495.09
@@ -8948,7 +8948,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 866.28 500.87
   L 862.42 500.81
@@ -8958,14 +8958,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 863.89 497.03
   Q 866.00 498.62 869.01 498.83"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 871.26 499.70
   Q 870.66 499.50 870.29 499.49
@@ -8976,14 +8976,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 874.67 504.83
   L 866.28 500.87"
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 866.28 500.87
   C 861.58 498.75 856.63 496.44 851.83 495.15
@@ -8994,14 +8994,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 837.42 493.57
   Q 837.19 493.31 836.90 493.19"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 836.90 493.19
   Q 832.31 491.11 827.58 491.42
@@ -9014,14 +9014,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 809.51 493.75
   Q 809.43 493.81 809.35 493.87"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 809.35 493.87
   Q 808.34 493.99 807.81 493.78
@@ -9030,7 +9030,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 873.11 523.61
   Q 872.89 521.02 870.23 522.00
@@ -9038,7 +9038,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 798.02 503.27
   Q 802.37 503.56 808.74 502.88
@@ -9047,21 +9047,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 872.12 518.80
   Q 880.06 526.80 891.08 527.19"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 873.80 522.70
   L 870.53 520.21"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 870.53 520.21
   Q 857.68 510.57 844.57 507.88
@@ -9072,14 +9072,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 799.37 506.23
   Q 798.32 504.10 796.18 505.04"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 836.90 493.19
   Q 831.65 493.76 826.72 493.02
@@ -9088,7 +9088,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 906.21 520.48
   Q 905.82 521.07 905.82 522.03
@@ -9099,14 +9099,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 891.08 527.19
   Q 881.42 523.81 872.12 518.80"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 872.12 518.80
   Q 869.01 516.96 865.41 514.91
@@ -9116,7 +9116,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 826.32 503.45
   Q 823.51 502.92 820.62 503.14
@@ -9126,21 +9126,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 990.59 432.22
   L 976.05 437.64"
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 976.05 437.64
   Q 975.51 437.05 974.27 437.05"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1000.08 435.45
   Q 991.92 430.01 982.95 426.40
@@ -9149,28 +9149,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 916.19 419.12
   Q 911.34 420.10 909.13 423.11"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.13 423.11
   Q 909.45 423.21 909.76 423.31"
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 905.00 422.20
   Q 902.66 420.36 900.81 421.28"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1008.45 423.94
   L 1014.14 426.58
@@ -9181,7 +9181,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1023.91 428.60
   L 1029.47 432.04
@@ -9190,7 +9190,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1016.95 443.37
   C 1018.67 439.66 1024.43 441.53 1025.45 436.94
@@ -9206,7 +9206,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 960.07 420.39
   Q 940.51 417.16 920.76 418.40
@@ -9214,7 +9214,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2a10a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 916.19 419.12
   Q 911.59 419.16 907.23 419.40
@@ -9223,7 +9223,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 988.67 431.26
   Q 988.98 431.91 988.24 432.03
@@ -9231,7 +9231,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 974.27 437.05
   Q 968.38 439.37 962.82 442.58
@@ -9241,7 +9241,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.38 435.78
   Q 936.26 434.79 934.01 434.03
@@ -9252,7 +9252,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 917.05 428.80
   Q 916.01 426.71 913.13 427.25
@@ -9269,28 +9269,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 907.27 429.23
   Q 905.91 429.59 904.51 429.18"
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 965.45 501.03
   L 957.83 509.56"
         />
         <path
           stroke="#ad7907"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 953.24 510.67
   Q 942.37 510.27 932.95 504.75"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 932.95 504.75
   C 938.52 504.49 944.94 504.58 949.82 502.97
@@ -9300,7 +9300,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffe450"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 962.42 493.59
   Q 962.11 492.67 961.63 492.07
@@ -9309,7 +9309,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 960.18 491.63
   Q 960.02 489.01 957.95 487.78
@@ -9319,21 +9319,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffe450"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 948.96 484.05
   Q 948.64 483.80 948.22 483.74"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 941.55 474.01
   Q 939.88 475.34 937.79 476.10"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 940.81 473.01
   L 936.70 474.85
@@ -9355,14 +9355,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#dcaf53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 937.79 476.10
   Q 939.38 477.52 942.28 477.83"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 942.28 477.83
   Q 941.46 477.86 941.40 478.00
@@ -9371,21 +9371,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 945.67 481.35
   L 948.22 483.74"
         />
         <path
           stroke="#f4cd50"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 948.22 483.74
   Q 947.62 483.86 947.48 484.77"
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 947.48 484.77
   L 938.49 478.62
@@ -9394,7 +9394,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.43 465.18
   Q 938.21 465.56 938.28 465.75
@@ -9405,7 +9405,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e7c652"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 967.04 473.78
   L 959.57 469.26
@@ -9414,7 +9414,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.33 519.72
   Q 853.31 523.72 839.44 529.14
@@ -9429,7 +9429,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 863.57 523.82
   L 842.10 531.12
@@ -9444,7 +9444,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4bc53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 875.53 529.27
   Q 873.30 529.13 871.80 527.53
@@ -9453,7 +9453,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 863.97 527.76
   Q 864.22 527.20 864.04 526.99
@@ -9464,28 +9464,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4bc53"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 850.32 533.74
   L 853.05 539.76"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 853.05 539.76
   Q 853.27 541.54 855.04 543.65"
         />
         <path
           stroke="#fcd73b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 855.04 543.65
   Q 854.23 543.39 853.66 544.39"
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 853.66 544.39
   Q 850.70 538.60 847.84 536.69
@@ -9494,7 +9494,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 795.83 513.84
   L 794.50 513.06
@@ -9503,14 +9503,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffe13a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 861.94 547.43
   Q 861.99 547.85 862.55 548.48"
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 862.55 548.48
   L 861.88 548.59
@@ -9522,14 +9522,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffe13a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.73 553.42
   Q 868.40 553.88 869.01 554.86"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 869.01 554.86
   Q 864.11 555.98 859.14 554.20
@@ -9552,7 +9552,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcd73b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 846.53 555.54
   Q 849.83 556.83 853.02 554.00
@@ -9563,28 +9563,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#8f4e02"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.38 435.78
   Q 934.61 435.42 940.64 437.87"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 940.64 437.87
   Q 939.69 437.85 939.41 438.19"
         />
         <path
           stroke="#d2af66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 939.41 438.19
   Q 932.96 435.46 926.32 434.69"
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 926.32 434.69
   Q 927.67 435.10 928.91 434.77
@@ -9594,14 +9594,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2af66"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 916.21 432.19
   L 909.03 431.04"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.03 431.04
   L 915.20 431.13
@@ -9610,7 +9610,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 935.47 440.37
   Q 937.92 441.87 939.31 442.42
@@ -9623,14 +9623,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 980.35 459.74
   Q 981.16 461.01 981.33 462.22"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 981.33 462.22
   C 969.67 460.81 962.62 458.10 950.45 453.18
@@ -9642,56 +9642,56 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 981.33 462.22
   Q 982.76 463.50 983.38 465.69"
         />
         <path
           stroke="#f4ca3b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 977.94 455.24
   L 980.35 459.74"
         />
         <path
           stroke="#ffe76c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 916.21 432.19
   L 926.32 434.69"
         />
         <path
           stroke="#f4d06c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 939.41 438.19
   L 941.03 438.81"
         />
         <path
           stroke="#bc9d65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 941.03 438.81
   Q 942.33 438.85 942.53 439.15"
         />
         <path
           stroke="#fcdd6d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 942.53 439.15
   L 959.93 445.77"
         />
         <path
           stroke="#bc9d65"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 959.93 445.77
   L 964.16 448.05"
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 964.16 448.05
   Q 965.99 450.14 969.04 451.17
@@ -9709,7 +9709,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 939.07 440.53
   Q 936.43 439.02 934.27 438.45
@@ -9724,7 +9724,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 890.74 437.08
   L 880.99 441.52
@@ -9733,7 +9733,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 945.54 456.68
   L 947.25 458.41
@@ -9743,7 +9743,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 927.42 461.30
   L 936.41 457.68
@@ -9756,7 +9756,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 923.58 461.36
   Q 920.08 462.29 916.74 463.64
@@ -9766,7 +9766,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.22 466.62
   C 907.39 464.55 902.55 463.48 899.48 462.43
@@ -9778,7 +9778,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad7907"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 875.30 456.57
   Q 878.47 455.64 880.58 453.36
@@ -9787,14 +9787,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 876.10 455.26
   Q 875.89 454.95 875.76 454.44"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 946.69 457.18
   L 948.56 459.07
@@ -9803,14 +9803,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 945.49 461.13
   L 938.43 465.18"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 938.43 465.18
   L 927.84 471.21
@@ -9819,21 +9819,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 930.74 475.10
   L 912.13 467.41"
         />
         <path
           stroke="#ba8e4c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 863.97 527.76
   L 850.32 533.74"
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 362.78 580.30
   Q 360.17 580.62 356.45 577.79
@@ -9846,7 +9846,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 717.03 746.52
   Q 671.78 747.24 628.05 735.72
@@ -9875,7 +9875,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 558.06 633.85
   L 556.70 634.21
@@ -9888,35 +9888,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 954.30 725.11
   L 957.61 726.01"
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 957.61 726.01
   Q 957.96 727.25 957.77 728.53"
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 957.77 728.53
   L 957.13 729.23"
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 957.13 729.23
   L 948.41 735.55"
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 948.41 735.55
   Q 932.96 738.87 917.44 742.42
@@ -9931,7 +9931,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 717.03 746.52
   Q 697.39 743.80 688.23 741.85
@@ -9944,14 +9944,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 610.35 653.94
   Q 609.71 655.01 608.93 655.41"
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 608.93 655.41
   Q 606.29 653.30 603.54 651.60
@@ -9968,7 +9968,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 558.06 633.85
   L 554.24 631.75
@@ -9986,21 +9986,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c7a16e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 975.49 714.70
   Q 966.33 714.87 957.45 717.06"
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.04 750.74
   L 663.80 749.71"
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 663.80 749.71
   L 682.14 754.15
@@ -10039,7 +10039,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1080.53 711.94
   Q 1085.89 705.42 1092.87 698.57
@@ -10063,14 +10063,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 961.66 703.70
   L 959.42 702.46"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1080.53 711.94
   Q 1068.53 712.87 1057.08 714.93
@@ -10083,14 +10083,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1cf75"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 985.33 720.53
   Q 981.39 716.28 975.49 714.70"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 975.49 714.70
   Q 979.22 712.41 983.63 711.73
@@ -10101,21 +10101,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcd73b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 972.09 711.50
   Q 970.77 709.97 969.14 709.18"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 948.41 735.55
   Q 953.55 733.08 957.13 729.23"
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 957.77 728.53
   Q 958.61 728.08 958.97 727.43
@@ -10125,14 +10125,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#6b3001"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 888.95 474.73
   L 887.93 476.11"
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 887.93 476.11
   Q 870.93 472.01 853.36 473.58
@@ -10143,14 +10143,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 947.48 484.77
   Q 949.54 486.03 951.01 487.94"
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 951.01 487.94
   Q 952.60 491.03 951.55 492.51
@@ -10159,7 +10159,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 940.98 498.02
   Q 939.42 498.09 938.32 497.70
@@ -10168,7 +10168,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad7907"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 939.55 496.29
   Q 942.52 496.81 945.72 495.40
@@ -10176,21 +10176,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8e49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 944.71 484.95
   Q 937.93 479.71 929.88 477.12"
         />
         <path
           stroke="#ae8b33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 927.41 475.86
   Q 923.64 473.18 919.56 472.29"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 962.42 493.59
   L 962.39 494.42
@@ -10201,7 +10201,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 939.55 496.29
   Q 935.13 497.10 933.49 496.71
@@ -10209,7 +10209,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad7907"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 925.88 492.27
   Q 914.20 484.67 910.49 482.74
@@ -10217,21 +10217,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 888.95 474.73
   L 877.78 472.40"
         />
         <path
           stroke="#ffe76c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 822.85 489.31
   Q 820.28 490.44 817.47 489.53"
         />
         <path
           stroke="#fcdd6d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 847.98 491.82
   L 839.55 490.16
@@ -10240,14 +10240,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 870.53 520.21
   Q 870.62 522.19 867.33 519.72"
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 867.33 519.72
   Q 855.46 511.07 839.60 508.92
@@ -10260,21 +10260,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ad7907"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1032.22 432.95
   Q 1033.57 436.58 1031.37 440.13"
         />
         <path
           stroke="#ae8b33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1023.91 428.60
   L 1009.99 421.89"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 970.28 412.13
   C 964.79 412.39 958.12 411.05 954.27 411.11
@@ -10285,7 +10285,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 934.77 406.96
   Q 928.29 407.29 921.75 407.92
@@ -10295,7 +10295,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 908.97 412.70
   L 905.12 414.30
@@ -10304,21 +10304,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 963.94 408.19
   L 1003.84 419.95"
         />
         <path
           stroke="#ae9165"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1003.84 419.95
   L 1009.99 421.89"
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1009.99 421.89
   Q 1009.35 421.78 1008.96 421.87
@@ -10329,7 +10329,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1008.45 423.94
   C 1002.71 421.89 996.61 419.46 991.05 418.08
@@ -10338,7 +10338,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 970.28 412.13
   Q 967.17 411.36 964.08 410.50
@@ -10348,7 +10348,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 934.77 406.96
   L 926.12 406.96
@@ -10359,28 +10359,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 917.05 428.80
   Q 914.98 428.87 913.20 429.89"
         />
         <path
           stroke="#a36208"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 913.20 429.89
   L 907.27 429.23"
         />
         <path
           stroke="#ae9165"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.03 431.04
   L 902.72 431.00"
         />
         <path
           stroke="#fcda51"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 960.18 491.63
   Q 956.38 488.21 953.88 486.88
@@ -10388,21 +10388,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 795.83 513.84
   L 792.93 513.76"
         />
         <path
           stroke="#ae8b33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 853.66 544.39
   Q 853.89 544.50 853.98 545.21"
         />
         <path
           stroke="#ab6f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 853.98 545.21
   Q 854.01 545.46 853.98 545.66
@@ -10412,21 +10412,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         <path
           stroke="#6b3001"
           strokeOpacity="0.996"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.60 545.27
   Q 852.23 543.83 850.49 542.92"
         />
         <path
           stroke="#ad7907"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 850.49 542.92
   Q 850.75 542.86 851.00 542.80"
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 851.00 542.80
   Q 842.93 534.53 832.71 530.08
@@ -10435,7 +10435,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8b33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 826.55 526.93
   C 818.32 522.90 809.41 519.97 800.68 517.15
@@ -10443,7 +10443,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 852.60 545.27
   L 851.52 550.21
@@ -10454,28 +10454,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9834"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 846.53 555.54
   L 843.05 555.70"
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 843.05 555.70
   L 833.93 553.55"
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 939.07 440.53
   Q 937.40 440.98 935.47 440.37"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 935.47 440.37
   L 929.25 439.58
@@ -10485,56 +10485,56 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 914.33 436.23
   Q 906.07 434.27 897.39 436.22"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 897.39 436.22
   L 890.74 437.08"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 914.33 436.23
   L 897.39 436.22"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 875.30 456.57
   Q 874.19 456.28 876.10 455.26"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.22 466.62
   Q 911.67 467.19 912.13 467.41"
         />
         <path
           stroke="#814201"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 912.13 467.41
   Q 912.67 469.82 911.84 469.05"
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.84 469.05
   L 902.32 465.78"
         />
         <path
           stroke="#c78109"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 902.32 465.78
   Q 900.43 464.51 898.44 463.85
@@ -10542,14 +10542,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d2ae7c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 889.96 462.11
   Q 875.98 458.35 861.83 458.81"
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 927.42 461.30
   L 923.53 462.97
@@ -10558,7 +10558,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 935.37 482.16
   L 943.89 485.89
@@ -10567,14 +10567,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 944.71 484.95
   L 948.88 488.24"
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 948.88 488.24
   Q 949.14 490.08 948.70 491.15
@@ -10588,7 +10588,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 877.78 472.40
   C 869.54 471.33 860.02 470.54 851.89 472.01
@@ -10598,35 +10598,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4cf82"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 889.96 462.11
   L 902.32 465.78"
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 911.84 469.05
   L 919.56 472.29"
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 919.56 472.29
   Q 922.77 474.90 927.41 475.86"
         />
         <path
           stroke="#ad907b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 927.41 475.86
   L 929.88 477.12"
         />
         <path
           stroke="#fffac3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 929.88 477.12
   L 936.18 481.07
@@ -10635,14 +10635,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffef84"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 935.37 482.16
   L 922.56 476.36"
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 922.56 476.36
   Q 912.11 470.52 900.63 467.28
@@ -10658,14 +10658,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 992.41 415.37
   Q 998.21 416.64 1003.84 419.95"
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1176.34 460.51
   Q 1173.07 463.37 1169.04 465.30
@@ -10675,14 +10675,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1197.00 457.41
   Q 1192.38 461.93 1189.52 467.81"
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1159.58 422.44
   L 1163.48 420.84
@@ -10691,14 +10691,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1198.93 453.02
   Q 1198.25 452.11 1198.36 450.65"
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1198.36 450.65
   Q 1199.68 446.80 1201.47 442.97
@@ -10707,7 +10707,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1205.98 417.72
   Q 1205.24 388.30 1202.52 359.05
@@ -10720,14 +10720,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1171.58 412.98
   L 1162.61 419.95"
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1162.61 419.95
   L 1151.33 424.27
@@ -10738,7 +10738,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1159.58 422.44
   C 1164.31 425.03 1171.02 429.11 1172.87 434.39
@@ -10752,7 +10752,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ae8209"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1032.22 432.95
   Q 1027.80 428.23 1019.71 424.55
@@ -10763,7 +10763,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1031.05 389.33
   Q 1026.59 393.05 1021.13 394.89
@@ -10775,21 +10775,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1002.20 415.05
   L 1007.58 413.24"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.58 413.24
   L 1012.98 412.19"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1012.98 412.19
   L 1078.33 411.39
@@ -10799,21 +10799,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1134.46 421.78
   Q 1144.01 424.36 1153.27 421.84"
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 965.83 407.83
   L 963.94 408.19"
         />
         <path
           stroke="#fcdd6d"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 963.94 408.19
   Q 957.16 407.09 950.37 406.00
@@ -10822,7 +10822,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 786.27 514.23
   L 785.85 514.27
@@ -10840,7 +10840,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 826.55 526.93
   Q 826.97 527.99 828.02 528.47
@@ -10848,7 +10848,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 832.47 530.95
   Q 833.14 531.59 833.20 532.14
@@ -10858,14 +10858,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 809.81 524.48
   L 808.30 523.83"
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 808.30 523.83
   Q 804.27 521.77 800.16 519.99
@@ -10878,7 +10878,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 809.81 524.48
   L 829.97 534.93
@@ -10893,7 +10893,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 851.00 542.80
   Q 847.01 543.37 842.47 541.79
@@ -10908,14 +10908,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8608"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 850.49 542.92
   Q 851.13 546.92 849.67 550.46"
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 849.67 550.46
   Q 848.16 550.29 846.50 550.81
@@ -10931,7 +10931,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 849.67 550.46
   Q 849.72 552.95 848.00 553.50
@@ -10940,7 +10940,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 832.46 551.45
   L 833.59 551.07
@@ -10959,7 +10959,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 922.56 476.36
   Q 915.94 477.25 911.46 472.74
@@ -10973,14 +10973,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 981.30 411.67
   C 976.06 410.44 971.80 408.68 965.83 407.83"
         />
         <path
           stroke="#b97c09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 965.83 407.83
   Q 953.98 404.98 949.25 404.75
@@ -10988,7 +10988,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1198.36 450.65
   C 1197.07 452.59 1196.89 454.72 1194.73 456.76
@@ -11009,7 +11009,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1138.46 476.52
   Q 1154.15 477.13 1166.81 470.84
@@ -11017,7 +11017,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1176.34 460.51
   Q 1181.78 456.71 1186.07 451.84
@@ -11026,7 +11026,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1205.98 417.72
   Q 1203.49 416.87 1202.83 414.03
@@ -11037,21 +11037,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1194.86 424.58
   Q 1183.99 417.24 1171.58 412.98"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1080.27 391.23
   L 1082.48 395.29"
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1064.49 386.00
   Q 1065.53 386.73 1065.66 387.41
@@ -11070,7 +11070,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.58 413.24
   L 1002.75 412.18
@@ -11079,7 +11079,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 808.30 523.83
   Q 805.91 523.33 798.28 521.25
@@ -11089,14 +11089,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcce11"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1078.45 368.16
   Q 1079.64 363.43 1082.45 358.95"
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1082.45 358.95
   Q 1085.09 350.94 1087.22 342.76
@@ -11104,7 +11104,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffd810"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1074.96 314.93
   Q 1065.76 321.19 1061.66 329.38
@@ -11114,7 +11114,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 982.81 410.67
   Q 977.94 409.06 973.06 407.61
@@ -11125,7 +11125,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 942.11 385.37
   Q 940.71 386.74 939.88 388.47
@@ -11147,7 +11147,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1019.09 366.72
   Q 1023.72 359.76 1025.49 351.66
@@ -11156,14 +11156,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1011.10 328.23
   Q 1009.59 326.75 1007.70 325.94"
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.70 325.94
   C 1002.54 322.49 997.39 322.53 991.86 325.44
@@ -11174,7 +11174,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1082.45 358.95
   Q 1079.36 362.76 1076.71 366.82
@@ -11190,14 +11190,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4b80f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1074.96 314.93
   Q 1074.12 316.38 1074.74 318.20"
         />
         <path
           stroke="#fcc50f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1074.74 318.20
   Q 1072.22 328.25 1070.40 332.94
@@ -11206,7 +11206,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1044.59 302.22
   C 1033.02 302.58 1019.29 303.05 1007.86 307.12
@@ -11217,21 +11217,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 954.61 365.39
   L 945.24 380.01"
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 945.24 380.01
   L 942.11 385.37"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 942.11 385.37
   Q 942.23 384.51 942.05 384.02
@@ -11242,7 +11242,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1007.70 325.94
   C 1011.55 332.07 1013.67 336.98 1010.75 344.11
@@ -11256,7 +11256,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1011.10 328.23
   C 1015.66 335.61 1020.05 343.71 1014.90 352.15
@@ -11265,21 +11265,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1045.80 300.31
   Q 1045.93 301.59 1044.80 302.20"
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1044.80 302.20
   Q 1044.70 302.21 1044.59 302.22"
         />
         <path
           stroke="#fff998"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1044.59 302.22
   Q 1035.16 298.76 1031.21 298.05
@@ -11293,14 +11293,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 995.59 291.79
   L 994.59 290.76"
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1076.75 312.15
   Q 1076.12 313.17 1075.36 313.51
@@ -11310,7 +11310,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1192.55 342.06
   Q 1190.33 341.33 1188.78 341.45
@@ -11326,14 +11326,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#917d19"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1087.65 398.41
   Q 1088.83 397.69 1090.27 397.78"
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 995.59 291.79
   L 983.58 308.13
@@ -11342,21 +11342,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1181.52 374.53
   Q 1177.55 381.24 1176.27 389.08"
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 887.50 261.56
   C 884.25 264.93 884.14 267.82 883.21 271.79"
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 883.21 271.79
   L 880.92 274.68
@@ -11395,14 +11395,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 900.32 331.51
   Q 902.28 329.71 903.28 327.21"
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 903.28 327.21
   Q 908.97 320.11 912.86 311.91
@@ -11417,14 +11417,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c2f20"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 945.41 276.75
   L 950.11 271.41"
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 950.11 271.41
   L 947.78 271.07
@@ -11433,14 +11433,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#675e4b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 949.55 269.80
   L 951.57 270.65"
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 951.57 270.65
   Q 950.81 276.79 953.93 282.18
@@ -11449,7 +11449,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#675e4b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 952.03 269.97
   Q 948.62 267.66 944.25 266.75
@@ -11458,21 +11458,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#796b5b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 952.03 269.97
   L 951.57 270.65"
         />
         <path
           stroke="#796b5b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 949.55 269.80
   L 948.57 269.34"
         />
         <path
           stroke="#978573"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 948.57 269.34
   Q 928.10 264.06 907.10 262.20
@@ -11483,7 +11483,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#4e3c30"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 950.11 271.41
   Q 946.43 272.49 944.66 275.97
@@ -11492,7 +11492,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 903.28 327.21
   Q 905.07 320.14 907.07 317.57
@@ -11505,7 +11505,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 948.57 269.34
   Q 945.02 271.36 942.92 271.63
@@ -11515,14 +11515,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 839.76 314.23
   Q 834.92 317.51 832.04 321.23"
         />
         <path
           stroke="#3c2f20"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 832.04 321.23
   L 815.18 336.59
@@ -11533,7 +11533,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 816.55 338.02
   C 820.82 338.11 826.38 339.57 829.72 336.16
@@ -11548,7 +11548,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 885.69 285.21
   L 878.78 279.55
@@ -11568,7 +11568,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 885.69 285.21
   Q 879.54 287.96 874.60 290.79
@@ -11579,7 +11579,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#4e3c30"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 816.55 338.02
   L 816.76 337.70
@@ -11590,14 +11590,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1151.32 305.34
   Q 1149.73 306.94 1148.72 310.16"
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1148.72 310.16
   Q 1147.21 312.21 1146.94 314.50
@@ -11618,14 +11618,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1221.46 326.09
   L 1221.23 322.01"
         />
         <path
           stroke="#3c2f20"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1221.23 322.01
   C 1221.00 318.16 1218.17 316.17 1214.96 314.57
@@ -11633,7 +11633,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#615d59"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1200.96 309.56
   C 1185.68 305.12 1171.53 302.13 1155.74 302.56
@@ -11641,14 +11641,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#9d8c79"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1200.96 309.56
   Q 1201.34 310.33 1200.74 310.48"
         />
         <path
           stroke="#908480"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1200.74 310.48
   L 1186.96 306.42
@@ -11663,7 +11663,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#6c5648"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1200.74 310.48
   Q 1205.57 312.33 1210.46 313.96
@@ -11672,7 +11672,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1221.46 326.09
   C 1219.12 324.20 1217.34 321.59 1214.90 320.28
@@ -11696,7 +11696,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#675e4b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1142.40 322.88
   C 1138.66 325.56 1134.87 328.95 1131.61 331.44
@@ -11706,14 +11706,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1071.97 378.50
   Q 1071.32 378.92 1070.72 379.81"
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1070.72 379.81
   Q 1074.38 384.30 1080.48 384.21
@@ -11732,7 +11732,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1151.06 324.28
   L 1146.09 320.53
@@ -11741,14 +11741,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1151.06 324.28
   Q 1142.20 325.77 1133.74 332.50"
         />
         <path
           stroke="#978573"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1133.74 332.50
   L 1139.20 326.87
@@ -11759,28 +11759,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#796b5b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1133.74 332.50
   L 1128.53 336.79"
         />
         <path
           stroke="#675e4b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1128.53 336.79
   L 1101.88 358.20"
         />
         <path
           stroke="#796b5b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1101.88 358.20
   L 1088.75 368.32"
         />
         <path
           stroke="#978573"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1088.75 368.32
   Q 1081.37 371.72 1073.65 378.60
@@ -11788,7 +11788,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1070.72 379.81
   Q 1075.06 379.94 1078.18 377.08
@@ -11796,7 +11796,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1101.88 358.20
   Q 1100.85 359.09 1100.73 359.66
@@ -11807,7 +11807,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 816.42 341.53
   L 825.11 345.65
@@ -11821,7 +11821,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 637.89 354.44
   Q 637.95 353.78 637.66 353.49
@@ -11831,7 +11831,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#755108"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1089.8084 401.9029
   A 2.94 0.58 -158.3 0 0 1092.3255 403.5289
@@ -11841,7 +11841,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1103.32 410.62
   Q 1103.44 410.45 1099.94 408.08
@@ -11851,7 +11851,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c1e00"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1120.6602 418.8507
   A 2.92 0.32 -163.5 0 0 1123.3691 419.9868
@@ -11861,7 +11861,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#2e1100"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 903.77 426.94
   Q 903.30 427.55 901.36 428.43
@@ -11873,7 +11873,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1182.30 491.72
   Q 1181.31 488.73 1179.11 486.62
@@ -11882,7 +11882,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1171.46 487.87
   L 1153.50 490.44
@@ -11896,7 +11896,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1192.91 529.10
   Q 1202.80 538.01 1213.46 546.34
@@ -11909,7 +11909,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#3c2f20"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1234.12 539.47
   Q 1233.01 533.36 1231.53 527.33
@@ -11919,7 +11919,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1214.65 483.49
   Q 1213.22 470.46 1211.86 457.26
@@ -11941,14 +11941,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#4e3c30"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1214.65 483.49
   Q 1214.17 483.13 1213.71 482.03"
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1213.71 482.03
   L 1210.76 476.95
@@ -11964,7 +11964,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#23191f"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1227.03 552.88
   Q 1225.01 547.65 1223.16 542.48
@@ -11975,14 +11975,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1186.89 501.29
   L 1182.30 491.72"
         />
         <path
           stroke="#6c5648"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1213.71 482.03
   Q 1211.76 479.60 1213.63 484.37
@@ -11994,7 +11994,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1192.91 529.10
   Q 1185.82 521.85 1178.28 515.20
@@ -12006,7 +12006,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1186.89 501.29
   L 1196.15 515.85
@@ -12020,7 +12020,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#533001"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 874.0357 453.4885
   A 2.06 0.38 -20.8 0 0 871.9751 453.8648
@@ -12030,7 +12030,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 498.52 482.29
   Q 514.96 487.24 528.48 493.35
@@ -12050,7 +12050,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 527.69 474.22
   Q 519.33 471.25 511.21 471.72
@@ -12059,7 +12059,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 527.69 474.22
   L 528.53 475.17
@@ -12070,7 +12070,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 524.23 480.62
   L 513.64 476.68
@@ -12082,7 +12082,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 531.46 484.75
   Q 531.96 485.19 531.96 485.20
@@ -12094,7 +12094,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 531.46 484.75
   C 534.99 485.08 537.80 487.03 541.21 486.88
@@ -12104,7 +12104,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 748.67 542.90
   L 757.69 545.77
@@ -12123,7 +12123,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 799.18 540.74
   Q 784.72 536.50 769.83 533.33
@@ -12134,7 +12134,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 799.18 540.74
   Q 803.12 544.47 808.47 546.04
@@ -12151,7 +12151,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 797.59 548.36
   Q 793.01 547.28 788.35 545.41
@@ -12159,14 +12159,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 779.52 543.25
   L 766.97 540.39"
         />
         <path
           stroke="#302728"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 766.97 540.39
   Q 763.53 538.79 760.16 538.86
@@ -12175,7 +12175,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#413437"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 779.23 547.72
   Q 785.27 550.79 788.49 550.69
@@ -12188,7 +12188,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 779.52 543.25
   L 776.78 543.38
@@ -12199,7 +12199,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#120d10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 766.97 540.39
   L 787.00 549.45
@@ -12208,14 +12208,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#807a33"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1089.68 710.25
   L 1080.71 720.17"
         />
         <path
           stroke="#7f7e7b"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1080.71 720.17
   Q 1079.98 720.69 1079.66 721.31
@@ -12242,14 +12242,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1080.71 720.17
   L 1083.30 719.84"
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1083.30 719.84
   Q 1091.87 719.27 1100.02 718.05
@@ -12267,14 +12267,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#eee8dd"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1275.47 667.45
   L 1276.07 664.27"
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1276.07 664.27
   Q 1278.37 657.77 1278.26 655.66
@@ -12310,14 +12310,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e0dbd3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1106.71 708.74
   L 1100.72 709.80"
         />
         <path
           stroke="#fff8ae"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1100.72 709.80
   L 1092.75 709.87
@@ -12328,14 +12328,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d0c7bb"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1274.77 659.02
   L 1275.47 667.45"
         />
         <path
           stroke="#e0d68c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1083.30 719.84
   L 1088.49 713.23
@@ -12346,14 +12346,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#e4dbcf"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1276.07 664.27
   L 1274.77 659.02"
         />
         <path
           stroke="#d5cec6"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 1274.77 659.02
   Q 1271.51 644.00 1265.08 630.19
@@ -12371,7 +12371,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 754.74 334.03
   Q 744.74 339.66 738.06 348.20
@@ -12380,7 +12380,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 754.19 346.52
   C 759.29 345.74 764.46 344.34 769.29 343.69
@@ -12394,7 +12394,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 754.19 346.52
   L 758.39 335.69
@@ -12403,7 +12403,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 737.11 374.66
   Q 739.80 375.39 743.74 377.02
@@ -12415,7 +12415,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 658.64 393.22
   L 665.99 389.01
@@ -12431,7 +12431,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 673.2585 389.9028
   A 0.66 0.66 0.0 0 0 672.4374 389.4588
@@ -12445,7 +12445,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 639.17 408.10
   Q 637.55 407.47 635.97 408.24
@@ -12457,7 +12457,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 633.39 427.77
   Q 633.35 427.62 633.35 427.60
@@ -12478,7 +12478,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 656.44 422.92
   L 656.05 421.59
@@ -12492,7 +12492,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#cf8e09"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 942.31 433.99
   A 1.88 1.84 -25.1 0 0 943.57 434.43
@@ -12506,7 +12506,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 983.93 468.41
   L 980.21 471.21
@@ -12520,14 +12520,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#b16f08"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 994.45 478.55
   C 997.49 477.54 999.87 475.37 998.95 471.94"
         />
         <path
           stroke="#bc8f0a"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 998.95 471.94
   L 1000.01 469.58
@@ -12536,21 +12536,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#bc9834"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 996.26 465.40
   Q 994.72 463.14 992.22 461.43"
         />
         <path
           stroke="#bc9a49"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 992.22 461.43
   L 988.84 458.68"
         />
         <path
           stroke="#bc9834"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 988.84 458.68
   L 979.66 453.64
@@ -12563,7 +12563,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff67c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 988.84 458.68
   L 986.74 458.14
@@ -12574,7 +12574,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffea3c"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 996.26 465.40
   Q 996.65 467.07 996.14 467.99
@@ -12588,7 +12588,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4c111"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 998.95 471.94
   Q 997.51 474.49 995.15 476.07
@@ -12597,7 +12597,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 909.21 463.85
   Q 911.15 463.97 913.19 463.18
@@ -12610,7 +12610,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#d29808"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 936.64 496.07
   A 0.27 0.26 58.6 0 0 936.76 495.56
@@ -12622,7 +12622,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 829.20 519.50
   L 838.98 515.21
@@ -12650,7 +12650,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 739.29 727.23
   L 729.13 704.18
@@ -12663,7 +12663,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 859.55 730.86
   L 860.28 730.40
@@ -12676,7 +12676,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 906.94 728.87
   L 907.88 728.30
@@ -12690,7 +12690,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 879.28 707.78
   A 0.18 0.18 0.0 0 0 879.02 708.01
@@ -12703,7 +12703,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 745.0836 709.8080
   A 8.74 0.75 -115.6 0 0 748.1836 718.0141
@@ -12713,7 +12713,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 772.54 730.90
   L 762.23 711.91
@@ -12727,7 +12727,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 756.1852 713.1139
   A 0.65 0.65 0.0 0 0 755.3306 712.7755
@@ -12741,7 +12741,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 776.7939 713.0613
   A 10.12 0.78 -111.3 0 0 779.7433 722.7733
@@ -12751,7 +12751,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 837.95 713.36
   L 847.37 731.00
@@ -12765,7 +12765,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 824.4743 713.7155
   A 10.81 0.72 -114.4 0 0 828.2843 723.8574
@@ -12775,7 +12775,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fee682"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 870.80 713.96
   L 879.48 730.71
@@ -12789,7 +12789,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 812.1425 714.7613
   A 0.66 0.66 0.0 0 0 811.2789 714.4071
@@ -12803,7 +12803,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffac3"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 795.7328 719.2399
   A 6.11 0.49 -113.1 0 0 797.6793 725.0522
@@ -12813,7 +12813,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f4efe8"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 510.88 624.97
   Q 513.45 631.76 508.55 636.06
@@ -12830,7 +12830,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 432.64 637.41
   L 433.60 637.02
@@ -12844,7 +12844,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 476.5018 627.2439
   A 4.71 0.75 -113.9 0 0 477.7243 631.8539
@@ -12854,7 +12854,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 445.1734 627.8527
   A 4.31 0.66 -111.6 0 0 446.1463 632.1030
@@ -12864,7 +12864,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fcdc83"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 492.3343 628.5716
   A 3.52 0.60 -110.9 0 0 493.0295 632.0740
@@ -12874,7 +12874,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 981.05 713.70
   L 981.23 714.76
@@ -12888,7 +12888,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 569.35 648.48
   Q 562.31 649.73 560.55 656.01
@@ -12897,7 +12897,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fff06e"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 573.63 665.80
   Q 587.89 672.96 603.03 677.31
@@ -12913,14 +12913,14 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#fffbad"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 573.63 665.80
   C 571.06 660.41 570.49 655.35 569.35 648.48"
         />
         <path
           stroke="#ffed52"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 605.98 678.28
   Q 608.14 678.86 609.08 677.46
@@ -12934,7 +12934,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 888.78 748.66
   L 910.34 744.82
@@ -12946,7 +12946,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#f1ae10"
-          vector-effect="non-scaling-stroke"
+          vectorEffect="non-scaling-stroke"
           d="
   M 844.0802 760.6389
   A 8.21 0.86 -2.8 0 0 835.8380 760.1810
