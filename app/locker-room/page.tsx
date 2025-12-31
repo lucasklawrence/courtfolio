@@ -6,7 +6,6 @@ import { DadJerseySVG } from '@/components/locker-room/assets/DadJerseySvg'
 import { LockerZone } from '@/components/locker-room/LockerZone'
 import { LockerPlacardSVG } from '@/components/locker-room/LockerPlacardSvg'
 import { InteractiveLockerItem } from '@/components/locker-room/InteractiveLockerItem'
-import { QuestionJerseySVG } from '@/components/locker-room/assets/QuestionJerseySvg'
 import { ZoeSvg } from '@/components/locker-room/assets/Zoe'
 import { BasketballSvg } from '@/components/locker-room/assets/basketballSvg'
 import { Melo2sSvg } from '@/components/locker-room/assets/Melo2s'
@@ -15,16 +14,18 @@ import { Harden7sSVG } from '@/components/locker-room/assets/Harden7sSvg'
 import { HigherDivisionTrophySVG } from '@/components/locker-room/assets/HigherDivisionTrophy'
 import { PlayStation5SVG } from '@/components/locker-room/assets/PlayStation5SVG'
 import { PS5ControllerSVG } from '@/components/locker-room/assets/PS5ControllerSVG'
-import { DuffelBagSvg } from '@/components/locker-room/assets/DuffelBagSvg'
 import { HeadphonesSvg } from '@/components/locker-room/assets/HeadphonesSvg'
 import { PatentSvg } from '@/components/locker-room/assets/PatentSvg'
 import { StrawHatSvg } from '@/components/locker-room/assets/StrawHatSvg'
 import { JerseysSVG } from '@/components/locker-room/assets/JerseysSvg'
 import { LaptopSvg } from '@/components/locker-room/assets/LaptopSvg'
-import { ScoutingReportSvg } from '@/components/locker-room/assets/ScoutingReportSvg'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { LockerInfo } from '@/components/locker-room/LockerInfo'
 import { SvgLayoutContainer } from '@/components/common/SvgLayoutContainer'
+import { Yellow4Jersey } from '@/components/locker-room/assets/Yellow4Jersey'
+import { SnapGhost } from '@/components/locker-room/assets/SnapGhost'
+import { KindSmartCreativeBooks } from '@/components/locker-room/assets/KindSmartCreativeBooks'
+import { SnapchatShoes } from '@/components/locker-room/assets/SnapShoes'
 
 /**
  * Renders the Locker Room page of the basketball-themed portfolio.
@@ -55,16 +56,16 @@ export default function LockerRoomPage() {
               </h1>
             </LockerZone>
           ),
-          'scout-report': (
+          'snap-shoes': (
             <LockerZone
-              x={1220}
-              y={630}
-              width={150}
-              height={200}
-              zoneId="scout-report"
+              x={1170}
+              y={790}
+              width={250}
+              height={300}
+              zoneId="snap-shoes"
               onClick={setSelectedZone}
             >
-              <ScoutingReportSvg />
+              <SnapchatShoes />
             </LockerZone>
           ),
           laptop: (
@@ -103,16 +104,16 @@ export default function LockerRoomPage() {
               <StrawHatSvg />
             </LockerZone>
           ),
-          'duffel-bag': (
+          'snap-values': (
             <LockerZone
               x={1180}
-              y={120}
+              y={143}
               width={250}
               height={200}
-              zoneId="duffel-bag"
+              zoneId="snap-values"
               onClick={setSelectedZone}
             >
-              <DuffelBagSvg />
+              <KindSmartCreativeBooks />
             </LockerZone>
           ),
           'dad-jersey': (
@@ -184,19 +185,31 @@ export default function LockerRoomPage() {
               zoneId="locker-placard-5"
               onClick={setSelectedZone}
             >
-              <LockerPlacardSVG label="Next Team" />
+              <LockerPlacardSVG label="Snap Inc." />
             </LockerZone>
           ),
-          'question-jersey': (
+          'snap-jersey': (
             <LockerZone
-              x={1170}
-              y={280}
-              width={250}
-              height={320}
-              zoneId="question-jersey"
+              x={1150}
+              y={250}
+              width={290}
+              height={390}
+              zoneId="snap-jersey"
               onClick={setSelectedZone}
             >
-              <QuestionJerseySVG className="w-16 h-auto opacity-90 hover:opacity-100" />
+              <Yellow4Jersey className="w-16 h-auto opacity-90 hover:opacity-100" />
+            </LockerZone>
+          ),
+           'ghost-logo-jersey': (
+            <LockerZone
+              x={1265}
+              y={400}
+              width={290}
+              height={390}
+              zoneId="ghost-logo-jersey"
+              onClick={setSelectedZone}
+            >
+              <SnapGhost className="w-16 h-auto opacity-90 hover:opacity-100" />
             </LockerZone>
           ),
           zoe: (

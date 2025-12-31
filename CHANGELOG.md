@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hall of Strategy** – Architecture write-ups
 - **Press Room** – Blog & media entries, changelog, etc
 
+## [0.2.5] - 2025-12-30
+
+### Fixed
+- Fixed security vulnerability.
+
+### Changed
+- Updated fifth locker room to represent Snapchat.
+
 ## [0.2.3] - 2025-07-19
 
 ### Added
