@@ -91,6 +91,22 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
     title: 'PS5 Controller (Right)',
     description: 'Always ready for co-op.',
   },
+  'snap-values': {
+    title: 'Snap Values',
+    description: 'Kind, Smart, and Creative - the principles that guide the work.',
+  },
+  'snap-jersey': {
+    title: 'Snap Jersey',
+    description: 'Yellow jersey repping recent Snap work and impact.',
+  },
+  'snap-shoes': {
+    title: 'Snap Shoes',
+    description: 'Custom kicks inspired by Snap design language.',
+  },
+  'ghost-logo-jersey': {
+    title: 'Ghost Logo Jersey',
+    description: 'Yellow jersey repping recent Snap work and impact.',
+  },
 }
 
 export const LockerInfo = ({ zoneId }: { zoneId: string }) => {
