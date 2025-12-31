@@ -26,6 +26,7 @@ import { Yellow4Jersey } from '@/components/locker-room/assets/Yellow4Jersey'
 import { SnapGhost } from '@/components/locker-room/assets/SnapGhost'
 import { KindSmartCreativeBooks } from '@/components/locker-room/assets/KindSmartCreativeBooks'
 import { SnapchatShoes } from '@/components/locker-room/assets/SnapShoes'
+import { LockerZoneId } from '@/components/locker-room/types'
 
 /**
  * Renders the Locker Room page of the basketball-themed portfolio.
@@ -38,12 +39,12 @@ import { SnapchatShoes } from '@/components/locker-room/assets/SnapShoes'
  * - SVG-based layout with `LockerRoomSvg`
  * - Interactive zones rendered via `LockerZone` components
  * - Clickable items open metadata or illustrations in an overlay
- * - “Back to Court” button for navigation
+ * - Back to Court button for navigation
  *
  * @returns {JSX.Element} The rendered Locker Room page
  */
 export default function LockerRoomPage() {
-  const [selectedZone, setSelectedZone] = useState<string | null>(null)
+  const [selectedZone, setSelectedZone] = useState<LockerZoneId | null>(null)
 
   return (
     <SvgLayoutContainer>
@@ -359,3 +360,7 @@ export default function LockerRoomPage() {
     </SvgLayoutContainer>
   )
 }
+
+
+
+

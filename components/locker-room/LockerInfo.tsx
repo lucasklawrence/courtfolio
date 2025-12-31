@@ -1,4 +1,6 @@
-export const lockerZoneTooltips: Record<string, { title: string; description: string }> = {
+import { LockerZoneId } from './types'
+
+export const lockerZoneTooltips: Record<LockerZoneId, { title: string; description: string }> = {
   'scout-report': {
     title: 'Scouting Report',
     description: 'Breaking down opponents, ideas, and next moves.',
@@ -7,9 +9,9 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
     title: 'Laptop',
     description: 'Where the magic gets built. Code, design, deploy.',
   },
-  jereseys: {
+  jerseys: {
     title: 'Jerseys',
-    description: 'Past teams, moments, and messages—each with a story.',
+    description: 'Past teams, moments, and messages - each with a story.',
   },
   'straw-hat': {
     title: 'Straw Hat',
@@ -45,10 +47,10 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
   },
   'question-jersey': {
     title: 'Question Jersey',
-    description: 'Something’s brewing. Maybe your logo fits here?',
+    description: "Something's brewing. Maybe your logo fits here?",
   },
   zoe: {
-    title: 'Zoë',
+    title: 'Zoe',
     description: 'Mascot and co-pilot through the late nights.',
   },
   'higher-division-trophy': {
@@ -61,7 +63,7 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
   },
   patent: {
     title: 'Patent',
-    description: 'Innovation that’s earned legal protection.',
+    description: "Innovation that's earned legal protection.",
   },
   headphones: {
     title: 'Headphones',
@@ -85,7 +87,7 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
   },
   'ps5-controller-1': {
     title: 'PS5 Controller (Left)',
-    description: 'First controller—player one mindset.',
+    description: 'First controller - player one mindset.',
   },
   'ps5-controller-2': {
     title: 'PS5 Controller (Right)',
@@ -105,12 +107,11 @@ export const lockerZoneTooltips: Record<string, { title: string; description: st
   },
   'ghost-logo-jersey': {
     title: 'Ghost Logo Jersey',
-    description: 'Yellow jersey repping recent Snap work and impact.',
+    description: 'Alternate kit featuring the Snap ghost mark.',
   },
 }
 
-export const LockerInfo = ({ zoneId }: { zoneId: string }) => {
-  console.log('in locker info' + zoneId)
+export const LockerInfo = ({ zoneId }: { zoneId: LockerZoneId }) => {
   const info = lockerZoneTooltips[zoneId]
   if (!info) return null
 

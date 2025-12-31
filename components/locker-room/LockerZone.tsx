@@ -1,13 +1,14 @@
 import React from 'react'
 import { SafeSvgHtml } from '../common/SafeSvgHtml'
+import { LockerZoneId } from './types'
 
 type Props = {
   x: number
   y: number
   width: number
   height: number
-  zoneId?: string
-  onClick?: (zoneId: string) => void
+  zoneId?: LockerZoneId
+  onClick?: (zoneId: LockerZoneId) => void
   children: React.ReactNode
 }
 
@@ -20,7 +21,6 @@ type Props = {
  */
 export function LockerZone({ x, y, width, height, zoneId, onClick, children }: Props) {
   const handleClick = () => {
-    console.log('in handle click ' + zoneId)
     if (zoneId && onClick) onClick(zoneId)
   }
 
