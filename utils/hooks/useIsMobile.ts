@@ -1,11 +1,34 @@
-import { useMemo } from 'react'
+import { useEffect, useState } from 'react'
+
+const MOBILE_QUERY = '(max-width: 900px), (pointer: coarse)'
+
+const evaluateIsMobile = () => {
+  if (typeof window === 'undefined' || typeof window.matchMedia === 'undefined') return false
+  return window.matchMedia(MOBILE_QUERY).matches
+}
 
 /**
- * Returns true if user is on a mobile device (phone or tablet).
+ * Returns true if the viewport/device is mobile based on media queries (width/pointer), not UA sniffing.
  */
 export function useIsMobile(): boolean {
-  return useMemo(() => {
-    if (typeof navigator === 'undefined') return false
-    return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)
+  const [isMobile, setIsMobile] = useState<boolean>(() => evaluateIsMobile())
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia === 'undefined') return
+    const mql = window.matchMedia(MOBILE_QUERY)
+    const handleChange = (event: MediaQueryListEvent) => setIsMobile(event.matches)
+
+    setIsMobile(mql.matches)
+    mql.addEventListener
+      ? mql.addEventListener('change', handleChange)
+      : mql.addListener(handleChange)
+
+    return () => {
+      mql.removeEventListener
+        ? mql.removeEventListener('change', handleChange)
+        : mql.removeListener(handleChange)
+    }
   }, [])
+
+  return isMobile
 }

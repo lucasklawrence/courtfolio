@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hall of Strategy** – Architecture write-ups
 - **Press Room** – Blog & media entries, changelog, etc
 
+## [0.2.6] - 2025-12-31
+
+### Added
+- React/Next principles guide docs.
+
+### Fixed
+- Locker Room: restored jersey tooltip, typed zone IDs, cleaned stray mojibake, and removed debug logs.
+- Accessibility: locker zones now support keyboard activation and aria-labels from tooltips.
+- Banners/Projects pages: fixed dynamic import/serialization issues and cleaned banner copy.
+
+### Changed
+- Converted shared layout wrappers to server components where possible; dynamic imports for heavy client bundles (binder, banners).
+
 ## [0.2.5] - 2025-12-30
 
 ### Fixed

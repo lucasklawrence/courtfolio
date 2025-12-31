@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { KeyboardEvent } from 'react'
 import { SafeSvgHtml } from '../common/SafeSvgHtml'
+import { lockerZoneTooltips } from './LockerInfo'
+import { LockerZoneId } from './types'
 
 type Props = {
   x: number
   y: number
   width: number
   height: number
-  zoneId?: string
-  onClick?: (zoneId: string) => void
+  zoneId?: LockerZoneId
+  onClick?: (zoneId: LockerZoneId) => void
+  ariaLabel?: string
+  /** Render content inside a foreignObject (HTML) or directly as SVG when false. */
+  useForeignObject?: boolean
   children: React.ReactNode
 }
 
@@ -17,22 +22,51 @@ type Props = {
  * components to be positioned inside individual lockers.
  *
  * If `zoneId` and `onClick` are provided, clicking this zone will trigger selection.
+ * Keyboard: Enter/Space also trigger selection for accessibility when clickable.
  */
-export function LockerZone({ x, y, width, height, zoneId, onClick, children }: Props) {
+export function LockerZone({
+  x,
+  y,
+  width,
+  height,
+  zoneId,
+  onClick,
+  ariaLabel,
+  useForeignObject = true,
+  children,
+}: Props) {
   const handleClick = () => {
-    console.log('in handle click ' + zoneId)
     if (zoneId && onClick) onClick(zoneId)
   }
+
+  const handleKeyDown = (event: KeyboardEvent<SVGGElement>) => {
+    if (!zoneId || !onClick) return
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      onClick(zoneId)
+    }
+  }
+
+  const isInteractive = Boolean(zoneId && onClick)
+  const label = ariaLabel ?? (zoneId ? (lockerZoneTooltips[zoneId]?.title ?? zoneId) : undefined)
 
   return (
     <g
       transform={`translate(${x}, ${y})`}
       onClick={handleClick}
-      className={onClick ? 'cursor-pointer' : undefined}
+      onKeyDown={handleKeyDown}
+      role={isInteractive ? 'button' : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
+      aria-label={isInteractive ? label : undefined}
+      className={isInteractive ? 'cursor-pointer' : undefined}
     >
-      <foreignObject width={width} height={height}>
-        <SafeSvgHtml>{children}</SafeSvgHtml>
-      </foreignObject>
+      {useForeignObject ? (
+        <foreignObject width={width} height={height}>
+          <SafeSvgHtml>{children}</SafeSvgHtml>
+        </foreignObject>
+      ) : (
+        <g>{children}</g>
+      )}
     </g>
   )
 }

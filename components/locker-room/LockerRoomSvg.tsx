@@ -1,13 +1,12 @@
 'use client'
 
-import React from 'react'
-
-import { useCallback } from 'react'
+import React, { useCallback } from 'react'
+import { LockerContentKey } from './types'
 
 type LockerRoomSvgProps = {
   onZoneClick?: (zoneId: string) => void
   className?: string
-  zoneContent?: Record<string, React.ReactNode>
+  zoneContent?: Partial<Record<LockerContentKey, React.ReactNode>>
 }
 
 /**
@@ -3099,7 +3098,7 @@ export const LockerRoomSvg: React.FC<LockerRoomSvgProps> = ({
           </g>
         </g>
       </g>
-      {/* 🧠 Overlay content zones last */}
+      {/* Overlay content zones last */}
       {Object.entries(zoneContent).map(([zoneId, content]) => (
         <g key={zoneId}>{content}</g>
       ))}

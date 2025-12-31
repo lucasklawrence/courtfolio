@@ -10,7 +10,7 @@ import { SvgLayoutContainer } from '@/components/common/SvgLayoutContainer'
 import React from 'react'
 
 /**
- * Renders the Contact page, themed as a “Front Office” in the basketball portfolio.
+ * Renders the Contact page, themed as a Front Office in the basketball portfolio.
  *
  * This SVG-based layout uses the `FrontOfficeSvg` background and interactive zones to
  * showcase contact info, location imagery, and a downloadable resume.
@@ -19,7 +19,7 @@ import React from 'react'
  * - `ZoneContact` form embedded in a stylized court zone
  * - Clickable jersey and location images via `FrontOfficeZone`
  * - Resume link in a `foreignObject`
- * - “Back to Court” navigation button
+ * - Back to Court navigation button
  *
  * @returns {JSX.Element} The rendered ContactPage component
  */

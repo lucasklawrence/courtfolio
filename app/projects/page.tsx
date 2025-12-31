@@ -2,8 +2,8 @@
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { SectionContainer } from '@/components/common/SectionContainer'
-import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
 import React from 'react'
+import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
 
 /**
  * Renders the Project Binder page of the portfolio site.

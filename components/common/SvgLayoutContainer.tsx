@@ -10,10 +10,10 @@ import React, { useEffect, useState } from 'react'
  * and full-viewport presentation across devices, while enabling mobile gestures.
  *
  * ## Responsibilities:
- * - 🖼️ Maintains a centered court layout with constrained aspect ratio (1.5:1).
- * - 📱 Dynamically adjusts layout for mobile portrait vs. landscape orientations.
- * - 🧭 Enables native pan and pinch-to-zoom gestures via `touch-action` styles.
- * - 🧼 Provides a scrollable wrapper on iOS to avoid gesture blocking.
+ * - Maintains a centered court layout with constrained aspect ratio (1.5:1).
+ * - Dynamically adjusts layout for mobile portrait vs. landscape orientations.
+ * - Enables native pan and pinch-to-zoom gestures via `touch-action` styles.
+ * - Provides a scrollable wrapper on iOS to avoid gesture blocking.
  *
  * ## Layout Behavior:
  * - Mobile portrait: Fits within `100svh` and scales width proportionally.
@@ -25,20 +25,32 @@ import React, { useEffect, useState } from 'react'
  */
 export const SvgLayoutContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const isMobile = useIsMobile()
-  const [isLandscape, setIsLandscape] = useState(false)
+  const [isLandscape, setIsLandscape] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false
+    return window.innerWidth > window.innerHeight
+  })
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    const orientationQuery = window.matchMedia('(orientation: landscape)')
+
     const updateOrientation = () => {
-      setIsLandscape(window.innerWidth > window.innerHeight)
+      const matchesMedia = orientationQuery?.matches
+      const byDimensions = window.innerWidth > window.innerHeight
+      setIsLandscape(matchesMedia ?? byDimensions)
     }
 
     updateOrientation()
+    orientationQuery?.addEventListener
+      ? orientationQuery.addEventListener('change', updateOrientation)
+      : orientationQuery?.addListener(updateOrientation)
     window.addEventListener('resize', updateOrientation)
-    window.addEventListener('orientationchange', updateOrientation)
 
     return () => {
+      orientationQuery?.removeEventListener
+        ? orientationQuery.removeEventListener('change', updateOrientation)
+        : orientationQuery?.removeListener(updateOrientation)
       window.removeEventListener('resize', updateOrientation)
-      window.removeEventListener('orientationchange', updateOrientation)
     }
   }, [])
 

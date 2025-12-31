@@ -5,7 +5,12 @@ import React from 'react'
  */
 export const SnapGhost: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 500 500"
+      preserveAspectRatio="xMidYMid meet"
+      {...props}
+    >
       <title>1Artboard 1 copy 2</title>
       <g id="PRIMARY_-_GHOST" data-name="PRIMARY - GHOST">
         <path

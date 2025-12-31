@@ -26,6 +26,8 @@ import { Yellow4Jersey } from '@/components/locker-room/assets/Yellow4Jersey'
 import { SnapGhost } from '@/components/locker-room/assets/SnapGhost'
 import { KindSmartCreativeBooks } from '@/components/locker-room/assets/KindSmartCreativeBooks'
 import { SnapchatShoes } from '@/components/locker-room/assets/SnapShoes'
+import { LockerZoneId } from '@/components/locker-room/types'
+import { isSafari } from '@/utils/isSafari'
 
 /**
  * Renders the Locker Room page of the basketball-themed portfolio.
@@ -38,12 +40,12 @@ import { SnapchatShoes } from '@/components/locker-room/assets/SnapShoes'
  * - SVG-based layout with `LockerRoomSvg`
  * - Interactive zones rendered via `LockerZone` components
  * - Clickable items open metadata or illustrations in an overlay
- * - “Back to Court” button for navigation
+ * - Back to Court button for navigation
  *
  * @returns {JSX.Element} The rendered Locker Room page
  */
 export default function LockerRoomPage() {
-  const [selectedZone, setSelectedZone] = useState<string | null>(null)
+  const [selectedZone, setSelectedZone] = useState<LockerZoneId | null>(null)
 
   return (
     <SvgLayoutContainer>
@@ -200,16 +202,24 @@ export default function LockerRoomPage() {
               <Yellow4Jersey className="w-16 h-auto opacity-90 hover:opacity-100" />
             </LockerZone>
           ),
-           'ghost-logo-jersey': (
+          'ghost-logo-jersey': (
             <LockerZone
-              x={1265}
-              y={400}
-              width={290}
-              height={390}
+              x={1215}
+              y={300}
+              width={75}
+              height={75}
               zoneId="ghost-logo-jersey"
               onClick={setSelectedZone}
+              useForeignObject={false}
             >
-              <SnapGhost className="w-16 h-auto opacity-90 hover:opacity-100" />
+              <g transform="translate(45 95)">
+                <SnapGhost
+                  width="75"
+                  height="75"
+                  preserveAspectRatio="xMidYMid meet"
+                  className="opacity-90 hover:opacity-100"
+                />
+              </g>
             </LockerZone>
           ),
           zoe: (
@@ -359,3 +369,4 @@ export default function LockerRoomPage() {
     </SvgLayoutContainer>
   )
 }
+
