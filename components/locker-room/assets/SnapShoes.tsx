@@ -6,19 +6,31 @@ import React from 'react'
 export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1536.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#000000" stroke-opacity="0.580" vector-effect="non-scaling-stroke" d="
+      <g stroke-width="2.00" fill="none" stroke-linecap="butt">
+        <path
+          stroke="#000000"
+          stroke-opacity="0.580"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1276.61 680.25
   C 1269.50 689.04 1259.38 695.30 1248.68 700.04"
-/>
-<path stroke="#000000" stroke-opacity="0.698" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.698"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1248.68 700.04
   C 1241.06 703.42 1233.46 705.37 1225.09 707.70
   Q 1219.73 709.19 1214.13 710.25
   Q 1188.75 715.06 1184.07 715.64
   Q 1177.03 716.51 1170.03 717.63"
-/>
-<path stroke="#000000" stroke-opacity="0.780" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.780"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1170.03 717.63
   C 1146.83 720.56 1133.84 722.09 1112.28 723.90
   C 1109.60 724.12 1106.94 724.88 1104.25 724.79
@@ -36,16 +48,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1029.41 736.88 1026.88 737.59
   C 1024.40 738.28 1022.15 738.53 1019.25 739.47
   Q 1010.57 742.30 1001.67 744.43"
-/>
-<path stroke="#000000" stroke-opacity="0.698" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.698"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1001.67 744.43
   L 963.25 753.72"
-/>
-<path stroke="#000000" stroke-opacity="0.780" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.780"
+          vector-effect="non-scaling-stroke"
+          d="
   M 963.25 753.72
   L 960.45 754.50"
-/>
-<path stroke="#000000" stroke-opacity="0.698" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.698"
+          vector-effect="non-scaling-stroke"
+          d="
   M 960.45 754.50
   Q 951.00 756.39 941.59 758.47
   Q 932.49 760.49 925.31 761.53
@@ -53,8 +77,12 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 906.19 764.95 898.70 765.77
   Q 893.93 766.30 888.45 767.13
   Q 881.08 768.25 873.84 768.81"
-/>
-<path stroke="#000000" stroke-opacity="0.780" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.780"
+          vector-effect="non-scaling-stroke"
+          d="
   M 873.84 768.81
   Q 868.57 769.16 863.45 769.71
   Q 856.95 770.40 853.04 770.62
@@ -82,15 +110,23 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 628.98 746.16 626.56 744.84 623.95 744.19
   Q 620.46 743.31 615.34 740.94
   Q 608.49 737.78 598.37 735.21"
-/>
-<path stroke="#000000" stroke-opacity="0.698" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.698"
+          vector-effect="non-scaling-stroke"
+          d="
   M 598.37 735.21
   Q 590.43 730.71 582.13 726.49
   Q 574.17 722.45 569.49 719.73
   Q 561.24 714.93 557.25 712.25
   Q 550.55 707.74 541.52 699.52"
-/>
-<path stroke="#000000" stroke-opacity="0.780" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.780"
+          vector-effect="non-scaling-stroke"
+          d="
   M 541.52 699.52
   Q 538.48 695.81 535.26 692.29
   C 533.75 690.62 533.38 688.92 531.06 687.94
@@ -128,45 +164,74 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 8.25 8.03 -22.6 0 1 360.56 659.87
   Q 356.53 657.78 352.73 656.73
   C 349.96 655.96 347.29 654.67 344.47 653.78"
-/>
-<path stroke="#000000" stroke-opacity="0.698" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.698"
+          vector-effect="non-scaling-stroke"
+          d="
   M 344.47 653.78
   L 331.05 646.53"
-/>
-<path stroke="#000000" stroke-opacity="0.580" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#000000"
+          stroke-opacity="0.580"
+          vector-effect="non-scaling-stroke"
+          d="
   M 331.05 646.53
   L 322.34 640.48
   A 2.85 1.62 60.3 0 0 322.02 640.29
   Q 320.82 639.75 320.36 639.39
   Q 314.63 634.85 309.56 629.59"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 499.66 469.80
   Q 500.33 468.81 499.01 468.26
   Q 498.61 468.09 497.94 468.30"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 518.68 453.16
   Q 520.87 453.98 522.07 452.01"
-/>
-<path stroke="#3c2f20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2f20"
+          vector-effect="non-scaling-stroke"
+          d="
   M 522.20 452.00
   Q 523.51 451.71 523.29 451.26"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 547.47 435.87
   Q 549.76 435.90 551.32 434.21"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 575.34 411.75
   Q 578.02 412.17 579.40 409.99"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 726.50 242.01
   Q 703.43 272.99 681.36 304.86
   Q 678.48 309.01 670.88 321.40"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 670.88 321.40
   L 664.24 332.52
   A 1.78 1.68 -5.5 0 1 663.83 332.99
@@ -176,19 +241,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.92 0.92 0.0 0 1 663.85 334.83
   Q 664.50 335.48 665.50 335.40
   Q 671.19 334.96 676.70 336.01"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 676.70 336.01
   Q 677.00 336.30 677.25 336.41
   A 0.25 0.25 0.0 0 1 677.12 336.89
   Q 675.24 336.70 673.44 337.13"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 673.44 337.13
   Q 661.53 336.48 651.88 338.39
   Q 645.12 339.73 638.69 344.23"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 638.69 344.23
   C 634.55 346.51 635.90 349.56 637.97 352.58
   A 0.27 0.27 0.0 0 0 638.36 352.64
@@ -197,36 +271,57 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 638.02 351.70 637.87 351.18
   Q 637.77 350.83 638.13 350.74
   Q 638.39 350.68 638.65 350.95"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 638.65 350.95
   Q 640.07 351.74 641.30 351.97
   A 0.82 0.82 0.0 0 1 641.97 352.70
   Q 642.19 354.88 642.95 354.79"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 642.95 354.79
   L 643.00 355.24"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 643.00 355.24
   Q 641.47 356.13 640.71 357.72"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 640.71 357.72
   L 638.57 358.80"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 638.57 358.80
   Q 638.15 358.65 637.80 358.14"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 637.80 358.14
   Q 639.46 356.72 639.49 355.08
   A 0.24 0.24 0.0 0 0 639.09 354.90
   Q 637.12 356.69 635.89 359.07"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 635.89 359.07
   L 632.38 360.48
   A 0.05 0.05 0.0 0 0 632.40 360.57
@@ -235,119 +330,194 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 636.81 360.99
   A 0.56 0.55 88.7 0 1 636.36 361.47
   L 633.25 362.02"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 633.25 362.02
   L 631.16 362.89"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 631.16 362.89
   Q 622.60 364.09 614.97 368.73"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 614.97 368.73
   Q 611.94 369.82 610.87 371.88
   Q 608.77 375.93 612.79 378.16
   Q 614.43 379.06 616.12 379.85"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 616.12 379.85
   L 617.65 380.16
   A 0.27 0.26 -61.3 0 1 617.78 380.61
   L 616.05 382.31"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 616.05 382.31
   Q 615.62 383.52 613.45 384.57"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 613.45 384.57
   Q 612.72 385.84 610.66 386.87"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 610.66 386.87
   L 601.02 388.92"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 601.02 388.92
   L 590.13 393.45"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 590.13 393.45
   Q 587.42 394.89 585.12 397.50
   A 1.84 1.83 52.1 0 0 584.87 399.56
   L 586.19 402.13
   A 1.35 1.31 -5.9 0 0 587.04 402.80
   L 589.62 403.49"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 589.62 403.49
   Q 589.47 404.04 589.88 404.62"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 589.88 404.62
   Q 588.97 406.01 587.56 406.88
   Q 585.44 408.19 584.90 408.71
   Q 583.05 410.50 581.13 412.68"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 581.13 412.68
   Q 580.11 413.42 578.45 413.64
   Q 576.44 413.91 574.52 414.19"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 574.52 414.19
   L 572.19 415.00"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 572.19 415.00
   Q 571.30 415.02 570.53 415.52"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 570.53 415.52
   Q 569.40 415.66 568.97 416.07"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 568.97 416.07
   Q 564.00 416.42 559.98 419.06"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 559.98 419.06
   Q 555.81 420.76 554.20 423.95
   Q 553.34 425.64 555.80 427.51"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 555.80 427.51
   Q 556.88 429.21 558.41 430.02"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 558.41 430.02
   Q 559.72 429.56 560.15 430.66"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 560.15 430.66
   Q 557.60 433.51 552.60 436.36"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 552.60 436.36
   Q 550.85 435.86 550.17 437.19
   A 0.93 0.92 9.5 0 1 549.45 437.70
   L 545.05 438.22"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 545.05 438.22
   L 543.76 438.77"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 543.76 438.77
   C 536.00 439.69 531.36 439.97 525.54 442.55"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 525.54 442.55
   Q 524.15 443.02 524.09 443.75
   Q 523.77 447.70 526.23 449.16"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 526.23 449.16
   L 527.01 450.61
   A 0.43 0.42 -19.3 0 1 526.70 451.24
@@ -358,44 +528,68 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 524.32 455.02
   A 0.39 0.39 0.0 0 1 524.50 455.73
   L 523.77 456.22"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 523.77 456.22
   Q 512.50 454.93 503.94 458.71"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 503.94 458.71
   Q 500.58 460.28 498.93 462.13"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 498.93 462.13
   Q 498.97 464.56 500.03 465.95
   A 1.69 1.67 -10.8 0 0 500.91 466.54
   Q 504.95 467.67 513.51 468.32
   C 522.07 468.97 531.35 472.35 540.98 475.82
   C 547.04 478.00 553.59 481.48 560.03 484.12"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 560.03 484.12
   Q 567.10 487.10 573.48 491.86"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 573.48 491.86
   Q 574.34 492.06 574.42 492.66
   A 0.40 0.40 0.0 0 1 574.04 493.11
   Q 573.58 493.14 573.17 493.39"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 573.17 493.39
   Q 569.07 491.97 564.73 491.93
   A 2.85 2.85 0.0 0 0 563.76 492.10
   Q 559.55 493.64 559.04 497.46"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 559.04 497.46
   Q 559.45 501.14 557.49 501.80"
-/>
-<path stroke="#80807f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80807f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 557.49 501.80
   Q 550.11 503.26 542.83 501.36
   Q 515.82 494.29 491.60 483.24
@@ -415,116 +609,182 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 318.06 547.66 314.08 553.81
   A 2.03 2.02 -64.4 0 0 315.14 556.83
   L 331.24 562.13"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 331.24 562.13
   Q 338.64 564.32 345.87 566.75
   Q 359.75 571.41 369.50 582.24
   Q 371.25 584.19 376.09 592.94"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 376.09 592.94
   Q 381.07 603.79 386.87 612.13
   Q 387.56 613.11 388.31 612.96"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 388.31 612.96
   L 392.97 618.10"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 392.97 618.10
   Q 392.78 619.54 392.47 619.30"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 392.47 619.30
   Q 391.02 617.90 387.74 615.50
   C 379.91 609.78 376.50 602.33 371.99 594.00"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 371.99 594.00
   Q 368.37 585.75 362.78 580.30"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 362.78 580.30
   C 355.81 573.86 346.60 570.03 338.23 567.79
   Q 325.61 564.41 313.44 560.07
   Q 312.35 559.69 311.55 560.04"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 311.55 560.04
   Q 311.20 559.87 310.92 559.96
   Q 310.68 560.04 310.49 560.43
   Q 307.10 567.57 304.35 575.02"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 304.35 575.02
   Q 299.11 589.91 301.49 606.01"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 301.49 606.01
   C 302.88 614.91 308.70 623.44 315.42 629.34
   C 328.10 640.45 343.05 648.53 358.97 654.25
   C 374.83 659.95 390.65 665.43 407.25 668.96"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 407.25 668.96
   L 441.50 675.61"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 441.50 675.61
   Q 463.28 678.62 478.00 679.67
   Q 503.41 681.48 528.59 681.62
   A 0.56 0.56 0.0 0 0 529.12 680.89
   C 525.70 670.82 524.89 660.94 528.25 650.51
   Q 530.05 644.93 531.83 639.15"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 531.83 639.15
   L 540.81 621.83"
-/>
-<path stroke="#675e4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#675e4b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 540.81 621.83
   L 541.62 619.55"
-/>
-<path stroke="#3c2f20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2f20"
+          vector-effect="non-scaling-stroke"
+          d="
   M 541.62 619.55
   L 542.87 617.25"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 542.87 617.25
   Q 545.14 615.45 547.42 613.43
   Q 551.28 610.01 562.95 604.47"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 562.95 604.47
   Q 563.19 605.56 560.90 606.97
   A 0.35 0.34 -39.9 0 0 560.85 607.51
   Q 561.35 607.99 560.98 609.07"
-/>
-<path stroke="#80807f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80807f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 560.98 609.07
   Q 555.03 612.16 549.51 616.01
   Q 547.94 617.11 547.07 618.58
   A 1.07 1.06 -55.0 0 0 547.31 619.95
   L 549.56 621.80"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 549.56 621.80
   C 563.69 629.26 581.01 635.01 597.09 640.76
   Q 603.31 642.98 606.39 645.20
   Q 610.55 648.20 613.75 652.42"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 613.75 652.42
   Q 618.32 659.24 621.58 666.80
   Q 625.43 675.71 625.44 675.73
   Q 628.26 681.80 631.17 687.91"
-/>
-<path stroke="#3c2f20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2f20"
+          vector-effect="non-scaling-stroke"
+          d="
   M 631.17 687.91
   L 633.10 692.29"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 633.10 692.29
   L 637.43 698.08
   A 0.60 0.58 -8.1 0 0 637.72 698.29
@@ -537,36 +797,54 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 636.50 700.82 632.66 695.89 628.82 690.78
   Q 627.11 688.52 623.88 680.52
   Q 620.83 672.98 617.34 666.40"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 617.34 666.40
   Q 614.48 659.24 610.35 653.94"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 610.35 653.94
   C 605.32 647.05 598.50 644.48 591.48 642.01
   Q 575.68 636.48 559.52 630.70
   C 554.49 628.91 547.94 626.74 544.63 623.27
   A 0.56 0.56 0.0 0 0 543.73 623.39
   L 538.67 632.93"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 538.67 632.93
   L 535.41 639.80"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 535.41 639.80
   Q 532.86 646.39 530.58 655.07
   Q 527.26 667.69 532.56 679.24"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 532.56 679.24
   C 540.05 694.23 552.58 703.32 566.58 712.50
   C 576.29 718.87 587.83 724.52 597.21 728.53
   Q 614.76 736.03 637.69 744.07
   Q 642.65 745.82 663.04 750.74"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.04 750.74
   Q 695.61 760.11 726.50 763.05
   Q 759.31 766.17 773.76 766.91
@@ -584,8 +862,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1152.00 652.61 1174.17 648.15
   C 1190.12 644.93 1207.81 642.85 1224.65 636.61
   Q 1227.72 635.48 1230.64 633.72"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1230.64 633.72
   Q 1237.36 627.32 1241.15 617.13
   Q 1246.63 602.42 1248.48 592.29
@@ -593,12 +874,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1246.99 575.01 1246.23 570.70 1243.02 564.82
   A 0.41 0.41 0.0 0 0 1242.37 564.72
   L 1232.75 573.90"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1232.75 573.90
   L 1231.62 570.31"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1231.62 570.31
   Q 1231.79 570.13 1231.65 569.74
   A 0.76 0.71 -85.8 0 0 1231.35 569.37
@@ -611,57 +898,87 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1130.78 489.55 1119.91 487.65 1108.80 483.28
   Q 1098.09 479.07 1095.79 477.96
   Q 1084.07 472.30 1072.60 467.15"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1072.60 467.15
   L 1040.33 450.76"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1040.33 450.76
   Q 1036.06 447.18 1030.92 445.39
   Q 1029.73 444.97 1029.11 444.40
   Q 1028.23 443.59 1027.26 444.41
   A 0.51 0.50 46.0 0 0 1027.25 445.17
   Q 1029.09 446.87 1027.58 446.89"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1027.58 446.89
   C 1025.15 445.58 1021.63 447.47 1019.73 447.01
   C 1016.49 446.21 1013.62 445.73 1010.45 444.01
   Q 1006.07 441.63 1001.60 439.67"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1001.60 439.67
   Q 1001.19 439.08 1000.60 438.92
   A 0.66 0.66 0.0 0 1 1000.12 438.31
   L 1000.07 437.45"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1000.07 437.45
   Q 999.87 436.75 999.27 436.25"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 999.27 436.25
   Q 999.59 435.75 1000.08 435.45"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1000.08 435.45
   Q 1003.13 437.35 1006.25 439.26
   Q 1010.22 441.68 1016.95 443.37"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1016.95 443.37
   Q 1020.26 444.51 1023.47 443.82
   A 1.27 1.25 17.5 0 0 1024.11 443.49
   L 1027.25 440.50"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1027.25 440.50
   Q 1027.90 440.31 1028.26 440.83
   A 0.31 0.30 -45.6 0 0 1028.76 440.82
   Q 1030.16 438.78 1031.37 440.13"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1031.37 440.13
   L 1029.38 442.60
   A 0.37 0.37 0.0 0 0 1029.52 443.18
@@ -672,16 +989,25 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1155.81 486.44 1162.82 484.95 1171.44 483.18
   Q 1178.29 481.78 1182.85 476.10
   Q 1186.37 471.71 1189.52 467.81"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1189.52 467.81
   Q 1195.13 464.70 1197.00 457.41"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1197.00 457.41
   L 1198.93 453.02"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1198.93 453.02
   Q 1202.12 445.33 1204.82 437.56
   C 1207.07 431.08 1207.07 425.90 1207.52 417.55
@@ -694,30 +1020,45 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1178.65 399.72 1173.80 407.57
   Q 1168.85 415.60 1160.86 418.93
   Q 1156.48 420.76 1153.27 421.84"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1153.27 421.84
   Q 1144.71 420.50 1136.53 420.89
   A 0.64 0.63 5.4 0 0 1135.94 421.37
   Q 1135.71 422.33 1134.46 421.78"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1134.46 421.78
   Q 1117.20 422.49 1102.46 412.27
   Q 1096.78 408.33 1094.28 406.91"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1094.28 406.91
   Q 1090.01 404.17 1086.88 401.62
   Q 1085.82 400.75 1085.74 399.38
   A 1.55 1.54 -72.7 0 0 1085.15 398.25
   Q 1083.57 397.02 1082.48 395.29"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1082.48 395.29
   L 1087.65 398.41"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1087.65 398.41
   Q 1088.94 399.76 1091.00 399.80
   C 1099.66 399.98 1106.03 400.17 1112.18 394.68
@@ -743,21 +1084,33 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1154.79 412.42 1160.16 409.85
   A 9.53 9.35 -77.9 0 0 1162.31 408.43
   Q 1167.41 403.98 1171.27 398.21"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1171.27 398.21
   L 1176.27 389.08"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.27 389.08
   C 1179.45 384.98 1181.99 379.89 1181.52 374.53"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1181.52 374.53
   C 1183.04 370.46 1185.20 366.28 1186.52 362.60
   Q 1190.14 352.49 1192.55 342.06"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1192.55 342.06
   C 1195.26 337.35 1190.77 336.38 1187.78 335.09
   C 1184.44 333.66 1181.22 333.32 1177.01 332.13
@@ -775,52 +1128,82 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1093.96 399.08 1091.01 398.92
   Q 1090.56 398.90 1090.40 398.56
   Q 1090.25 398.23 1090.27 397.78"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1090.27 397.78
   Q 1090.91 396.79 1089.45 396.06
   Q 1084.74 393.71 1080.27 391.23"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1080.27 391.23
   Q 1072.73 386.35 1064.49 386.00"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1064.49 386.00
   Q 1047.28 382.93 1031.05 389.33"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1031.05 389.33
   Q 1025.03 391.26 1018.66 395.17
   Q 1007.25 402.18 998.25 409.51
   Q 996.24 411.15 994.60 413.10"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 994.60 413.10
   C 992.81 413.32 992.42 411.58 990.71 412.29
   A 0.29 0.28 50.9 0 0 990.66 412.79
   Q 992.52 414.05 992.41 415.37"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 992.41 415.37
   L 981.30 411.67"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 981.30 411.67
   Q 981.85 411.08 982.81 410.67"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 982.81 410.67
   L 988.68 412.36
   A 0.87 0.86 32.9 0 0 989.50 412.19
   L 1012.77 392.30"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1012.77 392.30
   Q 1015.20 390.69 1020.16 386.92
   Q 1023.04 384.72 1026.14 383.40"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1026.14 383.40
   Q 1032.81 382.36 1038.81 380.92
   C 1043.53 379.78 1047.44 379.45 1051.66 380.14
@@ -828,91 +1211,145 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.10 1.09 17.9 0 0 1065.08 380.96
   Q 1068.54 376.83 1069.09 376.34
   Q 1073.85 372.13 1078.45 368.16"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1078.45 368.16
   Q 1081.07 365.40 1082.27 362.77
   C 1086.52 353.47 1090.14 342.79 1090.01 332.04
   C 1089.90 323.57 1083.54 316.36 1076.75 312.15"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1076.75 312.15
   Q 1072.84 310.00 1068.67 308.34
   Q 1057.41 303.86 1045.80 300.31"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1045.80 300.31
   Q 1028.81 295.00 1011.52 290.66
   Q 1005.00 289.02 998.25 289.00
   Q 996.12 289.00 994.59 290.76"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 994.59 290.76
   Q 992.21 292.89 989.65 296.65
   Q 984.83 303.70 982.39 307.97"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 982.39 307.97
   Q 979.23 313.32 968.92 329.93
   Q 961.51 341.87 952.13 358.95
   C 947.72 366.99 943.00 374.51 938.33 382.24"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 938.33 382.24
   L 927.37 402.30
   A 0.33 0.33 0.0 0 0 927.66 402.79
   L 935.00 402.72"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 935.00 402.72
   Q 933.63 403.83 932.22 404.16"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 932.22 404.16
   Q 931.04 404.15 929.75 404.65"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 929.75 404.65
   L 927.24 404.84"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 927.24 404.84
   Q 915.05 406.08 904.72 413.34"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 904.72 413.34
   L 900.10 417.06"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 900.10 417.06
   Q 898.49 418.71 900.81 421.28"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 900.81 421.28
   L 903.36 423.81
   A 0.31 0.31 0.0 0 0 903.87 423.68
   Q 904.19 422.56 905.00 422.20"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 905.00 422.20
   Q 905.81 422.32 906.40 423.42
   A 0.47 0.47 0.0 0 0 907.03 423.62
   Q 908.28 422.99 909.76 423.31"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 909.76 423.31
   Q 908.52 426.24 904.51 429.18"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 904.51 429.18
   Q 904.56 430.17 902.72 431.00"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 902.72 431.00
   Q 897.83 431.68 893.14 433.65
   Q 886.42 436.46 880.54 440.14"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 880.54 440.14
   L 873.20 445.57
   A 0.89 0.87 61.5 0 0 872.91 446.58
@@ -921,41 +1358,65 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 877.66 450.06
   A 0.47 0.47 0.0 0 1 877.41 449.23
   Q 877.97 448.76 878.44 448.74"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 878.44 448.74
   Q 880.35 448.85 881.76 450.25"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 881.76 450.25
   L 875.76 454.44"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 875.76 454.44
   Q 873.17 456.11 870.38 456.35
   A 2.53 2.44 26.8 0 0 869.41 456.65
   Q 868.54 457.12 867.54 457.16
   C 865.82 457.24 863.53 458.20 861.83 458.81"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 861.83 458.81
   L 851.71 462.34"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 851.71 462.34
   L 847.83 463.81"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 847.83 463.81
   Q 840.72 466.68 834.56 471.19
   A 0.76 0.75 57.1 0 0 834.35 472.19
   Q 835.83 474.72 838.68 475.37"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 838.68 475.37
   Q 840.26 475.18 840.46 475.74"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 840.46 475.74
   C 836.21 478.69 832.01 482.33 827.40 484.45
   Q 824.66 485.71 821.38 486.61
@@ -964,114 +1425,186 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 822.20 486.74 824.63 486.93
   A 1.76 1.74 30.6 0 0 825.68 486.67
   L 829.93 483.99"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 829.93 483.99
   Q 830.14 484.01 830.30 484.05
   A 0.52 0.52 0.0 0 1 830.62 484.81
   L 830.22 485.52"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 830.22 485.52
   L 828.76 486.85"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 828.76 486.85
   Q 828.00 487.92 826.57 487.91
   A 1.90 1.73 32.4 0 0 825.94 488.02
   Q 823.53 488.87 820.41 488.82"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 820.41 488.82
   L 817.47 489.53"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 817.47 489.53
   L 808.56 491.80"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 808.56 491.80
   Q 803.87 493.26 799.13 496.47"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 799.13 496.47
   Q 797.10 497.43 793.67 500.17
   Q 792.39 501.20 793.18 502.36"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 793.18 502.36
   Q 794.25 504.09 796.18 505.04"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 796.18 505.04
   Q 797.34 506.77 799.37 506.23"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 799.37 506.23
   Q 801.19 506.19 801.06 507.05"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 801.06 507.05
   L 795.45 510.70"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 795.45 510.70
   Q 794.89 510.77 794.45 511.36"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 794.45 511.36
   Q 790.52 509.93 784.83 511.61
   A 0.10 0.10 0.0 0 0 784.83 511.81
   L 792.93 513.76"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 792.93 513.76
   L 794.20 514.34
   A 0.19 0.19 0.0 0 1 794.15 514.70
   L 792.06 515.01"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 792.06 515.01
   L 786.27 514.23"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 786.27 514.23
   Q 772.89 512.68 759.95 517.16"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 759.95 517.16
   L 753.80 519.63"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 753.80 519.63
   Q 750.32 520.64 747.71 524.01"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 747.71 524.01
   Q 747.14 524.55 747.42 525.26"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 747.42 525.26
   Q 748.56 527.39 750.77 528.24
   A 1.96 1.94 -37.9 0 0 751.70 528.35
   Q 754.73 527.94 756.26 528.15
   Q 760.86 528.76 765.55 528.69"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 765.55 528.69
   Q 774.29 529.80 782.80 532.23
   Q 799.33 536.93 815.32 543.22
   C 821.12 545.51 826.77 548.58 832.46 551.45"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 832.46 551.45
   L 834.48 552.54"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 834.48 552.54
   Q 834.69 553.28 833.93 553.55"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 833.93 553.55
   Q 829.52 552.74 825.01 552.03
   Q 824.48 551.95 824.10 552.12
@@ -1080,16 +1613,25 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 815.64 560.74 816.67 562.60
   Q 818.37 565.68 821.71 567.46
   Q 828.98 571.35 837.57 572.59"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 837.57 572.59
   Q 840.08 573.82 844.59 573.90"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 844.59 573.90
   Q 842.77 574.96 840.64 575.38"
-/>
-<path stroke="#80807f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#80807f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 840.64 575.38
   Q 831.71 573.79 827.42 572.08
   C 822.02 569.92 818.56 568.28 813.57 567.96
@@ -1102,28 +1644,43 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.30 0.30 0.0 0 0 750.34 533.52
   Q 744.54 536.47 736.13 541.13
   Q 728.81 545.19 713.39 550.30"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 713.39 550.30
   Q 708.49 549.59 709.96 548.04"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 709.96 548.04
   L 713.54 546.68"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 713.54 546.68
   C 717.89 544.99 722.39 543.60 726.45 541.56
   Q 731.76 538.89 737.80 536.07
   C 741.38 534.40 745.10 531.86 749.26 530.65
   A 0.30 0.30 0.0 0 0 749.35 530.11
   L 746.16 527.87"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 746.16 527.87
   Q 744.38 526.02 744.87 522.25"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 744.87 522.25
   Q 753.63 515.28 763.59 513.10
   Q 766.41 512.48 778.14 510.93
@@ -1150,63 +1707,102 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 829.81 417.30 824.32 415.17 819.15 412.63
   Q 807.88 407.11 787.45 396.97
   Q 780.47 393.50 773.86 390.02"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 773.86 390.02
   Q 768.98 387.08 764.28 384.49
   Q 762.67 383.60 761.27 384.75"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 761.27 384.75
   Q 748.64 388.54 737.48 381.54"
-/>
-<path stroke="#6f6a62" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6f6a62"
+          vector-effect="non-scaling-stroke"
+          d="
   M 737.48 381.54
   L 733.23 378.96"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 733.23 378.96
   Q 731.46 377.37 729.28 376.52"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 729.28 376.52
   L 729.15 375.95
   A 0.42 0.42 0.0 0 1 729.68 375.45
   L 734.99 377.09"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 734.99 377.09
   Q 741.00 381.65 749.51 383.49
   Q 758.46 385.42 764.45 379.60"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 764.45 379.60
   Q 765.52 378.91 766.22 377.11"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 766.22 377.11
   L 767.48 378.02"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 767.48 378.02
   L 766.86 379.49"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 766.86 379.49
   L 766.12 380.91"
-/>
-<path stroke="#7f6807" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f6807"
+          vector-effect="non-scaling-stroke"
+          d="
   M 766.12 380.91
   Q 765.37 381.04 764.57 381.92
   A 0.40 0.40 0.0 0 0 764.73 382.57
   Q 770.77 384.81 776.42 387.62
   Q 796.10 397.41 815.87 407.09"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 815.87 407.09
   L 822.23 410.12"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 822.23 410.12
   C 832.92 415.43 844.66 418.97 856.18 422.60
   C 865.31 425.48 874.55 427.62 883.81 430.49
@@ -1215,8 +1811,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 899.72 428.21 902.17 425.97
   A 0.33 0.32 42.3 0 0 902.14 425.47
   C 898.92 422.98 894.94 420.52 897.55 415.73"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 897.55 415.73
   Q 899.07 413.36 902.16 411.42
   Q 910.98 405.87 921.03 403.50
@@ -1224,14 +1823,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 930.53 387.68 937.19 375.94
   Q 938.99 372.76 939.43 369.26
   Q 939.90 365.43 938.79 360.63"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 938.79 360.63
   Q 939.08 358.06 938.60 354.84
   Q 938.05 351.17 937.91 349.10
   Q 937.58 344.39 936.69 339.69"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 936.69 339.69
   L 935.74 320.58
   A 0.02 0.01 0.0 0 0 935.72 320.57
@@ -1239,8 +1844,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.27 0.27 0.0 0 0 935.21 320.83
   C 935.10 322.92 935.15 325.00 935.12 327.11
   Q 935.60 323.83 934.17 323.43"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 934.17 323.43
   Q 934.01 317.68 933.45 311.74
   Q 932.56 302.25 925.66 295.37
@@ -1265,91 +1873,139 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 746.32 337.10 739.95 343.43 733.38 350.00
   A 1.77 1.76 -54.1 0 0 733.83 352.83
   L 738.73 355.30"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 738.73 355.30
   Q 738.39 356.15 737.73 356.48"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 737.73 356.48
   L 727.29 351.51"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 727.29 351.51
   L 726.95 350.62
   A 0.46 0.46 0.0 0 1 727.21 350.03
   Q 727.36 349.97 727.56 349.93"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 727.56 349.93
   Q 728.05 350.12 728.52 350.07
   Q 728.92 350.03 729.36 349.63
   Q 735.41 344.03 741.44 338.46
   Q 752.40 328.31 765.26 321.03"
-/>
-<path stroke="#7d5e08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7d5e08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 765.26 321.03
   Q 773.63 316.88 782.70 318.45
   Q 785.14 318.88 787.56 319.34
   C 790.59 319.91 794.37 319.76 797.77 321.02"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 797.77 321.02
   L 802.62 323.19
   A 0.68 0.68 0.0 0 0 803.51 322.87
   L 803.83 322.22"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 803.83 322.22
   Q 814.37 303.83 818.73 282.92
   Q 821.16 271.28 811.35 263.88
   Q 801.61 256.53 793.48 253.31"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 793.48 253.31
   L 782.19 248.58"
-/>
-<path stroke="#807f65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 782.19 248.58
   Q 772.80 245.43 763.27 242.22
   Q 757.20 240.17 743.80 237.76"
-/>
-<path stroke="#807c49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807c49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 743.80 237.76
   Q 733.01 234.53 726.50 242.01"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 743.80 237.76
   L 740.19 238.13
   A 0.31 0.30 49.0 0 0 740.15 238.73
   L 758.28 243.33"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 758.28 243.33
   Q 749.57 242.39 740.92 240.72
   Q 736.19 239.80 734.71 240.19
   Q 730.77 241.21 726.50 242.01"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 782.19 248.58
   L 782.94 250.25
   A 0.41 0.41 0.0 0 1 782.60 250.83
   Q 781.17 250.95 780.28 250.58
   Q 769.56 246.13 758.28 243.33"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 793.48 253.31
   L 782.68 252.64
   A 7.14 7.07 38.3 0 0 780.29 252.91
   Q 778.64 253.39 778.04 253.79
   Q 766.10 261.58 753.57 268.32
   Q 749.89 270.31 747.87 274.12"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 747.87 274.12
   C 745.73 269.99 742.18 268.93 737.61 268.55"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 737.61 268.55
   C 731.09 266.78 726.86 268.23 720.92 271.69
   C 712.94 276.33 704.37 283.83 697.71 291.53
@@ -1358,21 +2014,33 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.21 4.02 5.2 0 1 682.27 310.16
   Q 678.28 312.58 677.14 314.33
   Q 674.51 318.38 671.88 322.41"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.88 322.41
   Q 671.80 322.48 671.73 322.55"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.73 322.55
   L 670.88 321.40"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 748.80 276.46
   C 744.39 291.02 736.21 308.33 732.45 316.90
   C 726.52 330.41 718.16 333.95 704.22 336.02"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 803.83 322.22
   Q 803.12 322.46 802.83 322.28
   A 0.62 0.61 -59.2 0 1 802.63 321.46
@@ -1380,39 +2048,60 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 815.40 287.48 817.25 283.13 817.06 281.03
   Q 816.53 275.38 816.51 274.97
   C 816.31 271.54 812.75 268.20 810.24 266.21"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 810.24 266.21
   L 809.04 264.93"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 809.04 264.93
   Q 803.28 260.52 796.21 258.31
   A 0.49 0.48 13.9 0 0 795.59 258.68
   C 793.33 270.84 789.87 282.15 783.06 292.72
   Q 777.53 301.31 765.93 314.28"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 765.93 314.28
   Q 762.51 317.77 765.26 321.03"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 727.56 349.93
   Q 726.34 349.06 724.89 348.60
   Q 717.90 346.35 711.01 343.97"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 711.01 343.97
   Q 695.26 338.19 678.75 335.92
   Q 677.72 335.78 676.70 336.01"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.73 322.55
   L 671.63 323.48
   A 0.62 0.62 0.0 0 0 672.02 324.12
   L 704.22 336.02"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 704.22 336.02
   C 707.40 337.34 710.39 337.97 713.07 340.51
   A 3.05 2.79 -7.7 0 0 713.85 341.05
@@ -1429,12 +2118,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.09 4.77 -72.9 0 0 753.21 288.53
   Q 751.52 285.73 750.71 282.05
   C 750.29 280.12 749.54 278.28 748.80 276.46"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 748.80 276.46
   L 747.87 274.12"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 737.61 268.55
   Q 739.56 278.02 731.86 283.65
   Q 727.23 287.03 723.84 288.45
@@ -1443,16 +2138,22 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 678.04 316.91 673.85 322.76
   A 0.65 0.64 30.1 0 1 673.05 322.97
   L 671.88 322.41"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 809.04 264.93
   L 801.33 261.82
   A 0.70 0.69 -84.8 0 0 800.39 262.61
   C 802.49 272.93 797.47 282.95 791.83 291.32
   Q 788.56 296.16 780.67 302.76
   Q 773.50 308.75 765.93 314.28"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 810.24 266.21
   Q 806.14 273.81 802.84 281.80
   Q 799.87 288.97 798.61 291.31
@@ -1461,24 +2162,36 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.40 0.0 0 0 781.47 316.01
   Q 783.83 316.65 791.86 318.06
   Q 795.17 318.64 797.77 321.02"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 711.01 343.97
   L 710.68 344.04
   A 0.42 0.40 -82.3 0 0 710.39 344.27
   Q 710.13 344.79 710.62 344.76
   Q 711.23 344.71 710.35 345.06
   Q 710.00 345.20 709.53 345.05"
-/>
-<path stroke="#d2af66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2af66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 709.53 345.05
   Q 691.98 339.00 673.44 337.13"
-/>
-<path stroke="#ae9165" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae9165"
+          vector-effect="non-scaling-stroke"
+          d="
   M 709.53 345.05
   L 725.96 350.95"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 725.96 350.95
   Q 725.69 351.17 725.70 351.27
   Q 725.76 351.72 726.18 351.93
@@ -1501,26 +2214,41 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 665.81 339.06 660.76 339.23
   Q 658.44 339.30 656.36 340.00
   C 654.28 340.69 652.00 340.53 649.79 341.21"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 649.79 341.21
   Q 647.27 341.58 645.12 342.70"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 645.12 342.70
   Q 642.24 343.51 639.66 345.39
   A 0.64 0.64 0.0 0 1 638.64 344.83
   L 638.69 344.23"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 725.96 350.95
   Q 726.53 351.37 727.29 351.51"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 737.73 356.48
   L 758.93 367.54"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 758.93 367.54
   Q 758.94 368.48 758.75 368.96
   A 0.61 0.61 0.0 0 1 757.91 369.28
@@ -1530,24 +2258,36 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 732.44 357.63 730.84 357.49
   A 1.70 1.54 -29.4 0 1 730.40 357.39
   L 723.04 354.65"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 723.04 354.65
   C 714.00 349.96 704.58 347.58 696.02 344.82
   C 690.69 343.11 684.66 343.46 678.96 342.52
   Q 674.30 341.75 668.42 340.71
   A 9.75 9.53 48.3 0 0 666.37 340.57
   L 649.79 341.21"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 758.93 367.54
   L 760.66 368.80"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 760.66 368.80
   L 763.78 373.84"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 763.78 373.84
   Q 759.48 372.00 755.61 370.93
   Q 753.18 370.26 749.36 370.29
@@ -1557,51 +2297,81 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.76 0.76 0.0 0 0 693.08 353.36
   Q 693.67 353.90 695.25 354.38
   Q 707.64 358.22 717.59 365.24"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 717.59 365.24
   Q 705.75 359.79 693.42 355.61
   Q 676.08 349.73 657.81 350.65"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 657.81 350.65
   C 649.90 350.04 645.22 349.46 638.65 350.95"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 723.04 354.65
   Q 704.48 347.52 684.86 344.37
   C 676.73 343.07 667.44 342.85 658.67 342.25
   Q 655.02 341.99 645.12 342.70"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 766.22 377.11
   Q 767.01 371.40 760.66 368.80"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 717.59 365.24
   L 726.54 370.26
   A 0.99 0.97 -89.3 0 1 726.96 370.70
   Q 727.38 371.54 728.42 371.68
   A 0.49 0.47 -19.3 0 1 728.68 371.80
   L 734.99 377.09"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 729.28 376.52
   Q 728.20 376.27 727.00 374.96"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 727.00 374.96
   Q 726.72 373.70 725.71 373.60"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 725.71 373.60
   L 724.26 372.47"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 724.26 372.47
   Q 723.78 371.50 723.28 371.66"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 723.28 371.66
   Q 721.28 370.32 719.47 368.87
   C 716.26 366.30 713.42 364.76 709.83 363.60
@@ -1609,16 +2379,25 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 702.68 367.64 696.32 370.12
   A 0.38 0.38 0.0 0 1 695.81 369.69
   Q 695.91 369.25 696.31 368.72"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 696.31 368.72
   L 705.08 364.30"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 705.08 364.30
   Q 705.81 363.83 705.98 363.34"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 705.98 363.34
   L 706.87 363.03
   A 0.44 0.44 0.0 0 0 706.89 362.20
@@ -1628,28 +2407,43 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 649.78 353.47 647.74 352.79 645.53 353.40
   A 1.61 1.59 -78.4 0 0 644.72 353.94
   Q 644.02 354.83 643.00 355.24"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 763.78 373.84
   L 764.45 379.60"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 657.81 350.65
   L 643.72 352.11
   A 0.33 0.33 0.0 0 0 643.43 352.51
   Q 643.87 354.38 642.95 354.79"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 934.17 323.43
   Q 933.88 335.81 935.28 347.73"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 935.28 347.73
   Q 935.43 349.69 934.85 350.60
   A 0.24 0.24 0.0 0 1 934.41 350.52
   Q 932.33 339.80 932.49 328.75"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 932.49 328.75
   Q 932.15 316.42 928.74 304.62
   A 0.54 0.54 0.0 0 0 928.08 304.25
@@ -1662,12 +2456,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 795.92 365.89 776.94 361.28
   Q 772.07 360.09 764.43 359.56
   Q 758.24 359.13 754.42 363.36"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 754.42 363.36
   L 738.73 355.30"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 932.49 328.75
   C 928.71 338.74 925.91 349.48 922.85 357.37
   Q 919.37 366.35 909.77 377.43
@@ -1677,12 +2477,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 805.02 395.57 801.03 393.77
   Q 791.50 389.45 780.83 384.46
   Q 774.09 381.31 766.86 379.49"
-/>
-<path stroke="#ad7907" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad7907"
+          vector-effect="non-scaling-stroke"
+          d="
   M 767.48 378.02
   C 770.32 371.23 759.26 365.85 754.42 363.36"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 705.98 363.34
   Q 703.20 362.27 700.76 363.45
   C 695.48 366.01 690.01 367.72 685.30 369.88
@@ -1693,22 +2499,31 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 700.61 365.37 702.41 364.04 704.36 363.40
   Q 704.80 363.25 705.02 363.57
   Q 705.20 363.85 705.08 364.30"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 696.31 368.72
   L 689.77 371.04
   A 1.10 1.10 0.0 0 0 689.92 373.15
   Q 696.49 374.46 700.13 380.38"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 700.13 380.38
   Q 688.38 373.77 681.78 371.21
   Q 676.03 368.99 670.35 366.53
   Q 666.99 365.07 663.44 364.14
   Q 661.63 363.67 657.32 362.45
   Q 654.06 361.52 647.57 360.59"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 647.57 360.59
   Q 647.13 360.35 646.90 359.80
   A 0.69 0.68 62.1 0 1 647.15 358.97
@@ -1719,16 +2534,25 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 643.74 356.41 641.81 358.01
   A 0.66 0.66 0.0 0 1 640.89 357.93
   L 640.71 357.72"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 723.28 371.66
   Q 711.92 375.41 701.40 381.01"
-/>
-<path stroke="#ecc86a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ecc86a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 733.23 378.96
   Q 732.22 378.82 731.88 379.53"
-/>
-<path stroke="#e4bc53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4bc53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 731.88 379.53
   C 728.15 377.27 725.30 378.42 721.28 380.42
   A 1.78 1.76 35.7 0 1 720.20 380.59
@@ -1739,8 +2563,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 711.50 382.29 708.55 383.69
   A 0.73 0.67 -47.8 0 0 708.56 385.00
   Q 709.27 385.21 709.26 386.33"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 724.26 372.47
   Q 723.70 372.61 723.36 373.19
   A 1.04 1.00 -81.9 0 1 722.76 373.66
@@ -1754,25 +2581,37 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 721.47 375.49 723.18 374.34 725.35 374.40
   Q 725.70 374.41 725.79 374.15
   Q 725.87 373.93 725.71 373.60"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 727.00 374.96
   L 719.70 378.23
   A 4.51 4.22 -59.9 0 1 718.67 378.54
   Q 716.77 378.86 714.88 379.93
   A 0.60 0.42 10.3 0 1 714.77 379.98
   L 705.28 383.71"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 936.69 339.69
   Q 935.68 339.26 936.07 341.47
   Q 937.20 348.06 936.74 354.95"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 936.74 354.95
   L 935.28 347.73"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 936.74 354.95
   Q 936.30 355.80 936.36 357.16
   A 0.44 0.43 -58.3 0 1 935.53 357.36
@@ -1784,104 +2623,168 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 907.60 388.31 898.67 393.46
   Q 872.05 408.78 840.98 409.77
   Q 831.59 410.06 822.23 410.12"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 815.87 407.09
   Q 813.52 404.54 811.03 403.20
   Q 805.53 400.26 795.59 395.33
   C 788.74 391.94 781.92 388.08 775.15 384.99
   Q 770.66 382.95 766.12 380.91"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 647.57 360.59
   Q 645.08 360.65 643.01 359.95
   Q 641.85 359.56 638.91 360.30
   A 0.43 0.43 0.0 0 1 638.49 360.17
   Q 638.10 359.70 638.57 358.80"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 700.13 380.38
   Q 700.51 380.75 701.40 381.01"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 701.40 381.01
   Q 703.34 383.04 705.28 383.71"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 705.28 383.71
   L 709.26 386.33"
-/>
-<path stroke="#96704c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#96704c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 709.26 386.33
   Q 711.63 387.90 713.68 389.81
   Q 714.39 390.48 713.97 390.96"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 713.97 390.96
   L 713.78 392.78"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 713.78 392.78
   Q 713.19 393.19 712.36 391.79"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 712.36 391.79
   Q 711.87 390.65 711.23 390.30"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 711.23 390.30
   Q 700.40 381.37 686.80 375.34"
-/>
-<path stroke="#ae9165" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae9165"
+          vector-effect="non-scaling-stroke"
+          d="
   M 686.80 375.34
   Q 679.21 371.94 670.69 368.44
   C 667.96 367.32 665.22 366.74 662.40 366.02"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 662.40 366.02
   Q 656.28 363.01 649.58 363.13"
-/>
-<path stroke="#ae9165" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae9165"
+          vector-effect="non-scaling-stroke"
+          d="
   M 649.58 363.13
   Q 649.55 362.99 649.10 362.91"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 649.10 362.91
   C 643.76 361.31 638.72 361.93 633.25 362.02"
-/>
-<path stroke="#d7c9ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7c9ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 731.88 379.53
   L 736.35 383.59
   A 0.88 0.88 0.0 0 1 735.63 385.11
   L 730.91 384.39
   A 1.53 1.53 0.0 0 0 729.54 384.89
   L 721.94 393.47"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 721.94 393.47
   Q 718.61 391.48 717.41 392.53"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 717.41 392.53
   L 716.45 391.73
   A 1.25 1.24 63.6 0 0 715.60 391.44
   Q 714.57 391.49 713.97 390.96"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 737.48 381.54
   Q 735.16 381.67 738.02 384.00
   A 1.15 1.14 76.2 0 0 738.33 384.19
   L 742.50 386.06"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 742.50 386.06
   C 736.42 387.50 731.24 390.12 725.57 392.22"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 725.57 392.22
   Q 723.62 393.28 721.94 393.47"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 938.79 360.63
   L 937.94 370.73
   A 2.79 2.62 -31.4 0 1 937.67 371.71
@@ -1895,12 +2798,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 899.20 411.11 896.20 415.53
   A 0.39 0.39 0.0 0 0 896.33 416.09
   Q 896.81 416.36 897.55 415.73"
-/>
-<path stroke="#fcdd6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdd6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 649.58 363.13
   L 662.40 366.02"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 686.80 375.34
   Q 686.80 376.24 688.43 376.99
   Q 689.84 377.63 690.53 378.16
@@ -1913,58 +2822,91 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 660.70 368.70 658.49 367.34 656.16 366.79
   Q 650.46 365.45 646.43 364.59
   Q 645.19 364.32 640.71 364.76"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 640.71 364.76
   Q 633.91 364.27 627.87 365.34"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 627.87 365.34
   Q 622.49 366.58 616.12 369.56
   Q 615.17 370.01 614.97 368.73"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 684.19 379.43
   Q 691.64 382.52 698.63 386.41
   Q 700.67 387.55 705.02 388.46"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 712.36 391.79
   Q 710.31 398.03 702.26 398.90"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 702.26 398.90
   Q 697.91 399.97 693.37 396.90
   C 685.28 391.43 676.91 385.01 667.72 381.77
   Q 646.75 374.40 624.77 375.80"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 624.77 375.80
   Q 620.30 375.52 616.45 376.90
   Q 615.63 377.19 615.67 377.69
   Q 615.70 378.18 616.48 378.59"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 616.48 378.59
   L 616.12 379.85"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 729.01 416.44
   L 728.28 416.39
   A 1.82 1.81 33.5 0 0 727.37 416.57
   Q 722.01 419.20 716.30 419.09
   Q 713.97 419.04 708.29 416.89
   Q 704.44 415.43 700.46 413.92"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 689.20 403.51
   L 688.52 402.42"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 688.52 402.42
   Q 686.92 400.19 688.44 399.73"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 689.78 400.92
   C 690.67 402.37 691.89 405.38 693.53 405.95
   A 1.77 1.74 75.8 0 1 694.12 406.31
@@ -1978,37 +2920,58 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 730.76 403.31 729.58 402.15
   Q 726.95 399.58 721.72 396.87
   Q 718.77 395.34 715.97 393.46"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 715.97 393.46
   Q 714.81 392.23 713.78 392.78"
-/>
-<path stroke="#fcdd6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdd6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 649.10 362.91
   L 631.16 362.89"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 637.80 358.14
   Q 636.66 359.61 635.89 359.07"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 711.23 390.30
   Q 711.31 390.96 711.23 391.40
   A 0.70 0.70 0.0 0 1 710.15 391.86
   L 705.02 388.46"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 705.02 388.46
   C 701.34 384.87 696.95 383.67 692.61 381.59
   Q 690.26 380.46 684.19 379.43"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 684.19 379.43
   Q 679.02 376.75 673.36 375.20
   A 4.37 4.28 -23.8 0 1 672.46 374.86
   Q 669.07 373.11 665.34 372.45"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 715.97 393.46
   L 714.67 393.06
   A 1.23 1.23 0.0 0 0 713.11 394.52
@@ -2019,20 +2982,32 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 708.20 404.64 705.27 404.92
   A 1.42 1.40 61.0 0 1 704.28 404.63
   Q 702.47 403.22 700.26 403.20"
-/>
-<path stroke="#f4ca3b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4ca3b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 700.26 403.20
   Q 697.51 402.09 695.87 400.05"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 761.27 384.75
   Q 767.16 388.19 773.86 390.02"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 744.87 522.25
   Q 744.31 522.59 744.15 521.26"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 744.15 521.26
   Q 750.85 515.59 759.14 512.73
   C 765.29 510.61 772.49 510.10 779.22 509.11
@@ -2054,28 +3029,43 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 876.50 438.48 880.24 435.54
   A 0.59 0.59 0.0 0 0 879.99 434.50
   L 868.17 432.15"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 868.17 432.15
   L 848.72 425.75"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 848.72 425.75
   L 831.05 419.63"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 831.05 419.63
   L 824.00 416.55
   A 0.85 0.84 35.9 0 0 823.13 416.68
   L 812.48 425.63"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 812.48 425.63
   L 801.49 418.65
   A 0.31 0.31 0.0 0 0 801.10 419.12
   Q 804.65 422.87 808.99 426.04"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 808.99 426.04
   Q 809.34 427.02 809.13 427.16
   Q 808.34 427.65 807.42 426.98
@@ -2103,20 +3093,29 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 785.15 429.05 790.78 431.99 795.96 434.98
   A 0.21 0.21 0.0 0 1 795.88 435.37
   L 790.04 436.23"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 790.04 436.23
   L 777.33 426.92
   A 0.28 0.27 -51.3 0 0 776.96 426.97
   L 776.78 427.18
   A 0.51 0.51 0.0 0 0 776.86 427.92
   L 783.62 433.27"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 783.62 433.27
   C 762.83 440.90 746.45 446.30 729.79 457.85"
-/>
-<path stroke="#fffddf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffddf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 729.79 457.85
   Q 721.75 459.38 713.92 461.42
   Q 705.49 463.61 702.06 463.98
@@ -2125,56 +3124,86 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 683.05 446.36 686.86 447.22 690.74 446.92
   A 0.25 0.25 0.0 0 0 690.84 446.44
   Q 690.41 446.22 689.82 446.56"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 689.82 446.56
   Q 689.21 446.22 688.81 446.50"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 688.81 446.50
   Q 695.30 446.12 699.49 440.45
   C 706.41 431.12 694.35 423.28 687.72 419.28
   C 685.53 417.96 683.57 416.11 681.76 414.28"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 681.76 414.28
   Q 689.89 413.49 697.92 414.83
   A 0.20 0.20 0.0 0 0 698.08 414.48
   C 694.55 411.32 691.35 408.53 688.36 403.99
   A 0.30 0.30 0.0 0 1 688.60 403.53
   L 689.20 403.51"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 689.20 403.51
   Q 693.73 409.95 700.46 413.92"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 700.46 413.92
   Q 704.87 418.20 709.48 419.25
   Q 718.35 421.29 727.43 417.75
   A 2.23 2.16 -76.9 0 0 728.16 417.28
   L 729.01 416.44"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 729.01 416.44
   C 731.14 414.91 733.66 413.27 733.91 410.41
   Q 734.39 404.91 730.37 400.86
   Q 726.69 397.14 717.41 392.53"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 725.57 392.22
   Q 731.57 394.48 738.18 390.98
   Q 741.87 389.02 742.50 386.06"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 640.71 364.76
   Q 653.50 367.08 665.34 372.45"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 665.34 372.45
   L 627.87 365.34"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 702.26 398.90
   L 707.89 398.82
   A 0.46 0.46 0.0 0 1 708.34 399.39
@@ -2183,63 +3212,96 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 701.93 401.30
   A 4.21 4.19 -41.1 0 1 700.41 401.20
   L 695.87 400.05"
-/>
-<path stroke="#bc9834" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9834"
+          vector-effect="non-scaling-stroke"
+          d="
   M 695.87 400.05
   Q 695.80 399.84 695.28 399.69"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 695.28 399.69
   Q 693.75 398.44 691.92 398.15
   A 1.03 1.03 0.0 0 0 690.73 399.07
   Q 690.64 400.22 689.78 400.92"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 689.78 400.92
   Q 688.97 399.54 688.44 399.73"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 688.44 399.73
   Q 689.01 399.38 689.11 399.05
   Q 689.24 398.61 688.55 398.55
   C 685.96 398.34 684.37 399.27 682.19 399.94
   Q 676.74 401.63 671.43 403.70"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.43 403.70
   Q 670.58 403.31 669.86 402.55
   A 0.16 0.16 0.0 0 1 669.90 402.30
   Q 670.04 402.23 669.98 402.08"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 669.98 402.08
   Q 673.01 401.75 674.75 401.01
   Q 679.82 398.86 685.03 397.20"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 685.03 397.20
   Q 686.44 396.41 687.72 396.32"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 687.72 396.32
   Q 688.29 396.27 688.47 396.16
   A 0.51 0.50 44.5 0 0 688.46 395.29
   Q 685.10 393.34 682.14 391.16
   Q 677.00 387.37 672.23 386.04"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 672.23 386.04
   Q 668.43 383.17 662.75 381.75
   Q 649.66 378.47 639.74 377.93
   Q 633.14 377.57 626.55 377.38"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 626.55 377.38
   L 624.18 377.07
   A 0.44 0.44 0.0 0 1 623.88 376.37
   Q 624.13 376.03 624.77 375.80"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 687.72 396.32
   Q 687.18 396.36 686.81 396.26
   A 0.96 0.94 86.1 0 1 686.16 395.68
@@ -2247,29 +3309,44 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.43 0.43 0.0 0 0 682.89 394.24
   Q 682.88 394.69 682.49 394.84
   Q 673.38 398.41 664.46 400.83"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 664.46 400.83
   Q 650.52 391.43 635.18 386.85
   C 631.08 385.63 626.66 385.33 622.26 384.66"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 622.26 384.66
   L 619.14 384.13
   A 0.51 0.49 -72.9 0 1 618.78 383.42
   Q 618.87 383.22 619.21 382.96
   A 0.48 0.47 14.5 0 0 618.73 382.15
   Q 616.39 383.18 616.05 382.31"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 626.55 377.38
   L 623.61 377.65"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 623.61 377.65
   Q 620.13 378.78 616.48 378.59"
-/>
-<path stroke="#dcaf53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcaf53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 688.52 402.42
   C 687.20 402.31 685.75 402.06 684.67 402.94
   Q 684.16 403.36 683.35 403.35
@@ -2278,35 +3355,53 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 675.49 405.14 675.08 405.77
   A 0.57 0.56 29.3 0 1 674.35 405.97
   L 672.47 405.02"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 681.76 414.28
   L 681.08 413.74"
-/>
-<path stroke="#ffe13a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe13a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 695.28 399.69
   L 694.59 399.83
   A 0.44 0.44 0.0 0 0 694.31 400.50
   Q 696.57 403.92 700.57 404.67
   A 0.42 0.42 0.0 0 0 701.03 404.09
   Q 700.87 403.73 700.26 403.20"
-/>
-<path stroke="#d7c9ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7c9ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 848.72 425.75
   Q 847.12 425.93 848.84 427.06
   Q 849.60 427.56 850.89 428.01
   Q 857.76 430.38 864.55 432.90
   Q 866.77 433.73 868.17 432.15"
-/>
-<path stroke="#ecc86a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ecc86a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 744.15 521.26
   Q 740.10 517.74 735.22 515.45"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 735.22 515.45
   Q 737.36 514.67 733.93 512.97"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 733.93 512.97
   Q 739.34 511.37 742.71 509.19
   Q 751.10 503.78 763.31 496.59
@@ -2316,18 +3411,27 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 766.19 490.77 775.07 484.78
   Q 778.16 482.70 780.57 480.78
   Q 783.43 478.51 785.89 476.50"
-/>
-<path stroke="#d0c7bb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0c7bb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 785.89 476.50
   Q 787.64 478.71 790.74 474.08
   A 0.31 0.30 18.5 0 0 790.50 473.61
   Q 789.29 473.56 787.98 474.29"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 787.98 474.29
   Q 788.09 473.11 787.15 472.40"
-/>
-<path stroke="#ac9a83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ac9a83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 787.15 472.40
   L 789.68 469.53
   A 0.08 0.08 0.0 0 1 789.82 469.56
@@ -2335,34 +3439,49 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.32 0.32 0.0 0 0 790.44 469.82
   Q 795.27 462.45 795.55 461.53
   Q 796.87 457.10 794.28 456.37"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 794.28 456.37
   Q 793.72 456.17 793.22 454.51
   A 1.86 1.83 -75.9 0 0 792.78 453.76
   Q 791.92 452.88 790.68 452.37"
-/>
-<path stroke="#d0c7bb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0c7bb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 790.68 452.37
   Q 791.29 452.41 791.77 452.27
   A 0.42 0.42 0.0 0 0 791.95 451.56
   L 791.71 451.32"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 808.99 426.04
   L 820.55 431.40
   A 0.31 0.30 -63.4 0 0 820.95 431.26
   L 821.07 431.02
   A 0.09 0.09 0.0 0 0 821.04 430.91
   L 812.48 425.63"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 831.05 419.63
   C 831.27 422.54 835.01 423.79 837.27 424.64
   A 0.52 0.52 0.0 0 1 837.57 425.29
   C 830.76 445.12 809.69 448.40 791.71 451.32"
-/>
-<path stroke="#d5cec6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5cec6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 791.71 451.32
   L 785.37 449.35
   A 2.50 2.39 52.0 0 0 784.68 449.25
@@ -2371,30 +3490,45 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.23 2.23 0.0 0 1 752.31 452.13
   C 750.56 451.42 748.49 452.41 746.59 452.99
   Q 743.09 454.07 739.72 455.55"
-/>
-<path stroke="#f4f0d2" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4f0d2"
+          vector-effect="non-scaling-stroke"
+          d="
   M 739.72 455.55
   Q 730.10 457.91 721.17 462.23
   A 0.11 0.10 -38.3 0 1 721.06 462.22
   L 720.84 462.01
   A 0.21 0.20 -35.8 0 1 720.90 461.67
   L 729.79 457.85"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 783.62 433.27
   L 789.29 437.00
   A 0.74 0.73 -59.2 0 0 790.33 436.73
   Q 790.36 436.68 790.04 436.23"
-/>
-<path stroke="#d2aa34" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2aa34"
+          vector-effect="non-scaling-stroke"
+          d="
   M 688.81 446.50
   C 681.87 446.11 677.29 442.82 671.67 439.24"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.67 439.24
   Q 666.89 436.08 663.72 430.92"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.72 430.92
   L 663.64 424.86
   A 0.55 0.55 0.0 0 0 663.05 424.32
@@ -2405,63 +3539,99 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 642.95 430.23 641.15 431.31
   Q 640.12 431.92 638.96 431.46
   Q 637.01 430.66 637.06 429.73"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 666.79 423.62
   Q 664.58 424.88 665.60 428.10
   Q 665.94 429.20 666.94 429.94
   Q 667.92 430.67 667.90 431.81
   A 1.27 1.27 0.0 0 0 668.26 432.72
   L 673.13 437.69"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 673.13 437.69
   Q 675.22 439.85 678.45 441.33"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 678.45 441.33
   C 686.32 446.19 694.60 446.43 699.40 437.34
   A 2.29 2.19 61.3 0 0 699.66 436.37
   C 699.75 433.92 700.03 431.48 698.28 429.93"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 698.28 429.93
   L 696.92 428.13"
-/>
-<path stroke="#d2aa34" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2aa34"
+          vector-effect="non-scaling-stroke"
+          d="
   M 696.92 428.13
   L 688.52 421.44"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 688.52 421.44
   L 680.48 415.29"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 746.16 527.87
   Q 745.18 530.67 742.55 532.08
   Q 728.18 539.73 712.92 545.57"
-/>
-<path stroke="#ecc86a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ecc86a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 710.39 545.53
   L 706.79 543.77"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 706.79 543.77
   L 689.73 536.08"
-/>
-<path stroke="#ecc86a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ecc86a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 689.73 536.08
   L 682.63 530.68
   A 0.48 0.48 0.0 0 1 683.04 529.84
   L 686.05 530.61
   A 0.26 0.26 0.0 0 0 686.31 530.19
   L 684.29 527.76"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 689.82 446.56
   Q 686.59 447.38 683.51 446.23"
-/>
-<path stroke="#e0dcbd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dcbd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 739.72 455.55
   Q 738.20 456.12 737.38 457.05
   A 0.52 0.52 0.0 0 0 737.98 457.86
@@ -2470,36 +3640,54 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 743.96 456.17
   A 0.23 0.22 66.5 0 1 743.85 456.46
   L 728.43 464.17"
-/>
-<path stroke="#e7deb0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7deb0"
+          vector-effect="non-scaling-stroke"
+          d="
   M 728.43 464.17
   Q 727.86 464.39 727.73 464.62"
-/>
-<path stroke="#fffddf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffddf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 727.73 464.62
   Q 726.47 463.54 724.68 464.30
   C 715.30 468.30 706.20 470.14 696.12 472.16
   Q 677.31 475.94 656.84 472.17
   A 1.06 1.06 0.0 0 0 655.61 473.02
   Q 655.58 473.22 656.32 473.92"
-/>
-<path stroke="#efe9c7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efe9c7"
+          vector-effect="non-scaling-stroke"
+          d="
   M 656.32 473.92
   C 646.38 472.25 638.47 473.94 629.34 475.16
   Q 625.92 475.62 621.32 478.56"
-/>
-<path stroke="#bc9d65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9d65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 621.32 478.56
   Q 622.24 474.36 619.48 471.30
   Q 616.91 468.44 614.33 467.39
   A 0.81 0.78 42.1 0 0 613.69 467.41
   Q 613.26 467.62 613.23 467.99"
-/>
-<path stroke="#ffe76c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe76c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 613.23 467.99
   L 612.02 467.99"
-/>
-<path stroke="#e7deb0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7deb0"
+          vector-effect="non-scaling-stroke"
+          d="
   M 606.03 462.06
   L 604.01 459.07
   A 0.16 0.14 54.1 0 1 604.03 458.87
@@ -2515,12 +3703,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 621.97 451.65
   A 0.06 0.06 0.0 0 1 621.96 451.53
   Q 623.34 451.18 624.70 451.30"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 635.42 461.07
   Q 636.97 463.50 640.34 463.86"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 641.61 464.40
   Q 645.89 467.28 649.26 467.83
   Q 650.79 468.07 657.41 467.73
@@ -2532,94 +3726,155 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 662.34 463.37 663.30 463.42
   A 0.82 0.82 0.0 0 0 664.14 462.77
   Q 664.62 460.58 663.96 458.99"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 685.03 397.20
   L 685.37 396.60
   A 0.64 0.64 0.0 0 0 684.60 395.68
   L 669.45 401.11
   A 0.29 0.28 54.5 0 0 669.37 401.60
   L 669.98 402.08"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.43 403.70
   L 672.47 405.02"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 672.47 405.02
   Q 671.96 405.09 671.66 405.57"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 672.23 386.04
   Q 657.22 381.39 645.20 380.02
   Q 638.72 379.28 627.61 379.11
   Q 625.81 379.08 623.61 377.65"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 622.26 384.66
   L 613.45 384.57"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 664.46 400.83
   L 671.66 405.57"
-/>
-<path stroke="#96704c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#96704c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.66 405.57
   L 681.08 413.74"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 681.08 413.74
   L 680.23 414.90"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 680.23 414.90
   L 672.68 408.76"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 672.68 408.76
   L 663.74 402.22"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.74 402.22
   L 656.37 397.92"
-/>
-<path stroke="#ae8b33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8b33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 656.37 397.92
   Q 651.01 394.03 644.54 392.11"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 644.54 392.11
   L 641.22 390.53
   A 5.40 4.83 62.2 0 0 640.36 390.21
   L 631.87 387.88"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 631.87 387.88
   Q 628.93 386.51 625.08 386.94"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 625.08 386.94
   Q 624.66 387.01 624.32 386.90"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 624.32 386.90
   Q 619.14 385.27 613.91 386.72"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 613.91 386.72
   Q 612.44 387.07 610.66 386.87"
-/>
-<path stroke="#d5cec6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5cec6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 787.98 474.29
   L 785.89 476.50"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 794.28 456.37
   Q 795.62 460.31 793.16 463.16
   C 784.25 473.51 774.86 482.32 763.83 489.67
   C 759.12 492.80 755.07 495.77 749.51 498.21"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 749.51 498.21
   C 746.32 499.12 743.67 501.98 741.78 503.13
   C 740.54 503.89 740.21 505.59 738.95 505.93
@@ -2627,43 +3882,64 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 733.47 509.75 729.67 510.38
   A 0.33 0.33 0.0 0 0 729.58 511.01
   L 733.93 512.97"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 735.22 515.45
   L 712.00 503.43"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 712.00 503.43
   Q 691.80 493.79 669.84 490.02
   Q 664.44 489.10 658.66 488.88
   Q 650.79 488.58 647.43 489.17
   Q 641.55 490.18 635.83 491.17
   Q 629.44 492.26 623.54 495.34"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 623.54 495.34
   Q 621.91 494.58 620.83 496.78
   A 0.49 0.48 21.7 0 0 621.12 497.45
   C 625.36 498.75 628.85 500.30 633.73 501.61
   Q 653.56 506.91 671.06 517.71"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.06 517.71
   L 680.65 524.23"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 680.65 524.23
   Q 682.96 525.83 684.29 527.76"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 684.29 527.76
   L 672.27 536.60
   A 3.50 2.82 -67.5 0 1 671.88 536.83
   Q 664.78 540.30 657.80 543.97
   Q 651.88 547.08 643.94 550.54
   Q 632.88 555.36 621.76 560.03"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 621.76 560.03
   C 615.87 562.06 610.14 564.43 604.22 566.30
   Q 599.86 567.67 593.15 570.34
@@ -2681,54 +3957,84 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 589.21 587.91 592.08 588.32 595.57 588.15
   A 2.04 1.97 31.9 0 0 596.13 588.03
   L 671.75 559.52"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.75 559.52
   Q 680.55 556.81 689.21 553.80
   Q 689.32 553.76 697.52 551.19
   Q 704.25 549.08 710.39 545.53"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 710.39 545.53
   L 712.92 545.57"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 712.92 545.57
   Q 713.55 546.30 713.54 546.68"
-/>
-<path stroke="#918b8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#918b8a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 709.96 548.04
   L 702.23 551.04"
-/>
-<path stroke="#bc9c7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9c7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 702.23 551.04
   Q 661.46 564.42 633.11 575.61
   Q 610.29 584.62 587.37 593.37
   Q 584.16 594.60 579.47 596.93"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 579.47 596.93
   Q 573.31 599.58 567.19 602.15
   Q 564.89 603.12 562.95 604.47"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 542.87 617.25
   Q 522.84 617.50 503.00 617.60
   Q 484.57 617.69 471.26 616.79
   Q 467.19 616.52 464.24 616.44
   C 455.85 616.22 447.41 615.37 439.05 614.66"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 439.05 614.66
   L 437.59 613.84
   A 0.14 0.14 0.0 0 1 437.65 613.58
   L 438.46 613.58"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 438.46 613.58
   L 465.02 615.02"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 465.02 615.02
   Q 469.42 614.92 481.25 615.58
   Q 488.80 616.01 536.48 615.85
@@ -2737,24 +4043,36 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 546.70 611.83
   A 2.56 2.17 4.7 0 1 547.12 611.53
   Q 549.82 610.10 552.30 608.18"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 552.30 608.18
   Q 555.66 607.15 559.25 604.38"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 559.25 604.38
   L 562.37 602.55
   A 0.38 0.38 0.0 0 0 562.13 601.84
   C 552.62 603.06 543.01 604.05 534.26 604.43
   C 528.29 604.69 511.96 605.11 500.84 606.14
   Q 494.69 606.70 488.50 607.27"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 488.50 607.27
   L 475.71 607.12"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 475.71 607.12
   C 469.62 607.08 463.11 607.31 457.43 607.01
   Q 450.07 606.61 439.13 606.29
@@ -2763,14 +4081,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 385.11 596.14 383.94 595.57
   A 0.90 0.89 39.8 0 0 383.03 595.65
   L 380.30 597.62"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 380.30 597.62
   L 377.65 593.24
   A 0.64 0.64 0.0 0 0 377.38 593.00
   Q 376.83 592.72 376.09 592.94"
-/>
-<path stroke="#fffefa" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffefa"
+          vector-effect="non-scaling-stroke"
+          d="
   M 331.24 562.13
   C 338.18 561.00 345.42 560.72 352.04 558.37
   C 357.65 556.38 363.49 555.35 368.57 553.69
@@ -2784,18 +4108,27 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 486.46 519.83 489.31 519.54
   Q 503.49 518.11 512.40 507.91
   C 515.23 504.66 518.70 502.99 520.00 498.91"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 520.00 498.91
   L 541.67 506.64"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 541.67 506.64
   Q 548.13 508.47 550.00 508.58
   Q 558.38 509.10 566.74 509.97
   Q 567.64 510.06 568.99 509.76"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 568.99 509.76
   L 581.64 509.97
   A 4.41 4.30 33.2 0 0 583.38 509.63
@@ -2803,51 +4136,81 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 592.39 503.52 592.77 501.29
   Q 593.30 498.16 591.23 496.02
   Q 588.41 493.10 582.85 490.09"
-/>
-<path stroke="#f4cf82" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cf82"
+          vector-effect="non-scaling-stroke"
+          d="
   M 582.85 490.09
   L 579.95 488.55"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 579.95 488.55
   Q 581.68 487.39 583.70 488.21
   A 1.37 1.36 -0.7 0 0 585.47 486.40
   L 583.73 482.46
   A 0.72 0.70 47.8 0 1 583.75 481.84
   Q 584.29 480.75 585.52 480.49"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 585.52 480.49
   L 590.45 481.26"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 590.45 481.26
   Q 592.98 482.26 595.85 481.55"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 595.85 481.55
   Q 596.93 481.75 598.39 481.50
   A 0.74 0.73 0.5 0 0 598.98 480.93
   Q 599.21 479.84 600.49 480.14
   Q 602.52 480.60 604.54 481.07"
-/>
-<path stroke="#bc9c7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9c7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 604.54 481.07
   Q 604.42 480.87 604.89 481.03"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 604.89 481.03
   Q 610.64 484.85 616.51 482.47"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 616.51 482.47
   Q 627.98 483.51 639.08 481.43"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 639.08 481.43
   L 664.56 480.44"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 664.56 480.44
   C 668.89 480.55 673.13 480.80 677.43 480.35
   Q 684.27 479.63 686.51 479.79
@@ -2859,17 +4222,26 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.20 0.19 -16.8 0 0 723.38 470.90
   Q 720.36 471.56 717.50 472.51
   C 713.35 473.90 708.73 474.46 704.33 475.29"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 704.33 475.29
   L 703.56 474.21"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 790.68 452.37
   Q 789.10 451.85 788.25 451.97
   Q 783.30 452.67 778.26 452.44"
-/>
-<path stroke="#c8bba4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8bba4"
+          vector-effect="non-scaling-stroke"
+          d="
   M 778.26 452.44
   Q 779.24 452.21 779.55 451.98
   A 0.39 0.39 0.0 0 0 779.30 451.28
@@ -2881,45 +4253,69 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 731.56 463.45
   A 1.62 1.59 33.5 0 0 730.33 463.69
   Q 729.50 464.25 728.43 464.17"
-/>
-<path stroke="#b1a18e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a18e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 787.15 472.40
   C 784.26 474.96 781.47 477.95 778.70 480.21
   Q 766.21 490.46 752.12 498.15
   Q 751.24 498.63 750.49 498.80
   Q 748.93 499.16 749.51 498.21"
-/>
-<path stroke="#f4ca3b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4ca3b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 688.52 421.44
   L 687.98 422.51"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 687.98 422.51
   L 683.36 419.24
   A 0.33 0.31 -39.5 0 0 683.06 419.22
   Q 682.76 419.38 682.94 419.77"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 668.06 407.65
   L 671.30 409.93
   A 0.56 0.52 65.4 0 0 671.47 410.00
   Q 672.58 410.22 671.94 409.14
   A 0.35 0.35 0.0 0 1 672.37 408.64
   L 672.68 408.76"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 680.23 414.90
   Q 680.38 415.04 680.48 415.29"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 680.48 415.29
   Q 680.58 417.76 682.94 419.77"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 682.94 419.77
   L 683.71 420.98"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 683.71 420.98
   L 683.82 422.39
   A 0.53 0.52 -66.6 0 1 682.89 422.76
@@ -2931,21 +4327,33 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.05 0.05 0.0 0 0 646.64 406.15
   Q 658.24 412.59 668.58 421.04
   Q 669.96 422.17 671.19 424.43"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.19 424.43
   Q 657.26 413.82 647.97 408.77
   Q 626.10 396.90 599.80 399.90"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 599.80 399.90
   Q 594.36 399.25 592.23 401.41"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 592.23 401.41
   Q 589.32 402.23 589.62 403.49"
-/>
-<path stroke="#ffe450" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe450"
+          vector-effect="non-scaling-stroke"
+          d="
   M 687.17 433.22
   C 681.92 434.59 679.40 432.90 675.05 432.04
   A 1.14 1.14 0.0 0 1 674.49 431.76
@@ -2956,15 +4364,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 669.05 428.46 670.80 430.24
   Q 670.83 430.27 672.26 432.50
   Q 673.00 433.66 674.49 434.31"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 674.49 434.31
   Q 679.49 436.97 685.13 436.13
   A 0.15 0.15 0.0 0 1 685.30 436.26
   A 0.15 0.15 0.0 0 1 685.17 436.43
   L 673.13 437.69"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 698.28 429.93
   C 697.80 435.66 695.68 439.53 689.62 439.62
   Q 685.32 439.68 680.09 438.71
@@ -2972,28 +4386,43 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 679.89 440.49
   A 0.50 0.49 74.2 0 1 679.51 441.18
   L 678.45 441.33"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.19 424.43
   L 675.17 427.38"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 675.17 427.38
   L 678.80 430.72
   A 0.39 0.39 0.0 0 1 678.61 431.39
   L 677.66 431.57"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 677.66 431.57
   Q 675.58 430.25 670.75 425.75
   Q 669.98 425.02 666.79 423.62"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 666.79 423.62
   Q 666.18 423.32 665.20 422.29
   Q 664.15 421.19 662.77 420.99"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 662.77 420.99
   Q 658.88 418.04 654.94 415.13
   C 646.91 409.20 638.60 405.24 628.95 403.36
@@ -3006,8 +4435,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 591.87 404.69
   A 0.65 0.65 0.0 0 0 591.14 403.61
   Q 590.71 403.87 589.88 404.62"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 592.23 401.41
   Q 592.53 401.58 593.28 401.41
   A 0.32 0.32 0.0 0 1 593.67 401.68
@@ -3016,109 +4448,169 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 593.43 403.15 594.19 403.16
   A 0.44 0.41 28.2 0 0 594.41 403.10
   L 599.80 399.90"
-/>
-<path stroke="#e7d87e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7d87e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.67 439.24
   L 673.29 441.30"
-/>
-<path stroke="#d7c9ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7c9ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 673.29 441.30
   L 665.77 436.65
   A 0.72 0.71 -47.5 0 0 664.97 436.69
   Q 660.75 439.88 655.42 441.14"
-/>
-<path stroke="#e7deb0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7deb0"
+          vector-effect="non-scaling-stroke"
+          d="
   M 655.42 441.14
   L 650.67 441.87"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 650.67 441.87
   L 649.60 441.55
   A 2.00 1.98 -14.3 0 1 648.78 441.07
   Q 647.10 439.46 645.87 440.27"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 645.87 440.27
   L 643.06 439.12"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 641.68 433.82
   L 648.35 431.82"
-/>
-<path stroke="#dcaf53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcaf53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.72 430.92
   Q 663.06 430.43 663.13 428.90
   A 1.19 1.19 0.0 0 0 661.60 427.71
   L 648.35 431.82"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 648.35 431.82
   Q 648.70 431.27 648.59 430.96
   Q 648.46 430.59 647.80 430.74
   Q 644.00 431.61 640.34 433.00"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 696.92 428.13
   L 695.42 432.47
   A 1.34 1.31 -8.4 0 1 694.92 433.13
   Q 691.92 435.22 688.20 434.95"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 688.20 434.95
   Q 687.93 434.09 687.17 433.22"
-/>
-<path stroke="#ffe13a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe13a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 687.17 433.22
   C 688.65 432.28 690.95 432.43 691.64 430.70
   Q 692.65 428.20 691.45 426.46"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 662.77 420.99
   Q 663.16 421.58 663.02 422.05
   Q 662.90 422.44 662.22 422.72
   Q 658.42 424.31 654.45 425.48
   Q 645.80 428.00 637.06 429.73"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 637.06 429.73
   L 636.89 431.46
   A 0.62 0.62 0.0 0 0 637.34 432.12
   L 640.34 433.00"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 640.34 433.00
   Q 640.26 434.08 641.68 433.82"
-/>
-<path stroke="#e4bc53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4bc53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 641.68 433.82
   Q 639.98 433.82 639.71 435.58"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 639.71 435.58
   Q 638.29 434.24 634.84 431.94
   C 625.80 425.92 616.07 419.11 606.06 416.20
   Q 595.25 413.05 581.13 412.68"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 689.73 536.08
   Q 694.16 539.33 698.88 541.88
   Q 702.76 543.97 706.79 543.77"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.75 559.52
   C 666.18 554.31 660.79 550.87 652.88 551.57
   Q 648.37 551.96 645.14 552.80
   Q 634.51 555.56 621.76 560.03"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 712.00 503.43
   Q 711.54 503.30 711.32 503.47
   A 0.69 0.66 37.2 0 0 711.50 504.61
   Q 716.97 506.97 722.44 509.83
   A 0.31 0.31 0.0 0 1 722.43 510.39
   Q 702.33 519.31 680.65 524.23"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 671.06 517.71
   Q 670.74 513.15 674.45 510.32
   C 679.55 506.43 685.61 504.15 691.42 501.70
@@ -3127,20 +4619,29 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 689.52 495.93 686.34 495.25 681.92 494.17
   Q 665.30 490.13 654.80 490.56
   Q 643.73 491.01 623.54 495.34"
-/>
-<path stroke="#efe495" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efe495"
+          vector-effect="non-scaling-stroke"
+          d="
   M 673.29 441.30
   Q 677.16 445.03 683.51 446.23"
-/>
-<path stroke="#efe9c7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efe9c7"
+          vector-effect="non-scaling-stroke"
+          d="
   M 683.51 446.23
   L 668.16 443.62
   A 1.20 1.10 61.5 0 1 667.87 443.52
   L 664.28 441.70
   A 2.78 2.78 0.0 0 0 663.09 441.39
   L 655.42 441.14"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 613.23 467.99
   L 618.79 472.47
   A 1.41 1.35 -76.2 0 1 619.27 473.30
@@ -3148,13 +4649,19 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.64 1.61 82.1 0 1 618.37 479.09
   Q 616.60 480.19 614.26 480.07
   Q 607.55 479.72 602.01 478.22"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 596.27 475.72
   Q 596.53 474.68 597.14 474.66
   Q 598.32 474.63 598.73 474.24"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 778.26 452.44
   Q 770.90 453.34 768.76 453.78
   Q 760.74 455.45 750.08 459.27
@@ -3163,53 +4670,83 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 728.10 466.20
   A 1.73 1.46 -55.0 0 0 727.53 466.35
   Q 715.93 471.64 703.56 474.21"
-/>
-<path stroke="#c8bba4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8bba4"
+          vector-effect="non-scaling-stroke"
+          d="
   M 703.56 474.21
   Q 690.39 477.00 676.95 477.52
   Q 666.86 477.91 657.10 475.80
   A 0.36 0.36 0.0 0 1 657.17 475.09
   L 660.29 474.99"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 660.29 474.99
   C 666.38 475.48 672.89 476.28 678.57 476.09
   Q 686.99 475.80 694.21 474.70
   C 699.41 473.90 704.30 472.32 709.11 471.37
   C 715.19 470.16 721.74 467.28 727.73 464.62"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 645.87 440.27
   Q 651.14 444.04 656.02 447.72
   Q 661.27 451.68 663.74 457.19"
-/>
-<path stroke="#d2af66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2af66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.74 457.19
   L 663.96 458.99"
-/>
-<path stroke="#d2aa34" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2aa34"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.96 458.99
   Q 659.15 467.28 649.16 466.07
   A 3.29 2.97 55.1 0 1 648.47 465.91
   Q 645.17 464.81 641.61 464.40"
-/>
-<path stroke="#d2af66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2af66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 641.61 464.40
   Q 641.25 463.76 640.34 463.86"
-/>
-<path stroke="#d2aa34" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2aa34"
+          vector-effect="non-scaling-stroke"
+          d="
   M 640.34 463.86
   Q 638.27 461.82 635.42 461.07"
-/>
-<path stroke="#d2af66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2af66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 635.42 461.07
   Q 629.14 457.00 624.70 451.30"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 624.70 451.30
   Q 624.63 451.09 624.57 450.88"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 624.57 450.88
   Q 624.14 448.73 622.47 447.64
   A 0.99 0.97 50.3 0 0 621.57 447.55
@@ -3217,21 +4754,33 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 608.76 451.47 607.82 451.37
   A 0.28 0.28 0.0 0 1 607.75 450.83
   L 614.74 448.06"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 624.20 443.48
   Q 623.59 443.55 623.61 443.92
   Q 623.63 444.44 624.10 444.74"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 626.23 448.04
   Q 624.54 447.76 626.58 450.51"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 626.58 450.51
   Q 628.21 453.96 631.54 456.19"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 631.54 456.19
   Q 634.40 458.34 637.93 459.53
   A 2.63 2.44 -15.2 0 1 638.54 459.85
@@ -3249,26 +4798,41 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.82 0.81 60.0 0 0 645.01 444.95
   Q 645.77 448.41 641.99 449.21
   Q 638.31 450.00 635.93 449.43"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 636.80 447.74
   Q 640.52 448.87 643.45 445.67
   A 0.48 0.48 0.0 0 0 643.10 444.86
   Q 642.85 444.86 642.63 445.17"
-/>
-<path stroke="#fffddf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffddf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 650.67 441.87
   C 655.22 444.61 664.64 451.38 663.74 457.19"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 660.29 474.99
   L 659.30 474.62"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 659.30 474.62
   Q 657.62 474.53 656.32 473.92"
-/>
-<path stroke="#d0c7bb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0c7bb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 659.30 474.62
   L 656.56 474.63
   A 0.89 0.89 0.0 0 0 656.35 476.38
@@ -3279,22 +4843,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 624.26 481.63
   A 0.22 0.22 0.0 0 0 624.48 481.90
   L 639.08 481.43"
-/>
-<path stroke="#eed269" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eed269"
+          vector-effect="non-scaling-stroke"
+          d="
   M 616.51 482.47
   L 616.65 481.85"
-/>
-<path stroke="#a47d4c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a47d4c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 600.79 457.39
   L 606.03 462.06"
-/>
-<path stroke="#bc9d65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9d65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 606.03 462.06
   L 608.60 464.31
   A 1.55 1.44 11.3 0 1 608.99 464.85
   Q 609.89 466.95 612.02 467.99"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 612.02 467.99
   L 612.11 468.33
   A 0.29 0.29 0.0 0 1 611.79 468.70
@@ -3303,18 +4880,27 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 607.21 470.39
   A 1.06 1.01 -17.7 0 1 606.82 471.10
   Q 603.24 473.98 598.73 474.24"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 598.73 474.24
   Q 597.51 474.52 597.06 474.11
   Q 596.65 473.74 597.01 473.38
   Q 597.25 473.16 597.81 473.22"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 597.81 473.22
   Q 597.93 473.10 598.05 472.97"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 598.05 472.97
   L 604.72 470.26
   A 1.12 1.11 82.1 0 0 605.41 469.34
@@ -3323,102 +4909,169 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 603.17 461.18 598.55 458.01
   Q 587.72 450.58 574.83 445.25
   Q 571.43 443.84 567.98 442.65"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 567.98 442.65
   Q 556.89 438.16 545.05 438.22"
-/>
-<path stroke="#ac8863" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ac8863"
+          vector-effect="non-scaling-stroke"
+          d="
   M 621.32 478.56
   Q 620.10 480.69 616.65 481.85"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 616.65 481.85
   Q 611.60 482.36 606.49 480.99
   Q 605.78 480.80 604.89 481.03"
-/>
-<path stroke="#a47d4c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a47d4c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 604.54 481.07
   Q 604.46 480.44 604.01 480.35
   Q 601.82 479.88 599.65 479.18"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 624.32 386.90
   L 613.91 386.72"
-/>
-<path stroke="#f4cf82" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cf82"
+          vector-effect="non-scaling-stroke"
+          d="
   M 625.08 386.94
   Q 628.51 388.28 631.87 387.88"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 644.54 392.11
   L 656.37 397.92"
-/>
-<path stroke="#fffac3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffac3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.74 402.22
   Q 664.23 404.70 663.49 404.02"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.49 404.02
   L 647.96 396.00"
-/>
-<path stroke="#fffac3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffac3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 647.96 396.00
   Q 639.56 391.44 629.71 390.21"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 629.71 390.21
   Q 623.31 388.39 617.74 388.65
   Q 611.00 388.96 600.83 390.55
   A 0.43 0.43 0.0 0 1 600.40 389.89
   L 601.02 388.92"
-/>
-<path stroke="#d0c7bb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0c7bb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 552.30 608.18
   Q 539.55 607.37 519.76 607.84
   Q 517.60 607.89 509.54 607.23"
-/>
-<path stroke="#96704c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#96704c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 568.99 509.76
   Q 568.85 509.72 568.74 509.67
   A 0.23 0.23 0.0 0 1 568.75 509.25
   Q 571.57 507.99 574.97 508.41"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 574.97 508.41
   C 582.18 508.78 587.49 507.77 591.43 501.73
   A 1.53 1.50 60.6 0 0 591.68 500.80
   Q 591.51 497.11 588.23 495.74"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 588.23 495.74
   L 583.71 492.57"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 590.92 480.79
   Q 590.86 481.14 590.45 481.26"
-/>
-<path stroke="#675e4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#675e4b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 585.52 480.49
   Q 584.89 479.94 583.98 479.73"
-/>
-<path stroke="#6b3001" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b3001"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 583.89 598.49
   Q 582.16 598.56 580.53 598.40
   Q 579.34 598.27 579.47 596.93"
-/>
-<path stroke="#c8bba4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8bba4"
+          vector-effect="non-scaling-stroke"
+          d="
   M 559.25 604.38
   Q 550.32 604.25 545.97 604.97
   C 542.29 605.58 538.82 606.10 534.96 606.11
   Q 522.22 606.15 509.54 607.23"
-/>
-<path stroke="#d7c9ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7c9ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 509.54 607.23
   Q 498.10 607.36 494.00 607.63
   Q 490.90 607.83 488.50 607.27"
-/>
-<path stroke="#a48e6c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a48e6c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 541.62 619.55
   Q 541.69 618.58 541.05 618.73
   Q 538.52 619.36 535.96 619.18
@@ -3443,23 +5096,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 529.24 621.07 538.84 620.23
   Q 539.62 620.16 539.77 620.53
   Q 539.92 620.90 539.72 621.61"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 539.72 621.61
   Q 537.20 622.26 535.50 622.30
   Q 524.29 622.55 497.50 622.51
   Q 451.87 622.43 406.77 615.80
   C 400.78 614.92 394.77 613.47 388.84 612.04"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 582.85 490.09
   Q 581.86 490.34 582.30 491.78"
-/>
-<path stroke="#f4cd50" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cd50"
+          vector-effect="non-scaling-stroke"
+          d="
   M 582.30 491.78
   Q 578.99 489.83 577.17 490.28"
-/>
-<path stroke="#d0c7bb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0c7bb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 475.71 607.12
   L 472.65 607.32
   A 0.54 0.54 0.0 0 0 472.15 607.87
@@ -3469,22 +5134,34 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 465.62 613.81
   A 0.22 0.21 -49.4 0 1 465.65 614.22
   Q 464.68 614.60 465.02 615.02"
-/>
-<path stroke="#d0c7bb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0c7bb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 438.46 613.58
   L 394.38 609.31
   A 0.22 0.22 0.0 0 0 394.25 609.73
   L 395.81 610.59"
-/>
-<path stroke="#9d8c79" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9d8c79"
+          vector-effect="non-scaling-stroke"
+          d="
   M 395.81 610.59
   L 389.24 610.24"
-/>
-<path stroke="#4e2a10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4e2a10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 704.02 553.74
   Q 703.36 552.14 702.23 551.04"
-/>
-<path stroke="#c8bba4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8bba4"
+          vector-effect="non-scaling-stroke"
+          d="
   M 664.56 480.44
   L 656.21 480.06
   A 0.15 0.15 0.0 0 1 656.07 479.91
@@ -3493,47 +5170,74 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 664.98 479.20 673.75 479.51 682.29 478.61
   Q 684.47 478.38 687.72 478.40
   C 693.56 478.44 698.88 476.84 704.33 475.29"
-/>
-<path stroke="#e0cd62" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cd62"
+          vector-effect="non-scaling-stroke"
+          d="
   M 380.30 597.62
   Q 383.02 604.02 387.56 609.24
   A 2.11 2.00 81.3 0 0 388.19 609.73
   L 389.24 610.24"
-/>
-<path stroke="#bca029" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bca029"
+          vector-effect="non-scaling-stroke"
+          d="
   M 389.24 610.24
   Q 388.48 610.02 388.23 609.97
   A 1.06 1.06 0.0 0 0 387.45 611.89
   Q 387.97 612.25 388.84 612.04"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 388.84 612.04
   Q 388.19 612.50 388.31 612.96"
-/>
-<path stroke="#b38d5a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b38d5a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 557.56 501.95
   Q 558.44 502.63 559.64 503.02"
-/>
-<path stroke="#c8bba4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c8bba4"
+          vector-effect="non-scaling-stroke"
+          d="
   M 566.65 506.86
   Q 565.82 507.19 565.17 507.13
   Q 566.06 507.09 566.86 507.38
   A 0.15 0.14 -33.3 0 1 566.80 507.66
   L 541.67 506.64"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 595.85 481.55
   Q 594.83 479.77 590.92 480.79"
-/>
-<path stroke="#675e4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#675e4b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 590.92 480.79
   L 587.30 478.45"
-/>
-<path stroke="#d2b080" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2b080"
+          vector-effect="non-scaling-stroke"
+          d="
   M 557.49 501.80
   Q 557.53 501.88 557.56 501.95"
-/>
-<path stroke="#e0dcd8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dcd8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 557.56 501.95
   Q 557.44 503.47 556.49 503.62
   Q 548.48 504.86 540.00 502.42
@@ -3544,41 +5248,66 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 514.90 496.12
   A 0.71 0.68 20.1 0 0 515.31 496.96
   L 520.00 498.91"
-/>
-<path stroke="#ac9a83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ac9a83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 439.05 614.66
   L 395.81 610.59"
-/>
-<path stroke="#dcaf53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcaf53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 579.95 488.55
   L 575.94 487.79
   A 0.79 0.76 -1.0 0 1 575.34 487.23
   L 574.25 483.14"
-/>
-<path stroke="#96704c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#96704c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 574.25 483.14
   L 573.47 482.74"
-/>
-<path stroke="#d2aa34" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2aa34"
+          vector-effect="non-scaling-stroke"
+          d="
   M 687.98 422.51
   L 691.45 426.46"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 691.45 426.46
   Q 691.40 427.41 690.97 428.21
   C 690.30 429.44 688.95 429.68 688.19 431.06
   A 1.40 1.38 -81.0 0 1 687.27 431.74
   Q 682.92 432.70 677.66 431.57"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 629.71 390.21
   Q 638.54 394.15 647.96 396.00"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.49 404.02
   L 668.06 407.65"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 668.06 407.65
   C 661.61 406.89 657.91 402.93 652.40 400.67
   Q 646.93 398.42 646.76 398.34
@@ -3594,96 +5323,154 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 591.22 394.85
   A 0.91 0.90 84.1 0 1 590.13 393.96
   L 590.13 393.45"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 683.71 420.98
   Q 687.40 423.42 688.40 425.52
   Q 689.11 427.00 687.91 428.95
   A 0.91 0.91 0.0 0 1 687.10 429.38
   Q 682.49 429.18 680.89 428.63
   Q 677.53 427.45 675.17 427.38"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 688.20 434.95
   L 681.32 435.50
   A 2.24 2.21 -38.7 0 1 680.46 435.41
   Q 677.50 434.48 674.49 434.31"
-/>
-<path stroke="#96704c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#96704c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 639.71 435.58
   L 643.06 439.12"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 643.06 439.12
   Q 642.01 439.76 640.92 439.82"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 640.92 439.82
   Q 640.25 438.50 639.27 437.83"
-/>
-<path stroke="#ae9165" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae9165"
+          vector-effect="non-scaling-stroke"
+          d="
   M 639.27 437.83
   Q 636.41 434.70 633.00 432.55
   Q 629.00 430.02 628.90 429.96
   Q 622.47 425.57 615.94 422.04"
-/>
-<path stroke="#ae8b33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8b33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 615.94 422.04
   Q 610.99 419.14 605.55 417.95"
-/>
-<path stroke="#ae9165" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae9165"
+          vector-effect="non-scaling-stroke"
+          d="
   M 605.55 417.95
   Q 591.37 413.91 576.87 414.28"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 576.87 414.28
   L 574.52 414.19"
-/>
-<path stroke="#865d17" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#865d17"
+          vector-effect="non-scaling-stroke"
+          d="
   M 592.49 472.80
   L 596.27 475.72"
-/>
-<path stroke="#917417" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#917417"
+          vector-effect="non-scaling-stroke"
+          d="
   M 596.27 475.72
   L 602.01 478.22"
-/>
-<path stroke="#4e2a10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4e2a10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 602.01 478.22
   Q 601.88 479.28 599.71 478.98"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 640.92 439.82
   Q 641.47 440.53 641.17 441.63"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 641.17 441.63
   Q 633.55 440.06 627.11 437.06
   Q 623.68 435.47 610.07 429.25
   Q 598.60 424.02 586.00 423.67
   C 576.22 423.40 564.41 422.69 555.80 427.51"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 641.17 441.63
   Q 643.04 442.04 642.31 443.69"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 642.31 443.69
   Q 641.49 443.88 639.08 445.08
   Q 638.06 445.59 635.19 446.07"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 635.19 446.07
   C 632.66 446.38 631.46 445.08 629.27 444.87"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 629.27 444.87
   Q 618.57 437.37 612.04 435.21
   Q 604.92 432.86 602.59 431.99
   C 594.46 428.96 585.22 427.62 577.75 426.98
   Q 571.00 426.41 563.52 427.32
   Q 560.06 427.74 558.41 430.02"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 613.12 437.17
   Q 602.11 441.80 595.82 443.63
   Q 592.47 444.61 585.47 444.87
@@ -3692,24 +5479,36 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.51 0.50 2.4 0 0 585.46 445.90
   Q 596.04 446.43 605.49 441.68
   Q 608.49 440.17 615.24 438.28"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 620.72 442.07
   L 622.79 444.40
   A 0.75 0.74 60.6 0 1 622.46 445.60
   L 614.74 448.06"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 614.74 448.06
   C 607.91 447.43 602.07 449.30 595.76 450.13
   A 0.65 0.65 0.0 0 0 595.40 451.25
   L 601.28 456.72"
-/>
-<path stroke="#e4bc53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4bc53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 601.28 456.72
   Q 600.95 457.01 600.79 457.39"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 600.79 457.39
   C 595.00 453.53 591.17 451.83 586.38 448.93
   Q 583.07 446.93 580.90 446.05
@@ -3717,85 +5516,133 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.20 5.96 60.1 0 0 567.96 441.00
   Q 565.98 440.62 564.29 439.99
   Q 558.80 437.94 552.60 436.36"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 564.62 429.05
   Q 561.89 431.10 560.15 433.11
   A 0.27 0.27 0.0 0 0 560.48 433.52
   L 564.07 431.67
   A 0.80 0.77 85.9 0 0 564.47 431.19
   Q 565.01 429.50 566.99 429.02"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 629.27 444.87
   Q 631.35 449.07 635.19 446.07"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 642.31 443.69
   L 642.63 445.17"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 642.63 445.17
   L 636.80 447.74"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 636.80 447.74
   Q 636.83 447.14 636.29 447.79
   A 0.41 0.41 0.0 0 0 636.22 448.19
   Q 636.42 448.73 635.93 449.43"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 635.93 449.43
   L 631.36 449.06
   A 2.15 1.61 -11.9 0 1 629.98 448.42
   Q 629.94 448.37 629.90 448.30
   A 0.99 0.98 -21.7 0 0 628.78 447.82
   Q 627.45 448.17 626.23 448.04"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 626.23 448.04
   Q 625.24 447.29 623.98 447.23
   A 0.63 0.63 0.0 0 1 623.38 446.70
   Q 623.18 445.53 624.10 444.74"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 624.10 444.74
   Q 625.48 446.14 626.89 446.66
   A 0.42 0.42 0.0 0 0 627.35 445.98
   Q 626.02 444.46 624.20 443.48"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 624.20 443.48
   Q 622.65 442.40 620.72 442.07"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 620.72 442.07
   L 615.24 438.28"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 615.24 438.28
   Q 614.22 438.01 613.12 437.17"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 613.12 437.17
   Q 606.66 434.95 600.85 432.92
   Q 594.03 430.54 586.86 429.75
   Q 581.18 429.13 575.51 428.54
   Q 572.39 428.22 566.99 429.02"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 566.99 429.02
   Q 564.49 428.66 564.62 429.05"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 564.62 429.05
   Q 561.75 428.38 560.15 430.66"
-/>
-<path stroke="#dcaf53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcaf53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 624.57 450.88
   Q 621.26 451.06 617.71 452.48"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 617.71 452.48
   Q 618.93 451.59 620.10 451.22
   A 0.78 0.78 0.0 0 0 620.64 450.34
@@ -3806,153 +5653,240 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 603.38 454.08 601.57 455.18
   A 0.66 0.65 -41.2 0 0 601.49 456.25
   Q 601.97 456.62 602.73 456.52"
-/>
-<path stroke="#dcaf53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcaf53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 602.73 456.52
   Q 602.50 456.99 602.00 457.10
   Q 601.54 457.19 601.28 456.72"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 631.54 456.19
   Q 630.77 452.21 626.58 450.51"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 617.71 452.48
   Q 612.61 454.53 606.43 454.95
   Q 604.53 455.08 602.73 456.52"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 597.81 473.22
   Q 594.96 472.15 592.49 472.80"
-/>
-<path stroke="#917417" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#917417"
+          vector-effect="non-scaling-stroke"
+          d="
   M 592.49 472.80
   C 587.59 469.83 584.02 466.89 578.03 463.73"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 567.74 446.27
   Q 571.07 447.35 573.88 449.19
   A 4.43 4.42 -18.5 0 0 574.93 449.71
   Q 580.43 451.58 585.49 454.80
   A 6.89 6.89 0.0 0 0 586.89 455.50
   Q 589.89 456.62 592.43 458.54"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 592.43 458.54
   Q 595.45 460.60 599.04 461.47
   Q 599.70 461.64 599.80 461.60
   A 0.65 0.65 0.0 0 0 599.67 460.34
   C 597.63 460.11 595.22 458.21 593.26 457.36"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 593.26 457.36
   L 576.31 446.61"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 598.05 472.97
   Q 598.48 470.94 599.65 470.67
   A 1.86 1.85 -28.6 0 0 600.57 467.56
   Q 598.95 465.92 596.76 465.13
   Q 585.20 460.97 573.84 456.66
   Q 570.67 455.45 565.04 456.11"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 565.04 456.11
   Q 556.46 452.88 547.66 450.38
   Q 544.75 449.55 542.50 449.42
   Q 535.70 449.00 526.23 449.16"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 567.98 442.65
   L 567.03 442.93"
-/>
-<path stroke="#fcdd6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdd6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 567.03 442.93
   L 553.30 439.19
   A 1.89 1.88 54.6 0 0 552.83 439.11
   L 543.76 438.77"
-/>
-<path stroke="#8e6a18" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8e6a18"
+          vector-effect="non-scaling-stroke"
+          d="
   M 576.93 464.35
   Q 585.49 468.93 592.67 475.49
   A 3.91 3.72 -10.2 0 0 593.66 476.14
   L 599.71 478.98"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 599.71 478.98
   Q 599.68 479.08 599.65 479.18"
-/>
-<path stroke="#e4bc53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4bc53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 599.65 479.18
   Q 595.90 479.41 590.60 476.40
   A 0.42 0.40 35.6 0 0 590.11 476.47
   Q 589.14 477.48 587.52 477.83"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 585.96 476.07
   Q 591.59 474.28 587.78 474.10"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 587.78 474.10
   L 584.96 470.69
   A 0.94 0.76 2.0 0 0 584.74 470.50
   L 572.66 463.53
   A 0.10 0.10 0.0 0 0 572.53 463.67
   Q 576.01 468.46 572.54 472.37"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 588.23 495.74
   C 583.98 498.82 578.63 499.12 573.42 498.86
   Q 566.82 498.54 560.20 498.04"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 560.20 498.04
   L 559.04 497.46"
-/>
-<path stroke="#e4bc53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4bc53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 574.97 508.41
   L 572.01 508.34
   A 1.83 1.76 -27.7 0 1 571.11 508.08
   Q 569.10 506.82 566.65 506.86"
-/>
-<path stroke="#ddba61" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ddba61"
+          vector-effect="non-scaling-stroke"
+          d="
   M 566.65 506.86
   Q 561.53 506.13 559.64 503.02"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 559.64 503.02
   L 561.76 503.49"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 561.76 503.49
   L 571.81 506.21
   A 0.26 0.26 0.0 0 0 572.01 505.73
   Q 570.33 504.74 568.46 504.34
   C 565.12 503.62 562.81 501.97 560.79 499.36"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 560.79 499.36
   L 560.20 498.04"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 582.30 491.78
   Q 582.87 491.79 583.71 492.57"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 583.71 492.57
   Q 584.22 493.24 584.17 493.84
   A 0.37 0.37 0.0 0 1 583.61 494.12
   Q 581.41 492.77 578.75 492.41"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 565.04 456.11
   L 578.03 463.73"
-/>
-<path stroke="#643d11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#643d11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 578.03 463.73
   Q 577.00 463.50 576.93 464.35"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 576.93 464.35
   C 571.98 461.45 566.76 458.12 561.56 456.44
   Q 550.63 452.90 544.90 451.37
@@ -3968,63 +5902,96 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 541.96 457.78 550.24 461.33
   Q 551.16 461.72 558.49 464.21
   Q 566.20 466.82 572.54 472.37"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 572.54 472.37
   L 576.18 475.26
   A 1.12 1.10 -34.1 0 0 577.21 475.45
   L 581.27 474.21
   A 0.96 0.87 33.8 0 1 581.54 474.17
   Q 583.82 474.19 586.18 474.65"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 586.18 474.65
   L 585.26 475.12
   A 0.30 0.28 84.3 0 0 585.11 475.32
   Q 585.04 475.81 585.96 476.07"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 585.96 476.07
   Q 586.63 477.15 587.52 477.83"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 587.52 477.83
   Q 587.51 478.19 587.30 478.45"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 587.30 478.45
   L 584.56 478.02
   A 1.97 1.87 62.4 0 1 583.86 477.78
   Q 581.31 476.36 581.42 477.94"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 581.42 477.94
   Q 577.60 478.01 573.49 475.46"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 573.49 475.46
   Q 565.41 467.96 554.95 464.83"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 554.95 464.83
   Q 549.55 463.26 544.14 460.88
   Q 540.46 459.25 532.15 457.95
   Q 530.44 457.69 527.98 457.05
   Q 525.85 456.51 523.77 456.22"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 581.42 477.94
   Q 583.36 478.14 583.98 479.73"
-/>
-<path stroke="#dcaf53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcaf53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 583.98 479.73
   Q 583.32 480.10 582.71 479.64
   C 580.61 478.03 578.98 478.10 576.63 478.55
   Q 575.21 478.81 574.94 479.46
   C 574.37 480.78 573.23 480.14 572.66 481.76
   Q 572.41 482.49 573.47 482.74"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 573.47 482.74
   Q 572.27 483.27 571.97 482.06
   A 0.28 0.28 0.0 0 0 571.42 482.12
@@ -4032,20 +5999,32 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.76 1.70 35.8 0 0 571.28 488.49
   C 571.78 489.11 572.84 489.44 573.48 490.19
   Q 574.96 491.91 573.48 491.86"
-/>
-<path stroke="#e0dcd8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dcd8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1088.69 526.17
   Q 1086.95 523.54 1084.78 522.21"
-/>
-<path stroke="#e7decb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7decb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1084.79 528.46
   Q 1085.27 529.26 1085.10 529.46"
-/>
-<path stroke="#efeae1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efeae1"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1085.10 529.46
   Q 1085.35 537.62 1080.63 540.65"
-/>
-<path stroke="#bcafa0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcafa0"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1080.63 540.65
   Q 1083.09 535.73 1083.39 531.55
   A 0.15 0.14 -76.7 0 0 1083.30 531.40
@@ -4055,37 +6034,58 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1075.56 546.53 1069.72 551.72
   C 1059.12 561.15 1049.41 567.86 1037.10 573.73
   Q 1030.97 576.64 1024.71 579.55"
-/>
-<path stroke="#efeae1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efeae1"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1024.71 579.55
   L 1011.73 582.49"
-/>
-<path stroke="#f4d087" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4d087"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1034.04 604.57
   L 993.54 584.81"
-/>
-<path stroke="#ffe786" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe786"
+          vector-effect="non-scaling-stroke"
+          d="
   M 993.54 584.81
   L 982.43 580.31"
-/>
-<path stroke="#fff088" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff088"
+          vector-effect="non-scaling-stroke"
+          d="
   M 982.43 580.31
   Q 979.97 579.14 977.19 578.31
   Q 962.70 574.00 948.67 570.82"
-/>
-<path stroke="#ffe786" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe786"
+          vector-effect="non-scaling-stroke"
+          d="
   M 948.67 570.82
   Q 938.28 568.03 927.97 566.72
   Q 921.77 565.93 914.01 565.95
   C 905.50 565.97 899.42 565.94 891.93 567.68
   Q 889.47 568.24 883.88 569.30
   Q 877.11 570.58 870.98 573.17"
-/>
-<path stroke="#fff9b2" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff9b2"
+          vector-effect="non-scaling-stroke"
+          d="
   M 870.98 573.17
   Q 869.93 574.23 868.41 574.76"
-/>
-<path stroke="#e0dcd8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dcd8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 868.41 574.76
   L 854.63 577.85
   A 1.20 0.94 -31.7 0 1 854.47 577.88
@@ -4098,14 +6098,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 818.38 569.56 813.68 570.08 810.86 569.58
   Q 796.12 566.97 787.96 564.28
   Q 779.26 561.42 773.03 560.00"
-/>
-<path stroke="#f4f1ec" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4f1ec"
+          vector-effect="non-scaling-stroke"
+          d="
   M 773.03 560.00
   L 767.81 560.52
   A 0.50 0.49 -30.2 0 0 767.57 561.42
   L 772.82 565.12"
-/>
-<path stroke="#fffefa" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffefa"
+          vector-effect="non-scaling-stroke"
+          d="
   M 772.82 565.12
   Q 764.41 570.12 757.04 573.49
   Q 748.65 577.33 746.06 578.69
@@ -4120,161 +6126,260 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 613.40 615.73 593.30 617.76
   Q 588.10 618.29 572.75 620.69
   Q 565.30 621.86 549.56 621.80"
-/>
-<path stroke="#ae917f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae917f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 560.98 609.07
   L 583.89 598.49"
-/>
-<path stroke="#bc9e80" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9e80"
+          vector-effect="non-scaling-stroke"
+          d="
   M 583.89 598.49
   Q 613.39 586.74 643.04 575.30
   Q 668.69 565.41 694.84 556.98
   Q 699.47 555.49 704.02 553.74"
-/>
-<path stroke="#918c8f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#918c8f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 704.02 553.74
   L 713.39 550.30"
-/>
-<path stroke="#ae917f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae917f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 840.64 575.38
   Q 848.96 577.18 857.17 575.77
   C 859.77 575.32 862.15 574.10 864.64 573.09"
-/>
-<path stroke="#fff9b2" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff9b2"
+          vector-effect="non-scaling-stroke"
+          d="
   M 864.64 573.09
   Q 868.04 572.82 870.48 570.23"
-/>
-<path stroke="#efeae1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efeae1"
+          vector-effect="non-scaling-stroke"
+          d="
   M 890.35 562.47
   L 897.31 560.45"
-/>
-<path stroke="#e7decb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7decb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 897.31 560.45
   C 901.04 559.34 905.23 557.60 908.54 556.94
   Q 915.08 555.62 921.53 553.93
   Q 924.83 553.07 934.53 551.46
   Q 941.06 550.37 947.54 548.92"
-/>
-<path stroke="#bc9e80" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9e80"
+          vector-effect="non-scaling-stroke"
+          d="
   M 947.54 548.92
   Q 968.30 543.43 987.51 533.67"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 539.72 621.61
   Q 540.21 621.49 540.81 621.83"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 406.98 628.34
   L 392.97 618.10"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 574.25 483.14
   L 573.27 487.75
   A 1.21 1.20 34.2 0 0 573.45 488.66
   Q 574.84 490.69 577.17 490.28"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 577.17 490.28
   Q 578.71 491.75 578.75 492.41"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 578.75 492.41
   Q 576.16 494.58 573.17 493.39"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 560.79 499.36
   Q 560.18 499.34 560.19 499.75
   Q 560.22 501.79 561.76 503.49"
-/>
-<path stroke="#f4d06c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4d06c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 576.87 414.28
   Q 575.41 415.04 573.83 415.05"
-/>
-<path stroke="#f4ca3b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4ca3b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 573.83 415.05
   Q 572.93 415.18 572.19 415.00"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 605.55 417.95
   Q 610.56 421.20 615.94 422.04"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 639.27 437.83
   Q 638.89 439.19 637.00 437.35
   A 3.21 2.47 0.6 0 0 636.58 437.02
   L 626.20 430.43"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 626.20 430.43
   L 619.78 426.82"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 619.78 426.82
   Q 613.71 423.13 610.12 422.13
   Q 605.10 420.72 600.20 418.91
   Q 596.75 417.63 589.51 417.10"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 589.51 417.10
   Q 579.19 415.02 568.82 418.18"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 568.82 418.18
   L 566.34 418.74"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 566.34 418.74
   L 564.60 418.60
   A 0.19 0.19 0.0 0 1 564.53 418.24
   L 568.97 416.07"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 570.53 415.52
   Q 572.54 415.95 573.83 415.05"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 589.51 417.10
   Q 596.76 419.66 604.20 421.32
   Q 606.69 421.87 615.87 425.86
   Q 616.99 426.34 619.78 426.82"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 626.20 430.43
   Q 621.49 429.64 617.13 427.82
   Q 610.32 424.99 610.29 424.98
   Q 590.38 418.06 568.82 418.18"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 566.34 418.74
   Q 563.74 419.84 561.04 420.27
   Q 560.34 420.38 560.05 420.06
   Q 559.73 419.69 559.98 419.06"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 567.03 442.93
   L 576.31 446.61"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 576.31 446.61
   Q 576.23 448.75 575.51 448.48
   Q 571.70 447.07 567.74 446.27"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 567.74 446.27
   Q 555.86 441.16 546.24 441.00
   Q 536.07 440.84 526.19 443.40
   A 0.53 0.53 0.0 0 1 525.63 443.20
   Q 525.50 443.02 525.54 442.55"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 593.26 457.36
   Q 592.98 458.14 592.43 458.54"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 587.78 474.10
   Q 586.91 473.91 586.18 474.65"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 554.95 464.83
   Q 556.27 466.42 559.05 467.18
   A 1.46 1.44 85.5 0 1 560.00 468.00
@@ -4288,20 +6393,29 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 515.29 458.25 513.50 458.38
   Q 508.05 458.79 504.21 459.56
   Q 503.59 459.68 503.94 458.71"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 573.49 475.46
   Q 573.55 478.00 572.30 480.04"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 572.30 480.04
   C 568.44 476.23 565.13 475.50 559.58 474.88
   C 557.87 474.69 555.84 474.28 554.71 473.89
   C 544.16 470.24 536.08 467.13 526.89 465.79
   Q 516.16 464.22 504.68 463.25
   Q 501.92 463.02 498.93 462.13"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 572.30 480.04
   L 571.39 481.26
   A 0.71 0.70 -59.3 0 1 570.54 481.48
@@ -4317,28 +6431,43 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 560.13 482.64
   A 0.73 0.73 0.0 0 1 560.33 483.84
   L 560.03 484.12"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 867.62 577.16
   L 872.75 578.96"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 872.75 578.96
   C 886.46 585.03 898.99 587.96 911.49 593.43
   C 916.48 595.62 921.47 596.71 926.70 599.17
   Q 944.24 607.43 960.47 618.26"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 960.47 618.26
   L 963.71 620.64"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 963.71 620.64
   Q 966.70 623.22 970.12 625.36
   Q 972.08 626.60 974.87 632.37
   Q 975.26 633.18 975.21 634.48"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 975.21 634.48
   L 975.18 634.96
   A 0.38 0.38 0.0 0 1 974.49 635.16
@@ -4375,71 +6504,113 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 932.82 662.74 941.26 658.25 954.46 651.85
   A 0.59 0.59 0.0 0 1 955.26 652.62
   Q 955.18 652.79 954.72 653.15"
-/>
-<path stroke="#f4cf82" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cf82"
+          vector-effect="non-scaling-stroke"
+          d="
   M 954.72 653.15
   L 929.65 665.49"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 929.65 665.49
   Q 925.55 666.55 921.72 668.67
   A 2.61 2.37 21.1 0 1 921.10 668.91
   L 914.08 670.69"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 914.08 670.69
   Q 888.82 672.81 863.57 673.90
   C 857.78 674.15 853.09 674.71 847.84 674.89
   Q 842.35 675.08 836.04 675.60
   Q 766.52 681.32 696.96 686.48"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 696.96 686.48
   L 674.96 687.40"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 674.96 687.40
   L 632.98 687.57"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 632.98 687.57
   Q 631.97 686.88 631.52 686.09"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 631.52 686.09
   Q 632.67 685.56 633.57 685.61"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 633.57 685.61
   L 664.18 685.63"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 664.18 685.63
   Q 689.44 685.64 714.38 682.93
   A 0.10 0.10 0.0 0 0 714.40 682.73
   L 695.78 678.03"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 695.78 678.03
   C 689.20 677.02 682.08 676.22 676.12 675.00
   Q 660.03 671.71 644.72 665.81"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 644.72 665.81
   Q 642.92 663.15 640.69 661.80
   Q 634.18 657.87 625.95 654.81
   A 2.04 1.96 50.9 0 0 624.99 654.69
   Q 621.42 655.10 618.43 657.31"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 618.43 657.31
   Q 617.32 653.79 613.75 652.42"
-/>
-<path stroke="#f4cf82" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cf82"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1027.58 446.89
   L 1038.45 451.28"
-/>
-<path stroke="#fffac3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffac3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1038.45 451.28
   C 1040.14 452.33 1042.03 452.61 1043.56 453.65
   Q 1045.45 454.93 1046.80 455.30
@@ -4447,16 +6618,25 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1050.79 457.74 1054.39 459.30
   Q 1056.37 460.16 1061.17 462.87
   Q 1066.68 465.98 1072.60 467.15"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1231.62 570.31
   Q 1231.15 570.61 1231.10 570.74"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1231.10 570.74
   Q 1228.02 569.92 1227.64 572.40"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1227.64 572.40
   Q 1225.34 574.55 1224.16 577.15
   A 3.75 3.43 -15.9 0 1 1223.74 577.83
@@ -4464,20 +6644,32 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1199.25 588.46 1183.67 592.72 1168.10 595.69
   Q 1137.16 601.59 1131.75 602.53
   Q 1116.41 605.21 1104.15 608.42"
-/>
-<path stroke="#bc9c7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9c7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1104.15 608.42
   Q 1080.49 614.48 1057.21 622.18"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1057.21 622.18
   L 1056.44 620.90"
-/>
-<path stroke="#f4cf82" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cf82"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1056.44 620.90
   L 1048.45 614.16"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1048.45 614.16
   Q 1053.35 615.65 1057.02 619.22
   A 1.79 1.78 -32.4 0 0 1058.83 619.62
@@ -4506,8 +6698,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 1114.54 487.89
   A 2.58 2.55 -49.5 0 0 1113.36 487.99
   Q 1105.76 490.51 1099.53 495.35"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1099.53 495.35
   C 1093.30 491.72 1086.35 488.51 1080.80 484.80
   Q 1073.49 479.91 1070.14 477.62
@@ -4516,22 +6711,31 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.14 0.14 0.0 0 0 1069.96 477.86
   Q 1080.67 486.25 1086.33 489.19
   Q 1094.72 493.55 1103.15 497.95"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1103.15 497.95
   L 1104.54 499.45
   A 1.26 1.26 0.0 0 1 1102.97 501.39
   Q 1101.59 500.56 1099.52 500.31"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1099.52 500.31
   Q 1079.89 492.54 1061.59 481.83
   Q 1061.47 481.76 1061.31 481.92
   A 0.23 0.22 -52.6 0 0 1061.35 482.26
   C 1069.76 487.72 1076.06 490.72 1088.49 496.74
   Q 1091.25 498.08 1098.80 500.69"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1098.80 500.69
   C 1094.89 502.15 1085.91 497.33 1080.65 494.70
   Q 1075.78 492.26 1070.80 492.12
@@ -4540,64 +6744,97 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1068.37 500.29 1065.33 504.46
   A 2.93 2.90 57.9 0 0 1064.83 506.68
   L 1065.52 510.40"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1065.52 510.40
   Q 1058.48 506.67 1050.63 506.55
   C 1046.72 506.49 1040.23 506.69 1036.13 508.16
   Q 1032.59 509.44 1019.29 514.06
   Q 1006.54 518.50 992.83 525.37"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 992.83 525.37
   Q 992.61 525.61 991.93 525.73"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 991.93 525.73
   Q 979.87 529.28 976.20 530.53
   Q 960.92 535.70 950.28 538.68
   C 944.94 540.18 940.46 542.26 938.07 547.35"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 938.07 547.35
   L 917.57 550.08"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 917.57 550.08
   Q 902.27 552.66 897.40 553.07
   Q 892.12 553.52 875.30 553.71
   A 0.44 0.44 0.0 0 0 874.87 554.18
   L 875.44 561.76"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 875.44 561.76
   L 873.67 565.56
   A 0.57 0.56 -82.1 0 0 874.27 566.36
   L 877.72 565.83
   A 3.35 1.14 -6.0 0 0 878.17 565.74
   L 890.35 562.47"
-/>
-<path stroke="#fffefa" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffefa"
+          vector-effect="non-scaling-stroke"
+          d="
   M 890.35 562.47
   Q 888.89 565.64 883.87 566.96
   Q 877.23 568.70 870.48 570.23"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 870.48 570.23
   Q 871.43 568.82 871.77 567.18"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 871.77 567.18
   C 871.66 564.81 873.83 562.01 874.55 559.52
   A 3.14 3.13 46.2 0 0 874.58 557.87
   C 873.23 552.64 868.10 548.57 863.44 546.07
   Q 859.12 543.74 854.91 541.27"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 854.91 541.27
   Q 855.55 539.88 856.56 540.15"
-/>
-<path stroke="#fffddf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffddf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 856.56 540.15
   Q 857.07 541.00 857.39 541.14
   Q 863.85 543.88 869.34 547.97
@@ -4609,64 +6846,97 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 887.08 538.36 887.18 538.37
   A 1.62 1.49 64.2 0 1 887.97 538.68
   Q 889.80 540.05 891.91 540.13"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 891.91 540.13
   Q 893.55 541.21 895.75 541.13"
-/>
-<path stroke="#bc9c7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9c7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 895.75 541.13
   Q 899.34 542.15 903.25 541.66"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 903.25 541.66
   Q 905.02 542.63 907.16 541.89
   C 914.07 539.49 919.97 535.90 916.00 527.03"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 916.00 527.03
   Q 912.77 521.52 907.41 517.33
   Q 905.22 515.62 896.95 510.22"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 896.95 510.22
   L 896.95 509.26"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 896.95 509.26
   L 900.12 511.21
   A 2.71 2.70 45.1 0 0 902.92 511.22
   L 905.52 509.65
   A 1.21 1.00 16.7 0 1 905.78 509.54
   Q 909.63 508.41 912.64 506.62"
-/>
-<path stroke="#f4cf82" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cf82"
+          vector-effect="non-scaling-stroke"
+          d="
   M 912.64 506.62
   L 922.41 501.99
   A 0.85 0.85 0.0 0 0 922.52 500.51
   Q 920.72 499.30 920.40 496.79
   A 0.38 0.37 15.2 0 1 921.00 496.45
   L 921.49 496.82"
-/>
-<path stroke="#bc9c7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9c7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 921.49 496.82
   Q 921.62 497.16 921.96 497.51"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 921.96 497.51
   Q 922.44 499.24 923.70 500.29
   Q 930.76 506.19 939.25 509.66
   Q 945.19 512.10 953.17 512.52"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 953.17 512.52
   Q 958.05 511.75 960.15 510.64
   Q 971.32 504.75 966.61 492.75
   A 5.12 4.85 19.5 0 0 966.16 491.87
   Q 963.67 488.09 959.08 485.46
   Q 955.88 483.63 951.77 481.54"
-/>
-<path stroke="#e7ddc6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7ddc6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 951.77 481.54
   Q 956.53 482.23 959.42 480.14
   Q 960.67 479.24 961.36 478.85
@@ -4676,28 +6946,40 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 1 969.04 476.27
   Q 969.49 475.96 969.74 476.26
   Q 971.27 478.04 973.51 477.71"
-/>
-<path stroke="#e9c275" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e9c275"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1048.45 614.16
   L 1034.04 604.57"
-/>
-<path stroke="#f4f1ec" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4f1ec"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1034.04 604.57
   Q 1022.06 596.00 1010.65 591.08
   Q 1000.07 586.51 996.86 584.71
   A 0.36 0.36 0.0 0 1 996.82 584.11
   Q 997.73 583.39 998.60 583.43
   Q 1005.59 583.77 1011.73 582.49"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1011.73 582.49
   Q 1011.24 582.80 1010.71 582.97
   Q 1010.45 583.05 1010.42 583.16
   Q 1010.28 583.59 1010.62 583.84
   A 0.37 0.37 0.0 0 0 1010.89 583.91
   L 1026.97 581.92"
-/>
-<path stroke="#dcd0b9" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcd0b9"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1026.97 581.92
   Q 1032.17 580.70 1036.84 578.57
   C 1047.44 573.73 1056.24 569.58 1064.49 562.73
@@ -4707,14 +6989,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1088.32 533.32 1085.30 526.98
   A 0.35 0.35 0.0 0 0 1084.63 527.17
   L 1084.79 528.46"
-/>
-<path stroke="#f4f1ec" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4f1ec"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1084.79 528.46
   L 1081.23 520.55
   A 0.25 0.25 0.0 0 1 1081.59 520.23
   L 1084.78 522.21"
-/>
-<path stroke="#d5cec6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5cec6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1084.78 522.21
   Q 1084.24 522.14 1084.18 522.23
   A 1.59 1.50 36.1 0 0 1084.57 524.32
@@ -4724,24 +7012,36 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1091.82 533.12 1090.92 529.80
   A 1.02 0.99 22.4 0 0 1090.79 529.50
   L 1088.69 526.17"
-/>
-<path stroke="#f4f1ec" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4f1ec"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1088.69 526.17
   Q 1089.15 524.51 1087.32 521.23
   A 2.10 2.09 75.8 0 0 1085.53 520.16
   Q 1082.48 520.10 1079.67 516.13
   Q 1079.47 515.84 1078.73 515.34
   Q 1074.65 512.58 1068.07 512.47"
-/>
-<path stroke="#dcd0b9" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcd0b9"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1068.07 512.47
   Q 1070.05 511.88 1065.52 510.40"
-/>
-<path stroke="#e0d68c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0d68c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 868.41 574.76
   L 867.62 577.16"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 867.62 577.16
   Q 863.17 577.45 858.58 578.29
   Q 853.77 579.16 851.81 579.25
@@ -4751,16 +7051,26 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 815.34 578.57 811.33 577.11
   Q 805.45 574.97 801.77 573.85
   C 797.03 572.40 793.31 570.56 788.96 568.38"
-/>
-<path stroke="#e7decb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7decb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1068.07 512.47
   L 1055.21 511.83"
-/>
-<path stroke="#a48e6c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a48e6c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1055.21 511.83
   Q 1058.74 511.98 1059.79 511.06"
-/>
-<path stroke="#d7c9ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7c9ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1059.79 511.06
   L 1062.61 510.85
   A 0.35 0.35 0.0 0 0 1062.68 510.16
@@ -4769,12 +7079,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1017.78 515.41 1011.81 518.53 1005.25 520.78
   Q 1001.97 521.90 994.02 525.82
   Q 993.09 526.28 992.83 525.37"
-/>
-<path stroke="#d5cec6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5cec6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 773.03 560.00
   Q 781.20 565.13 788.96 568.38"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 788.96 568.38
   Q 794.13 571.92 798.31 574.94
   C 802.23 577.77 800.48 581.15 797.35 583.47
@@ -4783,57 +7099,89 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 772.50 572.91 775.34 569.57 777.29 567.79
   A 0.41 0.40 36.1 0 0 777.18 567.12
   L 772.82 565.12"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 948.67 570.82
   Q 938.88 569.69 929.39 568.63
   Q 920.75 567.67 912.63 567.85
   Q 900.84 568.10 895.62 568.64
   Q 891.94 569.02 881.71 571.64"
-/>
-<path stroke="#ffe13a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe13a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 881.71 571.64
   Q 876.48 573.00 871.25 574.14
   Q 871.02 574.19 870.98 573.17"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 993.54 584.81
   Q 993.34 584.91 993.18 584.97
   Q 992.95 585.06 992.95 585.24
   Q 992.96 585.54 993.28 585.70
   Q 1000.40 589.18 1007.96 592.79"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1007.96 592.79
   Q 986.96 598.29 971.55 612.96
   Q 967.60 616.71 963.71 620.64"
-/>
-<path stroke="#ac9a83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ac9a83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1024.71 579.55
   Q 1031.84 577.66 1040.56 573.32
   Q 1059.81 563.73 1073.86 549.11
   Q 1075.83 547.06 1080.63 540.65"
-/>
-<path stroke="#a47d4c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a47d4c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 947.54 548.92
   Q 946.15 548.13 946.55 547.46"
-/>
-<path stroke="#bcafa0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcafa0"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1055.21 511.83
   Q 1044.66 512.86 1038.12 514.62
   Q 1026.39 517.79 1010.50 523.67
   C 1002.77 526.53 995.12 530.15 987.51 533.67"
-/>
-<path stroke="#794e21" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#794e21"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 987.51 533.67
   Q 987.65 533.21 987.46 533.06
   Q 987.14 532.82 986.50 532.87"
-/>
-<path stroke="#b1a18e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a18e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 986.50 532.87
   L 995.89 528.61"
-/>
-<path stroke="#d7c9ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7c9ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1026.97 581.92
   L 1026.47 581.82
   A 0.35 0.35 0.0 0 1 1026.38 581.17
@@ -4844,12 +7192,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1072.69 554.35 1075.76 552.72
   A 6.33 6.29 3.7 0 0 1077.96 550.80
   C 1083.74 542.74 1086.49 538.91 1085.10 529.46"
-/>
-<path stroke="#d7c9ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7c9ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 897.31 560.45
   Q 896.47 560.00 896.00 559.34"
-/>
-<path stroke="#dcd0b9" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcd0b9"
+          vector-effect="non-scaling-stroke"
+          d="
   M 896.00 559.34
   Q 901.35 557.98 906.62 556.14
   Q 907.63 555.78 913.50 554.98
@@ -4860,13 +7214,19 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 917.06 551.70
   A 0.36 0.36 0.0 0 1 916.74 551.11
   L 917.57 550.08"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 982.43 580.31
   C 982.47 589.68 975.48 594.74 969.41 600.61
   Q 961.88 607.90 960.47 618.26"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 872.75 578.96
   Q 874.67 577.48 877.50 578.99
   Q 884.67 582.83 888.27 583.49
@@ -4883,23 +7243,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 883.98 580.58
   A 1.26 1.25 7.0 0 1 883.26 579.67
   L 881.71 571.64"
-/>
-<path stroke="#ae8b33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8b33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 870.55 567.34
   Q 868.71 570.95 864.64 573.09"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1056.44 620.90
   Q 1055.77 621.68 1054.31 620.95"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1054.31 620.95
   Q 1051.73 617.07 1047.70 615.05
   A 4.03 3.91 -12.2 0 1 1047.06 614.65
   Q 1043.04 611.61 1038.74 609.02
   Q 1023.62 599.90 1007.96 592.79"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 339.28 575.09
   L 333.37 574.14
   A 3.69 3.56 -40.8 0 0 332.48 574.09
@@ -4908,20 +7280,29 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 317.14 587.71 322.74 592.62 326.58 594.41
   Q 334.73 598.21 348.14 602.84
   Q 353.93 604.84 358.67 604.87"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 392.47 619.30
   C 395.74 623.15 399.84 625.55 404.94 628.64
   A 1.81 1.65 62.6 0 0 405.62 628.89
   Q 406.78 629.07 406.98 628.34"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 406.98 628.34
   Q 415.38 633.43 424.50 637.02
   Q 429.58 639.03 436.75 639.43
   Q 459.41 640.72 467.46 640.87"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 467.46 640.87
   L 462.78 641.09
   A 0.06 0.06 0.0 0 0 462.77 641.21
@@ -4935,25 +7316,37 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 308.90 586.87 304.87 582.66
   A 0.32 0.32 0.0 0 0 304.33 582.78
   Q 302.69 587.64 303.23 592.89"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 303.23 592.89
   Q 302.63 599.22 303.16 605.81
   A 0.61 0.61 0.0 0 1 302.08 606.23
   Q 301.93 606.04 301.49 606.01"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 467.46 640.87
   C 481.26 640.96 495.77 641.36 508.96 640.57
   Q 518.05 640.02 527.13 639.91
   A 0.45 0.33 27.3 0 0 527.26 639.89
   L 531.83 639.15"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 441.50 675.61
   Q 442.61 674.96 442.99 674.17"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 442.99 674.17
   Q 456.19 676.60 464.43 677.14
   Q 470.25 677.53 480.63 678.26
@@ -4963,8 +7356,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 514.29 680.33 526.26 679.55
   A 0.49 0.49 0.0 0 0 526.71 678.96
   L 525.29 672.02"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 525.29 672.02
   Q 524.60 666.25 524.93 660.45
   C 525.11 657.41 526.01 654.70 526.25 651.77
@@ -4975,35 +7371,54 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 363.97 638.34 347.03 628.19
   C 337.42 622.43 326.02 615.96 318.96 607.44
   C 313.33 600.66 309.94 596.31 303.23 592.89"
-/>
-<path stroke="#917d19" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#917d19"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1055.72 622.93
   L 1036.54 629.68"
-/>
-<path stroke="#807109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1036.54 629.68
   L 982.48 650.20"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 982.48 650.20
   Q 966.73 656.20 950.83 661.98
   C 945.37 663.96 939.47 665.70 933.77 667.47
   A 12.23 12.22 -56.8 0 1 931.38 667.97
   Q 926.01 668.54 920.93 670.23"
-/>
-<path stroke="#bca029" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bca029"
+          vector-effect="non-scaling-stroke"
+          d="
   M 920.93 670.23
   Q 919.40 669.97 917.80 670.50
   A 2.76 2.54 -52.5 0 1 917.05 670.63
   L 914.08 670.69"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 929.65 665.49
   Q 933.77 666.28 936.79 663.59
   A 1.74 1.45 -73.3 0 1 937.20 663.32
   L 940.45 661.87"
-/>
-<path stroke="#a48e6c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a48e6c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 674.96 687.40
   Q 676.21 687.39 676.25 687.59
   A 1.05 1.05 0.0 0 1 675.25 688.91
@@ -5046,40 +7461,61 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 702.89 686.70 696.81 687.14
   A 0.24 0.24 0.0 0 1 696.65 686.70
   L 696.96 686.48"
-/>
-<path stroke="#f4e276" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4e276"
+          vector-effect="non-scaling-stroke"
+          d="
   M 618.43 657.31
   Q 619.84 659.35 620.90 661.56
   Q 626.68 673.61 631.52 686.09"
-/>
-<path stroke="#bca029" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bca029"
+          vector-effect="non-scaling-stroke"
+          d="
   M 632.98 687.57
   L 631.17 687.91"
-/>
-<path stroke="#f4eba0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4eba0"
+          vector-effect="non-scaling-stroke"
+          d="
   M 975.45 635.42
   L 974.54 643.24
   A 0.46 0.45 89.1 0 0 975.05 643.74
   Q 976.23 643.59 976.51 643.99
   Q 976.66 644.19 976.50 644.43
   Q 976.41 644.58 976.23 644.72"
-/>
-<path stroke="#e9c275" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e9c275"
+          vector-effect="non-scaling-stroke"
+          d="
   M 975.26 644.81
   L 954.72 653.15"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 644.72 665.81
   Q 640.23 668.47 637.82 671.46
   C 634.53 675.54 633.68 680.34 633.57 685.61"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 695.78 678.03
   Q 690.04 679.89 685.55 680.08
   Q 675.88 680.49 669.73 681.37
   Q 665.08 682.04 664.18 685.63"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1054.31 620.95
   Q 1039.88 627.15 1025.09 632.21
   C 1016.16 635.27 1007.22 639.41 998.42 642.57
@@ -5090,35 +7526,57 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 941.41 662.52 941.44 662.36
   Q 941.49 662.12 941.19 661.96
   Q 940.90 661.81 940.45 661.87"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 940.45 661.87
   Q 955.81 653.58 973.36 647.06
   Q 974.88 646.50 975.26 644.81"
-/>
-<path stroke="#f1cf75" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1cf75"
+          vector-effect="non-scaling-stroke"
+          d="
   M 975.26 644.81
   L 976.23 644.72"
-/>
-<path stroke="#fcd73b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcd73b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 976.23 644.72
   Q 978.92 644.40 980.08 642.48
   A 2.79 2.79 0.0 0 0 979.80 639.22
   Q 977.99 637.11 975.45 635.42"
-/>
-<path stroke="#f1cf75" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1cf75"
+          vector-effect="non-scaling-stroke"
+          d="
   M 975.45 635.42
   Q 975.58 634.93 975.21 634.48"
-/>
-<path stroke="#ae8b33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8b33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1232.13 575.35
   L 1226.62 583.37"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1226.62 583.37
   Q 1218.86 587.90 1209.53 589.78"
-/>
-<path stroke="#6b4121" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b4121"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1209.53 589.78
   Q 1209.02 589.99 1208.93 589.89
   A 0.57 0.57 0.0 0 1 1209.18 588.94
@@ -5126,26 +7584,43 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.06 -34.1 0 0 1215.80 587.12
   Q 1218.34 585.79 1222.77 584.02
   Q 1225.12 583.07 1224.45 580.69"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1209.53 589.78
   Q 1184.97 596.22 1177.28 597.55
   Q 1144.43 603.23 1111.81 609.81"
-/>
-<path stroke="#794e21" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#794e21"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1111.81 609.81
   L 1104.15 608.42"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 923.52 492.65
   Q 923.06 492.67 922.90 492.86
   Q 922.73 493.06 922.99 493.25"
-/>
-<path stroke="#6b3001" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b3001"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 923.11 495.38
   Q 921.39 493.95 921.96 497.51"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 921.49 496.82
   L 920.74 493.87
   A 0.68 0.68 0.0 0 0 920.06 493.37
@@ -5154,20 +7629,32 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 897.04 502.19
   A 0.98 0.97 -25.0 0 1 895.83 501.76
   Q 895.81 501.73 895.96 501.26"
-/>
-<path stroke="#f4cd50" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cd50"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1040.33 450.76
   Q 1040.20 451.63 1038.45 451.28"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 912.08 523.88
   L 910.66 522.33"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 889.51 508.65
   L 873.02 500.48"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 874.67 504.83
   Q 877.22 506.68 880.16 507.58
   A 1.58 1.47 -20.5 0 1 880.50 507.72
@@ -5184,24 +7671,36 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.33 1.30 87.5 0 1 895.91 513.29
   Q 894.61 511.43 893.81 511.23
   Q 891.27 510.57 889.51 508.65"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 889.51 508.65
   Q 901.28 513.64 910.66 522.33"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 910.66 522.33
   Q 906.73 523.19 910.99 525.09
   Q 911.72 525.41 911.98 525.01
   Q 912.22 524.65 912.08 523.88"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 912.08 523.88
   L 915.13 527.51
   A 0.29 0.24 72.3 0 0 915.27 527.60
   Q 915.85 527.79 916.00 527.03"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 903.25 541.66
   C 907.59 539.62 912.03 538.93 914.55 534.09
   A 0.38 0.36 -62.0 0 0 914.41 533.60
@@ -5211,12 +7710,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 888.74 536.78 883.03 533.17
   C 880.81 531.77 878.75 529.48 876.47 527.79
   Q 875.49 527.05 873.11 523.61"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 873.11 523.61
   Q 873.41 522.86 873.80 522.70"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 873.80 522.70
   L 883.04 527.51
   A 0.61 0.56 -20.8 0 0 883.19 527.57
@@ -5226,8 +7731,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 901.84 529.15 904.39 526.02 907.28 524.42
   A 1.18 1.17 -9.5 0 0 907.86 523.61
   Q 908.18 521.85 906.21 520.48"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 906.21 520.48
   Q 904.55 520.23 902.91 521.05
   A 1.49 1.45 38.0 0 1 901.90 521.16
@@ -5235,37 +7743,58 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 871.31 508.98 858.24 505.21
   Q 846.81 501.91 833.28 501.94
   Q 820.65 501.97 808.05 502.18"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 808.05 502.18
   L 798.02 503.27"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 798.02 503.27
   Q 796.72 503.34 795.47 502.62
   A 1.70 1.68 -29.2 0 0 794.60 502.38
   L 793.18 502.36"
-/>
-<path stroke="#b18f6e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b18f6e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 986.50 532.87
   Q 969.60 541.12 951.56 546.57
   Q 949.97 547.05 946.55 547.46"
-/>
-<path stroke="#dcd0b9" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcd0b9"
+          vector-effect="non-scaling-stroke"
+          d="
   M 946.55 547.46
   L 938.07 547.35"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 999.27 436.25
   Q 998.67 435.91 998.18 435.88
   A 0.38 0.38 0.0 0 0 997.81 436.41
   Q 998.24 437.43 1000.07 437.45"
-/>
-<path stroke="#bc9c7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9c7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1001.60 439.67
   Q 999.75 439.78 997.81 438.93"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 997.81 438.93
   Q 993.33 437.20 989.53 438.82
   Q 985.15 440.68 979.15 442.90
@@ -5291,35 +7820,50 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 981.69 436.48 985.39 435.82 989.88 434.12
   Q 991.22 433.61 991.43 432.74
   Q 991.54 432.27 990.59 432.22"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 990.59 432.22
   Q 989.97 430.91 988.67 431.26"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 988.67 431.26
   L 985.28 429.12
   A 14.50 14.30 -19.9 0 0 981.89 427.56
   Q 966.72 422.85 954.98 421.32
   Q 942.96 419.76 925.37 419.84
   Q 918.26 419.88 909.13 423.11"
-/>
-<path stroke="#ac9a83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ac9a83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1059.79 511.06
   Q 1052.87 510.45 1050.19 510.99
   C 1045.44 511.94 1040.12 512.47 1035.58 513.89
   Q 1024.36 517.38 1011.14 522.09
   C 1006.03 523.90 1001.00 526.40 995.89 528.61"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 995.89 528.61
   Q 994.97 527.56 993.81 527.42
   A 0.55 0.55 0.0 0 0 993.52 527.46
   L 984.78 531.12
   A 0.40 0.39 -72.3 0 1 984.42 530.42
   L 991.93 525.73"
-/>
-<path stroke="#dcaf53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcaf53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 912.64 506.62
   Q 910.67 506.11 914.36 504.68
   Q 915.09 504.40 917.17 503.34
@@ -5330,8 +7874,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 911.86 500.49 911.71 501.13
   A 0.87 0.87 0.0 0 1 911.12 501.77
   Q 907.24 503.06 903.31 502.82"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 903.31 502.82
   L 908.27 500.93
   A 0.40 0.40 0.0 0 0 908.50 500.42
@@ -5340,59 +7887,94 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 895.09 503.92
   A 0.80 0.79 19.1 0 0 894.92 504.00
   Q 893.48 504.89 891.20 505.67"
-/>
-<path stroke="#96704c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#96704c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1231.10 570.74
   L 1227.33 577.67
   A 1.12 1.04 -9.3 0 1 1227.16 577.89
   L 1224.45 580.69"
-/>
-<path stroke="#a48e6c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a48e6c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1224.45 580.69
   Q 1223.67 581.31 1223.17 581.30
   A 0.36 0.36 0.0 0 1 1222.94 580.67
   Q 1226.78 577.33 1227.64 572.40"
-/>
-<path stroke="#b1a18e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a18e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1099.53 495.35
   Q 1101.67 496.44 1103.15 497.95"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 951.77 481.54
   L 946.24 479.96
   A 2.40 1.89 61.3 0 1 945.77 479.76
   L 942.28 477.83"
-/>
-<path stroke="#d2aa34" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2aa34"
+          vector-effect="non-scaling-stroke"
+          d="
   M 871.77 567.18
   L 870.55 567.34"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 870.55 567.34
   L 870.62 566.40
   A 0.28 0.28 0.0 0 0 870.17 566.15
   Q 869.52 566.65 868.68 566.76"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 868.68 566.76
   Q 872.91 562.31 872.57 557.58
   C 872.29 553.65 869.24 551.41 866.05 549.82
   A 2.50 2.45 -8.0 0 1 865.33 549.29
   Q 863.99 547.89 861.94 547.43"
-/>
-<path stroke="#d2aa34" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2aa34"
+          vector-effect="non-scaling-stroke"
+          d="
   M 861.94 547.43
   L 855.04 543.65"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 896.00 559.34
   L 875.44 561.76"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 977.97 452.01
   Q 982.02 452.83 983.89 452.17"
-/>
-<path stroke="#bc9c7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9c7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 983.89 452.17
   Q 986.19 453.39 988.58 454.21
   Q 991.67 455.28 993.13 456.40
@@ -5412,28 +7994,45 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 999.76 478.56 993.60 481.01
   Q 986.23 483.95 978.81 480.40
   C 977.59 479.81 975.17 478.85 973.51 477.71"
-/>
-<path stroke="#a47d4c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a47d4c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 973.51 477.71
   L 967.04 473.78"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 967.04 473.78
   L 964.43 471.30
   A 0.57 0.21 20.3 0 1 964.36 471.24
   L 959.17 467.29
   A 0.82 0.80 -29.3 0 0 958.58 467.13
   Q 954.88 467.64 951.21 469.62"
-/>
-<path stroke="#a47d4c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a47d4c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 951.21 469.62
   L 941.55 474.01"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 941.55 474.01
   Q 940.81 473.70 940.81 473.01"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 940.81 473.01
   Q 948.47 468.46 956.97 465.69
   A 0.53 0.53 0.0 0 0 957.11 464.75
@@ -5442,27 +8041,39 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 952.62 460.40
   A 0.84 0.76 87.1 0 0 952.29 460.07
   L 946.69 457.18"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 946.69 457.18
   Q 946.18 456.65 945.54 456.68"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 945.54 456.68
   Q 943.35 455.07 942.32 454.69
   Q 929.45 449.95 916.10 447.70
   C 910.12 446.69 905.32 446.96 898.84 446.74
   C 896.43 446.65 893.32 447.27 890.53 447.31
   Q 886.76 447.37 881.76 450.25"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 878.44 448.74
   Q 879.11 448.11 880.45 447.73
   C 893.02 444.20 905.08 443.73 918.22 446.39
   C 928.59 448.48 939.27 450.90 947.80 455.68
   Q 955.23 459.83 965.30 466.19"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 965.30 466.19
   Q 968.07 468.34 969.62 468.67
   Q 975.21 469.88 977.14 470.81
@@ -5474,39 +8085,60 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 976.44 469.54
   A 0.37 0.36 -32.8 0 1 976.58 468.91
   Q 980.35 467.84 983.38 465.69"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 983.38 465.69
   L 984.31 464.70
   A 1.18 1.17 52.8 0 0 984.49 463.34
   Q 983.82 462.09 983.89 460.55
   A 1.49 1.48 19.9 0 0 983.30 459.31
   L 977.94 455.24"
-/>
-<path stroke="#bc9834" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9834"
+          vector-effect="non-scaling-stroke"
+          d="
   M 977.94 455.24
   L 964.16 448.05"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 959.93 445.77
   Q 955.20 443.22 948.66 440.57
   Q 945.39 439.25 942.53 439.15"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 941.03 438.81
   Q 941.65 438.95 942.14 438.85
   A 0.19 0.19 0.0 0 0 942.17 438.48
   L 940.64 437.87"
-/>
-<path stroke="#4e2a10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4e2a10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1056.66 625.87
   L 1055.72 622.93"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1055.72 622.93
   Q 1056.45 622.38 1057.21 622.18"
-/>
-<path stroke="#e7deb0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7deb0"
+          vector-effect="non-scaling-stroke"
+          d="
   M 880.44 533.54
   C 878.26 533.08 877.05 530.95 875.32 530.23
   A 0.20 0.20 0.0 0 0 875.09 530.54
@@ -5515,12 +8147,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 858.03 539.02
   A 0.76 0.71 8.8 0 0 857.62 539.30
   Q 857.13 539.96 856.56 540.15"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 854.91 541.27
   L 853.05 539.76"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 881.60 495.40
   Q 880.43 496.96 876.70 496.30
   A 0.10 0.09 18.3 0 0 876.59 496.35
@@ -5529,39 +8167,60 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 877.94 496.65 878.64 497.63
   A 0.94 0.92 63.6 0 0 879.66 497.98
   Q 894.99 493.61 908.98 486.27"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 897.28 500.71
   L 895.96 501.26"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 895.96 501.26
   L 888.17 502.89
   A 0.50 0.50 0.0 0 0 887.93 503.75
   Q 889.71 505.33 891.20 505.67"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 891.20 505.67
   L 893.59 506.33"
-/>
-<path stroke="#e4bc53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4bc53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 893.59 506.33
   Q 893.14 507.60 894.38 507.91
   Q 896.05 508.34 896.95 509.26"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 896.95 510.22
   L 872.78 498.71"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 872.78 498.71
   Q 864.55 493.16 858.37 491.64
   Q 855.91 491.04 848.02 488.78
   Q 843.23 487.41 833.54 486.77
   A 1.67 1.67 0.0 0 0 832.67 486.95
   Q 830.60 488.01 828.76 486.85"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 830.22 485.52
   Q 834.27 483.29 837.85 480.34
   Q 838.38 479.91 840.41 479.37
@@ -5569,20 +8228,29 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 840.95 479.78 841.28 479.82
   C 842.84 480.00 843.86 478.68 845.37 478.17
   Q 848.24 477.20 846.93 476.67"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 997.81 438.93
   L 995.82 439.27"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 995.82 439.27
   Q 990.22 440.68 984.56 443.63
   A 1.33 1.31 -9.4 0 0 983.85 444.61
   L 983.45 447.24
   A 1.54 1.53 -14.9 0 1 982.87 448.23
   L 977.97 452.01"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 977.97 452.01
   Q 975.97 450.24 973.81 449.60
   Q 970.10 448.51 969.85 448.39
@@ -5593,30 +8261,49 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 969.93 440.45
   A 3.95 3.94 25.7 0 1 971.05 440.06
   Q 973.92 439.56 976.05 437.64"
-/>
-<path stroke="#b1a18e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b1a18e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1099.52 500.31
   Q 1099.71 500.89 1098.80 500.69"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 892.96 539.95
   Q 892.30 539.85 891.91 540.13"
-/>
-<path stroke="#bc9834" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9834"
+          vector-effect="non-scaling-stroke"
+          d="
   M 895.75 541.13
   Q 894.76 540.16 892.96 539.95"
-/>
-<path stroke="#bc9d65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9d65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 892.96 539.95
   Q 886.19 537.70 880.44 533.54"
-/>
-<path stroke="#a47d4c" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a47d4c"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 880.44 533.54
   Q 878.81 532.53 877.83 530.99
   A 1.67 1.61 1.8 0 0 877.37 530.52
   L 875.53 529.27"
-/>
-<path stroke="#f4cf82" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cf82"
+          vector-effect="non-scaling-stroke"
+          d="
   M 995.82 439.27
   L 1000.59 441.22
   A 1.27 1.24 1.4 0 1 1001.28 441.93
@@ -5625,37 +8312,58 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 996.05 452.55 994.23 454.40
   A 1.20 1.20 0.0 0 1 992.84 454.63
   Q 988.32 452.42 983.89 452.17"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 893.59 506.33
   Q 898.44 503.81 903.31 502.82"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 953.17 512.52
   Q 953.47 511.52 953.24 510.67"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 953.24 510.67
   L 957.83 509.56"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 957.83 509.56
   Q 960.61 508.92 963.29 507.04
   Q 966.36 504.88 965.45 501.03"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 965.45 501.03
   Q 966.45 499.43 966.10 497.73
   Q 965.42 494.36 965.31 492.93
   A 1.41 1.40 21.2 0 0 964.93 492.08
   Q 957.12 483.70 945.67 481.35"
-/>
-<path stroke="#ad7907" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad7907"
+          vector-effect="non-scaling-stroke"
+          d="
   M 868.68 566.76
   Q 865.99 571.66 859.26 573.23
   Q 851.83 574.97 844.59 573.90"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 837.57 572.59
   Q 831.30 568.68 824.03 566.47
   A 0.59 0.58 -76.8 0 1 823.63 565.82
@@ -5664,27 +8372,39 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 858.05 564.63 868.42 558.54
   A 2.06 2.03 0.4 0 0 869.14 557.84
   Q 870.26 556.00 869.01 554.86"
-/>
-<path stroke="#ffe450" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe450"
+          vector-effect="non-scaling-stroke"
+          d="
   M 867.73 553.42
   L 862.55 548.48"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 371.99 594.00
   L 365.29 589.00
   A 0.21 0.21 0.0 0 0 364.95 589.21
   Q 366.18 595.98 363.93 602.47
   Q 362.41 606.89 358.67 604.87"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 358.67 604.87
   Q 358.89 603.75 359.83 601.63
   Q 362.06 596.63 360.36 591.69
   Q 359.86 590.24 358.08 585.50
   Q 355.50 578.68 348.52 576.09
   C 345.71 575.05 342.38 575.16 339.28 575.09"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 339.28 575.09
   L 344.17 574.94
   A 0.26 0.25 -10.5 0 0 344.41 574.60
@@ -5692,27 +8412,39 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.74 0.73 -7.7 0 0 343.62 573.73
   C 337.98 573.38 333.03 572.47 327.22 569.54
   C 321.83 566.82 315.45 564.43 309.73 567.93"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 311.55 560.04
   Q 310.86 561.15 311.02 561.98
   A 0.67 0.67 0.0 0 0 311.68 562.52
   Q 313.80 562.52 315.44 563.00
   Q 318.70 563.95 323.32 565.80"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 323.32 565.80
   L 312.77 563.95
   A 0.96 0.94 27.0 0 0 311.92 564.22
   Q 310.42 565.78 309.73 567.93"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 309.73 567.93
   Q 307.16 571.94 306.05 576.17
   A 0.74 0.73 -51.7 0 1 304.69 576.33
   Q 304.43 575.85 304.35 575.02"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 525.29 672.02
   Q 504.73 671.79 492.77 670.91
   C 475.88 669.67 455.33 666.52 437.24 664.55
@@ -5731,26 +8463,42 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 366.47 655.10 372.38 657.38
   Q 381.49 660.90 387.58 662.64
   Q 393.74 664.39 407.73 667.70"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 407.73 667.70
   L 407.25 668.96"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 442.99 674.17
   Q 435.11 673.37 427.40 671.66
   Q 419.39 669.89 417.58 669.55
   Q 412.66 668.62 407.73 667.70"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 990.38 650.57
   L 982.48 650.20"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1032.28 634.59
   L 1036.54 629.68"
-/>
-<path stroke="#6b4121" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b4121"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 917.31 673.58
   L 915.03 673.74
   A 0.23 0.22 33.8 0 1 914.94 673.30
@@ -5761,16 +8509,25 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 914.41 671.83 914.30 671.74
   A 0.30 0.28 -28.2 0 1 914.47 671.24
   L 920.93 670.23"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 608.93 655.41
   Q 612.47 661.25 617.34 666.40"
-/>
-<path stroke="#bca029" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bca029"
+          vector-effect="non-scaling-stroke"
+          d="
   M 633.10 692.29
   L 633.26 691.67"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 849.95 733.31
   Q 861.59 733.55 873.14 734.59
   Q 876.82 734.92 879.51 736.17
@@ -5785,51 +8542,78 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 552.72 666.91 544.17 661.02 531.79 659.85
   A 0.47 0.47 0.0 0 0 531.28 660.28
   Q 530.67 667.53 532.32 674.83"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 532.32 674.83
   L 532.56 679.24"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 961.66 703.70
   L 969.14 709.18"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 969.14 709.18
   Q 967.76 709.45 966.69 709.16
   A 2.21 2.21 0.0 0 0 965.05 709.36
   L 964.71 709.55
   A 0.47 0.47 0.0 0 0 964.73 710.39
   Q 968.34 712.09 972.09 711.50"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 972.09 711.50
   Q 974.47 711.54 974.96 712.67"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 974.96 712.67
   L 947.47 718.14
   A 0.20 0.20 0.0 0 0 947.31 718.37
   A 0.22 0.20 81.9 0 0 947.54 718.56
   L 957.45 717.06"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 957.45 717.06
   L 965.76 721.48
   A 1.40 1.37 56.9 0 0 966.48 721.64
   L 985.33 720.53"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 985.33 720.53
   Q 987.00 720.63 988.23 721.37"
-/>
-<path stroke="#f4cf82" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cf82"
+          vector-effect="non-scaling-stroke"
+          d="
   M 988.23 721.37
   L 988.33 721.70
   A 0.14 0.14 0.0 0 1 988.20 721.88
   L 954.30 725.11"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 954.30 725.11
   C 947.17 725.69 939.43 726.84 932.97 727.18
   C 925.44 727.58 917.42 728.87 910.18 729.33
@@ -5837,8 +8621,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 889.37 731.00 884.39 730.83 881.40 731.24
   C 875.29 732.07 870.12 731.75 864.11 732.52
   C 859.85 733.07 854.67 733.01 849.95 733.31"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 849.95 733.31
   Q 836.33 734.01 822.65 734.63
   Q 821.46 734.68 820.83 734.55
@@ -5855,8 +8642,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 638.57 698.08
   A 2.17 2.15 -86.3 0 1 638.10 697.54
   Q 636.00 694.32 633.26 691.67"
-/>
-<path stroke="#bcae9b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bcae9b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 633.26 691.67
   Q 633.27 690.79 633.71 690.88
   Q 635.03 691.16 636.31 691.53
@@ -5868,25 +8658,40 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 837.40 681.03 841.61 680.39 845.53 680.12
   Q 875.32 678.07 899.87 675.94
   C 905.55 675.44 911.53 674.51 917.31 673.58"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 917.31 673.58
   Q 930.27 671.78 942.77 667.78
   Q 966.84 660.07 990.38 650.57"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 990.38 650.57
   L 1032.28 634.59"
-/>
-<path stroke="#918b8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#918b8a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1032.28 634.59
   L 1056.66 625.87"
-/>
-<path stroke="#bc9c7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9c7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1056.66 625.87
   Q 1083.90 616.80 1111.81 609.81"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1230.64 633.72
   Q 1238.51 618.17 1240.59 613.15
   Q 1243.46 606.25 1245.58 597.43
@@ -5905,8 +8710,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1103.37 649.12 1095.66 651.05
   C 1067.15 658.18 1039.22 671.55 1013.32 683.42
   C 994.93 691.85 978.11 697.72 959.42 702.46"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 959.42 702.46
   C 954.61 699.60 951.75 696.35 946.79 694.19
   Q 946.05 693.86 945.59 693.32
@@ -5920,44 +8728,68 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1175.55 622.49 1202.31 619.58
   Q 1209.72 618.77 1214.59 613.09
   C 1222.84 603.45 1227.52 593.91 1232.36 580.78"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1232.36 580.78
   Q 1235.13 575.96 1232.13 575.35"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1232.13 575.35
   Q 1232.66 574.48 1232.75 573.90"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1232.36 580.78
   Q 1232.53 580.17 1232.41 579.97
   A 0.86 0.85 -44.8 0 0 1230.93 579.97
   Q 1229.58 582.24 1226.62 583.37"
-/>
-<path stroke="#ad7907" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad7907"
+          vector-effect="non-scaling-stroke"
+          d="
   M 887.93 476.11
   Q 904.40 480.32 919.45 490.29"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 919.45 490.29
   Q 908.44 496.50 897.28 500.71"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 897.28 500.71
   L 896.67 499.96
   A 0.25 0.25 0.0 0 1 896.76 499.58
   L 912.86 492.48
   A 2.01 2.01 0.0 0 0 913.47 489.22
   Q 911.48 487.24 908.98 486.27"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 908.98 486.27
   Q 908.07 484.35 906.58 485.33
   Q 901.18 488.89 894.13 491.48
   Q 888.09 493.71 881.60 495.40"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 881.60 495.40
   Q 887.85 491.48 895.17 489.18
   Q 899.02 487.97 900.41 487.28
@@ -5965,31 +8797,46 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.21 0.21 0.0 0 0 905.30 484.21
   Q 898.81 480.87 891.63 478.91
   Q 869.25 472.79 846.93 476.67"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 846.93 476.67
   L 839.41 478.00
   A 0.63 0.62 23.8 0 0 839.17 478.09
   L 829.93 483.99"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 932.95 504.75
   L 924.85 499.15
   A 1.45 1.44 -83.4 0 1 924.33 498.49
   L 923.11 495.38"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 923.11 495.38
   Q 922.61 494.18 922.99 493.25"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 922.99 493.25
   Q 924.53 492.63 925.24 493.71
   Q 925.40 493.95 925.34 494.86
   Q 925.30 495.51 926.15 495.60
   Q 927.70 495.75 928.09 495.94"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 928.09 495.94
   C 928.10 498.87 933.20 500.15 935.73 500.82
   Q 937.98 501.41 945.03 501.02
@@ -5998,44 +8845,75 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 948.14 499.00 945.59 499.70
   A 5.03 4.71 32.8 0 1 944.71 499.86
   Q 940.05 500.22 935.79 498.98"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 935.79 498.98
   Q 937.87 497.98 940.98 498.02"
-/>
-<path stroke="#d2aa34" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2aa34"
+          vector-effect="non-scaling-stroke"
+          d="
   M 935.79 498.98
   L 928.09 495.94"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 925.88 492.27
   Q 925.07 492.88 923.52 492.65"
-/>
-<path stroke="#6b3001" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b3001"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 923.52 492.65
   Q 921.07 489.89 919.45 490.29"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 872.78 498.71
   L 873.02 500.48"
-/>
-<path stroke="#d2ac4a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ac4a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 873.02 500.48
   L 871.26 499.70"
-/>
-<path stroke="#d2af66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2af66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 871.26 499.70
   L 869.01 498.83"
-/>
-<path stroke="#d2aa34" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2aa34"
+          vector-effect="non-scaling-stroke"
+          d="
   M 869.01 498.83
   Q 866.70 497.37 863.89 497.03"
-/>
-<path stroke="#d2af66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2af66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 863.89 497.03
   L 847.98 491.82"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 847.98 491.82
   Q 844.10 489.31 839.41 489.65
   A 0.26 0.26 0.0 0 1 839.13 489.45
@@ -6044,57 +8922,87 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 834.08 488.79 830.34 488.86
   A 0.28 0.27 -87.5 0 0 830.08 489.10
   L 830.04 489.42"
-/>
-<path stroke="#d2af66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2af66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 830.04 489.42
   Q 826.39 488.76 822.85 489.31"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 822.85 489.31
   L 820.41 488.82"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 809.35 493.87
   Q 807.33 494.86 804.93 495.09
   A 2.81 2.79 -64.2 0 0 803.71 495.52
   Q 801.02 497.28 799.13 496.47"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 866.28 500.87
   L 862.42 500.81
   A 3.49 3.33 -34.3 0 1 861.45 500.65
   C 855.06 498.60 849.78 496.74 842.35 495.37
   Q 841.04 495.13 837.42 493.57"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 863.89 497.03
   Q 866.00 498.62 869.01 498.83"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 871.26 499.70
   Q 870.66 499.50 870.29 499.49
   A 0.20 0.19 59.0 0 0 870.20 499.86
   L 880.75 505.22
   A 0.63 0.62 56.2 0 1 880.52 506.40
   C 878.23 506.57 877.10 504.71 874.67 504.83"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 874.67 504.83
   L 866.28 500.87"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 866.28 500.87
   C 861.58 498.75 856.63 496.44 851.83 495.15
   Q 845.07 493.34 843.04 492.82
   Q 841.32 492.37 839.80 493.11
   A 2.32 2.19 -60.6 0 1 839.22 493.29
   L 837.42 493.57"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 837.42 493.57
   Q 837.19 493.31 836.90 493.19"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 836.90 493.19
   Q 832.31 491.11 827.58 491.42
   Q 824.88 491.59 822.95 491.28
@@ -6103,121 +9011,187 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 816.07 491.81
   A 1.01 1.01 0.0 0 1 815.42 492.32
   L 809.51 493.75"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 809.51 493.75
   Q 809.43 493.81 809.35 493.87"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 809.35 493.87
   Q 808.34 493.99 807.81 493.78
   A 0.48 0.47 29.3 0 1 807.60 493.05
   L 808.56 491.80"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 873.11 523.61
   Q 872.89 521.02 870.23 522.00
   Q 866.05 523.53 863.57 523.82"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 798.02 503.27
   Q 802.37 503.56 808.74 502.88
   Q 812.71 502.45 817.74 503.44
   Q 820.13 503.90 826.32 503.45"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 872.12 518.80
   Q 880.06 526.80 891.08 527.19"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 873.80 522.70
   L 870.53 520.21"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 870.53 520.21
   Q 857.68 510.57 844.57 507.88
   Q 828.23 504.53 805.02 505.41
   Q 803.90 505.46 803.43 506.23
   A 0.86 0.85 -81.0 0 1 802.87 506.64
   L 801.06 507.05"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 799.37 506.23
   Q 798.32 504.10 796.18 505.04"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 836.90 493.19
   Q 831.65 493.76 826.72 493.02
   A 8.21 8.14 -42.1 0 0 825.01 492.94
   L 809.51 493.75"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 906.21 520.48
   Q 905.82 521.07 905.82 522.03
   Q 905.83 523.03 905.03 523.39
   A 0.79 0.78 -1.1 0 0 904.60 523.83
   Q 903.63 526.28 901.35 526.90
   Q 896.82 528.13 891.08 527.19"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 891.08 527.19
   Q 881.42 523.81 872.12 518.80"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 872.12 518.80
   Q 869.01 516.96 865.41 514.91
   Q 854.40 508.66 842.15 505.75
   Q 839.43 505.10 834.25 504.56
   Q 830.26 504.14 826.32 503.45"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 826.32 503.45
   Q 823.51 502.92 820.62 503.14
   C 820.16 503.18 819.51 502.98 819.17 502.65
   A 0.51 0.51 0.0 0 0 818.81 502.50
   L 808.05 502.18"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 990.59 432.22
   L 976.05 437.64"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 976.05 437.64
   Q 975.51 437.05 974.27 437.05"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1000.08 435.45
   Q 991.92 430.01 982.95 426.40
   Q 978.64 424.67 971.60 423.07
   Q 965.82 421.76 960.07 420.39"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 916.19 419.12
   Q 911.34 420.10 909.13 423.11"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 909.13 423.11
   Q 909.45 423.21 909.76 423.31"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 905.00 422.20
   Q 902.66 420.36 900.81 421.28"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1008.45 423.94
   L 1014.14 426.58
   A 0.82 0.53 -12.0 0 0 1014.27 426.63
   Q 1019.12 428.09 1023.62 430.40
   A 0.50 0.49 -75.0 0 0 1024.34 429.98
   Q 1024.37 429.45 1023.91 428.60"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1023.91 428.60
   L 1029.47 432.04
   A 1.23 1.20 -83.8 0 1 1029.98 432.69
   Q 1031.52 437.47 1027.25 440.50"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1016.95 443.37
   C 1018.67 439.66 1024.43 441.53 1025.45 436.94
   C 1026.05 434.26 1022.07 432.73 1019.92 432.37
@@ -6229,39 +9203,57 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.06 0.06 0.0 0 0 938.88 416.29
   Q 947.93 416.81 958.25 418.69
   Q 962.57 419.48 960.07 420.39"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 960.07 420.39
   Q 940.51 417.16 920.76 418.40
   Q 918.26 418.55 916.19 419.12"
-/>
-<path stroke="#d2a10a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2a10a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 916.19 419.12
   Q 911.59 419.16 907.23 419.40
   Q 907.10 419.41 904.38 420.07
   Q 901.73 420.71 900.10 417.06"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 988.67 431.26
   Q 988.98 431.91 988.24 432.03
   Q 980.82 433.24 974.27 437.05"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 974.27 437.05
   Q 968.38 439.37 962.82 442.58
   Q 960.14 444.13 957.76 442.40
   A 2.57 2.21 -13.7 0 0 957.19 442.11
   L 938.38 435.78"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 938.38 435.78
   Q 936.26 434.79 934.01 434.03
   Q 931.41 433.15 929.59 432.43
   Q 926.40 431.16 922.91 430.58
   A 5.90 5.68 -26.8 0 1 921.42 430.12
   Q 919.29 429.14 917.05 428.80"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 917.05 428.80
   Q 916.01 426.71 913.13 427.25
   A 0.53 0.53 0.0 0 1 912.79 426.25
@@ -6274,48 +9266,75 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 908.67 427.75
   A 0.93 0.90 3.7 0 1 908.13 428.21
   Q 907.28 428.49 907.27 429.23"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 907.27 429.23
   Q 905.91 429.59 904.51 429.18"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 965.45 501.03
   L 957.83 509.56"
-/>
-<path stroke="#ad7907" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad7907"
+          vector-effect="non-scaling-stroke"
+          d="
   M 953.24 510.67
   Q 942.37 510.27 932.95 504.75"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 932.95 504.75
   C 938.52 504.49 944.94 504.58 949.82 502.97
   C 953.19 501.86 960.70 499.58 962.82 496.67
   A 1.74 1.72 65.0 0 0 963.15 495.75
   Q 963.23 494.41 962.42 493.59"
-/>
-<path stroke="#ffe450" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe450"
+          vector-effect="non-scaling-stroke"
+          d="
   M 962.42 493.59
   Q 962.11 492.67 961.63 492.07
   A 0.81 0.80 -24.9 0 0 960.82 491.78
   Q 960.22 491.92 960.18 491.63"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 960.18 491.63
   Q 960.02 489.01 957.95 487.78
   Q 953.91 485.38 949.56 483.06
   A 0.49 0.49 0.0 0 0 948.85 483.61
   L 948.96 484.05"
-/>
-<path stroke="#ffe450" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe450"
+          vector-effect="non-scaling-stroke"
+          d="
   M 948.96 484.05
   Q 948.64 483.80 948.22 483.74"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 941.55 474.01
   Q 939.88 475.34 937.79 476.10"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 940.81 473.01
   L 936.70 474.85
   A 0.62 0.61 -25.2 0 1 935.90 474.57
@@ -6333,46 +9352,70 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 934.24 474.98
   A 1.47 1.47 0.0 0 1 935.40 475.37
   Q 936.36 476.29 937.79 476.10"
-/>
-<path stroke="#dcaf53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dcaf53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 937.79 476.10
   Q 939.38 477.52 942.28 477.83"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 942.28 477.83
   Q 941.46 477.86 941.40 478.00
   A 0.98 0.98 0.0 0 0 941.83 479.22
   L 945.67 481.35"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 945.67 481.35
   L 948.22 483.74"
-/>
-<path stroke="#f4cd50" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cd50"
+          vector-effect="non-scaling-stroke"
+          d="
   M 948.22 483.74
   Q 947.62 483.86 947.48 484.77"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 947.48 484.77
   L 938.49 478.62
   A 1.71 0.83 39.8 0 0 938.29 478.51
   L 930.74 475.10"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 938.43 465.18
   Q 938.21 465.56 938.28 465.75
   Q 938.49 466.29 939.24 465.87
   Q 944.11 463.15 949.60 462.11
   A 0.60 0.60 0.0 0 0 949.69 460.95
   Q 947.57 460.21 945.49 461.13"
-/>
-<path stroke="#e7c652" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7c652"
+          vector-effect="non-scaling-stroke"
+          d="
   M 967.04 473.78
   L 959.57 469.26
   A 1.57 1.56 52.5 0 0 958.32 469.09
   Q 954.73 470.11 951.21 469.62"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 867.33 519.72
   Q 853.31 523.72 839.44 529.14
   A 0.33 0.33 0.0 0 0 839.37 529.71
@@ -6383,8 +9426,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 867.23 521.25
   A 0.30 0.30 0.0 0 1 867.31 521.80
   L 863.57 523.82"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 863.57 523.82
   L 842.10 531.12
   A 0.25 0.24 -48.1 0 0 842.12 531.59
@@ -6395,50 +9441,77 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 859.79 526.04 870.99 523.84
   A 0.63 0.63 0.0 0 1 871.69 524.21
   Q 872.93 527.11 875.53 529.27"
-/>
-<path stroke="#e4bc53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4bc53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 875.53 529.27
   Q 873.30 529.13 871.80 527.53
   A 1.32 1.32 0.0 0 0 870.96 527.11
   Q 867.62 526.79 863.97 527.76"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 863.97 527.76
   Q 864.22 527.20 864.04 526.99
   Q 863.56 526.42 862.83 526.68
   Q 854.94 529.49 847.41 532.90
   A 0.41 0.41 0.0 0 0 847.38 533.63
   Q 848.83 534.47 850.32 533.74"
-/>
-<path stroke="#e4bc53" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4bc53"
+          vector-effect="non-scaling-stroke"
+          d="
   M 850.32 533.74
   L 853.05 539.76"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 853.05 539.76
   Q 853.27 541.54 855.04 543.65"
-/>
-<path stroke="#fcd73b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcd73b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 855.04 543.65
   Q 854.23 543.39 853.66 544.39"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 853.66 544.39
   Q 850.70 538.60 847.84 536.69
   Q 837.34 529.70 821.00 522.53
   C 812.98 519.01 804.34 516.39 795.83 513.84"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 795.83 513.84
   L 794.50 513.06
   A 0.72 0.71 24.1 0 1 794.18 512.24
   L 794.45 511.36"
-/>
-<path stroke="#ffe13a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe13a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 861.94 547.43
   Q 861.99 547.85 862.55 548.48"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 862.55 548.48
   L 861.88 548.59
   A 0.65 0.65 0.0 0 0 861.56 549.71
@@ -6446,12 +9519,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 866.13 554.65 867.01 554.71
   A 0.59 0.59 0.0 0 0 867.64 554.20
   L 867.73 553.42"
-/>
-<path stroke="#ffe13a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe13a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 867.73 553.42
   Q 868.40 553.88 869.01 554.86"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 869.01 554.86
   Q 864.11 555.98 859.14 554.20
   A 1.44 1.44 0.0 0 1 858.35 553.51
@@ -6470,45 +9549,69 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.95 0.94 56.8 0 0 832.70 555.48
   Q 833.75 555.19 835.52 555.67
   Q 839.20 556.67 843.05 555.70"
-/>
-<path stroke="#fcd73b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcd73b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 846.53 555.54
   Q 849.83 556.83 853.02 554.00
   A 2.22 2.13 82.9 0 0 853.58 553.25
   Q 855.13 549.75 854.59 546.06
   Q 854.55 545.82 854.36 545.59
   Q 854.17 545.37 853.98 545.21"
-/>
-<path stroke="#8f4e02" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f4e02"
+          vector-effect="non-scaling-stroke"
+          d="
   M 938.38 435.78
   Q 934.61 435.42 940.64 437.87"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 940.64 437.87
   Q 939.69 437.85 939.41 438.19"
-/>
-<path stroke="#d2af66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2af66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 939.41 438.19
   Q 932.96 435.46 926.32 434.69"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 926.32 434.69
   Q 927.67 435.10 928.91 434.77
   A 0.16 0.16 0.0 0 0 928.92 434.47
   Q 926.76 433.79 924.76 432.85
   Q 922.47 431.78 916.21 432.19"
-/>
-<path stroke="#d2af66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2af66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 916.21 432.19
   L 909.03 431.04"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 909.03 431.04
   L 915.20 431.13
   A 0.47 0.47 0.0 0 0 915.42 430.24
   Q 914.65 429.87 913.20 429.89"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 935.47 440.37
   Q 937.92 441.87 939.31 442.42
   C 947.56 445.67 955.22 447.85 963.20 451.79
@@ -6517,12 +9620,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 977.54 458.29 978.61 460.30
   Q 979.09 461.17 979.88 461.10
   Q 980.57 461.04 980.35 459.74"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 980.35 459.74
   Q 981.16 461.01 981.33 462.22"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 981.33 462.22
   C 969.67 460.81 962.62 458.10 950.45 453.18
   C 942.95 450.14 936.18 445.91 927.76 446.73
@@ -6530,36 +9639,60 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 933.85 448.37 939.48 450.08 945.22 453.00
   Q 956.91 458.96 964.44 463.94
   Q 965.63 464.74 965.30 466.19"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 981.33 462.22
   Q 982.76 463.50 983.38 465.69"
-/>
-<path stroke="#f4ca3b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4ca3b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 977.94 455.24
   L 980.35 459.74"
-/>
-<path stroke="#ffe76c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe76c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 916.21 432.19
   L 926.32 434.69"
-/>
-<path stroke="#f4d06c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4d06c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 939.41 438.19
   L 941.03 438.81"
-/>
-<path stroke="#bc9d65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9d65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 941.03 438.81
   Q 942.33 438.85 942.53 439.15"
-/>
-<path stroke="#fcdd6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdd6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 942.53 439.15
   L 959.93 445.77"
-/>
-<path stroke="#bc9d65" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9d65"
+          vector-effect="non-scaling-stroke"
+          d="
   M 959.93 445.77
   L 964.16 448.05"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 964.16 448.05
   Q 965.99 450.14 969.04 451.17
   A 1.93 1.90 77.9 0 1 969.86 451.71
@@ -6573,8 +9706,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.75 3.51 66.9 0 0 958.15 446.91
   C 954.28 445.81 949.07 443.15 944.13 441.92
   Q 941.57 441.28 939.07 440.53"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 939.07 440.53
   Q 936.43 439.02 934.27 438.45
   Q 931.03 437.59 921.75 435.64
@@ -6585,21 +9721,30 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 907.74 433.47 905.94 433.02 903.46 433.64
   Q 903.03 433.75 900.28 433.80
   Q 895.09 433.88 890.74 437.08"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 890.74 437.08
   L 880.99 441.52
   A 0.43 0.43 0.0 0 1 880.38 441.06
   L 880.54 440.14"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 945.54 456.68
   L 947.25 458.41
   A 0.15 0.15 0.0 0 1 947.12 458.66
   Q 941.60 457.81 939.63 458.47
   Q 933.65 460.47 927.42 461.30"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 927.42 461.30
   L 936.41 457.68
   A 1.88 1.80 -72.9 0 0 936.66 457.54
@@ -6608,15 +9753,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 937.69 454.86 936.39 455.64
   Q 935.39 456.23 934.82 456.48
   Q 929.14 458.88 923.58 461.36"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 923.58 461.36
   Q 920.08 462.29 916.74 463.64
   C 915.42 464.18 914.17 464.14 912.85 464.34
   A 0.97 0.97 0.0 0 0 912.12 464.86
   L 911.22 466.62"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 911.22 466.62
   C 907.39 464.55 902.55 463.48 899.48 462.43
   Q 893.85 460.50 888.00 458.38
@@ -6624,42 +9775,66 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 875.19 457.50
   A 0.29 0.28 19.6 0 1 874.97 457.05
   L 875.30 456.57"
-/>
-<path stroke="#ad7907" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad7907"
+          vector-effect="non-scaling-stroke"
+          d="
   M 875.30 456.57
   Q 878.47 455.64 880.58 453.36
   A 0.34 0.34 0.0 0 0 880.16 452.83
   L 876.10 455.26"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 876.10 455.26
   Q 875.89 454.95 875.76 454.44"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 946.69 457.18
   L 948.56 459.07
   A 0.48 0.48 0.0 0 1 948.17 459.88
   Q 946.42 459.68 945.49 461.13"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 945.49 461.13
   L 938.43 465.18"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 938.43 465.18
   L 927.84 471.21
   A 0.41 0.40 -49.0 0 0 927.89 471.94
   Q 933.31 474.06 930.74 475.10"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 930.74 475.10
   L 912.13 467.41"
-/>
-<path stroke="#ba8e4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ba8e4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 863.97 527.76
   L 850.32 533.74"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 362.78 580.30
   Q 360.17 580.62 356.45 577.79
   Q 353.27 575.36 346.43 573.44
@@ -6668,8 +9843,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 336.29 570.03 331.18 569.22
   A 1.24 0.92 53.3 0 1 330.98 569.16
   L 323.32 565.80"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 717.03 746.52
   Q 671.78 747.24 628.05 735.72
   Q 624.58 734.80 622.68 733.88
@@ -6694,8 +9872,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 629.58 740.00 633.96 741.05 638.29 742.71
   Q 639.24 743.08 641.97 743.82
   Q 652.88 746.78 663.80 749.71"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 558.06 633.85
   L 556.70 634.21
   A 0.35 0.34 -40.8 0 0 556.65 634.86
@@ -6704,24 +9885,39 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 544.11 634.24
   A 2.18 2.17 -64.8 0 0 541.95 635.03
   Q 539.42 638.27 535.41 639.80"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 954.30 725.11
   L 957.61 726.01"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 957.61 726.01
   Q 957.96 727.25 957.77 728.53"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 957.77 728.53
   L 957.13 729.23"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 957.13 729.23
   L 948.41 735.55"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 948.41 735.55
   Q 932.96 738.87 917.44 742.42
   Q 910.35 744.04 904.47 744.67
@@ -6732,8 +9928,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 801.99 752.88 782.57 752.48 767.79 751.27
   Q 755.42 750.26 736.61 748.99
   C 730.38 748.57 723.55 747.42 717.03 746.52"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 717.03 746.52
   Q 697.39 743.80 688.23 741.85
   C 674.60 738.95 664.20 735.15 649.88 729.40
@@ -6742,12 +9941,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 576.18 702.51 563.59 693.89 552.91 683.20
   Q 549.88 680.16 545.47 675.95
   Q 538.93 669.69 532.32 674.83"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 610.35 653.94
   Q 609.71 655.01 608.93 655.41"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 608.93 655.41
   Q 606.29 653.30 603.54 651.60
   Q 600.40 649.65 599.33 648.95
@@ -6760,8 +9965,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 568.01 636.82 566.95 636.86
   A 2.04 1.97 -35.4 0 1 566.16 636.74
   L 558.06 633.85"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 558.06 633.85
   L 554.24 631.75
   A 0.68 0.68 0.0 0 0 553.92 631.67
@@ -6775,16 +9983,25 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 539.99 633.63 539.53 633.78
   A 0.58 0.58 0.0 0 1 538.81 633.40
   L 538.67 632.93"
-/>
-<path stroke="#c7a16e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c7a16e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 975.49 714.70
   Q 966.33 714.87 957.45 717.06"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.04 750.74
   L 663.80 749.71"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 663.80 749.71
   L 682.14 754.15
   A 1.15 1.14 88.2 0 1 682.98 754.94
@@ -6819,8 +10036,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1066.23 721.58 1070.27 720.68
   Q 1073.43 719.98 1075.61 717.59
   Q 1077.51 715.51 1080.53 711.94"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1080.53 711.94
   Q 1085.89 705.42 1092.87 698.57
   C 1096.04 695.45 1098.64 692.43 1101.55 689.36
@@ -6840,12 +10060,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1085.81 663.28 1061.92 673.75
   C 1051.06 678.51 1037.92 685.15 1025.54 689.50
   C 1004.28 696.97 983.99 702.78 961.66 703.70"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 961.66 703.70
   L 959.42 702.46"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1080.53 711.94
   Q 1068.53 712.87 1057.08 714.93
   Q 1044.25 717.23 1041.97 717.05
@@ -6854,111 +10080,175 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1007.29 718.80 1001.76 719.57
   Q 995.78 720.40 990.46 721.22
   Q 989.35 721.39 988.23 721.37"
-/>
-<path stroke="#f1cf75" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1cf75"
+          vector-effect="non-scaling-stroke"
+          d="
   M 985.33 720.53
   Q 981.39 716.28 975.49 714.70"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 975.49 714.70
   Q 979.22 712.41 983.63 711.73
   A 0.28 0.27 80.2 0 0 983.86 711.40
   L 983.79 711.08
   A 0.22 0.21 -11.6 0 0 983.53 710.91
   L 974.96 712.67"
-/>
-<path stroke="#fcd73b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcd73b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 972.09 711.50
   Q 970.77 709.97 969.14 709.18"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 948.41 735.55
   Q 953.55 733.08 957.13 729.23"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 957.77 728.53
   Q 958.61 728.08 958.97 727.43
   A 0.71 0.71 0.0 0 0 958.84 726.57
   Q 958.42 726.17 957.61 726.01"
-/>
-<path stroke="#6b3001" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b3001"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 888.95 474.73
   L 887.93 476.11"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 887.93 476.11
   Q 870.93 472.01 853.36 473.58
   A 9.14 8.80 -55.5 0 0 851.32 474.00
   Q 848.06 475.06 843.87 474.52
   A 2.07 1.97 35.1 0 0 842.79 474.68
   L 840.46 475.74"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 947.48 484.77
   Q 949.54 486.03 951.01 487.94"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 951.01 487.94
   Q 952.60 491.03 951.55 492.51
   Q 949.68 495.15 948.74 495.77
   Q 945.96 497.59 940.98 498.02"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 940.98 498.02
   Q 939.42 498.09 938.32 497.70
   A 0.28 0.28 0.0 0 1 938.25 497.21
   L 939.55 496.29"
-/>
-<path stroke="#ad7907" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad7907"
+          vector-effect="non-scaling-stroke"
+          d="
   M 939.55 496.29
   Q 942.52 496.81 945.72 495.40
   Q 950.94 493.11 948.88 488.24"
-/>
-<path stroke="#ae8e49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 944.71 484.95
   Q 937.93 479.71 929.88 477.12"
-/>
-<path stroke="#ae8b33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8b33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 927.41 475.86
   Q 923.64 473.18 919.56 472.29"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 962.42 493.59
   L 962.39 494.42
   A 0.50 0.50 0.0 0 1 961.66 494.85
   Q 960.00 494.01 958.89 492.40
   A 2.47 2.40 -2.5 0 0 958.08 491.68
   L 951.01 487.94"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 939.55 496.29
   Q 935.13 497.10 933.49 496.71
   Q 928.48 495.50 925.88 492.27"
-/>
-<path stroke="#ad7907" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad7907"
+          vector-effect="non-scaling-stroke"
+          d="
   M 925.88 492.27
   Q 914.20 484.67 910.49 482.74
   Q 902.29 478.48 888.95 474.73"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 888.95 474.73
   L 877.78 472.40"
-/>
-<path stroke="#ffe76c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe76c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 822.85 489.31
   Q 820.28 490.44 817.47 489.53"
-/>
-<path stroke="#fcdd6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdd6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 847.98 491.82
   L 839.55 490.16
   Q 839.50 490.15 839.45 490.14
   L 830.04 489.42"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 870.53 520.21
   Q 870.62 522.19 867.33 519.72"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 867.33 519.72
   Q 855.46 511.07 839.60 508.92
   Q 825.52 507.02 813.38 507.13
@@ -6967,204 +10257,325 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 796.41 511.97
   A 0.53 0.53 0.0 0 1 795.63 511.72
   Q 795.47 511.31 795.45 510.70"
-/>
-<path stroke="#ad7907" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad7907"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1032.22 432.95
   Q 1033.57 436.58 1031.37 440.13"
-/>
-<path stroke="#ae8b33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8b33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1023.91 428.60
   L 1009.99 421.89"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 970.28 412.13
   C 964.79 412.39 958.12 411.05 954.27 411.11
   C 950.39 411.17 947.08 410.97 942.83 410.34
   Q 934.00 409.05 925.42 409.64
   Q 923.68 409.75 917.33 411.38
   Q 913.22 412.43 908.97 412.70"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 934.77 406.96
   Q 928.29 407.29 921.75 407.92
   Q 921.49 407.94 920.97 408.22
   A 2.97 2.80 -62.6 0 1 920.11 408.52
   Q 914.18 409.53 908.97 412.70"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 908.97 412.70
   L 905.12 414.30
   A 0.29 0.27 50.1 0 1 904.85 414.27
   Q 904.45 414.00 904.72 413.34"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 963.94 408.19
   L 1003.84 419.95"
-/>
-<path stroke="#ae9165" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae9165"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1003.84 419.95
   L 1009.99 421.89"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1009.99 421.89
   Q 1009.35 421.78 1008.96 421.87
   A 0.33 0.33 0.0 0 0 1008.91 422.50
   L 1010.42 423.17
   A 0.33 0.32 -35.1 0 1 1010.31 423.79
   L 1008.45 423.94"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1008.45 423.94
   C 1002.71 421.89 996.61 419.46 991.05 418.08
   Q 987.88 417.29 984.81 416.19
   C 980.33 414.59 975.10 413.57 970.28 412.13"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 970.28 412.13
   Q 967.17 411.36 964.08 410.50
   C 959.43 409.20 955.62 409.10 951.29 408.30
   Q 948.36 407.76 944.76 407.64
   Q 939.76 407.48 934.77 406.96"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 934.77 406.96
   L 926.12 406.96
   A 0.29 0.29 0.0 0 1 925.85 406.77
   L 925.75 406.49
   A 0.51 0.51 0.0 0 1 926.10 405.82
   Q 926.94 405.61 927.24 404.84"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 917.05 428.80
   Q 914.98 428.87 913.20 429.89"
-/>
-<path stroke="#a36208" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a36208"
+          vector-effect="non-scaling-stroke"
+          d="
   M 913.20 429.89
   L 907.27 429.23"
-/>
-<path stroke="#ae9165" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae9165"
+          vector-effect="non-scaling-stroke"
+          d="
   M 909.03 431.04
   L 902.72 431.00"
-/>
-<path stroke="#fcda51" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcda51"
+          vector-effect="non-scaling-stroke"
+          d="
   M 960.18 491.63
   Q 956.38 488.21 953.88 486.88
   Q 950.15 484.90 948.96 484.05"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 795.83 513.84
   L 792.93 513.76"
-/>
-<path stroke="#ae8b33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8b33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 853.66 544.39
   Q 853.89 544.50 853.98 545.21"
-/>
-<path stroke="#ab6f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ab6f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 853.98 545.21
   Q 854.01 545.46 853.98 545.66
   A 0.39 0.39 0.0 0 1 853.34 545.90
   L 852.60 545.27"
-/>
-<path stroke="#6b3001" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6b3001"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 852.60 545.27
   Q 852.23 543.83 850.49 542.92"
-/>
-<path stroke="#ad7907" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad7907"
+          vector-effect="non-scaling-stroke"
+          d="
   M 850.49 542.92
   Q 850.75 542.86 851.00 542.80"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 851.00 542.80
   Q 842.93 534.53 832.71 530.08
   A 4.56 4.54 -14.9 0 1 831.74 529.52
   Q 829.42 527.75 826.55 526.93"
-/>
-<path stroke="#ae8b33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8b33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 826.55 526.93
   C 818.32 522.90 809.41 519.97 800.68 517.15
   Q 797.66 516.17 792.06 515.01"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 852.60 545.27
   L 851.52 550.21
   A 0.77 0.76 -68.4 0 0 851.87 551.03
   Q 852.12 551.17 852.17 551.25
   A 0.58 0.49 58.1 0 1 852.06 551.99
   L 846.53 555.54"
-/>
-<path stroke="#bc9834" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9834"
+          vector-effect="non-scaling-stroke"
+          d="
   M 846.53 555.54
   L 843.05 555.70"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 843.05 555.70
   L 833.93 553.55"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 939.07 440.53
   Q 937.40 440.98 935.47 440.37"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 935.47 440.37
   L 929.25 439.58
   A 0.99 0.95 60.3 0 1 928.98 439.50
   Q 924.15 437.48 922.31 437.26
   Q 918.27 436.80 914.33 436.23"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 914.33 436.23
   Q 906.07 434.27 897.39 436.22"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 897.39 436.22
   L 890.74 437.08"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 914.33 436.23
   L 897.39 436.22"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 875.30 456.57
   Q 874.19 456.28 876.10 455.26"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 911.22 466.62
   Q 911.67 467.19 912.13 467.41"
-/>
-<path stroke="#814201" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#814201"
+          vector-effect="non-scaling-stroke"
+          d="
   M 912.13 467.41
   Q 912.67 469.82 911.84 469.05"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 911.84 469.05
   L 902.32 465.78"
-/>
-<path stroke="#c78109" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c78109"
+          vector-effect="non-scaling-stroke"
+          d="
   M 902.32 465.78
   Q 900.43 464.51 898.44 463.85
   Q 894.20 462.44 889.96 462.11"
-/>
-<path stroke="#d2ae7c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d2ae7c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 889.96 462.11
   Q 875.98 458.35 861.83 458.81"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 927.42 461.30
   L 923.53 462.97
   A 0.45 0.44 63.1 0 1 922.97 462.78
   Q 922.57 462.10 923.58 461.36"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 935.37 482.16
   L 943.89 485.89
   A 0.36 0.35 -73.3 0 0 944.38 485.62
   Q 944.45 485.20 944.71 484.95"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 944.71 484.95
   L 948.88 488.24"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 948.88 488.24
   Q 949.14 490.08 948.70 491.15
   A 0.52 0.51 -58.7 0 1 947.89 491.35
@@ -7174,41 +10585,65 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 923.34 482.09 918.36 480.62
   Q 915.84 479.87 908.28 476.81
   C 900.13 473.50 887.54 470.90 877.78 472.40"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 877.78 472.40
   C 869.54 471.33 860.02 470.54 851.89 472.01
   C 847.70 472.77 844.75 472.63 840.23 473.17
   Q 839.31 473.28 839.01 473.89
   Q 838.71 474.46 838.68 475.37"
-/>
-<path stroke="#f4cf82" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4cf82"
+          vector-effect="non-scaling-stroke"
+          d="
   M 889.96 462.11
   L 902.32 465.78"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 911.84 469.05
   L 919.56 472.29"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 919.56 472.29
   Q 922.77 474.90 927.41 475.86"
-/>
-<path stroke="#ad907b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ad907b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 927.41 475.86
   L 929.88 477.12"
-/>
-<path stroke="#fffac3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffac3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 929.88 477.12
   L 936.18 481.07
   A 0.43 0.43 0.0 0 1 936.13 481.82
   L 935.37 482.16"
-/>
-<path stroke="#ffef84" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffef84"
+          vector-effect="non-scaling-stroke"
+          d="
   M 935.37 482.16
   L 922.56 476.36"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 922.56 476.36
   Q 912.11 470.52 900.63 467.28
   Q 899.12 466.86 896.29 466.37
@@ -7220,39 +10655,60 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 857.26 462.51 857.25 462.52
   A 1.84 1.81 21.2 0 1 856.25 462.95
   Q 853.77 463.19 851.71 462.34"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 992.41 415.37
   Q 998.21 416.64 1003.84 419.95"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.34 460.51
   Q 1173.07 463.37 1169.04 465.30
   Q 1167.14 466.21 1160.95 467.71
   Q 1152.67 469.72 1145.57 474.60
   Q 1143.76 475.84 1138.46 476.52"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1197.00 457.41
   Q 1192.38 461.93 1189.52 467.81"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1159.58 422.44
   L 1163.48 420.84
   A 0.52 0.49 -43.6 0 0 1163.53 419.91
   Q 1163.18 419.76 1162.61 419.95"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1198.93 453.02
   Q 1198.25 452.11 1198.36 450.65"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1198.36 450.65
   Q 1199.68 446.80 1201.47 442.97
   Q 1203.56 438.52 1205.39 428.63
   C 1206.06 424.97 1205.99 421.43 1205.98 417.72"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1205.98 417.72
   Q 1205.24 388.30 1202.52 359.05
   Q 1202.12 354.76 1199.75 351.04
@@ -7261,20 +10717,29 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1194.26 364.37 1189.56 378.89
   Q 1187.69 384.71 1184.45 390.98
   C 1180.65 398.34 1177.77 405.74 1171.58 412.98"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1171.58 412.98
   L 1162.61 419.95"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1162.61 419.95
   L 1151.33 424.27
   A 0.23 0.23 0.0 0 0 1151.24 424.63
   L 1151.57 425.05
   A 0.06 0.05 57.7 0 0 1151.64 425.07
   L 1159.58 422.44"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1159.58 422.44
   C 1164.31 425.03 1171.02 429.11 1172.87 434.39
   C 1174.59 439.28 1170.12 442.90 1165.98 444.31
@@ -7284,16 +10749,22 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.92 5.64 -27.9 0 0 1088.33 431.19
   Q 1068.33 428.21 1054.01 430.16
   Q 1042.89 431.67 1032.22 432.95"
-/>
-<path stroke="#ae8209" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8209"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1032.22 432.95
   Q 1027.80 428.23 1019.71 424.55
   Q 1003.60 417.21 996.42 415.42
   Q 995.47 415.19 994.18 414.04
   A 0.48 0.48 0.0 0 1 994.30 413.24
   L 994.60 413.10"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1031.05 389.33
   Q 1026.59 393.05 1021.13 394.89
   Q 1019.38 395.48 1009.06 402.36
@@ -7301,37 +10772,58 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1003.19 409.56 996.30 413.04
   A 0.71 0.71 0.0 0 0 996.54 414.38
   L 1002.20 415.05"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1002.20 415.05
   L 1007.58 413.24"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1007.58 413.24
   L 1012.98 412.19"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1012.98 412.19
   L 1078.33 411.39
   A 1.83 1.78 27.3 0 0 1079.28 411.10
   Q 1083.24 408.55 1084.79 408.57
   Q 1089.94 408.65 1094.28 406.91"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1134.46 421.78
   Q 1144.01 424.36 1153.27 421.84"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 965.83 407.83
   L 963.94 408.19"
-/>
-<path stroke="#fcdd6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdd6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 963.94 408.19
   Q 957.16 407.09 950.37 406.00
   Q 945.27 405.19 940.09 405.01
   Q 934.93 404.83 929.75 404.65"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 786.27 514.23
   L 785.85 514.27
   A 0.16 0.15 -33.7 0 0 785.79 514.56
@@ -7345,24 +10837,36 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.81 1.63 -18.3 0 0 811.02 521.84
   Q 815.00 522.87 824.23 526.80
   Q 825.35 527.28 826.55 526.93"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 826.55 526.93
   Q 826.97 527.99 828.02 528.47
   Q 830.85 529.76 832.47 530.95"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 832.47 530.95
   Q 833.14 531.59 833.20 532.14
   A 0.54 0.54 0.0 0 1 832.39 532.66
   Q 823.75 527.79 814.18 524.92
   Q 813.17 524.61 809.81 524.48"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 809.81 524.48
   L 808.30 523.83"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 808.30 523.83
   Q 804.27 521.77 800.16 519.99
   Q 797.12 518.68 794.27 518.06
@@ -7371,8 +10875,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 771.02 515.98
   A 5.65 5.62 -55.9 0 0 768.42 516.49
   Q 764.18 518.46 759.95 517.16"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 809.81 524.48
   L 829.97 534.93
   A 1.36 1.30 57.6 0 0 830.58 535.08
@@ -7383,8 +10890,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 839.64 535.81 838.77 534.40
   A 1.10 1.10 0.0 0 0 838.34 534.00
   L 832.47 530.95"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 851.00 542.80
   Q 847.01 543.37 842.47 541.79
   C 836.47 539.69 832.20 537.60 826.64 536.41
@@ -7395,12 +10905,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 758.95 524.51 748.38 524.58
   Q 748.06 524.58 747.94 524.44
   Q 747.79 524.29 747.71 524.01"
-/>
-<path stroke="#bc8608" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8608"
+          vector-effect="non-scaling-stroke"
+          d="
   M 850.49 542.92
   Q 851.13 546.92 849.67 550.46"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 849.67 550.46
   Q 848.16 550.29 846.50 550.81
   A 1.58 1.52 47.5 0 1 845.41 550.74
@@ -7412,14 +10928,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 784.13 528.05 780.81 528.16 777.07 527.22
   Q 774.56 526.60 763.16 524.84
   Q 757.71 524.00 747.42 525.26"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 849.67 550.46
   Q 849.72 552.95 848.00 553.50
   Q 843.05 555.10 837.00 553.00
   Q 835.75 552.56 834.48 552.54"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 832.46 551.45
   L 833.59 551.07
   A 0.25 0.25 0.0 0 0 833.62 550.62
@@ -7434,8 +10956,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 762.88 527.93
   A 0.12 0.10 13.7 0 0 762.96 528.04
   L 765.55 528.69"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 922.56 476.36
   Q 915.94 477.25 911.46 472.74
   A 1.72 1.68 -17.0 0 0 910.51 472.25
@@ -7445,17 +10970,26 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 859.68 463.84 848.24 466.16
   A 0.53 0.52 79.8 0 1 847.61 465.72
   Q 847.47 464.82 847.83 463.81"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 981.30 411.67
   C 976.06 410.44 971.80 408.68 965.83 407.83"
-/>
-<path stroke="#b97c09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b97c09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 965.83 407.83
   Q 953.98 404.98 949.25 404.75
   Q 940.72 404.35 932.22 404.16"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1198.36 450.65
   C 1197.07 452.59 1196.89 454.72 1194.73 456.76
   A 1.99 1.98 76.7 0 0 1194.22 457.59
@@ -7472,35 +11006,53 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1096.91 469.35 1103.89 472.32 1106.40 473.40
   A 5.51 5.34 -27.5 0 0 1107.37 473.69
   Q 1122.78 476.64 1138.46 476.52"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1138.46 476.52
   Q 1154.15 477.13 1166.81 470.84
   Q 1172.91 467.80 1176.34 460.51"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.34 460.51
   Q 1181.78 456.71 1186.07 451.84
   Q 1187.38 450.36 1187.94 448.46
   Q 1191.46 436.49 1194.86 424.58"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1205.98 417.72
   Q 1203.49 416.87 1202.83 414.03
   Q 1202.13 411.05 1201.20 406.26
   A 1.16 1.15 -22.2 0 0 1199.43 405.52
   Q 1198.63 406.04 1198.16 407.53
   C 1196.42 413.07 1196.25 418.89 1194.86 424.58"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1194.86 424.58
   Q 1183.99 417.24 1171.58 412.98"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1080.27 391.23
   L 1082.48 395.29"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1064.49 386.00
   Q 1065.53 386.73 1065.66 387.41
   Q 1065.79 388.16 1064.64 388.79
@@ -7515,45 +11067,66 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1015.89 411.36 1015.74 411.54
   A 0.35 0.34 15.7 0 1 1015.54 411.65
   L 1012.98 412.19"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1007.58 413.24
   L 1002.75 412.18
   A 0.58 0.58 0.0 0 0 1002.12 413.02
   Q 1002.55 413.83 1002.20 415.05"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 808.30 523.83
   Q 805.91 523.33 798.28 521.25
   C 790.84 519.22 780.37 517.52 772.12 518.76
   C 768.54 519.30 766.16 519.75 761.98 519.67
   Q 758.02 519.59 753.80 519.63"
-/>
-<path stroke="#fcce11" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcce11"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1078.45 368.16
   Q 1079.64 363.43 1082.45 358.95"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1082.45 358.95
   Q 1085.09 350.94 1087.22 342.76
   Q 1092.25 323.40 1074.96 314.93"
-/>
-<path stroke="#ffd810" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd810"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1074.96 314.93
   Q 1065.76 321.19 1061.66 329.38
   Q 1053.89 344.91 1052.05 348.62
   C 1045.09 362.70 1034.20 370.71 1019.67 382.42
   Q 1014.69 386.43 1012.77 392.30"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 982.81 410.67
   Q 977.94 409.06 973.06 407.61
   C 969.98 406.69 967.42 406.67 964.60 405.68
   Q 962.64 404.98 958.22 404.32
   Q 951.63 403.34 946.07 402.63
   Q 943.61 402.31 935.00 402.72"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 942.11 385.37
   Q 940.71 386.74 939.88 388.47
   A 0.45 0.44 16.3 0 0 940.23 389.10
@@ -7571,26 +11144,38 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 994.74 395.91 995.94 392.80
   A 1.28 1.23 77.6 0 1 996.21 392.36
   C 1003.63 384.31 1012.97 376.57 1019.09 366.72"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1019.09 366.72
   Q 1023.72 359.76 1025.49 351.66
   Q 1026.40 347.51 1025.88 344.66
   C 1024.66 338.05 1016.72 331.90 1011.10 328.23"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1011.10 328.23
   Q 1009.59 326.75 1007.70 325.94"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1007.70 325.94
   C 1002.54 322.49 997.39 322.53 991.86 325.44
   Q 987.90 327.52 985.83 329.61
   Q 975.50 339.99 970.82 344.53
   C 966.35 348.86 962.44 353.60 959.86 357.62
   Q 956.55 362.80 954.61 365.39"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1082.45 358.95
   Q 1079.36 362.76 1076.71 366.82
   C 1075.89 368.08 1073.96 370.18 1072.98 370.94
@@ -7602,42 +11187,63 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1057.53 362.84 1065.60 356.37
   Q 1071.56 351.59 1073.53 346.01
   C 1076.68 337.10 1078.66 327.76 1074.74 318.20"
-/>
-<path stroke="#f4b80f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4b80f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1074.96 314.93
   Q 1074.12 316.38 1074.74 318.20"
-/>
-<path stroke="#fcc50f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcc50f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1074.74 318.20
   Q 1072.22 328.25 1070.40 332.94
   Q 1063.68 350.35 1049.95 362.99
   Q 1038.68 373.36 1026.14 383.40"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1044.59 302.22
   C 1033.02 302.58 1019.29 303.05 1007.86 307.12
   C 995.72 311.44 987.49 321.53 980.43 331.87
   C 976.47 337.65 973.13 340.19 967.13 345.66
   Q 963.21 349.23 961.15 352.07
   Q 956.74 358.16 954.61 365.39"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 954.61 365.39
   L 945.24 380.01"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 945.24 380.01
   L 942.11 385.37"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 942.11 385.37
   Q 942.23 384.51 942.05 384.02
   A 0.48 0.48 0.0 0 0 941.23 383.88
   L 939.69 385.70
   A 0.74 0.74 0.0 0 1 938.39 385.23
   L 938.33 382.24"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1007.70 325.94
   C 1011.55 332.07 1013.67 336.98 1010.75 344.11
   Q 1009.15 348.03 1006.31 352.47
@@ -7647,22 +11253,34 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 972.14 362.61 961.60 367.15
   C 955.65 369.72 952.40 373.71 948.05 379.22
   Q 947.08 380.44 945.24 380.01"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1011.10 328.23
   C 1015.66 335.61 1020.05 343.71 1014.90 352.15
   C 1013.12 355.07 1009.42 360.52 1010.13 363.83
   C 1011.11 368.34 1015.75 367.64 1019.09 366.72"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1045.80 300.31
   Q 1045.93 301.59 1044.80 302.20"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1044.80 302.20
   Q 1044.70 302.21 1044.59 302.22"
-/>
-<path stroke="#fff998" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff998"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1044.59 302.22
   Q 1035.16 298.76 1031.21 298.05
   Q 1026.53 297.21 1025.23 296.34
@@ -7672,19 +11290,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 1000.96 291.18
   A 2.74 2.74 0.0 0 0 1000.30 291.18
   L 995.59 291.79"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 995.59 291.79
   L 994.59 290.76"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1076.75 312.15
   Q 1076.12 313.17 1075.36 313.51
   A 1.14 1.12 45.3 0 1 1074.42 313.50
   Q 1063.85 308.45 1057.76 306.96
   Q 1049.46 304.94 1044.80 302.20"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1192.55 342.06
   Q 1190.33 341.33 1188.78 341.45
   A 2.04 2.02 9.7 0 0 1187.07 342.65
@@ -7696,26 +11323,41 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1170.34 397.51 1170.33 397.59
   A 0.54 0.53 -85.6 0 0 1170.81 398.16
   L 1171.27 398.21"
-/>
-<path stroke="#917d19" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#917d19"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1087.65 398.41
   Q 1088.83 397.69 1090.27 397.78"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 995.59 291.79
   L 983.58 308.13
   A 0.57 0.56 6.1 0 1 983.35 308.31
   Q 982.74 308.58 982.39 307.97"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1181.52 374.53
   Q 1177.55 381.24 1176.27 389.08"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 887.50 261.56
   C 884.25 264.93 884.14 267.82 883.21 271.79"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 883.21 271.79
   L 880.92 274.68
   A 0.95 0.95 0.0 0 0 880.80 275.65
@@ -7750,12 +11392,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 882.08 354.47 884.90 351.65
   Q 890.55 345.99 895.84 339.83
   Q 899.52 335.55 900.32 331.51"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 900.32 331.51
   Q 902.28 329.71 903.28 327.21"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 903.28 327.21
   Q 908.97 320.11 912.86 311.91
   C 913.48 310.61 914.79 309.16 915.53 307.59
@@ -7766,56 +11414,86 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 940.84 284.76
   A 0.28 0.25 -14.9 0 1 940.90 284.67
   Q 943.70 281.10 945.41 276.75"
-/>
-<path stroke="#3c2f20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2f20"
+          vector-effect="non-scaling-stroke"
+          d="
   M 945.41 276.75
   L 950.11 271.41"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 950.11 271.41
   L 947.78 271.07
   A 0.26 0.26 0.0 0 1 947.55 270.80
   Q 947.57 269.90 949.55 269.80"
-/>
-<path stroke="#675e4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#675e4b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 949.55 269.80
   L 951.57 270.65"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 951.57 270.65
   Q 950.81 276.79 953.93 282.18
   A 0.37 0.36 -53.1 0 0 954.60 282.08
   Q 956.27 275.25 952.03 269.97"
-/>
-<path stroke="#675e4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#675e4b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 952.03 269.97
   Q 948.62 267.66 944.25 266.75
   Q 921.67 262.06 898.69 260.05
   Q 891.92 259.46 887.50 261.56"
-/>
-<path stroke="#796b5b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#796b5b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 952.03 269.97
   L 951.57 270.65"
-/>
-<path stroke="#796b5b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#796b5b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 949.55 269.80
   L 948.57 269.34"
-/>
-<path stroke="#978573" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#978573"
+          vector-effect="non-scaling-stroke"
+          d="
   M 948.57 269.34
   Q 928.10 264.06 907.10 262.20
   C 901.43 261.69 895.19 262.01 890.67 261.75
   Q 889.97 261.72 888.15 262.51
   Q 887.60 262.75 887.45 262.40
   Q 887.33 262.11 887.50 261.56"
-/>
-<path stroke="#4e3c30" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4e3c30"
+          vector-effect="non-scaling-stroke"
+          d="
   M 950.11 271.41
   Q 946.43 272.49 944.66 275.97
   A 0.64 0.64 0.0 0 0 944.98 276.85
   Q 945.04 276.87 945.41 276.75"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 903.28 327.21
   Q 905.07 320.14 907.07 317.57
   Q 910.47 313.19 911.18 311.43
@@ -7824,27 +11502,39 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 912.08 300.36 911.71 301.59
   Q 910.25 306.33 906.39 314.19
   Q 903.34 320.39 900.32 331.51"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 948.57 269.34
   Q 945.02 271.36 942.92 271.63
   Q 929.56 273.36 915.99 271.92
   Q 913.37 271.64 910.90 270.71
   C 901.27 267.12 892.02 264.41 883.21 271.79"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 839.76 314.23
   Q 834.92 317.51 832.04 321.23"
-/>
-<path stroke="#3c2f20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2f20"
+          vector-effect="non-scaling-stroke"
+          d="
   M 832.04 321.23
   L 815.18 336.59
   A 1.24 1.20 80.9 0 0 814.90 336.99
   L 814.48 338.07
   A 0.67 0.66 -8.1 0 0 815.51 338.84
   L 816.55 338.02"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 816.55 338.02
   C 820.82 338.11 826.38 339.57 829.72 336.16
   C 834.92 330.82 839.72 324.74 846.49 322.40
@@ -7855,8 +11545,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 867.35 309.39 874.73 300.82
   C 877.00 298.18 880.33 295.27 882.35 293.09
   Q 885.72 289.44 885.69 285.21"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 885.69 285.21
   L 878.78 279.55
   A 0.83 0.80 -35.0 0 0 877.97 279.42
@@ -7872,28 +11565,40 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 854.59 300.78 854.64 300.78
   A 0.33 0.31 -67.1 0 1 854.86 301.35
   L 839.76 314.23"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 885.69 285.21
   Q 879.54 287.96 874.60 290.79
   Q 871.95 292.30 869.65 292.96
   Q 867.67 293.53 866.05 294.78
   Q 855.55 302.90 846.04 311.55
   Q 844.87 312.61 839.76 314.23"
-/>
-<path stroke="#4e3c30" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4e3c30"
+          vector-effect="non-scaling-stroke"
+          d="
   M 816.55 338.02
   L 816.76 337.70
   A 1.22 1.21 -83.3 0 1 817.40 337.19
   C 821.08 335.94 821.65 334.43 824.17 330.71
   A 5.88 5.75 -4.1 0 1 825.10 329.66
   Q 829.24 325.97 832.04 321.23"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1151.32 305.34
   Q 1149.73 306.94 1148.72 310.16"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1148.72 310.16
   Q 1147.21 312.21 1146.94 314.50
   A 1.16 1.15 13.8 0 0 1147.69 315.72
@@ -7910,26 +11615,41 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1214.02 332.06 1213.38 336.99 1214.92 340.67
   A 0.32 0.32 0.0 0 0 1215.48 340.74
   Q 1220.43 334.10 1221.46 326.09"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1221.46 326.09
   L 1221.23 322.01"
-/>
-<path stroke="#3c2f20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2f20"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1221.23 322.01
   C 1221.00 318.16 1218.17 316.17 1214.96 314.57
   Q 1208.26 311.24 1200.96 309.56"
-/>
-<path stroke="#615d59" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#615d59"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1200.96 309.56
   C 1185.68 305.12 1171.53 302.13 1155.74 302.56
   Q 1153.15 302.64 1151.32 305.34"
-/>
-<path stroke="#9d8c79" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9d8c79"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1200.96 309.56
   Q 1201.34 310.33 1200.74 310.48"
-/>
-<path stroke="#908480" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#908480"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1200.74 310.48
   L 1186.96 306.42
   A 2.66 2.28 49.4 0 0 1186.38 306.33
@@ -7940,14 +11660,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 1155.69 304.19
   A 1.18 1.14 27.5 0 0 1155.12 304.36
   Q 1152.98 305.73 1151.32 305.34"
-/>
-<path stroke="#6c5648" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c5648"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1200.74 310.48
   Q 1205.57 312.33 1210.46 313.96
   Q 1214.58 315.33 1216.58 316.95
   Q 1219.11 319.00 1221.23 322.01"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1221.46 326.09
   C 1219.12 324.20 1217.34 321.59 1214.90 320.28
   Q 1211.32 318.34 1207.96 315.01
@@ -7967,19 +11693,28 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1181.18 310.31 1167.14 307.68
   Q 1163.45 306.98 1160.02 306.92
   C 1156.68 306.86 1152.29 309.02 1148.72 310.16"
-/>
-<path stroke="#675e4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#675e4b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1142.40 322.88
   C 1138.66 325.56 1134.87 328.95 1131.61 331.44
   Q 1116.79 342.73 1106.08 351.76
   Q 1100.61 356.36 1095.05 360.28
   C 1088.01 365.23 1079.20 371.84 1071.97 378.50"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1071.97 378.50
   Q 1071.32 378.92 1070.72 379.81"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1070.72 379.81
   Q 1074.38 384.30 1080.48 384.21
   C 1086.85 384.12 1090.24 381.14 1095.66 376.46
@@ -7994,56 +11729,86 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1152.60 331.95 1154.01 329.07
   A 1.39 1.36 -41.6 0 0 1154.08 328.05
   Q 1153.35 325.87 1151.06 324.28"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1151.06 324.28
   L 1146.09 320.53
   A 1.08 1.06 41.0 0 0 1144.70 320.62
   L 1142.40 322.88"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1151.06 324.28
   Q 1142.20 325.77 1133.74 332.50"
-/>
-<path stroke="#978573" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#978573"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1133.74 332.50
   L 1139.20 326.87
   A 1.81 1.65 2.6 0 1 1139.44 326.67
   Q 1141.04 325.62 1142.60 324.57
   Q 1143.54 323.94 1143.32 323.04
   Q 1143.25 322.79 1142.40 322.88"
-/>
-<path stroke="#796b5b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#796b5b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1133.74 332.50
   L 1128.53 336.79"
-/>
-<path stroke="#675e4b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#675e4b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1128.53 336.79
   L 1101.88 358.20"
-/>
-<path stroke="#796b5b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#796b5b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1101.88 358.20
   L 1088.75 368.32"
-/>
-<path stroke="#978573" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#978573"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1088.75 368.32
   Q 1081.37 371.72 1073.65 378.60
   Q 1072.54 379.59 1071.97 378.50"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1070.72 379.81
   Q 1075.06 379.94 1078.18 377.08
   C 1081.52 374.03 1085.11 371.23 1088.75 368.32"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1101.88 358.20
   Q 1100.85 359.09 1100.73 359.66
   A 0.45 0.44 -13.9 0 0 1101.45 360.09
   L 1129.35 337.56
   A 0.52 0.52 0.0 0 0 1129.16 336.65
   Q 1129.06 336.62 1128.53 336.79"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 816.42 341.53
   L 825.11 345.65
   A 0.14 0.14 0.0 0 0 825.30 345.59
@@ -8053,36 +11818,51 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.95 1.21 25.4 0 0 816.38 341.28
   L 816.35 341.34
   A 0.14 0.14 0.0 0 0 816.42 341.53"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 637.89 354.44
   Q 637.95 353.78 637.66 353.49
   A 0.26 0.26 0.0 0 0 637.21 353.67
   Q 637.19 354.30 637.38 354.57
   A 0.28 0.28 0.0 0 0 637.89 354.44"
-/>
-<path stroke="#755108" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#755108"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1089.8084 401.9029
   A 2.94 0.58 -158.3 0 0 1092.3255 403.5289
   A 2.94 0.58 -158.3 0 0 1095.2716 404.0771
   A 2.94 0.58 -158.3 0 0 1092.7545 402.4511
   A 2.94 0.58 -158.3 0 0 1089.8084 401.9029"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1103.32 410.62
   Q 1103.44 410.45 1099.94 408.08
   Q 1099.14 407.54 1098.98 407.78
   Q 1098.82 408.03 1099.64 408.54
   Q 1103.21 410.80 1103.32 410.62"
-/>
-<path stroke="#3c1e00" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c1e00"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1120.6602 418.8507
   A 2.92 0.32 -163.5 0 0 1123.3691 419.9868
   A 2.92 0.32 -163.5 0 0 1126.2598 420.5093
   A 2.92 0.32 -163.5 0 0 1123.5509 419.3732
   A 2.92 0.32 -163.5 0 0 1120.6602 418.8507"
-/>
-<path stroke="#2e1100" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#2e1100"
+          vector-effect="non-scaling-stroke"
+          d="
   M 903.77 426.94
   Q 903.30 427.55 901.36 428.43
   A 0.31 0.31 0.0 0 0 901.52 429.02
@@ -8090,14 +11870,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.01 1.00 2.7 0 0 903.96 428.05
   L 904.16 427.12
   A 0.22 0.22 0.0 0 0 903.77 426.94"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1182.30 491.72
   Q 1181.31 488.73 1179.11 486.62
   A 1.24 1.23 67.0 0 0 1178.25 486.27
   Q 1174.85 486.31 1171.46 487.87"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1171.46 487.87
   L 1153.50 490.44
   A 0.42 0.42 0.0 0 0 1153.16 491.00
@@ -8107,8 +11893,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1180.65 521.27 1183.33 523.96 1185.30 524.49
   A 1.24 1.13 66.1 0 1 1185.55 524.60
   L 1192.91 529.10"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1192.91 529.10
   Q 1202.80 538.01 1213.46 546.34
   Q 1213.75 546.57 1215.21 547.77
@@ -8117,15 +11906,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.25 0.25 0.0 0 0 1232.84 566.37
   Q 1239.76 559.41 1237.24 549.78
   Q 1235.87 544.56 1234.12 539.47"
-/>
-<path stroke="#3c2f20" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#3c2f20"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1234.12 539.47
   Q 1233.01 533.36 1231.53 527.33
   Q 1230.53 523.25 1228.18 517.10
   Q 1226.57 512.87 1224.51 506.98
   Q 1221.06 497.17 1214.65 483.49"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1214.65 483.49
   Q 1213.22 470.46 1211.86 457.26
   Q 1211.49 453.68 1211.24 442.85
@@ -8143,12 +11938,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 1183.40 491.17
   A 0.50 0.50 0.0 0 1 1182.82 491.88
   L 1182.30 491.72"
-/>
-<path stroke="#4e3c30" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#4e3c30"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1214.65 483.49
   Q 1214.17 483.13 1213.71 482.03"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1213.71 482.03
   L 1210.76 476.95
   A 0.27 0.27 0.0 0 0 1210.26 477.03
@@ -8160,20 +11961,29 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1233.69 552.75 1233.03 558.13
   A 0.26 0.26 0.0 0 1 1232.59 558.29
   L 1227.03 552.88"
-/>
-<path stroke="#23191f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#23191f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1227.03 552.88
   Q 1225.01 547.65 1223.16 542.48
   C 1222.12 539.59 1220.70 536.64 1218.66 534.83
   Q 1209.25 526.47 1200.88 518.57
   C 1196.57 514.51 1193.51 509.46 1189.87 504.08
   Q 1189.20 503.09 1186.89 501.29"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1186.89 501.29
   L 1182.30 491.72"
-/>
-<path stroke="#6c5648" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#6c5648"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1213.71 482.03
   Q 1211.76 479.60 1213.63 484.37
   C 1215.89 490.15 1220.94 499.89 1223.12 506.65
@@ -8181,8 +11991,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1231.70 533.83 1232.63 537.56 1233.84 541.04
   A 0.13 0.13 0.0 0 0 1234.09 541.00
   L 1234.12 539.47"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1192.91 529.10
   Q 1185.82 521.85 1178.28 515.20
   Q 1177.40 514.43 1177.58 513.47
@@ -8190,8 +12003,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1182.03 517.53 1187.32 520.82
   C 1193.93 524.92 1199.59 528.67 1206.37 534.44
   C 1215.33 542.05 1220.05 545.84 1227.03 552.88"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1186.89 501.29
   L 1196.15 515.85
   A 0.93 0.91 -49.3 0 1 1196.21 516.73
@@ -8201,15 +12017,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1176.14 496.57 1173.77 493.43 1172.74 490.15
   A 2.17 2.14 -83.0 0 0 1171.83 488.97
   Q 1170.82 488.33 1171.46 487.87"
-/>
-<path stroke="#533001" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#533001"
+          vector-effect="non-scaling-stroke"
+          d="
   M 874.0357 453.4885
   A 2.06 0.38 -20.8 0 0 871.9751 453.8648
   A 2.06 0.38 -20.8 0 0 870.1843 454.9515
   A 2.06 0.38 -20.8 0 0 872.2449 454.5752
   A 2.06 0.38 -20.8 0 0 874.0357 453.4885"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 498.52 482.29
   Q 514.96 487.24 528.48 493.35
   A 4.11 3.94 61.5 0 0 529.39 493.64
@@ -8225,22 +12047,31 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.27 6.06 -26.0 0 1 552.23 484.53
   Q 547.75 482.52 539.28 478.36
   C 535.59 476.55 531.65 475.34 527.69 474.22"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 527.69 474.22
   Q 519.33 471.25 511.21 471.72
   A 4.70 4.63 26.1 0 0 508.94 472.48
   Q 501.81 477.24 498.52 482.29"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 527.69 474.22
   L 528.53 475.17
   A 0.17 0.17 0.0 0 1 528.36 475.45
   Q 523.40 474.25 518.03 474.15
   A 1.39 1.39 0.0 0 0 517.63 476.88
   Q 521.05 477.85 524.23 480.62"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 524.23 480.62
   L 513.64 476.68
   A 0.62 0.61 -59.4 0 0 512.96 476.86
@@ -8248,8 +12079,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.41 0.40 31.1 0 0 512.80 477.88
   Q 516.08 479.20 519.18 480.85
   Q 521.97 482.33 531.46 484.75"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 531.46 484.75
   Q 531.96 485.19 531.96 485.20
   A 0.68 0.67 0.7 0 1 531.20 485.94
@@ -8257,15 +12091,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 518.29 482.40 513.98 482.49 509.01 480.63
   Q 507.44 480.04 506.16 481.12
   Q 503.74 483.16 498.52 482.29"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 531.46 484.75
   C 534.99 485.08 537.80 487.03 541.21 486.88
   A 0.22 0.22 0.0 0 0 541.31 486.47
   C 538.22 484.83 536.46 484.14 532.75 483.32
   Q 528.33 482.35 524.23 480.62"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 748.67 542.90
   L 757.69 545.77
   A 1.41 1.34 -19.9 0 1 758.01 545.91
@@ -8280,16 +12120,22 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.69 1.62 -16.2 0 1 816.17 548.24
   Q 813.96 545.93 811.14 544.89
   Q 805.26 542.74 799.18 540.74"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 799.18 540.74
   Q 784.72 536.50 769.83 533.33
   Q 765.23 532.35 760.88 532.25
   A 5.46 5.40 -59.8 0 0 757.96 533.04
   Q 752.67 536.26 748.52 541.26
   Q 747.82 542.11 748.67 542.90"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 799.18 540.74
   Q 803.12 544.47 808.47 546.04
   A 0.32 0.32 0.0 0 1 808.69 546.43
@@ -8302,23 +12148,35 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 801.89 547.55
   A 0.27 0.27 0.0 0 1 801.74 548.02
   L 797.59 548.36"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 797.59 548.36
   Q 793.01 547.28 788.35 545.41
   Q 786.58 544.70 779.52 543.25"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 779.52 543.25
   L 766.97 540.39"
-/>
-<path stroke="#302728" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#302728"
+          vector-effect="non-scaling-stroke"
+          d="
   M 766.97 540.39
   Q 763.53 538.79 760.16 538.86
   A 0.52 0.52 0.0 0 0 759.97 539.86
   L 779.23 547.72"
-/>
-<path stroke="#413437" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#413437"
+          vector-effect="non-scaling-stroke"
+          d="
   M 779.23 547.72
   Q 785.27 550.79 788.49 550.69
   Q 798.17 550.41 808.01 553.09
@@ -8327,26 +12185,38 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 791.38 554.25 788.65 553.39
   Q 774.47 548.88 761.11 545.24
   C 757.25 544.18 752.82 543.58 748.67 542.90"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 779.52 543.25
   L 776.78 543.38
   A 0.12 0.12 0.0 0 0 776.75 543.61
   Q 787.81 547.75 798.79 549.95
   A 0.39 0.38 -8.4 0 0 799.21 549.39
   Q 798.89 548.81 797.59 548.36"
-/>
-<path stroke="#120d10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#120d10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 766.97 540.39
   L 787.00 549.45
   A 0.20 0.19 -36.2 0 1 786.94 549.82
   C 784.85 550.07 781.37 548.31 779.23 547.72"
-/>
-<path stroke="#807a33" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a33"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1089.68 710.25
   L 1080.71 720.17"
-/>
-<path stroke="#7f7e7b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7f7e7b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1080.71 720.17
   Q 1079.98 720.69 1079.66 721.31
   A 0.39 0.38 10.9 0 0 1080.04 721.87
@@ -8369,12 +12239,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1192.47 649.03 1183.65 649.96 1175.51 651.78
   Q 1150.92 657.30 1131.22 671.97
   C 1115.76 683.48 1102.22 696.67 1089.68 710.25"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1080.71 720.17
   L 1083.30 719.84"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1083.30 719.84
   Q 1091.87 719.27 1100.02 718.05
   C 1102.72 717.64 1105.58 717.88 1108.00 717.66
@@ -8388,12 +12264,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.68 3.67 5.3 0 0 1261.33 685.06
   C 1263.84 682.27 1267.05 680.24 1269.63 677.15
   Q 1273.37 672.67 1275.47 667.45"
-/>
-<path stroke="#eee8dd" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eee8dd"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1275.47 667.45
   L 1276.07 664.27"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1276.07 664.27
   Q 1278.37 657.77 1278.26 655.66
   Q 1277.68 644.88 1272.41 635.08
@@ -8425,36 +12307,54 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1109.24 700.11 1101.21 700.15 1095.33 707.19
   A 1.00 1.00 0.0 0 0 1096.10 708.83
   L 1106.71 708.74"
-/>
-<path stroke="#e0dbd3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dbd3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1106.71 708.74
   L 1100.72 709.80"
-/>
-<path stroke="#fff8ae" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff8ae"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1100.72 709.80
   L 1092.75 709.87
   A 1.73 1.71 -61.9 0 0 1091.78 710.17
   Q 1090.67 710.93 1089.83 712.13
   A 0.38 0.38 0.0 0 1 1089.15 712.00
   Q 1088.97 711.29 1089.68 710.25"
-/>
-<path stroke="#d0c7bb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d0c7bb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1274.77 659.02
   L 1275.47 667.45"
-/>
-<path stroke="#e0d68c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0d68c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1083.30 719.84
   L 1088.49 713.23
   A 0.19 0.14 16.3 0 1 1088.65 713.17
   Q 1088.71 713.17 1088.80 713.17
   A 1.15 1.14 33.3 0 0 1089.44 713.04
   Q 1094.70 710.25 1100.72 709.80"
-/>
-<path stroke="#e4dbcf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4dbcf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1276.07 664.27
   L 1274.77 659.02"
-/>
-<path stroke="#d5cec6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5cec6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1274.77 659.02
   Q 1271.51 644.00 1265.08 630.19
   A 0.68 0.67 -22.6 0 0 1264.24 629.85
@@ -8468,14 +12368,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1162.43 703.65 1158.04 704.25
   Q 1135.57 707.35 1112.00 708.61
   Q 1109.35 708.75 1106.71 708.74"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 754.74 334.03
   Q 744.74 339.66 738.06 348.20
   A 1.06 1.06 0.0 0 0 739.30 349.83
   Q 746.81 346.71 754.19 346.52"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 754.19 346.52
   C 759.29 345.74 764.46 344.34 769.29 343.69
   Q 773.43 343.13 777.34 341.84
@@ -8485,14 +12391,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 764.99 328.33 762.83 329.62
   A 3.23 2.96 20.9 0 1 761.92 329.98
   Q 757.77 330.92 754.74 334.03"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 754.19 346.52
   L 758.39 335.69
   A 1.60 1.47 20.9 0 0 757.41 333.73
   Q 756.55 333.40 754.74 334.03"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 737.11 374.66
   Q 739.80 375.39 743.74 377.02
   A 0.37 0.37 0.0 0 0 744.10 376.37
@@ -8500,8 +12412,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 734.84 372.49 730.90 370.86
   A 0.37 0.37 0.0 0 0 730.54 371.51
   Q 733.61 373.71 737.11 374.66"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 658.64 393.22
   L 665.99 389.01
   A 0.33 0.33 0.0 0 0 666.12 388.57
@@ -8513,8 +12428,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.10 0.10 0.0 0 0 658.40 393.96
   L 658.41 393.61
   A 0.48 0.47 76.1 0 1 658.64 393.22"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 673.2585 389.9028
   A 0.66 0.66 0.0 0 0 672.4374 389.4588
   L 666.6683 391.1787
@@ -8524,8 +12442,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 672.8317 390.7813
   A 0.66 0.66 0.0 0 0 673.2756 389.9603
   L 673.2585 389.9028"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 639.17 408.10
   Q 637.55 407.47 635.97 408.24
   C 630.70 410.82 627.77 412.38 622.42 414.08
@@ -8533,8 +12454,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.39 0.38 -66.8 0 0 616.32 417.62
   Q 627.78 414.24 639.19 408.56
   A 0.25 0.25 0.0 0 0 639.17 408.10"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 633.39 427.77
   Q 633.35 427.62 633.35 427.60
   A 0.57 0.56 -87.7 0 1 633.90 427.09
@@ -8551,8 +12475,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.35 0.34 52.9 0 0 629.73 426.67
   Q 631.71 428.18 633.08 428.17
   A 0.33 0.32 83.5 0 0 633.39 427.77"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 656.44 422.92
   L 656.05 421.59
   A 0.29 0.29 0.0 0 0 655.69 421.40
@@ -8562,8 +12489,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 18.15 0.85 -16.5 0 0 656.00 423.35
   L 656.25 423.28
   A 0.29 0.29 0.0 0 0 656.44 422.92"
-/>
-<path stroke="#cf8e09" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#cf8e09"
+          vector-effect="non-scaling-stroke"
+          d="
   M 942.31 433.99
   A 1.88 1.84 -25.1 0 0 943.57 434.43
   Q 955.66 434.03 969.63 427.13
@@ -8573,8 +12503,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 955.71 432.87 942.11 432.97
   A 0.37 0.37 0.0 0 0 941.87 433.62
   L 942.31 433.99"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 983.93 468.41
   L 980.21 471.21
   A 4.58 4.58 0.0 0 1 976.52 472.02
@@ -8584,26 +12517,41 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 965.85 470.25 967.96 471.89
   Q 974.97 477.37 981.20 478.96
   C 986.51 480.32 990.06 481.18 994.45 478.55"
-/>
-<path stroke="#b16f08" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b16f08"
+          vector-effect="non-scaling-stroke"
+          d="
   M 994.45 478.55
   C 997.49 477.54 999.87 475.37 998.95 471.94"
-/>
-<path stroke="#bc8f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc8f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 998.95 471.94
   L 1000.01 469.58
   A 1.17 1.17 0.0 0 0 999.68 468.18
   L 996.26 465.40"
-/>
-<path stroke="#bc9834" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9834"
+          vector-effect="non-scaling-stroke"
+          d="
   M 996.26 465.40
   Q 994.72 463.14 992.22 461.43"
-/>
-<path stroke="#bc9a49" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9a49"
+          vector-effect="non-scaling-stroke"
+          d="
   M 992.22 461.43
   L 988.84 458.68"
-/>
-<path stroke="#bc9834" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#bc9834"
+          vector-effect="non-scaling-stroke"
+          d="
   M 988.84 458.68
   L 979.66 453.64
   A 0.29 0.29 0.0 0 0 979.30 453.71
@@ -8612,16 +12560,22 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 984.01 457.46
   A 2.37 2.33 -87.0 0 1 984.80 458.35
   Q 987.77 464.05 983.93 468.41"
-/>
-<path stroke="#fff67c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff67c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 988.84 458.68
   L 986.74 458.14
   A 0.49 0.49 0.0 0 0 986.30 458.98
   L 991.36 463.28
   A 0.46 0.45 -67.8 0 0 992.11 462.96
   L 992.22 461.43"
-/>
-<path stroke="#ffea3c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffea3c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 996.26 465.40
   Q 996.65 467.07 996.14 467.99
   A 0.66 0.65 -64.6 0 1 995.34 468.28
@@ -8631,14 +12585,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 987.35 466.87 986.59 468.29
   A 2.32 2.09 -66.8 0 1 984.05 469.46
   Q 983.67 469.34 983.93 468.41"
-/>
-<path stroke="#f4c111" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4c111"
+          vector-effect="non-scaling-stroke"
+          d="
   M 998.95 471.94
   Q 997.51 474.49 995.15 476.07
   A 1.10 1.09 -13.5 0 0 994.67 476.85
   L 994.45 478.55"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 909.21 463.85
   Q 911.15 463.97 913.19 463.18
   Q 923.92 459.01 935.79 455.15
@@ -8647,8 +12607,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.04 1.03 -39.6 0 0 934.28 454.15
   Q 921.28 458.18 909.14 463.47
   A 0.20 0.20 0.0 0 0 909.21 463.85"
-/>
-<path stroke="#d29808" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d29808"
+          vector-effect="non-scaling-stroke"
+          d="
   M 936.64 496.07
   A 0.27 0.26 58.6 0 0 936.76 495.56
   L 928.20 492.16
@@ -8656,8 +12619,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 927.89 493.16
   A 1.29 1.28 1.7 0 0 928.59 493.90
   Q 932.73 495.64 936.64 496.07"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 829.20 519.50
   L 838.98 515.21
   A 1.59 1.12 -55.0 0 1 839.20 515.13
@@ -8681,8 +12647,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 839.20 516.66 832.13 519.88
   Q 831.04 520.38 829.38 520.36
   A 0.45 0.45 0.0 0 1 829.20 519.50"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 739.29 727.23
   L 729.13 704.18
   A 0.22 0.22 0.0 0 0 728.83 704.07
@@ -8691,8 +12660,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 731.76 715.60 737.04 725.40
   Q 737.52 726.29 739.16 727.33
   A 0.09 0.08 5.6 0 0 739.29 727.23"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 859.55 730.86
   L 860.28 730.40
   A 0.16 0.16 0.0 0 0 860.33 730.18
@@ -8701,8 +12673,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.00 0.59 57.8 0 0 846.60 710.60
   L 859.33 730.81
   A 0.16 0.16 0.0 0 0 859.55 730.86"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 906.94 728.87
   L 907.88 728.30
   A 0.12 0.12 0.0 0 0 907.92 728.13
@@ -8712,8 +12687,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 16.49 0.60 58.8 0 0 902.30 721.43
   L 906.78 728.83
   A 0.12 0.12 0.0 0 0 906.94 728.87"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 879.28 707.78
   A 0.18 0.18 0.0 0 0 879.02 708.01
   Q 884.74 718.66 891.78 728.89
@@ -8722,15 +12700,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.26 0.0 0 0 893.43 729.02
   Q 887.10 719.56 881.76 710.51
   Q 880.74 708.79 879.28 707.78"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 745.0836 709.8080
   A 8.74 0.75 -115.6 0 0 748.1836 718.0141
   A 8.74 0.75 -115.6 0 0 752.6364 725.5720
   A 8.74 0.75 -115.6 0 0 749.5364 717.3659
   A 8.74 0.75 -115.6 0 0 745.0836 709.8080"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 772.54 730.90
   L 762.23 711.91
   A 0.11 0.11 0.0 0 0 762.09 711.87
@@ -8740,8 +12724,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.57 1.23 61.5 0 0 772.48 731.06
   L 772.50 731.05
   A 0.11 0.11 0.0 0 0 772.54 730.90"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 756.1852 713.1139
   A 0.65 0.65 0.0 0 0 755.3306 712.7755
   L 755.2939 712.7913
@@ -8751,15 +12738,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 763.1861 730.9287
   A 0.65 0.65 0.0 0 0 763.5245 730.0740
   L 756.1852 713.1139"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 776.7939 713.0613
   A 10.12 0.78 -111.3 0 0 779.7433 722.7733
   A 10.12 0.78 -111.3 0 0 784.1461 731.9187
   A 10.12 0.78 -111.3 0 0 781.1967 722.2067
   A 10.12 0.78 -111.3 0 0 776.7939 713.0613"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 837.95 713.36
   L 847.37 731.00
   A 0.11 0.11 0.0 0 0 847.52 731.05
@@ -8769,15 +12762,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 9.94 1.30 61.9 0 0 838.03 713.19
   L 838.00 713.21
   A 0.11 0.11 0.0 0 0 837.95 713.36"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 824.4743 713.7155
   A 10.81 0.72 -114.4 0 0 828.2843 723.8574
   A 10.81 0.72 -114.4 0 0 833.4057 733.4045
   A 10.81 0.72 -114.4 0 0 829.5957 723.2626
   A 10.81 0.72 -114.4 0 0 824.4743 713.7155"
-/>
-<path stroke="#fee682" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fee682"
+          vector-effect="non-scaling-stroke"
+          d="
   M 870.80 713.96
   L 879.48 730.71
   A 0.13 0.13 0.0 0 0 879.65 730.76
@@ -8787,8 +12786,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.11 1.15 62.6 0 0 870.86 713.79
   L 870.85 713.79
   A 0.13 0.13 0.0 0 0 870.80 713.96"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 812.1425 714.7613
   A 0.66 0.66 0.0 0 0 811.2789 714.4071
   L 811.2420 714.4225
@@ -8798,15 +12800,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 819.2980 733.5775
   A 0.66 0.66 0.0 0 0 819.6522 732.7139
   L 812.1425 714.7613"
-/>
-<path stroke="#fffac3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffac3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 795.7328 719.2399
   A 6.11 0.49 -113.1 0 0 797.6793 725.0522
   A 6.11 0.49 -113.1 0 0 800.5272 730.4801
   A 6.11 0.49 -113.1 0 0 798.5807 724.6678
   A 6.11 0.49 -113.1 0 0 795.7328 719.2399"
-/>
-<path stroke="#f4efe8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f4efe8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 510.88 624.97
   Q 513.45 631.76 508.55 636.06
   A 0.69 0.69 0.0 0 0 508.44 636.97
@@ -8819,8 +12827,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.36 0.35 10.5 0 0 536.41 624.26
   L 511.37 624.26
   A 0.52 0.52 0.0 0 0 510.88 624.97"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 432.64 637.41
   L 433.60 637.02
   A 0.14 0.14 0.0 0 0 433.68 636.83
@@ -8830,29 +12841,41 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 5.73 0.58 67.9 0 0 429.77 630.71
   L 432.46 637.33
   A 0.14 0.14 0.0 0 0 432.64 637.41"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 476.5018 627.2439
   A 4.71 0.75 -113.9 0 0 477.7243 631.8539
   A 4.71 0.75 -113.9 0 0 480.3182 635.8561
   A 4.71 0.75 -113.9 0 0 479.0957 631.2461
   A 4.71 0.75 -113.9 0 0 476.5018 627.2439"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 445.1734 627.8527
   A 4.31 0.66 -111.6 0 0 446.1463 632.1030
   A 4.31 0.66 -111.6 0 0 448.3466 635.8673
   A 4.31 0.66 -111.6 0 0 447.3737 631.6170
   A 4.31 0.66 -111.6 0 0 445.1734 627.8527"
-/>
-<path stroke="#fcdc83" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fcdc83"
+          vector-effect="non-scaling-stroke"
+          d="
   M 492.3343 628.5716
   A 3.52 0.60 -110.9 0 0 493.0295 632.0740
   A 3.52 0.60 -110.9 0 0 494.8457 635.1484
   A 3.52 0.60 -110.9 0 0 494.1505 631.6460
   A 3.52 0.60 -110.9 0 0 492.3343 628.5716"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 981.05 713.70
   L 981.23 714.76
   A 0.25 0.25 0.0 0 0 981.51 714.97
@@ -8862,14 +12885,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.90 0.59 -9.4 0 0 984.13 712.94
   L 981.26 713.41
   A 0.25 0.25 0.0 0 0 981.05 713.70"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 569.35 648.48
   Q 562.31 649.73 560.55 656.01
   Q 559.73 658.95 561.84 660.17
   Q 564.56 661.74 573.63 665.80"
-/>
-<path stroke="#fff06e" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff06e"
+          vector-effect="non-scaling-stroke"
+          d="
   M 573.63 665.80
   Q 587.89 672.96 603.03 677.31
   A 1.18 1.18 0.0 0 0 604.41 676.71
@@ -8881,12 +12910,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.77 1.70 7.8 0 0 598.37 650.73
   C 594.03 647.78 588.34 647.16 583.30 646.68
   C 578.95 646.27 573.81 647.43 569.35 648.48"
-/>
-<path stroke="#fffbad" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fffbad"
+          vector-effect="non-scaling-stroke"
+          d="
   M 573.63 665.80
   C 571.06 660.41 570.49 655.35 569.35 648.48"
-/>
-<path stroke="#ffed52" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed52"
+          vector-effect="non-scaling-stroke"
+          d="
   M 605.98 678.28
   Q 608.14 678.86 609.08 677.46
   Q 612.58 672.22 609.43 665.05
@@ -8896,8 +12931,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 608.88 669.00 609.25 671.95
   Q 609.74 675.86 605.93 677.77
   A 0.27 0.27 0.0 0 0 605.98 678.28"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 888.78 748.66
   L 910.34 744.82
   L 910.30 744.65
@@ -8905,17 +12943,21 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 899.23 745.93
   A 10.77 0.68 -10.1 0 0 888.74 748.49
   L 888.78 748.66"
-/>
-<path stroke="#f1ae10" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1ae10"
+          vector-effect="non-scaling-stroke"
+          d="
   M 844.0802 760.6389
   A 8.21 0.86 -2.8 0 0 835.8380 760.1810
   A 8.21 0.86 -2.8 0 0 827.6798 761.4411
   A 8.21 0.86 -2.8 0 0 835.9220 761.8990
   A 8.21 0.86 -2.8 0 0 844.0802 760.6389"
-/>
-</g>
-<g fill="#fefcf5">
-<path d="
+        />
+      </g>
+      <g fill="#fefcf5">
+        <path
+          d="
   M 737.48 381.54
   Q 748.64 388.54 761.27 384.75
   Q 767.16 388.19 773.86 390.02
@@ -9037,8 +13079,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.15 1.14 76.2 0 1 738.02 384.00
   Q 735.16 381.67 737.48 381.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 613.91 386.72
   L 624.32 386.90
   Q 624.66 387.01 625.08 386.94
@@ -9058,8 +13101,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 610.66 386.87
   Q 612.44 387.07 613.91 386.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 997.81 438.93
   Q 999.75 439.78 1001.60 439.67
   Q 1006.07 441.63 1010.45 444.01
@@ -9240,8 +13284,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 995.82 439.27
   L 997.81 438.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 650.67 441.87
   C 655.22 444.61 664.64 451.38 663.74 457.19
   Q 661.27 451.68 656.02 447.72
@@ -9250,8 +13295,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.00 1.98 -14.3 0 0 649.60 441.55
   L 650.67 441.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 790.68 452.37
   Q 791.92 452.88 792.78 453.76
   A 1.86 1.83 -75.9 0 1 793.22 454.51
@@ -9407,8 +13453,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 783.30 452.67 788.25 451.97
   Q 789.10 451.85 790.68 452.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 523.77 456.22
   Q 525.85 456.51 527.98 457.05
   Q 530.44 457.69 532.15 457.95
@@ -9428,8 +13475,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 503.59 459.68 503.94 458.71
   Q 512.50 454.93 523.77 456.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 861.83 458.81
   Q 875.98 458.35 889.96 462.11
   L 902.32 465.78
@@ -9453,8 +13501,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 853.77 463.19 851.71 462.34
   L 861.83 458.81
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 727.73 464.62
   C 721.74 467.28 715.19 470.16 709.11 471.37
   C 704.30 472.32 699.41 473.90 694.21 474.70
@@ -9468,15 +13517,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 706.20 470.14 715.30 468.30 724.68 464.30
   Q 726.47 463.54 727.73 464.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 689.73 536.08
   L 706.79 543.77
   Q 702.76 543.97 698.88 541.88
   Q 694.16 539.33 689.73 536.08
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 788.96 568.38
   C 793.31 570.56 797.03 572.40 801.77 573.85
   Q 805.45 574.97 811.33 577.11
@@ -9576,8 +13627,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 800.48 581.15 802.23 577.77 798.31 574.94
   Q 794.13 571.92 788.96 568.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1232.36 580.78
   C 1227.52 593.91 1222.84 603.45 1214.59 613.09
   Q 1209.72 618.77 1202.31 619.58
@@ -9764,8 +13816,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 6.11 0.49 -113.1 0 0 798.5807 724.6678
   A 6.11 0.49 -113.1 0 0 795.7328 719.2399
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1080.71 720.17
   L 1083.30 719.84
   Q 1091.87 719.27 1100.02 718.05
@@ -9839,8 +13892,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.39 0.38 10.9 0 1 1079.66 721.31
   Q 1079.98 720.69 1080.71 720.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 539.72 621.61
   Q 540.21 621.49 540.81 621.83
   L 531.83 639.15
@@ -9900,10 +13954,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.52 0.60 -110.9 0 0 494.1505 631.6460
   A 3.52 0.60 -110.9 0 0 492.3343 628.5716
   Z"
-/>
-</g>
-<g fill="#000000">
-<path d="
+        />
+      </g>
+      <g fill="#000000">
+        <path
+          d="
   M 1276.61 680.25
   C 1269.50 689.04 1259.38 695.30 1248.68 700.04
   C 1241.06 703.42 1233.46 705.37 1225.09 707.70
@@ -11048,8 +15103,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1150.92 657.30 1131.22 671.97
   C 1115.76 683.48 1102.22 696.67 1089.68 710.25
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1128.53 336.79
   Q 1129.06 336.62 1129.16 336.65
   A 0.52 0.52 0.0 0 1 1129.35 337.56
@@ -11058,8 +15114,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1100.85 359.09 1101.88 358.20
   L 1128.53 336.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 524.23 480.62
   Q 528.33 482.35 532.75 483.32
   C 536.46 484.14 538.22 484.83 541.31 486.47
@@ -11072,8 +15129,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.62 0.61 -59.4 0 1 513.64 476.68
   L 524.23 480.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 587.30 478.45
   L 590.92 480.79
   Q 590.86 481.14 590.45 481.26
@@ -11084,8 +15142,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.97 1.87 62.4 0 0 584.56 478.02
   L 587.30 478.45
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 766.97 540.39
   L 787.00 549.45
   A 0.20 0.19 -36.2 0 1 786.94 549.82
@@ -11094,8 +15153,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.52 0.52 0.0 0 1 760.16 538.86
   Q 763.53 538.79 766.97 540.39
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 779.52 543.25
   Q 786.58 544.70 788.35 545.41
   Q 793.01 547.28 797.59 548.36
@@ -11105,18 +15165,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.12 0.12 0.0 0 1 776.78 543.38
   L 779.52 543.25
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1036.54 629.68
   L 1032.28 634.59
   L 990.38 650.57
   L 982.48 650.20
   L 1036.54 629.68
   Z"
-/>
-</g>
-<g fill="#ffe112">
-<path d="
+        />
+      </g>
+      <g fill="#ffe112">
+        <path
+          d="
   M 793.48 253.31
   Q 801.61 256.53 811.35 263.88
   Q 821.16 271.28 818.73 282.92
@@ -11175,8 +15237,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 7.14 7.07 38.3 0 1 782.68 252.64
   L 793.48 253.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 934.17 323.43
   Q 933.88 335.81 935.28 347.73
   Q 935.43 349.69 934.85 350.60
@@ -11231,8 +15294,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.23 2.96 20.9 0 1 761.92 329.98
   Q 757.77 330.92 754.74 334.03
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1044.59 302.22
   Q 1044.70 302.21 1044.80 302.20
   Q 1049.46 304.94 1057.76 306.96
@@ -11296,8 +15360,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 987.49 321.53 995.72 311.44 1007.86 307.12
   C 1019.29 303.05 1033.02 302.58 1044.59 302.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 723.04 354.65
   L 730.40 357.39
   A 1.70 1.54 -29.4 0 0 730.84 357.49
@@ -11334,8 +15399,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 667.44 342.85 676.73 343.07 684.86 344.37
   Q 704.48 347.52 723.04 354.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1198.93 453.02
   Q 1198.25 452.11 1198.36 450.65
   Q 1199.68 446.80 1201.47 442.97
@@ -11397,8 +15463,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1207.07 425.90 1207.07 431.08 1204.82 437.56
   Q 1202.12 445.33 1198.93 453.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 938.79 360.63
   Q 939.90 365.43 939.43 369.26
   Q 938.99 372.76 937.19 375.94
@@ -11419,8 +15486,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.79 2.62 -31.4 0 0 937.94 370.73
   L 938.79 360.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 627.87 365.34
   L 665.34 372.45
   Q 669.07 373.11 672.46 374.86
@@ -11446,8 +15514,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 615.17 370.01 616.12 369.56
   Q 622.49 366.58 627.87 365.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 626.55 377.38
   Q 633.14 377.57 639.74 377.93
   Q 649.66 378.47 662.75 381.75
@@ -11457,8 +15526,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 625.81 379.08 623.61 377.65
   L 626.55 377.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 668.06 407.65
   L 671.30 409.93
   A 0.56 0.52 65.4 0 0 671.47 410.00
@@ -11503,8 +15573,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 646.93 398.42 652.40 400.67
   C 657.91 402.93 661.61 406.89 668.06 407.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1090.27 397.78
   Q 1088.83 397.69 1087.65 398.41
   L 1082.48 395.29
@@ -11512,8 +15583,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1084.74 393.71 1089.45 396.06
   Q 1090.91 396.79 1090.27 397.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 965.83 407.83
   C 971.80 408.68 976.06 410.44 981.30 411.67
   L 992.41 415.37
@@ -11521,8 +15593,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 963.94 408.19
   L 965.83 407.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 970.28 412.13
   C 975.10 413.57 980.33 414.59 984.81 416.19
   Q 987.88 417.29 991.05 418.08
@@ -11563,8 +15636,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 947.08 410.97 950.39 411.17 954.27 411.11
   C 958.12 411.05 964.79 412.39 970.28 412.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 568.82 418.18
   Q 590.38 418.06 610.29 424.98
   Q 610.32 424.99 617.13 427.82
@@ -11585,8 +15659,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 563.74 419.84 566.34 418.74
   L 568.82 418.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 698.28 429.93
   C 697.80 435.66 695.68 439.53 689.62 439.62
   Q 685.32 439.68 680.09 438.71
@@ -11607,8 +15682,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 696.92 428.13
   L 698.28 429.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 897.39 436.22
   L 914.33 436.23
   Q 918.27 436.80 922.31 437.26
@@ -11645,8 +15721,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 890.74 437.08
   L 897.39 436.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 567.74 446.27
   Q 571.07 447.35 573.88 449.19
   A 4.43 4.42 -18.5 0 0 574.93 449.71
@@ -11682,8 +15759,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 536.07 440.84 546.24 441.00
   Q 555.86 441.16 567.74 446.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 554.95 464.83
   Q 565.41 467.96 573.49 475.46
   Q 573.55 478.00 572.30 480.04
@@ -11706,8 +15784,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.46 1.44 85.5 0 0 559.05 467.18
   Q 556.27 466.42 554.95 464.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 847.83 463.81
   Q 847.47 464.82 847.61 465.72
   A 0.53 0.52 79.8 0 0 848.24 466.16
@@ -11738,8 +15817,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.76 0.75 57.1 0 1 834.56 471.19
   Q 840.72 466.68 847.83 463.81
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 996.26 465.40
   L 999.68 468.18
   A 1.17 1.17 0.0 0 1 1000.01 469.58
@@ -11764,8 +15844,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.66 0.65 -64.6 0 0 996.14 467.99
   Q 996.65 467.07 996.26 465.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 962.42 493.59
   Q 963.23 494.41 963.15 495.75
   A 1.74 1.72 65.0 0 1 962.82 496.67
@@ -11796,8 +15877,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.50 0.50 0.0 0 0 962.39 494.42
   L 962.42 493.59
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 671.06 517.71
   Q 653.56 506.91 633.73 501.61
   C 628.85 500.30 625.36 498.75 621.12 497.45
@@ -11811,8 +15893,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 685.61 504.15 679.55 506.43 674.45 510.32
   Q 670.74 513.15 671.06 517.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 573.17 493.39
   Q 576.16 494.58 578.75 492.41
   Q 581.41 492.77 583.61 494.12
@@ -11826,8 +15909,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.85 2.85 0.0 0 1 564.73 491.93
   Q 569.07 491.97 573.17 493.39
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 836.90 493.19
   Q 837.19 493.31 837.42 493.57
   Q 841.04 495.13 842.35 495.37
@@ -11896,8 +15980,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 8.21 8.14 -42.1 0 1 826.72 493.02
   Q 831.65 493.76 836.90 493.19
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 808.30 523.83
   L 809.81 524.48
   L 829.97 534.93
@@ -11929,8 +16014,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 780.37 517.52 790.84 519.22 798.28 521.25
   Q 805.91 523.33 808.30 523.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 869.01 554.86
   Q 870.26 556.00 869.14 557.84
   A 2.06 2.03 0.4 0 1 868.42 558.54
@@ -11965,8 +16051,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.44 1.44 0.0 0 0 859.14 554.20
   Q 864.11 555.98 869.01 554.86
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1230.64 633.72
   Q 1238.51 618.17 1240.59 613.15
   Q 1243.46 606.25 1245.58 597.43
@@ -12006,8 +16093,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1246.63 602.42 1241.15 617.13
   Q 1237.36 627.32 1230.64 633.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 339.28 575.09
   L 333.37 574.14
   A 3.69 3.56 -40.8 0 0 332.48 574.09
@@ -12054,8 +16142,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.25 -10.5 0 1 344.17 574.94
   L 339.28 575.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 948.67 570.82
   Q 962.70 574.00 977.19 578.31
   Q 979.97 579.14 982.43 580.31
@@ -12084,8 +16173,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 920.75 567.67 929.39 568.63
   Q 938.88 569.69 948.67 570.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 380.30 597.62
   Q 383.02 604.02 387.56 609.24
   A 2.11 2.00 81.3 0 0 388.19 609.73
@@ -12100,8 +16190,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.64 0.64 0.0 0 1 377.65 593.24
   L 380.30 597.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1054.31 620.95
   Q 1055.77 621.68 1056.44 620.90
   L 1057.21 622.18
@@ -12131,8 +16222,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1007.22 639.41 1016.16 635.27 1025.09 632.21
   Q 1039.88 627.15 1054.31 620.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 558.06 633.85
   L 566.16 636.74
   A 2.04 1.97 -35.4 0 0 566.95 636.86
@@ -12222,8 +16314,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 609.74 675.86 605.93 677.77
   A 0.27 0.27 0.0 0 0 605.98 678.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 618.43 657.31
   Q 619.84 659.35 620.90 661.56
   Q 626.68 673.61 631.52 686.09
@@ -12234,8 +16327,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 618.32 659.24 613.75 652.42
   Q 617.32 653.79 618.43 657.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 442.99 674.17
   Q 442.61 674.96 441.50 675.61
   L 407.25 668.96
@@ -12244,10 +16338,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 419.39 669.89 427.40 671.66
   Q 435.11 673.37 442.99 674.17
   Z"
-/>
-</g>
-<g fill="#f9bb10">
-<path d="
+        />
+      </g>
+      <g fill="#f9bb10">
+        <path
+          d="
   M 809.04 264.93
   L 810.24 266.21
   Q 806.14 273.81 802.84 281.80
@@ -12267,8 +16362,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.70 0.69 -84.8 0 1 801.33 261.82
   L 809.04 264.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1082.45 358.95
   Q 1079.64 363.43 1078.45 368.16
   Q 1073.85 372.13 1069.09 376.34
@@ -12291,8 +16387,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1073.96 370.18 1075.89 368.08 1076.71 366.82
   Q 1079.36 362.76 1082.45 358.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 932.49 328.75
   Q 932.33 339.80 934.41 350.52
   A 0.24 0.24 0.0 0 0 934.85 350.60
@@ -12323,8 +16420,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 919.37 366.35 922.85 357.37
   C 925.91 349.48 928.71 338.74 932.49 328.75
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1205.98 417.72
   Q 1203.49 416.87 1202.83 414.03
   Q 1202.13 411.05 1201.20 406.26
@@ -12340,8 +16438,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1202.12 354.76 1202.52 359.05
   Q 1205.24 388.30 1205.98 417.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 705.98 363.34
   Q 703.20 362.27 700.76 363.45
   C 695.48 366.01 690.01 367.72 685.30 369.88
@@ -12380,21 +16479,24 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.44 0.44 0.0 0 1 706.87 363.03
   L 705.98 363.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 649.10 362.91
   L 631.16 362.89
   L 633.25 362.02
   C 638.72 361.93 643.76 361.31 649.10 362.91
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 662.40 366.02
   L 649.58 363.13
   Q 656.28 363.01 662.40 366.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 727.00 374.96
   Q 728.20 376.27 729.28 376.52
   Q 731.46 377.37 733.23 378.96
@@ -12415,8 +16517,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.51 4.22 -59.9 0 0 719.70 378.23
   L 727.00 374.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 623.61 377.65
   Q 625.81 379.08 627.61 379.11
   Q 638.72 379.28 645.20 380.02
@@ -12466,14 +16569,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.66 0.66 0.0 0 0 673.2756 389.9603
   L 673.2585 389.9028
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 624.32 386.90
   L 613.91 386.72
   Q 619.14 385.27 624.32 386.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 685.03 397.20
   Q 679.82 398.86 674.75 401.01
   Q 673.01 401.75 669.98 402.08
@@ -12483,8 +16588,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.64 0.64 0.0 0 1 685.37 396.60
   L 685.03 397.20
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 662.77 420.99
   Q 663.16 421.58 663.02 422.05
   Q 662.90 422.44 662.22 422.72
@@ -12548,8 +16654,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 656.25 423.28
   A 0.29 0.29 0.0 0 0 656.44 422.92
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 932.22 404.16
   Q 940.72 404.35 949.25 404.75
   Q 953.98 404.98 965.83 407.83
@@ -12559,8 +16666,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 934.93 404.83 929.75 404.65
   Q 931.04 404.15 932.22 404.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 683.71 420.98
   Q 687.40 423.42 688.40 425.52
   Q 689.11 427.00 687.91 428.95
@@ -12579,8 +16687,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.53 0.52 -66.6 0 0 683.82 422.39
   L 683.71 420.98
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 988.67 431.26
   Q 988.98 431.91 988.24 432.03
   Q 980.82 433.24 974.27 437.05
@@ -12623,8 +16732,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 0 941.87 433.62
   L 942.31 433.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 613.12 437.17
   Q 602.11 441.80 595.82 443.63
   Q 592.47 444.61 585.47 444.87
@@ -12659,8 +16769,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 594.03 430.54 600.85 432.92
   Q 606.66 434.95 613.12 437.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 678.45 441.33
   L 679.51 441.18
   A 0.50 0.49 74.2 0 0 679.89 440.49
@@ -12672,8 +16783,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.29 2.19 61.3 0 1 699.40 437.34
   C 694.60 446.43 686.32 446.19 678.45 441.33
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 990.59 432.22
   Q 991.54 432.27 991.43 432.74
   Q 991.22 433.61 989.88 434.12
@@ -12716,8 +16828,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 973.92 439.56 976.05 437.64
   L 990.59 432.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 545.05 438.22
   Q 556.89 438.16 567.98 442.65
   L 567.03 442.93
@@ -12726,23 +16839,26 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 543.76 438.77
   L 545.05 438.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 959.93 445.77
   L 942.53 439.15
   Q 945.39 439.25 948.66 440.57
   Q 955.20 443.22 959.93 445.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 636.80 447.74
   L 642.63 445.17
   Q 642.85 444.86 643.10 444.86
   A 0.48 0.48 0.0 0 1 643.45 445.67
   Q 640.52 448.87 636.80 447.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 576.93 464.35
   Q 585.49 468.93 592.67 475.49
   A 3.91 3.72 -10.2 0 0 593.66 476.14
@@ -12773,8 +16889,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 550.63 452.90 561.56 456.44
   C 566.76 458.12 571.98 461.45 576.93 464.35
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 946.69 457.18
   L 948.56 459.07
   A 0.48 0.48 0.0 0 1 948.17 459.88
@@ -12798,8 +16915,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 945.54 456.68
   Q 946.18 456.65 946.69 457.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1176.34 460.51
   Q 1172.91 467.80 1166.81 470.84
   Q 1154.15 477.13 1138.46 476.52
@@ -12808,8 +16926,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1167.14 466.21 1169.04 465.30
   Q 1173.07 463.37 1176.34 460.51
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 881.60 495.40
   Q 880.43 496.96 876.70 496.30
   A 0.10 0.09 18.3 0 0 876.59 496.35
@@ -12851,8 +16970,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 899.02 487.97 895.17 489.18
   Q 887.85 491.48 881.60 495.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 960.18 491.63
   Q 956.38 488.21 953.88 486.88
   Q 950.15 484.90 948.96 484.05
@@ -12861,8 +16981,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 953.91 485.38 957.95 487.78
   Q 960.02 489.01 960.18 491.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 847.98 491.82
   L 839.55 490.16
   Q 839.50 490.15 839.45 490.14
@@ -12875,8 +16996,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.26 0.26 0.0 0 0 839.41 489.65
   Q 844.10 489.31 847.98 491.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 574.97 508.41
   L 572.01 508.34
   A 1.83 1.76 -27.7 0 1 571.11 508.08
@@ -12894,8 +17016,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.53 1.50 60.6 0 1 591.43 501.73
   C 587.49 507.77 582.18 508.78 574.97 508.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 712.00 503.43
   L 735.22 515.45
   Q 740.10 517.74 744.15 521.26
@@ -12918,8 +17041,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.69 0.66 37.2 0 1 711.32 503.47
   Q 711.54 503.30 712.00 503.43
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 867.33 519.72
   Q 853.31 523.72 839.44 529.14
   A 0.33 0.33 0.0 0 0 839.37 529.71
@@ -12989,8 +17113,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 831.04 520.38 829.38 520.36
   A 0.45 0.45 0.0 0 1 829.20 519.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 846.53 555.54
   L 852.06 551.99
   A 0.58 0.49 58.1 0 0 852.17 551.25
@@ -13006,8 +17131,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.22 2.13 82.9 0 1 853.02 554.00
   Q 849.83 556.83 846.53 555.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 525.29 672.02
   Q 504.73 671.79 492.77 670.91
   C 475.88 669.67 455.33 666.52 437.24 664.55
@@ -13043,8 +17169,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 526.01 654.70 525.11 657.41 524.93 660.45
   Q 524.60 666.25 525.29 672.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1007.96 592.79
   Q 1023.62 599.90 1038.74 609.02
   Q 1043.04 611.61 1047.06 614.65
@@ -13072,8 +17199,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 967.60 616.71 971.55 612.96
   Q 986.96 598.29 1007.96 592.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 406.98 628.34
   Q 406.78 629.07 405.62 628.89
   A 1.81 1.65 62.6 0 1 404.94 628.64
@@ -13081,8 +17209,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 392.78 619.54 392.97 618.10
   L 406.98 628.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 432.64 637.41
   A 0.14 0.14 0.0 0 1 432.46 637.33
   L 429.77 630.71
@@ -13093,11 +17222,30 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.14 0.14 0.0 0 1 433.60 637.02
   L 432.64 637.41
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(478.41,631.55) rotate(-113.9)" rx="4.71" ry="0.75"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(446.76,631.86) rotate(-111.6)" rx="4.31" ry="0.66"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(493.59,631.86) rotate(-110.9)" rx="3.52" ry="0.60"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(478.41,631.55) rotate(-113.9)"
+          rx="4.71"
+          ry="0.75"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(446.76,631.86) rotate(-111.6)"
+          rx="4.31"
+          ry="0.66"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(493.59,631.86) rotate(-110.9)"
+          rx="3.52"
+          ry="0.60"
+        />
+        <path
+          d="
   M 1080.53 711.94
   Q 1068.53 712.87 1057.08 714.93
   Q 1044.25 717.23 1041.97 717.05
@@ -13145,8 +17293,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 981.26 713.41
   A 0.25 0.25 0.0 0 0 981.05 713.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 717.03 746.52
   Q 671.78 747.24 628.05 735.72
   Q 624.58 734.80 622.68 733.88
@@ -13185,8 +17334,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 664.20 735.15 674.60 738.95 688.23 741.85
   Q 697.39 743.80 717.03 746.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 906.94 728.87
   A 0.12 0.12 0.0 0 1 906.78 728.83
   L 902.30 721.43
@@ -13197,8 +17347,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.12 0.12 0.0 0 1 907.88 728.30
   L 906.94 728.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 879.28 707.78
   Q 880.74 708.79 881.76 710.51
   Q 887.10 719.56 893.43 729.02
@@ -13208,23 +17359,33 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 884.74 718.66 879.02 708.01
   A 0.18 0.18 0.0 0 1 879.28 707.78
   Z"
-/>
-<rect x="-0.68" y="-10.39" transform="translate(815.27,724.00) rotate(-22.7)" width="1.36" height="20.78" rx="0.66"/>
-<path d="
+        />
+        <rect
+          x="-0.68"
+          y="-10.39"
+          transform="translate(815.27,724.00) rotate(-22.7)"
+          width="1.36"
+          height="20.78"
+          rx="0.66"
+        />
+        <path
+          d="
   M 957.77 728.53
   Q 957.96 727.25 957.61 726.01
   Q 958.42 726.17 958.84 726.57
   A 0.71 0.71 0.0 0 1 958.97 727.43
   Q 958.61 728.08 957.77 728.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 957.13 729.23
   Q 953.55 733.08 948.41 735.55
   L 957.13 729.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 888.78 748.66
   L 888.74 748.49
   A 10.77 0.68 -10.1 0 1 899.23 745.93
@@ -13233,11 +17394,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 910.34 744.82
   L 888.78 748.66
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(835.88,761.04) rotate(-2.8)" rx="8.21" ry="0.86"/>
-</g>
-<g fill="#793c01" fill-opacity="0.996">
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(835.88,761.04) rotate(-2.8)"
+          rx="8.21"
+          ry="0.86"
+        />
+      </g>
+      <g fill="#793c01" fill-opacity="0.996">
+        <path
+          d="
   M 717.59 365.24
   L 726.54 370.26
   A 0.99 0.97 -89.3 0 1 726.96 370.70
@@ -13274,16 +17442,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 676.08 349.73 693.42 355.61
   Q 705.75 359.79 717.59 365.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 637.38 354.57
   Q 637.19 354.30 637.21 353.67
   A 0.26 0.26 0.0 0 1 637.66 353.49
   Q 637.95 353.78 637.89 354.44
   A 0.28 0.28 0.0 0 1 637.38 354.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 702.26 398.90
   L 707.89 398.82
   A 0.46 0.46 0.0 0 1 708.34 399.39
@@ -13321,8 +17491,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 676.91 385.01 685.28 391.43 693.37 396.90
   Q 697.91 399.97 702.26 398.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 671.19 424.43
   L 675.17 427.38
   L 678.80 430.72
@@ -13355,8 +17526,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 626.10 396.90 647.97 408.77
   Q 657.26 413.82 671.19 424.43
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 982.81 410.67
   Q 981.85 411.08 981.30 411.67
   C 976.06 410.44 971.80 408.68 965.83 407.83
@@ -13369,14 +17541,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 967.42 406.67 969.98 406.69 973.06 407.61
   Q 977.94 409.06 982.81 410.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 579.40 409.99
   Q 578.02 412.17 575.34 411.75
   L 579.40 409.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 960.07 420.39
   Q 965.82 421.76 971.60 423.07
   Q 978.64 424.67 982.95 426.40
@@ -13423,25 +17597,34 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 918.26 418.55 920.76 418.40
   Q 940.51 417.16 960.07 420.39
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(1123.46,419.68) rotate(-163.5)" rx="2.92" ry="0.32"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(1123.46,419.68) rotate(-163.5)"
+          rx="2.92"
+          ry="0.32"
+        />
+        <path
+          d="
   M 1153.27 421.84
   Q 1144.01 424.36 1134.46 421.78
   Q 1135.71 422.33 1135.94 421.37
   A 0.64 0.63 5.4 0 1 1136.53 420.89
   Q 1144.71 420.50 1153.27 421.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 905.00 422.20
   Q 904.19 422.56 903.87 423.68
   A 0.31 0.31 0.0 0 1 903.36 423.81
   L 900.81 421.28
   Q 902.66 420.36 905.00 422.20
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 629.27 444.87
   Q 631.35 449.07 635.19 446.07
   Q 638.06 445.59 639.08 445.08
@@ -13478,8 +17661,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 604.92 432.86 612.04 435.21
   Q 618.57 437.37 629.27 444.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 938.38 435.78
   L 957.19 442.11
   A 2.57 2.21 -13.7 0 1 957.76 442.40
@@ -13588,8 +17772,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.37 2.33 -87.0 0 1 984.80 458.35
   Q 987.77 464.05 983.93 468.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 552.60 436.36
   Q 558.80 437.94 564.29 439.99
   Q 565.98 440.62 567.96 441.00
@@ -13624,14 +17809,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.93 0.92 9.5 0 0 550.17 437.19
   Q 550.85 435.86 552.60 436.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 522.07 452.01
   Q 520.87 453.98 518.68 453.16
   Q 520.46 452.91 522.07 452.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 621.32 478.56
   Q 620.10 480.69 616.65 481.85
   Q 611.60 482.36 606.49 480.99
@@ -13652,8 +17839,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 616.91 468.44 619.48 471.30
   Q 622.24 474.36 621.32 478.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 877.78 472.40
   L 888.95 474.73
   L 887.93 476.11
@@ -13668,8 +17856,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 844.75 472.63 847.70 472.77 851.89 472.01
   C 860.02 470.54 869.54 471.33 877.78 472.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 923.52 492.65
   Q 923.06 492.67 922.90 492.86
   Q 922.73 493.06 922.99 493.25
@@ -13687,8 +17876,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 908.44 496.50 919.45 490.29
   Q 921.07 489.89 923.52 492.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 798.02 503.27
   Q 802.37 503.56 808.74 502.88
   Q 812.71 502.45 817.74 503.44
@@ -13724,8 +17914,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.70 1.68 -29.2 0 1 795.47 502.62
   Q 796.72 503.34 798.02 503.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 873.11 523.61
   Q 875.49 527.05 876.47 527.79
   C 878.75 529.48 880.81 531.77 883.03 533.17
@@ -13753,8 +17944,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 866.05 523.53 870.23 522.00
   Q 872.89 521.02 873.11 523.61
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 986.50 532.87
   Q 987.14 532.82 987.46 533.06
   Q 987.65 533.21 987.51 533.67
@@ -13763,8 +17955,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 949.97 547.05 951.56 546.57
   Q 969.60 541.12 986.50 532.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 852.60 545.27
   L 851.52 550.21
   A 0.77 0.76 -68.4 0 0 851.87 551.03
@@ -13780,8 +17973,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 851.13 546.92 850.49 542.92
   Q 852.23 543.83 852.60 545.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 702.23 551.04
   Q 703.36 552.14 704.02 553.74
   Q 699.47 555.49 694.84 556.98
@@ -13793,8 +17987,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 610.29 584.62 633.11 575.61
   Q 661.46 564.42 702.23 551.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1104.15 608.42
   L 1111.81 609.81
   Q 1083.90 616.80 1056.66 625.87
@@ -13802,10 +17997,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1056.45 622.38 1057.21 622.18
   Q 1080.49 614.48 1104.15 608.42
   Z"
-/>
-</g>
-<g fill="#fff891">
-<path d="
+        />
+      </g>
+      <g fill="#fff891">
+        <path
+          d="
   M 743.80 237.76
   L 740.19 238.13
   A 0.31 0.30 49.0 0 0 740.15 238.73
@@ -13815,8 +18011,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 730.77 241.21 726.50 242.01
   Q 733.01 234.53 743.80 237.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 747.87 274.12
   L 748.80 276.46
   C 744.39 291.02 736.21 308.33 732.45 316.90
@@ -13834,8 +18031,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 739.56 278.02 737.61 268.55
   C 742.18 268.93 745.73 269.99 747.87 274.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 994.59 290.76
   L 995.59 291.79
   L 983.58 308.13
@@ -13844,8 +18042,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 984.83 303.70 989.65 296.65
   Q 992.21 292.89 994.59 290.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1011.10 328.23
   C 1015.66 335.61 1020.05 343.71 1014.90 352.15
   C 1013.12 355.07 1009.42 360.52 1010.13 363.83
@@ -13877,8 +18076,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1013.67 336.98 1011.55 332.07 1007.70 325.94
   Q 1009.59 326.75 1011.10 328.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 754.19 346.52
   Q 746.81 346.71 739.30 349.83
   A 1.06 1.06 0.0 0 1 738.06 348.20
@@ -13887,8 +18087,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.60 1.47 20.9 0 1 758.39 335.69
   L 754.19 346.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 725.96 350.95
   Q 726.53 351.37 727.29 351.51
   L 737.73 356.48
@@ -13928,8 +18129,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 725.76 351.72 725.70 351.27
   Q 725.69 351.17 725.96 350.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 686.80 375.34
   Q 700.40 381.37 711.23 390.30
   Q 711.31 390.96 711.23 391.40
@@ -13953,8 +18155,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 689.84 377.63 688.43 376.99
   Q 686.80 376.24 686.80 375.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1064.49 386.00
   Q 1065.53 386.73 1065.66 387.41
   Q 1065.79 388.16 1064.64 388.79
@@ -13981,14 +18184,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1026.59 393.05 1031.05 389.33
   Q 1047.28 382.93 1064.49 386.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 647.96 396.00
   Q 638.54 394.15 629.71 390.21
   Q 639.56 391.44 647.96 396.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 672.68 408.76
   L 672.37 408.64
   A 0.35 0.35 0.0 0 0 671.94 409.14
@@ -13999,8 +18204,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 664.23 404.70 663.74 402.22
   L 672.68 408.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 927.24 404.84
   Q 926.94 405.61 926.10 405.82
   A 0.51 0.51 0.0 0 0 925.75 406.49
@@ -14016,8 +18222,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 904.45 414.00 904.72 413.34
   Q 915.05 406.08 927.24 404.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 568.97 416.07
   L 564.53 418.24
   A 0.19 0.19 0.0 0 0 564.60 418.60
@@ -14027,8 +18234,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 559.73 419.69 559.98 419.06
   Q 564.00 416.42 568.97 416.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 619.78 426.82
   Q 616.99 426.34 615.87 425.86
   Q 606.69 421.87 604.20 421.32
@@ -14037,8 +18245,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 605.10 420.72 610.12 422.13
   Q 613.71 423.13 619.78 426.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 687.17 433.22
   Q 687.93 434.09 688.20 434.95
   L 681.32 435.50
@@ -14054,8 +18263,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.14 1.14 0.0 0 0 675.05 432.04
   C 679.40 432.90 681.92 434.59 687.17 433.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 939.07 440.53
   Q 937.40 440.98 935.47 440.37
   L 929.25 439.58
@@ -14074,8 +18284,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 931.03 437.59 934.27 438.45
   Q 936.43 439.02 939.07 440.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 576.31 446.61
   L 593.26 457.36
   Q 592.98 458.14 592.43 458.54
@@ -14087,8 +18298,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 571.70 447.07 575.51 448.48
   Q 576.23 448.75 576.31 446.61
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1072.60 467.15
   Q 1066.68 465.98 1061.17 462.87
   Q 1056.37 460.16 1054.39 459.30
@@ -14099,8 +18311,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1040.20 451.63 1040.33 450.76
   L 1072.60 467.15
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 988.84 458.68
   L 992.22 461.43
   L 992.11 462.96
@@ -14109,8 +18322,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.49 0.49 0.0 0 1 986.74 458.14
   L 988.84 458.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 944.71 484.95
   Q 944.45 485.20 944.38 485.62
   A 0.36 0.35 -73.3 0 1 943.89 485.89
@@ -14120,8 +18334,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 929.88 477.12
   Q 937.93 479.71 944.71 484.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 948.22 483.74
   Q 948.64 483.80 948.96 484.05
   Q 950.15 484.90 953.88 486.88
@@ -14137,8 +18352,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 949.54 486.03 947.48 484.77
   Q 947.62 483.86 948.22 483.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 582.30 491.78
   Q 582.87 491.79 583.71 492.57
   Q 584.22 493.24 584.17 493.84
@@ -14147,8 +18363,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 578.71 491.75 577.17 490.28
   Q 578.99 489.83 582.30 491.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 836.90 493.19
   Q 831.65 493.76 826.72 493.02
   A 8.21 8.14 -42.1 0 0 825.01 492.94
@@ -14161,8 +18378,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 824.88 491.59 827.58 491.42
   Q 832.31 491.11 836.90 493.19
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 808.56 491.80
   L 807.60 493.05
   A 0.48 0.47 29.3 0 0 807.81 493.78
@@ -14172,8 +18390,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 801.02 497.28 799.13 496.47
   Q 803.87 493.26 808.56 491.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 871.26 499.70
   L 873.02 500.48
   L 889.51 508.65
@@ -14198,8 +18417,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.20 0.19 59.0 0 1 870.29 499.49
   Q 870.66 499.50 871.26 499.70
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 808.30 523.83
   Q 805.91 523.33 798.28 521.25
   C 790.84 519.22 780.37 517.52 772.12 518.76
@@ -14214,16 +18434,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 797.12 518.68 800.16 519.99
   Q 804.27 521.77 808.30 523.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 910.66 522.33
   L 912.08 523.88
   Q 912.22 524.65 911.98 525.01
   Q 911.72 525.41 910.99 525.09
   Q 906.73 523.19 910.66 522.33
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 832.47 530.95
   L 838.34 534.00
   A 1.10 1.10 0.0 0 1 838.77 534.40
@@ -14239,8 +18461,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 0 833.20 532.14
   Q 833.14 531.59 832.47 530.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 862.55 548.48
   L 867.73 553.42
   L 867.64 554.20
@@ -14250,8 +18473,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.65 0.65 0.0 0 1 861.88 548.59
   L 862.55 548.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 311.55 560.04
   Q 310.86 561.15 311.02 561.98
   A 0.67 0.67 0.0 0 0 311.68 562.52
@@ -14267,23 +18491,26 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 310.68 560.04 310.92 559.96
   Q 311.20 559.87 311.55 560.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 569.35 648.48
   C 570.49 655.35 571.06 660.41 573.63 665.80
   Q 564.56 661.74 561.84 660.17
   Q 559.73 658.95 560.55 656.01
   Q 562.31 649.73 569.35 648.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 617.34 666.40
   Q 612.47 661.25 608.93 655.41
   Q 609.71 655.01 610.35 653.94
   Q 614.48 659.24 617.34 666.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 605.93 677.77
   Q 609.74 675.86 609.25 671.95
   Q 608.88 669.00 606.76 664.71
@@ -14294,10 +18521,19 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 608.14 678.86 605.98 678.28
   A 0.27 0.27 0.0 0 1 605.93 677.77
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(798.13,724.86) rotate(-113.1)" rx="6.11" ry="0.49"/>
-</g>
-<path fill="#010100" fill-opacity="0.392" d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(798.13,724.86) rotate(-113.1)"
+          rx="6.11"
+          ry="0.49"
+        />
+      </g>
+      <path
+        fill="#010100"
+        fill-opacity="0.392"
+        d="
   M 344.47 653.78
   Q 352.64 663.27 363.89 667.84
   C 378.39 673.72 394.67 679.86 410.87 683.36
@@ -14379,9 +18615,10 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 329.55 651.47 331.05 646.53
   L 344.47 653.78
   Z"
-/>
-<g fill="#23191f">
-<path d="
+      />
+      <g fill="#23191f">
+        <path
+          d="
   M 948.57 269.34
   L 949.55 269.80
   Q 947.57 269.90 947.55 270.80
@@ -14444,16 +18681,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 929.56 273.36 942.92 271.63
   Q 945.02 271.36 948.57 269.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 951.57 270.65
   L 952.03 269.97
   Q 956.27 275.25 954.60 282.08
   A 0.37 0.36 -53.1 0 1 953.93 282.18
   Q 950.81 276.79 951.57 270.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 816.55 338.02
   L 816.76 337.70
   A 1.22 1.21 -83.3 0 1 817.40 337.19
@@ -14476,8 +18715,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 839.72 324.74 834.92 330.82 829.72 336.16
   C 826.38 339.57 820.82 338.11 816.55 338.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1221.46 326.09
   Q 1220.43 334.10 1215.48 340.74
   A 0.32 0.32 0.0 0 1 1214.92 340.67
@@ -14513,8 +18753,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1211.32 318.34 1214.90 320.28
   C 1217.34 321.59 1219.12 324.20 1221.46 326.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1151.06 324.28
   Q 1153.35 325.87 1154.08 328.05
   A 1.39 1.36 -41.6 0 1 1154.01 329.07
@@ -14540,8 +18781,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 1133.74 332.50
   Q 1142.20 325.77 1151.06 324.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1192.55 342.06
   Q 1190.33 341.33 1188.78 341.45
   A 2.04 2.02 9.7 0 0 1187.07 342.65
@@ -14595,14 +18837,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1181.22 333.32 1184.44 333.66 1187.78 335.09
   C 1190.77 336.38 1195.26 337.35 1192.55 342.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1181.52 374.53
   C 1181.99 379.89 1179.45 384.98 1176.27 389.08
   Q 1177.55 381.24 1181.52 374.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1214.65 483.49
   Q 1214.17 483.13 1213.71 482.03
   L 1210.76 476.95
@@ -14638,8 +18882,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1211.49 453.68 1211.86 457.26
   Q 1213.22 470.46 1214.65 483.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 578.03 463.73
   C 584.02 466.89 587.59 469.83 592.49 472.80
   L 596.27 475.72
@@ -14650,8 +18895,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 585.49 468.93 576.93 464.35
   Q 577.00 463.50 578.03 463.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 527.69 474.22
   C 531.65 475.34 535.59 476.55 539.28 478.36
   Q 547.75 482.52 552.23 484.53
@@ -14683,8 +18929,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.17 0.17 0.0 0 0 528.53 475.17
   L 527.69 474.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1171.46 487.87
   Q 1170.82 488.33 1171.83 488.97
   A 2.17 2.14 -83.0 0 1 1172.74 490.15
@@ -14714,8 +18961,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.42 0.0 0 1 1153.50 490.44
   L 1171.46 487.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 779.52 543.25
   L 776.78 543.38
   A 0.12 0.12 0.0 0 0 776.75 543.61
@@ -14758,33 +19006,37 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 766.97 540.39
   L 779.52 543.25
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 709.96 548.04
   Q 708.49 549.59 713.39 550.30
   L 704.02 553.74
   Q 703.36 552.14 702.23 551.04
   L 709.96 548.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1055.72 622.93
   L 1056.66 625.87
   L 1032.28 634.59
   L 1036.54 629.68
   L 1055.72 622.93
   Z"
-/>
-</g>
-<g fill="#e9e2da">
-<path d="
+        />
+      </g>
+      <g fill="#e9e2da">
+        <path
+          d="
   M 725.57 392.22
   C 731.24 390.12 736.42 387.50 742.50 386.06
   Q 741.87 389.02 738.18 390.98
   Q 731.57 394.48 725.57 392.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 808.99 426.04
   L 820.55 431.40
   A 0.31 0.30 -63.4 0 0 820.95 431.26
@@ -14840,8 +19092,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 808.34 427.65 809.13 427.16
   Q 809.34 427.02 808.99 426.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 787.98 474.29
   L 785.89 476.50
   Q 783.43 478.51 780.57 480.78
@@ -14864,8 +19117,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 781.47 477.95 784.26 474.96 787.15 472.40
   Q 788.09 473.11 787.98 474.29
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1048.45 614.16
   L 1034.04 604.57
   Q 1022.06 596.00 1010.65 591.08
@@ -14943,8 +19197,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.79 1.78 -32.4 0 1 1057.02 619.22
   Q 1053.35 615.65 1048.45 614.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 991.93 525.73
   L 984.42 530.42
   A 0.40 0.39 -72.3 0 0 984.78 531.12
@@ -14959,8 +19214,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 960.92 535.70 976.20 530.53
   Q 979.87 529.28 991.93 525.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 671.75 559.52
   L 596.13 588.03
   A 2.04 1.97 31.9 0 1 595.57 588.15
@@ -14982,8 +19238,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 648.37 551.96 652.88 551.57
   C 660.79 550.87 666.18 554.31 671.75 559.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 896.00 559.34
   L 875.44 561.76
   L 874.87 554.18
@@ -15000,8 +19257,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 907.63 555.78 906.62 556.14
   Q 901.35 557.98 896.00 559.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 773.03 560.00
   Q 781.20 565.13 788.96 568.38
   Q 794.13 571.92 798.31 574.94
@@ -15015,8 +19273,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.50 0.49 -30.2 0 1 767.81 560.52
   L 773.03 560.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1276.07 664.27
   L 1274.77 659.02
   Q 1271.51 644.00 1265.08 630.19
@@ -15062,8 +19321,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1277.68 644.88 1278.26 655.66
   Q 1278.37 657.77 1276.07 664.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 975.21 634.48
   Q 975.58 634.93 975.45 635.42
   L 974.54 643.24
@@ -15109,8 +19369,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.38 0.38 0.0 0 0 975.18 634.96
   L 975.21 634.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 511.37 624.26
   L 536.41 624.26
   A 0.36 0.35 10.5 0 1 536.75 624.74
@@ -15124,8 +19385,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 513.45 631.76 510.88 624.97
   A 0.52 0.52 0.0 0 1 511.37 624.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 644.72 665.81
   Q 640.23 668.47 637.82 671.46
   C 634.53 675.54 633.68 680.34 633.57 685.61
@@ -15137,8 +19399,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 634.18 657.87 640.69 661.80
   Q 642.92 663.15 644.72 665.81
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 664.18 685.63
   Q 665.08 682.04 669.73 681.37
   Q 675.88 680.49 685.55 680.08
@@ -15147,8 +19410,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.10 0.10 0.0 0 1 714.38 682.93
   Q 689.44 685.64 664.18 685.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 975.49 714.70
   Q 981.39 716.28 985.33 720.53
   L 966.48 721.64
@@ -15156,10 +19420,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 957.45 717.06
   Q 966.33 714.87 975.49 714.70
   Z"
-/>
-</g>
-<g fill="#fecf0e">
-<path d="
+        />
+      </g>
+      <g fill="#fecf0e">
+        <path
+          d="
   M 809.04 264.93
   L 801.33 261.82
   A 0.70 0.69 -84.8 0 0 800.39 262.61
@@ -15171,8 +19436,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.49 0.48 13.9 0 1 796.21 258.31
   Q 803.28 260.52 809.04 264.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 932.49 328.75
   C 928.71 338.74 925.91 349.48 922.85 357.37
   Q 919.37 366.35 909.77 377.43
@@ -15196,8 +19462,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 1 928.74 304.62
   Q 932.15 316.42 932.49 328.75
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1074.96 314.93
   Q 1074.12 316.38 1074.74 318.20
   Q 1072.22 328.25 1070.40 332.94
@@ -15210,8 +19477,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1053.89 344.91 1061.66 329.38
   Q 1065.76 321.19 1074.96 314.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 763.78 373.84
   L 764.45 379.60
   Q 758.46 385.42 749.51 383.49
@@ -15238,8 +19506,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 0 730.54 371.51
   Q 733.61 373.71 737.11 374.66
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 766.12 380.91
   Q 770.66 382.95 775.15 384.99
   C 781.92 388.08 788.74 391.94 795.59 395.33
@@ -15250,15 +19519,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.40 0.0 0 1 764.57 381.92
   Q 765.37 381.04 766.12 380.91
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 773.86 390.02
   Q 767.16 388.19 761.27 384.75
   Q 762.67 383.60 764.28 384.49
   Q 768.98 387.08 773.86 390.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 715.97 393.46
   Q 718.77 395.34 721.72 396.87
   Q 726.95 399.58 729.58 402.15
@@ -15290,8 +19561,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.23 1.23 0.0 0 1 714.67 393.06
   L 715.97 393.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1194.86 424.58
   Q 1191.46 436.49 1187.94 448.46
   Q 1187.38 450.36 1186.07 451.84
@@ -15342,8 +19614,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 1171.58 412.98
   Q 1183.99 417.24 1194.86 424.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 729.01 416.44
   L 728.16 417.28
   A 2.23 2.16 -76.9 0 1 727.43 417.75
@@ -15355,8 +19628,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.82 1.81 33.5 0 1 728.28 416.39
   L 729.01 416.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1016.95 443.37
   Q 1010.22 441.68 1006.25 439.26
   Q 1003.13 437.35 1000.08 435.45
@@ -15374,8 +19648,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1022.07 432.73 1026.05 434.26 1025.45 436.94
   C 1024.43 441.53 1018.67 439.66 1016.95 443.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 641.17 441.63
   Q 643.04 442.04 642.31 443.69
   Q 641.49 443.88 639.08 445.08
@@ -15392,8 +19667,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 623.68 435.47 627.11 437.06
   Q 633.55 440.06 641.17 441.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 666.79 423.62
   Q 669.98 425.02 670.75 425.75
   Q 675.58 430.25 677.66 431.57
@@ -15422,8 +19698,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 665.94 429.20 665.60 428.10
   Q 664.58 424.88 666.79 423.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 926.32 434.69
   L 916.21 432.19
   Q 922.47 431.78 924.76 432.85
@@ -15431,8 +19708,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.16 0.16 0.0 0 1 928.91 434.77
   Q 927.67 435.10 926.32 434.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 631.54 456.19
   Q 630.77 452.21 626.58 450.51
   Q 624.54 447.76 626.23 448.04
@@ -15458,8 +19736,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.63 2.44 -15.2 0 0 637.93 459.53
   Q 634.40 458.34 631.54 456.19
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 981.33 462.22
   Q 982.76 463.50 983.38 465.69
   Q 980.35 467.84 976.58 468.91
@@ -15479,8 +19758,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 936.18 445.91 942.95 450.14 950.45 453.18
   C 962.62 458.10 969.67 460.81 981.33 462.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 945.54 456.68
   L 947.25 458.41
   A 0.15 0.15 0.0 0 1 947.12 458.66
@@ -15523,8 +19803,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 921.28 458.18 909.14 463.47
   A 0.20 0.20 0.0 0 0 909.21 463.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 598.05 472.97
   Q 597.93 473.10 597.81 473.22
   Q 594.96 472.15 592.49 472.80
@@ -15536,8 +19817,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.86 1.85 -28.6 0 1 599.65 470.67
   Q 598.48 470.94 598.05 472.97
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 572.30 480.04
   L 571.39 481.26
   A 0.71 0.70 -59.3 0 1 570.54 481.48
@@ -15564,8 +19846,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 555.84 474.28 557.87 474.69 559.58 474.88
   C 565.13 475.50 568.44 476.23 572.30 480.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 612.02 467.99
   L 613.23 467.99
   L 618.79 472.47
@@ -15585,8 +19868,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 0 612.11 468.33
   L 612.02 467.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 967.04 473.78
   L 959.57 469.26
   A 1.57 1.56 52.5 0 0 958.32 469.09
@@ -15597,8 +19881,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.57 0.21 20.3 0 0 964.43 471.30
   L 967.04 473.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 948.88 488.24
   Q 950.94 493.11 945.72 495.40
   Q 942.52 496.81 939.55 496.29
@@ -15624,8 +19909,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.29 1.28 1.7 0 0 928.59 493.90
   Q 932.73 495.64 936.64 496.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 887.93 476.11
   Q 904.40 480.32 919.45 490.29
   Q 908.44 496.50 897.28 500.71
@@ -15659,16 +19945,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 9.14 8.80 -55.5 0 1 853.36 473.58
   Q 870.93 472.01 887.93 476.11
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 616.65 481.85
   L 616.51 482.47
   Q 610.64 484.85 604.89 481.03
   Q 605.78 480.80 606.49 480.99
   Q 611.60 482.36 616.65 481.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 965.45 501.03
   L 957.83 509.56
   L 953.24 510.67
@@ -15691,8 +19979,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 965.42 494.36 966.10 497.73
   Q 966.45 499.43 965.45 501.03
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 712.00 503.43
   Q 711.54 503.30 711.32 503.47
   A 0.69 0.66 37.2 0 0 711.50 504.61
@@ -15713,15 +20002,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 664.44 489.10 669.84 490.02
   Q 691.80 493.79 712.00 503.43
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 820.41 488.82
   L 822.85 489.31
   Q 820.28 490.44 817.47 489.53
   L 820.41 488.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 906.21 520.48
   Q 905.82 521.07 905.82 522.03
   Q 905.83 523.03 905.03 523.39
@@ -15744,8 +20035,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.49 1.45 38.0 0 0 902.91 521.05
   Q 904.55 520.23 906.21 520.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 870.53 520.21
   Q 870.62 522.19 867.33 519.72
   Q 855.46 511.07 839.60 508.92
@@ -15762,8 +20054,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 828.23 504.53 844.57 507.88
   Q 857.68 510.57 870.53 520.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 747.71 524.01
   Q 747.79 524.29 747.94 524.44
   Q 748.06 524.58 748.38 524.58
@@ -15788,8 +20081,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 757.71 524.00 747.42 525.26
   Q 747.14 524.55 747.71 524.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 832.46 551.45
   C 826.77 548.58 821.12 545.51 815.32 543.22
   Q 799.33 536.93 782.80 532.23
@@ -15808,8 +20102,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.25 0.25 0.0 0 1 833.59 551.07
   L 832.46 551.45
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 746.16 527.87
   L 749.35 530.11
   A 0.30 0.30 0.0 0 1 749.26 530.65
@@ -15820,8 +20115,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 728.18 539.73 742.55 532.08
   Q 745.18 530.67 746.16 527.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 868.68 566.76
   Q 865.99 571.66 859.26 573.23
   Q 851.83 574.97 844.59 573.90
@@ -15841,8 +20137,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 869.24 551.41 872.29 553.65 872.57 557.58
   Q 872.91 562.31 868.68 566.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 948.67 570.82
   Q 938.88 569.69 929.39 568.63
   Q 920.75 567.67 912.63 567.85
@@ -15856,8 +20153,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 921.77 565.93 927.97 566.72
   Q 938.28 568.03 948.67 570.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1230.64 633.72
   Q 1227.72 635.48 1224.65 636.61
   C 1207.81 642.85 1190.12 644.93 1174.17 648.15
@@ -15946,8 +20244,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1243.46 606.25 1240.59 613.15
   Q 1238.51 618.17 1230.64 633.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 467.46 640.87
   C 481.26 640.96 495.77 641.36 508.96 640.57
   Q 518.05 640.02 527.13 639.91
@@ -15989,8 +20288,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.06 0.06 0.0 0 1 462.78 641.09
   L 467.46 640.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 993.54 584.81
   Q 993.34 584.91 993.18 584.97
   Q 992.95 585.06 992.95 585.24
@@ -16003,8 +20303,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 975.48 594.74 982.47 589.68 982.43 580.31
   L 993.54 584.81
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 849.95 733.31
   C 854.67 733.01 859.85 733.07 864.11 732.52
   C 870.12 731.75 875.29 732.07 881.40 731.24
@@ -16046,8 +20347,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 876.82 734.92 873.14 734.59
   Q 861.59 733.55 849.95 733.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 739.16 727.33
   Q 737.52 726.29 737.04 725.40
   Q 731.76 715.60 728.25 704.69
@@ -16057,8 +20359,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 739.29 727.23
   A 0.09 0.08 5.6 0 1 739.16 727.33
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 859.55 730.86
   A 0.16 0.16 0.0 0 1 859.33 730.81
   L 846.60 710.60
@@ -16068,9 +20371,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.16 0.16 0.0 0 1 860.28 730.40
   L 859.55 730.86
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(748.86,717.69) rotate(-115.6)" rx="8.74" ry="0.75"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(748.86,717.69) rotate(-115.6)"
+          rx="8.74"
+          ry="0.75"
+        />
+        <path
+          d="
   M 772.54 730.90
   A 0.11 0.11 0.0 0 1 772.50 731.05
   L 772.48 731.06
@@ -16081,10 +20391,24 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.11 0.11 0.0 0 1 762.23 711.91
   L 772.54 730.90
   Z"
-/>
-<rect x="-0.67" y="-9.89" transform="translate(759.24,721.86) rotate(-23.4)" width="1.34" height="19.78" rx="0.65"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(780.47,722.49) rotate(-111.3)" rx="10.12" ry="0.78"/>
-<path d="
+        />
+        <rect
+          x="-0.67"
+          y="-9.89"
+          transform="translate(759.24,721.86) rotate(-23.4)"
+          width="1.34"
+          height="19.78"
+          rx="0.65"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(780.47,722.49) rotate(-111.3)"
+          rx="10.12"
+          ry="0.78"
+        />
+        <path
+          d="
   M 837.95 713.36
   A 0.11 0.11 0.0 0 1 838.00 713.21
   L 838.03 713.19
@@ -16095,9 +20419,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.11 0.11 0.0 0 1 847.37 731.00
   L 837.95 713.36
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(828.94,723.56) rotate(-114.4)" rx="10.81" ry="0.72"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(828.94,723.56) rotate(-114.4)"
+          rx="10.81"
+          ry="0.72"
+        />
+        <path
+          d="
   M 870.80 713.96
   A 0.13 0.13 0.0 0 1 870.85 713.79
   L 870.86 713.79
@@ -16108,10 +20439,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.13 0.13 0.0 0 1 879.48 730.71
   L 870.80 713.96
   Z"
-/>
-</g>
-<g fill="#5f4e4f">
-<path d="
+        />
+      </g>
+      <g fill="#5f4e4f">
+        <path
+          d="
   M 948.57 269.34
   Q 945.02 271.36 942.92 271.63
   Q 929.56 273.36 915.99 271.92
@@ -16124,8 +20456,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 895.19 262.01 901.43 261.69 907.10 262.20
   Q 928.10 264.06 948.57 269.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 885.69 285.21
   Q 879.54 287.96 874.60 290.79
   Q 871.95 292.30 869.65 292.96
@@ -16147,8 +20480,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.83 0.80 -35.0 0 1 878.78 279.55
   L 885.69 285.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 903.28 327.21
   Q 902.28 329.71 900.32 331.51
   Q 903.34 320.39 906.39 314.19
@@ -16159,8 +20493,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 910.47 313.19 907.07 317.57
   Q 905.07 320.14 903.28 327.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1200.74 310.48
   Q 1205.57 312.33 1210.46 313.96
   Q 1214.58 315.33 1216.58 316.95
@@ -16195,8 +20530,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.66 2.28 49.4 0 1 1186.96 306.42
   L 1200.74 310.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1151.06 324.28
   Q 1142.20 325.77 1133.74 332.50
   L 1139.20 326.87
@@ -16208,8 +20544,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.08 1.06 41.0 0 1 1146.09 320.53
   L 1151.06 324.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1192.55 342.06
   Q 1190.14 352.49 1186.52 362.60
   C 1185.20 366.28 1183.04 370.46 1181.52 374.53
@@ -16226,8 +20563,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.04 2.02 9.7 0 1 1188.78 341.45
   Q 1190.33 341.33 1192.55 342.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1088.75 368.32
   C 1085.11 371.23 1081.52 374.03 1078.18 377.08
   Q 1075.06 379.94 1070.72 379.81
@@ -16235,8 +20573,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1072.54 379.59 1073.65 378.60
   Q 1081.37 371.72 1088.75 368.32
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 527.69 474.22
   L 528.53 475.17
   A 0.17 0.17 0.0 0 1 528.36 475.45
@@ -16259,8 +20598,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 4.70 4.63 26.1 0 1 511.21 471.72
   Q 519.33 471.25 527.69 474.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1213.71 482.03
   Q 1211.76 479.60 1213.63 484.37
   C 1215.89 490.15 1220.94 499.89 1223.12 506.65
@@ -16292,8 +20632,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.27 0.27 0.0 0 1 1210.76 476.95
   L 1213.71 482.03
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1182.30 491.72
   L 1186.89 501.29
   L 1196.15 515.85
@@ -16308,8 +20649,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.24 1.23 67.0 0 1 1179.11 486.62
   Q 1181.31 488.73 1182.30 491.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 799.18 540.74
   Q 803.12 544.47 808.47 546.04
   A 0.32 0.32 0.0 0 1 808.69 546.43
@@ -16341,10 +20683,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 765.23 532.35 769.83 533.33
   Q 784.72 536.50 799.18 540.74
   Z"
-/>
-</g>
-<g fill="#fffec9">
-<path d="
+        />
+      </g>
+      <g fill="#fffec9">
+        <path
+          d="
   M 782.19 248.58
   L 782.94 250.25
   A 0.41 0.41 0.0 0 1 782.60 250.83
@@ -16356,8 +20699,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 757.20 240.17 763.27 242.22
   Q 772.80 245.43 782.19 248.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 737.61 268.55
   Q 739.56 278.02 731.86 283.65
   Q 727.23 287.03 723.84 288.45
@@ -16374,8 +20718,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 704.37 283.83 712.94 276.33 720.92 271.69
   C 726.86 268.23 731.09 266.78 737.61 268.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1045.80 300.31
   Q 1045.93 301.59 1044.80 302.20
   Q 1044.70 302.21 1044.59 302.22
@@ -16392,8 +20737,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1005.00 289.02 1011.52 290.66
   Q 1028.81 295.00 1045.80 300.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1007.70 325.94
   C 1011.55 332.07 1013.67 336.98 1010.75 344.11
   Q 1009.15 348.03 1006.31 352.47
@@ -16410,8 +20756,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 987.90 327.52 991.86 325.44
   C 997.39 322.53 1002.54 322.49 1007.70 325.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 673.44 337.13
   Q 691.98 339.00 709.53 345.05
   L 725.96 350.95
@@ -16443,8 +20790,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 645.12 339.73 651.88 338.39
   Q 661.53 336.48 673.44 337.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 649.10 362.91
   Q 649.55 362.99 649.58 363.13
   L 662.40 366.02
@@ -16467,8 +20815,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 622.60 364.09 631.16 362.89
   L 649.10 362.91
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 929.75 404.65
   Q 934.93 404.83 940.09 405.01
   Q 945.27 405.19 950.37 406.00
@@ -16494,8 +20843,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 926.94 405.61 927.24 404.84
   L 929.75 404.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 605.55 417.95
   Q 610.56 421.20 615.94 422.04
   Q 622.47 425.57 628.90 429.96
@@ -16518,8 +20868,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 575.41 415.04 576.87 414.28
   Q 591.37 413.91 605.55 417.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 902.72 431.00
   L 909.03 431.04
   L 916.21 432.19
@@ -16556,8 +20907,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 886.42 436.46 893.14 433.65
   Q 897.83 431.68 902.72 431.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 543.76 438.77
   L 552.83 439.11
   A 1.89 1.88 54.6 0 1 553.30 439.19
@@ -16571,8 +20923,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 525.50 443.02 525.54 442.55
   C 531.36 439.97 536.00 439.69 543.76 438.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 683.51 446.23
   Q 686.59 447.38 689.82 446.56
   Q 690.41 446.22 690.84 446.44
@@ -16646,8 +20999,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.20 1.10 61.5 0 0 668.16 443.62
   L 683.51 446.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 830.04 489.42
   L 839.45 490.14
   Q 839.50 490.15 839.55 490.16
@@ -16682,8 +21036,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 820.28 490.44 822.85 489.31
   Q 826.39 488.76 830.04 489.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 786.27 514.23
   L 785.85 514.27
   A 0.16 0.15 -33.7 0 0 785.79 514.56
@@ -16713,8 +21068,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 764.18 518.46 759.95 517.16
   Q 772.89 512.68 786.27 514.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 880.44 533.54
   Q 886.19 537.70 892.96 539.95
   Q 892.30 539.85 891.91 540.13
@@ -16736,8 +21092,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.20 0.20 0.0 0 1 875.32 530.23
   C 877.05 530.95 878.26 533.08 880.44 533.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 362.78 580.30
   Q 360.17 580.62 356.45 577.79
   Q 353.27 575.36 346.43 573.44
@@ -16754,8 +21111,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 325.61 564.41 338.23 567.79
   C 346.60 570.03 355.81 573.86 362.78 580.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 339.28 575.09
   C 342.38 575.16 345.71 575.05 348.52 576.09
   Q 355.50 578.68 358.08 585.50
@@ -16770,8 +21128,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.69 3.56 -40.8 0 1 333.37 574.14
   L 339.28 575.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 610.35 653.94
   Q 609.71 655.01 608.93 655.41
   Q 606.29 653.30 603.54 651.60
@@ -16803,8 +21162,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 575.68 636.48 591.48 642.01
   C 598.50 644.48 605.32 647.05 610.35 653.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 573.63 665.80
   C 571.06 660.41 570.49 655.35 569.35 648.48
   C 573.81 647.43 578.95 646.27 583.30 646.68
@@ -16818,10 +21178,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.18 1.18 0.0 0 1 603.03 677.31
   Q 587.89 672.96 573.63 665.80
   Z"
-/>
-</g>
-<g fill="#e9a10f">
-<path d="
+        />
+      </g>
+      <g fill="#e9a10f">
+        <path
+          d="
   M 810.24 266.21
   C 812.75 268.20 816.31 271.54 816.51 274.97
   Q 816.53 275.38 817.06 281.03
@@ -16840,8 +21201,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 799.87 288.97 802.84 281.80
   Q 806.14 273.81 810.24 266.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1074.96 314.93
   Q 1092.25 323.40 1087.22 342.76
   Q 1085.09 350.94 1082.45 358.95
@@ -16857,8 +21219,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1076.68 337.10 1078.66 327.76 1074.74 318.20
   Q 1074.12 316.38 1074.96 314.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 936.69 339.69
   Q 937.58 344.39 937.91 349.10
   Q 938.05 351.17 938.60 354.84
@@ -16895,8 +21258,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 937.20 348.06 936.07 341.47
   Q 935.68 339.26 936.69 339.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 816.42 341.53
   A 0.14 0.14 0.0 0 1 816.35 341.34
   L 816.38 341.28
@@ -16907,8 +21271,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.14 0.14 0.0 0 1 825.11 345.65
   L 816.42 341.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 657.81 350.65
   L 643.72 352.11
   A 0.33 0.33 0.0 0 0 643.43 352.51
@@ -16918,8 +21283,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 640.07 351.74 638.65 350.95
   C 645.22 349.46 649.90 350.04 657.81 350.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 723.28 371.66
   Q 711.92 375.41 701.40 381.01
   Q 700.51 380.75 700.13 380.38
@@ -16933,16 +21299,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 713.42 364.76 716.26 366.30 719.47 368.87
   Q 721.28 370.32 723.28 371.66
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 766.22 377.11
   Q 765.52 378.91 764.45 379.60
   L 763.78 373.84
   L 760.66 368.80
   Q 767.01 371.40 766.22 377.11
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 724.26 372.47
   L 725.71 373.60
   Q 725.87 373.93 725.79 374.15
@@ -16958,14 +21326,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.04 1.00 -81.9 0 0 723.36 373.19
   Q 723.70 372.61 724.26 372.47
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 631.87 387.88
   Q 628.51 388.28 625.08 386.94
   Q 628.93 386.51 631.87 387.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 658.41 393.61
   L 658.40 393.96
   A 0.10 0.10 0.0 0 1 658.31 394.05
@@ -16978,8 +21348,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 658.64 393.22
   A 0.48 0.47 76.1 0 0 658.41 393.61
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 713.78 392.78
   Q 714.81 392.23 715.97 393.46
   L 714.67 393.06
@@ -17002,8 +21373,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 710.31 398.03 712.36 391.79
   Q 713.19 393.19 713.78 392.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 688.44 399.73
   Q 686.92 400.19 688.52 402.42
   C 687.20 402.31 685.75 402.06 684.67 402.94
@@ -17019,9 +21391,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 689.24 398.61 689.11 399.05
   Q 689.01 399.38 688.44 399.73
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(1092.54,402.99) rotate(-158.3)" rx="2.94" ry="0.58"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(1092.54,402.99) rotate(-158.3)"
+          rx="2.94"
+          ry="0.58"
+        />
+        <path
+          d="
   M 1205.98 417.72
   C 1205.99 421.43 1206.06 424.97 1205.39 428.63
   Q 1203.56 438.52 1201.47 442.97
@@ -17052,16 +21431,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1202.13 411.05 1202.83 414.03
   Q 1203.49 416.87 1205.98 417.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 574.52 414.19
   L 576.87 414.28
   Q 575.41 415.04 573.83 415.05
   Q 572.93 415.18 572.19 415.00
   L 574.52 414.19
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 688.52 421.44
   L 687.98 422.51
   L 683.36 419.24
@@ -17070,8 +21451,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 680.58 417.76 680.48 415.29
   L 688.52 421.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 633.08 428.17
   Q 631.71 428.18 629.73 426.67
   A 0.35 0.34 52.9 0 1 629.81 426.07
@@ -17089,8 +21471,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 633.35 427.62 633.39 427.77
   A 0.33 0.32 83.5 0 1 633.08 428.17
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1162.61 419.95
   Q 1163.18 419.76 1163.53 419.91
   A 0.52 0.49 -43.6 0 1 1163.48 420.84
@@ -17101,8 +21484,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.23 0.23 0.0 0 1 1151.33 424.27
   L 1162.61 419.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 917.05 428.80
   Q 914.98 428.87 913.20 429.89
   L 907.27 429.23
@@ -17118,8 +21502,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.53 0.53 0.0 0 0 913.13 427.25
   Q 916.01 426.71 917.05 428.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 663.72 430.92
   Q 663.06 430.43 663.13 428.90
   A 1.19 1.19 0.0 0 0 661.60 427.71
@@ -17140,8 +21525,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.55 0.55 0.0 0 1 663.64 424.86
   L 663.72 430.92
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 990.59 432.22
   L 976.05 437.64
   Q 975.51 437.05 974.27 437.05
@@ -17149,8 +21535,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 988.98 431.91 988.67 431.26
   Q 989.97 430.91 990.59 432.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 940.64 437.87
   L 942.17 438.48
   A 0.19 0.19 0.0 0 1 942.14 438.85
@@ -17158,8 +21545,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 939.41 438.19
   Q 939.69 437.85 940.64 437.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 995.82 439.27
   L 1000.59 441.22
   A 1.27 1.24 1.4 0 1 1001.28 441.93
@@ -17175,8 +21563,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.33 1.31 -9.4 0 1 984.56 443.63
   Q 990.22 440.68 995.82 439.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 624.20 443.48
   Q 626.02 444.46 627.35 445.98
   A 0.42 0.42 0.0 0 1 626.89 446.66
@@ -17184,8 +21573,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 623.63 444.44 623.61 443.92
   Q 623.59 443.55 624.20 443.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1040.33 450.76
   Q 1040.20 451.63 1038.45 451.28
   L 1027.58 446.89
@@ -17195,8 +21585,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1029.73 444.97 1030.92 445.39
   Q 1036.06 447.18 1040.33 450.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 614.74 448.06
   L 607.75 450.83
   A 0.28 0.28 0.0 0 0 607.82 451.37
@@ -17220,14 +21611,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.65 0.65 0.0 0 1 595.76 450.13
   C 602.07 449.30 607.91 447.43 614.74 448.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 631.54 456.19
   Q 628.21 453.96 626.58 450.51
   Q 630.77 452.21 631.54 456.19
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 983.38 465.69
   Q 982.76 463.50 981.33 462.22
   Q 981.16 461.01 980.35 459.74
@@ -17238,8 +21631,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.18 1.17 52.8 0 1 984.31 464.70
   L 983.38 465.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 940.81 473.01
   L 936.70 474.85
   A 0.62 0.61 -25.2 0 1 935.90 474.57
@@ -17285,15 +21679,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.53 0.53 0.0 0 1 956.97 465.69
   Q 948.47 468.46 940.81 473.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 902.32 465.78
   L 889.96 462.11
   Q 894.20 462.44 898.44 463.85
   Q 900.43 464.51 902.32 465.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 587.78 474.10
   Q 586.91 473.91 586.18 474.65
   Q 583.82 474.19 581.54 474.17
@@ -17307,15 +21703,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.94 0.76 2.0 0 1 584.96 470.69
   L 587.78 474.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 499.66 469.80
   Q 498.74 469.44 497.94 468.30
   Q 498.61 468.09 499.01 468.26
   Q 500.33 468.81 499.66 469.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 572.30 480.04
   Q 573.55 478.00 573.49 475.46
   Q 577.60 478.01 581.42 477.94
@@ -17347,16 +21745,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.71 0.70 -59.3 0 0 571.39 481.26
   L 572.30 480.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 998.95 471.94
   C 999.87 475.37 997.49 477.54 994.45 478.55
   L 994.67 476.85
   A 1.10 1.09 -13.5 0 1 995.15 476.07
   Q 997.51 474.49 998.95 471.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 597.81 473.22
   Q 597.25 473.16 597.01 473.38
   Q 596.65 473.74 597.06 474.11
@@ -17366,8 +21766,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 592.49 472.80
   Q 594.96 472.15 597.81 473.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 846.93 476.67
   Q 848.24 477.20 845.37 478.17
   C 843.86 478.68 842.84 480.00 841.28 479.82
@@ -17382,8 +21783,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.63 0.62 23.8 0 1 839.41 478.00
   L 846.93 476.67
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 579.95 488.55
   L 582.85 490.09
   Q 581.86 490.34 582.30 491.78
@@ -17395,8 +21797,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.79 0.76 -1.0 0 0 575.94 487.79
   L 579.95 488.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 921.49 496.82
   L 921.00 496.45
   A 0.38 0.37 15.2 0 0 920.40 496.79
@@ -17430,15 +21833,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 1 920.74 493.87
   L 921.49 496.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 965.45 501.03
   Q 966.36 504.88 963.29 507.04
   Q 960.61 508.92 957.83 509.56
   L 965.45 501.03
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 808.05 502.18
   L 818.81 502.50
   A 0.51 0.51 0.0 0 1 819.17 502.65
@@ -17449,14 +21854,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 802.37 503.56 798.02 503.27
   L 808.05 502.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 799.37 506.23
   Q 797.34 506.77 796.18 505.04
   Q 798.32 504.10 799.37 506.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 829.20 519.50
   A 0.45 0.45 0.0 0 0 829.38 520.36
   Q 831.04 520.38 832.13 519.88
@@ -17481,8 +21888,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.59 1.12 -55.0 0 0 838.98 515.21
   L 829.20 519.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 867.33 519.72
   Q 870.62 522.19 870.53 520.21
   L 873.80 522.70
@@ -17499,8 +21907,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.33 0.33 0.0 0 1 839.44 529.14
   Q 853.31 523.72 867.33 519.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 849.67 550.46
   Q 849.72 552.95 848.00 553.50
   Q 843.05 555.10 837.00 553.00
@@ -17534,8 +21943,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.58 1.52 47.5 0 0 846.50 550.81
   Q 848.16 550.29 849.67 550.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 993.54 584.81
   L 1034.04 604.57
   L 1048.45 614.16
@@ -17550,8 +21960,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 992.95 585.06 993.18 584.97
   Q 993.34 584.91 993.54 584.81
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 525.29 672.02
   L 526.71 678.96
   A 0.49 0.49 0.0 0 1 526.26 679.55
@@ -17582,8 +21993,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 455.33 666.52 475.88 669.67 492.77 670.91
   Q 504.73 671.79 525.29 672.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 975.26 644.81
   Q 974.88 646.50 973.36 647.06
   Q 955.81 653.58 940.45 661.87
@@ -17593,8 +22005,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 954.72 653.15
   L 975.26 644.81
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 717.03 746.52
   C 723.55 747.42 730.38 748.57 736.61 748.99
   Q 755.42 750.26 767.79 751.27
@@ -17692,8 +22105,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 8.21 0.86 -2.8 0 0 835.9220 761.8990
   A 8.21 0.86 -2.8 0 0 844.0802 760.6389
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 981.05 713.70
   A 0.25 0.25 0.0 0 1 981.26 713.41
   L 984.13 712.94
@@ -17704,9 +22118,12 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.25 0.25 0.0 0 1 981.23 714.76
   L 981.05 713.70
   Z"
-/>
-</g>
-<path fill="#020100" fill-opacity="0.157" d="
+        />
+      </g>
+      <path
+        fill="#020100"
+        fill-opacity="0.157"
+        d="
   M 309.56 629.59
   Q 314.63 634.85 320.36 639.39
   Q 320.82 639.75 322.02 640.29
@@ -17767,9 +22184,10 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 313.00 661.16 306.51 649.61 307.57 638.72
   Q 307.94 635.01 309.56 629.59
   Z"
-/>
-<g fill="#c1b9b1">
-<path d="
+      />
+      <g fill="#c1b9b1">
+        <path
+          d="
   M 1200.96 309.56
   Q 1201.34 310.33 1200.74 310.48
   L 1186.96 306.42
@@ -17784,8 +22202,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1153.15 302.64 1155.74 302.56
   C 1171.53 302.13 1185.68 305.12 1200.96 309.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 791.71 451.32
   L 791.95 451.56
   A 0.42 0.42 0.0 0 1 791.77 452.27
@@ -17817,16 +22236,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.50 2.39 52.0 0 1 785.37 449.35
   L 791.71 451.32
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 785.89 476.50
   L 787.98 474.29
   Q 789.29 473.56 790.50 473.61
   A 0.31 0.30 18.5 0 1 790.74 474.08
   Q 787.64 478.71 785.89 476.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 703.56 474.21
   L 704.33 475.29
   C 698.88 476.84 693.56 478.44 687.72 478.40
@@ -17852,8 +22273,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 666.86 477.91 676.95 477.52
   Q 690.39 477.00 703.56 474.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 557.56 501.95
   Q 558.44 502.63 559.64 503.02
   Q 561.53 506.13 566.65 506.86
@@ -17872,8 +22294,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 548.48 504.86 556.49 503.62
   Q 557.44 503.47 557.56 501.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1084.78 522.21
   Q 1086.95 523.54 1088.69 526.17
   L 1090.79 529.50
@@ -17885,8 +22308,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.59 1.50 36.1 0 1 1084.18 522.23
   Q 1084.24 522.14 1084.78 522.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 773.03 560.00
   Q 779.26 561.42 787.96 564.28
   Q 796.12 566.97 810.86 569.58
@@ -17910,8 +22334,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 797.03 572.40 793.31 570.56 788.96 568.38
   Q 781.20 565.13 773.03 560.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 475.71 607.12
   L 472.65 607.32
   A 0.54 0.54 0.0 0 0 472.15 607.87
@@ -17937,8 +22362,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 450.07 606.61 457.43 607.01
   C 463.11 607.31 469.62 607.08 475.71 607.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 559.25 604.38
   Q 555.66 607.15 552.30 608.18
   Q 539.55 607.37 519.76 607.84
@@ -17947,8 +22373,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 538.82 606.10 542.29 605.58 545.97 604.97
   Q 550.32 604.25 559.25 604.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1274.77 659.02
   L 1275.47 667.45
   Q 1273.37 672.67 1269.63 677.15
@@ -17982,18 +22409,20 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.67 -22.6 0 1 1265.08 630.19
   Q 1271.51 644.00 1274.77 659.02
   Z"
-/>
-</g>
-<g fill="#795f41" fill-opacity="0.996">
-<path d="
+        />
+      </g>
+      <g fill="#795f41" fill-opacity="0.996">
+        <path
+          d="
   M 950.11 271.41
   L 945.41 276.75
   Q 945.04 276.87 944.98 276.85
   A 0.64 0.64 0.0 0 1 944.66 275.97
   Q 946.43 272.49 950.11 271.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1221.23 322.01
   Q 1219.11 319.00 1216.58 316.95
   Q 1214.58 315.33 1210.46 313.96
@@ -18002,8 +22431,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1208.26 311.24 1214.96 314.57
   C 1218.17 316.17 1221.00 318.16 1221.23 322.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 832.04 321.23
   Q 829.24 325.97 825.10 329.66
   A 5.88 5.75 -4.1 0 0 824.17 330.71
@@ -18016,14 +22446,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.24 1.20 80.9 0 1 815.18 336.59
   L 832.04 321.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 523.29 451.26
   Q 523.51 451.71 522.20 452.00
   Q 522.52 451.41 523.29 451.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 787.15 472.40
   C 784.26 474.96 781.47 477.95 778.70 480.21
   Q 766.21 490.46 752.12 498.15
@@ -18039,8 +22471,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.08 0.08 0.0 0 0 789.68 469.53
   L 787.15 472.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1099.53 495.35
   Q 1101.67 496.44 1103.15 497.95
   Q 1094.72 493.55 1086.33 489.19
@@ -18051,8 +22484,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1073.49 479.91 1080.80 484.80
   C 1086.35 488.51 1093.30 491.72 1099.53 495.35
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1213.71 482.03
   Q 1214.17 483.13 1214.65 483.49
   Q 1221.06 497.17 1224.51 506.98
@@ -18066,8 +22500,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1220.94 499.89 1215.89 490.15 1213.63 484.37
   Q 1211.76 479.60 1213.71 482.03
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1099.52 500.31
   Q 1099.71 500.89 1098.80 500.69
   Q 1091.25 498.08 1088.49 496.74
@@ -18076,8 +22511,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1061.47 481.76 1061.59 481.83
   Q 1079.89 492.54 1099.52 500.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1059.79 511.06
   Q 1058.74 511.98 1055.21 511.83
   Q 1044.66 512.86 1038.12 514.62
@@ -18091,8 +22527,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1040.12 512.47 1045.44 511.94 1050.19 510.99
   Q 1052.87 510.45 1059.79 511.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1080.63 540.65
   Q 1075.83 547.06 1073.86 549.11
   Q 1059.81 563.73 1040.56 573.32
@@ -18106,8 +22543,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.15 0.14 -76.7 0 1 1083.39 531.55
   Q 1083.09 535.73 1080.63 540.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1227.64 572.40
   Q 1226.78 577.33 1222.94 580.67
   A 0.36 0.36 0.0 0 0 1223.17 581.30
@@ -18128,8 +22566,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.75 3.43 -15.9 0 0 1224.16 577.15
   Q 1225.34 574.55 1227.64 572.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 389.24 610.24
   L 395.81 610.59
   L 439.05 614.66
@@ -18169,8 +22608,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.06 1.06 0.0 0 1 388.23 609.97
   Q 388.48 610.02 389.24 610.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 920.93 670.23
   L 914.47 671.24
   A 0.30 0.28 -28.2 0 0 914.30 671.74
@@ -18244,10 +22684,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.76 2.54 -52.5 0 0 917.80 670.50
   Q 919.40 669.97 920.93 670.23
   Z"
-/>
-</g>
-<g fill="#ded4c4">
-<path d="
+        />
+      </g>
+      <g fill="#ded4c4">
+        <path
+          d="
   M 733.23 378.96
   L 737.48 381.54
   Q 735.16 381.67 738.02 384.00
@@ -18262,8 +22703,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 731.88 379.53
   Q 732.22 378.82 733.23 378.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 812.48 425.63
   L 821.04 430.91
   A 0.09 0.09 0.0 0 1 821.07 431.02
@@ -18274,8 +22716,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.31 0.31 0.0 0 1 801.49 418.65
   L 812.48 425.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 831.05 419.63
   L 848.72 425.75
   Q 847.12 425.93 848.84 427.06
@@ -18332,8 +22775,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.52 0.52 0.0 0 0 837.27 424.64
   C 835.01 423.79 831.27 422.54 831.05 419.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 790.04 436.23
   Q 790.36 436.68 790.33 436.73
   A 0.74 0.73 -59.2 0 1 789.29 437.00
@@ -18344,8 +22788,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.27 -51.3 0 1 777.33 426.92
   L 790.04 436.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 673.29 441.30
   Q 677.16 445.03 683.51 446.23
   L 668.16 443.62
@@ -18357,8 +22802,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.72 0.71 -47.5 0 1 665.77 436.65
   L 673.29 441.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 656.32 473.92
   Q 657.62 474.53 659.30 474.62
   L 656.56 474.63
@@ -18376,8 +22822,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 625.92 475.62 629.34 475.16
   C 638.47 473.94 646.38 472.25 656.32 473.92
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1059.79 511.06
   Q 1052.87 510.45 1050.19 510.99
   C 1045.44 511.94 1040.12 512.47 1035.58 513.89
@@ -18397,8 +22844,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.35 0.35 0.0 0 1 1062.61 510.85
   L 1059.79 511.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 689.73 536.08
   Q 694.16 539.33 698.88 541.88
   Q 702.76 543.97 706.79 543.77
@@ -18420,8 +22868,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.48 0.48 0.0 0 0 682.63 530.68
   L 689.73 536.08
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1026.97 581.92
   L 1010.89 583.91
   A 0.37 0.37 0.0 0 1 1010.62 583.84
@@ -18443,8 +22892,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.35 0.35 0.0 0 0 1026.47 581.82
   L 1026.97 581.92
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 896.00 559.34
   Q 896.47 560.00 897.31 560.45
   L 890.35 562.47
@@ -18455,8 +22905,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 875.44 561.76
   L 896.00 559.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 475.71 607.12
   L 488.50 607.27
   Q 490.90 607.83 494.00 607.63
@@ -18479,8 +22930,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.54 0.54 0.0 0 1 472.65 607.32
   L 475.71 607.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 438.46 613.58
   L 437.65 613.58
   A 0.14 0.14 0.0 0 0 437.59 613.84
@@ -18490,15 +22942,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.22 0.22 0.0 0 1 394.38 609.31
   L 438.46 613.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1276.07 664.27
   L 1275.47 667.45
   L 1274.77 659.02
   L 1276.07 664.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 644.72 665.81
   Q 660.03 671.71 676.12 675.00
   C 682.08 676.22 689.20 677.02 695.78 678.03
@@ -18509,10 +22963,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 633.68 680.34 634.53 675.54 637.82 671.46
   Q 640.23 668.47 644.72 665.81
   Z"
-/>
-</g>
-<g fill="#fff366">
-<path d="
+        />
+      </g>
+      <g fill="#fff366">
+        <path
+          d="
   M 758.28 243.33
   Q 769.56 246.13 780.28 250.58
   Q 781.17 250.95 782.60 250.83
@@ -18540,8 +22995,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 736.19 239.80 740.92 240.72
   Q 749.57 242.39 758.28 243.33
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 704.22 336.02
   C 718.16 333.95 726.52 330.41 732.45 316.90
   C 736.21 308.33 744.39 291.02 748.80 276.46
@@ -18561,8 +23017,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 3.05 2.79 -7.7 0 1 713.07 340.51
   C 710.39 337.97 707.40 337.34 704.22 336.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1044.59 302.22
   C 1033.02 302.58 1019.29 303.05 1007.86 307.12
   C 995.72 311.44 987.49 321.53 980.43 331.87
@@ -18591,8 +23048,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1026.53 297.21 1031.21 298.05
   Q 1035.16 298.76 1044.59 302.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1076.75 312.15
   Q 1076.12 313.17 1075.36 313.51
   A 1.14 1.12 45.3 0 1 1074.42 313.50
@@ -18602,8 +23060,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1057.41 303.86 1068.67 308.34
   Q 1072.84 310.00 1076.75 312.15
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 754.19 346.52
   L 758.39 335.69
   A 1.60 1.47 20.9 0 0 757.41 333.73
@@ -18617,8 +23076,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 773.43 343.13 769.29 343.69
   C 764.46 344.34 759.29 345.74 754.19 346.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1019.09 366.72
   C 1015.75 367.64 1011.11 368.34 1010.13 363.83
   C 1009.42 360.52 1013.12 355.07 1014.90 352.15
@@ -18627,8 +23087,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1026.40 347.51 1025.49 351.66
   Q 1023.72 359.76 1019.09 366.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 723.04 354.65
   Q 704.48 347.52 684.86 344.37
   C 676.73 343.07 667.44 342.85 658.67 342.25
@@ -18640,23 +23101,26 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 684.66 343.46 690.69 343.11 696.02 344.82
   C 704.58 347.58 714.00 349.96 723.04 354.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 640.71 364.76
   Q 653.50 367.08 665.34 372.45
   L 627.87 365.34
   Q 633.91 364.27 640.71 364.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 705.02 388.46
   Q 700.67 387.55 698.63 386.41
   Q 691.64 382.52 684.19 379.43
   Q 690.26 380.46 692.61 381.59
   C 696.95 383.67 701.34 384.87 705.02 388.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1080.27 391.23
   L 1082.48 395.29
   Q 1083.57 397.02 1085.15 398.25
@@ -18682,8 +23146,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1065.53 386.73 1064.49 386.00
   Q 1072.73 386.35 1080.27 391.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 629.71 390.21
   Q 638.54 394.15 647.96 396.00
   L 663.49 404.02
@@ -18708,14 +23173,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 611.00 388.96 617.74 388.65
   Q 623.31 388.39 629.71 390.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 644.54 392.11
   Q 651.01 394.03 656.37 397.92
   L 644.54 392.11
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 695.28 399.69
   Q 695.80 399.84 695.87 400.05
   Q 697.51 402.09 700.26 403.20
@@ -18725,8 +23192,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.44 0.44 0.0 0 1 694.59 399.83
   L 695.28 399.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 934.77 406.96
   Q 939.76 407.48 944.76 407.64
   Q 948.36 407.76 951.29 408.30
@@ -18742,23 +23210,26 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 921.49 407.94 921.75 407.92
   Q 928.29 407.29 934.77 406.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1007.58 413.24
   L 1002.20 415.05
   Q 1002.55 413.83 1002.12 413.02
   A 0.58 0.58 0.0 0 1 1002.75 412.18
   L 1007.58 413.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 572.19 415.00
   Q 572.93 415.18 573.83 415.05
   Q 572.54 415.95 570.53 415.52
   Q 571.30 415.02 572.19 415.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 589.51 417.10
   Q 596.76 419.66 604.20 421.32
   Q 606.69 421.87 615.87 425.86
@@ -18769,14 +23240,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 590.38 418.06 568.82 418.18
   Q 579.19 415.02 589.51 417.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 605.55 417.95
   Q 610.99 419.14 615.94 422.04
   Q 610.56 421.20 605.55 417.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 688.52 421.44
   L 696.92 428.13
   L 695.42 432.47
@@ -18788,8 +23261,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 687.98 422.51
   L 688.52 421.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1009.99 421.89
   L 1023.91 428.60
   Q 1024.37 429.45 1024.34 429.98
@@ -18803,14 +23277,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.33 0.33 0.0 0 1 1008.96 421.87
   Q 1009.35 421.78 1009.99 421.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 914.33 436.23
   L 897.39 436.22
   Q 906.07 434.27 914.33 436.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 688.81 446.50
   Q 689.21 446.22 689.82 446.56
   Q 686.59 447.38 683.51 446.23
@@ -18818,8 +23294,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 671.67 439.24
   C 677.29 442.82 681.87 446.11 688.81 446.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 939.07 440.53
   Q 941.57 441.28 944.13 441.92
   C 949.07 443.15 954.28 445.81 958.15 446.91
@@ -18844,8 +23321,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 937.92 441.87 935.47 440.37
   Q 937.40 440.98 939.07 440.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 988.84 458.68
   L 986.74 458.14
   A 0.49 0.49 0.0 0 0 986.30 458.98
@@ -18869,8 +23347,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 1 979.66 453.64
   L 988.84 458.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 592.43 458.54
   Q 592.98 458.14 593.26 457.36
   C 595.22 458.21 597.63 460.11 599.67 460.34
@@ -18878,8 +23357,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 599.70 461.64 599.04 461.47
   Q 595.45 460.60 592.43 458.54
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 641.61 464.40
   Q 645.17 464.81 648.47 465.91
   A 3.29 2.97 55.1 0 0 649.16 466.07
@@ -18895,14 +23375,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 650.79 468.07 649.26 467.83
   Q 645.89 467.28 641.61 464.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 640.34 463.86
   Q 636.97 463.50 635.42 461.07
   Q 638.27 461.82 640.34 463.86
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 922.56 476.36
   Q 915.94 477.25 911.46 472.74
   A 1.72 1.68 -17.0 0 0 910.51 472.25
@@ -18924,14 +23406,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 899.12 466.86 900.63 467.28
   Q 912.11 470.52 922.56 476.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 927.41 475.86
   Q 922.77 474.90 919.56 472.29
   Q 923.64 473.18 927.41 475.86
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 866.28 500.87
   L 862.42 500.81
   A 3.49 3.33 -34.3 0 1 861.45 500.65
@@ -18943,8 +23427,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 845.07 493.34 851.83 495.15
   C 856.63 496.44 861.58 498.75 866.28 500.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 935.79 498.98
   Q 940.05 500.22 944.71 499.86
   A 5.03 4.71 32.8 0 0 945.59 499.70
@@ -18955,14 +23440,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 933.20 500.15 928.10 498.87 928.09 495.94
   L 935.79 498.98
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 869.01 498.83
   Q 866.00 498.62 863.89 497.03
   Q 866.70 497.37 869.01 498.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 786.27 514.23
   L 792.06 515.01
   Q 797.66 516.17 800.68 517.15
@@ -18980,15 +23467,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.16 0.15 -33.7 0 1 785.85 514.27
   L 786.27 514.23
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 892.96 539.95
   Q 894.76 540.16 895.75 541.13
   Q 893.55 541.21 891.91 540.13
   Q 892.30 539.85 892.96 539.95
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 855.04 543.65
   L 861.94 547.43
   Q 861.99 547.85 862.55 548.48
@@ -19025,8 +23514,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 853.89 544.50 853.66 544.39
   Q 854.23 543.39 855.04 543.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 323.32 565.80
   L 330.98 569.16
   A 1.24 0.92 53.3 0 0 331.18 569.22
@@ -19055,16 +23545,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.96 0.94 27.0 0 1 312.77 563.95
   L 323.32 565.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 871.77 567.18
   Q 871.43 568.82 870.48 570.23
   Q 868.04 572.82 864.64 573.09
   Q 868.71 570.95 870.55 567.34
   L 871.77 567.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 881.71 571.64
   L 883.26 579.67
   A 1.26 1.25 7.0 0 0 883.98 580.58
@@ -19087,8 +23579,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 871.02 574.19 871.25 574.14
   Q 876.48 573.00 881.71 571.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1232.13 575.35
   Q 1235.13 575.96 1232.36 580.78
   Q 1232.53 580.17 1232.41 579.97
@@ -19096,8 +23589,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1229.58 582.24 1226.62 583.37
   L 1232.13 575.35
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 558.06 633.85
   L 556.70 634.21
   A 0.35 0.34 -40.8 0 0 556.65 634.86
@@ -19120,8 +23614,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.68 0.68 0.0 0 1 554.24 631.75
   L 558.06 633.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 976.23 644.72
   Q 976.41 644.58 976.50 644.43
   Q 976.66 644.19 976.51 643.99
@@ -19132,8 +23627,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.79 2.79 0.0 0 1 980.08 642.48
   Q 978.92 644.40 976.23 644.72
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 969.14 709.18
   Q 970.77 709.97 972.09 711.50
   Q 968.34 712.09 964.73 710.39
@@ -19142,8 +23638,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.21 2.21 0.0 0 1 966.69 709.16
   Q 967.76 709.45 969.14 709.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1100.72 709.80
   Q 1094.70 710.25 1089.44 713.04
   A 1.15 1.14 33.3 0 1 1088.80 713.17
@@ -19158,10 +23655,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.73 1.71 -61.9 0 1 1092.75 709.87
   L 1100.72 709.80
   Z"
-/>
-</g>
-<g fill="#cfbd97" fill-opacity="0.996">
-<path d="
+        />
+      </g>
+      <g fill="#cfbd97" fill-opacity="0.996">
+        <path
+          d="
   M 952.03 269.97
   L 951.57 270.65
   L 949.55 269.80
@@ -19175,8 +23673,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 921.67 262.06 944.25 266.75
   Q 948.62 267.66 952.03 269.97
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1142.40 322.88
   Q 1143.25 322.79 1143.32 323.04
   Q 1143.54 323.94 1142.60 324.57
@@ -19193,8 +23692,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1116.79 342.73 1131.61 331.44
   C 1134.87 328.95 1138.66 325.56 1142.40 322.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 731.88 379.53
   L 736.35 383.59
   A 0.88 0.88 0.0 0 1 735.63 385.11
@@ -19217,8 +23717,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.78 1.76 35.7 0 0 721.28 380.42
   C 725.30 378.42 728.15 377.27 731.88 379.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 688.52 402.42
   L 689.20 403.51
   L 688.60 403.53
@@ -19237,8 +23738,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 684.16 403.36 684.67 402.94
   C 685.75 402.06 687.20 402.31 688.52 402.42
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 848.72 425.75
   L 868.17 432.15
   Q 866.77 433.73 864.55 432.90
@@ -19246,8 +23748,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 849.60 427.56 848.84 427.06
   Q 847.12 425.93 848.72 425.75
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 663.72 430.92
   Q 666.89 436.08 671.67 439.24
   L 673.29 441.30
@@ -19266,8 +23769,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.19 1.19 0.0 0 1 663.13 428.90
   Q 663.06 430.43 663.72 430.92
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 624.57 450.88
   Q 624.63 451.09 624.70 451.30
   Q 623.34 451.18 621.96 451.53
@@ -19292,8 +23796,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 612.61 454.53 617.71 452.48
   Q 621.26 451.06 624.57 450.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 778.26 452.44
   Q 770.90 453.34 768.76 453.78
   Q 760.74 455.45 750.08 459.27
@@ -19322,8 +23827,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.39 0.39 0.0 0 1 779.55 451.98
   Q 779.24 452.21 778.26 452.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 967.04 473.78
   L 973.51 477.71
   Q 971.27 478.04 969.74 476.26
@@ -19344,8 +23850,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.57 1.56 52.5 0 1 959.57 469.26
   L 967.04 473.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 664.56 480.44
   L 656.21 480.06
   A 0.15 0.15 0.0 0 1 656.07 479.91
@@ -19365,8 +23872,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 684.27 479.63 677.43 480.35
   C 673.13 480.80 668.89 480.55 664.56 480.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 599.65 479.18
   Q 601.82 479.88 604.01 480.35
   Q 604.46 480.44 604.54 481.07
@@ -19381,8 +23889,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.40 35.6 0 1 590.60 476.40
   Q 595.90 479.41 599.65 479.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 583.98 479.73
   Q 584.89 479.94 585.52 480.49
   Q 584.29 480.75 583.75 481.84
@@ -19400,8 +23909,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 578.98 478.10 580.61 478.03 582.71 479.64
   Q 583.32 480.10 583.98 479.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 912.64 506.62
   Q 909.63 508.41 905.78 509.54
   A 1.21 1.00 16.7 0 0 905.52 509.65
@@ -19421,8 +23931,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 915.09 504.40 914.36 504.68
   Q 910.67 506.11 912.64 506.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 566.65 506.86
   Q 569.10 506.82 571.11 508.08
   A 1.83 1.76 -27.7 0 0 572.01 508.34
@@ -19438,8 +23949,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 566.06 507.09 565.17 507.13
   Q 565.82 507.19 566.65 506.86
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1065.52 510.40
   Q 1070.05 511.88 1068.07 512.47
   L 1055.21 511.83
@@ -19456,8 +23968,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1040.23 506.69 1046.72 506.49 1050.63 506.55
   Q 1058.48 506.67 1065.52 510.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1026.97 581.92
   L 1026.47 581.82
   A 0.35 0.35 0.0 0 1 1026.38 581.17
@@ -19478,8 +23991,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1056.24 569.58 1047.44 573.73 1036.84 578.57
   Q 1032.17 580.70 1026.97 581.92
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 875.53 529.27
   L 877.37 530.52
   A 1.67 1.61 1.8 0 1 877.83 530.99
@@ -19499,8 +24013,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.32 1.32 0.0 0 1 871.80 527.53
   Q 873.30 529.13 875.53 529.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 946.55 547.46
   Q 946.15 548.13 947.54 548.92
   Q 941.06 550.37 934.53 551.46
@@ -19520,8 +24035,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 938.07 547.35
   L 946.55 547.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1231.10 570.74
   L 1227.33 577.67
   A 1.12 1.04 -9.3 0 1 1227.16 577.89
@@ -19531,8 +24047,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1226.78 577.33 1227.64 572.40
   Q 1228.02 569.92 1231.10 570.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 559.25 604.38
   Q 550.32 604.25 545.97 604.97
   C 542.29 605.58 538.82 606.10 534.96 606.11
@@ -19545,8 +24062,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.38 0.38 0.0 0 1 562.37 602.55
   L 559.25 604.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 541.62 619.55
   L 540.81 621.83
   Q 540.21 621.49 539.72 621.61
@@ -19574,8 +24092,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 538.52 619.36 541.05 618.73
   Q 541.69 618.58 541.62 619.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 674.96 687.40
   L 696.96 686.48
   L 696.65 686.70
@@ -19620,10 +24139,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.05 1.05 0.0 0 0 676.25 687.59
   Q 676.21 687.39 674.96 687.40
   Z"
-/>
-</g>
-<g fill="#fffffe">
-<path d="
+        />
+      </g>
+      <g fill="#fffffe">
+        <path
+          d="
   M 557.49 501.80
   Q 557.53 501.88 557.56 501.95
   Q 557.44 503.47 556.49 503.62
@@ -19666,8 +24186,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 515.82 494.29 542.83 501.36
   Q 550.11 503.26 557.49 501.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1055.21 511.83
   L 1068.07 512.47
   Q 1074.65 512.58 1078.73 515.34
@@ -19767,10 +24288,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 1026.39 517.79 1038.12 514.62
   Q 1044.66 512.86 1055.21 511.83
   Z"
-/>
-</g>
-<g fill="#a56002">
-<path d="
+        />
+      </g>
+      <g fill="#a56002">
+        <path
+          d="
   M 936.69 339.69
   Q 935.68 339.26 936.07 341.47
   Q 937.20 348.06 936.74 354.95
@@ -19783,8 +24305,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.02 0.01 0.0 0 1 935.74 320.58
   L 936.69 339.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 711.01 343.97
   L 710.68 344.04
   A 0.42 0.40 -82.3 0 0 710.39 344.27
@@ -19798,16 +24321,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 677.72 335.78 678.75 335.92
   Q 695.26 338.19 711.01 343.97
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 637.80 358.14
   Q 636.66 359.61 635.89 359.07
   Q 637.12 356.69 639.09 354.90
   A 0.24 0.24 0.0 0 1 639.49 355.08
   Q 639.46 356.72 637.80 358.14
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 647.57 360.59
   Q 645.08 360.65 643.01 359.95
   Q 641.85 359.56 638.91 360.30
@@ -19824,8 +24349,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.69 0.68 62.1 0 0 646.90 359.80
   Q 647.13 360.35 647.57 360.59
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 705.98 363.34
   Q 705.81 363.83 705.08 364.30
   Q 705.20 363.85 705.02 363.57
@@ -19838,8 +24364,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 690.01 367.72 695.48 366.01 700.76 363.45
   Q 703.20 362.27 705.98 363.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 737.11 374.66
   Q 733.61 373.71 730.54 371.51
   A 0.37 0.37 0.0 0 1 730.90 370.86
@@ -19848,8 +24375,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.37 0.37 0.0 0 1 743.74 377.02
   Q 739.80 375.39 737.11 374.66
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 724.26 372.47
   Q 723.70 372.61 723.36 373.19
   A 1.04 1.00 -81.9 0 1 722.76 373.66
@@ -19873,8 +24401,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 711.92 375.41 723.28 371.66
   Q 723.78 371.50 724.26 372.47
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 624.77 375.80
   Q 624.13 376.03 623.88 376.37
   A 0.44 0.44 0.0 0 0 624.18 377.07
@@ -19885,8 +24414,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 615.63 377.19 616.45 376.90
   Q 620.30 375.52 624.77 375.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 616.05 382.31
   Q 616.39 383.18 618.73 382.15
   A 0.48 0.47 14.5 0 1 619.21 382.96
@@ -19896,9 +24426,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 613.45 384.57
   Q 615.62 383.52 616.05 382.31
   Z"
-/>
-<rect x="-3.67" y="-0.69" transform="translate(669.75,390.98) rotate(-16.6)" width="7.34" height="1.38" rx="0.66"/>
-<path d="
+        />
+        <rect
+          x="-3.67"
+          y="-0.69"
+          transform="translate(669.75,390.98) rotate(-16.6)"
+          width="7.34"
+          height="1.38"
+          rx="0.66"
+        />
+        <path
+          d="
   M 717.41 392.53
   Q 726.69 397.14 730.37 400.86
   Q 734.39 404.91 733.91 410.41
@@ -19930,8 +24468,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.25 1.24 63.6 0 1 716.45 391.73
   L 717.41 392.53
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 687.72 396.32
   Q 686.44 396.41 685.03 397.20
   L 685.37 396.60
@@ -19952,8 +24491,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.96 0.94 86.1 0 0 686.81 396.26
   Q 687.18 396.36 687.72 396.32
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 599.80 399.90
   L 594.41 403.10
   A 0.44 0.41 28.2 0 1 594.19 403.16
@@ -19964,8 +24504,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 592.53 401.58 592.23 401.41
   Q 594.36 399.25 599.80 399.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 639.19 408.56
   Q 627.78 414.24 616.32 417.62
   A 0.39 0.38 -66.8 0 1 616.04 416.91
@@ -19974,16 +24515,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 637.55 407.47 639.17 408.10
   A 0.25 0.25 0.0 0 1 639.19 408.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1103.32 410.62
   Q 1103.21 410.80 1099.64 408.54
   Q 1098.82 408.03 1098.98 407.78
   Q 1099.14 407.54 1099.94 408.08
   Q 1103.44 410.45 1103.32 410.62
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 681.76 414.28
   C 683.57 416.11 685.53 417.96 687.72 419.28
   C 694.35 423.28 706.41 431.12 699.49 440.45
@@ -20021,8 +24564,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 681.08 413.74
   L 681.76 414.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 900.10 417.06
   Q 901.73 420.71 904.38 420.07
   Q 907.10 419.41 907.23 419.40
@@ -20035,8 +24579,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 902.66 420.36 900.81 421.28
   Q 898.49 418.71 900.10 417.06
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 687.98 422.51
   L 691.45 426.46
   Q 691.40 427.41 690.97 428.21
@@ -20056,8 +24601,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.33 0.31 -39.5 0 1 683.36 419.24
   L 687.98 422.51
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 656.44 422.92
   A 0.29 0.29 0.0 0 1 656.25 423.28
   L 656.00 423.35
@@ -20068,8 +24614,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.29 0.0 0 1 656.05 421.59
   L 656.44 422.92
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 942.31 433.99
   L 941.87 433.62
   A 0.37 0.37 0.0 0 1 942.11 432.97
@@ -20080,8 +24627,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 955.66 434.03 943.57 434.43
   A 1.88 1.84 -25.1 0 1 942.31 433.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 917.05 428.80
   Q 919.29 429.14 921.42 430.12
   A 5.90 5.68 -26.8 0 0 922.91 430.58
@@ -20101,8 +24649,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 914.65 429.87 913.20 429.89
   Q 914.98 428.87 917.05 428.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 566.99 429.02
   Q 565.01 429.50 564.47 431.19
   A 0.80 0.77 85.9 0 1 564.07 431.67
@@ -20111,8 +24660,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 561.89 431.10 564.62 429.05
   Q 564.49 428.66 566.99 429.02
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 648.35 431.82
   L 641.68 433.82
   Q 640.26 434.08 640.34 433.00
@@ -20120,16 +24670,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 648.46 430.59 648.59 430.96
   Q 648.70 431.27 648.35 431.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 999.27 436.25
   Q 999.87 436.75 1000.07 437.45
   Q 998.24 437.43 997.81 436.41
   A 0.38 0.38 0.0 0 1 998.18 435.88
   Q 998.67 435.91 999.27 436.25
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 615.24 438.28
   Q 608.49 440.17 605.49 441.68
   Q 596.04 446.43 585.46 445.90
@@ -20140,8 +24692,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 602.11 441.80 613.12 437.17
   Q 614.22 438.01 615.24 438.28
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 645.87 440.27
   Q 651.14 444.04 656.02 447.72
   Q 661.27 451.68 663.74 457.19
@@ -20198,14 +24751,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 642.01 439.76 643.06 439.12
   L 645.87 440.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 635.19 446.07
   Q 631.35 449.07 629.27 444.87
   C 631.46 445.08 632.66 446.38 635.19 446.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 565.04 456.11
   L 578.03 463.73
   Q 577.00 463.50 576.93 464.35
@@ -20255,8 +24810,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 544.75 449.55 547.66 450.38
   Q 556.46 452.88 565.04 456.11
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 617.71 452.48
   Q 612.61 454.53 606.43 454.95
   Q 604.53 455.08 602.73 456.52
@@ -20270,9 +24826,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.78 0.78 0.0 0 1 620.10 451.22
   Q 618.93 451.59 617.71 452.48
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(872.11,454.22) rotate(-20.8)" rx="2.06" ry="0.38"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(872.11,454.22) rotate(-20.8)"
+          rx="2.06"
+          ry="0.38"
+        />
+        <path
+          d="
   M 909.14 463.47
   Q 921.28 458.18 934.28 454.15
   A 1.04 1.03 -39.6 0 1 935.05 454.22
@@ -20282,8 +24845,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 911.15 463.97 909.21 463.85
   A 0.20 0.20 0.0 0 1 909.14 463.47
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 875.76 454.44
   Q 875.89 454.95 876.10 455.26
   Q 874.19 456.28 875.30 456.57
@@ -20304,8 +24868,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 2.53 2.44 26.8 0 1 870.38 456.35
   Q 873.17 456.11 875.76 454.44
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 927.42 461.30
   L 923.53 462.97
   A 0.45 0.44 63.1 0 1 922.97 462.78
@@ -20318,14 +24883,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.88 1.80 -72.9 0 1 936.41 457.68
   L 927.42 461.30
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1197.00 457.41
   Q 1195.13 464.70 1189.52 467.81
   Q 1192.38 461.93 1197.00 457.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 938.43 465.18
   L 945.49 461.13
   Q 947.57 460.21 949.69 460.95
@@ -20334,8 +24901,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 938.49 466.29 938.28 465.75
   Q 938.21 465.56 938.43 465.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 940.81 473.01
   Q 940.81 473.70 941.55 474.01
   Q 939.88 475.34 937.79 476.10
@@ -20356,8 +24924,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.62 0.61 -25.2 0 0 936.70 474.85
   L 940.81 473.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 942.28 477.83
   L 945.77 479.76
   A 2.40 1.89 61.3 0 0 946.24 479.96
@@ -20379,15 +24948,17 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.98 0.98 0.0 0 1 941.40 478.00
   Q 941.46 477.86 942.28 477.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 595.85 481.55
   Q 592.98 482.26 590.45 481.26
   Q 590.86 481.14 590.92 480.79
   Q 594.83 479.77 595.85 481.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 908.98 486.27
   Q 894.99 493.61 879.66 497.98
   A 0.94 0.92 63.6 0 1 878.64 497.63
@@ -20400,8 +24971,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 901.18 488.89 906.58 485.33
   Q 908.07 484.35 908.98 486.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 828.76 486.85
   Q 830.60 488.01 832.67 486.95
   A 1.67 1.67 0.0 0 1 833.54 486.77
@@ -20426,8 +24998,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 1.90 1.73 32.4 0 1 826.57 487.91
   Q 828.00 487.92 828.76 486.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 939.55 496.29
   L 938.25 497.21
   A 0.28 0.28 0.0 0 0 938.32 497.70
@@ -20444,8 +25017,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 928.48 495.50 933.49 496.71
   Q 935.13 497.10 939.55 496.29
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 936.64 496.07
   Q 932.73 495.64 928.59 493.90
   A 1.29 1.28 1.7 0 1 927.89 493.16
@@ -20454,8 +25028,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 936.76 495.56
   A 0.27 0.26 58.6 0 1 936.64 496.07
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 559.04 497.46
   L 560.20 498.04
   L 560.79 499.36
@@ -20466,8 +25041,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 557.53 501.88 557.49 501.80
   Q 559.45 501.14 559.04 497.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 903.31 502.82
   Q 898.44 503.81 893.59 506.33
   L 891.20 505.67
@@ -20479,8 +25055,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.40 0.40 0.0 0 1 908.27 500.93
   L 903.31 502.82
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 794.45 511.36
   L 794.18 512.24
   A 0.72 0.71 24.1 0 0 794.50 513.06
@@ -20490,14 +25067,16 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.10 0.10 0.0 0 1 784.83 511.61
   Q 790.52 509.93 794.45 511.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 891.08 527.19
   Q 880.06 526.80 872.12 518.80
   Q 881.42 523.81 891.08 527.19
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 863.97 527.76
   L 850.32 533.74
   Q 848.83 534.47 847.38 533.63
@@ -20506,8 +25085,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 863.56 526.42 864.04 526.99
   Q 864.22 527.20 863.97 527.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 853.05 539.76
   L 854.91 541.27
   Q 859.12 543.74 863.44 546.07
@@ -20525,8 +25105,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 855.04 543.65
   Q 853.27 541.54 853.05 539.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 975.49 714.70
   Q 966.33 714.87 957.45 717.06
   L 947.54 718.56
@@ -20539,10 +25120,11 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.27 80.2 0 1 983.63 711.73
   Q 979.22 712.41 975.49 714.70
   Z"
-/>
-</g>
-<g fill="#000000" fill-opacity="0.561">
-<path d="
+        />
+      </g>
+      <g fill="#000000" fill-opacity="0.561">
+        <path
+          d="
   M 541.52 699.52
   C 533.71 699.46 525.13 698.44 511.58 697.51
   Q 494.97 696.38 487.15 695.55
@@ -20586,8 +25168,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 533.38 688.92 533.75 690.62 535.26 692.29
   Q 538.48 695.81 541.52 699.52
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1170.03 717.63
   Q 1170.03 718.57 1170.77 718.46
   A 0.45 0.45 0.0 0 1 1171.08 719.28
@@ -20615,8 +25198,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 1106.94 724.88 1109.60 724.12 1112.28 723.90
   C 1133.84 722.09 1146.83 720.56 1170.03 717.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 873.84 768.81
   Q 866.70 771.66 858.97 772.42
   Q 852.00 773.12 841.81 774.32
@@ -20660,16 +25244,18 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 856.95 770.40 863.45 769.71
   Q 868.57 769.16 873.84 768.81
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 963.25 753.72
   Q 962.05 754.81 960.45 754.50
   L 963.25 753.72
   Z"
-/>
-</g>
-<g fill="#5c2300" fill-opacity="0.996">
-<path d="
+        />
+      </g>
+      <g fill="#5c2300" fill-opacity="0.996">
+        <path
+          d="
   M 711.01 343.97
   Q 717.90 346.35 724.89 348.60
   Q 726.34 349.06 727.56 349.93
@@ -20684,8 +25270,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.42 0.40 -82.3 0 1 710.68 344.04
   L 711.01 343.97
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 754.42 363.36
   C 759.26 365.85 770.32 371.23 767.48 378.02
   L 766.22 377.11
@@ -20695,8 +25282,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 738.39 356.15 738.73 355.30
   L 754.42 363.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 637.80 358.14
   Q 638.15 358.65 638.57 358.80
   Q 638.10 359.70 638.49 360.17
@@ -20731,8 +25319,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 635.89 359.07
   Q 636.66 359.61 637.80 358.14
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 613.45 384.57
   L 622.26 384.66
   C 626.66 385.33 631.08 385.63 635.18 386.85
@@ -20753,8 +25342,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 612.44 387.07 610.66 386.87
   Q 612.72 385.84 613.45 384.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 994.60 413.10
   L 994.30 413.24
   A 0.48 0.48 0.0 0 0 994.18 414.04
@@ -20775,8 +25365,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.29 0.28 50.9 0 1 990.71 412.29
   C 992.42 411.58 992.81 413.32 994.60 413.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 581.13 412.68
   Q 595.25 413.05 606.06 416.20
   C 616.07 419.11 625.80 425.92 634.84 431.94
@@ -20793,8 +25384,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 576.44 413.91 578.45 413.64
   Q 580.11 413.42 581.13 412.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 904.16 427.12
   L 903.96 428.05
   A 1.01 1.00 2.7 0 1 903.08 428.84
@@ -20803,8 +25395,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 903.30 427.55 903.77 426.94
   A 0.22 0.22 0.0 0 1 904.16 427.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 904.51 429.18
   Q 905.91 429.59 907.27 429.23
   L 913.20 429.89
@@ -20814,22 +25407,25 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 902.72 431.00
   Q 904.56 430.17 904.51 429.18
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 551.32 434.21
   Q 549.76 435.90 547.47 435.87
   L 551.32 434.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 875.30 456.57
   Q 874.19 456.28 876.10 455.26
   L 880.16 452.83
   A 0.34 0.34 0.0 0 1 880.58 453.36
   Q 878.47 455.64 875.30 456.57
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 912.13 467.41
   L 930.74 475.10
   L 938.29 478.51
@@ -20851,8 +25447,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 911.84 469.05
   Q 912.67 469.82 912.13 467.41
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 587.78 474.10
   Q 591.59 474.28 585.96 476.07
   Q 585.04 475.81 585.11 475.32
@@ -20860,8 +25457,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 586.18 474.65
   Q 586.91 473.91 587.78 474.10
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 888.95 474.73
   Q 902.29 478.48 910.49 482.74
   Q 914.20 484.67 925.88 492.27
@@ -20870,8 +25468,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 904.40 480.32 887.93 476.11
   L 888.95 474.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 573.47 482.74
   L 574.25 483.14
   L 573.27 487.75
@@ -20889,8 +25488,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 571.97 482.06
   Q 572.27 483.27 573.47 482.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 582.85 490.09
   Q 588.41 493.10 591.23 496.02
   Q 593.30 498.16 592.77 501.29
@@ -20908,8 +25508,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 582.87 491.79 582.30 491.78
   Q 581.86 490.34 582.85 490.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 923.11 495.38
   L 924.33 498.49
   A 1.45 1.44 -83.4 0 0 924.85 499.15
@@ -20921,8 +25522,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 922.44 499.24 921.96 497.51
   Q 921.39 493.95 923.11 495.38
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 896.95 510.22
   Q 905.22 515.62 907.41 517.33
   Q 912.77 521.52 916.00 527.03
@@ -20935,8 +25537,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 872.78 498.71
   L 896.95 510.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 560.79 499.36
   C 562.81 501.97 565.12 503.62 568.46 504.34
   Q 570.33 504.74 572.01 505.73
@@ -20945,8 +25548,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 560.22 501.79 560.19 499.75
   Q 560.18 499.34 560.79 499.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 795.83 513.84
   C 804.34 516.39 812.98 519.01 821.00 522.53
   Q 837.34 529.70 847.84 536.69
@@ -20967,8 +25571,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 792.93 513.76
   L 795.83 513.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 870.55 567.34
   Q 868.71 570.95 864.64 573.09
   C 862.15 574.10 859.77 575.32 857.17 575.77
@@ -20980,8 +25585,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.28 0.28 0.0 0 1 870.62 566.40
   L 870.55 567.34
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1231.62 570.31
   L 1232.75 573.90
   Q 1232.66 574.48 1232.13 575.35
@@ -20998,8 +25604,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 1231.10 570.74
   Q 1231.15 570.61 1231.62 570.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 579.47 596.93
   Q 579.34 598.27 580.53 598.40
   Q 582.16 598.56 583.89 598.49
@@ -21010,8 +25617,9 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 564.89 603.12 567.19 602.15
   Q 573.31 599.58 579.47 596.93
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 982.48 650.20
   L 990.38 650.57
   Q 966.84 660.07 942.77 667.78
@@ -21030,9 +25638,8 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 939.47 665.70 945.37 663.96 950.83 661.98
   Q 966.73 656.20 982.48 650.20
   Z"
-/>
-</g>
-</svg>
-
+        />
+      </g>
+    </svg>
   )
 }

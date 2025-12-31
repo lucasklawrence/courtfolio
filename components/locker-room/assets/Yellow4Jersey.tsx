@@ -6,8 +6,11 @@ import React from 'react'
 export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1024.00 1536.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#836c03" vector-effect="non-scaling-stroke" d="
+      <g stroke-width="2.00" fill="none" stroke-linecap="butt">
+        <path
+          stroke="#836c03"
+          vector-effect="non-scaling-stroke"
+          d="
   M 388.90 374.60
   A 0.47 0.46 64.4 0 0 388.70 375.19
   Q 391.06 380.75 395.10 387.92
@@ -26,8 +29,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 402.41 374.81 399.74 369.63
   A 1.08 1.07 -28.9 0 0 398.25 369.20
   L 388.90 374.60"
-/>
-<path stroke="#836c03" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#836c03"
+          vector-effect="non-scaling-stroke"
+          d="
   M 377.50 387.38
   Q 370.97 393.31 362.92 397.84
   A 1.61 1.60 -23.4 0 0 362.17 399.72
@@ -112,8 +118,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 488.32 490.36 468.02 479.20
   Q 409.20 446.87 378.46 387.55
   A 0.62 0.61 -34.5 0 0 377.50 387.38"
-/>
-<path stroke="#836c03" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#836c03"
+          vector-effect="non-scaling-stroke"
+          d="
   M 454.19 421.37
   Q 454.40 421.78 454.79 422.05
   Q 457.92 424.25 463.28 428.47
@@ -128,8 +137,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 482.71 428.98 468.21 425.76
   C 463.39 424.69 459.02 422.80 454.50 421.03
   A 0.25 0.24 -3.1 0 0 454.19 421.37"
-/>
-<path stroke="#e7b900" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7b900"
+          vector-effect="non-scaling-stroke"
+          d="
   M 357.45 621.31
   Q 356.33 628.70 356.16 630.44
   Q 355.16 640.53 354.47 651.32
@@ -172,8 +184,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.13 0.13 0.0 0 0 357.77 621.10
   L 357.73 621.09
   A 0.26 0.25 5.8 0 0 357.45 621.31"
-/>
-<path stroke="#e7b900" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7b900"
+          vector-effect="non-scaling-stroke"
+          d="
   M 668.30 630.12
   Q 668.23 630.32 668.22 630.51
   C 667.67 639.61 668.78 649.34 669.03 658.18
@@ -227,8 +242,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 672.01 673.75 670.99 657.01
   Q 670.31 645.94 668.60 630.16
   A 0.16 0.15 52.4 0 0 668.30 630.12"
-/>
-<path stroke="#836c03" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#836c03"
+          vector-effect="non-scaling-stroke"
+          d="
   M 566.69 869.46
   L 566.69 787.53
   A 1.56 1.56 0.0 0 0 565.13 785.97
@@ -256,8 +274,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 594.43 872.55 594.90 869.99 590.52 870.02
   Q 586.40 870.06 567.28 870.05
   A 0.59 0.59 0.0 0 1 566.69 869.46"
-/>
-<path stroke="#e7b900" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7b900"
+          vector-effect="non-scaling-stroke"
+          d="
   M 629.72 959.20
   Q 629.60 959.08 629.40 959.12
   A 0.32 0.31 87.5 0 0 629.16 959.39
@@ -277,8 +298,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 633.51 1014.62 632.62 1005.35
   Q 630.30 981.07 629.73 959.24
   A 0.10 0.08 38.0 0 0 629.72 959.20"
-/>
-<path stroke="#e7b900" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e7b900"
+          vector-effect="non-scaling-stroke"
+          d="
   M 378.56 960.51
   Q 378.12 962.91 378.13 963.26
   Q 378.40 978.52 375.53 998.52
@@ -297,8 +321,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 383.28 1006.91 382.17 995.13 380.93 984.47
   C 379.92 975.83 379.81 967.08 378.92 960.52
   A 0.18 0.18 0.0 0 0 378.56 960.51"
-/>
-<path stroke="#83827d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#83827d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 525.98 904.64
   L 525.98 941.18
   A 0.82 0.82 0.0 0 0 526.80 942.00
@@ -323,8 +350,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.47 0.47 0.0 0 0 451.52 903.98
   L 525.32 903.98
   A 0.66 0.66 0.0 0 1 525.98 904.64"
-/>
-<path stroke="#83827d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#83827d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 525.64 877.03
   A 0.33 0.33 0.0 0 0 525.97 876.70
   L 525.97 821.21
@@ -332,8 +362,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 479.60 876.49
   A 0.33 0.33 0.0 0 0 479.85 877.03
   L 525.64 877.03"
-/>
-<path stroke="#836c03" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#836c03"
+          vector-effect="non-scaling-stroke"
+          d="
   M 493.86 870.23
   L 516.23 869.93
   A 0.80 0.80 0.0 0 0 517.02 869.13
@@ -341,10 +374,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.20 0.20 0.0 0 0 516.66 841.46
   L 493.79 870.09
   A 0.09 0.09 0.0 0 0 493.86 870.23"
-/>
-</g>
-<g fill="#ffd100">
-<path d="
+        />
+      </g>
+      <g fill="#ffd100">
+        <path
+          d="
   M 388.90 374.60
   L 398.25 369.20
   A 1.08 1.07 -28.9 0 1 399.74 369.63
@@ -364,8 +398,9 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 391.06 380.75 388.70 375.19
   A 0.47 0.46 64.4 0 1 388.90 374.60
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 377.50 387.38
   A 0.62 0.61 -34.5 0 1 378.46 387.55
   Q 409.20 446.87 468.02 479.20
@@ -615,8 +650,9 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   C 379.92 975.83 379.81 967.08 378.92 960.52
   A 0.18 0.18 0.0 0 0 378.56 960.51
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 454.19 421.37
   A 0.25 0.24 -3.1 0 1 454.50 421.03
   C 459.02 422.80 463.39 424.69 468.21 425.76
@@ -632,8 +668,9 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 457.92 424.25 454.79 422.05
   Q 454.40 421.78 454.19 421.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 493.79 870.09
   L 516.66 841.46
   A 0.20 0.20 0.0 0 1 517.02 841.59
@@ -642,10 +679,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 493.86 870.23
   A 0.09 0.09 0.0 0 1 493.79 870.09
   Z"
-/>
-</g>
-<g fill="#070705">
-<path d="
+        />
+      </g>
+      <g fill="#070705">
+        <path
+          d="
   M 522.41 313.04
   L 550.20 313.04
   A 2.35 2.33 78.7 0 1 552.36 314.49
@@ -946,8 +984,9 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 311.38 434.18 300.00 450.22
   A 0.50 0.49 17.5 0 0 300.41 451.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 567.28 870.05
   Q 586.40 870.06 590.52 870.02
   C 594.90 869.99 594.43 872.55 594.48 876.19
@@ -1001,8 +1040,9 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 525.32 903.98
   A 0.66 0.66 0.0 0 1 525.98 904.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 525.64 877.03
   L 479.85 877.03
   A 0.33 0.33 0.0 0 1 479.60 876.49
@@ -1019,9 +1059,11 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   L 493.79 870.09
   A 0.09 0.09 0.0 0 0 493.86 870.23
   Z"
-/>
-</g>
-<path fill="#fefdf5" d="
+        />
+      </g>
+      <path
+        fill="#fefdf5"
+        d="
   M 525.98 904.64
   A 0.66 0.66 0.0 0 0 525.32 903.98
   L 451.52 903.98
@@ -1055,9 +1097,10 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   A 0.33 0.33 0.0 0 0 479.85 877.03
   L 525.64 877.03
   Z"
-/>
-<g fill="#cfa100">
-<path d="
+      />
+      <g fill="#cfa100">
+        <path
+          d="
   M 357.45 621.31
   A 0.26 0.25 5.8 0 1 357.73 621.09
   L 357.77 621.10
@@ -1101,8 +1144,9 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 355.16 640.53 356.16 630.44
   Q 356.33 628.70 357.45 621.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 668.60 630.16
   Q 670.31 645.94 670.99 657.01
   Q 672.01 673.75 674.01 689.00
@@ -1157,8 +1201,9 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 668.23 630.32 668.30 630.12
   A 0.16 0.15 52.4 0 1 668.60 630.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 629.73 959.24
   Q 630.30 981.07 632.62 1005.35
   Q 633.51 1014.62 634.02 1022.68
@@ -1179,8 +1224,9 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 629.60 959.08 629.72 959.20
   A 0.10 0.08 38.0 0 1 629.73 959.24
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 378.92 960.52
   C 379.81 967.08 379.92 975.83 380.93 984.47
   C 382.17 995.13 383.28 1006.91 384.65 1019.10
@@ -1200,9 +1246,8 @@ export const Yellow4Jersey: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Q 378.12 962.91 378.56 960.51
   A 0.18 0.18 0.0 0 1 378.92 960.52
   Z"
-/>
-</g>
-</svg>
-
+        />
+      </g>
+    </svg>
   )
 }

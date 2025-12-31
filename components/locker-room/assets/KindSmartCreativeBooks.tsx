@@ -6,12 +6,19 @@ import React from 'react'
 export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1536.00 1024.00">
-<g stroke-width="2.00" fill="none" stroke-linecap="butt">
-<path stroke="#060503" stroke-opacity="0.565" vector-effect="non-scaling-stroke" d="
+      <g stroke-width="2.00" fill="none" stroke-linecap="butt">
+        <path
+          stroke="#060503"
+          stroke-opacity="0.565"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1174.92 627.37
   Q 1174.61 627.48 1174.27 627.75"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1174.27 627.75
   C 1172.00 624.99 1167.90 626.70 1165.10 628.12
   Q 1132.90 644.48 1112.25 653.40
@@ -44,12 +51,20 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 380.80 646.09 372.63 640.92
   A 0.46 0.46 0.0 0 0 371.97 641.10
   C 370.90 643.24 374.08 646.45 375.29 648.20"
-/>
-<path stroke="#060503" stroke-opacity="0.565" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#060503"
+          stroke-opacity="0.565"
+          vector-effect="non-scaling-stroke"
+          d="
   M 375.29 648.20
   L 374.04 647.69"
-/>
-<path stroke="#211d13" stroke-opacity="0.565" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#211d13"
+          stroke-opacity="0.565"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1174.27 627.75
   Q 1164.19 633.27 1153.84 638.30
   Q 1134.73 647.57 1126.96 651.28
@@ -94,8 +109,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 408.64 652.35 407.10 652.40
   C 405.19 652.46 403.36 651.94 401.24 651.91
   C 391.55 651.81 383.36 651.48 375.29 648.20"
-/>
-<path stroke="#7b7977" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b7977"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1138.55 283.24
   A 0.16 0.15 88.0 0 0 1138.40 283.09
   Q 1115.30 282.98 1113.43 283.00
@@ -152,36 +170,57 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1130.43 283.85 1138.31 283.50
   A 0.25 0.25 0.0 0 0 1138.55 283.25
   L 1138.55 283.24"
-/>
-<path stroke="#806b28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#806b28"
+          vector-effect="non-scaling-stroke"
+          d="
   M 495.55 295.16
   L 473.22 294.74"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 473.22 294.74
   Q 469.10 294.36 459.02 294.42
   Q 447.39 294.50 442.86 303.82
   Q 440.23 309.23 439.02 314.25
   Q 433.77 335.93 437.56 357.99
   Q 440.05 372.45 447.30 383.30"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 447.30 383.30
   Q 450.56 387.82 454.28 390.37"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 454.28 390.37
   C 459.75 395.42 465.85 395.78 473.29 395.96"
-/>
-<path stroke="#805501" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#805501"
+          vector-effect="non-scaling-stroke"
+          d="
   M 473.29 395.96
   L 504.37 396.61"
-/>
-<path stroke="#71674c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71674c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 504.37 396.61
   Q 504.33 396.84 505.09 396.67"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 505.09 396.67
   Q 505.62 396.97 505.80 396.97
   Q 516.12 396.72 525.52 397.58
@@ -209,12 +248,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 943.45 415.45 968.76 416.37
   Q 970.87 416.45 973.50 416.97
   Q 974.46 417.16 974.78 416.37"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 974.78 416.37
   Q 975.27 416.33 975.69 416.46"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 975.69 416.46
   Q 975.93 416.83 976.50 416.90
   Q 984.32 417.83 988.85 417.93
@@ -233,12 +278,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 982.71 374.10 984.12 355.24
   C 984.93 344.24 987.19 331.96 992.02 322.62
   Q 992.80 321.12 993.50 319.34"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 993.50 319.34
   Q 995.36 318.49 997.48 315.99"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 997.48 315.99
   Q 1008.18 314.25 1019.43 315.63
   A 6.71 6.68 -46.8 0 0 1021.58 315.56
@@ -273,8 +324,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 543.32 296.99 538.60 297.02 531.96 296.59
   C 523.14 296.01 514.73 296.14 505.60 295.55
   Q 500.57 295.22 495.55 295.16"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 997.48 315.99
   L 996.16 314.43
   A 1.87 1.84 -21.9 0 0 994.63 313.79
@@ -291,8 +345,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 980.30 416.16 982.92 416.08
   Q 984.53 416.03 987.57 416.49
   Q 995.76 417.72 1003.04 416.65"
-/>
-<path stroke="#e4d6ab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4d6ab"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1003.04 416.65
   L 1006.25 418.03
   A 0.93 0.90 -36.6 0 0 1006.71 418.09
@@ -311,8 +368,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1066.61 397.16 1065.37 397.47
   C 1059.37 398.96 1054.21 400.67 1047.86 402.20
   Q 1043.58 403.24 1039.38 404.42"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1039.38 404.42
   C 1035.17 405.22 1030.02 407.02 1027.18 407.75
   Q 1018.84 409.87 1011.74 412.59
@@ -328,8 +388,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 982.12 359.14 982.68 355.57 983.01 351.17
   Q 983.88 339.54 988.15 326.41
   Q 989.77 321.44 993.50 319.34"
-/>
-<path stroke="#b9976d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b9976d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 975.69 416.46
   L 976.03 416.00
   A 0.80 0.80 0.0 0 0 976.10 415.14
@@ -343,8 +406,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 966.75 342.58 966.04 347.76
   Q 963.16 368.79 965.81 390.43
   C 966.44 395.63 969.42 414.88 974.78 416.37"
-/>
-<path stroke="#f0e5b8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0e5b8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 505.09 396.67
   L 504.39 395.87
   A 0.23 0.22 69.9 0 1 504.56 395.50
@@ -375,8 +441,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 961.37 415.00 970.43 415.15
   A 0.47 0.47 0.0 0 0 970.86 414.47
   Q 967.77 408.10 966.26 400.75"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 966.26 400.75
   L 964.51 391.69
   A 0.74 0.74 0.0 0 0 963.84 391.10
@@ -390,8 +459,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 781.38 382.41
   A 1.07 1.02 76.5 0 0 780.76 382.01
   Q 773.60 380.62 766.26 381.23"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 766.26 381.23
   L 766.32 326.66
   A 0.73 0.73 0.0 0 0 765.59 325.93
@@ -412,8 +484,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 754.84 380.58
   A 3.55 3.54 -17.4 0 0 757.62 382.03
   L 765.83 382.20"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 765.83 382.20
   Q 762.22 384.08 758.95 383.69
   Q 740.94 381.56 730.26 381.75
@@ -436,59 +511,92 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 537.20 376.36 489.06 374.09
   A 0.35 0.35 0.0 0 0 488.71 374.56
   L 490.90 380.70"
-/>
-<path stroke="#f0e5b8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0e5b8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 490.90 380.70
   Q 493.35 385.89 496.01 390.84
   Q 496.28 391.34 495.37 391.32"
-/>
-<path stroke="#daa26c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#daa26c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 495.37 391.32
   Q 490.89 385.15 487.99 377.62"
-/>
-<path stroke="#ffd36d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd36d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 487.99 377.62
   C 481.22 355.41 481.06 330.93 488.75 308.74
   Q 490.93 302.42 495.21 296.33"
-/>
-<path stroke="#ffe993" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe993"
+          vector-effect="non-scaling-stroke"
+          d="
   M 495.21 296.33
   Q 495.92 295.79 495.55 295.16"
-/>
-<path stroke="#ecd9a6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ecd9a6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 966.26 400.75
   C 933.40 400.13 901.95 400.24 867.58 397.72
   C 803.76 393.04 748.26 390.89 682.39 389.66
   C 663.50 389.31 635.15 387.26 614.56 386.96
   C 601.54 386.78 584.45 386.46 566.88 385.49
   C 545.26 384.31 516.70 383.99 490.90 380.70"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 766.26 381.23
   Q 766.22 382.42 765.83 382.20"
-/>
-<path stroke="#ca8a4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ca8a4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 495.37 391.32
   L 498.30 394.53"
-/>
-<path stroke="#d97801" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d97801"
+          vector-effect="non-scaling-stroke"
+          d="
   M 487.99 377.62
   Q 487.79 377.26 487.73 377.23
   A 0.61 0.61 0.0 0 0 486.94 377.99
   Q 489.67 386.74 495.34 393.56
   Q 496.25 394.65 497.25 394.98
   Q 498.13 395.26 498.30 394.53"
-/>
-<path stroke="#efbb4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efbb4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 498.30 394.53
   Q 501.90 394.35 504.37 396.61"
-/>
-<path stroke="#e0cb99" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cb99"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1039.38 404.42
   Q 1035.35 406.65 1032.94 407.15
   Q 1017.72 410.38 1003.04 416.65"
-/>
-<path stroke="#ffbf28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffbf28"
+          vector-effect="non-scaling-stroke"
+          d="
   M 495.21 296.33
   Q 493.01 295.39 490.52 297.51
   A 1.69 1.67 78.3 0 0 490.03 298.27
@@ -502,33 +610,51 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 478.50 394.28 477.25 394.52
   A 2.33 2.25 -43.3 0 1 476.28 394.51
   Q 474.89 394.19 473.82 394.64"
-/>
-<path stroke="#da8e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#da8e27"
+          vector-effect="non-scaling-stroke"
+          d="
   M 473.82 394.64
   Q 465.77 383.23 463.03 368.24
   Q 459.40 348.41 461.37 330.24
   Q 462.60 318.81 465.49 310.76
   Q 467.26 305.79 472.43 295.97"
-/>
-<path stroke="#d97801" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d97801"
+          vector-effect="non-scaling-stroke"
+          d="
   M 473.82 394.64
   Q 473.27 394.93 472.96 394.95"
-/>
-<path stroke="#ffe993" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe993"
+          vector-effect="non-scaling-stroke"
+          d="
   M 473.22 294.74
   Q 471.82 294.55 472.43 295.97"
-/>
-<path stroke="#daa26c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#daa26c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 472.43 295.97
   Q 464.47 305.66 461.68 317.73
   C 458.84 330.03 458.81 340.15 459.27 353.50
   C 459.78 368.52 463.53 382.52 472.96 394.95"
-/>
-<path stroke="#ffd36d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd36d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 472.96 394.95
   Q 473.56 395.45 473.29 395.96"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 454.28 390.37
   Q 457.35 390.88 460.12 393.20
   A 1.90 1.87 -23.1 0 0 461.26 393.65
@@ -537,22 +663,31 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 463.25 383.43 459.89 371.32
   A 0.39 0.39 0.0 0 0 459.34 371.08
   C 454.43 373.57 450.49 378.95 447.30 383.30"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 473.9340 292.3786
   A 9.15 0.39 -178.3 0 0 483.0684 293.0398
   A 9.15 0.39 -178.3 0 0 492.2260 292.9214
   A 9.15 0.39 -178.3 0 0 483.0916 292.2602
   A 9.15 0.39 -178.3 0 0 473.9340 292.3786"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 472.32 293.02
   Q 472.68 293.17 473.15 292.90
   A 0.30 0.30 0.0 0 0 473.03 292.34
   Q 472.58 292.29 472.36 292.35
   A 0.35 0.35 0.0 0 0 472.32 293.02"
-/>
-<path stroke="#5a2401" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5a2401"
+          vector-effect="non-scaling-stroke"
+          d="
   M 617.46 297.51
   L 639.05 298.54
   A 2.95 2.83 -46.2 0 0 639.53 298.52
@@ -584,53 +719,81 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 691.71 299.66 672.25 298.93
   Q 647.85 298.01 623.25 297.18
   Q 620.71 297.09 618.27 297.21"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 618.27 297.21
   L 573.71 295.67
   A 0.24 0.23 1.2 0 0 573.47 295.89
   L 573.47 295.90
   A 0.26 0.25 -88.9 0 0 573.71 296.16
   L 617.46 297.51"
-/>
-<path stroke="#933c01" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#933c01"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 618.27 297.21
   L 617.46 297.51"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 994.09 332.29
   Q 994.44 332.74 994.01 334.00"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 994.01 334.00
   Q 993.48 334.48 993.38 334.99
   Q 990.85 347.99 990.20 358.32
   Q 989.33 372.29 991.19 389.61
   Q 991.86 395.90 994.35 404.88
   Q 995.51 409.08 998.19 409.01"
-/>
-<path stroke="#65593f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#65593f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 998.19 409.01
   L 1016.26 404.11"
-/>
-<path stroke="#71674c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71674c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1016.26 404.11
   Q 1032.51 400.31 1048.54 395.84
   Q 1052.90 394.62 1057.08 392.79"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1057.08 392.79
   Q 1058.71 393.33 1059.61 392.71"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1059.61 392.71
   L 1134.41 369.81
   A 0.59 0.58 75.0 0 0 1134.80 369.12
   Q 1130.98 351.77 1130.78 334.25
   Q 1130.73 330.26 1130.96 319.37
   C 1131.07 313.83 1131.82 308.43 1132.64 302.98"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1132.64 302.98
   L 1133.82 298.56
   A 0.35 0.35 0.0 0 0 1133.41 298.12
@@ -639,12 +802,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1017.13 320.30 1008.77 318.96
   C 1003.52 318.13 1000.49 318.98 997.99 323.74
   Q 995.20 329.04 994.09 332.29"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1132.64 302.98
   Q 1132.14 302.44 1131.58 302.78"
-/>
-<path stroke="#e0cb99" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cb99"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1131.58 302.78
   L 1132.08 300.90
   A 0.77 0.76 1.9 0 0 1131.19 299.96
@@ -655,13 +824,19 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1032.92 322.39
   A 0.64 0.64 0.0 0 1 1033.50 323.43
   Q 1033.30 323.70 1032.69 324.06"
-/>
-<path stroke="#b58b5b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b58b5b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1032.69 324.06
   C 1021.97 325.54 1011.85 328.14 1001.40 330.14
   C 998.94 330.61 996.58 331.55 994.09 332.29"
-/>
-<path stroke="#e4d6ab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4d6ab"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1131.58 302.78
   L 1130.65 304.42
   A 0.85 0.84 15.5 0 1 1129.88 304.85
@@ -672,16 +847,25 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1043.48 322.35 1040.35 323.71 1036.82 324.16
   A 0.54 0.54 0.0 0 0 1036.35 324.62
   Q 1036.33 324.79 1036.29 325.00"
-/>
-<path stroke="#756648" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#756648"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1036.29 325.00
   L 1035.58 325.01"
-/>
-<path stroke="#9e713f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9e713f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1035.58 325.01
   Q 1034.42 323.88 1032.69 324.06"
-/>
-<path stroke="#908c76" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#908c76"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1059.61 392.71
   L 1060.44 388.88
   A 0.03 0.03 0.0 0 1 1060.50 388.87
@@ -689,16 +873,25 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.04 0.04 0.0 0 0 1060.69 389.12
   Q 1064.90 364.31 1054.40 340.56
   Q 1051.01 332.91 1046.23 328.51"
-/>
-<path stroke="#e4d6ab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4d6ab"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1046.23 328.51
   Q 1045.09 325.14 1040.31 325.05"
-/>
-<path stroke="#908c76" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#908c76"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1040.31 325.05
   L 1036.29 325.00"
-/>
-<path stroke="#49260a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#49260a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1035.58 325.01
   C 1033.98 327.19 1026.48 328.01 1024.91 328.08
   A 2.82 2.79 27.8 0 0 1023.56 328.49
@@ -706,63 +899,102 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1009.96 331.37 1004.05 332.29
   A 0.38 0.38 0.0 0 0 1003.78 332.85
   Q 1003.87 333.01 1004.08 333.19"
-/>
-<path stroke="#b86d01" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b86d01"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1004.08 333.19
   Q 1003.12 333.23 1003.17 333.91
   A 0.34 0.33 -80.7 0 0 1003.38 334.21
   L 1005.32 335.04
   A 2.74 2.70 -8.6 0 1 1006.34 335.78
   L 1011.94 342.25"
-/>
-<path stroke="#b98328" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b98328"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1011.94 342.25
   Q 1015.83 347.21 1017.85 352.64
   Q 1025.03 371.96 1024.25 393.27"
-/>
-<path stroke="#b86d01" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b86d01"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1024.25 393.27
   L 1023.93 395.79"
-/>
-<path stroke="#9e713f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9e713f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1023.93 395.79
   L 1022.25 401.38"
-/>
-<path stroke="#a97f4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a97f4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1022.25 401.38
   Q 1019.81 402.27 1019.06 402.02"
-/>
-<path stroke="#b9976d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b9976d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1019.06 402.02
   C 1021.60 390.34 1020.98 379.38 1018.61 367.65
   Q 1016.41 356.74 1010.83 347.17
   Q 1007.52 341.51 1003.80 338.49"
-/>
-<path stroke="#a97f4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a97f4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1003.80 338.49
   Q 1002.46 335.52 998.37 334.79"
-/>
-<path stroke="#9e713f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9e713f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 998.37 334.79
   Q 995.70 333.89 994.66 334.23"
-/>
-<path stroke="#b9976d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b9976d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 994.66 334.23
   L 994.01 334.00"
-/>
-<path stroke="#756648" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#756648"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1040.31 325.05
   Q 1041.18 327.97 1046.23 328.51"
-/>
-<path stroke="#807555" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807555"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1057.08 392.79
   Q 1057.14 392.28 1057.35 392.25"
-/>
-<path stroke="#756648" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#756648"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1057.35 392.25
   L 1058.26 387.09"
-/>
-<path stroke="#8f630a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#8f630a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1058.26 387.09
   Q 1058.92 386.20 1059.05 384.99
   Q 1061.30 364.17 1054.12 345.63
@@ -770,23 +1002,32 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1039.21 327.00 1034.01 327.97
   Q 1022.28 330.17 1012.75 332.21
   Q 1009.13 332.98 1004.08 333.19"
-/>
-<path stroke="#d5bf8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5bf8a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 998.37 334.79
   Q 994.75 356.59 995.94 378.50
   C 996.39 386.91 998.54 395.53 999.27 402.72
   A 1.07 1.06 86.8 0 0 1000.35 403.69
   Q 1005.14 403.62 1010.79 402.52
   Q 1012.85 402.11 1016.26 404.11"
-/>
-<path stroke="#e4d6ab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4d6ab"
+          vector-effect="non-scaling-stroke"
+          d="
   M 994.66 334.23
   Q 993.56 341.91 992.47 349.58
   C 990.76 361.64 991.26 372.04 991.96 383.49
   Q 992.41 390.93 994.93 401.82
   Q 995.97 406.31 998.19 409.01"
-/>
-<path stroke="#e4ad3f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4ad3f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1058.26 387.09
   Q 1058.43 383.50 1056.61 388.05
   A 0.30 0.30 0.0 0 1 1056.09 388.12
@@ -795,8 +1036,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1051.64 389.62 1048.43 390.30 1044.69 391.46
   Q 1041.65 392.40 1038.11 393.05
   Q 1031.11 394.34 1023.93 395.79"
-/>
-<path stroke="#ffbf28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffbf28"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1024.25 393.27
   L 1024.44 391.67
   A 0.44 0.44 0.0 0 1 1024.99 391.30
@@ -813,23 +1057,32 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1044.34 340.26 1042.76 338.42 1040.80 337.51
   C 1034.58 334.64 1025.18 337.15 1019.09 339.16
   Q 1014.10 340.80 1011.94 342.25"
-/>
-<path stroke="#f0e5b8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0e5b8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1003.80 338.49
   Q 1011.49 349.17 1014.40 357.82
   Q 1021.53 378.99 1018.02 401.62
   A 0.44 0.43 -0.1 0 0 1018.52 402.11
   L 1019.06 402.02"
-/>
-<path stroke="#d5bf8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5bf8a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1022.25 401.38
   Q 1025.18 401.14 1028.28 400.18
   Q 1033.94 398.42 1034.17 398.36
   Q 1044.83 395.72 1055.29 392.36
   Q 1055.37 392.34 1056.08 391.91
   Q 1056.68 391.56 1057.35 392.25"
-/>
-<path stroke="#7b7977" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b7977"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1007.39 423.28
   C 998.68 422.91 989.07 423.21 981.21 422.67
   C 972.91 422.11 964.28 422.27 955.85 421.62
@@ -894,16 +1147,25 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 964.64 424.15 971.27 423.84 977.95 424.41
   Q 984.64 424.98 993.42 425.01
   C 999.07 425.02 1004.96 425.55 1010.73 425.94"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1010.73 425.94
   L 1014.02 426.53"
-/>
-<path stroke="#71674c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71674c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1014.02 426.53
   Q 1017.43 427.63 1019.67 429.66"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1019.67 429.66
   Q 1020.40 431.49 1020.00 432.96
   A 0.38 0.37 2.9 0 0 1020.43 433.43
@@ -919,8 +1181,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1091.81 398.94 1069.08 405.63
   Q 1053.79 410.13 1021.13 420.40
   C 1018.36 421.27 1011.77 423.49 1007.39 423.28"
-/>
-<path stroke="#ecd9a6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ecd9a6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1019.67 429.66
   Q 1021.43 430.62 1022.61 430.69
   Q 1022.84 430.71 1025.60 429.84
@@ -928,8 +1193,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1069.80 416.32 1075.18 415.25 1079.97 413.77
   Q 1102.82 406.71 1133.10 398.26
   Q 1139.04 396.61 1138.21 389.53"
-/>
-<path stroke="#e0cb99" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cb99"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1138.21 389.53
   Q 1133.89 394.26 1125.50 394.87
   Q 1125.39 394.87 1125.31 394.88
@@ -937,18 +1205,27 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1130.02 393.64 1134.73 392.61 1137.14 388.62
   A 1.19 1.19 0.0 0 0 1135.77 386.87
   L 1019.24 422.62"
-/>
-<path stroke="#ecd9a6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ecd9a6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1019.24 422.62
   L 1013.77 424.14
   A 0.28 0.28 0.0 0 0 1013.66 424.63
   Q 1014.62 425.43 1014.02 426.53"
-/>
-<path stroke="#f6ebd0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f6ebd0"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1010.73 425.94
   Q 1010.27 424.02 1007.39 423.28"
-/>
-<path stroke="#d5bf8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5bf8a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1138.21 389.53
   Q 1136.91 394.57 1131.58 395.32
   Q 1126.70 396.01 1124.85 396.46
@@ -960,8 +1237,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1058.37 413.09 1046.60 417.47
   C 1044.50 418.25 1042.30 418.67 1039.23 419.40
   C 1031.85 421.14 1026.84 424.33 1019.24 422.62"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 446.29 406.12
   Q 458.39 406.60 470.59 406.70
   Q 477.16 406.76 481.40 407.28
@@ -1009,8 +1289,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 489.78 406.29 481.05 406.17
   Q 476.84 406.11 462.33 405.58
   Q 451.96 405.20 441.45 405.35"
-/>
-<path stroke="#1e0a01" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1e0a01"
+          vector-effect="non-scaling-stroke"
+          d="
   M 441.45 405.35
   Q 438.19 404.23 433.75 404.32
   C 430.34 404.39 422.56 403.81 416.95 404.08
@@ -1029,16 +1312,26 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 433.36 406.72 438.90 406.07
   Q 440.76 405.85 442.59 405.95
   Q 444.42 406.05 446.29 406.12"
-/>
-<path stroke="#572201" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#572201"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 441.45 405.35
   L 446.29 406.12"
-/>
-<path stroke="#65593f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#65593f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1129.03 409.07
   Q 1129.44 408.55 1129.53 407.97"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1129.53 407.97
   Q 1130.81 406.93 1131.11 405.62
   A 0.40 0.40 0.0 0 0 1130.61 405.15
@@ -1058,8 +1351,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1126.06 419.71 1127.37 413.28
   A 7.21 7.09 63.0 0 1 1127.82 411.85
   L 1129.03 409.07"
-/>
-<path stroke="#e4d6ab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4d6ab"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1129.53 407.97
   L 1127.71 407.46
   A 1.08 1.02 43.2 0 0 1127.14 407.46
@@ -1080,8 +1376,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1014.86 490.79 1015.08 486.06
   C 1015.33 480.44 1015.05 474.58 1016.00 468.88
   Q 1016.47 466.02 1016.88 463.09"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1016.88 463.09
   Q 1018.59 463.26 1020.14 462.92
   Q 1023.03 462.27 1023.32 462.24
@@ -1104,8 +1403,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1020.12 457.71 1019.94 458.02
   Q 1019.65 458.49 1018.92 458.38
   Q 1017.97 458.24 1017.89 456.96"
-/>
-<path stroke="#e4d6ab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4d6ab"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1017.89 456.96
   L 1020.58 447.69
   A 1.27 1.21 -46.4 0 0 1020.58 447.00
@@ -1121,16 +1423,25 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1128.10 409.42
   A 0.82 0.81 -73.6 0 1 1128.68 409.10
   L 1129.03 409.07"
-/>
-<path stroke="#e0cb99" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cb99"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1017.89 456.96
   Q 1016.72 459.75 1016.88 463.09"
-/>
-<path stroke="#1e0a01" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1e0a01"
+          vector-effect="non-scaling-stroke"
+          d="
   M 401.32 514.03
   L 404.26 513.37"
-/>
-<path stroke="#7b7977" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b7977"
+          vector-effect="non-scaling-stroke"
+          d="
   M 404.26 513.37
   L 405.17 514.08
   A 1.29 1.27 63.9 0 0 405.91 514.34
@@ -1145,12 +1456,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.30 0.30 0.0 0 0 429.27 407.20
   Q 418.15 406.95 408.68 406.69
   C 406.33 406.62 405.17 407.69 404.03 409.54"
-/>
-<path stroke="#1e0a01" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1e0a01"
+          vector-effect="non-scaling-stroke"
+          d="
   M 404.03 409.54
   Q 403.30 409.26 402.62 408.69"
-/>
-<path stroke="#7b7977" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b7977"
+          vector-effect="non-scaling-stroke"
+          d="
   M 402.62 408.69
   L 404.60 406.67
   A 0.22 0.22 0.0 0 0 404.46 406.30
@@ -1161,20 +1478,29 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 360.99 483.86 363.81 492.71
   C 367.59 504.57 376.05 513.49 389.28 513.85
   Q 398.09 514.09 401.32 514.03"
-/>
-<path stroke="#988277" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#988277"
+          vector-effect="non-scaling-stroke"
+          d="
   M 402.62 408.69
   Q 400.31 411.28 398.73 414.51
   Q 390.08 432.24 389.18 451.77
   C 388.37 469.43 389.56 486.19 395.38 502.87
   Q 397.49 508.93 401.32 514.03"
-/>
-<path stroke="#988277" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#988277"
+          vector-effect="non-scaling-stroke"
+          d="
   M 404.26 513.37
   Q 397.83 502.04 394.80 488.24
   C 389.02 461.90 391.74 432.75 404.03 409.54"
-/>
-<path stroke="#7b7977" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b7977"
+          vector-effect="non-scaling-stroke"
+          d="
   M 418.28 451.29
   Q 416.77 471.80 420.87 491.82
   Q 423.25 503.43 429.83 513.08
@@ -1207,30 +1533,45 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 961.16 537.96 972.85 537.99
   Q 975.02 538.00 985.12 538.75
   Q 991.25 539.20 997.41 538.99"
-/>
-<path stroke="#5a2401" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5a2401"
+          vector-effect="non-scaling-stroke"
+          d="
   M 997.41 538.99
   Q 997.64 539.15 997.96 539.14"
-/>
-<path stroke="#1e0a01" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1e0a01"
+          vector-effect="non-scaling-stroke"
+          d="
   M 997.96 539.14
   Q 998.64 539.50 999.93 539.21"
-/>
-<path stroke="#767676" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767676"
+          vector-effect="non-scaling-stroke"
+          d="
   M 999.93 539.21
   Q 1006.22 539.92 1013.23 540.08
   C 1016.84 540.16 1021.00 540.85 1025.25 540.99
   Q 1027.90 541.07 1028.43 538.96"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1028.43 538.96
   Q 1029.30 538.50 1030.15 538.19
   Q 1054.68 529.14 1088.25 516.26
   Q 1106.47 509.27 1146.75 494.81
   A 1.44 1.41 5.5 0 0 1147.48 494.22
   Q 1148.71 492.21 1147.06 489.72"
-/>
-<path stroke="#7b7977" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7b7977"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1147.06 489.72
   Q 1146.21 487.67 1144.74 488.06
   Q 1134.57 490.78 1116.14 497.66
@@ -1242,12 +1583,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1005.17 505.91 1004.17 490.46 1005.69 475.18
   Q 1006.29 469.11 1007.09 462.51
   Q 1008.90 447.68 1014.29 433.89"
-/>
-<path stroke="#71674c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#71674c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1014.29 433.89
   L 1015.33 431.83"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1015.33 431.83
   Q 1016.41 429.67 1015.48 428.50
   A 1.16 1.14 71.4 0 0 1014.63 428.07
@@ -1291,18 +1638,27 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1012.20 429.21 1013.34 429.67
   Q 1013.77 429.84 1013.79 430.16
   Q 1013.81 430.46 1013.44 430.73"
-/>
-<path stroke="#767676" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767676"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1013.44 430.73
   L 1002.95 430.17
   A 1.44 1.42 -53.6 0 0 1002.33 430.27
   L 1001.26 430.71"
-/>
-<path stroke="#1e0a01" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1e0a01"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1001.26 430.71
   L 999.63 430.13"
-/>
-<path stroke="#767676" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767676"
+          vector-effect="non-scaling-stroke"
+          d="
   M 999.63 430.13
   C 995.22 429.93 990.57 430.07 986.45 429.73
   C 976.02 428.89 964.75 429.40 955.33 428.49
@@ -1335,20 +1691,29 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.63 1.62 19.5 0 0 430.84 408.33
   C 428.81 411.13 426.97 414.44 425.78 417.49
   Q 419.43 433.77 418.28 451.29"
-/>
-<path stroke="#937f76" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#937f76"
+          vector-effect="non-scaling-stroke"
+          d="
   M 999.63 430.13
   Q 995.48 436.92 993.13 445.13
   Q 989.41 458.15 988.59 470.73"
-/>
-<path stroke="#efeeeb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efeeeb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 988.59 470.73
   L 987.54 471.05
   A 0.69 0.68 82.9 0 0 987.06 471.68
   Q 986.80 483.61 986.40 495.54
   Q 986.24 500.31 987.47 510.72"
-/>
-<path stroke="#dbdbdb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dbdbdb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 987.47 510.72
   C 978.33 510.60 969.29 510.44 960.12 509.69
   Q 921.75 506.53 881.41 504.61
@@ -1370,8 +1735,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 789.12 493.94 783.74 486.26
   A 1.88 1.88 0.0 0 0 782.26 485.46
   L 774.78 485.29"
-/>
-<path stroke="#767676" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767676"
+          vector-effect="non-scaling-stroke"
+          d="
   M 774.78 485.29
   Q 774.70 484.51 774.85 483.82
   A 0.66 0.66 0.0 0 1 775.53 483.30
@@ -1391,8 +1759,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 762.12 502.07
   A 0.74 0.74 0.0 0 0 762.83 502.81
   L 773.50 503.21"
-/>
-<path stroke="#dbdbdb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dbdbdb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 773.50 503.21
   Q 774.10 503.93 774.10 503.96
   A 0.90 0.90 0.0 0 1 773.13 504.69
@@ -1442,37 +1813,57 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 543.26 501.89 529.47 501.35
   C 504.42 500.37 489.12 500.19 467.63 498.71
   C 457.23 498.00 439.25 496.61 423.46 496.28"
-/>
-<path stroke="#efeeeb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efeeeb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 423.46 496.28
   Q 422.04 492.22 421.87 490.88
   C 420.92 483.30 419.69 477.38 419.71 470.66
   C 419.72 465.74 419.98 457.97 418.28 451.29"
-/>
-<path stroke="#937f76" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#937f76"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1001.26 430.71
   Q 999.41 432.96 998.55 435.30
   C 992.56 451.58 990.79 467.55 990.40 485.53
   C 990.11 499.27 991.14 514.58 995.35 527.92
   Q 997.10 533.46 999.93 539.21"
-/>
-<path stroke="#782d01" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#782d01"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 997.96 539.14
   Q 997.84 538.87 997.40 538.76"
-/>
-<path stroke="#988277" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#988277"
+          vector-effect="non-scaling-stroke"
+          d="
   M 997.40 538.76
   Q 994.80 536.71 993.56 532.93
   Q 988.24 516.66 987.98 500.00
   Q 987.75 485.35 988.59 470.73"
-/>
-<path stroke="#666666" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#666666"
+          vector-effect="non-scaling-stroke"
+          d="
   M 774.78 485.29
   L 774.61 502.83
   A 0.50 0.49 -4.0 0 1 774.18 503.32
   Q 773.89 503.36 773.50 503.21"
-/>
-<path stroke="#c3c2c3" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c3c2c3"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 989.40 523.23
   Q 975.55 526.21 958.55 525.74
   Q 885.28 523.71 846.57 521.34
@@ -1482,12 +1873,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 586.41 511.84 556.38 511.38
   Q 503.01 510.57 455.45 507.62
   Q 440.21 506.68 427.90 507.41"
-/>
-<path stroke="#e0dedc" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dedc"
+          vector-effect="non-scaling-stroke"
+          d="
   M 423.46 496.28
   L 427.90 507.41"
-/>
-<path stroke="#d7d5d3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7d5d3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 427.90 507.41
   L 431.40 513.09
   A 1.23 1.20 -7.3 0 0 432.13 513.64
@@ -1521,16 +1918,25 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 991.22 537.76 993.41 537.68
   A 0.67 0.67 0.0 0 0 994.02 536.80
   L 989.40 523.23"
-/>
-<path stroke="#e0dedc" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dedc"
+          vector-effect="non-scaling-stroke"
+          d="
   M 989.40 523.23
   L 987.47 510.72"
-/>
-<path stroke="#d49c76" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d49c76"
+          vector-effect="non-scaling-stroke"
+          d="
   M 997.40 538.76
   Q 997.41 538.88 997.41 538.99"
-/>
-<path stroke="#e5dcc1" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e5dcc1"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1014.21 431.45
   L 1014.07 432.12
   A 0.09 0.08 27.8 0 1 1013.93 432.16
@@ -1543,8 +1949,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1001.32 442.32 1000.44 447.70
   Q 999.53 453.30 998.00 467.75
   Q 995.61 490.41 998.15 512.95"
-/>
-<path stroke="#dacdb4" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dacdb4"
+          vector-effect="non-scaling-stroke"
+          d="
   M 998.15 512.95
   L 994.07 512.02
   A 0.36 0.35 -87.1 0 0 993.64 512.41
@@ -1553,12 +1962,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1026.42 539.22
   A 1.04 0.99 30.5 0 0 1026.94 539.10
   L 1028.27 538.39"
-/>
-<path stroke="#f1e8cf" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f1e8cf"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1028.27 538.39
   Q 1028.46 538.75 1028.43 538.96"
-/>
-<path stroke="#eadfc2" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#eadfc2"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1014.29 433.89
   Q 1012.96 433.55 1012.45 434.77
   Q 1008.27 444.80 1006.21 458.80
@@ -1566,22 +1981,34 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1003.74 488.17 1003.98 499.36
   Q 1004.07 503.31 1004.91 509.22
   Q 1005.61 514.16 1006.12 519.08"
-/>
-<path stroke="#d5bf8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5bf8a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1006.12 519.08
   Q 1002.69 520.23 999.76 518.64
   A 1.08 1.08 0.0 0 1 999.22 517.91
   L 998.15 512.95"
-/>
-<path stroke="#a97f4c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#a97f4c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1015.33 431.83
   Q 1014.99 431.31 1014.21 431.45"
-/>
-<path stroke="#ae8e76" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ae8e76"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1014.21 431.45
   L 1013.44 430.73"
-/>
-<path stroke="#e0cb99" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cb99"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1028.27 538.39
   Q 1029.91 537.17 1032.97 535.98
   Q 1040.41 533.09 1063.84 524.28
@@ -1595,42 +2022,63 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1122.68 500.78 1119.80 501.70
   C 1111.30 504.45 1100.69 508.77 1090.39 511.51
   C 1078.71 514.61 1068.31 518.49 1057.24 522.07"
-/>
-<path stroke="#f6ebd0" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f6ebd0"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1147.06 489.72
   Q 1137.16 493.19 1127.16 496.34
   Q 1115.46 500.04 1107.31 503.06
   Q 1090.35 509.35 1073.42 515.72
   Q 1061.05 520.37 1057.24 522.07"
-/>
-<path stroke="#dfd1b5" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dfd1b5"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1057.24 522.07
   Q 1043.40 527.25 1029.31 531.92
   Q 1022.19 534.28 1016.49 535.38
   Q 1014.73 535.72 1013.03 535.47
   A 1.19 1.18 74.0 0 1 1012.26 535.04
   C 1008.64 530.51 1007.28 524.80 1006.12 519.08"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 757.33 417.44
   Q 756.75 417.20 756.58 417.26
   A 0.34 0.34 0.0 0 0 756.51 417.87
   Q 756.53 417.88 757.26 417.85
   A 0.21 0.21 0.0 0 0 757.33 417.44"
-/>
-<path stroke="#65593f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#65593f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1141.29 513.16
   Q 1141.12 512.72 1140.64 512.46"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1140.64 512.46
   Q 1140.38 510.83 1141.14 511.00"
-/>
-<path stroke="#65593f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#65593f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1141.14 511.00
   L 1143.94 511.01"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1143.94 511.01
   Q 1145.29 511.09 1145.59 510.45
   A 0.88 0.84 52.3 0 0 1145.65 509.88
@@ -1655,18 +2103,27 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1144.47 513.83
   A 0.41 0.40 -13.2 0 0 1143.97 513.53
   Q 1142.60 513.87 1141.29 513.16"
-/>
-<path stroke="#e0cb99" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cb99"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1143.94 511.01
   L 1142.66 503.47
   A 1.08 1.08 0.0 0 0 1141.18 502.66
   L 1137.09 504.42"
-/>
-<path stroke="#b58b5b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b58b5b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1137.09 504.42
   L 1135.23 504.87"
-/>
-<path stroke="#e0cb99" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cb99"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1135.23 504.87
   Q 1129.83 506.75 1117.02 511.71
   C 1105.85 516.05 1089.35 521.99 1076.28 527.15
@@ -1681,22 +2138,34 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1121.47 521.04 1131.51 517.01
   A 0.52 0.52 0.0 0 0 1131.53 516.06
   Q 1131.04 515.84 1130.26 515.97"
-/>
-<path stroke="#ecd9a6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ecd9a6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1130.26 515.97
   Q 1133.35 514.93 1135.17 512.80
   A 0.95 0.92 23.3 0 1 1135.99 512.49
   L 1138.46 512.81"
-/>
-<path stroke="#e0cb99" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cb99"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1138.46 512.81
   Q 1139.87 513.61 1141.29 513.16"
-/>
-<path stroke="#9e713f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9e713f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1140.64 512.46
   C 1137.41 511.22 1136.26 508.08 1135.23 504.87"
-/>
-<path stroke="#d5bf8a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d5bf8a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1138.46 512.81
   C 1133.98 509.62 1128.17 512.01 1122.78 514.36
   C 1119.83 515.65 1117.42 519.12 1114.57 520.06
@@ -1705,12 +2174,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.12 0.12 0.0 0 0 1081.44 532.76
   Q 1094.50 527.93 1107.83 524.01
   C 1115.21 521.85 1122.76 518.65 1130.26 515.97"
-/>
-<path stroke="#9e713f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9e713f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1141.14 511.00
   L 1137.09 504.42"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1166.44 505.58
   Q 1164.80 504.90 1151.33 504.93
   A 0.83 0.83 0.0 0 0 1150.52 505.93
@@ -1718,21 +2193,33 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.83 0.83 0.0 0 0 1152.33 510.39
   L 1166.42 506.05
   A 0.25 0.25 0.0 0 0 1166.44 505.58"
-/>
-<path stroke="#807540" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807540"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1170.74 508.36
   L 1140.26 519.89"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1140.26 519.89
   L 1135.11 521.96"
-/>
-<path stroke="#807540" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807540"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1135.11 521.96
   Q 1094.07 536.84 1072.36 544.11
   Q 1068.76 545.31 1062.41 545.96"
-/>
-<path stroke="#805501" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#805501"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1062.41 545.96
   Q 1050.99 547.26 1039.45 546.75
   Q 1027.05 546.20 1026.54 546.18
@@ -1806,28 +2293,46 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1075.73 553.94 1109.69 542.15
   Q 1137.10 532.63 1173.29 518.30
   Q 1176.58 517.00 1176.91 514.63"
-/>
-<path stroke="#807540" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807540"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.91 514.63
   L 1176.79 511.08"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.79 511.08
   Q 1176.78 510.26 1176.49 510.10"
-/>
-<path stroke="#807540" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807540"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.49 510.10
   Q 1176.42 509.30 1175.92 508.79"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1175.92 508.79
   Q 1174.46 505.68 1170.74 508.36"
-/>
-<path stroke="#fff2ab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff2ab"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1175.92 508.79
   Q 1173.32 508.99 1170.74 508.36"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.49 510.10
   Q 1171.08 510.44 1165.97 511.84
   Q 1164.50 512.25 1164.15 512.58
@@ -1835,8 +2340,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1168.63 512.41 1171.03 511.31
   A 1.41 1.39 32.3 0 1 1171.62 511.18
   L 1176.79 511.08"
-/>
-<path stroke="#ffc940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffc940"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.91 514.63
   Q 1168.01 516.71 1159.21 519.31
   Q 1155.58 520.39 1152.08 521.81
@@ -1850,12 +2358,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1066.14 548.13
   A 2.28 2.28 0.0 0 0 1064.80 547.44
   Q 1062.50 547.10 1062.41 545.96"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1135.11 521.96
   Q 1137.94 521.64 1140.26 519.89"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 540.2301 534.7198
   A 0.26 0.26 0.0 0 0 539.9812 534.4491
   L 388.7740 528.1116
@@ -1865,8 +2379,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 539.9460 535.2884
   A 0.26 0.26 0.0 0 0 540.2167 535.0395
   L 540.2301 534.7198"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1159.67 529.17
   Q 1157.99 529.54 1155.77 530.33
   Q 1129.06 539.85 1128.58 540.02
@@ -1886,13 +2403,19 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1155.85 564.07 1156.05 558.00
   Q 1156.56 543.04 1159.99 529.50
   A 0.27 0.27 0.0 0 0 1159.67 529.17"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 359.11 574.81
   C 357.67 591.34 358.86 608.36 364.38 624.11
   C 366.77 630.93 369.48 635.83 374.96 640.26"
-/>
-<path stroke="#805501" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#805501"
+          vector-effect="non-scaling-stroke"
+          d="
   M 374.96 640.26
   Q 379.49 643.54 382.02 643.75
   Q 385.07 644.00 388.02 644.68
@@ -1936,12 +2459,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1109.25 653.50 1129.23 643.78 1151.93 632.75
   C 1157.21 630.18 1165.09 625.70 1171.54 623.04
   Q 1174.89 621.66 1176.66 619.38"
-/>
-<path stroke="#807540" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807540"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.66 619.38
   Q 1177.13 617.89 1176.65 616.50"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.65 616.50
   C 1175.36 609.23 1168.72 610.61 1163.94 612.91
   Q 1124.59 631.76 1082.84 650.30
@@ -1954,12 +2483,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1039.84 579.62 1042.71 569.65 1046.60 557.96
   A 0.51 0.51 0.0 0 0 1046.12 557.29
   L 1031.39 557.07"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1031.39 557.07
   Q 1031.19 557.19 1030.99 557.32"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1030.99 557.32
   Q 1031.07 556.77 1030.50 556.74
   C 1019.01 556.12 1005.95 556.16 995.17 555.45
@@ -1970,47 +2505,74 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 883.35 550.88 863.68 550.29 846.44 549.41
   C 835.71 548.86 827.45 549.18 816.76 548.36
   C 809.41 547.80 802.26 548.12 793.73 547.32"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 793.73 547.32
   L 743.81 545.37"
-/>
-<path stroke="#7c735b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#7c735b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 743.81 545.37
   L 448.58 533.45"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 448.58 533.45
   Q 448.32 533.58 448.04 533.60"
-/>
-<path stroke="#805501" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#805501"
+          vector-effect="non-scaling-stroke"
+          d="
   M 448.04 533.60
   L 417.46 532.16"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 417.46 532.16
   Q 404.73 531.57 391.99 531.10
   C 385.55 530.86 380.70 531.37 375.91 534.93
   C 364.30 543.55 359.91 561.08 359.11 574.81"
-/>
-<path stroke="#ffd36d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffd36d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 417.46 532.16
   C 417.08 533.64 415.27 534.34 414.30 535.51"
-/>
-<path stroke="#daa26c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#daa26c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 414.30 535.51
   Q 411.60 538.47 409.59 542.11
   C 402.94 554.17 400.53 566.33 399.31 580.69
   Q 397.40 603.13 403.19 624.97"
-/>
-<path stroke="#ffe993" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe993"
+          vector-effect="non-scaling-stroke"
+          d="
   M 403.19 624.97
   Q 403.28 626.17 402.95 626.52
   A 0.33 0.33 0.0 0 1 402.40 626.39
   Q 399.39 616.65 398.39 606.51
   Q 398.10 603.55 397.87 600.76"
-/>
-<path stroke="#fff2ab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fff2ab"
+          vector-effect="non-scaling-stroke"
+          d="
   M 397.87 600.76
   Q 397.50 591.96 397.60 586.50
   Q 397.79 575.54 400.28 562.34
@@ -2019,20 +2581,29 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.49 0.49 0.0 0 0 412.44 533.77
   Q 408.42 533.03 406.12 533.16
   Q 397.35 533.64 390.33 532.88"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 390.33 532.88
   Q 384.08 532.79 378.38 535.34
   A 2.99 2.93 -79.3 0 0 377.46 535.98
   C 374.39 539.19 371.85 541.30 369.55 545.15
   Q 363.45 555.37 362.15 567.11
   Q 361.83 570.02 359.11 574.81"
-/>
-<path stroke="#ffce4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffce4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 448.04 533.60
   Q 447.90 534.70 447.18 534.90"
-/>
-<path stroke="#d97801" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d97801"
+          vector-effect="non-scaling-stroke"
+          d="
   M 447.18 534.90
   Q 445.31 534.45 444.82 535.79
   A 4.54 2.22 89.5 0 1 444.40 536.67
@@ -2044,12 +2615,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 433.91 625.55 435.54 629.79
   Q 437.76 635.56 438.93 637.81
   Q 440.46 640.76 445.04 646.65"
-/>
-<path stroke="#fea901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fea901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 445.04 646.65
   L 416.24 645.09"
-/>
-<path stroke="#d97801" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d97801"
+          vector-effect="non-scaling-stroke"
+          d="
   M 416.24 645.09
   Q 415.97 642.80 413.67 640.74
   A 3.02 2.87 -86.0 0 1 413.05 639.99
@@ -2058,25 +2635,37 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 407.80 547.10 414.91 536.41
   A 0.47 0.46 31.4 0 0 414.74 535.73
   L 414.30 535.51"
-/>
-<path stroke="#ffbf28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffbf28"
+          vector-effect="non-scaling-stroke"
+          d="
   M 409.33 639.18
   Q 409.05 639.83 408.54 640.11
   A 0.45 0.41 31.1 0 1 408.30 640.16
   L 388.21 638.74
   A 3.07 2.97 -46.0 0 0 387.61 638.76
   C 383.41 639.34 379.02 639.65 375.46 637.59"
-/>
-<path stroke="#ffdf66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffdf66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 374.56 624.78
   L 373.76 623.29"
-/>
-<path stroke="#ffdf66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffdf66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 397.87 600.76
   C 388.93 599.26 381.15 597.09 372.04 599.32
   Q 369.12 600.03 366.59 604.34"
-/>
-<path stroke="#fbe799" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbe799"
+          vector-effect="non-scaling-stroke"
+          d="
   M 390.33 532.88
   L 383.52 536.86
   A 2.08 1.30 -5.6 0 0 383.30 537.03
@@ -2084,44 +2673,65 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 368.31 557.82 367.00 572.50
   Q 365.49 589.31 365.92 593.75
   Q 366.42 598.96 366.59 604.34"
-/>
-<path stroke="#fbdd81" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbdd81"
+          vector-effect="non-scaling-stroke"
+          d="
   M 366.59 604.34
   Q 370.45 610.38 371.66 617.48
   A 6.05 6.04 29.7 0 0 371.97 618.61
   L 373.76 623.29"
-/>
-<path stroke="#fbe799" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbe799"
+          vector-effect="non-scaling-stroke"
+          d="
   M 373.76 623.29
   Q 372.42 626.64 372.44 630.34
   A 2.86 2.86 0.0 0 0 373.36 632.42
   L 373.40 632.46
   A 0.69 0.68 -63.9 0 0 374.54 632.07
   Q 375.17 628.32 374.56 624.78"
-/>
-<path stroke="#fbdd81" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbdd81"
+          vector-effect="non-scaling-stroke"
+          d="
   M 374.56 624.78
   Q 376.28 631.08 375.46 637.59"
-/>
-<path stroke="#fbc75b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbc75b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 375.46 637.59
   Q 375.10 637.27 374.81 637.20
   A 0.45 0.45 0.0 0 0 374.35 637.92
   Q 374.94 638.68 375.83 639.17
   A 0.47 0.47 0.0 0 1 375.87 639.98
   Q 375.54 640.21 374.96 640.26"
-/>
-<path stroke="#d97801" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d97801"
+          vector-effect="non-scaling-stroke"
+          d="
   M 416.24 645.09
   Q 413.64 642.30 411.10 641.08
   A 1.78 1.73 82.1 0 1 410.47 640.59
   L 409.33 639.18"
-/>
-<path stroke="#da8e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#da8e27"
+          vector-effect="non-scaling-stroke"
+          d="
   M 409.33 639.18
   L 403.19 624.97"
-/>
-<path stroke="#fbeca7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbeca7"
+          vector-effect="non-scaling-stroke"
+          d="
   M 448.58 533.45
   Q 448.38 534.99 449.40 535.07
   Q 463.21 536.09 477.13 536.16
@@ -2138,8 +2748,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 677.29 544.29 684.84 544.81 693.86 545.08
   Q 717.49 545.77 730.10 546.72
   Q 737.94 547.31 743.81 545.37"
-/>
-<path stroke="#fbeca7" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbeca7"
+          vector-effect="non-scaling-stroke"
+          d="
   M 793.73 547.32
   Q 792.99 547.86 791.74 547.60
   A 0.05 0.05 0.0 0 0 791.71 547.70
@@ -2155,8 +2768,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1024.07 558.62 1025.78 559.02
   A 0.50 0.50 0.0 0 1 1026.15 559.65
   L 1020.44 578.96"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1020.44 578.96
   Q 1007.93 579.56 995.34 578.97
   C 980.74 578.27 968.64 580.78 953.12 584.29
@@ -2182,8 +2798,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 935.58 626.96
   A 0.49 0.48 -85.3 0 1 935.09 627.38
   L 931.04 627.35"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 931.04 627.35
   L 919.84 626.98
   A 0.65 0.65 0.0 0 1 919.21 626.33
@@ -2205,16 +2824,22 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 907.87 580.22
   A 0.47 0.47 0.0 0 0 907.38 580.68
   L 906.93 608.40"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 906.93 608.40
   Q 904.58 605.82 905.28 600.26
   A 0.55 0.54 8.0 0 0 904.81 599.65
   L 891.38 597.68
   A 0.81 0.81 0.0 0 0 890.52 598.17
   L 878.75 625.51"
-/>
-<path stroke="#ffe474" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe474"
+          vector-effect="non-scaling-stroke"
+          d="
   M 878.75 625.51
   L 874.61 634.94
   A 1.77 1.77 0.0 0 1 874.07 635.64
@@ -2226,20 +2851,29 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 835.07 603.41 825.49 605.45
   A 0.76 0.75 -5.9 0 0 824.90 606.17
   L 824.23 632.07"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 824.23 632.07
   L 822.95 632.50"
-/>
-<path stroke="#908756" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#908756"
+          vector-effect="non-scaling-stroke"
+          d="
   M 822.95 632.50
   L 822.93 577.48
   A 0.67 0.67 0.0 0 0 822.29 576.81
   L 811.81 576.40
   A 0.81 0.81 0.0 0 0 810.97 577.21
   L 810.89 624.49"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 810.89 624.49
   Q 809.36 621.04 809.33 615.10
   Q 809.20 593.95 809.06 584.65
@@ -2252,24 +2886,33 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 785.10 586.61
   A 0.84 0.83 -89.0 0 0 784.24 587.45
   L 784.11 616.52"
-/>
-<path stroke="#ffe474" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe474"
+          vector-effect="non-scaling-stroke"
+          d="
   M 784.11 616.52
   Q 783.99 622.89 783.69 629.18
   C 783.57 631.66 782.80 632.36 780.39 632.41
   Q 775.20 632.51 770.05 632.23
   A 2.08 2.08 0.0 0 1 768.09 630.19
   L 767.91 619.31"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 767.91 619.31
   L 767.85 601.80
   A 0.43 0.42 -1.9 0 0 767.39 601.38
   L 743.93 602.94
   A 0.39 0.39 0.0 0 0 743.59 603.47
   L 748.93 616.96"
-/>
-<path stroke="#ffe474" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe474"
+          vector-effect="non-scaling-stroke"
+          d="
   M 748.93 616.96
   Q 750.99 622.56 753.06 628.09
   Q 754.05 630.71 752.52 631.53
@@ -2287,8 +2930,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 700.12 629.41 692.67 629.06
   Q 692.05 629.04 691.87 628.46
   Q 691.69 627.93 692.02 627.77"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 692.02 627.77
   L 703.93 627.93
   A 1.19 1.19 0.0 0 0 705.05 627.18
@@ -2305,8 +2951,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 715.49 572.56
   A 1.05 1.04 12.5 0 0 714.48 573.20
   L 692.85 624.31"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 692.85 624.31
   Q 691.42 623.74 692.87 620.64
   Q 697.89 609.85 701.24 601.03
@@ -2320,8 +2969,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 654.98 614.26
   A 0.82 0.82 0.0 0 0 655.84 615.09
   Q 667.41 614.60 678.49 616.81"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 678.49 616.81
   Q 666.05 617.46 654.06 616.26
   A 0.85 0.84 3.4 0 1 653.30 615.41
@@ -2342,16 +2994,25 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 641.70 569.67
   A 0.59 0.59 0.0 0 0 641.09 570.26
   L 640.92 622.79"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 640.92 622.79
   Q 640.25 623.53 639.17 624.04"
-/>
-<path stroke="#ffe474" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe474"
+          vector-effect="non-scaling-stroke"
+          d="
   M 639.17 624.04
   L 638.95 606.71"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 638.95 606.71
   L 639.16 591.58
   A 0.74 0.73 -3.7 0 0 638.32 590.85
@@ -2360,14 +3021,20 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 625.77 600.36 618.31 603.37
   A 1.35 1.34 -27.8 0 0 617.69 605.36
   L 622.25 612.17"
-/>
-<path stroke="#ffe474" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe474"
+          vector-effect="non-scaling-stroke"
+          d="
   M 622.25 612.17
   L 629.10 623.08
   A 0.15 0.15 0.0 0 1 629.13 623.17
   Q 629.20 623.84 627.93 623.43"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 627.93 623.43
   L 615.39 604.15
   A 0.96 0.96 0.0 0 1 615.81 602.75
@@ -2387,8 +3054,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 2.22 2.21 -13.9 0 1 602.22 604.36
   Q 605.38 609.76 614.40 623.56
   C 615.91 625.86 623.45 625.10 626.92 625.23"
-/>
-<path stroke="#ffe474" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe474"
+          vector-effect="non-scaling-stroke"
+          d="
   M 626.92 625.23
   Q 627.24 625.75 627.17 625.92
   A 0.80 0.80 0.0 0 1 626.41 626.43
@@ -2403,8 +3073,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 582.81 624.96
   A 2.77 2.76 -8.2 0 1 580.19 623.00
   Q 579.76 621.58 579.97 619.53"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 579.97 619.53
   L 579.61 583.10
   A 1.50 1.49 19.7 0 0 579.08 581.98
@@ -2425,8 +3098,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 559.11 609.84 563.79 606.97
   A 0.56 0.56 0.0 0 1 564.64 607.41
   L 564.67 607.79"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 564.67 607.79
   C 554.76 616.38 539.65 614.41 533.59 602.69
   C 528.01 591.90 532.95 577.93 545.50 575.49
@@ -2438,8 +3114,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 566.73 567.33 558.60 565.64
   C 550.32 563.91 540.80 564.18 533.10 568.72
   C 520.34 576.24 516.30 589.83 520.60 603.76"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 520.60 603.76
   Q 520.80 604.57 520.66 604.65
   A 0.90 0.90 0.0 0 1 519.37 604.17
@@ -2456,24 +3135,36 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 435.43 579.49 434.83 587.22
   C 434.47 591.79 434.97 596.67 434.93 601.74
   Q 434.91 603.64 435.84 609.01"
-/>
-<path stroke="#ffe474" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe474"
+          vector-effect="non-scaling-stroke"
+          d="
   M 435.84 609.01
   Q 437.34 620.58 441.22 631.55
   Q 441.42 632.10 442.34 634.05
   Q 443.37 636.21 442.09 636.26"
-/>
-<path stroke="#da9d4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#da9d4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 442.09 636.26
   Q 439.89 632.03 438.55 627.50
   Q 427.96 591.71 437.30 555.56
   Q 440.32 543.87 447.18 534.90"
-/>
-<path stroke="#da8e27" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#da8e27"
+          vector-effect="non-scaling-stroke"
+          d="
   M 442.09 636.26
   Q 444.29 643.08 448.81 642.63"
-/>
-<path stroke="#d97801" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d97801"
+          vector-effect="non-scaling-stroke"
+          d="
   M 448.81 642.63
   L 446.64 642.81
   A 1.19 1.18 -20.2 0 0 445.77 644.68
@@ -2482,8 +3173,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 449.28 646.32
   A 0.44 0.44 0.0 0 1 448.93 646.92
   Q 447.00 647.18 445.04 646.65"
-/>
-<path stroke="#ffbf28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffbf28"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1031.38 667.18
   Q 1031.96 668.33 1031.26 668.32
   Q 1026.78 668.26 1020.41 668.59
@@ -2504,8 +3198,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 484.32 644.59 465.32 643.78
   Q 462.06 643.64 457.06 643.20
   Q 453.02 642.84 448.81 642.63"
-/>
-<path stroke="#ffdf66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffdf66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1019.61 641.83
   Q 1000.70 634.99 981.08 634.71
   Q 968.08 634.52 953.08 635.25
@@ -2520,8 +3217,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 905.08 633.75
   A 0.63 0.63 0.0 0 0 904.55 633.21
   Q 891.22 631.04 878.75 625.51"
-/>
-<path stroke="#807540" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807540"
+          vector-effect="non-scaling-stroke"
+          d="
   M 906.93 608.40
   L 907.07 636.34
   A 0.46 0.45 1.3 0 0 907.51 636.79
@@ -2530,26 +3230,38 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 950.96 628.84
   A 0.77 0.76 -89.2 0 0 950.22 628.07
   L 931.04 627.35"
-/>
-<path stroke="#908249" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#908249"
+          vector-effect="non-scaling-stroke"
+          d="
   M 822.95 632.50
   Q 822.81 632.65 822.69 632.76
   A 0.83 0.77 -64.6 0 1 822.08 633.00
   L 811.41 632.58
   A 0.45 0.45 0.0 0 1 810.97 632.14
   L 810.89 624.49"
-/>
-<path stroke="#806b28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#806b28"
+          vector-effect="non-scaling-stroke"
+          d="
   M 627.93 623.43
   Q 628.51 624.06 628.74 624.67
   A 0.51 0.51 0.0 0 1 628.39 625.35
   Q 627.79 625.51 626.92 625.23"
-/>
-<path stroke="#ffdf66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffdf66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 638.95 606.71
   L 622.25 612.17"
-/>
-<path stroke="#807540" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807540"
+          vector-effect="non-scaling-stroke"
+          d="
   M 678.49 616.81
   Q 680.02 617.54 682.47 617.45
   A 0.49 0.49 0.0 0 1 682.98 617.94
@@ -2558,8 +3270,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 641.19 625.86
   A 0.34 0.33 -89.1 0 1 640.87 625.52
   L 640.92 622.79"
-/>
-<path stroke="#807540" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807540"
+          vector-effect="non-scaling-stroke"
+          d="
   M 520.60 603.76
   Q 527.76 620.56 546.20 622.85
   C 556.82 624.17 563.25 620.77 571.40 614.57
@@ -2567,8 +3282,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 568.59 610.93 565.82 607.86
   Q 565.56 607.58 565.28 607.59
   Q 564.98 607.60 564.67 607.79"
-/>
-<path stroke="#ffdf66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffdf66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 579.97 619.53
   Q 577.55 616.07 573.22 615.31
   A 1.14 1.12 28.9 0 0 572.26 615.58
@@ -2577,8 +3295,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 520.02 619.52 517.93 619.35
   Q 494.56 617.39 474.97 614.62
   Q 455.48 611.86 435.84 609.01"
-/>
-<path stroke="#ffdf66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffdf66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 824.23 632.07
   Q 823.43 633.87 822.26 634.26
   Q 822.14 634.30 819.25 634.22
@@ -2587,8 +3308,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 808.95 622.46
   A 0.70 0.69 2.5 0 0 808.35 621.81
   Q 796.03 620.11 784.11 616.52"
-/>
-<path stroke="#ffdf66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffdf66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 691.96 627.06
   C 690.80 623.55 688.71 621.36 685.08 623.75
   A 0.72 0.68 -11.8 0 0 684.78 624.18
@@ -2597,40 +3321,61 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 641.74 627.42
   A 1.62 1.60 66.9 0 1 640.71 627.00
   Q 639.56 625.93 639.17 624.04"
-/>
-<path stroke="#806b28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#806b28"
+          vector-effect="non-scaling-stroke"
+          d="
   M 692.02 627.77
   Q 692.05 627.31 691.96 627.06"
-/>
-<path stroke="#807540" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807540"
+          vector-effect="non-scaling-stroke"
+          d="
   M 691.96 627.06
   L 692.85 624.31"
-/>
-<path stroke="#b58b5b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b58b5b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1030.99 557.32
   Q 1029.61 558.17 1029.23 558.99
   Q 1023.97 570.31 1022.10 580.04
   Q 1018.28 599.91 1019.12 623.39
   C 1019.56 635.67 1021.62 651.22 1027.50 662.63"
-/>
-<path stroke="#fbdd81" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbdd81"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1027.50 662.63
   L 1027.32 663.60
   A 0.46 0.46 0.0 0 1 1026.45 663.72
   Q 1021.35 653.29 1019.61 641.83"
-/>
-<path stroke="#fbe799" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbe799"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1019.61 641.83
   C 1018.96 638.03 1018.13 634.47 1017.92 630.68
   Q 1016.81 610.58 1018.58 590.54
   Q 1018.80 588.09 1019.46 584.76
   Q 1020.04 581.87 1020.44 578.96"
-/>
-<path stroke="#ffdf66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffdf66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 767.91 619.31
   L 748.93 616.96"
-/>
-<path stroke="#ffbf28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffbf28"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1173.84 619.24
   Q 1169.38 620.12 1163.04 620.33
   Q 1161.48 620.39 1160.16 621.25
@@ -2654,20 +3399,29 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1090.66 651.62 1085.49 654.16 1079.93 656.59
   Q 1068.21 661.70 1067.54 661.95
   Q 1060.91 664.38 1053.65 664.96"
-/>
-<path stroke="#b86d01" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b86d01"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1034.56 667.43
   L 1034.98 668.08
   A 0.41 0.40 -16.7 0 1 1034.64 668.70
   Q 1034.31 668.71 1033.91 668.56
   Q 1033.69 668.49 1033.44 668.09
   Q 1032.77 667.00 1031.38 667.18"
-/>
-<path stroke="#b98328" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b98328"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1031.38 667.18
   L 1027.50 662.63"
-/>
-<path stroke="#ffed8c" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffed8c"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.65 616.50
   C 1171.30 614.17 1167.26 612.97 1162.06 615.49
   A 0.25 0.25 0.0 0 0 1162.16 615.96
@@ -2677,16 +3431,25 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.32 0.32 0.0 0 1 1174.68 618.75
   Q 1171.46 616.60 1167.38 617.04
   Q 1162.69 617.54 1157.07 617.88"
-/>
-<path stroke="#ffe474" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe474"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1157.07 617.88
   L 1053.65 664.96"
-/>
-<path stroke="#ffce4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffce4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1053.65 664.96
   Q 1052.29 665.32 1050.30 664.99"
-/>
-<path stroke="#ffe474" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffe474"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1050.30 664.99
   L 1045.71 664.64
   A 1.67 1.66 -22.2 0 1 1044.73 664.23
@@ -2706,40 +3469,61 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1027.15 631.75 1028.71 640.85 1031.65 650.06
   Q 1034.91 660.24 1035.92 662.76
   Q 1037.18 665.91 1040.57 668.84"
-/>
-<path stroke="#ffce4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffce4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1040.57 668.84
   Q 1037.63 669.25 1034.56 667.43"
-/>
-<path stroke="#b9924d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#b9924d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1034.56 667.43
   Q 1029.03 663.36 1026.82 656.92
   Q 1021.27 640.75 1020.68 622.25
   Q 1020.02 601.11 1023.53 580.27
   Q 1025.26 570.05 1031.39 557.07"
-/>
-<path stroke="#ffc940" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffc940"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1176.66 619.38
   L 1173.84 619.24"
-/>
-<path stroke="#ffdf66" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffdf66"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1173.84 619.24
   L 1157.07 617.88"
-/>
-<path stroke="#ffbf28" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#ffbf28"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1050.30 664.99
   Q 1048.94 665.93 1047.59 667.99
   A 1.01 0.98 14.2 0 1 1046.81 668.44
   L 1040.57 668.84"
-/>
-<path stroke="#1e0a01" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#1e0a01"
+          vector-effect="non-scaling-stroke"
+          d="
   M 557.39 535.62
   Q 556.36 535.62 556.14 535.62
   Q 556.13 535.62 556.14 535.63
   Q 557.23 535.63 557.39 535.63
   A 0.07 0.01 -0.0 0 0 557.39 535.62"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 739.2248 542.8688
   A 0.39 0.39 0.0 0 0 738.8507 542.4635
   L 575.8622 535.9172
@@ -2749,28 +3533,40 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 738.8178 543.2828
   A 0.39 0.39 0.0 0 0 739.2232 542.9088
   L 739.2248 542.8688"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 751.26 543.63
   Q 751.12 543.62 750.99 543.62
   Q 750.95 543.63 750.99 543.63
   Q 751.12 543.63 751.26 543.63"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 753.6700 543.6300
   A 3.08 0.02 -180.0 0 0 756.7500 543.6500
   A 3.08 0.02 -180.0 0 0 759.8300 543.6300
   A 3.08 0.02 -180.0 0 0 756.7500 543.6100
   A 3.08 0.02 -180.0 0 0 753.6700 543.6300"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 763.6209 543.8324
   A 1.94 0.14 -178.3 0 0 765.5558 544.0299
   A 1.94 0.14 -178.3 0 0 767.4991 543.9476
   A 1.94 0.14 -178.3 0 0 765.5642 543.7501
   A 1.94 0.14 -178.3 0 0 763.6209 543.8324"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 938.7187 550.7418
   A 0.27 0.27 0.0 0 0 938.4598 550.4612
   L 774.0923 543.8595
@@ -2780,20 +3576,29 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 938.4277 551.2605
   A 0.27 0.27 0.0 0 0 938.7083 551.0016
   L 938.7187 550.7418"
-/>
-<path stroke="#5a2401" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#5a2401"
+          vector-effect="non-scaling-stroke"
+          d="
   M 949.3200 551.6305
   A 3.00 0.03 -180.2 0 0 952.3201 551.6500
   A 3.00 0.03 -180.2 0 0 955.3200 551.6095
   A 3.00 0.03 -180.2 0 0 952.3199 551.5900
   A 3.00 0.03 -180.2 0 0 949.3200 551.6305"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 958.11 551.63
   C 957.62 551.62 957.13 551.62 956.64 551.62
   C 957.13 551.63 957.62 551.63 958.11 551.63"
-/>
-<path stroke="#391901" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#391901"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1034.8105 554.8014
   A 0.33 0.33 0.0 0 0 1034.4940 554.4584
   L 959.8941 551.4622
@@ -2803,8 +3608,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1034.4659 555.1578
   A 0.33 0.33 0.0 0 0 1034.8089 554.8413
   L 1034.8105 554.8014"
-/>
-<path stroke="#f0e5b8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0e5b8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1145.82 287.94
   Q 1141.92 287.62 1137.91 289.14
   A 1.71 1.68 -58.0 0 1 1137.37 289.27
@@ -2831,8 +3639,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 2.88 2.78 -49.3 0 0 1130.78 292.53
   L 1145.88 288.57
   A 0.32 0.32 0.0 0 0 1145.82 287.94"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 631.81 344.87
   L 632.09 321.59
   A 0.64 0.64 0.0 0 0 631.46 320.95
@@ -2857,8 +3668,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 655.51 322.00 654.36 323.14
   Q 639.51 338.01 632.35 345.09
   A 0.32 0.31 -22.4 0 1 631.81 344.87"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 686.36 323.13
   A 0.32 0.32 0.0 0 0 686.03 323.45
   L 686.03 378.86
@@ -2868,8 +3682,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 698.48 323.92
   A 0.32 0.32 0.0 0 0 698.17 323.60
   L 686.36 323.13"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 783.84 326.80
   A 0.80 0.80 0.0 0 0 782.99 327.60
   L 782.99 381.95
@@ -2878,8 +3695,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 823.96 383.34 836.53 374.00 836.39 356.01
   C 836.27 341.10 827.14 331.00 812.73 328.37
   C 803.01 326.59 790.20 327.16 783.84 326.80"
-/>
-<path stroke="#f0e5b8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0e5b8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1120.34 309.40
   A 0.49 0.49 0.0 0 0 1120.54 308.54
   Q 1119.74 307.90 1118.48 308.13
@@ -2892,8 +3712,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.68 0.68 0.0 0 0 1048.37 324.93
   Q 1053.11 324.42 1063.24 322.02
   Q 1089.44 315.82 1120.34 309.40"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1129.07 310.31
   L 1127.93 313.20
   A 1.04 1.00 -35.6 0 0 1127.86 313.57
@@ -2939,8 +3762,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1129.03 331.09 1128.75 326.55
   C 1128.44 321.37 1129.86 314.64 1129.40 310.36
   A 0.17 0.17 0.0 0 0 1129.07 310.31"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1056.50 335.96
   Q 1059.34 335.86 1059.56 335.81
   Q 1066.84 334.13 1085.27 329.67
@@ -2956,8 +3782,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.24 1.22 1.6 0 0 1056.14 331.88
   Q 1055.37 333.60 1055.86 335.48
   A 0.64 0.63 81.5 0 0 1056.50 335.96"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1130.14 357.03
   L 1129.93 357.27
   A 0.96 0.94 -71.4 0 1 1129.24 357.62
@@ -2979,8 +3808,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.93 0.93 0.0 0 0 1132.04 362.27
   L 1130.53 357.11
   A 0.23 0.22 56.5 0 0 1130.14 357.03"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 630.98 345.90
   A 0.93 0.92 -84.8 0 1 630.19 344.95
   L 631.02 323.65
@@ -3006,8 +3838,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 6.91 6.89 20.3 0 0 653.88 325.65
   Q 642.76 336.93 635.34 344.34
   Q 633.42 346.26 630.98 345.90"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 695.79 378.22
   A 1.47 1.47 0.0 0 0 697.32 376.75
   L 697.32 326.28
@@ -3017,8 +3852,12 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 687.66 376.49
   A 1.47 1.47 0.0 0 0 689.07 377.96
   L 695.79 378.22"
-/>
-<path stroke="#933c01" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#933c01"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1022.8193 379.2938
   A 0.39 0.39 0.0 0 0 1022.4225 378.9107
   L 1022.3825 378.9114
@@ -3028,15 +3867,21 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1022.6575 392.3686
   A 0.39 0.39 0.0 0 0 1023.0406 391.9719
   L 1022.8193 379.2938"
-/>
-<path stroke="#9e713f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#9e713f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1021.6028 396.0613
   A 1.50 0.42 -87.6 0 0 1021.1204 397.5424
   A 1.50 0.42 -87.6 0 0 1021.4772 399.0587
   A 1.50 0.42 -87.6 0 0 1021.9596 397.5776
   A 1.50 0.42 -87.6 0 0 1021.6028 396.0613"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 720.79 379.16
   L 726.33 379.23
   A 0.61 0.60 0.0 0 0 726.94 378.63
@@ -3062,8 +3907,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 718.52 342.75 718.80 363.48
   Q 718.94 374.14 720.17 378.68
   A 0.66 0.65 -7.1 0 0 720.79 379.16"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 785.64 328.58
   A 0.77 0.76 2.4 0 0 784.81 329.34
   L 784.81 379.99
@@ -3077,8 +3925,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 2.64 2.58 55.1 0 0 810.22 329.39
   C 806.53 329.37 802.02 328.43 798.23 328.54
   Q 788.62 328.81 785.64 328.58"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 794.10 336.94
   L 793.45 374.05
   A 0.73 0.73 0.0 0 0 794.17 374.79
@@ -3088,8 +3939,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 19.08 17.85 1.0 0 0 806.81 336.43
   L 794.84 336.22
   A 0.73 0.73 0.0 0 0 794.10 336.94"
-/>
-<path stroke="#807f6d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807f6d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 795.06 372.55
   A 0.47 0.46 -89.4 0 0 795.51 373.02
   Q 799.59 373.18 807.31 373.01
@@ -3099,8 +3953,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 796.62 337.16 795.74 337.20
   A 0.72 0.72 0.0 0 0 795.06 337.92
   L 795.06 372.55"
-/>
-<path stroke="#d7d5d3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7d5d3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 433.34 393.50
   Q 435.63 399.49 441.73 400.65
   Q 448.94 402.01 455.59 401.45
@@ -3109,8 +3966,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 2.06 2.05 -26.0 0 0 441.89 391.23
   L 433.71 392.85
   A 0.49 0.48 -15.9 0 0 433.34 393.50"
-/>
-<path stroke="#f0e5b8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0e5b8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1021.25 447.58
   A 0.38 0.38 0.0 0 0 1021.72 447.83
   L 1122.84 416.67
@@ -3126,8 +3986,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1024.04 445.32 1021.41 446.57
   A 0.52 0.52 0.0 0 0 1021.14 447.20
   L 1021.25 447.58"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1121.11 451.73
   A 0.23 0.22 39.2 0 0 1121.54 451.69
   Q 1122.33 446.63 1122.05 442.91
@@ -3150,8 +4013,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1119.13 451.95 1119.28 450.66
   A 0.69 0.69 0.0 0 1 1120.61 450.49
   L 1121.11 451.73"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1122.27 461.50
   Q 1122.17 459.22 1121.94 458.87
   A 0.34 0.34 0.0 0 0 1121.33 458.94
@@ -3176,8 +4042,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.79 0.78 -20.1 0 1 1120.01 463.61
   L 1121.97 462.14
   A 0.78 0.75 -21.3 0 0 1122.27 461.50"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1122.89 475.54
   C 1121.49 475.49 1120.99 474.51 1120.17 474.33
   C 1114.62 473.09 1107.69 477.38 1102.61 479.03
@@ -3196,8 +4065,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.60 0.59 84.7 0 0 1123.69 477.72
   L 1123.46 476.05
   A 0.60 0.59 -2.9 0 0 1122.89 475.54"
-/>
-<path stroke="#f0e5b8" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#f0e5b8"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1075.8201 505.7650
   A 0.75 0.75 0.0 0 0 1074.8573 505.3201
   L 1033.4510 520.5546
@@ -3207,8 +4079,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1075.3890 506.7654
   A 0.75 0.75 0.0 0 0 1075.8339 505.8025
   L 1075.8201 505.7650"
-/>
-<path stroke="#efeeeb" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#efeeeb"
+          vector-effect="non-scaling-stroke"
+          d="
   M 386.43 457.88
   Q 381.81 460.65 379.69 462.42
   C 370.52 470.05 368.61 482.70 367.33 495.26
@@ -3223,12 +4098,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 387.90 474.33 387.30 467.49
   Q 386.80 461.68 386.90 458.16
   A 0.32 0.31 75.2 0 0 386.43 457.88"
-/>
-<path stroke="#d7d5d3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7d5d3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 393.16 459.50
   Q 392.94 482.04 399.92 502.78"
-/>
-<path stroke="#dfd1b5" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#dfd1b5"
+          vector-effect="non-scaling-stroke"
+          d="
   M 399.92 502.78
   Q 402.42 507.39 403.39 510.11
   Q 404.17 512.29 405.80 513.15
@@ -3236,14 +4117,20 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 424.12 514.13
   A 0.64 0.64 0.0 0 0 424.67 513.12
   Q 421.46 508.57 419.45 503.26"
-/>
-<path stroke="#d7d5d3" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#d7d5d3"
+          vector-effect="non-scaling-stroke"
+          d="
   M 419.45 503.26
   Q 415.26 492.24 413.99 481.50
   C 413.56 477.91 413.00 474.63 412.88 471.48
   Q 412.49 461.05 412.99 450.46"
-/>
-<path stroke="#e0dedc" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0dedc"
+          vector-effect="non-scaling-stroke"
+          d="
   M 412.99 450.46
   Q 414.41 433.45 421.11 417.59
   Q 422.79 413.62 424.83 410.73
@@ -3252,16 +4139,26 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 408.74 408.28 407.05 408.62 405.64 410.40
   Q 403.22 413.45 401.91 416.75
   Q 393.77 437.35 393.16 459.50"
-/>
-<path stroke="#c3c2c3" stroke-opacity="0.996" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c3c2c3"
+          stroke-opacity="0.996"
+          vector-effect="non-scaling-stroke"
+          d="
   M 412.99 450.46
   Q 403.48 456.40 393.16 459.50"
-/>
-<path stroke="#c2b49b" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#c2b49b"
+          vector-effect="non-scaling-stroke"
+          d="
   M 419.45 503.26
   L 399.92 502.78"
-/>
-<path stroke="#767676" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767676"
+          vector-effect="non-scaling-stroke"
+          d="
   M 549.34 487.99
   Q 559.94 496.36 572.46 496.98
   Q 578.62 497.29 582.99 496.61
@@ -3282,12 +4179,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.21 1.20 -54.2 0 0 555.11 480.53
   L 549.28 487.47
   A 0.36 0.36 0.0 0 0 549.34 487.99"
-/>
-<path stroke="#85837f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#85837f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 664.34 464.33
   Q 664.49 464.30 664.80 464.36"
-/>
-<path stroke="#767676" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767676"
+          vector-effect="non-scaling-stroke"
+          d="
   M 664.80 464.36
   L 664.76 499.16
   A 0.79 0.78 -90.0 0 0 665.54 499.95
@@ -3313,8 +4216,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 641.07 487.81 646.28 487.33 648.82 486.84
   A 3.11 3.09 -79.0 0 0 650.85 485.46
   L 664.34 464.33"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 664.80 464.36
   Q 665.24 463.84 665.53 463.84
   Q 666.33 463.83 666.45 464.63
@@ -3348,8 +4254,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 3.04 3.02 -79.1 0 0 649.96 483.96
   Q 656.61 474.74 662.59 464.35
   Q 663.20 463.30 664.34 464.33"
-/>
-<path stroke="#767676" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767676"
+          vector-effect="non-scaling-stroke"
+          d="
   M 732.08 490.96
   A 0.71 0.71 0.0 0 1 732.72 491.44
   L 736.31 501.67
@@ -3367,8 +4276,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 707.94 490.47
   A 0.71 0.71 0.0 0 1 708.62 490.04
   L 732.08 490.96"
-/>
-<path stroke="#767676" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#767676"
+          vector-effect="non-scaling-stroke"
+          d="
   M 838.91 461.12
   A 0.63 0.63 0.0 0 1 839.53 461.76
   L 839.02 505.18
@@ -3386,8 +4298,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 820.80 460.27
   A 0.63 0.63 0.0 0 0 821.42 460.91
   L 838.91 461.12"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 595.11 448.04
   Q 591.51 445.69 586.57 443.65
   C 583.98 442.59 581.71 442.51 579.12 441.89
@@ -3413,8 +4328,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.64 1.63 -54.7 0 0 592.81 453.12
   L 595.40 450.03
   A 1.35 1.35 0.0 0 0 595.11 448.04"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 693.88 498.00
   A 0.70 0.70 0.0 0 0 694.53 498.97
   L 701.71 498.97
@@ -3433,8 +4351,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 715.61 448.60
   A 1.13 1.11 -78.5 0 0 714.58 449.29
   L 693.88 498.00"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 772.95 500.73
   L 773.65 482.83
   A 0.77 0.77 0.0 0 1 774.45 482.09
@@ -3454,8 +4375,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.40 1.40 0.0 0 0 765.18 501.23
   L 772.11 501.51
   A 0.81 0.81 0.0 0 0 772.95 500.73"
-/>
-<path stroke="#85837f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#85837f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 720.80 460.08
   A 0.31 0.31 0.0 0 0 720.22 460.07
   L 712.45 479.68
@@ -3463,8 +4387,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 727.58 480.69
   A 0.31 0.31 0.0 0 0 727.89 480.28
   L 720.80 460.08"
-/>
-<path stroke="#85837f" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#85837f"
+          vector-effect="non-scaling-stroke"
+          d="
   M 775.05 459.64
   L 774.75 474.08
   A 0.68 0.68 0.0 0 0 775.42 474.77
@@ -3474,8 +4401,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 9.94 7.29 1.2 0 0 788.03 459.23
   L 775.75 458.98
   A 0.68 0.68 0.0 0 0 775.05 459.64"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 867.27 454.84
   A 0.86 0.85 1.4 0 0 866.45 453.99
   L 823.50 452.31
@@ -3493,8 +4423,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 866.41 461.51
   A 0.83 0.82 1.0 0 0 867.27 460.69
   L 867.27 454.84"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1048.71 642.85
   Q 1049.59 638.96 1048.22 634.86
   A 4.95 4.82 39.0 0 1 1047.98 632.82
@@ -3544,8 +4477,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1078.62 575.69 1074.58 576.44 1071.29 577.65
   C 1066.15 579.55 1060.70 580.95 1055.34 582.59
   Q 1052.73 583.39 1049.91 583.64"
-/>
-<path stroke="#e0cb99" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e0cb99"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1049.91 583.64
   Q 1050.13 580.39 1051.50 577.44
   A 2.25 2.25 0.0 0 1 1052.09 576.67
@@ -3597,14 +4533,20 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1051.68 656.82
   A 0.59 0.59 0.0 0 0 1052.25 656.08
   L 1048.71 642.85"
-/>
-<path stroke="#e4d6ab" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#e4d6ab"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1049.91 583.64
   C 1049.01 587.03 1048.09 590.36 1047.67 593.82
   Q 1045.33 613.23 1046.75 632.76
   Q 1047.10 637.53 1048.71 642.85"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 800.00 576.55
   A 0.47 0.47 0.0 0 0 799.56 576.08
   Q 795.12 575.85 791.34 575.48
@@ -3624,8 +4566,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 799.65 585.51
   A 0.34 0.33 0.8 0 0 800.00 585.18
   L 800.00 576.55"
-/>
-<path stroke="#807a4d" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#807a4d"
+          vector-effect="non-scaling-stroke"
+          d="
   M 866.21 621.65
   L 851.33 579.26
   A 1.89 1.88 -8.4 0 0 849.62 577.99
@@ -3642,8 +4587,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.02 1.02 0.0 0 0 883.37 579.89
   L 866.82 621.66
   A 0.33 0.32 -44.0 0 1 866.21 621.65"
-/>
-<path stroke="#fbf1c6" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#fbf1c6"
+          vector-effect="non-scaling-stroke"
+          d="
   M 1048.54 607.83
   Q 1050.34 606.21 1050.33 604.02
   A 0.69 0.69 0.0 0 1 1050.80 603.35
@@ -3666,8 +4614,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 3.54 3.28 -42.8 0 0 1048.39 598.98
   L 1048.16 607.65
   A 0.23 0.23 0.0 0 0 1048.54 607.83"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 568.70 613.76
   Q 567.34 611.48 565.52 610.31
   A 0.99 0.98 -42.4 0 0 564.51 610.27
@@ -3689,8 +4640,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 543.30 620.84 545.72 620.79 548.92 621.06
   C 556.44 621.69 562.82 619.65 568.59 614.50
   A 0.59 0.58 53.9 0 0 568.70 613.76"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 593.27 601.46
   Q 596.21 601.70 599.62 601.70
   Q 602.75 601.70 604.59 604.64
@@ -3713,8 +4667,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.92 0.92 0.0 0 0 591.72 621.20
   L 592.46 602.18
   A 0.75 0.75 0.0 0 1 593.27 601.46"
-/>
-<path stroke="#908756" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#908756"
+          vector-effect="non-scaling-stroke"
+          d="
   M 594.14 578.97
   L 593.64 593.22
   A 0.76 0.76 0.0 0 0 594.37 594.01
@@ -3724,8 +4681,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 9.03 7.24 2.0 0 0 607.72 578.68
   L 594.92 578.24
   A 0.76 0.76 0.0 0 0 594.14 578.97"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 642.86 572.13
   L 642.86 623.07
   A 1.10 1.10 0.0 0 0 643.91 624.17
@@ -3753,8 +4713,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.95 0.95 0.0 0 0 681.30 572.78
   L 643.71 571.31
   A 0.82 0.82 0.0 0 0 642.86 572.13"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 736.89 617.25
   L 740.74 626.87
   A 2.07 2.06 80.1 0 0 742.58 628.17
@@ -3774,8 +4737,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 722.40 615.37 732.15 615.12
   Q 734.42 615.06 736.65 616.92
   A 0.94 0.87 11.0 0 1 736.89 617.25"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 797.44 583.77
   A 0.98 0.97 88.4 0 0 798.42 582.73
   L 798.14 578.51
@@ -3794,8 +4760,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 780.09 607.12 779.63 599.75 780.88 584.09
   A 0.55 0.55 0.0 0 1 781.44 583.58
   L 797.44 583.77"
-/>
-<path stroke="#908249" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#908249"
+          vector-effect="non-scaling-stroke"
+          d="
   M 713.78 605.46
   A 0.31 0.31 0.0 0 0 714.06 605.89
   L 729.68 606.16
@@ -3803,8 +4772,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 722.53 584.69
   A 0.31 0.31 0.0 0 0 721.95 584.68
   L 713.78 605.46"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 839.96 579.56
   L 860.00 631.27
   A 2.47 2.46 79.4 0 0 862.30 632.85
@@ -3822,8 +4794,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.49 0.48 79.3 0 0 849.26 579.36
   L 840.09 579.36
   A 0.15 0.14 79.8 0 0 839.96 579.56"
-/>
-<path stroke="#110f0a" vector-effect="non-scaling-stroke" d="
+        />
+        <path
+          stroke="#110f0a"
+          vector-effect="non-scaling-stroke"
+          d="
   M 908.83 582.60
   L 908.83 633.98
   A 1.05 1.05 0.0 0 0 909.91 635.03
@@ -3852,10 +4827,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.59 1.59 0.0 0 0 948.01 583.47
   L 909.50 581.96
   A 0.64 0.64 0.0 0 0 908.83 582.60"
-/>
-</g>
-<g fill="#fffcd8">
-<path d="
+        />
+      </g>
+      <g fill="#fffcd8">
+        <path
+          d="
   M 997.48 315.99
   L 996.16 314.43
   A 1.87 1.84 -21.9 0 0 994.63 313.79
@@ -4150,8 +5126,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 836.27 341.10 827.14 331.00 812.73 328.37
   C 803.01 326.59 790.20 327.16 783.84 326.80
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 473.22 294.74
   Q 471.82 294.55 472.43 295.97
   Q 464.47 305.66 461.68 317.73
@@ -4172,8 +5149,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 447.39 294.50 459.02 294.42
   Q 469.10 294.36 473.22 294.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1132.64 302.98
   C 1131.82 308.43 1131.07 313.83 1130.96 319.37
   Q 1130.73 330.26 1130.78 334.25
@@ -4296,8 +5274,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1130.53 357.11
   A 0.23 0.22 56.5 0 0 1130.14 357.03
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 994.01 334.00
   L 994.66 334.23
   Q 993.56 341.91 992.47 349.58
@@ -4310,8 +5289,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 990.85 347.99 993.38 334.99
   Q 993.48 334.48 994.01 334.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 795.06 372.55
   L 795.06 337.92
   A 0.72 0.72 0.0 0 1 795.74 337.20
@@ -4322,8 +5302,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 799.59 373.18 795.51 373.02
   A 0.47 0.46 -89.4 0 1 795.06 372.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1003.80 338.49
   Q 1007.52 341.51 1010.83 347.17
   Q 1016.41 356.74 1018.61 367.65
@@ -4333,8 +5314,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1021.53 378.99 1014.40 357.82
   Q 1011.49 349.17 1003.80 338.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1129.53 407.97
   L 1127.71 407.46
   A 1.08 1.02 43.2 0 0 1127.14 407.46
@@ -4502,14 +5484,16 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.75 0.75 0.0 0 0 1075.8339 505.8025
   L 1075.8201 505.7650
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1175.92 508.79
   Q 1173.32 508.99 1170.74 508.36
   Q 1174.46 505.68 1175.92 508.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 417.46 532.16
   C 417.08 533.64 415.27 534.34 414.30 535.51
   Q 411.60 538.47 409.59 542.11
@@ -4535,8 +5519,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 380.70 531.37 385.55 530.86 391.99 531.10
   Q 404.73 531.57 417.46 532.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1048.71 642.85
   Q 1047.10 637.53 1046.75 632.76
   Q 1045.33 613.23 1047.67 593.82
@@ -4613,10 +5598,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1048.16 607.65
   A 0.23 0.23 0.0 0 0 1048.54 607.83
   Z"
-/>
-</g>
-<g fill="#010101">
-<path d="
+        />
+      </g>
+      <g fill="#010101">
+        <path
+          d="
   M 1174.92 627.37
   Q 1174.61 627.48 1174.27 627.75
   C 1172.00 624.99 1167.90 626.70 1165.10 628.12
@@ -5601,8 +6587,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.33 0.33 0.0 0 0 1034.8089 554.8413
   L 1034.8105 554.8014
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 631.81 344.87
   A 0.32 0.31 -22.4 0 0 632.35 345.09
   Q 639.51 338.01 654.36 323.14
@@ -5654,8 +6641,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 642.76 336.93 635.34 344.34
   Q 633.42 346.26 630.98 345.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 686.36 323.13
   L 698.17 323.60
   A 0.32 0.32 0.0 0 1 698.48 323.92
@@ -5676,8 +6664,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.47 1.47 0.0 0 0 689.07 377.96
   L 695.79 378.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 766.26 381.23
   Q 766.22 382.42 765.83 382.20
   L 757.62 382.03
@@ -5726,8 +6715,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 718.94 374.14 720.17 378.68
   A 0.66 0.65 -7.1 0 0 720.79 379.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 783.84 326.80
   C 790.20 327.16 803.01 326.59 812.73 328.37
   C 827.14 331.00 836.27 341.10 836.39 356.01
@@ -5751,8 +6741,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 806.53 329.37 802.02 328.43 798.23 328.54
   Q 788.62 328.81 785.64 328.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 794.10 336.94
   A 0.73 0.73 0.0 0 1 794.84 336.22
   L 806.81 336.43
@@ -5773,8 +6764,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.72 0.72 0.0 0 0 795.06 337.92
   L 795.06 372.55
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 549.34 487.99
   A 0.36 0.36 0.0 0 1 549.28 487.47
   L 555.11 480.53
@@ -5822,8 +6814,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 595.40 450.03
   A 1.35 1.35 0.0 0 0 595.11 448.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 664.80 464.36
   Q 665.24 463.84 665.53 463.84
   Q 666.33 463.83 666.45 464.63
@@ -5882,8 +6875,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.79 0.78 -90.0 0 1 664.76 499.16
   L 664.80 464.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 732.08 490.96
   L 708.62 490.04
   A 0.71 0.71 0.0 0 0 707.94 490.47
@@ -5921,8 +6915,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.13 1.11 -78.5 0 0 714.58 449.29
   L 693.88 498.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 774.78 485.29
   L 774.61 502.83
   A 0.50 0.49 -4.0 0 1 774.18 503.32
@@ -5966,8 +6961,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 772.11 501.51
   A 0.81 0.81 0.0 0 0 772.95 500.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 838.91 461.12
   L 821.42 460.91
   A 0.63 0.63 0.0 0 1 820.80 460.27
@@ -6004,8 +7000,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.83 0.82 1.0 0 0 867.27 460.69
   L 867.27 454.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 564.67 607.79
   Q 564.98 607.60 565.28 607.59
   Q 565.56 607.58 565.82 607.86
@@ -6046,8 +7043,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 556.44 621.69 562.82 619.65 568.59 614.50
   A 0.59 0.58 53.9 0 0 568.70 613.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 627.93 623.43
   Q 628.51 624.06 628.74 624.67
   A 0.51 0.51 0.0 0 1 628.39 625.35
@@ -6094,8 +7092,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 592.46 602.18
   A 0.75 0.75 0.0 0 1 593.27 601.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 678.49 616.81
   Q 680.02 617.54 682.47 617.45
   A 0.49 0.49 0.0 0 1 682.98 617.94
@@ -6152,8 +7151,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 643.71 571.31
   A 0.82 0.82 0.0 0 0 642.86 572.13
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 692.02 627.77
   Q 692.05 627.31 691.96 627.06
   L 692.85 624.31
@@ -6193,8 +7193,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 734.42 615.06 736.65 616.92
   A 0.94 0.87 11.0 0 1 736.89 617.25
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 799.65 585.51
   L 782.69 584.85
   A 0.70 0.69 1.2 0 0 781.96 585.54
@@ -6234,8 +7235,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.55 0.55 0.0 0 1 781.44 583.58
   L 797.44 583.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 866.21 621.65
   A 0.33 0.32 -44.0 0 0 866.82 621.66
   L 883.37 579.89
@@ -6271,8 +7273,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 840.09 579.36
   A 0.15 0.14 79.8 0 0 839.96 579.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 931.04 627.35
   L 950.22 628.07
   A 0.77 0.76 -89.2 0 1 950.96 628.84
@@ -6331,10 +7334,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 909.50 581.96
   A 0.64 0.64 0.0 0 0 908.83 582.60
   Z"
-/>
-</g>
-<g fill="#eaeaea">
-<path d="
+        />
+      </g>
+      <g fill="#eaeaea">
+        <path
+          d="
   M 999.63 430.13
   Q 995.48 436.92 993.13 445.13
   Q 989.41 458.15 988.59 470.73
@@ -6547,8 +7551,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.63 0.63 0.0 0 0 821.42 460.91
   L 838.91 461.12
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1013.44 430.73
   L 1014.21 431.45
   L 1014.07 432.12
@@ -6581,8 +7586,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.44 1.42 -53.6 0 1 1002.95 430.17
   L 1013.44 430.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 386.90 458.16
   Q 386.80 461.68 387.30 467.49
   Q 387.90 474.33 387.92 474.94
@@ -6598,8 +7604,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 381.81 460.65 386.43 457.88
   A 0.32 0.31 75.2 0 1 386.90 458.16
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 775.05 459.64
   A 0.68 0.68 0.0 0 1 775.75 458.98
   L 788.03 459.23
@@ -6610,8 +7617,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.68 0.68 0.0 0 1 774.75 474.08
   L 775.05 459.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 720.80 460.08
   L 727.89 480.28
   A 0.31 0.31 0.0 0 1 727.58 480.69
@@ -6620,10 +7628,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 720.22 460.07
   A 0.31 0.31 0.0 0 1 720.80 460.08
   Z"
-/>
-</g>
-<g fill="#fff299">
-<path d="
+        />
+      </g>
+      <g fill="#fff299">
+        <path
+          d="
   M 1176.79 511.08
   L 1171.62 511.18
   A 1.41 1.39 32.3 0 0 1171.03 511.31
@@ -6633,14 +7642,16 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1171.08 510.44 1176.49 510.10
   Q 1176.78 510.26 1176.79 511.08
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1140.26 519.89
   Q 1137.94 521.64 1135.11 521.96
   L 1140.26 519.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 448.58 533.45
   Q 448.38 534.99 449.40 535.07
   Q 463.21 536.09 477.13 536.16
@@ -6953,8 +7964,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 866.82 621.66
   A 0.33 0.32 -44.0 0 1 866.21 621.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1176.65 616.50
   C 1171.30 614.17 1167.26 612.97 1162.06 615.49
   A 0.25 0.25 0.0 0 0 1162.16 615.96
@@ -7001,8 +8013,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1124.59 631.76 1163.94 612.91
   C 1168.72 610.61 1175.36 609.23 1176.65 616.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 594.14 578.97
   A 0.76 0.76 0.0 0 1 594.92 578.24
   L 607.72 578.68
@@ -7013,10 +8026,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.76 0.76 0.0 0 1 593.64 593.22
   L 594.14 578.97
   Z"
-/>
-</g>
-<g fill="#ffd54e">
-<path d="
+        />
+      </g>
+      <g fill="#ffd54e">
+        <path
+          d="
   M 473.22 294.74
   L 495.55 295.16
   Q 495.92 295.79 495.21 296.33
@@ -7038,8 +8052,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 467.26 305.79 472.43 295.97
   Q 471.82 294.55 473.22 294.74
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1024.25 393.27
   Q 1025.03 371.96 1017.85 352.64
   Q 1015.83 347.21 1011.94 342.25
@@ -7059,8 +8074,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.44 0.44 0.0 0 0 1024.44 391.67
   L 1024.25 393.27
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1050.30 664.99
   Q 1048.94 665.93 1047.59 667.99
   A 1.01 0.98 14.2 0 1 1046.81 668.44
@@ -7084,8 +8100,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.67 1.66 -22.2 0 0 1045.71 664.64
   L 1050.30 664.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 397.87 600.76
   Q 398.10 603.55 398.39 606.51
   Q 399.39 616.65 402.40 626.39
@@ -7105,8 +8122,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 369.12 600.03 372.04 599.32
   C 381.15 597.09 388.93 599.26 397.87 600.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 878.75 625.51
   Q 891.22 631.04 904.55 633.21
   A 0.63 0.63 0.0 0 1 905.08 633.75
@@ -7224,8 +8242,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.77 1.77 0.0 0 0 874.61 634.94
   L 878.75 625.51
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1173.84 619.24
   Q 1169.38 620.12 1163.04 620.33
   Q 1161.48 620.39 1160.16 621.25
@@ -7252,10 +8271,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1157.07 617.88
   L 1173.84 619.24
   Z"
-/>
-</g>
-<g fill="#201c13">
-<path d="
+        />
+      </g>
+      <g fill="#201c13">
+        <path
+          d="
   M 630.98 345.90
   Q 633.42 346.26 635.34 344.34
   Q 642.76 336.93 653.88 325.65
@@ -7282,8 +8302,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 630.19 344.95
   A 0.93 0.92 -84.8 0 0 630.98 345.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 695.79 378.22
   L 689.07 377.96
   A 1.47 1.47 0.0 0 1 687.66 376.49
@@ -7294,8 +8315,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 697.32 376.75
   A 1.47 1.47 0.0 0 1 695.79 378.22
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1036.29 325.00
   L 1040.31 325.05
   Q 1041.18 327.97 1046.23 328.51
@@ -7322,8 +8344,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1026.48 328.01 1033.98 327.19 1035.58 325.01
   L 1036.29 325.00
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 720.17 378.68
   Q 718.94 374.14 718.80 363.48
   Q 718.52 342.75 718.73 327.47
@@ -7350,8 +8373,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 720.79 379.16
   A 0.66 0.65 -7.1 0 1 720.17 378.68
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 785.64 328.58
   Q 788.62 328.81 798.23 328.54
   C 802.02 328.43 806.53 329.37 810.22 329.39
@@ -7376,8 +8400,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 794.84 336.22
   A 0.73 0.73 0.0 0 0 794.10 336.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 595.11 448.04
   A 1.35 1.35 0.0 0 1 595.40 450.03
   L 592.81 453.12
@@ -7404,8 +8429,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 581.71 442.51 583.98 442.59 586.57 443.65
   Q 591.51 445.69 595.11 448.04
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 664.80 464.36
   Q 664.49 464.30 664.34 464.33
   Q 663.20 463.30 662.59 464.35
@@ -7441,8 +8467,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 666.33 463.83 665.53 463.84
   Q 665.24 463.84 664.80 464.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 693.88 498.00
   L 714.58 449.29
   A 1.13 1.11 -78.5 0 1 715.61 448.60
@@ -7470,8 +8497,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.31 0.31 0.0 0 0 727.89 480.28
   L 720.80 460.08
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 772.95 500.73
   A 0.81 0.81 0.0 0 1 772.11 501.51
   L 765.18 501.23
@@ -7502,8 +8530,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 775.75 458.98
   A 0.68 0.68 0.0 0 0 775.05 459.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 867.27 454.84
   L 867.27 460.69
   A 0.83 0.82 1.0 0 1 866.41 461.51
@@ -7522,8 +8551,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 866.45 453.99
   A 0.86 0.85 1.4 0 1 867.27 454.84
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 568.70 613.76
   A 0.59 0.58 53.9 0 1 568.59 614.50
   C 562.82 619.65 556.44 621.69 548.92 621.06
@@ -7546,8 +8576,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.99 0.98 -42.4 0 1 565.52 610.31
   Q 567.34 611.48 568.70 613.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 593.27 601.46
   A 0.75 0.75 0.0 0 0 592.46 602.18
   L 591.72 621.20
@@ -7581,8 +8612,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 594.92 578.24
   A 0.76 0.76 0.0 0 0 594.14 578.97
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 643.71 571.31
   L 681.30 572.78
   A 0.95 0.95 0.0 0 1 682.21 573.73
@@ -7611,8 +8643,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 642.86 572.13
   A 0.82 0.82 0.0 0 1 643.71 571.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 736.65 616.92
   Q 734.42 615.06 732.15 615.12
   Q 722.40 615.37 712.79 614.49
@@ -7641,8 +8674,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.31 0.31 0.0 0 0 721.95 584.68
   L 713.78 605.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 797.44 583.77
   L 781.44 583.58
   A 0.55 0.55 0.0 0 0 780.88 584.09
@@ -7662,8 +8696,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 798.42 582.73
   A 0.98 0.97 88.4 0 1 797.44 583.77
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 822.95 632.50
   Q 822.81 632.65 822.69 632.76
   A 0.83 0.77 -64.6 0 1 822.08 633.00
@@ -7676,8 +8711,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.67 0.67 0.0 0 1 822.93 577.48
   L 822.95 632.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 839.96 579.56
   A 0.15 0.14 79.8 0 1 840.09 579.36
   L 849.26 579.36
@@ -7696,8 +8732,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 2.47 2.46 79.4 0 1 860.00 631.27
   L 839.96 579.56
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 908.83 582.60
   A 0.64 0.64 0.0 0 1 909.50 581.96
   L 948.01 583.47
@@ -7727,8 +8764,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.05 1.05 0.0 0 1 908.83 633.98
   L 908.83 582.60
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1174.27 627.75
   Q 1164.19 633.27 1153.84 638.30
   Q 1134.73 647.57 1126.96 651.28
@@ -7805,10 +8843,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1132.90 644.48 1165.10 628.12
   C 1167.90 626.70 1172.00 624.99 1174.27 627.75
   Z"
-/>
-</g>
-<g fill="#f7e5b4">
-<path d="
+        />
+      </g>
+      <g fill="#f7e5b4">
+        <path
+          d="
   M 1132.64 302.98
   Q 1132.14 302.44 1131.58 302.78
   L 1132.08 300.90
@@ -7830,8 +8869,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.35 0.35 0.0 0 1 1133.82 298.56
   L 1132.64 302.98
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1129.40 310.36
   C 1129.86 314.64 1128.44 321.37 1128.75 326.55
   Q 1129.03 331.09 1128.85 340.86
@@ -7878,8 +8918,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1129.07 310.31
   A 0.17 0.17 0.0 0 1 1129.40 310.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1055.86 335.48
   Q 1055.37 333.60 1056.14 331.88
   A 1.24 1.22 1.6 0 1 1056.83 331.24
@@ -7896,8 +8937,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1059.34 335.86 1056.50 335.96
   A 0.64 0.63 81.5 0 1 1055.86 335.48
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 997.48 315.99
   Q 995.36 318.49 993.50 319.34
   Q 989.77 321.44 988.15 326.41
@@ -7932,8 +8974,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.87 1.84 -21.9 0 1 996.16 314.43
   L 997.48 315.99
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1130.53 357.11
   L 1132.04 362.27
   A 0.93 0.93 0.0 0 1 1131.10 363.46
@@ -7956,8 +8999,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1130.14 357.03
   A 0.23 0.22 56.5 0 1 1130.53 357.11
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 454.28 390.37
   Q 450.56 387.82 447.30 383.30
   C 450.49 378.95 454.43 373.57 459.34 371.08
@@ -7968,8 +9012,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.90 1.87 -23.1 0 1 460.12 393.20
   Q 457.35 390.88 454.28 390.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 765.83 382.20
   Q 766.22 382.42 766.26 381.23
   Q 773.60 380.62 780.76 382.01
@@ -8011,8 +9056,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 740.94 381.56 758.95 383.69
   Q 762.22 384.08 765.83 382.20
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1019.67 429.66
   Q 1021.43 430.62 1022.61 430.69
   Q 1022.84 430.71 1025.60 429.84
@@ -8046,8 +9092,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.38 0.37 2.9 0 1 1020.00 432.96
   Q 1020.40 431.49 1019.67 429.66
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1016.88 463.09
   Q 1016.72 459.75 1017.89 456.96
   Q 1017.97 458.24 1018.92 458.38
@@ -8072,8 +9119,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1023.03 462.27 1020.14 462.92
   Q 1018.59 463.26 1016.88 463.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1121.11 451.73
   L 1120.61 450.49
   A 0.69 0.69 0.0 0 0 1119.28 450.66
@@ -8097,8 +9145,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1122.33 446.63 1121.54 451.69
   A 0.23 0.22 39.2 0 1 1121.11 451.73
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1121.97 462.14
   L 1120.01 463.61
   A 0.79 0.78 -20.1 0 0 1119.70 464.27
@@ -8124,8 +9173,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1122.17 459.22 1122.27 461.50
   A 0.78 0.75 -21.3 0 1 1121.97 462.14
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1123.46 476.05
   L 1123.69 477.72
   A 0.60 0.59 84.7 0 1 1123.13 478.40
@@ -8145,8 +9195,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1120.99 474.51 1121.49 475.49 1122.89 475.54
   A 0.60 0.59 -2.9 0 1 1123.46 476.05
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1028.43 538.96
   Q 1028.46 538.75 1028.27 538.39
   Q 1029.91 537.17 1032.97 535.98
@@ -8171,8 +9222,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1054.68 529.14 1030.15 538.19
   Q 1029.30 538.50 1028.43 538.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1143.94 511.01
   L 1142.66 503.47
   A 1.08 1.08 0.0 0 0 1141.18 502.66
@@ -8219,8 +9271,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.88 0.84 52.3 0 1 1145.59 510.45
   Q 1145.29 511.09 1143.94 511.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1166.44 505.58
   A 0.25 0.25 0.0 0 1 1166.42 506.05
   L 1152.33 510.39
@@ -8229,8 +9282,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.83 0.83 0.0 0 1 1151.33 504.93
   Q 1164.80 504.90 1166.44 505.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1159.67 529.17
   A 0.27 0.27 0.0 0 1 1159.99 529.50
   Q 1156.56 543.04 1156.05 558.00
@@ -8351,8 +9405,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.59 0.59 0.0 0 0 1052.25 656.08
   L 1048.71 642.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 390.33 532.88
   L 383.52 536.86
   A 2.08 1.30 -5.6 0 0 383.30 537.03
@@ -8382,8 +9437,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 2.99 2.93 -79.3 0 1 378.38 535.34
   Q 384.08 532.79 390.33 532.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 743.81 545.37
   Q 737.94 547.31 730.10 546.72
   Q 717.49 545.77 693.86 545.08
@@ -8402,8 +9458,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 448.38 534.99 448.58 533.45
   L 743.81 545.37
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 793.73 547.32
   C 802.26 548.12 809.41 547.80 816.76 548.36
   C 827.45 549.18 835.71 548.86 846.44 549.41
@@ -8440,8 +9497,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.05 0.05 0.0 0 1 791.74 547.60
   Q 792.99 547.86 793.73 547.32
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1048.16 607.65
   L 1048.39 598.98
   A 3.54 3.28 -42.8 0 1 1048.43 598.46
@@ -8465,19 +9523,27 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1050.34 606.21 1048.54 607.83
   A 0.23 0.23 0.0 0 1 1048.16 607.65
   Z"
-/>
-</g>
-<g fill="#723101" fill-opacity="0.996">
-<ellipse cx="0.00" cy="0.00" transform="translate(483.08,292.65) rotate(-178.3)" rx="9.15" ry="0.39"/>
-<path d="
+        />
+      </g>
+      <g fill="#723101" fill-opacity="0.996">
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(483.08,292.65) rotate(-178.3)"
+          rx="9.15"
+          ry="0.39"
+        />
+        <path
+          d="
   M 472.36 292.35
   Q 472.58 292.29 473.03 292.34
   A 0.30 0.30 0.0 0 1 473.15 292.90
   Q 472.68 293.17 472.32 293.02
   A 0.35 0.35 0.0 0 1 472.36 292.35
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 618.27 297.21
   L 617.46 297.51
   L 573.71 296.16
@@ -8486,8 +9552,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.24 0.23 1.2 0 1 573.71 295.67
   L 618.27 297.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 975.69 416.46
   Q 975.27 416.33 974.78 416.37
   C 969.42 414.88 966.44 395.63 965.81 390.43
@@ -8503,8 +9570,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.80 0.80 0.0 0 1 976.03 416.00
   L 975.69 416.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1032.69 324.06
   Q 1034.42 323.88 1035.58 325.01
   C 1033.98 327.19 1026.48 328.01 1024.91 328.08
@@ -8549,8 +9617,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.50 0.42 -87.6 0 0 1021.9596 397.5776
   A 1.50 0.42 -87.6 0 0 1021.6028 396.0613
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 441.45 405.35
   Q 451.96 405.20 462.33 405.58
   Q 476.84 406.11 481.05 406.17
@@ -8600,16 +9669,18 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 458.39 406.60 446.29 406.12
   L 441.45 405.35
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 757.26 417.85
   Q 756.53 417.88 756.51 417.87
   A 0.34 0.34 0.0 0 1 756.58 417.26
   Q 756.75 417.20 757.33 417.44
   A 0.21 0.21 0.0 0 1 757.26 417.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1015.33 431.83
   Q 1014.99 431.31 1014.21 431.45
   L 1013.44 430.73
@@ -8656,35 +9727,79 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.16 1.14 71.4 0 1 1015.48 428.50
   Q 1016.41 429.67 1015.33 431.83
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1137.09 504.42
   L 1141.14 511.00
   Q 1140.38 510.83 1140.64 512.46
   C 1137.41 511.22 1136.26 508.08 1135.23 504.87
   L 1137.09 504.42
   Z"
-/>
-<rect x="-75.93" y="-0.42" transform="translate(464.36,531.70) rotate(2.4)" width="151.86" height="0.84" rx="0.26"/>
-<rect x="-81.95" y="-0.41" transform="translate(657.34,539.60) rotate(2.3)" width="163.90" height="0.82" rx="0.39"/>
-<path d="
+        />
+        <rect
+          x="-75.93"
+          y="-0.42"
+          transform="translate(464.36,531.70) rotate(2.4)"
+          width="151.86"
+          height="0.84"
+          rx="0.26"
+        />
+        <rect
+          x="-81.95"
+          y="-0.41"
+          transform="translate(657.34,539.60) rotate(2.3)"
+          width="163.90"
+          height="0.82"
+          rx="0.39"
+        />
+        <path
+          d="
   M 751.26 543.63
   Q 751.12 543.63 750.99 543.63
   Q 750.95 543.63 750.99 543.62
   Q 751.12 543.62 751.26 543.63
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(756.75,543.63) rotate(-180.0)" rx="3.08" ry="0.02"/>
-<ellipse cx="0.00" cy="0.00" transform="translate(765.56,543.89) rotate(-178.3)" rx="1.94" ry="0.14"/>
-<rect x="-82.52" y="-0.40" transform="translate(856.26,547.56) rotate(2.3)" width="165.04" height="0.80" rx="0.27"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(756.75,543.63) rotate(-180.0)"
+          rx="3.08"
+          ry="0.02"
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(765.56,543.89) rotate(-178.3)"
+          rx="1.94"
+          ry="0.14"
+        />
+        <rect
+          x="-82.52"
+          y="-0.40"
+          transform="translate(856.26,547.56) rotate(2.3)"
+          width="165.04"
+          height="0.80"
+          rx="0.27"
+        />
+        <path
+          d="
   M 958.11 551.63
   C 957.62 551.63 957.13 551.63 956.64 551.62
   C 957.13 551.62 957.62 551.62 958.11 551.63
   Z"
-/>
-<rect x="-37.66" y="-0.35" transform="translate(997.18,553.31) rotate(2.3)" width="75.32" height="0.70" rx="0.33"/>
-<path d="
+        />
+        <rect
+          x="-37.66"
+          y="-0.35"
+          transform="translate(997.18,553.31) rotate(2.3)"
+          width="75.32"
+          height="0.70"
+          rx="0.33"
+        />
+        <path
+          d="
   M 1031.39 557.07
   Q 1025.26 570.05 1023.53 580.27
   Q 1020.02 601.11 1020.68 622.25
@@ -8702,10 +9817,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1029.61 558.17 1030.99 557.32
   Q 1031.19 557.19 1031.39 557.07
   Z"
-/>
-</g>
-<g fill="#cbcbcb" fill-opacity="0.996">
-<path d="
+        />
+      </g>
+      <g fill="#cbcbcb" fill-opacity="0.996">
+        <path
+          d="
   M 412.99 450.46
   Q 403.48 456.40 393.16 459.50
   Q 393.77 437.35 401.91 416.75
@@ -8716,8 +9832,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 422.79 413.62 421.11 417.59
   Q 414.41 433.45 412.99 450.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 773.50 503.21
   Q 773.89 503.36 774.18 503.32
   A 0.50 0.49 -4.0 0 0 774.61 502.83
@@ -8801,10 +9918,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.90 0.90 0.0 0 0 774.10 503.96
   Q 774.10 503.93 773.50 503.21
   Z"
-/>
-</g>
-<g fill="#fea901">
-<path d="
+        />
+      </g>
+      <g fill="#fea901">
+        <path
+          d="
   M 495.21 296.33
   Q 490.93 302.42 488.75 308.74
   C 481.06 330.93 481.22 355.41 487.99 377.62
@@ -8830,8 +9948,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.69 1.67 78.3 0 1 490.52 297.51
   Q 493.01 295.39 495.21 296.33
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1058.26 387.09
   Q 1058.43 383.50 1056.61 388.05
   A 0.30 0.30 0.0 0 1 1056.09 388.12
@@ -8868,8 +9987,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1061.30 364.17 1059.05 384.99
   Q 1058.92 386.20 1058.26 387.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1176.91 514.63
   Q 1176.58 517.00 1173.29 518.30
   Q 1137.10 532.63 1109.69 542.15
@@ -8956,8 +10076,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1155.58 520.39 1159.21 519.31
   Q 1168.01 516.71 1176.91 514.63
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 448.04 533.60
   Q 447.90 534.70 447.18 534.90
   Q 445.31 534.45 444.82 535.79
@@ -8981,8 +10102,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 415.27 534.34 417.08 533.64 417.46 532.16
   L 448.04 533.60
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1176.66 619.38
   Q 1174.89 621.66 1171.54 623.04
   C 1165.09 625.70 1157.21 630.18 1151.93 632.75
@@ -9100,10 +10222,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1169.38 620.12 1173.84 619.24
   L 1176.66 619.38
   Z"
-/>
-</g>
-<g fill="#e0cd97">
-<path d="
+        />
+      </g>
+      <g fill="#e0cd97">
+        <path
+          d="
   M 1145.82 287.94
   A 0.32 0.32 0.0 0 1 1145.88 288.57
   L 1130.78 292.53
@@ -9131,8 +10254,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.71 1.68 -58.0 0 0 1137.91 289.14
   Q 1141.92 287.62 1145.82 287.94
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1120.34 309.40
   Q 1089.44 315.82 1063.24 322.02
   Q 1053.11 324.42 1048.37 324.93
@@ -9146,8 +10270,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1119.74 307.90 1120.54 308.54
   A 0.49 0.49 0.0 0 1 1120.34 309.40
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1003.80 338.49
   Q 1011.49 349.17 1014.40 357.82
   Q 1021.53 378.99 1018.02 401.62
@@ -9169,8 +10294,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 994.75 356.59 998.37 334.79
   Q 1002.46 335.52 1003.80 338.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 966.26 400.75
   Q 967.77 408.10 970.86 414.47
   A 0.47 0.47 0.0 0 1 970.43 415.15
@@ -9212,8 +10338,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 748.26 390.89 803.76 393.04 867.58 397.72
   C 901.95 400.24 933.40 400.13 966.26 400.75
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1019.67 429.66
   Q 1017.43 427.63 1014.02 426.53
   Q 1014.62 425.43 1013.66 424.63
@@ -9236,8 +10363,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1022.84 430.71 1022.61 430.69
   Q 1021.43 430.62 1019.67 429.66
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1021.25 447.58
   L 1021.14 447.20
   A 0.52 0.52 0.0 0 1 1021.41 446.57
@@ -9254,8 +10382,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1021.72 447.83
   A 0.38 0.38 0.0 0 1 1021.25 447.58
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1015.33 431.83
   L 1014.29 433.89
   Q 1012.96 433.55 1012.45 434.77
@@ -9280,9 +10409,17 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1014.21 431.45
   Q 1014.99 431.31 1015.33 431.83
   Z"
-/>
-<rect x="-22.81" y="-0.77" transform="translate(1054.42,513.66) rotate(-20.2)" width="45.62" height="1.54" rx="0.75"/>
-<path d="
+        />
+        <rect
+          x="-22.81"
+          y="-0.77"
+          transform="translate(1054.42,513.66) rotate(-20.2)"
+          width="45.62"
+          height="1.54"
+          rx="0.75"
+        />
+        <path
+          d="
   M 1138.46 512.81
   L 1135.99 512.49
   A 0.95 0.92 23.3 0 0 1135.17 512.80
@@ -9295,10 +10432,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1117.42 519.12 1119.83 515.65 1122.78 514.36
   C 1128.17 512.01 1133.98 509.62 1138.46 512.81
   Z"
-/>
-</g>
-<g fill="#ffe87e">
-<path d="
+        />
+      </g>
+      <g fill="#ffe87e">
+        <path
+          d="
   M 1170.74 508.36
   Q 1173.32 508.99 1175.92 508.79
   Q 1176.42 509.30 1176.49 510.10
@@ -9326,8 +10464,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1137.94 521.64 1140.26 519.89
   L 1170.74 508.36
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 390.33 532.88
   Q 397.35 533.64 406.12 533.16
   Q 408.42 533.03 412.44 533.77
@@ -9345,8 +10484,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 2.08 1.30 -5.6 0 1 383.52 536.86
   L 390.33 532.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 520.60 603.76
   Q 527.76 620.56 546.20 622.85
   C 556.82 624.17 563.25 620.77 571.40 614.57
@@ -9396,8 +10536,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.90 0.90 0.0 0 0 520.66 604.65
   Q 520.80 604.57 520.60 603.76
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1020.44 578.96
   Q 1020.04 581.87 1019.46 584.76
   Q 1018.80 588.09 1018.58 590.54
@@ -9453,8 +10594,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 968.64 580.78 980.74 578.27 995.34 578.97
   Q 1007.93 579.56 1020.44 578.96
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 810.89 624.49
   L 810.97 632.14
   A 0.45 0.45 0.0 0 0 811.41 632.58
@@ -9481,8 +10623,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 809.20 593.95 809.33 615.10
   Q 809.36 621.04 810.89 624.49
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 713.78 605.46
   L 721.95 584.68
   A 0.31 0.31 0.0 0 1 722.53 584.69
@@ -9491,8 +10634,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 714.06 605.89
   A 0.31 0.31 0.0 0 1 713.78 605.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 638.95 606.71
   L 622.25 612.17
   L 617.69 605.36
@@ -9503,8 +10647,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.74 0.73 -3.7 0 1 639.16 591.58
   L 638.95 606.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 692.85 624.31
   L 691.96 627.06
   C 690.80 623.55 688.71 621.36 685.08 623.75
@@ -9535,8 +10680,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 697.89 609.85 692.87 620.64
   Q 691.42 623.74 692.85 624.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 767.91 619.31
   L 748.93 616.96
   L 743.59 603.47
@@ -9545,8 +10691,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.43 0.42 -1.9 0 1 767.85 601.80
   L 767.91 619.31
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1176.65 616.50
   Q 1177.13 617.89 1176.66 619.38
   L 1173.84 619.24
@@ -9560,8 +10707,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.25 0.25 0.0 0 1 1162.06 615.49
   C 1167.26 612.97 1171.30 614.17 1176.65 616.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 374.56 624.78
   Q 375.17 628.32 374.54 632.07
   A 0.69 0.68 -63.9 0 1 373.40 632.46
@@ -9570,9 +10718,12 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 372.42 626.64 373.76 623.29
   L 374.56 624.78
   Z"
-/>
-</g>
-<path fill="#2a2412" fill-opacity="0.129" d="
+        />
+      </g>
+      <path
+        fill="#2a2412"
+        fill-opacity="0.129"
+        d="
   M 1174.92 627.37
   Q 1166.48 639.30 1154.00 646.52
   Q 1116.07 668.48 1073.40 684.57
@@ -9631,9 +10782,10 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1164.19 633.27 1174.27 627.75
   Q 1174.61 627.48 1174.92 627.37
   Z"
-/>
-<g fill="#c9b07d">
-<path d="
+      />
+      <g fill="#c9b07d">
+        <path
+          d="
   M 1131.58 302.78
   L 1130.65 304.42
   A 0.85 0.84 15.5 0 1 1129.88 304.85
@@ -9656,14 +10808,16 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.77 0.76 1.9 0 1 1132.08 300.90
   L 1131.58 302.78
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1046.23 328.51
   Q 1041.18 327.97 1040.31 325.05
   Q 1045.09 325.14 1046.23 328.51
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 998.37 334.79
   Q 994.75 356.59 995.94 378.50
   C 996.39 386.91 998.54 395.53 999.27 402.72
@@ -9677,8 +10831,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 993.56 341.91 994.66 334.23
   Q 995.70 333.89 998.37 334.79
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1003.04 416.65
   Q 1017.72 410.38 1032.94 407.15
   Q 1035.35 406.65 1039.38 404.42
@@ -9700,8 +10855,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.93 0.90 -36.6 0 1 1006.25 418.03
   L 1003.04 416.65
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1058.26 387.09
   L 1057.35 392.25
   Q 1056.68 391.56 1056.08 391.91
@@ -9718,8 +10874,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.30 0.30 0.0 0 0 1056.61 388.05
   Q 1058.43 383.50 1058.26 387.09
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1138.21 389.53
   Q 1136.91 394.57 1131.58 395.32
   Q 1126.70 396.01 1124.85 396.46
@@ -9738,9 +10895,16 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1125.39 394.87 1125.50 394.87
   Q 1133.89 394.26 1138.21 389.53
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(1021.54,397.56) rotate(-87.6)" rx="1.50" ry="0.42"/>
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(1021.54,397.56) rotate(-87.6)"
+          rx="1.50"
+          ry="0.42"
+        />
+        <path
+          d="
   M 1129.53 407.97
   Q 1129.44 408.55 1129.03 409.07
   L 1128.68 409.10
@@ -9778,8 +10942,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.08 1.02 43.2 0 1 1127.71 407.46
   L 1129.53 407.97
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1028.27 538.39
   L 1026.94 539.10
   A 1.04 0.99 30.5 0 1 1026.42 539.22
@@ -9809,8 +10974,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1040.41 533.09 1032.97 535.98
   Q 1029.91 537.17 1028.27 538.39
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 419.45 503.26
   Q 421.46 508.57 424.67 513.12
   A 0.64 0.64 0.0 0 1 424.12 514.13
@@ -9820,8 +10986,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 402.42 507.39 399.92 502.78
   L 419.45 503.26
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1143.94 511.01
   L 1141.14 511.00
   L 1137.09 504.42
@@ -9829,8 +10996,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 1.08 1.08 0.0 0 1 1142.66 503.47
   L 1143.94 511.01
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1135.23 504.87
   C 1136.26 508.08 1137.41 511.22 1140.64 512.46
   Q 1141.12 512.72 1141.29 513.16
@@ -9856,8 +11024,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 1089.35 521.99 1105.85 516.05 1117.02 511.71
   Q 1129.83 506.75 1135.23 504.87
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1049.91 583.64
   C 1049.01 587.03 1048.09 590.36 1047.67 593.82
   Q 1045.33 613.23 1046.75 632.76
@@ -9913,10 +11082,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 2.25 2.25 0.0 0 0 1051.50 577.44
   Q 1050.13 580.39 1049.91 583.64
   Z"
-/>
-</g>
-<g fill="#3c1301" fill-opacity="0.996">
-<path d="
+        />
+      </g>
+      <g fill="#3c1301" fill-opacity="0.996">
+        <path
+          d="
   M 441.45 405.35
   L 446.29 406.12
   Q 444.42 406.05 442.59 405.95
@@ -9937,8 +11107,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 422.56 403.81 430.34 404.39 433.75 404.32
   Q 438.19 404.23 441.45 405.35
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 402.62 408.69
   Q 403.30 409.26 404.03 409.54
   C 391.74 432.75 389.02 461.90 394.80 488.24
@@ -9949,8 +11120,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 390.08 432.24 398.73 414.51
   Q 400.31 411.28 402.62 408.69
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1001.26 430.71
   Q 999.41 432.96 998.55 435.30
   C 992.56 451.58 990.79 467.55 990.40 485.53
@@ -9965,18 +11137,20 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 995.48 436.92 999.63 430.13
   L 1001.26 430.71
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 557.39 535.63
   Q 557.23 535.63 556.14 535.63
   Q 556.13 535.62 556.14 535.62
   Q 556.36 535.62 557.39 535.62
   A 0.07 0.01 -0.0 0 1 557.39 535.63
   Z"
-/>
-</g>
-<g fill="#b44700" fill-opacity="0.996">
-<path d="
+        />
+      </g>
+      <g fill="#b44700" fill-opacity="0.996">
+        <path
+          d="
   M 473.82 394.64
   Q 473.27 394.93 472.96 394.95
   C 463.53 382.52 459.78 368.52 459.27 353.50
@@ -9987,8 +11161,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 459.40 348.41 463.03 368.24
   Q 465.77 383.23 473.82 394.64
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 618.27 297.21
   Q 620.71 297.09 623.25 297.18
   Q 647.85 298.01 672.25 298.93
@@ -10022,8 +11197,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 617.46 297.51
   L 618.27 297.21
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 487.99 377.62
   Q 490.89 385.15 495.37 391.32
   L 498.30 394.53
@@ -10033,9 +11209,17 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 0.61 0.61 0.0 0 1 487.73 377.23
   Q 487.79 377.26 487.99 377.62
   Z"
-/>
-<rect x="-0.41" y="-6.73" transform="translate(1022.52,385.64) rotate(-1.0)" width="0.82" height="13.46" rx="0.39"/>
-<path d="
+        />
+        <rect
+          x="-0.41"
+          y="-6.73"
+          transform="translate(1022.52,385.64) rotate(-1.0)"
+          width="0.82"
+          height="13.46"
+          rx="0.39"
+        />
+        <path
+          d="
   M 447.18 534.90
   Q 440.32 543.87 437.30 555.56
   Q 427.96 591.71 438.55 627.50
@@ -10059,8 +11243,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   A 4.54 2.22 89.5 0 0 444.82 535.79
   Q 445.31 534.45 447.18 534.90
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 414.30 535.51
   L 414.74 535.73
   A 0.47 0.46 31.4 0 1 414.91 536.41
@@ -10077,18 +11262,26 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 400.53 566.33 402.94 554.17 409.59 542.11
   Q 411.60 538.47 414.30 535.51
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 997.96 539.14
   Q 997.64 539.15 997.41 538.99
   Q 997.41 538.88 997.40 538.76
   Q 997.84 538.87 997.96 539.14
   Z"
-/>
-<ellipse cx="0.00" cy="0.00" transform="translate(952.32,551.62) rotate(-180.2)" rx="3.00" ry="0.03"/>
-</g>
-<g fill="#bab9ba" fill-opacity="0.996">
-<path d="
+        />
+        <ellipse
+          cx="0.00"
+          cy="0.00"
+          transform="translate(952.32,551.62) rotate(-180.2)"
+          rx="3.00"
+          ry="0.03"
+        />
+      </g>
+      <g fill="#bab9ba" fill-opacity="0.996">
+        <path
+          d="
   M 433.71 392.85
   L 441.89 391.23
   A 2.06 2.05 -26.0 0 1 443.84 391.90
@@ -10098,8 +11291,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 435.63 399.49 433.34 393.50
   A 0.49 0.48 -15.9 0 1 433.71 392.85
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 412.99 450.46
   Q 412.49 461.05 412.88 471.48
   C 413.00 474.63 413.56 477.91 413.99 481.50
@@ -10108,8 +11302,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 392.94 482.04 393.16 459.50
   Q 403.48 456.40 412.99 450.46
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 989.40 523.23
   L 994.02 536.80
   A 0.67 0.67 0.0 0 1 993.41 537.68
@@ -10152,10 +11347,11 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 885.28 523.71 958.55 525.74
   Q 975.55 526.21 989.40 523.23
   Z"
-/>
-</g>
-<g fill="#f4f1ec">
-<path d="
+        />
+      </g>
+      <g fill="#f4f1ec">
+        <path
+          d="
   M 1138.31 283.50
   Q 1130.43 283.85 1129.27 284.08
   C 1124.72 284.97 1121.41 284.93 1117.09 285.62
@@ -10213,8 +11409,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 1138.55 283.25
   A 0.25 0.25 0.0 0 1 1138.31 283.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1007.39 423.28
   Q 1010.27 424.02 1010.73 425.94
   C 1004.96 425.55 999.07 425.02 993.42 425.01
@@ -10290,8 +11487,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   L 433.71 392.85
   A 0.49 0.48 -15.9 0 0 433.34 393.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 402.62 408.69
   Q 400.31 411.28 398.73 414.51
   Q 390.08 432.24 389.18 451.77
@@ -10322,8 +11520,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 386.80 461.68 386.90 458.16
   A 0.32 0.31 75.2 0 0 386.43 457.88
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 404.26 513.37
   Q 397.83 502.04 394.80 488.24
   C 389.02 461.90 391.74 432.75 404.03 409.54
@@ -10360,8 +11559,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 403.22 413.45 401.91 416.75
   Q 393.77 437.35 393.16 459.50
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 1014.29 433.89
   Q 1008.90 447.68 1007.09 462.51
   Q 1006.29 469.11 1005.69 475.18
@@ -10389,8 +11589,9 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   Q 1008.27 444.80 1012.45 434.77
   Q 1012.96 433.55 1014.29 433.89
   Z"
-/>
-<path d="
+        />
+        <path
+          d="
   M 423.46 496.28
   L 427.90 507.41
   L 431.40 513.09
@@ -10469,9 +11670,8 @@ export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = p
   C 419.69 477.38 420.92 483.30 421.87 490.88
   Q 422.04 492.22 423.46 496.28
   Z"
-/>
-</g>
-</svg>
-
+        />
+      </g>
+    </svg>
   )
 }

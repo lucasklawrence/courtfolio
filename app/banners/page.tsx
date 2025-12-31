@@ -142,4 +142,3 @@ const groupedBanners: BannerSection[] = [
 export default function BannersPage() {
   return <BannersView sections={groupedBanners} />
 }
-

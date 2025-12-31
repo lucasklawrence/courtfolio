@@ -89,8 +89,3 @@ export default function ContactPage() {
     </SvgLayoutContainer>
   )
 }
-
-
-
-
-

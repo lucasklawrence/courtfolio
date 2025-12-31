@@ -3105,4 +3105,3 @@ export const LockerRoomSvg: React.FC<LockerRoomSvgProps> = ({
     </svg>
   )
 }
-

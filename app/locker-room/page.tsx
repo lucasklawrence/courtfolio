@@ -201,7 +201,7 @@ export default function LockerRoomPage() {
               <Yellow4Jersey className="w-16 h-auto opacity-90 hover:opacity-100" />
             </LockerZone>
           ),
-           'ghost-logo-jersey': (
+          'ghost-logo-jersey': (
             <LockerZone
               x={1265}
               y={400}
@@ -360,7 +360,3 @@ export default function LockerRoomPage() {
     </SvgLayoutContainer>
   )
 }
-
-
-
-
