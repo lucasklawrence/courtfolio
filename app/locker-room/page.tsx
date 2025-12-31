@@ -210,7 +210,7 @@ export default function LockerRoomPage() {
               height={390}
               zoneId="ghost-logo-jersey"
               onClick={setSelectedZone}
-              useForeignObject={!isSafari()}
+              useForeignObject={!true}
             >
               <SnapGhost
                 width="100%"
@@ -367,3 +367,4 @@ export default function LockerRoomPage() {
     </SvgLayoutContainer>
   )
 }
+
