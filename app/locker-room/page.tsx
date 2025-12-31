@@ -15,16 +15,19 @@ import { Harden7sSVG } from '@/components/locker-room/assets/Harden7sSvg'
 import { HigherDivisionTrophySVG } from '@/components/locker-room/assets/HigherDivisionTrophy'
 import { PlayStation5SVG } from '@/components/locker-room/assets/PlayStation5SVG'
 import { PS5ControllerSVG } from '@/components/locker-room/assets/PS5ControllerSVG'
-import { DuffelBagSvg } from '@/components/locker-room/assets/DuffelBagSvg'
 import { HeadphonesSvg } from '@/components/locker-room/assets/HeadphonesSvg'
 import { PatentSvg } from '@/components/locker-room/assets/PatentSvg'
 import { StrawHatSvg } from '@/components/locker-room/assets/StrawHatSvg'
 import { JerseysSVG } from '@/components/locker-room/assets/JerseysSvg'
 import { LaptopSvg } from '@/components/locker-room/assets/LaptopSvg'
-import { ScoutingReportSvg } from '@/components/locker-room/assets/ScoutingReportSvg'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { LockerInfo } from '@/components/locker-room/LockerInfo'
 import { SvgLayoutContainer } from '@/components/common/SvgLayoutContainer'
+import { SnapchatBasketball } from '@/components/locker-room/assets/snapBasketball'
+import { DuffelBagSvg } from '@/components/locker-room/assets/DuffelBagSvg'
+import { Snapchat4Jersey } from '@/components/locker-room/assets/Snap4Jersey'
+import { Yellow4Jersey } from '@/components/locker-room/assets/Yellow4Jersey'
+import { SnapGhost } from '@/components/locker-room/assets/SnapGhost'
 
 /**
  * Renders the Locker Room page of the basketball-themed portfolio.
@@ -55,7 +58,7 @@ export default function LockerRoomPage() {
               </h1>
             </LockerZone>
           ),
-          'scout-report': (
+          'snap-basketball': (
             <LockerZone
               x={1220}
               y={630}
@@ -64,7 +67,7 @@ export default function LockerRoomPage() {
               zoneId="scout-report"
               onClick={setSelectedZone}
             >
-              <ScoutingReportSvg />
+              <SnapchatBasketball />
             </LockerZone>
           ),
           laptop: (
@@ -184,19 +187,31 @@ export default function LockerRoomPage() {
               zoneId="locker-placard-5"
               onClick={setSelectedZone}
             >
-              <LockerPlacardSVG label="Next Team" />
+              <LockerPlacardSVG label="Snap Inc." />
             </LockerZone>
           ),
-          'question-jersey': (
+          'snap-jersey': (
             <LockerZone
-              x={1170}
-              y={280}
-              width={250}
-              height={320}
-              zoneId="question-jersey"
+              x={1150}
+              y={250}
+              width={290}
+              height={390}
+              zoneId="snap-jersey"
               onClick={setSelectedZone}
             >
-              <QuestionJerseySVG className="w-16 h-auto opacity-90 hover:opacity-100" />
+              <Yellow4Jersey className="w-16 h-auto opacity-90 hover:opacity-100" />
+            </LockerZone>
+          ),
+           'ghost-logo-jersey': (
+            <LockerZone
+              x={1150}
+              y={250}
+              width={290}
+              height={390}
+              zoneId="ghost-logo-jersey"
+              onClick={setSelectedZone}
+            >
+              <SnapGhost className="w-16 h-auto opacity-90 hover:opacity-100" />
             </LockerZone>
           ),
           zoe: (
