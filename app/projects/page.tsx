@@ -6,7 +6,6 @@ import React from 'react'
 const ProjectGallery = dynamic(
   () => import('@/components/project-binder/ProjectGallery'),
   {
-    ssr: false,
     loading: () => (
       <div className="text-center text-yellow-200 text-sm font-mono py-12">
         Loading binder...

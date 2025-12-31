@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -22,7 +22,7 @@ export function BannersView({ sections }: { sections: BannerSection[] }) {
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/90 to-black z-0" />
 
         <div className="relative z-10 px-4 py-16 text-center">
-          <h1 className="text-4xl font-bold">dY?Y‹,? The Rafters</h1>
+          <h1 className="text-4xl font-bold">The Rafters</h1>
           <p className="text-lg mt-2 mb-12 text-gray-300">Where legacies hang forever.</p>
 
           {sections.map((section, sectionIdx) => (
@@ -43,7 +43,7 @@ export function BannersView({ sections }: { sections: BannerSection[] }) {
 
           <div className="mt-20">
             <Link href="/" className="text-orange-300 underline hover:text-orange-100">
-              ƒ+? Back to the Court
+              Back to the Court
             </Link>
           </div>
         </div>
