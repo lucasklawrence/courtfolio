@@ -1,5 +1,3 @@
-'use client'
-
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { SectionContainer } from '@/components/common/SectionContainer'
 import { ProjectGallery } from '@/components/project-binder/ProjectGallery'

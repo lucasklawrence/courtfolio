@@ -1,21 +1,4 @@
-'use client'
-
-import { BannerCard, BannerProps } from '@/components/common/BannerCard'
-import { motion } from 'framer-motion'
-
-/**
- * Represents a group of banner achievements categorized by type.
- *
- * @typedef {Object} BannerSection
- * @property {string} label - The display label for the category (e.g., "Tech", "Personal").
- * @property {string} icon - An emoji or icon string used for visual flair next to the label.
- * @property {BannerProps[]} banners - An array of banner objects for this category.
- */
-type BannerSection = {
-  label: string
-  icon: string
-  banners: BannerProps[]
-}
+import { BannersView, type BannerSection } from '@/components/banners/BannersView'
 
 /**
  * Static list of grouped banner achievements to render in The Rafters section.
@@ -157,45 +140,6 @@ const groupedBanners: BannerSection[] = [
  * @returns {JSX.Element} The full Rafters layout with grouped animated banners.
  */
 export default function BannersPage() {
-  return (
-    <motion.div
-      className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white"
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-    >
-      <div className="relative min-h-screen text-white overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/90 to-black z-0" />
-
-        {/* Content */}
-        <div className="relative z-10 px-4 py-16 text-center">
-          <h1 className="text-4xl font-bold">🏟️ The Rafters</h1>
-          <p className="text-lg mt-2 mb-12 text-gray-300">Where legacies hang forever.</p>
-
-          {groupedBanners.map((section, sectionIdx) => (
-            <div key={sectionIdx} className="mb-20">
-              <h2 className="text-2xl font-semibold text-white mb-6">{section.label}</h2>
-              <div className="flex flex-wrap justify-center gap-12">
-                {section.banners.map((b, idx) => (
-                  <BannerCard
-                    key={idx}
-                    {...b}
-                    swayDelay={idx * 0.4}
-                    swayAmount={1.2 + Math.random() * 0.6}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <div className="mt-20">
-            <a href="/" className="text-orange-300 underline hover:text-orange-100">
-              ← Back to the Court
-            </a>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  )
+  return <BannersView sections={groupedBanners} />
 }
+

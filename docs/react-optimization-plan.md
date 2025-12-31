@@ -1,4 +1,4 @@
-# React Optimization Plan (checkpoints)
+ï»¿# React Optimization Plan (checkpoints)
 
 Purpose: track small, reviewable tasks to tighten React/Next best practices in this repo.
 
@@ -7,15 +7,17 @@ Purpose: track small, reviewable tasks to tighten React/Next best practices in t
 - [ ] Capture bundle/interaction baseline for Locker Room and Project Binder (manual notes are fine).
 
 ## Checkpoint 1: Locker Room correctness & hygiene
-- [ ] Fix tooltip zone id typo `jereseys` -> `jerseys` to re-enable the jersey caption (`components/locker-room/LockerInfo.tsx`).
-- [ ] Add a typed `ZoneId` union shared between `page.tsx`, `LockerInfo`, and `LockerRoomSvg` to prevent future zone mismatches.
-- [ ] Remove dev `console.log` calls in `LockerZone` and `LockerInfo`.
-- [ ] Clean the stray mojibake characters in Locker Room copy/comments (e.g., descriptions/comments containing `ƒ?` or odd glyphs).
+- [x] Fix tooltip zone id typo `jereseys` -> `jerseys` to re-enable the jersey caption (`components/locker-room/LockerInfo.tsx`).
+- [x] Add a typed `ZoneId` union shared between `page.tsx`, `LockerInfo`, and `LockerRoomSvg` to prevent future zone mismatches.
+- [x] Remove dev `console.log` calls in `LockerZone` and `LockerInfo`.
+- [x] Clean the stray mojibake characters in Locker Room copy/comments.
 
 ## Checkpoint 2: Client/server boundary audit
 - [ ] Inventory `use client` components (already listed via `rg`) and tag which can be server or split.
-- [ ] First candidates: `components/common/SectionContainer`, `BackToCourtButton`, and static page wrappers—split to server shells that render client children only where interactivity is needed.
-- [ ] Convert at least one page (e.g., `app/projects/page.tsx`) to server + client islands if feasible.
+- [x] First candidates: `components/common/SectionContainer`, `BackToCourtButton`, and static page wrappers - split to server shells that render client children only where interactivity is needed.
+- [x] Convert at least one page (e.g., `app/projects/page.tsx`) to server + client islands if feasible.
+- [x] Extend to other pages: `app/contact/page.tsx` now server; `app/banners/page.tsx` now server shell using `BannersView` client island; `app/projects/page.tsx` already server.
+- Notes: `SectionContainer` is now server; `BackToCourtButton` stays client but uses `next/link` and cleaned label; `BannersView` is new client component for animations; contact page and banners page comments cleaned. Remaining client pages (`/` and `/locker-room`) stay client due to intro/animation state and interactive SVG zones.
 
 ## Checkpoint 3: Layout & device detection robustness
 - [ ] Improve `useIsMobile` to rely on `matchMedia` (mobile width/orientation) rather than UA sniffing; guard for SSR.
