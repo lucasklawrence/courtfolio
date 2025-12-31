@@ -1,7 +1,19 @@
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { SectionContainer } from '@/components/common/SectionContainer'
-import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
+import dynamic from 'next/dynamic'
 import React from 'react'
+
+const ProjectGallery = dynamic(
+  () => import('@/components/project-binder/ProjectGallery'),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="text-center text-yellow-200 text-sm font-mono py-12">
+        Loading binder...
+      </div>
+    ),
+  }
+)
 
 /**
  * Renders the Project Binder page of the portfolio site.

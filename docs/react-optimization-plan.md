@@ -30,9 +30,10 @@ Purpose: track small, reviewable tasks to tighten React/Next best practices in t
 - [ ] Ensure text contrast and focus styles are visible in overlays.
 
 ## Checkpoint 5: Performance & bundling
-- [ ] Identify heavy client assets/components to lazy-load (e.g., large SVGs) via `next/dynamic` where appropriate.
+- [x] Identify heavy client assets/components to lazy-load (e.g., large SVGs) via `next/dynamic` where appropriate.
 - [ ] Confirm images/SVGs are optimized and not re-rendering unnecessarily; memoize only when profiling justifies it.
 - [ ] Re-check bundle after conversions; document impact.
+- Notes: `ProjectGallery` (binder grid) and `BannersView` (Framer Motion) are now dynamically imported with loading fallbacks to keep server pages light and defer heavy client bundles. Bundle check still pending.
 
 ## Checkpoint 6: Copy & docs hygiene
 - [ ] Normalize special characters in docs/comments (e.g., mojibake bullets in `SvgLayoutContainer` comment block).

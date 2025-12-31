@@ -1,4 +1,10 @@
-import { BannersView, type BannerSection } from '@/components/banners/BannersView'
+import dynamic from 'next/dynamic'
+import { type BannerSection } from '@/components/banners/BannersView'
+
+const BannersView = dynamic(
+  () => import('@/components/banners/BannersView'),
+  { ssr: false, loading: () => <div className="text-center text-white py-12">Loading banners...</div> }
+)
 
 /**
  * Static list of grouped banner achievements to render in The Rafters section.
