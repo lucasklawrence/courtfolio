@@ -6,10 +6,10 @@ import React from 'react'
 export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1536.00 1024.00">
-      <g stroke-width="2.00" fill="none" stroke-linecap="butt">
+      <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
         <path
           stroke="#000000"
-          stroke-opacity="0.580"
+          strokeOpacity="0.580"
           vector-effect="non-scaling-stroke"
           d="
   M 1276.61 680.25
@@ -17,7 +17,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.698"
+          strokeOpacity="0.698"
           vector-effect="non-scaling-stroke"
           d="
   M 1248.68 700.04
@@ -28,7 +28,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.780"
+          strokeOpacity="0.780"
           vector-effect="non-scaling-stroke"
           d="
   M 1170.03 717.63
@@ -51,7 +51,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.698"
+          strokeOpacity="0.698"
           vector-effect="non-scaling-stroke"
           d="
   M 1001.67 744.43
@@ -59,7 +59,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.780"
+          strokeOpacity="0.780"
           vector-effect="non-scaling-stroke"
           d="
   M 963.25 753.72
@@ -67,7 +67,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.698"
+          strokeOpacity="0.698"
           vector-effect="non-scaling-stroke"
           d="
   M 960.45 754.50
@@ -80,7 +80,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.780"
+          strokeOpacity="0.780"
           vector-effect="non-scaling-stroke"
           d="
   M 873.84 768.81
@@ -113,7 +113,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.698"
+          strokeOpacity="0.698"
           vector-effect="non-scaling-stroke"
           d="
   M 598.37 735.21
@@ -124,7 +124,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.780"
+          strokeOpacity="0.780"
           vector-effect="non-scaling-stroke"
           d="
   M 541.52 699.52
@@ -167,7 +167,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.698"
+          strokeOpacity="0.698"
           vector-effect="non-scaling-stroke"
           d="
   M 344.47 653.78
@@ -175,7 +175,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#000000"
-          stroke-opacity="0.580"
+          strokeOpacity="0.580"
           vector-effect="non-scaling-stroke"
           d="
   M 331.05 646.53
@@ -2667,7 +2667,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#96704c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 709.26 386.33
@@ -3777,7 +3777,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#96704c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 671.66 405.57
@@ -4853,7 +4853,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a47d4c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 600.79 457.39
@@ -4934,7 +4934,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a47d4c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 604.54 481.07
@@ -5003,7 +5003,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#96704c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 568.99 509.76
@@ -5043,7 +5043,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#6b3001"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 583.89 598.49
@@ -5069,7 +5069,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a48e6c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 541.62 619.55
@@ -5267,7 +5267,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#96704c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 574.25 483.14
@@ -5346,7 +5346,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#96704c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 639.71 435.58
@@ -7061,7 +7061,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a48e6c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 1055.21 511.83
@@ -7147,7 +7147,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a47d4c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 947.54 548.92
@@ -7164,7 +7164,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#794e21"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 987.51 533.67
@@ -7416,7 +7416,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a48e6c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 674.96 687.40
@@ -7574,7 +7574,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#6b4121"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 1209.53 589.78
@@ -7595,7 +7595,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#794e21"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 1111.81 609.81
@@ -7611,7 +7611,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#6b3001"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 923.11 495.38
@@ -7890,7 +7890,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#96704c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 1231.10 570.74
@@ -7900,7 +7900,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a48e6c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 1224.45 580.69
@@ -7997,7 +7997,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a47d4c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 973.51 477.71
@@ -8016,7 +8016,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a47d4c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 951.21 469.62
@@ -8292,7 +8292,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#a47d4c"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 880.44 533.54
@@ -8496,7 +8496,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#6b4121"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 917.31 673.58
@@ -8869,7 +8869,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#6b3001"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 923.52 492.65
@@ -10124,7 +10124,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#6b3001"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 888.95 474.73
@@ -10411,7 +10411,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
         />
         <path
           stroke="#6b3001"
-          stroke-opacity="0.996"
+          strokeOpacity="0.996"
           vector-effect="non-scaling-stroke"
           d="
   M 852.60 545.27
@@ -17403,7 +17403,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
           ry="0.86"
         />
       </g>
-      <g fill="#793c01" fill-opacity="0.996">
+      <g fill="#793c01" fillOpacity="0.996">
         <path
           d="
   M 717.59 365.24
@@ -18532,7 +18532,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
       </g>
       <path
         fill="#010100"
-        fill-opacity="0.392"
+        fillOpacity="0.392"
         d="
   M 344.47 653.78
   Q 352.64 663.27 363.89 667.84
@@ -22122,7 +22122,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
       </g>
       <path
         fill="#020100"
-        fill-opacity="0.157"
+        fillOpacity="0.157"
         d="
   M 309.56 629.59
   Q 314.63 634.85 320.36 639.39
@@ -22411,7 +22411,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Z"
         />
       </g>
-      <g fill="#795f41" fill-opacity="0.996">
+      <g fill="#795f41" fillOpacity="0.996">
         <path
           d="
   M 950.11 271.41
@@ -23657,7 +23657,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Z"
         />
       </g>
-      <g fill="#cfbd97" fill-opacity="0.996">
+      <g fill="#cfbd97" fillOpacity="0.996">
         <path
           d="
   M 952.03 269.97
@@ -25122,7 +25122,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Z"
         />
       </g>
-      <g fill="#000000" fill-opacity="0.561">
+      <g fill="#000000" fillOpacity="0.561">
         <path
           d="
   M 541.52 699.52
@@ -25253,7 +25253,7 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   Z"
         />
       </g>
-      <g fill="#5c2300" fill-opacity="0.996">
+      <g fill="#5c2300" fillOpacity="0.996">
         <path
           d="
   M 711.01 343.97
@@ -25643,3 +25643,4 @@ export const SnapchatShoes: React.FC<React.SVGProps<SVGSVGElement>> = props => {
     </svg>
   )
 }
+
