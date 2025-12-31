@@ -20,13 +20,13 @@ Purpose: track small, reviewable tasks to tighten React/Next best practices in t
 - Notes: `SectionContainer` is now server; `BackToCourtButton` stays client but uses `next/link` and cleaned label; `BannersView` is new client component for animations; contact page and banners page comments cleaned. Remaining client pages (`/` and `/locker-room`) stay client due to intro/animation state and interactive SVG zones.
 
 ## Checkpoint 3: Layout & device detection robustness
-- [ ] Improve `useIsMobile` to rely on `matchMedia` (mobile width/orientation) rather than UA sniffing; guard for SSR.
-- [ ] Initialize `SvgLayoutContainer` orientation state from `window` on first render to reduce flicker; keep resize/orientation listeners.
+- [x] Improve `useIsMobile` to rely on `matchMedia` (mobile width/orientation) rather than UA sniffing; guard for SSR.
+- [x] Initialize `SvgLayoutContainer` orientation state from `window` on first render to reduce flicker; keep resize/orientation listeners.
 - [ ] Add lightweight tests or story-style manual checklist for mobile/landscape rendering.
 
 ## Checkpoint 4: Accessibility pass for interactive SVG zones
-- [ ] Add keyboard support (`tabIndex`, `role="button"`, key handlers) to `LockerZone` so zones are focusable/clickable via keyboard.
-- [ ] Provide accessible names (aria-label) for each zone; derive from `lockerZoneTooltips`.
+- [x] Add keyboard support (`tabIndex`, `role="button"`, key handlers) to `LockerZone` so zones are focusable/clickable via keyboard.
+- [x] Provide accessible names (aria-label) for each zone; derive from `lockerZoneTooltips`.
 - [ ] Ensure text contrast and focus styles are visible in overlays.
 
 ## Checkpoint 5: Performance & bundling
@@ -36,8 +36,8 @@ Purpose: track small, reviewable tasks to tighten React/Next best practices in t
 - Notes: `ProjectGallery` (binder grid) and `BannersView` (Framer Motion) are now dynamically imported with loading fallbacks to keep server pages light and defer heavy client bundles. Bundle check still pending.
 
 ## Checkpoint 6: Copy & docs hygiene
-- [ ] Normalize special characters in docs/comments (e.g., mojibake bullets in `SvgLayoutContainer` comment block).
-- [ ] Add short usage note in `docs/react-review-principles.md` linking to this plan.
+- [x] Normalize special characters in docs/comments (cleaned banners header/link text).
+- [x] Add short usage note in `docs/react-review-principles.md` linking to this plan.
 
 ## Handoff notes
 - Tackle checkpoints in order; open a small PR per checkpoint.

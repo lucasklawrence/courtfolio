@@ -1,11 +1,12 @@
-# React/Next Principles Guide
+ï»¿# React/Next Principles Guide
 
-Purpose: be the checklist and context for reviewing this repo’s React/Next code.
+Purpose: be the checklist and context for reviewing this repo's React/Next code.
 
 ## How to use
 - Before coding: skim sections relevant to the change (components, data fetching, styling, etc.).
 - During review: walk the checklist; add comments for any misses.
 - After review: propose small fixes or follow-up tasks.
+- For ongoing refactors, pair this with `docs/react-optimization-plan.md` to follow current checkpoints.
 
 ## Principles
 
@@ -20,8 +21,8 @@ Purpose: be the checklist and context for reviewing this repo’s React/Next code.
 - Stable keys for lists; avoid index keys unless static.
 
 ### Effects & hooks
-- Avoid `useEffect` for data derivation—compute in render when possible.
-- Side-effects belong in `useEffect`; memoize handlers/values (`useCallback`/`useMemo`) only when there’s a measurable benefit (stability for deps or perf).
+- Avoid `useEffect` for data derivation-compute in render when possible.
+- Side-effects belong in `useEffect`; memoize handlers/values (`useCallback`/`useMemo`) only when there's a measurable benefit (stability for deps or perf).
 
 ### Data fetching (Next 15)
 - Server-fetch by default; pass data as props to client components.
@@ -34,14 +35,14 @@ Purpose: be the checklist and context for reviewing this repo’s React/Next code.
 - Keep JSX readable; extract sections into small components.
 
 ### Styling & layout (Tailwind)
-- Use Tailwind utility classes; group logically (layout ? spacing ? color ? effects).
+- Use Tailwind utility classes; group logically (layout > spacing > color > effects).
 - Encapsulate repeated class combos with small components or helpers when reused.
 - Respect responsive and accessibility needs (focus states, contrasts).
 
 ### Accessibility & UX
 - Use semantic elements first; wire labels to inputs; provide alt text.
 - Ensure keyboard reachability and visible focus.
-- ARIA only when semantics aren’t enough.
+- ARIA only when semantics aren't enough.
 
 ### Performance
 - Avoid unnecessary rerenders: stable keys, minimal state, avoid re-creating large objects in render.
