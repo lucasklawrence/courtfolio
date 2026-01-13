@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="LogoSvg" viewBox="0 0 500 500">
+
+      <defs>
+        <path id="circlePath" d="M 250,250 m -200,0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0" />
+        <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="0" stdDeviation="1" flood-color="#fff" flood-opacity="0.15" />
+        </filter>
+        <filter id="ringGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#fff" flood-opacity="0.3" />
+        </filter>
+      </defs>
+      <circle cx="250" cy="250" r="200" fill="#3e1f0e" opacity="0.85" />
+      <text
+        font-size="13"
+        font-family="'League Spartan', sans-serif"
+        letter-spacing="2"
+        fill="#f5f5f5"
+        filter="url(#ringGlow)"
+      >
+        <textPath href="#circlePath" startOffset="50%" text-anchor="middle">
+          HOOPER &#160;&#8226; PATENT HOLDER &#160;&#8226; CREATIVE ENGINEER &#160;&#8226; HIP-HOP HEAD &#160;&#8226; SYSTEMS THINKER &#160;&#8226; CODE STORYTELLER &#160;&#8226; FANTASY GM &#160;&#8226; RHYTHM FOCUSED &#160;&#8226;
+        </textPath>
+      </text>
+      <text
+        x="250"
+        y="235"
+        text-anchor="middle"
+        font-size="55"
+        font-family="'League Spartan', sans-serif"
+        fill="#fff"
+        filter="url(#textShadow)"
+      >
+        LUCAS
+      </text>
+      <text
+        x="250"
+        y="295"
+        text-anchor="middle"
+        font-size="55"
+        font-family="'League Spartan', sans-serif"
+        fill="#fff"
+        filter="url(#textShadow)"
+      >
+        LAWRENCE
+      </text>
+    
+  </symbol>
+</svg>
