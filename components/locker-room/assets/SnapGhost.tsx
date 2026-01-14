@@ -3,7 +3,7 @@ import React from 'react'
 import { SvgUse } from '@/components/common/SvgUse'
 
 /**
- * Offical Snapchat Ghost Logo
+ * Official Snapchat Ghost Logo
  */
 
 export const SnapGhost: React.FC<React.SVGProps<SVGSVGElement>> = props => {
