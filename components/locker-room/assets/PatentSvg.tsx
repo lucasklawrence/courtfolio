@@ -8,5 +8,5 @@ import { SvgUse } from '@/components/common/SvgUse'
  */
 
 export const PatentSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-  return <SvgUse href="/locker-room/PatentSvg.svg#PatentSvg" viewBox="0.00 0.00 689.00 832.00" />
+  return <SvgUse href="/locker-room/PatentSvg.svg#PatentSvg" viewBox="0.00 0.00 689.00 832.00" {...props} />
 }

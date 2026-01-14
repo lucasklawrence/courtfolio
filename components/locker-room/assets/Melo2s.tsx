@@ -8,5 +8,5 @@ import { SvgUse } from '@/components/common/SvgUse'
  */
 
 export const Melo2sSvg: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-  return <SvgUse href="/locker-room/Melo2sSvg.svg#Melo2sSvg" viewBox="0.00 0.00 1024.00 1024.00" />
+  return <SvgUse href="/locker-room/Melo2sSvg.svg#Melo2sSvg" viewBox="0.00 0.00 1024.00 1024.00" {...props} />
 }

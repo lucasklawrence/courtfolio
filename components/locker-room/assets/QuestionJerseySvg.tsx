@@ -8,5 +8,5 @@ import { SvgUse } from '@/components/common/SvgUse'
  */
 
 export const QuestionJerseySVG: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-  return <SvgUse href="/locker-room/QuestionJerseySVG.svg#QuestionJerseySVG" viewBox="0.00 0.00 1024.00 1536.00" />
+  return <SvgUse href="/locker-room/QuestionJerseySVG.svg#QuestionJerseySVG" viewBox="0.00 0.00 1024.00 1536.00" {...props} />
 }
