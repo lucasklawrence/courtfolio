@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hall of Strategy** – Architecture write-ups
 - **Press Room** – Blog & media entries, changelog, etc
 
+
+## [0.2.7] - 2026-01-12
+
+### Changed
+- Refactored static SVG components (logo + contact frames) to external symbol assets rendered via `SvgUse`.
+
+### Fixed
+- Forwarded SVG props to locker room SVG wrappers using `SvgUse`.
+
 ## [0.2.6] - 2025-12-31
 
 ### Added

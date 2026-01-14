@@ -58,7 +58,8 @@ export function LockerZone({
       role={isInteractive ? 'button' : undefined}
       tabIndex={isInteractive ? 0 : undefined}
       aria-label={isInteractive ? label : undefined}
-      className={isInteractive ? 'cursor-pointer' : undefined}
+      className={`${isInteractive ? 'cursor-pointer ' : ''}locker-zone`}
+      style={isInteractive ? { outline: 'none' } : undefined}
     >
       {useForeignObject ? (
         <foreignObject width={width} height={height}>

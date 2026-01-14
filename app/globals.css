@@ -44,3 +44,8 @@ html, body {
   user-select: auto;
   overscroll-behavior: contain;
 }
+
+.locker-zone:focus,
+.locker-zone:focus-visible {
+  outline: none;
+}

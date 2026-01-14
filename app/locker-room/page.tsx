@@ -199,7 +199,7 @@ export default function LockerRoomPage() {
               zoneId="snap-jersey"
               onClick={setSelectedZone}
             >
-              <Yellow4Jersey className="w-16 h-auto opacity-90 hover:opacity-100" />
+              <Yellow4Jersey className="opacity-90 hover:opacity-100" />
             </LockerZone>
           ),
           'ghost-logo-jersey': (
