@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Press Room** – Blog & media entries, changelog, etc
 
 
+## [0.2.8] - 2026-01-18
+
+### Fixed
+- Forced tar dependency to >=7.5.3 to address linkpath sanitization issues with hardlinks and symlinks.
+
 ## [0.2.7] - 2026-01-12
 
 ### Changed
