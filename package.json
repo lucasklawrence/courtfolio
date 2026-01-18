@@ -31,6 +31,9 @@
     "tailwindcss": "^4.1.10",
     "typescript": "^5"
   },
+  "overrides": {
+    "tar": "^7.5.3"
+  },
   "browserslist": {
     "production": [
       "defaults",
