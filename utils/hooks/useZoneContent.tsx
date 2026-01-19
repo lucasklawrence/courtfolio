@@ -87,38 +87,6 @@ export function useZoneContent({
           </SafeSvgHtml>
         </CourtZone>
       ),
-      'principles-lineup': (
-        <foreignObject x={110} y={425} width={230} height={500}>
-          <div id="principles-lineup">
-            <div className="p-3 bg-orange-900/30 text-white text-xs font-bold rounded-md border border-orange-300/40 shadow-sm tracking-wide">
-              <h3 className="font-bold text-sm">🧠 Principles Lineup</h3>
-              <ul className="list-disc list-inside">
-                <li>#7 Clean Code (PG)</li>
-                <li>#24 SoC (SG)</li>
-                <li>#11 Scalability (SF)</li>
-                <li>#13 Tests (PF)</li>
-                <li>#35 Arch Consistency (C)</li>
-              </ul>
-            </div>
-          </div>
-        </foreignObject>
-      ),
-      'tech-stack-lineup': (
-        <foreignObject x={1175} y={425} width={230} height={500}>
-          <div id="tech-stack-lineup">
-            <div className="p-3 bg-orange-900/30 text-white text-xs font-bold rounded-md border border-orange-300/40 shadow-sm tracking-wide">
-              <h3 className="font-bold text-center text-lg">🧰 Tech Stack Lineup</h3>
-              <ul className="list-disc list-inside text-xs">
-                <li>#10 React (PG)</li>
-                <li>#22 Spring Boot (SG)</li>
-                <li>#33 Kafka (SF)</li>
-                <li>#18 PostgreSQL (PF)</li>
-                <li>#44 Kubernetes (C)</li>
-              </ul>
-            </div>
-          </div>
-        </foreignObject>
-      ),
       'replay-intro': (
         <foreignObject x="1210" y="870" width="180" height="70">
           <ReplayIntroButton />

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
 import { useCourtResizeClamp } from '@/utils/hooks/useCourtResizeClamp'
@@ -10,9 +10,11 @@ import { useMotionValueEvent } from 'framer-motion'
 export function FreeRoamPlayer({
   boundsRef,
   target,
+  onPositionChange,
 }: {
   boundsRef: React.RefObject<SVGSVGElement | null>
   target: { x: number; y: number } | null
+  onPositionChange?: (pt: { x: number; y: number }) => void
 }) {
   const x = useMotionValue(730)
   const y = useMotionValue(1340)
@@ -21,6 +23,7 @@ export function FreeRoamPlayer({
 
   const lastMoveTime = useRef(Date.now())
   const clickAnimationRef = useRef<number | null>(null)
+  const positionFrameRef = useRef<number | null>(null)
 
   const [facingLeft, setFacingLeft] = useState(false)
   const [isMoving, setIsMoving] = useState(false)
@@ -171,15 +174,28 @@ export function FreeRoamPlayer({
   const lastFrameTime = useRef(0)
 
   // Walk cycle
-  useMotionValueEvent(x, 'change', () => {
-    if (!isMoving) return
+  const emitPosition = useCallback(() => {
+    if (!onPositionChange) return
+    if (positionFrameRef.current !== null) return
+    positionFrameRef.current = requestAnimationFrame(() => {
+      positionFrameRef.current = null
+      onPositionChange({ x: x.get(), y: y.get() })
+    })
+  }, [onPositionChange, x, y])
 
-    const now = Date.now()
-    if (now - lastFrameTime.current > 150) {
-      setFrameIndex(prev => (prev + 1) % dribbleFrames.length)
-      lastFrameTime.current = now
+  useMotionValueEvent(x, 'change', () => {
+    if (isMoving) {
+      const now = Date.now()
+      if (now - lastFrameTime.current > 150) {
+        setFrameIndex(prev => (prev + 1) % dribbleFrames.length)
+        lastFrameTime.current = now
+      }
     }
+
+    emitPosition()
   })
+
+  useMotionValueEvent(y, 'change', emitPosition)
 
   // Idle shooting pose
   useEffect(() => {
@@ -198,6 +214,15 @@ export function FreeRoamPlayer({
     }, 1000)
     return () => clearInterval(checkIdle)
   }, [isMoving, isShootingPose])
+
+  useEffect(() => {
+    emitPosition()
+    return () => {
+      if (positionFrameRef.current !== null) {
+        cancelAnimationFrame(positionFrameRef.current)
+      }
+    }
+  }, [emitPosition])
 
   const currentSprite = isShootingPose
     ? shootingFrame

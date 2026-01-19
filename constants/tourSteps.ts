@@ -25,7 +25,7 @@ export interface TourStep {
   mobileText?: string
 
   /**
-   * Optional target DOM element id — used to measure glow position.
+   * Optional target DOM element id - used to measure glow position.
    * If provided, this overrides the static glow box.
    */
   targetId?: string
@@ -57,8 +57,8 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasIdle4.png',
-    text: 'Welcome! I’m Lucas — I’ll walk you through this court. Tap the orange buttons below to continue.',
-    mobileText: 'Welcome! I’m Lucas — I’ll walk you through this court. Tap anywhere to continue.',
+    text: "Welcome! I'm Lucas - I'll walk you through this court. Tap the orange buttons below to continue.",
+    mobileText: "Welcome! I'm Lucas - I'll walk you through this court. Tap anywhere to continue.",
 
     glow: { x: 1019, y: 865, width: 133, height: 43 },
     facingLeft: false,
@@ -67,7 +67,7 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasSpinningBall7.png',
-    text: 'This court is my creative space. Some areas are live — others are warming up.',
+    text: 'This court is my creative space. Some areas are live - others are warming up.',
     glow: {
       x: 650,
       y: 380,
@@ -80,7 +80,7 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasIdle5.png',
-    text: 'This is my bio — quick overview of who I am.',
+    text: 'This is my bio - quick overview of who I am.',
     glow: { x: 350, y: 110, width: 380, height: 140 },
     facingLeft: false,
     targetId: 'bio-card',
@@ -90,7 +90,7 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasSpinningBall7.png',
-    text: 'Stats don’t lie. Here’s the resume highlight reel.',
+    text: "Stats don't lie. Here's the resume highlight reel.",
     glow: { x: 800, y: 110, width: 280, height: 135 },
     facingLeft: false,
     targetId: 'career-stats-card',
@@ -100,7 +100,7 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasSpinningBall7.png',
-    text: 'Check the rafters — career moments and banners.',
+    text: 'Check the rafters - career moments and banners.',
     glow: { x: 1020, y: 60, width: 220, height: 40 },
     facingLeft: false,
     targetId: 'view-rafters',
@@ -120,7 +120,7 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasSpinningBall7.png',
-    text: 'Projects laid out like trading cards — explore builds that shaped my game.',
+    text: 'Projects laid out like trading cards - explore builds that shaped my game.',
     glow: { x: 800, y: 700, width: 250, height: 100 },
     facingLeft: false,
     targetId: 'projects',
@@ -130,9 +130,9 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasIdle5.png',
-    text: 'Tech stack lineup. These are my go-to tools.',
-    glow: { x: 1175, y: 425, width: 230, height: 135 },
-    targetId: 'tech-stack-lineup',
+    text: 'Step into a principle zone to set your intent.',
+    glow: { x: 1034, y: 468, width: 200, height: 376 },
+    targetId: 'principle-zones',
     paddingFactor: 0.99,
   },
   {
@@ -149,23 +149,23 @@ export const tourSteps: TourStep[] = [
     x: 200,
     y: 800,
     img: '/sprites/LucasSpinningBall7.png',
-    text: 'My core principles — this lineup shows how I play.',
-    glow: { x: 110, y: 425, width: 230, height: 140 },
+    text: 'Then hit a shot zone to run the play breakdown.',
+    glow: { x: 1252, y: 468, width: 200, height: 184 },
     facingLeft: false,
-    targetId: 'principles-lineup',
+    targetId: 'shot-zones',
     paddingFactor: 0.99,
   },
   {
     x: 200,
     y: 800,
     img: '/sprites/LucasIdle5.png',
-    text: 'That’s the full tour. Go explore the court!',
+    text: "That's the full tour. Go explore the court!",
   },
   {
     x: 200,
     y: 800,
     img: '/sprites/LucasSpinningBall7.png',
-    text: 'You can move around — use arrow keys, WASD, or click anywhere on the court.',
+    text: 'You can move around - use arrow keys, WASD, or click anywhere on the court.',
     mobileText: 'Tap anywhere to move around the court.',
     glow: undefined,
     facingLeft: false,

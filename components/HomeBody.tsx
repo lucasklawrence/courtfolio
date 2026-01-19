@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { SvgLayoutContainer } from './common/SvgLayoutContainer'
 import { CourtSvg } from './court/CourtSvg'
 import { CourtInteractionLayer } from './court/CourtInteractionLayer'
 import { TutorialOverlay } from './court/TutorialOverlay'
 import { FreeRoamOverlay } from './court/FreeRoamOverlay'
 import { MobileAdvanceOverlay } from './court/MobileAdvanceOverlay'
+import { CourtPlaySystem } from './court-play/CourtPlaySystem'
 
 import { useIsMobile } from '@/utils/hooks/useIsMobile'
 import { useTourState } from '@/utils/hooks/useTourState'
@@ -17,6 +18,7 @@ import { tourSteps } from '@/constants/tourSteps'
 
 export function HomeBody() {
   const svgRef = useRef<SVGSVGElement>(null)
+  const playerPositionRef = useRef<{ x: number; y: number } | null>(null)
   const isMobile = useIsMobile()
   const { hasSeen, markAsSeen, reset } = useHasSeenTour()
 
@@ -28,6 +30,10 @@ export function HomeBody() {
   const [clickTarget, setClickTarget] = useState<{ x: number; y: number } | null>(null)
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([])
   const [lastTutorialPos, setLastTutorialPos] = useState({ x: 650, y: 1500 })
+
+  const handlePlayerPosition = useCallback((pt: { x: number; y: number }) => {
+    playerPositionRef.current = pt
+  }, [])
 
   const zoneContent = useZoneContent({
     tourActive,
@@ -76,6 +82,13 @@ export function HomeBody() {
         ripples={ripples}
       />
 
+      <CourtPlaySystem
+        svgRef={svgRef}
+        playerPositionRef={playerPositionRef}
+        movementEnabled={!tourActive}
+        clickFallbackEnabled={!tourActive}
+      />
+
       <CourtInteractionLayer
         svgRef={svgRef}
         setClickTarget={tourActive ? () => {} : setClickTarget}
@@ -95,6 +108,7 @@ export function HomeBody() {
         active={!tourActive}
         target={clickTarget ?? lastTutorialPos}
         svgRef={svgRef}
+        onPositionChange={handlePlayerPosition}
       />
 
       <MobileAdvanceOverlay
