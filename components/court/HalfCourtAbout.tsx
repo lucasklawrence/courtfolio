@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { CourtZoneLink } from '@/src/arena/CourtZoneLink'
 import { CourtSvg } from './CourtSvg'
 
 export function HalfCourtAbout() {
@@ -11,12 +12,12 @@ export function HalfCourtAbout() {
         <CourtSvg />
       </div>
 
-      <Link
+      <CourtZoneLink
         href="/"
         className="absolute top-6 right-6 px-4 py-2 text-sm font-medium bg-black text-white rounded-full hover:bg-orange-500 transition z-20"
       >
         ⛹️ Exit About
-      </Link>
+      </CourtZoneLink>
 
       {/* Foreground content */}
       <div className="relative z-10 flex flex-col items-center justify-center px-6 py-20 text-center space-y-10">
@@ -48,18 +49,18 @@ export function HalfCourtAbout() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-center gap-4 mt-10">
-          <Link
+          <CourtZoneLink
             href="/projects"
             className="px-6 py-3 bg-black text-white rounded-full hover:bg-orange-500 transition"
           >
             💻 Projects
-          </Link>
-          <Link
+          </CourtZoneLink>
+          <CourtZoneLink
             href="/contact"
             className="px-6 py-3 border border-black text-black rounded-full hover:bg-black hover:text-white transition"
           >
             📫 Contact
-          </Link>
+          </CourtZoneLink>
         </div>
       </div>
     </main>

@@ -1,13 +1,23 @@
 import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
 import { useRouter } from 'next/navigation'
+import { useArenaNav } from '@/src/arena/ArenaShell'
 
 export function ZoneAboutModern() {
   const router = useRouter()
+  const arenaNav = useArenaNav()
+
+  const handleClick = () => {
+    if (arenaNav) {
+      arenaNav.navigate('/about')
+    } else {
+      router.push('/about')
+    }
+  }
 
   return (
     <SafeSvgHtml>
       <button
-        onClick={() => router.push('/about')}
+        onClick={handleClick}
         style={{
           width: '100%',
           height: '100%',

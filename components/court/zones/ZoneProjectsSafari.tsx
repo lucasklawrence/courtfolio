@@ -1,13 +1,23 @@
 import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
 import { useRouter } from 'next/navigation'
+import { useArenaNav } from '@/src/arena/ArenaShell'
 
 export function ZoneProjectsSafari() {
   const router = useRouter()
+  const arenaNav = useArenaNav()
+
+  const handleClick = () => {
+    if (arenaNav) {
+      arenaNav.navigate('/projects')
+    } else {
+      router.push('/projects')
+    }
+  }
 
   return (
     <SafeSvgHtml>
       <div
-        onClick={() => router.push('/projects')}
+        onClick={handleClick}
         style={{
           backgroundColor: '#582c0d',
           color: 'white',

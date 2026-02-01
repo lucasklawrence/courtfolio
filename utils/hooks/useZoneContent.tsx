@@ -1,7 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
+import { useArenaNav } from '@/src/arena/ArenaShell'
 import { ReplayIntroButton } from '../../components/common/ReplayIntroButton'
 import { SafeSvgHtml } from '../../components/common/SafeSvgHtml'
 import { LogoSvg } from '../../components/common/LogoSvg'
@@ -38,6 +39,18 @@ export function useZoneContent({
   reset,
 }: UseZoneContentProps): ZoneContentMap {
   const router = useRouter()
+  const arenaNav = useArenaNav()
+
+  const navigate = useCallback(
+    (to: string) => {
+      if (arenaNav) {
+        arenaNav.navigate(to)
+      } else {
+        router.push(to)
+      }
+    },
+    [arenaNav, router]
+  )
 
   const baseZones = useMemo<ZoneContentMap>(
     () => ({
@@ -70,7 +83,7 @@ export function useZoneContent({
                 </div>
                 <div className="flex gap-4 text-sm">
                   <button
-                    onClick={() => router.push('/contact')}
+                    onClick={() => navigate('/contact')}
                     className="cursor-pointer hover:text-orange-500 transition"
                   >
                     📫 Go to Front Office
@@ -105,77 +118,81 @@ export function useZoneContent({
                 icon="🏟️"
                 label="View The Rafters"
                 id="view-rafters"
-                onClick={() => (window.location.href = '/banners')}
+                onClick={() => navigate('/banners')}
               />
               <ZoneEntryButton
                 icon="🧳"
                 label="Enter Locker Room"
                 id="enter-locker-room"
-                onClick={() => (window.location.href = '/locker-room')}
+                onClick={() => navigate('/locker-room')}
               />
               <ZoneEntryButton
                 icon="🎨"
                 label="View Project Binder"
                 id="projects"
-                onClick={() => (window.location.href = '/projects')}
+                onClick={() => navigate('/projects')}
               />
             </div>
           </SafeSvgHtml>
         </CourtZone>
       ),
     }),
-    [router]
+    [navigate]
   )
 
-  const zoneContent: ZoneContentMap = { ...baseZones }
+  const zoneContent = useMemo<ZoneContentMap>(() => {
+    const content: ZoneContentMap = { ...baseZones }
 
-  if (tourActive) {
-    if (!isMobile) {
-      zoneContent['zone-9000'] = (
-        <CourtZone x={950} y={865} width={200} height={40} className="ui-layer z-[100]">
+    if (tourActive) {
+      if (!isMobile) {
+        content['zone-9000'] = (
+          <CourtZone x={950} y={865} width={200} height={40} className="ui-layer z-[100]">
+            <SafeSvgHtml>
+              <div className="flex justify-end items-center gap-3 w-full h-full">
+                <button
+                  onClick={nextStep}
+                  className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+                >
+                  →
+                </button>
+                <button
+                  onClick={() => {
+                    stopTour()
+                    markAsSeen()
+                  }}
+                  className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+                >
+                  Skip
+                </button>
+              </div>
+            </SafeSvgHtml>
+          </CourtZone>
+        )
+      }
+    } else {
+      content['zone-101'] = (
+        <CourtZone x={1050} y={870} width={180} height={70}>
           <SafeSvgHtml>
-            <div className="flex justify-end items-center gap-3 w-full h-full">
-              <button
-                onClick={nextStep}
-                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
-              >
-                →
-              </button>
-              <button
-                onClick={() => {
-                  stopTour()
-                  markAsSeen()
-                }}
-                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
-              >
-                Skip
-              </button>
+            <div className="flex flex-col items-center">
+              {hasSeen && (
+                <button
+                  onClick={() => {
+                    reset()
+                    startTour()
+                  }}
+                  className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer"
+                >
+                  🔁 Replay Tour
+                </button>
+              )}
             </div>
           </SafeSvgHtml>
         </CourtZone>
       )
     }
-  } else {
-    zoneContent['zone-101'] = (
-      <CourtZone x={1050} y={870} width={180} height={70}>
-        <SafeSvgHtml>
-          <div className="flex flex-col items-center">
-            {hasSeen && (
-              <button
-                onClick={() => {
-                  reset()
-                  startTour()
-                }}
-                className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer"
-              >
-                🔁 Replay Tour
-              </button>
-            )}
-          </div>
-        </SafeSvgHtml>
-      </CourtZone>
-    )
-  }
+
+    return content
+  }, [baseZones, tourActive, isMobile, hasSeen, markAsSeen, nextStep, reset, startTour, stopTour])
 
   return zoneContent
 }

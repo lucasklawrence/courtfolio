@@ -30,7 +30,7 @@ export default function HomePage() {
 
   if (!ready) {
     return (
-      <div className="w-screen h-screen flex items-center justify-center bg-black text-white">
+      <div className="fixed inset-0 flex items-center justify-center bg-black text-white">
         {/* Replace with court-themed loading animation later */}
         <p>Loading court...</p>
       </div>
@@ -38,6 +38,7 @@ export default function HomePage() {
   }
 
   const shouldShowIntro = showIntro && !hasSeenIntroManually
+  const animateMainIn = showIntro && hasSeenIntroManually
 
   return (
     <AnimatePresence mode="wait">
@@ -47,16 +48,17 @@ export default function HomePage() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: FADE_DURATION }}
+          className="fixed inset-0 z-50"
         >
           <TunnelHero onIntroEnd={handleIntroEnd} />
         </motion.div>
       ) : (
         <motion.div
           key="main"
-          initial={{ opacity: 0 }}
+          initial={animateMainIn ? { opacity: 0 } : false}
           animate={{ opacity: 1 }}
           transition={{ duration: FADE_DURATION }}
-          className="w-screen h-screen"
+          className="absolute inset-0 z-10 pointer-events-none"
         >
           <HomeBody />
         </motion.div>

@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import Link from 'next/link'
+import { CourtZoneLink } from '@/src/arena/CourtZoneLink'
 import { motion } from 'framer-motion'
 import { BannerCard, BannerProps } from '@/components/common/BannerCard'
 
@@ -42,9 +42,9 @@ export function BannersView({ sections }: { sections: BannerSection[] }) {
           ))}
 
           <div className="mt-20">
-            <Link href="/" className="text-orange-300 underline hover:text-orange-100">
+            <CourtZoneLink href="/" className="text-orange-300 underline hover:text-orange-100">
               Back to the Court
-            </Link>
+            </CourtZoneLink>
           </div>
         </div>
       </div>

@@ -1,8 +1,7 @@
 'use client'
 
-import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { SvgLayoutContainer } from './common/SvgLayoutContainer'
-import { CourtSvg } from './court/CourtSvg'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useArenaCourt } from '@/src/arena/ArenaShell'
 import { CourtInteractionLayer } from './court/CourtInteractionLayer'
 import { TutorialOverlay } from './court/TutorialOverlay'
 import { FreeRoamOverlay } from './court/FreeRoamOverlay'
@@ -17,7 +16,7 @@ import { useHasSeenTour } from '@/utils/useHasSeenTour'
 import { tourSteps } from '@/constants/tourSteps'
 
 export function HomeBody() {
-  const svgRef = useRef<SVGSVGElement>(null)
+  const { svgRef, setCourtContent, clearCourtContent } = useArenaCourt()
   const playerPositionRef = useRef<{ x: number; y: number } | null>(null)
   const isMobile = useIsMobile()
   const { hasSeen, markAsSeen, reset } = useHasSeenTour()
@@ -47,6 +46,11 @@ export function HomeBody() {
     reset,
   })
 
+  useEffect(() => {
+    setCourtContent({ zoneContent, ripples })
+    return () => clearCourtContent()
+  }, [zoneContent, ripples, setCourtContent, clearCourtContent])
+
   const displayedSteps = useMemo(
     () =>
       tourSteps.map((step, index) => ({
@@ -74,14 +78,7 @@ export function HomeBody() {
   }, [targetRect, currentStep?.glow])
 
   return (
-    <SvgLayoutContainer>
-      <CourtSvg
-        ref={svgRef}
-        className="w-full h-full"
-        zoneContent={zoneContent}
-        ripples={ripples}
-      />
-
+    <>
       <CourtPlaySystem
         svgRef={svgRef}
         playerPositionRef={playerPositionRef}
@@ -115,6 +112,6 @@ export function HomeBody() {
         active={tourActive && isMobile}
         onAdvance={tourStep < tourSteps.length - 1 ? nextStep : stopTour}
       />
-    </SvgLayoutContainer>
+    </>
   )
 }
