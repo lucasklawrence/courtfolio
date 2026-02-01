@@ -1,13 +1,13 @@
 import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
-import { useRouter } from 'next/navigation'
+import { useScene } from '@/components/scene'
 
 export function ZoneProjectsModern() {
-  const router = useRouter()
+  const { goToScene } = useScene()
 
   return (
     <SafeSvgHtml>
       <div
-        onClick={() => router.push('/projects')}
+        onClick={() => goToScene('projects')}
         style={{
           backgroundColor: 'rgba(88, 44, 13, 0.8)',
           backdropFilter: 'blur(4px)',

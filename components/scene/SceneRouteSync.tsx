@@ -12,8 +12,9 @@ const pathToScene = (pathname: string): SceneId => {
       return 'court'
     case '/locker-room':
       return 'locker-room'
-    case '/contact':
     case '/front-office':
+    case '/about':
+    case '/contact':
       return 'front-office'
     case '/projects':
       return 'projects'

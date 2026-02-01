@@ -1,13 +1,13 @@
 import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
-import { useRouter } from 'next/navigation'
+import { useScene } from '@/components/scene'
 
 export function ZoneAboutModern() {
-  const router = useRouter()
+  const { goToScene } = useScene()
 
   return (
     <SafeSvgHtml>
       <button
-        onClick={() => router.push('/about')}
+        onClick={() => goToScene('front-office')}
         style={{
           width: '100%',
           height: '100%',
@@ -30,7 +30,7 @@ export function ZoneAboutModern() {
           ;(e.currentTarget as HTMLButtonElement).style.color = 'white'
         }}
       >
-        ⛹️‍♂️ About Me
+        🧭 About Me
       </button>
     </SafeSvgHtml>
   )

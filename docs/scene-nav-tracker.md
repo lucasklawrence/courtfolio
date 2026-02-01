@@ -16,7 +16,7 @@
 - [x] Camera system: implement `CameraWrapper` and camera presets (desktop/mobile, reduced motion).
 - [x] Scene rendering: `SceneRenderer` and initial `CourtScene` extraction.
 - [x] Routing & URL sync: shared layout that mounts shell, slug route that drives `goToScene`, back/forward handling.
-- [~] Incremental migration: move Locker Room, Rafters, Film Room, Front Office/Projects, Contact into scenes.
+- [x] Incremental migration: move Locker Room, Rafters, Film Room, Front Office/Projects, Contact into scenes (Film/Rafters currently placeholders).
 - [ ] UX persistence: lift tutorial/ambience state, reduced-motion branch, analytics hooks around `goToScene`.
 - [ ] QA & docs: automated checks, lint/build, update README/PRD with new navigation usage.
 
@@ -29,3 +29,8 @@
 - Added `SceneRouteSync` + `SceneHost` in root layout so Arena shell persists across route changes.
 - Scenes implemented: Court (with intro), Locker Room, Front Office, Projects binder, Banners; Film Room/Rafters stubbed.
 - Page files now stubbed (`/`, `/locker-room`, `/projects`, `/contact`, `/banners`, `/film-room`, `/rafters`) to rely on SceneHost rendering.
+- Navigation triggers now call `goToScene` for back-to-court and court zone entries (projects/about -> front office).
+- Camera presets zeroed for all scenes for now (single-scene rendering); will set real world coordinates after stitching shared world.
+- Back-to-court button now also pushes `/` to keep URL in sync even if scene context misfires.
+- Added stub routes `/about` and `/front-office` that map to the Front Office scene for deep-link compatibility.
+- Film Room / Rafters scenes now have explicit placeholder components wired into the renderer.

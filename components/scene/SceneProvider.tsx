@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
-import type { SceneContextValue, SceneId, TransitionState } from './SceneTypes'
+import type { CameraPreset, SceneContextValue, SceneId, TransitionState } from './SceneTypes'
 
 const SceneContext = createContext<SceneContextValue | undefined>(undefined)
 

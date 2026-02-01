@@ -3,7 +3,15 @@
 import React, { useMemo } from 'react'
 import { usePathname } from 'next/navigation'
 import { cameraPresets } from '@/constants/cameraPresets'
-import { BannersScene, CourtScene, FrontOfficeScene, LockerRoomScene, ProjectsScene } from '@/components/scenes'
+import {
+  BannersScene,
+  CourtScene,
+  FilmRoomScene,
+  FrontOfficeScene,
+  LockerRoomScene,
+  ProjectsScene,
+  RaftersScene,
+} from '@/components/scenes'
 import { ArenaShell, SceneRenderer, SceneRouteSync } from './index'
 import type { SceneId } from './SceneTypes'
 
@@ -20,6 +28,7 @@ export function SceneHost() {
         return 'court'
       case '/locker-room':
         return 'locker-room'
+      case '/about':
       case '/contact':
       case '/front-office':
         return 'front-office'
@@ -45,24 +54,18 @@ export function SceneHost() {
       'front-office': <FrontOfficeScene />,
       projects: <ProjectsScene />,
       banners: <BannersScene />,
-      'film-room': (
-        <div className="w-full h-full flex items-center justify-center text-white bg-black">
-          Film Room coming soon
-        </div>
-      ),
-      rafters: (
-        <div className="w-full h-full flex items-center justify-center text-white bg-black">
-          Rafters coming soon
-        </div>
-      ),
+      'film-room': <FilmRoomScene />,
+      rafters: <RaftersScene />,
     }),
     []
   )
 
   return (
     <ArenaShell initialScene={initialScene}>
-      <SceneRouteSync />
-      <SceneRenderer scenes={scenes} presets={cameraPresets} />
+      <div className="relative min-h-screen w-screen bg-neutral-900 overflow-hidden">
+        <SceneRouteSync />
+        <SceneRenderer scenes={scenes} presets={cameraPresets} />
+      </div>
     </ArenaShell>
   )
 }
