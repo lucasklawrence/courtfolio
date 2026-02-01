@@ -9,6 +9,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { JSX } from 'react'
+import { SceneHost } from '@/components/scene'
 
 // Load Geist Sans font with a CSS variable
 const geistSans = Geist({
@@ -60,7 +61,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased touch-pan-x touch-pan-y`}
       >
-        {children}
+        <SceneHost />
+        <div className="hidden">{children}</div>
         <Analytics />
       </body>
     </html>
