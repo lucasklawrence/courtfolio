@@ -2,15 +2,15 @@
 
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
-import { ReplayIntroButton } from '../../components/common/ReplayIntroButton'
-import { SafeSvgHtml } from '../../components/common/SafeSvgHtml'
-import { LogoSvg } from '../../components/common/LogoSvg'
+import { ReplayIntroButton } from '@/components/common/ReplayIntroButton'
+import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
+import { LogoSvg } from '@/components/common/LogoSvg'
 import { CourtTitleSolo } from '@/components/court/CourtTitleSolo'
 import { CourtZone } from '@/components/court/CourtZone'
 import { ZoneBioCard } from '@/components/court/zones/ZoneBioCard'
 import { ZoneCareerStats } from '@/components/court/zones/ZoneCareerStats'
-import { ZoneProjects } from '@/components/court/zones/ZoneProjects'
 import { ZoneEntryButton } from '@/components/common/ZoneEntryButton'
+import { useScene } from '@/components/scene'
 
 type ZoneContentMap = Record<string, React.ReactNode>
 
@@ -38,6 +38,7 @@ export function useZoneContent({
   reset,
 }: UseZoneContentProps): ZoneContentMap {
   const router = useRouter()
+  const { goToScene } = useScene()
 
   const baseZones = useMemo<ZoneContentMap>(
     () => ({
@@ -65,21 +66,22 @@ export function useZoneContent({
           <SafeSvgHtml>
             <div id="scouting-area">
               <div className="flex flex-col items-center justify-center bg-white/90 text-black rounded-xl px-4 py-2 shadow-lg text-xs font-medium space-y-1 hover:bg-orange-100 transition">
-                <div className="text-[10px] text-neutral-500 uppercase tracking-wide">
-                  🕵️ Scouting Area
-                </div>
+                <div className="text-[10px] text-neutral-500 uppercase tracking-wide">Scouting Area</div>
                 <div className="flex gap-4 text-sm">
                   <button
-                    onClick={() => router.push('/contact')}
+                    onClick={() => {
+                      goToScene('front-office')
+                      router.push('/contact')
+                    }}
                     className="cursor-pointer hover:text-orange-500 transition"
                   >
-                    📫 Go to Front Office
+                    Go to Front Office
                   </button>
                   <button
                     onClick={() => window.open('/LucasLawrenceResume.pdf', '_blank')}
                     className="cursor-pointer hover:text-orange-500 transition"
                   >
-                    📄 Resume
+                    Resume
                   </button>
                 </div>
               </div>
@@ -91,7 +93,7 @@ export function useZoneContent({
         <foreignObject x={110} y={425} width={230} height={500}>
           <div id="principles-lineup">
             <div className="p-3 bg-orange-900/30 text-white text-xs font-bold rounded-md border border-orange-300/40 shadow-sm tracking-wide">
-              <h3 className="font-bold text-sm">🧠 Principles Lineup</h3>
+              <h3 className="font-bold text-sm">Principles Lineup</h3>
               <ul className="list-disc list-inside">
                 <li>#7 Clean Code (PG)</li>
                 <li>#24 SoC (SG)</li>
@@ -107,7 +109,7 @@ export function useZoneContent({
         <foreignObject x={1175} y={425} width={230} height={500}>
           <div id="tech-stack-lineup">
             <div className="p-3 bg-orange-900/30 text-white text-xs font-bold rounded-md border border-orange-300/40 shadow-sm tracking-wide">
-              <h3 className="font-bold text-center text-lg">🧰 Tech Stack Lineup</h3>
+              <h3 className="font-bold text-center text-lg">Tech Stack Lineup</h3>
               <ul className="list-disc list-inside text-xs">
                 <li>#10 React (PG)</li>
                 <li>#22 Spring Boot (SG)</li>
@@ -134,29 +136,38 @@ export function useZoneContent({
           <SafeSvgHtml>
             <div className="flex flex-col gap-3 items-center w-fit">
               <ZoneEntryButton
-                icon="🏟️"
+                icon="🏛️"
                 label="View The Rafters"
                 id="view-rafters"
-                onClick={() => (window.location.href = '/banners')}
+                onClick={() => {
+                  goToScene('banners')
+                  router.push('/banners')
+                }}
               />
               <ZoneEntryButton
-                icon="🧳"
+                icon="🧥"
                 label="Enter Locker Room"
                 id="enter-locker-room"
-                onClick={() => (window.location.href = '/locker-room')}
+                onClick={() => {
+                  goToScene('locker-room')
+                  router.push('/locker-room')
+                }}
               />
               <ZoneEntryButton
-                icon="🎨"
+                icon="📁"
                 label="View Project Binder"
                 id="projects"
-                onClick={() => (window.location.href = '/projects')}
+                onClick={() => {
+                  goToScene('projects')
+                  router.push('/projects')
+                }}
               />
             </div>
           </SafeSvgHtml>
         </CourtZone>
       ),
     }),
-    [router]
+    [goToScene, router]
   )
 
   const zoneContent: ZoneContentMap = { ...baseZones }

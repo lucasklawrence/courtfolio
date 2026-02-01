@@ -34,3 +34,4 @@
 - Back-to-court button now also pushes `/` to keep URL in sync even if scene context misfires.
 - Added stub routes `/about` and `/front-office` that map to the Front Office scene for deep-link compatibility.
 - Film Room / Rafters scenes now have explicit placeholder components wired into the renderer.
+- Court UI entry buttons now call `goToScene` + `router.push` (rafters/banners, locker room, projects, front office).
