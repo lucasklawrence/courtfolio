@@ -12,7 +12,7 @@ import {
   ProjectsScene,
   RaftersScene,
 } from '@/components/scenes'
-import { ArenaShell, SceneRenderer, SceneRouteSync } from './index'
+import { ArenaShell, SceneExperienceProvider, SceneRenderer, SceneRouteSync } from './index'
 import type { SceneId } from './SceneTypes'
 
 /**
@@ -62,10 +62,12 @@ export function SceneHost() {
 
   return (
     <ArenaShell initialScene={initialScene}>
-      <div className="relative min-h-screen w-screen bg-neutral-900 overflow-hidden">
-        <SceneRouteSync />
-        <SceneRenderer scenes={scenes} presets={cameraPresets} />
-      </div>
+      <SceneExperienceProvider>
+        <div className="relative min-h-screen w-screen bg-neutral-900 overflow-hidden">
+          <SceneRouteSync />
+          <SceneRenderer scenes={scenes} presets={cameraPresets} />
+        </div>
+      </SceneExperienceProvider>
     </ArenaShell>
   )
 }

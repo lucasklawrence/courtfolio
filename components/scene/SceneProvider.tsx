@@ -2,6 +2,7 @@
 
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import type { CameraPreset, SceneContextValue, SceneId, TransitionState } from './SceneTypes'
+import { trackSceneNavigation } from '@/utils/analytics'
 
 const SceneContext = createContext<SceneContextValue | undefined>(undefined)
 
@@ -29,6 +30,8 @@ export function SceneProvider({
       setPreviousScene(currentScene)
       setCurrentScene(sceneId)
       setTransitionState('transitioning')
+
+      trackSceneNavigation({ from: currentScene, to: sceneId, reason: options?.force ? 'route-sync' : 'user' })
     },
     [currentScene]
   )

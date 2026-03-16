@@ -2,9 +2,9 @@
 
 import React, { useCallback, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useHasSeenIntro } from '@/utils/useHasSeenIntro'
 import { HomeBody } from '@/components/HomeBody'
 import { TunnelHero } from '@/components/court/TunnelHero'
+import { useSceneExperience } from '@/components/scene'
 
 const FADE_DURATION = 1
 
@@ -12,20 +12,13 @@ const FADE_DURATION = 1
  * Court scene wrapper that preserves the intro flow before showing the court.
  */
 export function CourtScene() {
-  const { ready, showIntro } = useHasSeenIntro()
+  const { showIntro, markIntroSeen } = useSceneExperience()
   const [hasSeenIntroManually, setHasSeenIntroManually] = useState(false)
 
   const handleIntroEnd = useCallback(() => {
     setHasSeenIntroManually(true)
+    markIntroSeen()
   }, [])
-
-  if (!ready) {
-    return (
-      <div className="w-screen h-screen flex items-center justify-center bg-black text-white">
-        <p>Loading court...</p>
-      </div>
-    )
-  }
 
   const shouldShowIntro = showIntro && !hasSeenIntroManually
 

@@ -7,5 +7,9 @@ const BannersClient = dynamic(() => import('@/components/banners/BannersClient')
 })
 
 export function BannersScene() {
-  return <BannersClient />
+  return (
+    <div className="w-full h-full overflow-auto">
+      <BannersClient />
+    </div>
+  )
 }

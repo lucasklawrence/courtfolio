@@ -10,7 +10,7 @@ import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
  */
 export function ProjectsScene() {
   return (
-    <div className="bg-[url('/textures/binder-leather.png')] bg-center bg-cover bg-no-repeat min-h-screen flex flex-col relative">
+    <div className="bg-[url('/textures/binder-leather.png')] bg-center bg-cover bg-no-repeat h-full flex flex-col relative overflow-auto">
       <SectionContainer className="pt-4 pb-2 z-10 flex justify-between">
         <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
           Page 1

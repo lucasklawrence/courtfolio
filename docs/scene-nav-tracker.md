@@ -17,7 +17,7 @@
 - [x] Scene rendering: `SceneRenderer` and initial `CourtScene` extraction.
 - [x] Routing & URL sync: shared layout that mounts shell, slug route that drives `goToScene`, back/forward handling.
 - [x] Incremental migration: move Locker Room, Rafters, Film Room, Front Office/Projects, Contact into scenes (Film/Rafters currently placeholders).
-- [ ] UX persistence: lift tutorial/ambience state, reduced-motion branch, analytics hooks around `goToScene`.
+- [~] UX persistence: lift tutorial/ambience state, reduced-motion branch, analytics hooks around `goToScene`.
 - [ ] QA & docs: automated checks, lint/build, update README/PRD with new navigation usage.
 
 ### Prep notes
@@ -35,3 +35,7 @@
 - Added stub routes `/about` and `/front-office` that map to the Front Office scene for deep-link compatibility.
 - Film Room / Rafters scenes now have explicit placeholder components wired into the renderer.
 - Court UI entry buttons now call `goToScene` + `router.push` (rafters/banners, locker room, projects, front office).
+- Camera presets laid out on a shared grid using the 1536x1024 viewbox; transitions now move between scenes.
+- Added `SceneExperienceProvider` to persist intro/ambience flags across scenes; Court intro uses it instead of local state.
+- Added analytics stub `trackSceneNavigation` invoked from `goToScene` (fires console + CustomEvent).
+- SceneRenderer now renders a tiled world (absolute-positioned scenes) so camera motion is spatial; Banners/Projects scenes constrained to tile height via overflow.
