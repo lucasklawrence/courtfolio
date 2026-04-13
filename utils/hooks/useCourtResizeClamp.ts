@@ -1,19 +1,11 @@
 import { useEffect } from 'react'
+import type { MotionValue } from 'framer-motion'
 import { getScaledCourtBounds, clampToCourt } from '@/utils/movements'
 
-/**
- * Keeps player clamped inside court on resize and orientation change.
- *
- * @param svgRef - ref to your court SVG element
- * @param x - motion value for player X position
- * @param y - motion value for player Y position
- * @param playerWidth - width of player sprite in px
- * @param playerHeight - height of player sprite in px
- */
 export function useCourtResizeClamp(
   svgRef: React.RefObject<SVGSVGElement | null>,
-  x: any, // motionValue
-  y: any, // motionValue
+  x: MotionValue<number>,
+  y: MotionValue<number>,
   playerWidth: number,
   playerHeight: number
 ) {

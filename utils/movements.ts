@@ -31,29 +31,6 @@ export function getScaledCourtBounds(svg: SVGSVGElement): ScaledCourtBounds {
   }
 }
 
-export function getScaledFloorBounds(svg: SVGSVGElement): ScaledCourtBounds {
-  const rect = svg.getBoundingClientRect()
-  const viewBoxWidth = 1536
-  const viewBoxHeight = 1024
-
-  const scaleX = rect.width / viewBoxWidth
-  const scaleY = rect.height / viewBoxHeight
-
-  const pxCourtX = COURT_X * scaleX
-  const pxCourtY = COURT_Y * scaleY
-  const pxCourtWidth = COURT_WIDTH * scaleX
-  const pxCourtHeight = COURT_HEIGHT * scaleY
-
-  return {
-    pxCourtX,
-    pxCourtY,
-    pxCourtWidth,
-    pxCourtHeight,
-    scaleX,
-    scaleY,
-  }
-}
-
 /**
  * Clamps a screen-space position to the playable area of the court.
  *
