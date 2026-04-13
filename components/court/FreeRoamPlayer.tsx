@@ -44,9 +44,10 @@ export function FreeRoamPlayer({
   // Refs for input state (no re-renders needed)
   const keysRef = useRef(new Set<string>())
   const clickTargetRef = useRef<{ x: number; y: number } | null>(null)
-  const lastMoveTimeRef = useRef(Date.now())
+  const lastMoveTimeRef = useRef(performance.now())
   const walkFrameTimeRef = useRef(0)
   const gameLoopRef = useRef(0)
+  const boundsCache = useRef<ReturnType<typeof getScaledCourtBounds> | null>(null)
 
   // Visual state (triggers re-renders for sprite changes)
   const [facingLeft, setFacingLeft] = useState(false)
@@ -63,17 +64,18 @@ export function FreeRoamPlayer({
     const svg = boundsRef.current
     if (!svg) return
 
-    const updateScale = () => {
+    const updateScaleAndBounds = () => {
       const rawScale = svg.clientWidth / 1536
       setScale(Math.min(Math.max(rawScale, 0.5), 1))
+      boundsCache.current = getScaledCourtBounds(svg)
     }
 
-    updateScale()
-    window.addEventListener('resize', updateScale)
-    window.addEventListener('orientationchange', updateScale)
+    updateScaleAndBounds()
+    window.addEventListener('resize', updateScaleAndBounds)
+    window.addEventListener('orientationchange', updateScaleAndBounds)
     return () => {
-      window.removeEventListener('resize', updateScale)
-      window.removeEventListener('orientationchange', updateScale)
+      window.removeEventListener('resize', updateScaleAndBounds)
+      window.removeEventListener('orientationchange', updateScaleAndBounds)
     }
   }, [boundsRef])
 
@@ -100,11 +102,15 @@ export function FreeRoamPlayer({
       keysRef.current.delete(e.key.toLowerCase())
     }
 
+    const handleBlur = () => keysRef.current.clear()
+
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('keyup', handleKeyUp)
+    window.addEventListener('blur', handleBlur)
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('keyup', handleKeyUp)
+      window.removeEventListener('blur', handleBlur)
     }
   }, [])
 
@@ -119,13 +125,11 @@ export function FreeRoamPlayer({
       const dt = Math.min((now - prevTime) / 1000, 0.1) // cap to prevent teleporting after tab-away
       prevTime = now
 
-      const svg = boundsRef.current
-      if (!svg) {
+      const bounds = boundsCache.current
+      if (!bounds) {
         gameLoopRef.current = requestAnimationFrame(tick)
         return
       }
-
-      const bounds = getScaledCourtBounds(svg)
       const keys = keysRef.current
       let dx = 0
       let dy = 0
