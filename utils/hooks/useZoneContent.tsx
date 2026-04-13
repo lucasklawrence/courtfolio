@@ -151,6 +151,12 @@ export function useZoneContent({
                 id="projects"
                 onClick={() => (window.location.href = '/projects')}
               />
+              <ZoneEntryButton
+                icon="💪"
+                label="Training Facility"
+                id="gym"
+                onClick={() => (window.location.href = '/gym')}
+              />
             </div>
           </SafeSvgHtml>
         </CourtZone>
