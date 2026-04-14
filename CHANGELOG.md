@@ -14,9 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.9] - 2026-04-12
 
 ### Changed
-- Refactored movement system with a unified `requestAnimationFrame` game loop using delta time for frame-rate independent movement.
+- Refactored movement system with a unified `requestAnimationFrame` game loop using delta time for frame-rate-independent movement.
 - Springs (`springX`/`springY`) now properly drive the DOM via `style` instead of unused `animate` prop.
 - Normalized diagonal keyboard movement so it matches cardinal speed.
+- `useCourtResizeClamp` now types `x`/`y` as `MotionValue<number>` instead of `any`.
 
 ### Fixed
 - Player spawn position was outside court bounds.
@@ -24,7 +25,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Unused duplicate `getScaledFloorBounds` function.
-- `any` types in `useCourtResizeClamp` replaced with `MotionValue<number>`.
 
 ## [0.2.8] - 2026-01-18
 

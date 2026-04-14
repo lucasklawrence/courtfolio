@@ -47,6 +47,7 @@ export function FreeRoamPlayer({
   const lastMoveTimeRef = useRef(performance.now())
   const walkFrameTimeRef = useRef(0)
   const gameLoopRef = useRef(0)
+  const shootPoseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const boundsCache = useRef<ReturnType<typeof getScaledCourtBounds> | null>(null)
 
   // Visual state (triggers re-renders for sprite changes)
@@ -79,9 +80,8 @@ export function FreeRoamPlayer({
     }
   }, [boundsRef])
 
-  // Sync click target prop into ref (keyboard will clear it, click will set it)
+  // Sync click target prop into ref (keyboard clears it, click sets it, upstream null cancels it)
   useEffect(() => {
-    if (!target) return
     clickTargetRef.current = target
   }, [target])
 
@@ -181,7 +181,14 @@ export function FreeRoamPlayer({
       if (moved !== wasMoving) {
         wasMoving = moved
         setIsMoving(moved)
-        if (moved) setIsShootingPose(false)
+        if (moved) {
+          // Cancel a pending shoot-pose callback so it can't overwrite lastMoveTimeRef later
+          if (shootPoseTimeoutRef.current) {
+            clearTimeout(shootPoseTimeoutRef.current)
+            shootPoseTimeoutRef.current = null
+          }
+          setIsShootingPose(false)
+        }
       }
 
       if (moved) {
@@ -207,14 +214,21 @@ export function FreeRoamPlayer({
       if (!isMoving && !isShootingPose) {
         if (performance.now() - lastMoveTimeRef.current > IDLE_TIMEOUT_MS) {
           setIsShootingPose(true)
-          setTimeout(() => {
+          shootPoseTimeoutRef.current = setTimeout(() => {
             setIsShootingPose(false)
             lastMoveTimeRef.current = performance.now()
+            shootPoseTimeoutRef.current = null
           }, SHOOT_POSE_MS)
         }
       }
     }, 1000)
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+      if (shootPoseTimeoutRef.current) {
+        clearTimeout(shootPoseTimeoutRef.current)
+        shootPoseTimeoutRef.current = null
+      }
+    }
   }, [isMoving, isShootingPose])
 
   const currentSprite = isShootingPose
