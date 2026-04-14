@@ -72,10 +72,9 @@ export function FreeRoamPlayer({
 
   // Recalculate sprite scale when viewport changes
   useEffect(() => {
-    const svg = boundsRef.current
-    if (!svg) return
-
     const updateScaleAndBounds = () => {
+      const svg = boundsRef.current
+      if (!svg) return
       const rawScale = svg.clientWidth / 1536
       setScale(Math.min(Math.max(rawScale, 0.5), 1))
       boundsCache.current = getScaledCourtBounds(svg)
