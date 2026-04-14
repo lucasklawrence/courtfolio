@@ -57,6 +57,16 @@ export function FreeRoamPlayer({
   const [isShootingPose, setIsShootingPose] = useState(false)
   const [scale, setScale] = useState(1)
 
+  // Mirrors of state for the idle-pose interval to read without re-running
+  const isMovingRef = useRef(false)
+  const isShootingPoseRef = useRef(false)
+  useEffect(() => {
+    isMovingRef.current = isMoving
+  }, [isMoving])
+  useEffect(() => {
+    isShootingPoseRef.current = isShootingPose
+  }, [isShootingPose])
+
   // Keep player clamped inside court on resize
   useCourtResizeClamp(boundsRef, x, y, PLAYER_SIZE, PLAYER_SIZE)
 
@@ -221,18 +231,19 @@ export function FreeRoamPlayer({
     return () => cancelAnimationFrame(gameLoopRef.current)
   }, [boundsRef, x, y])
 
-  // Idle shooting pose — triggers after player stands still for a while
+  // Idle shooting pose — triggers after player stands still for a while.
+  // Deps are intentionally empty: re-running on state change would clear the
+  // pending shoot-pose-exit timeout scheduled inside the same tick.
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!isMoving && !isShootingPose) {
-        if (performance.now() - lastMoveTimeRef.current > IDLE_TIMEOUT_MS) {
-          setIsShootingPose(true)
-          shootPoseTimeoutRef.current = setTimeout(() => {
-            setIsShootingPose(false)
-            lastMoveTimeRef.current = performance.now()
-            shootPoseTimeoutRef.current = null
-          }, SHOOT_POSE_MS)
-        }
+      if (isMovingRef.current || isShootingPoseRef.current) return
+      if (performance.now() - lastMoveTimeRef.current > IDLE_TIMEOUT_MS) {
+        setIsShootingPose(true)
+        shootPoseTimeoutRef.current = setTimeout(() => {
+          setIsShootingPose(false)
+          lastMoveTimeRef.current = performance.now()
+          shootPoseTimeoutRef.current = null
+        }, SHOOT_POSE_MS)
       }
     }, 1000)
     return () => {
@@ -242,7 +253,7 @@ export function FreeRoamPlayer({
         shootPoseTimeoutRef.current = null
       }
     }
-  }, [isMoving, isShootingPose])
+  }, [])
 
   const currentSprite = isShootingPose
     ? SHOOTING_FRAME
@@ -261,6 +272,10 @@ export function FreeRoamPlayer({
           y: springY,
           scale,
           scaleX: shouldFlip ? -1 : 1,
+          // x/y are the sprite's center per clampToCourt; offset so the box's
+          // center lands on (x, y) instead of its top-left.
+          marginLeft: -PLAYER_SIZE / 2,
+          marginTop: -PLAYER_SIZE / 2,
         }}
       >
         <img
