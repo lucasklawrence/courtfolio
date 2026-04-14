@@ -191,6 +191,8 @@ export default function LockerRoomPage() {
             </LockerZone>
           ),
           'snap-jersey': (
+            // Safari/WebKit paints <use> outside the foreignObject clip for this
+            // symbol; render directly in SVG space with explicit dims instead.
             <LockerZone
               x={1150}
               y={250}
