@@ -206,7 +206,7 @@ export default function LockerRoomPage() {
           'ghost-logo-jersey': (
             <LockerZone
               x={1215}
-              y={300}
+              y={240}
               width={75}
               height={75}
               zoneId="ghost-logo-jersey"
