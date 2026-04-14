@@ -81,9 +81,20 @@ export function FreeRoamPlayer({
     }
 
     updateScaleAndBounds()
+
+    // Observe the SVG directly so layout-driven size changes (flexbox/grid
+    // reflow, ancestor CSS changes) refresh bounds without a window resize.
+    const svg = boundsRef.current
+    const observer =
+      svg && typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver(updateScaleAndBounds)
+        : null
+    if (observer && svg) observer.observe(svg)
+
     window.addEventListener('resize', updateScaleAndBounds)
     window.addEventListener('orientationchange', updateScaleAndBounds)
     return () => {
+      observer?.disconnect()
       window.removeEventListener('resize', updateScaleAndBounds)
       window.removeEventListener('orientationchange', updateScaleAndBounds)
     }
