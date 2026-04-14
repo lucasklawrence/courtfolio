@@ -87,7 +87,20 @@ export function FreeRoamPlayer({
 
   // Keyboard input — only tracks which keys are held, movement happens in game loop
   useEffect(() => {
+    const isEditableTarget = (target: EventTarget | null) => {
+      const el = target as HTMLElement | null
+      if (!el || typeof el.tagName !== 'string') return false
+      const tag = el.tagName
+      return (
+        tag === 'INPUT' ||
+        tag === 'TEXTAREA' ||
+        tag === 'SELECT' ||
+        el.isContentEditable === true
+      )
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (isEditableTarget(e.target)) return
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
         e.preventDefault()
       }
@@ -252,6 +265,7 @@ export function FreeRoamPlayer({
       >
         <img
           src={currentSprite}
+          alt=""
           style={{
             width: PLAYER_SIZE,
             height: PLAYER_SIZE,
