@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { useHasSeenIntro } from '@/utils/useHasSeenIntro'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { HomeBody } from '@/components/HomeBody'
 import { TunnelHero } from '@/components/court/TunnelHero'
 
@@ -23,6 +23,7 @@ const FADE_DURATION = 1
 export default function HomePage() {
   const { ready, showIntro } = useHasSeenIntro()
   const [hasSeenIntroManually, setHasSeenIntroManually] = useState(false)
+  const reduce = useReducedMotion()
 
   const handleIntroEnd = useCallback(() => {
     setHasSeenIntroManually(true)
@@ -38,6 +39,7 @@ export default function HomePage() {
   }
 
   const shouldShowIntro = showIntro && !hasSeenIntroManually
+  const duration = reduce ? 0 : FADE_DURATION
 
   return (
     <AnimatePresence mode="wait">
@@ -46,16 +48,16 @@ export default function HomePage() {
           key="intro"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: FADE_DURATION }}
+          transition={{ duration }}
         >
           <TunnelHero onIntroEnd={handleIntroEnd} />
         </motion.div>
       ) : (
         <motion.div
           key="main"
-          initial={{ opacity: 0 }}
+          initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: FADE_DURATION }}
+          transition={{ duration }}
           className="w-screen h-screen"
         >
           <HomeBody />

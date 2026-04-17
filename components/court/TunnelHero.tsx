@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import { Typewriter } from 'react-simple-typewriter'
+import { FadeIn, FadeUp } from '@/components/motion/primitives'
 
 /**
  * TunnelHero
@@ -46,43 +46,34 @@ export function TunnelHero({ onIntroEnd }: { onIntroEnd: () => void }) {
 
       {/* Foreground content */}
       <div className="z-10 text-center px-4">
-        <motion.h1
-          className="text-4xl md:text-6xl font-extrabold"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-        >
-          Lucas Lawrence
-        </motion.h1>
+        <FadeUp delay={0.4} duration={0.8} y={40}>
+          <h1 className="text-4xl md:text-6xl font-extrabold">Lucas Lawrence</h1>
+        </FadeUp>
 
-        <motion.p
-          className="text-lg md:text-2xl mt-4 text-orange-300 font-mono"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 0.5 }}
-        >
-          {showTyping && (
-            <Typewriter
-              words={words}
-              loop={1}
-              cursor
-              cursorStyle="|"
-              typeSpeed={100}
-              deleteSpeed={0}
-              delaySpeed={1000}
-            />
-          )}
-        </motion.p>
+        <FadeIn delay={0.9} duration={0.5}>
+          <p className="text-lg md:text-2xl mt-4 text-orange-300 font-mono">
+            {showTyping && (
+              <Typewriter
+                words={words}
+                loop={1}
+                cursor
+                cursorStyle="|"
+                typeSpeed={100}
+                deleteSpeed={0}
+                delaySpeed={1000}
+              />
+            )}
+          </p>
+        </FadeIn>
 
-        <motion.button
-          onClick={onIntroEnd}
-          className="inline-block mt-10 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-orange-400 transition"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          🏀 Step Onto the Court
-        </motion.button>
+        <FadeIn delay={1.5}>
+          <button
+            onClick={onIntroEnd}
+            className="inline-block mt-10 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-orange-400 transition"
+          >
+            🏀 Step Onto the Court
+          </button>
+        </FadeIn>
       </div>
     </section>
   )
