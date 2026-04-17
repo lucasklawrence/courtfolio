@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
+import { motion } from 'framer-motion'
 import { Typewriter } from 'react-simple-typewriter'
-import { FadeIn, FadeUp } from '@/components/motion/primitives'
+import { useFadeInProps, useFadeUpProps } from '@/components/motion/primitives'
 
 /**
  * TunnelHero
@@ -35,6 +36,10 @@ export function TunnelHero({ onIntroEnd }: { onIntroEnd: () => void }) {
 
   const words = useMemo(() => ['Writing code with court vision.'], [])
 
+  const headingProps = useFadeUpProps({ delay: 0.4, duration: 0.8, y: 40 })
+  const taglineProps = useFadeInProps({ delay: 0.9, duration: 0.5 })
+  const ctaProps = useFadeInProps({ delay: 1.5 })
+
   return (
     <section className="relative h-screen w-full flex items-center justify-center bg-black text-white overflow-hidden">
       {/* Background visuals */}
@@ -46,34 +51,31 @@ export function TunnelHero({ onIntroEnd }: { onIntroEnd: () => void }) {
 
       {/* Foreground content */}
       <div className="z-10 text-center px-4">
-        <FadeUp delay={0.4} duration={0.8} y={40}>
-          <h1 className="text-4xl md:text-6xl font-extrabold">Lucas Lawrence</h1>
-        </FadeUp>
+        <motion.h1 {...headingProps} className="text-4xl md:text-6xl font-extrabold">
+          Lucas Lawrence
+        </motion.h1>
 
-        <FadeIn delay={0.9} duration={0.5}>
-          <p className="text-lg md:text-2xl mt-4 text-orange-300 font-mono">
-            {showTyping && (
-              <Typewriter
-                words={words}
-                loop={1}
-                cursor
-                cursorStyle="|"
-                typeSpeed={100}
-                deleteSpeed={0}
-                delaySpeed={1000}
-              />
-            )}
-          </p>
-        </FadeIn>
+        <motion.p {...taglineProps} className="text-lg md:text-2xl mt-4 text-orange-300 font-mono">
+          {showTyping && (
+            <Typewriter
+              words={words}
+              loop={1}
+              cursor
+              cursorStyle="|"
+              typeSpeed={100}
+              deleteSpeed={0}
+              delaySpeed={1000}
+            />
+          )}
+        </motion.p>
 
-        <FadeIn delay={1.5}>
-          <button
-            onClick={onIntroEnd}
-            className="inline-block mt-10 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-orange-400 transition"
-          >
-            🏀 Step Onto the Court
-          </button>
-        </FadeIn>
+        <motion.button
+          {...ctaProps}
+          onClick={onIntroEnd}
+          className="inline-block mt-10 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-orange-400 transition"
+        >
+          🏀 Step Onto the Court
+        </motion.button>
       </div>
     </section>
   )

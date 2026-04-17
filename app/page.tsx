@@ -47,7 +47,7 @@ export default function HomePage() {
         <motion.div
           key="intro"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          exit={reduce ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration }}
         >
           <TunnelHero onIntroEnd={handleIntroEnd} />
