@@ -14,8 +14,8 @@ import React from 'react'
  */
 export const SvgLayoutContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen overflow-y-scroll bg-neutral-900 touch-pan-x touch-pan-y touch-pinch-zoom">
-      <div className="flex items-center justify-center min-h-[105vh]">
+    <div className="min-h-svh overflow-y-scroll bg-neutral-900 touch-pan-x touch-pan-y touch-pinch-zoom">
+      <div className="flex items-center justify-center min-h-[105svh]">
         <div className="relative w-[min(100vw,calc(100svh*1.5))] h-[min(100svh,calc(100vw/1.5))] pointer-coarse:landscape:w-screen pointer-coarse:landscape:h-[100svh]">
           {children}
         </div>
