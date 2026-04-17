@@ -191,6 +191,8 @@ export default function LockerRoomPage() {
             </LockerZone>
           ),
           'snap-jersey': (
+            // Safari/WebKit paints <use> outside the foreignObject clip for this
+            // symbol; render directly in SVG space with explicit dims instead.
             <LockerZone
               x={1150}
               y={250}
@@ -198,14 +200,15 @@ export default function LockerRoomPage() {
               height={390}
               zoneId="snap-jersey"
               onClick={setSelectedZone}
+              useForeignObject={false}
             >
-              <Yellow4Jersey className="opacity-90 hover:opacity-100" />
+              <Yellow4Jersey className="opacity-90 hover:opacity-100" width={290} height={390} />
             </LockerZone>
           ),
           'ghost-logo-jersey': (
             <LockerZone
               x={1215}
-              y={300}
+              y={275}
               width={75}
               height={75}
               zoneId="ghost-logo-jersey"
