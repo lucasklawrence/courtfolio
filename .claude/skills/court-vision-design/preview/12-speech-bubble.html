@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Speech Bubble</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 22px; background: #2b1a08; font-family: var(--font-sans); display:flex; align-items: center; gap: 16px; min-height: 180px; }
+  .sprite { width: 80px; height: 100px; background: #42210b; border-radius: 8px; display:flex; align-items:center; justify-content:center; color:#fde047; font-family: var(--font-mono); font-size: 11px; flex-shrink: 0; }
+  .bubble-wrap { position: relative; }
+  .bubble { background: #fff; color: #000; padding: 10px 16px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4); border: 1px solid #e5e5e5; font-weight: 600; font-size: 15px; max-width: 360px; position: relative; line-height: 1.4; }
+  .tail { position: absolute; left: -10px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-right: 10px solid #fff; }
+  .actions { display:flex; gap: 8px; margin-top: 8px; justify-content: flex-end; }
+  .pill { padding: 6px 14px; border-radius: 9999px; background: #ea580c; color:#fff; font-weight: 600; font-size: 13px; border: 0; cursor: pointer; }
+  .lbl { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.16em; color: #fdba74; position:absolute; top: 12px; left: 22px; }
+</style>
+</head>
+<body>
+  <div class="lbl">Tutorial sprite + speech bubble</div>
+  <div class="sprite">Sprite<br>idle</div>
+  <div class="bubble-wrap">
+    <div class="bubble">
+      <div class="tail"></div>
+      Welcome! I'm Lucas — I'll walk you through this court. Tap the orange buttons below to continue.
+    </div>
+    <div class="actions"><button class="pill">→</button><button class="pill">Skip</button></div>
+  </div>
+</body>
+</html>
