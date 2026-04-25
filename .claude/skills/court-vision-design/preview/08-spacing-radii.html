@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spacing & Radii</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 18px; background: #fff; font-family: var(--font-sans); color: #0a0a0a; }
+  .section { margin-bottom: 14px; }
+  .label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em; color: #737373; margin-bottom: 8px; }
+  .row { display: flex; align-items: flex-end; gap: 14px; }
+  .stack { display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: var(--font-mono); font-size: 9px; color: #737373; }
+  .bar { background: #ea580c; }
+  .radius { background: #42210b; width: 56px; height: 44px; display:flex; align-items:center; justify-content:center; color: #fde047; font-family: var(--font-mono); font-size: 10px; }
+</style>
+</head>
+<body>
+  <div class="section">
+    <div class="label">Spacing scale (rem · 0.25 increments)</div>
+    <div class="row">
+      <div class="stack"><div class="bar" style="width:4px; height:4px"></div>1</div>
+      <div class="stack"><div class="bar" style="width:8px; height:8px"></div>2</div>
+      <div class="stack"><div class="bar" style="width:16px; height:16px"></div>4</div>
+      <div class="stack"><div class="bar" style="width:24px; height:24px"></div>6</div>
+      <div class="stack"><div class="bar" style="width:32px; height:32px"></div>8</div>
+      <div class="stack"><div class="bar" style="width:48px; height:48px"></div>12</div>
+      <div class="stack"><div class="bar" style="width:64px; height:64px"></div>16</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="label">Radii — pills for actions, xl for cards</div>
+    <div class="row">
+      <div class="stack"><div class="radius" style="border-radius:4px">xs</div>4</div>
+      <div class="stack"><div class="radius" style="border-radius:6px">sm</div>6</div>
+      <div class="stack"><div class="radius" style="border-radius:8px">md</div>8</div>
+      <div class="stack"><div class="radius" style="border-radius:12px">lg</div>12</div>
+      <div class="stack"><div class="radius" style="border-radius:16px">xl</div>16</div>
+      <div class="stack"><div class="radius" style="border-radius:9999px">pill</div>full</div>
+    </div>
+  </div>
+</body>
+</html>

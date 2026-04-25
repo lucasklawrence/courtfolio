@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Buttons — Zone Entry</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 22px; background: #1a0d04; font-family: var(--font-sans); }
+  .stack { display:flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .zone-btn { display:inline-flex; align-items:center; gap: 12px; padding: 12px 24px; background: #42210b; color: #fde047; border-radius: 12px; border: 1px solid #facc15; font-weight: 600; font-size: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.4); cursor: pointer; transition: background .2s; }
+  .zone-btn:hover { background: #5a3015; }
+  .lbl { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.16em; color: #fdba74; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+  <div class="lbl">Zone Entry — wood + gold border + yellow text</div>
+  <div class="stack">
+    <button class="zone-btn"><span style="font-size:20px;">🏟️</span><span>View The Rafters</span></button>
+    <button class="zone-btn"><span style="font-size:20px;">🧳</span><span>Enter Locker Room</span></button>
+    <button class="zone-btn"><span style="font-size:20px;">🎨</span><span>View Project Binder</span></button>
+  </div>
+</body>
+</html>
