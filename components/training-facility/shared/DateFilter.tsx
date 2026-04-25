@@ -72,7 +72,13 @@ function subtractMonths(d: Date, months: number): Date {
 function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
   const today = new Date()
   const end = endOfDay(today)
-  if (preset === 'ALL') return { start: startOfDay(earliest), end }
+  if (preset === 'ALL') {
+    // Clamp `start` to today if `earliest` is in the future, so the
+    // documented `start <= end` invariant survives a future-dated
+    // `earliestDate` prop (e.g., a placeholder set before any data lands).
+    const earliestStart = startOfDay(earliest)
+    return { start: earliestStart > end ? startOfDay(today) : earliestStart, end }
+  }
   const months = PRESETS.find((p) => p.id === preset)!.months!
   return { start: startOfDay(subtractMonths(today, months)), end }
 }
