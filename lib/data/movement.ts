@@ -5,8 +5,16 @@ import type {
 } from '@/types/movement';
 import { DATA_BASE_URL } from './config';
 
+/** Dev-only API route that handles all benchmark writes (POST/PUT/DELETE). Built in #59. */
 const WRITE_ROUTE = '/api/dev/movement-benchmarks';
 
+/**
+ * Fetches all logged Combine benchmarks (`public/data/movement_benchmarks.json`).
+ *
+ * Returns an empty array if the file doesn't exist yet (typical pre-baseline state).
+ *
+ * @throws on non-404 fetch failures.
+ */
 export async function getMovementBenchmarks(): Promise<Benchmark[]> {
   const res = await fetch(`${DATA_BASE_URL}/movement_benchmarks.json`);
   if (res.status === 404) return [];
@@ -18,6 +26,12 @@ export async function getMovementBenchmarks(): Promise<Benchmark[]> {
   return res.json();
 }
 
+/**
+ * Appends a new benchmark entry. Dev-only — the underlying API route returns
+ * 404 in production, in which case this function throws a descriptive error.
+ *
+ * @param entry The full benchmark to log. `entry.date` is the primary key.
+ */
 export async function logBenchmark(entry: Benchmark): Promise<void> {
   const res = await fetch(WRITE_ROUTE, {
     method: 'POST',
@@ -27,6 +41,12 @@ export async function logBenchmark(entry: Benchmark): Promise<void> {
   if (!res.ok) throw await writeError(res, 'log');
 }
 
+/**
+ * Overwrites an existing benchmark identified by date. Dev-only.
+ *
+ * @param date    The benchmark's date — primary key, cannot be changed.
+ * @param updates Partial set of fields to update; omitted fields stay as-is.
+ */
 export async function updateBenchmark(
   date: BenchmarkDate,
   updates: BenchmarkUpdate,
@@ -39,6 +59,11 @@ export async function updateBenchmark(
   if (!res.ok) throw await writeError(res, 'update');
 }
 
+/**
+ * Removes the benchmark for the given date. Dev-only. UI should confirm before calling.
+ *
+ * @param date The benchmark's date — primary key.
+ */
 export async function deleteBenchmark(date: BenchmarkDate): Promise<void> {
   const res = await fetch(`${WRITE_ROUTE}/${encodeURIComponent(date)}`, {
     method: 'DELETE',
@@ -46,6 +71,7 @@ export async function deleteBenchmark(date: BenchmarkDate): Promise<void> {
   if (!res.ok) throw await writeError(res, 'delete');
 }
 
+/** Builds a descriptive Error for a failed write, distinguishing prod-404 from real failures. */
 async function writeError(res: Response, action: string): Promise<Error> {
   if (res.status === 404) {
     return new Error(
