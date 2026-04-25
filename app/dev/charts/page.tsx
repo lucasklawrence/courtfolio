@@ -96,6 +96,7 @@ export default function ChartsDemoPage(): JSX.Element {
             xLabel="Date"
             yLabel="Vertical (in)"
             yTickFormat={(v) => `${v}`}
+            ariaLabel="Vertical jump in inches by month, January through April 2026"
           />
         </Section>
 
@@ -109,6 +110,7 @@ export default function ChartsDemoPage(): JSX.Element {
             xLabel="Zone"
             yLabel="Minutes"
             yTickFormat={(v) => `${v}`}
+            ariaLabel="Minutes spent in each heart-rate zone for a single session"
           />
         </Section>
 
@@ -123,6 +125,19 @@ export default function ChartsDemoPage(): JSX.Element {
             yLabel="Pace (min/mi)"
             xTickFormat={(v) => `${v}`}
             yTickFormat={(v) => v.toFixed(1)}
+            ariaLabel="Pace in minutes per mile plotted against heart rate during a stair session"
+          />
+        </Section>
+
+        <Section title="Empty state — RoughLine with no data">
+          <RoughLine
+            data={[]}
+            x={(d: { date: Date; inches: number }) => d.date}
+            y={(d) => d.inches}
+            width={720}
+            height={140}
+            ariaLabel="Vertical jump trend (no data yet)"
+            emptyMessage="No benchmark data yet"
           />
         </Section>
       </div>

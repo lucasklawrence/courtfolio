@@ -1,6 +1,6 @@
 import type { JSX } from 'react'
 import { scaleBand, scaleLinear } from 'd3-scale'
-import { Axis, type AxisTick } from './axes'
+import { Axis, EmptyChart, type AxisTick } from './axes'
 import { chartPalette } from './palette'
 import { drawableToPaths, getGenerator } from './rough-svg'
 import { resolveMargin, type ChartCommonProps } from './types'
@@ -40,10 +40,27 @@ export function RoughBar<T>({
   yTickCount = 5,
   yTickFormat,
   className,
+  ariaLabel,
+  ariaLabelledBy,
+  emptyMessage,
 }: RoughBarProps<T>): JSX.Element {
   const m = resolveMargin(margin)
   const innerW = width - m.left - m.right
   const innerH = height - m.top - m.bottom
+
+  if (data.length === 0) {
+    return (
+      <EmptyChart
+        width={width}
+        height={height}
+        message={emptyMessage}
+        fontFamily={fontFamily}
+        className={className}
+        ariaLabel={ariaLabel}
+        ariaLabelledBy={ariaLabelledBy}
+      />
+    )
+  }
 
   const categories = data.map(x)
   const xScale = scaleBand<string>().domain(categories).range([0, innerW]).padding(padding)
@@ -64,7 +81,15 @@ export function RoughBar<T>({
   }))
 
   return (
-    <svg width={width} height={height} className={className} role="img">
+    <svg
+      width={width}
+      height={height}
+      className={className}
+      role="img"
+      aria-label={ariaLabelledBy ? undefined : ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+    >
+      {ariaLabel && !ariaLabelledBy && <title>{ariaLabel}</title>}
       <g transform={`translate(${m.left},${m.top})`}>
         <Axis
           orientation="bottom"

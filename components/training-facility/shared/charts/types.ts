@@ -25,6 +25,12 @@ export interface ChartCommonProps {
   /** Stroke for axis spines, ticks, and tick labels. */
   axisColor?: string
   className?: string
+  /** Accessible name for the chart. Without this, role="img" announces as an unnamed graphic. */
+  ariaLabel?: string
+  /** ID of an existing on-screen element that labels the chart. Use instead of ariaLabel when the title is already in the DOM. */
+  ariaLabelledBy?: string
+  /** Text rendered when data is empty (length === 0). Defaults to "No data". */
+  emptyMessage?: string
 }
 
 export function resolveMargin(m: Partial<ChartMargin> | undefined): ChartMargin {

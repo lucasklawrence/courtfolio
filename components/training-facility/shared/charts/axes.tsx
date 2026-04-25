@@ -1,6 +1,57 @@
 import type { JSX } from 'react'
 import { drawableToPaths, getGenerator } from './rough-svg'
 
+export interface EmptyChartProps {
+  width: number
+  height: number
+  message?: string
+  fontFamily?: string
+  color?: string
+  className?: string
+  ariaLabel?: string
+  ariaLabelledBy?: string
+}
+
+/**
+ * Accessible "no data" placeholder rendered at the chart's footprint.
+ * Used by the primitives when `data.length === 0` so callers don't have to
+ * re-implement the empty branch — and so screen readers still get a label.
+ */
+export function EmptyChart({
+  width,
+  height,
+  message = 'No data',
+  fontFamily = 'inherit',
+  color = '#737373',
+  className,
+  ariaLabel,
+  ariaLabelledBy,
+}: EmptyChartProps): JSX.Element {
+  return (
+    <svg
+      width={width}
+      height={height}
+      className={className}
+      role="img"
+      aria-label={ariaLabelledBy ? undefined : (ariaLabel ?? message)}
+      aria-labelledby={ariaLabelledBy}
+    >
+      {!ariaLabelledBy && <title>{ariaLabel ?? message}</title>}
+      <text
+        x={width / 2}
+        y={height / 2}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontFamily={fontFamily}
+        fontSize={14}
+        fill={color}
+      >
+        {message}
+      </text>
+    </svg>
+  )
+}
+
 export interface AxisTick {
   value: string
   /** Distance along the axis from `start` (px). */
