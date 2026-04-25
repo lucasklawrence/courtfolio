@@ -18,3 +18,7 @@ What to write:
 When to skip:
 - Local variables, internal helpers whose name already says it all, and one-line inferred types. Don't restate what TypeScript already conveys (`/** A string. */` on a `string` field is noise).
 - Don't reference the current task or fix in a doc comment — that belongs in the commit message.
+
+## Throwaway screenshots
+
+Write any temporary screenshots (audit runs, verification captures, mobile spot-checks, anything you take just to look at) to the `screenshots/` directory at the repo root. Its contents are gitignored. Don't drop screenshots at the repo root — they'll show up as untracked clutter in `git status` and complicate every future stage.
