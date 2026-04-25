@@ -15,7 +15,7 @@ export interface Benchmark {
   vertical_in?: number;
   sprint_10y_s?: number;
   notes?: string;
-  isComplete?: boolean;
+  is_complete?: boolean;
 }
 
 export type BenchmarkUpdate = Partial<Omit<Benchmark, 'date'>>;
