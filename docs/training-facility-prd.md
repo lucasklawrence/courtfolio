@@ -85,7 +85,7 @@ Retest **monthly**. Same conditions each time: same warmup, same surface, same s
 
 ### Weekly placement (example)
 
-```
+```text
 Mon — Stairs (Z2)
 Tue — Movement Session A
 Wed — Run (Z2) or rest
@@ -103,7 +103,7 @@ Movement sessions go on days *not* stacked behind a Z4 stair session — fresh C
 
 Add a new top-level zone: **Training Facility**. Mirrors the architectural pattern of Locker Room (a parent space containing themed sub-areas/lockers).
 
-```
+```text
 courtfolio
 ├── Court (existing home)
 ├── Locker Room (existing)
@@ -145,7 +145,7 @@ Rationale:
 
 All data lives as static JSON in `public/data/`:
 
-```
+```text
 courtfolio/public/data/
 ├── cardio.json              # output of preprocess-health.py
 └── movement_benchmarks.json # written by Combine entry form (local-dev only)
@@ -231,6 +231,7 @@ The Combine scene is dominated by the *visualizations*, not by interactive equip
 ```json
 [
   {
+    "id": "bmk_2026-04-24_01",
     "date": "2026-04-24",
     "bodyweight_lbs": 240.5,
     "shuttle_5_10_5_s": 5.42,
@@ -241,7 +242,7 @@ The Combine scene is dominated by the *visualizations*, not by interactive equip
 ]
 ```
 
-All fields optional except `date` — supports partial entries (e.g., bodyweight-only weeks).
+All fields optional except `id` and `date` — supports partial entries (e.g., bodyweight-only weeks). `id` is the canonical write/update/delete key (date alone is brittle: retests, corrections, or import variance can produce two entries with the same date). Suggested format: `bmk_<YYYY-MM-DD>_<seq>`, generated client-side at log time.
 
 ### 7.7 Configurability hook
 
@@ -298,8 +299,8 @@ export async function getCardioData(): Promise<CardioData> {
 // lib/data/movement.ts
 export async function getMovementBenchmarks(): Promise<Benchmark[]> { ... }
 export async function logBenchmark(entry: Benchmark): Promise<void> { ... }
-export async function updateBenchmark(date: string, updates: Partial<Benchmark>): Promise<void> { ... }
-export async function deleteBenchmark(date: string): Promise<void> { ... }
+export async function updateBenchmark(id: string, updates: Partial<Benchmark>): Promise<void> { ... }
+export async function deleteBenchmark(id: string): Promise<void> { ... }
 ```
 
 **Rules of the road:**
