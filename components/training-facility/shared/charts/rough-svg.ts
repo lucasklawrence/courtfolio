@@ -27,3 +27,18 @@ export interface DrawablePath {
 export function drawableToPaths(drawable: Drawable): DrawablePath[] {
   return getGenerator().toPaths(drawable)
 }
+
+/**
+ * Min/max in one pass without `Math.min(...arr)`'s call-stack ceiling
+ * (~100k arg limit). NaN values are skipped — comparisons against NaN
+ * always return false, so they never replace min or max.
+ */
+export function extent(values: readonly number[]): [number, number] {
+  let min = Infinity
+  let max = -Infinity
+  for (const v of values) {
+    if (v < min) min = v
+    if (v > max) max = v
+  }
+  return [min, max]
+}

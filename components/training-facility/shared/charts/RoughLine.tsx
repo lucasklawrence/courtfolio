@@ -2,7 +2,7 @@ import type { JSX } from 'react'
 import { scaleLinear, scaleTime, type ScaleLinear, type ScaleTime } from 'd3-scale'
 import { Axis, EmptyChart, type AxisTick } from './axes'
 import { chartPalette } from './palette'
-import { drawableToPaths, getGenerator } from './rough-svg'
+import { drawableToPaths, extent, getGenerator } from './rough-svg'
 import { resolveMargin, type ChartCommonProps } from './types'
 
 export interface RoughLineProps<T> extends ChartCommonProps {
@@ -73,47 +73,49 @@ export function RoughLine<T>({
 
   const xValues = data.map(x)
   const yValues = data.map(y)
-  const usingTime = xValues.length > 0 && isDateValue(xValues[0])
+  const usingTime = isDateValue(xValues[0])
 
-  const xScale: ScaleTime<number, number> | ScaleLinear<number, number> = usingTime
-    ? scaleTime()
-        .domain([
-          new Date(Math.min(...(xValues as Date[]).map((d) => d.getTime()))),
-          new Date(Math.max(...(xValues as Date[]).map((d) => d.getTime()))),
-        ])
-        .range([0, innerW])
-    : scaleLinear()
-        .domain([Math.min(...(xValues as number[])), Math.max(...(xValues as number[]))])
-        .range([0, innerW])
+  // Each branch keeps its scale fully typed, so the rest of the function
+  // can call `scaleX(value)` without union casts. The two branches are
+  // structurally identical; the only difference is the input domain type.
+  let scaleX: (value: number | Date) => number
+  let xTicks: AxisTick[]
+  if (usingTime) {
+    const dateValues = xValues as Date[]
+    const [tMin, tMax] = extent(dateValues.map((d) => d.getTime()))
+    const timeScale: ScaleTime<number, number> = scaleTime()
+      .domain([new Date(tMin), new Date(tMax)])
+      .range([0, innerW])
+    scaleX = (v) => timeScale(v as Date)
+    xTicks = timeScale.ticks(xTickCount).map((tick) => ({
+      value: xTickFormat
+        ? xTickFormat(tick)
+        : tick.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+      offset: timeScale(tick),
+    }))
+  } else {
+    const [xMin, xMax] = extent(xValues as number[])
+    const linearScale: ScaleLinear<number, number> = scaleLinear()
+      .domain([xMin, xMax])
+      .range([0, innerW])
+    scaleX = (v) => linearScale(v as number)
+    xTicks = linearScale.ticks(xTickCount).map((tick) => ({
+      value: xTickFormat ? xTickFormat(tick) : String(tick),
+      offset: linearScale(tick),
+    }))
+  }
 
-  const yMin = Math.min(...yValues)
-  const yMax = Math.max(...yValues)
+  const [yMin, yMax] = extent(yValues)
   const yPad = (yMax - yMin) * 0.1 || 1
   const yScale = scaleLinear()
     .domain([yMin - yPad, yMax + yPad])
     .nice()
     .range([innerH, 0])
 
-  const points: [number, number][] = data.map((d) => [
-    xScale(x(d) as Date & number),
-    yScale(y(d)),
-  ])
+  const points: [number, number][] = data.map((d) => [scaleX(x(d)), yScale(y(d))])
 
   const gen = getGenerator()
   const linePath = gen.linearPath(points, { stroke, strokeWidth, roughness, seed })
-
-  const xTicks: AxisTick[] = (
-    usingTime
-      ? (xScale as ScaleTime<number, number>).ticks(xTickCount)
-      : (xScale as ScaleLinear<number, number>).ticks(xTickCount)
-  ).map((tick) => ({
-    value: xTickFormat
-      ? xTickFormat(tick)
-      : usingTime
-        ? (tick as Date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
-        : String(tick),
-    offset: xScale(tick as Date & number),
-  }))
 
   const yTicks: AxisTick[] = yScale.ticks(yTickCount).map((tick) => ({
     value: yTickFormat ? yTickFormat(tick) : String(tick),

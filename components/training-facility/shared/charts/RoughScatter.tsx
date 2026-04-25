@@ -2,7 +2,7 @@ import type { JSX } from 'react'
 import { scaleLinear } from 'd3-scale'
 import { Axis, EmptyChart, type AxisTick } from './axes'
 import { chartPalette } from './palette'
-import { drawableToPaths, getGenerator } from './rough-svg'
+import { drawableToPaths, extent, getGenerator } from './rough-svg'
 import { resolveMargin, type ChartCommonProps } from './types'
 
 export interface RoughScatterProps<T> extends ChartCommonProps {
@@ -70,16 +70,14 @@ export function RoughScatter<T>({
   const xValues = data.map(x)
   const yValues = data.map(y)
 
-  const xMin = Math.min(...xValues)
-  const xMax = Math.max(...xValues)
+  const [xMin, xMax] = extent(xValues)
   const xPad = (xMax - xMin) * 0.1 || 1
   const xScale = scaleLinear()
     .domain([xMin - xPad, xMax + xPad])
     .nice()
     .range([0, innerW])
 
-  const yMin = Math.min(...yValues)
-  const yMax = Math.max(...yValues)
+  const [yMin, yMax] = extent(yValues)
   const yPad = (yMax - yMin) * 0.1 || 1
   const yScale = scaleLinear()
     .domain([yMin - yPad, yMax + yPad])

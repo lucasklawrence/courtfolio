@@ -30,7 +30,9 @@ const hrZoneData = [
   { zone: 'Z2', minutes: 38 },
   { zone: 'Z3', minutes: 22 },
   { zone: 'Z4', minutes: 14 },
-  { zone: 'Z5', minutes: 6 },
+  // Zero on purpose — exercises the "render a 1px baseline rather than
+  // disappearing the category" path in RoughBar.
+  { zone: 'Z5', minutes: 0 },
 ]
 
 const paceVsHrData = [

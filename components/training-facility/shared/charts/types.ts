@@ -5,11 +5,15 @@ export interface ChartMargin {
   left: number
 }
 
+// bottom is sized to fit a tick row (~12px) + the optional axis label,
+// which renders at position + 32 with a 13px font (~6px below baseline).
+// 52 keeps the label inside the SVG box without callers having to override
+// `margin` every time they pass `xLabel`.
 export const defaultMargin: ChartMargin = {
   top: 16,
   right: 24,
-  bottom: 36,
-  left: 44,
+  bottom: 52,
+  left: 56,
 }
 
 export interface ChartCommonProps {

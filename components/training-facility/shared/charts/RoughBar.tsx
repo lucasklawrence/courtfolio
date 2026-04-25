@@ -119,10 +119,12 @@ export function RoughBar<T>({
           const cat = x(d)
           const value = y(d)
           const bx = xScale(cat) ?? 0
-          const by = yScale(value)
           const bw = xScale.bandwidth()
-          const bh = innerH - by
-          if (bh <= 0) return null
+          // Render zero/near-zero values as a 1px baseline rather than
+          // dropping them — keeps every category visible on the axis so
+          // the chart doesn't silently lie about coverage.
+          const bh = Math.max(innerH - yScale(value), 1)
+          const by = innerH - bh
           const rect = gen.rectangle(bx, by, bw, bh, {
             fill,
             fillStyle,
