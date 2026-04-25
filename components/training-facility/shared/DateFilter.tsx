@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import React from 'react'
 
 /**
@@ -114,7 +114,14 @@ const EARLIEST_DEFAULT = new Date(2000, 0, 1)
  * `DateRange` via `onChange`.
  *
  * Editing either date input deselects the preset (custom mode). Clicking a
- * preset overwrites both date inputs.
+ * preset overwrites both date inputs. While a preset is active the range
+ * re-anchors to the current time when the page becomes visible again, so
+ * a tab left open overnight doesn't display stale "today" boundaries.
+ *
+ * Note for consumers: if `earliestDate` is constructed inline
+ * (`new Date(...)` in JSX), each render produces a new reference and the
+ * preset-click callback is recreated. Memoize the value (`useMemo`,
+ * module-level constant, or a stable selector) when that matters.
  *
  * @component
  * @example
@@ -171,6 +178,62 @@ export const DateFilter: React.FC<DateFilterProps> = ({
     [range, onChange],
   )
 
+  // Roving tabindex + arrow / Home / End nav for the radiogroup.
+  // Mirrors the WAI-ARIA Authoring Practices for the radio pattern:
+  // Tab moves to the group, arrow keys move within.
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+      let nextIndex = -1
+      switch (e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+          nextIndex = (index + 1) % PRESETS.length
+          break
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          nextIndex = (index - 1 + PRESETS.length) % PRESETS.length
+          break
+        case 'Home':
+          nextIndex = 0
+          break
+        case 'End':
+          nextIndex = PRESETS.length - 1
+          break
+        default:
+          return
+      }
+      e.preventDefault()
+      selectPreset(PRESETS[nextIndex].id)
+      const sibling = e.currentTarget.parentElement?.children[nextIndex] as
+        | HTMLButtonElement
+        | undefined
+      sibling?.focus()
+    },
+    [selectPreset],
+  )
+
+  // Re-anchor an active preset when the tab becomes visible again, so a
+  // session left open overnight doesn't keep yesterday's "today" anchor.
+  // Refs keep the listener stable; the prop deps would otherwise cause
+  // add/remove churn on every parent rerender if `onChange` isn't memoized.
+  const earliestDateRef = useRef(earliestDate)
+  const onChangeRef = useRef(onChange)
+  useEffect(() => {
+    earliestDateRef.current = earliestDate
+    onChangeRef.current = onChange
+  })
+  useEffect(() => {
+    if (activePreset === null) return
+    const refreshIfVisible = () => {
+      if (document.visibilityState !== 'visible') return
+      const next = rangeForPreset(activePreset, earliestDateRef.current)
+      setRange(next)
+      onChangeRef.current(next)
+    }
+    document.addEventListener('visibilitychange', refreshIfVisible)
+    return () => document.removeEventListener('visibilitychange', refreshIfVisible)
+  }, [activePreset])
+
   return (
     <div
       className={`flex flex-wrap items-center gap-3 ${className}`}
@@ -179,18 +242,26 @@ export const DateFilter: React.FC<DateFilterProps> = ({
     >
       <div
         className="inline-flex gap-1 rounded-full border border-orange-300/30 bg-black/40 p-1 backdrop-blur-sm"
-        role="tablist"
+        role="radiogroup"
         aria-label="Preset ranges"
       >
-        {PRESETS.map((p) => {
+        {PRESETS.map((p, i) => {
           const active = activePreset === p.id
+          // Roving tabindex: the active radio (or the first, when in
+          // custom mode and nothing is checked) is the only Tab stop.
+          const tabbable =
+            activePreset === null
+              ? i === 0
+              : active
           return (
             <button
               key={p.id}
               type="button"
-              role="tab"
-              aria-selected={active}
+              role="radio"
+              aria-checked={active}
+              tabIndex={tabbable ? 0 : -1}
               onClick={() => selectPreset(p.id)}
+              onKeyDown={(e) => handleKeyDown(e, i)}
               className={`cursor-pointer rounded-full px-3 py-1 font-mono text-xs uppercase tracking-wider transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 ${
                 active ? 'bg-orange-600 text-white' : 'text-neutral-300 hover:bg-neutral-800/70'
               }`}
