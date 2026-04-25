@@ -119,7 +119,7 @@ export const ProjectGallery = () => {
   const rightColumn = projects.slice(mid)
 
   return (
-    <div className="relative min-h-screen bg-[url('/textures/binder-leather.jpg')] bg-cover bg-center px-2 sm:px-6 py-12 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]">
+    <div className="relative min-h-screen bg-[url('/textures/binder-leather.png')] bg-cover bg-center px-2 sm:px-6 py-12 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]">
       <div className="mx-auto w-full max-w-[1600px]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 sm:px-4">
           {/* Left Column */}

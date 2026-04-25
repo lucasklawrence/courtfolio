@@ -79,7 +79,7 @@ Both moods coexist on the same page — the court is black, the buttons hovering
 
 ### Backgrounds & textures
 - Court SVG (`assets/court.svg`) — used full-bleed at 10% opacity behind hero, and as the actual interactive playable surface.
-- Leather binder texture — `bg-[url('/textures/binder-leather.png')]` for the Project Binder page (texture file not imported; substitute with a wood-grain placeholder if needed).
+- Leather binder texture — `bg-[url('/textures/binder-leather.png')]` for the Project Binder page.
 - Vertical 3-stop gradient (`from-black via-neutral-900 to-black`) for full-page night surfaces.
 - Radial orange blur ("spotlight") — `bg-orange-500 blur-3xl opacity-30 rounded-full` centered.
 - No glassmorphism on arena pages. Locker zones do use a `backdrop-filter: blur(4px)` on `rgba(38,20,4,0.7)` for the modern ZoneAbout/About-Me chip.
@@ -152,7 +152,6 @@ Court Vision has a distinct, **hand-rolled SVG icon vocabulary** — no Lucide, 
 ### Substitutions flagged
 - **Geist & Geist Mono** — original site uses `next/font/google`. Loaded here from Google Fonts CDN — visually identical, no flag needed.
 - **Patrick Hand** — loaded from Google Fonts as in the source.
-- **Binder leather texture** (`/textures/binder-leather.png`) — not imported; if needed, substitute with a CSS wood-grain or solid `--hardwood-rich`.
 - **Lucas sprite PNGs** (`LucasIdle4/5`, `LucasDribbling2/3`) — not imported (1.5MB each). Reference by description; ask user before re-importing.
 
 ---
