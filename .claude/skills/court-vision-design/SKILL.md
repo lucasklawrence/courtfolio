@@ -24,5 +24,4 @@ If the user invokes this skill without any other guidance, ask them what they wa
 - `README.md` — full design context, content fundamentals, visual foundations, iconography
 - `colors_and_type.css` — design tokens (CSS variables) + ready-to-use semantic classes
 - `assets/` — court SVG, brand logos, hand-drawn icon library
-- `ui_kits/courtfolio/` — JSX recreations of the live site's core views
 - `preview/` — small specimen cards demonstrating each design-system concept

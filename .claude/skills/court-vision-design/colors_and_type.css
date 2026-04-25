@@ -8,7 +8,7 @@
    ========================================================================== */
 
 /* ---- Webfonts ----------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Patrick+Hand&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Patrick+Hand&display=swap';
 
 :root {
   /* ====================================================================
@@ -145,7 +145,7 @@
   --font-mono:        'Geist Mono', ui-monospace, 'SFMono-Regular',
                       'Menlo', 'Monaco', monospace;
   --font-handwriting: 'Patrick Hand', 'Caveat', cursive;
-  --font-serif:       Georgia, 'Times New Roman', serif;   /* "View Resume (PDF)" */
+  --font-serif:       georgia, 'Times New Roman', serif;   /* "View Resume (PDF)" */
 
   /* Weights */
   --w-light:    300;

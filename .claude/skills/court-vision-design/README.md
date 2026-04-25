@@ -28,7 +28,6 @@ Nothing from the repo is pre-loaded into this project beyond a curated set of ic
 | `assets/`            | Logos, court SVG, icon library                              |
 | `assets/icons/`      | Hand-built SVG icons (basketball, trophy, ps5, vinyl, etc.) |
 | `preview/`           | Design-system review cards (registered as assets)           |
-| `ui_kits/courtfolio/`| Pixel-faithful recreation of the live site, JSX components  |
 
 ---
 

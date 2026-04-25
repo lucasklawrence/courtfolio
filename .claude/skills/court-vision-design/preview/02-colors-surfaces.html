@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Color — Semantic Surfaces</title>
 <link rel="stylesheet" href="../colors_and_type.css">
 <style>
@@ -10,13 +11,13 @@
   .surface { border-radius: 12px; padding: 18px; height: 110px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); }
   .label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em; }
   .desc { font-family: var(--font-sans); font-size: 13px; }
-  .arena { background: linear-gradient(to bottom, #000 0%, #171717 50%, #000 100%); color: #fff; position: relative; overflow: hidden; }
-  .arena::after { content:""; position:absolute; inset:0; background: radial-gradient(circle at 50% 50%, rgba(249,115,22,0.30) 0%, rgba(0,0,0,0) 60%); }
-  .locker { background: #42210b; color: #fde047; }
-  .paper { background: #f5f1e6; color: #0a0a0a; border: 1px solid #d6cdb6; }
-  .hardwood { background: #6b3a1a; color: #fff; }
-  .arena .label { color: #fdba74; }
-  .locker .label { color: #facc15; }
+  .arena { background: var(--bg-arena-grad); color: var(--fg-1); position: relative; overflow: hidden; }
+  .arena::after { content:""; position:absolute; inset:0; background: var(--bg-arena-radial); }
+  .locker { background: var(--hardwood-rich); color: var(--banner-yellow); }
+  .paper { background: var(--paper-cream); color: var(--ink-1); border: 1px solid var(--border-paper); }
+  .hardwood { background: var(--bg-hardwood); color: var(--fg-1); }
+  .arena .label { color: var(--orange-soft); }
+  .locker .label { color: var(--banner-gold); }
 </style>
 </head>
 <body>
