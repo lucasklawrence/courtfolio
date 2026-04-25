@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lineup Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 22px; background: #fafafa; font-family: var(--font-sans); display:flex; gap: 16px; }
+  .card { background: #fff; border: 1px solid #d4d4d4; border-radius: 16px; padding: 16px 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: relative; width: 280px; }
+  .jersey { position: absolute; top: 12px; right: 18px; font-size: 22px; font-weight: 800; color: #f97316; font-variant-numeric: tabular-nums; }
+  .name { font-size: 20px; font-weight: 700; color: #0a0a0a; margin: 0 0 2px; }
+  .position { font-style: italic; font-size: 14px; color: #737373; margin: 0; }
+  ul { margin: 10px 0 14px; padding-left: 20px; }
+  li { font-size: 13px; color: #404040; margin: 2px 0; }
+  .award { display: inline-block; background: #000; color: #fff; font-size: 12px; padding: 4px 12px; border-radius: 4px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="jersey">#7</div>
+    <h3 class="name">Clean Code</h3>
+    <p class="position">Point Guard</p>
+    <ul><li>Readable and expressive</li><li>Minimizes long-term bugs</li><li>Eases collaboration</li></ul>
+    <span class="award">MVP</span>
+  </div>
+  <div class="card">
+    <div class="jersey">#11</div>
+    <h3 class="name">Scalability</h3>
+    <p class="position">Small Forward</p>
+    <ul><li>Built to grow</li><li>Performance conscious</li><li>Low tech debt</li></ul>
+    <span class="award">Clutch Performer</span>
+  </div>
+</body>
+</html>
