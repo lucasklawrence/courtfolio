@@ -4,10 +4,12 @@ import { useCallback, useState } from 'react'
 import React from 'react'
 
 /**
- * Inclusive date range emitted by `DateFilter`. `start` and `end` are
- * concrete `Date` objects in the consumer's local timezone (the date
- * input parses as midnight local). The range is always normalized so
- * `start <= end`.
+ * Inclusive date range emitted by `DateFilter`. `start` is normalized to
+ * local start-of-day (00:00:00.000); `end` to local end-of-day
+ * (23:59:59.999). With these bounds, a timestamp comparison
+ * `entry >= range.start && entry <= range.end` cleanly includes both the
+ * start and end days regardless of the time portion of `entry`. The
+ * invariant `start <= end` is always maintained.
  */
 export type DateRange = { start: Date; end: Date }
 
@@ -32,17 +34,47 @@ type DateFilterProps = {
   className?: string
 }
 
+/** Local start-of-day (00:00:00.000) for `d`. */
+function startOfDay(d: Date): Date {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0)
+}
+
+/** Local end-of-day (23:59:59.999) for `d`. */
+function endOfDay(d: Date): Date {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59, 999)
+}
+
 /**
- * Compute a `DateRange` for one of the preset buttons. `today` is captured
- * once at call time so multiple presets stay anchored to the same instant.
+ * Subtract `months` from `d`, clamping the day to the last valid day of
+ * the target month when the source day doesn't exist there. Avoids JS's
+ * silent rollover (e.g., March 31 → setMonth(-1) producing March 3
+ * instead of February 28/29).
+ */
+function subtractMonths(d: Date, months: number): Date {
+  const targetMonthIndex = d.getMonth() - months
+  const result = new Date(d.getFullYear(), targetMonthIndex, d.getDate())
+  // The Date constructor normalizes negative/overflowing month indices,
+  // but if the target month is shorter than the source day it rolls
+  // forward (e.g., Feb 31 → Mar 3). Detect that and snap back to the
+  // last day of the target month.
+  const expectedMonth = ((targetMonthIndex % 12) + 12) % 12
+  if (result.getMonth() !== expectedMonth) {
+    result.setDate(0)
+  }
+  return result
+}
+
+/**
+ * Compute a `DateRange` for one of the preset buttons. Bounds are
+ * day-normalized (start: 00:00, end: 23:59:59.999) so the resulting
+ * range is independent of the click time.
  */
 function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
-  const end = new Date()
-  if (preset === 'ALL') return { start: earliest, end }
+  const today = new Date()
+  const end = endOfDay(today)
+  if (preset === 'ALL') return { start: startOfDay(earliest), end }
   const months = PRESETS.find((p) => p.id === preset)!.months!
-  const start = new Date()
-  start.setMonth(start.getMonth() - months)
-  return { start, end }
+  return { start: startOfDay(subtractMonths(today, months)), end }
 }
 
 /** Format a `Date` as `YYYY-MM-DD` for `<input type="date">`. */
@@ -53,9 +85,15 @@ function toInputValue(d: Date): string {
   return `${y}-${m}-${day}`
 }
 
-/** Parse a `YYYY-MM-DD` string from `<input type="date">` as local midnight. */
-function parseInputValue(s: string): Date {
-  return new Date(`${s}T00:00:00`)
+/**
+ * Parse a `YYYY-MM-DD` string from `<input type="date">` as local
+ * midnight. Returns `null` for empty input or unparseable values so the
+ * caller can no-op rather than storing `Invalid Date`.
+ */
+function parseInputValue(s: string): Date | null {
+  if (!s) return null
+  const d = new Date(`${s}T00:00:00`)
+  return Number.isNaN(d.getTime()) ? null : d
 }
 
 /**
@@ -111,12 +149,21 @@ export const DateFilter: React.FC<DateFilterProps> = ({
 
   const updateBound = useCallback(
     (which: 'start' | 'end', date: Date) => {
-      // Clamp so start <= end. If a bound is dragged past the other, both
-      // collapse to the new value rather than producing an inverted range.
-      const next: DateRange =
-        which === 'start'
-          ? { start: date, end: date > range.end ? date : range.end }
-          : { start: date < range.start ? date : range.start, end: date }
+      // Normalize the new bound to start/end of day so timestamp
+      // comparisons against arbitrary entries stay consistent regardless
+      // of whether the value came from a preset or a custom input.
+      let nextStart = range.start
+      let nextEnd = range.end
+      if (which === 'start') {
+        nextStart = startOfDay(date)
+        // If start moved past end, collapse end to the same day.
+        if (nextStart > nextEnd) nextEnd = endOfDay(date)
+      } else {
+        nextEnd = endOfDay(date)
+        // If end moved before start, collapse start to the same day.
+        if (nextEnd < nextStart) nextStart = startOfDay(date)
+      }
+      const next: DateRange = { start: nextStart, end: nextEnd }
       setActivePreset(null)
       setRange(next)
       onChange(next)
@@ -158,7 +205,10 @@ export const DateFilter: React.FC<DateFilterProps> = ({
           type="date"
           value={toInputValue(range.start)}
           max={toInputValue(range.end)}
-          onChange={(e) => updateBound('start', parseInputValue(e.target.value))}
+          onChange={(e) => {
+            const parsed = parseInputValue(e.target.value)
+            if (parsed) updateBound('start', parsed)
+          }}
           aria-label="Start date"
           className="cursor-pointer rounded-md border border-orange-300/30 bg-black/40 px-2 py-1 font-mono text-xs text-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
         />
@@ -172,7 +222,10 @@ export const DateFilter: React.FC<DateFilterProps> = ({
           type="date"
           value={toInputValue(range.end)}
           min={toInputValue(range.start)}
-          onChange={(e) => updateBound('end', parseInputValue(e.target.value))}
+          onChange={(e) => {
+            const parsed = parseInputValue(e.target.value)
+            if (parsed) updateBound('end', parsed)
+          }}
           aria-label="End date"
           className="cursor-pointer rounded-md border border-orange-300/30 bg-black/40 px-2 py-1 font-mono text-xs text-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
         />
