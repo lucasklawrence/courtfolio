@@ -1,0 +1,298 @@
+/* ==========================================================================
+   Court Vision — Colors & Type
+   ==========================================================================
+   Lucas Lawrence's basketball-themed personal site (courtfolio).
+   Two coexisting moods:
+   - "Arena" — black/charcoal stage with orange spotlight + yellow banners
+   - "Hardwood" — warm wood-grain leather binder, cream paper, ink black
+   ========================================================================== */
+
+/* ---- Webfonts ----------------------------------------------------------- */
+@import 'https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Patrick+Hand&display=swap';
+
+:root {
+  /* ====================================================================
+     COLOR — Core palette
+     ==================================================================== */
+
+  /* Court black — the dominant background of the arena pages */
+  --court-black:      #000000;
+  --court-ink:        #0a0a0a;   /* near-black; body bg in dark mode  */
+  --court-charcoal:   #171717;   /* neutral-900 — foreground in light mode */
+  --court-graphite:   #262626;   /* neutral-800                       */
+  --court-slate:      #404040;   /* neutral-700                       */
+
+  /* Hardwood brown — locker placards, zone-entry buttons, leather binder */
+  --hardwood-deep:    #261404;   /* deepest wood-grain                */
+  --hardwood-rich:    #42210b;   /* zone entry button base            */
+  --hardwood-mid:     #5a3015;   /* zone entry button hover           */
+  --hardwood-warm:    #7a4520;   /* warmer accent                     */
+
+  /* Spotlight orange — the brand accent */
+  --orange-deep:      #9a3412;   /* orange-800/900 — wood-zone bg blends */
+  --orange-burnt:     #c2410c;   /* orange-700 — used for "Bars" call-to */
+  --orange-primary:   #ea580c;   /* orange-600 — primary action button   */
+  --orange-spotlight: #f97316;   /* orange-500 — spotlight hover, link   */
+  --orange-glow:      #fb923c;   /* orange-400                            */
+  --orange-soft:      #fdba74;   /* orange-300 — typewriter, hover txt  */
+  --orange-tint:      #ffedd5;   /* orange-100 — "Scouting" hover bg    */
+
+  /* Banner yellow — championship banners, locker placards */
+  --banner-yellow:    #fde047;   /* yellow-300 banner cloth             */
+  --banner-gold:      #facc15;   /* yellow-400 — "team gold" border     */
+  --banner-deep:      #ca8a04;   /* yellow-600 — pressed banner shade   */
+
+  /* Court neutrals (for paper/cream surfaces) */
+  --paper-cream:      #f5f1e6;   /* scouting-report page paper          */
+  --paper-bone:       #ece4d0;   /* binder ledger paper                 */
+  --court-line:       #ffffff;   /* court line paint                    */
+
+  /* Semantic court accents */
+  --signal-green:     #22c55e;   /* "deep range" shot indicator         */
+  --signal-amber:     #eab308;   /* "midrange" shot indicator           */
+  --signal-blue:      #2563eb;   /* "crafty finishes" / link blue       */
+  --signal-red:       #dc2626;   /* foul / error                         */
+
+  /* ====================================================================
+     COLOR — Semantic / surfaces
+     ==================================================================== */
+
+  /* Default mode = Arena (court at night) */
+  --bg-arena:           #000000;
+  --bg-arena-soft:      #171717;       /* via-neutral-900 in gradients */
+  --bg-arena-grad:      linear-gradient(
+                          to bottom,
+                          #000 0%,
+                          #171717 50%,
+                          #000 100%
+                        );
+  --bg-arena-radial:    radial-gradient(
+                          circle at 50% 50%,
+                          rgba(249, 115, 22, 0.30) 0%,
+                          rgba(0, 0, 0, 0) 60%
+                        );
+
+  /* Locker / wood-paneled surface */
+  --bg-locker:          var(--hardwood-rich);
+  --bg-locker-hover:    var(--hardwood-mid);
+  --bg-zone-translucent: rgba(38, 20, 4, 0.7);   /* used by Modern zones */
+
+  /* Hardwood floor (for binder pages) */
+  --bg-hardwood:        #6b3a1a;
+  --bg-paper:           var(--paper-cream);
+
+  /* Foreground tokens */
+  --fg-1:               #ffffff;          /* primary on dark            */
+  --fg-2:               rgba(255,255,255,0.85);
+  --fg-3:               #d4d4d4;          /* neutral-300 muted on dark  */
+  --fg-4:               #737373;          /* neutral-500                */
+  --ink-1:              #0a0a0a;          /* primary on light           */
+  --ink-2:              #404040;          /* secondary on light         */
+  --ink-3:              #737373;
+
+  /* Accents (semantic) */
+  --accent:             var(--orange-primary);
+  --accent-hover:       var(--orange-spotlight);
+  --accent-soft:        var(--orange-soft);
+  --accent-on-dark:     var(--orange-soft);
+
+  /* Borders */
+  --border-soft:        rgba(255, 165, 0, 0.30);   /* orange-tinted    */
+  --border-banner:      var(--banner-gold);
+  --border-paper:       #d6cdb6;
+  --border-neutral:     rgba(255,255,255,0.10);
+
+  /* Shadows — there is no real elevation system; cards are flat with
+     warm under-shadow. shadow-md is used most often. */
+  --shadow-sm:   0 1px 2px 0 rgba(0,0,0,0.05);
+  --shadow-md:   0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  --shadow-lg:   0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --shadow-xl:   0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+  --shadow-banner: 0 12px 24px -8px rgba(0,0,0,0.55);   /* hanging banners */
+  --shadow-spot:   0 0 0 9999px rgba(0,0,0,0.55);       /* tutorial dim   */
+  --glow-orange:   0 0 32px rgba(249, 115, 22, 0.45);
+
+  /* Radii — there's a definite preference for full-pill on actions
+     and rounded-xl/2xl on cards. */
+  --radius-xs:    0.25rem;   /* rounded                         */
+  --radius-sm:    0.375rem;  /* rounded-md — inline tags        */
+  --radius-md:    0.5rem;    /* rounded-lg                      */
+  --radius-lg:    0.75rem;   /* rounded-xl — speech bubble, btn */
+  --radius-xl:    1rem;      /* rounded-2xl — lineup card       */
+  --radius-pill:  9999px;    /* rounded-full — primary buttons  */
+
+  /* Spacing scale matches Tailwind's default (multiples of 0.25rem).
+     The site's typical content gutter is 1rem mobile, 1.5rem desktop. */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+
+  --content-max: 1600px;   /* SectionContainer.tsx max-width */
+
+  /* ====================================================================
+     TYPE — Families
+     ==================================================================== */
+
+  --font-sans:        'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:        'Geist Mono', ui-monospace, 'SFMono-Regular',
+                      'Menlo', 'Monaco', monospace;
+  --font-handwriting: 'Patrick Hand', 'Caveat', cursive;
+  --font-serif:       georgia, 'Times New Roman', serif;   /* "View Resume (PDF)" */
+
+  /* Weights */
+  --w-light:    300;
+  --w-regular:  400;
+  --w-medium:   500;
+  --w-semibold: 600;
+  --w-bold:     700;
+  --w-extra:    800;
+
+  /* Sizes (matches the site's Tailwind tier usage) */
+  --t-2xs:  0.625rem;   /* 10px — uppercase eyebrows                */
+  --t-xs:   0.75rem;    /* 12px — banner labels                     */
+  --t-sm:   0.875rem;   /* 14px — body small                        */
+  --t-base: 1rem;       /* 16px — body                              */
+  --t-lg:   1.125rem;   /* 18px — emphasized body                   */
+  --t-xl:   1.25rem;    /* 20px — small heading                     */
+  --t-2xl:  1.5rem;     /* 24px — section subhead                   */
+  --t-3xl:  1.875rem;   /* 30px — h2                                 */
+  --t-4xl:  2.25rem;    /* 36px — page h1 (mobile)                  */
+  --t-5xl:  3rem;       /* 48px — hero (mobile)                     */
+  --t-6xl:  3.75rem;    /* 60px — hero (desktop)                    */
+}
+
+/* ==========================================================================
+   SEMANTIC ELEMENT STYLES
+   Keep these usable both as tag selectors and as utility classes.
+   ========================================================================== */
+
+.cv-h1, h1.cv {
+  font-family: var(--font-sans);
+  font-weight: var(--w-extra);
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--fg-1);
+}
+
+.cv-h2, h2.cv {
+  font-family: var(--font-sans);
+  font-weight: var(--w-bold);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  color: var(--fg-1);
+}
+
+.cv-h3, h3.cv {
+  font-family: var(--font-sans);
+  font-weight: var(--w-bold);
+  font-size: var(--t-xl);
+  line-height: 1.25;
+  color: var(--fg-1);
+}
+
+.cv-eyebrow {
+  font-family: var(--font-mono);
+  font-weight: var(--w-medium);
+  font-size: var(--t-2xs);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--orange-soft);
+}
+
+.cv-tagline {
+  font-family: var(--font-mono);
+  font-weight: var(--w-regular);
+  font-size: var(--t-lg);
+  color: var(--orange-soft);
+  letter-spacing: 0.01em;
+}
+
+.cv-body {
+  font-family: var(--font-sans);
+  font-weight: var(--w-regular);
+  font-size: var(--t-base);
+  line-height: 1.55;
+  color: var(--fg-2);
+}
+
+.cv-body-sm {
+  font-family: var(--font-sans);
+  font-size: var(--t-sm);
+  line-height: 1.5;
+  color: var(--fg-3);
+}
+
+.cv-mono {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.04em;
+}
+
+.cv-handwriting {
+  font-family: var(--font-handwriting);
+  font-size: var(--t-xl);
+  color: var(--ink-2);
+}
+
+.cv-stat-number {
+  font-family: var(--font-sans);
+  font-weight: var(--w-extra);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--orange-spotlight);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Code / inline tag */
+code.cv, .cv-code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: rgba(249, 115, 22, 0.12);
+  color: var(--orange-soft);
+  padding: 0.1em 0.45em;
+  border-radius: var(--radius-xs);
+}
+
+/* Linkstyle */
+.cv-link {
+  color: var(--orange-spotlight);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.18s ease;
+}
+.cv-link:hover { color: var(--orange-soft); }
+
+/* ==========================================================================
+   COMMON SURFACES
+   ========================================================================== */
+
+.cv-arena {
+  background: var(--bg-arena-grad);
+  color: var(--fg-1);
+}
+
+.cv-card {
+  background: var(--court-graphite);
+  border: 1px solid var(--border-neutral);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  color: var(--fg-1);
+  box-shadow: var(--shadow-md);
+}
+
+.cv-card-paper {
+  background: var(--paper-cream);
+  border: 1px solid var(--border-paper);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  color: var(--ink-1);
+  box-shadow: var(--shadow-md);
+}

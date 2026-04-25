@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shadow & Glow</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 22px; background: #000; font-family: var(--font-sans); color: #fff; }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .card { background: #262626; height: 80px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 11px; color: #d4d4d4; }
+  .lbl { font-family: var(--font-mono); font-size: 9px; color: #737373; text-transform: uppercase; letter-spacing: 0.16em; margin-top: 8px; text-align: center; }
+  .md { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5), 0 2px 4px -2px rgba(0,0,0,0.5); }
+  .lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.5); }
+  .banner { box-shadow: 0 12px 24px -8px rgba(0,0,0,0.85); }
+  .glow { box-shadow: 0 0 32px rgba(249,115,22,0.55); background:#42210b; color:#fde047; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div><div class="card md">shadow-md</div><div class="lbl">Default cards</div></div>
+    <div><div class="card lg">shadow-lg</div><div class="lbl">Speech bubble</div></div>
+    <div><div class="card banner">shadow-xl</div><div class="lbl">Hanging banner</div></div>
+    <div><div class="card glow">glow-orange</div><div class="lbl">Tutorial spotlight</div></div>
+  </div>
+</body>
+</html>
