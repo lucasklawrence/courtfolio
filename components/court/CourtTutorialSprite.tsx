@@ -6,6 +6,7 @@ import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
 import { PLAYER_SIZE } from '@/constants/playerSize'
 import { SpeechBubble } from '../common/SpeechBubble'
 import { useElementSize } from '@/utils/hooks/useElementSize'
+import { useFadeInProps } from '@/components/motion/primitives'
 
 type StepData = {
   x: number
@@ -107,13 +108,13 @@ export function CourtTutorialSprite({
     prevX.current = stepData.x
   }, [stepData.x, stepData.y])
 
+  const fadeProps = useFadeInProps({ duration: 0.3 })
+
   return (
     <motion.div
+      {...fadeProps}
       style={{ x: springX, y: springY }}
       className="absolute pointer-events-none z-50"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
     >
       <img
         src={stepData.img}
