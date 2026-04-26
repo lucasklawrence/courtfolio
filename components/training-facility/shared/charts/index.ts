@@ -1,6 +1,7 @@
 export { RoughLine, type RoughLineProps } from './RoughLine'
 export { RoughBar, type RoughBarProps } from './RoughBar'
 export { RoughScatter, type RoughScatterProps } from './RoughScatter'
+export { BodyweightOverlay, type BodyweightOverlayProps } from './BodyweightOverlay'
 export { Axis, EmptyChart, type AxisProps, type AxisTick, type EmptyChartProps } from './axes'
 export { chartPalette, type ChartPalette } from './palette'
 export { defaultMargin, type ChartCommonProps, type ChartMargin } from './types'

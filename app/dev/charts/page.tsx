@@ -1,11 +1,13 @@
 import type { JSX } from 'react'
 import { Patrick_Hand } from 'next/font/google'
 import {
+  BodyweightOverlay,
   RoughBar,
   RoughLine,
   RoughScatter,
   chartPalette,
 } from '@/components/training-facility/shared/charts'
+import type { Benchmark } from '@/types/movement'
 
 const patrickHand = Patrick_Hand({
   weight: '400',
@@ -33,6 +35,13 @@ const hrZoneData = [
   // Zero on purpose — exercises the "render a 1px baseline rather than
   // disappearing the category" path in RoughBar.
   { zone: 'Z5', minutes: 0 },
+]
+
+const overlayBenchmarks: Benchmark[] = [
+  { date: '2026-01-15', bodyweight_lbs: 240.5, vertical_in: 19.5 },
+  { date: '2026-02-15', bodyweight_lbs: 236.2, vertical_in: 20.25 },
+  { date: '2026-03-15', bodyweight_lbs: 232.8, vertical_in: 21.0 },
+  { date: '2026-04-15', bodyweight_lbs: 229.4, vertical_in: 22.0 },
 ]
 
 const paceVsHrData = [
@@ -129,6 +138,31 @@ export default function ChartsDemoPage(): JSX.Element {
             yTickFormat={(v) => v.toFixed(1)}
             ariaLabel="Pace in minutes per mile plotted against heart rate during a stair session"
           />
+        </Section>
+
+        <Section title="BodyweightOverlay — Vertical jump with bodyweight overlaid">
+          <BodyweightOverlay
+            benchmarks={overlayBenchmarks}
+            dateExtent={[
+              new Date(overlayBenchmarks[0].date),
+              new Date(overlayBenchmarks[overlayBenchmarks.length - 1].date),
+            ]}
+            width={720}
+            height={300}
+            ariaLabel="Bodyweight overlay — pounds over time, secondary axis right"
+          >
+            <RoughLine
+              data={overlayBenchmarks}
+              x={(d) => new Date(d.date)}
+              y={(d) => d.vertical_in ?? 0}
+              width={720}
+              height={300}
+              xLabel="Date"
+              yLabel="Vertical (in)"
+              yTickFormat={(v) => `${v}`}
+              ariaLabel="Vertical jump in inches by month"
+            />
+          </BodyweightOverlay>
         </Section>
 
         <Section title="Empty state — RoughLine with no data">

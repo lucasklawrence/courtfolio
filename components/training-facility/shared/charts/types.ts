@@ -5,13 +5,20 @@ export interface ChartMargin {
   left: number
 }
 
-// bottom is sized to fit a tick row (~12px) + the optional axis label,
-// which renders at position + 32 with a 13px font (~6px below baseline).
-// 52 keeps the label inside the SVG box without callers having to override
-// `margin` every time they pass `xLabel`.
+/**
+ * Shared default {@link ChartMargin} for every chart primitive — sized so
+ * common axis labels fit inside the SVG without callers overriding `margin`.
+ *
+ * - `bottom: 52` — fits a tick row (~12px) plus an optional `xLabel`
+ *   rendered at `position + 32` with a 13px font (~6px below baseline).
+ * - `right: 40` — fits right-axis tick labels (text-anchor="start", values
+ *   like "240" run ~24px past the spine) plus the rotated axis label, so a
+ *   secondary right axis (e.g. {@link BodyweightOverlay}) renders cleanly
+ *   without callers having to override `margin.right`.
+ */
 export const defaultMargin: ChartMargin = {
   top: 16,
-  right: 24,
+  right: 40,
   bottom: 52,
   left: 56,
 }
