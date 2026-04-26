@@ -136,7 +136,7 @@ export default function NotFound() {
         </h1>
         <p className="mb-7 font-mono text-[13px] text-neutral-300">
           Couldn&apos;t find{' '}
-          <code className="rounded bg-orange-500/10 px-2 py-0.5 text-[12px] text-orange-300">
+          <code className="inline-block max-w-full break-all rounded bg-orange-500/10 px-2 py-0.5 text-[12px] text-orange-300">
             {pathname}
           </code>
         </p>
