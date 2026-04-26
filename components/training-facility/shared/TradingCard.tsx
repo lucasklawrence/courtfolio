@@ -3,40 +3,17 @@
 import { useMemo, useState, type CSSProperties, type JSX } from 'react'
 import { motion } from 'framer-motion'
 import type { Benchmark } from '@/types/movement'
+import { BENCHMARKS, METRIC_KEYS, type BenchmarkConfig, type MetricKey } from '@/constants/benchmarks'
 
 /**
- * Display config for the four Tier-1 Combine metrics rendered on the card.
- * Lives inline until issue #57 lands a shared `BENCHMARKS` config module —
- * at that point this collapses into an import. Keeps the component
- * self-contained for now without coupling to a not-yet-merged module.
+ * The card iterates {@link METRIC_KEYS} (not `Object.keys(BENCHMARKS)`) to
+ * guarantee stable display order even if the config object's key order
+ * ever changes. Each entry is the `(key, spec)` pair the front and back
+ * faces need to render a metric.
  */
-type MetricKey = 'vertical_in' | 'shuttle_5_10_5_s' | 'sprint_10y_s' | 'bodyweight_lbs'
-
-interface MetricSpec {
-  key: MetricKey
-  /** Three-letter card-back label (Panini-style brevity). */
-  label: string
-  /** Suffix appended after the value on the front of the card. */
-  unit: string
-  /** 'lower' = times/weight (less is more athletic); 'higher' = vertical jump. */
-  direction: 'lower' | 'higher'
-  /** Decimal places to render. */
-  precision: number
-}
-
-/**
- * The four Tier-1 Combine metrics rendered on the card, in display order
- * (top of the front face, left-to-right on the back-of-card history table).
- * Both the front stat list and the back table iterate this array, so adding
- * or reordering a metric is a single-source-of-truth edit. Replaced by an
- * import from the shared `BENCHMARKS` config when issue #57 lands.
- */
-const METRICS: readonly MetricSpec[] = [
-  { key: 'vertical_in', label: 'VERT', unit: '"', direction: 'higher', precision: 1 },
-  { key: 'shuttle_5_10_5_s', label: '5-10-5', unit: 's', direction: 'lower', precision: 2 },
-  { key: 'sprint_10y_s', label: '10Y', unit: 's', direction: 'lower', precision: 2 },
-  { key: 'bodyweight_lbs', label: 'WT', unit: ' lbs', direction: 'lower', precision: 1 },
-] as const
+const CARD_METRICS: ReadonlyArray<{ key: MetricKey; spec: BenchmarkConfig }> = METRIC_KEYS.map(
+  (key) => ({ key, spec: BENCHMARKS[key] }),
+)
 
 /** Props for {@link TradingCard}. */
 export interface TradingCardProps {
@@ -57,19 +34,24 @@ export interface TradingCardProps {
 }
 
 /**
- * Determine whether `entry`'s value for `metric` is strictly better than
+ * Determine whether `entry`'s value for `key` is strictly better than
  * every PRIOR entry (date < `entry.date`). Returns false when the entry
  * has no value for the metric, or when no prior entry has one
  * (you can't break a record that doesn't exist). The "prior only"
  * comparison matters when the card is used to browse a non-latest entry:
  * a March session shouldn't lose its PB badge just because April beat it.
  */
-function isPersonalBest(entry: Benchmark, history: readonly Benchmark[], spec: MetricSpec): boolean {
-  const value = entry[spec.key]
+function isPersonalBest(
+  entry: Benchmark,
+  history: readonly Benchmark[],
+  key: MetricKey,
+  spec: BenchmarkConfig,
+): boolean {
+  const value = entry[key]
   if (typeof value !== 'number') return false
   const priorValues = history
-    .filter((h) => h.date < entry.date && h.is_complete !== false && typeof h[spec.key] === 'number')
-    .map((h) => h[spec.key] as number)
+    .filter((h) => h.date < entry.date && h.is_complete !== false && typeof h[key] === 'number')
+    .map((h) => h[key] as number)
   if (priorValues.length === 0) return false
   return spec.direction === 'lower'
     ? priorValues.every((v) => value < v)
@@ -77,7 +59,7 @@ function isPersonalBest(entry: Benchmark, history: readonly Benchmark[], spec: M
 }
 
 /** Format a benchmark value for the front-of-card line, or em-dash when absent. */
-function formatValue(value: number | undefined, spec: MetricSpec): string {
+function formatValue(value: number | undefined, spec: BenchmarkConfig): string {
   if (typeof value !== 'number') return '—'
   return `${value.toFixed(spec.precision)}${spec.unit}`
 }
@@ -128,9 +110,9 @@ export function TradingCard({
   const pbState = useMemo(() => {
     const perMetric = new Map<MetricKey, boolean>()
     let any = false
-    for (const spec of METRICS) {
-      const isPb = isPersonalBest(entry, history, spec)
-      perMetric.set(spec.key, isPb)
+    for (const { key, spec } of CARD_METRICS) {
+      const isPb = isPersonalBest(entry, history, key, spec)
+      perMetric.set(key, isPb)
       if (isPb) any = true
     }
     return { perMetric, any }
@@ -209,16 +191,16 @@ function CardFront({ entry, pbState, seasonLabel, playerNumber, playerName }: Ca
       </header>
 
       <ul className="mt-3 flex flex-col gap-1.5 font-mono text-sm">
-        {METRICS.map((spec) => {
-          const value = entry[spec.key]
-          const isPb = pbState.perMetric.get(spec.key)
+        {CARD_METRICS.map(({ key, spec }) => {
+          const value = entry[key]
+          const isPb = pbState.perMetric.get(key)
           return (
             <li
-              key={spec.key}
+              key={key}
               className="flex items-baseline justify-between gap-2 border-b border-amber-300/10 pb-1 last:border-b-0"
             >
               <span className="text-[11px] uppercase tracking-wider text-amber-300/70">
-                {spec.label}
+                {spec.shortLabel}
               </span>
               <span className="flex items-baseline gap-1.5 text-amber-50">
                 {isPb && (
@@ -274,9 +256,9 @@ function CardBack({ history, latestNotes }: CardBackProps): JSX.Element {
         <thead>
           <tr className="border-b border-neutral-700/30 text-left text-[10px] uppercase tracking-wider text-neutral-600">
             <th className="font-semibold">Date</th>
-            {METRICS.map((spec) => (
-              <th key={spec.key} className="font-semibold">
-                {spec.label}
+            {CARD_METRICS.map(({ key, spec }) => (
+              <th key={key} className="font-semibold">
+                {spec.shortLabel}
               </th>
             ))}
           </tr>
@@ -284,7 +266,7 @@ function CardBack({ history, latestNotes }: CardBackProps): JSX.Element {
         <tbody>
           {history.length === 0 && (
             <tr>
-              <td colSpan={1 + METRICS.length} className="pt-2 text-center text-neutral-500">
+              <td colSpan={1 + CARD_METRICS.length} className="pt-2 text-center text-neutral-500">
                 No prior sessions
               </td>
             </tr>
@@ -292,9 +274,9 @@ function CardBack({ history, latestNotes }: CardBackProps): JSX.Element {
           {history.map((row) => (
             <tr key={row.date} className="border-b border-neutral-700/10 last:border-b-0">
               <td className="py-1 text-neutral-700">{row.date.slice(5)}</td>
-              {METRICS.map((spec) => (
-                <td key={spec.key} className="py-1 tabular-nums">
-                  {formatCell(row[spec.key], spec)}
+              {CARD_METRICS.map(({ key, spec }) => (
+                <td key={key} className="py-1 tabular-nums">
+                  {formatCell(row[key], spec)}
                 </td>
               ))}
             </tr>
@@ -321,7 +303,7 @@ function CardBack({ history, latestNotes }: CardBackProps): JSX.Element {
  * metric's declared precision so timed metrics (shuttle, 10y) keep their
  * hundredths digit instead of rounding 1.98 → 2.0.
  */
-function formatCell(value: number | undefined, spec: MetricSpec): string {
+function formatCell(value: number | undefined, spec: BenchmarkConfig): string {
   if (typeof value !== 'number') return '—'
   return Number.isInteger(value) ? String(value) : value.toFixed(spec.precision)
 }
