@@ -110,7 +110,10 @@ export const METRIC_KEYS: readonly MetricKey[] = [
 /**
  * Type guard narrowing an arbitrary string to a {@link MetricKey}. Useful
  * when reading config keys back out of `Object.keys` typed as `string[]`.
+ *
+ * Uses `Object.hasOwn` rather than `in` so inherited props (`toString`,
+ * `__proto__`, etc.) don't slip through as false positives.
  */
 export function isMetricKey(value: string): value is MetricKey {
-  return value in BENCHMARKS
+  return Object.hasOwn(BENCHMARKS, value)
 }
