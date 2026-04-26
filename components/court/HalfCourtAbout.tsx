@@ -5,7 +5,7 @@ import { CourtSvg } from './CourtSvg'
 
 export function HalfCourtAbout() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-white text-black">
+    <div className="relative min-h-screen overflow-hidden bg-white text-black">
       {/* Background SVG court */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
         <CourtSvg />
@@ -62,6 +62,6 @@ export function HalfCourtAbout() {
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

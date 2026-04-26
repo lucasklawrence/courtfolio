@@ -49,7 +49,7 @@ const paceVsHrData = [
 
 export default function ChartsDemoPage(): JSX.Element {
   return (
-    <main
+    <div
       className={patrickHand.variable}
       style={{
         backgroundColor: chartPalette.courtLineCream,
@@ -143,7 +143,7 @@ export default function ChartsDemoPage(): JSX.Element {
           />
         </Section>
       </div>
-    </main>
+    </div>
   )
 }
 
