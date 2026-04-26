@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api repos/lucasklawrence/courtfolio/pulls/*/comments/*/replies)",
+      "Bash(gh issue close *)",
+      "Bash(gh issue comment *)",
+      "Bash(git fetch *)",
+      "Bash(git ls-remote *)",
+      "Bash(git pull --ff-only *)",
+      "Bash(git rev-list --count *)",
+      "Bash(git rev-list --left-right *)",
+      "Bash(npm run build)",
+      "Bash(npm run dev)",
+      "Bash(npm run lint)",
+      "Bash(npm run test)",
+      "Bash(npm run test:coverage)",
+      "Bash(npm run test:watch)",
+      "Bash(npx next build)",
+      "Bash(npx tsc --noEmit)",
+      "mcp__playwright__browser_close",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_wait_for",
+      "mcp__siteaudit__accessibility_audit",
+      "mcp__siteaudit__lighthouse_audit"
+    ]
+  }
+}
