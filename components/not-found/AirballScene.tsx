@@ -19,7 +19,7 @@ export function AirballScene() {
   const pathname = usePathname()
 
   return (
-    <main
+    <div
       className="fixed inset-0 isolate overflow-hidden bg-neutral-950 text-white"
       style={{
         background:
@@ -155,6 +155,6 @@ export function AirballScene() {
         </p>
         <BackToCourtButton />
       </div>
-    </main>
+    </div>
   )
 }

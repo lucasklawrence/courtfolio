@@ -27,8 +27,8 @@ export default function ProjectPage() {
         </div>
       </SectionContainer>
 
-      {/* Main content */}
-      <main className="flex-grow w-full">
+      {/* Page content — wrapped by the root layout's <main id="main"> landmark. */}
+      <div className="flex-grow w-full">
         <SectionContainer className="pt-2 pb-1">
           <div className="text-yellow-200 uppercase tracking-wide text-sm font-mono">
             Lucas Lawrence // Tech Stack Binder
@@ -42,7 +42,7 @@ export default function ProjectPage() {
         </SectionContainer>
 
         <ProjectGallery />
-      </main>
+      </div>
     </div>
   )
 }
