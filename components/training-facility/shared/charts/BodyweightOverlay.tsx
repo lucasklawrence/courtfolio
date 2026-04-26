@@ -73,6 +73,22 @@ interface BodyweightPoint {
   bw: number
 }
 
+/**
+ * Wraps a time-series chart child with a secondary right-side bodyweight
+ * axis and a toggle. See {@link BodyweightOverlayProps} for prop semantics.
+ *
+ * - **Toggle:** uncontrolled by default (seeded with `defaultEnabled`); pass
+ *   `enabled` + `onEnabledChange` to lift state into a parent.
+ * - **Hydration:** the rough.js overlay layer mounts only after the first
+ *   client-side effect. The shared rough.js generator is non-deterministic
+ *   across SSR vs client renders when other server-rendered charts on the
+ *   page have already advanced its internal state, so deferring sidesteps
+ *   "didn't match the client properties" hydration errors on `<path>`
+ *   elements. The toggle button still SSRs immediately.
+ * - **Margin contract:** caller must pass the same `margin` to both the
+ *   wrapper and the chart child so the x-axes line up — the wrapper does
+ *   not size or scale the child.
+ */
 export function BodyweightOverlay({
   benchmarks,
   dateExtent,
@@ -100,12 +116,8 @@ export function BodyweightOverlay({
   const isOn = isControlled ? enabled : internalEnabled
   const toggleId = useId()
 
-  // The rough.js layer is mounted only after hydration. The shared rough.js
-  // generator is non-deterministic across SSR vs client renders when other
-  // server-rendered charts on the page have already advanced its internal
-  // state — that desync produces a "didn't match the client properties"
-  // hydration error on the overlay's <path> elements. Deferring to a
-  // post-mount client-only render sidesteps the mismatch entirely.
+  // Defer the overlay layer to post-hydration — see the function JSDoc for the
+  // SSR/client rough.js generator divergence this avoids.
   const [hydrated, setHydrated] = useState(false)
   useEffect(() => {
     setHydrated(true)
