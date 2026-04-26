@@ -101,6 +101,10 @@ function seasonFromDate(date: string): string {
  * The card is data-shape-driven (PRD §7.13): it takes a `Benchmark` plus
  * its history and emits no state. It does not assume the entry belongs to
  * any particular user, so it stays reusable when multi-tenancy lands.
+ *
+ * See {@link TradingCardProps} for prop-level docs on each field.
+ *
+ * @param props - {@link TradingCardProps}.
  */
 export function TradingCard({
   entry,
