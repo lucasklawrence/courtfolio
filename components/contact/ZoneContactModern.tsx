@@ -1,20 +1,13 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { SpringUp } from '@/components/motion/primitives'
 import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
 
 export function ZoneContactModern() {
   return (
     <SafeSvgHtml>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          type: 'spring',
-          stiffness: 120,
-          damping: 12,
-          delay: 0.2,
-        }}
+      <SpringUp
+        delay={0.2}
         className="text-gray-900 text-xs leading-snug font-sans p-2"
       >
         <div className="flex gap-6">
@@ -89,7 +82,7 @@ export function ZoneContactModern() {
         <div className="text-center text-[10px] text-gray-500 mt-10 italic">
           "Plays drawn in code. Championships built in commits."
         </div>
-      </motion.div>
+      </SpringUp>
     </SafeSvgHtml>
   )
 }
