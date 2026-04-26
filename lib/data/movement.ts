@@ -71,14 +71,24 @@ export async function deleteBenchmark(date: BenchmarkDate): Promise<void> {
   if (!res.ok) throw await writeError(res, 'delete');
 }
 
-/** Builds a descriptive Error for a failed write, distinguishing prod-404 from real failures. */
+/**
+ * Builds a descriptive Error for a failed write.
+ *
+ * The route returns 404 in two cases that look identical from a status code alone:
+ * 1. The dev-gate (route-level guard for `NODE_ENV !== 'development'`) — empty body.
+ * 2. A missing benchmark (PUT/DELETE against a date that doesn't exist) — JSON body with an `error` field.
+ *
+ * Disambiguating by body lets the form surface a "no entry for that date"
+ * domain error without misreporting it as "dev API unavailable" while
+ * developing locally.
+ */
 async function writeError(res: Response, action: string): Promise<Error> {
-  if (res.status === 404) {
+  const detail = await res.text().catch(() => '');
+  if (res.status === 404 && detail.trim() === '') {
     return new Error(
       `Cannot ${action} benchmark: dev-only write API is unavailable in this environment.`,
     );
   }
-  const detail = await res.text().catch(() => '');
   return new Error(
     `Failed to ${action} benchmark: ${res.status} ${res.statusText}${detail ? ` — ${detail}` : ''}`,
   );
