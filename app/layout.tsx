@@ -63,9 +63,9 @@ export default function RootLayout({
         {/*
          * Skip-to-content link — first focusable element in the document.
          * Visually hidden by default; becomes visible when a keyboard user
-         * Tabs into it. Targets the `<main id="main">` landmark below so
+         * Tabs into it. Targets the <main id="main"> landmark below so
          * screen-reader and keyboard users can bypass any future header
-         * chrome and jump straight to page content. (issue #45)
+         * chrome and jump straight to page content.
          */}
         <a
           href="#main"
@@ -73,7 +73,15 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <main id="main">{children}</main>
+        {/*
+         * tabindex="-1" makes <main> a programmatic focus target so the
+         * skip link reliably moves focus into the landmark across
+         * browsers (Safari in particular won't shift focus to a non-
+         * focusable fragment target on its own).
+         */}
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
         <Analytics />
       </body>
     </html>
