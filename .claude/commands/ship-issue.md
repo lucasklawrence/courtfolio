@@ -1,5 +1,5 @@
 ---
-description: Ship a GitHub issue end-to-end — worktree, implement, PR, /review-led loop — and stop at "ready to merge" for you to spot-check and merge.
+description: Ship a GitHub issue end-to-end — questions upfront if any design/implementation choices, then worktree → implement → PR → review loop runs autonomously, stop at "ready to merge" for your final spot-check.
 ---
 
 # /ship-issue
@@ -10,11 +10,12 @@ Take the GitHub issue at `$ARGUMENTS` from open to PR-ready in one shot. Argumen
 
 **Prerequisite:** must run from the main repo, NOT from inside another worktree — Phase 2 calls `EnterWorktree` which fails if the session is already in one. If you're inside a worktree, `ExitWorktree` (action: keep or remove as appropriate) first, or ask the user.
 
-## Phase 1 — Read the issue
+## Phase 1 — Read the issue + upfront alignment
 
 1. `gh issue view <number>` for title, body, labels, milestone, references.
 2. If the body links a PRD section / doc, read that section before implementing.
-3. If the spec is ambiguous, ask the user before continuing — do not guess.
+3. Read enough of the codebase to know the blast radius — which files you'll touch, what conventions apply, whether anything in flight (open PRs, other worktrees) overlaps.
+4. **Upfront question pass — always.** Surface the design and implementation decisions that would meaningfully shape the PR: visual/UX variants, scope boundaries, naming/structure choices, behavior tradeoffs, tests/no-tests, anything you'd revisit if you got it wrong. List them tersely with your recommendation for each, ask in one batch, and wait for the user's answers before Phase 2. If the issue is fully specified and there are genuinely no real choices to make, say "no open questions, proceeding" and continue — don't manufacture filler questions.
 
 ## Phase 2 — Worktree + implement
 
@@ -35,7 +36,9 @@ Take the GitHub issue at `$ARGUMENTS` from open to PR-ready in one shot. Argumen
    Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
    ```
 
-## Phase 3 — Push + Vercel spot-check (always)
+## Phase 3 — Push + open PR
+
+No user pause in this phase. Once Vercel comes back green, flow directly into Phase 4.
 
 1. **Verify the base is current.** `git fetch origin main` then check that the worktree branch sits on top of `origin/main`. If it diverges from a stale ref, rebase onto `origin/main` *before* the first push. If you've already pushed to a branch with a stale base, push the rebased commit to a *new* branch name — never force-push (memory rule).
 2. Push to `feat/<number>-<slug>` (same `<slug>` as the worktree).
@@ -43,11 +46,10 @@ Take the GitHub issue at `$ARGUMENTS` from open to PR-ready in one shot. Argumen
    - **Title:** `<type>(<scope>): <summary> (#<issue>)`
    - **Body:** summary, "## Test plan" markdown checklist of concrete things to click/verify, `Closes #<issue>.`
 4. **Wait for Vercel.** Poll `gh pr view <pr> --json statusCheckRollup` every ~30s for up to 10 min total:
-   - On `SUCCESS` for the Vercel context: continue.
-   - On `FAILURE` / `ERROR` / `CANCELED`: stop, surface the failure URL to the user, do not pause for spot-check until it's resolved.
+   - On `SUCCESS` for the Vercel context: continue immediately to Phase 4.
+   - On `FAILURE` / `ERROR` / `CANCELED`: stop, surface the failure URL to the user. Do not enter the review loop until the build is fixed.
    - On 10-min timeout while still `PENDING`: stop and surface to the user.
-5. **Extract the preview URL** from the Vercel bot's PR comment (not `statusCheckRollup.targetUrl`, which points at the dashboard). Use `gh pr view <pr> --json comments` and parse the URL from the comment authored by `vercel`.
-6. **Always pause.** Tell the user: PR URL, preview URL, one-line summary of what changed. Wait for their signal before Phase 4.
+5. **Extract the preview URL** from the Vercel bot's PR comment (not `statusCheckRollup.targetUrl`, which points at the dashboard). Hold onto it — Phase 5 includes it in the final hand-off message.
 
 ## Phase 4 — Review loop (/review-led, CodeRabbit best-effort)
 
@@ -66,14 +68,20 @@ Loop until convergence, **max 3 iterations**:
 
 If a comment is unclear or you disagree with it, don't silently fix or ignore — stop the loop and ask the user.
 
-## Phase 5 — Hand off
+## Phase 5 — Hand off (the only user-pause besides Phase 1)
+
+This is the user's spot-check moment. Everything else is autonomous.
 
 1. Post a final PR comment summarizing:
    - ✅ Status of `/review`, CodeRabbit, Vercel.
    - **Test plan** — concrete steps the user should run/click before merging.
    - The merge command: `gh pr merge <pr> --squash --delete-branch`.
-2. Tell the user: "PR is ready at <url>. Spot-check the test plan, then say 'merge' (or run the command yourself)." Stop.
-3. **Do not merge.** Do not exit the worktree — the user may want one more change.
+2. Tell the user, in one short message:
+   - PR URL (`https://github.com/.../pull/<pr>`)
+   - Vercel preview URL (extracted in Phase 3 step 5 — the `*.vercel.app` link from the Vercel bot's PR comment, NOT the dashboard URL from `statusCheckRollup.targetUrl`)
+   - One-line summary of what shipped
+   - "Spot-check the preview against the test plan, then say 'merge' (or run the command yourself)."
+3. Stop. **Do not merge.** Do not exit the worktree — the user may want one more change.
 
 ## Project-specific notes
 
