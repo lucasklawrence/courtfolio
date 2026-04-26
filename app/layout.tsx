@@ -60,7 +60,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased touch-pan-x touch-pan-y`}
       >
-        {children}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-orange-400 focus:text-black focus:rounded-md focus:font-semibold focus:outline focus:outline-2 focus:outline-white"
+        >
+          Skip to main content
+        </a>
+        <main id="main" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
         <Analytics />
       </body>
     </html>
