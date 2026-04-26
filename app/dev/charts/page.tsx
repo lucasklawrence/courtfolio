@@ -47,6 +47,13 @@ const paceVsHrData = [
   { hr: 170, pace: 8.1 },
 ]
 
+/**
+ * Dev-only demo page that exercises the chart primitives in isolation.
+ *
+ * Renders a grid of chart variants (line, area, candlestick, etc.) using
+ * fixture data so each visual treatment can be verified without depending on
+ * the live training-facility data pipeline.
+ */
 export default function ChartsDemoPage(): JSX.Element {
   return (
     <div
