@@ -59,8 +59,8 @@ export interface AxisTick {
 }
 
 export interface AxisProps {
-  orientation: 'bottom' | 'left'
-  /** Cross-axis coordinate of the spine (y for bottom, x for left). */
+  orientation: 'bottom' | 'left' | 'right'
+  /** Cross-axis coordinate of the spine (y for bottom, x for left/right). */
   position: number
   /** Spine start coordinate along the primary axis (px). */
   start: number
@@ -92,6 +92,7 @@ export function Axis({
   seed,
 }: AxisProps): JSX.Element {
   const isBottom = orientation === 'bottom'
+  const isRight = orientation === 'right'
   const gen = getGenerator()
 
   const spine = isBottom
@@ -139,6 +140,31 @@ export function Axis({
           )
         }
         const y = start + tick.offset
+        if (isRight) {
+          return (
+            <g key={`tick-${i}`}>
+              <line
+                x1={position}
+                y1={y}
+                x2={position + tickLength}
+                y2={y}
+                stroke={color}
+                strokeWidth={1}
+              />
+              <text
+                x={position + tickLength + 4}
+                y={y}
+                textAnchor="start"
+                dominantBaseline="middle"
+                fontFamily={fontFamily}
+                fontSize={12}
+                fill={color}
+              >
+                {tick.value}
+              </text>
+            </g>
+          )
+        }
         return (
           <g key={`tick-${i}`}>
             <line
@@ -175,7 +201,7 @@ export function Axis({
           {label}
         </text>
       )}
-      {label && !isBottom && (
+      {label && !isBottom && !isRight && (
         <text
           x={position - 32}
           y={(start + end) / 2}
@@ -184,6 +210,19 @@ export function Axis({
           fontSize={13}
           fill={color}
           transform={`rotate(-90 ${position - 32} ${(start + end) / 2})`}
+        >
+          {label}
+        </text>
+      )}
+      {label && isRight && (
+        <text
+          x={position + 36}
+          y={(start + end) / 2}
+          textAnchor="middle"
+          fontFamily={fontFamily}
+          fontSize={13}
+          fill={color}
+          transform={`rotate(90 ${position + 36} ${(start + end) / 2})`}
         >
           {label}
         </text>
