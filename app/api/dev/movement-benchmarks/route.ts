@@ -26,6 +26,9 @@ import {
  * - 400 — payload failed Zod validation (response body has Zod's flattened error)
  * - 404 — not running under `next dev`
  * - 409 — an entry already exists for `date` (use PUT to overwrite)
+ *
+ * @param request Incoming JSON request whose body is the full benchmark payload.
+ * @throws Propagates filesystem errors from {@link readBenchmarks} / {@link writeBenchmarks}.
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
   if (!isDevRuntime()) return notFound()

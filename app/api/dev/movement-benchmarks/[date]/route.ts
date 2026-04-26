@@ -29,6 +29,10 @@ interface Context {
  * - 200 — updated
  * - 400 — bad date format or payload failed Zod validation
  * - 404 — not running under `next dev`, OR no benchmark exists for `date`
+ *
+ * @param request Incoming JSON request whose body is a partial-update payload.
+ * @param ctx Next.js route context; `ctx.params.date` is the entry's primary key.
+ * @throws Propagates filesystem errors from {@link readBenchmarks} / {@link writeBenchmarks}.
  */
 export async function PUT(request: NextRequest, ctx: Context): Promise<NextResponse> {
   if (!isDevRuntime()) return notFound()
@@ -74,6 +78,10 @@ export async function PUT(request: NextRequest, ctx: Context): Promise<NextRespo
  * - 200 — deleted (response body echoes the removed entry)
  * - 400 — bad date format
  * - 404 — not running under `next dev`, OR no benchmark exists for `date`
+ *
+ * @param _request Unused — DELETE has no body. Required by Next.js handler signature.
+ * @param ctx Next.js route context; `ctx.params.date` is the entry's primary key.
+ * @throws Propagates filesystem errors from {@link readBenchmarks} / {@link writeBenchmarks}.
  */
 export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextResponse> {
   if (!isDevRuntime()) return notFound()

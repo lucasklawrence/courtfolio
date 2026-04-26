@@ -79,6 +79,9 @@ export async function readBenchmarks(): Promise<ValidatedBenchmark[]> {
  * Sort the list newest-first by date and write it back to disk.
  * Creates the parent `public/data/` directory if it doesn't exist so
  * the very first POST against an empty repo succeeds.
+ *
+ * @param list Validated benchmark entries to persist; mutated only via the local copy made before sort.
+ * @throws Propagates filesystem errors from `mkdir`/`writeFile`.
  */
 export async function writeBenchmarks(list: ValidatedBenchmark[]): Promise<void> {
   const sorted = [...list].sort((a, b) => b.date.localeCompare(a.date))
@@ -96,7 +99,12 @@ export function isDevRuntime(): boolean {
   return process.env.NODE_ENV === 'development'
 }
 
-/** Validate a URL `[date]` segment as `YYYY-MM-DD`. */
+/**
+ * Validate a URL `[date]` segment as `YYYY-MM-DD`.
+ *
+ * @param value Raw string from the URL — typically `ctx.params.date`.
+ * @returns `true` when `value` matches the ISO calendar-date shape.
+ */
 export function isValidDate(value: string): boolean {
   return DATE_REGEX.test(value)
 }
