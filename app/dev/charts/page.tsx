@@ -149,7 +149,6 @@ export default function ChartsDemoPage(): JSX.Element {
             ]}
             width={720}
             height={300}
-            margin={{ right: 64 }}
             ariaLabel="Bodyweight overlay — pounds over time, secondary axis right"
           >
             <RoughLine
@@ -158,7 +157,6 @@ export default function ChartsDemoPage(): JSX.Element {
               y={(d) => d.vertical_in ?? 0}
               width={720}
               height={300}
-              margin={{ right: 64 }}
               xLabel="Date"
               yLabel="Vertical (in)"
               yTickFormat={(v) => `${v}`}

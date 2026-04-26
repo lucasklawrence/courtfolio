@@ -9,9 +9,14 @@ export interface ChartMargin {
 // which renders at position + 32 with a 13px font (~6px below baseline).
 // 52 keeps the label inside the SVG box without callers having to override
 // `margin` every time they pass `xLabel`.
+//
+// right needs ~33px for right-axis tick labels (text-anchor="start", values
+// like "240" run ~24px wide past the spine) plus a label offset; 40 gives
+// room for both without callers having to override `margin` whenever a
+// secondary right axis is used (e.g. BodyweightOverlay).
 export const defaultMargin: ChartMargin = {
   top: 16,
-  right: 24,
+  right: 40,
   bottom: 52,
   left: 56,
 }

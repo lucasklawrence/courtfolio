@@ -117,11 +117,20 @@ export function BodyweightOverlay({
     onEnabledChange?.(next)
   }
 
+  // Clamp to the active chart window so out-of-range points don't drive the
+  // y-scale (would compress the visible series) or render outside the plot.
+  // Inclusive on both ends — caller's `dateExtent` is the visible domain.
+  const fromMs = dateExtent[0].getTime()
+  const toMs = dateExtent[1].getTime()
   const points: BodyweightPoint[] = benchmarks
     .filter((b): b is Benchmark & { bodyweight_lbs: number } =>
       typeof b.bodyweight_lbs === 'number' && b.is_complete !== false,
     )
     .map((b) => ({ date: new Date(b.date), bw: b.bodyweight_lbs }))
+    .filter((p) => {
+      const t = p.date.getTime()
+      return t >= fromMs && t <= toMs
+    })
     .sort((a, b) => a.date.getTime() - b.date.getTime())
 
   const m = resolveMargin(margin)

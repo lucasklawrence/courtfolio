@@ -216,13 +216,13 @@ export function Axis({
       )}
       {label && isRight && (
         <text
-          x={position + 36}
+          x={position + 32}
           y={(start + end) / 2}
           textAnchor="middle"
           fontFamily={fontFamily}
           fontSize={13}
           fill={color}
-          transform={`rotate(90 ${position + 36} ${(start + end) / 2})`}
+          transform={`rotate(90 ${position + 32} ${(start + end) / 2})`}
         >
           {label}
         </text>
