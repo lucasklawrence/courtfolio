@@ -24,6 +24,13 @@ interface MetricSpec {
   precision: number
 }
 
+/**
+ * The four Tier-1 Combine metrics rendered on the card, in display order
+ * (top of the front face, left-to-right on the back-of-card history table).
+ * Both the front stat list and the back table iterate this array, so adding
+ * or reordering a metric is a single-source-of-truth edit. Replaced by an
+ * import from the shared `BENCHMARKS` config when issue #57 lands.
+ */
 const METRICS: readonly MetricSpec[] = [
   { key: 'vertical_in', label: 'VERT', unit: '"', direction: 'higher', precision: 1 },
   { key: 'shuttle_5_10_5_s', label: '5-10-5', unit: 's', direction: 'lower', precision: 2 },

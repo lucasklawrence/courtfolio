@@ -8,6 +8,13 @@ export const metadata = {
   robots: { index: false, follow: false },
 }
 
+/**
+ * Four months of synthetic Combine entries used purely as a fixture for
+ * this dev-only smoke page. Values trend in the right direction (vertical
+ * up; shuttle, sprint, weight all down) so the latest entry sets a
+ * personal best on every metric — exercising the all-PB visual state
+ * without needing real benchmark data.
+ */
 const history: Benchmark[] = [
   {
     date: '2026-01-15',
