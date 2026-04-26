@@ -63,8 +63,13 @@ export const DEFAULT_MAX_HR = 185
  * Estimate max heart rate (Fox formula). Returns BPM. Callers with a
  * measured max from a treadmill or watch should pass that directly to
  * {@link hrZoneForBpm} instead of using this estimator.
+ *
+ * @throws {RangeError} when `age` is not a finite number in `[1, 120]`.
  */
 export function estimateMaxHr(age: number): number {
+  if (!Number.isFinite(age) || age < 1 || age > 120) {
+    throw new RangeError(`estimateMaxHr: age must be a finite number in [1, 120], got ${age}`)
+  }
   return 220 - age
 }
 
