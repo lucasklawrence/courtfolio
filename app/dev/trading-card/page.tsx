@@ -1,7 +1,8 @@
-import type { JSX } from 'react'
+import type { JSX, ReactNode } from 'react'
 import { TradingCard } from '@/components/training-facility/shared/TradingCard'
 import type { Benchmark } from '@/types/movement'
 
+/** Page metadata — hidden from search since `/dev/*` routes are dev-only smoke surfaces. */
 export const metadata = {
   title: 'Trading card — dev',
   robots: { index: false, follow: false },
@@ -45,6 +46,13 @@ const history: Benchmark[] = [
 const latestEntry = history[history.length - 1]
 const baselineEntry = history[0]
 
+/**
+ * Hidden dev-only smoke page for the {@link TradingCard} component.
+ * Renders two cards side-by-side: one with full history (latest entry sets
+ * a PB on every metric) and one as a baseline (no prior history → no PB
+ * badge). Used to visually verify the flip animation and PB detection
+ * without wiring the card into a real consumer page.
+ */
 export default function TradingCardDemoPage(): JSX.Element {
   return (
     <main
@@ -104,7 +112,7 @@ export default function TradingCardDemoPage(): JSX.Element {
   )
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }): JSX.Element {
+function Section({ title, children }: { title: string; children: ReactNode }): JSX.Element {
   return (
     <section style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
       <h2

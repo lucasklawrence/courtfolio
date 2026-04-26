@@ -51,15 +51,17 @@ export interface TradingCardProps {
 
 /**
  * Determine whether `entry`'s value for `metric` is strictly better than
- * every prior entry's value for the same metric. Returns false when the
- * entry has no value for the metric, or when no prior entry has one
- * (you can't break a record that doesn't exist).
+ * every PRIOR entry (date < `entry.date`). Returns false when the entry
+ * has no value for the metric, or when no prior entry has one
+ * (you can't break a record that doesn't exist). The "prior only"
+ * comparison matters when the card is used to browse a non-latest entry:
+ * a March session shouldn't lose its PB badge just because April beat it.
  */
 function isPersonalBest(entry: Benchmark, history: readonly Benchmark[], spec: MetricSpec): boolean {
   const value = entry[spec.key]
   if (typeof value !== 'number') return false
   const priorValues = history
-    .filter((h) => h.date !== entry.date && h.is_complete !== false && typeof h[spec.key] === 'number')
+    .filter((h) => h.date < entry.date && h.is_complete !== false && typeof h[spec.key] === 'number')
     .map((h) => h[spec.key] as number)
   if (priorValues.length === 0) return false
   return spec.direction === 'lower'
@@ -261,16 +263,17 @@ function CardBack({ history, latestNotes }: CardBackProps): JSX.Element {
         <thead>
           <tr className="border-b border-neutral-700/30 text-left text-[10px] uppercase tracking-wider text-neutral-600">
             <th className="font-semibold">Date</th>
-            <th className="font-semibold">VERT</th>
-            <th className="font-semibold">5-10-5</th>
-            <th className="font-semibold">10Y</th>
-            <th className="font-semibold">WT</th>
+            {METRICS.map((spec) => (
+              <th key={spec.key} className="font-semibold">
+                {spec.label}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {history.length === 0 && (
             <tr>
-              <td colSpan={5} className="pt-2 text-center text-neutral-500">
+              <td colSpan={1 + METRICS.length} className="pt-2 text-center text-neutral-500">
                 No prior sessions
               </td>
             </tr>
@@ -278,10 +281,11 @@ function CardBack({ history, latestNotes }: CardBackProps): JSX.Element {
           {history.map((row) => (
             <tr key={row.date} className="border-b border-neutral-700/10 last:border-b-0">
               <td className="py-1 text-neutral-700">{row.date.slice(5)}</td>
-              <td className="py-1 tabular-nums">{formatCell(row.vertical_in)}</td>
-              <td className="py-1 tabular-nums">{formatCell(row.shuttle_5_10_5_s)}</td>
-              <td className="py-1 tabular-nums">{formatCell(row.sprint_10y_s)}</td>
-              <td className="py-1 tabular-nums">{formatCell(row.bodyweight_lbs)}</td>
+              {METRICS.map((spec) => (
+                <td key={spec.key} className="py-1 tabular-nums">
+                  {formatCell(row[spec.key], spec)}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>
@@ -301,8 +305,12 @@ function CardBack({ history, latestNotes }: CardBackProps): JSX.Element {
   )
 }
 
-/** Compact cell value for the back-of-card history table. */
-function formatCell(value: number | undefined): string {
+/**
+ * Compact cell value for the back-of-card history table. Honors the
+ * metric's declared precision so timed metrics (shuttle, 10y) keep their
+ * hundredths digit instead of rounding 1.98 → 2.0.
+ */
+function formatCell(value: number | undefined, spec: MetricSpec): string {
   if (typeof value !== 'number') return '—'
-  return Number.isInteger(value) ? String(value) : value.toFixed(1)
+  return Number.isInteger(value) ? String(value) : value.toFixed(spec.precision)
 }
