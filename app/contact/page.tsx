@@ -26,6 +26,7 @@ import React from 'react'
 export default function ContactPage() {
   return (
     <SvgLayoutContainer>
+      <h1 className="sr-only">Front Office — Contact Lucas Lawrence</h1>
       <FrontOfficeSvg
         zoneContent={{
           whiteboard: (
