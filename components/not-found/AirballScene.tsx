@@ -71,8 +71,12 @@ export function AirballScene() {
         aria-hidden="true"
       />
 
-      {/* scoreboard chip */}
-      <div className="absolute top-4 left-4 z-10 flex gap-3 rounded-md border border-white/10 bg-black/60 px-2.5 py-1.5 font-mono text-[10px] tracking-[0.16em] text-neutral-300">
+      {/* scoreboard chip — decorative, hidden from assistive tech so it
+          doesn't read out before the actual "page not found" message. */}
+      <div
+        className="absolute top-4 left-4 z-10 flex gap-3 rounded-md border border-white/10 bg-black/60 px-2.5 py-1.5 font-mono text-[10px] tracking-[0.16em] text-neutral-300"
+        aria-hidden="true"
+      >
         <span>Q4</span>
         <span className="airball-blink text-orange-500">0:00</span>
         <span>HOME 0</span>
