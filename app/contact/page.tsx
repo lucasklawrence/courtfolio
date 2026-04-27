@@ -35,14 +35,12 @@ export default function ContactPage() {
               <ZoneContact />
             </FrontOfficeZone>
           ),
-          'back-to-court': (
-            <FrontOfficeZone x={1320} y={980} width={340} height={70}>
-              <BackToCourtButton />
-            </FrontOfficeZone>
-          ),
           'next-stop-nav': (
-            <FrontOfficeZone x={40} y={950} width={1260} height={80}>
-              <NextStopNav current="contact" />
+            <FrontOfficeZone x={20} y={950} width={1516} height={80}>
+              <div className="flex h-full items-center justify-end gap-3 pr-2">
+                <NextStopNav current="contact" />
+                <BackToCourtButton />
+              </div>
             </FrontOfficeZone>
           ),
           resume: (

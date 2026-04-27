@@ -358,14 +358,12 @@ export default function LockerRoomPage() {
               <PS5ControllerSVG />
             </LockerZone>
           ),
-          'back-to-court': (
-            <LockerZone x={1220} y={970} width={340} height={70}>
-              <BackToCourtButton />
-            </LockerZone>
-          ),
           'next-stop-nav': (
-            <LockerZone x={40} y={950} width={1160} height={80}>
-              <NextStopNav current="locker-room" />
+            <LockerZone x={20} y={950} width={1516} height={80}>
+              <div className="flex h-full items-center justify-end gap-3 pr-2">
+                <NextStopNav current="locker-room" />
+                <BackToCourtButton />
+              </div>
             </LockerZone>
           ),
           'locker-info': (

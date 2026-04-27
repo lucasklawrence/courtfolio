@@ -42,8 +42,8 @@ export function BannersView({ sections }: { sections: BannerSection[] }) {
             </div>
           ))}
 
-          <div className="mt-20 flex flex-col items-center gap-6">
-            <NextStopNav current="rafters" className="justify-center" />
+          <div className="mt-20 flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
+            <NextStopNav current="rafters" />
             <Link href="/" className="text-orange-300 underline hover:text-orange-100">
               Back to the Court
             </Link>

@@ -72,7 +72,7 @@ export function NextStopNav({ current, className }: NextStopNavProps) {
           <Link
             key={key}
             href={room.href}
-            className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium text-white shadow-sm transition hover:bg-orange-500 sm:text-sm"
+            className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-white/20 bg-black/85 px-3 py-1.5 text-xs font-medium text-white shadow-sm transition hover:border-orange-300 hover:bg-orange-500 sm:text-sm"
           >
             <span aria-hidden="true">{room.icon}</span>
             <span>{room.label}</span>
