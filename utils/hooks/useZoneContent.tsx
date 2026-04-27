@@ -12,6 +12,7 @@ import { ZoneCareerStats } from '@/components/court/zones/ZoneCareerStats'
 import { ZoneProjects } from '@/components/court/zones/ZoneProjects'
 import { ZoneEntryButton } from '@/components/common/ZoneEntryButton'
 import { TrainingFacilityCourtEntry } from '@/components/training-facility/TrainingFacilityCourtEntry'
+import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 type ZoneContentMap = Record<string, React.ReactNode>
 
@@ -39,6 +40,7 @@ export function useZoneContent({
   reset,
 }: UseZoneContentProps): ZoneContentMap {
   const router = useRouter()
+  const trainingFacilityEnabled = isTrainingFacilityEnabled()
 
   const baseZones = useMemo<ZoneContentMap>(
     () => ({
@@ -156,18 +158,22 @@ export function useZoneContent({
           </SafeSvgHtml>
         </CourtZone>
       ),
-      'training-facility-entry': (
-        <CourtZone x={1115} y={680} width={180} height={160} className="ui-layer z-[105]">
-          <SafeSvgHtml>
-            <TrainingFacilityCourtEntry
-              id="enter-training-facility"
-              onClick={() => router.push('/training-facility')}
-            />
-          </SafeSvgHtml>
-        </CourtZone>
-      ),
+      ...(trainingFacilityEnabled
+        ? {
+            'training-facility-entry': (
+              <CourtZone x={1115} y={680} width={180} height={160} className="ui-layer z-[105]">
+                <SafeSvgHtml>
+                  <TrainingFacilityCourtEntry
+                    id="enter-training-facility"
+                    onClick={() => router.push('/training-facility')}
+                  />
+                </SafeSvgHtml>
+              </CourtZone>
+            ),
+          }
+        : {}),
     }),
-    [router]
+    [router, trainingFacilityEnabled]
   )
 
   const zoneContent: ZoneContentMap = { ...baseZones }

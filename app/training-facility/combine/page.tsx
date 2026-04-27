@@ -1,9 +1,13 @@
+import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 import { TrainingFacilitySubareaShell } from '@/components/training-facility/TrainingFacilitySubareaShell'
+import { notFound } from 'next/navigation'
 
 /**
  * Renders the placeholder Combine route so the Training Facility shell has a live destination.
  */
 export default function TrainingFacilityCombinePage() {
+  if (!isTrainingFacilityEnabled()) notFound()
+
   return (
     <TrainingFacilitySubareaShell
       eyebrow="Movement wing"
