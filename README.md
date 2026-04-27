@@ -70,7 +70,12 @@ npm run dev
 
 Then visit [http://localhost:3000](http://localhost:3000)
 
-No `.env` needed — everything lives in the repo.
+No `.env` is required for the main site. To expose the unfinished
+Training Facility routes locally, set:
+
+```bash
+NEXT_PUBLIC_ENABLE_TRAINING_FACILITY=true
+```
 
 ---
 
