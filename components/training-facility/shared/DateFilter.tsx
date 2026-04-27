@@ -35,12 +35,12 @@ type DateFilterProps = {
 }
 
 /** Local start-of-day (00:00:00.000) for `d`. */
-function startOfDay(d: Date): Date {
+export function startOfDay(d: Date): Date {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0)
 }
 
 /** Local end-of-day (23:59:59.999) for `d`. */
-function endOfDay(d: Date): Date {
+export function endOfDay(d: Date): Date {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59, 999)
 }
 
@@ -50,7 +50,7 @@ function endOfDay(d: Date): Date {
  * silent rollover (e.g., March 31 → setMonth(-1) producing March 3
  * instead of February 28/29).
  */
-function subtractMonths(d: Date, months: number): Date {
+export function subtractMonths(d: Date, months: number): Date {
   const targetMonthIndex = d.getMonth() - months
   const result = new Date(d.getFullYear(), targetMonthIndex, d.getDate())
   // The Date constructor normalizes negative/overflowing month indices,
@@ -69,7 +69,7 @@ function subtractMonths(d: Date, months: number): Date {
  * day-normalized (start: 00:00, end: 23:59:59.999) so the resulting
  * range is independent of the click time.
  */
-function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
+export function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
   const today = new Date()
   const end = endOfDay(today)
   if (preset === 'ALL') {
@@ -84,7 +84,7 @@ function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
 }
 
 /** Format a `Date` as `YYYY-MM-DD` for `<input type="date">`. */
-function toInputValue(d: Date): string {
+export function toInputValue(d: Date): string {
   const y = d.getFullYear()
   const m = String(d.getMonth() + 1).padStart(2, '0')
   const day = String(d.getDate()).padStart(2, '0')
@@ -96,7 +96,7 @@ function toInputValue(d: Date): string {
  * midnight. Returns `null` for empty input or unparseable values so the
  * caller can no-op rather than storing `Invalid Date`.
  */
-function parseInputValue(s: string): Date | null {
+export function parseInputValue(s: string): Date | null {
   if (!s) return null
   const d = new Date(`${s}T00:00:00`)
   return Number.isNaN(d.getTime()) ? null : d
