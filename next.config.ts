@@ -1,5 +1,16 @@
 import type { NextConfig } from 'next'
 
+/**
+ * Baseline CSP directives emitted in report-only mode during the
+ * security-hardening rollout.
+ *
+ * The value is serialized as a single semicolon-delimited header
+ * string so it can be passed directly to
+ * `Content-Security-Policy-Report-Only`. The current allowlist keeps
+ * the policy compatible with the existing app shell, inline JSON-LD,
+ * Framer Motion styles, and Vercel Analytics
+ * (`https://va.vercel-scripts.com`).
+ */
 const contentSecurityPolicyReportOnly = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -15,6 +26,14 @@ const contentSecurityPolicyReportOnly = [
 ].join('; ')
 
 const nextConfig: NextConfig = {
+  /**
+   * Applies baseline security response headers to every route in the
+   * app, including public assets and App Router pages.
+   *
+   * @returns Next.js header rules that enforce the non-CSP headers now
+   *   and emit CSP in report-only mode while the app is still being
+   *   tuned for stricter inline-script/style handling.
+   */
   async headers() {
     return [
       {
