@@ -60,7 +60,28 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased touch-pan-x touch-pan-y`}
       >
-        {children}
+        {/*
+         * Skip-to-content link — first focusable element in the document.
+         * Visually hidden by default; becomes visible when a keyboard user
+         * Tabs into it. Targets the <main id="main"> landmark below so
+         * screen-reader and keyboard users can bypass any future header
+         * chrome and jump straight to page content.
+         */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[1000] focus:rounded focus:bg-black focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+        >
+          Skip to main content
+        </a>
+        {/*
+         * tabindex="-1" makes <main> a programmatic focus target so the
+         * skip link reliably moves focus into the landmark across
+         * browsers (Safari in particular won't shift focus to a non-
+         * focusable fragment target on its own).
+         */}
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
         <Analytics />
       </body>
     </html>

@@ -62,7 +62,7 @@ const baselineEntry = history[0]
  */
 export default function TradingCardDemoPage(): JSX.Element {
   return (
-    <main
+    <div
       style={{
         backgroundColor: '#0a0a0a',
         color: '#f5f1e6',
@@ -115,7 +115,7 @@ export default function TradingCardDemoPage(): JSX.Element {
           </Section>
         </div>
       </div>
-    </main>
+    </div>
   )
 }
 

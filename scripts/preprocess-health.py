@@ -44,8 +44,10 @@ if hasattr(sys.stdout, 'reconfigure'):
     try:
         sys.stdout.reconfigure(encoding='utf-8')
         sys.stderr.reconfigure(encoding='utf-8')
-    except Exception:  # pragma: no cover — older streams without reconfigure
-        pass
+    except (ValueError, OSError) as exc:  # pragma: no cover — older streams reject reconfigure
+        # Don't swallow silently — surface the failure so a future user
+        # whose stream rejects UTF-8 can debug instead of seeing mojibake.
+        print(f"  warning: could not reconfigure stdout/stderr to UTF-8: {exc}", file=sys.__stderr__)
 
 # Mirror of constants/hr-zones.ts — keep in sync. Z5's upper bound is
 # inclusive in JS; here we use `<=` for the same reason. A sample at
@@ -151,8 +153,19 @@ def parse_workouts(xml_text: str) -> list[dict]:
         else:
             duration_seconds = duration * 60  # assume minutes if unknown
 
+        start_dt = parse_iso(start)
+        end_dt = parse_iso(end)
+        if start_dt is None or end_dt is None:
+            # Apple emitted an unparseable timestamp — skip rather than
+            # write a session with a non-ISO `date` that would fail Zod
+            # validation in the wrapper.
+            skipped_types[f'{wtype} (bad timestamp)'] = (
+                skipped_types.get(f'{wtype} (bad timestamp)', 0) + 1
+            )
+            continue
+
         by_start.setdefault(start, []).append({
-            'date': start,
+            'date': start_dt.isoformat(),
             'activity': activity,
             'duration_seconds': round(duration_seconds, 2),
             'distance_meters': None,
@@ -161,8 +174,8 @@ def parse_workouts(xml_text: str) -> list[dict]:
             'pace_seconds_per_km': None,
             'hr_seconds_in_zone': None,
             'meters_per_heartbeat': None,
-            '_start_dt': parse_iso(start),
-            '_end_dt': parse_iso(end),
+            '_start_dt': start_dt,
+            '_end_dt': end_dt,
         })
 
     # Distance comes from a nested <MetadataEntry> or sibling Record inside the block.
@@ -296,11 +309,16 @@ def derive_pace(workout: dict) -> None:
 
 
 def parse_simple_trend(xml_text: str, hk_type: str) -> list[dict]:
-    """Generic helper for one-value-per-record trend types (resting HR, VO2max)."""
+    """
+    Generic helper for one-value-per-record trend types (resting HR,
+    VO2max). Collapses to one point per calendar day — when Apple emits
+    multiple records for the same day (e.g. retroactive measurements
+    from different sources), the latest record in document order wins.
+    """
     pattern = re.compile(
         rf'<Record\b[^>]*type="{re.escape(hk_type)}"[^>]*>'
     )
-    out: list[dict] = []
+    by_day: dict[str, float] = {}
     for m in pattern.finditer(xml_text):
         record = m.group(0)
         date_m = re.search(r'\bstartDate="([^"]*)"', record)
@@ -311,10 +329,10 @@ def parse_simple_trend(xml_text: str, hk_type: str) -> list[dict]:
             value = float(val_m.group(1))
         except ValueError:
             continue
-        # Trim time-of-day for trend display — one point per calendar day is plenty.
+        # Trim time-of-day; the trend chart shows one tick per day.
         date_str = date_m.group(1).split(' ')[0]
-        out.append({'date': date_str, 'value': round(value, 2)})
-    return out
+        by_day[date_str] = round(value, 2)
+    return [{'date': day, 'value': value} for day, value in sorted(by_day.items())]
 
 
 def build_cardio_data(xml_text: str, max_hr: int) -> dict:
@@ -395,7 +413,7 @@ def main() -> None:
 
     file_size = os.path.getsize(input_path) / 1024 / 1024
     print(f"\n{'=' * 50}")
-    print(f"  Apple Health → courtfolio cardio.json")
+    print("  Apple Health → courtfolio cardio.json")
     print(f"{'=' * 50}")
     print(f"  Input:  {input_path} ({file_size:.1f} MB)")
     print(f"  Output: {output_path}")
@@ -413,7 +431,7 @@ def main() -> None:
 
     out_size = os.path.getsize(output_path) / 1024
     print(f"\n{'=' * 50}")
-    print(f"  Done!")
+    print("  Done!")
     print(f"  Output: {output_path} ({out_size:.0f} KB)")
     print(f"  Sessions:           {len(data['sessions']):,}")
     print(f"  Resting HR points:  {len(data['resting_hr_trend']):,}")
