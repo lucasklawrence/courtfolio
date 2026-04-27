@@ -33,8 +33,8 @@ const palette = {
 /**
  * Default OG image generator. Renders a court-themed 1200×630 social
  * card with name, role, and URL on a black background with a rim-orange
- * accent stripe. Edge runtime is used so the image is generated at the
- * CDN edge on first request and then cached.
+ * accent stripe. Statically generated at build time and served as an
+ * immutable asset — re-deploy to update the image.
  */
 export default async function OpengraphImage(): Promise<ImageResponse> {
   return new ImageResponse(
