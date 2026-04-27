@@ -11,6 +11,7 @@ import { ZoneBioCard } from '@/components/court/zones/ZoneBioCard'
 import { ZoneCareerStats } from '@/components/court/zones/ZoneCareerStats'
 import { ZoneProjects } from '@/components/court/zones/ZoneProjects'
 import { ZoneEntryButton } from '@/components/common/ZoneEntryButton'
+import { TrainingFacilityCourtEntry } from '@/components/training-facility/TrainingFacilityCourtEntry'
 
 type ZoneContentMap = Record<string, React.ReactNode>
 
@@ -152,6 +153,16 @@ export function useZoneContent({
                 onClick={() => (window.location.href = '/projects')}
               />
             </div>
+          </SafeSvgHtml>
+        </CourtZone>
+      ),
+      'training-facility-entry': (
+        <CourtZone x={1115} y={680} width={180} height={160} className="ui-layer z-[105]">
+          <SafeSvgHtml>
+            <TrainingFacilityCourtEntry
+              id="enter-training-facility"
+              onClick={() => router.push('/training-facility')}
+            />
           </SafeSvgHtml>
         </CourtZone>
       ),
