@@ -51,7 +51,7 @@ export type ValidatedBenchmarkUpdate = z.infer<typeof BenchmarkUpdateSchema>
  * and overwrite. Defaults to `public/data/movement_benchmarks.json` — the
  * static asset the production site fetches.
  *
- * Tests override by stubbing `process.env.MOVEMENT_getBenchmarksFile()` so they
+ * Tests override by stubbing `process.env.MOVEMENT_BENCHMARKS_FILE` so they
  * can point at a tmp dir instead of mutating the real fixture. Resolved at
  * call time (not module-load) so an env stub set in test setup actually
  * takes effect.
