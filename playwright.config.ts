@@ -7,7 +7,7 @@ const DEFAULT_BASE_URL = 'http://127.0.0.1:3007'
 const TRAINING_FACILITY_BASE_URL = 'http://127.0.0.1:3008'
 
 /** Whether the Playwright run is executing under CI. */
-const IS_CI = Boolean(process.env.CI)
+const IS_CI = /^(1|true)$/i.test(process.env.CI ?? '') || process.env.GITHUB_ACTIONS === 'true'
 
 /**
  * Playwright configuration for route smoke coverage across the default and
