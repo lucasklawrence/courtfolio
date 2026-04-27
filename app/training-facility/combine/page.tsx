@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -5,15 +6,22 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { CombineScene } from '@/components/training-facility/scenes/CombineScene'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
+import { CombineScoreboardSection } from './CombineScoreboardSection'
+
 /**
- * `/training-facility/combine` route — the movement-benchmark sub-area scene.
+ * Combine sub-area page (PRD §7.5 + §9). Stacks the room-level chrome
+ * (back-to-court + back-to-Training-Facility nav), an eyebrow/title block,
+ * the scoreboard summary header (PRD §9.1), and the side-on Combine scene
+ * SVG. Richer visualizations (Trading Card, Silhouette, Shuttle Trace,
+ * Sprint Race, Radar) land in subsequent issues.
  *
- * Phase 1: scene-only. Cones, stopwatch, Vertec, and a results board render
- * the staging area; the seven signature visualizations from PRD §9 land in
- * later issues. Gated behind the same Training Facility flag as the parent
- * shell so the route family stays in sync.
+ * Gated behind {@link isTrainingFacilityEnabled} so the route stays 404'd
+ * in production until the Training Facility ships publicly. The page
+ * itself is a server component for the flag check; the scoreboard lives
+ * in a client island so the data layer's relative-URL fetch can run after
+ * hydration.
  */
-export default function TrainingFacilityCombinePage() {
+export default function TrainingFacilityCombinePage(): JSX.Element {
   if (!isTrainingFacilityEnabled()) notFound()
 
   return (
@@ -23,7 +31,7 @@ export default function TrainingFacilityCombinePage() {
         className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(253,224,71,0.12),transparent_30%),linear-gradient(180deg,#1f1612_0%,#0e0a08_55%,#070504_100%)]"
       />
 
-      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
+      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl flex-col gap-10 px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <BackToCourtButton />
           <Link
@@ -34,24 +42,24 @@ export default function TrainingFacilityCombinePage() {
           </Link>
         </div>
 
-        <div className="mt-8 text-center sm:mt-12">
-          <div className="inline-flex rounded-full border border-sky-100/25 bg-[#10202b]/80 px-5 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.42em] text-sky-100/85 sm:text-xs">
-            Movement wing
-          </div>
-          <h1 className="mt-4 text-3xl font-black uppercase tracking-[0.08em] text-[#fff6ea] sm:text-5xl lg:text-6xl">
+        <header className="text-center sm:text-left">
+          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+            Training Facility / Combine
+          </p>
+          <h1 className="mt-2 text-3xl font-black uppercase tracking-[0.06em] text-[#fff7ec] sm:text-5xl lg:text-6xl">
             The Combine
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-[#e8d5be] sm:text-base sm:leading-7">
-            The staging area for measurables. Cones lined up for the 5-10-5
-            shuttle, a Vertec rig against the wall, a stopwatch ticking in the
-            middle of the floor.
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:mx-0 sm:text-base">
+            Tier-1 movement benchmarks: bodyweight, 5-10-5 shuttle, vertical
+            jump, and 10-yard sprint. The scoreboard tracks the latest values
+            against the first-ever entry per metric.
           </p>
-        </div>
+        </header>
 
-        <div className="mt-8 flex-1 sm:mt-10">
-          <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
-            <CombineScene />
-          </div>
+        <CombineScoreboardSection />
+
+        <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
+          <CombineScene />
         </div>
       </div>
     </div>

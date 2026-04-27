@@ -69,20 +69,22 @@ export function useZoneContent({
             <div id="scouting-area">
               <div className="flex flex-col items-center justify-center bg-white/90 text-black rounded-xl px-4 py-2 shadow-lg text-xs font-medium space-y-1 hover:bg-orange-100 transition">
                 <div className="text-[10px] text-neutral-500 uppercase tracking-wide">
-                  🕵️ Scouting Area
+                  <span aria-hidden="true">🕵️</span> Scouting Area
                 </div>
                 <div className="flex gap-4 text-sm">
                   <button
                     onClick={() => router.push('/contact')}
-                    className="cursor-pointer hover:text-orange-500 transition"
+                    aria-label="Front Office — contact form and inquiries"
+                    className="cursor-pointer hover:text-orange-500 transition focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 rounded-sm"
                   >
-                    📫 Go to Front Office
+                    <span aria-hidden="true">📫</span> Go to Front Office
                   </button>
                   <button
                     onClick={() => window.open('/LucasLawrenceResume.pdf', '_blank')}
-                    className="cursor-pointer hover:text-orange-500 transition"
+                    aria-label="Open resume PDF in a new tab"
+                    className="cursor-pointer hover:text-orange-500 transition focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 rounded-sm"
                   >
-                    📄 Resume
+                    <span aria-hidden="true">📄</span> Resume
                   </button>
                 </div>
               </div>
@@ -139,18 +141,21 @@ export function useZoneContent({
               <ZoneEntryButton
                 icon="🏟️"
                 label="View The Rafters"
+                ariaLabel="Rafters — career highlights and accolades"
                 id="view-rafters"
                 onClick={() => (window.location.href = '/banners')}
               />
               <ZoneEntryButton
                 icon="🧳"
                 label="Enter Locker Room"
+                ariaLabel="Locker Room — about and interests"
                 id="enter-locker-room"
                 onClick={() => (window.location.href = '/locker-room')}
               />
               <ZoneEntryButton
                 icon="🎨"
                 label="View Project Binder"
+                ariaLabel="Project Binder — selected work and case studies"
                 id="projects"
                 onClick={() => (window.location.href = '/projects')}
               />
@@ -186,16 +191,18 @@ export function useZoneContent({
             <div className="flex justify-end items-center gap-3 w-full h-full">
               <button
                 onClick={nextStep}
-                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+                aria-label="Next tour step"
+                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 transition"
               >
-                →
+                <span aria-hidden="true">→</span>
               </button>
               <button
                 onClick={() => {
                   stopTour()
                   markAsSeen()
                 }}
-                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+                aria-label="Skip the guided tour"
+                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 transition"
               >
                 Skip
               </button>
@@ -215,9 +222,10 @@ export function useZoneContent({
                   reset()
                   startTour()
                 }}
-                className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer"
+                aria-label="Replay the guided tour"
+                className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
               >
-                🔁 Replay Tour
+                <span aria-hidden="true">🔁</span> Replay Tour
               </button>
             )}
           </div>
