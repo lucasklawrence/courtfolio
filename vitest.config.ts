@@ -33,6 +33,7 @@ export default defineConfig({
         'lib/**/*.{ts,tsx}',
         'constants/**/*.{ts,tsx}',
         'components/training-facility/shared/**/*.{ts,tsx}',
+        'app/api/**/*.{ts,tsx}',
       ],
       exclude: ['**/*.test.{ts,tsx}', '**/*.d.ts'],
     },

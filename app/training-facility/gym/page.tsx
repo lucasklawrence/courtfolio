@@ -1,5 +1,9 @@
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { GymScene } from '@/components/training-facility/scenes/GymScene'
+import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
  * `/training-facility/gym` route — the cardio sub-area scene.
@@ -7,9 +11,12 @@ import { GymScene } from '@/components/training-facility/scenes/GymScene'
  * Phase 1: scene-only. Equipment renders identifiably but is not yet
  * clickable; the only navigation inside the scene is the back door to the
  * Combine. Detail views, signature visualizations, and equipment
- * interactivity ship in later issues.
+ * interactivity ship in later issues. Gated behind the same Training
+ * Facility flag as the parent shell so the route family stays in sync.
  */
-export default function GymPage() {
+export default function TrainingFacilityGymPage() {
+  if (!isTrainingFacilityEnabled()) notFound()
+
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
       <div
@@ -20,6 +27,12 @@ export default function GymPage() {
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <BackToCourtButton />
+          <Link
+            href="/training-facility"
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+          >
+            ← Training Facility
+          </Link>
         </div>
 
         <div className="mt-8 text-center sm:mt-12">

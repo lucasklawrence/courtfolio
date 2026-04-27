@@ -1,14 +1,21 @@
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { CombineScene } from '@/components/training-facility/scenes/CombineScene'
+import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
  * `/training-facility/combine` route — the movement-benchmark sub-area scene.
  *
  * Phase 1: scene-only. Cones, stopwatch, Vertec, and a results board render
  * the staging area; the seven signature visualizations from PRD §9 land in
- * later issues.
+ * later issues. Gated behind the same Training Facility flag as the parent
+ * shell so the route family stays in sync.
  */
-export default function CombinePage() {
+export default function TrainingFacilityCombinePage() {
+  if (!isTrainingFacilityEnabled()) notFound()
+
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#0e0a08] text-[#f7ead9]">
       <div
@@ -19,6 +26,12 @@ export default function CombinePage() {
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <BackToCourtButton />
+          <Link
+            href="/training-facility"
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+          >
+            ← Training Facility
+          </Link>
         </div>
 
         <div className="mt-8 text-center sm:mt-12">
