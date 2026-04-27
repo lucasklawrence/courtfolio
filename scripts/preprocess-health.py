@@ -36,6 +36,17 @@ import sys
 import zipfile
 from datetime import datetime, timezone
 
+# Windows defaults stdout to cp1252 under Python 3.8 — `→` and other
+# Unicode glyphs in our log lines crash the run. Force UTF-8 so the
+# script works the same on macOS / Linux / Windows. Safe no-op on
+# already-UTF-8 streams.
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:  # pragma: no cover — older streams without reconfigure
+        pass
+
 # Mirror of constants/hr-zones.ts — keep in sync. Z5's upper bound is
 # inclusive in JS; here we use `<=` for the same reason. A sample at
 # exactly 100% maxHR ends up in Z5 instead of falling through.
@@ -72,11 +83,14 @@ def log(msg: str, end: str = '\n') -> None:
 
 
 def parse_iso(value: str) -> datetime | None:
-    """Apple Health timestamps look like `2026-04-15 08:32:18 -0700`. Parse to aware datetime."""
+    """
+    Apple Health timestamps look like `2026-04-15 08:32:18 -0700` — space
+    between date/time, space-prefixed offset, no colon in the offset.
+    Python 3.8's `fromisoformat` rejects that shape, so use `strptime`
+    with `%z` (which does accept `±HHMM` since 3.7).
+    """
     try:
-        # Normalize the space-prefixed timezone offset that fromisoformat doesn't accept.
-        normalized = value.replace(' +', '+').replace(' -', '-')
-        return datetime.fromisoformat(normalized)
+        return datetime.strptime(value, '%Y-%m-%d %H:%M:%S %z')
     except (ValueError, TypeError):
         return None
 
@@ -183,16 +197,25 @@ def parse_workouts(xml_text: str) -> list[dict]:
 def parse_hr_samples(xml_text: str) -> list[dict]:
     """Heart rate samples — `(datetime, bpm)`. Sorted by time."""
     log("Parsing heart-rate samples...", end='')
-    hr_re = re.compile(
-        r'<Record type="HKQuantityTypeIdentifierHeartRate"[^>]*startDate="([^"]*)"[^>]*value="([^"]*)"'
+    # Match the whole Record open-tag, then pluck attributes individually.
+    # Apple Health doesn't guarantee a stable attribute order across exports
+    # (older devices put `type` first, newer ones put `sourceName` first), so
+    # the strict positional form silently misses data.
+    record_re = re.compile(
+        r'<Record\b[^>]*type="HKQuantityTypeIdentifierHeartRate"[^>]*>'
     )
     samples: list[dict] = []
-    for m in hr_re.finditer(xml_text):
-        dt = parse_iso(m.group(1))
+    for m in record_re.finditer(xml_text):
+        record = m.group(0)
+        date_m = re.search(r'\bstartDate="([^"]*)"', record)
+        val_m = re.search(r'\bvalue="([^"]*)"', record)
+        if not date_m or not val_m:
+            continue
+        dt = parse_iso(date_m.group(1))
         if dt is None:
             continue
         try:
-            bpm = float(m.group(2))
+            bpm = float(val_m.group(1))
         except ValueError:
             continue
         samples.append({'dt': dt, 'bpm': bpm})
