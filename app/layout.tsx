@@ -23,12 +23,71 @@ const geistMono = Geist_Mono({
 })
 
 /**
- * Global metadata configuration for the site.
- * This metadata is used for SEO and browser tab titles.
+ * Canonical site origin. Used by Next.js to resolve relative URLs in
+ * `openGraph.images`, `twitter.images`, and `alternates.canonical` so that
+ * crawlers, social cards, and JSON-LD all see absolute URLs.
+ */
+const SITE_URL = 'https://lucasklawrence.com'
+
+/**
+ * Site-wide description used as the default meta description and the
+ * Open Graph / Twitter description on routes that don't override it.
+ * Kept under ~160 chars for snippet compatibility.
+ */
+const SITE_DESCRIPTION =
+  'Software engineer at Snap building interactive, basketball-themed product experiences with Next.js, React, TypeScript, and Java. Patent holder.'
+
+/**
+ * Site-wide root title used when a route does not export its own title.
+ * Routes that set `title` participate in the `title.template` below and
+ * render as `<route> | Lucas Lawrence`.
+ */
+const SITE_TITLE = 'Lucas Lawrence — Software Engineer at Snap & Patent Holder'
+
+/**
+ * JSON-LD Person schema describing Lucas Lawrence for search engines.
+ * Inlined as `<script type="application/ld+json">` in the document head.
+ * Lives at the site root so the Person entity is associated with the
+ * domain itself rather than a single inner route.
+ */
+const PERSON_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Lucas Lawrence',
+  jobTitle: 'Software Engineer',
+  url: SITE_URL,
+  worksFor: { '@type': 'Organization', name: 'Snap Inc.' },
+  email: 'mailto:lucasklawrence@gmail.com',
+  sameAs: ['https://github.com/lucasklawrence', 'https://linkedin.com/in/lucasklawrence'],
+}
+
+/**
+ * Global metadata configuration for the site. Per-route layouts may
+ * override `title` (which then participates in the template below),
+ * `description`, `openGraph`, and `alternates.canonical`.
  */
 export const metadata: Metadata = {
-  title: 'Lucas Lawrence | Court Site',
-  description: 'Digital home court of Lucas Lawrence',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: '%s | Lucas Lawrence',
+  },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    siteName: 'Lucas Lawrence',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: { index: true, follow: true },
 }
 
 /**
@@ -56,6 +115,17 @@ export default function RootLayout({
 
         {/* Optional: theme color for mobile browsers */}
         <meta name="theme-color" content="#000000" />
+
+        {/*
+         * JSON-LD Person schema. Helps Google associate the site with
+         * Lucas Lawrence as an entity (knowledge panel, sameAs links).
+         * Inlined rather than emitted via next/script so the bytes are
+         * present in the static HTML and readable by non-JS crawlers.
+         */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSON_LD) }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased touch-pan-x touch-pan-y`}
