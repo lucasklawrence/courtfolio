@@ -114,7 +114,12 @@ def parse_workouts(xml_text: str) -> list[dict]:
     open_re = re.compile(r'<Workout\s([^>]+)>')
     block_re = re.compile(r'<Workout\s[^>]*startDate="([^"]*)"[^>]*>([\s\S]*?)</Workout>')
 
-    by_start: dict[str, dict] = {}
+    # `by_start` keys workouts by startDate so the distance-enrichment
+    # block-pass can find them later. Two workouts with identical
+    # second-precision startDates would clobber each other under a
+    # single-value mapping, so we store a list per key and apply
+    # enrichment to every entry in the bucket.
+    by_start: dict[str, list[dict]] = {}
     skipped_types: dict[str, int] = {}
 
     for m in open_re.finditer(xml_text):
@@ -146,7 +151,7 @@ def parse_workouts(xml_text: str) -> list[dict]:
         else:
             duration_seconds = duration * 60  # assume minutes if unknown
 
-        by_start[start] = {
+        by_start.setdefault(start, []).append({
             'date': start,
             'activity': activity,
             'duration_seconds': round(duration_seconds, 2),
@@ -158,40 +163,51 @@ def parse_workouts(xml_text: str) -> list[dict]:
             'meters_per_heartbeat': None,
             '_start_dt': parse_iso(start),
             '_end_dt': parse_iso(end),
-        }
+        })
 
     # Distance comes from a nested <MetadataEntry> or sibling Record inside the block.
+    # If a startDate has multiple workouts (rare but possible), apply the
+    # extracted distance/elevation to all of them — the block doesn't
+    # carry any stable disambiguator we could use to pick just one.
     for m in block_re.finditer(xml_text):
         start = m.group(1)
         content = m.group(2)
-        w = by_start.get(start)
-        if not w:
+        bucket = by_start.get(start)
+        if not bucket:
             continue
+        for w in bucket:
+            apply_block_distance(w, content)
 
-        dist_m = re.search(
-            r'type="HKQuantityTypeIdentifierDistanceWalkingRunning"[^>]*sum="([^"]*)"', content
-        )
-        if dist_m:
-            unit_m = re.search(
-                r'type="HKQuantityTypeIdentifierDistanceWalkingRunning"[^>]*unit="([^"]*)"', content
-            )
-            unit = unit_m.group(1) if unit_m else 'km'
-            val = float(dist_m.group(1))
-            if unit == 'mi':
-                meters = val * 1609.34
-            elif unit == 'km':
-                meters = val * 1000.0
-            elif unit == 'm':
-                meters = val
-            else:
-                meters = val * 1000.0  # unknown unit — assume km
-            w['distance_meters'] = round(meters, 2)
+    flat = [w for bucket in by_start.values() for w in bucket]
 
     if skipped_types:
         for wtype, n in sorted(skipped_types.items(), key=lambda kv: -kv[1]):
             log(f"skipped {n:,} workout(s) of type {wtype}")
 
-    return list(by_start.values())
+    return flat
+
+
+def apply_block_distance(w: dict, content: str) -> None:
+    """Pull distance / elevation aggregates from a single `<Workout>` block into `w` in place."""
+    dist_m = re.search(
+        r'type="HKQuantityTypeIdentifierDistanceWalkingRunning"[^>]*sum="([^"]*)"', content
+    )
+    if not dist_m:
+        return
+    unit_m = re.search(
+        r'type="HKQuantityTypeIdentifierDistanceWalkingRunning"[^>]*unit="([^"]*)"', content
+    )
+    unit = unit_m.group(1) if unit_m else 'km'
+    val = float(dist_m.group(1))
+    if unit == 'mi':
+        meters = val * 1609.34
+    elif unit == 'km':
+        meters = val * 1000.0
+    elif unit == 'm':
+        meters = val
+    else:
+        meters = val * 1000.0  # unknown unit — assume km
+    w['distance_meters'] = round(meters, 2)
 
 
 def parse_hr_samples(xml_text: str) -> list[dict]:
