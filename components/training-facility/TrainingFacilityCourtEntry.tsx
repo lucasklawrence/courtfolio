@@ -9,7 +9,7 @@ type TrainingFacilityCourtEntryProps = {
   /**
    * Invoked when the visitor activates the court-side tunnel entry.
    */
-  onClick?: () => void
+  onClick: () => void
 }
 
 /**
@@ -19,7 +19,7 @@ type TrainingFacilityCourtEntryProps = {
  * another utility button stacked with the top-right navigation controls.
  *
  * @param props.id - Optional DOM id used for testing hooks or guided-tour targeting.
- * @param props.onClick - Optional activation handler invoked when a visitor enters the tunnel.
+ * @param props.onClick - Activation handler invoked when a visitor enters the tunnel.
  */
 export function TrainingFacilityCourtEntry({
   id,

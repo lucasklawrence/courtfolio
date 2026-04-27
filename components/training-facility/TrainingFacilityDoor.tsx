@@ -108,11 +108,16 @@ export function TrainingFacilityDoor({
   disabled = false,
 }: TrainingFacilityDoorProps) {
   const colors = toneClasses[tone]
+  const isInteractive = !disabled && Boolean(href)
   const baseClassName = [
     'group flex h-full min-h-[21rem] flex-col rounded-[2rem] border p-5 text-left shadow-[0_20px_50px_rgba(0,0,0,0.28)] transition duration-200',
     colors.frame,
     colors.text,
-    disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.34)]',
+    disabled
+      ? 'cursor-not-allowed opacity-80'
+      : isInteractive
+        ? 'cursor-pointer hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.34)]'
+        : 'cursor-default',
   ].join(' ')
 
   const content = (
