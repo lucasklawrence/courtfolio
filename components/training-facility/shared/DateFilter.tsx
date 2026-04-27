@@ -49,6 +49,10 @@ export function endOfDay(d: Date): Date {
  * the target month when the source day doesn't exist there. Avoids JS's
  * silent rollover (e.g., March 31 → setMonth(-1) producing March 3
  * instead of February 28/29).
+ *
+ * @param d - Source date.
+ * @param months - Number of calendar months to subtract. Negative values
+ *   are not handled — callers want a backward-looking lookback only.
  */
 export function subtractMonths(d: Date, months: number): Date {
   const targetMonthIndex = d.getMonth() - months
@@ -68,6 +72,11 @@ export function subtractMonths(d: Date, months: number): Date {
  * Compute a `DateRange` for one of the preset buttons. Bounds are
  * day-normalized (start: 00:00, end: 23:59:59.999) so the resulting
  * range is independent of the click time.
+ *
+ * @param preset - Which preset to compute (`1M` / `3M` / `6M` / `1Y` / `ALL`).
+ * @param earliest - Lower bound used by the `ALL` preset; ignored otherwise.
+ *   Clamped to today if it sits in the future, so the `start <= end`
+ *   invariant is preserved against a misconfigured prop.
  */
 export function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
   const today = new Date()
@@ -95,6 +104,9 @@ export function toInputValue(d: Date): string {
  * Parse a `YYYY-MM-DD` string from `<input type="date">` as local
  * midnight. Returns `null` for empty input or unparseable values so the
  * caller can no-op rather than storing `Invalid Date`.
+ *
+ * @param s - Raw `<input type="date">` value, expected as `YYYY-MM-DD`.
+ *   Empty or malformed strings return `null`.
  */
 export function parseInputValue(s: string): Date | null {
   if (!s) return null

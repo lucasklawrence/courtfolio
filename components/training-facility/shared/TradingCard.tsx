@@ -40,6 +40,14 @@ export interface TradingCardProps {
  * (you can't break a record that doesn't exist). The "prior only"
  * comparison matters when the card is used to browse a non-latest entry:
  * a March session shouldn't lose its PB badge just because April beat it.
+ *
+ * @param entry - The benchmark being judged. Must have a `date` field.
+ * @param history - Full benchmark history. May or may not include `entry`;
+ *   only entries with `date < entry.date` and `is_complete !== false` count
+ *   toward the comparison.
+ * @param key - Which metric to evaluate (e.g. `vertical_in`).
+ * @param spec - The metric's display + scoring config; `spec.direction`
+ *   determines whether lower or higher values win.
  */
 export function isPersonalBest(
   entry: Benchmark,
@@ -64,7 +72,12 @@ export function formatValue(value: number | undefined, spec: BenchmarkConfig): s
   return `${value.toFixed(spec.precision)}${spec.unit}`
 }
 
-/** Derive a "2026 Spring"-style season label from a `YYYY-MM-DD` benchmark date. */
+/**
+ * Derive a "2026 Spring"-style season label from a `YYYY-MM-DD` benchmark date.
+ *
+ * @param date - ISO calendar date (`YYYY-MM-DD`); the month determines which
+ *   meteorological season label is returned.
+ */
 export function seasonFromDate(date: string): string {
   const [yearStr, monthStr] = date.split('-')
   const month = Number(monthStr)
