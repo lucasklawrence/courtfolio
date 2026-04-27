@@ -47,6 +47,17 @@ export type RoughOptions = {
   strokeLinecap?: 'butt' | 'round' | 'square'
   /** Round joins for marker-like corners. Defaults to 'round'. */
   strokeLinejoin?: 'miter' | 'round' | 'bevel'
+  /**
+   * Stroke opacity passed through to the rendered `<path>` elements. Lets
+   * scenes fade rough strokes (e.g. background motion lines) without baking
+   * the alpha into the stroke color.
+   */
+  strokeOpacity?: number
+  /**
+   * Fill opacity passed through to the rendered `<path>` elements when the
+   * shape has a fill. Useful for translucent fills layered over a base.
+   */
+  fillOpacity?: number
 }
 
 const DEFAULT_OPTIONS: Required<Pick<RoughOptions, 'roughness' | 'bowing' | 'strokeLinecap' | 'strokeLinejoin'>> = {
@@ -60,6 +71,8 @@ function renderPaths(
   paths: ReturnType<typeof drawableToPaths>,
   cap: NonNullable<RoughOptions['strokeLinecap']>,
   join: NonNullable<RoughOptions['strokeLinejoin']>,
+  strokeOpacity: number | undefined,
+  fillOpacity: number | undefined,
   keyPrefix: string
 ): JSX.Element[] {
   return paths.map((p, i) => (
@@ -71,12 +84,20 @@ function renderPaths(
       fill={p.fill ?? 'none'}
       strokeLinecap={cap}
       strokeLinejoin={join}
+      strokeOpacity={strokeOpacity}
+      fillOpacity={fillOpacity}
     />
   ))
 }
 
 function buildRoughOptions(opts: RoughOptions) {
-  const { strokeLinecap: _cap, strokeLinejoin: _join, ...rest } = opts
+  const {
+    strokeLinecap: _cap,
+    strokeLinejoin: _join,
+    strokeOpacity: _so,
+    fillOpacity: _fo,
+    ...rest
+  } = opts
   return {
     roughness: opts.roughness ?? DEFAULT_OPTIONS.roughness,
     bowing: opts.bowing ?? DEFAULT_OPTIONS.bowing,
@@ -106,7 +127,18 @@ export function RoughRect({ x, y, width, height, ...opts }: RoughRectProps): JSX
   const drawable = getGenerator().rectangle(x, y, width, height, buildRoughOptions(opts))
   const cap = opts.strokeLinecap ?? DEFAULT_OPTIONS.strokeLinecap
   const join = opts.strokeLinejoin ?? DEFAULT_OPTIONS.strokeLinejoin
-  return <g>{renderPaths(drawableToPaths(drawable), cap, join, 'rect')}</g>
+  return (
+    <g>
+      {renderPaths(
+        drawableToPaths(drawable),
+        cap,
+        join,
+        opts.strokeOpacity,
+        opts.fillOpacity,
+        'rect'
+      )}
+    </g>
+  )
 }
 
 /**
@@ -129,7 +161,18 @@ export function RoughCircle({ cx, cy, r, ...opts }: RoughCircleProps): JSX.Eleme
   const drawable = getGenerator().circle(cx, cy, r * 2, buildRoughOptions(opts))
   const cap = opts.strokeLinecap ?? DEFAULT_OPTIONS.strokeLinecap
   const join = opts.strokeLinejoin ?? DEFAULT_OPTIONS.strokeLinejoin
-  return <g>{renderPaths(drawableToPaths(drawable), cap, join, 'circle')}</g>
+  return (
+    <g>
+      {renderPaths(
+        drawableToPaths(drawable),
+        cap,
+        join,
+        opts.strokeOpacity,
+        opts.fillOpacity,
+        'circle'
+      )}
+    </g>
+  )
 }
 
 /**
@@ -154,7 +197,18 @@ export function RoughEllipse({ cx, cy, width, height, ...opts }: RoughEllipsePro
   const drawable = getGenerator().ellipse(cx, cy, width, height, buildRoughOptions(opts))
   const cap = opts.strokeLinecap ?? DEFAULT_OPTIONS.strokeLinecap
   const join = opts.strokeLinejoin ?? DEFAULT_OPTIONS.strokeLinejoin
-  return <g>{renderPaths(drawableToPaths(drawable), cap, join, 'ellipse')}</g>
+  return (
+    <g>
+      {renderPaths(
+        drawableToPaths(drawable),
+        cap,
+        join,
+        opts.strokeOpacity,
+        opts.fillOpacity,
+        'ellipse'
+      )}
+    </g>
+  )
 }
 
 /**
@@ -179,7 +233,18 @@ export function RoughLineShape({ x1, y1, x2, y2, ...opts }: RoughLineProps): JSX
   const drawable = getGenerator().line(x1, y1, x2, y2, buildRoughOptions(opts))
   const cap = opts.strokeLinecap ?? DEFAULT_OPTIONS.strokeLinecap
   const join = opts.strokeLinejoin ?? DEFAULT_OPTIONS.strokeLinejoin
-  return <g>{renderPaths(drawableToPaths(drawable), cap, join, 'line')}</g>
+  return (
+    <g>
+      {renderPaths(
+        drawableToPaths(drawable),
+        cap,
+        join,
+        opts.strokeOpacity,
+        opts.fillOpacity,
+        'line'
+      )}
+    </g>
+  )
 }
 
 /**
@@ -198,7 +263,18 @@ export function RoughPath({ d, ...opts }: RoughPathProps): JSX.Element {
   const drawable = getGenerator().path(d, buildRoughOptions(opts))
   const cap = opts.strokeLinecap ?? DEFAULT_OPTIONS.strokeLinecap
   const join = opts.strokeLinejoin ?? DEFAULT_OPTIONS.strokeLinejoin
-  return <g>{renderPaths(drawableToPaths(drawable), cap, join, 'path')}</g>
+  return (
+    <g>
+      {renderPaths(
+        drawableToPaths(drawable),
+        cap,
+        join,
+        opts.strokeOpacity,
+        opts.fillOpacity,
+        'path'
+      )}
+    </g>
+  )
 }
 
 /**
@@ -217,7 +293,18 @@ export function RoughPolygon({ points, ...opts }: RoughPolygonProps): JSX.Elemen
   const drawable = getGenerator().polygon(points, buildRoughOptions(opts))
   const cap = opts.strokeLinecap ?? DEFAULT_OPTIONS.strokeLinecap
   const join = opts.strokeLinejoin ?? DEFAULT_OPTIONS.strokeLinejoin
-  return <g>{renderPaths(drawableToPaths(drawable), cap, join, 'poly')}</g>
+  return (
+    <g>
+      {renderPaths(
+        drawableToPaths(drawable),
+        cap,
+        join,
+        opts.strokeOpacity,
+        opts.fillOpacity,
+        'poly'
+      )}
+    </g>
+  )
 }
 
 /**

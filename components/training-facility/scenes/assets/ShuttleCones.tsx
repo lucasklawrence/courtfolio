@@ -29,29 +29,23 @@ const CONES: ConeSpec[] = [
 export function ShuttleCones() {
   return (
     <g aria-hidden="true">
-      {/* Run line */}
-      <RoughPath
-        d="M 200 845 L 880 845"
-        fill="none"
-        stroke={SCENE_PALETTE.cream}
-        strokeWidth={2}
-        roughness={1.4}
-        seed={490}
-        // dashed via stroke-dasharray injected through dasharray prop?
-        // RoughPath doesn't support dasharray; render as dashes via separate segments below
-      />
-      {/* Run-line dashes overlaid in ink to read as dashed */}
-      {[260, 360, 460, 580, 680, 780].map((x, i) => (
+      {/* Run line — rendered as discrete cream dashes so the rough strokes
+          read as a dashed drill line without needing roughjs dasharray support. */}
+      {[
+        [200, 240], [280, 320], [360, 400], [440, 480],
+        [520, 560], [600, 640], [680, 720], [760, 800], [840, 880],
+      ].map(([x1, x2], i) => (
         <RoughLineShape
-          key={`dash-mask-${x}`}
-          x1={x}
+          key={`run-dash-${x1}`}
+          x1={x1}
           y1={845}
-          x2={x + 30}
+          x2={x2}
           y2={845}
-          stroke="#241811"
-          strokeWidth={4}
-          roughness={0.5}
-          seed={491 + i}
+          stroke={SCENE_PALETTE.cream}
+          strokeOpacity={0.55}
+          strokeWidth={2.5}
+          roughness={1.0}
+          seed={490 + i}
         />
       ))}
 
