@@ -50,14 +50,10 @@ const DIGIT_FLIP_S = 0.45
 const DELTA_COUNTUP_S = 0.6
 const DELTA_DELAY_AFTER_CELL_S = 0.3
 
-/** Format the cell's main value, or em-dash placeholder when absent. */
-function formatValue(
-  value: number | undefined,
-  precision: number,
-  unit: string,
-): string {
+/** Format the cell's numeric value alone (no unit), or em-dash when absent. The unit renders separately at a smaller size — see {@link ScoreboardCellView}. */
+function formatDigits(value: number | undefined, precision: number): string {
   if (typeof value !== 'number') return '—'
-  return `${value.toFixed(precision)}${unit}`
+  return value.toFixed(precision)
 }
 
 /** Format a signed delta with a leading +/− glyph and the metric unit. */
@@ -127,7 +123,8 @@ function ScoreboardCellView({
   index,
   reduceMotion,
 }: ScoreboardCellViewProps): JSX.Element {
-  const display = formatValue(cell.value, cell.precision, cell.unit)
+  const digits = formatDigits(cell.value, cell.precision)
+  const showUnit = typeof cell.value === 'number'
   const status = classifyDelta(cell.value, cell.baseline, cell.direction)
   // Suppress the delta line when there's no comparison to make OR the
   // delta would render as "±0.00" at the cell's display precision.
@@ -149,7 +146,12 @@ function ScoreboardCellView({
       <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-amber-300/70">
         {cell.label}
       </span>
-      <SplitFlapDigits text={display} delay={cellDelay} reduceMotion={reduceMotion} />
+      <SplitFlapDigits
+        digits={digits}
+        unit={showUnit ? cell.unit : undefined}
+        delay={cellDelay}
+        reduceMotion={reduceMotion}
+      />
       {showDelta && displayedDelta !== undefined && status !== null ? (
         <DeltaLine
           delta={displayedDelta}
@@ -169,7 +171,10 @@ function ScoreboardCellView({
 }
 
 interface SplitFlapDigitsProps {
-  text: string
+  /** The numeric portion that flips into place (e.g. "231.4", "5.38", or "—"). */
+  digits: string
+  /** Optional unit suffix (e.g. " lbs", "s", "\""). Rendered smaller and static beside the digits so it doesn't overrun the cell on narrow screens. */
+  unit?: string
   delay: number
   reduceMotion: boolean
 }
@@ -181,40 +186,60 @@ const DIGIT_STYLE: CSSProperties = {
 }
 
 /**
- * Renders a string as a row of split-flap-style digits, each flipping
- * down into place with a small per-character stagger.
+ * Renders a number as a row of split-flap-style digits with a small
+ * per-character stagger, plus an optional smaller-text unit suffix
+ * appended inline. The unit is intentionally not animated — it's
+ * static metadata, and shrinking it keeps `231.4 lbs` from wrapping
+ * inside narrow mobile cells.
  */
 function SplitFlapDigits({
-  text,
+  digits,
+  unit,
   delay,
   reduceMotion,
 }: SplitFlapDigitsProps): JSX.Element {
-  const chars = Array.from(text)
+  const chars = Array.from(digits)
+  // Trim leading whitespace from the unit before rendering: " lbs"
+  // included a leading space so it appeared as "231.4 lbs" when
+  // concatenated; with the unit in its own span we control spacing
+  // via the inline-flex gap instead.
+  const trimmedUnit = unit?.replace(/^\s+/, '')
+  const ariaLabel = unit ? `${digits} ${trimmedUnit ?? ''}`.trim() : digits
   return (
     <span
-      aria-label={text}
-      className="font-mono text-3xl font-bold tabular-nums tracking-tight text-amber-300 sm:text-4xl"
+      aria-label={ariaLabel}
+      className="inline-flex items-baseline gap-0.5"
       style={{ perspective: '600px' }}
     >
-      {chars.map((char, i) => (
-        <motion.span
-          // Key includes the text identity so a future value swap on the
-          // same cell retriggers the flip animation; with just `i` the
-          // span would mutate without re-animating.
-          key={`${text}-${i}`}
+      <span className="font-mono text-2xl font-bold tabular-nums tracking-tight text-amber-300 sm:text-4xl">
+        {chars.map((char, i) => (
+          <motion.span
+            // Key includes the digit string identity so a future value
+            // swap on the same cell retriggers the flip animation;
+            // with just `i` the span would mutate without re-animating.
+            key={`${digits}-${i}`}
+            aria-hidden="true"
+            style={DIGIT_STYLE}
+            initial={reduceMotion ? false : { rotateX: -90, opacity: 0 }}
+            animate={reduceMotion ? undefined : { rotateX: 0, opacity: 1 }}
+            transition={{
+              duration: DIGIT_FLIP_S,
+              ease: [0.16, 1, 0.3, 1],
+              delay: delay + i * DIGIT_STAGGER_S,
+            }}
+          >
+            {char}
+          </motion.span>
+        ))}
+      </span>
+      {trimmedUnit && (
+        <span
           aria-hidden="true"
-          style={DIGIT_STYLE}
-          initial={reduceMotion ? false : { rotateX: -90, opacity: 0 }}
-          animate={reduceMotion ? undefined : { rotateX: 0, opacity: 1 }}
-          transition={{
-            duration: DIGIT_FLIP_S,
-            ease: [0.16, 1, 0.3, 1],
-            delay: delay + i * DIGIT_STAGGER_S,
-          }}
+          className="font-mono text-sm font-semibold uppercase tracking-wide text-amber-300/80 sm:text-base"
         >
-          {char}
-        </motion.span>
-      ))}
+          {trimmedUnit}
+        </span>
+      )}
     </span>
   )
 }
