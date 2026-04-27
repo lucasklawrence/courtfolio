@@ -601,6 +601,20 @@ function DoorToCombine() {
         strokeWidth={2}
         className="transition-colors group-hover:fill-[#6b3e1a] group-focus-visible:fill-[#6b3e1a]"
       />
+      {/* Focus ring — visible only when the Link is keyboard-focused, so
+          keyboard users get a high-contrast cue beyond the door fill darken. */}
+      <rect
+        x={1294}
+        y={144}
+        width={212}
+        height={452}
+        fill="none"
+        stroke={SCENE_PALETTE.rim}
+        strokeWidth={4}
+        strokeDasharray="6 4"
+        rx={3}
+        className="opacity-0 transition-opacity group-focus-visible:opacity-100"
+      />
       {/* Recessed inner panels */}
       <rect
         x={1336}
