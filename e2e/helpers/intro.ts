@@ -1,5 +1,6 @@
 import type { Page } from '@playwright/test'
 
+/** LocalStorage key used to persist whether the visitor has already seen the intro. */
 const HAS_SEEN_INTRO_KEY = 'hasSeenIntro'
 
 /**

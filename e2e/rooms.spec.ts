@@ -14,7 +14,7 @@ const roomExpectations: RoomExpectation[] = [
   },
   {
     route: '/projects',
-    locator: page => page.getByText(/tech stack binder/i),
+    locator: page => page.getByTestId('projects-title'),
     backLinkName: /back to home court/i,
   },
   {

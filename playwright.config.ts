@@ -1,7 +1,12 @@
 import { defineConfig } from '@playwright/test'
 
+/** Base URL for the default route smoke-test project. */
 const DEFAULT_BASE_URL = 'http://127.0.0.1:3007'
+
+/** Base URL for the feature-flag-enabled Training Facility smoke-test project. */
 const TRAINING_FACILITY_BASE_URL = 'http://127.0.0.1:3008'
+
+/** Whether the Playwright run is executing under CI. */
 const IS_CI = Boolean(process.env.CI)
 
 export default defineConfig({
