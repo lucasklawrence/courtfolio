@@ -31,8 +31,6 @@ const NUMERIC_FIELDS = [
   'sprint_10y_s',
 ] as const satisfies ReadonlyArray<keyof BenchmarkFormValues>
 
-type NumericField = (typeof NUMERIC_FIELDS)[number]
-
 /** Today as `YYYY-MM-DD` in the user's local timezone — used for the default date. */
 function todayIso(): string {
   const d = new Date()

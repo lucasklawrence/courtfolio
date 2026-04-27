@@ -28,29 +28,37 @@ import { CombineEntryForm } from './CombineEntryForm'
 export function CombineDataIsland(): JSX.Element {
   const [entries, setEntries] = useState<Benchmark[] | undefined>(undefined)
 
-  const refetch = useCallback(async (cache?: RequestCache): Promise<void> => {
-    try {
-      const data = await getMovementBenchmarks(cache ? { cache } : undefined)
-      setEntries(data)
-    } catch {
-      // Treat any read error the same as "no data yet" so the
-      // Scoreboard still renders with em-dash placeholders rather
-      // than blocking the whole page on a transient fetch failure.
-      setEntries([])
+  // Mount-time fetch is wrapped with a `cancelled` flag so a fast
+  // unmount (page navigation) doesn't `setEntries` on an unmounted
+  // component. The post-save refetch below uses the same `setEntries`
+  // but is keyed off a user gesture from a still-mounted form, so it
+  // doesn't need the same guard.
+  useEffect(() => {
+    let cancelled = false
+    getMovementBenchmarks()
+      .then((data) => {
+        if (!cancelled) setEntries(data)
+      })
+      .catch(() => {
+        if (!cancelled) setEntries([])
+      })
+    return () => {
+      cancelled = true
     }
   }, [])
-
-  useEffect(() => {
-    void refetch()
-  }, [refetch])
 
   const handleSaved = useCallback(async (): Promise<void> => {
     // Bypass the HTTP cache after a write — Next dev serves the
     // static JSON from disk, but the browser may have cached the
     // pre-write copy. `no-store` guarantees the next render reflects
     // the entry the user just logged.
-    await refetch('no-store')
-  }, [refetch])
+    try {
+      const data = await getMovementBenchmarks({ cache: 'no-store' })
+      setEntries(data)
+    } catch {
+      setEntries([])
+    }
+  }, [])
 
   const cells = deriveCombineScoreboardCells(entries ?? [])
 

@@ -54,7 +54,7 @@ describe('CombineDataIsland', () => {
     expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(1)
     // First mount fetch should NOT bypass the cache — that's reserved
     // for the post-write refetch.
-    expect(getMovementBenchmarksMock).toHaveBeenCalledWith(undefined)
+    expect(getMovementBenchmarksMock).toHaveBeenCalledWith()
   })
 
   it('falls back to an empty Scoreboard when the fetch rejects (transient failure)', async () => {
