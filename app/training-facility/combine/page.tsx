@@ -1,40 +1,22 @@
-'use client'
-
-import { useEffect, useState, type JSX } from 'react'
-import { Scoreboard } from '@/components/training-facility/shared/Scoreboard'
-import { deriveCombineScoreboardCells } from '@/components/training-facility/shared/scoreboard-utils'
-import { getMovementBenchmarks } from '@/lib/data/movement'
-import type { Benchmark } from '@/types/movement'
+import type { JSX } from 'react'
+import { notFound } from 'next/navigation'
+import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { CombineScoreboardSection } from './CombineScoreboardSection'
 
 /**
- * Combine sub-area page (PRD §9). The first deployment of the shared
- * scoreboard summary header (PRD §9.1) sits at the top; richer
- * visualizations (Trading Card, Silhouette, Shuttle Trace, Sprint Race,
- * Radar) land in subsequent issues.
+ * Combine sub-area page (PRD §9). Hosts the shared scoreboard summary
+ * header (PRD §9.1) at the top; richer visualizations (Trading Card,
+ * Silhouette, Shuttle Trace, Sprint Race, Radar) land in subsequent
+ * issues.
  *
- * The page is a client component because the data layer fetches
- * `public/data/movement_benchmarks.json` at runtime via a relative URL
- * (see {@link getMovementBenchmarks}). When no benchmarks exist yet the
- * scoreboard renders em-dash placeholders, the documented empty state.
+ * Gated behind {@link isTrainingFacilityEnabled} so the route stays
+ * 404'd in production until the Training Facility ships publicly. The
+ * page itself is a server component for the flag check; the scoreboard
+ * lives in a client island so the data layer's relative-URL fetch can
+ * run after hydration.
  */
 export default function TrainingFacilityCombinePage(): JSX.Element {
-  const [entries, setEntries] = useState<Benchmark[] | undefined>(undefined)
-
-  useEffect(() => {
-    let cancelled = false
-    getMovementBenchmarks()
-      .then((data) => {
-        if (!cancelled) setEntries(data)
-      })
-      .catch(() => {
-        if (!cancelled) setEntries([])
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  const cells = deriveCombineScoreboardCells(entries ?? [])
+  if (!isTrainingFacilityEnabled()) notFound()
 
   return (
     <main className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -58,7 +40,7 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
           </p>
         </header>
 
-        <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
+        <CombineScoreboardSection />
       </div>
     </main>
   )
