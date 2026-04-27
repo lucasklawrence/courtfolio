@@ -42,6 +42,9 @@ export interface ScoreboardCell {
  * the metric (partial entries are valid per `Benchmark` type docs).
  *
  * Returns `undefined` when no qualifying entry exists.
+ *
+ * @param entries Benchmark history. Order does not matter; the function compares dates.
+ * @param key     Which metric to inspect.
  */
 export function pickMetricLatest(
   entries: readonly Benchmark[],
@@ -64,6 +67,9 @@ export function pickMetricLatest(
  * entries are valid: a January bodyweight-only week is a legitimate
  * bodyweight baseline even when it lacks a vertical. Same skip rules as
  * {@link pickMetricLatest}.
+ *
+ * @param entries Benchmark history. Order does not matter.
+ * @param key     Which metric to inspect.
  */
 export function pickMetricBaseline(
   entries: readonly Benchmark[],
@@ -89,6 +95,10 @@ export type DeltaStatus = 'improvement' | 'regression' | 'neutral'
 /**
  * Classify `latest` vs `baseline` according to whether lower or higher is
  * better for this metric. Use the result to color-code the delta line.
+ *
+ * @param latest    Most recent value for the metric.
+ * @param baseline  Reference value to compare against (typically the earliest entry's value).
+ * @param direction Which direction is "improvement" — `'lower'` for time/weight metrics, `'higher'` for vertical jump.
  */
 export function classifyDelta(
   latest: number | undefined,
@@ -108,6 +118,8 @@ export function classifyDelta(
  * `constants/benchmarks.ts` plus an entry in {@link SCOREBOARD_METRIC_ORDER}.
  * Iterates the order constant rather than `Object.keys(BENCHMARKS)` so
  * the on-screen sequence stays stable.
+ *
+ * @param entries Benchmark history. Order does not matter; the helpers compare dates.
  */
 export function deriveCombineScoreboardCells(
   entries: readonly Benchmark[],

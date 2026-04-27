@@ -82,6 +82,18 @@ describe('pickMetricBaseline', () => {
   })
 })
 
+describe('classifyDelta + display precision (sub-precision noise should not flag improvement)', () => {
+  // Real-world scenario: shuttle precision is 2 decimals. A raw delta of
+  // -0.003 (5.381 vs 5.384) classifies as "improvement" mathematically
+  // but renders as "Δ −0.00s", which is misleading. The view layer
+  // suppresses the line by rounding to display precision before deciding;
+  // these unit tests pin the classifier behavior on raw inputs so the
+  // rule is documented and the upstream call site can rely on it.
+  it('still classifies sub-precision improvements as improvement on raw inputs', () => {
+    expect(classifyDelta(5.381, 5.384, 'lower')).toBe('improvement')
+  })
+})
+
 describe('classifyDelta', () => {
   it('lower-is-better: smaller latest is improvement', () => {
     expect(classifyDelta(5.38, 5.62, 'lower')).toBe('improvement')

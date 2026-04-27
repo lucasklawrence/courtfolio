@@ -32,11 +32,15 @@ export interface ScoreboardProps {
    * Accessible name for the scoreboard region. Override per use site —
    * the Combine page sets "Combine scoreboard summary"; the future Gym
    * wall scoreboard will set its own contextual label. Defaults to a
-   * generic "Scoreboard" so consumers that forget still get something
+   * generic `"Scoreboard"` so consumers that forget still get something
    * sensible.
    */
   ariaLabel?: string
-  /** Tailwind classes appended to the outer container. */
+  /**
+   * Tailwind classes appended to the outer grid container. Defaults to
+   * `''`; pass utility classes to override spacing or column counts
+   * (e.g. `grid-cols-3 sm:grid-cols-3` for a future 3-cell variant).
+   */
   className?: string
 }
 
@@ -64,6 +68,16 @@ function formatDeltaValue(delta: number, precision: number, unit: string): strin
 }
 
 /**
+ * Round a value to the cell's display precision. Used to decide whether
+ * a delta should render at all — sub-precision differences (5.381 vs
+ * 5.384 with `precision=2`) round to zero and should not show the line.
+ */
+function roundToPrecision(value: number, precision: number): number {
+  const factor = Math.pow(10, precision)
+  return Math.round(value * factor) / factor
+}
+
+/**
  * `Scoreboard` — arena-style summary header (PRD §9.1).
  *
  * Renders cells side-by-side. Each cell shows a label, the latest value
@@ -73,7 +87,10 @@ function formatDeltaValue(delta: number, precision: number, unit: string): strin
  *
  * The component is pure display: parents derive cell models with
  * `deriveCombineScoreboardCells` (Combine page) or hand-build them
- * (Gym wall scoreboard, future). See {@link ScoreboardProps} for prop docs.
+ * (Gym wall scoreboard, future). The `cells` array is read-only — the
+ * component never mutates it.
+ *
+ * @param props - {@link ScoreboardProps}.
  */
 export function Scoreboard({
   cells,
@@ -113,13 +130,18 @@ function ScoreboardCellView({
   const display = formatValue(cell.value, cell.precision, cell.unit)
   const status = classifyDelta(cell.value, cell.baseline, cell.direction)
   // Suppress the delta line when there's no comparison to make OR the
-  // values are exactly equal — a "Δ ±0.00s" line on the first session
-  // (when baseline === latest === today's value) reads as noise.
+  // delta would render as "±0.00" at the cell's display precision.
+  // Comparing the *rounded* delta (not the raw float) avoids a
+  // misleading "Δ −0.00s" green badge for sub-precision noise like
+  // 5.381 vs 5.384 with `precision=2`.
   const delta =
     cell.value !== undefined && cell.baseline !== undefined
       ? cell.value - cell.baseline
       : undefined
-  const showDelta = delta !== undefined && delta !== 0 && status !== null
+  const displayedDelta =
+    delta !== undefined ? roundToPrecision(delta, cell.precision) : undefined
+  const showDelta =
+    displayedDelta !== undefined && displayedDelta !== 0 && status !== null
   const cellDelay = reduceMotion ? 0 : index * CELL_STAGGER_S
 
   return (
@@ -128,10 +150,10 @@ function ScoreboardCellView({
         {cell.label}
       </span>
       <SplitFlapDigits text={display} delay={cellDelay} reduceMotion={reduceMotion} />
-      {showDelta ? (
+      {showDelta && displayedDelta !== undefined && status !== null ? (
         <DeltaLine
-          delta={delta as number}
-          status={status as DeltaStatus}
+          delta={displayedDelta}
+          status={status}
           precision={cell.precision}
           unit={cell.unit}
           delay={cellDelay + (reduceMotion ? 0 : DELTA_DELAY_AFTER_CELL_S)}
