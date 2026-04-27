@@ -34,7 +34,7 @@ type ZoneEntryButtonProps = {
  * @param {string} [id] - Optional HTML ID for targeting, testing, or accessibility.
  * @param {React.ReactNode} icon - The icon (emoji or SVG) displayed to the left of the label.
  * @param {string} label - The visible button text (e.g., "Enter Locker Room").
- * @param {string} [ariaLabel] - Optional descriptive aria-label that overrides the visible text for screen readers (e.g., "Locker Room — about and interests"). When omitted, screen readers fall back to the visible icon + label.
+ * @param {string} [ariaLabel] - Optional descriptive aria-label that overrides the visible text for screen readers (e.g., "Locker Room — about and interests"). When omitted, screen readers fall back to the visible label text (the decorative icon is `aria-hidden`).
  * @param {() => void} [onClick] - Optional click handler function for navigation or interaction.
  * @param {string} [className] - Optional Tailwind utility string to extend or override styles.
  *
