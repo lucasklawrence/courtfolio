@@ -1,6 +1,7 @@
 'use client'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { NextStopNav } from '@/components/common/NextStopNav'
 import { FrontOfficeSvg } from '@/components/contact/FrontOfficeSvg'
 import { FrontOfficeZone } from '@/components/contact/FrontOfficeZone'
 import { LosAngelesPictureSvg } from '@/components/contact/LosAngelesPictureSvg'
@@ -37,6 +38,11 @@ export default function ContactPage() {
           'back-to-court': (
             <FrontOfficeZone x={1320} y={980} width={340} height={70}>
               <BackToCourtButton />
+            </FrontOfficeZone>
+          ),
+          'next-stop-nav': (
+            <FrontOfficeZone x={40} y={950} width={1260} height={80}>
+              <NextStopNav current="contact" />
             </FrontOfficeZone>
           ),
           resume: (

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { BannerCard, BannerProps } from '@/components/common/BannerCard'
+import { NextStopNav } from '@/components/common/NextStopNav'
 
 export type BannerSection = {
   label: string
@@ -41,7 +42,8 @@ export function BannersView({ sections }: { sections: BannerSection[] }) {
             </div>
           ))}
 
-          <div className="mt-20">
+          <div className="mt-20 flex flex-col items-center gap-6">
+            <NextStopNav current="rafters" className="justify-center" />
             <Link href="/" className="text-orange-300 underline hover:text-orange-100">
               Back to the Court
             </Link>

@@ -1,6 +1,7 @@
 'use client'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { NextStopNav } from '@/components/common/NextStopNav'
 import { SectionContainer } from '@/components/common/SectionContainer'
 import React from 'react'
 import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
@@ -43,6 +44,10 @@ export default function ProjectPage() {
 
         <ProjectGallery />
       </div>
+
+      <SectionContainer className="pb-6 pt-4">
+        <NextStopNav current="projects" />
+      </SectionContainer>
     </div>
   )
 }

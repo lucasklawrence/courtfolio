@@ -20,6 +20,7 @@ import { StrawHatSvg } from '@/components/locker-room/assets/StrawHatSvg'
 import { JerseysSVG } from '@/components/locker-room/assets/JerseysSvg'
 import { LaptopSvg } from '@/components/locker-room/assets/LaptopSvg'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { NextStopNav } from '@/components/common/NextStopNav'
 import { LockerInfo } from '@/components/locker-room/LockerInfo'
 import { SvgLayoutContainer } from '@/components/common/SvgLayoutContainer'
 import { Yellow4Jersey } from '@/components/locker-room/assets/Yellow4Jersey'
@@ -360,6 +361,11 @@ export default function LockerRoomPage() {
           'back-to-court': (
             <LockerZone x={1220} y={970} width={340} height={70}>
               <BackToCourtButton />
+            </LockerZone>
+          ),
+          'next-stop-nav': (
+            <LockerZone x={40} y={950} width={1160} height={80}>
+              <NextStopNav current="locker-room" />
             </LockerZone>
           ),
           'locker-info': (
