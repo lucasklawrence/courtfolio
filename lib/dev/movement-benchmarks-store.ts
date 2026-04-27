@@ -47,11 +47,20 @@ export type ValidatedBenchmark = z.infer<typeof BenchmarkSchema>
 export type ValidatedBenchmarkUpdate = z.infer<typeof BenchmarkUpdateSchema>
 
 /**
- * Absolute path to `public/data/movement_benchmarks.json`. The dev write
- * routes read and overwrite this file; the production site fetches it
- * statically.
+ * Absolute path to the benchmarks JSON file the dev write routes read from
+ * and overwrite. Defaults to `public/data/movement_benchmarks.json` — the
+ * static asset the production site fetches.
+ *
+ * Tests override by stubbing `process.env.MOVEMENT_BENCHMARKS_FILE` so they
+ * can point at a tmp dir instead of mutating the real fixture. Resolved at
+ * call time (not module-load) so an env stub set in test setup actually
+ * takes effect.
  */
-export const BENCHMARKS_FILE = path.join(process.cwd(), 'public', 'data', 'movement_benchmarks.json')
+export function getBenchmarksFile(): string {
+  const override = process.env.MOVEMENT_BENCHMARKS_FILE
+  if (override && override.length > 0) return override
+  return path.join(process.cwd(), 'public', 'data', 'movement_benchmarks.json')
+}
 
 /**
  * Read the on-disk benchmark list. Returns `[]` if the file doesn't
@@ -64,7 +73,7 @@ export const BENCHMARKS_FILE = path.join(process.cwd(), 'public', 'data', 'movem
 export async function readBenchmarks(): Promise<ValidatedBenchmark[]> {
   let raw: string
   try {
-    raw = await fs.readFile(BENCHMARKS_FILE, 'utf8')
+    raw = await fs.readFile(getBenchmarksFile(), 'utf8')
   } catch (err) {
     if (isFileNotFound(err)) return []
     throw err
@@ -85,9 +94,9 @@ export async function readBenchmarks(): Promise<ValidatedBenchmark[]> {
  */
 export async function writeBenchmarks(list: ValidatedBenchmark[]): Promise<void> {
   const sorted = [...list].sort((a, b) => b.date.localeCompare(a.date))
-  await fs.mkdir(path.dirname(BENCHMARKS_FILE), { recursive: true })
+  await fs.mkdir(path.dirname(getBenchmarksFile()), { recursive: true })
   // Trailing newline so the file plays nicely with `git diff` / editors.
-  await fs.writeFile(BENCHMARKS_FILE, JSON.stringify(sorted, null, 2) + '\n', 'utf8')
+  await fs.writeFile(getBenchmarksFile(), JSON.stringify(sorted, null, 2) + '\n', 'utf8')
 }
 
 /**
