@@ -2,12 +2,13 @@ import type { JSX } from 'react'
 import { notFound } from 'next/navigation'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 import { CombineScoreboardSection } from './CombineScoreboardSection'
+import { CombineTradingCardSection } from './CombineTradingCardSection'
 
 /**
- * Combine sub-area page (PRD §9). Hosts the shared scoreboard summary
- * header (PRD §9.1) at the top; richer visualizations (Trading Card,
- * Silhouette, Shuttle Trace, Sprint Race, Radar) land in subsequent
- * issues.
+ * Combine sub-area page (PRD §9). Stacks the shared scoreboard summary
+ * (PRD §9.1) over the Trading Card stat block (PRD §9.2); richer
+ * visualizations (Silhouette, Shuttle Trace, Sprint Race, Radar) land in
+ * subsequent issues.
  *
  * Gated behind {@link isTrainingFacilityEnabled} so the route stays
  * 404'd in production until the Training Facility ships publicly. The
@@ -41,6 +42,7 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
         </header>
 
         <CombineScoreboardSection />
+        <CombineTradingCardSection />
       </div>
     </main>
   )
