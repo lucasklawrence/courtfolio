@@ -28,6 +28,14 @@ export {
 export interface ScoreboardProps {
   /** Cells rendered left-to-right. Length is unconstrained — the Combine view supplies four. */
   cells: readonly ScoreboardCell[]
+  /**
+   * Accessible name for the scoreboard region. Override per use site —
+   * the Combine page sets "Combine scoreboard summary"; the future Gym
+   * wall scoreboard will set its own contextual label. Defaults to a
+   * generic "Scoreboard" so consumers that forget still get something
+   * sensible.
+   */
+  ariaLabel?: string
   /** Tailwind classes appended to the outer container. */
   className?: string
 }
@@ -67,12 +75,16 @@ function formatDeltaValue(delta: number, precision: number, unit: string): strin
  * `deriveCombineScoreboardCells` (Combine page) or hand-build them
  * (Gym wall scoreboard, future). See {@link ScoreboardProps} for prop docs.
  */
-export function Scoreboard({ cells, className = '' }: ScoreboardProps): JSX.Element {
+export function Scoreboard({
+  cells,
+  ariaLabel = 'Scoreboard',
+  className = '',
+}: ScoreboardProps): JSX.Element {
   const reduceMotion = useReducedMotion()
   return (
     <div
       role="group"
-      aria-label="Combine scoreboard summary"
+      aria-label={ariaLabel}
       className={`grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-amber-300/40 bg-black/85 shadow-[0_12px_36px_-16px_rgba(0,0,0,0.7)] sm:grid-cols-4 ${className}`}
     >
       {cells.map((cell, index) => (
@@ -238,9 +250,12 @@ function DeltaLine({
         ? 'text-rose-400'
         : 'text-amber-200/80'
 
+  // No `role="status"` / `aria-live`: this is a static value that
+  // animates visually on mount, not a live update. With four cells
+  // counting up simultaneously a polite live region would queue a flood
+  // of announcements during the entrance animation.
   return (
     <span
-      role="status"
       aria-label={`Delta ${text} versus baseline`}
       className={`font-mono text-[11px] font-medium uppercase tracking-[0.2em] ${colorClass}`}
     >

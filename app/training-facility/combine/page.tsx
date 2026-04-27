@@ -58,7 +58,7 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
           </p>
         </header>
 
-        <Scoreboard cells={cells} />
+        <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
       </div>
     </main>
   )
