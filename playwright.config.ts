@@ -9,6 +9,10 @@ const TRAINING_FACILITY_BASE_URL = 'http://127.0.0.1:3008'
 /** Whether the Playwright run is executing under CI. */
 const IS_CI = Boolean(process.env.CI)
 
+/**
+ * Playwright configuration for route smoke coverage across the default and
+ * Training Facility-enabled app states.
+ */
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
