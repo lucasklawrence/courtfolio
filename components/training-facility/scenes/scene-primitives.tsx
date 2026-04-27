@@ -264,6 +264,10 @@ export function HandFrame({
   rx = 6,
   children,
 }: HandFrameProps) {
+  // Clamp the inset rect so a small frame can't produce negative SVG geometry.
+  const innerWidth = Math.max(0, width - 8)
+  const innerHeight = Math.max(0, height - 8)
+  const innerRx = Math.max(0, rx - 2)
   return (
     <g>
       <rect
@@ -281,10 +285,10 @@ export function HandFrame({
       <rect
         x={x + 4}
         y={y + 4}
-        width={width - 8}
-        height={height - 8}
-        rx={Math.max(0, rx - 2)}
-        ry={Math.max(0, rx - 2)}
+        width={innerWidth}
+        height={innerHeight}
+        rx={innerRx}
+        ry={innerRx}
         fill="none"
         stroke={stroke}
         strokeOpacity={0.35}
