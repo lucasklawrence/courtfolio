@@ -25,7 +25,15 @@ const contentSecurityPolicyReportOnly = [
   'upgrade-insecure-requests',
 ].join('; ')
 
+/**
+ * Optional alternate build output directory used by the Playwright
+ * smoke suite so the feature-flagged and default dev servers do not
+ * share the same client bundle cache.
+ */
+const distDir = process.env.NEXT_DIST_DIR || '.next'
+
 const nextConfig: NextConfig = {
+  distDir,
   /**
    * Applies baseline security response headers to every route in the
    * app, including public assets and App Router pages.

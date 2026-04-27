@@ -30,7 +30,7 @@ export default function ProjectPage() {
       {/* Page content — wrapped by the root layout's <main id="main"> landmark. */}
       <div className="flex-grow w-full">
         <SectionContainer className="pt-2 pb-1">
-          <div className="text-yellow-200 uppercase tracking-wide text-sm font-mono">
+          <div data-testid="projects-title" className="text-yellow-200 uppercase tracking-wide text-sm font-mono">
             Lucas Lawrence // Tech Stack Binder
           </div>
         </SectionContainer>
