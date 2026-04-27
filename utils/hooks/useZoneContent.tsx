@@ -75,14 +75,14 @@ export function useZoneContent({
                   <button
                     onClick={() => router.push('/contact')}
                     aria-label="Front Office — contact form and inquiries"
-                    className="cursor-pointer hover:text-orange-500 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 rounded-sm"
+                    className="cursor-pointer hover:text-orange-500 transition focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 rounded-sm"
                   >
                     <span aria-hidden="true">📫</span> Go to Front Office
                   </button>
                   <button
                     onClick={() => window.open('/LucasLawrenceResume.pdf', '_blank')}
                     aria-label="Open resume PDF in a new tab"
-                    className="cursor-pointer hover:text-orange-500 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 rounded-sm"
+                    className="cursor-pointer hover:text-orange-500 transition focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 rounded-sm"
                   >
                     <span aria-hidden="true">📄</span> Resume
                   </button>
@@ -192,7 +192,7 @@ export function useZoneContent({
               <button
                 onClick={nextStep}
                 aria-label="Next tour step"
-                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 transition"
+                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 transition"
               >
                 <span aria-hidden="true">→</span>
               </button>
@@ -202,7 +202,7 @@ export function useZoneContent({
                   markAsSeen()
                 }}
                 aria-label="Skip the guided tour"
-                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 transition"
+                className="cursor-pointer px-4 py-1 text-sm sm:text-base font-semibold text-white bg-orange-600 rounded-full hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 transition"
               >
                 Skip
               </button>
@@ -223,7 +223,7 @@ export function useZoneContent({
                   startTour()
                 }}
                 aria-label="Replay the guided tour"
-                className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
+                className="px-3 py-1.5 text-xs sm:text-sm rounded-full bg-orange-600 text-white hover:bg-orange-500 transition shadow-sm whitespace-nowrap cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
               >
                 <span aria-hidden="true">🔁</span> Replay Tour
               </button>

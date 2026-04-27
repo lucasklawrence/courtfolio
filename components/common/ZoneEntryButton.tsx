@@ -53,7 +53,7 @@ export const ZoneEntryButton: React.FC<ZoneEntryButtonProps> = ({
       id={id}
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`cursor-pointer flex items-center gap-3 text-yellow-300 bg-[#42210b] hover:bg-[#5a3015] px-6 py-3 rounded-xl shadow-md border border-yellow-400 font-semibold transition duration-200 text-base sm:text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#42210b] ${className}`}
+      className={`cursor-pointer flex items-center gap-3 text-yellow-300 bg-[#42210b] hover:bg-[#5a3015] px-6 py-3 rounded-xl shadow-md border border-yellow-400 font-semibold transition duration-200 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-[#42210b] focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#42210b] ${className}`}
     >
       <span className="text-m" aria-hidden="true">
         {icon}
