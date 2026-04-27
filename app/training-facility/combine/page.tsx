@@ -1,19 +1,21 @@
 import type { JSX } from 'react'
 import { notFound } from 'next/navigation'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
-import { CombineScoreboardSection } from './CombineScoreboardSection'
+import { CombineDataIsland } from '@/components/training-facility/combine/CombineDataIsland'
 
 /**
  * Combine sub-area page (PRD §9). Hosts the shared scoreboard summary
- * header (PRD §9.1) at the top; richer visualizations (Trading Card,
- * Silhouette, Shuttle Trace, Sprint Race, Radar) land in subsequent
- * issues.
+ * header (PRD §9.1) and the dev-only "Log a session" entry form
+ * (PRD §7.5 view 7). Richer visualizations (Trading Card, Silhouette,
+ * Shuttle Trace, Sprint Race, Radar) land in subsequent issues and
+ * plug into the same {@link CombineDataIsland} so they share live
+ * entry state.
  *
  * Gated behind {@link isTrainingFacilityEnabled} so the route stays
  * 404'd in production until the Training Facility ships publicly. The
- * page itself is a server component for the flag check; the scoreboard
- * lives in a client island so the data layer's relative-URL fetch can
- * run after hydration.
+ * page itself is a server component for the flag check; the data
+ * island is a client component so the data layer's relative-URL fetch
+ * can run after hydration.
  */
 export default function TrainingFacilityCombinePage(): JSX.Element {
   if (!isTrainingFacilityEnabled()) notFound()
@@ -40,7 +42,7 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
           </p>
         </header>
 
-        <CombineScoreboardSection />
+        <CombineDataIsland />
       </div>
     </main>
   )

@@ -1,50 +1,30 @@
 /**
  * Server-only helpers for the dev-only movement-benchmarks write API
  * (PRD §7.3, §7.10). The actual API routes live under
- * `app/api/dev/movement-benchmarks/`; this module owns the Zod schema,
- * filesystem path, and read/write primitives so both the collection
- * (POST) and item (PUT/DELETE) routes stay thin.
+ * `app/api/dev/movement-benchmarks/`; this module owns the filesystem
+ * path and read/write primitives so both the collection (POST) and
+ * item (PUT/DELETE) routes stay thin.
+ *
+ * The Zod contract (schemas, types, date helpers) lives in
+ * `lib/schemas/movement.ts` so the Combine entry form (a client
+ * component) can import it without pulling `node:fs` into the browser
+ * bundle. Re-exported here so existing route imports stay stable.
  */
 
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { z } from 'zod'
 
-/** ISO calendar date in `YYYY-MM-DD` form. Matches `BenchmarkDate` from `types/movement.ts`. */
-const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
+import { BenchmarkSchema } from '@/lib/schemas/movement'
+import type { ValidatedBenchmark } from '@/lib/schemas/movement'
 
-/**
- * Zod schema for a complete {@link Benchmark}. Mirrors the type in
- * `types/movement.ts`; kept in sync manually since Zod is the runtime
- * source of truth (PRD §7.14) but the static type is the IDE source.
- *
- * `.strict()` rejects unknown fields so a typo in the payload (e.g.
- * `bodyweight_lb` instead of `bodyweight_lbs`) fails loudly instead of
- * silently dropping data into the JSON file.
- */
-export const BenchmarkSchema = z
-  .object({
-    date: z.string().regex(DATE_REGEX, 'date must be YYYY-MM-DD'),
-    bodyweight_lbs: z.number().positive().optional(),
-    shuttle_5_10_5_s: z.number().positive().optional(),
-    vertical_in: z.number().positive().optional(),
-    sprint_10y_s: z.number().positive().optional(),
-    notes: z.string().optional(),
-    is_complete: z.boolean().optional(),
-  })
-  .strict()
-
-/**
- * Zod schema for the partial-update payload sent to PUT. The `date` is
- * the URL key and cannot be changed in-place, so it's omitted here.
- */
-export const BenchmarkUpdateSchema = BenchmarkSchema.omit({ date: true }).partial().strict()
-
-/** Validated benchmark shape. `Inferred from {@link BenchmarkSchema}`. */
-export type ValidatedBenchmark = z.infer<typeof BenchmarkSchema>
-
-/** Validated partial update. Inferred from {@link BenchmarkUpdateSchema}. */
-export type ValidatedBenchmarkUpdate = z.infer<typeof BenchmarkUpdateSchema>
+export {
+  BenchmarkSchema,
+  BenchmarkUpdateSchema,
+  isValidDate,
+  type ValidatedBenchmark,
+  type ValidatedBenchmarkUpdate,
+} from '@/lib/schemas/movement'
 
 /**
  * Absolute path to the benchmarks JSON file the dev write routes read from
@@ -106,16 +86,6 @@ export async function writeBenchmarks(list: ValidatedBenchmark[]): Promise<void>
  */
 export function isDevRuntime(): boolean {
   return process.env.NODE_ENV === 'development'
-}
-
-/**
- * Validate a URL `[date]` segment as `YYYY-MM-DD`.
- *
- * @param value Raw string from the URL — typically `ctx.params.date`.
- * @returns `true` when `value` matches the ISO calendar-date shape.
- */
-export function isValidDate(value: string): boolean {
-  return DATE_REGEX.test(value)
 }
 
 function isFileNotFound(err: unknown): boolean {
