@@ -40,8 +40,16 @@ export interface TradingCardProps {
  * (you can't break a record that doesn't exist). The "prior only"
  * comparison matters when the card is used to browse a non-latest entry:
  * a March session shouldn't lose its PB badge just because April beat it.
+ *
+ * @param entry - The benchmark being judged. Must have a `date` field.
+ * @param history - Full benchmark history. May or may not include `entry`;
+ *   only entries with `date < entry.date` and `is_complete !== false` count
+ *   toward the comparison.
+ * @param key - Which metric to evaluate (e.g. `vertical_in`).
+ * @param spec - The metric's display + scoring config; `spec.direction`
+ *   determines whether lower or higher values win.
  */
-function isPersonalBest(
+export function isPersonalBest(
   entry: Benchmark,
   history: readonly Benchmark[],
   key: MetricKey,
@@ -59,13 +67,18 @@ function isPersonalBest(
 }
 
 /** Format a benchmark value for the front-of-card line, or em-dash when absent. */
-function formatValue(value: number | undefined, spec: BenchmarkConfig): string {
+export function formatValue(value: number | undefined, spec: BenchmarkConfig): string {
   if (typeof value !== 'number') return '—'
   return `${value.toFixed(spec.precision)}${spec.unit}`
 }
 
-/** Derive a "2026 Spring"-style season label from a `YYYY-MM-DD` benchmark date. */
-function seasonFromDate(date: string): string {
+/**
+ * Derive a "2026 Spring"-style season label from a `YYYY-MM-DD` benchmark date.
+ *
+ * @param date - ISO calendar date (`YYYY-MM-DD`); the month determines which
+ *   meteorological season label is returned.
+ */
+export function seasonFromDate(date: string): string {
   const [yearStr, monthStr] = date.split('-')
   const month = Number(monthStr)
   const season =
@@ -303,7 +316,7 @@ function CardBack({ history, latestNotes }: CardBackProps): JSX.Element {
  * metric's declared precision so timed metrics (shuttle, 10y) keep their
  * hundredths digit instead of rounding 1.98 → 2.0.
  */
-function formatCell(value: number | undefined, spec: BenchmarkConfig): string {
+export function formatCell(value: number | undefined, spec: BenchmarkConfig): string {
   if (typeof value !== 'number') return '—'
   return Number.isInteger(value) ? String(value) : value.toFixed(spec.precision)
 }
