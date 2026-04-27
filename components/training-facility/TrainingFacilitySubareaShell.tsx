@@ -37,6 +37,12 @@ type TrainingFacilitySubareaShellProps = {
  *
  * The route exists now so the Training Facility navigation is real, but the
  * interactive detail builds can land in later issues without breaking the shell.
+ *
+ * @param props.eyebrow - Small contextual label shown above the room title.
+ * @param props.title - Main sub-area title rendered as the page heading.
+ * @param props.description - Short explanation of what the finished sub-area will contain.
+ * @param props.accentClassName - Tailwind class string used for the room's accent bar.
+ * @param props.nextSteps - Ordered list of follow-up implementation items for the sub-area.
  */
 export function TrainingFacilitySubareaShell({
   eyebrow,

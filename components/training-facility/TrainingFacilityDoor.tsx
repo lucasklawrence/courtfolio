@@ -50,6 +50,12 @@ type TrainingFacilityDoorProps = {
   disabled?: boolean
 }
 
+/**
+ * Tailwind class groups keyed by `TrainingFacilityDoorTone`.
+ *
+ * Each tone entry defines the frame, placard, doorway glow, and text classes
+ * used to style a Training Facility door card consistently across variants.
+ */
 const toneClasses: Record<
   TrainingFacilityDoorTone,
   {
@@ -81,6 +87,15 @@ const toneClasses: Record<
 
 /**
  * Door card used by the Training Facility shell to represent sub-area entry points.
+ *
+ * @param props.eyebrow - Small overline used to categorize the destination.
+ * @param props.title - Main destination label shown on the door placard.
+ * @param props.href - Optional route target; omitted only when rendering a non-link fallback.
+ * @param props.description - Supporting copy explaining what the destination contains.
+ * @param props.doorwayHint - Short phrase rendered in the doorway window to hint at the contents.
+ * @param props.footer - Footer copy used as a route status or roadmap note.
+ * @param props.tone - Visual tone key used to look up the door styling classes.
+ * @param props.disabled - When true, disables navigation and renders the door as an inert roadmap placeholder.
  */
 export function TrainingFacilityDoor({
   eyebrow,

@@ -17,6 +17,9 @@ type TrainingFacilityCourtEntryProps = {
  *
  * The visual treatment intentionally reads like an in-world doorway rather than
  * another utility button stacked with the top-right navigation controls.
+ *
+ * @param props.id - Optional DOM id used for testing hooks or guided-tour targeting.
+ * @param props.onClick - Optional activation handler invoked when a visitor enters the tunnel.
  */
 export function TrainingFacilityCourtEntry({
   id,
