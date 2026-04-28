@@ -21,9 +21,12 @@ import type { Benchmark } from '@/types/movement'
  * @returns The newest complete entry, or `undefined` when none exists.
  */
 export function pickLatestEntry(entries: readonly Benchmark[]): Benchmark | undefined {
-  const complete = entries.filter((e) => e.is_complete !== false)
-  if (complete.length === 0) return undefined
-  return [...complete].sort((a, b) => b.date.localeCompare(a.date))[0]
+  let latest: Benchmark | undefined
+  for (const entry of entries) {
+    if (entry.is_complete === false) continue
+    if (!latest || entry.date.localeCompare(latest.date) > 0) latest = entry
+  }
+  return latest
 }
 
 /**

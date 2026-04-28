@@ -56,6 +56,16 @@ describe('CombineTradingCardSection', () => {
     expect(container.firstChild).toBeNull()
   })
 
+  it('renders nothing when every fetched entry is marked incomplete', async () => {
+    mockedGet.mockResolvedValue([
+      { date: '2026-03-15', vertical_in: 22, is_complete: false },
+      { date: '2026-04-10', vertical_in: 23, is_complete: false },
+    ])
+    const { container } = render(<CombineTradingCardSection />)
+    await waitFor(() => expect(mockedGet).toHaveBeenCalled())
+    expect(container.firstChild).toBeNull()
+  })
+
   it('renders nothing when the fetch rejects', async () => {
     mockedGet.mockRejectedValue(new Error('offline'))
     const { container } = render(<CombineTradingCardSection />)
