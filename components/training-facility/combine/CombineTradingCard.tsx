@@ -48,6 +48,12 @@ export function pickLatestEntry(entries: readonly Benchmark[]): Benchmark | unde
  * Renders nothing while the initial fetch is in flight (`entries`
  * undefined) or when no complete entry exists — the Scoreboard already
  * surfaces the empty state, so duplicating it here would be noise.
+ *
+ * @param props.entries - Shared benchmark history. `undefined` ⇒ initial
+ *   fetch is still in flight (renders nothing); `[]` ⇒ fetch completed
+ *   but no entries logged (renders nothing); populated ⇒ wrapper picks
+ *   the newest complete entry as the card subject and passes the full
+ *   list as history.
  */
 export function CombineTradingCard({ entries }: CombineTradingCardProps): JSX.Element | null {
   if (!entries) return null
