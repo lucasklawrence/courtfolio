@@ -1,7 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(gh api *)",
+      "Bash(gh api repos/lucasklawrence/courtfolio/pulls/*/comments*)",
       "Bash(gh issue *)",
       "Bash(gh pr *)",
       "Bash(git *)",
