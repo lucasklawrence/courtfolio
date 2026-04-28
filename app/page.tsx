@@ -55,6 +55,7 @@ export default function HomePage() {
       ) : (
         <motion.div
           key="main"
+          data-testid="home-court"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration }}

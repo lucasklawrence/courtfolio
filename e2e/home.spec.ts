@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { bypassHomeIntro } from './helpers/intro'
+import { bypassHomeIntro, gotoHomeCourt } from './helpers/intro'
 
 test.describe('home court', () => {
   test.beforeEach(async ({ page }) => {
@@ -8,7 +8,7 @@ test.describe('home court', () => {
   })
 
   test('renders the primary navigation affordances', async ({ page }) => {
-    await page.goto('/')
+    await gotoHomeCourt(page)
 
     await expect(page.getByRole('button', { name: /view the rafters/i })).toBeVisible()
     await expect(page.getByRole('button', { name: /enter locker room/i })).toBeVisible()
@@ -17,7 +17,7 @@ test.describe('home court', () => {
   })
 
   test('navigates from the home court into the locker room', async ({ page }) => {
-    await page.goto('/')
+    await gotoHomeCourt(page)
 
     await page.getByRole('button', { name: /enter locker room/i }).click()
 
