@@ -1,49 +1,72 @@
 import type { JSX } from 'react'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+
+import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { CombineDataIsland } from '@/components/training-facility/combine/CombineDataIsland'
+import { CombineScene } from '@/components/training-facility/scenes/CombineScene'
+import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
- * Combine sub-area page (PRD §9). Hosts the shared scoreboard summary
- * header (PRD §9.1) and the dev-only "Log a session" entry form
- * (PRD §7.5 view 7). Richer visualizations (Trading Card, Silhouette,
- * Shuttle Trace, Sprint Race, Radar) land in subsequent issues and
- * plug into the same {@link CombineDataIsland} so they share live
- * entry state.
+ * Combine sub-area page (PRD §7.5 + §9). Stacks the room-level chrome
+ * (back-to-court + back-to-Training-Facility nav), an eyebrow/title block,
+ * the shared scoreboard summary header (PRD §9.1) plus the dev-only
+ * "Log a session" entry form (PRD §7.5 view 7), and the side-on Combine
+ * scene SVG. Richer visualizations (Trading Card, Silhouette, Shuttle
+ * Trace, Sprint Race, Radar) land in subsequent issues and plug into the
+ * same {@link CombineDataIsland} so they share live entry state.
  *
  * Gated behind {@link isTrainingFacilityEnabled} so the route stays
  * 404'd in production until the Training Facility ships publicly. The
  * page itself is a server component for the flag check; the data
  * island is a client component so the data layer's relative-URL fetch
  * can run after hydration.
+ *
+ * @throws calls Next.js `notFound()` (which throws) when the
+ *   `NEXT_PUBLIC_ENABLE_TRAINING_FACILITY` flag is false, so the route
+ *   renders 404 on the public site until the flag flips.
  */
 export default function TrainingFacilityCombinePage(): JSX.Element {
   if (!isTrainingFacilityEnabled()) notFound()
 
   return (
-    <main className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
+    <div className="relative min-h-svh overflow-hidden bg-[#0e0a08] text-[#f7ead9]">
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_28%),linear-gradient(180deg,#241811_0%,#120d0a_52%,#0b0806_100%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(253,224,71,0.12),transparent_30%),linear-gradient(180deg,#1f1612_0%,#0e0a08_55%,#070504_100%)]"
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col gap-10 px-6 py-12 sm:px-8 lg:px-12">
-        <header>
+      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl flex-col gap-10 px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <BackToCourtButton />
+          <Link
+            href="/training-facility"
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+          >
+            ← Back to Training Facility
+          </Link>
+        </div>
+
+        <header className="text-center sm:text-left">
           <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
             Training Facility / Combine
           </p>
-          <h1 className="mt-2 text-4xl font-black uppercase tracking-[0.06em] text-[#fff7ec] sm:text-5xl">
+          <h1 className="mt-2 text-3xl font-black uppercase tracking-[0.06em] text-[#fff7ec] sm:text-5xl lg:text-6xl">
             The Combine
           </h1>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Tier-1 movement benchmarks: bodyweight, 5-10-5 shuttle, vertical jump, and 10-yard
-            sprint. The scoreboard tracks the latest values against the first-ever entry per
-            metric.
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:mx-0 sm:text-base">
+            Tier-1 movement benchmarks: bodyweight, 5-10-5 shuttle, vertical
+            jump, and 10-yard sprint. The scoreboard tracks the latest values
+            against the first-ever entry per metric.
           </p>
         </header>
 
         <CombineDataIsland />
+
+        <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
+          <CombineScene />
+        </div>
       </div>
-    </main>
+    </div>
   )
 }

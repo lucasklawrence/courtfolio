@@ -22,6 +22,15 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/banners", "global.d.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next-e2e-default/types/**/*.ts",
+    ".next-e2e-training-facility/types/**/*.ts",
+    "app/banners",
+    "global.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
