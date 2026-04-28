@@ -9,6 +9,7 @@ import type { Benchmark } from '@/types/movement'
 
 import { CombineEntryForm } from './CombineEntryForm'
 import { CombineTradingCard } from './CombineTradingCard'
+import { ShuttleTrace } from './ShuttleTrace'
 
 /**
  * Owns the Combine page's shared `entries` state. Renders the
@@ -78,6 +79,7 @@ export function CombineDataIsland(): JSX.Element {
     <div className="flex flex-col gap-8">
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
       <CombineTradingCard entries={entries} />
+      <ShuttleTrace entries={entries} />
       <CombineEntryForm onSaved={handleSaved} />
     </div>
   )
