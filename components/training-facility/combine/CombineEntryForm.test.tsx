@@ -326,6 +326,44 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
     await waitFor(() => expect(onCancelEdit).toHaveBeenCalledTimes(1))
   })
 
+  it('resets the panel when the parent clears editingEntry externally (Codex P1)', async () => {
+    // Simulates the row-being-edited getting deleted. The parent
+    // clears `editingEntry`; without the falsy-branch handling in
+    // the effect, the panel would stay open with the old prefill and
+    // a subsequent "Save entry" would recreate the deleted row.
+    const { rerender } = render(
+      <CombineEntryForm
+        onSaved={() => {}}
+        editingEntry={ENTRY}
+        onCancelEdit={() => {}}
+      />,
+    )
+    // Sanity: we're in edit mode with a prefilled, locked date.
+    expect(screen.getByText(/edit session for 2026-03-10/i)).toBeInTheDocument()
+    expect((screen.getByLabelText(/^date/i) as HTMLInputElement).readOnly).toBe(
+      true,
+    )
+
+    // Parent clears editingEntry (e.g. deleted the row mid-edit).
+    rerender(
+      <CombineEntryForm
+        onSaved={() => {}}
+        editingEntry={undefined}
+        onCancelEdit={() => {}}
+      />,
+    )
+
+    // Panel collapses, fields wipe, header reverts to "Log a session".
+    expect(screen.getByText(/dev · log a session/i)).toBeInTheDocument()
+    expect(screen.queryByText(/edit session for/i)).not.toBeInTheDocument()
+    expect(screen.queryByLabelText(/^date/i)).not.toBeInTheDocument()
+    // Re-open the (now-empty) panel and confirm the prefill is gone.
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('button', { name: /log a session/i }))
+    expect((screen.getByLabelText(/bodyweight/i) as HTMLInputElement).value).toBe('')
+    expect((screen.getByLabelText(/notes/i) as HTMLTextAreaElement).value).toBe('')
+  })
+
   it('surfaces server errors from updateBenchmark without exiting edit mode', async () => {
     updateBenchmarkMock.mockRejectedValueOnce(new Error('No benchmark for 2026-03-10.'))
     const onCancelEdit = vi.fn()

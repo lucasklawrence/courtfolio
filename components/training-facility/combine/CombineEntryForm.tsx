@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useId, useState, type JSX } from 'react'
+import { useEffect, useId, useRef, useState, type JSX } from 'react'
 import { useForm, type Resolver, type SubmitHandler } from 'react-hook-form'
 import { ZodError } from 'zod'
 
@@ -197,6 +197,11 @@ function CombineEntryFormImpl({
   const [serverError, setServerError] = useState<string | null>(null)
   const [savedDate, setSavedDate] = useState<string | null>(null)
   const isEditing = editingEntry !== undefined
+  // Tracks whether the previous render was in edit mode so the
+  // useEffect below can distinguish "parent cleared edit mode after we
+  // were editing" (needs a panel reset) from "initial mount, never
+  // been editing" (must NOT reset the today-date effect's work).
+  const wasEditingRef = useRef(false)
 
   const {
     register,
@@ -219,16 +224,28 @@ function CombineEntryFormImpl({
   }, [setValue])
 
   // Edit mode: when the parent hands an entry to edit, prefill the
-  // form, force the panel open, and clear any stale status text. We
-  // don't reset on the transition out (editingEntry → undefined) here
-  // — that path runs through `handleCancelEdit` below so the click
-  // handler can sequence local state and the parent callback.
+  // form, force the panel open, and clear any stale status text. The
+  // falsy branch fires only when the parent clears `editingEntry`
+  // externally (e.g., the user deletes the row that's currently being
+  // edited) — without this, the panel would stay open with the old
+  // prefilled values, the heading/button labels would silently flip
+  // back to create mode, and the next "Save entry" click would
+  // recreate the just-deleted benchmark. We gate the cleanup on
+  // `wasEditingRef` so the initial mount (when both `editingEntry`
+  // and the ref are falsy) doesn't clobber the today-date effect.
   useEffect(() => {
     if (editingEntry) {
       reset(toFormValues(editingEntry))
       setIsOpen(true)
       setServerError(null)
       setSavedDate(null)
+      wasEditingRef.current = true
+    } else if (wasEditingRef.current) {
+      reset({ ...emptyValues(), date: todayIso() })
+      setIsOpen(false)
+      setServerError(null)
+      setSavedDate(null)
+      wasEditingRef.current = false
     }
   }, [editingEntry, reset])
 
