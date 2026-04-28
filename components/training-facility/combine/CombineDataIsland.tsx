@@ -31,8 +31,9 @@ export function CombineDataIsland(): JSX.Element {
   // post-save refetch increment this before issuing their request and
   // only commit results when the id is still current. Prevents a slow
   // mount-time fetch from clobbering fresh post-save data if it
-  // resolves later, and doubles as the unmount guard (after unmount
-  // nothing re-reads the ref).
+  // resolves later. The mount cleanup also bumps the ref, which
+  // invalidates every in-flight request after unmount so a late
+  // resolver can't `setEntries` on an unmounted component.
   const requestIdRef = useRef(0)
 
   useEffect(() => {
@@ -44,6 +45,12 @@ export function CombineDataIsland(): JSX.Element {
       .catch(() => {
         if (id === requestIdRef.current) setEntries([])
       })
+    return () => {
+      // Bump on unmount so any pending fetch's id check fails when it
+      // finally resolves — covers both the mount fetch above and any
+      // post-save fetch that hasn't resolved yet.
+      requestIdRef.current += 1
+    }
   }, [])
 
   const handleSaved = useCallback(async (): Promise<void> => {

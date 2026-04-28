@@ -163,6 +163,29 @@ describe('CombineEntryForm — error paths', () => {
     )
   })
 
+  it('keeps the success message even when the parent onSaved callback rejects (CodeRabbit nit)', async () => {
+    // Save succeeds on the server. The parent's refetch then throws.
+    // The form should still show "Saved entry for ..." — the data is
+    // already on disk — rather than overwriting it with an error.
+    logBenchmarkMock.mockResolvedValueOnce(undefined)
+    const onSaved = vi.fn().mockRejectedValueOnce(new Error('refetch broke'))
+    const user = userEvent.setup()
+    render(<CombineEntryForm onSaved={onSaved} />)
+    await user.click(screen.getByRole('button', { name: /log a session/i }))
+
+    const dateInput = screen.getByLabelText(/^date/i)
+    await user.clear(dateInput)
+    await user.type(dateInput, '2026-04-15')
+    await user.type(screen.getByLabelText(/bodyweight/i), '232')
+    await user.click(screen.getByRole('button', { name: /save entry/i }))
+
+    await waitFor(() =>
+      expect(screen.getByText(/saved entry for 2026-04-15/i)).toBeInTheDocument(),
+    )
+    expect(screen.queryByText(/refetch broke/i)).not.toBeInTheDocument()
+    expect(onSaved).toHaveBeenCalledTimes(1)
+  })
+
   it('rejects negative numeric values via Zod (.positive())', async () => {
     const user = userEvent.setup()
     render(<CombineEntryForm onSaved={() => {}} />)

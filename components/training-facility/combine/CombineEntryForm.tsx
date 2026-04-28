@@ -189,7 +189,17 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
     // with the freshly-computed local today so the next entry doesn't
     // require the user to retype the date.
     reset({ ...emptyValues(), date: todayIso() })
-    await onSaved(entry)
+    // The write has already succeeded — don't let a parent refetch
+    // failure bubble out as if the save itself failed. The data
+    // island's own handler swallows fetch errors today, but a future
+    // caller could pass an `onSaved` that throws; isolate it so the
+    // success state we just set above stays the truth on screen.
+    try {
+      await onSaved(entry)
+    } catch {
+      // Intentionally swallow: the user's data is on disk; refresh
+      // recovery is a separate concern from the save action.
+    }
   }
 
   return (
