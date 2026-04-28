@@ -4,7 +4,7 @@ import { expect, type Page } from '@playwright/test'
 const HAS_SEEN_INTRO_KEY = 'hasSeenIntro'
 
 /** Test ID applied to the post-intro home-court root once it is mounted. */
-const HOME_COURT_TEST_ID = 'home-court'
+const HOME_COURT_TEST_ID = 'home-court-root'
 
 /** Maximum time to wait for the home court to mount, in milliseconds. */
 const HOME_COURT_READY_TIMEOUT_MS = 30_000
