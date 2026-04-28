@@ -1,9 +1,19 @@
 'use client'
 
-import { useEffect, useMemo, useState, type JSX } from 'react'
+import { type JSX } from 'react'
+
 import { TradingCard } from '@/components/training-facility/shared/TradingCard'
-import { getMovementBenchmarks } from '@/lib/data/movement'
 import type { Benchmark } from '@/types/movement'
+
+/** Props for {@link CombineTradingCard}. */
+export interface CombineTradingCardProps {
+  /**
+   * Benchmark history shared with the rest of the Combine page (typically
+   * fed from {@link CombineDataIsland}). `undefined` while the initial
+   * fetch is in flight; an empty array means no entries are logged.
+   */
+  entries: Benchmark[] | undefined
+}
 
 /**
  * Pick the latest *complete* entry from a benchmark history. Skips
@@ -30,36 +40,19 @@ export function pickLatestEntry(entries: readonly Benchmark[]): Benchmark | unde
 }
 
 /**
- * Client island that fetches the benchmark history and renders the shared
- * Trading Card (PRD §9.2) below the Combine scoreboard. Hidden entirely
- * when no entries exist — the scoreboard already surfaces the empty state,
- * so duplicating it here would be noise.
+ * Combine-page wrapper around the shared {@link TradingCard} (PRD §9.2).
+ * Plugs into {@link CombineDataIsland}'s shared `entries` state so the
+ * card's "latest" stays in sync with the Scoreboard and reflects new
+ * sessions logged via the entry form with no reload.
  *
- * Mirrors {@link CombineScoreboardSection} for fetch/cleanup semantics so
- * both islands stay consistent: the data layer's relative-URL fetch only
- * works on the client, and a `cancelled` flag avoids setting state after
- * the section unmounts mid-flight.
+ * Renders nothing while the initial fetch is in flight (`entries`
+ * undefined) or when no complete entry exists — the Scoreboard already
+ * surfaces the empty state, so duplicating it here would be noise.
  */
-export function CombineTradingCardSection(): JSX.Element | null {
-  const [entries, setEntries] = useState<Benchmark[] | undefined>(undefined)
-
-  useEffect(() => {
-    let cancelled = false
-    getMovementBenchmarks()
-      .then((data) => {
-        if (!cancelled) setEntries(data)
-      })
-      .catch(() => {
-        if (!cancelled) setEntries([])
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  const latest = useMemo(() => pickLatestEntry(entries ?? []), [entries])
-
-  if (!latest || !entries) return null
+export function CombineTradingCard({ entries }: CombineTradingCardProps): JSX.Element | null {
+  if (!entries) return null
+  const latest = pickLatestEntry(entries)
+  if (!latest) return null
 
   return (
     <section aria-label="Combine trading card" className="flex justify-center">
