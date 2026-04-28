@@ -11,7 +11,6 @@ import {
   getGenerator,
 } from '@/components/training-facility/shared/charts/rough-svg'
 import {
-  defaultMargin,
   resolveMargin,
   type ChartCommonProps,
 } from '@/components/training-facility/shared/charts/types'
@@ -158,6 +157,3 @@ export function HrZoneBars({
     </svg>
   )
 }
-
-/** Re-export the shared default margin so callers don't have to dig for it. */
-export const hrZoneBarsDefaultMargin = defaultMargin

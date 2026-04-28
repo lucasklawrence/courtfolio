@@ -266,9 +266,13 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
               </tr>
             </thead>
             <tbody className="text-[#f7ead9]">
-              {rows.map((s) => (
+              {rows.map((s, i) => (
                 <tr
-                  key={`${s.date}-${s.duration_seconds}`}
+                  // Append the row index to disambiguate the rare case of two
+                  // sessions sharing both a date and an exact duration_seconds
+                  // (back-to-back stair sessions). Stable as long as the
+                  // reverse-sorted row order is.
+                  key={`${s.date}-${s.duration_seconds}-${i}`}
                   className="rounded-md bg-white/5 align-middle"
                 >
                   <td className="rounded-l-md px-3 py-2 font-mono">{formatRowDate(s.date)}</td>
