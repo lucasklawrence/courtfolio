@@ -28,6 +28,7 @@ export async function bypassHomeIntro(page: Page): Promise<void> {
  * Requires {@link bypassHomeIntro} to have run first (typically in `beforeEach`).
  *
  * @param page - Playwright page that has had the intro bypass seeded.
+ * @throws If the home-court root is not visible within `HOME_COURT_READY_TIMEOUT_MS`.
  */
 export async function gotoHomeCourt(page: Page): Promise<void> {
   await page.goto('/')
