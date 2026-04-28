@@ -72,16 +72,22 @@ If a comment is unclear or you disagree with it, don't silently fix or ignore �
 
 This is the user's spot-check moment. Everything else is autonomous.
 
-1. Post a final PR comment summarizing:
+1. **If the PR includes visual / UI changes, capture screenshots before composing the comment.** Visual changes = any new or modified route, component, layout, or rendered DOM copy. Skip this step for backend / infra / scripts / tests-only PRs.
+   - Drive the Vercel preview with the Playwright MCP (preferred — same artifact reviewers will see). Fall back to a local dev server if the preview is gated and you can't bypass it.
+   - Capture each affected route at desktop (`1280×800`) and mobile (`390×844`) widths. For pages with multiple meaningful states (hover, focus, dark, error, empty), capture each.
+   - Save under `screenshots/pr-<pr>/<route-or-component>-<viewport>[-<state>].png`. The `screenshots/` directory is gitignored per CLAUDE.md — fine, the artifacts aren't checked in.
+   - Embed them in the PR hand-off comment. GitHub's only programmatic upload path is its private user-attachments endpoint; from CLI, the working pattern is **upload via `gh api graphql` to `createCommitOnBranch`** on a throwaway `screenshots-pr-<pr>` orphan branch, then reference `https://raw.githubusercontent.com/<owner>/<repo>/screenshots-pr-<pr>/<path>` in the comment. If that path fails, fall back to listing the local `screenshots/pr-<pr>/...` paths in the comment and tell the user to drag them in manually — capturing them is still valuable.
+2. Post a final PR comment summarizing:
    - ✅ Status of `/review`, CodeRabbit, Vercel.
+   - **Screenshots** (if step 1 ran) — embedded as `![desktop — /route](url)` etc., grouped by route, desktop above mobile.
    - **Test plan** — concrete steps the user should run/click before merging.
    - The merge command: `gh pr merge <pr> --squash --delete-branch`.
-2. Tell the user, in one short message:
+3. Tell the user, in one short message:
    - PR URL (`https://github.com/.../pull/<pr>`)
    - Vercel preview URL (extracted in Phase 3 step 5 — the `*.vercel.app` link from the Vercel bot's PR comment, NOT the dashboard URL from `statusCheckRollup.targetUrl`)
    - One-line summary of what shipped
    - "Spot-check the preview against the test plan, then say 'merge' (or run the command yourself)."
-3. Stop. **Do not merge.** Do not exit the worktree — the user may want one more change.
+4. Stop. **Do not merge.** Do not exit the worktree — the user may want one more change.
 
 ## Project-specific notes
 
