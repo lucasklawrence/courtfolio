@@ -12,7 +12,8 @@ import { DATA_BASE_URL } from './config';
  * should render an empty state in that case rather than treating it as an error.
  * `null` rather than an empty array because `CardioData` is an object.
  *
- * @throws on non-404 fetch failures.
+ * @throws {Error} on non-404 fetch failures (status not 200 OK).
+ * @throws {SyntaxError} if the response body is not valid JSON.
  */
 export async function getCardioData(): Promise<CardioData | null> {
   const res = await fetch(`${DATA_BASE_URL}/cardio.json`);
