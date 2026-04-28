@@ -105,10 +105,31 @@ describe('updateBenchmark', () => {
     expect(url).toBe('/api/dev/movement-benchmarks/2026%2F04%2F15')
   })
 
-  it('throws the dev-only-API message on 404', async () => {
+  it('throws the dev-only-API message when the route 404s with an empty body (prod-gate)', async () => {
     fetchMock.mockResolvedValueOnce(new Response(null, { status: 404 }))
     await expect(updateBenchmark('2026-04-15', { vertical_in: 23 })).rejects.toThrow(
       /dev-only write API is unavailable/i,
+    )
+  })
+
+  it("surfaces the route's own message on 404 with a JSON `{ error }` body (entry-not-found)", async () => {
+    // The dev API responds 404 with `{ error: "No benchmark for ${date}." }`
+    // when PUT/DELETE targets a date that doesn't exist. The wrapper must
+    // surface that domain message instead of the dev-gate one.
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse({ error: 'No benchmark for 2026-04-15.' }, { status: 404 }),
+    )
+    await expect(updateBenchmark('2026-04-15', { vertical_in: 23 })).rejects.toThrow(
+      'No benchmark for 2026-04-15.',
+    )
+  })
+
+  it('falls back to the descriptive non-OK message on 404 with JSON missing the `error` field', async () => {
+    // Defensive: if the route ever returns a JSON 404 without `error`,
+    // the wrapper should not pretend it's the dev-gate.
+    fetchMock.mockResolvedValueOnce(jsonResponse({ message: 'something else' }, { status: 404 }))
+    await expect(updateBenchmark('2026-04-15', { vertical_in: 23 })).rejects.toThrow(
+      /Failed to update benchmark: 404/,
     )
   })
 })
@@ -123,10 +144,17 @@ describe('deleteBenchmark', () => {
     expect(init.method).toBe('DELETE')
   })
 
-  it('throws the dev-only-API message on 404', async () => {
+  it('throws the dev-only-API message when the route 404s with an empty body (prod-gate)', async () => {
     fetchMock.mockResolvedValueOnce(new Response(null, { status: 404 }))
     await expect(deleteBenchmark('2026-04-15')).rejects.toThrow(
       /dev-only write API is unavailable/i,
     )
+  })
+
+  it("surfaces the route's own message on 404 with a JSON `{ error }` body (entry-not-found)", async () => {
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse({ error: 'No benchmark for 2026-04-15.' }, { status: 404 }),
+    )
+    await expect(deleteBenchmark('2026-04-15')).rejects.toThrow('No benchmark for 2026-04-15.')
   })
 })

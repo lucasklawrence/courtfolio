@@ -3,20 +3,6 @@ import Link from 'next/link'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 
 /**
- * Optional call-to-action rendered below the placeholder copy. Used while the
- * sub-area is still a placeholder but already has at least one real interior
- * route worth navigating to (e.g. the Stair Climber detail view).
- */
-export type TrainingFacilitySubareaCta = {
-  /** Internal Next.js path the CTA links to. */
-  href: string
-  /** Visible button text. */
-  label: string
-  /** Sub-line shown under the CTA button — short context for the destination. */
-  helper?: string
-}
-
-/**
  * Props for the placeholder Training Facility sub-area shell used by Gym and Combine.
  */
 type TrainingFacilitySubareaShellProps = {
@@ -44,15 +30,6 @@ type TrainingFacilitySubareaShellProps = {
    * Concrete next-phase items that make the placeholder route useful today.
    */
   nextSteps: string[]
-
-  /**
-   * Optional CTA rendered after the description. Bridge while a sub-area still
-   * uses the placeholder shell but already has at least one real interior
-   * route worth surfacing — e.g. the Gym placeholder linking to the Stair
-   * Climber detail view before the Gym scene SVG lands. Goes away once the
-   * scene replaces this shell entirely.
-   */
-  cta?: TrainingFacilitySubareaCta
 }
 
 /**
@@ -66,8 +43,6 @@ type TrainingFacilitySubareaShellProps = {
  * @param props.description - Short explanation of what the finished sub-area will contain.
  * @param props.accentClassName - Tailwind class string used for the room's accent bar.
  * @param props.nextSteps - Ordered list of follow-up implementation items for the sub-area.
- * @param props.cta - Optional CTA rendered after the description. Used to surface a real interior
- *   route (e.g. the Stair Climber detail view) while the placeholder shell is still in place.
  */
 export function TrainingFacilitySubareaShell({
   eyebrow,
@@ -75,7 +50,6 @@ export function TrainingFacilitySubareaShell({
   description,
   accentClassName,
   nextSteps,
-  cta,
 }: TrainingFacilitySubareaShellProps) {
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -107,21 +81,6 @@ export function TrainingFacilitySubareaShell({
             <p className="mt-5 max-w-3xl text-base leading-7 text-[#e8d5be] sm:text-lg">
               {description}
             </p>
-
-            {cta && (
-              <div className="mt-7 flex flex-wrap items-center gap-4">
-                <Link
-                  href={cta.href}
-                  className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.28em] text-[#1a0d05] shadow-[0_12px_30px_rgba(234,88,12,0.45)] transition hover:bg-orange-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#120d0a]"
-                >
-                  {cta.label}
-                  <span aria-hidden="true">→</span>
-                </Link>
-                {cta.helper && (
-                  <p className="max-w-md text-xs leading-5 text-white/55">{cta.helper}</p>
-                )}
-              </div>
-            )}
 
             <div className="mt-10 grid gap-6 lg:grid-cols-[1.35fr_0.9fr]">
               <div className="rounded-[1.6rem] border border-white/10 bg-black/25 p-6">
