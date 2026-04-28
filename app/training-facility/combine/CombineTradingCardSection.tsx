@@ -6,18 +6,24 @@ import { getMovementBenchmarks } from '@/lib/data/movement'
 import type { Benchmark } from '@/types/movement'
 
 /**
- * Pick the latest entry from a benchmark history. Sorts by ISO date string
- * descending (lexicographic order matches calendar order for `YYYY-MM-DD`).
+ * Pick the latest *complete* entry from a benchmark history. Skips
+ * entries with `is_complete === false`, matching the scoreboard's
+ * behaviour in `scoreboard-utils.ts`, so an aborted/test session can't
+ * become the card subject and contradict the scoreboard's "latest"
+ * values. Sorts by ISO date string descending — lexicographic order
+ * matches calendar order for `YYYY-MM-DD`.
  *
- * Exported so the empty-vs-populated branch is testable without spinning
- * up the full client island.
+ * Exported so the empty / all-incomplete / populated branches are
+ * testable without spinning up the full client island.
  *
- * @param entries - Full benchmark history. May be empty.
- * @returns The newest entry, or `undefined` when the list is empty.
+ * @param entries - Full benchmark history. May be empty or contain only
+ *   incomplete sessions.
+ * @returns The newest complete entry, or `undefined` when none exists.
  */
 export function pickLatestEntry(entries: readonly Benchmark[]): Benchmark | undefined {
-  if (entries.length === 0) return undefined
-  return [...entries].sort((a, b) => b.date.localeCompare(a.date))[0]
+  const complete = entries.filter((e) => e.is_complete !== false)
+  if (complete.length === 0) return undefined
+  return [...complete].sort((a, b) => b.date.localeCompare(a.date))[0]
 }
 
 /**

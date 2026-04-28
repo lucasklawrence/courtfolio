@@ -32,6 +32,20 @@ describe('pickLatestEntry', () => {
     const c: Benchmark = { date: '2026-02-20', vertical_in: 21 }
     expect(pickLatestEntry([a, b, c])).toBe(b)
   })
+
+  it('skips entries with is_complete === false so the card matches the scoreboard', () => {
+    const completeOlder: Benchmark = { date: '2026-03-15', vertical_in: 22 }
+    const incompleteNewer: Benchmark = { date: '2026-04-10', vertical_in: 23, is_complete: false }
+    expect(pickLatestEntry([completeOlder, incompleteNewer])).toBe(completeOlder)
+  })
+
+  it('returns undefined when every entry is marked incomplete', () => {
+    const onlyIncomplete: Benchmark[] = [
+      { date: '2026-03-15', vertical_in: 22, is_complete: false },
+      { date: '2026-04-10', vertical_in: 23, is_complete: false },
+    ]
+    expect(pickLatestEntry(onlyIncomplete)).toBeUndefined()
+  })
 })
 
 describe('CombineTradingCardSection', () => {
