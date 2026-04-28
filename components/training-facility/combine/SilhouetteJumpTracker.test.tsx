@@ -80,6 +80,26 @@ describe('SilhouetteJumpTracker', () => {
     expect(screen.queryByText(/99/)).not.toBeInTheDocument()
   })
 
+  it('sizes the viewBox to fit the peak historical jump, even when the latest is a regression', () => {
+    // Earlier session is a peak (35"), later session regresses (20"). The
+    // viewBox + y-axis must accommodate the peak silhouette so it doesn't clip.
+    const entries: Benchmark[] = [
+      { date: '2026-01-15', vertical_in: 35 },
+      { date: '2026-04-15', vertical_in: 20 },
+    ]
+    const { container } = render(
+      <SilhouetteJumpTracker entries={entries} standingReachIn={80} />,
+    )
+    const svg = container.querySelector('svg')
+    const viewBox = svg?.getAttribute('viewBox') ?? ''
+    // peakJumpTouch = 80 + 35 = 115; + 12" headroom → 127. Anything below
+    // 115 would have clipped the prior peak silhouette's fingertip.
+    const height = Number(viewBox.split(' ')[3])
+    expect(height).toBeGreaterThanOrEqual(115 + 12)
+    // Y-axis should also extend to at least the peak vertical, ticking every 6".
+    expect(screen.getByText('+36"')).toBeInTheDocument()
+  })
+
   it('uses the override aria-label when one is provided', () => {
     render(
       <SilhouetteJumpTracker

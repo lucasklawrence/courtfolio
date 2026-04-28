@@ -87,14 +87,20 @@ export function SilhouetteJumpTracker({
   }
 
   const latest = jumps[jumps.length - 1]
-  const maxJumpTouch = latest.verticalIn + standingReachIn
-  const viewHeightIn = Math.max(maxJumpTouch + HEADROOM_IN, standingReachIn + 24)
+  // Size the viewBox + y-axis from the *peak* historical jump, not the latest.
+  // If the athlete regresses (a later session lower than a prior peak), an
+  // older silhouette would otherwise clip off the top of the viewBox and the
+  // axis cap would understate the rendered range.
+  const peakVerticalIn = jumps.reduce((max, j) => (j.verticalIn > max ? j.verticalIn : max), 0)
+  const peakJumpTouch = peakVerticalIn + standingReachIn
+  const viewHeightIn = Math.max(peakJumpTouch + HEADROOM_IN, standingReachIn + 24)
   const floorY = viewHeightIn - 0.5
   const standingReachY = floorY - standingReachIn
 
   // Y-axis ticks every 6" above the standing reach line.
-  // Cap at the highest jump-touch + a hair so the top tick reads sanely.
-  const maxAxisIn = Math.ceil((latest.verticalIn + 6) / 6) * 6
+  // Cap at the highest historical jump + a hair so the top tick reads sanely
+  // even when the latest session was a regression.
+  const maxAxisIn = Math.ceil((peakVerticalIn + 6) / 6) * 6
   const tickInches: number[] = []
   for (let inches = 0; inches <= maxAxisIn; inches += 6) {
     tickInches.push(inches)
