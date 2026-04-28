@@ -10,16 +10,16 @@ test.describe('home court', () => {
   test('renders the primary navigation affordances', async ({ page }) => {
     await gotoHomeCourt(page)
 
-    await expect(page.getByRole('button', { name: /view the rafters/i })).toBeVisible()
-    await expect(page.getByRole('button', { name: /enter locker room/i })).toBeVisible()
-    await expect(page.getByRole('button', { name: /view project binder/i })).toBeVisible()
-    await expect(page.getByRole('button', { name: /go to front office/i })).toBeVisible()
+    await expect(page.getByRole('button', { name: /^rafters/i })).toBeVisible()
+    await expect(page.getByRole('button', { name: /^locker room/i })).toBeVisible()
+    await expect(page.getByRole('button', { name: /^project binder/i })).toBeVisible()
+    await expect(page.getByRole('button', { name: /^front office/i })).toBeVisible()
   })
 
   test('navigates from the home court into the locker room', async ({ page }) => {
     await gotoHomeCourt(page)
 
-    await page.getByRole('button', { name: /enter locker room/i }).click()
+    await page.getByRole('button', { name: /^locker room/i }).click()
 
     await expect(page).toHaveURL(/\/locker-room$/)
     await expect(
