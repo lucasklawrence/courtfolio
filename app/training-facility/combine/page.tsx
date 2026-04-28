@@ -11,10 +11,11 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * Combine sub-area page (PRD §7.5 + §9). Stacks the room-level chrome
  * (back-to-court + back-to-Training-Facility nav), an eyebrow/title block,
  * the shared scoreboard summary header (PRD §9.1) plus the dev-only
- * "Log a session" entry form (PRD §7.5 view 7), and the side-on Combine
- * scene SVG. Richer visualizations (Trading Card, Silhouette, Shuttle
- * Trace, Sprint Race, Radar) land in subsequent issues and plug into the
- * same {@link CombineDataIsland} so they share live entry state.
+ * "Log a session" entry form (PRD §7.5 view 7) and the Trading Card stat
+ * block (PRD §9.2), and the side-on Combine scene SVG. Richer
+ * visualizations (Silhouette, Shuttle Trace, Sprint Race, Radar) land in
+ * subsequent issues and plug into the same {@link CombineDataIsland} so
+ * they share live entry state.
  *
  * Gated behind {@link isTrainingFacilityEnabled} so the route stays
  * 404'd in production until the Training Facility ships publicly. The
