@@ -2,35 +2,45 @@
 
 import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
 
+import { CombineScene } from '@/components/training-facility/scenes/CombineScene'
 import { Scoreboard } from '@/components/training-facility/shared/Scoreboard'
 import { deriveCombineScoreboardCells } from '@/components/training-facility/shared/scoreboard-utils'
-import { getMovementBenchmarks } from '@/lib/data/movement'
+import {
+  deleteBenchmark,
+  getMovementBenchmarks,
+  updateBenchmark,
+} from '@/lib/data/movement'
 import type { Benchmark } from '@/types/movement'
 
 import { CombineEntryForm } from './CombineEntryForm'
+import { CombineHistoryTable } from './CombineHistoryTable'
 
 /**
- * Owns the Combine page's shared `entries` state. Renders the
- * Scoreboard (PRD §9.1) and the dev-only entry form (PRD §7.5 view 7),
- * both reading from the same in-memory list so a saved entry shows up
- * in the Scoreboard immediately, with no reload.
+ * Owns the Combine page's shared `entries` state and edit/delete
+ * orchestration. Renders the Scoreboard (PRD §9.1), the dev-only entry
+ * form (PRD §7.5 view 7), the placeholder Combine scene art, and the
+ * benchmark history table with per-row CRUD controls (PRD §7.5 view 8 +
+ * §7.11), all reading from the same in-memory list so a write anywhere
+ * (log, edit, delete, mark-incomplete) shows up in every surface
+ * immediately, with no reload.
  *
  * Keeping fetch + form state co-located here lets the parent page stay
  * a server component (it does the feature-flag gate) while still
- * sharing live data across two client children. Future Combine
+ * sharing live data across multiple client children. Future Combine
  * visualizations (Trading Card, Silhouette, etc.) plug in the same
- * way — accept `entries` as a prop, render below the Scoreboard.
+ * way — accept `entries` as a prop, render in the layout below.
  *
- * Empty / missing data renders the Scoreboard with em-dash
- * placeholders, matching the documented empty state of
- * `getMovementBenchmarks()` (returns `[]` on 404).
+ * Empty / missing data renders the Scoreboard with em-dash placeholders
+ * and the history table with its empty state, matching the documented
+ * empty-state behavior of `getMovementBenchmarks()` (returns `[]` on 404).
  */
 export function CombineDataIsland(): JSX.Element {
   const [entries, setEntries] = useState<Benchmark[] | undefined>(undefined)
+  const [editingEntry, setEditingEntry] = useState<Benchmark | undefined>(undefined)
   // Monotonic request id. Both the mount-time fetch and the
-  // post-save refetch increment this before issuing their request and
+  // post-write refetch increment this before issuing their request and
   // only commit results when the id is still current. Prevents a slow
-  // mount-time fetch from clobbering fresh post-save data if it
+  // mount-time fetch from clobbering fresh post-write data if it
   // resolves later. The mount cleanup also bumps the ref, which
   // invalidates every in-flight request after unmount so a late
   // resolver can't `setEntries` on an unmounted component.
@@ -53,11 +63,11 @@ export function CombineDataIsland(): JSX.Element {
     }
   }, [])
 
-  const handleSaved = useCallback(async (): Promise<void> => {
+  const refetch = useCallback(async (): Promise<void> => {
     // Bypass the HTTP cache after a write — Next dev serves the
     // static JSON from disk, but the browser may have cached the
     // pre-write copy. `no-store` guarantees the next render reflects
-    // the entry the user just logged.
+    // the entry the user just touched.
     const id = ++requestIdRef.current
     try {
       const data = await getMovementBenchmarks({ cache: 'no-store' })
@@ -67,12 +77,76 @@ export function CombineDataIsland(): JSX.Element {
     }
   }, [])
 
+  const handleEdit = useCallback((entry: Benchmark): void => {
+    setEditingEntry(entry)
+  }, [])
+
+  const handleCancelEdit = useCallback((): void => {
+    setEditingEntry(undefined)
+  }, [])
+
+  const handleDelete = useCallback(
+    async (entry: Benchmark): Promise<void> => {
+      // Native confirm() is intentional (PRD §7.11 spec wording, dev-only
+      // single-user UI). If a richer modal lands later it should keep
+      // this exact copy.
+      const ok = window.confirm(
+        `Delete benchmark from ${entry.date}? This cannot be undone.`,
+      )
+      if (!ok) return
+      try {
+        await deleteBenchmark(entry.date)
+      } catch (err) {
+        // Surface the failure in dev console; the row stays visible
+        // because the refetch below will reflect on-disk truth.
+        console.error('Failed to delete benchmark:', err)
+      }
+      // If the deleted row was being edited, drop edit mode so the form
+      // doesn't try to PUT against a date that no longer exists.
+      setEditingEntry((current) =>
+        current && current.date === entry.date ? undefined : current,
+      )
+      await refetch()
+    },
+    [refetch],
+  )
+
+  const handleToggleComplete = useCallback(
+    async (entry: Benchmark): Promise<void> => {
+      // PRD §7.11: omitted = complete (default). The "complete" branch
+      // we send is the negation of the entry's current effective state.
+      const currentlyComplete = entry.is_complete !== false
+      try {
+        await updateBenchmark(entry.date, { is_complete: !currentlyComplete })
+      } catch (err) {
+        console.error('Failed to toggle benchmark completeness:', err)
+      }
+      await refetch()
+    },
+    [refetch],
+  )
+
   const cells = deriveCombineScoreboardCells(entries ?? [])
+  const isDev = process.env.NODE_ENV === 'development'
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-10">
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
-      <CombineEntryForm onSaved={handleSaved} />
+      <CombineEntryForm
+        onSaved={refetch}
+        editingEntry={editingEntry}
+        onCancelEdit={handleCancelEdit}
+      />
+      <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
+        <CombineScene />
+      </div>
+      <CombineHistoryTable
+        entries={entries ?? []}
+        showActions={isDev}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        onToggleComplete={handleToggleComplete}
+      />
     </div>
   )
 }

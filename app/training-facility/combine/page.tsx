@@ -4,17 +4,15 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { CombineDataIsland } from '@/components/training-facility/combine/CombineDataIsland'
-import { CombineScene } from '@/components/training-facility/scenes/CombineScene'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
  * Combine sub-area page (PRD §7.5 + §9). Stacks the room-level chrome
- * (back-to-court + back-to-Training-Facility nav), an eyebrow/title block,
- * the shared scoreboard summary header (PRD §9.1) plus the dev-only
- * "Log a session" entry form (PRD §7.5 view 7), and the side-on Combine
- * scene SVG. Richer visualizations (Trading Card, Silhouette, Shuttle
- * Trace, Sprint Race, Radar) land in subsequent issues and plug into the
- * same {@link CombineDataIsland} so they share live entry state.
+ * (back-to-court + back-to-Training-Facility nav), an eyebrow/title
+ * block, and the data-driven body. The body lives in
+ * {@link CombineDataIsland}: scoreboard, dev-only entry form, scene art,
+ * and benchmark history table all share one fetch and one edit-mode
+ * state, so a write anywhere reflects everywhere with no reload.
  *
  * Gated behind {@link isTrainingFacilityEnabled} so the route stays
  * 404'd in production until the Training Facility ships publicly. The
@@ -62,10 +60,6 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
         </header>
 
         <CombineDataIsland />
-
-        <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
-          <CombineScene />
-        </div>
       </div>
     </div>
   )

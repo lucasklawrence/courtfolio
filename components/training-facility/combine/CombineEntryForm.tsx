@@ -4,9 +4,9 @@ import { useEffect, useId, useState, type JSX } from 'react'
 import { useForm, type Resolver, type SubmitHandler } from 'react-hook-form'
 import { ZodError } from 'zod'
 
-import { logBenchmark } from '@/lib/data/movement'
+import { logBenchmark, updateBenchmark } from '@/lib/data/movement'
 import { BenchmarkSchema } from '@/lib/schemas/movement'
-import type { Benchmark } from '@/types/movement'
+import type { Benchmark, BenchmarkUpdate } from '@/types/movement'
 
 /**
  * Raw form values. Number inputs produce strings (the DOM's `value` is
@@ -57,6 +57,28 @@ function emptyValues(): BenchmarkFormValues {
     vertical_in: '',
     sprint_10y_s: '',
     notes: '',
+  }
+}
+
+/**
+ * Project a logged {@link Benchmark} into the form's string-based field
+ * shape so RHF can prefill the panel for an edit. Numeric metrics with no
+ * value become empty strings (per PRD §7.6 partial-entry rules), notes
+ * fall back to the empty string. Inverse of {@link normalizeFormValues}.
+ *
+ * Note: `is_complete` isn't editable in the form (it's toggled from the
+ * history-table row), so this helper drops it. The PUT handler does a
+ * shallow merge, so the existing `is_complete` survives an edit
+ * round-trip even though the form never sends it.
+ */
+export function toFormValues(entry: Benchmark): BenchmarkFormValues {
+  return {
+    date: entry.date,
+    bodyweight_lbs: entry.bodyweight_lbs?.toString() ?? '',
+    shuttle_5_10_5_s: entry.shuttle_5_10_5_s?.toString() ?? '',
+    vertical_in: entry.vertical_in?.toString() ?? '',
+    sprint_10y_s: entry.sprint_10y_s?.toString() ?? '',
+    notes: entry.notes ?? '',
   }
 }
 
@@ -113,16 +135,31 @@ function zodErrorsToRhf(error: ZodError): Record<string, { type: string; message
 /** Props for {@link CombineEntryForm}. */
 export interface CombineEntryFormProps {
   /**
-   * Called after a successful POST so the parent can refetch the entry
-   * list and update derived views (Scoreboard, Trading Card, etc.). The
-   * full submitted entry is supplied for callers that want to merge
-   * optimistically.
+   * Called after a successful POST (create) or PUT (edit) so the parent
+   * can refetch the entry list and update derived views (Scoreboard,
+   * Trading Card, etc.). The full submitted entry is supplied for callers
+   * that want to merge optimistically.
    */
   onSaved: (entry: Benchmark) => void | Promise<void>
+  /**
+   * When set, the panel renders in edit mode (PRD §7.11): auto-opens,
+   * prefills with this entry's values, locks the date input (date is the
+   * primary key), and submit issues a PUT via {@link updateBenchmark}
+   * instead of a POST. Leave undefined for the default log-a-session flow.
+   */
+  editingEntry?: Benchmark
+  /**
+   * Called when the user clicks "Cancel edit". The parent should clear
+   * its `editingEntry` state in response. Required when `editingEntry`
+   * may ever be set; otherwise the form would have no way to leave edit
+   * mode without an actual save.
+   */
+  onCancelEdit?: () => void
 }
 
 const PANEL_BUTTON_LABEL_OPEN = 'Hide log panel'
 const PANEL_BUTTON_LABEL_CLOSED = 'Log a session'
+const PANEL_BUTTON_LABEL_EDITING = 'Cancel edit'
 
 /**
  * Collapsible "Log a session" panel for the Combine page (PRD §7.5
@@ -135,16 +172,31 @@ const PANEL_BUTTON_LABEL_CLOSED = 'Log a session'
  * component is a defensive belt-and-suspenders so the panel can never
  * accidentally surface in production even if a future caller forgets.
  */
-export function CombineEntryForm({ onSaved }: CombineEntryFormProps): JSX.Element | null {
+export function CombineEntryForm({
+  onSaved,
+  editingEntry,
+  onCancelEdit,
+}: CombineEntryFormProps): JSX.Element | null {
   if (process.env.NODE_ENV !== 'development') return null
-  return <CombineEntryFormImpl onSaved={onSaved} />
+  return (
+    <CombineEntryFormImpl
+      onSaved={onSaved}
+      editingEntry={editingEntry}
+      onCancelEdit={onCancelEdit}
+    />
+  )
 }
 
-function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
+function CombineEntryFormImpl({
+  onSaved,
+  editingEntry,
+  onCancelEdit,
+}: CombineEntryFormProps): JSX.Element {
   const headingId = useId()
   const [isOpen, setIsOpen] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
   const [savedDate, setSavedDate] = useState<string | null>(null)
+  const isEditing = editingEntry !== undefined
 
   const {
     register,
@@ -166,12 +218,34 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
     setValue('date', todayIso())
   }, [setValue])
 
+  // Edit mode: when the parent hands an entry to edit, prefill the
+  // form, force the panel open, and clear any stale status text. We
+  // don't reset on the transition out (editingEntry → undefined) here
+  // — that path runs through `handleCancelEdit` below so the click
+  // handler can sequence local state and the parent callback.
+  useEffect(() => {
+    if (editingEntry) {
+      reset(toFormValues(editingEntry))
+      setIsOpen(true)
+      setServerError(null)
+      setSavedDate(null)
+    }
+  }, [editingEntry, reset])
+
+  function handleCancelEdit(): void {
+    setIsOpen(false)
+    setServerError(null)
+    setSavedDate(null)
+    reset({ ...emptyValues(), date: todayIso() })
+    onCancelEdit?.()
+  }
+
   const onSubmit: SubmitHandler<BenchmarkFormValues> = async (values) => {
     setServerError(null)
     setSavedDate(null)
     const candidate = normalizeFormValues(values)
     // Resolver already validated; this parse is a type-narrowing pass
-    // so `entry` is typed as `Benchmark` for `logBenchmark()`.
+    // so `entry` is typed as `Benchmark` for the data-layer call.
     const parsed = BenchmarkSchema.safeParse(candidate)
     if (!parsed.success) {
       setServerError('Validation failed unexpectedly. Reload the page and try again.')
@@ -179,7 +253,15 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
     }
     const entry: Benchmark = parsed.data as Benchmark
     try {
-      await logBenchmark(entry)
+      if (editingEntry) {
+        // Date is the URL key — it can't appear in the PUT body.
+        // Strip it so the payload matches `BenchmarkUpdateSchema`.
+        const { date: _date, ...rest } = entry
+        const updates: BenchmarkUpdate = rest
+        await updateBenchmark(editingEntry.date, updates)
+      } else {
+        await logBenchmark(entry)
+      }
     } catch (err) {
       setServerError(err instanceof Error ? err.message : 'Save failed.')
       return
@@ -189,6 +271,12 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
     // with the freshly-computed local today so the next entry doesn't
     // require the user to retype the date.
     reset({ ...emptyValues(), date: todayIso() })
+    if (editingEntry) {
+      // Leave edit mode after a successful update so the panel
+      // returns to its log-a-session resting state.
+      setIsOpen(false)
+      onCancelEdit?.()
+    }
     // The write has already succeeded — don't let a parent refetch
     // failure bubble out as if the save itself failed. The data
     // island's own handler swallows fetch errors today, but a future
@@ -212,11 +300,15 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
           id={headingId}
           className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80"
         >
-          Dev · Log a session
+          {isEditing ? `Dev · Edit session for ${editingEntry.date}` : 'Dev · Log a session'}
         </h2>
         <button
           type="button"
           onClick={() => {
+            if (isEditing) {
+              handleCancelEdit()
+              return
+            }
             setServerError(null)
             setSavedDate(null)
             setIsOpen((v) => !v)
@@ -224,7 +316,11 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
           aria-expanded={isOpen}
           className="rounded border border-amber-300/40 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-amber-200 hover:bg-amber-300/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
         >
-          {isOpen ? PANEL_BUTTON_LABEL_OPEN : PANEL_BUTTON_LABEL_CLOSED}
+          {isEditing
+            ? PANEL_BUTTON_LABEL_EDITING
+            : isOpen
+              ? PANEL_BUTTON_LABEL_OPEN
+              : PANEL_BUTTON_LABEL_CLOSED}
         </button>
       </header>
 
@@ -239,6 +335,7 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
             name="date"
             type="date"
             required
+            readOnly={isEditing}
             error={errors.date?.message}
             register={register}
           />
@@ -313,7 +410,7 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
               disabled={isSubmitting}
               className="rounded bg-amber-300 px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-950 hover:bg-amber-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {isSubmitting ? 'Saving…' : 'Save entry'}
+              {isSubmitting ? 'Saving…' : isEditing ? 'Update entry' : 'Save entry'}
             </button>
           </div>
         </form>
@@ -330,6 +427,12 @@ interface FieldProps {
   step?: string
   min?: string
   placeholder?: string
+  /**
+   * When true, the input is non-editable but still focusable and visible
+   * to screen readers (used for the date field in edit mode — date is
+   * the primary key and can't change in-place).
+   */
+  readOnly?: boolean
   error?: string
   register: ReturnType<typeof useForm<BenchmarkFormValues>>['register']
 }
@@ -347,6 +450,7 @@ function Field({
   step,
   min,
   placeholder,
+  readOnly,
   error,
   register,
 }: FieldProps): JSX.Element {
@@ -361,8 +465,11 @@ function Field({
         step={step}
         min={min}
         placeholder={placeholder}
+        readOnly={readOnly}
         aria-invalid={error ? true : undefined}
-        className="mt-1.5 block w-full rounded border border-amber-300/30 bg-neutral-950/60 px-3 py-2 text-sm text-amber-50 placeholder:text-amber-200/30 focus:border-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+        className={`mt-1.5 block w-full rounded border border-amber-300/30 bg-neutral-950/60 px-3 py-2 text-sm text-amber-50 placeholder:text-amber-200/30 focus:border-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${
+          readOnly ? 'cursor-not-allowed opacity-70' : ''
+        }`}
         // No per-field rules — the Zod resolver is the single source
         // of truth for validation. The `required` prop here only
         // controls the visual "*" marker on the label.
