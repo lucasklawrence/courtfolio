@@ -2,11 +2,10 @@ import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest'
 import { getCardioData } from './cardio'
 
 /**
- * `getCardioData` is a thin fetch wrapper. Issue #104's checklist says it
- * should "return [] on 404, throw on other failures" but the current
- * implementation throws on all non-OK responses (and `CardioData` is an
- * object — `[]` wouldn't typecheck). These tests pin current behavior; the
- * `[]`-on-404 refactor is its own concern outside this PR's scope.
+ * `getCardioData` is a thin fetch wrapper that mirrors the empty-state
+ * behavior of `getMovementBenchmarks`: 404 → return a sentinel (here `null`,
+ * since `CardioData` is an object and `[]` wouldn't typecheck), other non-OK
+ * responses → throw.
  */
 
 let fetchMock: ReturnType<typeof vi.fn>
@@ -40,9 +39,9 @@ describe('getCardioData', () => {
     expect(url).toBe('/data/cardio.json')
   })
 
-  it('throws on 404 (current behavior — no empty-state shortcut)', async () => {
+  it('returns null on 404 (pre-baseline empty state, no cardio.json yet)', async () => {
     fetchMock.mockResolvedValueOnce(new Response(null, { status: 404, statusText: 'Not Found' }))
-    await expect(getCardioData()).rejects.toThrow(/Failed to load cardio data: 404/)
+    await expect(getCardioData()).resolves.toBeNull()
   })
 
   it('throws on 500 with status code in the message', async () => {
