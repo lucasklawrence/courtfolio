@@ -70,6 +70,10 @@ function emptyValues(): BenchmarkFormValues {
  * history-table row), so this helper drops it. The PUT handler does a
  * shallow merge, so the existing `is_complete` survives an edit
  * round-trip even though the form never sends it.
+ *
+ * @param entry Persisted benchmark to load into the form. The `date`
+ *   field copies through verbatim and the form locks the input — date
+ *   is the primary key and isn't user-editable in edit mode.
  */
 export function toFormValues(entry: Benchmark): BenchmarkFormValues {
   return {
@@ -87,6 +91,10 @@ export function toFormValues(entry: Benchmark): BenchmarkFormValues {
  * strings become "field omitted" (per PRD §7.6 partial-entry rules),
  * numeric strings parse to numbers. Returns the unvalidated candidate;
  * the caller passes it to {@link BenchmarkSchema} for the actual check.
+ *
+ * @param values Raw form values straight out of RHF. Numeric fields are
+ *   strings (DOM `<input type="number">` always returns strings); this
+ *   function trims, drops blanks, and `Number()`-parses the rest.
  */
 export function normalizeFormValues(values: BenchmarkFormValues): Record<string, unknown> {
   const out: Record<string, unknown> = { date: values.date.trim() }
@@ -146,13 +154,19 @@ export interface CombineEntryFormProps {
    * prefills with this entry's values, locks the date input (date is the
    * primary key), and submit issues a PUT via {@link updateBenchmark}
    * instead of a POST. Leave undefined for the default log-a-session flow.
+   *
+   * Runtime contract: callers that pass `editingEntry` MUST also pass
+   * `onCancelEdit` so the form can leave edit mode without a save.
+   * Encoded as an optional pair (rather than a discriminated union) so
+   * `useState<Benchmark | undefined>` callers can pass the value
+   * straight through without an unmount-on-transition pattern that
+   * would wipe transient panel state (`savedDate`, `serverError`).
    */
   editingEntry?: Benchmark
   /**
-   * Called when the user clicks "Cancel edit". The parent should clear
-   * its `editingEntry` state in response. Required when `editingEntry`
-   * may ever be set; otherwise the form would have no way to leave edit
-   * mode without an actual save.
+   * Called when the user clicks "Cancel edit", or after a successful
+   * edit-mode save. The parent should clear its `editingEntry` state in
+   * response. Required whenever `editingEntry` may be set.
    */
   onCancelEdit?: () => void
 }
@@ -268,14 +282,22 @@ function CombineEntryFormImpl({
       setServerError('Validation failed unexpectedly. Reload the page and try again.')
       return
     }
-    const entry: Benchmark = parsed.data as Benchmark
+    const parsedEntry: Benchmark = parsed.data as Benchmark
+    // In edit mode, the date is the persisted primary key — always
+    // canonicalize on `editingEntry.date` so any drift in the form's
+    // (read-only) input value can't desync the URL we PUT to from the
+    // status text or the entry handed to `onSaved`.
+    const canonicalDate = editingEntry ? editingEntry.date : parsedEntry.date
+    const entry: Benchmark = editingEntry
+      ? { ...parsedEntry, date: canonicalDate }
+      : parsedEntry
     try {
       if (editingEntry) {
         // Date is the URL key — it can't appear in the PUT body.
         // Strip it so the payload matches `BenchmarkUpdateSchema`.
         const { date: _date, ...rest } = entry
         const updates: BenchmarkUpdate = rest
-        await updateBenchmark(editingEntry.date, updates)
+        await updateBenchmark(canonicalDate, updates)
       } else {
         await logBenchmark(entry)
       }
@@ -283,7 +305,7 @@ function CombineEntryFormImpl({
       setServerError(err instanceof Error ? err.message : 'Save failed.')
       return
     }
-    setSavedDate(entry.date)
+    setSavedDate(canonicalDate)
     // Reset clears every field — including the date — so re-seed it
     // with the freshly-computed local today so the next entry doesn't
     // require the user to retype the date.
