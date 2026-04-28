@@ -3,9 +3,11 @@ import {
   cardiacEfficiencyPoints,
   filterRunningSessions,
   formatDistanceMiles,
+  formatPaceCellFromSecPerKm,
   formatPacePerMile,
   paceAtHrPoints,
   paceTrendPoints,
+  secPerKmToSecPerMile,
 } from './running'
 import type { CardioSession } from '@/types/cardio'
 
@@ -96,6 +98,38 @@ describe('cardiacEfficiencyPoints', () => {
     const out = cardiacEfficiencyPoints(sessions)
     expect(out.map((p) => p.rawDate)).toEqual(['2026-04-04'])
   })
+
+  it('drops sessions whose date is unparseable', () => {
+    const sessions: CardioSession[] = [
+      run('garbage', { meters_per_heartbeat: 1.4 }),
+      run('2026-04-05', { meters_per_heartbeat: 1.5 }),
+    ]
+    const out = cardiacEfficiencyPoints(sessions)
+    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-05'])
+  })
+})
+
+describe('secPerKmToSecPerMile', () => {
+  it('multiplies by miles-per-meter then re-scales km → m', () => {
+    // 360 sec/km × 1.609344 ≈ 579.36 sec/mi
+    expect(secPerKmToSecPerMile(360)).toBeCloseTo(579.36, 1)
+    // 0 stays 0 — caller filters but the math is still well-defined.
+    expect(secPerKmToSecPerMile(0)).toBe(0)
+  })
+})
+
+describe('formatPaceCellFromSecPerKm', () => {
+  it('converts and formats with /mi suffix', () => {
+    // 360 sec/km ≈ 579 sec/mi → 9:39 /mi
+    expect(formatPaceCellFromSecPerKm(360)).toBe('9:39 /mi')
+  })
+
+  it('returns em dash when input is missing or non-positive', () => {
+    expect(formatPaceCellFromSecPerKm(undefined)).toBe('—')
+    expect(formatPaceCellFromSecPerKm(0)).toBe('—')
+    expect(formatPaceCellFromSecPerKm(-30)).toBe('—')
+    expect(formatPaceCellFromSecPerKm(Number.NaN)).toBe('—')
+  })
 })
 
 describe('paceAtHrPoints', () => {
@@ -134,6 +168,10 @@ describe('formatPacePerMile', () => {
 
   it('handles sub-minute paces', () => {
     expect(formatPacePerMile(45)).toBe('0:45 /mi')
+  })
+
+  it('omits the unit when includeUnit is false (chart tick form)', () => {
+    expect(formatPacePerMile(545, false)).toBe('9:05')
   })
 
   it('returns an em dash for invalid input', () => {

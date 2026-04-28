@@ -22,6 +22,7 @@ import {
   cardiacEfficiencyPoints,
   filterRunningSessions,
   formatDistanceMiles,
+  formatPaceCellFromSecPerKm,
   formatPacePerMile,
   paceAtHrPoints,
   paceTrendPoints,
@@ -321,11 +322,8 @@ export function TreadmillDetailView(): JSX.Element {
 
 /** Tick formatter shared by pace y-axes — `M:SS` (no `/mi` suffix to keep ticks compact). */
 function formatTickPace(secondsPerMile: number): string {
-  if (!Number.isFinite(secondsPerMile) || secondsPerMile <= 0) return ''
-  const total = Math.round(secondsPerMile)
-  const mins = Math.floor(total / 60)
-  const secs = total % 60
-  return `${mins}:${secs.toString().padStart(2, '0')}`
+  const formatted = formatPacePerMile(secondsPerMile, false)
+  return formatted === '—' ? '' : formatted
 }
 
 interface ChartCardProps {
@@ -413,7 +411,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                   <td className="rounded-l-md px-3 py-2 font-mono">{formatRowDate(s.date)}</td>
                   <td className="px-3 py-2 font-mono">{formatDistanceMiles(s.distance_meters)}</td>
                   <td className="px-3 py-2 font-mono">{formatDuration(s.duration_seconds)}</td>
-                  <td className="px-3 py-2 font-mono">{formatPaceCell(s.pace_seconds_per_km)}</td>
+                  <td className="px-3 py-2 font-mono">{formatPaceCellFromSecPerKm(s.pace_seconds_per_km)}</td>
                   <td className="px-3 py-2 font-mono">
                     {typeof s.avg_hr === 'number' ? `${Math.round(s.avg_hr)}` : '—'}
                   </td>
@@ -428,15 +426,6 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
       )}
     </section>
   )
-}
-
-const METERS_PER_MILE = 1609.344
-
-function formatPaceCell(paceSecondsPerKm: number | undefined): string {
-  if (typeof paceSecondsPerKm !== 'number' || !Number.isFinite(paceSecondsPerKm) || paceSecondsPerKm <= 0) {
-    return '—'
-  }
-  return formatPacePerMile((paceSecondsPerKm * METERS_PER_MILE) / 1000)
 }
 
 function formatRowDate(raw: string): string {
