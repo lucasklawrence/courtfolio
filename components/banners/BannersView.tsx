@@ -1,8 +1,9 @@
 ﻿'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { BannerCard, BannerProps } from '@/components/common/BannerCard'
+import { NextStopNav } from '@/components/common/NextStopNav'
+import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 
 export type BannerSection = {
   label: string
@@ -41,10 +42,9 @@ export function BannersView({ sections }: { sections: BannerSection[] }) {
             </div>
           ))}
 
-          <div className="mt-20">
-            <Link href="/" className="text-orange-300 underline hover:text-orange-100">
-              Back to the Court
-            </Link>
+          <div className="mt-20 flex flex-wrap items-center justify-center gap-3">
+            <NextStopNav current="rafters" />
+            <BackToCourtButton />
           </div>
         </div>
       </div>

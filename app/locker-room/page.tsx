@@ -20,6 +20,7 @@ import { StrawHatSvg } from '@/components/locker-room/assets/StrawHatSvg'
 import { JerseysSVG } from '@/components/locker-room/assets/JerseysSvg'
 import { LaptopSvg } from '@/components/locker-room/assets/LaptopSvg'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { NextStopNav } from '@/components/common/NextStopNav'
 import { LockerInfo } from '@/components/locker-room/LockerInfo'
 import { SvgLayoutContainer } from '@/components/common/SvgLayoutContainer'
 import { Yellow4Jersey } from '@/components/locker-room/assets/Yellow4Jersey'
@@ -357,9 +358,12 @@ export default function LockerRoomPage() {
               <PS5ControllerSVG />
             </LockerZone>
           ),
-          'back-to-court': (
-            <LockerZone x={1220} y={970} width={340} height={70}>
-              <BackToCourtButton />
+          'next-stop-nav': (
+            <LockerZone x={20} y={950} width={1516} height={80}>
+              <div className="flex h-full items-center justify-end gap-3 pr-2">
+                <NextStopNav current="locker-room" />
+                <BackToCourtButton />
+              </div>
             </LockerZone>
           ),
           'locker-info': (
