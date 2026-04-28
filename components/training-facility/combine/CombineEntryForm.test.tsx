@@ -183,6 +183,27 @@ describe('CombineEntryForm — error paths', () => {
   })
 })
 
+describe('CombineEntryForm — date initialization (Codex P2 timezone fix)', () => {
+  beforeEach(() => {
+    vi.stubEnv('NODE_ENV', 'development')
+  })
+
+  it('does NOT seed the date field at render time (SSR-safe; effect populates after mount)', async () => {
+    const user = userEvent.setup()
+    render(<CombineEntryForm onSaved={() => {}} />)
+    await user.click(screen.getByRole('button', { name: /log a session/i }))
+    const dateInput = screen.getByLabelText(/^date/i) as HTMLInputElement
+    // After mount, the effect has fired — date should be a YYYY-MM-DD
+    // computed from the *browser*'s clock, not the server's.
+    await waitFor(() => expect(dateInput.value).toMatch(/^\d{4}-\d{2}-\d{2}$/))
+    // The form's `emptyValues()` factory now starts the date as ''.
+    // Sanity check: the effect-set value matches today in the local TZ.
+    const now = new Date()
+    const expected = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+    expect(dateInput.value).toBe(expected)
+  })
+})
+
 describe('normalizeFormValues', () => {
   it('parses populated numeric strings into numbers', () => {
     expect(

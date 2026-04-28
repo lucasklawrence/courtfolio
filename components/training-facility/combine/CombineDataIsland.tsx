@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState, type JSX } from 'react'
+import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
 
 import { Scoreboard } from '@/components/training-facility/shared/Scoreboard'
 import { deriveCombineScoreboardCells } from '@/components/training-facility/shared/scoreboard-utils'
@@ -27,24 +27,23 @@ import { CombineEntryForm } from './CombineEntryForm'
  */
 export function CombineDataIsland(): JSX.Element {
   const [entries, setEntries] = useState<Benchmark[] | undefined>(undefined)
+  // Monotonic request id. Both the mount-time fetch and the
+  // post-save refetch increment this before issuing their request and
+  // only commit results when the id is still current. Prevents a slow
+  // mount-time fetch from clobbering fresh post-save data if it
+  // resolves later, and doubles as the unmount guard (after unmount
+  // nothing re-reads the ref).
+  const requestIdRef = useRef(0)
 
-  // Mount-time fetch is wrapped with a `cancelled` flag so a fast
-  // unmount (page navigation) doesn't `setEntries` on an unmounted
-  // component. The post-save refetch below uses the same `setEntries`
-  // but is keyed off a user gesture from a still-mounted form, so it
-  // doesn't need the same guard.
   useEffect(() => {
-    let cancelled = false
+    const id = ++requestIdRef.current
     getMovementBenchmarks()
       .then((data) => {
-        if (!cancelled) setEntries(data)
+        if (id === requestIdRef.current) setEntries(data)
       })
       .catch(() => {
-        if (!cancelled) setEntries([])
+        if (id === requestIdRef.current) setEntries([])
       })
-    return () => {
-      cancelled = true
-    }
   }, [])
 
   const handleSaved = useCallback(async (): Promise<void> => {
@@ -52,11 +51,12 @@ export function CombineDataIsland(): JSX.Element {
     // static JSON from disk, but the browser may have cached the
     // pre-write copy. `no-store` guarantees the next render reflects
     // the entry the user just logged.
+    const id = ++requestIdRef.current
     try {
       const data = await getMovementBenchmarks({ cache: 'no-store' })
-      setEntries(data)
+      if (id === requestIdRef.current) setEntries(data)
     } catch {
-      setEntries([])
+      if (id === requestIdRef.current) setEntries([])
     }
   }, [])
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useState, type JSX } from 'react'
+import { useEffect, useId, useState, type JSX } from 'react'
 import { useForm, type Resolver, type SubmitHandler } from 'react-hook-form'
 import { ZodError } from 'zod'
 
@@ -31,8 +31,13 @@ const NUMERIC_FIELDS = [
   'sprint_10y_s',
 ] as const satisfies ReadonlyArray<keyof BenchmarkFormValues>
 
-/** Today as `YYYY-MM-DD` in the user's local timezone — used for the default date. */
-function todayIso(): string {
+/**
+ * Today as `YYYY-MM-DD` in the *caller's* local timezone. Exported so
+ * the form's mount-effect can populate the date field client-side
+ * (server-side render in a different timezone would otherwise pre-fill
+ * the wrong day — e.g. UTC server + US-Pacific browser late at night).
+ */
+export function todayIso(): string {
   const d = new Date()
   const yyyy = d.getFullYear().toString().padStart(4, '0')
   const mm = (d.getMonth() + 1).toString().padStart(2, '0')
@@ -42,7 +47,11 @@ function todayIso(): string {
 
 function emptyValues(): BenchmarkFormValues {
   return {
-    date: todayIso(),
+    // Date intentionally starts empty so SSR and client hydration
+    // agree on the initial DOM (no timezone-dependent value at render
+    // time). The form's mount-effect sets it to `todayIso()` after
+    // hydration so the user sees today's local date.
+    date: '',
     bodyweight_lbs: '',
     shuttle_5_10_5_s: '',
     vertical_in: '',
@@ -141,11 +150,21 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<BenchmarkFormValues>({
     defaultValues: emptyValues(),
     resolver: benchmarkResolver,
   })
+
+  // Populate the date field with the user's local "today" after
+  // mount. Doing this in an effect (not as the form default) keeps
+  // SSR and client hydration in agreement — the initial render emits
+  // an empty input on both sides, then the client patches it once
+  // hydrated using the browser's timezone.
+  useEffect(() => {
+    setValue('date', todayIso())
+  }, [setValue])
 
   const onSubmit: SubmitHandler<BenchmarkFormValues> = async (values) => {
     setServerError(null)
@@ -166,7 +185,10 @@ function CombineEntryFormImpl({ onSaved }: CombineEntryFormProps): JSX.Element {
       return
     }
     setSavedDate(entry.date)
-    reset(emptyValues())
+    // Reset clears every field — including the date — so re-seed it
+    // with the freshly-computed local today so the next entry doesn't
+    // require the user to retype the date.
+    reset({ ...emptyValues(), date: todayIso() })
     await onSaved(entry)
   }
 

@@ -89,4 +89,45 @@ describe('CombineDataIsland', () => {
     await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(2))
     expect(getMovementBenchmarksMock.mock.calls[1][0]).toEqual({ cache: 'no-store' })
   })
+
+  it('does NOT let a stale mount-time fetch overwrite fresher post-save data (Codex P2 race)', async () => {
+    vi.stubEnv('NODE_ENV', 'development')
+
+    // Mount-time fetch resolves AFTER the post-save fetch — the slow
+    // first-loader race the request-id ref pattern guards against.
+    let resolveMount: (data: unknown) => void = () => {}
+    const mountPromise = new Promise((resolve) => {
+      resolveMount = resolve
+    })
+    getMovementBenchmarksMock.mockReturnValueOnce(mountPromise)
+    getMovementBenchmarksMock.mockResolvedValueOnce([
+      { date: '2026-04-20', bodyweight_lbs: 230 },
+    ])
+    logBenchmarkMock.mockResolvedValueOnce(undefined)
+
+    const user = userEvent.setup()
+    render(<CombineDataIsland />)
+
+    // Mount fetch is in-flight (unresolved promise). Save now.
+    await user.click(screen.getByRole('button', { name: /log a session/i }))
+    const dateInput = screen.getByLabelText(/^date/i)
+    await user.clear(dateInput)
+    await user.type(dateInput, '2026-04-20')
+    await user.type(screen.getByLabelText(/bodyweight/i), '230')
+    await user.click(screen.getByRole('button', { name: /save entry/i }))
+
+    // Post-save fetch completes first → Scoreboard reflects 230.
+    await waitFor(() =>
+      expect(screen.getByLabelText(/230\.0 lbs/i)).toBeInTheDocument(),
+    )
+
+    // Now resolve the stale mount-time fetch with stale data. The
+    // request-id guard should drop it.
+    resolveMount([{ date: '2026-04-15', bodyweight_lbs: 999 }])
+    await new Promise((r) => setTimeout(r, 20))
+
+    // Scoreboard still shows the post-save value, NOT the stale 999.
+    expect(screen.getByLabelText(/230\.0 lbs/i)).toBeInTheDocument()
+    expect(screen.queryByLabelText(/999/i)).not.toBeInTheDocument()
+  })
 })
