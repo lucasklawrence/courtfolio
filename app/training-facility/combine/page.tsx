@@ -6,6 +6,7 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { CombineScene } from '@/components/training-facility/scenes/CombineScene'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
+import { JumpTrackerSection } from '@/components/training-facility/combine/JumpTrackerSection'
 import { CombineScoreboardSection } from './CombineScoreboardSection'
 
 /**
@@ -57,6 +58,8 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
         </header>
 
         <CombineScoreboardSection />
+
+        <JumpTrackerSection />
 
         <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
           <CombineScene />
