@@ -44,7 +44,11 @@ export function StairDetailView(): JSX.Element {
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
-  const containerRef = useRef<HTMLDivElement>(null)
+  // Sentinel ref placed on a per-card wrapper, NOT on the two-column grid.
+  // The grid wrapper would report the combined width on `lg:grid-cols-2`, so
+  // each chart would render at ~2× its column footprint and overflow. The
+  // two cards are equal width by grid contract, so observing one is enough.
+  const cardSizerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -54,6 +58,21 @@ export function StairDetailView(): JSX.Element {
       })
       .catch((err: unknown) => {
         if (cancelled) return
+        const message = err instanceof Error ? err.message : String(err)
+        // Treat a missing `cardio.json` (404) as "no data yet" rather than a
+        // hard error — the file is gitignored (PRD §11 open question 7), so
+        // a fresh preview deploy without an Apple Health import legitimately
+        // has no data. Other errors (network, 5xx, malformed JSON) still
+        // bubble up to the explicit error panel.
+        if (/\b404\b/.test(message)) {
+          setData({
+            imported_at: '',
+            sessions: [],
+            resting_hr_trend: [],
+            vo2max_trend: [],
+          })
+          return
+        }
         setLoadError(err instanceof Error ? err : new Error(String(err)))
       })
     return () => {
@@ -61,11 +80,13 @@ export function StairDetailView(): JSX.Element {
     }
   }, [])
 
-  // Track the cards' rendered width so the SVG charts shrink with the column
-  // on mobile rather than overflowing the viewport. The shared chart
-  // primitives don't accept a fluid width — we measure here and pass.
+  // Track per-card width so the SVG charts shrink with the column on mobile
+  // rather than overflowing the viewport. The shared chart primitives don't
+  // accept a fluid width — we measure the sentinel and pass. The sentinel
+  // sits inside the chart's content area (no card padding) so its width is
+  // exactly what the SVG should render at.
   useEffect(() => {
-    const node = containerRef.current
+    const node = cardSizerRef.current
     if (!node || typeof ResizeObserver === 'undefined') return
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
@@ -91,22 +112,12 @@ export function StairDetailView(): JSX.Element {
     return Number.isFinite(earliestMs) ? new Date(earliestMs) : EARLIEST_FALLBACK
   }, [data])
 
-  // Re-anchor the active range to the dataset's earliest date once the data
-  // arrives — otherwise an `All` preset locked to the fallback date wouldn't
-  // include the real data when it's older. Only fires for the initial 1M
-  // preset; user-selected ranges aren't overwritten.
-  const anchoredRef = useRef(false)
-  useEffect(() => {
-    if (!data || anchoredRef.current) return
-    setRange((prev) => {
-      const next = rangeForPreset('1M', earliestDate)
-      return prev.start.getTime() === next.start.getTime() &&
-        prev.end.getTime() === next.end.getTime()
-        ? prev
-        : next
-    })
-    anchoredRef.current = true
-  }, [data, earliestDate])
+  // No re-anchor effect: the `1M` preset is computed from "today" and is
+  // independent of `earliestDate`, so the initial range value is already
+  // correct before data loads. When the user clicks `All`, `DateFilter`
+  // reads the latest `earliestDate` prop and computes the right span on
+  // the spot — no need to overwrite the range from this side, which would
+  // also clobber a filter the user picked while the fetch was in flight.
 
   const stairSessions = useMemo<CardioSession[]>(
     () => (data ? filterStairSessions(data.sessions, range) : []),
@@ -161,17 +172,19 @@ export function StairDetailView(): JSX.Element {
           <LoadingPanel />
         ) : (
           <>
-            <div ref={containerRef} className="mt-8 grid gap-6 lg:grid-cols-2">
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ChartCard
                 title="Time in zone"
                 helper="Total minutes per HR zone across the filtered window."
               >
-                <HrZoneBars
-                  buckets={buckets}
-                  width={chartWidth}
-                  height={CHART_HEIGHT}
-                  fontFamily="'Patrick Hand', system-ui, sans-serif"
-                />
+                <div ref={cardSizerRef}>
+                  <HrZoneBars
+                    buckets={buckets}
+                    width={chartWidth}
+                    height={CHART_HEIGHT}
+                    fontFamily="'Patrick Hand', system-ui, sans-serif"
+                  />
+                </div>
               </ChartCard>
 
               <ChartCard

@@ -67,8 +67,12 @@ export function AvgHrBars({
     )
   }
 
-  const labels = points.map((p) => p.label)
-  const xScale = scaleBand<string>().domain(labels).range([0, innerW]).padding(padding)
+  // Key the band scale by index, not by `label`. Two sessions on the same
+  // calendar day (or the same M/D across years) share a `label` value but
+  // are genuinely distinct points — a string-keyed domain would collapse
+  // them onto a single x position. Tick text still shows the M/D label.
+  const indices = points.map((_, i) => i)
+  const xScale = scaleBand<number>().domain(indices).range([0, innerW]).padding(padding)
 
   const values = points.map((p) => p.avgHr)
   const [vMin, vMax] = extent(values)
@@ -83,9 +87,9 @@ export function AvgHrBars({
 
   const gen = getGenerator()
 
-  const xTicks: AxisTick[] = labels.map((l) => ({
-    value: l,
-    offset: (xScale(l) ?? 0) + xScale.bandwidth() / 2,
+  const xTicks: AxisTick[] = points.map((p, i) => ({
+    value: p.label,
+    offset: (xScale(i) ?? 0) + xScale.bandwidth() / 2,
   }))
 
   const yTicks: AxisTick[] = yScale.ticks(5).map((tick) => ({
@@ -129,7 +133,7 @@ export function AvgHrBars({
           seed={seed + 200}
         />
         {points.map((p, i) => {
-          const bx = xScale(p.label) ?? 0
+          const bx = xScale(i) ?? 0
           const bw = xScale.bandwidth()
           const bh = Math.max(innerH - yScale(p.avgHr), 1)
           const by = innerH - bh

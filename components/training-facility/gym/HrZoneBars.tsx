@@ -83,8 +83,20 @@ export function HrZoneBars({
     offset: (xScale(b.shortLabel) ?? 0) + xScale.bandwidth() / 2,
   }))
 
+  // Switch the y-axis units when the largest bar is under two minutes —
+  // rounding 20s / 40s / 60s straight to whole minutes produces duplicate
+  // 0m / 1m / 1m ticks that misrepresent the data. The threshold (120s)
+  // is chosen so a typical stair session (≥25 min) always reads in minutes
+  // while short windows (one short session, or single-zone time) read in
+  // seconds.
+  const showSeconds = yMaxSeconds < 120
+  const formatYTick = showSeconds
+    ? (tick: number) => `${Math.round(tick)}s`
+    : (tick: number) => `${Math.round(tick / 60)}m`
+  const yAxisLabel = showSeconds ? 'Seconds' : 'Minutes'
+
   const yTicks: AxisTick[] = yScale.ticks(5).map((tick) => ({
-    value: `${Math.round(tick / 60)}m`,
+    value: formatYTick(tick),
     offset: yScale(tick),
   }))
 
@@ -117,7 +129,7 @@ export function HrZoneBars({
           start={0}
           end={innerH}
           ticks={yTicks}
-          label="Minutes"
+          label={yAxisLabel}
           color={axisColor}
           fontFamily={fontFamily}
           roughness={roughness}
