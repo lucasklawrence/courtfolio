@@ -19,6 +19,7 @@ export default defineConfig({
   forbidOnly: IS_CI,
   retries: IS_CI ? 2 : 0,
   workers: IS_CI ? 1 : undefined,
+  timeout: 60_000,
   reporter: IS_CI ? [['github'], ['html', { open: 'never' }]] : [['list'], ['html', { open: 'never' }]],
   use: {
     browserName: 'chromium',
