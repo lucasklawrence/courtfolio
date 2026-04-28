@@ -1,6 +1,7 @@
 'use client'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { NextStopNav } from '@/components/common/NextStopNav'
 import { SectionContainer } from '@/components/common/SectionContainer'
 import React from 'react'
 import { ProjectGallery } from '@/components/project-binder/ProjectGallery'
@@ -18,11 +19,12 @@ export default function ProjectPage() {
     <div className="bg-[url('/textures/binder-leather.png')] bg-center bg-cover bg-no-repeat min-h-screen flex flex-col relative">
       <h1 className="sr-only">Project Binder — Lucas Lawrence</h1>
       {/* Header Controls */}
-      <SectionContainer className="pt-4 pb-2 z-10 flex justify-between">
+      <SectionContainer className="pt-4 pb-2 z-10 flex flex-wrap items-center justify-between gap-3">
         <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
           Page 1
         </div>
-        <div className="text-xs bg-black/30 text-white px-3 py-1 font-mono rounded-tr-md">
+        <div className="flex flex-wrap items-center gap-3">
+          <NextStopNav current="projects" />
           <BackToCourtButton />
         </div>
       </SectionContainer>
