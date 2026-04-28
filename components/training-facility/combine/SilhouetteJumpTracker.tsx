@@ -242,7 +242,6 @@ export function SilhouetteJumpTracker({
                 cursor: 'pointer',
                 transformBox: 'fill-box',
                 transformOrigin: 'center bottom',
-                outline: 'none',
               }}
               initial={initialState}
               animate={animateState}
@@ -275,7 +274,6 @@ export function SilhouetteJumpTracker({
       {hovered && (
         <div
           role="tooltip"
-          aria-live="polite"
           className="pointer-events-none absolute right-3 top-3 rounded-md border border-amber-300/40 bg-black/85 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-amber-100 shadow-[0_4px_18px_-6px_rgba(0,0,0,0.7)]"
         >
           <div className="text-amber-300">{hovered.date}</div>
