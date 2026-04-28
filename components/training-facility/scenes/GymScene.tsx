@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import {
   HardwoodFloor,
   SCENE_PALETTE,
@@ -70,7 +72,42 @@ export function GymScene() {
       <Treadmill />
       <SweatTowel />
 
-      <StairClimber />
+      {/*
+        Stair-climber group is wrapped in a Next.js `<Link>` to its detail
+        view (PRD §7.4). Same pattern as `DoorToCombine` — group-scoped
+        hover/focus overlays sit on top of the asset and only become visible
+        when the parent anchor is hovered or keyboard-focused, so the static
+        scene stays clean.
+      */}
+      <Link
+        href="/training-facility/gym/stair"
+        aria-label="Open the stair climber detail view"
+        className="group focus:outline-none"
+      >
+        <StairClimber />
+        {/* Hover/focus tint over the stair-climber footprint */}
+        <rect
+          x={500}
+          y={395}
+          width={460}
+          height={485}
+          fill={SCENE_PALETTE.creamBright}
+          className="opacity-0 transition-opacity group-hover:opacity-10 group-focus-visible:opacity-15"
+        />
+        {/* Focus ring — visible only when keyboard-focused */}
+        <rect
+          x={500}
+          y={395}
+          width={460}
+          height={485}
+          fill="none"
+          stroke={SCENE_PALETTE.rim}
+          strokeWidth={4}
+          strokeDasharray="6 4"
+          rx={6}
+          className="opacity-0 transition-opacity group-focus-visible:opacity-100"
+        />
+      </Link>
       {/* Basketball tucked next to the stair climber */}
       <Basketball cx={910} cy={812} r={18} seed={900} />
 
