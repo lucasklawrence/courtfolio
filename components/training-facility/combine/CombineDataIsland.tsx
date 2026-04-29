@@ -8,6 +8,7 @@ import { getMovementBenchmarks } from '@/lib/data/movement'
 import type { Benchmark } from '@/types/movement'
 
 import { CombineEntryForm } from './CombineEntryForm'
+import { CombineRadar } from './CombineRadar'
 import { CombineTradingCard } from './CombineTradingCard'
 
 /**
@@ -78,6 +79,7 @@ export function CombineDataIsland(): JSX.Element {
     <div className="flex flex-col gap-8">
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
       <CombineTradingCard entries={entries} />
+      <CombineRadar entries={entries} />
       <CombineEntryForm onSaved={handleSaved} />
     </div>
   )
