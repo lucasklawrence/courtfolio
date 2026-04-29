@@ -442,8 +442,11 @@ function SprintLane({ run, laneY, elapsedSeconds, isLatest }: SprintLaneProps): 
   const labelOpacity = isLatest ? 0.95 : 0.55
   const label = formatSprintChipLabel(run.date)
   // A finish stamp sits to the right of the finish line once the dot
-  // crosses it. Reads `1.91s` in handwriting font.
-  const stampX = TRACK_X_RIGHT + 4
+  // crosses it. Reads `1.91s` in handwriting font. Offset is wide enough
+  // to clear both the latest dot's radius (8 units) and the right column
+  // of the checkered finish band (which extends 6 units past TRACK_X_RIGHT)
+  // so the digits never read as overlapping the chrome.
+  const stampX = TRACK_X_RIGHT + 16
   const stampOpacity = finished ? 1 : 0
 
   return (
