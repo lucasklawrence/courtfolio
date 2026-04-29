@@ -130,32 +130,31 @@ export function SilhouetteJumpTracker({
   const latestBottomY = floorY - latest.verticalIn
   const latestAccessibleLabel = buildAccessibleLabel(latest)
 
-  // Animation state for the latest silhouette.
-  // Mount: rise from floor with over-and-settle (one-time entrance).
-  // Idle: hold at peak (y=0, scaleY=1).
-  // Active (no reduce-motion): peak ↔ floor cycle on loop with land squash.
-  const latestInitialState = reduceMotion ? false : { y: latest.verticalIn, scaleY: 0.86 }
-  const latestAnimateState =
-    isActive && !reduceMotion
-      ? {
-          y: [0, latest.verticalIn, 0],
-          scaleY: [1, 0.85, 1],
-        }
-      : { y: 0, scaleY: 1 }
-  const latestTransition =
-    isActive && !reduceMotion
-      ? {
-          // easeIn on descent (gravity accel), easeOut on rise (deceleration toward peak).
-          duration: 1.6,
-          times: [0, 0.4, 1],
-          ease: ['easeIn', 'easeOut'] as ['easeIn', 'easeOut'],
-          repeat: Infinity,
-        }
-      : {
-          duration: 1.1,
-          ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-          times: [0, 0.65, 1],
-        }
+  // Animation state for the latest (orange) silhouette.
+  //
+  // Idle: fully hidden (opacity 0), parked at floor in a slight crouch — so
+  //   the only figure on screen is the standing cream silhouette. The
+  //   "parked at floor" position means reactivation starts the cycle from a
+  //   physically meaningful crouch, not from a peak teleport.
+  // Active: fades in and yoyos between floor crouch (scaleY=0.85, y=verticalIn)
+  //   and peak extended (scaleY=1, y=0). `repeatType: 'reverse'` means the
+  //   easeOut applied to the rise becomes its inverse on the fall — i.e.
+  //   gravity-feeling acceleration into landing.
+  //
+  // Reduce-motion: when active, snap to peak with a static fade-in (no cycle).
+  const isAnimatedActive = isActive && !reduceMotion
+  const latestAnimateState = isActive
+    ? reduceMotion
+      ? { y: 0, scaleY: 1, opacity: 1 }
+      : { y: 0, scaleY: 1, opacity: 1 }
+    : { y: latest.verticalIn, scaleY: 0.85, opacity: 0 }
+  const latestTransition = isAnimatedActive
+    ? {
+        y: { duration: 0.8, repeat: Infinity, repeatType: 'reverse' as const, ease: 'easeOut' as const },
+        scaleY: { duration: 0.8, repeat: Infinity, repeatType: 'reverse' as const, ease: 'easeOut' as const },
+        opacity: { duration: 0.25 },
+      }
+    : { duration: 0.3 }
 
   return (
     <div
@@ -245,12 +244,23 @@ export function SilhouetteJumpTracker({
           )
         })}
 
-        {/* Standing silhouette — visible idle as a "ground anchor"; fades out
-            when the panel becomes active so the cycle has a clean stage. */}
+        {/* Standing silhouette — the only figure on screen when idle. Doubles
+            as the keyboard entry point: focusing it activates the panel so
+            the orange jump cycle plays. Fades out once active and is removed
+            from the tab order so focus moves on to the per-jump silhouettes. */}
         <motion.g
-          animate={{ opacity: isActive ? 0 : 0.5 }}
+          role="button"
+          tabIndex={isActive ? -1 : 0}
+          aria-label={`Play jump animation — latest ${formatLatestLabel(latest)}`}
+          aria-hidden={isActive ? true : undefined}
+          onFocus={() => setHovered(latest)}
+          onBlur={() => setHovered((h) => (h?.date === latest.date ? null : h))}
+          animate={{ opacity: isActive ? 0 : 0.55 }}
           transition={{ duration: 0.4 }}
-          aria-hidden="true"
+          style={{
+            cursor: 'pointer',
+            pointerEvents: isActive ? 'none' : 'auto',
+          }}
         >
           <Silhouette
             cx={FIGURE_CX}
@@ -305,17 +315,19 @@ export function SilhouetteJumpTracker({
           )
         })}
 
-        {/* Latest jump silhouette — frozen at peak idle, jumping on loop
-            when the panel is active. */}
+        {/* Latest jump silhouette — invisible idle, fades in and yoyos
+            between floor crouch and peak when the panel is active. The
+            standing silhouette is the keyboard entry point in idle, so this
+            element is removed from the tab order until the cycle is on. */}
         <motion.g
           role="button"
-          tabIndex={0}
+          tabIndex={isActive ? 0 : -1}
           aria-label={latestAccessibleLabel}
+          aria-hidden={isActive ? undefined : true}
           onMouseEnter={() => setHovered(latest)}
           onMouseLeave={() => setHovered((h) => (h?.date === latest.date ? null : h))}
           onFocus={() => setHovered(latest)}
           onBlur={() => setHovered((h) => (h?.date === latest.date ? null : h))}
-          initial={latestInitialState}
           animate={latestAnimateState}
           transition={latestTransition}
           style={{
@@ -334,17 +346,18 @@ export function SilhouetteJumpTracker({
           />
         </motion.g>
 
-        {/* Latest jump label — fixed at the peak-fingertip position so it
-            doesn't bounce with the cycle. Fades out when active so the
-            label doesn't clutter the animated state. */}
+        {/* Latest jump label — appears alongside the orange figure during
+            the active cycle and stays fixed at the peak-fingertip position
+            so it doesn't bounce with the rising/falling figure. Hidden idle
+            so the standing silhouette stands alone. */}
         <motion.text
           x={FIGURE_CX + 8}
           y={latestTopY + 2.5}
           fontSize={3}
           fill={chartPalette.rimOrange}
           fontFamily="var(--font-patrick-hand, 'Patrick Hand', cursive)"
-          animate={{ opacity: isActive ? 0 : 1 }}
-          transition={{ duration: 0.3 }}
+          animate={{ opacity: isActive ? 1 : 0 }}
+          transition={{ duration: 0.3, delay: isActive ? 0.2 : 0 }}
           style={{ pointerEvents: 'none' }}
           aria-hidden="true"
         >

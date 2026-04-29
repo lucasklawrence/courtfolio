@@ -30,41 +30,48 @@ describe('SilhouetteJumpTracker', () => {
     expect(screen.getByText(/Mar 15.*23/)).toBeInTheDocument()
   })
 
-  it('exposes only the latest silhouette idle, all jumps when the panel is active', async () => {
-    // Idle: only the latest jump is in the a11y tree — older silhouettes are
-    // aria-hidden until the panel becomes active (mouse over OR focus inside),
-    // matching the design's "clean idle, animated on hover" contract.
+  it('exposes a single play-jump entry point idle, full per-jump tab order when active', async () => {
+    // Idle: only the standing silhouette is focusable — it doubles as the
+    // keyboard entry point, labeled to make the affordance explicit.
     const user = userEvent.setup()
     render(<SilhouetteJumpTracker entries={baseEntries} />)
-    expect(screen.getAllByRole('button')).toHaveLength(1)
+    const idleButtons = screen.getAllByRole('button')
+    expect(idleButtons).toHaveLength(1)
+    expect(idleButtons[0]).toHaveAccessibleName(/Play jump animation.*Mar 15.*23"/)
 
-    // Activating the panel reveals the older silhouettes as focusable buttons.
-    await user.hover(screen.getByRole('button'))
+    // Activating the panel hides the standing button (aria-hidden) and
+    // reveals the per-jump silhouettes — one focusable button per entry.
+    await user.hover(idleButtons[0])
     expect(screen.getAllByRole('button')).toHaveLength(baseEntries.length)
   })
 
-  it('exposes a per-jump aria-label with vertical and bodyweight', () => {
+  it('exposes a per-jump aria-label with vertical and bodyweight (active)', async () => {
+    const user = userEvent.setup()
     render(<SilhouetteJumpTracker entries={baseEntries} />)
+    // Activate the panel so the per-jump silhouettes enter the a11y tree.
+    await user.hover(screen.getByRole('button'))
     const button = screen.getByRole('button', {
       name: /2026-03-15.*Vertical: 23".*Bodyweight: 232 lbs/,
     })
     expect(button).toBeInTheDocument()
   })
 
-  it('omits bodyweight from the label when not logged that month', () => {
+  it('omits bodyweight from the label when not logged that month', async () => {
+    const user = userEvent.setup()
     const entries: Benchmark[] = [{ date: '2026-04-15', vertical_in: 22 }]
     render(<SilhouetteJumpTracker entries={entries} />)
-    expect(
-      screen.getByRole('button', { name: /2026-04-15.*Vertical: 22"/ }),
-    ).toBeInTheDocument()
-    // No bodyweight token should appear in the accessible name.
-    const button = screen.getByRole('button')
-    expect(button.getAttribute('aria-label') ?? '').not.toMatch(/Bodyweight/)
+    // Activate to surface the jump silhouette in the a11y tree.
+    await user.hover(screen.getByRole('button'))
+    const jumpButton = screen.getByRole('button', { name: /2026-04-15.*Vertical: 22"/ })
+    expect(jumpButton.getAttribute('aria-label') ?? '').not.toMatch(/Bodyweight/)
   })
 
-  it('shows the hover tooltip after a user hovers a silhouette', async () => {
+  it('shows the hover tooltip after a user hovers the latest jump silhouette', async () => {
     const user = userEvent.setup()
     render(<SilhouetteJumpTracker entries={baseEntries} />)
+    // First hover activates the panel via the standing silhouette.
+    await user.hover(screen.getByRole('button'))
+    // Then hover the latest jump silhouette to surface its tooltip.
     const latestButton = screen.getByRole('button', { name: /2026-03-15/ })
     await user.hover(latestButton)
     const tooltip = await screen.findByRole('tooltip')
@@ -81,12 +88,11 @@ describe('SilhouetteJumpTracker', () => {
       { date: '2026-03-15', vertical_in: 23 },
     ]
     render(<SilhouetteJumpTracker entries={entries} />)
-    // Latest visible label should reference the 23" entry, not the dropped 99.
-    expect(screen.getByText(/Mar 15.*23/)).toBeInTheDocument()
+    // Latest is the 23" entry — the dropped 99 never appears anywhere.
+    expect(screen.getByRole('button')).toHaveAccessibleName(/Mar 15.*23"/)
     expect(screen.queryByText(/99/)).not.toBeInTheDocument()
 
-    // Active panel reveals the trail; only the two complete entries become
-    // focusable, the dropped 99 never enters the DOM at any state.
+    // Active panel reveals one button per complete entry only.
     await user.hover(screen.getByRole('button'))
     expect(screen.getAllByRole('button')).toHaveLength(2)
     expect(
