@@ -80,12 +80,12 @@ const MONTH_ABBR = [
   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 ] as const
 
-/** ViewBox width — 10 yards at 50 viewBox units per yard, plus margins for start/finish chrome. */
-const STRIP_W = 600
-/** Inner-track left edge. Leaves room for the lane label on the left. */
-const TRACK_X_LEFT = 70
-/** Inner-track right edge. Leaves room for the finish-line time stamp on the right. */
-const TRACK_X_RIGHT = 570
+/** ViewBox width — 10 yards at 50 viewBox units per yard, plus margins for the lane labels (left) and finish-line time stamps (right). */
+const STRIP_W = 660
+/** Inner-track left edge. Leaves a label column wide enough that the box outline at x=6 doesn't clip the leftmost letter of "MMM YYYY". */
+const TRACK_X_LEFT = 100
+/** Inner-track right edge. Leaves room for the finish-line time stamp ("N.NNs") to render outside the track without clipping at the SVG right edge. */
+const TRACK_X_RIGHT = 600
 /** Width of the actual 10-yard track (start cone → finish line). */
 const TRACK_W = TRACK_X_RIGHT - TRACK_X_LEFT
 /** Per-yard tick spacing. */

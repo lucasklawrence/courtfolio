@@ -68,23 +68,23 @@ describe('formatSprintChipLabel', () => {
 
 describe('computeDotX', () => {
   it('starts at the left edge before the race begins', () => {
-    expect(computeDotX(0, 1.91)).toBe(70)
-    expect(computeDotX(-0.5, 1.91)).toBe(70)
+    expect(computeDotX(0, 1.91)).toBe(100)
+    expect(computeDotX(-0.5, 1.91)).toBe(100)
   })
 
   it('reaches the right edge once elapsed >= seconds', () => {
-    expect(computeDotX(1.91, 1.91)).toBe(570)
-    expect(computeDotX(5, 1.91)).toBe(570)
+    expect(computeDotX(1.91, 1.91)).toBe(600)
+    expect(computeDotX(5, 1.91)).toBe(600)
   })
 
   it('interpolates linearly between start and finish', () => {
-    // Half the time → half the distance: TRACK_X_LEFT + 0.5 * TRACK_W = 70 + 250 = 320
-    expect(computeDotX(0.95, 1.9)).toBeCloseTo(320, 5)
+    // Half the time → half the distance: TRACK_X_LEFT + 0.5 * TRACK_W = 100 + 250 = 350
+    expect(computeDotX(0.95, 1.9)).toBeCloseTo(350, 5)
   })
 
   it('clamps to the start when seconds is zero or non-finite', () => {
-    expect(computeDotX(1, 0)).toBe(70)
-    expect(computeDotX(1, Number.NaN)).toBe(70)
+    expect(computeDotX(1, 0)).toBe(100)
+    expect(computeDotX(1, Number.NaN)).toBe(100)
   })
 })
 
