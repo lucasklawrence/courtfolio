@@ -28,6 +28,12 @@ import { createAdminSupabaseClient } from '@/lib/supabase/admin'
  * - 403 — signed in but email not on the allowlist
  * - 409 — an entry already exists for `date` (use PUT to overwrite)
  * - 500 — unexpected Supabase error
+ *
+ * @param request Incoming JSON request whose body is the full benchmark
+ *   payload (matches `BenchmarkSchema`).
+ * @throws when Supabase env vars are missing (misconfigured deploy).
+ *   Domain failures (auth, validation, conflict) are returned as JSON
+ *   responses with the appropriate status code, not thrown.
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const auth = await requireAdmin()

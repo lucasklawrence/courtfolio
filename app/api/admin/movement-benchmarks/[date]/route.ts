@@ -27,6 +27,13 @@ interface Context {
  * - 403 — not on the allowlist
  * - 404 — no benchmark exists for `date`
  * - 500 — unexpected Supabase error
+ *
+ * @param request Incoming PUT request whose body is a partial-update
+ *   payload (matches `BenchmarkUpdateSchema`, i.e. no `date` field).
+ * @param ctx Next.js route context; `ctx.params.date` is the entry's
+ *   primary key parsed from the URL segment.
+ * @throws when Supabase env vars are missing (misconfigured deploy).
+ *   Domain failures are returned as JSON responses, not thrown.
  */
 export async function PUT(request: NextRequest, ctx: Context): Promise<NextResponse> {
   const auth = await requireAdmin()
@@ -87,6 +94,13 @@ export async function PUT(request: NextRequest, ctx: Context): Promise<NextRespo
  * - 403 — not on the allowlist
  * - 404 — no benchmark exists for `date`
  * - 500 — unexpected Supabase error
+ *
+ * @param _request Unused — DELETE has no body. Required by Next.js
+ *   handler signature.
+ * @param ctx Next.js route context; `ctx.params.date` is the entry's
+ *   primary key parsed from the URL segment.
+ * @throws when Supabase env vars are missing (misconfigured deploy).
+ *   Domain failures are returned as JSON responses, not thrown.
  */
 export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextResponse> {
   const auth = await requireAdmin()

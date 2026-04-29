@@ -1,23 +1,25 @@
 /**
- * Admin-email allowlist parsing for both server (`requireAdmin`) and
- * client (`useAdminSession`) gates. Reads `NEXT_PUBLIC_ADMIN_EMAILS` so
- * the same list is visible in both runtimes — the public exposure is
- * acceptable here because (a) magic-link auth still requires email
- * ownership to actually sign in, and (b) the admin email is already
- * public on the site owner's GitHub profile.
+ * Server-only admin-email allowlist. Used by `requireAdmin` (route
+ * handlers) and `/api/admin/check` (the boolean-only endpoint the
+ * client hook calls). Reads `ADMIN_EMAILS` — deliberately *not* a
+ * `NEXT_PUBLIC_*` var so the raw list never reaches the browser
+ * bundle. Browsers learn admin status only through the check route's
+ * `{ isAdmin: boolean }` response.
  */
 
+import 'server-only'
+
 /**
- * Parse the comma-separated `NEXT_PUBLIC_ADMIN_EMAILS` env var into a
- * normalized Set of lowercase emails. Empty values, whitespace, and
- * casing are smoothed out so `"Lucas@example.com, foo@bar.com"`
- * normalizes to the same Set as `"lucas@example.com,foo@bar.com"`.
+ * Parse the comma-separated `ADMIN_EMAILS` env var into a normalized
+ * Set of lowercase emails. Empty values, whitespace, and casing are
+ * smoothed out so `"Lucas@example.com, foo@bar.com"` normalizes to the
+ * same Set as `"lucas@example.com,foo@bar.com"`.
  *
  * Returns an empty Set when the env var is missing or contains only
  * whitespace — no emails means no admins, the safe default.
  */
 export function getAdminAllowlist(): Set<string> {
-  const raw = process.env.NEXT_PUBLIC_ADMIN_EMAILS ?? ''
+  const raw = process.env.ADMIN_EMAILS ?? ''
   const set = new Set<string>()
   for (const part of raw.split(',')) {
     const email = part.trim().toLowerCase()

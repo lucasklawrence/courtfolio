@@ -29,7 +29,7 @@ afterEach(() => {
 
 describe('requireAdmin', () => {
   it('returns ok with the verified email when the signed-in user is on the allowlist', async () => {
-    vi.stubEnv('NEXT_PUBLIC_ADMIN_EMAILS', 'lucas@example.com')
+    vi.stubEnv('ADMIN_EMAILS', 'lucas@example.com')
     getUserMock.mockResolvedValueOnce({
       data: { user: { email: 'lucas@example.com' } },
       error: null,
@@ -40,7 +40,7 @@ describe('requireAdmin', () => {
   })
 
   it('returns 401 when no session is present', async () => {
-    vi.stubEnv('NEXT_PUBLIC_ADMIN_EMAILS', 'lucas@example.com')
+    vi.stubEnv('ADMIN_EMAILS', 'lucas@example.com')
     getUserMock.mockResolvedValueOnce({ data: { user: null }, error: null })
     const result = await requireAdmin()
     expect(result.ok).toBe(false)
@@ -52,7 +52,7 @@ describe('requireAdmin', () => {
   })
 
   it('returns 401 when Supabase returns an auth error', async () => {
-    vi.stubEnv('NEXT_PUBLIC_ADMIN_EMAILS', 'lucas@example.com')
+    vi.stubEnv('ADMIN_EMAILS', 'lucas@example.com')
     getUserMock.mockResolvedValueOnce({
       data: { user: null },
       error: { message: 'JWT malformed' },
@@ -63,7 +63,7 @@ describe('requireAdmin', () => {
   })
 
   it('returns 403 when the signed-in email is NOT on the allowlist', async () => {
-    vi.stubEnv('NEXT_PUBLIC_ADMIN_EMAILS', 'lucas@example.com')
+    vi.stubEnv('ADMIN_EMAILS', 'lucas@example.com')
     getUserMock.mockResolvedValueOnce({
       data: { user: { email: 'intruder@example.com' } },
       error: null,
@@ -78,7 +78,7 @@ describe('requireAdmin', () => {
   })
 
   it('returns 403 when the user has no email at all (defensive)', async () => {
-    vi.stubEnv('NEXT_PUBLIC_ADMIN_EMAILS', 'lucas@example.com')
+    vi.stubEnv('ADMIN_EMAILS', 'lucas@example.com')
     getUserMock.mockResolvedValueOnce({
       data: { user: { email: null } },
       error: null,

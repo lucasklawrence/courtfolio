@@ -18,6 +18,9 @@ import { createServerSupabaseClient } from '@/lib/supabase/server'
  * @param request Incoming GET request from the magic-link click.
  * @returns A redirect response — to `next` on success, to the login
  *   page with an error param on failure.
+ * @throws when Supabase env vars are missing (misconfigured deploy).
+ *   Auth-exchange failures (expired/invalid code) are surfaced as a
+ *   redirect to `/admin/login?error=...`, not thrown.
  */
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const url = new URL(request.url)

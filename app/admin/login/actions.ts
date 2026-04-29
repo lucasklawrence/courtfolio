@@ -18,27 +18,40 @@ export type SendMagicLinkResult =
  * route-handler layer ({@link requireAdmin}); a non-admin can sign in
  * but every `/api/admin/*` call will return 403.
  *
+ * Every code path returns the declared {@link SendMagicLinkResult}
+ * shape — thrown errors from the Supabase client, env-var validation,
+ * or origin-resolution are caught and surfaced as `{ ok: false }` so
+ * the caller's UI never sees a server-action exception.
+ *
  * @param email Email entered into the login form.
  * @returns `{ ok: true }` on success, `{ ok: false, error }` on a
- *   Supabase error (e.g. malformed email, rate-limited).
+ *   Supabase error (e.g. malformed email, rate-limited) or any
+ *   thrown exception during the request.
  */
 export async function sendMagicLink(email: string): Promise<SendMagicLinkResult> {
   const trimmed = email.trim()
   if (!trimmed) {
     return { ok: false, error: 'Enter an email.' }
   }
-  const supabase = await createServerSupabaseClient()
-  const origin = await getRequestOrigin()
-  const { error } = await supabase.auth.signInWithOtp({
-    email: trimmed,
-    options: {
-      emailRedirectTo: `${origin}/auth/callback`,
-    },
-  })
-  if (error) {
-    return { ok: false, error: error.message }
+  try {
+    const supabase = await createServerSupabaseClient()
+    const origin = await getRequestOrigin()
+    const { error } = await supabase.auth.signInWithOtp({
+      email: trimmed,
+      options: {
+        emailRedirectTo: `${origin}/auth/callback`,
+      },
+    })
+    if (error) {
+      return { ok: false, error: error.message }
+    }
+    return { ok: true }
+  } catch (err) {
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : 'Unable to send magic link right now.',
+    }
   }
-  return { ok: true }
 }
 
 /**

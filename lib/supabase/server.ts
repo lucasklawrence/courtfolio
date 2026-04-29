@@ -18,6 +18,10 @@ import { requireSupabaseEnv } from './env'
  * impl below swallows that error: the auth library writes refreshed
  * tokens during normal reads, the next request will refresh again, and
  * a server-component-only call has no opportunity to persist anyway.
+ *
+ * @throws Error from `requireSupabaseEnv()` when
+ *   `NEXT_PUBLIC_SUPABASE_URL` or `NEXT_PUBLIC_SUPABASE_ANON_KEY` is
+ *   missing or empty.
  */
 export async function createServerSupabaseClient(): Promise<SupabaseClient> {
   const { url, anonKey } = requireSupabaseEnv()

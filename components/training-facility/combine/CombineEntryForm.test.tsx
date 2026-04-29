@@ -66,8 +66,13 @@ describe('CombineEntryForm — admin-session gate', () => {
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('renders nothing while the session is still loading (no flicker)', () => {
-    adminSessionMock.mockReturnValue({ isAdmin: false, isLoading: true, email: null })
+  it('renders nothing while the session is still loading, even for an admin email (no flicker)', () => {
+    // The gate inspects only `isAdmin`, but during the in-flight
+    // session check the hook reports `isAdmin: false` regardless of
+    // the eventual outcome. This test pins the hidden-during-loading
+    // contract: even if the user *will be* admin once the check
+    // resolves, the panel stays hidden until then.
+    adminSessionMock.mockReturnValue({ isAdmin: false, isLoading: true, email: 'admin@example.com' })
     const { container } = render(<CombineEntryForm onSaved={() => {}} />)
     expect(container).toBeEmptyDOMElement()
   })

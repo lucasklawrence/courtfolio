@@ -5,14 +5,19 @@ import { LoginForm } from './LoginForm'
 /**
  * Public sign-in page for the personal-site admin (Lucas). Emits a
  * Supabase Auth magic link to whoever submits the form; the link only
- * grants write access if the signed-in email matches
- * `NEXT_PUBLIC_ADMIN_EMAILS` (the route handlers gate on that even if
- * other accounts complete the OTP exchange).
+ * grants write access if the signed-in email is on the server-only
+ * `ADMIN_EMAILS` allowlist — the route handlers gate on that even if
+ * other accounts complete the OTP exchange.
  *
  * Optional `?error=...` query param surfaces a top-of-page banner when
  * the auth callback rejected a code — typically when a magic link
  * expired or was opened in a different browser than the one that
  * requested it.
+ *
+ * @param props Next.js page props; `searchParams` is a Promise (Next
+ *   15 async API) that resolves to `{ error?: string }`. The `error`
+ *   value, when present, is the URL-decoded message returned from the
+ *   `/auth/callback` route on a failed code exchange.
  */
 export default async function AdminLoginPage(props: {
   searchParams: Promise<{ error?: string }>

@@ -31,11 +31,20 @@ export function LoginForm(): JSX.Element {
       return
     }
     setStatus({ kind: 'sending' })
-    const result = await sendMagicLink(email)
-    if (result.ok) {
-      setStatus({ kind: 'sent', email })
-    } else {
-      setStatus({ kind: 'error', message: result.error })
+    // The server action returns `SendMagicLinkResult` for handled
+    // failures, but a thrown exception (network drop, deploy in
+    // progress, etc.) would otherwise leave the button stuck on
+    // "Sending…". Catch and surface a generic error so the form is
+    // re-submittable.
+    try {
+      const result = await sendMagicLink(email)
+      if (result.ok) {
+        setStatus({ kind: 'sent', email })
+      } else {
+        setStatus({ kind: 'error', message: result.error })
+      }
+    } catch {
+      setStatus({ kind: 'error', message: 'Sign-in failed. Please try again.' })
     }
   }
 

@@ -33,4 +33,10 @@ describe('requireSupabaseEnv', () => {
     vi.stubEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY', '')
     expect(() => requireSupabaseEnv()).toThrow(/NEXT_PUBLIC_SUPABASE_ANON_KEY/)
   })
+
+  it('throws when NEXT_PUBLIC_SUPABASE_ANON_KEY is whitespace-only', () => {
+    vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', 'https://abc.supabase.co')
+    vi.stubEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY', '   ')
+    expect(() => requireSupabaseEnv()).toThrow(/NEXT_PUBLIC_SUPABASE_ANON_KEY/)
+  })
 })

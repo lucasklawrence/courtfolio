@@ -16,6 +16,10 @@ let cachedClient: SupabaseClient | undefined
  * Singletoned because the auth-state subscription would otherwise be
  * duplicated on every render — and because callers expect referential
  * stability so they can compare instances in effect deps.
+ *
+ * @throws Error from `requireSupabaseEnv()` when
+ *   `NEXT_PUBLIC_SUPABASE_URL` or `NEXT_PUBLIC_SUPABASE_ANON_KEY` is
+ *   missing or empty.
  */
 export function getBrowserSupabaseClient(): SupabaseClient {
   if (!cachedClient) {
