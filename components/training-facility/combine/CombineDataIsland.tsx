@@ -14,25 +14,29 @@ import type { Benchmark } from '@/types/movement'
 
 import { CombineEntryForm } from './CombineEntryForm'
 import { CombineHistoryTable } from './CombineHistoryTable'
+import { CombineTradingCard } from './CombineTradingCard'
 
 /**
  * Owns the Combine page's shared `entries` state and edit/delete
- * orchestration. Renders the Scoreboard (PRD §9.1), the dev-only entry
- * form (PRD §7.5 view 7), the placeholder Combine scene art, and the
- * benchmark history table with per-row CRUD controls (PRD §7.5 view 8 +
- * §7.11), all reading from the same in-memory list so a write anywhere
- * (log, edit, delete, mark-incomplete) shows up in every surface
- * immediately, with no reload.
+ * orchestration. Renders the Scoreboard (PRD §9.1), the Trading Card
+ * stat block (PRD §9.2), the dev-only entry form (PRD §7.5 view 7),
+ * the placeholder Combine scene art, and the benchmark history table
+ * with per-row CRUD controls (PRD §7.5 view 8 + §7.11), all reading
+ * from the same in-memory list so a write anywhere (log, edit, delete,
+ * mark-incomplete) shows up in every surface immediately, with no
+ * reload.
  *
  * Keeping fetch + form state co-located here lets the parent page stay
  * a server component (it does the feature-flag gate) while still
  * sharing live data across multiple client children. Future Combine
- * visualizations (Trading Card, Silhouette, etc.) plug in the same
+ * visualizations (Silhouette, Shuttle Trace, etc.) plug in the same
  * way — accept `entries` as a prop, render in the layout below.
  *
  * Empty / missing data renders the Scoreboard with em-dash placeholders
  * and the history table with its empty state, matching the documented
- * empty-state behavior of `getMovementBenchmarks()` (returns `[]` on 404).
+ * empty-state behavior of `getMovementBenchmarks()` (returns `[]` on
+ * 404). The Trading Card hides itself entirely on empty/loading so the
+ * placeholders aren't duplicated.
  */
 export function CombineDataIsland(): JSX.Element {
   const [entries, setEntries] = useState<Benchmark[] | undefined>(undefined)
@@ -132,6 +136,7 @@ export function CombineDataIsland(): JSX.Element {
   return (
     <div className="flex flex-col gap-10">
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
+      <CombineTradingCard entries={entries} />
       <CombineEntryForm
         onSaved={refetch}
         editingEntry={editingEntry}

@@ -10,8 +10,10 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * Combine sub-area page (PRD §7.5 + §9). Stacks the room-level chrome
  * (back-to-court + back-to-Training-Facility nav), an eyebrow/title
  * block, and the data-driven body. The body lives in
- * {@link CombineDataIsland}: scoreboard, dev-only entry form, scene art,
- * and benchmark history table all share one fetch and one edit-mode
+ * {@link CombineDataIsland}: scoreboard summary header (PRD §9.1),
+ * Trading Card stat block (PRD §9.2), dev-only entry form (PRD §7.5
+ * view 7), scene art, and benchmark history table (PRD §7.5 view 8 +
+ * §7.11 CRUD controls). All surfaces share one fetch and one edit-mode
  * state, so a write anywhere reflects everywhere with no reload.
  *
  * Gated behind {@link isTrainingFacilityEnabled} so the route stays
