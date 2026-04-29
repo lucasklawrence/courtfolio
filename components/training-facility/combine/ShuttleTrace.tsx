@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties, type JSX } from 'react'
 import { useReducedMotion } from 'framer-motion'
 
 import {
@@ -81,6 +81,11 @@ export function formatShuttleChipLabel(date: string): string {
   return `${MONTH_ABBR[monthIndex]} ${match[1]}`
 }
 
+/**
+ * Three-letter month abbreviations indexed `0…11` so `formatShuttleChipLabel`
+ * can convert an ISO month component (`'04'` → `3` → `'Apr'`) without
+ * spinning up `Intl.DateTimeFormat` for a chip-sized label.
+ */
 const MONTH_ABBR = [
   'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
@@ -120,7 +125,9 @@ const CONE_Y = 260
 const CONE_CENTER_X = HOOP_X
 /** 5 yards = 15 ft = 150 viewBox units between adjacent cones. */
 const CONE_SPACING = 150
+/** Far-left cone x — the second touch in the 5-10-5 sequence. */
 const CONE_LEFT_X = CONE_CENTER_X - CONE_SPACING
+/** Right cone x — the first touch out of the gate. */
 const CONE_RIGHT_X = CONE_CENTER_X + CONE_SPACING
 
 /**
@@ -236,42 +243,25 @@ export function buildTrailPath(
  */
 export function ShuttleTrace({ entries }: ShuttleTraceProps): JSX.Element | null {
   const runs = useMemo(() => (entries ? pickShuttleRuns(entries) : []), [entries])
-  // All runs visible by default. Toggling a chip removes it from the set.
-  const [enabled, setEnabled] = useState<ReadonlySet<string>>(() => new Set())
-  // Track which dates we've previously synced so we can preserve user
-  // toggles across data refetches: newly-arrived dates default to
-  // visible, deleted dates drop out, but a chip the user explicitly
-  // toggled off stays off when an unrelated entry is logged.
-  //
-  // The ref mutation lives in the effect body (not inside the
-  // `setEnabled` updater) so the updater stays pure under React 18
-  // strict-mode double-invoke — both invocations close over the same
-  // `prevKnown` snapshot and produce the same `next` set.
-  const knownDatesRef = useRef<Set<string>>(new Set())
-  useEffect(() => {
-    const currentDates = new Set(runs.map((r) => r.date))
-    const prevKnown = knownDatesRef.current
-    setEnabled((prev) => {
-      let changed = false
-      const next = new Set(prev)
-      for (const date of currentDates) {
-        if (!prevKnown.has(date)) {
-          // Brand-new entry — show by default.
-          next.add(date)
-          changed = true
-        }
+  // Tracking the *disabled* subset (not the enabled one) lets us derive
+  // `enabled` synchronously from `runs` on every render — no post-mount
+  // effect, no first-paint flash where every chip briefly reads as off.
+  // It also makes the "preserve user toggles across refetches" rule
+  // automatic: a brand-new entry isn't in `userDisabled`, so it appears
+  // visible by default; a deleted entry simply stops appearing in
+  // `runs` and drops from `enabled` even if its date lingers in the
+  // disabled set.
+  const [userDisabled, setUserDisabled] = useState<ReadonlySet<string>>(() => new Set())
+  const enabled = useMemo<ReadonlySet<string>>(
+    () => {
+      const set = new Set<string>()
+      for (const run of runs) {
+        if (!userDisabled.has(run.date)) set.add(run.date)
       }
-      for (const date of prev) {
-        if (!currentDates.has(date)) {
-          // Entry was deleted upstream — drop it from the toggle set.
-          next.delete(date)
-          changed = true
-        }
-      }
-      return changed ? next : prev
-    })
-    knownDatesRef.current = currentDates
-  }, [runs])
+      return set
+    },
+    [runs, userDisabled],
+  )
 
   const [replayKey, setReplayKey] = useState(0)
   const reducedMotion = useReducedMotion()
@@ -293,7 +283,7 @@ export function ShuttleTrace({ entries }: ShuttleTraceProps): JSX.Element | null
         runs={runs}
         enabled={enabled}
         onToggle={(date) =>
-          setEnabled((prev) => {
+          setUserDisabled((prev) => {
             const next = new Set(prev)
             if (next.has(date)) next.delete(date)
             else next.add(date)
