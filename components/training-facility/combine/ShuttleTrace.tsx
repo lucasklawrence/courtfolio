@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState, type JSX } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from 'react'
 import { useReducedMotion } from 'framer-motion'
 
 import {
@@ -202,7 +202,14 @@ export function buildTrailPath(
   if (t >= 0.25) points.push(geom.right)
   if (t >= 0.75) points.push(geom.left)
   if (t >= 1) points.push(geom.center)
-  if (t > 0 && t < 1) points.push(computeShuttlePosition(t, geom))
+  if (t > 0 && t < 1) {
+    // Skip pushing the live dot when it lands exactly on the cone we
+    // just touched (t === 0.25 / 0.75) — otherwise the polyline would
+    // render a redundant duplicate point at the transition.
+    const dot = computeShuttlePosition(t, geom)
+    const last = points[points.length - 1]
+    if (dot.x !== last.x || dot.y !== last.y) points.push(dot)
+  }
   return points.map((p) => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ')
 }
 
@@ -231,14 +238,35 @@ export function ShuttleTrace({ entries }: ShuttleTraceProps): JSX.Element | null
   const runs = useMemo(() => (entries ? pickShuttleRuns(entries) : []), [entries])
   // All runs visible by default. Toggling a chip removes it from the set.
   const [enabled, setEnabled] = useState<ReadonlySet<string>>(() => new Set())
-  // Sync `enabled` with the run set when entries arrive or change.
-  // (A new run logged via the entry form should appear visible-by-default.)
-  const knownDatesRef = useRef('')
+  // Track which dates we've previously synced so we can preserve user
+  // toggles across data refetches: newly-arrived dates default to
+  // visible, deleted dates drop out, but a chip the user explicitly
+  // toggled off stays off when an unrelated entry is logged.
+  const knownDatesRef = useRef<Set<string>>(new Set())
   useEffect(() => {
-    const key = runs.map((r) => r.date).join('|')
-    if (key === knownDatesRef.current) return
-    knownDatesRef.current = key
-    setEnabled(new Set(runs.map((r) => r.date)))
+    const currentDates = new Set(runs.map((r) => r.date))
+    setEnabled((prev) => {
+      let changed = false
+      const next = new Set(prev)
+      for (const date of currentDates) {
+        if (!knownDatesRef.current.has(date)) {
+          // Brand-new entry — show by default.
+          if (!next.has(date)) {
+            next.add(date)
+            changed = true
+          }
+        }
+      }
+      for (const date of prev) {
+        if (!currentDates.has(date)) {
+          // Entry was deleted upstream — drop it from the toggle set.
+          next.delete(date)
+          changed = true
+        }
+      }
+      knownDatesRef.current = currentDates
+      return changed ? next : prev
+    })
   }, [runs])
 
   const [replayKey, setReplayKey] = useState(0)
@@ -298,7 +326,22 @@ function ShuttleCourtSvg({
       undefined,
     )
 
-  const elapsed = useShuttleElapsed({ runs, replayKey, reducedMotion })
+  // Animation envelope is sized to the slowest *enabled* run — so
+  // toggling off a slow ghost trail also shortens how long the rAF loop
+  // burns frames.
+  const enabledMaxSeconds = useMemo(
+    () =>
+      runs.reduce(
+        (acc, r) => (enabled.has(r.date) ? Math.max(acc, r.seconds) : acc),
+        0,
+      ),
+    [runs, enabled],
+  )
+  const elapsed = useShuttleElapsed({
+    maxSeconds: enabledMaxSeconds,
+    replayKey,
+    reducedMotion,
+  })
 
   return (
     <svg
@@ -548,44 +591,32 @@ function ShuttleRunTrace({ run, progress, isLatest }: ShuttleRunTraceProps): JSX
           <title>{`${run.date} — ${run.seconds.toFixed(2)}s`}</title>
         </circle>
       )}
-      {finished && (
-        // Once the run finishes, drop a small marker at the finish cone
-        // labeled with the time so the viewer can read the result.
-        <g>
-          <circle
-            cx={SHUTTLE_GEOMETRY.center.x}
-            cy={SHUTTLE_GEOMETRY.center.y - (isLatest ? 22 : 14)}
-            r={isLatest ? 4 : 3}
-            fill={stroke}
-            fillOpacity={strokeOpacity}
-          >
-            <title>{`${run.date} — ${run.seconds.toFixed(2)}s`}</title>
-          </circle>
-        </g>
-      )}
     </g>
   )
 }
 
 interface UseShuttleElapsedArgs {
-  runs: readonly ShuttleRun[]
+  /**
+   * Slowest enabled run's runtime, in seconds. The rAF loop exits once
+   * elapsed reaches this — animating beyond it would just paint nothing
+   * new since every trace has already drawn its full path.
+   */
+  maxSeconds: number
+  /** Bumped to restart the animation. */
   replayKey: number
+  /** When `true`, the hook short-circuits to `maxSeconds` without ticking. */
   reducedMotion: boolean
 }
 
 /**
  * Drives a `requestAnimationFrame` loop that exposes "seconds since the
- * latest replay started" to the renderer. Stops the loop once every run
- * has finished so the component isn't re-rendering 60 times a second
- * forever after the last trace lands. Replaying restarts the clock by
- * resetting on `replayKey` change.
+ * latest replay started" to the renderer. Stops the loop once every
+ * enabled run has finished so the component isn't re-rendering 60 times
+ * a second forever after the last trace lands. Replaying restarts the
+ * clock by resetting on `replayKey` change.
  */
-function useShuttleElapsed({ runs, replayKey, reducedMotion }: UseShuttleElapsedArgs): number {
+function useShuttleElapsed({ maxSeconds, replayKey, reducedMotion }: UseShuttleElapsedArgs): number {
   const [elapsed, setElapsed] = useState(0)
-  const maxSeconds = useMemo(
-    () => runs.reduce((acc, r) => Math.max(acc, r.seconds), 0),
-    [runs],
-  )
 
   useEffect(() => {
     if (reducedMotion || maxSeconds <= 0) {
@@ -634,7 +665,8 @@ function ShuttleControls({
       <button
         type="button"
         onClick={onReplay}
-        className="rounded-full border-2 border-[#0f0907] bg-[#ea580c] px-4 py-1.5 font-handwriting text-base text-[#0f0907] shadow-[2px_2px_0_#0f0907] transition-transform hover:-translate-y-0.5 active:translate-y-0"
+        className="rounded-full px-4 py-1.5 font-handwriting text-base transition-transform hover:-translate-y-0.5 active:translate-y-0"
+        style={REPLAY_BUTTON_STYLE}
       >
         Replay
       </button>
@@ -655,6 +687,18 @@ function ShuttleControls({
   )
 }
 
+/**
+ * Shared style for the Replay button. Pulled out so the rim-orange and
+ * ink stroke colors come from {@link SCENE_PALETTE} rather than being
+ * duplicated as raw hex literals in Tailwind arbitrary-value classes.
+ */
+const REPLAY_BUTTON_STYLE: CSSProperties = {
+  backgroundColor: SCENE_PALETTE.rim,
+  color: SCENE_PALETTE.ink,
+  border: `2px solid ${SCENE_PALETTE.ink}`,
+  boxShadow: `2px 2px 0 ${SCENE_PALETTE.ink}`,
+}
+
 interface ShuttleToggleChipProps {
   run: ShuttleRun
   active: boolean
@@ -670,19 +714,39 @@ function ShuttleToggleChip({ run, active, onToggle }: ShuttleToggleChipProps): J
       aria-checked={active}
       aria-label={`${label} — ${run.seconds.toFixed(2)}s shuttle`}
       onClick={onToggle}
-      className={
-        active
-          ? 'rounded-full border-2 border-[#0f0907] bg-[#f7ead9] px-3 py-1 font-handwriting text-[#0f0907] shadow-[2px_2px_0_#0f0907]'
-          : 'rounded-full border-2 border-dashed border-[#0f0907]/50 bg-transparent px-3 py-1 font-handwriting text-[#0f0907]/50'
-      }
+      className="rounded-full px-3 py-1 font-handwriting"
+      style={chipStyle(active)}
     >
-      <span className="mr-1.5 inline-block h-2 w-2 rounded-full align-middle" style={chipDot(active)} />
+      <span
+        aria-hidden="true"
+        className="mr-1.5 inline-block h-2 w-2 rounded-full align-middle"
+        style={{ backgroundColor: active ? SCENE_PALETTE.rim : 'transparent' }}
+      />
       <span>{label}</span>
       <span className="ml-1 opacity-70">· {run.seconds.toFixed(2)}s</span>
     </button>
   )
 }
 
-function chipDot(active: boolean): { backgroundColor: string } {
-  return { backgroundColor: active ? SCENE_PALETTE.rim : 'transparent' }
+/**
+ * Per-state style for {@link ShuttleToggleChip}. Active chips read as
+ * solid cream with an ink shadow; inactive ones drop to a dashed
+ * outline at half opacity so they fade into the background without
+ * disappearing entirely.
+ */
+function chipStyle(active: boolean): CSSProperties {
+  if (active) {
+    return {
+      backgroundColor: SCENE_PALETTE.cream,
+      color: SCENE_PALETTE.ink,
+      border: `2px solid ${SCENE_PALETTE.ink}`,
+      boxShadow: `2px 2px 0 ${SCENE_PALETTE.ink}`,
+    }
+  }
+  return {
+    backgroundColor: 'transparent',
+    color: SCENE_PALETTE.ink,
+    border: `2px dashed ${SCENE_PALETTE.ink}`,
+    opacity: 0.5,
+  }
 }

@@ -164,4 +164,73 @@ describe('ShuttleTrace', () => {
     await user.click(chip)
     expect(chip).toHaveAttribute('aria-checked', 'false')
   })
+
+  it('renders one toggle chip per qualifying run when several are present', () => {
+    render(
+      <ShuttleTrace
+        entries={[
+          { date: '2026-01-15', shuttle_5_10_5_s: 6.1 },
+          { date: '2026-02-15', shuttle_5_10_5_s: 5.9 },
+          { date: '2026-04-10', shuttle_5_10_5_s: 5.42 },
+        ]}
+      />,
+    )
+    expect(screen.getAllByRole('switch')).toHaveLength(3)
+  })
+
+  it('clicking Replay leaves toggle state intact (no crash)', async () => {
+    // Smoke test: the rAF loop is hard to assert in jsdom, so we just
+    // confirm the button is wired and doesn't toss the toggle state.
+    const user = userEvent.setup()
+    render(
+      <ShuttleTrace
+        entries={[{ date: '2026-04-10', shuttle_5_10_5_s: 5.42 }]}
+      />,
+    )
+    const chip = screen.getByRole('switch', { name: /apr 2026/i })
+    expect(chip).toHaveAttribute('aria-checked', 'true')
+    await user.click(screen.getByRole('button', { name: /replay/i }))
+    expect(chip).toHaveAttribute('aria-checked', 'true')
+  })
+
+  it('preserves a user-toggled-off chip when an unrelated entry arrives', async () => {
+    // Toggle March off; logging April later should NOT re-enable March.
+    // Guards the data-refetch sync logic in the component's useEffect.
+    const user = userEvent.setup()
+    const { rerender } = render(
+      <ShuttleTrace
+        entries={[
+          { date: '2026-02-15', shuttle_5_10_5_s: 5.9 },
+          { date: '2026-03-15', shuttle_5_10_5_s: 5.7 },
+        ]}
+      />,
+    )
+    await user.click(screen.getByRole('switch', { name: /mar 2026/i }))
+    expect(screen.getByRole('switch', { name: /mar 2026/i })).toHaveAttribute(
+      'aria-checked',
+      'false',
+    )
+    rerender(
+      <ShuttleTrace
+        entries={[
+          { date: '2026-02-15', shuttle_5_10_5_s: 5.9 },
+          { date: '2026-03-15', shuttle_5_10_5_s: 5.7 },
+          { date: '2026-04-10', shuttle_5_10_5_s: 5.42 },
+        ]}
+      />,
+    )
+    // March stays off; February stays on; April defaults on.
+    expect(screen.getByRole('switch', { name: /feb 2026/i })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    )
+    expect(screen.getByRole('switch', { name: /mar 2026/i })).toHaveAttribute(
+      'aria-checked',
+      'false',
+    )
+    expect(screen.getByRole('switch', { name: /apr 2026/i })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    )
+  })
 })
