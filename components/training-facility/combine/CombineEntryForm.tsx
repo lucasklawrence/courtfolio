@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState, type JSX } from 'react'
 import { useForm, type Resolver, type SubmitHandler } from 'react-hook-form'
 import { ZodError } from 'zod'
 
+import { useAdminSession } from '@/lib/auth/use-admin-session'
 import { logBenchmark, updateBenchmark } from '@/lib/data/movement'
 import { BenchmarkSchema } from '@/lib/schemas/movement'
 import type { Benchmark, BenchmarkUpdate } from '@/types/movement'
@@ -178,20 +179,21 @@ const PANEL_BUTTON_LABEL_EDITING = 'Cancel edit'
 /**
  * Collapsible "Log a session" panel for the Combine page (PRD §7.5
  * view 7, §7.10 single-source-of-truth schema). Renders an
- * RHF + Zod-validated entry form that POSTs to the dev-only write
- * route via `logBenchmark()`.
+ * RHF + Zod-validated entry form whose writes go through the
+ * admin-gated `/api/admin/movement-benchmarks/*` routes (#131).
  *
- * Hidden in non-dev builds — the parent `CombineDataIsland` is the
- * only caller and it already gates rendering, but the gate inside this
- * component is a defensive belt-and-suspenders so the panel can never
- * accidentally surface in production even if a future caller forgets.
+ * Hidden unless the current viewer is signed in as an admin
+ * ({@link useAdminSession}). Returning `null` during the initial
+ * session-check avoids a frame of "Log a session" UI flickering at
+ * unauthenticated visitors before the panel disappears.
  */
 export function CombineEntryForm({
   onSaved,
   editingEntry,
   onCancelEdit,
 }: CombineEntryFormProps): JSX.Element | null {
-  if (process.env.NODE_ENV !== 'development') return null
+  const { isAdmin } = useAdminSession()
+  if (!isAdmin) return null
   return (
     <CombineEntryFormImpl
       onSaved={onSaved}
@@ -339,7 +341,7 @@ function CombineEntryFormImpl({
           id={headingId}
           className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80"
         >
-          {isEditing ? `Dev · Edit session for ${editingEntry.date}` : 'Dev · Log a session'}
+          {isEditing ? `Admin · Edit session for ${editingEntry.date}` : 'Admin · Log a session'}
         </h2>
         <button
           type="button"

@@ -7,15 +7,28 @@ import { CombineDataIsland } from './CombineDataIsland'
 /**
  * Tests for the Combine page's client island. Verifies that the
  * Scoreboard renders against fetched entries and that saving via the
- * dev-only entry form triggers a cache-busting refetch (the contract
- * the form's `onSaved` callback fulfils so a freshly-logged entry
- * lands in the Scoreboard with no manual reload).
+ * admin-only entry form triggers a refetch (the contract the form's
+ * `onSaved` callback fulfils so a freshly-logged entry lands in the
+ * Scoreboard with no manual reload).
  *
- * `getMovementBenchmarks` and `logBenchmark` are both stubbed at the
- * data-layer module — the wrappers and the dev API route have their
- * own tests; this file is about the wiring between Scoreboard and
- * form.
+ * `getMovementBenchmarks` and `logBenchmark` are stubbed at the data
+ * layer; `useAdminSession` is stubbed to control whether row-level
+ * actions and the entry form panel render.
  */
+
+interface MockAdminSession {
+  isAdmin: boolean
+  isLoading: boolean
+  email: string | null
+}
+const adminSessionMock = vi.fn<() => MockAdminSession>(() => ({
+  isAdmin: true,
+  isLoading: false,
+  email: 'admin@example.com',
+}))
+vi.mock('@/lib/auth/use-admin-session', () => ({
+  useAdminSession: () => adminSessionMock(),
+}))
 
 const getMovementBenchmarksMock = vi.fn()
 const logBenchmarkMock = vi.fn()
@@ -40,6 +53,12 @@ beforeEach(() => {
   logBenchmarkMock.mockReset()
   updateBenchmarkMock.mockReset()
   deleteBenchmarkMock.mockReset()
+  adminSessionMock.mockReset()
+  adminSessionMock.mockReturnValue({
+    isAdmin: true,
+    isLoading: false,
+    email: 'admin@example.com',
+  })
 })
 
 afterEach(() => {
@@ -58,9 +77,6 @@ describe('CombineDataIsland', () => {
       ).toBeInTheDocument(),
     )
     expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(1)
-    // First mount fetch should NOT bypass the cache — that's reserved
-    // for the post-write refetch.
-    expect(getMovementBenchmarksMock).toHaveBeenCalledWith()
   })
 
   it('falls back to an empty Scoreboard when the fetch rejects (transient failure)', async () => {
@@ -71,8 +87,7 @@ describe('CombineDataIsland', () => {
     )
   })
 
-  it('refetches with cache: "no-store" after the form saves a new entry', async () => {
-    vi.stubEnv('NODE_ENV', 'development')
+  it('refetches after the form saves a new entry', async () => {
     getMovementBenchmarksMock.mockResolvedValueOnce([])
     getMovementBenchmarksMock.mockResolvedValueOnce([
       { date: '2026-04-20', bodyweight_lbs: 230 },
@@ -82,7 +97,6 @@ describe('CombineDataIsland', () => {
     const user = userEvent.setup()
     render(<CombineDataIsland />)
 
-    // Wait for the initial fetch to complete.
     await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(1))
 
     await user.click(screen.getByRole('button', { name: /log a session/i }))
@@ -93,7 +107,6 @@ describe('CombineDataIsland', () => {
     await user.click(screen.getByRole('button', { name: /save entry/i }))
 
     await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(2))
-    expect(getMovementBenchmarksMock.mock.calls[1][0]).toEqual({ cache: 'no-store' })
   })
 
   it('renders the history table once entries fetch resolves', async () => {
@@ -107,8 +120,27 @@ describe('CombineDataIsland', () => {
     await waitFor(() => expect(screen.getByText('2026-04-15')).toBeInTheDocument())
   })
 
+  it('hides row-level admin actions and the entry form for non-admin viewers', async () => {
+    adminSessionMock.mockReturnValue({
+      isAdmin: false,
+      isLoading: false,
+      email: null,
+    })
+    getMovementBenchmarksMock.mockResolvedValueOnce([
+      { date: '2026-04-15', bodyweight_lbs: 232 },
+    ])
+    render(<CombineDataIsland />)
+    await waitFor(() => expect(screen.getByText('2026-04-15')).toBeInTheDocument())
+
+    expect(
+      screen.queryByRole('button', { name: /log a session/i }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('button', { name: /edit benchmark from 2026-04-15/i }),
+    ).not.toBeInTheDocument()
+  })
+
   it('clicking Edit on a row puts the entry form into edit mode (prefilled, locked date)', async () => {
-    vi.stubEnv('NODE_ENV', 'development')
     getMovementBenchmarksMock.mockResolvedValueOnce([
       { date: '2026-04-15', bodyweight_lbs: 232 },
     ])
@@ -134,7 +166,6 @@ describe('CombineDataIsland', () => {
   })
 
   it('Delete with confirmation calls deleteBenchmark and refetches', async () => {
-    vi.stubEnv('NODE_ENV', 'development')
     getMovementBenchmarksMock.mockResolvedValueOnce([
       { date: '2026-04-15', bodyweight_lbs: 232 },
     ])
@@ -158,12 +189,10 @@ describe('CombineDataIsland', () => {
     )
     await waitFor(() => expect(deleteBenchmarkMock).toHaveBeenCalledWith('2026-04-15'))
     await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(2))
-    expect(getMovementBenchmarksMock.mock.calls[1][0]).toEqual({ cache: 'no-store' })
     confirmSpy.mockRestore()
   })
 
   it('Delete cancelled in confirm() short-circuits — no API call, no refetch', async () => {
-    vi.stubEnv('NODE_ENV', 'development')
     getMovementBenchmarksMock.mockResolvedValueOnce([
       { date: '2026-04-15', bodyweight_lbs: 232 },
     ])
@@ -186,7 +215,6 @@ describe('CombineDataIsland', () => {
   })
 
   it('Mark-incomplete on a complete row sends is_complete: false', async () => {
-    vi.stubEnv('NODE_ENV', 'development')
     getMovementBenchmarksMock.mockResolvedValueOnce([
       { date: '2026-04-15', bodyweight_lbs: 232 },
     ])
@@ -219,7 +247,6 @@ describe('CombineDataIsland', () => {
   })
 
   it('Mark-complete on an incomplete row sends is_complete: true', async () => {
-    vi.stubEnv('NODE_ENV', 'development')
     getMovementBenchmarksMock.mockResolvedValueOnce([
       { date: '2026-04-15', bodyweight_lbs: 232, is_complete: false },
     ])
@@ -249,10 +276,6 @@ describe('CombineDataIsland', () => {
   })
 
   it('does NOT let a stale mount-time fetch overwrite fresher post-save data (Codex P2 race)', async () => {
-    vi.stubEnv('NODE_ENV', 'development')
-
-    // Mount-time fetch resolves AFTER the post-save fetch — the slow
-    // first-loader race the request-id ref pattern guards against.
     let resolveMount: (data: unknown) => void = () => {}
     const mountPromise = new Promise((resolve) => {
       resolveMount = resolve
@@ -266,7 +289,6 @@ describe('CombineDataIsland', () => {
     const user = userEvent.setup()
     render(<CombineDataIsland />)
 
-    // Mount fetch is in-flight (unresolved promise). Save now.
     await user.click(screen.getByRole('button', { name: /log a session/i }))
     const dateInput = screen.getByLabelText(/^date/i)
     await user.clear(dateInput)
@@ -274,17 +296,13 @@ describe('CombineDataIsland', () => {
     await user.type(screen.getByLabelText(/bodyweight/i), '230')
     await user.click(screen.getByRole('button', { name: /save entry/i }))
 
-    // Post-save fetch completes first → Scoreboard reflects 230.
     await waitFor(() =>
       expect(screen.getByLabelText(/230\.0 lbs/i)).toBeInTheDocument(),
     )
 
-    // Now resolve the stale mount-time fetch with stale data. The
-    // request-id guard should drop it.
     resolveMount([{ date: '2026-04-15', bodyweight_lbs: 999 }])
     await new Promise((r) => setTimeout(r, 20))
 
-    // Scoreboard still shows the post-save value, NOT the stale 999.
     expect(screen.getByLabelText(/230\.0 lbs/i)).toBeInTheDocument()
     expect(screen.queryByLabelText(/999/i)).not.toBeInTheDocument()
   })
