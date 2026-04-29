@@ -21,6 +21,8 @@ import {
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { HrZoneBars } from './HrZoneBars'
 import { AvgHrBars } from './AvgHrBars'
+import { PersonalBests } from './PersonalBests'
+import { computePersonalBests } from '@/lib/training-facility/personal-bests'
 
 const CHART_HEIGHT = 280
 const MIN_CHART_WIDTH = 280
@@ -124,6 +126,12 @@ export function StairDetailView(): JSX.Element {
     () => (data ? filterStairSessions(data.sessions, range) : []),
     [data, range],
   )
+  // Personal bests (issue #76) computed once per dataset; the active range +
+  // filtered sessions feed the "PB in range" badge and inline best-in-range line.
+  const bests = useMemo(
+    () => (data ? computePersonalBests(data) : null),
+    [data],
+  )
   const buckets = useMemo(() => aggregateHrZoneSeconds(stairSessions), [stairSessions])
   const avgHrPoints = useMemo(() => perSessionAvgHr(stairSessions), [stairSessions])
 
@@ -173,6 +181,15 @@ export function StairDetailView(): JSX.Element {
           <LoadingPanel />
         ) : (
           <>
+            {bests && (
+              <PersonalBests
+                activity="stair"
+                bests={bests}
+                filteredSessions={stairSessions}
+                range={range}
+              />
+            )}
+
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ChartCard
                 title="Time in zone"
