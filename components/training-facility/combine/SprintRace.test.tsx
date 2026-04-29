@@ -116,9 +116,9 @@ describe('buildLaneYs', () => {
 
 describe('svgHeight', () => {
   it('grows by lane height per run', () => {
-    expect(svgHeight(0)).toBe(28 + 14)
-    expect(svgHeight(1)).toBe(28 + 46 + 14)
-    expect(svgHeight(3)).toBe(28 + 3 * 46 + 14)
+    expect(svgHeight(0)).toBe(14 + 18)
+    expect(svgHeight(1)).toBe(14 + 46 + 18)
+    expect(svgHeight(3)).toBe(14 + 3 * 46 + 18)
   })
 })
 

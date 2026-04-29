@@ -92,10 +92,10 @@ const TRACK_W = TRACK_X_RIGHT - TRACK_X_LEFT
 const YARD_W = TRACK_W / 10
 /** Vertical lane height. Tall enough for a dot + handwritten label without crowding. */
 const LANE_H = 46
-/** Vertical gap between the heading band and the first lane. */
-const HEADER_H = 28
-/** Vertical gap between the last lane and the bottom of the SVG. */
-const FOOTER_H = 14
+/** Vertical gap between the top of the SVG and the first lane center. */
+const HEADER_H = 14
+/** Vertical gap between the last lane and the bottom of the SVG, leaving room for the yard-number row. */
+const FOOTER_H = 18
 
 /**
  * Compute the dot's x-position for a lane at the elapsed time.
@@ -324,30 +324,6 @@ function TrackChrome({ height, laneYs, runCount }: TrackChromeProps): JSX.Elemen
         roughness={1.1}
         seed={601}
       />
-
-      {/* Distance label (start) */}
-      <text
-        x={TRACK_X_LEFT}
-        y={20}
-        fill={SCENE_PALETTE.creamBright}
-        fontFamily={HANDWRITING_FONT}
-        fontSize={14}
-        textAnchor="middle"
-        opacity={0.85}
-      >
-        START
-      </text>
-      {/* Distance label (finish) */}
-      <text
-        x={TRACK_X_RIGHT}
-        y={20}
-        fill={SCENE_PALETTE.rim}
-        fontFamily={HANDWRITING_FONT}
-        fontSize={14}
-        textAnchor="middle"
-      >
-        10y
-      </text>
 
       {/* Lane separators between rows */}
       {Array.from({ length: Math.max(0, runCount - 1) }, (_, i) => {
