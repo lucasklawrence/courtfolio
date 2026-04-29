@@ -242,19 +242,23 @@ export function ShuttleTrace({ entries }: ShuttleTraceProps): JSX.Element | null
   // toggles across data refetches: newly-arrived dates default to
   // visible, deleted dates drop out, but a chip the user explicitly
   // toggled off stays off when an unrelated entry is logged.
+  //
+  // The ref mutation lives in the effect body (not inside the
+  // `setEnabled` updater) so the updater stays pure under React 18
+  // strict-mode double-invoke — both invocations close over the same
+  // `prevKnown` snapshot and produce the same `next` set.
   const knownDatesRef = useRef<Set<string>>(new Set())
   useEffect(() => {
     const currentDates = new Set(runs.map((r) => r.date))
+    const prevKnown = knownDatesRef.current
     setEnabled((prev) => {
       let changed = false
       const next = new Set(prev)
       for (const date of currentDates) {
-        if (!knownDatesRef.current.has(date)) {
+        if (!prevKnown.has(date)) {
           // Brand-new entry — show by default.
-          if (!next.has(date)) {
-            next.add(date)
-            changed = true
-          }
+          next.add(date)
+          changed = true
         }
       }
       for (const date of prev) {
@@ -264,9 +268,9 @@ export function ShuttleTrace({ entries }: ShuttleTraceProps): JSX.Element | null
           changed = true
         }
       }
-      knownDatesRef.current = currentDates
       return changed ? next : prev
     })
+    knownDatesRef.current = currentDates
   }, [runs])
 
   const [replayKey, setReplayKey] = useState(0)
@@ -715,7 +719,7 @@ function ShuttleToggleChip({ run, active, onToggle }: ShuttleToggleChipProps): J
       aria-label={`${label} — ${run.seconds.toFixed(2)}s shuttle`}
       onClick={onToggle}
       className="rounded-full px-3 py-1 font-handwriting"
-      style={chipStyle(active)}
+      style={active ? CHIP_STYLE_ACTIVE : CHIP_STYLE_INACTIVE}
     >
       <span
         aria-hidden="true"
@@ -729,24 +733,24 @@ function ShuttleToggleChip({ run, active, onToggle }: ShuttleToggleChipProps): J
 }
 
 /**
- * Per-state style for {@link ShuttleToggleChip}. Active chips read as
- * solid cream with an ink shadow; inactive ones drop to a dashed
- * outline at half opacity so they fade into the background without
- * disappearing entirely.
+ * Active-chip style — solid cream with an ink shadow. Module-level
+ * constant so React's `style` prop diff sees a stable reference instead
+ * of a fresh allocation on every animation frame.
  */
-function chipStyle(active: boolean): CSSProperties {
-  if (active) {
-    return {
-      backgroundColor: SCENE_PALETTE.cream,
-      color: SCENE_PALETTE.ink,
-      border: `2px solid ${SCENE_PALETTE.ink}`,
-      boxShadow: `2px 2px 0 ${SCENE_PALETTE.ink}`,
-    }
-  }
-  return {
-    backgroundColor: 'transparent',
-    color: SCENE_PALETTE.ink,
-    border: `2px dashed ${SCENE_PALETTE.ink}`,
-    opacity: 0.5,
-  }
+const CHIP_STYLE_ACTIVE: CSSProperties = {
+  backgroundColor: SCENE_PALETTE.cream,
+  color: SCENE_PALETTE.ink,
+  border: `2px solid ${SCENE_PALETTE.ink}`,
+  boxShadow: `2px 2px 0 ${SCENE_PALETTE.ink}`,
+}
+
+/**
+ * Inactive-chip style — dashed outline at half opacity, so the chip
+ * fades into the background without disappearing.
+ */
+const CHIP_STYLE_INACTIVE: CSSProperties = {
+  backgroundColor: 'transparent',
+  color: SCENE_PALETTE.ink,
+  border: `2px dashed ${SCENE_PALETTE.ink}`,
+  opacity: 0.5,
 }

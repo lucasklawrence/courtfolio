@@ -1,3 +1,4 @@
+import { StrictMode } from 'react'
 import { describe, expect, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -196,6 +197,12 @@ describe('ShuttleTrace', () => {
   it('preserves a user-toggled-off chip when an unrelated entry arrives', async () => {
     // Toggle March off; logging April later should NOT re-enable March.
     // Guards the data-refetch sync logic in the component's useEffect.
+    //
+    // Wrapped in StrictMode so the React 18 double-invoke of the
+    // `setEnabled` updater is exercised — guards against regressions
+    // where the updater mutates a ref or otherwise becomes
+    // non-idempotent (the fresh April entry would silently fail to
+    // appear on the second invocation).
     const user = userEvent.setup()
     const { rerender } = render(
       <ShuttleTrace
@@ -204,6 +211,7 @@ describe('ShuttleTrace', () => {
           { date: '2026-03-15', shuttle_5_10_5_s: 5.7 },
         ]}
       />,
+      { wrapper: StrictMode },
     )
     await user.click(screen.getByRole('switch', { name: /mar 2026/i }))
     expect(screen.getByRole('switch', { name: /mar 2026/i })).toHaveAttribute(
