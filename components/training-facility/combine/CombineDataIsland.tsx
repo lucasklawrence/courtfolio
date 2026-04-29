@@ -9,18 +9,19 @@ import type { Benchmark } from '@/types/movement'
 
 import { CombineEntryForm } from './CombineEntryForm'
 import { CombineTradingCard } from './CombineTradingCard'
+import { SprintRace } from './SprintRace'
 
 /**
  * Owns the Combine page's shared `entries` state. Renders the
- * Scoreboard (PRD §9.1), the Trading Card stat block (PRD §9.2), and
- * the dev-only entry form (PRD §7.5 view 7), all reading from the same
- * in-memory list so a saved entry shows up in every visualization
- * immediately, with no reload.
+ * Scoreboard (PRD §9.1), the Trading Card stat block (PRD §9.2), the
+ * Sprint Race (PRD §9.6), and the dev-only entry form (PRD §7.5 view 7),
+ * all reading from the same in-memory list so a saved entry shows up in
+ * every visualization immediately, with no reload.
  *
  * Keeping fetch + form state co-located here lets the parent page stay
  * a server component (it does the feature-flag gate) while still
  * sharing live data across multiple client children. Future Combine
- * visualizations (Silhouette, Shuttle Trace, etc.) plug in the same
+ * visualizations (Silhouette, Shuttle Trace, Radar) plug in the same
  * way — accept `entries` as a prop, render between the Scoreboard and
  * the entry form.
  *
@@ -78,6 +79,7 @@ export function CombineDataIsland(): JSX.Element {
     <div className="flex flex-col gap-8">
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
       <CombineTradingCard entries={entries} />
+      <SprintRace entries={entries} />
       <CombineEntryForm onSaved={handleSaved} />
     </div>
   )
