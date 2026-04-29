@@ -9,13 +9,24 @@ import {
 const MS_PER_DAY = 24 * 60 * 60 * 1000
 
 /**
- * Calendar-day count for a `DateRange` whose bounds are start- and
- * end-of-day. `Math.floor` + 1 because the range is inclusive on both
- * ends (Mar 1 00:00 → Mar 31 23:59:59.999 is 31 days, not 32, even
- * though `(end - start) / day ≈ 30.999`).
+ * Calendar-day count via UTC midnights of each bound's local date —
+ * same approach as the source-of-truth helper inside
+ * `period-comparison.ts`. UTC arithmetic neutralizes DST drift; a
+ * naive `(end - start) / day` would over- or under-count fall-back
+ * and spring-forward windows by a day.
  */
 function calendarDayCount(range: DateRange): number {
-  return Math.floor((range.end.getTime() - range.start.getTime()) / MS_PER_DAY) + 1
+  const startUtcMid = Date.UTC(
+    range.start.getFullYear(),
+    range.start.getMonth(),
+    range.start.getDate(),
+  )
+  const endUtcMid = Date.UTC(
+    range.end.getFullYear(),
+    range.end.getMonth(),
+    range.end.getDate(),
+  )
+  return Math.round((endUtcMid - startUtcMid) / MS_PER_DAY) + 1
 }
 
 describe('computePreviousRange', () => {
@@ -53,6 +64,36 @@ describe('computePreviousRange', () => {
     const previous = computePreviousRange(current)
     expect(previous.start.getFullYear()).toBe(2025)
     expect(previous.end).toEqual(new Date(2025, 11, 31, 23, 59, 59, 999))
+  })
+
+  it('preserves calendar-day count across a fall-back DST window (Nov 1 → Nov 30 = 30 days, not 31)', () => {
+    // In US/Eastern, Nov 2 is the DST transition (EDT → EST). A naive
+    // ms-based previous-range derivation would compute Oct 1 → Oct 31
+    // (31 days) here because the fall-back gives the current window an
+    // extra hour of ms. This regression test pins the calendar-day
+    // contract: 30 in → 30 out.
+    const current: DateRange = {
+      start: new Date(2025, 10, 1, 0, 0, 0, 0),
+      end: new Date(2025, 10, 30, 23, 59, 59, 999),
+    }
+    const previous = computePreviousRange(current)
+    expect(calendarDayCount(current)).toBe(30)
+    expect(calendarDayCount(previous)).toBe(30)
+    expect(previous.start).toEqual(new Date(2025, 9, 2, 0, 0, 0, 0))
+    expect(previous.end).toEqual(new Date(2025, 9, 31, 23, 59, 59, 999))
+  })
+
+  it('preserves calendar-day count across a spring-forward DST window (Mar 1 → Mar 31 = 31 days)', () => {
+    // Companion to the fall-back case. Spring-forward subtracts an
+    // hour, which an ms-based derivation would otherwise round in the
+    // opposite direction.
+    const current: DateRange = {
+      start: new Date(2026, 2, 1, 0, 0, 0, 0),
+      end: new Date(2026, 2, 31, 23, 59, 59, 999),
+    }
+    const previous = computePreviousRange(current)
+    expect(calendarDayCount(current)).toBe(31)
+    expect(calendarDayCount(previous)).toBe(31)
   })
 
   it('end-of-previous is strictly before start-of-current', () => {
