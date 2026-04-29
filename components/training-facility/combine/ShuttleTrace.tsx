@@ -735,12 +735,14 @@ const CHIP_STYLE_ACTIVE: CSSProperties = {
 }
 
 /**
- * Inactive-chip style — dashed outline at half opacity, so the chip
- * fades into the background without disappearing.
+ * Inactive-chip style — dashed cream outline + cream text on a
+ * transparent ground. Uses the cream token (not ink) for stroke and
+ * label so the chip stays readable against the dark Combine page;
+ * `opacity: 0.6` softens it visually without making it disappear.
  */
 const CHIP_STYLE_INACTIVE: CSSProperties = {
   backgroundColor: 'transparent',
-  color: SCENE_PALETTE.ink,
-  border: `2px dashed ${SCENE_PALETTE.ink}`,
-  opacity: 0.5,
+  color: SCENE_PALETTE.cream,
+  border: `2px dashed ${SCENE_PALETTE.cream}`,
+  opacity: 0.6,
 }
