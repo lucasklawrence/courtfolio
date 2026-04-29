@@ -1,9 +1,14 @@
 /**
  * Treadmill / running detail-view helpers (PRD §7.4).
  *
- * Pure functions for the running-specific charts: pace trend (min/mi over
- * time), cardiac efficiency (m/heartbeat over time), and pace-at-HR scatter.
- * Activity-agnostic helpers live in {@link ./cardio-shared}.
+ * Pure functions for the pace-based charts: pace trend (min/mi over time),
+ * cardiac efficiency (m/heartbeat over time), and pace-at-HR scatter. Only
+ * {@link filterRunningSessions} is running-specific; the projection helpers
+ * (`paceTrendPoints`, `cardiacEfficiencyPoints`, `paceAtHrPoints`,
+ * `formatPacePerMile`, `formatPaceCellFromSecPerKm`, `formatDistanceMiles`)
+ * are activity-agnostic and are imported as-is by `TrackDetailView` for the
+ * walking modality. Activity-agnostic *time-in-zone* helpers live in
+ * {@link ./cardio-shared}.
  */
 
 import type { CardioSession } from '@/types/cardio'

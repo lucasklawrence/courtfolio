@@ -55,7 +55,40 @@ export function GymScene() {
         fill="url(#sceneSpotlight)"
       />
 
-      <IndoorTrackSilhouette />
+      {/*
+        Indoor-track group — same hover/focus pattern as the treadmill and
+        stair-climber links. The silhouette is a thin band at the back wall,
+        so the bounding rect extends slightly above it to cover the
+        "indoor track" handwritten label and a forgiving amount below the
+        lane lines.
+      */}
+      <Link
+        href="/training-facility/gym/track"
+        aria-label="Open the track detail view"
+        className="group focus:outline-none"
+      >
+        <IndoorTrackSilhouette />
+        <rect
+          x={60}
+          y={485}
+          width={1480}
+          height={90}
+          fill={SCENE_PALETTE.creamBright}
+          className="opacity-0 transition-opacity group-hover:opacity-10 group-focus-visible:opacity-15"
+        />
+        <rect
+          x={60}
+          y={485}
+          width={1480}
+          height={90}
+          fill="none"
+          stroke={SCENE_PALETTE.rim}
+          strokeWidth={4}
+          strokeDasharray="6 4"
+          rx={6}
+          className="opacity-0 transition-opacity group-focus-visible:opacity-100"
+        />
+      </Link>
 
       <HardwoodFloor
         y={FLOOR_TOP}
