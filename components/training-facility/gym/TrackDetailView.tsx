@@ -20,7 +20,6 @@ import {
 } from '@/lib/training-facility/cardio-shared'
 import {
   cardiacEfficiencyPoints,
-  filterRunningSessions,
   formatDistanceMiles,
   formatPaceCellFromSecPerKm,
   formatPacePerMile,
@@ -28,6 +27,7 @@ import {
   paceTrendPoints,
   type PaceTrendPoint,
 } from '@/lib/training-facility/running'
+import { filterWalkingSessions } from '@/lib/training-facility/walking'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { HrZoneBars } from './HrZoneBars'
 import { AvgHrBars } from './AvgHrBars'
@@ -36,12 +36,6 @@ import { RoughScatter } from '@/components/training-facility/shared/charts/Rough
 import { BodyweightOverlay } from '@/components/training-facility/shared/charts/BodyweightOverlay'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
-import { TrainingLoadChart } from './TrainingLoadChart'
-import {
-  computeTrainingLoad,
-  dailyTrimpSeries,
-  type TrainingLoadPoint,
-} from '@/lib/training-facility/training-load'
 
 const CHART_HEIGHT = 280
 const PACE_CHART_HEIGHT = 300
@@ -52,20 +46,20 @@ const EARLIEST_FALLBACK = new Date(2024, 0, 1)
 const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
 
 /**
- * Treadmill detail view (PRD §7.4) — running-modality charts over the cardio
- * data layer, mirroring `StairDetailView` for shared concerns (HR-zone bars,
- * per-session avg-HR, session log) and adding three running-specific views:
+ * Track detail view (PRD §7.4) — walking-modality charts over the cardio
+ * data layer. Mirrors `TreadmillDetailView` for shared concerns (HR-zone bars,
+ * per-session avg-HR, session log, pace trend with bodyweight overlay,
+ * cardiac efficiency, pace-at-HR scatter) — the only differences are the
+ * walking-only filter and the equipment-specific copy framing walking as
+ * recovery / aerobic-base work rather than the speed work treadmill is for.
  *
- *   1. Pace trend (`RoughLine`, full-width) — wrapped in `BodyweightOverlay`
- *      so power-to-weight context (PRD §4) sits on the same x-axis.
- *   2. Cardiac efficiency (`RoughLine`) — meters-per-heartbeat over time.
- *   3. Pace-at-HR scatter (`RoughScatter`) — fast-at-low-HR sessions land in
- *      the lower-left quadrant (most efficient).
+ * Shares pace projection helpers with running (see {@link ./running}) since
+ * those are activity-agnostic; only the activity filter is walking-specific.
  *
- * Loading and error states are first-class so a missing `cardio.json` reads as
- * "no data yet" rather than an empty chart wall.
+ * Loading and error states are first-class so a missing `cardio.json` reads
+ * as "no data yet" rather than an empty chart wall.
  */
-export function TreadmillDetailView(): JSX.Element {
+export function TrackDetailView(): JSX.Element {
   const [data, setData] = useState<CardioData | null>(null)
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([])
   const [loadError, setLoadError] = useState<Error | null>(null)
@@ -85,8 +79,7 @@ export function TreadmillDetailView(): JSX.Element {
         // `getCardioData()` resolves to `null` on a 404 (the dataset isn't
         // produced yet — gitignored, PRD §11 q7). Substitute an empty
         // `CardioData` so the component progresses past the loading panel
-        // and renders the empty-state branch. Without this, a fresh preview
-        // (no cardio.json yet) would sit on "Loading cardio data…" forever.
+        // and renders the empty-state branch.
         setData(
           cardio ?? {
             imported_at: '',
@@ -99,10 +92,6 @@ export function TreadmillDetailView(): JSX.Element {
       })
       .catch((err: unknown) => {
         if (cancelled) return
-        // Real failures (network, 5xx, malformed JSON) surface the error
-        // panel. The 404-as-empty case is handled in `.then` above; this
-        // path only runs for genuine errors that `getCardioData()` /
-        // `getMovementBenchmarks()` choose to throw.
         setLoadError(err instanceof Error ? err : new Error(String(err)))
       })
     return () => {
@@ -146,42 +135,22 @@ export function TreadmillDetailView(): JSX.Element {
     return Number.isFinite(earliestMs) ? new Date(earliestMs) : EARLIEST_FALLBACK
   }, [data])
 
-  const runningSessions = useMemo<CardioSession[]>(
-    () => (data ? filterRunningSessions(data.sessions, range) : []),
+  const walkingSessions = useMemo<CardioSession[]>(
+    () => (data ? filterWalkingSessions(data.sessions, range) : []),
     [data, range],
   )
-  const buckets = useMemo(() => aggregateHrZoneSeconds(runningSessions), [runningSessions])
-  const avgHrPoints = useMemo(() => perSessionAvgHr(runningSessions), [runningSessions])
-  const paceTrend = useMemo(() => paceTrendPoints(runningSessions), [runningSessions])
+  const buckets = useMemo(() => aggregateHrZoneSeconds(walkingSessions), [walkingSessions])
+  const avgHrPoints = useMemo(() => perSessionAvgHr(walkingSessions), [walkingSessions])
+  const paceTrend = useMemo(() => paceTrendPoints(walkingSessions), [walkingSessions])
   const efficiencyTrend = useMemo(
-    () => cardiacEfficiencyPoints(runningSessions),
-    [runningSessions],
+    () => cardiacEfficiencyPoints(walkingSessions),
+    [walkingSessions],
   )
-  const paceVsHr = useMemo(() => paceAtHrPoints(runningSessions), [runningSessions])
-
-  // Training load aggregates ALL cardio activities (stair, running, walking) —
-  // TRIMP / ATL / CTL is a whole-athlete metric and excluding modalities
-  // would distort it. Pre-warm by running EMA from the earliest session in
-  // the dataset, then slice the result down to the active DateFilter window.
-  // This avoids the "zero ramp" artifact at the left edge that you get if
-  // you compute EMA only over the visible window.
-  const trainingLoad = useMemo<TrainingLoadPoint[]>(() => {
-    if (!data || data.sessions.length === 0) return []
-    const series = dailyTrimpSeries(data.sessions)
-    if (series.length === 0) return []
-    const full = computeTrainingLoad(series)
-    const fromMs = range.start.getTime()
-    const toMs = range.end.getTime()
-    return full.filter((p) => {
-      const t = p.date.getTime()
-      return t >= fromMs && t <= toMs
-    })
-  }, [data, range])
+  const paceVsHr = useMemo(() => paceAtHrPoints(walkingSessions), [walkingSessions])
 
   // Date extent for the pace chart and bodyweight overlay must match exactly
   // so the two x-axes line up. Falls back to the active filter range when the
-  // data set has fewer than two points (rough-line still renders a single dot
-  // at midpoint, and the overlay degrades to "no entries in range").
+  // data set has fewer than two points.
   const paceDateExtent = useMemo<[Date, Date]>(() => {
     if (paceTrend.length >= 2) {
       return [paceTrend[0].date, paceTrend[paceTrend.length - 1].date]
@@ -213,15 +182,17 @@ export function TreadmillDetailView(): JSX.Element {
 
         <header className="mt-12">
           <div className="text-xs font-semibold uppercase tracking-[0.38em] text-white/60">
-            Treadmill
+            Track
           </div>
           <h1 className="mt-3 text-4xl font-black uppercase tracking-[0.08em] text-[#fff7ec] sm:text-5xl">
-            Pace, effort, and the engine that drives both
+            Steady miles — the aerobic base under everything else
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Heart-rate zones, pace trend (overlaid with bodyweight per §4),
-            cardiac efficiency, and pace-at-HR — all scoped to the date range.
-            Lower-left on the scatter is the goal: fast at low effort.
+            Walking is recovery work — low heart rate, easy pace, time on
+            feet. The same chart set as the treadmill, scoped to walks: zones
+            stay light, pace inches faster as the engine improves, and the
+            scatter clusters in the lower-left quadrant when easy days are
+            actually easy.
           </p>
         </header>
 
@@ -242,7 +213,7 @@ export function TreadmillDetailView(): JSX.Element {
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ChartCard
                 title="Time in zone"
-                helper="Total minutes per HR zone across the filtered window."
+                helper="Total minutes per HR zone across the filtered window. Walks should sit mostly in Z1–Z2."
               >
                 <div ref={cardSizerRef}>
                   <HrZoneBars
@@ -256,7 +227,7 @@ export function TreadmillDetailView(): JSX.Element {
 
               <ChartCard
                 title="Avg HR per session"
-                helper="One bar per session — y-axis padded to the visible range so trends pop."
+                helper="One bar per walk — a steady or downward trend means the engine is getting more efficient at the same pace."
               >
                 <AvgHrBars
                   points={avgHrPoints}
@@ -269,7 +240,7 @@ export function TreadmillDetailView(): JSX.Element {
 
             <ChartCard
               title="Pace trend"
-              helper="Pace per mile over time. Toggle the bodyweight overlay (§4) to see whether you're getting faster or just lighter."
+              helper="Pace per mile over time. Toggle the bodyweight overlay (§4) to see whether the pace is dropping because of the engine or because of the scale."
               wide
             >
               <div ref={paceSizerRef}>
@@ -292,7 +263,7 @@ export function TreadmillDetailView(): JSX.Element {
                     fontFamily={FONT_FAMILY}
                     yLabel="Pace (min/mi)"
                     yTickFormat={formatTickPace}
-                    ariaLabel="Pace per mile over time"
+                    ariaLabel="Walking pace per mile over time"
                     emptyMessage="No pace data in range"
                   />
                 </BodyweightOverlay>
@@ -302,7 +273,7 @@ export function TreadmillDetailView(): JSX.Element {
             <div className="mt-6 grid gap-6 lg:grid-cols-2">
               <ChartCard
                 title="Cardiac efficiency"
-                helper="Meters covered per heartbeat — higher is more efficient."
+                helper="Meters covered per heartbeat — higher is more efficient. Walks rack up more heartbeats per session, so trend over time matters more than absolute value."
               >
                 <RoughLine
                   data={efficiencyTrend}
@@ -313,14 +284,14 @@ export function TreadmillDetailView(): JSX.Element {
                   fontFamily={FONT_FAMILY}
                   yLabel="m / heartbeat"
                   yTickFormat={(v) => v.toFixed(2)}
-                  ariaLabel="Cardiac efficiency over time"
+                  ariaLabel="Walking cardiac efficiency over time"
                   emptyMessage="No efficiency data in range"
                 />
               </ChartCard>
 
               <ChartCard
                 title="Pace at heart rate"
-                helper="Each dot is one session. Lower-left = fast at low effort."
+                helper="Each dot is one walk. Lower-left = the goal: brisk pace at low effort."
               >
                 <RoughScatter
                   data={paceVsHr}
@@ -332,31 +303,13 @@ export function TreadmillDetailView(): JSX.Element {
                   xLabel="Avg HR (BPM)"
                   yLabel="Pace (min/mi)"
                   yTickFormat={formatTickPace}
-                  ariaLabel="Pace vs. heart rate scatter"
+                  ariaLabel="Walking pace vs. heart rate scatter"
                   emptyMessage="No pace + HR pairs in range"
                 />
               </ChartCard>
             </div>
 
-            <ChartCard
-              title="Training load"
-              helper="ATL (acute, 7d) vs. CTL (chronic, 28d) and TSB = CTL − ATL. Aggregates all cardio activities; bands shade the freshness zones."
-              wide
-            >
-              <div>
-                <TrainingLoadChart
-                  points={trainingLoad}
-                  width={paceWidth}
-                  height={PACE_CHART_HEIGHT}
-                  margin={defaultMargin}
-                  fontFamily={FONT_FAMILY}
-                  axisColor={chartPalette.inkSoft}
-                  emptyMessage="No training load in selected range"
-                />
-              </div>
-            </ChartCard>
-
-            <SessionLogTable sessions={runningSessions} range={range} />
+            <SessionLogTable sessions={walkingSessions} range={range} />
           </>
         )}
       </div>
@@ -419,7 +372,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
       </header>
       {rows.length === 0 ? (
         <p className="px-2 py-6 text-center text-sm text-white/55">
-          No running sessions in the selected range.
+          No walking sessions in the selected range.
         </p>
       ) : (
         <div className="overflow-x-auto">
