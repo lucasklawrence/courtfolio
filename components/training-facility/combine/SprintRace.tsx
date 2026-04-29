@@ -246,12 +246,19 @@ function SprintTrackSvg({
   replayKey,
   reducedMotion,
 }: SprintTrackSvgProps): JSX.Element {
-  const enabledRuns = runs.filter((r) => enabled.has(r.date))
-  const latestEnabledDate = enabledRuns.reduce<string | undefined>(
-    (acc, r) => (acc === undefined || r.date > acc ? r.date : acc),
-    undefined,
-  )
-  const elapsed = useSprintElapsed({ runs: enabledRuns, replayKey, reducedMotion })
+  // Resolve "latest" against the enabled subset so toggling off the
+  // newest run promotes the next-most-recent visible lane to the
+  // rim-orange highlight. Always feed the elapsed hook the full `runs`
+  // list, though — sourcing maxSeconds from the filtered subset would
+  // shorten the race when a slow lane is toggled off, which fires the
+  // hook's restart effect and visibly rewinds the clock mid-race.
+  const latestEnabledDate = runs
+    .filter((r) => enabled.has(r.date))
+    .reduce<string | undefined>(
+      (acc, r) => (acc === undefined || r.date > acc ? r.date : acc),
+      undefined,
+    )
+  const elapsed = useSprintElapsed({ runs, replayKey, reducedMotion })
   const laneYs = buildLaneYs(runs)
   const height = svgHeight(runs.length)
 
@@ -462,15 +469,13 @@ function SprintLane({ run, laneY, elapsedSeconds, isLatest }: SprintLaneProps): 
   // crosses it. Reads `1.91s` in handwriting font.
   const stampX = TRACK_X_RIGHT + 4
   const stampOpacity = finished ? 1 : 0
-  const dateY = laneY - 14
-  const timeY = laneY + 22
 
   return (
     <g>
       {/* Lane label on the left edge — a date chip so users can identify the lane without hovering */}
       <text
         x={TRACK_X_LEFT - 14}
-        y={dateY + 14}
+        y={laneY + 4}
         fill={stroke}
         fillOpacity={labelOpacity}
         fontFamily={HANDWRITING_FONT}
@@ -478,19 +483,6 @@ function SprintLane({ run, laneY, elapsedSeconds, isLatest }: SprintLaneProps): 
         textAnchor="end"
       >
         {label}
-      </text>
-
-      {/* Real-time clock readout below the date — updates while the dot is mid-track */}
-      <text
-        x={TRACK_X_LEFT - 14}
-        y={timeY}
-        fill={stroke}
-        fillOpacity={labelOpacity * 0.7}
-        fontFamily={HANDWRITING_FONT}
-        fontSize={11}
-        textAnchor="end"
-      >
-        {formatRunningTime(elapsedSeconds, run.seconds)}
       </text>
 
       {/* Trail behind the dot — a faded line from start to current x */}
@@ -549,18 +541,6 @@ function SprintLane({ run, laneY, elapsedSeconds, isLatest }: SprintLaneProps): 
       </text>
     </g>
   )
-}
-
-/**
- * Format the live race clock that ticks up next to a lane label while
- * the dot is mid-track and freezes at the run's finish time once the
- * lane has crossed the line. Uses a fixed `0.00s` two-decimal format so
- * the digits don't reflow as the clock ticks.
- */
-function formatRunningTime(elapsedSeconds: number, runSeconds: number): string {
-  if (!Number.isFinite(elapsedSeconds) || elapsedSeconds <= 0) return '0.00s'
-  if (elapsedSeconds >= runSeconds) return `${runSeconds.toFixed(2)}s`
-  return `${elapsedSeconds.toFixed(2)}s`
 }
 
 interface UseSprintElapsedArgs {
