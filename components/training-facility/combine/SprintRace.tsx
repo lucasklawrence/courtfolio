@@ -448,10 +448,12 @@ function SprintLane({ run, laneY, elapsedSeconds, isLatest }: SprintLaneProps): 
 
   return (
     <g>
-      {/* Lane label on the left edge — a date chip so users can identify the lane without hovering */}
+      {/* Lane label on the left edge — a date chip so users can identify the lane
+          without hovering. Sits 6 units above the trail-line y so the horizontal
+          trail (drawn at laneY) doesn't read as cutting through the text. */}
       <text
         x={TRACK_X_LEFT - 14}
-        y={laneY + 4}
+        y={laneY - 6}
         fill={stroke}
         fillOpacity={labelOpacity}
         fontFamily={HANDWRITING_FONT}
