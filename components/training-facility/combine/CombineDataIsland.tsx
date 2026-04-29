@@ -13,6 +13,7 @@ import type { Benchmark } from '@/types/movement'
 
 import { CombineEntryForm } from './CombineEntryForm'
 import { CombineHistoryTable } from './CombineHistoryTable'
+import { CombineRadar } from './CombineRadar'
 import { CombineTradingCard } from './CombineTradingCard'
 
 /**
@@ -139,6 +140,7 @@ export function CombineDataIsland(): JSX.Element {
     <div className="flex flex-col gap-10">
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
       <CombineTradingCard entries={entries} />
+      <CombineRadar entries={entries} />
       <CombineEntryForm
         onSaved={refetch}
         editingEntry={editingEntry}
