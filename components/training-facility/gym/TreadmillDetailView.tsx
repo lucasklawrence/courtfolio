@@ -36,6 +36,12 @@ import { RoughScatter } from '@/components/training-facility/shared/charts/Rough
 import { BodyweightOverlay } from '@/components/training-facility/shared/charts/BodyweightOverlay'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
+import { TrainingLoadChart } from './TrainingLoadChart'
+import {
+  computeTrainingLoad,
+  dailyTrimpSeries,
+  type TrainingLoadPoint,
+} from '@/lib/training-facility/training-load'
 
 const CHART_HEIGHT = 280
 const PACE_CHART_HEIGHT = 300
@@ -152,6 +158,25 @@ export function TreadmillDetailView(): JSX.Element {
     [runningSessions],
   )
   const paceVsHr = useMemo(() => paceAtHrPoints(runningSessions), [runningSessions])
+
+  // Training load aggregates ALL cardio activities (stair, running, walking) —
+  // TRIMP / ATL / CTL is a whole-athlete metric and excluding modalities
+  // would distort it. Pre-warm by running EMA from the earliest session in
+  // the dataset, then slice the result down to the active DateFilter window.
+  // This avoids the "zero ramp" artifact at the left edge that you get if
+  // you compute EMA only over the visible window.
+  const trainingLoad = useMemo<TrainingLoadPoint[]>(() => {
+    if (!data || data.sessions.length === 0) return []
+    const series = dailyTrimpSeries(data.sessions)
+    if (series.length === 0) return []
+    const full = computeTrainingLoad(series)
+    const fromMs = range.start.getTime()
+    const toMs = range.end.getTime()
+    return full.filter((p) => {
+      const t = p.date.getTime()
+      return t >= fromMs && t <= toMs
+    })
+  }, [data, range])
 
   // Date extent for the pace chart and bodyweight overlay must match exactly
   // so the two x-axes line up. Falls back to the active filter range when the
@@ -312,6 +337,24 @@ export function TreadmillDetailView(): JSX.Element {
                 />
               </ChartCard>
             </div>
+
+            <ChartCard
+              title="Training load"
+              helper="ATL (acute, 7d) vs. CTL (chronic, 28d) and TSB = CTL − ATL. Aggregates all cardio activities; bands shade the freshness zones."
+              wide
+            >
+              <div>
+                <TrainingLoadChart
+                  points={trainingLoad}
+                  width={paceWidth}
+                  height={PACE_CHART_HEIGHT}
+                  margin={defaultMargin}
+                  fontFamily={FONT_FAMILY}
+                  axisColor={chartPalette.inkSoft}
+                  emptyMessage="No training load in selected range"
+                />
+              </div>
+            </ChartCard>
 
             <SessionLogTable sessions={runningSessions} range={range} />
           </>
