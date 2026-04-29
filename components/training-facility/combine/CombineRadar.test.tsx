@@ -222,4 +222,33 @@ describe('CombineRadar', () => {
     expect(screen.getByText(/latest/i)).toBeInTheDocument()
     expect(screen.getByText(/earliest/i)).toBeInTheDocument()
   })
+
+  it('renders the earliest outline with stroke-dasharray (Codex P2 — rough.js strokeLineDash does not survive drawableToPaths)', () => {
+    const { container } = render(
+      <CombineRadar
+        entries={[
+          {
+            date: '2026-01-15',
+            shuttle_5_10_5_s: 5.4,
+            vertical_in: 22,
+            sprint_10y_s: 1.95,
+            bodyweight_lbs: 230,
+          },
+          {
+            date: '2026-04-10',
+            shuttle_5_10_5_s: 5.1,
+            vertical_in: 26,
+            sprint_10y_s: 1.8,
+            bodyweight_lbs: 222,
+          },
+        ]}
+      />,
+    )
+    // Bug being guarded: the rough.js `strokeLineDash` option silently
+    // drops through `drawableToPaths` (which only carries d/stroke/
+    // strokeWidth/fill), so the earliest outline previously rendered as
+    // a solid line. The dash now lives on the rendered <path> element.
+    const dashed = container.querySelectorAll('path[stroke-dasharray]')
+    expect(dashed.length).toBeGreaterThan(0)
+  })
 })

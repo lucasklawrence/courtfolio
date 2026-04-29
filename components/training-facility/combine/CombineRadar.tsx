@@ -250,18 +250,22 @@ export function CombineRadar({
         const drawable = gen.polygon(points, {
           stroke: chartPalette.courtLineCream,
           strokeWidth: 1.6,
-          strokeLineDash: [6, 4],
           roughness: 1.4,
           bowing: 1,
           seed: 51,
           fill: undefined,
         })
+        // `strokeDasharray` lives on the `<path>` element, not in the
+        // rough.js drawable — `drawableToPaths` only carries
+        // `d`/`stroke`/`strokeWidth`/`fill` (see `rough-svg.ts`), so a
+        // `strokeLineDash` rough option would be silently dropped.
         return drawableToPaths(drawable).map((p, i) => (
           <path
             key={`earliest-${i}`}
             d={p.d}
             stroke={p.stroke}
             strokeWidth={p.strokeWidth}
+            strokeDasharray="6 4"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
