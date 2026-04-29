@@ -36,7 +36,22 @@ export function JumpTrackerSection(): JSX.Element {
     }
   }, [])
 
-  const data = entries ?? []
+  // While the fetch is in flight (`entries === undefined`), render placeholder
+  // card frames instead of `entries ?? []`. The empty array would otherwise
+  // trigger each child's "no jumps logged yet" copy, flashing the empty state
+  // on every page load before the data arrives.
+  if (entries === undefined) {
+    return (
+      <section
+        aria-label="Jump tracker — silhouette and ceiling view"
+        aria-busy="true"
+        className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-[2fr_1fr]"
+      >
+        <div className="min-h-[300px] rounded-2xl border border-amber-300/20 bg-black/40 p-4 sm:p-6" />
+        <div className="min-h-[300px] rounded-2xl border border-amber-300/20 bg-black/40 p-4 sm:p-6" />
+      </section>
+    )
+  }
 
   return (
     <section
@@ -52,7 +67,7 @@ export function JumpTrackerSection(): JSX.Element {
             §9.3
           </span>
         </header>
-        <SilhouetteJumpTracker entries={data} />
+        <SilhouetteJumpTracker entries={entries} />
       </div>
       <div className="rounded-2xl border border-amber-300/20 bg-black/40 p-4 sm:p-6">
         <header className="mb-3 flex items-baseline justify-between">
@@ -63,7 +78,7 @@ export function JumpTrackerSection(): JSX.Element {
             §9.4
           </span>
         </header>
-        <CeilingView entries={data} />
+        <CeilingView entries={entries} />
       </div>
     </section>
   )
