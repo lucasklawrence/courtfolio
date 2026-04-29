@@ -76,26 +76,27 @@ export function TreadmillDetailView(): JSX.Element {
     Promise.all([getCardioData(), getMovementBenchmarks()])
       .then(([cardio, bench]) => {
         if (cancelled) return
-        setData(cardio)
-        setBenchmarks(bench)
-      })
-      .catch((err: unknown) => {
-        if (cancelled) return
-        const message = err instanceof Error ? err.message : String(err)
-        // Treat a 404 on either resource as empty rather than fatal — both
-        // files are gitignored (PRD §11 q7), so a fresh preview deploy
-        // legitimately has no data. Real failures (5xx, network, malformed
-        // JSON) still surface in the error panel.
-        if (/\b404\b/.test(message)) {
-          setData({
+        // `getCardioData()` resolves to `null` on a 404 (the dataset isn't
+        // produced yet — gitignored, PRD §11 q7). Substitute an empty
+        // `CardioData` so the component progresses past the loading panel
+        // and renders the empty-state branch. Without this, a fresh preview
+        // (no cardio.json yet) would sit on "Loading cardio data…" forever.
+        setData(
+          cardio ?? {
             imported_at: '',
             sessions: [],
             resting_hr_trend: [],
             vo2max_trend: [],
-          })
-          setBenchmarks([])
-          return
-        }
+          },
+        )
+        setBenchmarks(bench)
+      })
+      .catch((err: unknown) => {
+        if (cancelled) return
+        // Real failures (network, 5xx, malformed JSON) surface the error
+        // panel. The 404-as-empty case is handled in `.then` above; this
+        // path only runs for genuine errors that `getCardioData()` /
+        // `getMovementBenchmarks()` choose to throw.
         setLoadError(err instanceof Error ? err : new Error(String(err)))
       })
     return () => {

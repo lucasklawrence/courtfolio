@@ -54,25 +54,26 @@ export function StairDetailView(): JSX.Element {
     let cancelled = false
     getCardioData()
       .then((next) => {
-        if (!cancelled) setData(next)
-      })
-      .catch((err: unknown) => {
         if (cancelled) return
-        const message = err instanceof Error ? err.message : String(err)
-        // Treat a missing `cardio.json` (404) as "no data yet" rather than a
-        // hard error — the file is gitignored (PRD §11 open question 7), so
-        // a fresh preview deploy without an Apple Health import legitimately
-        // has no data. Other errors (network, 5xx, malformed JSON) still
-        // bubble up to the explicit error panel.
-        if (/\b404\b/.test(message)) {
-          setData({
+        // `getCardioData()` resolves to `null` on a 404 (gitignored cardio
+        // data, PRD §11 q7). Substitute an empty `CardioData` so the
+        // component progresses past the loading panel into the empty-state
+        // branch — without this, a fresh preview deploy with no
+        // `cardio.json` would sit on "Loading cardio data…" forever.
+        setData(
+          next ?? {
             imported_at: '',
             sessions: [],
             resting_hr_trend: [],
             vo2max_trend: [],
-          })
-          return
-        }
+          },
+        )
+      })
+      .catch((err: unknown) => {
+        if (cancelled) return
+        // Real failures (network, 5xx, malformed JSON) reach this branch.
+        // 404 is handled as "empty" inside `.then` above since
+        // `getCardioData()` no longer throws on missing data.
         setLoadError(err instanceof Error ? err : new Error(String(err)))
       })
     return () => {
