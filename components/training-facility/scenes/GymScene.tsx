@@ -1,5 +1,12 @@
 import Link from 'next/link'
 
+import type { CardioData } from '@/types/cardio'
+import {
+  deriveWeeklyCardioTotals,
+  pickLatestRestingHr,
+  pickLatestVo2max,
+} from '@/lib/training-facility/wall-fixtures'
+
 import {
   HardwoodFloor,
   SCENE_PALETTE,
@@ -22,6 +29,22 @@ const VIEWBOX_WIDTH = 1600
 const VIEWBOX_HEIGHT = 900
 const FLOOR_TOP = 600
 
+/** Cap matches the existing painted polylines so chart geometry stays stable between empty and populated states. */
+const HR_SPARKLINE_LIMIT = 9
+const VO2_TREND_LIMIT = 7
+
+/** Props for {@link GymScene}. */
+export interface GymSceneProps {
+  /**
+   * Cardio dataset used to hydrate the wall fixtures (HR monitor,
+   * VO2max whiteboard, wall scoreboard). Pass `null` (or omit) to render
+   * the fixtures with their painted placeholder values — the empty
+   * state of `getCardioData()` returning `null` before the first
+   * `cardio.json` import.
+   */
+  cardioData?: CardioData | null
+}
+
 /**
  * Side-on illustration of The Gym — the cardio sub-area of the Training
  * Facility. Mirrors PRD §7.4: stair climber centered, treadmill on the left,
@@ -31,10 +54,14 @@ const FLOOR_TOP = 600
  * draped over the treadmill rail, a water bottle by the bench, a basketball
  * tucked beside the stair climber — give the room warmth without crowding.
  *
- * Phase 1 build — equipment is decorative only. The door at the back is the
- * single interactive element so the two sub-area scenes connect spatially.
+ * Wall fixtures hydrate from `cardioData` when provided. Without data
+ * they render their painted placeholder values so the scene still reads
+ * as a populated room before any Apple Health import has landed.
  */
-export function GymScene() {
+export function GymScene({ cardioData = null }: GymSceneProps = {}) {
+  const hr = pickLatestRestingHr(cardioData, HR_SPARKLINE_LIMIT)
+  const vo2 = pickLatestVo2max(cardioData, VO2_TREND_LIMIT)
+  const weekly = deriveWeeklyCardioTotals(cardioData)
   return (
     <svg
       viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
@@ -97,9 +124,13 @@ export function GymScene() {
       />
 
       {/* Wall fixtures (back-most) */}
-      <HrMonitor />
-      <Vo2MaxWhiteboard />
-      <WallScoreboard />
+      <HrMonitor bpm={hr?.bpm} sparkline={hr?.series} />
+      <Vo2MaxWhiteboard value={vo2?.value} trend={vo2?.series} />
+      <WallScoreboard
+        sessions={weekly?.sessions}
+        durationLabel={weekly?.durationLabel}
+        milesLabel={weekly?.milesLabel}
+      />
 
       {/*
         Treadmill group — same hover/focus pattern as the stair-climber
