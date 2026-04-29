@@ -51,29 +51,27 @@ function formatLatestLabel(entry: JumpEntry): string {
 /**
  * `SilhouetteJumpTracker` — PRD §9.3 signature visualization.
  *
- * Renders a side-profile basketball player anchored to a ground line. The
- * latest jump silhouette sits frozen at peak height in solid rim-orange and
- * is labeled with date + inches; a faint standing-pose silhouette anchors
- * the floor as a "you start here" reference.
+ * Renders a basketball player anchored to a ground line, with hover/focus
+ * driving an animated jump cycle in place of a static overlay stack.
  *
  * **Idle state** (no hover, no focus inside): only the standing silhouette
- * and the latest jump silhouette are visible — keeps the view clean when
- * historical jumps are clustered within a few inches and would otherwise
- * pile into a single overlay.
+ * is on screen, parked on the floor with arms at sides. The orange jump
+ * figure is hidden so the view stays uncluttered when historical jumps
+ * cluster within a few inches.
  *
  * **Active state** (mouse over the panel OR keyboard focus inside any
- * silhouette): the standing silhouette fades out, older jump silhouettes
- * ghost in as a faded "trail" at their respective peak heights (staggered
- * newest-to-oldest), and the latest silhouette plays a peak ↔ floor jump
- * cycle on loop with a land-squash on each return — so the static stack
- * becomes an animated jump in progress. On idle return, every silhouette
- * settles back to its frozen peak.
+ * silhouette): the standing silhouette fades out, the orange (apex) figure
+ * fades in at floor crouch and yoyos floor ↔ peak with a gravity-feel fall
+ * (`repeatType: 'reverse'` turns the rise's `easeOut` into a falling
+ * `easeIn`), and older jump silhouettes ghost in as a staggered "trail" at
+ * their respective peak heights. The whole stack settles back to idle
+ * when the panel is no longer active.
  *
- * `prefers-reduced-motion` collapses the cycle to a static toggle: hover
- * still reveals the trail, but the latest figure stays at peak. Each
- * silhouette also carries a `<title>` and aria-label for screen readers,
- * and a corner tooltip surfaces date / vertical / bodyweight on
- * hover/focus.
+ * `prefers-reduced-motion` collapses the cycle to a static fade-in: hover
+ * still reveals the trail and the orange figure, but no looping motion.
+ * Each silhouette also carries a `<title>` and aria-label for screen
+ * readers, and a corner tooltip surfaces date / vertical / bodyweight on
+ * hover or focus.
  */
 export function SilhouetteJumpTracker({
   entries,
@@ -132,29 +130,26 @@ export function SilhouetteJumpTracker({
 
   // Animation state for the latest (orange) silhouette.
   //
-  // Idle: fully hidden (opacity 0), parked at floor in a slight crouch — so
-  //   the only figure on screen is the standing cream silhouette. The
-  //   "parked at floor" position means reactivation starts the cycle from a
-  //   physically meaningful crouch, not from a peak teleport.
-  // Active: fades in and yoyos between floor crouch (scaleY=0.85, y=verticalIn)
-  //   and peak extended (scaleY=1, y=0). `repeatType: 'reverse'` means the
-  //   easeOut applied to the rise becomes its inverse on the fall — i.e.
-  //   gravity-feeling acceleration into landing.
-  //
-  // Reduce-motion: when active, snap to peak with a static fade-in (no cycle).
-  const isAnimatedActive = isActive && !reduceMotion
+  // Idle: fully hidden (opacity 0), parked at floor in a slight crouch so
+  //   the only figure on screen is the standing cream silhouette. Parking
+  //   at floor crouch (instead of at peak) means reactivation rises from a
+  //   physically meaningful start, not from a teleport at peak.
+  // Active: fades in and yoyos between floor crouch (`scaleY=0.85, y=verticalIn`)
+  //   and peak extended (`scaleY=1, y=0`). `repeatType: 'reverse'` makes the
+  //   easeOut applied to the rise read as easeIn on the fall — gravity-feeling
+  //   acceleration into landing. With reduce-motion the transition collapses
+  //   to a single ease (no `repeat`), so the figure simply fades in at peak.
   const latestAnimateState = isActive
-    ? reduceMotion
-      ? { y: 0, scaleY: 1, opacity: 1 }
-      : { y: 0, scaleY: 1, opacity: 1 }
+    ? { y: 0, scaleY: 1, opacity: 1 }
     : { y: latest.verticalIn, scaleY: 0.85, opacity: 0 }
-  const latestTransition = isAnimatedActive
-    ? {
-        y: { duration: 0.8, repeat: Infinity, repeatType: 'reverse' as const, ease: 'easeOut' as const },
-        scaleY: { duration: 0.8, repeat: Infinity, repeatType: 'reverse' as const, ease: 'easeOut' as const },
-        opacity: { duration: 0.25 },
-      }
-    : { duration: 0.3 }
+  const latestTransition =
+    isActive && !reduceMotion
+      ? {
+          y: { duration: 0.8, repeat: Infinity, repeatType: 'reverse' as const, ease: 'easeOut' as const },
+          scaleY: { duration: 0.8, repeat: Infinity, repeatType: 'reverse' as const, ease: 'easeOut' as const },
+          opacity: { duration: 0.25 },
+        }
+      : { duration: 0.3 }
 
   return (
     <div
