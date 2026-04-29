@@ -42,10 +42,11 @@ export async function sendMagicLink(email: string): Promise<SendMagicLinkResult>
 }
 
 /**
- * Resolve the request's origin from headers. Vercel sets `host` and
- * `x-forwarded-proto` correctly on every deployment; local dev sets
- * `host` to `localhost:3000` and `x-forwarded-proto` is absent so we
- * default to `http`.
+ * Resolve the request's origin from headers. Vercel always sets
+ * `x-forwarded-proto`; local dev (regardless of whether the host
+ * resolves as `localhost`, `127.0.0.1`, or another loopback variant
+ * the e2e harness might use) never does. Default to `http` when the
+ * header is absent so dev redirects don't try TLS.
  *
  * @throws Error when the `host` header is missing — this should never
  *   happen on a real request and indicates a misconfigured proxy.
@@ -53,7 +54,7 @@ export async function sendMagicLink(email: string): Promise<SendMagicLinkResult>
 async function getRequestOrigin(): Promise<string> {
   const h = await headers()
   const host = h.get('host')
-  const proto = h.get('x-forwarded-proto') ?? (host?.startsWith('localhost') ? 'http' : 'https')
+  const proto = h.get('x-forwarded-proto') ?? 'http'
   if (!host) {
     throw new Error('Cannot determine request origin (missing host header).')
   }

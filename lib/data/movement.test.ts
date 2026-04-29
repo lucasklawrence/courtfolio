@@ -67,6 +67,30 @@ describe('getMovementBenchmarks', () => {
     await expect(getMovementBenchmarks()).resolves.toEqual([])
   })
 
+  it('strips null values so callers see absent fields, not `null`', async () => {
+    // Postgres returns `null` for omitted columns. The Benchmark type
+    // declares optional fields as `T | undefined`, so the null → absent
+    // mapping keeps downstream Zod re-validations and `entry.foo?.bar`
+    // patterns honest.
+    supabaseQuery.order.mockResolvedValueOnce({
+      data: [
+        {
+          date: '2026-04-15',
+          bodyweight_lbs: 232,
+          shuttle_5_10_5_s: null,
+          vertical_in: null,
+          sprint_10y_s: null,
+          notes: null,
+          is_complete: null,
+        },
+      ],
+      error: null,
+    })
+    await expect(getMovementBenchmarks()).resolves.toEqual([
+      { date: '2026-04-15', bodyweight_lbs: 232 },
+    ])
+  })
+
   it('throws a descriptive error when the query fails', async () => {
     supabaseQuery.order.mockResolvedValueOnce({
       data: null,

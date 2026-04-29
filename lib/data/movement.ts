@@ -39,7 +39,22 @@ export async function getMovementBenchmarks(): Promise<Benchmark[]> {
   if (error) {
     throw new Error(`Failed to load movement benchmarks: ${error.message}`)
   }
-  return (data ?? []) as Benchmark[]
+  return (data ?? []).map(rowToBenchmark)
+}
+
+/**
+ * Postgres returns `null` for omitted optional columns, but the
+ * `Benchmark` type declares fields as `T | undefined` (via `?:`). Map
+ * `null` → omitted so downstream Zod re-validations and the
+ * `entry.bodyweight_lbs?.toString()` patterns in the form behave the
+ * same as the legacy JSON shape (which used absent keys, never `null`).
+ */
+function rowToBenchmark(row: Record<string, unknown>): Benchmark {
+  const out: Record<string, unknown> = {}
+  for (const [key, value] of Object.entries(row)) {
+    if (value !== null) out[key] = value
+  }
+  return out as unknown as Benchmark
 }
 
 /**

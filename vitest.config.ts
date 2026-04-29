@@ -20,6 +20,12 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.'),
+      // `server-only` throws when imported outside a Next.js server
+      // context. Vitest doesn't honor the `react-server` export
+      // condition, so map it to the package's own no-op stub —
+      // server-only's job is the build-time guard, not runtime
+      // behavior, so the alias is safe.
+      'server-only': path.resolve(__dirname, 'node_modules/server-only/empty.js'),
     },
   },
   test: {
