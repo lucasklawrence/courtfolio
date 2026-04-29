@@ -3,24 +3,30 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { CombineDataIsland } from '@/components/training-facility/combine/CombineDataIsland'
+import { JumpTrackerSection } from '@/components/training-facility/combine/JumpTrackerSection'
 import { CombineScene } from '@/components/training-facility/scenes/CombineScene'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
-
-import { JumpTrackerSection } from '@/components/training-facility/combine/JumpTrackerSection'
-import { CombineScoreboardSection } from './CombineScoreboardSection'
 
 /**
  * Combine sub-area page (PRD §7.5 + §9). Stacks the room-level chrome
  * (back-to-court + back-to-Training-Facility nav), an eyebrow/title block,
- * the scoreboard summary header (PRD §9.1), and the side-on Combine scene
- * SVG. Richer visualizations (Trading Card, Silhouette, Shuttle Trace,
- * Sprint Race, Radar) land in subsequent issues.
+ * the shared scoreboard summary header (PRD §9.1) plus the dev-only
+ * "Log a session" entry form (PRD §7.5 view 7) and the Trading Card stat
+ * block (PRD §9.2), and the side-on Combine scene SVG. Richer
+ * visualizations (Silhouette, Shuttle Trace, Sprint Race, Radar) land in
+ * subsequent issues and plug into the same {@link CombineDataIsland} so
+ * they share live entry state.
  *
- * Gated behind {@link isTrainingFacilityEnabled} so the route stays 404'd
- * in production until the Training Facility ships publicly. The page
- * itself is a server component for the flag check; the scoreboard lives
- * in a client island so the data layer's relative-URL fetch can run after
- * hydration.
+ * Gated behind {@link isTrainingFacilityEnabled} so the route stays
+ * 404'd in production until the Training Facility ships publicly. The
+ * page itself is a server component for the flag check; the data
+ * island is a client component so the data layer's relative-URL fetch
+ * can run after hydration.
+ *
+ * @throws calls Next.js `notFound()` (which throws) when the
+ *   `NEXT_PUBLIC_ENABLE_TRAINING_FACILITY` flag is false, so the route
+ *   renders 404 on the public site until the flag flips.
  */
 export default function TrainingFacilityCombinePage(): JSX.Element {
   if (!isTrainingFacilityEnabled()) notFound()
@@ -57,7 +63,7 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
           </p>
         </header>
 
-        <CombineScoreboardSection />
+        <CombineDataIsland />
 
         <JumpTrackerSection />
 

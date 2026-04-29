@@ -8,15 +8,32 @@ import { DATA_BASE_URL } from './config';
 /** Dev-only API route that handles all benchmark writes (POST/PUT/DELETE). Built in #59. */
 const WRITE_ROUTE = '/api/dev/movement-benchmarks';
 
+/** Optional knobs for {@link getMovementBenchmarks}. */
+export interface GetMovementBenchmarksOptions {
+  /**
+   * Forwarded to `fetch` as `cache`. Defaults to the browser default (memory
+   * + HTTP cache). Pass `'no-store'` after a write to bypass any cached copy
+   * of the static JSON — the dev write API mutates the file in place, so a
+   * cached response would otherwise mask the new entry until reload.
+   */
+  cache?: RequestCache;
+}
+
 /**
  * Fetches all logged Combine benchmarks (`public/data/movement_benchmarks.json`).
  *
  * Returns an empty array if the file doesn't exist yet (typical pre-baseline state).
  *
+ * @param options - See {@link GetMovementBenchmarksOptions}.
  * @throws on non-404 fetch failures.
  */
-export async function getMovementBenchmarks(): Promise<Benchmark[]> {
-  const res = await fetch(`${DATA_BASE_URL}/movement_benchmarks.json`);
+export async function getMovementBenchmarks(
+  options?: GetMovementBenchmarksOptions,
+): Promise<Benchmark[]> {
+  const res = await fetch(
+    `${DATA_BASE_URL}/movement_benchmarks.json`,
+    options?.cache ? { cache: options.cache } : undefined,
+  );
   if (res.status === 404) return [];
   if (!res.ok) {
     throw new Error(

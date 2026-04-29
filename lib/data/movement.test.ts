@@ -49,6 +49,20 @@ describe('getMovementBenchmarks', () => {
     fetchMock.mockResolvedValueOnce(new Response(null, { status: 500, statusText: 'oops' }))
     await expect(getMovementBenchmarks()).rejects.toThrow(/500/)
   })
+
+  it('forwards `cache: "no-store"` when the caller wants to bypass the HTTP cache after a write', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse([]))
+    await getMovementBenchmarks({ cache: 'no-store' })
+    const [, init] = fetchMock.mock.calls[0]
+    expect(init).toEqual({ cache: 'no-store' })
+  })
+
+  it('omits the init bag entirely when no options are passed (preserves default fetch caching)', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse([]))
+    await getMovementBenchmarks()
+    const [, init] = fetchMock.mock.calls[0]
+    expect(init).toBeUndefined()
+  })
 })
 
 describe('logBenchmark', () => {
