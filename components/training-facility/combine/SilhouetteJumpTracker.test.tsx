@@ -30,10 +30,17 @@ describe('SilhouetteJumpTracker', () => {
     expect(screen.getByText(/Mar 15.*23/)).toBeInTheDocument()
   })
 
-  it('renders one focusable silhouette button per jump entry', () => {
+  it('exposes only the latest silhouette idle, all jumps when the panel is active', async () => {
+    // Idle: only the latest jump is in the a11y tree — older silhouettes are
+    // aria-hidden until the panel becomes active (mouse over OR focus inside),
+    // matching the design's "clean idle, animated on hover" contract.
+    const user = userEvent.setup()
     render(<SilhouetteJumpTracker entries={baseEntries} />)
-    const buttons = screen.getAllByRole('button')
-    expect(buttons).toHaveLength(baseEntries.length)
+    expect(screen.getAllByRole('button')).toHaveLength(1)
+
+    // Activating the panel reveals the older silhouettes as focusable buttons.
+    await user.hover(screen.getByRole('button'))
+    expect(screen.getAllByRole('button')).toHaveLength(baseEntries.length)
   })
 
   it('exposes a per-jump aria-label with vertical and bodyweight', () => {
@@ -66,18 +73,25 @@ describe('SilhouetteJumpTracker', () => {
     expect(tooltip).toHaveTextContent('232 lbs')
   })
 
-  it('drops incomplete sessions before rendering buttons', () => {
+  it('drops incomplete sessions before rendering buttons', async () => {
+    const user = userEvent.setup()
     const entries: Benchmark[] = [
       { date: '2026-01-15', vertical_in: 19 },
       { date: '2026-02-15', vertical_in: 99, is_complete: false },
       { date: '2026-03-15', vertical_in: 23 },
     ]
     render(<SilhouetteJumpTracker entries={entries} />)
-    const buttons = screen.getAllByRole('button')
-    expect(buttons).toHaveLength(2)
     // Latest visible label should reference the 23" entry, not the dropped 99.
     expect(screen.getByText(/Mar 15.*23/)).toBeInTheDocument()
     expect(screen.queryByText(/99/)).not.toBeInTheDocument()
+
+    // Active panel reveals the trail; only the two complete entries become
+    // focusable, the dropped 99 never enters the DOM at any state.
+    await user.hover(screen.getByRole('button'))
+    expect(screen.getAllByRole('button')).toHaveLength(2)
+    expect(
+      screen.queryByRole('button', { name: /2026-02-15/ }),
+    ).not.toBeInTheDocument()
   })
 
   it('sizes the viewBox to fit the peak historical jump, even when the latest is a regression', () => {

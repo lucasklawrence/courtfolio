@@ -32,6 +32,8 @@ const FIGURE_CX = 26
 const AXIS_X = 50
 /** Visual cushion above the tallest jump-touch so the fingertip never kisses the top edge. */
 const HEADROOM_IN = 12
+/** Standing-pose body height as a fraction of standing reach (head crown vs fingertip-overhead). */
+const STANDING_BODY_HEIGHT_RATIO = 0.91
 
 /**
  * Format the latest-jump callout text.
@@ -49,20 +51,29 @@ function formatLatestLabel(entry: JumpEntry): string {
 /**
  * `SilhouetteJumpTracker` — PRD §9.3 signature visualization.
  *
- * Renders a side-profile basketball player anchored to a ground line with
- * frozen jump silhouettes stacked at peak height. The latest jump is solid
- * rim-orange and labeled with date + inches; older jumps fade behind it
- * toward grey/cream. A dashed standing-reach line marks the anatomical
- * baseline; the right-edge axis ticks every 6" above that line.
+ * Renders a side-profile basketball player anchored to a ground line. The
+ * latest jump silhouette sits frozen at peak height in solid rim-orange and
+ * is labeled with date + inches; a faint standing-pose silhouette anchors
+ * the floor as a "you start here" reference.
  *
- * On mount the latest silhouette rises from the floor with an
- * over-and-settle keyframe (no library — just `animate` keyframes), then
- * older silhouettes fade in lowest-to-highest. `prefers-reduced-motion`
- * collapses every animation to an instant render.
+ * **Idle state** (no hover, no focus inside): only the standing silhouette
+ * and the latest jump silhouette are visible — keeps the view clean when
+ * historical jumps are clustered within a few inches and would otherwise
+ * pile into a single overlay.
  *
- * Hover, focus, or tap a frozen silhouette to surface its date / vertical /
- * bodyweight in a corner tooltip. Each silhouette also carries a `<title>`
- * for screen readers and native browser hover.
+ * **Active state** (mouse over the panel OR keyboard focus inside any
+ * silhouette): the standing silhouette fades out, older jump silhouettes
+ * ghost in as a faded "trail" at their respective peak heights (staggered
+ * newest-to-oldest), and the latest silhouette plays a peak ↔ floor jump
+ * cycle on loop with a land-squash on each return — so the static stack
+ * becomes an animated jump in progress. On idle return, every silhouette
+ * settles back to its frozen peak.
+ *
+ * `prefers-reduced-motion` collapses the cycle to a static toggle: hover
+ * still reveals the trail, but the latest figure stays at peak. Each
+ * silhouette also carries a `<title>` and aria-label for screen readers,
+ * and a corner tooltip surfaces date / vertical / bodyweight on
+ * hover/focus.
  */
 export function SilhouetteJumpTracker({
   entries,
@@ -73,6 +84,12 @@ export function SilhouetteJumpTracker({
   const reduceMotion = useReducedMotion()
   const jumps = selectJumpEntries(entries)
   const [hovered, setHovered] = useState<JumpEntry | null>(null)
+  const [isMouseOver, setIsMouseOver] = useState(false)
+
+  // The panel is "active" whenever the mouse is over its bounds OR any
+  // silhouette inside has keyboard focus. Reveals the trail and starts the
+  // jump cycle.
+  const isActive = isMouseOver || hovered !== null
 
   if (jumps.length === 0) {
     return (
@@ -87,6 +104,8 @@ export function SilhouetteJumpTracker({
   }
 
   const latest = jumps[jumps.length - 1]
+  const olderJumps = jumps.slice(0, -1)
+
   // Size the viewBox + y-axis from the *peak* historical jump, not the latest.
   // If the athlete regresses (a later session lower than a prior peak), an
   // older silhouette would otherwise clip off the top of the viewBox and the
@@ -106,8 +125,47 @@ export function SilhouetteJumpTracker({
     tickInches.push(inches)
   }
 
+  // Latest silhouette positioning (final, peak-of-jump pose)
+  const latestTopY = floorY - (latest.verticalIn + standingReachIn)
+  const latestBottomY = floorY - latest.verticalIn
+  const latestAccessibleLabel = buildAccessibleLabel(latest)
+
+  // Animation state for the latest silhouette.
+  // Mount: rise from floor with over-and-settle (one-time entrance).
+  // Idle: hold at peak (y=0, scaleY=1).
+  // Active (no reduce-motion): peak ↔ floor cycle on loop with land squash.
+  const latestInitialState = reduceMotion ? false : { y: latest.verticalIn, scaleY: 0.86 }
+  const latestAnimateState =
+    isActive && !reduceMotion
+      ? {
+          y: [0, latest.verticalIn, 0],
+          scaleY: [1, 0.85, 1],
+        }
+      : { y: 0, scaleY: 1 }
+  const latestTransition =
+    isActive && !reduceMotion
+      ? {
+          // easeIn on descent (gravity accel), easeOut on rise (deceleration toward peak).
+          duration: 1.6,
+          times: [0, 0.4, 1],
+          ease: ['easeIn', 'easeOut'] as ['easeIn', 'easeOut'],
+          repeat: Infinity,
+        }
+      : {
+          duration: 1.1,
+          ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+          times: [0, 0.65, 1],
+        }
+
   return (
-    <div className={`relative ${className}`}>
+    <div
+      className={`relative ${className}`}
+      onMouseEnter={() => setIsMouseOver(true)}
+      onMouseLeave={() => {
+        setIsMouseOver(false)
+        setHovered(null)
+      }}
+    >
       <svg
         viewBox={`0 0 ${VIEW_W_IN} ${viewHeightIn}`}
         preserveAspectRatio="xMidYMid meet"
@@ -187,94 +245,111 @@ export function SilhouetteJumpTracker({
           )
         })}
 
-        {/* Standing silhouette — anchored to the floor, head at standing reach */}
-        <Silhouette
-          cx={FIGURE_CX}
-          topY={standingReachY}
-          bottomY={floorY}
-          color={chartPalette.courtLineCream}
-          opacity={0.32}
-        />
+        {/* Standing silhouette — visible idle as a "ground anchor"; fades out
+            when the panel becomes active so the cycle has a clean stage. */}
+        <motion.g
+          animate={{ opacity: isActive ? 0 : 0.5 }}
+          transition={{ duration: 0.4 }}
+          aria-hidden="true"
+        >
+          <Silhouette
+            cx={FIGURE_CX}
+            topY={floorY - standingReachIn * STANDING_BODY_HEIGHT_RATIO}
+            bottomY={floorY}
+            pose="standing"
+            color={chartPalette.courtLineCream}
+          />
+        </motion.g>
 
-        {/* Frozen jump silhouettes, oldest → newest. Latest renders on top. */}
-        {jumps.map((entry, i) => {
-          const isLatest = i === jumps.length - 1
-          const isHovered = hovered?.date === entry.date
-          const baseOpacity = isLatest ? 1 : freshnessOpacity(i, jumps.length) * 0.7
-          const color = isLatest ? chartPalette.rimOrange : chartPalette.courtLineCream
+        {/* Older jump silhouettes — hidden idle; ghost in on active as a
+            staggered trail. Newest-older fades in first so the eye reads
+            them as "the recent journey to the latest peak." */}
+        {olderJumps.map((entry, i) => {
           const finalTopY = floorY - (entry.verticalIn + standingReachIn)
           const finalBottomY = floorY - entry.verticalIn
-
-          // Latest: rise from floor with a parabolic over-and-settle.
-          // Older: fade in at final position, lowest-to-highest after the latest lands.
-          const initialState = reduceMotion
-            ? false
-            : isLatest
-              ? { y: entry.verticalIn, scaleY: 0.86 }
-              : { opacity: 0 }
-          const animateState = reduceMotion
-            ? undefined
-            : isLatest
-              ? {
-                  y: [entry.verticalIn, -entry.verticalIn * 0.05, 0],
-                  scaleY: [0.86, 1, 1],
-                }
-              : { opacity: baseOpacity }
-          const transition = reduceMotion
-            ? undefined
-            : isLatest
-              ? { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const, times: [0, 0.65, 1] }
-              : { duration: 0.6, delay: 1.0 + i * 0.18 }
-
-          const tooltipParts = [
-            entry.date,
-            `Vertical: ${entry.verticalIn}"`,
-            entry.bodyweightLbs !== undefined ? `Bodyweight: ${entry.bodyweightLbs} lbs` : null,
-          ].filter((s): s is string => Boolean(s))
-          const accessibleLabel = `${entry.date} jump — ${tooltipParts.slice(1).join(', ')}`
+          const trailOpacity = freshnessOpacity(i, olderJumps.length, 0.2) * 0.7
+          const accessibleLabel = buildAccessibleLabel(entry)
+          const isHovered = hovered?.date === entry.date
+          // Stagger newest-to-oldest: most-recent older first, then back through history.
+          const stagger = (olderJumps.length - 1 - i) * 0.08
 
           return (
             <motion.g
               key={entry.date}
               role="button"
-              tabIndex={0}
+              tabIndex={isActive ? 0 : -1}
               aria-label={accessibleLabel}
+              aria-hidden={isActive ? undefined : true}
               onMouseEnter={() => setHovered(entry)}
               onMouseLeave={() => setHovered((h) => (h?.date === entry.date ? null : h))}
               onFocus={() => setHovered(entry)}
               onBlur={() => setHovered((h) => (h?.date === entry.date ? null : h))}
-              onClick={() => setHovered((h) => (h?.date === entry.date ? null : entry))}
-              style={{
-                cursor: 'pointer',
-                transformBox: 'fill-box',
-                transformOrigin: 'center bottom',
+              animate={{
+                opacity: isActive ? (isHovered ? Math.min(1, trailOpacity + 0.25) : trailOpacity) : 0,
               }}
-              initial={initialState}
-              animate={animateState}
-              transition={transition}
+              transition={{
+                duration: 0.45,
+                delay: isActive && !reduceMotion ? 0.25 + stagger : 0,
+              }}
+              style={{ cursor: 'pointer', pointerEvents: isActive ? 'auto' : 'none' }}
             >
               <title>{accessibleLabel}</title>
               <Silhouette
                 cx={FIGURE_CX}
                 topY={finalTopY}
                 bottomY={finalBottomY}
-                color={color}
-                opacity={isHovered ? Math.min(1, baseOpacity + 0.25) : baseOpacity}
+                pose="apex"
+                color={chartPalette.courtLineCream}
               />
-              {isLatest && (
-                <text
-                  x={FIGURE_CX + 8}
-                  y={finalTopY + 2.5}
-                  fontSize={3}
-                  fill={chartPalette.rimOrange}
-                  fontFamily="var(--font-patrick-hand, 'Patrick Hand', cursive)"
-                >
-                  {formatLatestLabel(entry)}
-                </text>
-              )}
             </motion.g>
           )
         })}
+
+        {/* Latest jump silhouette — frozen at peak idle, jumping on loop
+            when the panel is active. */}
+        <motion.g
+          role="button"
+          tabIndex={0}
+          aria-label={latestAccessibleLabel}
+          onMouseEnter={() => setHovered(latest)}
+          onMouseLeave={() => setHovered((h) => (h?.date === latest.date ? null : h))}
+          onFocus={() => setHovered(latest)}
+          onBlur={() => setHovered((h) => (h?.date === latest.date ? null : h))}
+          initial={latestInitialState}
+          animate={latestAnimateState}
+          transition={latestTransition}
+          style={{
+            cursor: 'pointer',
+            transformBox: 'fill-box',
+            transformOrigin: 'center bottom',
+          }}
+        >
+          <title>{latestAccessibleLabel}</title>
+          <Silhouette
+            cx={FIGURE_CX}
+            topY={latestTopY}
+            bottomY={latestBottomY}
+            pose="apex"
+            color={chartPalette.rimOrange}
+          />
+        </motion.g>
+
+        {/* Latest jump label — fixed at the peak-fingertip position so it
+            doesn't bounce with the cycle. Fades out when active so the
+            label doesn't clutter the animated state. */}
+        <motion.text
+          x={FIGURE_CX + 8}
+          y={latestTopY + 2.5}
+          fontSize={3}
+          fill={chartPalette.rimOrange}
+          fontFamily="var(--font-patrick-hand, 'Patrick Hand', cursive)"
+          animate={{ opacity: isActive ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
+          style={{ pointerEvents: 'none' }}
+          aria-hidden="true"
+        >
+          {formatLatestLabel(latest)}
+        </motion.text>
       </svg>
 
       {hovered && (
@@ -292,4 +367,17 @@ export function SilhouetteJumpTracker({
       )}
     </div>
   )
+}
+
+/**
+ * Build the per-silhouette aria-label exposing date + vertical (+ bodyweight
+ * when logged). Keeps the date prefix consistent so screen-reader navigation
+ * by-button reads as a chronological list.
+ */
+function buildAccessibleLabel(entry: JumpEntry): string {
+  const parts = [`Vertical: ${entry.verticalIn}"`]
+  if (entry.bodyweightLbs !== undefined) {
+    parts.push(`Bodyweight: ${entry.bodyweightLbs} lbs`)
+  }
+  return `${entry.date} jump — ${parts.join(', ')}`
 }
