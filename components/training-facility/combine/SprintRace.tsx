@@ -562,6 +562,16 @@ function useSprintElapsed({ runs, replayKey, reducedMotion }: UseSprintElapsedAr
     () => runs.reduce((acc, r) => Math.max(acc, r.seconds), 0),
     [runs],
   )
+  // Stable identity for the *set* of runs, so a newly logged entry
+  // restarts the race even when it's faster than the previous slowest
+  // and `maxSeconds` is therefore unchanged. Without this dep, a saved
+  // sprint that beats every prior run would render its dot already at
+  // the finish line — not the "new entry auto-races vs past selves"
+  // behaviour the Combine entry-form flow expects.
+  const runsKey = useMemo(
+    () => runs.map((r) => `${r.date}:${r.seconds}`).join('|'),
+    [runs],
+  )
 
   useEffect(() => {
     if (reducedMotion || maxSeconds <= 0) {
@@ -587,7 +597,7 @@ function useSprintElapsed({ runs, replayKey, reducedMotion }: UseSprintElapsedAr
       cancelled = true
       cancelAnimationFrame(raf)
     }
-  }, [maxSeconds, replayKey, reducedMotion])
+  }, [maxSeconds, runsKey, replayKey, reducedMotion])
 
   return elapsed
 }
