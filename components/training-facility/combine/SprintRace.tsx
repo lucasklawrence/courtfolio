@@ -205,6 +205,18 @@ export function SprintRace({ entries }: SprintRaceProps): JSX.Element | null {
 
   if (!entries || runs.length === 0) return null
 
+  // The chip-sync effect populates `enabled` only after the first render
+  // commits, so the very first paint with loaded entries would otherwise
+  // show an empty track + all-off chips for one frame before the effect
+  // backfills. Treat the initial "nothing has been seen yet" state as
+  // "everything visible" so the first paint already matches the
+  // post-effect state — and reduced-motion's snap-to-finish behaviour
+  // takes effect immediately instead of after a flash.
+  const effectiveEnabled =
+    enabled.size === 0 && knownDatesRef.current.size === 0
+      ? new Set(runs.map((r) => r.date))
+      : enabled
+
   return (
     <section
       aria-label="10-yard sprint race vs past selves"
@@ -212,13 +224,13 @@ export function SprintRace({ entries }: SprintRaceProps): JSX.Element | null {
     >
       <SprintTrackSvg
         runs={runs}
-        enabled={enabled}
+        enabled={effectiveEnabled}
         replayKey={replayKey}
         reducedMotion={reducedMotion === true}
       />
       <SprintControls
         runs={runs}
-        enabled={enabled}
+        enabled={effectiveEnabled}
         onToggle={(date) =>
           setEnabled((prev) => {
             const next = new Set(prev)
