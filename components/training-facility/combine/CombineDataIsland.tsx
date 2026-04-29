@@ -15,6 +15,7 @@ import { CombineEntryForm } from './CombineEntryForm'
 import { CombineHistoryTable } from './CombineHistoryTable'
 import { CombineRadar } from './CombineRadar'
 import { CombineTradingCard } from './CombineTradingCard'
+import { ShuttleTrace } from './ShuttleTrace'
 
 /**
  * Owns the Combine page's shared `entries` state and edit/delete
@@ -140,6 +141,7 @@ export function CombineDataIsland(): JSX.Element {
     <div className="flex flex-col gap-10">
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
       <CombineTradingCard entries={entries} />
+      <ShuttleTrace entries={entries} />
       <CombineRadar entries={entries} />
       <CombineEntryForm
         onSaved={refetch}
