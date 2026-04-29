@@ -22,7 +22,7 @@ test.describe('training facility disabled', () => {
 
       await expect(page.getByText('AIRBALL.')).toBeVisible()
       await expect(page.getByText(route)).toBeVisible()
-      await expect(page.getByRole('link', { name: /back to home court/i })).toBeVisible()
+      await expect(page.getByRole('link', { name: /home court/i })).toBeVisible()
     })
   }
 })

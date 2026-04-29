@@ -4,24 +4,33 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { CombineDataIsland } from '@/components/training-facility/combine/CombineDataIsland'
+import { JumpTrackerSection } from '@/components/training-facility/combine/JumpTrackerSection'
 import { CombineScene } from '@/components/training-facility/scenes/CombineScene'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
  * Combine sub-area page (PRD §7.5 + §9). Stacks the room-level chrome
- * (back-to-court + back-to-Training-Facility nav), an eyebrow/title block,
- * the shared scoreboard summary header (PRD §9.1) plus the dev-only
- * "Log a session" entry form (PRD §7.5 view 7), the Trading Card stat
- * block (PRD §9.2), the four-axis Radar (PRD §9.7), and the side-on
- * Combine scene SVG. The remaining visualizations (Silhouette, Shuttle
- * Trace, Sprint Race) land in subsequent issues and plug into the same
- * {@link CombineDataIsland} so they share live entry state.
+ * (back-to-court + back-to-Training-Facility nav), an eyebrow/title
+ * block, and the data-driven body.
+ *
+ * The body splits across three client islands so each can fetch
+ * independently and render at its own readiness pace:
+ * - {@link CombineDataIsland}: scoreboard summary header (PRD §9.1),
+ *   Trading Card stat block (PRD §9.2), four-axis Radar (PRD §9.7),
+ *   dev-only entry form (PRD §7.5 view 7), and benchmark history table
+ *   (PRD §7.5 view 8 + §7.11 CRUD). The form and history share
+ *   edit-mode state so writes from either surface land everywhere with
+ *   no reload.
+ * - {@link JumpTrackerSection}: silhouette + ceiling-view pair (PRD
+ *   §9.3 / §9.4).
+ * - The Combine scene art SVG below — placeholder until the remaining
+ *   visualizations (Shuttle, Sprint) replace it.
  *
  * Gated behind {@link isTrainingFacilityEnabled} so the route stays
  * 404'd in production until the Training Facility ships publicly. The
- * page itself is a server component for the flag check; the data
- * island is a client component so the data layer's relative-URL fetch
- * can run after hydration.
+ * page itself is a server component for the flag check; the islands
+ * are client components so the data layer's relative-URL fetch can run
+ * after hydration.
  *
  * @throws calls Next.js `notFound()` (which throws) when the
  *   `NEXT_PUBLIC_ENABLE_TRAINING_FACILITY` flag is false, so the route
@@ -63,6 +72,8 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
         </header>
 
         <CombineDataIsland />
+
+        <JumpTrackerSection />
 
         <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
           <CombineScene />

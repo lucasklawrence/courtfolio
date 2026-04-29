@@ -19,6 +19,8 @@ import { CombineDataIsland } from './CombineDataIsland'
 
 const getMovementBenchmarksMock = vi.fn()
 const logBenchmarkMock = vi.fn()
+const updateBenchmarkMock = vi.fn()
+const deleteBenchmarkMock = vi.fn()
 
 vi.mock('@/lib/data/movement', async () => {
   const actual = await vi.importActual<typeof import('@/lib/data/movement')>(
@@ -28,12 +30,16 @@ vi.mock('@/lib/data/movement', async () => {
     ...actual,
     getMovementBenchmarks: (...args: unknown[]) => getMovementBenchmarksMock(...args),
     logBenchmark: (...args: unknown[]) => logBenchmarkMock(...args),
+    updateBenchmark: (...args: unknown[]) => updateBenchmarkMock(...args),
+    deleteBenchmark: (...args: unknown[]) => deleteBenchmarkMock(...args),
   }
 })
 
 beforeEach(() => {
   getMovementBenchmarksMock.mockReset()
   logBenchmarkMock.mockReset()
+  updateBenchmarkMock.mockReset()
+  deleteBenchmarkMock.mockReset()
 })
 
 afterEach(() => {
@@ -88,6 +94,158 @@ describe('CombineDataIsland', () => {
 
     await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(2))
     expect(getMovementBenchmarksMock.mock.calls[1][0]).toEqual({ cache: 'no-store' })
+  })
+
+  it('renders the history table once entries fetch resolves', async () => {
+    getMovementBenchmarksMock.mockResolvedValueOnce([
+      { date: '2026-04-15', bodyweight_lbs: 232 },
+    ])
+    render(<CombineDataIsland />)
+    await waitFor(() =>
+      expect(screen.getByText(/benchmark history/i)).toBeInTheDocument(),
+    )
+    await waitFor(() => expect(screen.getByText('2026-04-15')).toBeInTheDocument())
+  })
+
+  it('clicking Edit on a row puts the entry form into edit mode (prefilled, locked date)', async () => {
+    vi.stubEnv('NODE_ENV', 'development')
+    getMovementBenchmarksMock.mockResolvedValueOnce([
+      { date: '2026-04-15', bodyweight_lbs: 232 },
+    ])
+    const user = userEvent.setup()
+    render(<CombineDataIsland />)
+
+    await waitFor(() =>
+      expect(
+        screen.getByRole('button', { name: /edit benchmark from 2026-04-15/i }),
+      ).toBeInTheDocument(),
+    )
+    await user.click(
+      screen.getByRole('button', { name: /edit benchmark from 2026-04-15/i }),
+    )
+
+    expect(screen.getByText(/edit session for 2026-04-15/i)).toBeInTheDocument()
+    const dateInput = screen.getByLabelText(/^date/i) as HTMLInputElement
+    expect(dateInput.value).toBe('2026-04-15')
+    expect(dateInput.readOnly).toBe(true)
+    expect((screen.getByLabelText(/bodyweight/i) as HTMLInputElement).value).toBe(
+      '232',
+    )
+  })
+
+  it('Delete with confirmation calls deleteBenchmark and refetches', async () => {
+    vi.stubEnv('NODE_ENV', 'development')
+    getMovementBenchmarksMock.mockResolvedValueOnce([
+      { date: '2026-04-15', bodyweight_lbs: 232 },
+    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([])
+    deleteBenchmarkMock.mockResolvedValueOnce(undefined)
+    const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true)
+    const user = userEvent.setup()
+    render(<CombineDataIsland />)
+
+    await waitFor(() =>
+      expect(
+        screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }),
+      ).toBeInTheDocument(),
+    )
+    await user.click(
+      screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }),
+    )
+
+    expect(confirmSpy).toHaveBeenCalledWith(
+      expect.stringMatching(/delete benchmark from 2026-04-15.*cannot be undone/i),
+    )
+    await waitFor(() => expect(deleteBenchmarkMock).toHaveBeenCalledWith('2026-04-15'))
+    await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(2))
+    expect(getMovementBenchmarksMock.mock.calls[1][0]).toEqual({ cache: 'no-store' })
+    confirmSpy.mockRestore()
+  })
+
+  it('Delete cancelled in confirm() short-circuits — no API call, no refetch', async () => {
+    vi.stubEnv('NODE_ENV', 'development')
+    getMovementBenchmarksMock.mockResolvedValueOnce([
+      { date: '2026-04-15', bodyweight_lbs: 232 },
+    ])
+    const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(false)
+    const user = userEvent.setup()
+    render(<CombineDataIsland />)
+
+    await waitFor(() =>
+      expect(
+        screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }),
+      ).toBeInTheDocument(),
+    )
+    await user.click(
+      screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }),
+    )
+
+    expect(deleteBenchmarkMock).not.toHaveBeenCalled()
+    expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(1)
+    confirmSpy.mockRestore()
+  })
+
+  it('Mark-incomplete on a complete row sends is_complete: false', async () => {
+    vi.stubEnv('NODE_ENV', 'development')
+    getMovementBenchmarksMock.mockResolvedValueOnce([
+      { date: '2026-04-15', bodyweight_lbs: 232 },
+    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([
+      { date: '2026-04-15', bodyweight_lbs: 232, is_complete: false },
+    ])
+    updateBenchmarkMock.mockResolvedValueOnce(undefined)
+    const user = userEvent.setup()
+    render(<CombineDataIsland />)
+
+    await waitFor(() =>
+      expect(
+        screen.getByRole('button', {
+          name: /mark benchmark from 2026-04-15 as incomplete/i,
+        }),
+      ).toBeInTheDocument(),
+    )
+    await user.click(
+      screen.getByRole('button', {
+        name: /mark benchmark from 2026-04-15 as incomplete/i,
+      }),
+    )
+
+    await waitFor(() =>
+      expect(updateBenchmarkMock).toHaveBeenCalledWith('2026-04-15', {
+        is_complete: false,
+      }),
+    )
+    await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(2))
+  })
+
+  it('Mark-complete on an incomplete row sends is_complete: true', async () => {
+    vi.stubEnv('NODE_ENV', 'development')
+    getMovementBenchmarksMock.mockResolvedValueOnce([
+      { date: '2026-04-15', bodyweight_lbs: 232, is_complete: false },
+    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([])
+    updateBenchmarkMock.mockResolvedValueOnce(undefined)
+    const user = userEvent.setup()
+    render(<CombineDataIsland />)
+
+    await waitFor(() =>
+      expect(
+        screen.getByRole('button', {
+          name: /mark benchmark from 2026-04-15 as complete/i,
+        }),
+      ).toBeInTheDocument(),
+    )
+    await user.click(
+      screen.getByRole('button', {
+        name: /mark benchmark from 2026-04-15 as complete/i,
+      }),
+    )
+
+    await waitFor(() =>
+      expect(updateBenchmarkMock).toHaveBeenCalledWith('2026-04-15', {
+        is_complete: true,
+      }),
+    )
   })
 
   it('does NOT let a stale mount-time fetch overwrite fresher post-save data (Codex P2 race)', async () => {
