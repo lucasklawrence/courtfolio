@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState, type JSX } from 'react'
 import type { CardioData, CardioSession } from '@/types/cardio'
-import { getCardioData } from '@/lib/data'
+import type { Benchmark } from '@/types/movement'
+import { getCardioData, getMovementBenchmarks } from '@/lib/data'
 import {
   DateFilter,
   endOfDay,
@@ -13,67 +14,84 @@ import {
 } from '@/components/training-facility/shared/DateFilter'
 import {
   aggregateHrZoneSeconds,
-  filterStairSessions,
   formatDuration,
   parseSessionDate,
   perSessionAvgHr,
-} from '@/lib/training-facility/stair'
+} from '@/lib/training-facility/cardio-shared'
+import {
+  cardiacEfficiencyPoints,
+  formatDistanceMiles,
+  formatPaceCellFromSecPerKm,
+  formatPacePerMile,
+  paceAtHrPoints,
+  paceTrendPoints,
+  type PaceTrendPoint,
+} from '@/lib/training-facility/running'
+import { filterWalkingSessions } from '@/lib/training-facility/walking'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { HrZoneBars } from './HrZoneBars'
 import { AvgHrBars } from './AvgHrBars'
+import { RoughLine } from '@/components/training-facility/shared/charts/RoughLine'
+import { RoughScatter } from '@/components/training-facility/shared/charts/RoughScatter'
+import { BodyweightOverlay } from '@/components/training-facility/shared/charts/BodyweightOverlay'
+import { chartPalette } from '@/components/training-facility/shared/charts/palette'
+import { defaultMargin } from '@/components/training-facility/shared/charts/types'
 
 const CHART_HEIGHT = 280
+const PACE_CHART_HEIGHT = 300
 const MIN_CHART_WIDTH = 280
 const DEFAULT_CHART_WIDTH = 560
+const DEFAULT_PACE_WIDTH = 880
 const EARLIEST_FALLBACK = new Date(2024, 0, 1)
+const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
 
 /**
- * Stair-climber detail view (PRD §7.4) — the first Gym detail surface.
+ * Track detail view (PRD §7.4) — walking-modality charts over the cardio
+ * data layer. Mirrors `TreadmillDetailView` for shared concerns (HR-zone bars,
+ * per-session avg-HR, session log, pace trend with bodyweight overlay,
+ * cardiac efficiency, pace-at-HR scatter) — the only differences are the
+ * walking-only filter and the equipment-specific copy framing walking as
+ * recovery / aerobic-base work rather than the speed work treadmill is for.
  *
- * Composes three views fed by `getCardioData()` and a shared `DateFilter`:
- *   1. Time-in-zone bars (`HrZoneBars`) — total seconds per Z1–Z5, summed
- *      across the filtered window.
- *   2. Per-session avg-HR bars (`AvgHrBars`) — one bar per session in range.
- *   3. Session log table — one row per session, oldest → newest.
+ * Shares pace projection helpers with running (see {@link ./running}) since
+ * those are activity-agnostic; only the activity filter is walking-specific.
  *
- * Loading and error are surfaced explicitly so a missing `cardio.json` (or a
- * future API outage) reads as "no data yet" instead of an empty chart trio.
+ * Loading and error states are first-class so a missing `cardio.json` reads
+ * as "no data yet" rather than an empty chart wall.
  */
-export function StairDetailView(): JSX.Element {
+export function TrackDetailView(): JSX.Element {
   const [data, setData] = useState<CardioData | null>(null)
+  const [benchmarks, setBenchmarks] = useState<Benchmark[]>([])
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
-  // Sentinel ref placed on a per-card wrapper, NOT on the two-column grid.
-  // The grid wrapper would report the combined width on `lg:grid-cols-2`, so
-  // each chart would render at ~2× its column footprint and overflow. The
-  // two cards are equal width by grid contract, so observing one is enough.
+  const [paceWidth, setPaceWidth] = useState(DEFAULT_PACE_WIDTH)
+  // Sentinel ref on a per-card wrapper — see StairDetailView for the rationale
+  // (observing the grid wrapper would over-report on `lg:grid-cols-2`).
   const cardSizerRef = useRef<HTMLDivElement>(null)
+  const paceSizerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let cancelled = false
-    getCardioData()
-      .then((next) => {
+    Promise.all([getCardioData(), getMovementBenchmarks()])
+      .then(([cardio, bench]) => {
         if (cancelled) return
-        // `getCardioData()` resolves to `null` on a 404 (gitignored cardio
-        // data, PRD §11 q7). Substitute an empty `CardioData` so the
-        // component progresses past the loading panel into the empty-state
-        // branch — without this, a fresh preview deploy with no
-        // `cardio.json` would sit on "Loading cardio data…" forever.
+        // `getCardioData()` resolves to `null` on a 404 (the dataset isn't
+        // produced yet — gitignored, PRD §11 q7). Substitute an empty
+        // `CardioData` so the component progresses past the loading panel
+        // and renders the empty-state branch.
         setData(
-          next ?? {
+          cardio ?? {
             imported_at: '',
             sessions: [],
             resting_hr_trend: [],
             vo2max_trend: [],
           },
         )
+        setBenchmarks(bench)
       })
       .catch((err: unknown) => {
         if (cancelled) return
-        // Real failures (network, 5xx, malformed JSON) reach this branch.
-        // 404 is handled as "empty" inside `.then` above since
-        // `getCardioData()` no longer throws on missing data.
         setLoadError(err instanceof Error ? err : new Error(String(err)))
       })
     return () => {
@@ -81,11 +99,6 @@ export function StairDetailView(): JSX.Element {
     }
   }, [])
 
-  // Track per-card width so the SVG charts shrink with the column on mobile
-  // rather than overflowing the viewport. The shared chart primitives don't
-  // accept a fluid width — we measure the sentinel and pass. The sentinel
-  // sits inside the chart's content area (no card padding) so its width is
-  // exactly what the SVG should render at.
   useEffect(() => {
     const node = cardSizerRef.current
     if (!node || typeof ResizeObserver === 'undefined') return
@@ -99,10 +112,19 @@ export function StairDetailView(): JSX.Element {
     return () => observer.disconnect()
   }, [])
 
-  // Earliest cardio date in the dataset — drives the `All` preset bound. Falls
-  // back to a fixed date so the picker is functional before any data loads.
-  // Uses `parseSessionDate` so the local-day interpretation matches what
-  // `filterStairSessions` will compare against later.
+  useEffect(() => {
+    const node = paceSizerRef.current
+    if (!node || typeof ResizeObserver === 'undefined') return
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
+        setPaceWidth((prev) => (prev === next ? prev : next))
+      }
+    })
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
   const earliestDate = useMemo(() => {
     if (!data || data.sessions.length === 0) return EARLIEST_FALLBACK
     let earliestMs = Infinity
@@ -113,19 +135,32 @@ export function StairDetailView(): JSX.Element {
     return Number.isFinite(earliestMs) ? new Date(earliestMs) : EARLIEST_FALLBACK
   }, [data])
 
-  // No re-anchor effect: the `1M` preset is computed from "today" and is
-  // independent of `earliestDate`, so the initial range value is already
-  // correct before data loads. When the user clicks `All`, `DateFilter`
-  // reads the latest `earliestDate` prop and computes the right span on
-  // the spot — no need to overwrite the range from this side, which would
-  // also clobber a filter the user picked while the fetch was in flight.
-
-  const stairSessions = useMemo<CardioSession[]>(
-    () => (data ? filterStairSessions(data.sessions, range) : []),
+  const walkingSessions = useMemo<CardioSession[]>(
+    () => (data ? filterWalkingSessions(data.sessions, range) : []),
     [data, range],
   )
-  const buckets = useMemo(() => aggregateHrZoneSeconds(stairSessions), [stairSessions])
-  const avgHrPoints = useMemo(() => perSessionAvgHr(stairSessions), [stairSessions])
+  const buckets = useMemo(() => aggregateHrZoneSeconds(walkingSessions), [walkingSessions])
+  const avgHrPoints = useMemo(() => perSessionAvgHr(walkingSessions), [walkingSessions])
+  const paceTrend = useMemo(() => paceTrendPoints(walkingSessions), [walkingSessions])
+  const efficiencyTrend = useMemo(
+    () => cardiacEfficiencyPoints(walkingSessions),
+    [walkingSessions],
+  )
+  const paceVsHr = useMemo(() => paceAtHrPoints(walkingSessions), [walkingSessions])
+
+  // Date extent for the pace chart and bodyweight overlay must match exactly
+  // so the two x-axes line up. Falls back to the active filter range when the
+  // data set has fewer than two points.
+  const paceDateExtent = useMemo<[Date, Date]>(() => {
+    if (paceTrend.length >= 2) {
+      return [paceTrend[0].date, paceTrend[paceTrend.length - 1].date]
+    }
+    if (paceTrend.length === 1) {
+      const d = paceTrend[0].date
+      return [d, d]
+    }
+    return [range.start, range.end]
+  }, [paceTrend, range])
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -147,15 +182,17 @@ export function StairDetailView(): JSX.Element {
 
         <header className="mt-12">
           <div className="text-xs font-semibold uppercase tracking-[0.38em] text-white/60">
-            Stair climber
+            Track
           </div>
           <h1 className="mt-3 text-4xl font-black uppercase tracking-[0.08em] text-[#fff7ec] sm:text-5xl">
-            Where the engine gets built
+            Steady miles — the aerobic base under everything else
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Time-in-zone, per-session average heart rate, and the session log — all
-            scoped to the date range. The stair climber is the primary Gym surface
-            (PRD §7.4); treadmill and track detail views follow in Phase 3.
+            Walking is recovery work — low heart rate, easy pace, time on
+            feet. The same chart set as the treadmill, scoped to walks: zones
+            stay light, pace inches faster as the engine improves, and the
+            scatter clusters in the lower-left quadrant when easy days are
+            actually easy.
           </p>
         </header>
 
@@ -176,32 +213,103 @@ export function StairDetailView(): JSX.Element {
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ChartCard
                 title="Time in zone"
-                helper="Total minutes per HR zone across the filtered window."
+                helper="Total minutes per HR zone across the filtered window. Walks should sit mostly in Z1–Z2."
               >
                 <div ref={cardSizerRef}>
                   <HrZoneBars
                     buckets={buckets}
                     width={chartWidth}
                     height={CHART_HEIGHT}
-                    fontFamily="'Patrick Hand', system-ui, sans-serif"
+                    fontFamily={FONT_FAMILY}
                   />
                 </div>
               </ChartCard>
 
               <ChartCard
                 title="Avg HR per session"
-                helper="One bar per session — y-axis padded to the visible range so trends pop."
+                helper="One bar per walk — a steady or downward trend means the engine is getting more efficient at the same pace."
               >
                 <AvgHrBars
                   points={avgHrPoints}
                   width={chartWidth}
                   height={CHART_HEIGHT}
-                  fontFamily="'Patrick Hand', system-ui, sans-serif"
+                  fontFamily={FONT_FAMILY}
                 />
               </ChartCard>
             </div>
 
-            <SessionLogTable sessions={stairSessions} range={range} />
+            <ChartCard
+              title="Pace trend"
+              helper="Pace per mile over time. Toggle the bodyweight overlay (§4) to see whether the pace is dropping because of the engine or because of the scale."
+              wide
+            >
+              <div ref={paceSizerRef}>
+                <BodyweightOverlay
+                  benchmarks={benchmarks}
+                  dateExtent={paceDateExtent}
+                  width={paceWidth}
+                  height={PACE_CHART_HEIGHT}
+                  margin={defaultMargin}
+                  fontFamily={FONT_FAMILY}
+                  axisColor={chartPalette.inkSoft}
+                >
+                  <RoughLine<PaceTrendPoint>
+                    data={paceTrend}
+                    x={(p) => p.date}
+                    y={(p) => p.paceSecondsPerMile}
+                    width={paceWidth}
+                    height={PACE_CHART_HEIGHT}
+                    margin={defaultMargin}
+                    fontFamily={FONT_FAMILY}
+                    yLabel="Pace (min/mi)"
+                    yTickFormat={formatTickPace}
+                    ariaLabel="Walking pace per mile over time"
+                    emptyMessage="No pace data in range"
+                  />
+                </BodyweightOverlay>
+              </div>
+            </ChartCard>
+
+            <div className="mt-6 grid gap-6 lg:grid-cols-2">
+              <ChartCard
+                title="Cardiac efficiency"
+                helper="Meters covered per heartbeat — higher is more efficient. Walks rack up more heartbeats per session, so trend over time matters more than absolute value."
+              >
+                <RoughLine
+                  data={efficiencyTrend}
+                  x={(p) => p.date}
+                  y={(p) => p.metersPerHeartbeat}
+                  width={chartWidth}
+                  height={CHART_HEIGHT}
+                  fontFamily={FONT_FAMILY}
+                  yLabel="m / heartbeat"
+                  yTickFormat={(v) => v.toFixed(2)}
+                  ariaLabel="Walking cardiac efficiency over time"
+                  emptyMessage="No efficiency data in range"
+                />
+              </ChartCard>
+
+              <ChartCard
+                title="Pace at heart rate"
+                helper="Each dot is one walk. Lower-left = the goal: brisk pace at low effort."
+              >
+                <RoughScatter
+                  data={paceVsHr}
+                  x={(p) => p.avgHr}
+                  y={(p) => p.paceSecondsPerMile}
+                  width={chartWidth}
+                  height={CHART_HEIGHT}
+                  fontFamily={FONT_FAMILY}
+                  xLabel="Avg HR (BPM)"
+                  yLabel="Pace (min/mi)"
+                  yTickFormat={formatTickPace}
+                  ariaLabel="Walking pace vs. heart rate scatter"
+                  emptyMessage="No pace + HR pairs in range"
+                />
+              </ChartCard>
+            </div>
+
+            <SessionLogTable sessions={walkingSessions} range={range} />
           </>
         )}
       </div>
@@ -209,16 +317,24 @@ export function StairDetailView(): JSX.Element {
   )
 }
 
+/** Tick formatter shared by pace y-axes — `M:SS` (no `/mi` suffix to keep ticks compact). */
+function formatTickPace(secondsPerMile: number): string {
+  const formatted = formatPacePerMile(secondsPerMile, false)
+  return formatted === '—' ? '' : formatted
+}
+
 interface ChartCardProps {
   title: string
   helper: string
+  /** When set, the card sits full-width (used for the pace-trend row). */
+  wide?: boolean
   children: JSX.Element
 }
 
-function ChartCard({ title, helper, children }: ChartCardProps): JSX.Element {
+function ChartCard({ title, helper, wide, children }: ChartCardProps): JSX.Element {
   return (
     <section
-      className="rounded-[1.6rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_18px_46px_rgba(0,0,0,0.34)]"
+      className={`${wide ? 'mt-6 ' : ''}rounded-[1.6rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_18px_46px_rgba(0,0,0,0.34)]`}
     >
       <header className="mb-2 flex items-baseline justify-between gap-3">
         <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0a0a0a]">
@@ -237,8 +353,6 @@ interface SessionLogTableProps {
 }
 
 function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element {
-  // Show newest first in the table — opposite of charts. Tabular reading
-  // convention is "what happened most recently?" at the top.
   const rows = useMemo(() => sessions.slice().reverse(), [sessions])
   const startLabel = formatRangeBound(range.start, 'start')
   const endLabel = formatRangeBound(range.end, 'end')
@@ -258,18 +372,24 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
       </header>
       {rows.length === 0 ? (
         <p className="px-2 py-6 text-center text-sm text-white/55">
-          No stair sessions in the selected range.
+          No walking sessions in the selected range.
         </p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[480px] border-separate border-spacing-y-1 text-left text-sm">
+          <table className="w-full min-w-[640px] border-separate border-spacing-y-1 text-left text-sm">
             <thead className="text-xs uppercase tracking-[0.18em] text-white/55">
               <tr>
                 <th scope="col" className="px-3 py-2 font-semibold">
                   Date
                 </th>
                 <th scope="col" className="px-3 py-2 font-semibold">
+                  Distance
+                </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
                   Duration
+                </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
+                  Pace
                 </th>
                 <th scope="col" className="px-3 py-2 font-semibold">
                   Avg HR
@@ -282,15 +402,13 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
             <tbody className="text-[#f7ead9]">
               {rows.map((s, i) => (
                 <tr
-                  // Append the row index to disambiguate the rare case of two
-                  // sessions sharing both a date and an exact duration_seconds
-                  // (back-to-back stair sessions). Stable as long as the
-                  // reverse-sorted row order is.
                   key={`${s.date}-${s.duration_seconds}-${i}`}
                   className="rounded-md bg-white/5 align-middle"
                 >
                   <td className="rounded-l-md px-3 py-2 font-mono">{formatRowDate(s.date)}</td>
+                  <td className="px-3 py-2 font-mono">{formatDistanceMiles(s.distance_meters)}</td>
                   <td className="px-3 py-2 font-mono">{formatDuration(s.duration_seconds)}</td>
+                  <td className="px-3 py-2 font-mono">{formatPaceCellFromSecPerKm(s.pace_seconds_per_km)}</td>
                   <td className="px-3 py-2 font-mono">
                     {typeof s.avg_hr === 'number' ? `${Math.round(s.avg_hr)}` : '—'}
                   </td>
@@ -314,8 +432,6 @@ function formatRowDate(raw: string): string {
 }
 
 function formatRangeBound(d: Date, end: 'start' | 'end'): string {
-  // Normalize to the same boundary the filter advertises so the readout
-  // matches the picker's value, regardless of when the user clicked.
   const norm = end === 'start' ? startOfDay(d) : endOfDay(d)
   return `${norm.getFullYear()}-${String(norm.getMonth() + 1).padStart(2, '0')}-${String(norm.getDate()).padStart(2, '0')}`
 }

@@ -2,7 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import { CombineEntryForm, normalizeFormValues } from './CombineEntryForm'
+import { CombineEntryForm, normalizeFormValues, toFormValues } from './CombineEntryForm'
+import type { Benchmark } from '@/types/movement'
 
 /**
  * Tests for the dev-only Combine entry form.
@@ -16,16 +17,22 @@ import { CombineEntryForm, normalizeFormValues } from './CombineEntryForm'
  */
 
 const logBenchmarkMock = vi.fn()
+const updateBenchmarkMock = vi.fn()
 
 vi.mock('@/lib/data/movement', async () => {
   const actual = await vi.importActual<typeof import('@/lib/data/movement')>(
     '@/lib/data/movement',
   )
-  return { ...actual, logBenchmark: (...args: unknown[]) => logBenchmarkMock(...args) }
+  return {
+    ...actual,
+    logBenchmark: (...args: unknown[]) => logBenchmarkMock(...args),
+    updateBenchmark: (...args: unknown[]) => updateBenchmarkMock(...args),
+  }
 })
 
 beforeEach(() => {
   logBenchmarkMock.mockReset()
+  updateBenchmarkMock.mockReset()
 })
 
 afterEach(() => {
@@ -224,6 +231,174 @@ describe('CombineEntryForm — date initialization (Codex P2 timezone fix)', () 
     const now = new Date()
     const expected = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
     expect(dateInput.value).toBe(expected)
+  })
+})
+
+describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
+  beforeEach(() => {
+    vi.stubEnv('NODE_ENV', 'development')
+  })
+
+  const ENTRY: Benchmark = {
+    date: '2026-03-10',
+    bodyweight_lbs: 230.0,
+    shuttle_5_10_5_s: 5.05,
+    notes: 'cold gym',
+  }
+
+  it('auto-opens the panel and prefills inputs when editingEntry is set', async () => {
+    render(<CombineEntryForm onSaved={() => {}} editingEntry={ENTRY} />)
+    expect(screen.getByText(/dev · edit session for 2026-03-10/i)).toBeInTheDocument()
+    const dateInput = screen.getByLabelText(/^date/i) as HTMLInputElement
+    expect(dateInput.value).toBe('2026-03-10')
+    expect(dateInput.readOnly).toBe(true)
+    expect(
+      (screen.getByLabelText(/bodyweight/i) as HTMLInputElement).value,
+    ).toBe('230')
+    expect(
+      (screen.getByLabelText(/5-10-5/i) as HTMLInputElement).value,
+    ).toBe('5.05')
+    expect((screen.getByLabelText(/notes/i) as HTMLTextAreaElement).value).toBe(
+      'cold gym',
+    )
+  })
+
+  it('shows "Cancel edit" toggle and "Update entry" submit button in edit mode', () => {
+    render(<CombineEntryForm onSaved={() => {}} editingEntry={ENTRY} />)
+    expect(screen.getByRole('button', { name: /cancel edit/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /update entry/i })).toBeInTheDocument()
+  })
+
+  it('submits via updateBenchmark with the entry date and a no-date payload', async () => {
+    updateBenchmarkMock.mockResolvedValueOnce(undefined)
+    const onSaved = vi.fn()
+    const user = userEvent.setup()
+    render(
+      <CombineEntryForm
+        onSaved={onSaved}
+        editingEntry={ENTRY}
+        onCancelEdit={() => {}}
+      />,
+    )
+    // Edit a single field, leave the rest of the prefill alone.
+    const bw = screen.getByLabelText(/bodyweight/i) as HTMLInputElement
+    await user.clear(bw)
+    await user.type(bw, '231.0')
+    await user.click(screen.getByRole('button', { name: /update entry/i }))
+
+    await waitFor(() => expect(updateBenchmarkMock).toHaveBeenCalledTimes(1))
+    expect(updateBenchmarkMock).toHaveBeenCalledWith('2026-03-10', {
+      bodyweight_lbs: 231.0,
+      shuttle_5_10_5_s: 5.05,
+      notes: 'cold gym',
+    })
+    expect(logBenchmarkMock).not.toHaveBeenCalled()
+    await waitFor(() => expect(onSaved).toHaveBeenCalledTimes(1))
+  })
+
+  it('clicks "Cancel edit" → calls onCancelEdit and resets the form', async () => {
+    const onCancelEdit = vi.fn()
+    const user = userEvent.setup()
+    render(
+      <CombineEntryForm
+        onSaved={() => {}}
+        editingEntry={ENTRY}
+        onCancelEdit={onCancelEdit}
+      />,
+    )
+    await user.click(screen.getByRole('button', { name: /cancel edit/i }))
+    expect(onCancelEdit).toHaveBeenCalledTimes(1)
+  })
+
+  it('exits edit mode after a successful update (calls onCancelEdit)', async () => {
+    updateBenchmarkMock.mockResolvedValueOnce(undefined)
+    const onCancelEdit = vi.fn()
+    const user = userEvent.setup()
+    render(
+      <CombineEntryForm
+        onSaved={() => {}}
+        editingEntry={ENTRY}
+        onCancelEdit={onCancelEdit}
+      />,
+    )
+    await user.click(screen.getByRole('button', { name: /update entry/i }))
+    await waitFor(() => expect(updateBenchmarkMock).toHaveBeenCalled())
+    await waitFor(() => expect(onCancelEdit).toHaveBeenCalledTimes(1))
+  })
+
+  it('resets the panel when the parent clears editingEntry externally (Codex P1)', async () => {
+    // Simulates the row-being-edited getting deleted. The parent
+    // clears `editingEntry`; without the falsy-branch handling in
+    // the effect, the panel would stay open with the old prefill and
+    // a subsequent "Save entry" would recreate the deleted row.
+    const { rerender } = render(
+      <CombineEntryForm
+        onSaved={() => {}}
+        editingEntry={ENTRY}
+        onCancelEdit={() => {}}
+      />,
+    )
+    // Sanity: we're in edit mode with a prefilled, locked date.
+    expect(screen.getByText(/edit session for 2026-03-10/i)).toBeInTheDocument()
+    expect((screen.getByLabelText(/^date/i) as HTMLInputElement).readOnly).toBe(
+      true,
+    )
+
+    // Parent clears editingEntry (e.g. deleted the row mid-edit).
+    rerender(
+      <CombineEntryForm
+        onSaved={() => {}}
+        editingEntry={undefined}
+        onCancelEdit={() => {}}
+      />,
+    )
+
+    // Panel collapses, fields wipe, header reverts to "Log a session".
+    expect(screen.getByText(/dev · log a session/i)).toBeInTheDocument()
+    expect(screen.queryByText(/edit session for/i)).not.toBeInTheDocument()
+    expect(screen.queryByLabelText(/^date/i)).not.toBeInTheDocument()
+    // Re-open the (now-empty) panel and confirm the prefill is gone.
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('button', { name: /log a session/i }))
+    expect((screen.getByLabelText(/bodyweight/i) as HTMLInputElement).value).toBe('')
+    expect((screen.getByLabelText(/notes/i) as HTMLTextAreaElement).value).toBe('')
+  })
+
+  it('surfaces server errors from updateBenchmark without exiting edit mode', async () => {
+    updateBenchmarkMock.mockRejectedValueOnce(new Error('No benchmark for 2026-03-10.'))
+    const onCancelEdit = vi.fn()
+    const user = userEvent.setup()
+    render(
+      <CombineEntryForm
+        onSaved={() => {}}
+        editingEntry={ENTRY}
+        onCancelEdit={onCancelEdit}
+      />,
+    )
+    await user.click(screen.getByRole('button', { name: /update entry/i }))
+    await waitFor(() =>
+      expect(screen.getByText(/no benchmark for 2026-03-10/i)).toBeInTheDocument(),
+    )
+    expect(onCancelEdit).not.toHaveBeenCalled()
+  })
+})
+
+describe('toFormValues', () => {
+  it('stringifies populated numeric fields and leaves omitted ones empty', () => {
+    expect(
+      toFormValues({
+        date: '2026-04-15',
+        bodyweight_lbs: 232.4,
+        notes: 'felt fast',
+      }),
+    ).toEqual({
+      date: '2026-04-15',
+      bodyweight_lbs: '232.4',
+      shuttle_5_10_5_s: '',
+      vertical_in: '',
+      sprint_10y_s: '',
+      notes: 'felt fast',
+    })
   })
 })
 
