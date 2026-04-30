@@ -26,15 +26,17 @@
  * earliest session, slice the display window).
  */
 
+import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
 import type { CardioActivity, CardioSession } from '@/types/cardio'
 import type { DateRange } from '@/components/training-facility/shared/DateFilter'
 
 /**
- * Default max heart rate used when no per-athlete value is supplied. 185 BPM
- * matches the `--max-hr` default in `scripts/import-health.mjs`. Override
- * planned in #143 once a settings surface exists.
+ * Default max heart rate (BPM) used when no per-athlete value is supplied.
+ * Re-exported from `constants/hr-zones.ts` so TRIMP callers don't need to
+ * reach across module boundaries; the canonical definition lives there.
+ * Override at runtime via {@link import('@/utils/useMaxHr').useMaxHr}.
  */
-export const DEFAULT_MAX_HR = 185
+export { DEFAULT_MAX_HR }
 
 /**
  * Per-modality intensity weighting applied to TRIMP. Stair sessions are the
@@ -233,25 +235,38 @@ export function computeTrainingLoad(
   return out
 }
 
+/** Optional knobs for {@link trainingLoadInRange}. */
+export interface TrainingLoadInRangeOptions {
+  /**
+   * Forwarded to {@link dailyTrimpSeries}. When omitted, TRIMP uses
+   * {@link DEFAULT_MAX_HR}. View containers pass the user's persisted value
+   * from {@link import('@/utils/useMaxHr').useMaxHr} so all three Gym detail
+   * surfaces share one runtime max-HR.
+   */
+  maxHr?: number
+}
+
 /**
  * One-shot helper for view containers: build the EMA-prewarmed training-load
  * series from the full session set, then clip to a `DateFilter` window.
  *
  * Pre-warming the EMA from the earliest session avoids the synthetic zero
  * ramp at the left edge of the visible window. Each detail view (Treadmill,
- * Stair, Track) wraps this in `useMemo` keyed on `[data, range]`.
+ * Stair, Track) wraps this in `useMemo` keyed on `[data, range, maxHr]`.
  *
  * @param sessions all cardio sessions (modality-agnostic — TRIMP is a
  *   whole-athlete metric, so callers should not pre-filter to one activity).
  * @param range the active `DateFilter` window; both endpoints are inclusive
  *   in millisecond comparisons.
+ * @param options see {@link TrainingLoadInRangeOptions}.
  */
 export function trainingLoadInRange(
   sessions: readonly CardioSession[],
   range: DateRange,
+  options: TrainingLoadInRangeOptions = {},
 ): TrainingLoadPoint[] {
   if (sessions.length === 0) return []
-  const series = dailyTrimpSeries(sessions)
+  const series = dailyTrimpSeries(sessions, { maxHr: options.maxHr })
   if (series.length === 0) return []
   const full = computeTrainingLoad(series)
   const fromMs = range.start.getTime()
