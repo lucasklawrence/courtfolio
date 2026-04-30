@@ -28,6 +28,8 @@ import {
   type PaceTrendPoint,
 } from '@/lib/training-facility/running'
 import { filterWalkingSessions } from '@/lib/training-facility/walking'
+import { computePersonalBests } from '@/lib/training-facility/personal-bests'
+import { PersonalBests } from './PersonalBests'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { HrZoneBars } from './HrZoneBars'
 import { AvgHrBars } from './AvgHrBars'
@@ -149,6 +151,12 @@ export function TrackDetailView(): JSX.Element {
     () => (data ? filterWalkingSessions(data.sessions, range) : []),
     [data, range],
   )
+  // Personal bests (issue #76) computed once per dataset; the active range +
+  // filtered sessions feed the "PB in range" badge and inline best-in-range line.
+  const bests = useMemo(
+    () => (data ? computePersonalBests(data) : null),
+    [data],
+  )
   const buckets = useMemo(() => aggregateHrZoneSeconds(walkingSessions), [walkingSessions])
   const avgHrPoints = useMemo(() => perSessionAvgHr(walkingSessions), [walkingSessions])
   const paceTrend = useMemo(() => paceTrendPoints(walkingSessions), [walkingSessions])
@@ -230,6 +238,17 @@ export function TrackDetailView(): JSX.Element {
           <LoadingPanel />
         ) : (
           <>
+            {bests && (
+              <PersonalBests
+                activity="walking"
+                bests={bests}
+                filteredSessions={walkingSessions}
+                restingHrTrend={data.resting_hr_trend}
+                vo2maxTrend={data.vo2max_trend}
+                range={range}
+              />
+            )}
+
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ChartCard
                 title="Time in zone"
