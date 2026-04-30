@@ -94,13 +94,15 @@ function projectSeriesPolyline(
   const values = series.map((p) => p.value)
   const min = Math.min(...values)
   const max = Math.max(...values)
-  const span = max - min || 1
+  const span = max - min
   const verticalPad = box.height * 0.1
   const drawHeight = box.height - verticalPad * 2
   const stepX = box.width / (series.length - 1)
   const coords: Array<[number, number]> = series.map((p, i) => {
     const x = box.x + i * stepX
-    const norm = (p.value - min) / span
+    // Flat series (every value identical) — center the line vertically
+    // rather than collapsing every point to the bottom edge of the box.
+    const norm = span === 0 ? 0.5 : (p.value - min) / span
     // SVG y grows downward — invert so higher values draw higher on screen.
     const y = box.y + verticalPad + (1 - norm) * drawHeight
     return [x, y]
@@ -167,24 +169,19 @@ export function HrMonitor({ bpm, sparkline }: HrMonitorProps = {}) {
         seed={121}
       />
 
-      {/* Header: pulsing heart glyph + label. The heart sits to the left of the label so the pulse reads as "this is the resting HR". */}
-      <PulsingHeart
-        x={170}
-        y={140}
-        fill={SCENE_PALETTE.rimSoft}
-        bpm={displayBpm}
-        fontFamily={HANDWRITING_FONT}
-        fontSize={22}
-      />
+      {/* Header: `♥ resting hr` rendered as a single centered text block.
+          The heart is a `<motion.tspan>` inside the same `<text>` so the
+          pulse animates the glyph in place without breaking the original
+          layout. */}
       <text
-        x={244}
+        x={230}
         y={140}
         textAnchor="middle"
         fill={SCENE_PALETTE.rimSoft}
         fontFamily={HANDWRITING_FONT}
         fontSize={22}
       >
-        resting hr
+        <PulsingHeart bpm={displayBpm} /> resting hr
       </text>
       <text
         x={230}
