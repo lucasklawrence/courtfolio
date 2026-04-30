@@ -16,7 +16,11 @@ import {
   formatDuration,
   parseSessionDate,
 } from '@/lib/training-facility/cardio-shared'
-import { formatDistanceMiles, formatPaceCellFromSecPerKm } from '@/lib/training-facility/running'
+import {
+  METERS_PER_MILE,
+  formatDistanceMiles,
+  formatPaceCellFromSecPerKm,
+} from '@/lib/training-facility/running'
 import {
   ACTIVITY_VISUALS,
   countByActivity,
@@ -62,7 +66,7 @@ function formatTotalDuration(seconds: number): string {
 /** Format a meters value as miles with one decimal — `—` for zero/missing. */
 function formatTotalMiles(meters: number): string {
   if (!Number.isFinite(meters) || meters <= 0) return '—'
-  return `${(meters / 1609.344).toFixed(1)} mi`
+  return `${(meters / METERS_PER_MILE).toFixed(1)} mi`
 }
 
 /**
