@@ -38,8 +38,7 @@ import { chartPalette } from '@/components/training-facility/shared/charts/palet
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
 import { TrainingLoadChart } from './TrainingLoadChart'
 import {
-  computeTrainingLoad,
-  dailyTrimpSeries,
+  trainingLoadInRange,
   type TrainingLoadPoint,
 } from '@/lib/training-facility/training-load'
 
@@ -161,21 +160,13 @@ export function TrackDetailView(): JSX.Element {
 
   // Training load aggregates ALL cardio activities (stair, running, walking) —
   // TRIMP / ATL / CTL is a whole-athlete metric and excluding modalities would
-  // distort it. Pre-warm the EMA from the earliest session in the dataset,
-  // then slice the result to the active DateFilter window so the left edge
-  // doesn't show a synthetic zero ramp.
-  const trainingLoad = useMemo<TrainingLoadPoint[]>(() => {
-    if (!data || data.sessions.length === 0) return []
-    const series = dailyTrimpSeries(data.sessions)
-    if (series.length === 0) return []
-    const full = computeTrainingLoad(series)
-    const fromMs = range.start.getTime()
-    const toMs = range.end.getTime()
-    return full.filter((p) => {
-      const t = p.date.getTime()
-      return t >= fromMs && t <= toMs
-    })
-  }, [data, range])
+  // distort it. The helper pre-warms the EMA from the earliest session, then
+  // clips to the active DateFilter window so the left edge doesn't show a
+  // synthetic zero ramp.
+  const trainingLoad = useMemo<TrainingLoadPoint[]>(
+    () => (data ? trainingLoadInRange(data.sessions, range) : []),
+    [data, range],
+  )
 
   // Date extent for the pace chart and bodyweight overlay must match exactly
   // so the two x-axes line up. Falls back to the active filter range when the

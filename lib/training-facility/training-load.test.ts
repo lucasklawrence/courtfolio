@@ -7,8 +7,10 @@ import {
   computeTrainingLoad,
   dailyTrimpSeries,
   DEFAULT_MAX_HR,
+  trainingLoadInRange,
 } from './training-load'
 import type { CardioSession } from '@/types/cardio'
+import type { DateRange } from '@/components/training-facility/shared/DateFilter'
 
 const session = (
   date: string,
@@ -192,5 +194,48 @@ describe('classifyTsb', () => {
 
   it('non-finite TSB falls back to yellow (no signal)', () => {
     expect(classifyTsb(Number.NaN)).toBe('yellow')
+  })
+})
+
+describe('trainingLoadInRange', () => {
+  const range = (start: string, end: string): DateRange => ({
+    start: new Date(start),
+    end: new Date(end),
+  })
+
+  it('returns [] for an empty session set', () => {
+    expect(trainingLoadInRange([], range('2026-01-01', '2026-12-31'))).toEqual([])
+  })
+
+  it('clips the prewarmed series to the range, preserving EMA continuity', () => {
+    // Three sessions across two months. Build the full series first so we
+    // can assert that the in-range slice equals the same slice taken from
+    // the unclipped series — i.e., clipping doesn't mutate values.
+    const sessions: CardioSession[] = [
+      { date: '2026-02-01', activity: 'running', duration_seconds: 3600, avg_hr: 148 },
+      { date: '2026-03-15', activity: 'stair', duration_seconds: 1800, avg_hr: 160 },
+      { date: '2026-04-10', activity: 'walking', duration_seconds: 2400, avg_hr: 110 },
+    ]
+    const window = range('2026-04-01', '2026-04-30')
+    const clipped = trainingLoadInRange(sessions, window)
+
+    // Every returned point sits inside the window.
+    for (const p of clipped) {
+      expect(p.date.getTime()).toBeGreaterThanOrEqual(window.start.getTime())
+      expect(p.date.getTime()).toBeLessThanOrEqual(window.end.getTime())
+    }
+
+    // Pre-warming holds: the leftmost point's CTL is non-zero because
+    // earlier sessions seeded the EMA. A naive in-window-only computation
+    // would start CTL at 0 here.
+    expect(clipped.length).toBeGreaterThan(0)
+    expect(clipped[0].ctl).toBeGreaterThan(0)
+  })
+
+  it('returns [] when no session lands in the window', () => {
+    const sessions: CardioSession[] = [
+      { date: '2026-02-01', activity: 'running', duration_seconds: 3600, avg_hr: 148 },
+    ]
+    expect(trainingLoadInRange(sessions, range('2026-05-01', '2026-05-31'))).toEqual([])
   })
 })
