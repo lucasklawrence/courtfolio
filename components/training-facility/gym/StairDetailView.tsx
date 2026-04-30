@@ -26,11 +26,22 @@ import {
 } from '@/components/training-facility/shared/CardioStatsCards'
 import { HrZoneBars } from './HrZoneBars'
 import { AvgHrBars } from './AvgHrBars'
+import { TrainingLoadChart } from './TrainingLoadChart'
+import {
+  computeTrainingLoad,
+  dailyTrimpSeries,
+  type TrainingLoadPoint,
+} from '@/lib/training-facility/training-load'
+import { chartPalette } from '@/components/training-facility/shared/charts/palette'
+import { defaultMargin } from '@/components/training-facility/shared/charts/types'
 
 const CHART_HEIGHT = 280
+const TRAINING_LOAD_HEIGHT = 300
 const MIN_CHART_WIDTH = 280
 const DEFAULT_CHART_WIDTH = 560
+const DEFAULT_WIDE_WIDTH = 880
 const EARLIEST_FALLBACK = new Date(2024, 0, 1)
+const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
 
 /**
  * Compact total-time label that promotes to `Hh Mm` once we cross an
@@ -138,25 +149,34 @@ const STAIR_STATS: ReadonlyArray<CardioStatCard> = [
 /**
  * Stair-climber detail view (PRD §7.4) — the first Gym detail surface.
  *
- * Composes three views fed by `getCardioData()` and a shared `DateFilter`:
+ * Composes four views fed by `getCardioData()` and a shared `DateFilter`:
  *   1. Time-in-zone bars (`HrZoneBars`) — total seconds per Z1–Z5, summed
- *      across the filtered window.
- *   2. Per-session avg-HR bars (`AvgHrBars`) — one bar per session in range.
- *   3. Session log table — one row per session, oldest → newest.
+ *      across the filtered window (filter scope: stair sessions).
+ *   2. Per-session avg-HR bars (`AvgHrBars`) — one bar per stair session in
+ *      range.
+ *   3. Training load (`TrainingLoadChart`) — ATL/CTL/TSB across ALL cardio
+ *      activities (not just stair). TRIMP is a whole-athlete metric, so the
+ *      chart respects the active `DateFilter` window but aggregates across
+ *      modalities (PRD #78).
+ *   4. Session log table — one row per stair session, newest → oldest.
  *
  * Loading and error are surfaced explicitly so a missing `cardio.json` (or a
- * future API outage) reads as "no data yet" instead of an empty chart trio.
+ * future API outage) reads as "no data yet" instead of an empty chart wall.
  */
 export function StairDetailView(): JSX.Element {
   const [data, setData] = useState<CardioData | null>(null)
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
+  const [wideWidth, setWideWidth] = useState(DEFAULT_WIDE_WIDTH)
   // Sentinel ref placed on a per-card wrapper, NOT on the two-column grid.
   // The grid wrapper would report the combined width on `lg:grid-cols-2`, so
   // each chart would render at ~2× its column footprint and overflow. The
   // two cards are equal width by grid contract, so observing one is enough.
   const cardSizerRef = useRef<HTMLDivElement>(null)
+  // Separate sentinel for the full-width training-load card. Its content area
+  // spans the whole container instead of one column, so it needs its own width.
+  const wideSizerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -207,6 +227,19 @@ export function StairDetailView(): JSX.Element {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const node = wideSizerRef.current
+    if (!node || typeof ResizeObserver === 'undefined') return
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
+        setWideWidth((prev) => (prev === next ? prev : next))
+      }
+    })
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
   // Earliest cardio date in the dataset — drives the `All` preset bound. Falls
   // back to a fixed date so the picker is functional before any data loads.
   // Uses `parseSessionDate` so the local-day interpretation matches what
@@ -242,6 +275,24 @@ export function StairDetailView(): JSX.Element {
   )
   const buckets = useMemo(() => aggregateHrZoneSeconds(stairSessions), [stairSessions])
   const avgHrPoints = useMemo(() => perSessionAvgHr(stairSessions), [stairSessions])
+
+  // Training load aggregates ALL cardio activities (stair, running, walking) —
+  // TRIMP / ATL / CTL is a whole-athlete metric and excluding modalities would
+  // distort it. Pre-warm the EMA from the earliest session in the dataset,
+  // then slice the result to the active DateFilter window so the left edge
+  // doesn't show a synthetic zero ramp.
+  const trainingLoad = useMemo<TrainingLoadPoint[]>(() => {
+    if (!data || data.sessions.length === 0) return []
+    const series = dailyTrimpSeries(data.sessions)
+    if (series.length === 0) return []
+    const full = computeTrainingLoad(series)
+    const fromMs = range.start.getTime()
+    const toMs = range.end.getTime()
+    return full.filter((p) => {
+      const t = p.date.getTime()
+      return t >= fromMs && t <= toMs
+    })
+  }, [data, range])
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -306,7 +357,7 @@ export function StairDetailView(): JSX.Element {
                     buckets={buckets}
                     width={chartWidth}
                     height={CHART_HEIGHT}
-                    fontFamily="'Patrick Hand', system-ui, sans-serif"
+                    fontFamily={FONT_FAMILY}
                   />
                 </div>
               </ChartCard>
@@ -319,10 +370,28 @@ export function StairDetailView(): JSX.Element {
                   points={avgHrPoints}
                   width={chartWidth}
                   height={CHART_HEIGHT}
-                  fontFamily="'Patrick Hand', system-ui, sans-serif"
+                  fontFamily={FONT_FAMILY}
                 />
               </ChartCard>
             </div>
+
+            <ChartCard
+              title="Training load"
+              helper="ATL (acute, 7d) vs. CTL (chronic, 28d) and TSB = CTL − ATL. Aggregates all cardio activities; bands shade the freshness zones."
+              wide
+            >
+              <div ref={wideSizerRef}>
+                <TrainingLoadChart
+                  points={trainingLoad}
+                  width={wideWidth}
+                  height={TRAINING_LOAD_HEIGHT}
+                  margin={defaultMargin}
+                  fontFamily={FONT_FAMILY}
+                  axisColor={chartPalette.inkSoft}
+                  emptyMessage="No training load in selected range"
+                />
+              </div>
+            </ChartCard>
 
             <SessionLogTable sessions={stairSessions} range={range} />
           </>
@@ -335,13 +404,15 @@ export function StairDetailView(): JSX.Element {
 interface ChartCardProps {
   title: string
   helper: string
+  /** When set, the card sits full-width (used for the training-load row). */
+  wide?: boolean
   children: JSX.Element
 }
 
-function ChartCard({ title, helper, children }: ChartCardProps): JSX.Element {
+function ChartCard({ title, helper, wide, children }: ChartCardProps): JSX.Element {
   return (
     <section
-      className="rounded-[1.6rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_18px_46px_rgba(0,0,0,0.34)]"
+      className={`${wide ? 'mt-6 ' : ''}rounded-[1.6rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_18px_46px_rgba(0,0,0,0.34)]`}
     >
       <header className="mb-2 flex items-baseline justify-between gap-3">
         <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0a0a0a]">
