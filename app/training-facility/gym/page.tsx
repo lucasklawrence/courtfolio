@@ -3,24 +3,26 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { GymScene } from '@/components/training-facility/scenes/GymScene'
-import { getCardioData } from '@/lib/data/cardio'
+import { getCardioDataFromDisk } from '@/lib/data/cardio-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
  * `/training-facility/gym` route — the cardio sub-area scene.
  *
- * Server-fetches `cardio.json` so the wall fixtures (HR monitor, VO2max
- * whiteboard, wall scoreboard — PRD §7.4) hydrate with live data on the
- * first paint. Before any Apple Health import has landed the data load
- * returns `null` and the fixtures fall back to painted placeholder
- * values. Gated behind the same Training Facility flag as the parent
- * shell so the route family stays in sync.
+ * Server-reads `cardio.json` from disk so the wall fixtures (HR monitor,
+ * VO2max whiteboard, wall scoreboard — PRD §7.4) hydrate with live data
+ * on the first paint. Uses {@link getCardioDataFromDisk} rather than the
+ * browser-facing `getCardioData()` because relative-URL fetches have no
+ * base URL when run in a Next server component. Before any Apple Health
+ * import has landed the read returns `null` and the fixtures fall back
+ * to painted placeholder values. Gated behind the same Training Facility
+ * flag as the parent shell so the route family stays in sync.
  */
 export default async function TrainingFacilityGymPage() {
   if (!isTrainingFacilityEnabled()) notFound()
-  // Catch transient fetch errors so a flaky data load doesn't 500 the
+  // Catch transient read errors so a flaky disk read doesn't 500 the
   // whole page — the fixtures gracefully fall back to placeholders.
-  const cardioData = await getCardioData().catch(() => null)
+  const cardioData = await getCardioDataFromDisk().catch(() => null)
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
