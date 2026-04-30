@@ -30,6 +30,12 @@ import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
 import type { CardioActivity, CardioSession } from '@/types/cardio'
 import type { DateRange } from '@/components/training-facility/shared/DateFilter'
 
+/**
+ * Default max heart rate (BPM) used when no per-athlete value is supplied.
+ * Re-exported from `constants/hr-zones.ts` so TRIMP callers don't need to
+ * reach across module boundaries; the canonical definition lives there.
+ * Override at runtime via {@link import('@/utils/useMaxHr').useMaxHr}.
+ */
 export { DEFAULT_MAX_HR }
 
 /**

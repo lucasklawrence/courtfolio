@@ -4,19 +4,7 @@ import { useEffect, useId, useRef, useState, type JSX } from 'react'
 
 import { MAX_MAX_HR, MIN_MAX_HR, parseMaxHr, useMaxHr } from '@/utils/useMaxHr'
 
-/**
- * Small inline control letting the user override the max-HR used by the
- * Training Load chart. Sits in the chart-card header. Two states:
- *
- * - **Display:** badge showing the current BPM, a "(default)" hint when no
- *   user value is set, and a pencil affordance to enter edit mode.
- * - **Edit:** a number input plus Save / Cancel; Enter saves, Esc cancels.
- *
- * The control owns its own `useMaxHr` instance because callers only need the
- * resolved value via `onChange`. Keeps the parent view slim and matches the
- * pattern used elsewhere where small persistent settings live next to the
- * thing they affect rather than in a global panel.
- */
+/** Props for {@link MaxHrControl}. */
 export interface MaxHrControlProps {
   /**
    * Fires whenever the persisted max HR changes (initial read, user save, or
@@ -27,6 +15,21 @@ export interface MaxHrControlProps {
   onChange?: (maxHr: number) => void
 }
 
+/**
+ * Small inline control letting the user override the max-HR used by the
+ * Training Load chart. Sits in the chart-card header. Two states:
+ *
+ * - **Display:** badge showing the current BPM, a "(default)" hint when no
+ *   user value is set, and a pencil affordance to enter edit mode.
+ * - **Edit:** a number input plus Save / Cancel; Enter saves, Esc cancels.
+ *
+ * The control owns its own {@link useMaxHr} instance because callers only need
+ * the resolved value via `onChange`. Keeps the parent view slim and matches
+ * the pattern used elsewhere where small persistent settings live next to the
+ * thing they affect rather than in a global panel.
+ *
+ * @param props - See {@link MaxHrControlProps}.
+ */
 export function MaxHrControl({ onChange }: MaxHrControlProps): JSX.Element {
   const { maxHr, ready, isUserSet, setMaxHr, reset } = useMaxHr()
   const [editing, setEditing] = useState(false)
