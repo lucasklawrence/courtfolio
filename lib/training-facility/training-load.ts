@@ -27,6 +27,7 @@
  */
 
 import type { CardioActivity, CardioSession } from '@/types/cardio'
+import type { DateRange } from '@/components/training-facility/shared/DateFilter'
 
 /**
  * Default max heart rate used when no per-athlete value is supplied. 185 BPM
@@ -230,6 +231,35 @@ export function computeTrainingLoad(
     out.push({ date: p.date, trimp: p.trimp, atl, ctl, tsb: ctl - atl })
   }
   return out
+}
+
+/**
+ * One-shot helper for view containers: build the EMA-prewarmed training-load
+ * series from the full session set, then clip to a `DateFilter` window.
+ *
+ * Pre-warming the EMA from the earliest session avoids the synthetic zero
+ * ramp at the left edge of the visible window. Each detail view (Treadmill,
+ * Stair, Track) wraps this in `useMemo` keyed on `[data, range]`.
+ *
+ * @param sessions all cardio sessions (modality-agnostic — TRIMP is a
+ *   whole-athlete metric, so callers should not pre-filter to one activity).
+ * @param range the active `DateFilter` window; both endpoints are inclusive
+ *   in millisecond comparisons.
+ */
+export function trainingLoadInRange(
+  sessions: readonly CardioSession[],
+  range: DateRange,
+): TrainingLoadPoint[] {
+  if (sessions.length === 0) return []
+  const series = dailyTrimpSeries(sessions)
+  if (series.length === 0) return []
+  const full = computeTrainingLoad(series)
+  const fromMs = range.start.getTime()
+  const toMs = range.end.getTime()
+  return full.filter((p) => {
+    const t = p.date.getTime()
+    return t >= fromMs && t <= toMs
+  })
 }
 
 /** TSB zone classification thresholds (per issue #78). */

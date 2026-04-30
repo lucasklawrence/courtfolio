@@ -38,6 +38,11 @@ import { RoughScatter } from '@/components/training-facility/shared/charts/Rough
 import { BodyweightOverlay } from '@/components/training-facility/shared/charts/BodyweightOverlay'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
+import { TrainingLoadChart } from './TrainingLoadChart'
+import {
+  trainingLoadInRange,
+  type TrainingLoadPoint,
+} from '@/lib/training-facility/training-load'
 
 const CHART_HEIGHT = 280
 const PACE_CHART_HEIGHT = 300
@@ -51,9 +56,14 @@ const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
  * Track detail view (PRD §7.4) — walking-modality charts over the cardio
  * data layer. Mirrors `TreadmillDetailView` for shared concerns (HR-zone bars,
  * per-session avg-HR, session log, pace trend with bodyweight overlay,
- * cardiac efficiency, pace-at-HR scatter) — the only differences are the
- * walking-only filter and the equipment-specific copy framing walking as
- * recovery / aerobic-base work rather than the speed work treadmill is for.
+ * cardiac efficiency, pace-at-HR scatter, training load) — the only
+ * differences are the walking-only filter and the equipment-specific copy
+ * framing walking as recovery / aerobic-base work rather than the speed work
+ * treadmill is for.
+ *
+ * Note: the training-load chart aggregates ALL cardio activities (TRIMP is a
+ * whole-athlete metric — PRD #78), so its scope is wider than the rest of the
+ * charts on this page.
  *
  * Shares pace projection helpers with running (see {@link ./running}) since
  * those are activity-agnostic; only the activity filter is walking-specific.
@@ -155,6 +165,16 @@ export function TrackDetailView(): JSX.Element {
     [walkingSessions],
   )
   const paceVsHr = useMemo(() => paceAtHrPoints(walkingSessions), [walkingSessions])
+
+  // Training load aggregates ALL cardio activities (stair, running, walking) —
+  // TRIMP / ATL / CTL is a whole-athlete metric and excluding modalities would
+  // distort it. The helper pre-warms the EMA from the earliest session, then
+  // clips to the active DateFilter window so the left edge doesn't show a
+  // synthetic zero ramp.
+  const trainingLoad = useMemo<TrainingLoadPoint[]>(
+    () => (data ? trainingLoadInRange(data.sessions, range) : []),
+    [data, range],
+  )
 
   // Date extent for the pace chart and bodyweight overlay must match exactly
   // so the two x-axes line up. Falls back to the active filter range when the
@@ -327,6 +347,24 @@ export function TrackDetailView(): JSX.Element {
                 />
               </ChartCard>
             </div>
+
+            <ChartCard
+              title="Training load"
+              helper="ATL (acute, 7d) vs. CTL (chronic, 28d) and TSB = CTL − ATL. Aggregates all cardio activities; bands shade the freshness zones."
+              wide
+            >
+              <div>
+                <TrainingLoadChart
+                  points={trainingLoad}
+                  width={paceWidth}
+                  height={PACE_CHART_HEIGHT}
+                  margin={defaultMargin}
+                  fontFamily={FONT_FAMILY}
+                  axisColor={chartPalette.inkSoft}
+                  emptyMessage="No training load in selected range"
+                />
+              </div>
+            </ChartCard>
 
             <SessionLogTable sessions={walkingSessions} range={range} />
           </>
