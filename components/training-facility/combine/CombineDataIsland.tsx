@@ -15,14 +15,16 @@ import { CombineEntryForm } from './CombineEntryForm'
 import { CombineHistoryTable } from './CombineHistoryTable'
 import { CombineRadar } from './CombineRadar'
 import { CombineTradingCard } from './CombineTradingCard'
+import { ShuttleTrace } from './ShuttleTrace'
 import { SprintRace } from './SprintRace'
 
 /**
  * Owns the Combine page's shared `entries` state and edit/delete
  * orchestration. Renders the Scoreboard (PRD §9.1), the Trading Card
- * stat block (PRD §9.2), the Sprint Race (PRD §9.6), the Radar (PRD
- * §9.7), the dev-only entry form (PRD §7.5 view 7), and the benchmark
- * history table with per-row CRUD controls (PRD §7.5 view 8 + §7.11),
+ * stat block (PRD §9.2), the Shuttle Trace (PRD §9.5), the Sprint Race
+ * (PRD §9.6), the Radar (PRD §9.7), the dev-only entry form (PRD §7.5
+ * view 7), and the benchmark history table with per-row CRUD controls
+ * (PRD §7.5 view 8 + §7.11),
  * all reading from the same in-memory list so a write anywhere (log,
  * edit, delete, mark-incomplete) shows up in every surface
  * immediately, with no reload.
@@ -142,6 +144,7 @@ export function CombineDataIsland(): JSX.Element {
     <div className="flex flex-col gap-10">
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
       <CombineTradingCard entries={entries} />
+      <ShuttleTrace entries={entries} />
       <SprintRace entries={entries} />
       <CombineRadar entries={entries} />
       <CombineEntryForm
