@@ -3,26 +3,19 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { GymScene } from '@/components/training-facility/scenes/GymScene'
-import { getCardioDataFromDisk } from '@/lib/data/cardio-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
  * `/training-facility/gym` route — the cardio sub-area scene.
  *
- * Server-reads `cardio.json` from disk so the wall fixtures (HR monitor,
- * VO2max whiteboard, wall scoreboard — PRD §7.4) hydrate with live data
- * on the first paint. Uses {@link getCardioDataFromDisk} rather than the
- * browser-facing `getCardioData()` because relative-URL fetches have no
- * base URL when run in a Next server component. Before any Apple Health
- * import has landed the read returns `null` and the fixtures fall back
- * to painted placeholder values. Gated behind the same Training Facility
- * flag as the parent shell so the route family stays in sync.
+ * Phase 1: scene-only. Equipment renders identifiably but is not yet
+ * clickable; the only navigation inside the scene is the back door to the
+ * Combine. Detail views, signature visualizations, and equipment
+ * interactivity ship in later issues. Gated behind the same Training
+ * Facility flag as the parent shell so the route family stays in sync.
  */
-export default async function TrainingFacilityGymPage() {
+export default function TrainingFacilityGymPage() {
   if (!isTrainingFacilityEnabled()) notFound()
-  // Catch transient read errors so a flaky disk read doesn't 500 the
-  // whole page — the fixtures gracefully fall back to placeholders.
-  const cardioData = await getCardioDataFromDisk().catch(() => null)
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -51,14 +44,22 @@ export default async function TrainingFacilityGymPage() {
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-[#e8d5be] sm:text-base sm:leading-7">
             Stair climber dead center, treadmill on the left, indoor track
-            curving along the back wall. Tap a piece of equipment in a later
-            phase — for now, walk through the back door to The Combine.
+            curving along the back wall. Tap a piece of equipment for its
+            detail view, or zoom out to the stats wall.
           </p>
+          <div className="mt-5 flex justify-center">
+            <Link
+              href="/training-facility/gym/overview"
+              className="rounded-full border border-amber-200/30 bg-amber-200/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.32em] text-amber-100 transition hover:bg-amber-200/20"
+            >
+              View all cardio →
+            </Link>
+          </div>
         </div>
 
         <div className="mt-8 flex-1 sm:mt-10">
           <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
-            <GymScene cardioData={cardioData} />
+            <GymScene />
           </div>
         </div>
       </div>
