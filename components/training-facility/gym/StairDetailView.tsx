@@ -26,6 +26,8 @@ import {
 } from '@/components/training-facility/shared/CardioStatsCards'
 import { HrZoneBars } from './HrZoneBars'
 import { AvgHrBars } from './AvgHrBars'
+import { PersonalBests } from './PersonalBests'
+import { computePersonalBests } from '@/lib/training-facility/personal-bests'
 
 const CHART_HEIGHT = 280
 const MIN_CHART_WIDTH = 280
@@ -232,6 +234,12 @@ export function StairDetailView(): JSX.Element {
     () => (data ? filterStairSessions(data.sessions, range) : []),
     [data, range],
   )
+  // Personal bests (issue #76) computed once per dataset; the active range +
+  // filtered sessions feed the "PB in range" badge and inline best-in-range line.
+  const bests = useMemo(
+    () => (data ? computePersonalBests(data) : null),
+    [data],
+  )
   // Previous period of equal length, ending the day before `range.start`.
   // Computed alongside the current-range filter so both use the same
   // `data` snapshot — `<CardioStatsCards>` then memoizes off both arrays.
@@ -295,6 +303,17 @@ export function StairDetailView(): JSX.Element {
               previous={previousStairSessions}
               metrics={STAIR_STATS}
             />
+
+            {bests && (
+              <PersonalBests
+                activity="stair"
+                bests={bests}
+                filteredSessions={stairSessions}
+                restingHrTrend={data.resting_hr_trend}
+                vo2maxTrend={data.vo2max_trend}
+                range={range}
+              />
+            )}
 
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ChartCard

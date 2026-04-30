@@ -42,6 +42,8 @@ import {
   dailyTrimpSeries,
   type TrainingLoadPoint,
 } from '@/lib/training-facility/training-load'
+import { PersonalBests } from './PersonalBests'
+import { computePersonalBests } from '@/lib/training-facility/personal-bests'
 
 const CHART_HEIGHT = 280
 const PACE_CHART_HEIGHT = 300
@@ -150,6 +152,14 @@ export function TreadmillDetailView(): JSX.Element {
     () => (data ? filterRunningSessions(data.sessions, range) : []),
     [data, range],
   )
+  // Personal bests are computed once per dataset (full unfiltered) and
+  // re-used across renders — only `data` invalidates them. The detail view
+  // hands the active range + filtered sessions to <PersonalBests> so it can
+  // detect "PB set in range" and render the "best in range" comparison line.
+  const bests = useMemo(
+    () => (data ? computePersonalBests(data) : null),
+    [data],
+  )
   const buckets = useMemo(() => aggregateHrZoneSeconds(runningSessions), [runningSessions])
   const avgHrPoints = useMemo(() => perSessionAvgHr(runningSessions), [runningSessions])
   const paceTrend = useMemo(() => paceTrendPoints(runningSessions), [runningSessions])
@@ -239,6 +249,17 @@ export function TreadmillDetailView(): JSX.Element {
           <LoadingPanel />
         ) : (
           <>
+            {bests && (
+              <PersonalBests
+                activity="running"
+                bests={bests}
+                filteredSessions={runningSessions}
+                restingHrTrend={data.resting_hr_trend}
+                vo2maxTrend={data.vo2max_trend}
+                range={range}
+              />
+            )}
+
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ChartCard
                 title="Time in zone"
