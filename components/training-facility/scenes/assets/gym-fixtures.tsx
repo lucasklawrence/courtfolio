@@ -420,6 +420,10 @@ const WALL_FALLBACK = {
  * (a region of three labeled cells), painted to live in-scene rather
  * than reusing the HTML component verbatim.
  *
+ * Wrapped in a `<Link>` to the All Cardio overview (PRD §7.4 stats-wall
+ * view): the totals it advertises *are* the page underneath, so tapping
+ * the scoreboard opens the full breakdown.
+ *
  * All three values default to placeholders so the static scene reads as a
  * populated room when `cardio.json` doesn't exist yet.
  */
@@ -435,7 +439,11 @@ export function WallScoreboard({
   ]
 
   return (
-    <g>
+    <Link
+      href="/training-facility/gym/overview"
+      aria-label="Open the all-cardio overview / stats wall"
+      className="group focus:outline-none"
+    >
       {/* Panel */}
       <RoughRect
         x={820}
@@ -511,9 +519,31 @@ export function WallScoreboard({
         fontFamily={HANDWRITING_FONT}
         fontSize={18}
       >
-        wall scoreboard
+        wall scoreboard → all cardio
       </text>
-    </g>
+      {/* Hover/focus tint over the panel footprint */}
+      <rect
+        x={820}
+        y={68}
+        width={400}
+        height={222}
+        fill={SCENE_PALETTE.banner}
+        className="opacity-0 transition-opacity group-hover:opacity-10 group-focus-visible:opacity-15"
+      />
+      {/* Focus ring — visible only when the Link is keyboard-focused */}
+      <rect
+        x={814}
+        y={62}
+        width={412}
+        height={234}
+        fill="none"
+        stroke={SCENE_PALETTE.rim}
+        strokeWidth={4}
+        strokeDasharray="6 4"
+        rx={4}
+        className="opacity-0 transition-opacity group-focus-visible:opacity-100"
+      />
+    </Link>
   )
 }
 

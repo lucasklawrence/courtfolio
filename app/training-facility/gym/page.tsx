@@ -51,9 +51,17 @@ export default async function TrainingFacilityGymPage() {
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-[#e8d5be] sm:text-base sm:leading-7">
             Stair climber dead center, treadmill on the left, indoor track
-            curving along the back wall. Tap a piece of equipment in a later
-            phase — for now, walk through the back door to The Combine.
+            curving along the back wall. Tap a piece of equipment for its
+            detail view, or zoom out to the stats wall.
           </p>
+          <div className="mt-5 flex justify-center">
+            <Link
+              href="/training-facility/gym/overview"
+              className="rounded-full border border-amber-200/30 bg-amber-200/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.32em] text-amber-100 transition hover:bg-amber-200/20"
+            >
+              View all cardio →
+            </Link>
+          </div>
         </div>
 
         <div className="mt-8 flex-1 sm:mt-10">
