@@ -1,8 +1,9 @@
 import { type JSX } from 'react'
-import type { CardioActivity, CardioSession } from '@/types/cardio'
+import type { CardioActivity, CardioSession, CardioTimePoint } from '@/types/cardio'
 import type { DateRange } from '@/components/training-facility/shared/DateFilter'
 import {
   bestSession,
+  bestTrendInRange,
   pbInRange,
   type PersonalBests as PersonalBestsRecord,
 } from '@/lib/training-facility/personal-bests'
@@ -20,8 +21,12 @@ export interface PersonalBestsProps {
   activity: CardioActivity
   /** All-time PBs computed from the full unfiltered dataset. */
   bests: PersonalBestsRecord
-  /** Sessions inside the active filter range — used for the "best in range" comparison line on each tile. */
+  /** Sessions inside the active filter range — used for the "best in range" comparison line on the per-activity tiles. */
   filteredSessions: readonly CardioSession[]
+  /** Full resting-HR trend series (unfiltered) — the component scopes it to `range` for the cross-cutting "best in range" comparator. */
+  restingHrTrend?: readonly CardioTimePoint[]
+  /** Full VO₂max trend series (unfiltered) — same role as `restingHrTrend`. */
+  vo2maxTrend?: readonly CardioTimePoint[]
   /** Active filter range — drives the "PB set in range" badge on each tile. */
   range: DateRange
   /** Tailwind classes appended to the outer wrapper. */
@@ -57,6 +62,8 @@ export function PersonalBests({
   activity,
   bests,
   filteredSessions,
+  restingHrTrend,
+  vo2maxTrend,
   range,
   className = '',
 }: PersonalBestsProps): JSX.Element | null {
@@ -119,21 +126,37 @@ export function PersonalBests({
     })
   }
   if (restingHrPb) {
+    const inRange = pbInRange(restingHrPb, range)
+    const inRangeBest = restingHrTrend
+      ? bestTrendInRange(restingHrTrend, range, 'min')
+      : undefined
     tiles.push({
       key: 'resting-hr',
       label: 'Lowest resting HR',
       value: `${Math.round(restingHrPb.value)} bpm`,
       date: restingHrPb.date,
-      badge: pbInRange(restingHrPb, range),
+      badge: inRange,
+      delta:
+        !inRange && inRangeBest
+          ? `Best in range · ${Math.round(inRangeBest.value)} bpm`
+          : undefined,
     })
   }
   if (vo2maxPb) {
+    const inRange = pbInRange(vo2maxPb, range)
+    const inRangeBest = vo2maxTrend
+      ? bestTrendInRange(vo2maxTrend, range, 'max')
+      : undefined
     tiles.push({
       key: 'vo2max',
       label: 'Highest VO₂max',
       value: vo2maxPb.value.toFixed(1),
       date: vo2maxPb.date,
-      badge: pbInRange(vo2maxPb, range),
+      badge: inRange,
+      delta:
+        !inRange && inRangeBest
+          ? `Best in range · ${inRangeBest.value.toFixed(1)}`
+          : undefined,
     })
   }
 

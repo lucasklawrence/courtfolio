@@ -1,10 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import {
   bestSession,
+  bestTrendInRange,
   computePersonalBests,
   pbInRange,
 } from './personal-bests'
-import type { CardioData, CardioSession } from '@/types/cardio'
+import type { CardioData, CardioSession, CardioTimePoint } from '@/types/cardio'
 
 const session = (
   date: string,
@@ -261,5 +262,84 @@ describe('pbInRange', () => {
         range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
       ),
     ).toBe(true)
+  })
+})
+
+describe('bestTrendInRange', () => {
+  const trend: CardioTimePoint[] = [
+    { date: '2026-01-15', value: 64 },
+    { date: '2026-02-15', value: 60 }, // overall best (lowest)
+    { date: '2026-03-15', value: 62 },
+    { date: '2026-04-15', value: 58 }, // overall best (lowest), but in April
+  ]
+
+  it('returns the lowest in-range point in min mode', () => {
+    expect(
+      bestTrendInRange(
+        trend,
+        range('2026-02-01T00:00:00', '2026-03-31T23:59:59.999'),
+        'min',
+      ),
+    ).toEqual({ value: 60, date: '2026-02-15' })
+  })
+
+  it('returns the highest in-range point in max mode', () => {
+    expect(
+      bestTrendInRange(
+        trend,
+        range('2026-01-01T00:00:00', '2026-03-31T23:59:59.999'),
+        'max',
+      ),
+    ).toEqual({ value: 64, date: '2026-01-15' })
+  })
+
+  it('returns undefined when no point falls inside the range', () => {
+    expect(
+      bestTrendInRange(
+        trend,
+        range('2026-05-01T00:00:00', '2026-05-31T23:59:59.999'),
+        'min',
+      ),
+    ).toBeUndefined()
+  })
+
+  it('skips non-finite, zero, and negative values', () => {
+    const messy: CardioTimePoint[] = [
+      { date: '2026-02-01', value: 0 },
+      { date: '2026-02-05', value: -5 },
+      { date: '2026-02-10', value: Number.NaN },
+      { date: '2026-02-15', value: 60 },
+    ]
+    expect(
+      bestTrendInRange(
+        messy,
+        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
+        'min',
+      ),
+    ).toEqual({ value: 60, date: '2026-02-15' })
+  })
+
+  it('skips points whose date is unparseable', () => {
+    const messy: CardioTimePoint[] = [
+      { date: 'garbage', value: 50 },
+      { date: '2026-02-15', value: 60 },
+    ]
+    expect(
+      bestTrendInRange(
+        messy,
+        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
+        'min',
+      ),
+    ).toEqual({ value: 60, date: '2026-02-15' })
+  })
+
+  it('returns undefined for an empty trend list', () => {
+    expect(
+      bestTrendInRange(
+        [],
+        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
+        'min',
+      ),
+    ).toBeUndefined()
   })
 })

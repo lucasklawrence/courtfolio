@@ -123,6 +123,36 @@ export function pbInRange(
 }
 
 /**
+ * Best point in a trend series whose date falls inside the active range.
+ * Mirrors {@link bestSession} for trend (daily-measurement) data — used by
+ * `PersonalBests` to render the "Best in range" comparator on the
+ * cross-cutting tiles (resting HR, VO₂max) when the all-time PB is
+ * *outside* the active filter range.
+ *
+ * @param points Full trend series (e.g. `data.resting_hr_trend`).
+ * @param range  Active range from the shared `DateFilter`.
+ * @param mode   `'min'` for lower-is-better metrics (resting HR), `'max'` otherwise.
+ */
+export function bestTrendInRange(
+  points: readonly CardioTimePoint[],
+  range: DateRange,
+  mode: Mode,
+): PersonalBestRecord | undefined {
+  const fromMs = range.start.getTime()
+  const toMs = range.end.getTime()
+  let best: PersonalBestRecord | undefined
+  for (const p of points) {
+    if (typeof p.value !== 'number' || !Number.isFinite(p.value) || p.value <= 0) continue
+    const ts = parseRecordDate(p.date).getTime()
+    if (!Number.isFinite(ts) || ts < fromMs || ts > toMs) continue
+    if (!best || (mode === 'min' ? p.value < best.value : p.value > best.value)) {
+      best = { value: p.value, date: p.date }
+    }
+  }
+  return best
+}
+
+/**
  * Per-activity bests for a session metric. Internal — sessions are grouped
  * by `s.activity` and the best session per group is kept.
  */

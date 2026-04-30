@@ -186,6 +186,8 @@ export function StairDetailView(): JSX.Element {
                 activity="stair"
                 bests={bests}
                 filteredSessions={stairSessions}
+                restingHrTrend={data.resting_hr_trend}
+                vo2maxTrend={data.vo2max_trend}
                 range={range}
               />
             )}

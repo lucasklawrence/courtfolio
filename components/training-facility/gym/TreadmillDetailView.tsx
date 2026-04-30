@@ -254,6 +254,8 @@ export function TreadmillDetailView(): JSX.Element {
                 activity="running"
                 bests={bests}
                 filteredSessions={runningSessions}
+                restingHrTrend={data.resting_hr_trend}
+                vo2maxTrend={data.vo2max_trend}
                 range={range}
               />
             )}
