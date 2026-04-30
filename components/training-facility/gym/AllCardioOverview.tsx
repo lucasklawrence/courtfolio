@@ -30,8 +30,7 @@ import {
   type ActivityCount,
 } from '@/lib/training-facility/all-cardio'
 import {
-  computeTrainingLoad,
-  dailyTrimpSeries,
+  trainingLoadInRange,
   type TrainingLoadPoint,
 } from '@/lib/training-facility/training-load'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
@@ -40,6 +39,8 @@ import { ActivityLegend, AvgHrBarsByActivity } from './AvgHrBarsByActivity'
 import { TrainingLoadChart } from './TrainingLoadChart'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
+import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
+import { MaxHrControl } from './MaxHrControl'
 
 const CHART_HEIGHT = 280
 const WIDE_CHART_HEIGHT = 300
@@ -94,6 +95,10 @@ export function AllCardioOverview(): JSX.Element {
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
   const [wideWidth, setWideWidth] = useState(DEFAULT_WIDE_WIDTH)
+  // Max HR drives the runtime TRIMP formula. Defaults until `MaxHrControl`'s
+  // mount-effect reads localStorage; same fallback as before #143 so SSR is
+  // unchanged. Shared with the per-equipment detail views via localStorage.
+  const [maxHr, setMaxHr] = useState<number>(DEFAULT_MAX_HR)
   const cardSizerRef = useRef<HTMLDivElement>(null)
   const wideSizerRef = useRef<HTMLDivElement>(null)
 
@@ -168,21 +173,13 @@ export function AllCardioOverview(): JSX.Element {
   const avgHrByActivity = useMemo(() => perSessionAvgHrByActivity(sessions), [sessions])
   const activityCounts = useMemo(() => countByActivity(sessions), [sessions])
 
-  // Training load aggregates ALL cardio activities — same pre-warm trick as
-  // TreadmillDetailView so the EMA doesn't ramp from zero at the visible
-  // window's left edge. Compute over the full dataset, then slice down.
-  const trainingLoad = useMemo<TrainingLoadPoint[]>(() => {
-    if (!data || data.sessions.length === 0) return []
-    const series = dailyTrimpSeries(data.sessions)
-    if (series.length === 0) return []
-    const full = computeTrainingLoad(series)
-    const fromMs = range.start.getTime()
-    const toMs = range.end.getTime()
-    return full.filter((p) => {
-      const t = p.date.getTime()
-      return t >= fromMs && t <= toMs
-    })
-  }, [data, range])
+  // Training load aggregates ALL cardio activities. Routes through the shared
+  // `trainingLoadInRange` helper for the same pre-warm/clip behavior as the
+  // per-equipment views, and threads the user's persisted max HR through.
+  const trainingLoad = useMemo<TrainingLoadPoint[]>(
+    () => (data ? trainingLoadInRange(data.sessions, range, { maxHr }) : []),
+    [data, range, maxHr],
+  )
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -267,6 +264,7 @@ export function AllCardioOverview(): JSX.Element {
               title="Training load"
               helper="ATL (acute, 7d) vs. CTL (chronic, 28d) and TSB = CTL − ATL. Whole-athlete metric — every cardio modality contributes."
               wide
+              headerSlot={<MaxHrControl onChange={setMaxHr} />}
             >
               <div ref={wideSizerRef}>
                 <TrainingLoadChart
@@ -355,18 +353,32 @@ interface ChartCardProps {
   wide?: boolean
   /** Optional content rendered after the chart body — e.g. a legend. */
   footer?: JSX.Element
+  /**
+   * Optional control rendered to the right of the title — used by the
+   * Training Load card to host the max-HR override. Wraps to the next line
+   * on narrow screens via the parent header's `flex-wrap`.
+   */
+  headerSlot?: JSX.Element
   children: JSX.Element
 }
 
-function ChartCard({ title, helper, wide, footer, children }: ChartCardProps): JSX.Element {
+function ChartCard({
+  title,
+  helper,
+  wide,
+  footer,
+  headerSlot,
+  children,
+}: ChartCardProps): JSX.Element {
   return (
     <section
       className={`${wide ? 'mt-6 ' : ''}rounded-[1.6rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_18px_46px_rgba(0,0,0,0.34)]`}
     >
-      <header className="mb-2 flex items-baseline justify-between gap-3">
+      <header className="mb-2 flex flex-wrap items-baseline justify-between gap-3">
         <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0a0a0a]">
           {title}
         </h2>
+        {headerSlot}
       </header>
       <p className="mb-4 text-xs leading-5 text-[#404040]">{helper}</p>
       <div className="overflow-x-auto">{children}</div>
