@@ -1,6 +1,9 @@
 import Link from 'next/link'
 
+import type { CardioTimePoint } from '@/types/cardio'
+
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
+import { PulsingHeart } from './PulsingHeart'
 import {
   RoughCircle,
   RoughEllipse,
@@ -64,12 +67,81 @@ export function IndoorTrackSilhouette() {
   )
 }
 
+/** Coord box for sparkline / trend projections inside a fixture. */
+interface PolylineBox {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
 /**
- * Wall-mounted heart-rate readout: small framed display showing a resting BPM
- * value with a tiny sparkline below. Hand-drawn frame and pulsing-marker
- * sparkline.
+ * Project a {@link CardioTimePoint} series into an SVG `points` string fitted
+ * to `box`. Y-axis is min/max-scaled across the input series with a small
+ * vertical pad so the line never crashes against the box edges; x-axis spans
+ * the box width with even spacing (fixture trends are short and uniformly
+ * timed enough that point-index spacing reads better than time-of-day
+ * spacing).
+ *
+ * Returns `null` when fewer than 2 points are supplied — the caller falls
+ * back to the painted polyline so the wall still has a chart on it.
  */
-export function HrMonitor() {
+function projectSeriesPolyline(
+  series: readonly CardioTimePoint[],
+  box: PolylineBox,
+): { points: string; coords: Array<[number, number]> } | null {
+  if (series.length < 2) return null
+  const values = series.map((p) => p.value)
+  const min = Math.min(...values)
+  const max = Math.max(...values)
+  const span = max - min
+  const verticalPad = box.height * 0.1
+  const drawHeight = box.height - verticalPad * 2
+  const stepX = box.width / (series.length - 1)
+  const coords: Array<[number, number]> = series.map((p, i) => {
+    const x = box.x + i * stepX
+    // Flat series (every value identical) — center the line vertically
+    // rather than collapsing every point to the bottom edge of the box.
+    const norm = span === 0 ? 0.5 : (p.value - min) / span
+    // SVG y grows downward — invert so higher values draw higher on screen.
+    const y = box.y + verticalPad + (1 - norm) * drawHeight
+    return [x, y]
+  })
+  const points = coords.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ')
+  return { points, coords }
+}
+
+/** Props for {@link HrMonitor}. */
+export interface HrMonitorProps {
+  /** Live BPM value to display + drive the pulse rate. Falls back to a placeholder for a "looks alive" empty state. */
+  bpm?: number
+  /** Latest sparkline series (oldest → newest). Falls back to the painted polyline when fewer than 2 points exist. */
+  sparkline?: readonly CardioTimePoint[]
+}
+
+const HR_SPARKLINE_BOX: PolylineBox = { x: 150, y: 200, width: 160, height: 22 }
+const HR_FALLBACK_BPM = 62
+// Original painted sparkline path — kept verbatim as the empty-state
+// fallback so the gym wall reads as a populated room before the first
+// `cardio.json` import.
+const HR_FALLBACK_PATH =
+  'M 150 220 L 170 212 L 190 218 L 210 205 L 230 214 L 250 200 L 270 210 L 290 200 L 310 206'
+
+/**
+ * Wall-mounted heart-rate readout (PRD §7.4): small framed display showing
+ * the latest resting BPM with a sparkline trend below. The heart glyph
+ * pulses at the displayed BPM via {@link PulsingHeart}.
+ *
+ * Both `bpm` and `sparkline` are optional — caller can pass nothing and the
+ * fixture still renders a "painted" version with the original placeholder
+ * value, matching the empty state of `getCardioData()` returning `null`.
+ */
+export function HrMonitor({ bpm, sparkline }: HrMonitorProps = {}) {
+  const displayBpm = bpm ?? HR_FALLBACK_BPM
+  const projected = sparkline
+    ? projectSeriesPolyline(sparkline, HR_SPARKLINE_BOX)
+    : null
+
   return (
     <g>
       <RoughRect
@@ -97,6 +169,10 @@ export function HrMonitor() {
         seed={121}
       />
 
+      {/* Header: `♥ resting hr` rendered as a single centered text block.
+          The heart is a `<motion.tspan>` inside the same `<text>` so the
+          pulse animates the glyph in place without breaking the original
+          layout. */}
       <text
         x={230}
         y={140}
@@ -105,7 +181,7 @@ export function HrMonitor() {
         fontFamily={HANDWRITING_FONT}
         fontSize={22}
       >
-        ♥ resting hr
+        <PulsingHeart bpm={displayBpm} /> resting hr
       </text>
       <text
         x={230}
@@ -116,16 +192,27 @@ export function HrMonitor() {
         fontSize={48}
         fontWeight={700}
       >
-        62
+        {displayBpm}
       </text>
-      <RoughPath
-        d="M 150 220 L 170 212 L 190 218 L 210 205 L 230 214 L 250 200 L 270 210 L 290 200 L 310 206"
-        fill="none"
-        stroke={SCENE_PALETTE.rim}
-        strokeWidth={2}
-        roughness={1.2}
-        seed={122}
-      />
+      {projected ? (
+        <polyline
+          points={projected.points}
+          fill="none"
+          stroke={SCENE_PALETTE.rim}
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      ) : (
+        <RoughPath
+          d={HR_FALLBACK_PATH}
+          fill="none"
+          stroke={SCENE_PALETTE.rim}
+          strokeWidth={2}
+          roughness={1.2}
+          seed={122}
+        />
+      )}
       <text
         x={230}
         y={272}
@@ -140,11 +227,37 @@ export function HrMonitor() {
   )
 }
 
+/** Props for {@link Vo2MaxWhiteboard}. */
+export interface Vo2MaxWhiteboardProps {
+  /** Latest VO2max value (ml/kg/min). Falls back to the painted placeholder. */
+  value?: number
+  /** Latest trend series (oldest → newest). Falls back to the painted polyline + dots when fewer than 2 points exist. */
+  trend?: readonly CardioTimePoint[]
+}
+
+const VO2_TREND_BOX: PolylineBox = { x: 420, y: 200, width: 300, height: 60 }
+const VO2_FALLBACK_VALUE = 47.8
+// Original painted trend coordinates — fallback when `trend` is missing.
+const VO2_FALLBACK_COORDS: Array<[number, number]> = [
+  [420, 250], [470, 238], [520, 242], [570, 224], [620, 218], [670, 206], [720, 200],
+]
+
 /**
- * Hand-drawn whiteboard tracking the rolling VO2max trend. The chart is a
- * roughjs polyline drawn as if sketched in marker.
+ * Hand-drawn whiteboard tracking the rolling VO2max trend (PRD §7.4).
+ * The chart is a roughjs polyline drawn as if sketched in marker.
+ *
+ * Both `value` and `trend` are optional — empty / missing data falls back
+ * to the painted trend so the whiteboard isn't blank for first-time
+ * visitors before they import any cardio data.
  */
-export function Vo2MaxWhiteboard() {
+export function Vo2MaxWhiteboard({
+  value,
+  trend,
+}: Vo2MaxWhiteboardProps = {}) {
+  const displayValue = value ?? VO2_FALLBACK_VALUE
+  const projected = trend ? projectSeriesPolyline(trend, VO2_TREND_BOX) : null
+  const coords = projected?.coords ?? VO2_FALLBACK_COORDS
+
   return (
     <g>
       {/* Frame */}
@@ -205,23 +318,32 @@ export function Vo2MaxWhiteboard() {
         fontSize={32}
         fontWeight={700}
       >
-        47.8
+        {displayValue.toFixed(1)}
       </text>
 
       {/* Hand-drawn trend chart */}
-      <RoughPath
-        d="M 420 250 L 470 238 L 520 242 L 570 224 L 620 218 L 670 206 L 720 200"
-        fill="none"
-        stroke={SCENE_PALETTE.rim}
-        strokeWidth={3}
-        roughness={1.5}
-        bowing={1}
-        seed={143}
-      />
+      {projected ? (
+        <polyline
+          points={projected.points}
+          fill="none"
+          stroke={SCENE_PALETTE.rim}
+          strokeWidth={3}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      ) : (
+        <RoughPath
+          d="M 420 250 L 470 238 L 520 242 L 570 224 L 620 218 L 670 206 L 720 200"
+          fill="none"
+          stroke={SCENE_PALETTE.rim}
+          strokeWidth={3}
+          roughness={1.5}
+          bowing={1}
+          seed={143}
+        />
+      )}
       {/* Data point dots */}
-      {[
-        [420, 250], [470, 238], [520, 242], [570, 224], [620, 218], [670, 206], [720, 200],
-      ].map(([x, y], i) => (
+      {coords.map(([x, y], i) => (
         <RoughCircle
           key={`vo2-dot-${i}`}
           cx={x}
@@ -246,10 +368,11 @@ export function Vo2MaxWhiteboard() {
         roughness={0.8}
         seed={155}
       />
-      {/* Trend ticks */}
-      {[420, 470, 520, 570, 620, 670, 720].map((x, i) => (
+      {/* Trend ticks — anchored to the projected x positions so the ticks
+          stay aligned with the data points rather than a hardcoded grid. */}
+      {coords.map(([x], i) => (
         <RoughLineShape
-          key={`vo2-tick-${x}`}
+          key={`vo2-tick-${i}`}
           x1={x}
           y1={262}
           x2={x}
@@ -274,15 +397,41 @@ export function Vo2MaxWhiteboard() {
   )
 }
 
+/** Props for {@link WallScoreboard}. */
+export interface WallScoreboardProps {
+  /** Sessions logged in the rolling-7-day window. Falls back to a placeholder when omitted. */
+  sessions?: number
+  /** Total duration in the window, formatted `H:MM`. Falls back to a placeholder when omitted. */
+  durationLabel?: string
+  /** Total distance in the window, formatted to one decimal mile (e.g. `11.6`). Falls back to a placeholder when omitted. */
+  milesLabel?: string
+}
+
+const WALL_FALLBACK = {
+  sessions: 5,
+  durationLabel: '4:12',
+  milesLabel: '11.6',
+} as const
+
 /**
- * Wall scoreboard showing this week's totals (sessions, time, distance) —
- * black panel with banner-yellow trim and cream digits.
+ * Wall scoreboard (PRD §7.4) showing this rolling-7-day window's totals
+ * (sessions, time, distance) — black panel with banner-yellow trim and
+ * cream digits. Same display contract as the Combine `<Scoreboard>`
+ * (a region of three labeled cells), painted to live in-scene rather
+ * than reusing the HTML component verbatim.
+ *
+ * All three values default to placeholders so the static scene reads as a
+ * populated room when `cardio.json` doesn't exist yet.
  */
-export function WallScoreboard() {
+export function WallScoreboard({
+  sessions,
+  durationLabel,
+  milesLabel,
+}: WallScoreboardProps = {}) {
   const stats: Array<{ label: string; value: string }> = [
-    { label: 'sessions', value: '5' },
-    { label: 'time', value: '4:12' },
-    { label: 'miles', value: '11.6' },
+    { label: 'sessions', value: String(sessions ?? WALL_FALLBACK.sessions) },
+    { label: 'time', value: durationLabel ?? WALL_FALLBACK.durationLabel },
+    { label: 'miles', value: milesLabel ?? WALL_FALLBACK.milesLabel },
   ]
 
   return (
