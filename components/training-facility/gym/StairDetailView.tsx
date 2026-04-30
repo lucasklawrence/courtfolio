@@ -18,7 +18,12 @@ import {
   parseSessionDate,
   perSessionAvgHr,
 } from '@/lib/training-facility/stair'
+import { computePreviousRange } from '@/lib/training-facility/period-comparison'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import {
+  CardioStatsCards,
+  type CardioStatCard,
+} from '@/components/training-facility/shared/CardioStatsCards'
 import { HrZoneBars } from './HrZoneBars'
 import { AvgHrBars } from './AvgHrBars'
 import { PersonalBests } from './PersonalBests'
@@ -28,6 +33,109 @@ const CHART_HEIGHT = 280
 const MIN_CHART_WIDTH = 280
 const DEFAULT_CHART_WIDTH = 560
 const EARLIEST_FALLBACK = new Date(2024, 0, 1)
+
+/**
+ * Compact total-time label that promotes to `Hh Mm` once we cross an
+ * hour. Keeps the stat-card row scannable for monthly totals (e.g. a
+ * stair-heavy month is hours, not 300+ minutes). Fractional seconds and
+ * sub-minute remainders are dropped — the rounding loss is invisible at
+ * the row's display fidelity.
+ */
+function formatTotalDuration(seconds: number): string {
+  if (!Number.isFinite(seconds) || seconds < 0) return '—'
+  const mins = Math.floor(seconds / 60)
+  if (mins < 60) return `${mins}m`
+  const hours = Math.floor(mins / 60)
+  const remMins = mins % 60
+  return `${hours}h ${remMins.toString().padStart(2, '0')}m`
+}
+
+/** Sum a numeric per-session field, skipping sessions where the field is missing. */
+function sumOf(
+  sessions: readonly CardioSession[],
+  pick: (s: CardioSession) => number | undefined,
+): number {
+  let total = 0
+  for (const s of sessions) {
+    const v = pick(s)
+    if (typeof v === 'number') total += v
+  }
+  return total
+}
+
+/** Average a numeric per-session field, returning `null` when no session has the field. */
+function avgOf(
+  sessions: readonly CardioSession[],
+  pick: (s: CardioSession) => number | undefined,
+): number | null {
+  let total = 0
+  let count = 0
+  for (const s of sessions) {
+    const v = pick(s)
+    if (typeof v === 'number') {
+      total += v
+      count += 1
+    }
+  }
+  return count === 0 ? null : total / count
+}
+
+/**
+ * Period-comparison metrics surfaced above the Stair charts (#77).
+ * Module-scope so the array reference stays stable across renders —
+ * `<CardioStatsCards>` memoizes on identity.
+ *
+ * Direction: sessions / total time / avg duration are higher-is-better
+ * (more work logged = improvement); avg/max HR are neutral because
+ * "improvement" depends on which zone the session was targeting.
+ */
+const STAIR_STATS: ReadonlyArray<CardioStatCard> = [
+  {
+    key: 'sessions',
+    label: 'Sessions',
+    compute: (s) => s.length,
+    formatValue: (v) => String(v),
+    direction: 'higher-is-better',
+  },
+  {
+    key: 'total_time',
+    label: 'Total time',
+    compute: (s) => sumOf(s, (x) => x.duration_seconds),
+    formatValue: formatTotalDuration,
+    formatDelta: (delta) => {
+      const sign = delta > 0 ? '+' : delta < 0 ? '−' : '±'
+      return `${sign}${formatTotalDuration(Math.abs(delta))}`
+    },
+    direction: 'higher-is-better',
+  },
+  {
+    key: 'avg_duration',
+    label: 'Avg duration',
+    compute: (s) => avgOf(s, (x) => x.duration_seconds),
+    formatValue: formatDuration,
+    formatDelta: (delta) => {
+      const sign = delta > 0 ? '+' : delta < 0 ? '−' : '±'
+      return `${sign}${formatDuration(Math.abs(delta))}`
+    },
+    direction: 'higher-is-better',
+  },
+  {
+    key: 'avg_hr',
+    label: 'Avg HR',
+    compute: (s) => avgOf(s, (x) => x.avg_hr),
+    formatValue: (v) => String(Math.round(v)),
+    unit: 'BPM',
+    direction: 'neutral',
+  },
+  {
+    key: 'avg_max_hr',
+    label: 'Avg max HR',
+    compute: (s) => avgOf(s, (x) => x.max_hr),
+    formatValue: (v) => String(Math.round(v)),
+    unit: 'BPM',
+    direction: 'neutral',
+  },
+]
 
 /**
  * Stair-climber detail view (PRD §7.4) — the first Gym detail surface.
@@ -132,6 +240,14 @@ export function StairDetailView(): JSX.Element {
     () => (data ? computePersonalBests(data) : null),
     [data],
   )
+  // Previous period of equal length, ending the day before `range.start`.
+  // Computed alongside the current-range filter so both use the same
+  // `data` snapshot — `<CardioStatsCards>` then memoizes off both arrays.
+  const previousRange = useMemo(() => computePreviousRange(range), [range])
+  const previousStairSessions = useMemo<CardioSession[]>(
+    () => (data ? filterStairSessions(data.sessions, previousRange) : []),
+    [data, previousRange],
+  )
   const buckets = useMemo(() => aggregateHrZoneSeconds(stairSessions), [stairSessions])
   const avgHrPoints = useMemo(() => perSessionAvgHr(stairSessions), [stairSessions])
 
@@ -181,6 +297,13 @@ export function StairDetailView(): JSX.Element {
           <LoadingPanel />
         ) : (
           <>
+            <CardioStatsCards
+              className="mt-8"
+              current={stairSessions}
+              previous={previousStairSessions}
+              metrics={STAIR_STATS}
+            />
+
             {bests && (
               <PersonalBests
                 activity="stair"
