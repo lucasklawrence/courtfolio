@@ -36,6 +36,15 @@ import { RoughScatter } from '@/components/training-facility/shared/charts/Rough
 import { BodyweightOverlay } from '@/components/training-facility/shared/charts/BodyweightOverlay'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
+import { TrainingLoadChart } from './TrainingLoadChart'
+import {
+  trainingLoadInRange,
+  type TrainingLoadPoint,
+} from '@/lib/training-facility/training-load'
+import { PersonalBests } from './PersonalBests'
+import { computePersonalBests } from '@/lib/training-facility/personal-bests'
+import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
+import { MaxHrControl } from './MaxHrControl'
 
 const CHART_HEIGHT = 280
 const PACE_CHART_HEIGHT = 300
@@ -66,6 +75,11 @@ export function TreadmillDetailView(): JSX.Element {
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
   const [paceWidth, setPaceWidth] = useState(DEFAULT_PACE_WIDTH)
+  // Max HR drives the runtime TRIMP formula. Starts at the default and is
+  // updated to the persisted value once `MaxHrControl`'s mount-effect reads
+  // localStorage. Pre-hydration the chart renders against the default — same
+  // behavior as before #143 so SSR output is unchanged.
+  const [maxHr, setMaxHr] = useState<number>(DEFAULT_MAX_HR)
   // Sentinel ref on a per-card wrapper — see StairDetailView for the rationale
   // (observing the grid wrapper would over-report on `lg:grid-cols-2`).
   const cardSizerRef = useRef<HTMLDivElement>(null)
@@ -144,6 +158,14 @@ export function TreadmillDetailView(): JSX.Element {
     () => (data ? filterRunningSessions(data.sessions, range) : []),
     [data, range],
   )
+  // Personal bests are computed once per dataset (full unfiltered) and
+  // re-used across renders — only `data` invalidates them. The detail view
+  // hands the active range + filtered sessions to <PersonalBests> so it can
+  // detect "PB set in range" and render the "best in range" comparison line.
+  const bests = useMemo(
+    () => (data ? computePersonalBests(data) : null),
+    [data],
+  )
   const buckets = useMemo(() => aggregateHrZoneSeconds(runningSessions), [runningSessions])
   const avgHrPoints = useMemo(() => perSessionAvgHr(runningSessions), [runningSessions])
   const paceTrend = useMemo(() => paceTrendPoints(runningSessions), [runningSessions])
@@ -152,6 +174,16 @@ export function TreadmillDetailView(): JSX.Element {
     [runningSessions],
   )
   const paceVsHr = useMemo(() => paceAtHrPoints(runningSessions), [runningSessions])
+
+  // Training load aggregates ALL cardio activities (stair, running, walking) —
+  // TRIMP / ATL / CTL is a whole-athlete metric and excluding modalities would
+  // distort it. The helper pre-warms the EMA from the earliest session, then
+  // clips to the active DateFilter window so the left edge doesn't show a
+  // synthetic zero ramp.
+  const trainingLoad = useMemo<TrainingLoadPoint[]>(
+    () => (data ? trainingLoadInRange(data.sessions, range, { maxHr }) : []),
+    [data, range, maxHr],
+  )
 
   // Date extent for the pace chart and bodyweight overlay must match exactly
   // so the two x-axes line up. Falls back to the active filter range when the
@@ -214,6 +246,17 @@ export function TreadmillDetailView(): JSX.Element {
           <LoadingPanel />
         ) : (
           <>
+            {bests && (
+              <PersonalBests
+                activity="running"
+                bests={bests}
+                filteredSessions={runningSessions}
+                restingHrTrend={data.resting_hr_trend}
+                vo2maxTrend={data.vo2max_trend}
+                range={range}
+              />
+            )}
+
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ChartCard
                 title="Time in zone"
@@ -313,6 +356,25 @@ export function TreadmillDetailView(): JSX.Element {
               </ChartCard>
             </div>
 
+            <ChartCard
+              title="Training load"
+              helper="ATL (acute, 7d) vs. CTL (chronic, 28d) and TSB = CTL − ATL. Aggregates all cardio activities; bands shade the freshness zones."
+              wide
+              headerSlot={<MaxHrControl onChange={setMaxHr} />}
+            >
+              <div>
+                <TrainingLoadChart
+                  points={trainingLoad}
+                  width={paceWidth}
+                  height={PACE_CHART_HEIGHT}
+                  margin={defaultMargin}
+                  fontFamily={FONT_FAMILY}
+                  axisColor={chartPalette.inkSoft}
+                  emptyMessage="No training load in selected range"
+                />
+              </div>
+            </ChartCard>
+
             <SessionLogTable sessions={runningSessions} range={range} />
           </>
         )}
@@ -332,18 +394,25 @@ interface ChartCardProps {
   helper: string
   /** When set, the card sits full-width (used for the pace-trend row). */
   wide?: boolean
+  /**
+   * Optional control rendered to the right of the title — used by the
+   * Training Load card to host the max-HR override. Wraps to the next line
+   * on narrow screens via the parent header's `flex-wrap`.
+   */
+  headerSlot?: JSX.Element
   children: JSX.Element
 }
 
-function ChartCard({ title, helper, wide, children }: ChartCardProps): JSX.Element {
+function ChartCard({ title, helper, wide, headerSlot, children }: ChartCardProps): JSX.Element {
   return (
     <section
       className={`${wide ? 'mt-6 ' : ''}rounded-[1.6rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_18px_46px_rgba(0,0,0,0.34)]`}
     >
-      <header className="mb-2 flex items-baseline justify-between gap-3">
+      <header className="mb-2 flex flex-wrap items-baseline justify-between gap-3">
         <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0a0a0a]">
           {title}
         </h2>
+        {headerSlot}
       </header>
       <p className="mb-4 text-xs leading-5 text-[#404040]">{helper}</p>
       <div className="overflow-x-auto">{children}</div>

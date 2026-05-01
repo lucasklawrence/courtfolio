@@ -61,3 +61,5 @@ screenshots/*
 # Contains medical metrics; never commit. Replace with your own export
 # before each deploy.
 public/data/cardio.json
+
+.vercel
