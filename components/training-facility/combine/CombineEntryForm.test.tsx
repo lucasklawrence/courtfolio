@@ -83,6 +83,35 @@ describe('CombineEntryForm — admin-session gate', () => {
   })
 })
 
+describe('CombineEntryForm — sign-out affordance (#151)', () => {
+  it('renders a "Sign out" button when the viewer is admin', () => {
+    render(<CombineEntryForm onSaved={() => {}} />)
+    expect(screen.getByRole('button', { name: /sign out/i })).toBeInTheDocument()
+  })
+
+  it('does NOT render the sign-out button when the viewer is not admin', () => {
+    adminSessionMock.mockReturnValue({ isAdmin: false, isLoading: false, email: null })
+    render(<CombineEntryForm onSaved={() => {}} />)
+    expect(screen.queryByRole('button', { name: /sign out/i })).not.toBeInTheDocument()
+  })
+
+  it('wraps the sign-out button in a form posting to /auth/sign-out', () => {
+    render(<CombineEntryForm onSaved={() => {}} />)
+    const button = screen.getByRole('button', { name: /sign out/i })
+    const form = button.closest('form')
+    expect(form).not.toBeNull()
+    // jsdom normalizes the `action` to a fully-qualified URL on the
+    // property, so use the raw attribute to assert the literal value
+    // emitted by the component.
+    expect(form?.getAttribute('action')).toBe('/auth/sign-out')
+    expect(form?.getAttribute('method')?.toLowerCase()).toBe('post')
+    // Same form must NOT also be the entry-form (which has its own
+    // `onSubmit` for logBenchmark) — i.e., the sign-out button isn't
+    // accidentally nested inside the data form.
+    expect(form?.querySelector('input[type="number"]')).toBeNull()
+  })
+})
+
 describe('CombineEntryForm — collapsing panel', () => {
   it('starts collapsed (no form fields visible)', () => {
     render(<CombineEntryForm onSaved={() => {}} />)
