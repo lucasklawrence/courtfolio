@@ -1,3 +1,4 @@
+import type { SupabaseClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 
 import {
@@ -38,7 +39,11 @@ const CardioSessionRowsSchema = z.array(CardioSessionRowSchema)
 const CardioTrendRowsSchema = z.array(CardioTrendRowSchema)
 
 /**
- * Fetch the full cardio dataset from Supabase.
+ * Fetch the full cardio dataset from Supabase using the supplied
+ * client. Shared between {@link getCardioData} (browser) and the
+ * server-side `getCardioDataServer` in `lib/data/cardio-server.ts` so
+ * the two read paths can't drift in column whitelist, validation, or
+ * shape assembly.
  *
  * Queries the three cardio tables in parallel, normalizes Postgres
  * `null` to absent (matching the legacy JSON shape's "absent key"
@@ -54,15 +59,20 @@ const CardioTrendRowsSchema = z.array(CardioTrendRowSchema)
  * `imported_at` is computed as the latest `created_at` across the three
  * tables. It's surfaced for backwards-compatibility with the legacy
  * JSON shape, but no v1 view actually displays it (the detail views
- * default it to `''` when null).
+ * default it to `''` when null). Lexicographic comparison is safe
+ * because Supabase serializes `timestamptz` in a single canonical UTC
+ * form (`...Z` suffix, microsecond precision), so the strings sort by
+ * actual time without an explicit `Date.parse`.
  *
+ * @param supabase Either the browser or the server SSR client. Both
+ *   use the anon role; cardio RLS allows anon SELECT.
  * @throws when any of the three Supabase queries fail (network /
  *   misconfigured env / RLS regression) or when row-shape validation
- *   fails. Callers usually downgrade this to an empty render — see
- *   `StairDetailView` / `TreadmillDetailView` / `TrackDetailView`.
+ *   fails. Callers usually downgrade this to an empty render.
  */
-export async function getCardioData(): Promise<CardioData | null> {
-  const supabase = getBrowserSupabaseClient()
+export async function assembleCardioData(
+  supabase: SupabaseClient,
+): Promise<CardioData | null> {
   const [sessionsRes, restingRes, vo2Res] = await Promise.all([
     supabase.from(SESSIONS_TABLE).select(SESSIONS_COLUMNS).order('started_at', { ascending: true }),
     supabase.from(RESTING_HR_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
@@ -125,6 +135,20 @@ export async function getCardioData(): Promise<CardioData | null> {
 }
 
 /**
+ * Browser-side cardio dataset reader. Wraps {@link assembleCardioData}
+ * with the cached browser Supabase client. Component-side data
+ * islands (`StairDetailView`, `TreadmillDetailView`,
+ * `TrackDetailView`, `AllCardioOverview`) call this from a client
+ * effect; the SSR side uses `getCardioDataServer` in
+ * `lib/data/cardio-server.ts`.
+ *
+ * @throws See {@link assembleCardioData}.
+ */
+export async function getCardioData(): Promise<CardioData | null> {
+  return assembleCardioData(getBrowserSupabaseClient())
+}
+
+/**
  * Postgres returns `null` for omitted optional columns, but the row
  * Zod schemas declare optional fields with `.optional()` (no
  * `.nullable()`). Map `null` → absent so Zod parses Supabase rows the
@@ -155,6 +179,10 @@ function stripCreatedAt(row: Record<string, unknown>): Record<string, unknown> {
  * Determine `imported_at` from the latest `created_at` across the three
  * cardio tables. Returns `''` when no rows have a `created_at` value —
  * matches the fallback components already use for the "no data yet" state.
+ *
+ * Lexicographic string compare is safe here because Supabase serializes
+ * `timestamptz` in a single canonical UTC form (`YYYY-MM-DDTHH:MM:SS.uuuuuuZ`),
+ * which sorts by actual time without parsing.
  */
 function computeImportedAt(rowGroups: Array<Array<Record<string, unknown>>>): string {
   let latest = ''

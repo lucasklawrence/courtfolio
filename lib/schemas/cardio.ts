@@ -14,6 +14,12 @@
  * type so component-side `Cmd+hover` stays accurate.
  *
  * Sibling pattern: `lib/schemas/movement.ts`.
+ *
+ * KEEP IN SYNC WITH: `scripts/lib/cardio-supabase.mjs`
+ * (CardioDataSchema and sessionToRow duplicate the row-shape and the
+ * write transform here; the .mjs file can't import this .ts without a
+ * build step). A `grep "KEEP IN SYNC WITH"` audit is the working
+ * substitute for cross-target imports.
  */
 
 import { z } from 'zod'

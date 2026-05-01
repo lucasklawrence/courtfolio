@@ -19,8 +19,10 @@
 --
 -- This file is the canonical record of the migration; it has already been
 -- applied to the `court-vision` Supabase project (`ryxbnvhxxkrmsrmocume`).
+-- All DDL is idempotent so re-applying on a fresh dev project (or after a
+-- branch reset) is a safe no-op.
 
-create table public.cardio_sessions (
+create table if not exists public.cardio_sessions (
   started_at timestamptz primary key,
   activity text not null check (activity in ('stair', 'running', 'walking')),
   duration_seconds numeric not null check (duration_seconds >= 0),
@@ -41,18 +43,24 @@ create table public.cardio_sessions (
 comment on table public.cardio_sessions is
   'Cardio workout sessions (stair / running / walking) — PRD §7.4. One row per session, keyed by started_at. HR-zone seconds stored as five explicit columns so individual zones are queryable without JSONB unpacking. Writes happen via the import script (service-role) — no admin write API.';
 
-create index cardio_sessions_activity_started_at_idx
+create index if not exists cardio_sessions_activity_started_at_idx
   on public.cardio_sessions (activity, started_at desc);
 
 alter table public.cardio_sessions enable row level security;
 
-create policy "anon and authenticated can read cardio sessions"
-  on public.cardio_sessions
-  for select
-  to anon, authenticated
-  using (true);
+-- Postgres has no `create policy if not exists`; use a DO block to swallow
+-- the duplicate-object error so the migration stays re-runnable.
+do $$
+begin
+  create policy "anon and authenticated can read cardio sessions"
+    on public.cardio_sessions
+    for select
+    to anon, authenticated
+    using (true);
+exception when duplicate_object then null;
+end $$;
 
-create table public.cardio_resting_hr (
+create table if not exists public.cardio_resting_hr (
   date date primary key,
   value numeric not null check (value > 0),
   created_at timestamptz not null default now(),
@@ -64,13 +72,17 @@ comment on table public.cardio_resting_hr is
 
 alter table public.cardio_resting_hr enable row level security;
 
-create policy "anon and authenticated can read resting hr"
-  on public.cardio_resting_hr
-  for select
-  to anon, authenticated
-  using (true);
+do $$
+begin
+  create policy "anon and authenticated can read resting hr"
+    on public.cardio_resting_hr
+    for select
+    to anon, authenticated
+    using (true);
+exception when duplicate_object then null;
+end $$;
 
-create table public.cardio_vo2max (
+create table if not exists public.cardio_vo2max (
   date date primary key,
   value numeric not null check (value > 0),
   created_at timestamptz not null default now(),
@@ -82,8 +94,12 @@ comment on table public.cardio_vo2max is
 
 alter table public.cardio_vo2max enable row level security;
 
-create policy "anon and authenticated can read vo2max"
-  on public.cardio_vo2max
-  for select
-  to anon, authenticated
-  using (true);
+do $$
+begin
+  create policy "anon and authenticated can read vo2max"
+    on public.cardio_vo2max
+    for select
+    to anon, authenticated
+    using (true);
+exception when duplicate_object then null;
+end $$;

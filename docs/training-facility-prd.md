@@ -396,7 +396,7 @@ Documenting this so future-Lucas (or any collaborator) knows the constraints and
 - Keep types shared (7.10).
 - Keep visualizations data-shape-driven, not user-identity-driven. A silhouette tracker takes an array of jump entries; it should not assume those entries belong to "Lucas."
 - Don't bake personal info (name, photos) into shared components. Personalize via props from a user-level config.
-- Use environment variables for any data URLs (`NEXT_PUBLIC_DATA_URL` defaulting to `/data`) so the source can be swapped without code changes.
+- Read every data source through `lib/data/*.ts` (PRD §7.10) so a future migration is a one-place change. Both cardio (#152) and movement (#131) now go through Supabase via this layer; new domains follow the same pattern.
 
 These cost essentially nothing today and keep every door open.
 

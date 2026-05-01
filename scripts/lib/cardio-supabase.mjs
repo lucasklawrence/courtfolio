@@ -62,6 +62,13 @@ export function createServiceRoleClient() {
  * whole reason the import wrapper exists — a missing field here vs.
  * `types/cardio.ts` fails loudly at import time instead of silently
  * breaking the dashboard at runtime.
+ *
+ * KEEP IN SYNC WITH: `types/cardio.ts` (CardioData), `lib/schemas/cardio.ts`
+ * (CardioSessionRowSchema, CardioTrendRowSchema), and the Python
+ * preprocessor's output shape in `scripts/preprocess-health.py`. A
+ * `grep "KEEP IN SYNC WITH"` audit is the working substitute for a
+ * cross-language type system here — `.mjs` can't import `.ts` without a
+ * build step, so the duplication is intentional.
  */
 const HrZoneSecondsSchema = z
   .object({
