@@ -246,6 +246,14 @@ export async function upsertCardioData(supabase, data) {
  * HealthKit and re-imported would leave a stale Supabase row that the
  * dashboard would keep rendering.
  *
+ * **Empty-payload guard.** When `keepKeys` is `[]`, this function is a
+ * no-op (returns 0 without touching the DB). An import that happens to
+ * have zero rows for one table is interpreted as "this import has no
+ * opinion on that table," not "delete everything in it" — that
+ * protects against parser bugs, partial Apple Health exports, and
+ * mis-typed inputs from silently wiping the dataset. If you genuinely
+ * want to empty a table, do it with a manual SQL `delete`.
+ *
  * Implementation note: PostgREST doesn't expose a clean `NOT IN` for
  * large lists, so we fetch all existing PKs (cheap — these tables top
  * out around 1k rows on Lucas's data) and DELETE the ones missing from
@@ -254,8 +262,13 @@ export async function upsertCardioData(supabase, data) {
  *
  * Returns the number of rows deleted so the caller can surface
  * surprising prunes in the success log.
+ *
+ * Exported so unit tests can pin the empty-payload guard and the
+ * orphan-detection logic; production callers should use
+ * {@link upsertCardioData}.
  */
-async function pruneOrphans(supabase, table, pkColumn, keepKeys) {
+export async function pruneOrphans(supabase, table, pkColumn, keepKeys) {
+  if (keepKeys.length === 0) return 0
   const { data: existing, error: selectErr } = await supabase
     .from(table)
     .select(pkColumn)
