@@ -1,17 +1,19 @@
 import 'server-only'
 
-import type { CardioData } from '@/types/cardio'
 import { createServerSupabaseClient } from '@/lib/supabase/server'
+import type { CardioData } from '@/types/cardio'
 
-import { assembleCardioData } from './cardio'
+import { assembleCardioData } from './cardio-shared'
 
 /**
  * Server-side cardio dataset reader for Server Components and route
  * handlers. Mirrors the browser-facing {@link import('./cardio').getCardioData}
  * but pulls the per-request Supabase client (anon role + cookie auth)
- * from `lib/supabase/server.ts`. The actual query/validation/assembly
- * logic lives in {@link import('./cardio').assembleCardioData} so the
- * two read paths can't drift.
+ * from `lib/supabase/server.ts`. The query / validation / shape
+ * assembly live in {@link assembleCardioData} (`./cardio-shared`),
+ * which has no `'use client'` / `'server-only'` imports of its own —
+ * so the two read paths can't drift, and this file can stay strictly
+ * server-side.
  *
  * Usage example: `app/training-facility/gym/page.tsx` calls this from
  * its Server Component to hydrate the wall fixtures (HR monitor,
