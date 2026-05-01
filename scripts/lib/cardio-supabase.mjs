@@ -170,18 +170,26 @@ function sessionToRow(session, importedAt) {
  * @throws when any Supabase query fails.
  */
 export async function upsertCardioData(supabase, data) {
+  // Defense-in-depth schema check at the write boundary. Both production
+  // callers (import-health.mjs, backfill-cardio.mjs) already validate via
+  // `CardioDataSchema.safeParse` before calling, but a future caller
+  // wouldn't have to — this guarantees the DB never sees a malformed
+  // payload no matter who invokes us. `.parse` throws on invalid input;
+  // we want that loud failure before touching Supabase.
+  const parsed = CardioDataSchema.parse(data)
+
   // Single batch timestamp so all rows land with the exact same
   // `updated_at` and the `imported_at` reader picks one canonical
   // value rather than three near-equal ones.
   const importedAt = new Date().toISOString()
 
-  const sessionRows = data.sessions.map((s) => sessionToRow(s, importedAt))
-  const restingRows = data.resting_hr_trend.map((point) => ({
+  const sessionRows = parsed.sessions.map((s) => sessionToRow(s, importedAt))
+  const restingRows = parsed.resting_hr_trend.map((point) => ({
     date: point.date,
     value: point.value,
     updated_at: importedAt,
   }))
-  const vo2Rows = data.vo2max_trend.map((point) => ({
+  const vo2Rows = parsed.vo2max_trend.map((point) => ({
     date: point.date,
     value: point.value,
     updated_at: importedAt,
@@ -240,6 +248,14 @@ export async function upsertCardioData(supabase, data) {
 }
 
 /**
+ * PostgREST default cap: a plain `select()` returns at most this many
+ * rows, regardless of how many exist. Configurable per-project via
+ * `db-max-rows`; we don't change the default. {@link pruneOrphans}
+ * paginates with `.range()` to cover tables that grow past this limit.
+ */
+const DEFAULT_PAGE_SIZE = 1000
+
+/**
  * Delete rows from `table` whose primary-key value isn't in the
  * caller-supplied `keepKeys` set. The "exact mirror" half of
  * {@link upsertCardioData} — without this, a workout deleted from
@@ -255,30 +271,53 @@ export async function upsertCardioData(supabase, data) {
  * want to empty a table, do it with a manual SQL `delete`.
  *
  * Implementation note: PostgREST doesn't expose a clean `NOT IN` for
- * large lists, so we fetch all existing PKs (cheap — these tables top
- * out around 1k rows on Lucas's data) and DELETE the ones missing from
- * the import. With a v2 multi-tenant rewrite this would become a
+ * large lists, so we fetch all existing PKs and DELETE the ones missing
+ * from the import. PostgREST caps a plain `select()` at 1000 rows
+ * (`db-max-rows`), so the scan paginates with `.range()` until a short
+ * page comes back — otherwise orphans past row 1000 would silently
+ * survive. With a v2 multi-tenant rewrite this would become a
  * server-side `delete from ... where pk not in (...)` instead.
  *
  * Returns the number of rows deleted so the caller can surface
  * surprising prunes in the success log.
  *
- * Exported so unit tests can pin the empty-payload guard and the
- * orphan-detection logic; production callers should use
- * {@link upsertCardioData}.
+ * Exported so unit tests can pin the empty-payload guard, the
+ * pagination loop, and the orphan-detection logic; production callers
+ * should use {@link upsertCardioData}.
+ *
+ * @param {number} [pageSize] Override the page size used for the PK
+ *   scan. Defaults to {@link DEFAULT_PAGE_SIZE}; tests pass small
+ *   values to exercise the pagination loop without enormous fixtures.
  */
-export async function pruneOrphans(supabase, table, pkColumn, keepKeys) {
+export async function pruneOrphans(
+  supabase,
+  table,
+  pkColumn,
+  keepKeys,
+  pageSize = DEFAULT_PAGE_SIZE,
+) {
   if (keepKeys.length === 0) return 0
-  const { data: existing, error: selectErr } = await supabase
-    .from(table)
-    .select(pkColumn)
-  if (selectErr) {
-    throw new Error(`Failed to scan ${table} for orphans: ${selectErr.message}`)
+
+  const existing = []
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await supabase
+      .from(table)
+      .select(pkColumn)
+      .range(from, from + pageSize - 1)
+    if (error) {
+      throw new Error(`Failed to scan ${table} for orphans: ${error.message}`)
+    }
+    const page = data ?? []
+    if (page.length === 0) break
+    existing.push(...page)
+    // A short page means we've drained the table — no more rows past
+    // this point. Stops one round-trip earlier than waiting for an
+    // empty page to come back.
+    if (page.length < pageSize) break
   }
+
   const keep = new Set(keepKeys)
-  const orphans = (existing ?? [])
-    .map((row) => row[pkColumn])
-    .filter((key) => !keep.has(key))
+  const orphans = existing.map((row) => row[pkColumn]).filter((key) => !keep.has(key))
   if (orphans.length === 0) return 0
   const { error: deleteErr } = await supabase
     .from(table)
