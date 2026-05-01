@@ -83,6 +83,59 @@ describe('CombineEntryForm — admin-session gate', () => {
   })
 })
 
+describe('CombineEntryForm — sign-out affordance (#151)', () => {
+  it('renders a "Sign out" button when the viewer is admin', () => {
+    render(<CombineEntryForm onSaved={() => {}} />)
+    expect(screen.getByRole('button', { name: /sign out/i })).toBeInTheDocument()
+  })
+
+  it('does NOT render the sign-out button when the viewer is not admin', () => {
+    adminSessionMock.mockReturnValue({ isAdmin: false, isLoading: false, email: null })
+    render(<CombineEntryForm onSaved={() => {}} />)
+    expect(screen.queryByRole('button', { name: /sign out/i })).not.toBeInTheDocument()
+  })
+
+  it('wraps the sign-out button in a form posting to /auth/sign-out', () => {
+    render(<CombineEntryForm onSaved={() => {}} />)
+    const button = screen.getByRole('button', { name: /sign out/i })
+    const form = button.closest('form')
+    expect(form).not.toBeNull()
+    // jsdom normalizes the `action` to a fully-qualified URL on the
+    // property, so use the raw attribute to assert the literal value
+    // emitted by the component.
+    expect(form?.getAttribute('action')).toBe('/auth/sign-out')
+    expect(form?.getAttribute('method')?.toLowerCase()).toBe('post')
+  })
+
+  it('keeps the sign-out form separate from the data form when the panel is expanded (edit mode)', () => {
+    // Edit mode auto-opens the panel, so the data form (the one with
+    // `onSubmit={handleSubmit(onSubmit)}` and the numeric inputs) is
+    // mounted. Nested <form> elements are invalid HTML and would route
+    // a sign-out submit through RHF's `onSubmit`, calling logBenchmark
+    // instead of POSTing to /auth/sign-out. Pin the boundary.
+    const ENTRY: Benchmark = { date: '2026-03-10', bodyweight_lbs: 230 }
+    render(
+      <CombineEntryForm
+        onSaved={() => {}}
+        editingEntry={ENTRY}
+        onCancelEdit={() => {}}
+      />,
+    )
+    const signOutForm = screen.getByRole('button', { name: /sign out/i }).closest('form')
+    expect(signOutForm).not.toBeNull()
+    expect(signOutForm?.querySelector('input[type="number"]')).toBeNull()
+    // And conversely: the data form (identified by its numeric inputs)
+    // must not contain the sign-out button.
+    const bw = screen.getByLabelText(/bodyweight/i) as HTMLInputElement
+    const dataForm = bw.closest('form')
+    expect(dataForm).not.toBeNull()
+    expect(dataForm).not.toBe(signOutForm)
+    expect(dataForm?.querySelector('button[type="submit"]')?.textContent).not.toMatch(
+      /sign out/i,
+    )
+  })
+})
+
 describe('CombineEntryForm — collapsing panel', () => {
   it('starts collapsed (no form fields visible)', () => {
     render(<CombineEntryForm onSaved={() => {}} />)
