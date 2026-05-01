@@ -116,8 +116,12 @@ export const CardioDataSchema = z
  * of `cardioSessionToRow()` in `lib/schemas/cardio.ts`; duplicated
  * here only because `.mjs` scripts can't import `.ts` modules
  * directly without a build step.
+ *
+ * Stamps `updated_at = now()` so the data layer's `imported_at`
+ * computation (`MAX(updated_at)` across all three tables) advances
+ * on every re-import, even when the row already existed.
  */
-function sessionToRow(session) {
+function sessionToRow(session, importedAt) {
   const zones = session.hr_seconds_in_zone ?? null
   return {
     started_at: session.date,
@@ -133,36 +137,54 @@ function sessionToRow(session) {
     zone4_seconds: zones?.[4] ?? null,
     zone5_seconds: zones?.[5] ?? null,
     meters_per_heartbeat: session.meters_per_heartbeat ?? null,
+    updated_at: importedAt,
   }
 }
 
 /**
- * Upsert the entire validated `CardioData` payload into Supabase.
- * Idempotent — re-running the import after a fresh Apple Health
- * export overwrites the same primary keys (`started_at` for sessions,
- * `date` for trends) instead of duplicating rows.
+ * Upsert the entire validated `CardioData` payload into Supabase, then
+ * delete any rows whose primary key isn't in the payload — making each
+ * import an exact mirror of the source dataset, not a cumulative
+ * append.
  *
- * Trend rows also get an explicit `updated_at = now()` so re-importing
- * the same day's resting-HR after a HealthKit correction reflects the
- * change in the audit column.
+ * Why prune: the documented workflow is "fix in HealthKit, re-import."
+ * Without a prune step, deleting a workout in HealthKit (or having a
+ * trend day disappear from the export) would leave stale rows in
+ * Supabase that the dashboard would keep rendering. The Apple Health
+ * "Export All Health Data" produces the full archive, so the import
+ * payload is authoritative — pruning is the right default.
+ *
+ * Idempotent — re-running on the same payload is a series of
+ * no-op upserts (which still bump `updated_at`) and zero deletes.
+ * `updated_at = importedAt` is stamped on every upserted row so the
+ * data layer's `imported_at` computation (MAX(updated_at) across the
+ * three tables) advances on every re-import even when nothing changed.
  *
  * @param {ReturnType<createServiceRoleClient>} supabase Service-role
  *   client; must bypass RLS to write.
  * @param {z.infer<typeof CardioDataSchema>} data Validated payload.
- * @returns {Promise<{ sessions: number, restingHr: number, vo2max: number }>}
- *   Per-table row counts, surfaced in the script's success log.
+ * @returns {Promise<{ sessions: number, restingHr: number, vo2max: number, pruned: number }>}
+ *   Per-table upsert counts plus total deletions, surfaced in the
+ *   script's success log so a user notices when an import unexpectedly
+ *   removes rows.
+ * @throws when any Supabase query fails.
  */
 export async function upsertCardioData(supabase, data) {
-  const sessionRows = data.sessions.map(sessionToRow)
+  // Single batch timestamp so all rows land with the exact same
+  // `updated_at` and the `imported_at` reader picks one canonical
+  // value rather than three near-equal ones.
+  const importedAt = new Date().toISOString()
+
+  const sessionRows = data.sessions.map((s) => sessionToRow(s, importedAt))
   const restingRows = data.resting_hr_trend.map((point) => ({
     date: point.date,
     value: point.value,
-    updated_at: new Date().toISOString(),
+    updated_at: importedAt,
   }))
   const vo2Rows = data.vo2max_trend.map((point) => ({
     date: point.date,
     value: point.value,
-    updated_at: new Date().toISOString(),
+    updated_at: importedAt,
   }))
 
   if (sessionRows.length > 0) {
@@ -190,9 +212,67 @@ export async function upsertCardioData(supabase, data) {
     }
   }
 
+  const sessionsPruned = await pruneOrphans(
+    supabase,
+    'cardio_sessions',
+    'started_at',
+    sessionRows.map((r) => r.started_at),
+  )
+  const restingPruned = await pruneOrphans(
+    supabase,
+    'cardio_resting_hr',
+    'date',
+    restingRows.map((r) => r.date),
+  )
+  const vo2Pruned = await pruneOrphans(
+    supabase,
+    'cardio_vo2max',
+    'date',
+    vo2Rows.map((r) => r.date),
+  )
+
   return {
     sessions: sessionRows.length,
     restingHr: restingRows.length,
     vo2max: vo2Rows.length,
+    pruned: sessionsPruned + restingPruned + vo2Pruned,
   }
+}
+
+/**
+ * Delete rows from `table` whose primary-key value isn't in the
+ * caller-supplied `keepKeys` set. The "exact mirror" half of
+ * {@link upsertCardioData} — without this, a workout deleted from
+ * HealthKit and re-imported would leave a stale Supabase row that the
+ * dashboard would keep rendering.
+ *
+ * Implementation note: PostgREST doesn't expose a clean `NOT IN` for
+ * large lists, so we fetch all existing PKs (cheap — these tables top
+ * out around 1k rows on Lucas's data) and DELETE the ones missing from
+ * the import. With a v2 multi-tenant rewrite this would become a
+ * server-side `delete from ... where pk not in (...)` instead.
+ *
+ * Returns the number of rows deleted so the caller can surface
+ * surprising prunes in the success log.
+ */
+async function pruneOrphans(supabase, table, pkColumn, keepKeys) {
+  const { data: existing, error: selectErr } = await supabase
+    .from(table)
+    .select(pkColumn)
+  if (selectErr) {
+    throw new Error(`Failed to scan ${table} for orphans: ${selectErr.message}`)
+  }
+  const keep = new Set(keepKeys)
+  const orphans = (existing ?? [])
+    .map((row) => row[pkColumn])
+    .filter((key) => !keep.has(key))
+  if (orphans.length === 0) return 0
+  const { error: deleteErr } = await supabase
+    .from(table)
+    .delete()
+    .in(pkColumn, orphans)
+  if (deleteErr) {
+    throw new Error(`Failed to prune orphans from ${table}: ${deleteErr.message}`)
+  }
+  return orphans.length
 }

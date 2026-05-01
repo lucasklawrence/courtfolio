@@ -57,6 +57,11 @@ async function main() {
     `✓ Backfilled to Supabase: ${counts.sessions} sessions, ` +
       `${counts.restingHr} resting-HR points, ${counts.vo2max} VO2max points.`,
   )
+  if (counts.pruned > 0) {
+    console.log(
+      `  (Pruned ${counts.pruned} orphan row(s) — present in Supabase but not in this backfill source.)`,
+    )
+  }
 }
 
 main().catch((err) => {

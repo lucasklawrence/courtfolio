@@ -36,8 +36,8 @@ const VO2MAX_TABLE = 'cardio_vo2max'
 const SESSIONS_COLUMNS =
   'started_at, activity, duration_seconds, distance_meters, avg_hr, max_hr, ' +
   'pace_seconds_per_km, zone1_seconds, zone2_seconds, zone3_seconds, ' +
-  'zone4_seconds, zone5_seconds, meters_per_heartbeat, created_at'
-const TREND_COLUMNS = 'date, value, created_at'
+  'zone4_seconds, zone5_seconds, meters_per_heartbeat, updated_at'
+const TREND_COLUMNS = 'date, value, updated_at'
 
 /**
  * Validate an array of `cardio_sessions` rows after `null` → omitted
@@ -67,13 +67,15 @@ const CardioTrendRowsSchema = z.array(CardioTrendRowSchema)
  * empty-state branch. Components substitute an empty `CardioData`
  * fallback in that case.
  *
- * `imported_at` is computed as the latest `created_at` across the three
- * tables. It's surfaced for backwards-compatibility with the legacy
- * JSON shape, but no v1 view actually displays it (the detail views
- * default it to `''` when null). Lexicographic comparison is safe
- * because Supabase serializes `timestamptz` in a single canonical UTC
- * form (`...Z` suffix, microsecond precision), so the strings sort by
- * actual time without an explicit `Date.parse`.
+ * `imported_at` is computed as `MAX(updated_at)` across the three
+ * tables. The import script writes `updated_at = now()` on every
+ * upsert (whether the row is new or pre-existing), so this advances
+ * on every re-import — preserving the legacy contract that
+ * `imported_at` reflects the last sync time, not the row's birth.
+ * Lexicographic comparison is safe because PostgREST serializes every
+ * `timestamptz` in the same canonical UTC form
+ * (`YYYY-MM-DDTHH:MM:SS.uuuuuu+00:00`), so the strings sort by actual
+ * time without an explicit `Date.parse`.
  *
  * @param supabase Either the browser or the server SSR client. Both
  *   use the anon role; cardio RLS allows anon SELECT. Typed loosely
@@ -107,7 +109,7 @@ export async function assembleCardioData(
   const restingRaw = (restingRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const vo2Raw = (vo2Res.data ?? []) as unknown as Array<Record<string, unknown>>
 
-  // Compute imported_at before `created_at` is stripped — it lives on
+  // Compute imported_at before `updated_at` is stripped — it lives on
   // every row but isn't part of the row-shape schema.
   const importedAt = computeImportedAt([sessionsRaw, restingRaw, vo2Raw])
 
@@ -118,7 +120,7 @@ export async function assembleCardioData(
   }
 
   const sessionsParsed = CardioSessionRowsSchema.safeParse(
-    sessionsRaw.map(stripNulls).map(stripCreatedAt),
+    sessionsRaw.map(stripNulls).map(stripUpdatedAt),
   )
   if (!sessionsParsed.success) {
     throw new Error(
@@ -126,7 +128,7 @@ export async function assembleCardioData(
     )
   }
   const restingParsed = CardioTrendRowsSchema.safeParse(
-    restingRaw.map(stripNulls).map(stripCreatedAt),
+    restingRaw.map(stripNulls).map(stripUpdatedAt),
   )
   if (!restingParsed.success) {
     throw new Error(
@@ -134,7 +136,7 @@ export async function assembleCardioData(
     )
   }
   const vo2Parsed = CardioTrendRowsSchema.safeParse(
-    vo2Raw.map(stripNulls).map(stripCreatedAt),
+    vo2Raw.map(stripNulls).map(stripUpdatedAt),
   )
   if (!vo2Parsed.success) {
     throw new Error(`cardio_vo2max failed schema validation: ${vo2Parsed.error.message}`)
@@ -164,31 +166,37 @@ function stripNulls(row: Record<string, unknown>): Record<string, unknown> {
 }
 
 /**
- * Drop the `created_at` audit column before Zod-parsing. The row
+ * Drop the `updated_at` audit column before Zod-parsing. The row
  * schemas use `.strict()`, which would otherwise reject the column —
  * but we still need it on the raw row to compute `imported_at`, so
  * the caller pulls it off the un-stripped row first.
  */
-function stripCreatedAt(row: Record<string, unknown>): Record<string, unknown> {
-  if (!('created_at' in row)) return row
-  const { created_at: _ignored, ...rest } = row
+function stripUpdatedAt(row: Record<string, unknown>): Record<string, unknown> {
+  if (!('updated_at' in row)) return row
+  const { updated_at: _ignored, ...rest } = row
   return rest
 }
 
 /**
- * Determine `imported_at` from the latest `created_at` across the three
- * cardio tables. Returns `''` when no rows have a `created_at` value —
+ * Determine `imported_at` from the latest `updated_at` across the three
+ * cardio tables. Returns `''` when no rows have an `updated_at` value —
  * matches the fallback components already use for the "no data yet" state.
  *
- * Lexicographic string compare is safe here because Supabase serializes
- * `timestamptz` in a single canonical UTC form (`YYYY-MM-DDTHH:MM:SS.uuuuuuZ`),
- * which sorts by actual time without parsing.
+ * `updated_at` (rather than `created_at`) is the right source because the
+ * import script writes `updated_at = now()` on every upsert payload, so
+ * idempotent re-imports advance the timestamp and the field reflects the
+ * last sync time.
+ *
+ * Lexicographic string compare is safe here because PostgREST returns
+ * every `timestamptz` in the same canonical UTC form
+ * (`YYYY-MM-DDTHH:MM:SS.uuuuuu+00:00`), which sorts by actual time
+ * without parsing.
  */
 function computeImportedAt(rowGroups: Array<Array<Record<string, unknown>>>): string {
   let latest = ''
   for (const rows of rowGroups) {
     for (const row of rows) {
-      const value = row.created_at
+      const value = row.updated_at
       if (typeof value === 'string' && value > latest) {
         latest = value
       }

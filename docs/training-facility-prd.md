@@ -27,7 +27,7 @@ This PRD specs both sub-areas, the migration of the existing cardio-dashboard, t
 2. **Train** basketball-specific movement qualities 2×/week, low-volume, high-quality.
 3. **Track** progress with 4 monthly movement benchmarks (Combine) plus existing cardio metrics (Gym), separating weight loss from athleticism gains via power-to-weight framing.
 4. **Visualize** with in-world, distinctive UI — interactive gym equipment, silhouette jump trackers, court traces — not generic Chart.js views.
-5. **Stay lightweight infrastructurally** — no backend, no auth, no real-time sync. Static JSON, local-dev data ingestion.
+5. **Stay lightweight infrastructurally** — single-user; minimal backend (Supabase free tier for cardio + movement-benchmarks per #131 / #152), no real-time sync, no multi-tenant accounts. Magic-link admin auth gates the only write surface in the app; public reads are anon.
 
 ## 3. Non-goals
 
@@ -141,39 +141,38 @@ Rationale:
 | Date filter (1M, 3M, 6M, 1Y, All) | Shared component, reused in Combine | |
 | HR zone config | Shared config module — used by Gym and Combine equally | Honors the existing roadmap commitment to configurable zones |
 
-### 7.3 Data architecture (no backend)
+### 7.3 Data architecture (Supabase-backed, single-user)
 
-All data lives as static JSON in `public/data/`:
+Both data domains live in the `court-vision` Supabase project (`ryxbnvhxxkrmsrmocume`), reached through the data-access layer in 7.10. Reads use the anon role; writes are gated by either an admin-allowlisted magic-link session (Combine) or the local service-role key (Cardio).
 
-```text
-courtfolio/public/data/
-├── cardio.json              # output of preprocess-health.py
-└── movement_benchmarks.json # written by Combine entry form (local-dev only)
-```
+| Domain  | Tables                                                  | Read path                                  | Write path                                                                 |
+|---------|---------------------------------------------------------|--------------------------------------------|----------------------------------------------------------------------------|
+| Cardio  | `cardio_sessions`, `cardio_resting_hr`, `cardio_vo2max` | `getCardioData()` / `getCardioDataServer()` | `npm run import-health` (service-role, runs locally only)                  |
+| Combine | `movement_benchmarks`                                   | `getMovementBenchmarks()`                  | `/api/admin/movement-benchmarks` (magic-link admin session, browser-driven) |
 
-**Cardio data flow:**
+**Cardio data flow (#152 — supersedes the static-JSON path):**
 1. Lucas exports Apple Health from his iPhone, drops the ZIP somewhere on his dev machine.
-2. Runs `npm run import-health -- path/to/export.zip` (a script that wraps `preprocess-health.py`).
-3. Script writes updated `public/data/cardio.json`.
-4. Lucas commits the JSON, pushes, deploy auto-rebuilds.
+2. Runs `npm run import-health -- path/to/export.zip`. The wrapper spawns `preprocess-health.py` to produce an intermediate JSON (`public/data/cardio.json`, gitignored), Zod-validates it against the `CardioData` shape, then upserts every row into the three `cardio_*` tables via the service-role key. Idempotent, and prunes any Supabase rows whose primary key is no longer in the import payload — re-importing after deleting a workout in HealthKit removes the stale row.
+3. Vercel preview / prod see the new data immediately on the next page load. No commit, no rebuild.
 
 Frequency: every few weeks, manually. No automation needed.
 
-**Combine data flow:**
-1. Lucas finishes a benchmark session, opens courtfolio locally (`npm run dev`).
+**Combine data flow (#131 — supersedes the local-dev API path):**
+1. Lucas signs in at `/admin/login` (Supabase magic-link, allowlisted to a server-only `ADMIN_EMAILS` list).
 2. Navigates to Training Facility → Combine, fills in the entry form, submits.
-3. Form writes (via a local-dev-only Next.js API route) directly to `public/data/movement_benchmarks.json` on the filesystem.
-4. Lucas commits the JSON, pushes, deploy auto-rebuilds.
+3. Form POSTs to `/api/admin/movement-benchmarks`; the route checks the admin session, then writes via the service-role key.
+4. Edits/deletes use the same admin gate from the history-table row controls.
 
-**Why local-dev entry only (not production form submission):**
-- Avoids needing a real backend, auth, or a serverless function.
-- Avoids the security risk of exposing a write endpoint on a public site.
-- Monthly cadence makes the "spin up dev server to log a session" overhead trivial (~30 seconds).
-- Production site stays purely static — fast, cheap, no runtime dependencies.
+**Why magic-link admin instead of static-JSON commits:**
+- Logging a session no longer requires a dev machine — phone-friendly via the admin login page.
+- Production site stays public-readable (anon SELECT on `movement_benchmarks`) but write-protected by RLS + the route gate.
+- No more "drift between local edit and committed JSON" — Supabase is the single source of truth.
 
-The Next.js API route enabling local writes is gated behind `process.env.NODE_ENV === 'development'` and returns 404 in production builds. Belt and suspenders.
+**Tradeoff acknowledged (cardio side):** the import script still has to run from the dev machine (it needs the service-role key, which never leaves `.env.local`). Adding a phone-driven cardio import would be a multi-tenant-shaped problem — see §7.13.
 
-**Tradeoff acknowledged:** can't enter benchmarks from a phone immediately after a session. Workaround if needed: jot it in Apple Notes, transcribe later when at the dev machine. If this becomes annoying, fallback option is localStorage-based entry on the production site with a manual export-and-commit step (specced in section 11 as a future option).
+**Migration history:**
+- v1 used static JSON in `public/data/{cardio,movement_benchmarks}.json` plus a dev-only file-write API route. Both paths are gone after #131 / #152.
+- The `public/data/cardio.json` file still exists as a gitignored intermediate artifact of the import script — useful for debugging the Python preprocessor's output, not consumed at runtime.
 
 ### 7.4 The Gym — sub-area spec
 
@@ -284,32 +283,30 @@ Future addition: a derived "movement quality index" that normalizes benchmarks a
 
 ### 7.10 Data-access layer (forward-looking architecture)
 
-Even though the v1 architecture is "single repo, static JSON, no backend," every component reads data through an abstraction layer rather than touching the JSON files directly. This is the single most important architectural commitment in the PRD because it makes a future API migration nearly free.
+Every component reads data through an abstraction layer rather than touching the data source directly. The original v1 sat on top of static JSON; #131 (Combine) and #152 (Cardio) then swapped the implementation to Supabase without changing any caller — that one-place-change-for-a-source-swap is the architectural commitment this section locks in.
 
 **The pattern:**
 
 ```ts
-// lib/data/cardio.ts
-export async function getCardioData(): Promise<CardioData> {
-  const res = await fetch('/data/cardio.json');
-  if (!res.ok) throw new Error('Failed to load cardio data');
-  return res.json();
+// lib/data/cardio.ts (browser entry; the SSR sibling is lib/data/cardio-server.ts)
+export async function getCardioData(): Promise<CardioData | null> {
+  return assembleCardioData(getBrowserSupabaseClient());
 }
 
 // lib/data/movement.ts
 export async function getMovementBenchmarks(): Promise<Benchmark[]> { ... }
 export async function logBenchmark(entry: Benchmark): Promise<void> { ... }
-export async function updateBenchmark(id: string, updates: Partial<Benchmark>): Promise<void> { ... }
-export async function deleteBenchmark(id: string): Promise<void> { ... }
+export async function updateBenchmark(date: BenchmarkDate, updates: BenchmarkUpdate): Promise<void> { ... }
+export async function deleteBenchmark(date: BenchmarkDate): Promise<void> { ... }
 ```
 
 **Rules of the road:**
-1. **No direct JSON imports in components.** A chart component must never `import data from '../public/data/cardio.json'`. It calls `getCardioData()`.
-2. **All writes go through the layer.** The Combine entry form calls `logBenchmark(entry)`, which today POSTs to a local-dev API route, tomorrow could POST to a real backend — the form doesn't know or care.
-3. **One module per data domain.** `lib/data/cardio.ts`, `lib/data/movement.ts`, future `lib/data/sessions.ts`. Each module owns its read/write functions.
-4. **Types are shared.** `types/cardio.ts`, `types/movement.ts`. Same types used by the Python preprocessor's output, the static JSON, the data-access layer, and any future API response. Single source of truth for schema.
+1. **No direct DB / JSON imports in components.** A chart component never queries Supabase or imports a JSON file directly. It calls `getCardioData()` / `getMovementBenchmarks()` / etc.
+2. **All writes go through the layer.** The Combine entry form calls `logBenchmark(entry)`, which POSTs to the admin route. A v2 swap (e.g. moving off Supabase) only changes the data-layer module.
+3. **One module per data domain.** `lib/data/cardio.ts` + `lib/data/cardio-server.ts` (browser/server pair sharing `cardio-shared.ts`), `lib/data/movement.ts`. Each module owns its read/write functions.
+4. **Types are shared.** `types/cardio.ts`, `types/movement.ts`. Same types used by the Python preprocessor's output, the data-access layer, and the Supabase row-shape Zod schemas in `lib/schemas/`. Single source of truth for schema.
 
-**Why this matters:** a future migration to a real API is a one-line diff per data-access function (change the URL). Components, charts, forms, and visualizations don't change. If the API ever ships, the only files that touch the migration are inside `lib/data/`.
+**Why this matters:** the cardio + Combine migrations from static JSON → Supabase touched only the `lib/data/` modules and a handful of server-side helpers. No component, chart, form, or visualization changed. The same property holds for any future swap (different DB, hosted API, multi-tenant rewrite).
 
 **What this does NOT pre-build:**
 - Authentication (no users yet)
@@ -332,7 +329,7 @@ Even in single-user mode, users (Lucas) need to fix mistakes. Typos happen. Some
 - Tap edit → entry form modal opens prefilled.
 - Tap delete → confirmation modal.
 
-**Data layer:** `updateBenchmark()` and `deleteBenchmark()` in `lib/data/movement.ts` (per 7.10). Both are dev-only writes via the same Next.js API route gated behind `NODE_ENV === 'development'`, same as `logBenchmark()`.
+**Data layer:** `updateBenchmark()` and `deleteBenchmark()` in `lib/data/movement.ts` (per 7.10). All writes hit the admin-allowlisted `/api/admin/movement-benchmarks/*` routes (see 7.3); the form / row controls only render when `useAdminSession()` reports the current user is signed in and on the allowlist.
 
 **Cardio data parity:** Supabase is the source of truth for cardio data (#152). The Python preprocessor still parses Apple Health into an intermediate `public/data/cardio.json`, then `npm run import-health` upserts those rows into the three `cardio_*` tables via the service-role key — idempotent, so re-running after a fresh export overwrites the same primary keys instead of duplicating. Editing individual cardio entries from the UI isn't supported in v1: if a workout was logged incorrectly in HealthKit, fix it there and re-import. (Unlike Combine benchmarks in 7.10/7.11, no `/api/admin/cardio` write routes exist — adding edit-cardio is post-v1.)
 
@@ -378,10 +375,10 @@ The operator admin layer is small. The user-facing functionality is the bulk of 
 
 Documenting this so future-Lucas (or any collaborator) knows the constraints and the path forward.
 
-**What's already migration-ready (because of 7.10):**
-- Swapping static JSON for a real API: change URLs in `lib/data/*.ts`. No component changes.
-- Adding new data domains: create a new module in `lib/data/`, share types via `types/`. Existing modules unaffected.
-- Replacing the local-dev write API route with a hosted backend endpoint: same path, same payload contract. Form code unchanged.
+**Already proven via #131 / #152 (because of 7.10):**
+- Swapping the data source (static JSON → Supabase) was a contained change inside `lib/data/*.ts`. No component changes.
+- Adding new data domains: create a new module in `lib/data/`, share types via `types/`, add a row-shape Zod schema in `lib/schemas/`. Existing modules unaffected.
+- Replacing the write surface (dev-only file route → admin-gated Supabase route): the form keeps calling `logBenchmark()`; the implementation underneath changed.
 
 **What requires real product decisions if multi-tenancy ever happens:**
 - Auth provider (NextAuth, Clerk, Supabase Auth, Auth.js, etc.) — implementation detail, but the choice affects the UX a lot.
@@ -463,7 +460,7 @@ Each visualization below is a v1 must-have. They sit on a single Combine page, i
 
 **Animation:** On page load, digits flip into place one cell at a time (split-flap style). Delta values count up from zero.
 
-**Data binding:** Latest entry from `movement_benchmarks.json` vs. earliest entry. Direction of "improvement" defined per-benchmark in the config object.
+**Data binding:** Latest row from `movement_benchmarks` (Supabase) vs. earliest row. Direction of "improvement" defined per-benchmark in the config object.
 
 **Cheesy in a good way:** absolutely. Lean in.
 

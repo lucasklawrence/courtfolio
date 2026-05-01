@@ -36,7 +36,7 @@ Everything else from the Apple Health export (HRV, walking HR average, body mass
 
 ### Privacy
 
-The intermediate `public/data/cardio.json` is **gitignored** because Apple Health exports include personal medical metrics. Supabase rows are also private — RLS on `cardio_*` tables allows `select` from `anon`/`authenticated` for the read path, but the actual data is whatever the dev machine pushed up. Re-run the import after a fresh export to keep the dashboard current.
+The intermediate `public/data/cardio.json` is **gitignored** because Apple Health exports include personal medical metrics. The `cardio_*` Supabase rows are **publicly readable** through the anon key — RLS allows `select` for `anon`/`authenticated` so the dashboard can render without sign-in, which means anyone with the public Supabase URL can hit the REST endpoint and download the cardio data. That's intentional for this single-user portfolio site (Lucas's data is the *content*), but worth knowing before pushing data you wouldn't put on a public résumé. To make rows private instead, replace the `using (true)` clause in `supabase/migrations/20260430120000_cardio_tables.sql` with an authenticated-user check and re-apply the migration.
 
 ### Requirements
 
