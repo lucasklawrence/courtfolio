@@ -36,6 +36,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -60,3 +61,5 @@ screenshots/*
 # Contains medical metrics; never commit. Replace with your own export
 # before each deploy.
 public/data/cardio.json
+
+.vercel

@@ -6,15 +6,29 @@ import { CombineEntryForm, normalizeFormValues, toFormValues } from './CombineEn
 import type { Benchmark } from '@/types/movement'
 
 /**
- * Tests for the dev-only Combine entry form.
+ * Tests for the admin-only Combine entry form.
  *
- * The form short-circuits to `null` when `NODE_ENV !== 'development'`,
- * so every dev-mode test stubs `NODE_ENV` first and unstubs in
- * `afterEach`. `logBenchmark` is mocked at the data-layer module so
- * the form contract (call shape, error surfacing, refetch trigger) is
- * tested without needing a running dev server or a real API route —
- * the route handlers and data wrappers have their own dedicated tests.
+ * Pre-#131 the form short-circuited on `NODE_ENV !== 'development'`;
+ * it now gates on `useAdminSession()`. Tests mock the hook to flip
+ * between admin / non-admin and assert the panel disappears in the
+ * non-admin case. `logBenchmark` / `updateBenchmark` are mocked at
+ * the data-layer module so the form contract is exercised without a
+ * running route handler — the routes have their own tests.
  */
+
+interface MockAdminSession {
+  isAdmin: boolean
+  isLoading: boolean
+  email: string | null
+}
+const adminSessionMock = vi.fn<() => MockAdminSession>(() => ({
+  isAdmin: true,
+  isLoading: false,
+  email: 'admin@example.com',
+}))
+vi.mock('@/lib/auth/use-admin-session', () => ({
+  useAdminSession: () => adminSessionMock(),
+}))
 
 const logBenchmarkMock = vi.fn()
 const updateBenchmarkMock = vi.fn()
@@ -33,31 +47,43 @@ vi.mock('@/lib/data/movement', async () => {
 beforeEach(() => {
   logBenchmarkMock.mockReset()
   updateBenchmarkMock.mockReset()
+  adminSessionMock.mockReset()
+  adminSessionMock.mockReturnValue({
+    isAdmin: true,
+    isLoading: false,
+    email: 'admin@example.com',
+  })
 })
 
 afterEach(() => {
   vi.unstubAllEnvs()
 })
 
-describe('CombineEntryForm — environment gate', () => {
-  it('renders nothing when NODE_ENV is not "development"', () => {
-    vi.stubEnv('NODE_ENV', 'production')
+describe('CombineEntryForm — admin-session gate', () => {
+  it('renders nothing when the viewer is not an admin', () => {
+    adminSessionMock.mockReturnValue({ isAdmin: false, isLoading: false, email: null })
     const { container } = render(<CombineEntryForm onSaved={() => {}} />)
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('renders the panel header when NODE_ENV is "development"', () => {
-    vi.stubEnv('NODE_ENV', 'development')
+  it('renders nothing while the session is still loading, even for an admin email (no flicker)', () => {
+    // The gate inspects only `isAdmin`, but during the in-flight
+    // session check the hook reports `isAdmin: false` regardless of
+    // the eventual outcome. This test pins the hidden-during-loading
+    // contract: even if the user *will be* admin once the check
+    // resolves, the panel stays hidden until then.
+    adminSessionMock.mockReturnValue({ isAdmin: false, isLoading: true, email: 'admin@example.com' })
+    const { container } = render(<CombineEntryForm onSaved={() => {}} />)
+    expect(container).toBeEmptyDOMElement()
+  })
+
+  it('renders the panel header for an admin viewer', () => {
     render(<CombineEntryForm onSaved={() => {}} />)
-    expect(screen.getByText(/dev · log a session/i)).toBeInTheDocument()
+    expect(screen.getByText(/admin · log a session/i)).toBeInTheDocument()
   })
 })
 
 describe('CombineEntryForm — collapsing panel', () => {
-  beforeEach(() => {
-    vi.stubEnv('NODE_ENV', 'development')
-  })
-
   it('starts collapsed (no form fields visible)', () => {
     render(<CombineEntryForm onSaved={() => {}} />)
     expect(screen.queryByLabelText(/^date/i)).not.toBeInTheDocument()
@@ -77,10 +103,6 @@ describe('CombineEntryForm — collapsing panel', () => {
 })
 
 describe('CombineEntryForm — submit happy path', () => {
-  beforeEach(() => {
-    vi.stubEnv('NODE_ENV', 'development')
-  })
-
   it('calls logBenchmark with normalized values, omitting blanks', async () => {
     logBenchmarkMock.mockResolvedValueOnce(undefined)
     const onSaved = vi.fn()
@@ -130,10 +152,6 @@ describe('CombineEntryForm — submit happy path', () => {
 })
 
 describe('CombineEntryForm — error paths', () => {
-  beforeEach(() => {
-    vi.stubEnv('NODE_ENV', 'development')
-  })
-
   it('surfaces the server error message and does NOT call onSaved when the API rejects', async () => {
     logBenchmarkMock.mockRejectedValueOnce(new Error('Boom — write failed.'))
     const onSaved = vi.fn()
@@ -163,17 +181,13 @@ describe('CombineEntryForm — error paths', () => {
     await user.click(screen.getByRole('button', { name: /save entry/i }))
 
     expect(logBenchmarkMock).not.toHaveBeenCalled()
-    // The Zod resolver (single source of truth) flags the empty date
-    // via the regex check on `BenchmarkSchema`.
+    // Zod resolver flags the empty date via the regex check on BenchmarkSchema.
     await waitFor(() =>
       expect(screen.getByText(/yyyy-mm-dd/i)).toBeInTheDocument(),
     )
   })
 
   it('keeps the success message even when the parent onSaved callback rejects (CodeRabbit nit)', async () => {
-    // Save succeeds on the server. The parent's refetch then throws.
-    // The form should still show "Saved entry for ..." — the data is
-    // already on disk — rather than overwriting it with an error.
     logBenchmarkMock.mockResolvedValueOnce(undefined)
     const onSaved = vi.fn().mockRejectedValueOnce(new Error('refetch broke'))
     const user = userEvent.setup()
@@ -201,9 +215,6 @@ describe('CombineEntryForm — error paths', () => {
     const dateInput = screen.getByLabelText(/^date/i)
     await user.clear(dateInput)
     await user.type(dateInput, '2026-04-15')
-    // Type the value via keyboard — `<input type="number">` in jsdom
-    // accepts the minus sign in the value attribute, so this round-
-    // trips through the resolver.
     const bw = screen.getByLabelText(/bodyweight/i) as HTMLInputElement
     await user.type(bw, '-5')
 
@@ -214,20 +225,12 @@ describe('CombineEntryForm — error paths', () => {
 })
 
 describe('CombineEntryForm — date initialization (Codex P2 timezone fix)', () => {
-  beforeEach(() => {
-    vi.stubEnv('NODE_ENV', 'development')
-  })
-
   it('does NOT seed the date field at render time (SSR-safe; effect populates after mount)', async () => {
     const user = userEvent.setup()
     render(<CombineEntryForm onSaved={() => {}} />)
     await user.click(screen.getByRole('button', { name: /log a session/i }))
     const dateInput = screen.getByLabelText(/^date/i) as HTMLInputElement
-    // After mount, the effect has fired — date should be a YYYY-MM-DD
-    // computed from the *browser*'s clock, not the server's.
     await waitFor(() => expect(dateInput.value).toMatch(/^\d{4}-\d{2}-\d{2}$/))
-    // The form's `emptyValues()` factory now starts the date as ''.
-    // Sanity check: the effect-set value matches today in the local TZ.
     const now = new Date()
     const expected = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
     expect(dateInput.value).toBe(expected)
@@ -235,10 +238,6 @@ describe('CombineEntryForm — date initialization (Codex P2 timezone fix)', () 
 })
 
 describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
-  beforeEach(() => {
-    vi.stubEnv('NODE_ENV', 'development')
-  })
-
   const ENTRY: Benchmark = {
     date: '2026-03-10',
     bodyweight_lbs: 230.0,
@@ -248,7 +247,7 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
 
   it('auto-opens the panel and prefills inputs when editingEntry is set', async () => {
     render(<CombineEntryForm onSaved={() => {}} editingEntry={ENTRY} />)
-    expect(screen.getByText(/dev · edit session for 2026-03-10/i)).toBeInTheDocument()
+    expect(screen.getByText(/admin · edit session for 2026-03-10/i)).toBeInTheDocument()
     const dateInput = screen.getByLabelText(/^date/i) as HTMLInputElement
     expect(dateInput.value).toBe('2026-03-10')
     expect(dateInput.readOnly).toBe(true)
@@ -280,7 +279,6 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
         onCancelEdit={() => {}}
       />,
     )
-    // Edit a single field, leave the rest of the prefill alone.
     const bw = screen.getByLabelText(/bodyweight/i) as HTMLInputElement
     await user.clear(bw)
     await user.type(bw, '231.0')
@@ -327,10 +325,6 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
   })
 
   it('resets the panel when the parent clears editingEntry externally (Codex P1)', async () => {
-    // Simulates the row-being-edited getting deleted. The parent
-    // clears `editingEntry`; without the falsy-branch handling in
-    // the effect, the panel would stay open with the old prefill and
-    // a subsequent "Save entry" would recreate the deleted row.
     const { rerender } = render(
       <CombineEntryForm
         onSaved={() => {}}
@@ -338,13 +332,11 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
         onCancelEdit={() => {}}
       />,
     )
-    // Sanity: we're in edit mode with a prefilled, locked date.
     expect(screen.getByText(/edit session for 2026-03-10/i)).toBeInTheDocument()
     expect((screen.getByLabelText(/^date/i) as HTMLInputElement).readOnly).toBe(
       true,
     )
 
-    // Parent clears editingEntry (e.g. deleted the row mid-edit).
     rerender(
       <CombineEntryForm
         onSaved={() => {}}
@@ -353,11 +345,9 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
       />,
     )
 
-    // Panel collapses, fields wipe, header reverts to "Log a session".
-    expect(screen.getByText(/dev · log a session/i)).toBeInTheDocument()
+    expect(screen.getByText(/admin · log a session/i)).toBeInTheDocument()
     expect(screen.queryByText(/edit session for/i)).not.toBeInTheDocument()
     expect(screen.queryByLabelText(/^date/i)).not.toBeInTheDocument()
-    // Re-open the (now-empty) panel and confirm the prefill is gone.
     const user = userEvent.setup()
     await user.click(screen.getByRole('button', { name: /log a session/i }))
     expect((screen.getByLabelText(/bodyweight/i) as HTMLInputElement).value).toBe('')

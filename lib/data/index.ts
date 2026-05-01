@@ -7,13 +7,14 @@
  *
  * Rules:
  *   1. No `import data from '../public/data/*.json'` in components.
- *   2. All writes go through this layer. Today they hit a dev-only Next.js
- *      API route (gated behind `NODE_ENV === 'development'`); tomorrow they
- *      could hit a real backend with the same payload contract.
+ *   2. All writes go through this layer. Movement benchmarks now write to
+ *      Supabase via the admin-gated `/api/admin/movement-benchmarks/*`
+ *      routes (#131); cardio data is still read-only from the static JSON
+ *      produced by the Python preprocessor (PRD §7.11).
  *   3. One module per data domain (`cardio`, `movement`, future `sessions`).
  *   4. Types are shared via `@/types/*` — single source of truth across the
- *      Python preprocessor's output, the static JSON, this layer, and any
- *      future API.
+ *      Python preprocessor's output, the Supabase schema, this layer, and
+ *      any future API.
  */
 
 export { getCardioData } from './cardio';

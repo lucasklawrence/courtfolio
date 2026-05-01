@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
 
 import { Scoreboard } from '@/components/training-facility/shared/Scoreboard'
 import { deriveCombineScoreboardCells } from '@/components/training-facility/shared/scoreboard-utils'
+import { useAdminSession } from '@/lib/auth/use-admin-session'
 import {
   deleteBenchmark,
   getMovementBenchmarks,
@@ -75,13 +76,13 @@ export function CombineDataIsland(): JSX.Element {
   }, [])
 
   const refetch = useCallback(async (): Promise<void> => {
-    // Bypass the HTTP cache after a write — Next dev serves the
-    // static JSON from disk, but the browser may have cached the
-    // pre-write copy. `no-store` guarantees the next render reflects
-    // the entry the user just touched.
+    // Supabase JS issues a fresh PostgREST request on every `select()`
+    // call — there's no client-side cache layer to bust. The
+    // request-id ref still matters for the slow-mount race covered by
+    // the existing tests.
     const id = ++requestIdRef.current
     try {
-      const data = await getMovementBenchmarks({ cache: 'no-store' })
+      const data = await getMovementBenchmarks()
       if (id === requestIdRef.current) setEntries(data)
     } catch {
       if (id === requestIdRef.current) setEntries([])
@@ -138,7 +139,7 @@ export function CombineDataIsland(): JSX.Element {
   )
 
   const cells = deriveCombineScoreboardCells(entries ?? [])
-  const isDev = process.env.NODE_ENV === 'development'
+  const { isAdmin } = useAdminSession()
 
   return (
     <div className="flex flex-col gap-10">
@@ -154,7 +155,7 @@ export function CombineDataIsland(): JSX.Element {
       />
       <CombineHistoryTable
         entries={entries ?? []}
-        showActions={isDev}
+        showActions={isAdmin}
         onEdit={handleEdit}
         onDelete={handleDelete}
         onToggleComplete={handleToggleComplete}
