@@ -56,4 +56,24 @@ describe('POST /auth/sign-out', () => {
       'Network unreachable',
     )
   })
+
+  it('still 303-redirects when supabase.auth.signOut() throws (CodeRabbit Major)', async () => {
+    // The Supabase SDK can reject with a thrown error on transport
+    // failures rather than returning `{ error }`. The handler must
+    // still produce a 303 — bubbling the exception would land the
+    // user on a Next.js 500 page, defeating the fail-soft design.
+    const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+    const thrown = new Error('socket hang up')
+    signOutMock.mockRejectedValueOnce(thrown)
+
+    const res = await POST(makeRequest())
+
+    expect(res.status).toBe(303)
+    expect(res.headers.get('location')).toBe('http://localhost/')
+    expect(res.headers.get('content-type') ?? '').not.toMatch(/json/)
+    expect(errSpy).toHaveBeenCalledWith(
+      '[auth/sign-out] Supabase signOut threw:',
+      thrown,
+    )
+  })
 })

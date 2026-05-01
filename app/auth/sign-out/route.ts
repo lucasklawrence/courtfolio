@@ -33,9 +33,18 @@ import { createServerSupabaseClient } from '@/lib/supabase/server'
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const supabase = await createServerSupabaseClient()
-  const { error } = await supabase.auth.signOut()
-  if (error) {
-    console.error('[auth/sign-out] Supabase signOut failed:', error.message)
+  // Belt-and-suspenders: signOut() returns `{ error }` for "soft"
+  // failures, but the SDK can also throw on transport errors. Both
+  // paths must end at the 303 redirect — a thrown exception bubbling
+  // out of the handler would otherwise produce a Next.js 500 error
+  // page, defeating the whole reason this route was made fail-soft.
+  try {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      console.error('[auth/sign-out] Supabase signOut failed:', error.message)
+    }
+  } catch (err) {
+    console.error('[auth/sign-out] Supabase signOut threw:', err)
   }
   return NextResponse.redirect(new URL('/', request.url), { status: 303 })
 }
