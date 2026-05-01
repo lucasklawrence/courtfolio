@@ -16,14 +16,15 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * The body splits across three client islands so each can fetch
  * independently and render at its own readiness pace:
  * - {@link CombineDataIsland}: scoreboard summary header (PRD §9.1),
- *   Trading Card stat block (PRD §9.2), dev-only entry form (PRD §7.5
- *   view 7), and benchmark history table (PRD §7.5 view 8 + §7.11
- *   CRUD). The form and history share edit-mode state so writes from
- *   either surface land everywhere with no reload.
+ *   Trading Card stat block (PRD §9.2), four-axis Radar (PRD §9.7),
+ *   dev-only entry form (PRD §7.5 view 7), and benchmark history table
+ *   (PRD §7.5 view 8 + §7.11 CRUD). The form and history share
+ *   edit-mode state so writes from either surface land everywhere with
+ *   no reload.
  * - {@link JumpTrackerSection}: silhouette + ceiling-view pair (PRD
  *   §9.3 / §9.4).
  * - The Combine scene art SVG below — placeholder until the remaining
- *   visualizations (Shuttle, Sprint, Radar) replace it.
+ *   visualizations (Shuttle, Sprint) replace it.
  *
  * Gated behind {@link isTrainingFacilityEnabled} so the route stays
  * 404'd in production until the Training Facility ships publicly. The
