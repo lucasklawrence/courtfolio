@@ -352,7 +352,7 @@ function CombineEntryFormImpl({
             navigation without any client-side JS. The browser follows
             the redirect with GET, the next page render sees no Supabase
             session, and the admin gate flips back to non-admin. */}
-          <form action="/auth/sign-out" method="POST">
+          <form action="/auth/sign-out" method="POST" aria-label="Sign out admin session">
             <button
               type="submit"
               className="rounded px-1 font-mono text-[11px] uppercase tracking-[0.28em] text-amber-200/80 transition-colors hover:text-rose-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"

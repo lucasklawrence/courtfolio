@@ -105,10 +105,34 @@ describe('CombineEntryForm — sign-out affordance (#151)', () => {
     // emitted by the component.
     expect(form?.getAttribute('action')).toBe('/auth/sign-out')
     expect(form?.getAttribute('method')?.toLowerCase()).toBe('post')
-    // Same form must NOT also be the entry-form (which has its own
-    // `onSubmit` for logBenchmark) — i.e., the sign-out button isn't
-    // accidentally nested inside the data form.
-    expect(form?.querySelector('input[type="number"]')).toBeNull()
+  })
+
+  it('keeps the sign-out form separate from the data form when the panel is expanded (edit mode)', () => {
+    // Edit mode auto-opens the panel, so the data form (the one with
+    // `onSubmit={handleSubmit(onSubmit)}` and the numeric inputs) is
+    // mounted. Nested <form> elements are invalid HTML and would route
+    // a sign-out submit through RHF's `onSubmit`, calling logBenchmark
+    // instead of POSTing to /auth/sign-out. Pin the boundary.
+    const ENTRY: Benchmark = { date: '2026-03-10', bodyweight_lbs: 230 }
+    render(
+      <CombineEntryForm
+        onSaved={() => {}}
+        editingEntry={ENTRY}
+        onCancelEdit={() => {}}
+      />,
+    )
+    const signOutForm = screen.getByRole('button', { name: /sign out/i }).closest('form')
+    expect(signOutForm).not.toBeNull()
+    expect(signOutForm?.querySelector('input[type="number"]')).toBeNull()
+    // And conversely: the data form (identified by its numeric inputs)
+    // must not contain the sign-out button.
+    const bw = screen.getByLabelText(/bodyweight/i) as HTMLInputElement
+    const dataForm = bw.closest('form')
+    expect(dataForm).not.toBeNull()
+    expect(dataForm).not.toBe(signOutForm)
+    expect(dataForm?.querySelector('button[type="submit"]')?.textContent).not.toMatch(
+      /sign out/i,
+    )
   })
 })
 
