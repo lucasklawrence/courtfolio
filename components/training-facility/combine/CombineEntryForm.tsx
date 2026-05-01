@@ -186,6 +186,10 @@ const PANEL_BUTTON_LABEL_EDITING = 'Cancel edit'
  * ({@link useAdminSession}). Returning `null` during the initial
  * session-check avoids a frame of "Log a session" UI flickering at
  * unauthenticated visitors before the panel disappears.
+ *
+ * The panel header also exposes a "Sign out" affordance — a native
+ * `<form>` POST to `/auth/sign-out` so the route's 303 redirect drives
+ * the navigation without any client-side fetch logic.
  */
 export function CombineEntryForm({
   onSaved,
@@ -343,26 +347,40 @@ function CombineEntryFormImpl({
         >
           {isEditing ? `Admin · Edit session for ${editingEntry.date}` : 'Admin · Log a session'}
         </h2>
-        <button
-          type="button"
-          onClick={() => {
-            if (isEditing) {
-              handleCancelEdit()
-              return
-            }
-            setServerError(null)
-            setSavedDate(null)
-            setIsOpen((v) => !v)
-          }}
-          aria-expanded={isOpen}
-          className="rounded border border-amber-300/40 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-amber-200 hover:bg-amber-300/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
-        >
-          {isEditing
-            ? PANEL_BUTTON_LABEL_EDITING
-            : isOpen
-              ? PANEL_BUTTON_LABEL_OPEN
-              : PANEL_BUTTON_LABEL_CLOSED}
-        </button>
+        <div className="flex items-center gap-3">
+          {/* Native form POST so the route's 303 redirect drives the
+            navigation without any client-side JS. The browser follows
+            the redirect with GET, the next page render sees no Supabase
+            session, and the admin gate flips back to non-admin. */}
+          <form action="/auth/sign-out" method="POST" aria-label="Sign out admin session">
+            <button
+              type="submit"
+              className="rounded px-1 font-mono text-[11px] uppercase tracking-[0.28em] text-amber-200/80 transition-colors hover:text-rose-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+            >
+              Sign out
+            </button>
+          </form>
+          <button
+            type="button"
+            onClick={() => {
+              if (isEditing) {
+                handleCancelEdit()
+                return
+              }
+              setServerError(null)
+              setSavedDate(null)
+              setIsOpen((v) => !v)
+            }}
+            aria-expanded={isOpen}
+            className="rounded border border-amber-300/40 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-amber-200 hover:bg-amber-300/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+          >
+            {isEditing
+              ? PANEL_BUTTON_LABEL_EDITING
+              : isOpen
+                ? PANEL_BUTTON_LABEL_OPEN
+                : PANEL_BUTTON_LABEL_CLOSED}
+          </button>
+        </div>
       </header>
 
       {isOpen && (
