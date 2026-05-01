@@ -334,7 +334,7 @@ Even in single-user mode, users (Lucas) need to fix mistakes. Typos happen. Some
 
 **Data layer:** `updateBenchmark()` and `deleteBenchmark()` in `lib/data/movement.ts` (per 7.10). Both are dev-only writes via the same Next.js API route gated behind `NODE_ENV === 'development'`, same as `logBenchmark()`.
 
-**Cardio data parity:** the Python preprocessor is the source of truth for cardio data — re-running it produces a fresh `cardio.json`. Editing individual cardio entries isn't supported in v1 (you'd re-export Apple Health and re-process). If a workout was logged incorrectly in HealthKit itself, fix it there and re-import. Adding edit-cardio capability is post-v1.
+**Cardio data parity:** Supabase is the source of truth for cardio data (#152). The Python preprocessor still parses Apple Health into an intermediate `public/data/cardio.json`, then `npm run import-health` upserts those rows into the three `cardio_*` tables via the service-role key — idempotent, so re-running after a fresh export overwrites the same primary keys instead of duplicating. Editing individual cardio entries from the UI isn't supported in v1: if a workout was logged incorrectly in HealthKit, fix it there and re-import. (Unlike Combine benchmarks in 7.10/7.11, no `/api/admin/cardio` write routes exist — adding edit-cardio is post-v1.)
 
 ### 7.12 Admin section — what's needed (and not) at each stage
 

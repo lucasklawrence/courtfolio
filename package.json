@@ -9,6 +9,7 @@
     "lint": "next lint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "import-health": "node scripts/import-health.mjs",
+    "cardio:backfill": "node scripts/backfill-cardio.mjs",
     "e2e:dev": "cross-env NEXT_DIST_DIR=.next-e2e-default NEXT_PUBLIC_ENABLE_TRAINING_FACILITY=false next dev --turbopack --hostname 127.0.0.1 --port 3007",
     "e2e:dev:training-facility": "cross-env NEXT_DIST_DIR=.next-e2e-training-facility NEXT_PUBLIC_ENABLE_TRAINING_FACILITY=true next dev --turbopack --hostname 127.0.0.1 --port 3008",
     "test": "vitest run",
