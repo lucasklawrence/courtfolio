@@ -33,6 +33,7 @@ import { PersonalBests } from './PersonalBests'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { HrZoneBars } from './HrZoneBars'
 import { AvgHrBars } from './AvgHrBars'
+import { SessionZoneStrip } from './SessionZoneStrip'
 import { RoughLine } from '@/components/training-facility/shared/charts/RoughLine'
 import { RoughScatter } from '@/components/training-facility/shared/charts/RoughScatter'
 import { BodyweightOverlay } from '@/components/training-facility/shared/charts/BodyweightOverlay'
@@ -447,7 +448,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
         </p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[640px] border-separate border-spacing-y-1 text-left text-sm">
+          <table className="w-full min-w-[720px] border-separate border-spacing-y-1 text-left text-sm">
             <thead className="text-xs uppercase tracking-[0.18em] text-white/55">
               <tr>
                 <th scope="col" className="px-3 py-2 font-semibold">
@@ -468,6 +469,9 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                 <th scope="col" className="px-3 py-2 font-semibold">
                   Max HR
                 </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
+                  Zone
+                </th>
               </tr>
             </thead>
             <tbody className="text-[#f7ead9]">
@@ -483,8 +487,11 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                   <td className="px-3 py-2 font-mono">
                     {typeof s.avg_hr === 'number' ? `${Math.round(s.avg_hr)}` : '—'}
                   </td>
-                  <td className="rounded-r-md px-3 py-2 font-mono">
+                  <td className="px-3 py-2 font-mono">
                     {typeof s.max_hr === 'number' ? `${Math.round(s.max_hr)}` : '—'}
+                  </td>
+                  <td className="rounded-r-md px-3 py-2 font-mono">
+                    <SessionZoneStrip hrSecondsInZone={s.hr_seconds_in_zone} />
                   </td>
                 </tr>
               ))}
