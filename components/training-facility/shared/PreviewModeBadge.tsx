@@ -3,10 +3,21 @@
 import { usePathname, useRouter } from 'next/navigation'
 import type { JSX } from 'react'
 
+/** Props for {@link PreviewModeBadge}. */
+export interface PreviewModeBadgeProps {
+  /**
+   * Plain-words sentence shown to the right of the "Preview — sample
+   * data" eyebrow. Defaults to the Combine wording referring to
+   * benchmarks; cardio surfaces pass a cardio-specific message.
+   */
+  description?: string
+}
+
 /**
- * Visible "Preview — sample data" chip rendered above the Combine
- * surfaces while `?preview=demo` is in the URL and the real fetch
- * returned no benchmarks (#160). Three purposes:
+ * Visible "Preview — sample data" chip rendered above a Training
+ * Facility surface while `?preview=demo` is in the URL and the real
+ * fetch returned no data (#160 for Combine, #162 for cardio). Three
+ * purposes:
  *
  *   1. Make sure a viewer never mistakes the demo numbers for real
  *      ones — the badge sits prominently above every chart and reads
@@ -18,13 +29,16 @@ import type { JSX } from 'react'
  *      the page's solid amber accents (e.g. the eyebrow / tier-1
  *      labels) so the visual treatment doesn't look like core UI.
  *
- * The exit URL is built from `usePathname()` rather than hardcoding
- * `/training-facility/combine`, so a future route move is a single
- * `app/` rename and the badge follows along.
+ * The exit URL is built from `usePathname()` rather than hardcoded, so
+ * a future route move is a single `app/` rename and the badge follows
+ * along — and so this single component can serve both `/combine` and
+ * the `/gym` family without per-route variants.
  */
-export function PreviewModeBadge(): JSX.Element {
+export function PreviewModeBadge({ description }: PreviewModeBadgeProps = {}): JSX.Element {
   const router = useRouter()
   const pathname = usePathname()
+  const message =
+    description ?? "These numbers are illustrative — not Lucas’s real benchmarks."
 
   return (
     <div
@@ -38,9 +52,7 @@ export function PreviewModeBadge(): JSX.Element {
       <span className="hidden text-amber-100/55 sm:inline" aria-hidden="true">
         ·
       </span>
-      <span className="text-[13px] leading-5 text-amber-50/85">
-        These numbers are illustrative — not Lucas&rsquo;s real benchmarks.
-      </span>
+      <span className="text-[13px] leading-5 text-amber-50/85">{message}</span>
       <button
         type="button"
         onClick={() => {

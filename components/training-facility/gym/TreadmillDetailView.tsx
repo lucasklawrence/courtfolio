@@ -4,7 +4,10 @@ import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState, type JSX } from 'react'
 import type { CardioData, CardioSession } from '@/types/cardio'
 import type { Benchmark } from '@/types/movement'
+import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
+import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { getCardioData, getMovementBenchmarks } from '@/lib/data'
+import { useCardioPreview } from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -69,7 +72,10 @@ const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
  * "no data yet" rather than an empty chart wall.
  */
 export function TreadmillDetailView(): JSX.Element {
-  const [data, setData] = useState<CardioData | null>(null)
+  // `realData` is what `getCardioData()` returned; `data` (further
+  // down) is the surface-rendered version after the preview hook
+  // runs (#162). Real data wins once any session lands.
+  const [realData, setRealData] = useState<CardioData | null>(null)
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([])
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
@@ -95,7 +101,7 @@ export function TreadmillDetailView(): JSX.Element {
         // `CardioData` so the component progresses past the loading panel
         // and renders the empty-state branch. Without this, a fresh preview
         // (no cardio.json yet) would sit on "Loading cardio data…" forever.
-        setData(
+        setRealData(
           cardio ?? {
             imported_at: '',
             sessions: [],
@@ -117,6 +123,9 @@ export function TreadmillDetailView(): JSX.Element {
       cancelled = true
     }
   }, [])
+
+  // Empty-state preview affordance (#162) — same shape as Stair / Track.
+  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData)
 
   useEffect(() => {
     const node = cardSizerRef.current
@@ -231,6 +240,21 @@ export function TreadmillDetailView(): JSX.Element {
             Lower-left on the scatter is the goal: fast at low effort.
           </p>
         </header>
+
+        {isPreviewMode ? (
+          <div className="mt-6">
+            <PreviewModeBadge description="These cardio numbers are illustrative — not Lucas’s real Apple Health import." />
+          </div>
+        ) : null}
+        {showEmptyStateCta ? (
+          <div className="mt-6">
+            <PreviewWithSampleDataButton
+              href="/training-facility/gym/treadmill?preview=demo"
+              headline="No treadmill sessions logged yet"
+              description="Curious what the page looks like with data? Load a sample set to populate the pace trend, cardiac-efficiency curve, and personal bests."
+            />
+          </div>
+        ) : null}
 
         <div className="mt-8">
           <DateFilter

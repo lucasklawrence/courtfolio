@@ -14,12 +14,13 @@ import {
 } from '@/lib/data/movement'
 import type { Benchmark } from '@/types/movement'
 
+import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
+import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
+
 import { CombineEntryForm } from './CombineEntryForm'
 import { CombineHistoryTable } from './CombineHistoryTable'
 import { CombineRadar } from './CombineRadar'
 import { CombineTradingCard } from './CombineTradingCard'
-import { PreviewModeBadge } from './PreviewModeBadge'
-import { PreviewWithSampleDataButton } from './PreviewWithSampleDataButton'
 import { ShuttleTrace } from './ShuttleTrace'
 import { SprintRace } from './SprintRace'
 
@@ -168,7 +169,9 @@ export function CombineDataIsland(): JSX.Element {
   return (
     <div className="flex flex-col gap-10">
       {isPreviewMode ? <PreviewModeBadge /> : null}
-      {showEmptyStateCta ? <PreviewWithSampleDataButton /> : null}
+      {showEmptyStateCta ? (
+        <PreviewWithSampleDataButton href="/training-facility/combine?preview=demo" />
+      ) : null}
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
       <CombineTradingCard entries={surfaceEntries} />
       <ShuttleTrace entries={surfaceEntries} />

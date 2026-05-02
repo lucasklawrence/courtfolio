@@ -3,7 +3,10 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState, type JSX } from 'react'
 import type { CardioData, CardioSession } from '@/types/cardio'
+import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
+import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { getCardioData } from '@/lib/data'
+import { useCardioPreview } from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -167,7 +170,12 @@ const STAIR_STATS: ReadonlyArray<CardioStatCard> = [
  * future API outage) reads as "no data yet" instead of an empty chart wall.
  */
 export function StairDetailView(): JSX.Element {
-  const [data, setData] = useState<CardioData | null>(null)
+  // `realData` is what `getCardioData()` returned; `data` (further
+  // down) is the surface-rendered version after the empty-state
+  // preview hook runs (#162). The fetch / setter machinery still
+  // operates on `realData` so the preview decision is purely a render
+  // concern — once a real session lands, the preview is suppressed.
+  const [realData, setRealData] = useState<CardioData | null>(null)
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
@@ -195,7 +203,7 @@ export function StairDetailView(): JSX.Element {
         // component progresses past the loading panel into the empty-state
         // branch — without this, a fresh preview deploy with no
         // `cardio.json` would sit on "Loading cardio data…" forever.
-        setData(
+        setRealData(
           next ?? {
             imported_at: '',
             sessions: [],
@@ -215,6 +223,12 @@ export function StairDetailView(): JSX.Element {
       cancelled = true
     }
   }, [])
+
+  // Empty-state preview affordance (#162). When the real fetch settled
+  // empty AND `?preview=demo` is in the URL, swap in `CARDIO_DEMO_DATA`
+  // so the surfaces hydrate with sample numbers; when no param is
+  // present, surface the CTA instead. Real data always wins.
+  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData)
 
   // Track per-card width so the SVG charts shrink with the column on mobile
   // rather than overflowing the viewport. The shared chart primitives don't
@@ -330,6 +344,21 @@ export function StairDetailView(): JSX.Element {
             (PRD §7.4); treadmill and track detail views follow in Phase 3.
           </p>
         </header>
+
+        {isPreviewMode ? (
+          <div className="mt-6">
+            <PreviewModeBadge description="These cardio numbers are illustrative — not Lucas’s real Apple Health import." />
+          </div>
+        ) : null}
+        {showEmptyStateCta ? (
+          <div className="mt-6">
+            <PreviewWithSampleDataButton
+              href="/training-facility/gym/stair?preview=demo"
+              headline="No stair sessions logged yet"
+              description="Curious what the page looks like with data? Load a sample set to populate the time-in-zone bars, per-session HR chart, training-load curve, and personal bests."
+            />
+          </div>
+        ) : null}
 
         <div className="mt-8">
           <DateFilter
