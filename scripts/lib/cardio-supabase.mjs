@@ -143,16 +143,24 @@ function sessionToRow(session, importedAt) {
 
 /**
  * Upsert the entire validated `CardioData` payload into Supabase, then
- * delete any row whose `updated_at` is older than this batch — making
- * each import an exact mirror of the source dataset, not a cumulative
- * append.
+ * delete any row whose `updated_at` is older than this batch — for any
+ * table that received at least one upsert. Each import is an exact
+ * mirror of the source dataset *for the tables it touches*, not a
+ * cumulative append; tables for which the batch had zero rows are left
+ * alone (see {@link pruneStaleRows}'s empty-payload guard).
  *
  * Why prune: the documented workflow is "fix in HealthKit, re-import."
  * Without a prune step, deleting a workout in HealthKit (or having a
  * trend day disappear from the export) would leave stale rows in
  * Supabase that the dashboard would keep rendering. The Apple Health
- * "Export All Health Data" produces the full archive, so the import
- * payload is authoritative — pruning is the right default.
+ * "Export All Health Data" produces the full archive, so a non-empty
+ * payload is authoritative for that table — pruning is the right default.
+ *
+ * Caveat for partial payloads: a batch that includes *some* rows for
+ * a table makes the batch authoritative for that table — rows that
+ * exist in Supabase but aren't in the batch will be deleted. Don't
+ * pass a deliberately-truncated payload (e.g. "just the last 30 days")
+ * unless you want everything older removed.
  *
  * Idempotent — re-running on the same payload is a series of no-op
  * upserts (which still bump `updated_at` to the new batch timestamp)
@@ -274,8 +282,12 @@ export async function upsertCardioData(supabase, data) {
  * no-op (returns 0 without touching the DB). An import with no rows
  * for a table is interpreted as "this import has no opinion on that
  * table," not "delete everything in it" — protects parser bugs,
- * partial Apple Health exports, and mis-typed inputs from silently
- * wiping the dataset. To genuinely empty a table, use manual SQL.
+ * empty-table payloads, and mis-typed inputs from silently wiping
+ * the dataset. Note this does *not* protect partial-but-non-empty
+ * payloads: if `hadAnyUpserts` is true and the batch contains, say,
+ * 5 of the 100 sessions actually in HealthKit, the other 95 will be
+ * pruned. Pass full-archive payloads only. To genuinely empty a
+ * table, use manual SQL.
  *
  * Returns the number of rows deleted so the caller can surface
  * surprising prunes in the success log.
