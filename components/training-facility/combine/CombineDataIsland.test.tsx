@@ -30,6 +30,19 @@ vi.mock('@/lib/auth/use-admin-session', () => ({
   useAdminSession: () => adminSessionMock(),
 }))
 
+/**
+ * Mock for `next/navigation` so `useSearchParams()` (added for the
+ * `?preview=demo` empty-state affordance, #160) returns a controllable
+ * value and `useRouter().replace` is observable. Tests that don't care
+ * about preview mode get an empty `URLSearchParams` by default.
+ */
+const searchParamsMock = vi.fn<() => URLSearchParams>(() => new URLSearchParams())
+const routerReplaceMock = vi.fn<(href: string) => void>()
+vi.mock('next/navigation', () => ({
+  useSearchParams: () => searchParamsMock(),
+  useRouter: () => ({ replace: routerReplaceMock, push: vi.fn(), prefetch: vi.fn() }),
+}))
+
 const getMovementBenchmarksMock = vi.fn()
 const logBenchmarkMock = vi.fn()
 const updateBenchmarkMock = vi.fn()
@@ -59,6 +72,9 @@ beforeEach(() => {
     isLoading: false,
     email: 'admin@example.com',
   })
+  searchParamsMock.mockReset()
+  searchParamsMock.mockReturnValue(new URLSearchParams())
+  routerReplaceMock.mockReset()
 })
 
 afterEach(() => {
@@ -305,5 +321,111 @@ describe('CombineDataIsland', () => {
 
     expect(screen.getByLabelText(/230\.0 lbs/i)).toBeInTheDocument()
     expect(screen.queryByLabelText(/999/i)).not.toBeInTheDocument()
+  })
+
+  /**
+   * Empty-state preview (#160). The data island renders one of three
+   * branches once the real fetch settles: empty + no param (CTA),
+   * empty + `?preview=demo` (badge + fixture), or non-empty (real data
+   * always wins, regardless of param).
+   */
+  describe('empty-state preview affordance (#160)', () => {
+    it('shows the "Preview with sample data" CTA when real fetch is empty and no preview param', async () => {
+      getMovementBenchmarksMock.mockResolvedValueOnce([])
+      render(<CombineDataIsland />)
+
+      await waitFor(() =>
+        expect(
+          screen.getByRole('link', { name: /preview with sample data/i }),
+        ).toBeInTheDocument(),
+      )
+      // Badge must NOT render in this branch — only the CTA.
+      expect(screen.queryByText(/preview — sample data/i)).not.toBeInTheDocument()
+      // The empty-state Scoreboard should still render below the CTA.
+      expect(
+        screen.getByRole('group', { name: /combine scoreboard summary/i }),
+      ).toBeInTheDocument()
+    })
+
+    it('shows the demo fixture and badge when preview=demo and the real fetch is empty', async () => {
+      getMovementBenchmarksMock.mockResolvedValueOnce([])
+      searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
+      render(<CombineDataIsland />)
+
+      // Wait for the fetch to resolve so the island commits to the
+      // empty branch (preview is empty-state-only — preview mode is
+      // never decided before the real fetch settles).
+      await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(1))
+      await waitFor(() =>
+        expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument(),
+      )
+
+      // History table should reflect a fixture row (`2026-05-01` is the
+      // last entry in `COMBINE_DEMO_BENCHMARKS`).
+      expect(await screen.findByText('2026-05-01')).toBeInTheDocument()
+      // CTA must NOT render once we're in preview mode.
+      expect(
+        screen.queryByRole('link', { name: /preview with sample data/i }),
+      ).not.toBeInTheDocument()
+    })
+
+    it('ignores preview=demo when real entries exist (real data wins)', async () => {
+      getMovementBenchmarksMock.mockResolvedValueOnce([
+        { date: '2026-04-15', bodyweight_lbs: 232 },
+      ])
+      searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
+      render(<CombineDataIsland />)
+
+      await waitFor(() =>
+        expect(screen.getByText('2026-04-15')).toBeInTheDocument(),
+      )
+      // Neither preview surface should render — real data fully owns
+      // the page once it lands.
+      expect(screen.queryByText(/preview — sample data/i)).not.toBeInTheDocument()
+      expect(
+        screen.queryByRole('link', { name: /preview with sample data/i }),
+      ).not.toBeInTheDocument()
+      // The fixture's last-row date should NOT appear because the
+      // demo set is never consulted in this branch.
+      expect(screen.queryByText('2026-05-01')).not.toBeInTheDocument()
+    })
+
+    it('"Exit preview" button on the badge strips the param via router.replace', async () => {
+      getMovementBenchmarksMock.mockResolvedValueOnce([])
+      searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
+      const user = userEvent.setup()
+      render(<CombineDataIsland />)
+
+      await waitFor(() =>
+        expect(
+          screen.getByRole('button', { name: /exit preview/i }),
+        ).toBeInTheDocument(),
+      )
+      await user.click(screen.getByRole('button', { name: /exit preview/i }))
+
+      expect(routerReplaceMock).toHaveBeenCalledWith('/training-facility/combine')
+    })
+
+    it('hides admin row actions while in preview mode (fixture is read-only)', async () => {
+      // Even an admin should not see edit/delete/mark-incomplete on
+      // demo rows — they don't exist in Supabase, so a write would
+      // fail with a confusing error. The island gates `showActions`
+      // off when `isPreviewMode` is true.
+      adminSessionMock.mockReturnValue({
+        isAdmin: true,
+        isLoading: false,
+        email: 'admin@example.com',
+      })
+      getMovementBenchmarksMock.mockResolvedValueOnce([])
+      searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
+      render(<CombineDataIsland />)
+
+      await waitFor(() =>
+        expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument(),
+      )
+      expect(
+        screen.queryByRole('button', { name: /edit benchmark from 2026-05-01/i }),
+      ).not.toBeInTheDocument()
+    })
   })
 })

@@ -1,9 +1,11 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from 'react'
 
 import { Scoreboard } from '@/components/training-facility/shared/Scoreboard'
 import { deriveCombineScoreboardCells } from '@/components/training-facility/shared/scoreboard-utils'
+import { COMBINE_DEMO_BENCHMARKS } from '@/constants/combine-demo-fixture'
 import { useAdminSession } from '@/lib/auth/use-admin-session'
 import {
   deleteBenchmark,
@@ -16,8 +18,13 @@ import { CombineEntryForm } from './CombineEntryForm'
 import { CombineHistoryTable } from './CombineHistoryTable'
 import { CombineRadar } from './CombineRadar'
 import { CombineTradingCard } from './CombineTradingCard'
+import { PreviewModeBadge } from './PreviewModeBadge'
+import { PreviewWithSampleDataButton } from './PreviewWithSampleDataButton'
 import { ShuttleTrace } from './ShuttleTrace'
 import { SprintRace } from './SprintRace'
+
+/** URL param value that activates the empty-state demo fixture (#160). */
+const PREVIEW_DEMO = 'demo'
 
 /**
  * Owns the Combine page's shared `entries` state and edit/delete
@@ -138,24 +145,46 @@ export function CombineDataIsland(): JSX.Element {
     [refetch],
   )
 
-  const cells = deriveCombineScoreboardCells(entries ?? [])
+  // Empty-state preview affordance (#160). When the real fetch settled
+  // empty, surface either the "Preview with sample data" CTA (no param)
+  // or the demo fixture + "Preview — sample data" badge (param set).
+  // A real fetch with rows always wins — preview mode is empty-state-
+  // only and never shadows live data.
+  const searchParams = useSearchParams()
+  const previewParam = searchParams?.get('preview')
+  const realIsEmpty = entries !== undefined && entries.length === 0
+  const isPreviewMode = realIsEmpty && previewParam === PREVIEW_DEMO
+  const showEmptyStateCta = realIsEmpty && previewParam !== PREVIEW_DEMO
+
+  // The entries threaded into the surfaces. `useMemo` keeps the
+  // reference stable across renders so children that key off-shape
+  // (Radar, ShuttleTrace, SprintRace) don't re-animate when only an
+  // unrelated state slice changes.
+  const surfaceEntries = useMemo(
+    () => (isPreviewMode ? COMBINE_DEMO_BENCHMARKS : entries),
+    [isPreviewMode, entries],
+  )
+
+  const cells = deriveCombineScoreboardCells(surfaceEntries ?? [])
   const { isAdmin } = useAdminSession()
 
   return (
     <div className="flex flex-col gap-10">
+      {isPreviewMode ? <PreviewModeBadge /> : null}
+      {showEmptyStateCta ? <PreviewWithSampleDataButton /> : null}
       <Scoreboard cells={cells} ariaLabel="Combine scoreboard summary" />
-      <CombineTradingCard entries={entries} />
-      <ShuttleTrace entries={entries} />
-      <SprintRace entries={entries} />
-      <CombineRadar entries={entries} />
+      <CombineTradingCard entries={surfaceEntries} />
+      <ShuttleTrace entries={surfaceEntries} />
+      <SprintRace entries={surfaceEntries} />
+      <CombineRadar entries={surfaceEntries} />
       <CombineEntryForm
         onSaved={refetch}
         editingEntry={editingEntry}
         onCancelEdit={handleCancelEdit}
       />
       <CombineHistoryTable
-        entries={entries ?? []}
-        showActions={isAdmin}
+        entries={surfaceEntries ?? []}
+        showActions={isAdmin && !isPreviewMode}
         onEdit={handleEdit}
         onDelete={handleDelete}
         onToggleComplete={handleToggleComplete}

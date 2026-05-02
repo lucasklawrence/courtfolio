@@ -1,4 +1,4 @@
-import type { JSX } from 'react'
+import { Suspense, type JSX } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -71,7 +71,15 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
           </p>
         </header>
 
-        <CombineDataIsland />
+        {/* Suspense boundary required because `CombineDataIsland` reads
+            `useSearchParams()` for the `?preview=demo` empty-state
+            affordance (#160). Without it Next 15+ would opt the entire
+            page out of static rendering at build time. The fallback is
+            null because the island already owns its own loading state
+            (the Scoreboard placeholder). */}
+        <Suspense fallback={null}>
+          <CombineDataIsland />
+        </Suspense>
 
         <JumpTrackerSection />
 
