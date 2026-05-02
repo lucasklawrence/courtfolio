@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import type { JSX } from 'react'
 
 /**
@@ -17,9 +17,14 @@ import type { JSX } from 'react'
  *   3. Style cue: amber-warm chip with a dashed border, distinct from
  *      the page's solid amber accents (e.g. the eyebrow / tier-1
  *      labels) so the visual treatment doesn't look like core UI.
+ *
+ * The exit URL is built from `usePathname()` rather than hardcoding
+ * `/training-facility/combine`, so a future route move is a single
+ * `app/` rename and the badge follows along.
  */
 export function PreviewModeBadge(): JSX.Element {
   const router = useRouter()
+  const pathname = usePathname()
 
   return (
     <div
@@ -41,8 +46,10 @@ export function PreviewModeBadge(): JSX.Element {
         onClick={() => {
           // Drop just the `preview` param; preserve any future siblings
           // a caller might add. `router.replace` so the back button
-          // doesn't re-enter preview mode after dismissal.
-          router.replace('/training-facility/combine')
+          // doesn't re-enter preview mode after dismissal. `pathname`
+          // (rather than a hardcoded path) keeps the badge route-agnostic
+          // if the page ever moves.
+          router.replace(pathname)
         }}
         className="ml-auto rounded-full border border-amber-200/45 bg-amber-200/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-100 transition hover:bg-amber-200/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-200/70"
       >

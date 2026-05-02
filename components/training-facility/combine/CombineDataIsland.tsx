@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from 'react'
+import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
 
 import { Scoreboard } from '@/components/training-facility/shared/Scoreboard'
 import { deriveCombineScoreboardCells } from '@/components/training-facility/shared/scoreboard-utils'
@@ -156,14 +156,11 @@ export function CombineDataIsland(): JSX.Element {
   const isPreviewMode = realIsEmpty && previewParam === PREVIEW_DEMO
   const showEmptyStateCta = realIsEmpty && previewParam !== PREVIEW_DEMO
 
-  // The entries threaded into the surfaces. `useMemo` keeps the
-  // reference stable across renders so children that key off-shape
-  // (Radar, ShuttleTrace, SprintRace) don't re-animate when only an
-  // unrelated state slice changes.
-  const surfaceEntries = useMemo(
-    () => (isPreviewMode ? COMBINE_DEMO_BENCHMARKS : entries),
-    [isPreviewMode, entries],
-  )
+  // The entries threaded into the surfaces. Plain ternary — both
+  // branches return refs that are already stable across renders
+  // (`COMBINE_DEMO_BENCHMARKS` is a module const, `entries` is a
+  // React state ref), so `useMemo` would just be noise.
+  const surfaceEntries = isPreviewMode ? COMBINE_DEMO_BENCHMARKS : entries
 
   const cells = deriveCombineScoreboardCells(surfaceEntries ?? [])
   const { isAdmin } = useAdminSession()
@@ -177,11 +174,19 @@ export function CombineDataIsland(): JSX.Element {
       <ShuttleTrace entries={surfaceEntries} />
       <SprintRace entries={surfaceEntries} />
       <CombineRadar entries={surfaceEntries} />
-      <CombineEntryForm
-        onSaved={refetch}
-        editingEntry={editingEntry}
-        onCancelEdit={handleCancelEdit}
-      />
+      {/* The entry form is hidden in preview mode. Demo rows don't
+          exist in Supabase, so a successful POST would silently exit
+          preview (real-data branch overrides the URL param) and replace
+          the fixture with the freshly-logged real row — surprising UX.
+          Asking the admin to "Exit preview" before logging is a single
+          click and matches the read-only mental model the badge sets. */}
+      {isPreviewMode ? null : (
+        <CombineEntryForm
+          onSaved={refetch}
+          editingEntry={editingEntry}
+          onCancelEdit={handleCancelEdit}
+        />
+      )}
       <CombineHistoryTable
         entries={surfaceEntries ?? []}
         showActions={isAdmin && !isPreviewMode}

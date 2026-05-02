@@ -33,14 +33,17 @@ vi.mock('@/lib/auth/use-admin-session', () => ({
 /**
  * Mock for `next/navigation` so `useSearchParams()` (added for the
  * `?preview=demo` empty-state affordance, #160) returns a controllable
- * value and `useRouter().replace` is observable. Tests that don't care
- * about preview mode get an empty `URLSearchParams` by default.
+ * value, `useRouter().replace` is observable, and `usePathname()`
+ * returns the canonical Combine route. Tests that don't care about
+ * preview mode get an empty `URLSearchParams` by default.
  */
 const searchParamsMock = vi.fn<() => URLSearchParams>(() => new URLSearchParams())
 const routerReplaceMock = vi.fn<(href: string) => void>()
+const pathnameMock = vi.fn<() => string>(() => '/training-facility/combine')
 vi.mock('next/navigation', () => ({
   useSearchParams: () => searchParamsMock(),
   useRouter: () => ({ replace: routerReplaceMock, push: vi.fn(), prefetch: vi.fn() }),
+  usePathname: () => pathnameMock(),
 }))
 
 const getMovementBenchmarksMock = vi.fn()
@@ -75,6 +78,8 @@ beforeEach(() => {
   searchParamsMock.mockReset()
   searchParamsMock.mockReturnValue(new URLSearchParams())
   routerReplaceMock.mockReset()
+  pathnameMock.mockReset()
+  pathnameMock.mockReturnValue('/training-facility/combine')
 })
 
 afterEach(() => {
@@ -403,7 +408,75 @@ describe('CombineDataIsland', () => {
       )
       await user.click(screen.getByRole('button', { name: /exit preview/i }))
 
+      // Replace target is sourced from `usePathname()` so a future
+      // route move follows along — assert against the same value the
+      // mock returns rather than hardcoding it twice.
       expect(routerReplaceMock).toHaveBeenCalledWith('/training-facility/combine')
+    })
+
+    it('uses usePathname() so a route move would follow without a code change', async () => {
+      // If someone renames the page from /training-facility/combine
+      // to e.g. /tf/combine, this test confirms the badge's exit
+      // affordance still strips the param against the new path.
+      getMovementBenchmarksMock.mockResolvedValueOnce([])
+      searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
+      pathnameMock.mockReturnValue('/tf/combine')
+      const user = userEvent.setup()
+      render(<CombineDataIsland />)
+
+      await waitFor(() =>
+        expect(
+          screen.getByRole('button', { name: /exit preview/i }),
+        ).toBeInTheDocument(),
+      )
+      await user.click(screen.getByRole('button', { name: /exit preview/i }))
+
+      expect(routerReplaceMock).toHaveBeenCalledWith('/tf/combine')
+    })
+
+    it('hides the entry form while in preview mode (admin signed in)', async () => {
+      // The form is hidden in preview mode because a successful POST
+      // would silently exit preview (real-data branch overrides the
+      // URL param) and replace the demo with the freshly-logged real
+      // row. The badge sets a read-only mental model; the form would
+      // contradict it.
+      adminSessionMock.mockReturnValue({
+        isAdmin: true,
+        isLoading: false,
+        email: 'admin@example.com',
+      })
+      getMovementBenchmarksMock.mockResolvedValueOnce([])
+      searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
+      render(<CombineDataIsland />)
+
+      await waitFor(() =>
+        expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument(),
+      )
+      // Form's "Log a session" toggle button must not be in the DOM —
+      // the entire form panel is suppressed, not just disabled.
+      expect(
+        screen.queryByRole('button', { name: /log a session/i }),
+      ).not.toBeInTheDocument()
+    })
+
+    it('shows the entry form again once preview is exited (admin signed in)', async () => {
+      // Sanity check the inverse: when preview mode is off, the form
+      // renders as normal for an admin. Guards against a future
+      // refactor that ties the gate to the wrong condition.
+      adminSessionMock.mockReturnValue({
+        isAdmin: true,
+        isLoading: false,
+        email: 'admin@example.com',
+      })
+      getMovementBenchmarksMock.mockResolvedValueOnce([])
+      // No preview param — empty state with CTA.
+      render(<CombineDataIsland />)
+
+      await waitFor(() =>
+        expect(
+          screen.getByRole('button', { name: /log a session/i }),
+        ).toBeInTheDocument(),
+      )
     })
 
     it('hides admin row actions while in preview mode (fixture is read-only)', async () => {
