@@ -143,22 +143,32 @@ function sessionToRow(session, importedAt) {
 
 /**
  * Upsert the entire validated `CardioData` payload into Supabase, then
- * delete any rows whose primary key isn't in the payload — making each
- * import an exact mirror of the source dataset, not a cumulative
- * append.
+ * delete any row whose `updated_at` is older than this batch — for any
+ * table that received at least one upsert. Each import is an exact
+ * mirror of the source dataset *for the tables it touches*, not a
+ * cumulative append; tables for which the batch had zero rows are left
+ * alone (see {@link pruneStaleRows}'s empty-payload guard).
  *
  * Why prune: the documented workflow is "fix in HealthKit, re-import."
  * Without a prune step, deleting a workout in HealthKit (or having a
  * trend day disappear from the export) would leave stale rows in
  * Supabase that the dashboard would keep rendering. The Apple Health
- * "Export All Health Data" produces the full archive, so the import
- * payload is authoritative — pruning is the right default.
+ * "Export All Health Data" produces the full archive, so a non-empty
+ * payload is authoritative for that table — pruning is the right default.
  *
- * Idempotent — re-running on the same payload is a series of
- * no-op upserts (which still bump `updated_at`) and zero deletes.
- * `updated_at = importedAt` is stamped on every upserted row so the
- * data layer's `imported_at` computation (MAX(updated_at) across the
- * three tables) advances on every re-import even when nothing changed.
+ * Caveat for partial payloads: a batch that includes *some* rows for
+ * a table makes the batch authoritative for that table — rows that
+ * exist in Supabase but aren't in the batch will be deleted. Don't
+ * pass a deliberately-truncated payload (e.g. "just the last 30 days")
+ * unless you want everything older removed.
+ *
+ * Idempotent — re-running on the same payload is a series of no-op
+ * upserts (which still bump `updated_at` to the new batch timestamp)
+ * and zero deletes (every row's `updated_at` matches the batch, so
+ * `lt('updated_at', importedAt)` returns nothing). `updated_at =
+ * importedAt` is stamped on every upserted row so the data layer's
+ * `imported_at` computation (MAX(updated_at) across the three tables)
+ * advances on every re-import even when nothing changed.
  *
  * @param {ReturnType<createServiceRoleClient>} supabase Service-role
  *   client; must bypass RLS to write.
@@ -220,23 +230,23 @@ export async function upsertCardioData(supabase, data) {
     }
   }
 
-  const sessionsPruned = await pruneOrphans(
+  const sessionsPruned = await pruneStaleRows(
     supabase,
     'cardio_sessions',
-    'started_at',
-    sessionRows.map((r) => r.started_at),
+    importedAt,
+    sessionRows.length > 0,
   )
-  const restingPruned = await pruneOrphans(
+  const restingPruned = await pruneStaleRows(
     supabase,
     'cardio_resting_hr',
-    'date',
-    restingRows.map((r) => r.date),
+    importedAt,
+    restingRows.length > 0,
   )
-  const vo2Pruned = await pruneOrphans(
+  const vo2Pruned = await pruneStaleRows(
     supabase,
     'cardio_vo2max',
-    'date',
-    vo2Rows.map((r) => r.date),
+    importedAt,
+    vo2Rows.length > 0,
   )
 
   return {
@@ -248,90 +258,59 @@ export async function upsertCardioData(supabase, data) {
 }
 
 /**
- * PostgREST default cap: a plain `select()` returns at most this many
- * rows, regardless of how many exist. Configurable per-project via
- * `db-max-rows`; we don't change the default. {@link pruneOrphans}
- * paginates with `.range()` to cover tables that grow past this limit.
- */
-const DEFAULT_PAGE_SIZE = 1000
-
-/**
- * Delete rows from `table` whose primary-key value isn't in the
- * caller-supplied `keepKeys` set. The "exact mirror" half of
- * {@link upsertCardioData} — without this, a workout deleted from
- * HealthKit and re-imported would leave a stale Supabase row that the
- * dashboard would keep rendering.
+ * Delete rows from `table` whose `updated_at` is older than this batch's
+ * `importedAt`. The "exact mirror" half of {@link upsertCardioData} —
+ * without this, a workout deleted from HealthKit and re-imported would
+ * leave a stale Supabase row that the dashboard would keep rendering.
  *
- * **Empty-payload guard.** When `keepKeys` is `[]`, this function is a
- * no-op (returns 0 without touching the DB). An import that happens to
- * have zero rows for one table is interpreted as "this import has no
- * opinion on that table," not "delete everything in it" — that
- * protects against parser bugs, partial Apple Health exports, and
- * mis-typed inputs from silently wiping the dataset. If you genuinely
- * want to empty a table, do it with a manual SQL `delete`.
+ * Why timestamp-based instead of PK-set diff (the original #152
+ * implementation): the PK-set approach compared source PK strings
+ * against PostgREST's normalized output, which fails when the source
+ * emits a date-only string for a `timestamptz` PK. Postgres normalizes
+ * `"2026-02-08"` to `"2026-02-08T00:00:00+00:00"`, so the keep set
+ * `{"2026-02-08"}` and the existing set `{"2026-02-08T00:00:00+00:00"}`
+ * never overlap, every row is misclassified as an orphan, and the
+ * table is wiped on the first import. See #158 for the full repro.
  *
- * Implementation note: PostgREST doesn't expose a clean `NOT IN` for
- * large lists, so we fetch all existing PKs and DELETE the ones missing
- * from the import. PostgREST caps a plain `select()` at 1000 rows
- * (`db-max-rows`), so the scan paginates with `.range()` until a short
- * page comes back — otherwise orphans past row 1000 would silently
- * survive. With a v2 multi-tenant rewrite this would become a
- * server-side `delete from ... where pk not in (...)` instead.
+ * Since `upsertCardioData` stamps `updated_at = importedAt` on every
+ * upserted row in this batch, anything left with `updated_at <
+ * importedAt` is by definition not in the source. One DELETE,
+ * server-side `timestamptz < timestamptz` comparison — no SELECT, no
+ * pagination, no PK-format gotchas, no 1000-row cap.
+ *
+ * **Empty-payload guard.** When `hadAnyUpserts` is `false`, this is a
+ * no-op (returns 0 without touching the DB). An import with no rows
+ * for a table is interpreted as "this import has no opinion on that
+ * table," not "delete everything in it" — protects parser bugs,
+ * empty-table payloads, and mis-typed inputs from silently wiping
+ * the dataset. Note this does *not* protect partial-but-non-empty
+ * payloads: if `hadAnyUpserts` is true and the batch contains, say,
+ * 5 of the 100 sessions actually in HealthKit, the other 95 will be
+ * pruned. Pass full-archive payloads only. To genuinely empty a
+ * table, use manual SQL.
  *
  * Returns the number of rows deleted so the caller can surface
  * surprising prunes in the success log.
  *
  * Exported so unit tests can pin the empty-payload guard, the
- * pagination loop, and the orphan-detection logic; production callers
+ * timestamp comparison, and the failure paths; production callers
  * should use {@link upsertCardioData}.
  *
- * @param {number} [pageSize] Override the page size used for the PK
- *   scan. Defaults to {@link DEFAULT_PAGE_SIZE}; tests pass small
- *   values to exercise the pagination loop without enormous fixtures.
+ * @param {string} importedAt ISO 8601 batch timestamp; every row
+ *   upserted in this batch has `updated_at = importedAt`, so the strict
+ *   `<` keeps them and removes only earlier-batch rows.
+ * @param {boolean} hadAnyUpserts True iff at least one row was
+ *   upserted into `table` in this batch. When false the prune is
+ *   skipped entirely (see Empty-payload guard above).
  */
-export async function pruneOrphans(
-  supabase,
-  table,
-  pkColumn,
-  keepKeys,
-  pageSize = DEFAULT_PAGE_SIZE,
-) {
-  if (keepKeys.length === 0) return 0
-  if (!Number.isInteger(pageSize) || pageSize < 1) {
-    // The loop advances `from` by `pageSize` each iteration; a value of
-    // 0 or negative would never make progress and an infinite loop in
-    // an import script means a wedged terminal at best, a runaway
-    // Supabase bill at worst. Fail loud instead of degrading silently.
-    throw new Error(`pageSize must be a positive integer; got ${pageSize}.`)
-  }
-
-  const existing = []
-  for (let from = 0; ; from += pageSize) {
-    const { data, error } = await supabase
-      .from(table)
-      .select(pkColumn)
-      .range(from, from + pageSize - 1)
-    if (error) {
-      throw new Error(`Failed to scan ${table} for orphans: ${error.message}`)
-    }
-    const page = data ?? []
-    if (page.length === 0) break
-    existing.push(...page)
-    // A short page means we've drained the table — no more rows past
-    // this point. Stops one round-trip earlier than waiting for an
-    // empty page to come back.
-    if (page.length < pageSize) break
-  }
-
-  const keep = new Set(keepKeys)
-  const orphans = existing.map((row) => row[pkColumn]).filter((key) => !keep.has(key))
-  if (orphans.length === 0) return 0
-  const { error: deleteErr } = await supabase
+export async function pruneStaleRows(supabase, table, importedAt, hadAnyUpserts) {
+  if (!hadAnyUpserts) return 0
+  const { error, count } = await supabase
     .from(table)
-    .delete()
-    .in(pkColumn, orphans)
-  if (deleteErr) {
-    throw new Error(`Failed to prune orphans from ${table}: ${deleteErr.message}`)
+    .delete({ count: 'exact' })
+    .lt('updated_at', importedAt)
+  if (error) {
+    throw new Error(`Failed to prune stale rows from ${table}: ${error.message}`)
   }
-  return orphans.length
+  return count ?? 0
 }
