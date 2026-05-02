@@ -4,7 +4,13 @@ import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState, type JSX } from 'react'
 import type { CardioData, CardioSession } from '@/types/cardio'
 import type { Benchmark } from '@/types/movement'
+import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
+import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { getCardioData, getMovementBenchmarks } from '@/lib/data'
+import {
+  useCardioPreview,
+  useCardioPreviewHref,
+} from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -69,7 +75,10 @@ const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
  * "no data yet" rather than an empty chart wall.
  */
 export function TreadmillDetailView(): JSX.Element {
-  const [data, setData] = useState<CardioData | null>(null)
+  // `realData` is what `getCardioData()` returned; `data` (further
+  // down) is the surface-rendered version after the preview hook
+  // runs (#162). Real data wins once any session lands.
+  const [realData, setRealData] = useState<CardioData | null>(null)
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([])
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
@@ -90,12 +99,12 @@ export function TreadmillDetailView(): JSX.Element {
     Promise.all([getCardioData(), getMovementBenchmarks()])
       .then(([cardio, bench]) => {
         if (cancelled) return
-        // `getCardioData()` resolves to `null` on a 404 (the dataset isn't
-        // produced yet — gitignored, PRD §11 q7). Substitute an empty
-        // `CardioData` so the component progresses past the loading panel
-        // and renders the empty-state branch. Without this, a fresh preview
-        // (no cardio.json yet) would sit on "Loading cardio data…" forever.
-        setData(
+        // `getCardioData()` resolves to `null` when every Supabase
+        // cardio table is empty (#152). Substitute an empty `CardioData`
+        // so the component progresses past the loading panel into the
+        // empty-state branch — without this, a fresh deploy against an
+        // unseeded project would sit on "Loading cardio data…" forever.
+        setRealData(
           cardio ?? {
             imported_at: '',
             sessions: [],
@@ -108,7 +117,7 @@ export function TreadmillDetailView(): JSX.Element {
       .catch((err: unknown) => {
         if (cancelled) return
         // Real failures (network, 5xx, malformed JSON) surface the error
-        // panel. The 404-as-empty case is handled in `.then` above; this
+        // panel. The "no rows" case is handled as empty in `.then` above; this
         // path only runs for genuine errors that `getCardioData()` /
         // `getMovementBenchmarks()` choose to throw.
         setLoadError(err instanceof Error ? err : new Error(String(err)))
@@ -117,6 +126,14 @@ export function TreadmillDetailView(): JSX.Element {
       cancelled = true
     }
   }, [])
+
+  // Empty-state preview affordance (#162). Activity-scoped to
+  // `running` so a DB with only stair / walking data still surfaces
+  // the preview here. Any real running session suppresses both paths.
+  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData, {
+    requireActivity: 'running',
+  })
+  const previewHref = useCardioPreviewHref()
 
   useEffect(() => {
     const node = cardSizerRef.current
@@ -231,6 +248,21 @@ export function TreadmillDetailView(): JSX.Element {
             Lower-left on the scatter is the goal: fast at low effort.
           </p>
         </header>
+
+        {isPreviewMode ? (
+          <div className="mt-6">
+            <PreviewModeBadge description="These cardio numbers are illustrative — not Lucas’s real Apple Health import." />
+          </div>
+        ) : null}
+        {showEmptyStateCta ? (
+          <div className="mt-6">
+            <PreviewWithSampleDataButton
+              href={previewHref}
+              headline="No treadmill sessions logged yet"
+              description="Curious what the page looks like with data? Load a sample set to populate the pace trend, cardiac-efficiency curve, and personal bests."
+            />
+          </div>
+        ) : null}
 
         <div className="mt-8">
           <DateFilter

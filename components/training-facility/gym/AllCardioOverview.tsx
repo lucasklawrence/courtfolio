@@ -3,7 +3,13 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState, type JSX } from 'react'
 import type { CardioData, CardioSession } from '@/types/cardio'
+import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
+import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { getCardioData } from '@/lib/data'
+import {
+  useCardioPreview,
+  useCardioPreviewHref,
+} from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -90,7 +96,10 @@ function formatTotalMiles(meters: number): string {
  * paces on one axis is misleading, and stair sessions don't have pace at all.
  */
 export function AllCardioOverview(): JSX.Element {
-  const [data, setData] = useState<CardioData | null>(null)
+  // `realData` is what `getCardioData()` returned; `data` (further
+  // down) is the surface-rendered version after the preview hook
+  // runs (#162).
+  const [realData, setRealData] = useState<CardioData | null>(null)
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
@@ -107,10 +116,11 @@ export function AllCardioOverview(): JSX.Element {
     getCardioData()
       .then((next) => {
         if (cancelled) return
-        // Same empty-shape substitution as Stair/Treadmill/Track — `null`
-        // means a 404 on `cardio.json` (not produced yet, gitignored). Render
-        // the empty-state branch instead of sitting on the loading panel.
-        setData(
+        // Same empty-shape substitution as Stair/Treadmill/Track —
+        // `null` means every Supabase cardio table is empty (#152).
+        // Render the empty-state branch instead of sitting on the
+        // loading panel.
+        setRealData(
           next ?? {
             imported_at: '',
             sessions: [],
@@ -127,6 +137,12 @@ export function AllCardioOverview(): JSX.Element {
       cancelled = true
     }
   }, [])
+
+  // Empty-state preview affordance (#162). Cross-activity surface,
+  // so no `requireActivity` — any real session of any activity
+  // suppresses the preview path.
+  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData)
+  const previewHref = useCardioPreviewHref()
 
   useEffect(() => {
     const node = cardSizerRef.current
@@ -214,6 +230,21 @@ export function AllCardioOverview(): JSX.Element {
             equipment you used).
           </p>
         </header>
+
+        {isPreviewMode ? (
+          <div className="mt-6">
+            <PreviewModeBadge description="These cardio numbers are illustrative — not Lucas’s real Apple Health import." />
+          </div>
+        ) : null}
+        {showEmptyStateCta ? (
+          <div className="mt-6">
+            <PreviewWithSampleDataButton
+              href={previewHref}
+              headline="No cardio sessions logged yet"
+              description="Curious what the page looks like with data? Load a sample set to populate every chart and the activity-mix breakdown."
+            />
+          </div>
+        ) : null}
 
         <div className="mt-8">
           <DateFilter
