@@ -7,7 +7,10 @@ import type { Benchmark } from '@/types/movement'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { getCardioData, getMovementBenchmarks } from '@/lib/data'
-import { useCardioPreview } from '@/lib/training-facility/use-cardio-preview'
+import {
+  useCardioPreview,
+  useCardioPreviewHref,
+} from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -100,10 +103,10 @@ export function TrackDetailView(): JSX.Element {
     Promise.all([getCardioData(), getMovementBenchmarks()])
       .then(([cardio, bench]) => {
         if (cancelled) return
-        // `getCardioData()` resolves to `null` on a 404 (the dataset isn't
-        // produced yet — gitignored, PRD §11 q7). Substitute an empty
-        // `CardioData` so the component progresses past the loading panel
-        // and renders the empty-state branch.
+        // `getCardioData()` resolves to `null` when every Supabase
+        // cardio table is empty (#152). Substitute an empty `CardioData`
+        // so the component progresses past the loading panel into the
+        // empty-state branch.
         setRealData(
           cardio ?? {
             imported_at: '',
@@ -123,8 +126,13 @@ export function TrackDetailView(): JSX.Element {
     }
   }, [])
 
-  // Empty-state preview affordance (#162) — same shape as Stair / Treadmill.
-  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData)
+  // Empty-state preview affordance (#162). Activity-scoped to
+  // `walking` so a DB with only stair / running data still surfaces
+  // the preview here. Any real walking session suppresses both paths.
+  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData, {
+    requireActivity: 'walking',
+  })
+  const previewHref = useCardioPreviewHref()
 
   useEffect(() => {
     const node = cardSizerRef.current
@@ -247,7 +255,7 @@ export function TrackDetailView(): JSX.Element {
         {showEmptyStateCta ? (
           <div className="mt-6">
             <PreviewWithSampleDataButton
-              href="/training-facility/gym/track?preview=demo"
+              href={previewHref}
               headline="No walking sessions logged yet"
               description="Curious what the page looks like with data? Load a sample set to populate the pace trend, cardiac-efficiency curve, and personal bests."
             />

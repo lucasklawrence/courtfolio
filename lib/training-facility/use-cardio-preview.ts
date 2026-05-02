@@ -1,13 +1,53 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 
 import { CARDIO_DEMO_DATA } from '@/constants/cardio-demo-fixture'
-import type { CardioData } from '@/types/cardio'
+import type { CardioActivity, CardioData } from '@/types/cardio'
 
-/** URL param value that activates the empty-state demo fixture (#162). */
+/** URL param key + value that activates the empty-state demo fixture (#162). */
 export const CARDIO_PREVIEW_PARAM = 'preview'
 export const CARDIO_PREVIEW_VALUE = 'demo'
+
+/**
+ * Cross-context predicate for "is `?preview=demo` active in this URL?"
+ *
+ * - **Server components** receive `searchParams` as a Page prop
+ *   (`Record<string, string | string[] | undefined>`). A repeated key
+ *   like `?preview=demo&preview=other` arrives as an array there.
+ * - **Client components** call `useSearchParams().get('preview')`,
+ *   which always returns the first value as a string (or `null`).
+ *
+ * Both shapes need to behave the same: any presence of the literal
+ * string `"demo"` activates preview, regardless of whether it's the
+ * sole value or one of several. This avoids a class of bug where
+ * server and client read the same URL and disagree on whether the
+ * page is in preview mode.
+ *
+ * @param raw The raw value extracted from either source. Pass
+ *   `searchParams.preview` on the server or
+ *   `searchParams.get('preview')` on the client.
+ */
+export function isPreviewDemoActive(
+  raw: string | string[] | null | undefined,
+): boolean {
+  if (raw === CARDIO_PREVIEW_VALUE) return true
+  if (Array.isArray(raw) && raw.includes(CARDIO_PREVIEW_VALUE)) return true
+  return false
+}
+
+/** Optional knobs for {@link useCardioPreview}. */
+export interface UseCardioPreviewOptions {
+  /**
+   * If provided, only sessions matching this activity count toward
+   * "real data exists." Per-activity surfaces (Stair, Treadmill,
+   * Track) pass their activity so the preview fires when the real DB
+   * has data — just none for that activity. Cross-activity surfaces
+   * (Overview, Gym landing) leave this unset; any session there
+   * suppresses preview.
+   */
+  requireActivity?: CardioActivity
+}
 
 /** Result of {@link useCardioPreview}. */
 export interface CardioPreviewState {
@@ -21,13 +61,15 @@ export interface CardioPreviewState {
   data: CardioData | null | undefined
   /**
    * `true` when the URL has `?preview=demo` AND the real fetch
-   * returned no sessions. Drives the {@link PreviewModeBadge}.
+   * returned no sessions for the requested scope (all activities, or
+   * the activity passed in `options.requireActivity`). Drives the
+   * {@link PreviewModeBadge}.
    */
   isPreviewMode: boolean
   /**
-   * `true` when the real fetch returned no sessions AND no preview
-   * param is set. Drives the empty-state CTA that points to
-   * `?preview=demo`.
+   * `true` when the real fetch returned no sessions for the requested
+   * scope AND no preview param is set. Drives the empty-state CTA
+   * that points to `?preview=demo`.
    */
   showEmptyStateCta: boolean
 }
@@ -44,30 +86,63 @@ export interface CardioPreviewState {
  *     renders fixture data + the badge)
  *   - `data.sessions.length > 0` → real data wins; preview ignored
  *
- * Preview mode is empty-state-only: a single real session anywhere in
- * the dataset suppresses the entire preview path. That matches the
- * Combine sibling (#160) and prevents an admin from confusing demo
- * data with their own.
+ * Preview mode is empty-state-only: a single real session in the
+ * relevant scope suppresses the entire preview path. Pass
+ * `options.requireActivity` on a per-activity surface to scope
+ * "empty" to just that activity, so e.g. the Track page can still
+ * show preview when the DB has stair sessions but no walking.
  *
  * @param real The cardio dataset returned by `getCardioData()`. Pass
  *   the raw value — `null` for "no data exists yet", a populated
  *   object for "real data", and `undefined` while still fetching.
+ * @param options See {@link UseCardioPreviewOptions}.
  */
-export function useCardioPreview(real: CardioData | null | undefined): CardioPreviewState {
+export function useCardioPreview(
+  real: CardioData | null | undefined,
+  options: UseCardioPreviewOptions = {},
+): CardioPreviewState {
   const searchParams = useSearchParams()
-  const previewParam = searchParams?.get(CARDIO_PREVIEW_PARAM)
-  // `real === undefined` keeps the loader branch for callers that
-  // still distinguish loading from empty (e.g. StairDetailView's
-  // `Loading cardio data…` panel). Once it resolves to either a
-  // populated object or `null`/empty, we make the preview decision.
-  const realIsEmpty =
-    real === null || (real !== undefined && real.sessions.length === 0)
-  const isPreviewMode = realIsEmpty && previewParam === CARDIO_PREVIEW_VALUE
-  const showEmptyStateCta = realIsEmpty && previewParam !== CARDIO_PREVIEW_VALUE
+  const previewActive = isPreviewDemoActive(searchParams?.get(CARDIO_PREVIEW_PARAM))
+  const realIsEmpty = computeRealIsEmpty(real, options.requireActivity)
+  const isPreviewMode = realIsEmpty && previewActive
+  const showEmptyStateCta = realIsEmpty && !previewActive
 
   return {
     data: isPreviewMode ? CARDIO_DEMO_DATA : real,
     isPreviewMode,
     showEmptyStateCta,
   }
+}
+
+/**
+ * Returns the href that points the empty-state CTA at "this same page,
+ * with `?preview=demo`." Sourced from `usePathname()` so a future
+ * route move follows along — no hardcoded paths in each surface.
+ *
+ * The Gym landing (server component) builds its own equivalent string
+ * because `usePathname()` is client-only; the four detail islands all
+ * use this helper.
+ */
+export function useCardioPreviewHref(): string {
+  const pathname = usePathname()
+  return `${pathname}?${CARDIO_PREVIEW_PARAM}=${CARDIO_PREVIEW_VALUE}`
+}
+
+/**
+ * "Real data is empty for the requested scope." Tri-valued input:
+ *   - `undefined` → still loading; not empty (yet)
+ *   - `null` → no data exists in any table → empty
+ *   - populated → empty iff the (possibly activity-filtered) sessions
+ *     array has zero entries
+ */
+function computeRealIsEmpty(
+  real: CardioData | null | undefined,
+  requireActivity: CardioActivity | undefined,
+): boolean {
+  if (real === undefined) return false
+  if (real === null) return true
+  const sessions = requireActivity
+    ? real.sessions.filter((s) => s.activity === requireActivity)
+    : real.sessions
+  return sessions.length === 0
 }

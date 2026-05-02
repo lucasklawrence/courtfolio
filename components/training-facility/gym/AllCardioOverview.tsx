@@ -6,7 +6,10 @@ import type { CardioData, CardioSession } from '@/types/cardio'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { getCardioData } from '@/lib/data'
-import { useCardioPreview } from '@/lib/training-facility/use-cardio-preview'
+import {
+  useCardioPreview,
+  useCardioPreviewHref,
+} from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -113,9 +116,10 @@ export function AllCardioOverview(): JSX.Element {
     getCardioData()
       .then((next) => {
         if (cancelled) return
-        // Same empty-shape substitution as Stair/Treadmill/Track — `null`
-        // means a 404 on `cardio.json` (not produced yet, gitignored). Render
-        // the empty-state branch instead of sitting on the loading panel.
+        // Same empty-shape substitution as Stair/Treadmill/Track —
+        // `null` means every Supabase cardio table is empty (#152).
+        // Render the empty-state branch instead of sitting on the
+        // loading panel.
         setRealData(
           next ?? {
             imported_at: '',
@@ -134,8 +138,11 @@ export function AllCardioOverview(): JSX.Element {
     }
   }, [])
 
-  // Empty-state preview affordance (#162) — same shape as the detail views.
+  // Empty-state preview affordance (#162). Cross-activity surface,
+  // so no `requireActivity` — any real session of any activity
+  // suppresses the preview path.
   const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData)
+  const previewHref = useCardioPreviewHref()
 
   useEffect(() => {
     const node = cardSizerRef.current
@@ -232,7 +239,7 @@ export function AllCardioOverview(): JSX.Element {
         {showEmptyStateCta ? (
           <div className="mt-6">
             <PreviewWithSampleDataButton
-              href="/training-facility/gym/overview?preview=demo"
+              href={previewHref}
               headline="No cardio sessions logged yet"
               description="Curious what the page looks like with data? Load a sample set to populate every chart and the activity-mix breakdown."
             />

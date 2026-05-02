@@ -7,7 +7,10 @@ import type { Benchmark } from '@/types/movement'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { getCardioData, getMovementBenchmarks } from '@/lib/data'
-import { useCardioPreview } from '@/lib/training-facility/use-cardio-preview'
+import {
+  useCardioPreview,
+  useCardioPreviewHref,
+} from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -96,11 +99,11 @@ export function TreadmillDetailView(): JSX.Element {
     Promise.all([getCardioData(), getMovementBenchmarks()])
       .then(([cardio, bench]) => {
         if (cancelled) return
-        // `getCardioData()` resolves to `null` on a 404 (the dataset isn't
-        // produced yet — gitignored, PRD §11 q7). Substitute an empty
-        // `CardioData` so the component progresses past the loading panel
-        // and renders the empty-state branch. Without this, a fresh preview
-        // (no cardio.json yet) would sit on "Loading cardio data…" forever.
+        // `getCardioData()` resolves to `null` when every Supabase
+        // cardio table is empty (#152). Substitute an empty `CardioData`
+        // so the component progresses past the loading panel into the
+        // empty-state branch — without this, a fresh deploy against an
+        // unseeded project would sit on "Loading cardio data…" forever.
         setRealData(
           cardio ?? {
             imported_at: '',
@@ -114,7 +117,7 @@ export function TreadmillDetailView(): JSX.Element {
       .catch((err: unknown) => {
         if (cancelled) return
         // Real failures (network, 5xx, malformed JSON) surface the error
-        // panel. The 404-as-empty case is handled in `.then` above; this
+        // panel. The "no rows" case is handled as empty in `.then` above; this
         // path only runs for genuine errors that `getCardioData()` /
         // `getMovementBenchmarks()` choose to throw.
         setLoadError(err instanceof Error ? err : new Error(String(err)))
@@ -124,8 +127,13 @@ export function TreadmillDetailView(): JSX.Element {
     }
   }, [])
 
-  // Empty-state preview affordance (#162) — same shape as Stair / Track.
-  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData)
+  // Empty-state preview affordance (#162). Activity-scoped to
+  // `running` so a DB with only stair / walking data still surfaces
+  // the preview here. Any real running session suppresses both paths.
+  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData, {
+    requireActivity: 'running',
+  })
+  const previewHref = useCardioPreviewHref()
 
   useEffect(() => {
     const node = cardSizerRef.current
@@ -249,7 +257,7 @@ export function TreadmillDetailView(): JSX.Element {
         {showEmptyStateCta ? (
           <div className="mt-6">
             <PreviewWithSampleDataButton
-              href="/training-facility/gym/treadmill?preview=demo"
+              href={previewHref}
               headline="No treadmill sessions logged yet"
               description="Curious what the page looks like with data? Load a sample set to populate the pace trend, cardiac-efficiency curve, and personal bests."
             />

@@ -6,7 +6,10 @@ import type { CardioData, CardioSession } from '@/types/cardio'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { getCardioData } from '@/lib/data'
-import { useCardioPreview } from '@/lib/training-facility/use-cardio-preview'
+import {
+  useCardioPreview,
+  useCardioPreviewHref,
+} from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -198,11 +201,11 @@ export function StairDetailView(): JSX.Element {
     getCardioData()
       .then((next) => {
         if (cancelled) return
-        // `getCardioData()` resolves to `null` on a 404 (gitignored cardio
-        // data, PRD §11 q7). Substitute an empty `CardioData` so the
-        // component progresses past the loading panel into the empty-state
-        // branch — without this, a fresh preview deploy with no
-        // `cardio.json` would sit on "Loading cardio data…" forever.
+        // `getCardioData()` resolves to `null` when every Supabase
+        // cardio table is empty (#152). Substitute an empty `CardioData`
+        // so the component progresses past the loading panel into the
+        // empty-state branch — without this, a fresh deploy against an
+        // unseeded project would sit on "Loading cardio data…" forever.
         setRealData(
           next ?? {
             imported_at: '',
@@ -214,9 +217,10 @@ export function StairDetailView(): JSX.Element {
       })
       .catch((err: unknown) => {
         if (cancelled) return
-        // Real failures (network, 5xx, malformed JSON) reach this branch.
-        // 404 is handled as "empty" inside `.then` above since
-        // `getCardioData()` no longer throws on missing data.
+        // Real failures (network, Supabase 5xx, schema mismatch) reach
+        // this branch. The "no rows yet" case is handled as empty in
+        // `.then` above since `getCardioData()` returns `null`, not
+        // throws, when the tables have no data.
         setLoadError(err instanceof Error ? err : new Error(String(err)))
       })
     return () => {
@@ -224,11 +228,16 @@ export function StairDetailView(): JSX.Element {
     }
   }, [])
 
-  // Empty-state preview affordance (#162). When the real fetch settled
-  // empty AND `?preview=demo` is in the URL, swap in `CARDIO_DEMO_DATA`
-  // so the surfaces hydrate with sample numbers; when no param is
-  // present, surface the CTA instead. Real data always wins.
-  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData)
+  // Empty-state preview affordance (#162). When the real fetch returned
+  // no stair sessions (note: stair-specific via `requireActivity`, so
+  // a DB with only running data still shows the preview here) AND
+  // `?preview=demo` is in the URL, swap in `CARDIO_DEMO_DATA`; when no
+  // param is present, surface the CTA instead. Any real stair session
+  // suppresses both paths.
+  const { data, isPreviewMode, showEmptyStateCta } = useCardioPreview(realData, {
+    requireActivity: 'stair',
+  })
+  const previewHref = useCardioPreviewHref()
 
   // Track per-card width so the SVG charts shrink with the column on mobile
   // rather than overflowing the viewport. The shared chart primitives don't
@@ -353,7 +362,7 @@ export function StairDetailView(): JSX.Element {
         {showEmptyStateCta ? (
           <div className="mt-6">
             <PreviewWithSampleDataButton
-              href="/training-facility/gym/stair?preview=demo"
+              href={previewHref}
               headline="No stair sessions logged yet"
               description="Curious what the page looks like with data? Load a sample set to populate the time-in-zone bars, per-session HR chart, training-load curve, and personal bests."
             />

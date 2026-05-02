@@ -8,6 +8,7 @@ import { PreviewWithSampleDataButton } from '@/components/training-facility/shar
 import { CARDIO_DEMO_DATA } from '@/constants/cardio-demo-fixture'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isPreviewDemoActive } from '@/lib/training-facility/use-cardio-preview'
 
 /** Search-params shape Next.js passes to a server-rendered page. */
 interface PageProps {
@@ -44,7 +45,11 @@ export default async function TrainingFacilityGymPage({ searchParams }: PageProp
   // 500 the whole page — the fixtures gracefully fall back to placeholders.
   const realCardioData = await getCardioDataServer().catch(() => null)
   const params = await searchParams
-  const previewRequested = params.preview === 'demo'
+  // Use the shared `isPreviewDemoActive` so server and client agree
+  // on the multi-value edge case (`?preview=demo&preview=other`
+  // arrives here as `['demo', 'other']` but as `'demo'` from
+  // `useSearchParams().get`). One predicate, one truth.
+  const previewRequested = isPreviewDemoActive(params.preview)
   const realIsEmpty = realCardioData === null || realCardioData.sessions.length === 0
   const isPreviewMode = realIsEmpty && previewRequested
   const showEmptyStateCta = realIsEmpty && !previewRequested
