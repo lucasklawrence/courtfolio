@@ -1,73 +1,41 @@
 #!/usr/bin/env node
 /**
- * `npm run import-health -- <export.zip>` wrapper around
- * `scripts/preprocess-health.py` (PRD §7.3).
+ * `npm run import-health -- <export.zip>` — Apple Health → Supabase
+ * cardio pipeline (PRD §7.3, #152).
  *
- * 1. Spawns Python to read the Apple Health export and emit
- *    `public/data/cardio.json`.
- * 2. Validates the emitted JSON against a Zod mirror of `CardioData`
- *    (`types/cardio.ts`). Drift between the Python output shape and
- *    the TypeScript type fails loudly here instead of silently
- *    breaking the dashboard at runtime.
+ * 1. Spawns Python (`scripts/preprocess-health.py`) to read the Apple
+ *    Health export and emit an intermediate JSON file
+ *    (`public/data/cardio.json`, gitignored).
+ * 2. Validates the JSON against a Zod mirror of `CardioData`. Drift
+ *    between the Python output shape and the TypeScript type fails
+ *    loudly here instead of silently breaking the dashboard at runtime.
+ * 3. Upserts every session, resting-HR point, and VO2max point into
+ *    Supabase via the service-role key. Idempotent — re-running after
+ *    a fresh Apple Health export overwrites the same primary keys
+ *    rather than duplicating rows.
  *
  * Exits non-zero on any failure (Python error, missing file, schema
- * mismatch). Stdout/stderr from Python is forwarded to the user so
- * they see the parse log.
+ * mismatch, Supabase error). Stdout/stderr from Python is forwarded
+ * to the user so they see the parse log.
+ *
+ * Skip the Python step (re-upsert from an already-produced JSON) with
+ * `--from-json=<path>` — useful for retrying just the Supabase write
+ * after a transient connection failure.
  */
 
 import { spawn } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
-import { z } from 'zod'
+
+import {
+  CardioDataSchema,
+  createServiceRoleClient,
+  loadEnv,
+  upsertCardioData,
+} from './lib/cardio-supabase.mjs'
 
 const PYTHON_SCRIPT = path.join('scripts', 'preprocess-health.py')
-const OUTPUT_PATH = path.join('public', 'data', 'cardio.json')
-
-/**
- * Zod mirror of `CardioData` from `types/cardio.ts`. Kept in sync
- * manually — when the TS type changes, update this and the Python
- * script. The wrapper's whole reason to exist is to catch the case
- * where you forgot one of the two.
- */
-const HrZoneSecondsSchema = z
-  .object({
-    '1': z.number().nonnegative(),
-    '2': z.number().nonnegative(),
-    '3': z.number().nonnegative(),
-    '4': z.number().nonnegative(),
-    '5': z.number().nonnegative(),
-  })
-  .strict()
-
-const CardioSessionSchema = z
-  .object({
-    date: z.string().min(1),
-    activity: z.enum(['stair', 'running', 'walking']),
-    duration_seconds: z.number().nonnegative(),
-    distance_meters: z.number().nonnegative().nullable().optional(),
-    avg_hr: z.number().nonnegative().nullable().optional(),
-    max_hr: z.number().nonnegative().nullable().optional(),
-    pace_seconds_per_km: z.number().nonnegative().nullable().optional(),
-    hr_seconds_in_zone: HrZoneSecondsSchema.nullable().optional(),
-    meters_per_heartbeat: z.number().nonnegative().nullable().optional(),
-  })
-  .strict()
-
-const CardioTimePointSchema = z
-  .object({
-    date: z.string().min(1),
-    value: z.number(),
-  })
-  .strict()
-
-const CardioDataSchema = z
-  .object({
-    imported_at: z.string().min(1),
-    sessions: z.array(CardioSessionSchema),
-    resting_hr_trend: z.array(CardioTimePointSchema),
-    vo2max_trend: z.array(CardioTimePointSchema),
-  })
-  .strict()
+const DEFAULT_OUTPUT_PATH = path.join('public', 'data', 'cardio.json')
 
 /**
  * Pick the right Python interpreter. `python` is more universal; falls
@@ -78,7 +46,9 @@ function pythonExecutable() {
 }
 
 function usage() {
-  console.error('Usage: npm run import-health -- <export.zip|export.xml> [--max-hr=185]')
+  console.error(
+    'Usage: npm run import-health -- <export.zip|export.xml> [--max-hr=185] [--from-json=<path>]',
+  )
   process.exit(1)
 }
 
@@ -93,8 +63,8 @@ async function runPython(args) {
   })
 }
 
-async function validateOutput() {
-  const raw = await readFile(OUTPUT_PATH, 'utf8')
+async function validateJson(jsonPath) {
+  const raw = await readFile(jsonPath, 'utf8')
   const parsed = JSON.parse(raw)
   const result = CardioDataSchema.safeParse(parsed)
   if (!result.success) {
@@ -111,13 +81,40 @@ async function main() {
   const argv = process.argv.slice(2)
   if (argv.length === 0) usage()
 
-  await runPython([argv[0], OUTPUT_PATH, ...argv.slice(1)])
-  const data = await validateOutput()
+  let fromJson
+  const passthrough = []
+  for (const arg of argv) {
+    if (arg.startsWith('--from-json=')) {
+      fromJson = arg.slice('--from-json='.length)
+    } else {
+      passthrough.push(arg)
+    }
+  }
+
+  loadEnv()
+  const supabase = createServiceRoleClient()
+
+  let jsonPath
+  if (fromJson) {
+    jsonPath = fromJson
+    console.log(`  Skipping Python preprocess; reading ${jsonPath}`)
+  } else {
+    if (passthrough.length === 0) usage()
+    jsonPath = DEFAULT_OUTPUT_PATH
+    await runPython([passthrough[0], jsonPath, ...passthrough.slice(1)])
+  }
+
+  const data = await validateJson(jsonPath)
+  const counts = await upsertCardioData(supabase, data)
   console.log(
-    `✓ ${OUTPUT_PATH} validates as CardioData ` +
-      `(${data.sessions.length} sessions, ${data.resting_hr_trend.length} resting-HR points, ` +
-      `${data.vo2max_trend.length} VO2max points).`,
+    `✓ Upserted to Supabase: ${counts.sessions} sessions, ` +
+      `${counts.restingHr} resting-HR points, ${counts.vo2max} VO2max points.`,
   )
+  if (counts.pruned > 0) {
+    console.log(
+      `  (Pruned ${counts.pruned} orphan row(s) — present in Supabase but not in this import.)`,
+    )
+  }
 }
 
 main().catch((err) => {
