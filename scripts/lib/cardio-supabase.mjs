@@ -297,6 +297,13 @@ export async function pruneOrphans(
   pageSize = DEFAULT_PAGE_SIZE,
 ) {
   if (keepKeys.length === 0) return 0
+  if (!Number.isInteger(pageSize) || pageSize < 1) {
+    // The loop advances `from` by `pageSize` each iteration; a value of
+    // 0 or negative would never make progress and an infinite loop in
+    // an import script means a wedged terminal at best, a runaway
+    // Supabase bill at worst. Fail loud instead of degrading silently.
+    throw new Error(`pageSize must be a positive integer; got ${pageSize}.`)
+  }
 
   const existing = []
   for (let from = 0; ; from += pageSize) {

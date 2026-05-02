@@ -183,6 +183,17 @@ describe('pruneOrphans', () => {
     ).rejects.toThrow(/Failed to prune orphans from cardio_sessions.*permission denied/)
   })
 
+  it.each([0, -1, 1.5, Number.NaN])(
+    'rejects invalid pageSize %s before any DB call (would infinite-loop)',
+    async (pageSize) => {
+      const { supabase } = makeFakeSupabase({})
+      await expect(
+        pruneOrphans(supabase, 'cardio_sessions', 'started_at', ['a'], pageSize),
+      ).rejects.toThrow(/pageSize must be a positive integer/)
+      expect(supabase.from).not.toHaveBeenCalled()
+    },
+  )
+
   it('treats a null SELECT page the same as an empty page (no rows yet)', async () => {
     const { supabase, deleteMock } = makeFakeSupabase({
       selectPages: [{ data: null, error: null }],
