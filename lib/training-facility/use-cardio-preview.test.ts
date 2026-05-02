@@ -4,18 +4,17 @@ import { renderHook } from '@testing-library/react'
 import { CARDIO_DEMO_DATA } from '@/constants/cardio-demo-fixture'
 import type { CardioData } from '@/types/cardio'
 
-import {
-  isPreviewDemoActive,
-  useCardioPreview,
-  useCardioPreviewHref,
-} from './use-cardio-preview'
+import { useCardioPreview, useCardioPreviewHref } from './use-cardio-preview'
 
 /**
  * Tests for the empty-state preview hook + helpers (#162). Mocks
  * `next/navigation` so each case can drive the URL state
  * deterministically. Covers all four meaningful intersections of
- * (real-data state × URL param state) plus the per-activity scoping
- * and the cross-context preview-active predicate.
+ * (real-data state × URL param state) plus the per-activity scoping.
+ *
+ * The cross-context `isPreviewDemoActive` predicate is tested in its
+ * own file (`preview-param.test.ts`) — it lives in a non-`'use client'`
+ * module so Server Components can import it.
  */
 
 const searchParamsMock = vi.fn<() => URLSearchParams>(() => new URLSearchParams())
@@ -58,25 +57,6 @@ const emptyShape: CardioData = {
   resting_hr_trend: [],
   vo2max_trend: [],
 }
-
-describe('isPreviewDemoActive', () => {
-  it('matches the literal "demo" string', () => {
-    expect(isPreviewDemoActive('demo')).toBe(true)
-  })
-
-  it('matches an array containing "demo" (server-side multi-value)', () => {
-    expect(isPreviewDemoActive(['other', 'demo'])).toBe(true)
-  })
-
-  it('rejects null / undefined / empty / unrelated values', () => {
-    expect(isPreviewDemoActive(null)).toBe(false)
-    expect(isPreviewDemoActive(undefined)).toBe(false)
-    expect(isPreviewDemoActive('')).toBe(false)
-    expect(isPreviewDemoActive('truthy-but-not-demo')).toBe(false)
-    expect(isPreviewDemoActive([])).toBe(false)
-    expect(isPreviewDemoActive(['x', 'y'])).toBe(false)
-  })
-})
 
 describe('useCardioPreview', () => {
   it('returns the real data unchanged when sessions are populated, regardless of preview param', () => {

@@ -8,7 +8,11 @@ import { PreviewWithSampleDataButton } from '@/components/training-facility/shar
 import { CARDIO_DEMO_DATA } from '@/constants/cardio-demo-fixture'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
-import { isPreviewDemoActive } from '@/lib/training-facility/use-cardio-preview'
+// Server component — must import the predicate from the non-`'use client'`
+// module. The same predicate is re-exported from `use-cardio-preview.ts`
+// for client callers, but importing it through that boundary here would
+// trigger Next 15+'s "Attempted to call ... from the server" guard.
+import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
 
 /** Search-params shape Next.js passes to a server-rendered page. */
 interface PageProps {

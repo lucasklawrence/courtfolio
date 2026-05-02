@@ -5,36 +5,18 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import { CARDIO_DEMO_DATA } from '@/constants/cardio-demo-fixture'
 import type { CardioActivity, CardioData } from '@/types/cardio'
 
-/** URL param key + value that activates the empty-state demo fixture (#162). */
-export const CARDIO_PREVIEW_PARAM = 'preview'
-export const CARDIO_PREVIEW_VALUE = 'demo'
+import {
+  CARDIO_PREVIEW_PARAM,
+  CARDIO_PREVIEW_VALUE,
+  isPreviewDemoActive,
+} from './preview-param'
 
-/**
- * Cross-context predicate for "is `?preview=demo` active in this URL?"
- *
- * - **Server components** receive `searchParams` as a Page prop
- *   (`Record<string, string | string[] | undefined>`). A repeated key
- *   like `?preview=demo&preview=other` arrives as an array there.
- * - **Client components** call `useSearchParams().get('preview')`,
- *   which always returns the first value as a string (or `null`).
- *
- * Both shapes need to behave the same: any presence of the literal
- * string `"demo"` activates preview, regardless of whether it's the
- * sole value or one of several. This avoids a class of bug where
- * server and client read the same URL and disagree on whether the
- * page is in preview mode.
- *
- * @param raw The raw value extracted from either source. Pass
- *   `searchParams.preview` on the server or
- *   `searchParams.get('preview')` on the client.
- */
-export function isPreviewDemoActive(
-  raw: string | string[] | null | undefined,
-): boolean {
-  if (raw === CARDIO_PREVIEW_VALUE) return true
-  if (Array.isArray(raw) && raw.includes(CARDIO_PREVIEW_VALUE)) return true
-  return false
-}
+// Re-export the URL contract constants + the cross-context predicate
+// for callers that want everything from one entry point. Server
+// components must NOT import these via this module — they're inside a
+// `'use client'` boundary, which Next 15+ refuses to call from a
+// Server Component. Import directly from `./preview-param` instead.
+export { CARDIO_PREVIEW_PARAM, CARDIO_PREVIEW_VALUE, isPreviewDemoActive }
 
 /** Optional knobs for {@link useCardioPreview}. */
 export interface UseCardioPreviewOptions {
