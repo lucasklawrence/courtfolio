@@ -30,7 +30,15 @@ export default async function TrainingFacilityGymSessionPage({
   if (!isTrainingFacilityEnabled()) notFound()
 
   const { started_at: rawStartedAt } = await params
-  const startedAt = decodeURIComponent(rawStartedAt)
+  // Bare `%` in the path segment (or any other malformed escape) makes
+  // `decodeURIComponent` throw `URIError`. Treat that as "no such
+  // session" rather than letting the framework surface a 500.
+  let startedAt: string
+  try {
+    startedAt = decodeURIComponent(rawStartedAt)
+  } catch {
+    notFound()
+  }
 
   const detail = await getCardioSession(startedAt).catch(() => null)
   if (!detail) notFound()

@@ -278,6 +278,22 @@ def aggregate_session_hr(workout: dict, samples: list[dict], max_hr: int) -> Non
     if not in_window:
         return
 
+    # Deduplicate by timestamp before any downstream use. Apple Health
+    # exports occasionally include two HR records at the exact same
+    # `startDate` (multiple sources writing into the same workout window,
+    # or a watch glitch). Left alone, those collide on the
+    # `cardio_session_hr_samples` PK `(session_started_at, sample_at)`
+    # and the import script's batched insert fails wholesale. Last-write-
+    # wins matches the trend-row dedupe in `parse_simple_trend` and is
+    # stable because `samples` is already sorted by `dt`.
+    deduped: list[tuple[datetime, float]] = []
+    for dt, bpm in in_window:
+        if deduped and deduped[-1][0] == dt:
+            deduped[-1] = (dt, bpm)
+        else:
+            deduped.append((dt, bpm))
+    in_window = deduped
+
     bpms = [bpm for _, bpm in in_window]
     workout['avg_hr'] = round(sum(bpms) / len(bpms), 1)
     workout['max_hr'] = round(max(bpms), 1)
