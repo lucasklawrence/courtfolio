@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useMemo, useRef, useState, type JSX } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState, type JSX } from 'react'
 import type { CardioData, CardioSession } from '@/types/cardio'
 import { getCardioData } from '@/lib/data'
 import {
@@ -27,6 +27,12 @@ import {
 import { HrZoneBars } from './HrZoneBars'
 import { AvgHrBars } from './AvgHrBars'
 import { SessionZoneStrip } from './SessionZoneStrip'
+import {
+  ExpandedHrZoneRow,
+  getRowExpansionProps,
+  hasZoneData,
+  useSessionRowExpansion,
+} from './SessionRowExpansion'
 import { TrainingLoadChart } from './TrainingLoadChart'
 import {
   trainingLoadInRange,
@@ -461,6 +467,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
   const rows = useMemo(() => sessions.slice().reverse(), [sessions])
   const startLabel = formatRangeBound(range.start, 'start')
   const endLabel = formatRangeBound(range.end, 'end')
+  const expansion = useSessionRowExpansion()
 
   return (
     <section className="mt-8 rounded-[1.6rem] border border-white/10 bg-black/25 p-5">
@@ -502,28 +509,45 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
               </tr>
             </thead>
             <tbody className="text-[#f7ead9]">
-              {rows.map((s, i) => (
-                <tr
-                  // Append the row index to disambiguate the rare case of two
-                  // sessions sharing both a date and an exact duration_seconds
-                  // (back-to-back stair sessions). Stable as long as the
-                  // reverse-sorted row order is.
-                  key={`${s.date}-${s.duration_seconds}-${i}`}
-                  className="rounded-md bg-white/5 align-middle"
-                >
-                  <td className="rounded-l-md px-3 py-2 font-mono">{formatRowDate(s.date)}</td>
-                  <td className="px-3 py-2 font-mono">{formatDuration(s.duration_seconds)}</td>
-                  <td className="px-3 py-2 font-mono">
-                    {typeof s.avg_hr === 'number' ? `${Math.round(s.avg_hr)}` : '—'}
-                  </td>
-                  <td className="px-3 py-2 font-mono">
-                    {typeof s.max_hr === 'number' ? `${Math.round(s.max_hr)}` : '—'}
-                  </td>
-                  <td className="rounded-r-md px-3 py-2 font-mono">
-                    <SessionZoneStrip hrSecondsInZone={s.hr_seconds_in_zone} />
-                  </td>
-                </tr>
-              ))}
+              {rows.map((s, i) => {
+                // Append the row index to disambiguate the rare case of two
+                // sessions sharing both a date and an exact duration_seconds
+                // (back-to-back stair sessions). Stable as long as the
+                // reverse-sorted row order is.
+                const rowKey = `${s.date}-${s.duration_seconds}-${i}`
+                const interactive = hasZoneData(s.hr_seconds_in_zone)
+                const rowProps = getRowExpansionProps(
+                  rowKey,
+                  expansion,
+                  interactive,
+                  'rounded-md bg-white/5 align-middle',
+                )
+                const isExpanded = expansion.expandedKey === rowKey
+                return (
+                  <Fragment key={rowKey}>
+                    <tr {...rowProps}>
+                      <td className="rounded-l-md px-3 py-2 font-mono">
+                        {formatRowDate(s.date)}
+                      </td>
+                      <td className="px-3 py-2 font-mono">
+                        {formatDuration(s.duration_seconds)}
+                      </td>
+                      <td className="px-3 py-2 font-mono">
+                        {typeof s.avg_hr === 'number' ? `${Math.round(s.avg_hr)}` : '—'}
+                      </td>
+                      <td className="px-3 py-2 font-mono">
+                        {typeof s.max_hr === 'number' ? `${Math.round(s.max_hr)}` : '—'}
+                      </td>
+                      <td className="rounded-r-md px-3 py-2 font-mono">
+                        <SessionZoneStrip hrSecondsInZone={s.hr_seconds_in_zone} />
+                      </td>
+                    </tr>
+                    {isExpanded && interactive && (
+                      <ExpandedHrZoneRow session={s} colSpan={5} fontFamily={FONT_FAMILY} />
+                    )}
+                  </Fragment>
+                )
+              })}
             </tbody>
           </table>
         </div>
