@@ -1,6 +1,9 @@
+import Link from 'next/link'
+
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
 import {
   RoughCircle,
+  RoughEllipse,
   RoughLineShape,
   RoughPath,
   RoughRect,
@@ -359,5 +362,157 @@ export function TapeMeasure() {
         )
       })}
     </g>
+  )
+}
+
+/**
+ * Back-wall door that opens into The Gym — the Combine's mirror of the Gym's
+ * `DoorToCombine`. Wraps the full door group in a Next.js `<Link>` so the
+ * spatial connection between the two sub-areas is real navigation in both
+ * directions (PRD §7.4 cross-link). A `:focus-visible` rim-orange dashed ring
+ * gives keyboard users a high-contrast cue beyond the door fill darken on
+ * focus. Coordinates intentionally mirror `DoorToCombine` (back-right wall,
+ * x=1300, y=150) so the two scenes read as paired rooms.
+ */
+export function DoorToGym() {
+  return (
+    <Link
+      href="/training-facility/gym"
+      aria-label="Walk through the back door into The Gym"
+      className="group focus:outline-none"
+    >
+      {/* Door frame */}
+      <RoughRect
+        x={1300}
+        y={150}
+        width={200}
+        height={440}
+        fill={SCENE_PALETTE.hardwoodDark}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={3}
+        roughness={1.1}
+        seed={810}
+      />
+      {/* Inset door panel */}
+      <RoughRect
+        x={1316}
+        y={170}
+        width={168}
+        height={400}
+        fill={SCENE_PALETTE.hardwoodMid}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={2}
+        roughness={1.0}
+        seed={811}
+      />
+      {/* Hover/focus tint as a translucent overlay using the existing classes */}
+      <rect
+        x={1316}
+        y={170}
+        width={168}
+        height={400}
+        fill="#6b3e1a"
+        className="opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+      />
+      {/* Recessed inner panels */}
+      <RoughRect
+        x={1336}
+        y={194}
+        width={128}
+        height={150}
+        fill="none"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={2}
+        roughness={1.0}
+        seed={812}
+      />
+      <RoughRect
+        x={1336}
+        y={364}
+        width={128}
+        height={180}
+        fill="none"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={2}
+        roughness={1.0}
+        seed={813}
+      />
+      {/* Door handle */}
+      <RoughCircle
+        cx={1348}
+        cy={380}
+        r={5}
+        fill={SCENE_PALETTE.banner}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={1}
+        roughness={0.7}
+        seed={814}
+      />
+      {/* Spotlight underfoot */}
+      <RoughEllipse
+        cx={1400}
+        cy={595}
+        width={240}
+        height={20}
+        fill={SCENE_PALETTE.rim}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.rim}
+        strokeWidth={0.4}
+        roughness={1.5}
+        seed={815}
+      />
+
+      {/* Focus ring — visible only when the Link is keyboard-focused */}
+      <rect
+        x={1294}
+        y={144}
+        width={212}
+        height={452}
+        fill="none"
+        stroke={SCENE_PALETTE.rim}
+        strokeWidth={4}
+        strokeDasharray="6 4"
+        rx={3}
+        className="opacity-0 transition-opacity group-focus-visible:opacity-100"
+      />
+
+      {/* Sign overhead */}
+      <RoughRect
+        x={1296}
+        y={94}
+        width={208}
+        height={48}
+        fill={SCENE_PALETTE.banner}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={2}
+        roughness={1.0}
+        seed={816}
+      />
+      <text
+        x={1400}
+        y={128}
+        textAnchor="middle"
+        fill={SCENE_PALETTE.inkSoft}
+        fontFamily={HANDWRITING_FONT}
+        fontSize={26}
+        fontWeight={700}
+      >
+        → the gym
+      </text>
+      <text
+        x={1400}
+        y={636}
+        textAnchor="middle"
+        fill={SCENE_PALETTE.rimSoft}
+        fontFamily={HANDWRITING_FONT}
+        fontSize={20}
+      >
+        back door
+      </text>
+    </Link>
   )
 }
