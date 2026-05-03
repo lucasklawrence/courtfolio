@@ -149,3 +149,18 @@ export function formatDuration(seconds: number): string {
   const secs = Math.floor(seconds % 60)
   return `${mins}m ${secs.toString().padStart(2, '0')}s`
 }
+
+/**
+ * Build the per-session detail page URL (#165) for a session-log row.
+ * Centralizes the `encodeURIComponent` step so each session-log table
+ * encodes the timestamp identically — the route handler decodes once on
+ * the server. ISO timestamps contain `:` and `+`, both of which need
+ * percent-encoding to survive the URL path segment.
+ *
+ * @param startedAt The session's `started_at` (`CardioSession.date`)
+ *   ISO timestamp string. Empty input returns the route root, which 404s
+ *   in the page handler — same outcome as a missing session.
+ */
+export function sessionDetailHref(startedAt: string): string {
+  return `/training-facility/gym/session/${encodeURIComponent(startedAt)}`
+}

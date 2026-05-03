@@ -1,9 +1,17 @@
 import 'server-only'
 
-import { createServerSupabaseClient } from '@/lib/supabase/server'
-import type { CardioData } from '@/types/cardio'
+import { z } from 'zod'
 
-import { assembleCardioData } from './cardio-shared'
+import { createServerSupabaseClient } from '@/lib/supabase/server'
+import {
+  CardioSessionHrSampleRowSchema,
+  CardioSessionRowSchema,
+  hrSampleRowToHrSample,
+  sessionRowToCardioSession,
+} from '@/lib/schemas/cardio'
+import type { CardioData, CardioSession, HrSample } from '@/types/cardio'
+
+import { assembleCardioData, stripNulls } from './cardio-shared'
 
 /**
  * Server-side cardio dataset reader for Server Components and route
@@ -35,4 +43,89 @@ import { assembleCardioData } from './cardio-shared'
 export async function getCardioDataServer(): Promise<CardioData | null> {
   const supabase = await createServerSupabaseClient()
   return assembleCardioData(supabase)
+}
+
+/** Whitelisted columns for the per-session read — mirrors `CardioSessionRowSchema`. */
+const SESSION_COLUMNS =
+  'started_at, activity, duration_seconds, distance_meters, avg_hr, max_hr, ' +
+  'pace_seconds_per_km, zone1_seconds, zone2_seconds, zone3_seconds, ' +
+  'zone4_seconds, zone5_seconds, meters_per_heartbeat'
+
+/** Whitelisted columns for the HR-sample read. */
+const HR_SAMPLE_COLUMNS = 'session_started_at, sample_at, bpm'
+
+/** Aggregate-row + sample-stream payload returned by {@link getCardioSession}. */
+export interface CardioSessionDetail {
+  /** The session row, mapped into the legacy {@link CardioSession} shape. */
+  session: CardioSession
+  /** Raw HR samples for the session, sorted oldest → newest. May be empty. */
+  samples: HrSample[]
+}
+
+/**
+ * Server-side reader for the per-session detail page (#165). Looks up one
+ * `cardio_sessions` row by its `started_at` PK and the matching rows in
+ * `cardio_session_hr_samples`, returning both as a single payload.
+ *
+ * Returns `null` when no session exists at the given timestamp — the
+ * caller (`/training-facility/gym/session/[started_at]`) maps that to a
+ * 404 via `notFound()`.
+ *
+ * `started_at` is a `timestamptz` PK; PostgREST normalizes the user's URL
+ * input the same way it normalizes stored values, so passing the raw
+ * decoded timestamp string from the route param works without
+ * pre-canonicalization.
+ *
+ * @param startedAt The session's `started_at` PK. Decoded from the URL by
+ *   the page route (the timestamps contain `:` and `+`, which are
+ *   percent-encoded in the path segment).
+ * @throws when either Supabase query fails or returns rows that fail
+ *   schema validation. The page wraps this in `.catch(() => null)` so a
+ *   flaky read 404s instead of 500ing.
+ */
+export async function getCardioSession(
+  startedAt: string,
+): Promise<CardioSessionDetail | null> {
+  const supabase = await createServerSupabaseClient()
+  const [sessionRes, samplesRes] = await Promise.all([
+    supabase
+      .from('cardio_sessions')
+      .select(SESSION_COLUMNS)
+      .eq('started_at', startedAt)
+      .maybeSingle(),
+    supabase
+      .from('cardio_session_hr_samples')
+      .select(HR_SAMPLE_COLUMNS)
+      .eq('session_started_at', startedAt)
+      .order('sample_at', { ascending: true }),
+  ])
+
+  if (sessionRes.error) {
+    throw new Error(`Failed to load cardio session: ${sessionRes.error.message}`)
+  }
+  if (!sessionRes.data) return null
+  if (samplesRes.error) {
+    throw new Error(`Failed to load cardio session HR samples: ${samplesRes.error.message}`)
+  }
+
+  const sessionRaw = stripNulls(sessionRes.data as unknown as Record<string, unknown>)
+  const sessionParsed = CardioSessionRowSchema.safeParse(sessionRaw)
+  if (!sessionParsed.success) {
+    throw new Error(
+      `cardio_sessions row failed schema validation: ${sessionParsed.error.message}`,
+    )
+  }
+
+  const samplesRaw = (samplesRes.data ?? []) as unknown as Array<Record<string, unknown>>
+  const samplesParsed = z.array(CardioSessionHrSampleRowSchema).safeParse(samplesRaw)
+  if (!samplesParsed.success) {
+    throw new Error(
+      `cardio_session_hr_samples failed schema validation: ${samplesParsed.error.message}`,
+    )
+  }
+
+  return {
+    session: sessionRowToCardioSession(sessionParsed.data),
+    samples: samplesParsed.data.map(hrSampleRowToHrSample),
+  }
 }

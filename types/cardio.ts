@@ -34,6 +34,27 @@ export interface CardioSession {
   hr_seconds_in_zone?: Record<HrZone, number>;
   /** Cardiac efficiency = distance ÷ total heartbeats. Higher = more efficient (PRD §7.4). */
   meters_per_heartbeat?: number;
+  /**
+   * Raw HR sample stream for this session (#165). Omitted on aggregate
+   * fetches that don't need the curve — the dashboard reads zone totals
+   * from {@link hr_seconds_in_zone} instead. Populated by the per-session
+   * detail page reader and by the Python preprocessor's JSON output.
+   */
+  hr_samples?: HrSample[];
+}
+
+/**
+ * One Apple-Watch HR sample emitted inside a session window. The detail
+ * page (`/training-facility/gym/session/[started_at]`) plots these as a
+ * line chart over session-relative time. Stored row-per-row in
+ * `cardio_session_hr_samples` and re-emitted into the legacy
+ * `CardioData` JSON for parity with the shape the preprocessor writes.
+ */
+export interface HrSample {
+  /** ISO timestamp with offset, matching {@link CardioSession.date}'s format. */
+  ts: string;
+  /** Heart rate in beats per minute. */
+  bpm: number;
 }
 
 /** A single point on a daily/weekly trend line — used for resting HR and VO2max series. */
