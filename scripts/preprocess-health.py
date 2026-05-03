@@ -292,7 +292,16 @@ def aggregate_session_hr(workout: dict, samples: list[dict], max_hr: int) -> Non
             deduped[-1] = (dt, bpm)
         else:
             deduped.append((dt, bpm))
-    in_window = deduped
+
+    # Drop malformed BPM values (negative or NaN — `nan >= 0` is False, so
+    # one filter handles both). The downstream Zod schema and Postgres
+    # `bpm >= 0` CHECK both reject the row, and a single corrupt reading
+    # would otherwise abort the entire import; skipping it locally keeps
+    # the rest of the session usable. Defensive against weird exports —
+    # Apple Watch itself doesn't emit negative HR.
+    in_window = [(dt, bpm) for dt, bpm in deduped if bpm >= 0]
+    if not in_window:
+        return
 
     bpms = [bpm for _, bpm in in_window]
     workout['avg_hr'] = round(sum(bpms) / len(bpms), 1)
