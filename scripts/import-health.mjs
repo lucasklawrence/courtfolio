@@ -108,7 +108,8 @@ async function main() {
   const counts = await upsertCardioData(supabase, data)
   console.log(
     `✓ Upserted to Supabase: ${counts.sessions} sessions, ` +
-      `${counts.restingHr} resting-HR points, ${counts.vo2max} VO2max points.`,
+      `${counts.restingHr} resting-HR points, ${counts.vo2max} VO2max points, ` +
+      `${counts.hrSamples.toLocaleString()} HR samples.`,
   )
   if (counts.pruned > 0) {
     console.log(

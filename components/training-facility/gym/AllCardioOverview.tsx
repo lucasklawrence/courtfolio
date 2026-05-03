@@ -21,6 +21,7 @@ import {
   aggregateHrZoneSeconds,
   formatDuration,
   parseSessionDate,
+  sessionDetailHref,
 } from '@/lib/training-facility/cardio-shared'
 import {
   METERS_PER_MILE,
@@ -565,7 +566,14 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                   <Fragment key={rowKey}>
                     <tr {...rowProps}>
                       <td className="rounded-l-md px-3 py-2 font-mono">
-                        {formatRowDate(s.date)}
+                        <Link
+                          href={sessionDetailHref(s.date)}
+                          onClick={(e) => e.stopPropagation()}
+                          onKeyDown={(e) => e.stopPropagation()}
+                          className="rounded-sm text-[#f7ead9] underline decoration-white/20 underline-offset-4 transition hover:decoration-[#fff7ec] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
+                        >
+                          {formatRowDate(s.date)}
+                        </Link>
                       </td>
                       <td className="px-3 py-2 font-mono">
                         <span className="inline-flex items-center gap-1.5">

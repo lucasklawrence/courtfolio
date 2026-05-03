@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 // Vitest happily resolves `.mjs` from a `.ts` test file. Public surface is
 // minimal — only the helpers exported for cross-module use are reachable.
-import { pruneStaleRows } from './cardio-supabase.mjs'
+import { pruneStaleRows, upsertHrSamples } from './cardio-supabase.mjs'
 
 /**
  * Tests for the stale-row prune helper that backs the "exact mirror"
@@ -120,5 +120,150 @@ describe('pruneStaleRows', () => {
     // wire a `.select()` chain — the test double would throw on access.)
     expect(ltMock).toHaveBeenCalledTimes(1)
     expect(ltMock).toHaveBeenCalledWith('updated_at', IMPORTED_AT)
+  })
+})
+
+/**
+ * Build a Supabase double that records the chained
+ * `from(table).delete().eq('session_started_at', X)` and
+ * `from(table).insert(rows)` call sequence used by `upsertHrSamples`. The
+ * factory tracks every call across both shapes so a test can assert the
+ * delete-then-insert ordering and the per-batch insert sizes.
+ */
+function makeHrSamplesFakeSupabase(): {
+  supabase: { from: ReturnType<typeof vi.fn> }
+  calls: Array<
+    | { kind: 'delete'; table: string; key: string }
+    | { kind: 'insert'; table: string; rowCount: number }
+  >
+} {
+  const calls: Array<
+    | { kind: 'delete'; table: string; key: string }
+    | { kind: 'insert'; table: string; rowCount: number }
+  > = []
+  const supabase = {
+    from: vi.fn((table: string) => ({
+      delete: () => ({
+        eq: (_col: string, key: string) => {
+          calls.push({ kind: 'delete', table, key })
+          return Promise.resolve({ error: null })
+        },
+      }),
+      insert: (rows: unknown[]) => {
+        calls.push({ kind: 'insert', table, rowCount: rows.length })
+        return Promise.resolve({ error: null })
+      },
+    })),
+  }
+  return { supabase, calls }
+}
+
+const SESSION_TS = '2026-04-15T08:32:18-07:00'
+
+/** Build N samples spaced 5 seconds apart starting at session start. */
+function fakeSamples(n: number) {
+  const start = new Date('2026-04-15T15:32:18Z').getTime()
+  return Array.from({ length: n }, (_, i) => ({
+    ts: new Date(start + i * 5000).toISOString(),
+    bpm: 130 + (i % 30),
+  }))
+}
+
+describe('upsertHrSamples', () => {
+  it('runs delete then insert for a session with samples', async () => {
+    const { supabase, calls } = makeHrSamplesFakeSupabase()
+    const samples = fakeSamples(10)
+    const total = await upsertHrSamples(supabase, [
+      { date: SESSION_TS, activity: 'running', duration_seconds: 1800, hr_samples: samples },
+    ])
+    expect(total).toBe(10)
+    // delete must come before insert; the FK + idempotency contract
+    // depends on the prior session's samples being gone before new
+    // rows arrive.
+    expect(calls).toEqual([
+      { kind: 'delete', table: 'cardio_session_hr_samples', key: SESSION_TS },
+      { kind: 'insert', table: 'cardio_session_hr_samples', rowCount: 10 },
+    ])
+  })
+
+  it('chunks inserts into 500-row batches', async () => {
+    const { supabase, calls } = makeHrSamplesFakeSupabase()
+    const samples = fakeSamples(1250)
+    const total = await upsertHrSamples(supabase, [
+      { date: SESSION_TS, activity: 'running', duration_seconds: 7200, hr_samples: samples },
+    ])
+    expect(total).toBe(1250)
+    const inserts = calls.filter((c) => c.kind === 'insert') as Array<{
+      kind: 'insert'
+      table: string
+      rowCount: number
+    }>
+    expect(inserts.map((c) => c.rowCount)).toEqual([500, 500, 250])
+  })
+
+  it('still issues a delete for sessions with no samples (clears stale rows)', async () => {
+    const { supabase, calls } = makeHrSamplesFakeSupabase()
+    const total = await upsertHrSamples(supabase, [
+      { date: SESSION_TS, activity: 'stair', duration_seconds: 1500, hr_samples: null },
+    ])
+    expect(total).toBe(0)
+    expect(calls).toEqual([
+      { kind: 'delete', table: 'cardio_session_hr_samples', key: SESSION_TS },
+    ])
+  })
+
+  it('processes each session independently in payload order', async () => {
+    const { supabase, calls } = makeHrSamplesFakeSupabase()
+    const total = await upsertHrSamples(supabase, [
+      { date: SESSION_TS, activity: 'running', duration_seconds: 1800, hr_samples: fakeSamples(3) },
+      {
+        date: '2026-04-16T09:00:00-07:00',
+        activity: 'stair',
+        duration_seconds: 1500,
+        hr_samples: fakeSamples(2),
+      },
+    ])
+    expect(total).toBe(5)
+    expect(calls.map((c) => c.kind)).toEqual(['delete', 'insert', 'delete', 'insert'])
+  })
+
+  it('throws a descriptive error when the DELETE fails', async () => {
+    const supabase = {
+      from: vi.fn(() => ({
+        delete: () => ({
+          eq: () => Promise.resolve({ error: { message: 'permission denied' } }),
+        }),
+        insert: () => Promise.resolve({ error: null }),
+      })),
+    }
+    await expect(
+      upsertHrSamples(supabase, [
+        {
+          date: SESSION_TS,
+          activity: 'running',
+          duration_seconds: 1800,
+          hr_samples: fakeSamples(1),
+        },
+      ]),
+    ).rejects.toThrow(/Failed to clear cardio_session_hr_samples.*permission denied/)
+  })
+
+  it('throws a descriptive error when the INSERT fails', async () => {
+    const supabase = {
+      from: vi.fn(() => ({
+        delete: () => ({ eq: () => Promise.resolve({ error: null }) }),
+        insert: () => Promise.resolve({ error: { message: 'unique violation' } }),
+      })),
+    }
+    await expect(
+      upsertHrSamples(supabase, [
+        {
+          date: SESSION_TS,
+          activity: 'running',
+          duration_seconds: 1800,
+          hr_samples: fakeSamples(1),
+        },
+      ]),
+    ).rejects.toThrow(/Failed to insert cardio_session_hr_samples.*unique violation/)
   })
 })

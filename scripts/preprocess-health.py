@@ -173,6 +173,7 @@ def parse_workouts(xml_text: str) -> list[dict]:
             'max_hr': None,
             'pace_seconds_per_km': None,
             'hr_seconds_in_zone': None,
+            'hr_samples': None,
             'meters_per_heartbeat': None,
             '_start_dt': start_dt,
             '_end_dt': end_dt,
@@ -254,7 +255,13 @@ def parse_hr_samples(xml_text: str) -> list[dict]:
 
 
 def aggregate_session_hr(workout: dict, samples: list[dict], max_hr: int) -> None:
-    """Walk the HR sample stream and fill in avg/max/time-in-zone/efficiency on `workout`."""
+    """Walk the HR sample stream and fill in avg/max/time-in-zone/efficiency on `workout`.
+
+    Also emits the raw in-window samples on `workout['hr_samples']` so the
+    per-session detail page (#165) can render an HR curve over time. The
+    aggregate columns (avg/max/zones) stay so existing charts that don't
+    need the raw stream don't pay the JSON-size cost of re-deriving them.
+    """
     start_dt = workout['_start_dt']
     end_dt = workout['_end_dt']
     if start_dt is None or end_dt is None:
@@ -291,6 +298,16 @@ def aggregate_session_hr(workout: dict, samples: list[dict], max_hr: int) -> Non
             seconds_in_zone[zone] += dwell
 
     workout['hr_seconds_in_zone'] = {str(z): round(v, 1) for z, v in seconds_in_zone.items()}
+
+    # Emit the raw sample stream for the detail page. ISO format with
+    # offset matches `session.date`, so the TypeScript side parses both
+    # fields with the same code. Round BPM to one decimal — Apple Health
+    # emits whole integers but the JS schema accepts numeric, and the
+    # one-decimal slack costs nothing while leaving room for future
+    # smoothing without a re-import.
+    workout['hr_samples'] = [
+        {'ts': dt.isoformat(), 'bpm': round(bpm, 1)} for dt, bpm in in_window
+    ]
 
     if workout['distance_meters'] and total_heartbeats > 0:
         workout['meters_per_heartbeat'] = round(workout['distance_meters'] / total_heartbeats, 4)

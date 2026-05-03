@@ -28,6 +28,7 @@ import type {
   CardioActivity,
   CardioSession,
   CardioTimePoint,
+  HrSample,
   HrZone,
 } from '@/types/cardio'
 
@@ -188,4 +189,56 @@ export function cardioSessionToRow(session: {
  */
 export function trendRowToTimePoint(row: CardioTrendRow): CardioTimePoint {
   return { date: row.date, value: row.value }
+}
+
+/**
+ * Zod schema for one row of `public.cardio_session_hr_samples` (#165).
+ * Mirrors the table definition in
+ * `supabase/migrations/20260503120000_cardio_session_hr_samples.sql`.
+ *
+ * Per-sample storage powers the per-session detail page's HR curve. The
+ * dashboard's aggregate views (avg/max/zones) keep using the columns on
+ * `cardio_sessions` so they don't have to re-walk thousands of samples
+ * for a workout-log row.
+ */
+export const CardioSessionHrSampleRowSchema = z
+  .object({
+    session_started_at: z.string().min(1, 'session_started_at must be an ISO timestamp'),
+    sample_at: z.string().min(1, 'sample_at must be an ISO timestamp'),
+    bpm: z.number().nonnegative(),
+  })
+  .strict()
+
+/** Validated `cardio_session_hr_samples` row inferred from {@link CardioSessionHrSampleRowSchema}. */
+export type CardioSessionHrSampleRow = z.infer<typeof CardioSessionHrSampleRowSchema>
+
+/**
+ * Translate a validated `cardio_session_hr_samples` row into the
+ * {@link HrSample} shape consumed by the detail page's HR curve. Strips
+ * `session_started_at` (already known by the caller — they queried for
+ * one session) and renames `sample_at → ts` so the type matches what the
+ * Python preprocessor emits in `cardio.json`.
+ */
+export function hrSampleRowToHrSample(row: CardioSessionHrSampleRow): HrSample {
+  return { ts: row.sample_at, bpm: row.bpm }
+}
+
+/**
+ * Translate a legacy {@link HrSample} (the shape the Python preprocessor
+ * emits inside each session) into the snake_case row payload accepted by
+ * `cardio_session_hr_samples.insert(...)`. Used by the import script.
+ *
+ * @param sessionStartedAt The owning session's `started_at`. Must match
+ *   the `cardio_sessions.started_at` row this sample belongs to so the
+ *   FK resolves; the import script writes sessions before samples.
+ */
+export function hrSampleToRow(
+  sample: HrSample,
+  sessionStartedAt: string,
+): Record<string, unknown> {
+  return {
+    session_started_at: sessionStartedAt,
+    sample_at: sample.ts,
+    bpm: sample.bpm,
+  }
 }

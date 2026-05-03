@@ -80,6 +80,20 @@ const HrZoneSecondsSchema = z
   })
   .strict()
 
+/**
+ * One HR sample inside a session window (#165). The Python preprocessor
+ * emits these alongside the aggregate zone columns so the per-session
+ * detail page can render an HR curve. `nullable()` carries through the
+ * "no samples for this session" case (Apple Watch off) without
+ * normalization.
+ */
+const HrSampleSchema = z
+  .object({
+    ts: z.string().min(1),
+    bpm: z.number().nonnegative(),
+  })
+  .strict()
+
 const CardioSessionSchema = z
   .object({
     date: z.string().min(1),
@@ -90,6 +104,7 @@ const CardioSessionSchema = z
     max_hr: z.number().nonnegative().nullable().optional(),
     pace_seconds_per_km: z.number().nonnegative().nullable().optional(),
     hr_seconds_in_zone: HrZoneSecondsSchema.nullable().optional(),
+    hr_samples: z.array(HrSampleSchema).nullable().optional(),
     meters_per_heartbeat: z.number().nonnegative().nullable().optional(),
   })
   .strict()
@@ -213,6 +228,11 @@ export async function upsertCardioData(supabase, data) {
       throw new Error(`Failed to upsert cardio_sessions: ${error.message}`)
     }
   }
+  // Per-session replace for HR samples (#165). Runs after the
+  // cardio_sessions upsert so the FK from cardio_session_hr_samples
+  // resolves; sessions pruned later by `pruneStaleRows` cascade their
+  // samples via the `on delete cascade` FK.
+  const hrSamplesInserted = await upsertHrSamples(supabase, parsed.sessions)
   if (restingRows.length > 0) {
     const { error } = await supabase
       .from('cardio_resting_hr')
@@ -253,8 +273,77 @@ export async function upsertCardioData(supabase, data) {
     sessions: sessionRows.length,
     restingHr: restingRows.length,
     vo2max: vo2Rows.length,
+    hrSamples: hrSamplesInserted,
     pruned: sessionsPruned + restingPruned + vo2Pruned,
   }
+}
+
+/** Per-batch insert size for HR samples — stays well under PostgREST's payload limits. */
+const HR_SAMPLES_INSERT_BATCH = 500
+
+/**
+ * Replace the HR sample stream for every session in the import payload (#165).
+ *
+ * For each session: delete all existing rows in `cardio_session_hr_samples`
+ * keyed by `session_started_at`, then insert the new samples in
+ * {@link HR_SAMPLES_INSERT_BATCH}-sized chunks. Per-session replace is the
+ * simplest idempotent contract — re-importing the same session is a no-op
+ * delta-wise, and a session whose sample stream has since vanished
+ * (Apple Watch off mid-workout, fixed in HealthKit) gets a clean reset
+ * instead of stale samples lingering.
+ *
+ * The cascade FK on `cardio_session_hr_samples → cardio_sessions` handles
+ * the "session was pruned entirely" case for free — `pruneStaleRows`
+ * deletes the parent and Postgres cleans the children. So this function
+ * doesn't need its own prune step.
+ *
+ * Sessions with no `hr_samples` (preprocessor returns `null` for "Apple
+ * Watch off") still run the delete so an authoritative-absent import
+ * clears any stored samples for that session.
+ *
+ * @param supabase Service-role Supabase client (bypasses RLS); passed
+ *   through to the chained `from(...).delete()/insert()` calls.
+ * @param sessions Validated sessions from `CardioDataSchema`'s
+ *   `sessions` array; only `date` and `hr_samples` are read here.
+ * @returns Promise<number> — total inserted-sample count across all
+ *   sessions, surfaced in the import script's success log.
+ * @throws when any DELETE or INSERT fails.
+ */
+export async function upsertHrSamples(supabase, sessions) {
+  let totalInserted = 0
+  for (const session of sessions) {
+    const { error: deleteErr } = await supabase
+      .from('cardio_session_hr_samples')
+      .delete()
+      .eq('session_started_at', session.date)
+    if (deleteErr) {
+      throw new Error(
+        `Failed to clear cardio_session_hr_samples for session ${session.date}: ${deleteErr.message}`,
+      )
+    }
+
+    const samples = session.hr_samples ?? []
+    if (samples.length === 0) continue
+
+    const rows = samples.map((s) => ({
+      session_started_at: session.date,
+      sample_at: s.ts,
+      bpm: s.bpm,
+    }))
+    for (let i = 0; i < rows.length; i += HR_SAMPLES_INSERT_BATCH) {
+      const batch = rows.slice(i, i + HR_SAMPLES_INSERT_BATCH)
+      const { error: insertErr } = await supabase
+        .from('cardio_session_hr_samples')
+        .insert(batch)
+      if (insertErr) {
+        throw new Error(
+          `Failed to insert cardio_session_hr_samples for session ${session.date}: ${insertErr.message}`,
+        )
+      }
+      totalInserted += batch.length
+    }
+  }
+  return totalInserted
 }
 
 /**

@@ -157,7 +157,7 @@ export async function assembleCardioData(
  * same way it parses freshly-imported JSON (which used absent keys,
  * never `null`).
  */
-function stripNulls(row: Record<string, unknown>): Record<string, unknown> {
+export function stripNulls(row: Record<string, unknown>): Record<string, unknown> {
   const out: Record<string, unknown> = {}
   for (const [key, value] of Object.entries(row)) {
     if (value !== null) out[key] = value
