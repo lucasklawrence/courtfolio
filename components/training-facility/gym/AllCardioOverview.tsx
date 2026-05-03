@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useMemo, useRef, useState, type JSX } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState, type JSX } from 'react'
 import type { CardioData, CardioSession } from '@/types/cardio'
 import { getCardioData } from '@/lib/data'
 import {
@@ -37,6 +37,12 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { HrZoneBars } from './HrZoneBars'
 import { ActivityLegend, AvgHrBarsByActivity } from './AvgHrBarsByActivity'
 import { SessionZoneStrip } from './SessionZoneStrip'
+import {
+  ExpandedHrZoneRow,
+  getRowExpansionProps,
+  hasZoneData,
+  useSessionRowExpansion,
+} from './SessionRowExpansion'
 import { TrainingLoadChart } from './TrainingLoadChart'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
@@ -462,6 +468,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
   const rows = useMemo(() => sessions.slice().reverse(), [sessions])
   const startLabel = formatRangeBound(range.start, 'start')
   const endLabel = formatRangeBound(range.end, 'end')
+  const expansion = useSessionRowExpansion()
 
   return (
     <section className="mt-8 rounded-[1.6rem] border border-white/10 bg-black/25 p-5">
@@ -514,41 +521,54 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
             <tbody className="text-[#f7ead9]">
               {rows.map((s, i) => {
                 const visual = ACTIVITY_VISUALS[s.activity]
+                const rowKey = `${s.date}-${s.activity}-${s.duration_seconds}-${i}`
+                const interactive = hasZoneData(s.hr_seconds_in_zone)
+                const rowProps = getRowExpansionProps(
+                  rowKey,
+                  expansion,
+                  interactive,
+                  'rounded-md bg-white/5 align-middle',
+                )
+                const isExpanded = expansion.expandedKey === rowKey
                 return (
-                  <tr
-                    key={`${s.date}-${s.activity}-${s.duration_seconds}-${i}`}
-                    className="rounded-md bg-white/5 align-middle"
-                  >
-                    <td className="rounded-l-md px-3 py-2 font-mono">
-                      {formatRowDate(s.date)}
-                    </td>
-                    <td className="px-3 py-2 font-mono">
-                      <span className="inline-flex items-center gap-1.5">
-                        <span
-                          aria-hidden="true"
-                          className="inline-block h-2 w-2 rounded-full"
-                          style={{ backgroundColor: visual.color }}
-                        />
-                        {visual.label}
-                      </span>
-                    </td>
-                    <td className="px-3 py-2 font-mono">
-                      {formatDistanceMiles(s.distance_meters)}
-                    </td>
-                    <td className="px-3 py-2 font-mono">{formatDuration(s.duration_seconds)}</td>
-                    <td className="px-3 py-2 font-mono">
-                      {formatPaceCellFromSecPerKm(s.pace_seconds_per_km)}
-                    </td>
-                    <td className="px-3 py-2 font-mono">
-                      {typeof s.avg_hr === 'number' ? `${Math.round(s.avg_hr)}` : '—'}
-                    </td>
-                    <td className="px-3 py-2 font-mono">
-                      {typeof s.max_hr === 'number' ? `${Math.round(s.max_hr)}` : '—'}
-                    </td>
-                    <td className="rounded-r-md px-3 py-2 font-mono">
-                      <SessionZoneStrip hrSecondsInZone={s.hr_seconds_in_zone} />
-                    </td>
-                  </tr>
+                  <Fragment key={rowKey}>
+                    <tr {...rowProps}>
+                      <td className="rounded-l-md px-3 py-2 font-mono">
+                        {formatRowDate(s.date)}
+                      </td>
+                      <td className="px-3 py-2 font-mono">
+                        <span className="inline-flex items-center gap-1.5">
+                          <span
+                            aria-hidden="true"
+                            className="inline-block h-2 w-2 rounded-full"
+                            style={{ backgroundColor: visual.color }}
+                          />
+                          {visual.label}
+                        </span>
+                      </td>
+                      <td className="px-3 py-2 font-mono">
+                        {formatDistanceMiles(s.distance_meters)}
+                      </td>
+                      <td className="px-3 py-2 font-mono">
+                        {formatDuration(s.duration_seconds)}
+                      </td>
+                      <td className="px-3 py-2 font-mono">
+                        {formatPaceCellFromSecPerKm(s.pace_seconds_per_km)}
+                      </td>
+                      <td className="px-3 py-2 font-mono">
+                        {typeof s.avg_hr === 'number' ? `${Math.round(s.avg_hr)}` : '—'}
+                      </td>
+                      <td className="px-3 py-2 font-mono">
+                        {typeof s.max_hr === 'number' ? `${Math.round(s.max_hr)}` : '—'}
+                      </td>
+                      <td className="rounded-r-md px-3 py-2 font-mono">
+                        <SessionZoneStrip hrSecondsInZone={s.hr_seconds_in_zone} />
+                      </td>
+                    </tr>
+                    {isExpanded && interactive && (
+                      <ExpandedHrZoneRow session={s} colSpan={8} fontFamily={FONT_FAMILY} />
+                    )}
+                  </Fragment>
                 )
               })}
             </tbody>
