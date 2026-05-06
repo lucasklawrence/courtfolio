@@ -75,4 +75,39 @@ export interface CardioData {
   resting_hr_trend: CardioTimePoint[];
   /** VO2max over time — feeds the whiteboard chart. */
   vo2max_trend: CardioTimePoint[];
+  /**
+   * Heart-rate variability (SDNN) daily trend, milliseconds. Latest-wins
+   * per day when Apple emits multiple records — matches `resting_hr_trend`'s
+   * dedup convention. Optional: absent until the lifestyle-port migration
+   * (#75 slice C-data) has been applied AND a chart consumes it.
+   */
+  hrv_trend?: CardioTimePoint[];
+  /**
+   * Walking heart-rate average daily trend, BPM. Latest-wins per day.
+   * Optional — same scoping as {@link hrv_trend}.
+   */
+  walking_hr_trend?: CardioTimePoint[];
+  /**
+   * Body mass daily trend, **pounds** (Apple Health's `kg` is converted at
+   * preprocess time so the dashboard renders without a unit-conversion
+   * step). Latest-wins per day. Optional.
+   */
+  body_mass_trend?: CardioTimePoint[];
+  /**
+   * Daily step-count total. Summed from Apple's per-burst step records to
+   * one value per local calendar day. Optional.
+   */
+  step_count_trend?: CardioTimePoint[];
+  /**
+   * Daily sleep total, **hours**. Only `HKCategoryValueSleepAnalysisAsleep*`
+   * periods are counted — in-bed-but-awake time is excluded so "I got 7
+   * hours of sleep" is the metric, not "I was in bed 8 hours." Each block
+   * is attributed to the wake day (matches Apple Health's UI). Optional.
+   */
+  sleep_trend?: CardioTimePoint[];
+  /**
+   * Daily active-energy total, **kilocalories**. Summed from per-burst
+   * records; kJ exports are converted to kcal at preprocess time. Optional.
+   */
+  active_energy_trend?: CardioTimePoint[];
 }

@@ -10,7 +10,7 @@ The wrapper does three things:
 
 1. Spawns `python scripts/preprocess-health.py <export.zip> public/data/cardio.json` to produce an intermediate JSON file.
 2. Validates the result against a Zod mirror of `CardioData` (`types/cardio.ts`) so any drift between the Python script and the TypeScript type fails loudly here, not at runtime in the dashboard.
-3. Upserts every session, resting-HR point, and VO2max point into the three `cardio_*` Supabase tables via the service-role key. Idempotent — re-running the import after a fresh Apple Health export overwrites the same primary keys (`started_at` for sessions, `date` for trends) instead of duplicating rows.
+3. Upserts every session, trend point, and lifestyle metric into the nine `cardio_*` Supabase tables via the service-role key. Idempotent — re-running the import after a fresh Apple Health export overwrites the same primary keys (`started_at` for sessions, `date` for trends) instead of duplicating rows.
 
 ### Optional flags
 
@@ -26,13 +26,24 @@ The script reads the same Supabase env vars as the rest of the app (`.env.local`
 
 ### What lands in Supabase
 
-Three tables (PRD §7.4, migration in `supabase/migrations/20260430120000_cardio_tables.sql`):
+Nine tables (PRD §7.4):
+
+Cardio core (`supabase/migrations/20260430120000_cardio_tables.sql`):
 
 - `cardio_sessions` — stair / running / walking workouts with avg HR, max HR, time-in-zone breakdown (5 explicit columns), and cardiac efficiency aggregated from the raw HR sample stream.
 - `cardio_resting_hr` — one row per measurement day.
 - `cardio_vo2max` — one row per measurement day.
 
-Everything else from the Apple Health export (HRV, walking HR average, body mass, step counts, sleep, active energy, plus non-tracked workout types like cycling and rowing) is dropped. Bring fields back when a chart consumes them.
+Lifestyle trends (`supabase/migrations/20260506120000_cardio_lifestyle_trends.sql`, #75 slice C-data):
+
+- `cardio_hrv_trend` — heart-rate variability (SDNN), one row per day, latest-wins.
+- `cardio_walking_hr_trend` — walking HR average, one row per day, latest-wins.
+- `cardio_body_mass_trend` — body mass, one row per day, latest-wins; values normalized to **lbs** at preprocess time (Apple Health `kg` is converted up-front).
+- `cardio_step_count_trend` — daily step total, one row per day, summed from Apple's per-burst step records.
+- `cardio_sleep_trend` — total asleep time per **wake-day** (the calendar day you woke up — Apple Health's convention) in hours; only `HKCategoryValueSleepAnalysisAsleep*` periods are counted, in-bed-but-awake time is excluded.
+- `cardio_active_energy_trend` — daily active-energy total in kcal, summed from per-burst records (kJ → kcal normalized at preprocess time).
+
+Non-tracked workout types from the Apple Health export (cycling, rowing, etc.) are dropped — bring those back when a Gym detail view supports them.
 
 ### Privacy
 
