@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 
 import { JumpTrackerSection } from './JumpTrackerSection'
@@ -36,10 +36,6 @@ beforeEach(() => {
   searchParamsMock.mockReset()
   searchParamsMock.mockReturnValue(new URLSearchParams())
   getMovementBenchmarksMock.mockReset()
-})
-
-afterEach(() => {
-  vi.restoreAllMocks()
 })
 
 describe('JumpTrackerSection', () => {
@@ -92,11 +88,11 @@ describe('JumpTrackerSection', () => {
     expect(screen.queryByText(/May 1 · 23/)).not.toBeInTheDocument()
   })
 
-  it('returns to the empty state when ?preview=demo is removed (param exit)', async () => {
-    // Sanity check the inverse of test 2: with a fresh, empty fetch and
-    // no preview param, both children render their empty branch. Guards
-    // against a future refactor that ties the swap to the wrong gate
-    // (e.g. param presence regardless of param value).
+  it('ignores ?preview=<non-demo-value> and renders the empty state', async () => {
+    // Guards the swap gate against widening to "any preview value." Only
+    // the literal `preview=demo` should trigger the fixture swap; an
+    // arbitrary value (here `preview=other`) must fall through to the
+    // empty-state branch alongside the absent-param case (test #1).
     getMovementBenchmarksMock.mockResolvedValueOnce([])
     searchParamsMock.mockReturnValue(new URLSearchParams('preview=other'))
 

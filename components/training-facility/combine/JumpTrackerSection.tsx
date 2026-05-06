@@ -5,7 +5,7 @@ import { useEffect, useState, type JSX } from 'react'
 import { COMBINE_DEMO_BENCHMARKS } from '@/constants/combine-demo-fixture'
 import { getMovementBenchmarks } from '@/lib/data/movement'
 import {
-  CARDIO_PREVIEW_PARAM,
+  TRAINING_FACILITY_PREVIEW_PARAM,
   isPreviewDemoActive,
 } from '@/lib/training-facility/preview-param'
 import type { Benchmark } from '@/types/movement'
@@ -38,7 +38,7 @@ export function JumpTrackerSection(): JSX.Element {
   const [entries, setEntries] = useState<Benchmark[] | undefined>(undefined)
   const searchParams = useSearchParams()
   const previewActive = isPreviewDemoActive(
-    searchParams?.get(CARDIO_PREVIEW_PARAM),
+    searchParams?.get(TRAINING_FACILITY_PREVIEW_PARAM),
   )
 
   useEffect(() => {
