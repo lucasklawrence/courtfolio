@@ -6,8 +6,8 @@ import { CARDIO_DEMO_DATA } from '@/constants/cardio-demo-fixture'
 import type { CardioActivity, CardioData } from '@/types/cardio'
 
 import {
-  CARDIO_PREVIEW_PARAM,
-  CARDIO_PREVIEW_VALUE,
+  TRAINING_FACILITY_PREVIEW_PARAM,
+  TRAINING_FACILITY_PREVIEW_VALUE,
   isPreviewDemoActive,
 } from './preview-param'
 
@@ -16,7 +16,11 @@ import {
 // components must NOT import these via this module — they're inside a
 // `'use client'` boundary, which Next 15+ refuses to call from a
 // Server Component. Import directly from `./preview-param` instead.
-export { CARDIO_PREVIEW_PARAM, CARDIO_PREVIEW_VALUE, isPreviewDemoActive }
+export {
+  TRAINING_FACILITY_PREVIEW_PARAM,
+  TRAINING_FACILITY_PREVIEW_VALUE,
+  isPreviewDemoActive,
+}
 
 /** Optional knobs for {@link useCardioPreview}. */
 export interface UseCardioPreviewOptions {
@@ -84,7 +88,9 @@ export function useCardioPreview(
   options: UseCardioPreviewOptions = {},
 ): CardioPreviewState {
   const searchParams = useSearchParams()
-  const previewActive = isPreviewDemoActive(searchParams?.get(CARDIO_PREVIEW_PARAM))
+  const previewActive = isPreviewDemoActive(
+    searchParams?.get(TRAINING_FACILITY_PREVIEW_PARAM),
+  )
   const realIsEmpty = computeRealIsEmpty(real, options.requireActivity)
   const isPreviewMode = realIsEmpty && previewActive
   const showEmptyStateCta = realIsEmpty && !previewActive
@@ -107,7 +113,7 @@ export function useCardioPreview(
  */
 export function useCardioPreviewHref(): string {
   const pathname = usePathname()
-  return `${pathname}?${CARDIO_PREVIEW_PARAM}=${CARDIO_PREVIEW_VALUE}`
+  return `${pathname}?${TRAINING_FACILITY_PREVIEW_PARAM}=${TRAINING_FACILITY_PREVIEW_VALUE}`
 }
 
 /**

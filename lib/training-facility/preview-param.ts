@@ -1,17 +1,23 @@
 /**
- * Pure (non-client, non-hook) helpers for the cardio empty-state
- * preview URL contract (#162). Lives in its own file — *without* a
- * `'use client'` directive — so a Server Component (e.g.
- * `/training-facility/gym/page.tsx`) can import the predicate the
- * same way the client islands do via the hook in
+ * Pure (non-client, non-hook) helpers for the Training-Facility-wide
+ * empty-state preview URL contract (#162 cardio, #160 / #171 combine).
+ * Lives in its own file — *without* a `'use client'` directive — so a
+ * Server Component (e.g. `/training-facility/gym/page.tsx`) can import
+ * the predicate the same way the client islands do via the hook in
  * `use-cardio-preview.ts`. A `'use client'` file would make every
  * export a client reference, which Next 15+ refuses to call from a
  * Server Component.
+ *
+ * Naming note: the constants and hook still carry the `CARDIO_` /
+ * `useCardioPreview` prefix because cardio was the first surface to
+ * adopt them. Combine now uses the same contract without
+ * surface-specific renames — the param key (`preview`) and value
+ * (`demo`) are shared across the entire Training Facility.
  */
 
 /** URL param key + value that activates the empty-state demo fixture. */
-export const CARDIO_PREVIEW_PARAM = 'preview'
-export const CARDIO_PREVIEW_VALUE = 'demo'
+export const TRAINING_FACILITY_PREVIEW_PARAM = 'preview'
+export const TRAINING_FACILITY_PREVIEW_VALUE = 'demo'
 
 /**
  * Cross-context predicate for "is `?preview=demo` active in this URL?"
@@ -35,7 +41,7 @@ export const CARDIO_PREVIEW_VALUE = 'demo'
 export function isPreviewDemoActive(
   raw: string | string[] | null | undefined,
 ): boolean {
-  if (raw === CARDIO_PREVIEW_VALUE) return true
-  if (Array.isArray(raw) && raw.includes(CARDIO_PREVIEW_VALUE)) return true
+  if (raw === TRAINING_FACILITY_PREVIEW_VALUE) return true
+  if (Array.isArray(raw) && raw.includes(TRAINING_FACILITY_PREVIEW_VALUE)) return true
   return false
 }
