@@ -81,7 +81,13 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
           <CombineDataIsland />
         </Suspense>
 
-        <JumpTrackerSection />
+        {/* Same Suspense rule applies to `JumpTrackerSection` once it
+            reads `useSearchParams()` for the preview swap (#171). The
+            island owns its own placeholder skeleton, so the fallback
+            stays null. */}
+        <Suspense fallback={null}>
+          <JumpTrackerSection />
+        </Suspense>
 
         <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
           <CombineScene />

@@ -1,7 +1,13 @@
 'use client'
 
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, type JSX } from 'react'
+import { COMBINE_DEMO_BENCHMARKS } from '@/constants/combine-demo-fixture'
 import { getMovementBenchmarks } from '@/lib/data/movement'
+import {
+  TRAINING_FACILITY_PREVIEW_PARAM,
+  isPreviewDemoActive,
+} from '@/lib/training-facility/preview-param'
 import type { Benchmark } from '@/types/movement'
 import { CeilingView } from './CeilingView'
 import { SilhouetteJumpTracker } from './SilhouetteJumpTracker'
@@ -18,9 +24,22 @@ import { SilhouetteJumpTracker } from './SilhouetteJumpTracker'
  * Layout: stacked on mobile, side-by-side on `lg` and up. The silhouette
  * tracker takes ~2/3 of the desktop width and the ceiling gauge ~1/3,
  * matching their natural information densities.
+ *
+ * Empty-state preview affordance (#160 → #171): when the URL has
+ * `?preview=demo` AND the real fetch settled empty, swap in the shared
+ * demo fixture so the silhouette + ceiling view hydrate alongside the
+ * rest of the Combine surfaces (which `CombineDataIsland` already wires
+ * up). This island deliberately does NOT render its own preview badge
+ * or CTA — the page-level affordance lives in `CombineDataIsland`, and
+ * duplicating it here would double the chrome. A real fetch with rows
+ * always wins, regardless of the URL param.
  */
 export function JumpTrackerSection(): JSX.Element {
   const [entries, setEntries] = useState<Benchmark[] | undefined>(undefined)
+  const searchParams = useSearchParams()
+  const previewActive = isPreviewDemoActive(
+    searchParams?.get(TRAINING_FACILITY_PREVIEW_PARAM),
+  )
 
   useEffect(() => {
     let cancelled = false
@@ -53,6 +72,13 @@ export function JumpTrackerSection(): JSX.Element {
     )
   }
 
+  // Preview swap: only fires when the real fetch settled empty AND the
+  // URL param is active. A populated `entries` always passes through
+  // unchanged so a real benchmark history is never shadowed by the demo.
+  const realIsEmpty = entries.length === 0
+  const isPreviewMode = realIsEmpty && previewActive
+  const surfaceEntries = isPreviewMode ? COMBINE_DEMO_BENCHMARKS : entries
+
   return (
     <section
       aria-label="Jump tracker — silhouette and ceiling view"
@@ -67,7 +93,7 @@ export function JumpTrackerSection(): JSX.Element {
             §9.3
           </span>
         </header>
-        <SilhouetteJumpTracker entries={entries} />
+        <SilhouetteJumpTracker entries={surfaceEntries} />
       </div>
       <div className="rounded-2xl border border-amber-300/20 bg-black/40 p-4 sm:p-6">
         <header className="mb-3 flex items-baseline justify-between">
@@ -78,7 +104,7 @@ export function JumpTrackerSection(): JSX.Element {
             §9.4
           </span>
         </header>
-        <CeilingView entries={entries} />
+        <CeilingView entries={surfaceEntries} />
       </div>
     </section>
   )
