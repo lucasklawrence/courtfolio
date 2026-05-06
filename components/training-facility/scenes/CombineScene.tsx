@@ -8,6 +8,7 @@ import { Basketball, ChalkPuff, Sneakers, WaterBottle } from './assets/character
 import {
   CombineHeaderSign,
   CourtMarkings,
+  DoorToGym,
   ResultsBoard,
   TapeMeasure,
 } from './assets/combine-fixtures'
@@ -41,7 +42,7 @@ export function CombineScene() {
       preserveAspectRatio="xMidYMid meet"
       className="h-full w-full select-none"
       role="img"
-      aria-label="The Combine — staging area with shuttle cones, a stopwatch, a Vertec vertical-jump station, sneakers and a basketball on the floor, and a results board on the wall."
+      aria-label="The Combine — staging area with shuttle cones, a stopwatch, a Vertec vertical-jump station, sneakers and a basketball on the floor, a results board on the wall, and a back door leading to The Gym."
     >
       <SceneDefs />
 
@@ -90,6 +91,8 @@ export function CombineScene() {
       <Basketball cx={1265} cy={808} r={16} seed={990} />
 
       <TapeMeasure />
+
+      <DoorToGym />
     </svg>
   )
 }
