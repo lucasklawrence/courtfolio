@@ -40,6 +40,7 @@ import {
   trainingLoadInRange,
   type TrainingLoadPoint,
 } from '@/lib/training-facility/training-load'
+import { computeStreaks, type StreakResult } from '@/lib/training-facility/streaks'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { HrZoneBars } from './HrZoneBars'
 import { ActivityLegend, AvgHrBarsByActivity } from './AvgHrBarsByActivity'
@@ -51,6 +52,8 @@ import {
   useSessionRowExpansion,
 } from './SessionRowExpansion'
 import { TrainingLoadChart } from './TrainingLoadChart'
+import { WorkoutHeatmap } from './WorkoutHeatmap'
+import { StreakCounter } from './StreakCounter'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
 import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
@@ -205,6 +208,19 @@ export function AllCardioOverview(): JSX.Element {
     [data, range, maxHr],
   )
 
+  // Streaks (slice B of #75). All-time numbers come from `data.sessions`;
+  // the in-range "longest" comes from the already-filtered `sessions`. We
+  // pass the raw filtered list (not the range bounds) so the streak
+  // helper agrees with what the heatmap and session-log table also see.
+  const allTimeStreak = useMemo<StreakResult>(
+    () => (data ? computeStreaks(data.sessions) : { current: 0, longest: 0 }),
+    [data],
+  )
+  const filteredStreak = useMemo<StreakResult | null>(
+    () => (sessions.length > 0 ? computeStreaks(sessions) : null),
+    [sessions],
+  )
+
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
       <div
@@ -268,7 +284,24 @@ export function AllCardioOverview(): JSX.Element {
           <LoadingPanel />
         ) : (
           <>
+            <div className="mt-8">
+              <StreakCounter streak={allTimeStreak} filteredStreak={filteredStreak} />
+            </div>
+
             <SummaryRow summary={summary} />
+
+            <ChartCard
+              title="Workout frequency"
+              helper="One cell per day in the active range — color saturates as the day's session count rises. Hover a cell for the exact count and activities."
+              wide
+            >
+              <WorkoutHeatmap
+                sessions={data.sessions}
+                dateFrom={range.start}
+                dateTo={range.end}
+                fontFamily={FONT_FAMILY}
+              />
+            </ChartCard>
 
             <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ChartCard
