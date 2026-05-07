@@ -122,6 +122,16 @@ export const CardioDataSchema = z
     sessions: z.array(CardioSessionSchema),
     resting_hr_trend: z.array(CardioTimePointSchema),
     vo2max_trend: z.array(CardioTimePointSchema),
+    // #75 slice C-data — six lifestyle-metric trends ported from
+    // cardio-dashboard. Optional at the schema level so old preprocessor
+    // outputs without these keys still validate; new outputs include
+    // them as (possibly empty) arrays.
+    hrv_trend: z.array(CardioTimePointSchema).optional(),
+    walking_hr_trend: z.array(CardioTimePointSchema).optional(),
+    body_mass_trend: z.array(CardioTimePointSchema).optional(),
+    step_count_trend: z.array(CardioTimePointSchema).optional(),
+    sleep_trend: z.array(CardioTimePointSchema).optional(),
+    active_energy_trend: z.array(CardioTimePointSchema).optional(),
   })
   .strict()
 
@@ -194,6 +204,20 @@ function sessionToRow(session, importedAt) {
  *   removes rows.
  * @throws when any Supabase query fails.
  */
+/**
+ * Lifestyle-trend tables to upsert in the same batch as resting HR /
+ * VO2max (#75 slice C-data). Each maps a `CardioData` field name to its
+ * Supabase table; the upsert / prune loop below treats them uniformly.
+ */
+const LIFESTYLE_TREND_TABLES = [
+  ['hrv_trend', 'cardio_hrv_trend'],
+  ['walking_hr_trend', 'cardio_walking_hr_trend'],
+  ['body_mass_trend', 'cardio_body_mass_trend'],
+  ['step_count_trend', 'cardio_step_count_trend'],
+  ['sleep_trend', 'cardio_sleep_trend'],
+  ['active_energy_trend', 'cardio_active_energy_trend'],
+]
+
 export async function upsertCardioData(supabase, data) {
   // Defense-in-depth schema check at the write boundary. Both production
   // callers (import-health.mjs, backfill-cardio.mjs) already validate via
@@ -218,6 +242,17 @@ export async function upsertCardioData(supabase, data) {
     date: point.date,
     value: point.value,
     updated_at: importedAt,
+  }))
+  // Lifestyle trends share the `(date, value, updated_at)` row shape with
+  // resting HR / VO2max — same row-builder, different field/table names.
+  const lifestyleRows = LIFESTYLE_TREND_TABLES.map(([field, table]) => ({
+    field,
+    table,
+    rows: (parsed[field] ?? []).map((point) => ({
+      date: point.date,
+      value: point.value,
+      updated_at: importedAt,
+    })),
   }))
 
   if (sessionRows.length > 0) {
@@ -249,6 +284,13 @@ export async function upsertCardioData(supabase, data) {
       throw new Error(`Failed to upsert cardio_vo2max: ${error.message}`)
     }
   }
+  for (const { table, rows } of lifestyleRows) {
+    if (rows.length === 0) continue
+    const { error } = await supabase.from(table).upsert(rows, { onConflict: 'date' })
+    if (error) {
+      throw new Error(`Failed to upsert ${table}: ${error.message}`)
+    }
+  }
 
   const sessionsPruned = await pruneStaleRows(
     supabase,
@@ -268,13 +310,20 @@ export async function upsertCardioData(supabase, data) {
     importedAt,
     vo2Rows.length > 0,
   )
+  let lifestylePruned = 0
+  const lifestyleCounts = {}
+  for (const { field, table, rows } of lifestyleRows) {
+    lifestyleCounts[field] = rows.length
+    lifestylePruned += await pruneStaleRows(supabase, table, importedAt, rows.length > 0)
+  }
 
   return {
     sessions: sessionRows.length,
     restingHr: restingRows.length,
     vo2max: vo2Rows.length,
     hrSamples: hrSamplesInserted,
-    pruned: sessionsPruned + restingPruned + vo2Pruned,
+    ...lifestyleCounts,
+    pruned: sessionsPruned + restingPruned + vo2Pruned + lifestylePruned,
   }
 }
 

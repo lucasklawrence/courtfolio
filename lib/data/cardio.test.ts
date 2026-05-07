@@ -266,4 +266,140 @@ describe('getCardioData', () => {
     stubTable('cardio_vo2max', [])
     await expect(getCardioData()).rejects.toThrow(/cardio_sessions failed schema validation/)
   })
+
+  /**
+   * Lifestyle-metric trend coverage (#75 slice C-data). Six new tables
+   * follow the same `(date, value)` shape as `cardio_resting_hr`. They
+   * land on `CardioData` as optional arrays — present when the table has
+   * rows, omitted when it's empty so detail views that don't consume
+   * them keep their pre-#75 observable behavior.
+   */
+  const LIFESTYLE_TABLES: ReadonlyArray<[keyof CardioDataLike, string]> = [
+    ['hrv_trend', 'cardio_hrv_trend'],
+    ['walking_hr_trend', 'cardio_walking_hr_trend'],
+    ['body_mass_trend', 'cardio_body_mass_trend'],
+    ['step_count_trend', 'cardio_step_count_trend'],
+    ['sleep_trend', 'cardio_sleep_trend'],
+    ['active_energy_trend', 'cardio_active_energy_trend'],
+  ]
+
+  it('queries every lifestyle-trend table when assembling the dataset', async () => {
+    stubTable('cardio_sessions', [])
+    stubTable('cardio_resting_hr', [])
+    stubTable('cardio_vo2max', [])
+    for (const [, table] of LIFESTYLE_TABLES) stubTable(table, [])
+    fromMock.mockClear()
+
+    await getCardioData()
+
+    for (const [, table] of LIFESTYLE_TABLES) {
+      expect(fromMock).toHaveBeenCalledWith(table)
+    }
+  })
+
+  it('returns null when every cardio table — core and lifestyle — is empty', async () => {
+    stubTable('cardio_sessions', [])
+    stubTable('cardio_resting_hr', [])
+    stubTable('cardio_vo2max', [])
+    for (const [, table] of LIFESTYLE_TABLES) stubTable(table, [])
+    await expect(getCardioData()).resolves.toBeNull()
+  })
+
+  it('populates each lifestyle field when its table has rows; omits empty ones', async () => {
+    stubTable('cardio_sessions', [])
+    stubTable(
+      'cardio_resting_hr',
+      [{ date: '2026-04-26', value: 57, updated_at: '2026-04-26T08:30:00Z' }],
+    )
+    stubTable('cardio_vo2max', [])
+    stubTable(
+      'cardio_hrv_trend',
+      [{ date: '2026-04-26', value: 54, updated_at: '2026-04-26T08:30:00Z' }],
+    )
+    stubTable(
+      'cardio_body_mass_trend',
+      [{ date: '2026-04-25', value: 179.0, updated_at: '2026-04-25T08:30:00Z' }],
+    )
+    stubTable('cardio_walking_hr_trend', [])
+    stubTable('cardio_step_count_trend', [])
+    stubTable('cardio_sleep_trend', [])
+    stubTable('cardio_active_energy_trend', [])
+
+    const data = await getCardioData()
+    expect(data?.hrv_trend).toEqual([{ date: '2026-04-26', value: 54 }])
+    expect(data?.body_mass_trend).toEqual([{ date: '2026-04-25', value: 179.0 }])
+    // Empty lifestyle tables drop their key entirely so a downstream
+    // `if (data.walking_hr_trend)` reads as "no data" instead of "[]".
+    expect(data).not.toHaveProperty('walking_hr_trend')
+    expect(data).not.toHaveProperty('step_count_trend')
+    expect(data).not.toHaveProperty('sleep_trend')
+    expect(data).not.toHaveProperty('active_energy_trend')
+  })
+
+  it('imported_at advances when only a lifestyle table is the freshest', async () => {
+    // Re-imports that touch only the lifestyle tables (e.g. the user
+    // weighed themselves but did no cardio that day) still need to bump
+    // imported_at — the wall display should read "synced today" not
+    // "synced last week."
+    stubTable(
+      'cardio_sessions',
+      [
+        {
+          started_at: '2026-02-08T08:00:00Z',
+          activity: 'stair',
+          duration_seconds: 1440,
+          distance_meters: null,
+          avg_hr: null,
+          max_hr: null,
+          pace_seconds_per_km: null,
+          zone1_seconds: null,
+          zone2_seconds: null,
+          zone3_seconds: null,
+          zone4_seconds: null,
+          zone5_seconds: null,
+          meters_per_heartbeat: null,
+          updated_at: '2026-02-08T09:00:00Z',
+        },
+      ],
+    )
+    stubTable('cardio_resting_hr', [])
+    stubTable('cardio_vo2max', [])
+    stubTable(
+      'cardio_body_mass_trend',
+      [{ date: '2026-04-25', value: 179.0, updated_at: '2026-05-06T08:30:00Z' }],
+    )
+    for (const [, table] of LIFESTYLE_TABLES) {
+      if (table === 'cardio_body_mass_trend') continue
+      stubTable(table, [])
+    }
+
+    const data = await getCardioData()
+    expect(data?.imported_at).toBe('2026-05-06T08:30:00Z')
+  })
+
+  it('throws when a lifestyle row fails schema validation', async () => {
+    stubTable('cardio_sessions', [])
+    stubTable('cardio_resting_hr', [])
+    stubTable('cardio_vo2max', [])
+    stubTable(
+      'cardio_hrv_trend',
+      // Missing `date` — Zod rejects on the trend row schema.
+      [{ value: 54, updated_at: '2026-04-26T08:30:00Z' }],
+    )
+    for (const [, table] of LIFESTYLE_TABLES) {
+      if (table === 'cardio_hrv_trend') continue
+      stubTable(table, [])
+    }
+    await expect(getCardioData()).rejects.toThrow(/cardio_hrv_trend failed schema validation/)
+  })
 })
+
+/** Local alias used by the LIFESTYLE_TABLES literal; mirrors `CardioData` for type-only context. */
+type CardioDataLike = {
+  hrv_trend?: unknown
+  walking_hr_trend?: unknown
+  body_mass_trend?: unknown
+  step_count_trend?: unknown
+  sleep_trend?: unknown
+  active_energy_trend?: unknown
+}

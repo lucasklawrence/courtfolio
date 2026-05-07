@@ -28,6 +28,32 @@ const RESTING_HR_TABLE = 'cardio_resting_hr'
 const VO2MAX_TABLE = 'cardio_vo2max'
 
 /**
+ * Lifestyle-metric trend tables (#75 slice C-data). Each row shape is
+ * identical to {@link RESTING_HR_TABLE} (`date, value, updated_at`),
+ * so the same {@link CardioTrendRowSchema} validator and
+ * {@link trendRowToTimePoint} mapper apply. Keyed by the `CardioData`
+ * field they populate so the assembler can drop each table's rows
+ * straight into the matching key without per-table boilerplate.
+ */
+const LIFESTYLE_TREND_TABLES: Record<LifestyleTrendKey, string> = {
+  hrv_trend: 'cardio_hrv_trend',
+  walking_hr_trend: 'cardio_walking_hr_trend',
+  body_mass_trend: 'cardio_body_mass_trend',
+  step_count_trend: 'cardio_step_count_trend',
+  sleep_trend: 'cardio_sleep_trend',
+  active_energy_trend: 'cardio_active_energy_trend',
+}
+
+/** Names of the optional lifestyle-trend keys on {@link CardioData}. */
+type LifestyleTrendKey =
+  | 'hrv_trend'
+  | 'walking_hr_trend'
+  | 'body_mass_trend'
+  | 'step_count_trend'
+  | 'sleep_trend'
+  | 'active_energy_trend'
+
+/**
  * Whitelisted column lists for each cardio table. Mirror the
  * row-shape Zod schemas in `lib/schemas/cardio.ts` so a column added
  * to the DB without a corresponding schema/type update doesn't
@@ -89,11 +115,20 @@ const CardioTrendRowsSchema = z.array(CardioTrendRowSchema)
 export async function assembleCardioData(
   supabase: SupabaseClient,
 ): Promise<CardioData | null> {
-  const [sessionsRes, restingRes, vo2Res] = await Promise.all([
+  const lifestyleEntries = Object.entries(LIFESTYLE_TREND_TABLES) as Array<
+    [LifestyleTrendKey, string]
+  >
+
+  const coreQueries = [
     supabase.from(SESSIONS_TABLE).select(SESSIONS_COLUMNS).order('started_at', { ascending: true }),
     supabase.from(RESTING_HR_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
     supabase.from(VO2MAX_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
-  ])
+  ]
+  const lifestyleQueries = lifestyleEntries.map(([, table]) =>
+    supabase.from(table).select(TREND_COLUMNS).order('date', { ascending: true }),
+  )
+  const allResults = await Promise.all([...coreQueries, ...lifestyleQueries])
+  const [sessionsRes, restingRes, vo2Res, ...lifestyleResults] = allResults
 
   if (sessionsRes.error) {
     throw new Error(`Failed to load cardio sessions: ${sessionsRes.error.message}`)
@@ -104,16 +139,31 @@ export async function assembleCardioData(
   if (vo2Res.error) {
     throw new Error(`Failed to load VO2max trend: ${vo2Res.error.message}`)
   }
+  for (const [i, res] of lifestyleResults.entries()) {
+    if (res.error) {
+      const [, table] = lifestyleEntries[i]
+      throw new Error(`Failed to load ${table}: ${res.error.message}`)
+    }
+  }
 
   const sessionsRaw = (sessionsRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const restingRaw = (restingRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const vo2Raw = (vo2Res.data ?? []) as unknown as Array<Record<string, unknown>>
+  const lifestyleRaw = lifestyleResults.map(
+    (res) => (res.data ?? []) as unknown as Array<Record<string, unknown>>,
+  )
 
-  // Compute imported_at before `updated_at` is stripped — it lives on
-  // every row but isn't part of the row-shape schema.
-  const importedAt = computeImportedAt([sessionsRaw, restingRaw, vo2Raw])
+  // Compute imported_at across every cardio table — including the 6
+  // lifestyle trends — so a fresh import that only updates lifestyle
+  // metrics still advances the "last synced" wall display.
+  const importedAt = computeImportedAt([sessionsRaw, restingRaw, vo2Raw, ...lifestyleRaw])
 
-  if (sessionsRaw.length === 0 && restingRaw.length === 0 && vo2Raw.length === 0) {
+  const allEmpty =
+    sessionsRaw.length === 0 &&
+    restingRaw.length === 0 &&
+    vo2Raw.length === 0 &&
+    lifestyleRaw.every((rows) => rows.length === 0)
+  if (allEmpty) {
     // Preserves the pre-Supabase null-on-empty contract that detail
     // views already handle via `?? { imported_at: '', sessions: [], ... }`.
     return null
@@ -142,11 +192,29 @@ export async function assembleCardioData(
     throw new Error(`cardio_vo2max failed schema validation: ${vo2Parsed.error.message}`)
   }
 
+  // Validate and assemble the 6 lifestyle trends. Each table that is empty
+  // is omitted from the returned shape (the `CardioData` keys are
+  // optional) — components that haven't been wired to consume them keep
+  // the same observable behavior they had before #75 slice C-data.
+  const lifestyleTrends: Partial<Record<LifestyleTrendKey, ReturnType<typeof trendRowToTimePoint>[]>> = {}
+  for (const [i, [key, table]] of lifestyleEntries.entries()) {
+    const raw = lifestyleRaw[i]
+    if (raw.length === 0) continue
+    const parsed = CardioTrendRowsSchema.safeParse(
+      raw.map(stripNulls).map(stripUpdatedAt),
+    )
+    if (!parsed.success) {
+      throw new Error(`${table} failed schema validation: ${parsed.error.message}`)
+    }
+    lifestyleTrends[key] = parsed.data.map(trendRowToTimePoint)
+  }
+
   return {
     imported_at: importedAt,
     sessions: sessionsParsed.data.map(sessionRowToCardioSession),
     resting_hr_trend: restingParsed.data.map(trendRowToTimePoint),
     vo2max_trend: vo2Parsed.data.map(trendRowToTimePoint),
+    ...lifestyleTrends,
   }
 }
 

@@ -133,4 +133,57 @@ export const CARDIO_DEMO_DATA: CardioData = {
     { date: '2026-03-21', value: 42.6 },
     { date: '2026-04-25', value: 43.4 },
   ],
+  // Lifestyle metrics (#75 slice C-data). Six daily-series trends ported
+  // from cardio-dashboard. Numbers trend in the "improving" direction
+  // where applicable — HRV ↑, walking HR ↓, body mass mild ↓, steps ↑,
+  // sleep stable ~7h, active energy ↑ — so the empty-state preview
+  // reads as "this athlete is making progress" rather than as noise.
+  hrv_trend: [
+    { date: '2025-12-06', value: 38 },
+    { date: '2026-01-10', value: 41 },
+    { date: '2026-02-14', value: 44 },
+    { date: '2026-03-14', value: 47 },
+    { date: '2026-04-18', value: 51 },
+    { date: '2026-04-25', value: 54 },
+  ],
+  walking_hr_trend: [
+    { date: '2025-12-06', value: 102 },
+    { date: '2026-01-10', value: 100 },
+    { date: '2026-02-14', value: 97 },
+    { date: '2026-03-14', value: 94 },
+    { date: '2026-04-18', value: 92 },
+    { date: '2026-04-25', value: 91 },
+  ],
+  body_mass_trend: [
+    { date: '2025-12-06', value: 184.2 },
+    { date: '2026-01-10', value: 183.1 },
+    { date: '2026-02-14', value: 181.5 },
+    { date: '2026-03-14', value: 180.8 },
+    { date: '2026-04-18', value: 179.6 },
+    { date: '2026-04-25', value: 179.0 },
+  ],
+  step_count_trend: [
+    { date: '2025-12-06', value: 6420 },
+    { date: '2026-01-10', value: 7180 },
+    { date: '2026-02-14', value: 8340 },
+    { date: '2026-03-14', value: 9210 },
+    { date: '2026-04-18', value: 10450 },
+    { date: '2026-04-25', value: 11020 },
+  ],
+  sleep_trend: [
+    { date: '2025-12-06', value: 6.8 },
+    { date: '2026-01-10', value: 7.0 },
+    { date: '2026-02-14', value: 6.9 },
+    { date: '2026-03-14', value: 7.2 },
+    { date: '2026-04-18', value: 7.1 },
+    { date: '2026-04-25', value: 7.3 },
+  ],
+  active_energy_trend: [
+    { date: '2025-12-06', value: 420 },
+    { date: '2026-01-10', value: 480 },
+    { date: '2026-02-14', value: 540 },
+    { date: '2026-03-14', value: 615 },
+    { date: '2026-04-18', value: 690 },
+    { date: '2026-04-25', value: 740 },
+  ],
 }

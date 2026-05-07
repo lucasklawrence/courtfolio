@@ -13,10 +13,10 @@ What we keep (per `CardioData`):
     cardiac efficiency aggregated from the raw heart-rate sample stream.
   - Resting heart-rate trend (one point per measurement).
   - VO2max trend (one point per measurement).
-
-What we drop (in the old script but not in `CardioData` yet):
-  - HRV, walking HR average, body mass, step counts, sleep, active
-    energy. Bring these back when a chart needs them.
+  - HRV (SDNN), walking HR average, body mass, step counts, sleep, and
+    active energy daily trends — six lifestyle-metric series ported from
+    cardio-dashboard (#75 slice C-data). Per-day aggregation policy
+    varies by metric — see the per-metric helpers below.
 
 The Node wrapper (`scripts/import-health.mjs`) validates the output
 against a Zod mirror of `CardioData`, so a divergence between the
@@ -34,7 +34,9 @@ import os
 import re
 import sys
 import zipfile
+from collections import defaultdict
 from datetime import datetime, timezone
+from typing import Callable, Optional
 
 # Windows defaults stdout to cp1252 under Python 3.8 — `→` and other
 # Unicode glyphs in our log lines crash the run. Force UTF-8 so the
@@ -350,12 +352,22 @@ def derive_pace(workout: dict) -> None:
     workout['pace_seconds_per_km'] = round(duration / km, 2)
 
 
-def parse_simple_trend(xml_text: str, hk_type: str) -> list[dict]:
+def parse_simple_trend(
+    xml_text: str,
+    hk_type: str,
+    value_transform: Optional[Callable[[str, float], Optional[float]]] = None,
+) -> list[dict]:
     """
     Generic helper for one-value-per-record trend types (resting HR,
-    VO2max). Collapses to one point per calendar day — when Apple emits
-    multiple records for the same day (e.g. retroactive measurements
-    from different sources), the latest record in document order wins.
+    VO2max, HRV, walking HR, body mass). Collapses to one point per
+    calendar day — when Apple emits multiple records for the same day
+    (e.g. retroactive measurements from different sources), the latest
+    record in document order wins.
+
+    `value_transform` is an optional `(record_str, value) -> value`
+    callback for per-record unit normalization (e.g. body mass kg → lb).
+    Returning `None` skips the record entirely. Receives the full open
+    tag so the callback can read sibling attributes like `unit="..."`.
     """
     pattern = re.compile(
         rf'<Record\b[^>]*type="{re.escape(hk_type)}"[^>]*>'
@@ -371,10 +383,131 @@ def parse_simple_trend(xml_text: str, hk_type: str) -> list[dict]:
             value = float(val_m.group(1))
         except ValueError:
             continue
+        if value_transform is not None:
+            transformed = value_transform(record, value)
+            if transformed is None:
+                continue
+            value = transformed
         # Trim time-of-day; the trend chart shows one tick per day.
         date_str = date_m.group(1).split(' ')[0]
         by_day[date_str] = round(value, 2)
     return [{'date': day, 'value': value} for day, value in sorted(by_day.items())]
+
+
+def parse_summed_trend(
+    xml_text: str,
+    hk_type: str,
+    value_transform: Optional[Callable[[str, float], Optional[float]]] = None,
+) -> list[dict]:
+    """
+    Trend helper for record types where Apple emits many small bursts
+    per day (step counts, active energy) and we want the daily total.
+    Sums every record by its local-date `startDate` rather than
+    last-write-wins like {@link parse_simple_trend}.
+
+    `value_transform` is the same shape as `parse_simple_trend`'s — used
+    for per-record unit normalization (active energy is normally kcal
+    but can arrive as kJ depending on the export source).
+    """
+    pattern = re.compile(
+        rf'<Record\b[^>]*type="{re.escape(hk_type)}"[^>]*>'
+    )
+    by_day: dict[str, float] = defaultdict(float)
+    for m in pattern.finditer(xml_text):
+        record = m.group(0)
+        date_m = re.search(r'\bstartDate="([^"]*)"', record)
+        val_m = re.search(r'\bvalue="([^"]*)"', record)
+        if not date_m or not val_m:
+            continue
+        try:
+            value = float(val_m.group(1))
+        except ValueError:
+            continue
+        if value_transform is not None:
+            transformed = value_transform(record, value)
+            if transformed is None:
+                continue
+            value = transformed
+        date_str = date_m.group(1).split(' ')[0]
+        by_day[date_str] += value
+    return [{'date': day, 'value': round(v, 2)} for day, v in sorted(by_day.items())]
+
+
+def parse_sleep_trend(xml_text: str) -> list[dict]:
+    """
+    Sleep trend — per-wake-day total of `Asleep*` time, in hours.
+
+    Apple Health stores sleep as `<Record type="HKCategoryTypeIdentifier
+    SleepAnalysis">` elements with categorical `value` like
+    `HKCategoryValueSleepAnalysisAsleepCore`,
+    `…AsleepDeep`, `…AsleepREM`, `…AsleepUnspecified` (post-iOS 16) or
+    just `HKCategoryValueSleepAnalysisAsleep` (pre-iOS 16). `InBed` and
+    `Awake` periods exist alongside but are *excluded* — "I got 7 hours
+    of sleep" is the more useful metric than "I was in bed 8 hours."
+
+    Day attribution: each block is bucketed by its `endDate`'s local
+    date (the "wake day"). A block from 2026-04-15 23:00 to 2026-04-16
+    07:00 belongs to 2026-04-16. This matches Apple Health's UI, which
+    surfaces "today's sleep" as the night you just woke up from.
+    """
+    pattern = re.compile(
+        r'<Record\b[^>]*type="HKCategoryTypeIdentifierSleepAnalysis"[^>]*>'
+    )
+    by_wake_day: dict[str, float] = defaultdict(float)
+    for m in pattern.finditer(xml_text):
+        record = m.group(0)
+        val_m = re.search(r'\bvalue="([^"]*)"', record)
+        if not val_m:
+            continue
+        category = val_m.group(1)
+        # All asleep variants count toward the daily total. InBed / Awake
+        # are intentionally excluded (asleep-only convention).
+        if 'Asleep' not in category:
+            continue
+        start_m = re.search(r'\bstartDate="([^"]*)"', record)
+        end_m = re.search(r'\bendDate="([^"]*)"', record)
+        if not start_m or not end_m:
+            continue
+        start_dt = parse_iso(start_m.group(1))
+        end_dt = parse_iso(end_m.group(1))
+        if start_dt is None or end_dt is None:
+            continue
+        duration_seconds = (end_dt - start_dt).total_seconds()
+        if duration_seconds <= 0:
+            continue
+        wake_day = end_m.group(1).split(' ')[0]
+        by_wake_day[wake_day] += duration_seconds / 3600.0
+    return [{'date': day, 'value': round(v, 2)} for day, v in sorted(by_wake_day.items())]
+
+
+def _body_mass_to_lbs(record: str, value: float) -> Optional[float]:
+    """
+    Apple Health's body-mass record carries the user's preferred unit
+    (`unit="lb"` or `unit="kg"`). Normalize everything to pounds at
+    preprocess time so the dashboard renders without a unit-conversion
+    step. Unknown units default to lb (Apple's US default) rather than
+    silently dropping the record.
+    """
+    unit_m = re.search(r'\bunit="([^"]*)"', record)
+    unit = (unit_m.group(1) if unit_m else 'lb').lower()
+    if unit == 'kg':
+        return value * 2.20462
+    if unit in ('lb', 'lbs'):
+        return value
+    return value
+
+
+def _active_energy_to_kcal(record: str, value: float) -> Optional[float]:
+    """
+    Apple Health's active-energy record is normally kcal (Cal in the
+    UI) but some exports carry kJ. Normalize to kilocalories so the
+    daily-total chart's units stay consistent across exports.
+    """
+    unit_m = re.search(r'\bunit="([^"]*)"', record)
+    unit = (unit_m.group(1) if unit_m else 'kcal').lower()
+    if unit == 'kj':
+        return value / 4.184
+    return value
 
 
 def build_cardio_data(xml_text: str, max_hr: int) -> dict:
@@ -401,11 +534,49 @@ def build_cardio_data(xml_text: str, max_hr: int) -> dict:
     vo2 = parse_simple_trend(xml_text, 'HKQuantityTypeIdentifierVO2Max')
     log(f" {len(vo2):,} points")
 
+    log("Parsing HRV (SDNN) trend...", end='')
+    hrv = parse_simple_trend(xml_text, 'HKQuantityTypeIdentifierHeartRateVariabilitySDNN')
+    log(f" {len(hrv):,} points")
+
+    log("Parsing walking HR trend...", end='')
+    walking_hr = parse_simple_trend(
+        xml_text, 'HKQuantityTypeIdentifierWalkingHeartRateAverage'
+    )
+    log(f" {len(walking_hr):,} points")
+
+    log("Parsing body mass trend...", end='')
+    body_mass = parse_simple_trend(
+        xml_text, 'HKQuantityTypeIdentifierBodyMass', value_transform=_body_mass_to_lbs
+    )
+    log(f" {len(body_mass):,} points (lbs)")
+
+    log("Parsing step count trend...", end='')
+    step_count = parse_summed_trend(xml_text, 'HKQuantityTypeIdentifierStepCount')
+    log(f" {len(step_count):,} days")
+
+    log("Parsing sleep trend...", end='')
+    sleep = parse_sleep_trend(xml_text)
+    log(f" {len(sleep):,} nights")
+
+    log("Parsing active energy trend...", end='')
+    active_energy = parse_summed_trend(
+        xml_text,
+        'HKQuantityTypeIdentifierActiveEnergyBurned',
+        value_transform=_active_energy_to_kcal,
+    )
+    log(f" {len(active_energy):,} days (kcal)")
+
     return {
         'imported_at': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
         'sessions': sessions,
         'resting_hr_trend': resting,
         'vo2max_trend': vo2,
+        'hrv_trend': hrv,
+        'walking_hr_trend': walking_hr,
+        'body_mass_trend': body_mass,
+        'step_count_trend': step_count,
+        'sleep_trend': sleep,
+        'active_energy_trend': active_energy,
     }
 
 
@@ -478,6 +649,12 @@ def main() -> None:
     print(f"  Sessions:           {len(data['sessions']):,}")
     print(f"  Resting HR points:  {len(data['resting_hr_trend']):,}")
     print(f"  VO2max points:      {len(data['vo2max_trend']):,}")
+    print(f"  HRV points:         {len(data['hrv_trend']):,}")
+    print(f"  Walking HR points:  {len(data['walking_hr_trend']):,}")
+    print(f"  Body mass points:   {len(data['body_mass_trend']):,}")
+    print(f"  Step count days:    {len(data['step_count_trend']):,}")
+    print(f"  Sleep nights:       {len(data['sleep_trend']):,}")
+    print(f"  Active energy days: {len(data['active_energy_trend']):,}")
     print(f"{'=' * 50}\n")
 
 
