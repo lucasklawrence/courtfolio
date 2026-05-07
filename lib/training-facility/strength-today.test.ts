@@ -1,0 +1,114 @@
+import { describe, expect, it } from 'vitest'
+
+import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+
+import {
+  computeRingPercent,
+  filterSetsForDay,
+  sumReps,
+  toLocalDateKey,
+  totalsByExercise,
+} from './strength-today'
+
+/** Helper — assemble a {@link StrengthSet} with sensible defaults. */
+function set(overrides: Partial<StrengthSet> = {}): StrengthSet {
+  return {
+    id: '11111111-1111-1111-1111-111111111111',
+    logged_at: '2026-05-07T13:00:00',
+    exercise: 'pushups',
+    reps: 10,
+    ...overrides,
+  }
+}
+
+const PUSHUPS: ExerciseGoal = {
+  exercise: 'pushups',
+  daily_target: 100,
+  color: '#EA580C',
+}
+
+describe('toLocalDateKey', () => {
+  it('returns YYYY-MM-DD in local time for a parseable timestamp', () => {
+    expect(toLocalDateKey('2026-05-07T13:00:00')).toBe('2026-05-07')
+  })
+
+  it('zero-pads single-digit months and days', () => {
+    expect(toLocalDateKey('2026-01-04T08:00:00')).toBe('2026-01-04')
+  })
+
+  it('returns "" for an unparseable string', () => {
+    expect(toLocalDateKey('not-a-date')).toBe('')
+  })
+
+  it('accepts a Date input directly', () => {
+    const d = new Date('2026-05-07T13:00:00')
+    expect(toLocalDateKey(d)).toBe('2026-05-07')
+  })
+})
+
+describe('filterSetsForDay', () => {
+  it('keeps only sets whose logged_at falls on the day', () => {
+    const sets = [
+      set({ logged_at: '2026-05-07T08:00:00' }),
+      set({ logged_at: '2026-05-07T22:30:00' }),
+      set({ logged_at: '2026-05-06T13:00:00' }),
+    ]
+    expect(filterSetsForDay(sets, '2026-05-07')).toHaveLength(2)
+  })
+
+  it('returns an empty array when dayKey is empty', () => {
+    expect(filterSetsForDay([set()], '')).toEqual([])
+  })
+
+  it('skips sets with unparseable timestamps without throwing', () => {
+    const sets = [
+      set({ logged_at: '2026-05-07T08:00:00' }),
+      set({ logged_at: 'not-a-date' }),
+    ]
+    expect(filterSetsForDay(sets, '2026-05-07')).toHaveLength(1)
+  })
+})
+
+describe('sumReps', () => {
+  it('returns 0 for an empty array', () => {
+    expect(sumReps([])).toBe(0)
+  })
+
+  it('sums reps across all sets', () => {
+    expect(sumReps([set({ reps: 5 }), set({ reps: 12 }), set({ reps: 8 })])).toBe(25)
+  })
+})
+
+describe('totalsByExercise', () => {
+  it('groups reps by exercise key', () => {
+    const totals = totalsByExercise([
+      set({ exercise: 'pushups', reps: 10 }),
+      set({ exercise: 'pushups', reps: 15 }),
+      set({ exercise: 'pullups', reps: 5 }),
+    ])
+    expect(totals.get('pushups')).toBe(25)
+    expect(totals.get('pullups')).toBe(5)
+  })
+
+  it('returns an empty map for no sets', () => {
+    expect(totalsByExercise([]).size).toBe(0)
+  })
+})
+
+describe('computeRingPercent', () => {
+  it('returns the unclamped fraction of the daily target', () => {
+    expect(computeRingPercent(50, PUSHUPS)).toBe(0.5)
+    expect(computeRingPercent(100, PUSHUPS)).toBe(1)
+    expect(computeRingPercent(125, PUSHUPS)).toBe(1.25)
+  })
+
+  it('returns 0 when the daily target is non-positive', () => {
+    expect(
+      computeRingPercent(50, { exercise: 'pushups', daily_target: 0, color: '#000' }),
+    ).toBe(0)
+  })
+
+  it('returns 0 when no reps logged', () => {
+    expect(computeRingPercent(0, PUSHUPS)).toBe(0)
+  })
+})

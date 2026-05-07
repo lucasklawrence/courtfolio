@@ -31,4 +31,10 @@ test.describe('training facility enabled', () => {
     await expect(page.getByRole('heading', { name: /^the combine$/i })).toBeVisible()
     await expect(page.getByRole('link', { name: /back to training facility/i })).toBeVisible()
   })
+
+  test('renders the weight room Today View when reached directly', async ({ page }) => {
+    await page.goto('/training-facility/weight-room')
+    await expect(page.getByRole('heading', { name: /^today$/i })).toBeVisible()
+    await expect(page.getByRole('link', { name: /settings/i })).toBeVisible()
+  })
 })

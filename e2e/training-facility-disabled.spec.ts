@@ -3,7 +3,12 @@ import { expect, test } from '@playwright/test'
 import { bypassHomeIntro } from './helpers/intro'
 
 /** Routes that should continue to render the custom 404 while the feature flag is off. */
-const gatedRoutes = ['/training-facility', '/training-facility/gym', '/training-facility/combine']
+const gatedRoutes = [
+  '/training-facility',
+  '/training-facility/gym',
+  '/training-facility/combine',
+  '/training-facility/weight-room',
+]
 
 test.describe('training facility disabled', () => {
   test.beforeEach(async ({ page }) => {
