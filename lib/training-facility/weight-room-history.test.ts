@@ -198,6 +198,18 @@ describe('computeStrengthStreaks', () => {
     ]
     expect(computeStrengthStreaks(sets, PUSHUPS)).toEqual({ current: 0, longest: 0 })
   })
+
+  it('honors the optional `now` arg for the today / yesterday anchor', () => {
+    // Real clock is May 7 2026, but we anchor "today" to Apr 16 — the
+    // current streak should treat Apr 14–16 as fresh, not stale.
+    const now = new Date('2026-04-16T12:00:00')
+    const sets = [
+      set('2026-04-14', 'pushups', 100),
+      set('2026-04-15', 'pushups', 100),
+      set('2026-04-16', 'pushups', 100),
+    ]
+    expect(computeStrengthStreaks(sets, PUSHUPS, now)).toEqual({ current: 3, longest: 3 })
+  })
 })
 
 describe('computeStrengthStats', () => {
@@ -274,5 +286,19 @@ describe('computeStrengthStats', () => {
     const now = new Date('2026-04-16T12:00:00')
     const sets = [set('2026-04-16', 'pushups', 50)]
     expect(computeStrengthStats(sets, [], now)).toEqual([])
+  })
+
+  it('threads `now` into streak math (not just week/month math)', () => {
+    // Real clock is May 7 2026 by the time this PR ran — without
+    // threading `now` into `computeStrengthStreaks`, `current` would
+    // come back 0 because Apr 16 is older than yesterday.
+    const now = new Date('2026-04-16T12:00:00')
+    const sets = [
+      set('2026-04-15', 'pushups', 100),
+      set('2026-04-16', 'pushups', 100),
+    ]
+    const [stats] = computeStrengthStats(sets, [PUSHUPS], now)
+    expect(stats.currentStreak).toBe(2)
+    expect(stats.longestStreak).toBe(2)
   })
 })

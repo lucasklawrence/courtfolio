@@ -230,10 +230,15 @@ export function buildStrengthHeatmap(
  * @param sets every logged set; filtered to `goal.exercise` internally.
  * @param goal the {@link ExerciseGoal} whose `daily_target` defines the
  *   bar to clear.
+ * @param now optional override for the "today" anchor used to decide
+ *   whether `current` includes the most recent hit-day. Defaults to
+ *   `new Date()`. Threaded through from {@link computeStrengthStats}
+ *   so a single fixed clock drives every rollup in one stats payload.
  */
 export function computeStrengthStreaks(
   sets: readonly StrengthSet[],
   goal: ExerciseGoal,
+  now: Date = new Date(),
 ): { current: number; longest: number } {
   // Belt-and-suspenders — same reason as in `buildStrengthHeatmap`.
   const target = Math.max(1, goal.daily_target)
@@ -264,7 +269,7 @@ export function computeStrengthStreaks(
     }
   }
 
-  const today = toDateKey(new Date())
+  const today = toDateKey(now)
   const yesterday = addDays(today, -1)
   const lastDay = hitDays[hitDays.length - 1]
   if (lastDay !== today && lastDay !== yesterday) {
@@ -354,7 +359,7 @@ export function computeStrengthStats(
     }
     const avgSetsPerActiveDay = activeDays.size === 0 ? 0 : validSetCount / activeDays.size
 
-    const streak = computeStrengthStreaks(sets, goal)
+    const streak = computeStrengthStreaks(sets, goal, now)
     return {
       exercise: goal.exercise,
       color: goal.color,
