@@ -41,9 +41,14 @@ export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextR
   const auth = await requireAdmin()
   if (!auth.ok) return auth.response
 
+  // Next.js App Router decodes dynamic route segments before handing them
+  // to the handler, so `params.exercise` is the already-decoded user input
+  // — no `decodeURIComponent` call here (matches the
+  // `movement-benchmarks/[date]/route.ts` precedent and avoids the
+  // URIError crash a malformed `%` sequence would otherwise produce).
   const { exercise } = await ctx.params
-  const decoded = decodeURIComponent(exercise).trim()
-  if (decoded.length === 0) {
+  const trimmed = exercise.trim()
+  if (trimmed.length === 0) {
     return NextResponse.json({ error: 'exercise must be non-empty.' }, { status: 400 })
   }
 
@@ -51,7 +56,7 @@ export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextR
   const { data, error } = await supabase
     .from('weight_room_goals')
     .delete()
-    .eq('exercise', decoded)
+    .eq('exercise', trimmed)
     .select()
     .maybeSingle()
 
@@ -62,7 +67,7 @@ export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextR
     )
   }
   if (!data) {
-    return NextResponse.json({ error: `No goal for '${decoded}'.` }, { status: 404 })
+    return NextResponse.json({ error: `No goal for '${trimmed}'.` }, { status: 404 })
   }
   return NextResponse.json(data, { status: 200 })
 }

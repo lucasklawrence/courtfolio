@@ -6,8 +6,10 @@ import { DELETE } from './route'
 /**
  * Tests for `DELETE /api/admin/weight-room/goals/[exercise]`. Auth gate +
  * Supabase service-role client are mocked; the route's own logic
- * (URL-decoding, empty-segment guard, 404-vs-200 mapping) is exercised
- * in isolation.
+ * (empty-segment guard, 404-vs-200 mapping, trimmed lookup) is
+ * exercised in isolation. Next.js App Router decodes path segments
+ * before invoking the handler, so the route doesn't re-decode and the
+ * tests pass already-decoded values.
  */
 
 const requireAdminMock = vi.fn()
@@ -69,15 +71,24 @@ describe('DELETE /api/admin/weight-room/goals/[exercise]', () => {
     expect(res.status).toBe(404)
   })
 
-  it('URL-decodes the exercise segment before querying', async () => {
+  it('trims whitespace around the exercise segment before querying', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     deleteMock.mockResolvedValueOnce({
-      data: { exercise: 'shoulder taps', daily_target: 50, color: '#EA580C' },
+      data: { exercise: 'pushups', daily_target: 100, color: '#EA580C' },
       error: null,
     })
-    const res = await DELETE(req() as never, ctx('shoulder%20taps'))
+    const res = await DELETE(req() as never, ctx('  pushups  '))
     expect(res.status).toBe(200)
-    expect(supabaseChain.eq).toHaveBeenCalledWith('exercise', 'shoulder taps')
+    expect(supabaseChain.eq).toHaveBeenCalledWith('exercise', 'pushups')
+  })
+
+  it('does not throw on bare-percent input — trim path is decode-free', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    deleteMock.mockResolvedValueOnce({ data: null, error: null })
+    // A bare `%` character would crash an unsafe `decodeURIComponent` call
+    // with `URIError`; the route should funnel through to the 404 instead.
+    const res = await DELETE(req() as never, ctx('%bad'))
+    expect(res.status).toBe(404)
   })
 
   it('returns 200 with the removed row on success', async () => {
