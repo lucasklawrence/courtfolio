@@ -80,4 +80,28 @@ describe('QuickLog', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Log' }))
     expect(onLog).not.toHaveBeenCalled()
   })
+
+  it('re-seeds the Custom input when lastReps updates while the form is closed', async () => {
+    // Codex called this out for #80: the row stays mounted across logs
+    // (keyed by exercise), so a one-shot useState would show a stale
+    // seed forever. The effect must re-sync customValue when lastReps
+    // changes — but only while the form is closed, so an open edit
+    // isn't yanked out from under the user.
+    const { rerender } = render(
+      <QuickLog
+        goals={[PUSHUPS]}
+        lastReps={{ pushups: 10 }}
+        onLog={vi.fn().mockResolvedValue(undefined)}
+      />,
+    )
+    rerender(
+      <QuickLog
+        goals={[PUSHUPS]}
+        lastReps={{ pushups: 25 }}
+        onLog={vi.fn().mockResolvedValue(undefined)}
+      />,
+    )
+    await userEvent.click(screen.getByRole('button', { name: 'Custom' }))
+    expect(screen.getByLabelText(/reps/i)).toHaveValue(25)
+  })
 })

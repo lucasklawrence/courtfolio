@@ -76,4 +76,22 @@ describe('ActivityRings', () => {
       expect.stringContaining('pullups 15 of 30'),
     )
   })
+
+  it('renders every configured exercise even when the count is large', () => {
+    // 8 exercises is well over the 6-ring limit the fixed-stroke
+    // dimensions imposed; the auto-fit should shrink stroke/gap so
+    // every ring still renders. Codex flagged the silent-drop behavior
+    // when reviewing #80.
+    const goals: ExerciseGoal[] = Array.from({ length: 8 }, (_, i) => ({
+      exercise: `ex-${i}`,
+      daily_target: 50,
+      color: '#EA580C',
+    }))
+    render(
+      <ActivityRings rings={goals.map((g) => ({ goal: g, totalReps: 25 }))} />,
+    )
+    for (const g of goals) {
+      expect(screen.getByTestId(`ring-${g.exercise}`)).toBeInTheDocument()
+    }
+  })
 })

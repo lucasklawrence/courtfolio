@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useState, type FormEvent, type JSX } from 'react'
+import { useEffect, useId, useState, type FormEvent, type JSX } from 'react'
 
 import type { ExerciseGoal } from '@/types/weight-room'
 
@@ -135,6 +135,16 @@ function QuickLogRow({
   const [customOpen, setCustomOpen] = useState<boolean>(false)
   const seedCustom = lastReps ?? DEFAULT_PRESETS[1]
   const [customValue, setCustomValue] = useState<string>(String(seedCustom))
+
+  // Re-seed the Custom input whenever `lastReps` changes (e.g. after a
+  // successful preset log + parent refetch). The row stays mounted across
+  // logs because it's keyed by exercise, so a one-shot `useState` would
+  // otherwise show a stale seed forever. Skip the reset while the form
+  // is open so the user's in-progress edits don't get yanked out from
+  // under them mid-type.
+  useEffect(() => {
+    if (!customOpen) setCustomValue(String(seedCustom))
+  }, [seedCustom, customOpen])
 
   async function handlePreset(reps: number): Promise<void> {
     await onLog(goal.exercise, reps)

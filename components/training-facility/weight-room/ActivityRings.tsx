@@ -36,7 +36,29 @@ export interface ActivityRingsProps {
 
 const RING_STROKE = 14
 const RING_GAP = 4
+const MIN_RING_STROKE = 4
+const MIN_RING_GAP = 1
 const TRACK_OPACITY = 0.18
+
+/**
+ * Pick `stroke` + `gap` that fit every ring inside the SVG. Defaults to
+ * the generous (`RING_STROKE`, `RING_GAP`) sizes for the common case
+ * (1–5 exercises) and shrinks toward (`MIN_RING_STROKE`, `MIN_RING_GAP`)
+ * as the ring count grows so a settings UI with many exercises (dips,
+ * rows, pistols, etc.) still renders every ring rather than silently
+ * dropping the inner ones to `null`. The 1.6 fudge factor empirically
+ * balances ring thickness vs. inner margin across 1..15 ring counts.
+ */
+function fitRingDimensions(
+  size: number,
+  ringCount: number,
+): { stroke: number; gap: number } {
+  if (ringCount <= 0) return { stroke: RING_STROKE, gap: RING_GAP }
+  const requiredStroke = Math.floor(size / 2 / (ringCount * 1.6))
+  const stroke = Math.max(MIN_RING_STROKE, Math.min(RING_STROKE, requiredStroke))
+  const gap = Math.max(MIN_RING_GAP, Math.min(RING_GAP, Math.floor(stroke * 0.3)))
+  return { stroke, gap }
+}
 
 /**
  * SVG-based concentric activity rings — the Today View centerpiece
@@ -67,7 +89,8 @@ export function ActivityRings({
   className = '',
 }: ActivityRingsProps): JSX.Element {
   const center = size / 2
-  const outerRadius = center - RING_STROKE / 2
+  const { stroke, gap } = fitRingDimensions(size, rings.length)
+  const outerRadius = center - stroke / 2
 
   // Empty-state — no goals configured. Rare in practice (the migration
   // seeds two), but cheap to handle so the page doesn't blow up if
@@ -107,8 +130,12 @@ export function ActivityRings({
         className="block w-full h-auto -rotate-90"
       >
         {rings.map((ring, i) => {
-          const radius = outerRadius - i * (RING_STROKE + RING_GAP)
-          if (radius <= RING_STROKE) return null
+          // Clamp the inner radius to a positive value so the smallest
+          // ring still renders (rather than null-ing out) even when the
+          // settings UI lists many exercises. `fitRingDimensions` already
+          // shrunk stroke/gap to keep this in range — the clamp is a
+          // final defense for pathological counts (>15 exercises).
+          const radius = Math.max(stroke / 2, outerRadius - i * (stroke + gap))
           const circumference = 2 * Math.PI * radius
           const rawPercent =
             ring.goal.daily_target > 0 ? ring.totalReps / ring.goal.daily_target : 0
@@ -124,7 +151,7 @@ export function ActivityRings({
                 fill="none"
                 stroke={ring.goal.color}
                 strokeOpacity={TRACK_OPACITY}
-                strokeWidth={RING_STROKE}
+                strokeWidth={stroke}
               />
               <circle
                 cx={center}
@@ -132,7 +159,7 @@ export function ActivityRings({
                 r={radius}
                 fill="none"
                 stroke={ring.goal.color}
-                strokeWidth={RING_STROKE}
+                strokeWidth={stroke}
                 strokeLinecap="round"
                 strokeDasharray={circumference}
                 strokeDashoffset={dashOffset}
