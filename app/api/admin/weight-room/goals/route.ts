@@ -57,9 +57,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   const supabase = createAdminSupabaseClient()
+  // Stamp `updated_at` explicitly so the upsert advances the row's audit
+  // timestamp on edits — without this, the existing-row branch keeps
+  // `updated_at` frozen at the original insert time and the data layer's
+  // `MAX(updated_at)` freshness computation never reflects goal edits.
+  // Mirrors the pattern used by the cardio import script's upserts.
+  const upsertRow = { ...goal, updated_at: new Date().toISOString() }
   const { data, error } = await supabase
     .from('weight_room_goals')
-    .upsert(goal, { onConflict: 'exercise' })
+    .upsert(upsertRow, { onConflict: 'exercise' })
     .select()
     .single()
 

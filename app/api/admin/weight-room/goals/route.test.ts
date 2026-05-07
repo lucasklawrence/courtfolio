@@ -92,6 +92,23 @@ describe('POST /api/admin/weight-room/goals', () => {
     expect(res.status).toBe(200)
     const body = await res.json()
     expect(body).toEqual(validGoal)
-    expect(supabaseChain.upsert).toHaveBeenCalledWith(validGoal, { onConflict: 'exercise' })
+    // Route stamps `updated_at` so edits advance the row's audit
+    // timestamp; the value is `new Date().toISOString()` so we just
+    // assert it's an ISO-shaped string.
+    expect(supabaseChain.upsert).toHaveBeenCalledWith(
+      expect.objectContaining({ ...validGoal, updated_at: expect.any(String) }),
+      { onConflict: 'exercise' },
+    )
+  })
+
+  it('stamps updated_at so edits advance the row freshness', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    upsertMock.mockResolvedValueOnce({ data: validGoal, error: null })
+    await POST(makeRequest(validGoal) as never)
+    expect(supabaseChain.upsert).toHaveBeenCalledWith(
+      // Loose ISO-8601 check: starts with YYYY-MM-DD.
+      expect.objectContaining({ updated_at: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T/) }),
+      { onConflict: 'exercise' },
+    )
   })
 })
