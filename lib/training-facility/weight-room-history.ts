@@ -183,6 +183,9 @@ export function buildStrengthHeatmap(
     }
   }
 
+  // Belt-and-suspenders: the schema (`WeightRoomGoalRowSchema`) already
+  // enforces a positive integer, but a 0/negative target slipping
+  // through would divide-by-zero or invert the intensity bucket.
   const target = Math.max(1, goal.daily_target)
   const startMs = startMonday.getTime()
   const totalCols = Math.floor((endDate.getTime() - startMs) / WEEK_MS) + 1
@@ -232,6 +235,7 @@ export function computeStrengthStreaks(
   sets: readonly StrengthSet[],
   goal: ExerciseGoal,
 ): { current: number; longest: number } {
+  // Belt-and-suspenders — same reason as in `buildStrengthHeatmap`.
   const target = Math.max(1, goal.daily_target)
   const dailyReps = new Map<string, number>()
   for (const s of sets) {
@@ -340,14 +344,15 @@ export function computeStrengthStats(
     const matching = sets.filter((s) => s.exercise === goal.exercise)
     const activeDays = new Set<string>()
     let allTimeReps = 0
+    let validSetCount = 0
     for (const s of matching) {
       const d = new Date(s.logged_at)
       if (!Number.isFinite(d.getTime())) continue
       activeDays.add(toDateKey(d))
       allTimeReps += s.reps
+      validSetCount += 1
     }
-    const setCount = matching.filter((s) => Number.isFinite(new Date(s.logged_at).getTime())).length
-    const avgSetsPerActiveDay = activeDays.size === 0 ? 0 : setCount / activeDays.size
+    const avgSetsPerActiveDay = activeDays.size === 0 ? 0 : validSetCount / activeDays.size
 
     const streak = computeStrengthStreaks(sets, goal)
     return {

@@ -269,4 +269,10 @@ describe('computeStrengthStats', () => {
     expect(stats[1].color).toBe('#0EA5A1')
     expect(stats[1].thisWeekReps).toBe(30)
   })
+
+  it('returns an empty array when no goals are configured (sets ignored)', () => {
+    const now = new Date('2026-04-16T12:00:00')
+    const sets = [set('2026-04-16', 'pushups', 50)]
+    expect(computeStrengthStats(sets, [], now)).toEqual([])
+  })
 })

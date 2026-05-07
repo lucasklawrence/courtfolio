@@ -102,13 +102,17 @@ export function StrengthHeatmap({
   const label = ariaLabel ?? `${goal.exercise} heatmap`
 
   return (
+    // No `maxWidth: 100%` on the SVG — the page wraps each heatmap in
+    // an `overflow-x-auto` card so the trailing-52w grid (≈760 px) can
+    // scroll horizontally on mobile. Capping the SVG to the container
+    // would defeat that and squash 364 cells into a phone width.
     <svg
       viewBox={`0 0 ${totalWidth} ${totalHeight}`}
       width={totalWidth}
       height={totalHeight}
       role="img"
       aria-label={label}
-      style={{ fontFamily, maxWidth: '100%', height: 'auto' }}
+      style={{ fontFamily }}
     >
       {/* Month labels along the top */}
       <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT - 4})`}>
