@@ -57,6 +57,13 @@ import { StreakBadge } from './StreakBadge'
  */
 export function TodayDataIsland(): JSX.Element {
   const [data, setData] = useState<WeightRoomData | null | undefined>(undefined)
+  // `loadError` is the "fetch threw" branch, distinct from `data === null`
+  // (the "tables are genuinely empty" branch). Without splitting these,
+  // a transient Supabase blip would render the empty-state CTA — which
+  // is misleading at best and could mask a real outage. On refetch
+  // failure we keep the last successful data and surface the error
+  // banner above it instead of nulling the view out.
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [busy, setBusy] = useState<boolean>(false)
   // Monotonic request id — same pattern as `CombineDataIsland`. Both
   // mount-time and post-write fetches commit only when the id is still
@@ -67,10 +74,18 @@ export function TodayDataIsland(): JSX.Element {
     const id = ++requestIdRef.current
     getWeightRoomData()
       .then((d) => {
-        if (id === requestIdRef.current) setData(d)
+        if (id === requestIdRef.current) {
+          setData(d)
+          setLoadError(null)
+        }
       })
-      .catch(() => {
-        if (id === requestIdRef.current) setData(null)
+      .catch((err: unknown) => {
+        if (id === requestIdRef.current) {
+          setLoadError(err instanceof Error ? err.message : 'Failed to load.')
+          // Mount-time failure: there's no prior good data to keep, so
+          // settle `data` to null so the loading skeleton clears.
+          setData((prev) => (prev === undefined ? null : prev))
+        }
       })
     return () => {
       requestIdRef.current += 1
@@ -81,9 +96,17 @@ export function TodayDataIsland(): JSX.Element {
     const id = ++requestIdRef.current
     try {
       const d = await getWeightRoomData()
-      if (id === requestIdRef.current) setData(d)
-    } catch {
-      if (id === requestIdRef.current) setData(null)
+      if (id === requestIdRef.current) {
+        setData(d)
+        setLoadError(null)
+      }
+    } catch (err: unknown) {
+      // Refetch failure: preserve the previously loaded data so the user
+      // doesn't lose their already-rendered view. Surface the error
+      // inline; the next successful refetch clears it.
+      if (id === requestIdRef.current) {
+        setLoadError(err instanceof Error ? err.message : 'Refresh failed.')
+      }
     }
   }, [])
 
@@ -95,8 +118,15 @@ export function TodayDataIsland(): JSX.Element {
   const previewActive = isPreviewDemoActive(
     searchParams?.get(TRAINING_FACILITY_PREVIEW_PARAM),
   )
+  // "Empty" for the Today View means no progress to render — i.e. no
+  // sets logged. Goals on their own are configuration, not progress,
+  // so a freshly-seeded DB with `pushups` + `pullups` goals and zero
+  // sets still counts as empty (mirrors the cardio convention where
+  // `sessions.length === 0` alone triggers the empty branch). Without
+  // this, the seeded goals fool the page into the populated branch and
+  // `?preview=demo` becomes a no-op.
   const realIsEmpty =
-    data !== undefined && (data === null || (data.sets.length === 0 && data.goals.length === 0))
+    data !== undefined && (data === null || data.sets.length === 0)
   const isPreviewMode = realIsEmpty && previewActive
   const showEmptyStateCta = realIsEmpty && !previewActive
 
@@ -121,10 +151,15 @@ export function TodayDataIsland(): JSX.Element {
   }
 
   // Real-empty + no preview: show the CTA only. Once a real set lands
-  // the page reroutes to the populated branch on next refetch.
+  // the page reroutes to the populated branch on next refetch. The
+  // mount-time fetch error case also lands here (data === null and
+  // sets.length === 0 are equivalent here); the inline error banner
+  // tells the user the underlying state is "we couldn't read" not "no
+  // data exists yet."
   if (showEmptyStateCta) {
     return (
       <div className="space-y-6">
+        {loadError ? <LoadErrorBanner message={loadError} /> : null}
         <PreviewWithSampleDataButton
           href={`${pathname}?${TRAINING_FACILITY_PREVIEW_PARAM}=${TRAINING_FACILITY_PREVIEW_VALUE}`}
           headline="No strength work logged yet"
@@ -163,6 +198,7 @@ export function TodayDataIsland(): JSX.Element {
 
   return (
     <div className="flex flex-col gap-8">
+      {loadError ? <LoadErrorBanner message={loadError} /> : null}
       {isPreviewMode ? (
         <PreviewModeBadge description="These rings are illustrative — not Lucas’s real strength logs." />
       ) : null}
@@ -300,4 +336,21 @@ function computeLastRepsByExercise(
     out[s.exercise] = s.reps
   }
   return out
+}
+
+/**
+ * Inline banner that surfaces a load / refetch failure above the
+ * existing UI. Distinct from the empty-state CTA so the user can tell
+ * "we couldn't read" apart from "no data yet."
+ */
+function LoadErrorBanner({ message }: { message: string }): JSX.Element {
+  return (
+    <p
+      role="alert"
+      data-testid="today-load-error"
+      className="rounded-2xl border border-rose-400/30 bg-rose-950/40 px-4 py-3 font-mono text-[12px] text-rose-200"
+    >
+      {message}
+    </p>
+  )
 }

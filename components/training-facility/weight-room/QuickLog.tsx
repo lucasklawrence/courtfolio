@@ -106,7 +106,13 @@ export function QuickLog({
             key={goal.exercise}
             goal={goal}
             lastReps={lastReps[goal.exercise]}
-            disabled={busy || (pendingExercise !== null && pendingExercise !== goal.exercise)}
+            // Disable every row's chips while any request is in flight,
+            // including the row that fired it — without this lock, a
+            // second tap on the pending row before the POST returns
+            // races into a second concurrent write. The visual ring
+            // highlight (`pending`) still distinguishes which row is
+            // resolving; the disable is just functional.
+            disabled={busy || pendingExercise !== null}
             pending={pendingExercise === goal.exercise}
             onLog={handleLog}
           />
@@ -200,33 +206,36 @@ function QuickLogRow({
           Custom
         </button>
       </div>
-      {customOpen ? (
-        <form
-          id={customInputId}
-          onSubmit={handleCustomSubmit}
-          className="mt-3 flex flex-wrap items-center gap-2"
+      {/* Form stays mounted so the Custom button's `aria-controls` always
+          points to a real element. Toggling `hidden` removes it from the
+          accessibility tree and the visual layout when closed; auto-focus
+          fires only when opening (it's a no-op when the input is hidden). */}
+      <form
+        id={customInputId}
+        onSubmit={handleCustomSubmit}
+        hidden={!customOpen}
+        className="mt-3 flex flex-wrap items-center gap-2"
+      >
+        <label className="flex items-center gap-2 text-[12px] text-white/70">
+          <span className="font-mono uppercase tracking-[0.18em]">reps</span>
+          <input
+            type="number"
+            min={1}
+            inputMode="numeric"
+            value={customValue}
+            onChange={(e) => setCustomValue(e.target.value)}
+            autoFocus={customOpen}
+            className="w-24 rounded border border-white/15 bg-black/40 px-2 py-1.5 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={disabled || customValue === ''}
+          className="min-h-[40px] rounded-full border border-amber-200/30 bg-amber-200/10 px-4 font-mono text-[11px] uppercase tracking-[0.22em] text-amber-100 transition hover:bg-amber-200/20 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          <label className="flex items-center gap-2 text-[12px] text-white/70">
-            <span className="font-mono uppercase tracking-[0.18em]">reps</span>
-            <input
-              type="number"
-              min={1}
-              inputMode="numeric"
-              value={customValue}
-              onChange={(e) => setCustomValue(e.target.value)}
-              autoFocus
-              className="w-24 rounded border border-white/15 bg-black/40 px-2 py-1.5 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
-            />
-          </label>
-          <button
-            type="submit"
-            disabled={disabled || customValue === ''}
-            className="min-h-[40px] rounded-full border border-amber-200/30 bg-amber-200/10 px-4 font-mono text-[11px] uppercase tracking-[0.22em] text-amber-100 transition hover:bg-amber-200/20 disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            Log
-          </button>
-        </form>
-      ) : null}
+          Log
+        </button>
+      </form>
     </li>
   )
 }

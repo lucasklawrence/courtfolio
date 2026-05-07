@@ -104,4 +104,34 @@ describe('QuickLog', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Custom' }))
     expect(screen.getByLabelText(/reps/i)).toHaveValue(25)
   })
+
+  it('locks the pending row while a log is in flight', async () => {
+    // CodeRabbit flagged that the pending row's own buttons stayed
+    // enabled, allowing concurrent double-submits on the same exercise.
+    let resolveLog: (() => void) | null = null
+    const onLog = vi.fn().mockImplementation(
+      () =>
+        new Promise<void>((resolve) => {
+          resolveLog = resolve
+        }),
+    )
+    render(<QuickLog goals={[PUSHUPS]} onLog={onLog} />)
+    await userEvent.click(screen.getByTestId('quick-log-pushups-10'))
+    // While the first POST is in flight, the +5 button on the same row
+    // must be disabled too — not just other rows'.
+    expect(screen.getByTestId('quick-log-pushups-5')).toBeDisabled()
+    expect(screen.getByTestId('quick-log-pushups-10')).toBeDisabled()
+    resolveLog?.()
+  })
+
+  it('keeps the Custom form mounted so aria-controls always resolves', () => {
+    render(<QuickLog goals={[PUSHUPS]} onLog={vi.fn()} />)
+    const customButton = screen.getByRole('button', { name: 'Custom' })
+    const controls = customButton.getAttribute('aria-controls')
+    expect(controls).toBeTruthy()
+    // The form is in the DOM regardless of the open/closed state, so the
+    // aria-controls reference resolves to a real node — Codex flagged
+    // the prior conditional render as an ARIA-compliance issue.
+    expect(document.getElementById(controls as string)).not.toBeNull()
+  })
 })

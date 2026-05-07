@@ -93,4 +93,42 @@ describe('SetList', () => {
     await userEvent.click(screen.getByRole('button', { name: /delete/i }))
     expect(await screen.findByRole('alert')).toHaveTextContent(/boom/)
   })
+
+  it('renders per-exercise running total / goal readout above the rows', () => {
+    // Issue #80: "Shows running total vs. goal per exercise". CodeRabbit
+    // flagged the missing readout in review.
+    render(
+      <SetList
+        setsToday={[
+          set({ id: 'a', exercise: 'pushups', reps: 25 }),
+          set({ id: 'b', exercise: 'pushups', reps: 30 }),
+          set({ id: 'c', exercise: 'pullups', reps: 10 }),
+        ]}
+        goalsByExercise={{
+          pushups: PUSHUPS,
+          pullups: { exercise: 'pullups', daily_target: 30, color: '#0EA5A1' },
+        }}
+      />,
+    )
+    const totals = screen.getByTestId('set-list-totals')
+    expect(totals).toHaveTextContent('pushups')
+    expect(totals).toHaveTextContent('55')
+    expect(totals).toHaveTextContent('/ 100')
+    expect(totals).toHaveTextContent('pullups')
+    expect(totals).toHaveTextContent('10')
+    expect(totals).toHaveTextContent('/ 30')
+  })
+
+  it('omits the goal denominator when the exercise has no configured goal', () => {
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'dips', reps: 12 })]}
+        goalsByExercise={{}}
+      />,
+    )
+    const total = screen.getByTestId('set-list-total-dips')
+    expect(total).toHaveTextContent('dips')
+    expect(total).toHaveTextContent('12')
+    expect(total).not.toHaveTextContent('/')
+  })
 })

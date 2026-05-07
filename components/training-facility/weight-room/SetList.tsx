@@ -83,6 +83,15 @@ export function SetList({
   // Most-recent-first for the visible list. Don't mutate the prop.
   const ordered = [...setsToday].reverse()
 
+  // Per-exercise running totals for the goal-progress readout above the
+  // set rows (issue #80: "Shows running total vs. goal per exercise").
+  // Walk the input array (oldest → newest) once; the list itself
+  // displays newest-first via `ordered`.
+  const totals = new Map<string, number>()
+  for (const s of setsToday) {
+    totals.set(s.exercise, (totals.get(s.exercise) ?? 0) + s.reps)
+  }
+
   return (
     <section aria-label="Today’s sets" className="space-y-2" data-testid="set-list">
       <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
@@ -95,6 +104,45 @@ export function SetList({
         >
           {error}
         </p>
+      ) : null}
+      {totals.size > 0 ? (
+        <div
+          data-testid="set-list-totals"
+          className="flex flex-wrap gap-3 rounded-2xl border border-white/10 bg-white/5 p-3"
+        >
+          {Array.from(totals.entries()).map(([exercise, total]) => {
+            const goal = goalsByExercise[exercise]
+            const color = goal?.color ?? '#fbbf24'
+            const target = goal?.daily_target
+            return (
+              <span
+                key={exercise}
+                data-testid={`set-list-total-${exercise}`}
+                className="flex items-baseline gap-2 font-mono"
+              >
+                <span
+                  aria-hidden="true"
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: color }}
+                />
+                <span
+                  className="text-[10px] font-semibold uppercase tracking-[0.18em]"
+                  style={{ color }}
+                >
+                  {exercise}
+                </span>
+                <span className="text-sm font-semibold tabular-nums text-white">
+                  {total}
+                </span>
+                {target ? (
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-white/50">
+                    / {target}
+                  </span>
+                ) : null}
+              </span>
+            )
+          })}
+        </div>
       ) : null}
       <ul className="divide-y divide-white/5 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
         {ordered.map((s) => {
