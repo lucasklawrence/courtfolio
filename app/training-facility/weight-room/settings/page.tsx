@@ -5,10 +5,9 @@ import { notFound } from 'next/navigation'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { StrengthSettings } from '@/components/training-facility/weight-room/StrengthSettings'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
-import { isAdminEmail } from '@/lib/auth/admin-allowlist'
+import { requireAdminPage } from '@/lib/auth/require-admin-page'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
-import { createServerSupabaseClient } from '@/lib/supabase/server'
 
 /**
  * Weight Room settings page (#79). Admin-only — non-admins get a 404
@@ -27,15 +26,7 @@ import { createServerSupabaseClient } from '@/lib/supabase/server'
  */
 export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
   if (!isTrainingFacilityEnabled()) notFound()
-
-  // Server-side admin gate. Mirrors `requireAdmin` from the API routes
-  // but routes a hard 404 instead of a JSON error — pages don't have a
-  // status-code response model the same way handlers do.
-  const supabase = await createServerSupabaseClient()
-  const { data: userRes } = await supabase.auth.getUser()
-  if (!isAdminEmail(userRes?.user?.email)) {
-    notFound()
-  }
+  await requireAdminPage()
 
   // Catch transient read errors so a flaky Supabase response surfaces
   // as an empty editor instead of 500ing the whole page. The Settings
