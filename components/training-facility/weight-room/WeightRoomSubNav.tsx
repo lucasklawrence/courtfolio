@@ -51,7 +51,8 @@ const ITEMS: readonly SubNavItem[] = [
  * Visual: cream-on-amber for the active pill (matches the existing
  * "View all cardio →" CTA on the Gym page), quiet white-on-translucent
  * for inactive pills. Uses Next `<Link>` so navigation is client-side
- * and prefetched.
+ * and prefetched — no `react-router-dom` despite the original issue
+ * spec; the App Router gives the same UX without a new dependency.
  *
  * The `aria-current="page"` on the active pill announces section
  * identity to screen readers; sighted users see the same intent via
