@@ -108,6 +108,10 @@ describe('QuickLog', () => {
   it('locks the pending row while a log is in flight', async () => {
     // CodeRabbit flagged that the pending row's own buttons stayed
     // enabled, allowing concurrent double-submits on the same exercise.
+    // `let resolveLog: ...` widened with an explicit cast on the call
+    // site — TS strict mode doesn't track Promise-executor assignments
+    // through control flow, so the eventual `resolveLog?.()` would
+    // narrow to `never` without the cast.
     let resolveLog: (() => void) | null = null
     const onLog = vi.fn().mockImplementation(
       () =>
@@ -121,7 +125,7 @@ describe('QuickLog', () => {
     // must be disabled too — not just other rows'.
     expect(screen.getByTestId('quick-log-pushups-5')).toBeDisabled()
     expect(screen.getByTestId('quick-log-pushups-10')).toBeDisabled()
-    resolveLog?.()
+    ;(resolveLog as (() => void) | null)?.()
   })
 
   it('keeps the Custom form mounted so aria-controls always resolves', () => {
