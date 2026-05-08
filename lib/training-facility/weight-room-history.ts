@@ -168,19 +168,19 @@ export function buildStrengthHeatmap(
   }
 
   // Lookup: local-date key → { reps, setCount } for the matching exercise.
+  // Read-modify-write the same shape regardless of hit/miss so the
+  // accumulation reads symmetrically; the trailing `lookup.set` is a
+  // no-op on a hit because we mutate the same object reference.
   const lookup = new Map<string, { reps: number; setCount: number }>()
   for (const s of sets) {
     if (s.exercise !== goal.exercise) continue
     const d = new Date(s.logged_at)
     if (!Number.isFinite(d.getTime())) continue
     const key = toDateKey(d)
-    const entry = lookup.get(key)
-    if (entry) {
-      entry.reps += s.reps
-      entry.setCount += 1
-    } else {
-      lookup.set(key, { reps: s.reps, setCount: 1 })
-    }
+    const entry = lookup.get(key) ?? { reps: 0, setCount: 0 }
+    entry.reps += s.reps
+    entry.setCount += 1
+    lookup.set(key, entry)
   }
 
   // Belt-and-suspenders: the schema (`WeightRoomGoalRowSchema`) already
@@ -240,8 +240,6 @@ export function computeStrengthStreaks(
   goal: ExerciseGoal,
   now: Date = new Date(),
 ): { current: number; longest: number } {
-  // Belt-and-suspenders — same reason as in `buildStrengthHeatmap`.
-  const target = Math.max(1, goal.daily_target)
   const dailyReps = new Map<string, number>()
   for (const s of sets) {
     if (s.exercise !== goal.exercise) continue
@@ -250,6 +248,30 @@ export function computeStrengthStreaks(
     const key = toDateKey(d)
     dailyReps.set(key, (dailyReps.get(key) ?? 0) + s.reps)
   }
+  return streakFromDailyReps(dailyReps, goal.daily_target, now)
+}
+
+/**
+ * Streak computation off an already-built `day-key → reps` map. Shared
+ * between {@link computeStrengthStreaks} (which builds the map from
+ * `sets`) and {@link computeStrengthStats} (which builds it inline as
+ * part of its single-pass aggregation). Pulling this out is what lets
+ * the stats path avoid a second traversal of `sets` per goal.
+ *
+ * @param dailyReps Reps summed per local-date key.
+ * @param dailyTarget The exercise's `daily_target`. Clamped to a
+ *   minimum of `1` so a 0/negative slip-through (the schema enforces
+ *   `> 0` so it shouldn't happen) doesn't invert the hit-day predicate.
+ * @param now Anchor for the current/yesterday rolling-day grace
+ *   period.
+ */
+function streakFromDailyReps(
+  dailyReps: ReadonlyMap<string, number>,
+  dailyTarget: number,
+  now: Date,
+): { current: number; longest: number } {
+  // Belt-and-suspenders — same reason as in `buildStrengthHeatmap`.
+  const target = Math.max(1, dailyTarget)
 
   const hitDays: string[] = []
   for (const [key, reps] of dailyReps) {
@@ -289,29 +311,6 @@ export function computeStrengthStreaks(
 }
 
 /**
- * Sum reps for one exercise across an inclusive local-date window.
- * Both bounds are date-only — the function compares against each set's
- * local calendar day, so passing `[Apr 1, Apr 7]` totals everything
- * logged on Mon–Sun of that week regardless of the time of day.
- */
-function sumRepsInRange(
-  sets: readonly StrengthSet[],
-  exercise: string,
-  fromKey: string,
-  toKey: string,
-): number {
-  let total = 0
-  for (const s of sets) {
-    if (s.exercise !== exercise) continue
-    const d = new Date(s.logged_at)
-    if (!Number.isFinite(d.getTime())) continue
-    const key = toDateKey(d)
-    if (key >= fromKey && key <= toKey) total += s.reps
-  }
-  return total
-}
-
-/**
  * Compute every per-exercise rollup the History stats panel needs:
  * streaks, this/last week reps, this/last month reps, average sets per
  * active day, and all-time reps. One {@link StrengthExerciseStats}
@@ -322,6 +321,12 @@ function sumRepsInRange(
  * sets per active day" divides total sets by the number of distinct
  * days the exercise was performed — a day with multiple sets counts
  * once in the denominator.
+ *
+ * Implementation: a single pass over `sets` per goal fills every
+ * rollup inline. The previous version did ~7 passes per goal (filter +
+ * active-day loop + a separate `computeStrengthStreaks` call that
+ * re-walked the array + four `sumRepsInRange` calls), which the #184
+ * follow-up flagged. Same observable behavior at a tighter cost.
  *
  * @param sets every logged set across all exercises.
  * @param goals the configured exercises; one stats entry per goal.
@@ -346,30 +351,49 @@ export function computeStrengthStats(
   const lastMonthEnd = toDateKey(new Date(now.getFullYear(), now.getMonth(), 0))
 
   return goals.map((goal) => {
-    const matching = sets.filter((s) => s.exercise === goal.exercise)
-    const activeDays = new Set<string>()
+    const dailyReps = new Map<string, number>()
     let allTimeReps = 0
     let validSetCount = 0
-    for (const s of matching) {
+    let thisWeekReps = 0
+    let lastWeekReps = 0
+    let thisMonthReps = 0
+    let lastMonthReps = 0
+
+    for (const s of sets) {
+      if (s.exercise !== goal.exercise) continue
       const d = new Date(s.logged_at)
       if (!Number.isFinite(d.getTime())) continue
-      activeDays.add(toDateKey(d))
+      const key = toDateKey(d)
+
+      // All-time + active-day rollups.
+      dailyReps.set(key, (dailyReps.get(key) ?? 0) + s.reps)
       allTimeReps += s.reps
       validSetCount += 1
-    }
-    const avgSetsPerActiveDay = activeDays.size === 0 ? 0 : validSetCount / activeDays.size
 
-    const streak = computeStrengthStreaks(sets, goal, now)
+      // Period buckets — string-compare against pre-computed boundary
+      // keys. Each set falls into at most one week bucket and at most
+      // one month bucket, but a day can be in both (e.g. Mon Apr 1 is
+      // both "thisWeek" and "thisMonth"), so check independently.
+      if (key >= thisWeekStart && key <= thisWeekEnd) thisWeekReps += s.reps
+      else if (key >= lastWeekStart && key <= lastWeekEnd) lastWeekReps += s.reps
+
+      if (key >= thisMonthStart && key <= thisMonthEnd) thisMonthReps += s.reps
+      else if (key >= lastMonthStart && key <= lastMonthEnd) lastMonthReps += s.reps
+    }
+
+    const avgSetsPerActiveDay = dailyReps.size === 0 ? 0 : validSetCount / dailyReps.size
+    const streak = streakFromDailyReps(dailyReps, goal.daily_target, now)
+
     return {
       exercise: goal.exercise,
       color: goal.color,
       dailyTarget: goal.daily_target,
       currentStreak: streak.current,
       longestStreak: streak.longest,
-      thisWeekReps: sumRepsInRange(sets, goal.exercise, thisWeekStart, thisWeekEnd),
-      lastWeekReps: sumRepsInRange(sets, goal.exercise, lastWeekStart, lastWeekEnd),
-      thisMonthReps: sumRepsInRange(sets, goal.exercise, thisMonthStart, thisMonthEnd),
-      lastMonthReps: sumRepsInRange(sets, goal.exercise, lastMonthStart, lastMonthEnd),
+      thisWeekReps,
+      lastWeekReps,
+      thisMonthReps,
+      lastMonthReps,
       avgSetsPerActiveDay,
       allTimeReps,
     }
