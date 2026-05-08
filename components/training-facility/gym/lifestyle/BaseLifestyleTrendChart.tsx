@@ -27,7 +27,12 @@ export interface BaseLifestyleTrendChartProps {
   width: number
   /** Pixel height of the SVG. Defaults to 220 to match neighboring cards. */
   height?: number
-  /** Font family for axes / empty-state copy. */
+  /**
+   * Font family for axes / empty-state copy. When omitted, the inner
+   * `RoughLine` SVG inherits the parent's CSS font (Inter at the page
+   * level); pass an explicit value when the call site needs a different
+   * face (e.g. `HANDWRITING_FONT`).
+   */
   fontFamily?: string
   /** Y-axis label drawn on the left margin (units in parens, e.g. `"HRV (ms)"`). */
   yLabel: string
@@ -69,7 +74,12 @@ export interface LifestyleChartProps {
   width: number
   /** Pixel height of the SVG. Defaults to 220 to match neighboring cards. */
   height?: number
-  /** Font family for axes / empty-state copy. */
+  /**
+   * Font family for axes / empty-state copy. When omitted, the inner
+   * `RoughLine` SVG inherits the parent's CSS font (Inter at the page
+   * level via `body`); pass an explicit value when the call site needs
+   * the handwriting accent (`HANDWRITING_FONT`).
+   */
   fontFamily?: string
 }
 
