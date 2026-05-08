@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { TodayDataIsland } from '@/components/training-facility/weight-room/TodayDataIsland'
+import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
@@ -16,10 +17,9 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * empty-state preview affordance and `getWeightRoomData()` reads
  * Supabase via the browser client.
  *
- * Slice #82 will wire the Weight Room door on the Training Facility
- * scene + cross-view nav (Today ↔ History ↔ Settings); until then,
- * this page is reachable via direct URL and the existing settings
- * link in the header.
+ * Cross-view nav between Today / History / Settings lives in the
+ * shared {@link WeightRoomSubNav} pill row beneath the header — added
+ * by slice #82.
  */
 export default function TrainingFacilityWeightRoomPage(): JSX.Element {
   if (!isTrainingFacilityEnabled()) notFound()
@@ -53,14 +53,7 @@ export default function TrainingFacilityWeightRoomPage(): JSX.Element {
             Grease-the-groove pushups and pullups. The rings track today’s
             progress against the daily targets; tap a chip to log a set.
           </p>
-          <div className="mt-4 flex flex-wrap gap-3 sm:justify-start">
-            <Link
-              href="/training-facility/weight-room/settings"
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
-            >
-              Settings →
-            </Link>
-          </div>
+          <WeightRoomSubNav active="today" className="mt-5 justify-center sm:justify-start" />
         </header>
 
         {/* Suspense required because the island reads `useSearchParams()`
