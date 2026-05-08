@@ -48,11 +48,30 @@ export interface BaseLifestyleTrendChartProps {
  * presentation. Lives next to {@link BaseLifestyleTrendChartProps}
  * (#178 follow-up) so the shared shape isn't keyed off one wrapper's
  * file by historical accident.
+ *
+ * Mirrors the matching fields on {@link BaseLifestyleTrendChartProps}
+ * verbatim — kept as an explicit interface (rather than `Omit<…>`) so
+ * each call-site-facing property keeps its own JSDoc on hover.
  */
-export type LifestyleChartProps = Omit<
-  BaseLifestyleTrendChartProps,
-  'yLabel' | 'yTickFormat' | 'emptyMessage' | 'ariaLabel'
->
+export interface LifestyleChartProps {
+  /**
+   * Daily-trend points for the metric. `undefined` (preprocessor /
+   * Supabase table empty) is treated identically to "no points in
+   * range" — both render the empty-state via {@link RoughLine}'s
+   * `emptyMessage` path.
+   */
+  points: readonly CardioTimePoint[] | undefined
+  /** Inclusive lower bound from the parent's `DateFilter`; omit for "all-time." */
+  dateFrom?: Date | null
+  /** Inclusive upper bound from the parent's `DateFilter`; defaults to no clamp. */
+  dateTo?: Date | null
+  /** Pixel width of the SVG; the parent's `ResizeObserver` drives this. */
+  width: number
+  /** Pixel height of the SVG. Defaults to 220 to match neighboring cards. */
+  height?: number
+  /** Font family for axes / empty-state copy. */
+  fontFamily?: string
+}
 
 const DEFAULT_HEIGHT = 220
 

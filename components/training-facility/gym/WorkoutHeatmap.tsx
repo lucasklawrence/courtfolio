@@ -119,6 +119,10 @@ export function WorkoutHeatmap({
   const cellInner = computedCellSize - cellGap
   const gridWidth = cols * computedCellSize
   const gridHeight = 7 * computedCellSize
+  // "Less" + 4 swatches separated by `computedCellSize + 1` + "More" — derive
+  // from the same cell metrics as the legend itself so the legend doesn't
+  // overflow the SVG when `computedCellSize` scales up to MAX_CELL_SIZE.
+  const legendWidth = 32 + 4 * (computedCellSize + 1) + 4 + 28
   const totalWidth = DAY_LABEL_WIDTH + gridWidth
   const totalHeight = MONTH_LABEL_HEIGHT + gridHeight + 18 // +18 for the legend strip
 
@@ -187,7 +191,7 @@ export function WorkoutHeatmap({
 
       {/* Legend strip — "Less" + 4 swatches + "More" */}
       <g
-        transform={`translate(${DAY_LABEL_WIDTH + gridWidth - 140}, ${MONTH_LABEL_HEIGHT + gridHeight + 14})`}
+        transform={`translate(${DAY_LABEL_WIDTH + gridWidth - legendWidth}, ${MONTH_LABEL_HEIGHT + gridHeight + 14})`}
       >
         <text x={0} y={0} fontSize={10} fill={chartPalette.inkSoft}>
           Less

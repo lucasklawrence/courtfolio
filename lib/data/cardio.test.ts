@@ -46,6 +46,33 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 
+/** Local alias used by the LIFESTYLE_TABLES literal; mirrors `CardioData` for type-only context. */
+type CardioDataLike = {
+  hrv_trend?: unknown
+  walking_hr_trend?: unknown
+  body_mass_trend?: unknown
+  step_count_trend?: unknown
+  sleep_trend?: unknown
+  active_energy_trend?: unknown
+}
+
+/**
+ * Lifestyle-metric trend coverage (#75 slice C-data). Six tables that
+ * follow the same `(date, value)` shape as `cardio_resting_hr`. They land
+ * on `CardioData` as optional arrays — present when the table has rows,
+ * omitted when empty so detail views that don't consume them keep their
+ * pre-#75 observable behavior. Hoisted to module scope so both the
+ * failure-loop and the population assertions reference the same source.
+ */
+const LIFESTYLE_TABLES: ReadonlyArray<[keyof CardioDataLike, string]> = [
+  ['hrv_trend', 'cardio_hrv_trend'],
+  ['walking_hr_trend', 'cardio_walking_hr_trend'],
+  ['body_mass_trend', 'cardio_body_mass_trend'],
+  ['step_count_trend', 'cardio_step_count_trend'],
+  ['sleep_trend', 'cardio_sleep_trend'],
+  ['active_energy_trend', 'cardio_active_energy_trend'],
+]
+
 /**
  * Pre-stub a query result for one of the three cardio tables.
  *
@@ -244,14 +271,7 @@ describe('getCardioData', () => {
   // Mirror the resting-HR / VO2max coverage above so a Supabase RLS or
   // connectivity issue on any one of the six lifestyle tables surfaces
   // as a thrown error rather than silently rendering empty charts.
-  for (const table of [
-    'cardio_hrv_trend',
-    'cardio_walking_hr_trend',
-    'cardio_body_mass_trend',
-    'cardio_step_count_trend',
-    'cardio_sleep_trend',
-    'cardio_active_energy_trend',
-  ] as const) {
+  for (const [, table] of LIFESTYLE_TABLES) {
     it(`throws a descriptive error when the ${table} query fails`, async () => {
       stubTable('cardio_sessions', [])
       stubTable('cardio_resting_hr', [])
@@ -287,22 +307,6 @@ describe('getCardioData', () => {
     stubTable('cardio_vo2max', [])
     await expect(getCardioData()).rejects.toThrow(/cardio_sessions failed schema validation/)
   })
-
-  /**
-   * Lifestyle-metric trend coverage (#75 slice C-data). Six new tables
-   * follow the same `(date, value)` shape as `cardio_resting_hr`. They
-   * land on `CardioData` as optional arrays — present when the table has
-   * rows, omitted when it's empty so detail views that don't consume
-   * them keep their pre-#75 observable behavior.
-   */
-  const LIFESTYLE_TABLES: ReadonlyArray<[keyof CardioDataLike, string]> = [
-    ['hrv_trend', 'cardio_hrv_trend'],
-    ['walking_hr_trend', 'cardio_walking_hr_trend'],
-    ['body_mass_trend', 'cardio_body_mass_trend'],
-    ['step_count_trend', 'cardio_step_count_trend'],
-    ['sleep_trend', 'cardio_sleep_trend'],
-    ['active_energy_trend', 'cardio_active_energy_trend'],
-  ]
 
   it('queries every lifestyle-trend table when assembling the dataset', async () => {
     stubTable('cardio_sessions', [])
@@ -414,13 +418,3 @@ describe('getCardioData', () => {
     await expect(getCardioData()).rejects.toThrow(/cardio_hrv_trend failed schema validation/)
   })
 })
-
-/** Local alias used by the LIFESTYLE_TABLES literal; mirrors `CardioData` for type-only context. */
-type CardioDataLike = {
-  hrv_trend?: unknown
-  walking_hr_trend?: unknown
-  body_mass_trend?: unknown
-  step_count_trend?: unknown
-  sleep_trend?: unknown
-  active_energy_trend?: unknown
-}
