@@ -71,6 +71,15 @@ Loop until convergence, **max 3 iterations**:
 
 If a comment is unclear or you disagree with it, don't silently fix or ignore — stop the loop and ask the user.
 
+**Once the loop converges (or hits the hard cap), before moving to Phase 5:**
+
+1. **File follow-ups for non-blocking suggestions.** Throughout the review loop you'll have noted findings that were real but explicitly *non-blocking* — style nits, deferred refactors, "nice to have" coverage gaps, future-considered cleanups. File ONE GitHub issue collecting them all under a single tracking item so they're not carried in your head or buried in the merged PR's review thread.
+
+   - Title: `chore: non-blocking follow-ups from #<pr> (<short PR scope>)`
+   - Body: a markdown checklist with each suggestion as its own item; include enough context (file paths, what to change, why) that someone picking it up later doesn't have to re-read the PR. End with `Refs #<pr>` and any related umbrella issue.
+   - Labels: existing repo conventions where they fit (e.g., `enhancement`, `chore`, the relevant area label); skip labels you're not sure about.
+   - **Skip the issue entirely** when there are genuinely zero non-blocking findings — don't file an empty tracking issue just to have one. Briefly note "no follow-ups" in the hand-off comment instead.
+
 ## Phase 5 — Hand off (the only user-pause besides Phase 1)
 
 This is the user's spot-check moment. Everything else is autonomous.
