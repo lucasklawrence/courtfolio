@@ -23,6 +23,19 @@ import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 const HEX_COLOR_REGEX = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/
 
 /**
+ * Positive-integer Zod check. Inlined as a `.refine` rather than
+ * chaining `.int().positive()` because Turbopack's dev-mode bundler
+ * mis-transpiles `z.number().int()` when this module is pulled into a
+ * client bundle (the Today View's data island in #80 hit this) — the
+ * compiled output references a bare `int` identifier that doesn't
+ * exist. The runtime behavior matches `.int().positive()` precisely.
+ */
+const positiveInt = (): z.ZodType<number> =>
+  z
+    .number()
+    .refine((n) => Number.isInteger(n) && n > 0, 'must be a positive integer')
+
+/**
  * Zod schema for one row of `public.weight_room_sets`. Mirrors the
  * table definition in
  * `supabase/migrations/20260507120000_weight_room_tables.sql`.
@@ -36,7 +49,7 @@ export const WeightRoomSetRowSchema = z
     id: z.string().uuid(),
     logged_at: z.string().min(1, 'logged_at must be an ISO timestamp'),
     exercise: z.string().min(1),
-    reps: z.number().int().positive(),
+    reps: positiveInt(),
   })
   .strict()
 
@@ -51,7 +64,7 @@ export type WeightRoomSetRow = z.infer<typeof WeightRoomSetRowSchema>
 export const WeightRoomGoalRowSchema = z
   .object({
     exercise: z.string().min(1),
-    daily_target: z.number().int().positive(),
+    daily_target: positiveInt(),
     color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C'),
   })
   .strict()
@@ -68,7 +81,7 @@ export type WeightRoomGoalRow = z.infer<typeof WeightRoomGoalRowSchema>
 export const WeightRoomSetCreateSchema = z
   .object({
     exercise: z.string().min(1),
-    reps: z.number().int().positive(),
+    reps: positiveInt(),
     logged_at: z.string().min(1).optional(),
   })
   .strict()
