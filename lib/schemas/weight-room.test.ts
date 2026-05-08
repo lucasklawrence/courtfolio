@@ -52,6 +52,25 @@ describe('WeightRoomGoalUpsertSchema (write body)', () => {
     expect(parsed.exercise).toBe('pushups')
   })
 
+  it('trims surrounding whitespace before lowercasing', () => {
+    const parsed = WeightRoomGoalUpsertSchema.parse({
+      exercise: '  Pushups  ',
+      daily_target: 100,
+      color: '#EA580C',
+    })
+    expect(parsed.exercise).toBe('pushups')
+  })
+
+  it('rejects whitespace-only exercise input post-trim', () => {
+    expect(() =>
+      WeightRoomGoalUpsertSchema.parse({
+        exercise: '   ',
+        daily_target: 100,
+        color: '#EA580C',
+      }),
+    ).toThrow()
+  })
+
   it('rejects unknown fields via .strict()', () => {
     expect(() =>
       WeightRoomGoalUpsertSchema.parse({

@@ -53,7 +53,8 @@ const positiveInt = (): z.ZodType<number> =>
 const exerciseWriteField = () =>
   z
     .string()
-    .min(1)
+    .trim()
+    .min(1, 'exercise must be non-empty')
     .transform((s) => s.toLowerCase())
 
 /**
