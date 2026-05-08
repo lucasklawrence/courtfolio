@@ -1,10 +1,14 @@
 {
   "permissions": {
     "allow": [
+      "Bash(gh api repos/lucasklawrence/courtfolio/compare/*)",
+      "Bash(gh api repos/lucasklawrence/courtfolio/contents/*)",
+      "Bash(gh api repos/lucasklawrence/courtfolio/git/refs*)",
       "Bash(gh api repos/lucasklawrence/courtfolio/issues/*/comments)",
       "Bash(gh api repos/lucasklawrence/courtfolio/issues/*/comments --jq*)",
       "Bash(gh api repos/lucasklawrence/courtfolio/pulls/*/comments)",
       "Bash(gh api repos/lucasklawrence/courtfolio/pulls/*/comments --jq*)",
+      "Bash(gh api repos/lucasklawrence/courtfolio/pulls/*/comments/*/replies*)",
       "Bash(gh issue close*)",
       "Bash(gh issue comment*)",
       "Bash(gh issue list*)",
@@ -36,7 +40,9 @@
       "Bash(git stash*)",
       "Bash(git status*)",
       "Bash(jq *)",
+      "Bash(mkdir -p*)",
       "Bash(netstat*)",
+      "Bash(npm install --no-audit --no-fund*)",
       "Bash(npm run build)",
       "Bash(npm run dev*)",
       "Bash(npm run import-health*)",
