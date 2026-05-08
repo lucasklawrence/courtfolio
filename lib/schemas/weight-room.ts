@@ -36,6 +36,22 @@ const positiveInt = (): z.ZodType<number> =>
     .refine((n) => Number.isInteger(n) && n > 0, 'must be a positive integer')
 
 /**
+ * Canonical `exercise` field — non-empty string, lowercased. The
+ * Settings form already lowercases manually before submitting, but a
+ * direct API consumer (or someone hand-issuing curl) could create
+ * case-divergent duplicates (`Pushups` and `pushups` would FK-mismatch
+ * across the goal/set tables). Applied to every schema that carries an
+ * `exercise` field — read schemas included — so the in-memory
+ * representation is always lowercase regardless of how a row was
+ * inserted (#181).
+ */
+const exerciseField = () =>
+  z
+    .string()
+    .min(1)
+    .transform((s) => s.toLowerCase())
+
+/**
  * Zod schema for one row of `public.weight_room_sets`. Mirrors the
  * table definition in
  * `supabase/migrations/20260507120000_weight_room_tables.sql`.
@@ -48,7 +64,7 @@ export const WeightRoomSetRowSchema = z
   .object({
     id: z.string().uuid(),
     logged_at: z.string().min(1, 'logged_at must be an ISO timestamp'),
-    exercise: z.string().min(1),
+    exercise: exerciseField(),
     reps: positiveInt(),
   })
   .strict()
@@ -63,7 +79,7 @@ export type WeightRoomSetRow = z.infer<typeof WeightRoomSetRowSchema>
  */
 export const WeightRoomGoalRowSchema = z
   .object({
-    exercise: z.string().min(1),
+    exercise: exerciseField(),
     daily_target: positiveInt(),
     color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C'),
   })
@@ -80,7 +96,7 @@ export type WeightRoomGoalRow = z.infer<typeof WeightRoomGoalRowSchema>
  */
 export const WeightRoomSetCreateSchema = z
   .object({
-    exercise: z.string().min(1),
+    exercise: exerciseField(),
     reps: positiveInt(),
     logged_at: z.string().min(1).optional(),
   })

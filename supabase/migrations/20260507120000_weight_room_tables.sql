@@ -17,6 +17,11 @@
 --
 -- All DDL is idempotent so re-applying on a fresh dev project (or after
 -- a branch reset) is a safe no-op.
+--
+-- `gen_random_uuid()` (used as the default for weight_room_sets.id) is a
+-- Postgres 13+ built-in — no `pgcrypto` extension needed on Supabase,
+-- which ships PG 15+. Documented here so a future reader doesn't
+-- second-guess and add a redundant `create extension pgcrypto;`.
 
 create table if not exists public.weight_room_goals (
   exercise text primary key,
