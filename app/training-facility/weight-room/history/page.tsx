@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
 import { StrengthStats } from '@/components/training-facility/weight-room/StrengthStats'
+import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 import { computeStrengthStats } from '@/lib/training-facility/weight-room-history'
@@ -70,6 +71,7 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
             day&rsquo;s breakdown. Stats below summarize the current
             week, month, and all-time totals.
           </p>
+          <WeightRoomSubNav active="history" className="mt-5" />
         </header>
 
         {goals.length === 0 ? (

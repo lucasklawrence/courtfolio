@@ -108,11 +108,13 @@ describe('QuickLog', () => {
   it('locks the pending row while a log is in flight', async () => {
     // CodeRabbit flagged that the pending row's own buttons stayed
     // enabled, allowing concurrent double-submits on the same exercise.
-    let resolveLog: (() => void) | null = null
+    // Hold the resolver on an object so TS doesn't narrow the field back
+    // to `null` after the closure assignment.
+    const resolver: { fn: (() => void) | null } = { fn: null }
     const onLog = vi.fn().mockImplementation(
       () =>
         new Promise<void>((resolve) => {
-          resolveLog = resolve
+          resolver.fn = resolve
         }),
     )
     render(<QuickLog goals={[PUSHUPS]} onLog={onLog} />)
@@ -121,7 +123,7 @@ describe('QuickLog', () => {
     // must be disabled too — not just other rows'.
     expect(screen.getByTestId('quick-log-pushups-5')).toBeDisabled()
     expect(screen.getByTestId('quick-log-pushups-10')).toBeDisabled()
-    resolveLog?.()
+    resolver.fn?.()
   })
 
   it('keeps the Custom form mounted so aria-controls always resolves', () => {

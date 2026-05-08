@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { StrengthSettings } from '@/components/training-facility/weight-room/StrengthSettings'
+import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { isAdminEmail } from '@/lib/auth/admin-allowlist'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
@@ -73,6 +74,7 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
             heatmap. Add new exercises here — the rings populate live as
             soon as you log a set.
           </p>
+          <WeightRoomSubNav active="settings" className="mt-5" />
         </header>
 
         <section className="mt-10">

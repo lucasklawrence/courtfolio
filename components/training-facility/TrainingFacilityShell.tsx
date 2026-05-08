@@ -40,8 +40,8 @@ export function TrainingFacilityShell() {
           </h1>
           <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-[#e8d5be] sm:text-lg">
             The Gym carries the cardio side of the project. The Combine holds the
-            movement benchmark work. The Weight Room stays on the roadmap as a later
-            expansion, but the entrance is already reserved here in the space.
+            movement benchmark work. The Weight Room logs the daily grease-the-groove
+            pushup and pullup work.
           </p>
         </div>
 
@@ -65,13 +65,13 @@ export function TrainingFacilityShell() {
             tone="sky"
           />
           <TrainingFacilityDoor
-            eyebrow="Roadmap"
+            eyebrow="Strength wing"
             title="Weight Room"
-            description="Grease-the-groove bodyweight work belongs here later. For now, the room stays blocked off so the Phase 1 shell matches the PRD without opening a dead route."
-            doorwayHint="Coming soon"
-            footer="Reserved for post-v1"
+            href="/training-facility/weight-room"
+            description="Grease-the-groove bodyweight work — pushups and pullups counted across the day, with activity rings, a streak counter, and a goal-percentage heatmap."
+            doorwayHint="Pushups + pullups"
+            footer="Route live now"
             tone="slate"
-            disabled
           />
         </div>
       </div>
