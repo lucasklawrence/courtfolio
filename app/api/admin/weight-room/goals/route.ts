@@ -13,12 +13,14 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { ZodError } from 'zod'
 
 import { requireAdmin } from '@/lib/auth/require-admin'
-import { WeightRoomGoalRowSchema } from '@/lib/schemas/weight-room'
+import { WeightRoomGoalUpsertSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 
 /**
  * Upsert a goal — create-or-replace by `exercise`. Body must conform
- * to {@link WeightRoomGoalRowSchema}.
+ * to {@link WeightRoomGoalUpsertSchema}, which lowercases `exercise` so
+ * `Pushups` and `pushups` collapse onto the same row instead of
+ * creating duplicates.
  *
  * Status codes:
  * - 200 — upserted (response echoes the merged row)
@@ -28,7 +30,7 @@ import { createAdminSupabaseClient } from '@/lib/supabase/admin'
  * - 500 — unexpected Supabase error
  *
  * @param request Incoming JSON request whose body matches
- *   {@link WeightRoomGoalRowSchema}.
+ *   {@link WeightRoomGoalUpsertSchema}.
  * @throws when Supabase env vars are missing (misconfigured deploy).
  *   Domain failures are returned as JSON responses, not thrown.
  */
@@ -45,7 +47,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   let goal
   try {
-    goal = WeightRoomGoalRowSchema.parse(payload)
+    goal = WeightRoomGoalUpsertSchema.parse(payload)
   } catch (err) {
     if (err instanceof ZodError) {
       return NextResponse.json(

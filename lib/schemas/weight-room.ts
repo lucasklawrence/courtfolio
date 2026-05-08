@@ -36,16 +36,21 @@ const positiveInt = (): z.ZodType<number> =>
     .refine((n) => Number.isInteger(n) && n > 0, 'must be a positive integer')
 
 /**
- * Canonical `exercise` field — non-empty string, lowercased. The
- * Settings form already lowercases manually before submitting, but a
- * direct API consumer (or someone hand-issuing curl) could create
- * case-divergent duplicates (`Pushups` and `pushups` would FK-mismatch
- * across the goal/set tables). Applied to every schema that carries an
- * `exercise` field — read schemas included — so the in-memory
- * representation is always lowercase regardless of how a row was
- * inserted (#181).
+ * Write-only `exercise` field — non-empty string, lowercased on parse.
+ * Used by request-body schemas so direct API consumers (curl,
+ * non-Settings clients) can't create case-divergent duplicates that
+ * would FK-mismatch between `weight_room_sets.exercise` and
+ * `weight_room_goals.exercise`.
+ *
+ * Deliberately NOT applied to row-shape (read) schemas: a legacy
+ * mixed-case row (`"Pushups"`) parsed through a read-side transform
+ * would surface in the Settings UI as `"pushups"`, and the next save
+ * would POST that lowercase key — Supabase upserts conflict only on
+ * exact `exercise`, so it would INSERT a duplicate row instead of
+ * UPDATING the original. Read schemas preserve DB casing; writes
+ * canonicalize to lowercase going forward (#181, Codex P1 follow-up).
  */
-const exerciseField = () =>
+const exerciseWriteField = () =>
   z
     .string()
     .min(1)
@@ -64,7 +69,7 @@ export const WeightRoomSetRowSchema = z
   .object({
     id: z.string().uuid(),
     logged_at: z.string().min(1, 'logged_at must be an ISO timestamp'),
-    exercise: exerciseField(),
+    exercise: z.string().min(1),
     reps: positiveInt(),
   })
   .strict()
@@ -73,13 +78,13 @@ export const WeightRoomSetRowSchema = z
 export type WeightRoomSetRow = z.infer<typeof WeightRoomSetRowSchema>
 
 /**
- * Zod schema for one row of `public.weight_room_goals`. Settings UI
- * upserts via `POST /api/admin/weight-room/goals`; the row schema
- * doubles as the request-body validator there.
+ * Zod schema for one row of `public.weight_room_goals` as read from
+ * Supabase. Preserves DB casing exactly — see {@link exerciseWriteField}
+ * for why the lowercase transform is write-side only.
  */
 export const WeightRoomGoalRowSchema = z
   .object({
-    exercise: exerciseField(),
+    exercise: z.string().min(1),
     daily_target: positiveInt(),
     color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C'),
   })
@@ -89,6 +94,23 @@ export const WeightRoomGoalRowSchema = z
 export type WeightRoomGoalRow = z.infer<typeof WeightRoomGoalRowSchema>
 
 /**
+ * Request-body schema for `POST /api/admin/weight-room/goals`. Same
+ * shape as {@link WeightRoomGoalRowSchema} but lowercases `exercise` on
+ * parse so direct API consumers can't create case-divergent duplicates
+ * of an existing row.
+ */
+export const WeightRoomGoalUpsertSchema = z
+  .object({
+    exercise: exerciseWriteField(),
+    daily_target: positiveInt(),
+    color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C'),
+  })
+  .strict()
+
+/** Validated body of `POST /api/admin/weight-room/goals`. */
+export type WeightRoomGoalUpsert = z.infer<typeof WeightRoomGoalUpsertSchema>
+
+/**
  * Request-body schema for `POST /api/admin/weight-room/sets`. Accepts
  * the exercise + reps pair; `logged_at` is optional (the API defaults
  * to `now()` when omitted, matching the Today View's "log this set
@@ -96,7 +118,7 @@ export type WeightRoomGoalRow = z.infer<typeof WeightRoomGoalRowSchema>
  */
 export const WeightRoomSetCreateSchema = z
   .object({
-    exercise: exerciseField(),
+    exercise: exerciseWriteField(),
     reps: positiveInt(),
     logged_at: z.string().min(1).optional(),
   })
