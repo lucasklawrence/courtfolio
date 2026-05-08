@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 
 import { BaseLifestyleTrendChart } from './BaseLifestyleTrendChart'
-import type { LifestyleChartProps } from './HrvTrendChart'
+import type { LifestyleChartProps } from './BaseLifestyleTrendChart'
 
 /**
  * Daily active-energy total, **kilocalories**. Summed from per-burst

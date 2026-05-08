@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 
 import { BaseLifestyleTrendChart } from './BaseLifestyleTrendChart'
-import type { LifestyleChartProps } from './HrvTrendChart'
+import type { LifestyleChartProps } from './BaseLifestyleTrendChart'
 
 /**
  * Sleep daily trend, **hours**. Each block is bucketed by its wake-day at

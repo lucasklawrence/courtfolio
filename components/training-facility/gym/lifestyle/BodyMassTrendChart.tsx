@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 
 import { BaseLifestyleTrendChart } from './BaseLifestyleTrendChart'
-import type { LifestyleChartProps } from './HrvTrendChart'
+import type { LifestyleChartProps } from './BaseLifestyleTrendChart'
 
 /**
  * Body-mass daily trend, **lbs** (Apple Health's `kg` is converted at

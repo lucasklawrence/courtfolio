@@ -11,6 +11,7 @@ import {
   RoughPath,
   RoughRect,
 } from './rough-shapes'
+import { SceneDoor } from './SceneDoor'
 
 /**
  * Subtle indoor-track silhouette curving across the back wall. Stays low
@@ -641,129 +642,19 @@ export function BenchWithTablet() {
 }
 
 /**
- * Back-wall door that opens into The Combine. The full door group is wrapped
- * in a Next.js `<Link>` so the spatial connection between the two sub-areas
- * is real navigation. A `:focus-visible` rim-orange dashed ring gives
- * keyboard users a high-contrast cue beyond the door fill darken on focus.
+ * Back-wall door that opens into The Combine. Both directions of the
+ * cross-link are thin wrappers around the shared {@link SceneDoor}
+ * primitive (#176 follow-up); only the href, sign text, x-offset, and
+ * rough.js seed base differ.
  */
 export function DoorToCombine() {
   return (
-    <Link
+    <SceneDoor
       href="/training-facility/combine"
-      aria-label="Walk through the back door into The Combine"
-      className="group focus:outline-none"
-    >
-      {/* Door frame */}
-      <RoughRect
-        x={1300}
-        y={150}
-        width={200}
-        height={440}
-        fill={SCENE_PALETTE.hardwoodDark}
-        fillStyle="solid"
-        stroke={SCENE_PALETTE.ink}
-        strokeWidth={3}
-        roughness={1.1}
-        seed={210}
-      />
-      {/* Inset door panel */}
-      <RoughRect
-        x={1316}
-        y={170}
-        width={168}
-        height={400}
-        fill={SCENE_PALETTE.hardwoodMid}
-        fillStyle="solid"
-        stroke={SCENE_PALETTE.ink}
-        strokeWidth={2}
-        roughness={1.0}
-        seed={211}
-      />
-      {/* Hover/focus tint as a translucent overlay using the existing classes */}
-      <rect
-        x={1316}
-        y={170}
-        width={168}
-        height={400}
-        fill="#6b3e1a"
-        className="opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
-      />
-      {/* Recessed inner panels */}
-      <RoughRect
-        x={1336}
-        y={194}
-        width={128}
-        height={150}
-        fill="none"
-        stroke={SCENE_PALETTE.ink}
-        strokeWidth={2}
-        roughness={1.0}
-        seed={212}
-      />
-      <RoughRect
-        x={1336}
-        y={364}
-        width={128}
-        height={180}
-        fill="none"
-        stroke={SCENE_PALETTE.ink}
-        strokeWidth={2}
-        roughness={1.0}
-        seed={213}
-      />
-      {/* Door handle */}
-      <RoughCircle cx={1348} cy={380} r={5} fill={SCENE_PALETTE.banner} fillStyle="solid" stroke={SCENE_PALETTE.ink} strokeWidth={1} roughness={0.7} seed={214} />
-      {/* Spotlight underfoot */}
-      <RoughEllipse cx={1400} cy={595} width={240} height={20} fill={SCENE_PALETTE.rim} fillStyle="solid" stroke={SCENE_PALETTE.rim} strokeWidth={0.4} roughness={1.5} seed={215} />
-
-      {/* Focus ring — visible only when the Link is keyboard-focused */}
-      <rect
-        x={1294}
-        y={144}
-        width={212}
-        height={452}
-        fill="none"
-        stroke={SCENE_PALETTE.rim}
-        strokeWidth={4}
-        strokeDasharray="6 4"
-        rx={3}
-        className="opacity-0 transition-opacity group-focus-visible:opacity-100"
-      />
-
-      {/* Sign overhead */}
-      <RoughRect
-        x={1296}
-        y={94}
-        width={208}
-        height={48}
-        fill={SCENE_PALETTE.banner}
-        fillStyle="solid"
-        stroke={SCENE_PALETTE.ink}
-        strokeWidth={2}
-        roughness={1.0}
-        seed={216}
-      />
-      <text
-        x={1400}
-        y={128}
-        textAnchor="middle"
-        fill={SCENE_PALETTE.inkSoft}
-        fontFamily={HANDWRITING_FONT}
-        fontSize={26}
-        fontWeight={700}
-      >
-        → the combine
-      </text>
-      <text
-        x={1400}
-        y={636}
-        textAnchor="middle"
-        fill={SCENE_PALETTE.rimSoft}
-        fontFamily={HANDWRITING_FONT}
-        fontSize={20}
-      >
-        back door
-      </text>
-    </Link>
+      ariaLabel="Walk through the back door into The Combine"
+      signText="→ the combine"
+      x={1300}
+      seedBase={210}
+    />
   )
 }

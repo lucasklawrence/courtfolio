@@ -1,4 +1,6 @@
-import type { JSX } from 'react'
+'use client'
+
+import { useEffect, useRef, useState, type JSX } from 'react'
 
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import {
@@ -18,7 +20,10 @@ export interface WorkoutHeatmapProps {
   dateTo?: Date | null
   /**
    * Pixel width of one cell, including the trailing inter-cell gap; the
-   * grid lays out columns left-to-right at this stride. Defaults to 14.
+   * grid lays out columns left-to-right at this stride. Defaults to 14
+   * but auto-scales upward when the wrapping container is wider than
+   * the natural grid (the `?range=1m` filter case from #176 — was a
+   * 70px grid in an 880px card before this).
    */
   cellSize?: number
   /** Pixel gap between cells. Defaults to 2. */
@@ -37,6 +42,10 @@ const DAY_LABELS = ['Mon', '', 'Wed', '', 'Fri', '', ''] as const
 const DAY_LABEL_WIDTH = 32
 /** Pixel height reserved for the month label row above the grid. */
 const MONTH_LABEL_HEIGHT = 18
+/** Default cell stride, used as the lower bound when auto-scaling. */
+const DEFAULT_CELL_SIZE = 14
+/** Cap on the auto-scaled stride so a 1-week filter doesn't render 200px cells. */
+const MAX_CELL_SIZE = 28
 
 /**
  * Color palette for the four intensity levels. Indexed by the value
@@ -70,20 +79,51 @@ export function WorkoutHeatmap({
   sessions,
   dateFrom,
   dateTo,
-  cellSize = 14,
+  cellSize,
   cellGap = 2,
   fontFamily = 'inherit',
   ariaLabel = 'Workout frequency heatmap',
 }: WorkoutHeatmapProps): JSX.Element {
   const { grid, monthLabels } = buildHeatmapGrid(sessions, dateFrom, dateTo)
   const cols = grid[0]?.length ?? 0
-  const cellInner = cellSize - cellGap
-  const gridWidth = cols * cellSize
-  const gridHeight = 7 * cellSize
+
+  // Measure the wrapper so a short range (e.g. 1-month filter) can scale
+  // its cells up to fill the surrounding card instead of leaving a sea
+  // of empty space. Falls back to `DEFAULT_CELL_SIZE` until the
+  // ResizeObserver fires once (server / first client paint). The
+  // explicit `cellSize` prop, if supplied, overrides auto-scale.
+  // (#176 slice B follow-up.)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const [containerWidth, setContainerWidth] = useState<number | null>(null)
+  useEffect(() => {
+    const el = wrapperRef.current
+    if (!el || typeof ResizeObserver === 'undefined') return
+    const ro = new ResizeObserver((entries) => {
+      const entry = entries[0]
+      if (entry) setContainerWidth(entry.contentRect.width)
+    })
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const computedCellSize =
+    cellSize ?? (containerWidth && cols > 0
+      ? Math.min(
+          MAX_CELL_SIZE,
+          Math.max(
+            DEFAULT_CELL_SIZE,
+            Math.floor((containerWidth - DAY_LABEL_WIDTH) / cols),
+          ),
+        )
+      : DEFAULT_CELL_SIZE)
+  const cellInner = computedCellSize - cellGap
+  const gridWidth = cols * computedCellSize
+  const gridHeight = 7 * computedCellSize
   const totalWidth = DAY_LABEL_WIDTH + gridWidth
   const totalHeight = MONTH_LABEL_HEIGHT + gridHeight + 18 // +18 for the legend strip
 
   return (
+    <div ref={wrapperRef}>
     <svg
       viewBox={`0 0 ${totalWidth} ${totalHeight}`}
       width={totalWidth}
@@ -97,7 +137,7 @@ export function WorkoutHeatmap({
         {monthLabels.map((m) => (
           <text
             key={`month-${m.col}-${m.label}`}
-            x={m.col * cellSize}
+            x={m.col * computedCellSize}
             y={0}
             fontSize={11}
             fill={chartPalette.inkSoft}
@@ -114,7 +154,7 @@ export function WorkoutHeatmap({
             <text
               key={`day-${row}`}
               x={DAY_LABEL_WIDTH - 6}
-              y={row * cellSize + cellSize / 2 + 3}
+              y={row * computedCellSize + computedCellSize / 2 + 3}
               textAnchor="end"
               fontSize={10}
               fill={chartPalette.inkSoft}
@@ -131,8 +171,8 @@ export function WorkoutHeatmap({
           row.map((cell, colIdx) => (
             <rect
               key={`cell-${colIdx}-${rowIdx}`}
-              x={colIdx * cellSize}
-              y={rowIdx * cellSize}
+              x={colIdx * computedCellSize}
+              y={rowIdx * computedCellSize}
               width={cellInner}
               height={cellInner}
               rx={2}
@@ -155,7 +195,7 @@ export function WorkoutHeatmap({
         {CELL_COLORS.map((color, i) => (
           <rect
             key={`legend-${i}`}
-            x={32 + i * (cellSize + 1)}
+            x={32 + i * (computedCellSize + 1)}
             y={-9}
             width={cellInner}
             height={cellInner}
@@ -164,11 +204,12 @@ export function WorkoutHeatmap({
             fill={color}
           />
         ))}
-        <text x={32 + 4 * (cellSize + 1) + 4} y={0} fontSize={10} fill={chartPalette.inkSoft}>
+        <text x={32 + 4 * (computedCellSize + 1) + 4} y={0} fontSize={10} fill={chartPalette.inkSoft}>
           More
         </text>
       </g>
     </svg>
+    </div>
   )
 }
 

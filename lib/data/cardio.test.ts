@@ -240,6 +240,27 @@ describe('getCardioData', () => {
     await expect(getCardioData()).rejects.toThrow(/connection reset/)
   })
 
+  // Lifestyle-trend table failure tests (#176 slice C-data follow-up).
+  // Mirror the resting-HR / VO2max coverage above so a Supabase RLS or
+  // connectivity issue on any one of the six lifestyle tables surfaces
+  // as a thrown error rather than silently rendering empty charts.
+  for (const table of [
+    'cardio_hrv_trend',
+    'cardio_walking_hr_trend',
+    'cardio_body_mass_trend',
+    'cardio_step_count_trend',
+    'cardio_sleep_trend',
+    'cardio_active_energy_trend',
+  ] as const) {
+    it(`throws a descriptive error when the ${table} query fails`, async () => {
+      stubTable('cardio_sessions', [])
+      stubTable('cardio_resting_hr', [])
+      stubTable('cardio_vo2max', [])
+      stubTable(table, null, { message: `${table} unreachable` })
+      await expect(getCardioData()).rejects.toThrow(new RegExp(`${table} unreachable`))
+    })
+  }
+
   it('throws when a row fails schema validation (e.g. unknown activity)', async () => {
     stubTable(
       'cardio_sessions',

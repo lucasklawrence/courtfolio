@@ -1,4 +1,4 @@
-import type { JSX } from 'react'
+import { useMemo, type JSX } from 'react'
 
 import { RoughLine } from '@/components/training-facility/shared/charts/RoughLine'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
@@ -39,6 +39,21 @@ export interface BaseLifestyleTrendChartProps {
   ariaLabel: string
 }
 
+/**
+ * Shared props shape for the six per-metric wrappers (`HrvTrendChart`,
+ * `WalkingHrTrendChart`, `BodyMassTrendChart`, `StepCountTrendChart`,
+ * `SleepTrendChart`, `ActiveEnergyTrendChart`). Each wrapper supplies
+ * the metric-specific `yLabel` / `yTickFormat` / `emptyMessage` /
+ * `ariaLabel` itself; the call site only deals with `points` + range +
+ * presentation. Lives next to {@link BaseLifestyleTrendChartProps}
+ * (#178 follow-up) so the shared shape isn't keyed off one wrapper's
+ * file by historical accident.
+ */
+export type LifestyleChartProps = Omit<
+  BaseLifestyleTrendChartProps,
+  'yLabel' | 'yTickFormat' | 'emptyMessage' | 'ariaLabel'
+>
+
 const DEFAULT_HEIGHT = 220
 
 /**
@@ -66,7 +81,14 @@ export function BaseLifestyleTrendChart({
   emptyMessage,
   ariaLabel,
 }: BaseLifestyleTrendChartProps): JSX.Element {
-  const clipped = clipToRange(points ?? [], dateFrom ?? null, dateTo ?? null)
+  // Memoize the clip so we don't re-walk the full daily series on
+  // every parent re-render (a typical year is ~365 points; modest at
+  // best, but `useMemo` is free here and the parent's `sharedProps`
+  // change identity often). #178 follow-up.
+  const clipped = useMemo(
+    () => clipToRange(points ?? [], dateFrom ?? null, dateTo ?? null),
+    [points, dateFrom, dateTo],
+  )
 
   return (
     <RoughLine<TrendPoint>

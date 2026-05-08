@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 
 import { BaseLifestyleTrendChart } from './BaseLifestyleTrendChart'
-import type { LifestyleChartProps } from './HrvTrendChart'
+import type { LifestyleChartProps } from './BaseLifestyleTrendChart'
 
 /**
  * Daily step-count total, summed from Apple's per-burst step records at

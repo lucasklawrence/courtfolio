@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 
 import { BaseLifestyleTrendChart } from './BaseLifestyleTrendChart'
-import type { LifestyleChartProps } from './HrvTrendChart'
+import type { LifestyleChartProps } from './BaseLifestyleTrendChart'
 
 /**
  * Walking heart-rate average daily trend, BPM. Apple's per-day rollup of
