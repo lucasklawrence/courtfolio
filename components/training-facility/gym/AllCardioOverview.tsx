@@ -54,12 +54,8 @@ import {
 import { TrainingLoadChart } from './TrainingLoadChart'
 import { WorkoutHeatmap } from './WorkoutHeatmap'
 import { StreakCounter } from './StreakCounter'
-import { HrvTrendChart } from './lifestyle/HrvTrendChart'
-import { WalkingHrTrendChart } from './lifestyle/WalkingHrTrendChart'
-import { BodyMassTrendChart } from './lifestyle/BodyMassTrendChart'
-import { StepCountTrendChart } from './lifestyle/StepCountTrendChart'
-import { SleepTrendChart } from './lifestyle/SleepTrendChart'
-import { ActiveEnergyTrendChart } from './lifestyle/ActiveEnergyTrendChart'
+import { ChartCard } from './ChartCard'
+import { LifestyleMetricsSection } from './lifestyle/LifestyleMetricsSection'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
 import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
@@ -359,6 +355,13 @@ export function AllCardioOverview(): JSX.Element {
 
             <ActivityMix counts={activityCounts} />
 
+            {/* `chartWidth` is sourced from `cardSizerRef` (the HR-zone bars
+                card) on the assumption that both this section and the
+                two-column section above use `lg:grid-cols-2 gap-6`. If a
+                future layout change desyncs those grids the lifestyle
+                charts will silently render at the wrong width — keep the
+                two grid configs in lockstep, or hand the lifestyle section
+                its own `ResizeObserver`. */}
             <LifestyleMetricsSection
               data={data}
               range={range}
@@ -431,46 +434,6 @@ function SummaryRow({ summary }: SummaryRowProps): JSX.Element {
   )
 }
 
-interface ChartCardProps {
-  title: string
-  helper: string
-  /** When set, the card sits full-width (used for the training-load row). */
-  wide?: boolean
-  /** Optional content rendered after the chart body — e.g. a legend. */
-  footer?: JSX.Element
-  /**
-   * Optional control rendered to the right of the title — used by the
-   * Training Load card to host the max-HR override. Wraps to the next line
-   * on narrow screens via the parent header's `flex-wrap`.
-   */
-  headerSlot?: JSX.Element
-  children: JSX.Element
-}
-
-function ChartCard({
-  title,
-  helper,
-  wide,
-  footer,
-  headerSlot,
-  children,
-}: ChartCardProps): JSX.Element {
-  return (
-    <section
-      className={`${wide ? 'mt-6 ' : ''}rounded-[1.6rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_18px_46px_rgba(0,0,0,0.34)]`}
-    >
-      <header className="mb-2 flex flex-wrap items-baseline justify-between gap-3">
-        <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0a0a0a]">
-          {title}
-        </h2>
-        {headerSlot}
-      </header>
-      <p className="mb-4 text-xs leading-5 text-[#404040]">{helper}</p>
-      <div className="overflow-x-auto">{children}</div>
-      {footer}
-    </section>
-  )
-}
 
 interface ActivityMixProps {
   counts: readonly ActivityCount[]
@@ -537,91 +500,6 @@ function ActivityMix({ counts }: ActivityMixProps): JSX.Element {
   )
 }
 
-interface LifestyleMetricsSectionProps {
-  data: CardioData
-  range: DateRange
-  chartWidth: number
-  fontFamily: string
-}
-
-/**
- * "Lifestyle metrics" section (#75 slice C-ui) — six daily-trend charts
- * (HRV, walking HR, body mass, daily steps, sleep, active energy) ported
- * from `cardio-dashboard`. Sits between the activity mix and the session
- * log so the "what did I do" cards stay at the top of the page and the
- * detailed log stays at the bottom.
- *
- * Each chart is rendered inside its own `ChartCard` regardless of whether
- * the underlying field is populated — empty cards show "No <metric> data
- * in range" via `RoughLine`'s built-in empty-state rather than disappearing.
- * That keeps the page's structural rhythm stable across "fresh
- * import / partial dataset / fully populated" states and makes the empty
- * state a teaching moment ("import Apple Health to populate this").
- */
-function LifestyleMetricsSection({
-  data,
-  range,
-  chartWidth,
-  fontFamily,
-}: LifestyleMetricsSectionProps): JSX.Element {
-  const sharedProps = {
-    dateFrom: range.start,
-    dateTo: range.end,
-    width: chartWidth,
-    fontFamily,
-  }
-  return (
-    <section aria-label="Lifestyle metrics" className="mt-8">
-      <header className="mb-4">
-        <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-white/80">
-          Lifestyle metrics
-        </h2>
-        <p className="mt-1 text-xs text-white/55">
-          Heart-rate variability, walking HR, body mass, daily steps, sleep,
-          and active energy across the active range.
-        </p>
-      </header>
-      <div className="grid gap-6 lg:grid-cols-2">
-        <ChartCard
-          title="HRV (SDNN)"
-          helper="Daily heart-rate variability — higher trend = more recovered."
-        >
-          <HrvTrendChart points={data.hrv_trend} {...sharedProps} />
-        </ChartCard>
-        <ChartCard
-          title="Walking heart rate"
-          helper="Apple's per-day walking HR average — lower trend usually = better aerobic base."
-        >
-          <WalkingHrTrendChart points={data.walking_hr_trend} {...sharedProps} />
-        </ChartCard>
-        <ChartCard
-          title="Body mass"
-          helper="Daily latest reading, normalized to pounds at preprocess time."
-        >
-          <BodyMassTrendChart points={data.body_mass_trend} {...sharedProps} />
-        </ChartCard>
-        <ChartCard
-          title="Daily steps"
-          helper="Apple's per-burst step records summed into one total per local calendar day."
-        >
-          <StepCountTrendChart points={data.step_count_trend} {...sharedProps} />
-        </ChartCard>
-        <ChartCard
-          title="Sleep"
-          helper="Asleep-only hours per wake-day — in-bed-but-awake time is excluded."
-        >
-          <SleepTrendChart points={data.sleep_trend} {...sharedProps} />
-        </ChartCard>
-        <ChartCard
-          title="Active energy"
-          helper="Per-burst active-energy records summed per day. Rest days drop toward zero."
-        >
-          <ActiveEnergyTrendChart points={data.active_energy_trend} {...sharedProps} />
-        </ChartCard>
-      </div>
-    </section>
-  )
-}
 
 interface SessionLogTableProps {
   sessions: readonly CardioSession[]

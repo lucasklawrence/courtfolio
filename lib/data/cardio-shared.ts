@@ -27,6 +27,15 @@ const SESSIONS_TABLE = 'cardio_sessions'
 const RESTING_HR_TABLE = 'cardio_resting_hr'
 const VO2MAX_TABLE = 'cardio_vo2max'
 
+/** Names of the optional lifestyle-trend keys on {@link CardioData}. */
+type LifestyleTrendKey =
+  | 'hrv_trend'
+  | 'walking_hr_trend'
+  | 'body_mass_trend'
+  | 'step_count_trend'
+  | 'sleep_trend'
+  | 'active_energy_trend'
+
 /**
  * Lifestyle-metric trend tables (#75 slice C-data). Each row shape is
  * identical to {@link RESTING_HR_TABLE} (`date, value, updated_at`),
@@ -43,15 +52,6 @@ const LIFESTYLE_TREND_TABLES: Record<LifestyleTrendKey, string> = {
   sleep_trend: 'cardio_sleep_trend',
   active_energy_trend: 'cardio_active_energy_trend',
 }
-
-/** Names of the optional lifestyle-trend keys on {@link CardioData}. */
-type LifestyleTrendKey =
-  | 'hrv_trend'
-  | 'walking_hr_trend'
-  | 'body_mass_trend'
-  | 'step_count_trend'
-  | 'sleep_trend'
-  | 'active_energy_trend'
 
 /**
  * Whitelisted column lists for each cardio table. Mirror the

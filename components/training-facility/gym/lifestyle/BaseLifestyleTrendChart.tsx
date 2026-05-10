@@ -1,4 +1,4 @@
-import type { JSX } from 'react'
+import { useMemo, type JSX } from 'react'
 
 import { RoughLine } from '@/components/training-facility/shared/charts/RoughLine'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
@@ -27,7 +27,12 @@ export interface BaseLifestyleTrendChartProps {
   width: number
   /** Pixel height of the SVG. Defaults to 220 to match neighboring cards. */
   height?: number
-  /** Font family for axes / empty-state copy. */
+  /**
+   * Font family for axes / empty-state copy. When omitted, the inner
+   * `RoughLine` SVG inherits the parent's CSS font (Inter at the page
+   * level); pass an explicit value when the call site needs a different
+   * face (e.g. `HANDWRITING_FONT`).
+   */
   fontFamily?: string
   /** Y-axis label drawn on the left margin (units in parens, e.g. `"HRV (ms)"`). */
   yLabel: string
@@ -37,6 +42,45 @@ export interface BaseLifestyleTrendChartProps {
   emptyMessage: string
   /** Accessible label for the wrapping `<svg role="img">`. */
   ariaLabel: string
+}
+
+/**
+ * Shared props shape for the six per-metric wrappers (`HrvTrendChart`,
+ * `WalkingHrTrendChart`, `BodyMassTrendChart`, `StepCountTrendChart`,
+ * `SleepTrendChart`, `ActiveEnergyTrendChart`). Each wrapper supplies
+ * the metric-specific `yLabel` / `yTickFormat` / `emptyMessage` /
+ * `ariaLabel` itself; the call site only deals with `points` + range +
+ * presentation. Lives next to {@link BaseLifestyleTrendChartProps}
+ * (#178 follow-up) so the shared shape isn't keyed off one wrapper's
+ * file by historical accident.
+ *
+ * Mirrors the matching fields on {@link BaseLifestyleTrendChartProps}
+ * verbatim — kept as an explicit interface (rather than `Omit<…>`) so
+ * each call-site-facing property keeps its own JSDoc on hover.
+ */
+export interface LifestyleChartProps {
+  /**
+   * Daily-trend points for the metric. `undefined` (preprocessor /
+   * Supabase table empty) is treated identically to "no points in
+   * range" — both render the empty-state via {@link RoughLine}'s
+   * `emptyMessage` path.
+   */
+  points: readonly CardioTimePoint[] | undefined
+  /** Inclusive lower bound from the parent's `DateFilter`; omit for "all-time." */
+  dateFrom?: Date | null
+  /** Inclusive upper bound from the parent's `DateFilter`; defaults to no clamp. */
+  dateTo?: Date | null
+  /** Pixel width of the SVG; the parent's `ResizeObserver` drives this. */
+  width: number
+  /** Pixel height of the SVG. Defaults to 220 to match neighboring cards. */
+  height?: number
+  /**
+   * Font family for axes / empty-state copy. When omitted, the inner
+   * `RoughLine` SVG inherits the parent's CSS font (Inter at the page
+   * level via `body`); pass an explicit value when the call site needs
+   * the handwriting accent (`HANDWRITING_FONT`).
+   */
+  fontFamily?: string
 }
 
 const DEFAULT_HEIGHT = 220
@@ -66,7 +110,14 @@ export function BaseLifestyleTrendChart({
   emptyMessage,
   ariaLabel,
 }: BaseLifestyleTrendChartProps): JSX.Element {
-  const clipped = clipToRange(points ?? [], dateFrom ?? null, dateTo ?? null)
+  // Memoize the clip so we don't re-walk the full daily series on
+  // every parent re-render (a typical year is ~365 points; modest at
+  // best, but `useMemo` is free here and the parent's `sharedProps`
+  // change identity often). #178 follow-up.
+  const clipped = useMemo(
+    () => clipToRange(points ?? [], dateFrom ?? null, dateTo ?? null),
+    [points, dateFrom, dateTo],
+  )
 
   return (
     <RoughLine<TrendPoint>

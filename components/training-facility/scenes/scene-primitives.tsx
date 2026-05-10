@@ -19,6 +19,14 @@ export const SCENE_PALETTE = {
   hardwoodMid: '#5a3015',
   /** Hardwood plank light — the lit edge of each plank. */
   hardwoodLight: '#8a5a2a',
+  /**
+   * Hardwood hover-tint translucent overlay color used by the
+   * spatial cross-link doors. Slightly redder/warmer than
+   * {@link hardwoodMid} so the overlay reads as a tint rather than a
+   * darken. Single source of truth for the two `<SceneDoor>` callers
+   * (Gym → Combine, Combine → Gym).
+   */
+  hardwoodHover: '#6b3e1a',
   /** Wall band — the warm hue that sits behind equipment. */
   wallWarm: '#241811',
   /** Wall highlight band where the spotlight catches it. */

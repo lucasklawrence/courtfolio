@@ -1,15 +1,6 @@
 import type { JSX } from 'react'
 
-import {
-  BaseLifestyleTrendChart,
-  type BaseLifestyleTrendChartProps,
-} from './BaseLifestyleTrendChart'
-
-/** Props accepted by every lifestyle wrapper — the shared shape minus the metric-specific config. */
-export type LifestyleChartProps = Omit<
-  BaseLifestyleTrendChartProps,
-  'yLabel' | 'yTickFormat' | 'emptyMessage' | 'ariaLabel'
->
+import { BaseLifestyleTrendChart, type LifestyleChartProps } from './BaseLifestyleTrendChart'
 
 /**
  * Heart-rate variability (SDNN) daily trend. Higher = better recovery /
