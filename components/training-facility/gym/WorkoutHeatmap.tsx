@@ -93,6 +93,22 @@ export function WorkoutHeatmap({
   // ResizeObserver fires once (server / first client paint). The
   // explicit `cellSize` prop, if supplied, overrides auto-scale.
   // (#176 slice B follow-up.)
+  //
+  // First-paint flicker trade-off (#190 item 4): the SSR pass and the
+  // initial client paint both render at `DEFAULT_CELL_SIZE = 14`, then
+  // the observer fires and the grid re-renders at the auto-scaled
+  // size. On a fast connection this is a single frame; on a slow one
+  // a viewer briefly sees the small grid before it grows. We accept
+  // this because:
+  //   - The card has a fixed surrounding height, so the re-render is a
+  //     content swap, not a layout shift (CLS budget unaffected).
+  //   - `useLayoutEffect` would tighten the paint but breaks SSR
+  //     (`useLayoutEffect` warns on the server).
+  //   - Pre-computing the width on the server would require threading
+  //     the parent card's measured width through props — extra
+  //     coupling for a single-pixel-flicker benefit.
+  // Revisit if a user reports it or if the heatmap moves into a
+  // surface where layout shift matters.
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [containerWidth, setContainerWidth] = useState<number | null>(null)
   useEffect(() => {
