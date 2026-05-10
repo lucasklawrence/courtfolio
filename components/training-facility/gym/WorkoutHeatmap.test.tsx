@@ -66,6 +66,36 @@ describe('WorkoutHeatmap', () => {
     expect(fills.some((f) => /234, 88, 12|EA580C/i.test(f))).toBe(true)
   })
 
+  it('positions the legend strip flush with the SVG right edge at MAX_CELL_SIZE', () => {
+    // Regression for #190 item 2 — the original hardcoded `140` offset
+    // clipped the legend off the right edge once the responsive scaling
+    // pushed cells up to `MAX_CELL_SIZE` (28). The PR fix derives
+    // `legendWidth` from the cell stride; this test pins that contract
+    // so a future cell-size knob can't silently re-introduce the clip.
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    const { container } = render(<WorkoutHeatmap sessions={[]} cellSize={28} />)
+    const svg = container.querySelector('svg')!
+    const [, , svgWidth] = (svg.getAttribute('viewBox') ?? '').split(' ').map(Number)
+    // The legend `<g>` is the only one whose transform x is computed as
+    // `DAY_LABEL_WIDTH + gridWidth - legendWidth`. Pick it out by finding
+    // the group containing the "More" text.
+    const legendGroup = Array.from(container.querySelectorAll('svg g')).find((g) =>
+      Array.from(g.querySelectorAll('text')).some((t) => t.textContent === 'More'),
+    )
+    expect(legendGroup).toBeDefined()
+    const transform = legendGroup!.getAttribute('transform') ?? ''
+    const match = transform.match(/translate\(([0-9.-]+),\s*([0-9.-]+)\)/)
+    expect(match).not.toBeNull()
+    const legendX = Number(match![1])
+    // Legend width derives from the same constants `WorkoutHeatmap.tsx`
+    // uses: 32 (Less text) + 4 swatches at `cellSize + 1` stride + 4
+    // (gap) + 28 (More text). At cellSize=28, that's 32 + 116 + 4 + 28 = 180.
+    const legendWidth = 32 + 4 * (28 + 1) + 4 + 28
+    expect(legendX + legendWidth).toBeLessThanOrEqual(svgWidth)
+    expect(legendX).toBeGreaterThan(0)
+  })
+
   it('writes a session-count tooltip on populated cells', () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date(2026, 3, 15))
