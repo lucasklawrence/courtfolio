@@ -14,7 +14,7 @@ import {
 } from './assets/combine-fixtures'
 import { ShuttleCones } from './assets/ShuttleCones'
 import { Stopwatch } from './assets/Stopwatch'
-import { Vertec } from './assets/Vertec'
+import { VertecSvg } from './assets/equipment/VertecSvg'
 
 const VIEWBOX_WIDTH = 1600
 const VIEWBOX_HEIGHT = 900
@@ -84,7 +84,13 @@ export function CombineScene() {
         seed={970}
       />
 
-      <Vertec />
+      <VertecSvg
+        x={1280}
+        y={340}
+        width={240}
+        height={490}
+        preserveAspectRatio="xMidYMax meet"
+      />
       {/* Chalk residue at the foot of the Vertec */}
       <ChalkPuff x={1280} y={826} seed={985} />
       {/* Stashed basketball near the Vertec base */}

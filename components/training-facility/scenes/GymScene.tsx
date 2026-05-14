@@ -22,8 +22,8 @@ import {
   Vo2MaxWhiteboard,
   WallScoreboard,
 } from './assets/gym-fixtures'
-import { StairClimber } from './assets/StairClimber'
-import { Treadmill } from './assets/Treadmill'
+import { StairclimberSvg } from './assets/equipment/StairclimberSvg'
+import { TreadmillSvg } from './assets/equipment/TreadmillSvg'
 
 const VIEWBOX_WIDTH = 1600
 const VIEWBOX_HEIGHT = 900
@@ -143,7 +143,13 @@ export function GymScene({ cardioData = null }: GymSceneProps = {}) {
         aria-label="Open the treadmill detail view"
         className="group focus:outline-none"
       >
-        <Treadmill />
+        <TreadmillSvg
+          x={115}
+          y={400}
+          width={365}
+          height={475}
+          preserveAspectRatio="xMidYMax meet"
+        />
         <rect
           x={115}
           y={400}
@@ -179,7 +185,13 @@ export function GymScene({ cardioData = null }: GymSceneProps = {}) {
         aria-label="Open the stair climber detail view"
         className="group focus:outline-none"
       >
-        <StairClimber />
+        <StairclimberSvg
+          x={500}
+          y={395}
+          width={460}
+          height={485}
+          preserveAspectRatio="xMidYMax meet"
+        />
         {/* Hover/focus tint over the stair-climber footprint */}
         <rect
           x={500}
