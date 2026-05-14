@@ -6,7 +6,7 @@ import {
   WallBand,
 } from './scene-primitives'
 import { BenchPressSvg } from './assets/equipment/BenchPressSvg'
-import { DumbellRackSvg } from './assets/equipment/DumbellRackSvg'
+import { DumbbellRackSvg } from './assets/equipment/DumbbellRackSvg'
 import { PlyoBoxSvg } from './assets/equipment/PlyoBoxSvg'
 import { SquatRackSvg } from './assets/equipment/SquatRackSvg'
 import { YogaMatSvg } from './assets/equipment/YogaMatSvg'
@@ -55,7 +55,7 @@ export function WeightRoomScene() {
       {/* Equipment laid out along the floor, left → right. Each illustration
           is anchored bottom-center within its bounding box so its feet sit
           on the floor regardless of the source SVG's internal padding. */}
-      <DumbellRackSvg
+      <DumbbellRackSvg
         x={60}
         y={380}
         width={240}
