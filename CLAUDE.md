@@ -6,6 +6,19 @@ Prefer one discrete action per `Bash` tool call. Avoid chaining with `&&`, `;`, 
 
 If several commands are independent, issue them as parallel Bash tool calls in the same message rather than chaining them.
 
+## Polling and waiting
+
+Do **not** write `until <check>; do sleep N; done` shell loops. Use the in-harness `Monitor` tool when driving from the agent, or the `scripts/await-*.ps1` helpers when shelling out (e.g. inside `/ship-issue` or any wrapper script). Both are allowlisted and have real timeouts; ad-hoc `until` loops hang forever if the check disappears and bloat transcripts with one-off jq expressions.
+
+- **`scripts/await-pr-checks.ps1`** — wait for a PR's status checks to reach terminal state. Use instead of `until gh pr view N --json statusCheckRollup ...`.
+  `powershell -File scripts/await-pr-checks.ps1 -Pr 192 -Check Vercel -TimeoutSec 600`
+- **`scripts/await-url.ps1`** — wait for an HTTP endpoint to respond. Use instead of `until curl -sf http://...`.
+  `powershell -File scripts/await-url.ps1 -Url http://localhost:3000 -TimeoutSec 60`
+- **`scripts/await-log-pattern.ps1`** — wait for a regex to appear in a file. Use instead of `until grep -q "Ready in" "<log>"`.
+  `powershell -File scripts/await-log-pattern.ps1 -Path "<task.output>" -Pattern 'Ready in' -TimeoutSec 60`
+
+All three exit 0 on success, 2 on timeout. Use `powershell -File` rather than `pwsh -File` — `pwsh` is not on this machine's PATH (both forms are allowlisted so either works on machines that have PowerShell 7+).
+
 ## TypeScript documentation
 
 Document every exported type, interface, function, and non-trivial constant with a JSDoc comment. Document every property on an exported interface or type. The goal is that `Cmd/Ctrl+hover` in an editor surfaces what the symbol is and how to use it without jumping to the source.
