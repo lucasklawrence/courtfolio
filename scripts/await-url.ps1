@@ -59,12 +59,17 @@ while ($true) {
   try {
     $resp = Invoke-WebRequest -Uri $Url -Method Head -UseBasicParsing -TimeoutSec 5 -ErrorAction Stop
     $status = [string][int]$resp.StatusCode
-  } catch [System.Net.WebException] {
-    if ($_.Exception.Response) {
-      $status = [string][int]$_.Exception.Response.StatusCode
-    }
   } catch {
-    $status = $null
+    # Windows PowerShell 5.1 throws [System.Net.WebException]; PowerShell 7+
+    # throws [Microsoft.PowerShell.Commands.HttpResponseException]. Both
+    # expose .Response.StatusCode, so duck-type instead of branching on type.
+    $response = $null
+    if ($_.Exception -and $_.Exception.PSObject.Properties.Name -contains 'Response') {
+      $response = $_.Exception.Response
+    }
+    if ($response -and $response.PSObject.Properties.Name -contains 'StatusCode') {
+      $status = [string][int]$response.StatusCode
+    }
   }
 
   if ($status -and $status -match $StatusPattern) {

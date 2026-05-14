@@ -4,7 +4,7 @@
 
 Three PowerShell scripts that replace the ad-hoc `until <check>; do sleep N; done` shell loops that piled up across `/ship-issue` runs. Each has a real timeout (no more hanging on a vanished check) and exit codes a caller can branch on: `0` on success, `2` on timeout, `1` on usage error.
 
-Allowlisted in `.claude/settings.json`. Prefer these over raw `until` loops — see `CLAUDE.md` § Polling and waiting.
+Allowlisted in `.claude/settings.json` for both `powershell -File` (Windows PowerShell 5.1) and `pwsh -File` (PowerShell 7+). The examples below use `powershell` for brevity — substitute `pwsh` on macOS/Linux or wherever PowerShell 7 is the only edition on PATH. Prefer these helpers over raw `until` loops — see `CLAUDE.md` § Polling and waiting.
 
 ### `await-pr-checks.ps1`
 

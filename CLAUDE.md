@@ -17,7 +17,7 @@ Do **not** write `until <check>; do sleep N; done` shell loops. Use the in-harne
 - **`scripts/await-log-pattern.ps1`** — wait for a regex to appear in a file. Use instead of `until grep -q "Ready in" "<log>"`.
   `powershell -File scripts/await-log-pattern.ps1 -Path "<task.output>" -Pattern 'Ready in' -TimeoutSec 60`
 
-All three exit 0 on success, 2 on timeout. Use `powershell -File` rather than `pwsh -File` — `pwsh` is not on this machine's PATH (both forms are allowlisted so either works on machines that have PowerShell 7+).
+All three exit 0 on success, 2 on timeout. Both `powershell -File` and `pwsh -File` are allowlisted — use whichever is on PATH (`powershell.exe` on Windows, `pwsh` on macOS/Linux or Windows with PowerShell 7+).
 
 ## TypeScript documentation
 

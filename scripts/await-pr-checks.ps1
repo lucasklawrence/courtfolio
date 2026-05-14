@@ -9,10 +9,11 @@
   into one `-Check` parameter, and adds a real timeout so a vanished check no
   longer hangs the session forever.
 
-  Terminal states are SUCCESS, FAILURE, ERROR, CANCELLED, CANCELED. Pending
-  states are PENDING, IN_PROGRESS, QUEUED. The script polls every -PollSec
-  seconds until every requested check is terminal, then prints a one-line
-  summary per check on stdout.
+  Terminal states are SUCCESS, FAILURE, ERROR, CANCELLED, CANCELED, COMPLETED
+  (the last covers a CheckRun that has finished with no conclusion field — a
+  neutral/skipped run). Pending states are PENDING, IN_PROGRESS, QUEUED. The
+  script polls every -PollSec seconds until every requested check is terminal,
+  then prints a one-line summary per check on stdout.
 
   Exit codes:
     0 — every requested check is terminal (NOT necessarily SUCCESS — caller
@@ -63,12 +64,16 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$terminal = @('SUCCESS', 'FAILURE', 'ERROR', 'CANCELLED', 'CANCELED')
+$terminal = @('SUCCESS', 'FAILURE', 'ERROR', 'CANCELLED', 'CANCELED', 'COMPLETED')
 
 function Get-Rollup {
   param([int]$PrNumber)
-  $raw = gh pr view $PrNumber --json statusCheckRollup 2>$null
-  if (-not $raw) { return $null }
+  # Don't redirect gh's stderr — in Windows PowerShell 5.1, redirecting a
+  # native command's stderr wraps each line in a NativeCommandError and trips
+  # `$ErrorActionPreference = 'Stop'` even on a clean exit. Branch on
+  # $LASTEXITCODE instead.
+  $raw = & gh pr view $PrNumber --json statusCheckRollup
+  if ($LASTEXITCODE -ne 0 -or -not $raw) { return $null }
   return ($raw | ConvertFrom-Json).statusCheckRollup
 }
 
@@ -83,7 +88,9 @@ function Get-CheckState {
   param($Entry)
   if ($Entry.PSObject.Properties.Name -contains 'state'      -and $Entry.state)      { return $Entry.state }
   if ($Entry.PSObject.Properties.Name -contains 'conclusion' -and $Entry.conclusion) { return $Entry.conclusion }
-  if ($Entry.PSObject.Properties.Name -contains 'status'     -and $Entry.status -eq 'COMPLETED') { return 'SUCCESS' }
+  # No conclusion but the check is COMPLETED — neutral/skipped run. Surface
+  # it as terminal but don't lie about success.
+  if ($Entry.PSObject.Properties.Name -contains 'status'     -and $Entry.status -eq 'COMPLETED') { return 'COMPLETED' }
   return 'PENDING'
 }
 
@@ -108,7 +115,11 @@ while ($true) {
   $relevant = Select-RelevantChecks -Rollup $rollup -Filter $Check
   if (-not $relevant) {
     if ((Get-Date) -gt $deadline) {
-      Write-Output "TIMEOUT: no check named '$Check' on PR #$Pr after ${TimeoutSec}s."
+      if ($Check -eq 'all') {
+        Write-Output "TIMEOUT: PR #$Pr has no status checks after ${TimeoutSec}s."
+      } else {
+        Write-Output "TIMEOUT: no check named '$Check' on PR #$Pr after ${TimeoutSec}s."
+      }
       exit 2
     }
     Start-Sleep -Seconds $PollSec
