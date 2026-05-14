@@ -1,5 +1,47 @@
 # scripts
 
+## `await-*.ps1` — bounded polling helpers
+
+Three PowerShell scripts that replace the ad-hoc `until <check>; do sleep N; done` shell loops that piled up across `/ship-issue` runs. Each has a real timeout (no more hanging on a vanished check) and exit codes a caller can branch on: `0` on success, `2` on timeout, `1` on usage error.
+
+Allowlisted in `.claude/settings.json` for both `powershell -File` (Windows PowerShell 5.1) and `pwsh -File` (PowerShell 7+). The examples below use `powershell` for brevity — substitute `pwsh` on macOS/Linux or wherever PowerShell 7 is the only edition on PATH. Prefer these helpers over raw `until` loops — see `CLAUDE.md` § Polling and waiting.
+
+### `await-pr-checks.ps1`
+
+Poll a GitHub PR's status checks until they reach terminal state (`SUCCESS`, `FAILURE`, `ERROR`, `CANCELLED`).
+
+```
+powershell -File scripts/await-pr-checks.ps1 -Pr <num> [-Check all|Vercel|e2e|CodeRabbit] [-TimeoutSec 600] [-PollSec 15]
+```
+
+Examples:
+- Wait on every check: `powershell -File scripts/await-pr-checks.ps1 -Pr 192`
+- Wait only on Vercel: `powershell -File scripts/await-pr-checks.ps1 -Pr 192 -Check Vercel`
+
+### `await-url.ps1`
+
+Poll a URL until it responds with a matching HTTP status. Default pattern accepts `200`, redirects, and `404` — all proof that the server is serving.
+
+```
+powershell -File scripts/await-url.ps1 -Url <url> [-StatusPattern '^200$'] [-TimeoutSec 60] [-PollSec 2]
+```
+
+Example: `powershell -File scripts/await-url.ps1 -Url http://localhost:3000/training-facility`
+
+### `await-log-pattern.ps1`
+
+Poll a file until a regex matches its contents. The file need not exist yet — the script waits for it to appear, then watches for the pattern.
+
+```
+powershell -File scripts/await-log-pattern.ps1 -Path <path> -Pattern <regex> [-TimeoutSec 60] [-PollSec 1]
+```
+
+Example (waiting for `next dev` to be ready):
+
+```
+powershell -File scripts/await-log-pattern.ps1 -Path "$env:TEMP/claude/.../task.output" -Pattern 'Ready in'
+```
+
 ## `import-health`
 
 `npm run import-health -- path/to/export.zip`
