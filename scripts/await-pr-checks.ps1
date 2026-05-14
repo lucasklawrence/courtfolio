@@ -9,11 +9,13 @@
   into one `-Check` parameter, and adds a real timeout so a vanished check no
   longer hangs the session forever.
 
-  Terminal states are SUCCESS, FAILURE, ERROR, CANCELLED, CANCELED, COMPLETED
-  (the last covers a CheckRun that has finished with no conclusion field — a
-  neutral/skipped run). Pending states are PENDING, IN_PROGRESS, QUEUED. The
-  script polls every -PollSec seconds until every requested check is terminal,
-  then prints a one-line summary per check on stdout.
+  Terminal states cover every GitHub CheckRunState that won't change again:
+  SUCCESS, FAILURE, ERROR, NEUTRAL, SKIPPED, STALE, STARTUP_FAILURE, TIMED_OUT,
+  ACTION_REQUIRED, CANCELLED/CANCELED, plus COMPLETED for a CheckRun that has
+  finished with no explicit conclusion. Pending states are PENDING,
+  IN_PROGRESS, QUEUED, REQUESTED, WAITING. The script polls every -PollSec
+  seconds until every requested check is terminal, then prints a one-line
+  summary per check on stdout.
 
   Exit codes:
     0 — every requested check is terminal (NOT necessarily SUCCESS — caller
@@ -64,7 +66,12 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$terminal = @('SUCCESS', 'FAILURE', 'ERROR', 'CANCELLED', 'CANCELED', 'COMPLETED')
+$terminal = @(
+  'SUCCESS', 'FAILURE', 'ERROR',
+  'NEUTRAL', 'SKIPPED', 'STALE', 'STARTUP_FAILURE', 'TIMED_OUT', 'ACTION_REQUIRED',
+  'CANCELLED', 'CANCELED',
+  'COMPLETED'
+)
 
 function Get-Rollup {
   param([int]$PrNumber)

@@ -6,7 +6,8 @@
   Replaces the `until curl -sf http://localhost:PORT/path; do sleep N; done`
   loops used to wait for the Next.js dev server (or any HTTP endpoint) to
   come up. Honours a real timeout so a never-listening port no longer hangs
-  the session.
+  the session. Probes with HEAD first (cheap), falls back to GET when the
+  server returns 405 — some valid endpoints reject HEAD.
 
   Exit codes:
     0 — status code matched -StatusPattern
@@ -54,11 +55,11 @@ $ErrorActionPreference = 'Stop'
 
 $deadline = (Get-Date).AddSeconds($TimeoutSec)
 
-while ($true) {
-  $status = $null
+function Invoke-StatusProbe {
+  param([string]$ProbeUrl, [string]$Method)
   try {
-    $resp = Invoke-WebRequest -Uri $Url -Method Head -UseBasicParsing -TimeoutSec 5 -ErrorAction Stop
-    $status = [string][int]$resp.StatusCode
+    $resp = Invoke-WebRequest -Uri $ProbeUrl -Method $Method -UseBasicParsing -TimeoutSec 5 -ErrorAction Stop
+    return [string][int]$resp.StatusCode
   } catch {
     # Windows PowerShell 5.1 throws [System.Net.WebException]; PowerShell 7+
     # throws [Microsoft.PowerShell.Commands.HttpResponseException]. Both
@@ -68,8 +69,18 @@ while ($true) {
       $response = $_.Exception.Response
     }
     if ($response -and $response.PSObject.Properties.Name -contains 'StatusCode') {
-      $status = [string][int]$response.StatusCode
+      return [string][int]$response.StatusCode
     }
+    return $null
+  }
+}
+
+while ($true) {
+  # Try HEAD first (cheap); fall back to GET when the server rejects HEAD with
+  # 405 — some endpoints serve GET fine but don't implement HEAD.
+  $status = Invoke-StatusProbe -ProbeUrl $Url -Method 'Head'
+  if ($status -eq '405') {
+    $status = Invoke-StatusProbe -ProbeUrl $Url -Method 'Get'
   }
 
   if ($status -and $status -match $StatusPattern) {
