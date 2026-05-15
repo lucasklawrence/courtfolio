@@ -1,4 +1,6 @@
-import type { JSX } from 'react'
+'use client'
+
+import { useEffect, useState, type JSX } from 'react'
 
 import { computeStrengthStreaks } from '@/lib/training-facility/strength-streaks'
 import {
@@ -53,12 +55,23 @@ const TRACK_OPACITY = 0.2
 export function WallActivityRings({
   data,
 }: WallActivityRingsProps = {}): JSX.Element {
+  // "Today" needs to be evaluated in the *viewer's* timezone, not the
+  // server's (Vercel functions run in UTC). Deferring `now` to a
+  // post-mount `useEffect` keeps SSR and the first client render
+  // identical (both see `null` → ghost rings) so there's no hydration
+  // mismatch. After hydration the effect sets the real viewer clock
+  // and the rings re-render with today's correct totals + streaks.
+  const [now, setNow] = useState<Date | null>(null)
+  useEffect(() => {
+    setNow(new Date())
+  }, [])
+
   const goals = data?.goals ?? []
   const sets = data?.sets ?? []
-  const todayKey = toLocalDateKey(new Date())
-  const setsToday = filterSetsForDay(sets, todayKey)
+  const todayKey = now ? toLocalDateKey(now) : null
+  const setsToday = todayKey ? filterSetsForDay(sets, todayKey) : []
   const totals = totalsByExercise(setsToday)
-  const streaks = computeStrengthStreaks(sets, goals)
+  const streaks = now ? computeStrengthStreaks(sets, goals, now) : {}
 
   const rings = goals.map((goal) => ({
     exercise: goal.exercise,

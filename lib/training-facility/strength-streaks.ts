@@ -56,10 +56,15 @@ function addDays(dateKey: string, n: number): string {
  * @param goals All configured exercises, usually `WeightRoomData.goals`.
  *   Streaks are only computed for goals whose `daily_target > 0`;
  *   non-positive targets short-circuit to `{ current: 0, longest: 0 }`.
+ * @param now The clock used to derive "today" / "yesterday." Defaults
+ *   to `new Date()`. Pass an explicit value from the viewer's clock
+ *   when calling from a server-rendered surface so server-side UTC
+ *   doesn't disagree with the visitor's local timezone (#197).
  */
 export function computeStrengthStreaks(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
+  now: Date = new Date(),
 ): Record<string, StrengthStreakResult> {
   const result: Record<string, StrengthStreakResult> = {}
 
@@ -78,7 +83,7 @@ export function computeStrengthStreaks(
     dayMap.set(day, (dayMap.get(day) ?? 0) + s.reps)
   }
 
-  const today = toLocalDateKey(new Date())
+  const today = toLocalDateKey(now)
   const yesterday = today === '' ? '' : addDays(today, -1)
 
   for (const goal of goals) {
