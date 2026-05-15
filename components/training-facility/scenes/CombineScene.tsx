@@ -85,10 +85,10 @@ export function CombineScene() {
       />
 
       <VertecSvg
-        x={1280}
-        y={340}
-        width={240}
-        height={490}
+        x={1100}
+        y={140}
+        width={480}
+        height={720}
         preserveAspectRatio="xMidYMax meet"
       />
       {/* Chalk residue at the foot of the Vertec */}
