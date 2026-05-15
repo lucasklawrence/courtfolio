@@ -9,22 +9,16 @@ import { CombineScene } from '@/components/training-facility/scenes/CombineScene
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
- * Combine sub-area page (PRD §7.5 + §9). Stacks the room-level chrome
- * (back-to-court + back-to-Training-Facility nav), an eyebrow/title
- * block, and the data-driven body.
- *
- * The body splits across three client islands so each can fetch
- * independently and render at its own readiness pace:
+ * Combine sub-area page (PRD §7.5 + §9, #197). Hero is the illustrated
+ * room rendered full-bleed in the first viewport with floating chrome
+ * on top — same "art IS page" treatment as the Gym and Weight Room.
+ * Scroll past the scene reveals the data islands:
  * - {@link CombineDataIsland}: scoreboard summary header (PRD §9.1),
  *   Trading Card stat block (PRD §9.2), four-axis Radar (PRD §9.7),
  *   dev-only entry form (PRD §7.5 view 7), and benchmark history table
- *   (PRD §7.5 view 8 + §7.11 CRUD). The form and history share
- *   edit-mode state so writes from either surface land everywhere with
- *   no reload.
+ *   (PRD §7.5 view 8 + §7.11 CRUD).
  * - {@link JumpTrackerSection}: silhouette + ceiling-view pair (PRD
  *   §9.3 / §9.4).
- * - The Combine scene art SVG below — placeholder until the remaining
- *   visualizations (Shuttle, Sprint) replace it.
  *
  * Gated behind {@link isTrainingFacilityEnabled} so the route stays
  * 404'd in production until the Training Facility ships publicly. The
@@ -40,58 +34,39 @@ export default function TrainingFacilityCombinePage(): JSX.Element {
   if (!isTrainingFacilityEnabled()) notFound()
 
   return (
-    <div className="relative min-h-svh overflow-hidden bg-[#0e0a08] text-[#f7ead9]">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(253,224,71,0.12),transparent_30%),linear-gradient(180deg,#1f1612_0%,#0e0a08_55%,#070504_100%)]"
-      />
-
-      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl flex-col gap-10 px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <BackToCourtButton />
-          <Link
-            href="/training-facility"
-            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
-          >
-            ← Back to Training Facility
-          </Link>
+    <div className="relative min-h-svh w-full overflow-x-hidden bg-[#0e0a08] text-[#f7ead9]">
+      {/* Visually-hidden h1 — accessibility heading + e2e anchor so the
+          page still has a named identity for screen readers / Playwright
+          even though the scene-first layout has no visible title. */}
+      <h1 className="sr-only">The Combine</h1>
+      {/* Hero scene — fills the first viewport; scroll past for data. */}
+      <div className="relative h-svh w-full overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <CombineScene />
         </div>
 
-        <header className="text-center sm:text-left">
-          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
-            Training Facility / Combine
-          </p>
-          <h1 className="mt-2 text-3xl font-black uppercase tracking-[0.06em] text-[#fff7ec] sm:text-5xl lg:text-6xl">
-            The Combine
-          </h1>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:mx-0 sm:text-base">
-            Tier-1 movement benchmarks: bodyweight, 5-10-5 shuttle, vertical
-            jump, and 10-yard sprint. The scoreboard tracks the latest values
-            against the first-ever entry per metric.
-          </p>
-        </header>
+        <div className="pointer-events-none absolute inset-0 z-10">
+          <div className="pointer-events-auto absolute inset-x-0 top-0 flex flex-wrap items-center justify-between gap-3 p-4 sm:p-6 lg:p-8">
+            <BackToCourtButton />
+            <Link
+              href="/training-facility"
+              className="rounded-full border border-white/15 bg-[#0e0a08]/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 backdrop-blur transition hover:bg-[#0e0a08]/95"
+            >
+              ← Training Facility
+            </Link>
+          </div>
+        </div>
+      </div>
 
-        {/* Suspense boundary required because `CombineDataIsland` reads
-            `useSearchParams()` for the `?preview=demo` empty-state
-            affordance (#160). Without it Next 15+ would opt the entire
-            page out of static rendering at build time. The fallback is
-            null because the island already owns its own loading state
-            (the Scoreboard placeholder). */}
+      {/* Data islands below — visitor-facing visualizations (PRD §9). */}
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 sm:py-12 lg:px-10">
         <Suspense fallback={null}>
           <CombineDataIsland />
         </Suspense>
 
-        {/* Same Suspense rule applies to `JumpTrackerSection` once it
-            reads `useSearchParams()` for the preview swap (#171). The
-            island owns its own placeholder skeleton, so the fallback
-            stays null. */}
         <Suspense fallback={null}>
           <JumpTrackerSection />
         </Suspense>
-
-        <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
-          <CombineScene />
-        </div>
       </div>
     </div>
   )

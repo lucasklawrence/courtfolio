@@ -1,86 +1,105 @@
-import { Suspense, type JSX } from 'react'
+import type { JSX } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
-import { LazyMount } from '@/components/common/LazyMount'
 import { WeightRoomScene } from '@/components/training-facility/scenes/WeightRoomScene'
-import { TodayDataIsland } from '@/components/training-facility/weight-room/TodayDataIsland'
+import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
+import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
+import { buildWeightRoomDemoData } from '@/constants/weight-room-demo-fixture'
+import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
+
+/** Search-params shape Next.js passes to a server-rendered page. */
+interface PageProps {
+  /**
+   * Async per-request context (Next 15+). Only the `preview` key is
+   * consumed here, but accept the full shape so additional params are
+   * passed through unchanged.
+   */
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}
 
 /**
- * Weight Room sub-area landing page (#80 — Today View). The activity
- * rings + quick-log + today's-set list are the centerpiece; admin
- * viewers get the log form, everyone sees the rings.
+ * Weight Room — Today View landing page (#80, #197). Renders the
+ * illustrated room full-bleed with floating chrome on top; the scene's
+ * wall fixture displays today's activity rings + per-exercise tallies
+ * + streaks so visitors see the room "in use" without any data-entry UI.
  *
- * Server Component for the flag gate + chrome only — the data island
- * is a Client Component because it needs `useSearchParams()` for the
- * empty-state preview affordance and `getWeightRoomData()` reads
- * Supabase via the browser client.
+ * Admin owners log sets on the separate
+ * `/training-facility/weight-room/log` route. The sub-nav surfaces the
+ * Log + Settings pills only to admin viewers — non-admins see Today /
+ * History pills only.
  *
- * Cross-view nav between Today / History / Settings lives in the
- * shared {@link WeightRoomSubNav} pill row beneath the header — added
- * by slice #82.
+ * Empty-state preview (`?preview=demo`): when the real read returns no
+ * sets AND the URL has the param, the page substitutes
+ * {@link buildWeightRoomDemoData} so the rings still show progress for
+ * portfolio reviewers / fresh-clone dev environments. Without the
+ * param, the empty state surfaces a floating "Preview with sample data"
+ * CTA over the scene.
  */
-export default function TrainingFacilityWeightRoomPage(): JSX.Element {
+export default async function TrainingFacilityWeightRoomPage({
+  searchParams,
+}: PageProps): Promise<JSX.Element> {
   if (!isTrainingFacilityEnabled()) notFound()
 
-  return (
-    <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(248,214,170,0.16),transparent_30%),linear-gradient(180deg,#241811_0%,#120d0a_55%,#0b0806_100%)]"
-      />
+  const realData = await getWeightRoomDataServer().catch(() => null)
+  const params = await searchParams
+  const previewRequested = isPreviewDemoActive(params.preview)
+  const realIsEmpty = realData === null || realData.sets.length === 0
+  const isPreviewMode = realIsEmpty && previewRequested
+  const showEmptyStateCta = realIsEmpty && !previewRequested
+  const data = isPreviewMode ? buildWeightRoomDemoData() : realData
 
-      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-5xl flex-col gap-10 px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+  return (
+    <div className="relative h-svh w-full overflow-hidden bg-[#120d0a] text-[#f7ead9]">
+      {/* Visually-hidden h1 — accessibility heading + e2e anchor so the
+          page still has a named identity for screen readers / Playwright
+          even though the scene-first layout has no visible title. */}
+      <h1 className="sr-only">Today</h1>
+      {/* Scene fills the viewport. The illustrated SVG keeps its own
+          aspect ratio via `preserveAspectRatio="xMidYMid meet"`, so on
+          a portrait viewport it letterboxes top + bottom; on wider
+          viewports it letterboxes left + right. */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <WeightRoomScene data={data} />
+      </div>
+
+      {/* Floating chrome — `pointer-events: none` on the wrapper so
+          empty space passes clicks through to the scene; individual
+          chrome elements re-enable pointer events on themselves. */}
+      <div className="pointer-events-none absolute inset-0 z-10">
+        <div className="pointer-events-auto absolute inset-x-0 top-0 flex flex-wrap items-center justify-between gap-3 p-4 sm:p-6 lg:p-8">
           <BackToCourtButton />
           <Link
             href="/training-facility"
-            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+            className="rounded-full border border-white/15 bg-[#120d0a]/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 backdrop-blur transition hover:bg-[#120d0a]/95"
           >
             ← Training Facility
           </Link>
         </div>
 
-        <header className="text-center sm:text-left">
-          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
-            Training Facility / Weight Room
-          </p>
-          <h1 className="mt-2 text-3xl font-black uppercase tracking-[0.06em] text-[#fff7ec] sm:text-5xl lg:text-6xl">
-            Today
-          </h1>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:mx-0 sm:text-base">
-            Grease-the-groove pushups and pullups. The rings track today’s
-            progress against the daily targets; tap a chip to log a set.
-          </p>
-          <WeightRoomSubNav active="today" className="mt-5 justify-center sm:justify-start" />
-        </header>
+        <div className="pointer-events-auto absolute inset-x-0 top-20 flex justify-center sm:top-24">
+          <WeightRoomSubNav active="today" />
+        </div>
 
-        {/* Suspense required because the island reads `useSearchParams()`
-            for the `?preview=demo` empty-state affordance. The fallback
-            is null because the island owns its own loading skeleton. */}
-        <Suspense fallback={null}>
-          <TodayDataIsland />
-        </Suspense>
+        {isPreviewMode ? (
+          <div className="pointer-events-auto absolute inset-x-4 top-36 mx-auto max-w-md sm:top-40">
+            <PreviewModeBadge description="These rings are illustrative — not Lucas’s real strength logs." />
+          </div>
+        ) : null}
 
-        {/* Decorative scene illustration — same framed-card pattern as
-            `/training-facility/gym` and `/training-facility/combine`. The
-            rings + log form remain the centerpiece; the scene below
-            anchors the page as a "room."
-
-            Wrapped in `LazyMount` so the multi-MB illustrated SVGs
-            (BenchPress, SquatRack, etc.) aren't fetched on first paint —
-            the rings + log form above the fold get full bandwidth, and
-            the scene fetches as the user scrolls toward it. */}
-        <LazyMount
-          rootMargin="400px"
-          minHeight={420}
-          className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5"
-        >
-          <WeightRoomScene />
-        </LazyMount>
+        {showEmptyStateCta ? (
+          <div className="pointer-events-auto absolute inset-x-4 bottom-6 mx-auto max-w-md sm:bottom-10">
+            <PreviewWithSampleDataButton
+              href="/training-facility/weight-room?preview=demo"
+              headline="No strength work logged yet"
+              description="Curious what the wall looks like with progress? Load a sample set to see the rings fill, the streak counter come alive, and today's tallies populate."
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   )
