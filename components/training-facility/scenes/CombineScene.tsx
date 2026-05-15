@@ -85,7 +85,7 @@ export function CombineScene() {
       />
 
       <VertecSvg
-        x={1100}
+        x={1160}
         y={140}
         width={480}
         height={720}
