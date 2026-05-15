@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { LazyMount } from '@/components/common/LazyMount'
 import { WeightRoomScene } from '@/components/training-facility/scenes/WeightRoomScene'
 import { TodayDataIsland } from '@/components/training-facility/weight-room/TodayDataIsland'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
@@ -67,10 +68,19 @@ export default function TrainingFacilityWeightRoomPage(): JSX.Element {
         {/* Decorative scene illustration — same framed-card pattern as
             `/training-facility/gym` and `/training-facility/combine`. The
             rings + log form remain the centerpiece; the scene below
-            anchors the page as a "room." */}
-        <div className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5">
+            anchors the page as a "room."
+
+            Wrapped in `LazyMount` so the multi-MB illustrated SVGs
+            (BenchPress, SquatRack, etc.) aren't fetched on first paint —
+            the rings + log form above the fold get full bandwidth, and
+            the scene fetches as the user scrolls toward it. */}
+        <LazyMount
+          rootMargin="400px"
+          minHeight={420}
+          className="mx-auto w-full max-w-6xl rounded-[1.6rem] border border-white/10 bg-black/35 p-3 shadow-[0_28px_70px_rgba(0,0,0,0.4)] sm:p-5"
+        >
           <WeightRoomScene />
-        </div>
+        </LazyMount>
       </div>
     </div>
   )
