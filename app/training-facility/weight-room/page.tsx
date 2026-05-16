@@ -86,13 +86,13 @@ export default async function TrainingFacilityWeightRoomPage({
         </div>
 
         {isPreviewMode ? (
-          <div className="pointer-events-auto absolute inset-x-4 top-36 mx-auto max-w-md sm:top-40">
+          <div className="pointer-events-auto absolute inset-x-4 top-36 mx-auto max-w-sm sm:top-40">
             <PreviewModeBadge description="These rings are illustrative — not Lucas’s real strength logs." />
           </div>
         ) : null}
 
         {showEmptyStateCta ? (
-          <div className="pointer-events-auto absolute inset-x-4 bottom-6 mx-auto max-w-md sm:bottom-10">
+          <div className="pointer-events-auto absolute inset-x-4 top-36 mx-auto max-w-sm sm:top-40">
             <PreviewWithSampleDataButton
               href="/training-facility/weight-room?preview=demo"
               headline="No strength work logged yet"

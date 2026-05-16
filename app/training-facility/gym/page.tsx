@@ -75,13 +75,13 @@ export default async function TrainingFacilityGymPage({ searchParams }: PageProp
         </div>
 
         {isPreviewMode ? (
-          <div className="pointer-events-auto absolute inset-x-4 top-20 mx-auto max-w-md sm:top-24">
+          <div className="pointer-events-auto absolute inset-x-4 top-20 mx-auto max-w-sm sm:top-24">
             <PreviewModeBadge description="These cardio numbers are illustrative — not Lucas’s real Apple Health import." />
           </div>
         ) : null}
 
         {showEmptyStateCta ? (
-          <div className="pointer-events-auto absolute inset-x-4 bottom-6 mx-auto max-w-md sm:bottom-10">
+          <div className="pointer-events-auto absolute inset-x-4 top-20 mx-auto max-w-sm sm:top-24">
             <PreviewWithSampleDataButton
               href="/training-facility/gym?preview=demo"
               headline="No cardio data imported yet"
