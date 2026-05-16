@@ -25,17 +25,25 @@ test.describe('training facility enabled', () => {
 
   test('renders the gym and combine placeholder routes', async ({ page }) => {
     await page.goto('/training-facility/gym')
-    await expect(page.getByRole('heading', { name: /^the gym$/i })).toBeVisible()
-    await expect(page.getByRole('link', { name: /back to training facility/i })).toBeVisible()
+    // Heading is visually hidden in the scene-first layout (#197) but
+    // remains in the DOM for screen readers + this assertion.
+    await expect(page.getByRole('heading', { name: /^the gym$/i })).toBeAttached()
+    await expect(
+      page.getByRole('link', { name: /^← training facility$/i }),
+    ).toBeVisible()
 
     await page.goto('/training-facility/combine')
-    await expect(page.getByRole('heading', { name: /^the combine$/i })).toBeVisible()
-    await expect(page.getByRole('link', { name: /back to training facility/i })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /^the combine$/i })).toBeAttached()
+    await expect(
+      page.getByRole('link', { name: /^← training facility$/i }),
+    ).toBeVisible()
   })
 
   test('renders the weight room Today View when reached directly', async ({ page }) => {
     await page.goto('/training-facility/weight-room')
-    await expect(page.getByRole('heading', { name: /^today$/i })).toBeVisible()
+    // Heading is visually hidden in the scene-first layout (#197) but
+    // remains in the DOM for screen readers + this assertion.
+    await expect(page.getByRole('heading', { name: /^today$/i })).toBeAttached()
     // Sub-nav presence (#82) — assertions on individual pills proved
     // flaky on CI even with href-only checks (the Today client
     // island's hydration intermittently detaches the surrounding
