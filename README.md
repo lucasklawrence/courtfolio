@@ -79,6 +79,40 @@ NEXT_PUBLIC_ENABLE_TRAINING_FACILITY=true
 
 ---
 
+## SVG assets
+
+The illustrated assets under `public/locker-room/` and
+`public/training-facility/` are each a single `<symbol id="…">` rendered
+through `components/common/SvgUse.tsx` as
+`<use href="/file.svg#SymbolId" />`. That external fragment reference is a
+contract: the symbol's `id` and `viewBox` must survive any optimization.
+
+Run SVGO over both asset trees in place with:
+
+```bash
+npm run optimize:svg
+```
+
+Configuration lives in `svgo.config.mjs`. Two `preset-default` plugins are
+disabled because they assume self-contained SVGs and would break the
+external `<use>`:
+
+- **`cleanupIds`** — the symbol `id` is referenced from outside the file,
+  so SVGO would treat it as unused and strip/minify it.
+- **`removeHiddenElems`** — a top-level `<symbol>` with no in-file `<use>`
+  looks dead to SVGO and gets deleted, gutting the asset to an empty
+  `<svg/>`.
+
+Precision is pinned at `floatPrecision: 3` — a deliberate "zero visible
+change" baseline. The source art is traced at 2-decimal coordinates, so
+precision 3 preserves geometry exactly; the ~40% size win comes from
+lossless whitespace/metadata stripping and path re-encoding, not from
+dropping detail. Lower precision was rejected: it visibly softened fine
+strokes for only a few extra percent. Re-run `optimize:svg` after dropping
+any new SVG into those folders.
+
+---
+
 ## Contact
 
 Connect via the Front Office in the site, or directly:

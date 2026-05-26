@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "optimize:svg": "svgo -rf public/locker-room && svgo -rf public/training-facility",
     "import-health": "node scripts/import-health.mjs",
     "cardio:backfill": "node scripts/backfill-cardio.mjs",
     "e2e:dev": "cross-env NEXT_DIST_DIR=.next-e2e-default NEXT_PUBLIC_ENABLE_TRAINING_FACILITY=false next dev --turbopack --hostname 127.0.0.1 --port 3007",
@@ -52,6 +53,7 @@
     "jsdom": "^29.0.2",
     "postcss": "^8.5.5",
     "prettier": "^3.5.3",
+    "svgo": "^4.0.1",
     "tailwindcss": "^4.1.10",
     "typescript": "^5",
     "vitest": "^4.1.5"
