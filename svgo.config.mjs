@@ -22,10 +22,10 @@
  * `floatPrecision: 3` is the chosen "zero visible change" baseline:
  * benchmarking showed the bulk of the win comes from lossless
  * whitespace/metadata stripping and path-data reformatting, with
- * precision 3 leaving no perceptible diff at 1x or 2x on the most
- * detailed asset (YogaMat). Lower precision (1–2) shaved only a few
- * extra percent while visibly softening fine traced detail, so it was
- * rejected per the issue's fidelity-first decision.
+ * precision 3 leaving no perceptible diff at 1x or 2x on the largest
+ * (YogaMat) and most detailed (Laptop) assets. Lower precision (1–2)
+ * shaved only a few extra percent while visibly softening fine traced
+ * detail, so it was rejected per the issue's fidelity-first decision.
  *
  * @see https://svgo.dev/docs/preset-default/
  */
