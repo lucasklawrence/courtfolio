@@ -46,8 +46,7 @@ UTC clock.
 
 ### 1. Parse the sets
 
-Turn the message into a flat list of `{exercise, reps}` rows. Normalize the
-exercise name to **lowercase** (the API lowercases on write; match that):
+Turn the message into a flat list of `{exercise, reps}` rows:
 
 - "3 sets of 10 pushups" / "3x10 pushups" → 3 rows of `{pushups, 10}`
 - "25 pushups" → 1 row of `{pushups, 25}`
@@ -55,6 +54,22 @@ exercise name to **lowercase** (the API lowercases on write; match that):
 
 If reps or count are ambiguous, ask one quick clarifying question rather than
 guessing.
+
+**Canonicalize the exercise name against the existing goals — don't trust the
+prose alone.** Writing directly via the MCP bypasses the admin API's Zod
+`exerciseWriteField` transform (`.toLowerCase()` in `lib/schemas/weight-room.ts`),
+and there is no DB-level case-folding, so a stray `Pushups` would insert as a
+*distinct* exercise and surface as a separate ring (the case-divergent-duplicate
+bug #181 fixed). To stay safe, first read the configured keys and match the
+parsed name case-insensitively to one of them:
+
+```sql
+select exercise from public.weight_room_goals order by exercise;
+```
+
+Use the **exact stored key** for the insert (e.g. parsed `Pull-ups` → stored
+`pullups`). If nothing matches, treat it as a new exercise — see step 6; do not
+invent a near-duplicate key.
 
 ### 2. Get local time
 
@@ -74,8 +89,10 @@ Get-Date -Format "yyyy-MM-ddTHH:mm:ssK"
   lands on the correct local day.
 - **Back-dated** ("yesterday", "this morning", "on 5/26"): build an explicit
   timestamp at a reasonable time-of-day on that **local** date, expressed with
-  the offset from step 2 — e.g. `'2026-05-26T12:00:00-07:00'`. Don't use a bare
-  UTC midnight; near day boundaries it can bucket to the wrong local day.
+  the offset from step 2 — e.g. `'2026-05-26T12:00:00<OFFSET>'` where `<OFFSET>`
+  is the live offset captured in step 2 (`-07:00` in PDT, `-08:00` in PST).
+  Don't hardcode `-07:00`, and don't use a bare UTC midnight; either can bucket
+  to the wrong local day near a boundary or across a DST change.
 
 ### 4. "Another" appends — never overwrites
 
@@ -87,7 +104,10 @@ the user explicitly asks to fix a mistake.
 
 Insert all parsed rows in one statement, then read back today's totals. Compute
 the day window from the local date in step 2: local midnight → next local
-midnight, expressed in the local offset. Example for `2026-05-28` at `-07:00`:
+midnight, expressed in **that day's live offset** (`<OFFSET>` below — `-07:00`
+in PDT, `-08:00` in PST). Substitute the real offset from step 2; never paste
+`-07:00` verbatim, or the window shifts an hour and a near-midnight set lands on
+the wrong calendar day for ~5 months of the year. Example for `2026-05-28`:
 
 ```sql
 insert into public.weight_room_sets (logged_at, exercise, reps)
@@ -97,11 +117,12 @@ values
   (now(), 'pushups', 10)
 returning id, exercise, reps;
 
+-- <OFFSET> = the offset from step 2, e.g. -07:00 (PDT) or -08:00 (PST)
 select s.exercise, sum(s.reps) as total, g.daily_target
 from public.weight_room_sets s
 join public.weight_room_goals g on g.exercise = s.exercise
-where s.logged_at >= '2026-05-28T00:00:00-07:00'
-  and s.logged_at <  '2026-05-29T00:00:00-07:00'
+where s.logged_at >= '2026-05-28T00:00:00<OFFSET>'
+  and s.logged_at <  '2026-05-29T00:00:00<OFFSET>'
 group by s.exercise, g.daily_target
 order by s.exercise;
 ```
