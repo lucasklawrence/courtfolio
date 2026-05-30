@@ -1,6 +1,6 @@
 ---
 name: log-weight
-description: Log Lucas's morning bodyweight to the Court Vision lifestyle trends. Use when the user reports a body weight in natural language — e.g. "weighed 137.8 this morning", "my weight today was 138", "I was 136.8 lbs yesterday morning", "weight on 5/27 was 137". Records the measurement (one row per day, in lbs) to Supabase and reports the day-over-day delta.
+description: Log Lucas's morning bodyweight to the Court Vision lifestyle trends. Use when the user reports a body weight in natural language — e.g. "weighed 237.8 this morning", "my weight today was 238", "I was 236.8 lbs yesterday morning", "weight on 5/27 was 237". Records the measurement (one row per day, in lbs) to Supabase and reports the day-over-day delta.
 ---
 
 # Log Weight
@@ -12,9 +12,9 @@ Court Vision site's Body Mass chart. Data lives in Supabase, not in repo files.
 
 The user reports a bodyweight reading. Triggers look like:
 
-- "weighed 137.8 this morning" / "my weight today was 138"
-- "I was 136.8 lbs yesterday morning"
-- "weight on 5/27 was 137" / "5/26 morning 136.5"
+- "weighed 237.8 this morning" / "my weight today was 238"
+- "I was 236.8 lbs yesterday morning"
+- "weight on 5/27 was 237" / "5/26 morning 236.5"
 
 This skill is for **bodyweight only** (`cardio_body_mass_trend`). Strength sets
 (`weight_room_sets`) are a separate skill — see `log-workout`. Other lifestyle
@@ -55,8 +55,21 @@ opposite of `log-workout`, where every set is a new row). Use an upsert.
   timezone**. Resolve relative words to a local `YYYY-MM-DD`:
   - "this morning" / "today" → today's local date
   - "yesterday" / "yesterday morning" → yesterday's local date
-  - an explicit date ("5/27", "May 27") → that date in the current year unless
-    the user says otherwise
+  - an explicit date ("5/27", "May 27") → resolve to the **most recent
+    occurrence that isn't in the future**: try the current year, but if
+    `currentYear-MM-DD` is after today's local date, use `currentYear - 1`.
+    (Otherwise a "12/31" logged on Jan 1 would be stamped ~12 months ahead and
+    stretch the chart's x-axis across an empty year.) Flag anything that still
+    lands more than a few days in the future.
+
+**Sanity-check the value before writing.** The DB CHECK (`value > 0`) only
+rejects non-positive numbers — a fat-finger like `137.8` instead of `237.8`
+passes it cleanly, silently corrupts the trend, and rescales the chart's y-axis
+so every real day looks flat. This actually happened: three days were logged
+~100 lbs low before the error surfaced. Step 3's read-back already fetches the
+most recent recorded value — compare the new value against it, and if the
+difference exceeds a plausible day-over-day swing (**> 5 lbs**, or a **> 25%**
+jump), confirm with the user before inserting rather than writing silently.
 
 The user can report several days at once ("5/27 was 136.8, this morning 137.8")
 — parse each into its own `(date, value)` pair.
@@ -76,21 +89,9 @@ calendar date matters.
 
 ### 3. Upsert and report
 
-Upsert each `(date, value)` pair — overwrite on conflict so a corrected reading
-replaces the day rather than erroring:
-
-```sql
-insert into public.cardio_body_mass_trend (date, value)
-values
-  ('2026-05-27', 136.8),
-  ('2026-05-28', 137.8)
-on conflict (date) do update
-  set value = excluded.value, updated_at = now()
-returning date::text as day, value::text as lbs;
-```
-
-Then read back recent days to show the trend and compute the day-over-day
-delta:
+First read back recent days — this gives you the prior value for the sanity
+check in step 1 **and** the baseline for the delta. Keep `value` numeric (don't
+cast to text) so the delta is plain number subtraction, not string math:
 
 ```sql
 select date::text as day, value
@@ -99,9 +100,23 @@ order by date desc
 limit 7;
 ```
 
-Report the new value(s) and the change vs. the prior recorded day (e.g.
-"137.8 lbs (+1.0 from 5/27)"). Keep the site's basketball voice, but bodyweight
-is just a data point — don't over-celebrate an up or down day.
+Then upsert each `(date, value)` pair — overwrite on conflict so a corrected
+reading replaces the day rather than erroring:
+
+```sql
+insert into public.cardio_body_mass_trend (date, value)
+values
+  ('2026-05-27', 236.8),
+  ('2026-05-28', 237.8)
+on conflict (date) do update
+  set value = excluded.value, updated_at = now()
+returning date::text as day, value;
+```
+
+Report the new value(s) and the change vs. the prior recorded day, computed
+from the numeric values above (e.g. "237.8 lbs (+1.0 from 5/27)"). Keep the
+site's basketball voice, but bodyweight is just a data point — don't
+over-celebrate an up or down day.
 
 ## Sibling tables
 
