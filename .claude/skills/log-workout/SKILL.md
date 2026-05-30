@@ -55,6 +55,15 @@ Turn the message into a flat list of `{exercise, reps}` rows:
 If reps or count are ambiguous, ask one quick clarifying question rather than
 guessing.
 
+**Sanity-check the rep count before writing.** The DB CHECK (`reps > 0`) only
+rejects non-positive numbers — a fat-finger like `100` for `10`, or `15` for
+`1 set of 5`, passes cleanly and silently inflates the day's total, ring, and
+streak math. Flag any single set whose reps look implausible — a useful ceiling
+is the exercise's `daily_target` (a real single set rarely hits the *whole-day*
+goal): if one set's reps exceed `daily_target`, confirm with the user before
+inserting. (The goals fetched for canonicalization below already give you each
+exercise's `daily_target`.)
+
 **Canonicalize the exercise name against the existing goals — don't trust the
 prose alone.** Writing directly via the MCP bypasses the admin API's Zod
 `exerciseWriteField` transform (`.toLowerCase()` in `lib/schemas/weight-room.ts`),
@@ -128,8 +137,12 @@ order by s.exercise;
 ```
 
 Then report each exercise as `total / daily_target` (e.g. "Pushups: 60 / 100").
-Match the site's voice — basketball-flavored, lightly celebratory. Pushups use
-rim-orange (🟠), pullups teal (🟢).
+Match the site's voice — basketball-flavored, lightly celebratory. Use each
+exercise's configured `color` from `weight_room_goals` for its emoji lane,
+mapping the hex to the nearest emoji rather than hardcoding a fixed list — the
+two seeded exercises are pushups (`#EA580C` rim-orange, 🟠) and pullups
+(`#0EA5A1` teal, 🟢), but an exercise added via step 6 brings its own color, so
+read it from the row rather than assuming only these two exist.
 
 ### 6. Unconfigured exercise (FK violation)
 
