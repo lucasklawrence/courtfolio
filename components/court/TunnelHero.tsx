@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Typewriter } from 'react-simple-typewriter'
-import { useFadeInProps, useFadeUpProps } from '@/components/motion/primitives'
+import { useStaggerContainerProps, staggerItemProps } from '@/components/motion/primitives'
 
 /**
  * TunnelHero
@@ -36,9 +36,11 @@ export function TunnelHero({ onIntroEnd }: { onIntroEnd: () => void }) {
 
   const words = useMemo(() => ['Writing code with court vision.'], [])
 
-  const headingProps = useFadeUpProps({ delay: 0.4, duration: 0.8, y: 40 })
-  const taglineProps = useFadeInProps({ delay: 0.9, duration: 0.5 })
-  const ctaProps = useFadeInProps({ delay: 1.5 })
+  // Parent orchestrates the heading → tagline → CTA cascade; each child shares
+  // the same item variants and inherits its turn from `staggerChildren`, so the
+  // sequence no longer depends on hand-tuned per-element delays.
+  const containerProps = useStaggerContainerProps({ delayChildren: 0.4, stagger: 0.45 })
+  const itemProps = staggerItemProps({ y: 24, duration: 0.6 })
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center bg-black text-white overflow-hidden">
@@ -50,12 +52,12 @@ export function TunnelHero({ onIntroEnd }: { onIntroEnd: () => void }) {
       </div>
 
       {/* Foreground content */}
-      <div className="z-10 text-center px-4">
-        <motion.h1 {...headingProps} className="text-4xl md:text-6xl font-extrabold">
+      <motion.div {...containerProps} className="z-10 text-center px-4">
+        <motion.h1 {...itemProps} className="text-4xl md:text-6xl font-extrabold">
           Lucas Lawrence
         </motion.h1>
 
-        <motion.p {...taglineProps} className="text-lg md:text-2xl mt-4 text-orange-300 font-mono">
+        <motion.p {...itemProps} className="text-lg md:text-2xl mt-4 text-orange-300 font-mono">
           {showTyping && (
             <Typewriter
               words={words}
@@ -70,13 +72,13 @@ export function TunnelHero({ onIntroEnd }: { onIntroEnd: () => void }) {
         </motion.p>
 
         <motion.button
-          {...ctaProps}
+          {...itemProps}
           onClick={onIntroEnd}
           className="inline-block mt-10 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-orange-400 transition"
         >
           🏀 Step Onto the Court
         </motion.button>
-      </div>
+      </motion.div>
     </section>
   )
 }
