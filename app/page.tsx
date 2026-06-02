@@ -12,6 +12,20 @@ import { TunnelHero } from '@/components/court/TunnelHero'
 const FADE_DURATION = 1
 
 /**
+ * Vertical travel (px) for the intro→court hand-off. The intro slides up as it
+ * fades out and the court rises into place, giving the swap a sense of
+ * direction rather than a flat crossfade. Skipped entirely under reduced motion.
+ */
+const HANDOFF_SHIFT = 20
+
+/**
+ * Starting scale for the court's entrance. A near-1 value reads as a gentle
+ * settle, not a zoom. `scale` is a compositor-only transform, so animating it
+ * stays on the GPU and off the layout/paint path.
+ */
+const COURT_ENTER_SCALE = 0.98
+
+/**
  * HomePage
  *
  * The main landing page for the site. If the user has not seen the intro,
@@ -47,7 +61,9 @@ export default function HomePage() {
         <motion.div
           key="intro"
           initial={{ opacity: 1 }}
-          exit={reduce ? { opacity: 1 } : { opacity: 0 }}
+          // Slide up while fading out for a directional hand-off; reduced motion
+          // keeps it in place so the swap is instant rather than animated.
+          exit={reduce ? { opacity: 1 } : { opacity: 0, y: -HANDOFF_SHIFT }}
           transition={{ duration }}
         >
           <TunnelHero onIntroEnd={handleIntroEnd} />
@@ -56,8 +72,10 @@ export default function HomePage() {
         <motion.div
           key="main"
           data-testid="home-court-root"
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
+          // Rise + settle into place as the court enters; reduced motion skips
+          // the entrance entirely (`false`) so content appears immediately.
+          initial={reduce ? false : { opacity: 0, y: HANDOFF_SHIFT, scale: COURT_ENTER_SCALE }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration }}
           className="w-screen h-screen"
         >
