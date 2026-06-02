@@ -142,3 +142,66 @@ export function SpringUp({ delay, y, transition, ...rest }: SpringUpDivProps) {
     />
   )
 }
+
+/** Props for the orchestrating parent returned by {@link useStaggerContainerProps}. */
+type StaggerContainerProps = Pick<MotionProps, 'initial' | 'animate' | 'variants'>
+
+/** Props for a single staggered child returned by {@link staggerItemProps}. */
+type StaggerItemProps = Pick<MotionProps, 'variants'>
+
+/**
+ * Returns Framer Motion props for a parent that orchestrates a staggered
+ * entrance of its children. Spread onto the wrapping `motion.X`, then give each
+ * child the props from {@link staggerItemProps}; the children animate in
+ * sequence by inheriting the parent's `hidden`/`show` variant state, so no
+ * per-child `delay` is needed — adding or removing a child reflows the cascade
+ * automatically.
+ *
+ * Under `prefers-reduced-motion: reduce` the entrance is skipped entirely
+ * (`initial={false}` short-circuits the whole subtree to its resting state),
+ * matching the instant behavior of the other entrance primitives here.
+ *
+ * @param stagger - Seconds between consecutive children entering. Default `0.18`.
+ * @param delayChildren - Seconds before the first child begins. Default `0.3`.
+ */
+export function useStaggerContainerProps({
+  stagger = 0.18,
+  delayChildren = 0.3,
+}: { stagger?: number; delayChildren?: number } = {}): StaggerContainerProps {
+  const reduce = useReducedMotion()
+  return {
+    initial: reduce ? false : 'hidden',
+    animate: 'show',
+    variants: {
+      hidden: {},
+      show: { transition: { staggerChildren: stagger, delayChildren } },
+    },
+  }
+}
+
+/**
+ * Returns the `variants` prop for a child of a {@link useStaggerContainerProps}
+ * parent: a fade-and-rise (`opacity` 0→1 while translating up from `y`px below).
+ * The parent's `staggerChildren` decides *when* each child runs, so timing
+ * lives on the container, not here. Spread the same returned object onto every
+ * child — the variant labels, not object identity, drive the animation.
+ *
+ * Intentionally **not** a hook (no `use` prefix, calls no hooks): it can be
+ * called inside a `.map()` over a list of children without violating the rules
+ * of hooks. Reduced motion is handled by the parent's `initial={false}`, so the
+ * `y` offset is never applied when reduced motion is requested.
+ *
+ * @param y - Starting vertical offset in pixels (positive = below resting position). Default `20`.
+ * @param duration - Per-child entrance length in seconds. Default `0.5`.
+ */
+export function staggerItemProps({
+  y = 20,
+  duration = 0.5,
+}: { y?: number; duration?: number } = {}): StaggerItemProps {
+  return {
+    variants: {
+      hidden: { opacity: 0, y },
+      show: { opacity: 1, y: 0, transition: { duration } },
+    },
+  }
+}
