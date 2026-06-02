@@ -82,14 +82,23 @@ invent a near-duplicate key.
 
 ### 2. Get local time
 
-Run PowerShell to get the current local time **with UTC offset** — needed both
-to stamp `logged_at` correctly and to compute the day window in step 5:
+Get the current local time **with UTC offset** — needed both to stamp
+`logged_at` correctly and to compute the day window in step 5. `Get-Date` is a
+PowerShell cmdlet, so on Windows you **must** invoke it with the `PowerShell`
+tool, **not** the `Bash` tool — `bash` routes to `/usr/bin/bash` where
+`Get-Date` is `command not found` (exit 127). Use the `PowerShell` tool with:
 
-```
+```powershell
 Get-Date -Format "yyyy-MM-ddTHH:mm:ssK"
 ```
 
 (e.g. `2026-05-28T18:36:59-07:00`).
+
+On a POSIX shell instead, get the equivalent via the `Bash` tool with
+`date +%Y-%m-%dT%H:%M:%S%z | sed -E 's/([+-][0-9]{2})([0-9]{2})$/\1:\2/'`. The
+`sed` step inserts the colon in the offset (`-0700` → `-07:00`); don't use GNU's
+`%:z` specifier directly — BSD/macOS `date` doesn't support it and would emit a
+literal `%:z`.
 
 ### 3. Determine `logged_at`
 
