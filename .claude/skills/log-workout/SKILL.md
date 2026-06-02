@@ -94,8 +94,11 @@ Get-Date -Format "yyyy-MM-ddTHH:mm:ssK"
 
 (e.g. `2026-05-28T18:36:59-07:00`).
 
-On a POSIX shell instead, the equivalent via the `Bash` tool is
-`date +%Y-%m-%dT%H:%M:%S%:z`.
+On a POSIX shell instead, get the equivalent via the `Bash` tool with
+`date +%Y-%m-%dT%H:%M:%S%z | sed -E 's/([+-][0-9]{2})([0-9]{2})$/\1:\2/'`. The
+`sed` step inserts the colon in the offset (`-0700` → `-07:00`); don't use GNU's
+`%:z` specifier directly — BSD/macOS `date` doesn't support it and would emit a
+literal `%:z`.
 
 ### 3. Determine `logged_at`
 
