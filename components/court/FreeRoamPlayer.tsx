@@ -149,10 +149,15 @@ export function FreeRoamPlayer({
 
   // ── Unified game loop ──────────────────────────────────────────────
   // Single RAF loop handles both keyboard and click-to-move with delta time,
-  // so movement speed is consistent regardless of frame rate.
+  // so movement speed is consistent regardless of frame rate. An
+  // IntersectionObserver starts/stops the loop so it burns no frames while the
+  // court is scrolled off-screen, and it also pauses with the tab.
   useEffect(() => {
+    const svg = boundsRef.current
     let prevTime = performance.now()
     let wasMoving = false
+    let running = false
+    let onScreen = true
 
     const tick = (now: number) => {
       const dt = Math.min((now - prevTime) / 1000, 0.1) // cap to prevent teleporting after tab-away
@@ -237,8 +242,46 @@ export function FreeRoamPlayer({
       gameLoopRef.current = requestAnimationFrame(tick)
     }
 
-    gameLoopRef.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(gameLoopRef.current)
+    const start = () => {
+      if (running) return
+      running = true
+      // Reset the clock so the first frame after a pause produces a small dt
+      // instead of "time since the loop last ran".
+      prevTime = performance.now()
+      gameLoopRef.current = requestAnimationFrame(tick)
+    }
+
+    const stop = () => {
+      if (!running) return
+      running = false
+      cancelAnimationFrame(gameLoopRef.current)
+    }
+
+    // Run only while the court is on-screen and the tab is foregrounded.
+    const sync = () => {
+      if (onScreen && !document.hidden) start()
+      else stop()
+    }
+
+    let observer: IntersectionObserver | null = null
+    if (svg && typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(entries => {
+        onScreen = entries.some(entry => entry.isIntersecting)
+        sync()
+      })
+      observer.observe(svg)
+    } else {
+      // Nothing to observe (or unsupported) — fall back to the tab-visibility gate.
+      sync()
+    }
+
+    document.addEventListener('visibilitychange', sync)
+
+    return () => {
+      observer?.disconnect()
+      document.removeEventListener('visibilitychange', sync)
+      stop()
+    }
   }, [boundsRef, x, y])
 
   // Idle shooting pose — triggers after player stands still for a while.
