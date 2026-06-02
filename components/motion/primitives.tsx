@@ -157,9 +157,10 @@ type StaggerItemProps = Pick<MotionProps, 'variants'>
  * per-child `delay` is needed — adding or removing a child reflows the cascade
  * automatically.
  *
- * Under `prefers-reduced-motion: reduce` the entrance is skipped entirely
- * (`initial={false}` short-circuits the whole subtree to its resting state),
- * matching the instant behavior of the other entrance primitives here.
+ * Under `prefers-reduced-motion: reduce` the entrance is skipped entirely: the
+ * parent mounts in the `show` state (`initial="show"`) so children resolve
+ * straight to their resting values — opacity 1, no offset — with no cascade.
+ * This matches the instant behavior of the other entrance primitives here.
  *
  * @param stagger - Seconds between consecutive children entering. Default `0.18`.
  * @param delayChildren - Seconds before the first child begins. Default `0.3`.
@@ -170,7 +171,10 @@ export function useStaggerContainerProps({
 }: { stagger?: number; delayChildren?: number } = {}): StaggerContainerProps {
   const reduce = useReducedMotion()
   return {
-    initial: reduce ? false : 'hidden',
+    // Mounting at 'show' (not 'hidden') under reduced motion makes every child
+    // resolve to its resting variant immediately — the `y` offset is never
+    // applied, so the swap is instant rather than a stagger collapsed to 0s.
+    initial: reduce ? 'show' : 'hidden',
     animate: 'show',
     variants: {
       hidden: {},
@@ -188,8 +192,8 @@ export function useStaggerContainerProps({
  *
  * Intentionally **not** a hook (no `use` prefix, calls no hooks): it can be
  * called inside a `.map()` over a list of children without violating the rules
- * of hooks. Reduced motion is handled by the parent's `initial={false}`, so the
- * `y` offset is never applied when reduced motion is requested.
+ * of hooks. Reduced motion is handled by the parent (it mounts at `show`), so
+ * the `y` offset is never applied when reduced motion is requested.
  *
  * @param y - Starting vertical offset in pixels (positive = below resting position). Default `20`.
  * @param duration - Per-child entrance length in seconds. Default `0.5`.
