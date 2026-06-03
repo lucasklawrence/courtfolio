@@ -13,14 +13,15 @@
  * regression ever ships, so a bad `optimize:svg` run can't merge.
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs'
-import { join } from 'node:path'
+import { basename, join } from 'node:path'
 
 import { describe, expect, it } from 'vitest'
 
 /**
  * Asset directories (relative to the repo root, where Vitest runs) whose
- * every `*.svg` must be a non-empty `<symbol>`. Mirrors the globs in the
- * `optimize:svg` npm script; keep the two in sync when adding a family.
+ * every `*.svg` must be a non-empty `<symbol>` whose `id` equals the filename
+ * (the fragment `SvgUse` references). Mirrors the globs in the `optimize:svg`
+ * npm script; keep the two in sync when adding a family.
  */
 const SYMBOL_SVG_DIRS = [
   'public/locker-room',
@@ -55,8 +56,19 @@ describe('symbol SVG assets survive optimization (#201)', () => {
     expect(files.length).toBeGreaterThanOrEqual(37)
   })
 
-  it.each(files)('%s keeps a non-trivial <symbol id>', (file) => {
+  it.each(files)('%s keeps its <symbol id="<filename>"> above the size floor', (file) => {
+    // Size floor catches a fully-gutted or path-stripped file...
     expect(statSync(file).size).toBeGreaterThan(MIN_BYTES)
-    expect(readFileSync(file, 'utf8')).toMatch(/<symbol\s+id="[^"]+"/)
+
+    // ...and the id must still equal the filename, because that's the exact
+    // fragment `SvgUse` references (`/<file>.svg#<filename>`). Asserting the
+    // value — not just "some <symbol id>" — also catches a renamed/minified id,
+    // not only whole-symbol removal.
+    const id = basename(file, '.svg')
+    const match = readFileSync(file, 'utf8').match(/<symbol\b[^>]*\bid="([^"]+)"/)
+    expect(
+      match?.[1],
+      `${file} must expose <symbol id="${id}"> for its external <use href>`
+    ).toBe(id)
   })
 })
