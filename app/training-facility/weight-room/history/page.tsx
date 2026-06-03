@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
 import { StrengthStats } from '@/components/training-facility/weight-room/StrengthStats'
+import { WeeklyVolumeChart } from '@/components/training-facility/weight-room/WeeklyVolumeChart'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
@@ -66,10 +67,9 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
             Heatmap &amp; stats
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            One row per day for the trailing 52 weeks, colored by how
-            close that day got to the daily goal. Hover any cell for the
-            day&rsquo;s breakdown. Stats below summarize the current
-            week, month, and all-time totals.
+            One row per day for the trailing 52 weeks, colored by how close that day got to the
+            daily goal. Hover any cell for the day&rsquo;s breakdown. Stats below summarize the
+            current week, month, and all-time totals.
           </p>
           <WeightRoomSubNav active="history" className="mt-5" />
         </header>
@@ -98,7 +98,7 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
               data-testid="weight-room-heatmaps"
               className="mt-10 space-y-8"
             >
-              {goals.map((goal) => (
+              {goals.map(goal => (
                 <article
                   key={goal.exercise}
                   className="rounded-[1.2rem] border border-white/10 bg-white/5 p-5"
@@ -116,6 +116,14 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
                   </header>
                   <div className="overflow-x-auto">
                     <StrengthHeatmap sets={sets} goal={goal} />
+                  </div>
+                  <div className="mt-5 border-t border-white/10 pt-4">
+                    <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
+                      Weekly volume · last 12 weeks
+                    </p>
+                    <div className="overflow-x-auto">
+                      <WeeklyVolumeChart sets={sets} goal={goal} />
+                    </div>
                   </div>
                 </article>
               ))}
