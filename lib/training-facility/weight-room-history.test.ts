@@ -4,6 +4,7 @@ import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
 import {
   buildStrengthHeatmap,
+  buildWeeklyVolume,
   computeStrengthStats,
   computeStrengthStreaks,
   intensityFromPct,
@@ -77,11 +78,11 @@ describe('buildStrengthHeatmap', () => {
       cell.date.getFullYear() === year &&
       cell.date.getMonth() === month0 &&
       cell.date.getDate() === day
-    const apr14 = grid.flat().find((c) => dayMatches(c, 2026, 3, 14))
+    const apr14 = grid.flat().find(c => dayMatches(c, 2026, 3, 14))
     expect(apr14?.reps).toBe(45)
     expect(apr14?.setCount).toBe(2)
     expect(apr14?.pct).toBeCloseTo(0.45)
-    const apr13 = grid.flat().find((c) => dayMatches(c, 2026, 3, 13))
+    const apr13 = grid.flat().find(c => dayMatches(c, 2026, 3, 13))
     expect(apr13?.reps).toBe(50)
     expect(apr13?.pct).toBeCloseTo(0.5)
   })
@@ -91,7 +92,7 @@ describe('buildStrengthHeatmap', () => {
     vi.setSystemTime(new Date(2026, 3, 15))
     const sets = [set('2026-04-14', 'pullups', 30), set('2026-04-14', 'dips', 30)]
     const { grid } = buildStrengthHeatmap(sets, PUSHUPS)
-    expect(grid.flat().every((c) => c.reps === 0)).toBe(true)
+    expect(grid.flat().every(c => c.reps === 0)).toBe(true)
   })
 
   it('respects dateFrom / dateTo and clamps insanely wide ranges', () => {
@@ -101,7 +102,7 @@ describe('buildStrengthHeatmap', () => {
       [],
       PUSHUPS,
       new Date(2026, 3, 1),
-      new Date(2026, 3, 15),
+      new Date(2026, 3, 15)
     )
     expect(small[0].length).toBeGreaterThanOrEqual(2)
     expect(small[0].length).toBeLessThanOrEqual(4)
@@ -110,7 +111,7 @@ describe('buildStrengthHeatmap', () => {
       [],
       PUSHUPS,
       new Date(2018, 0, 1),
-      new Date(2026, 3, 15),
+      new Date(2026, 3, 15)
     )
     expect(clamped[0].length).toBeLessThanOrEqual(105)
   })
@@ -132,7 +133,74 @@ describe('buildStrengthHeatmap', () => {
     vi.setSystemTime(new Date(2026, 3, 15))
     const { monthLabels } = buildStrengthHeatmap([], PUSHUPS)
     expect(monthLabels.length).toBeGreaterThan(0)
-    expect(monthLabels.find((l) => l.label === 'Apr')).toBeDefined()
+    expect(monthLabels.find(l => l.label === 'Apr')).toBeDefined()
+  })
+})
+
+describe('buildWeeklyVolume', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('emits exactly `weeks` columns ending with the current week', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15)) // Wed Apr 15
+    const points = buildWeeklyVolume([], PUSHUPS, 8)
+    expect(points).toHaveLength(8)
+    // Every column opens on a Monday, oldest → newest.
+    expect(points.every(p => p.weekStart.getDay() === 1)).toBe(true)
+    for (let i = 1; i < points.length; i++) {
+      expect(points[i].weekStart.getTime()).toBeGreaterThan(points[i - 1].weekStart.getTime())
+    }
+    // Last column is the week containing "now" (Mon Apr 13 2026).
+    const last = points[points.length - 1]
+    expect(last.weekStart.getMonth()).toBe(3)
+    expect(last.weekStart.getDate()).toBe(13)
+    expect(last.label).toBe('4/13')
+  })
+
+  it('sums reps and counts sets per ISO week, bucketing by Monday', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    const sets = [
+      set('2026-04-13', 'pushups', 40), // Mon — same week as...
+      set('2026-04-15', 'pushups', 30), // ...Wed
+      set('2026-04-06', 'pushups', 50), // prior week (Mon Apr 6)
+    ]
+    const points = buildWeeklyVolume(sets, PUSHUPS, 4)
+    const current = points.find(p => p.weekKey === '2026-04-13')
+    expect(current?.reps).toBe(70)
+    expect(current?.setCount).toBe(2)
+    const prior = points.find(p => p.weekKey === '2026-04-06')
+    expect(prior?.reps).toBe(50)
+    expect(prior?.setCount).toBe(1)
+  })
+
+  it('back-fills weeks with no sets as zero', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    const points = buildWeeklyVolume([set('2026-04-13', 'pushups', 40)], PUSHUPS, 4)
+    const empties = points.filter(p => p.reps === 0)
+    expect(empties).toHaveLength(3)
+    expect(points.reduce((acc, p) => acc + p.reps, 0)).toBe(40)
+  })
+
+  it('ignores other exercises and unparseable timestamps', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    const sets: StrengthSet[] = [
+      set('2026-04-13', 'pullups', 30),
+      { id: 'bad', logged_at: 'not-a-date', exercise: 'pushups', reps: 99 },
+      set('2026-04-13', 'pushups', 25),
+    ]
+    const points = buildWeeklyVolume(sets, PUSHUPS, 4)
+    expect(points.reduce((acc, p) => acc + p.reps, 0)).toBe(25)
+  })
+
+  it('clamps a sub-1 week count to a single column', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    expect(buildWeeklyVolume([], PUSHUPS, 0)).toHaveLength(1)
   })
 })
 
@@ -180,10 +248,7 @@ describe('computeStrengthStreaks', () => {
   it('current is 0 when last hit-day is older than yesterday', () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-04-16T12:00:00'))
-    const sets = [
-      set('2026-04-10', 'pushups', 100),
-      set('2026-04-11', 'pushups', 100),
-    ]
+    const sets = [set('2026-04-10', 'pushups', 100), set('2026-04-11', 'pushups', 100)]
     const result = computeStrengthStreaks(sets, PUSHUPS)
     expect(result.current).toBe(0)
     expect(result.longest).toBe(2)
@@ -192,10 +257,7 @@ describe('computeStrengthStreaks', () => {
   it('ignores sets for other exercises', () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-04-16T12:00:00'))
-    const sets = [
-      set('2026-04-15', 'pullups', 100),
-      set('2026-04-16', 'pullups', 100),
-    ]
+    const sets = [set('2026-04-15', 'pullups', 100), set('2026-04-16', 'pullups', 100)]
     expect(computeStrengthStreaks(sets, PUSHUPS)).toEqual({ current: 0, longest: 0 })
   })
 
@@ -277,7 +339,7 @@ describe('computeStrengthStats', () => {
     ]
     const sets = [set('2026-04-16', 'pullups', 30), set('2026-04-16', 'pushups', 50)]
     const stats = computeStrengthStats(sets, goals, now)
-    expect(stats.map((s) => s.exercise)).toEqual(['pushups', 'pullups'])
+    expect(stats.map(s => s.exercise)).toEqual(['pushups', 'pullups'])
     expect(stats[1].color).toBe('#0EA5A1')
     expect(stats[1].thisWeekReps).toBe(30)
   })
@@ -293,10 +355,7 @@ describe('computeStrengthStats', () => {
     // threading `now` into `computeStrengthStreaks`, `current` would
     // come back 0 because Apr 16 is older than yesterday.
     const now = new Date('2026-04-16T12:00:00')
-    const sets = [
-      set('2026-04-15', 'pushups', 100),
-      set('2026-04-16', 'pushups', 100),
-    ]
+    const sets = [set('2026-04-15', 'pushups', 100), set('2026-04-16', 'pushups', 100)]
     const [stats] = computeStrengthStats(sets, [PUSHUPS], now)
     expect(stats.currentStreak).toBe(2)
     expect(stats.longestStreak).toBe(2)

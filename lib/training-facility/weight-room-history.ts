@@ -36,6 +36,25 @@ export interface StrengthHeatmapGrid {
   monthLabels: { col: number; label: string }[]
 }
 
+/**
+ * One week's rep total for a single exercise — the datum behind a bar
+ * in the History view's weekly-volume chart (#216 follow-up). Buckets
+ * are ISO weeks (Mon–Sun), matching the heatmap's row layout and the
+ * stats panel's `thisWeek`/`lastWeek` rollups.
+ */
+export interface WeeklyVolumePoint {
+  /** Monday (00:00 local) that opens this ISO week. */
+  weekStart: Date
+  /** `YYYY-MM-DD` of {@link weekStart} — a stable, unique band key. */
+  weekKey: string
+  /** Short `M/D` x-axis label derived from {@link weekStart}. */
+  label: string
+  /** Total reps logged for this exercise across the week. `0` for empty weeks. */
+  reps: number
+  /** Number of distinct sets logged across the week. */
+  setCount: number
+}
+
 /** Per-exercise rollups for the stats panel. */
 export interface StrengthExerciseStats {
   /** Exercise name (matches {@link ExerciseGoal.exercise}). */
@@ -151,7 +170,7 @@ export function buildStrengthHeatmap(
   sets: readonly StrengthSet[],
   goal: ExerciseGoal,
   dateFrom?: Date | null,
-  dateTo?: Date | null,
+  dateTo?: Date | null
 ): StrengthHeatmapGrid {
   const endMonday = getMondayOf(dateTo ?? new Date())
   const endDate = new Date(endMonday.getTime() + 6 * DAY_MS)
@@ -238,7 +257,7 @@ export function buildStrengthHeatmap(
 export function computeStrengthStreaks(
   sets: readonly StrengthSet[],
   goal: ExerciseGoal,
-  now: Date = new Date(),
+  now: Date = new Date()
 ): { current: number; longest: number } {
   const dailyReps = new Map<string, number>()
   for (const s of sets) {
@@ -268,7 +287,7 @@ export function computeStrengthStreaks(
 function streakFromDailyReps(
   dailyReps: ReadonlyMap<string, number>,
   dailyTarget: number,
-  now: Date,
+  now: Date
 ): { current: number; longest: number } {
   // Belt-and-suspenders — same reason as in `buildStrengthHeatmap`.
   const target = Math.max(1, dailyTarget)
@@ -337,7 +356,7 @@ function streakFromDailyReps(
 export function computeStrengthStats(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
-  now: Date = new Date(),
+  now: Date = new Date()
 ): StrengthExerciseStats[] {
   const todayMonday = getMondayOf(now)
   const thisWeekStart = toDateKey(todayMonday)
@@ -350,7 +369,7 @@ export function computeStrengthStats(
   const lastMonthStart = toDateKey(new Date(now.getFullYear(), now.getMonth() - 1, 1))
   const lastMonthEnd = toDateKey(new Date(now.getFullYear(), now.getMonth(), 0))
 
-  return goals.map((goal) => {
+  return goals.map(goal => {
     const dailyReps = new Map<string, number>()
     let allTimeReps = 0
     let validSetCount = 0
@@ -398,4 +417,69 @@ export function computeStrengthStats(
       allTimeReps,
     }
   })
+}
+
+/**
+ * Roll one exercise's sets into a trailing run of weekly rep totals —
+ * the data behind the History view's weekly-volume bar chart. Where the
+ * heatmap answers "did I show up?" at daily granularity, this answers
+ * "is my weekly volume trending up?" at a magnitude the heatmap's
+ * capped color scale can't show.
+ *
+ * Weeks are ISO (Monday-anchored) so a bar lines up with the heatmap's
+ * columns and the stats panel's week rollups. The series always spans
+ * exactly `weeks` columns ending with the current week, back-filling
+ * empty weeks with `0` so a training gap reads as a visible trough
+ * rather than a missing bar. Sets whose `exercise` doesn't match
+ * `goal.exercise` are ignored — call once per exercise.
+ *
+ * @param sets every logged set from {@link import('@/types/weight-room').WeightRoomData.sets};
+ *   the helper filters to the matching exercise.
+ * @param goal the {@link ExerciseGoal} for the target exercise.
+ * @param weeks number of trailing weeks to emit, including the current
+ *   one. Floored to an integer and clamped to a minimum of 1. Defaults
+ *   to 12 (a quarter) — short enough that every bar can carry a legible
+ *   date label.
+ * @param now optional override for the "current week" anchor. Defaults
+ *   to `new Date()`; tests pass a fixed date for determinism.
+ */
+export function buildWeeklyVolume(
+  sets: readonly StrengthSet[],
+  goal: ExerciseGoal,
+  weeks = 12,
+  now: Date = new Date()
+): WeeklyVolumePoint[] {
+  const span = Math.max(1, Math.floor(weeks))
+  const currentMonday = getMondayOf(now)
+  const startMs = currentMonday.getTime() - (span - 1) * WEEK_MS
+
+  // weekKey (Monday YYYY-MM-DD) → reps + set tallies for this exercise.
+  const lookup = new Map<string, { reps: number; setCount: number }>()
+  for (const s of sets) {
+    if (s.exercise !== goal.exercise) continue
+    const d = new Date(s.logged_at)
+    if (!Number.isFinite(d.getTime())) continue
+    const key = toDateKey(getMondayOf(d))
+    const entry = lookup.get(key) ?? { reps: 0, setCount: 0 }
+    entry.reps += s.reps
+    entry.setCount += 1
+    lookup.set(key, entry)
+  }
+
+  const points: WeeklyVolumePoint[] = []
+  for (let i = 0; i < span; i++) {
+    // Snap each generated week back through getMondayOf so a DST hour
+    // shift in the raw ms arithmetic can't land the key on a Sunday.
+    const weekStart = getMondayOf(new Date(startMs + i * WEEK_MS))
+    const weekKey = toDateKey(weekStart)
+    const entry = lookup.get(weekKey)
+    points.push({
+      weekStart,
+      weekKey,
+      label: `${weekStart.getMonth() + 1}/${weekStart.getDate()}`,
+      reps: entry?.reps ?? 0,
+      setCount: entry?.setCount ?? 0,
+    })
+  }
+  return points
 }
