@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useSingleColumn } from '@/utils/hooks/useSingleColumn'
 import { TradeCard } from './TradeCard'
 import type { TradeCardProps } from './TradeCard'
@@ -120,13 +120,34 @@ export const ProjectGallery = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
   const selectedProject = projects.find(project => project.slug === selectedSlug) ?? null
 
+  // The card that opened the overlay, captured at click time so focus can be
+  // restored on close. Must be captured before the gallery is marked `inert`
+  // (which blurs the focused trigger), so we record it here rather than reading
+  // `document.activeElement` from inside the dialog.
+  const triggerRef = useRef<HTMLElement | null>(null)
+  const openProject = (slug: string) => {
+    triggerRef.current = document.activeElement as HTMLElement | null
+    setSelectedSlug(slug)
+  }
+
   const mid = Math.ceil(projects.length / 2)
   const leftColumn = projects.slice(0, mid)
   const rightColumn = projects.slice(mid)
 
   return (
     <div className="relative min-h-screen bg-[url('/textures/binder-leather.png')] bg-cover bg-center px-2 sm:px-6 py-12 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]">
-      <div className="mx-auto w-full max-w-[1600px]">
+      {/*
+       * The card grid is marked `inert` while the detail dialog is open, so the
+       * cards obscured behind the backdrop leave the tab order and the
+       * accessibility tree — completing the dialog's focus trap + aria-modal so
+       * a screen-reader virtual cursor can't wander into the hidden gallery.
+       * (The divider below is decorative and non-interactive, so it's exempt.)
+       */}
+      <div
+        data-testid="gallery-content"
+        inert={selectedProject ? true : undefined}
+        className="mx-auto w-full max-w-[1600px]"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 sm:px-4">
           {/* Left Column */}
           <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
@@ -134,7 +155,7 @@ export const ProjectGallery = () => {
               // `.reveal` fades each card up as it scrolls into view (native
               // scroll-driven CSS; inert in unsupporting browsers / reduced motion).
               <div key={project.slug} className="reveal">
-                <TradeCard {...project} onOpen={() => setSelectedSlug(project.slug)} />
+                <TradeCard {...project} onOpen={() => openProject(project.slug)} />
               </div>
             ))}
           </div>
@@ -143,7 +164,7 @@ export const ProjectGallery = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
             {rightColumn.map(project => (
               <div key={project.slug} className="reveal">
-                <TradeCard {...project} onOpen={() => setSelectedSlug(project.slug)} />
+                <TradeCard {...project} onOpen={() => openProject(project.slug)} />
               </div>
             ))}
           </div>
@@ -162,6 +183,7 @@ export const ProjectGallery = () => {
             key={selectedProject.slug}
             project={selectedProject}
             onClose={() => setSelectedSlug(null)}
+            returnFocusTo={triggerRef}
           />
         )}
       </AnimatePresence>

@@ -2,7 +2,7 @@
 
 import { m, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
-import { useEffect, useId, useRef } from 'react'
+import { useEffect, useId, useRef, type RefObject } from 'react'
 import { CARD_MORPH_SPRING, cardLayoutId } from './cardMorph'
 import type { TradeCardProps } from './TradeCard'
 
@@ -12,6 +12,13 @@ type ProjectDetailProps = {
   project: TradeCardProps
   /** Called when the user dismisses the overlay (backdrop click, ✕, or Escape). */
   onClose: () => void
+  /**
+   * Element to return focus to when the dialog closes (the card that opened it).
+   * Captured by {@link ProjectGallery} at click time — `document.activeElement`
+   * can't be used here because the gallery is marked `inert` on open, which
+   * blurs the trigger before this component's effect runs.
+   */
+  returnFocusTo?: RefObject<HTMLElement | null>
 }
 
 /**
@@ -29,7 +36,7 @@ type ProjectDetailProps = {
  * and restores focus to the element that opened it (the originating card) on
  * close.
  */
-export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
+export const ProjectDetail = ({ project, onClose, returnFocusTo }: ProjectDetailProps) => {
   const reduce = useReducedMotion()
   const panelRef = useRef<HTMLDivElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
@@ -38,7 +45,8 @@ export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
   // Modal lifecycle: Escape-to-close, body scroll lock, initial focus, a Tab
   // focus trap, and focus restoration to the trigger on unmount.
   useEffect(() => {
-    const trigger = document.activeElement as HTMLElement | null
+    // Fallback only — prefer the gallery-captured trigger (see `returnFocusTo`).
+    const fallbackTrigger = document.activeElement as HTMLElement | null
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -72,9 +80,9 @@ export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = previousOverflow
-      trigger?.focus?.()
+      ;(returnFocusTo?.current ?? fallbackTrigger)?.focus?.()
     }
-  }, [onClose])
+  }, [onClose, returnFocusTo])
 
   const { name, slug, tagline, thumbnailUrl, stack, impact, year, moment, href } = project
 

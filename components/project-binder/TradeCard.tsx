@@ -58,12 +58,24 @@ export type TradeCardProps = {
 /** Props for the {@link TradeCard} component: project data plus the open handler. */
 type TradeCardComponentProps = TradeCardProps & {
   /**
-   * Opens this project's detail overlay. When provided, the whole card becomes a
-   * button; clicking it morphs the card into the `ProjectDetail` panel (the two
-   * are linked by a shared `layoutId`). The `View Project` link lives in that
-   * panel, not on the card.
+   * Opens this project's detail overlay. Drives a full-card stretched button;
+   * clicking anywhere on the card morphs it into the `ProjectDetail` panel (the
+   * two are linked by a shared `layoutId`). Projects with an external `href`
+   * also expose a small "View Project" anchor that navigates instead.
    */
   onOpen?: () => void
+}
+
+/**
+ * True when `href` points off-site (absolute `http(s)` URL) rather than to an
+ * internal route. Only external links get the gallery-level "View Project"
+ * anchor — an outbound, crawlable, middle-clickable link is meaningful for
+ * other sites but not for an internal route like `/`.
+ *
+ * @param href - The project's optional link.
+ */
+function isExternalHref(href: string | undefined): href is string {
+  return !!href && /^https?:\/\//.test(href)
 }
 
 /**
@@ -93,10 +105,12 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
   featured = false,
   experimental = false,
   status,
+  href,
   legacy = false,
   onOpen,
 }) => {
   const reduce = useReducedMotion()
+  const showExternalLink = isExternalHref(href)
 
   const rarityClass = featured
     ? 'border-yellow-400'
@@ -105,22 +119,7 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
       : 'border-neutral-700'
 
   return (
-    // A div with `role="button"` rather than a real <button>: the card's
-    // content is block-level (heading, paragraphs, absolutely-positioned
-    // overlays), which is invalid inside a <button> (phrasing content only) and
-    // trips React's DOM-nesting validation. role + tabIndex + key handler keeps
-    // it keyboard-operable while preserving valid markup and the inner heading.
     <m.div
-      role="button"
-      tabIndex={0}
-      onClick={onOpen}
-      onKeyDown={event => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault()
-          onOpen?.()
-        }
-      }}
-      aria-label={`Open ${name} details`}
       // Shared id with the detail panel drives the open/close morph; dropped
       // under reduced motion so the overlay cross-fades instead of morphing.
       layoutId={reduce ? undefined : cardLayoutId(slug)}
@@ -130,10 +129,25 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
       }}
       transition={{ type: 'tween', duration: 0.3, layout: CARD_MORPH_SPRING }}
       className={clsx(
-        'relative rounded-xl border p-4 bg-neutral-900 text-white w-full max-w-xs flex flex-col items-center text-left transition-all overflow-hidden cursor-pointer',
+        'relative rounded-xl border p-4 bg-neutral-900 text-white w-full max-w-xs flex flex-col items-center text-left transition-all overflow-hidden',
         rarityClass
       )}
     >
+      {/*
+       * Stretched button = the primary "open detail" target. An empty,
+       * transparent button laid over the whole card keeps the rich card content
+       * (heading, paragraphs, badges) as siblings — not invalid <button>
+       * descendants — and lets the external-link anchor sit above it (z-50) as a
+       * sibling rather than a nested interactive control. Clicking anywhere on
+       * the card except that anchor opens the detail overlay.
+       */}
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={`Open ${name} details`}
+        className="absolute inset-0 z-40 cursor-pointer rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-400"
+      />
+
       {featured && <FoilShineOverlay />}
       {legacy && <LegacyRibbon />}
 
@@ -151,6 +165,22 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
         </div>
         <div className="text-yellow-100 text-xs">{moment}</div>
       </div>
+
+      {showExternalLink && (
+        // Sits above the stretched button (z-50) so it receives its own clicks
+        // and navigates instead of opening the overlay. A real <a> in the
+        // initial DOM keeps the outbound project link crawlable and
+        // middle/ctrl-clickable from the gallery.
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`View ${name} project (opens in new tab)`}
+          className="relative z-50 mt-4 text-xs text-yellow-300 underline hover:text-yellow-100 transition"
+        >
+          View Project ↗
+        </a>
+      )}
 
       <RarityBadge featured={featured} experimental={experimental} />
 
