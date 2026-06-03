@@ -1,4 +1,4 @@
-import { motion, useAnimation } from 'framer-motion'
+import { m, useAnimation } from 'framer-motion'
 import { useEffect } from 'react'
 
 /**
@@ -20,7 +20,7 @@ export function InteractiveLockerItem({ children }: { children: React.ReactNode 
   }
 
   return (
-    <motion.div
+    <m.div
       onTap={handleTap}
       whileHover={{
         rotate: [0, 1.5, -1.5, 0],
@@ -30,6 +30,6 @@ export function InteractiveLockerItem({ children }: { children: React.ReactNode 
       className="cursor-pointer"
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }

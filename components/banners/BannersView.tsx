@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { BannerCard, BannerProps } from '@/components/common/BannerCard'
 import { NextStopNav } from '@/components/common/NextStopNav'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
@@ -13,7 +13,7 @@ export type BannerSection = {
 
 export function BannersView({ sections }: { sections: BannerSection[] }) {
   return (
-    <motion.div
+    <m.div
       className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white"
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -48,6 +48,6 @@ export function BannersView({ sections }: { sections: BannerSection[] }) {
           </div>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   )
 }

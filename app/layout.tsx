@@ -9,6 +9,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { JSX } from 'react'
+import { MotionProvider } from '@/components/motion/MotionProvider'
 
 // Load Geist Sans font with a CSS variable
 const geistSans = Geist({
@@ -150,7 +151,7 @@ export default function RootLayout({
          * focusable fragment target on its own).
          */}
         <main id="main" tabIndex={-1}>
-          {children}
+          <MotionProvider>{children}</MotionProvider>
         </main>
         <Analytics />
       </body>

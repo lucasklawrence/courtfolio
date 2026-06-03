@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { m, useMotionValue, useSpring } from 'framer-motion'
 import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
 import { useCourtResizeClamp } from '@/utils/hooks/useCourtResizeClamp'
 import { PLAYER_SIZE } from '@/constants/playerSize'
@@ -318,7 +318,7 @@ export function FreeRoamPlayer({
 
   return (
     <div className="absolute w-full h-full pointer-events-none">
-      <motion.div
+      <m.div
         className="absolute z-50 pointer-events-none"
         style={{
           x: springX,
@@ -341,7 +341,7 @@ export function FreeRoamPlayer({
           }}
           draggable={false}
         />
-      </motion.div>
+      </m.div>
     </div>
   )
 }

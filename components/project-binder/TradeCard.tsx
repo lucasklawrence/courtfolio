@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { FoilShineOverlay } from './FoilShineOverlay'
@@ -110,7 +110,7 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
     // overlays), which is invalid inside a <button> (phrasing content only) and
     // trips React's DOM-nesting validation. role + tabIndex + key handler keeps
     // it keyboard-operable while preserving valid markup and the inner heading.
-    <motion.div
+    <m.div
       role="button"
       tabIndex={0}
       onClick={onOpen}
@@ -155,6 +155,6 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
       <RarityBadge featured={featured} experimental={experimental} />
 
       {status && <StatusOverlay status={status} />}
-    </motion.div>
+    </m.div>
   )
 }

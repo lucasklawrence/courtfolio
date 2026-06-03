@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import React, { forwardRef } from 'react'
 
 import { useCallback } from 'react'
@@ -2947,7 +2947,7 @@ export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
           <g key={zoneId}>{content}</g>
         ))}
         {ripples?.map(r => (
-          <motion.circle
+          <m.circle
             key={r.id}
             initial={{ r: 0, opacity: 0.8 }}
             animate={{ r: 40, opacity: 0 }}

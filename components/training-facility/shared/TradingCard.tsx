@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState, type CSSProperties, type JSX } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import type { Benchmark } from '@/types/movement'
 import { BENCHMARKS, METRIC_KEYS, type BenchmarkConfig, type MetricKey } from '@/constants/benchmarks'
 
@@ -148,7 +148,7 @@ export function TradingCard({
   }
 
   return (
-    <motion.button
+    <m.button
       type="button"
       onClick={() => setFlipped((f) => !f)}
       aria-pressed={flipped}
@@ -158,7 +158,7 @@ export function TradingCard({
       style={cardStyle}
       className={`relative block w-[250px] cursor-pointer rounded-xl border border-amber-300/40 bg-transparent p-0 text-left shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 ${className}`}
     >
-      <motion.div
+      <m.div
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ type: 'spring', stiffness: 180, damping: 20 }}
         style={{ transformStyle: 'preserve-3d' }}
@@ -172,8 +172,8 @@ export function TradingCard({
           playerName={playerName}
         />
         <CardBack history={sortedHistory} latestNotes={entry.notes} />
-      </motion.div>
-    </motion.button>
+      </m.div>
+    </m.button>
   )
 }
 
@@ -233,7 +233,7 @@ function CardFront({ entry, pbState, seasonLabel, playerNumber, playerName }: Ca
       <footer className="mt-auto flex items-end justify-between pt-3 text-[11px] uppercase tracking-wider">
         <span className="font-mono text-amber-300/70">{seasonLabel}</span>
         {pbState.any && (
-          <motion.span
+          <m.span
             // Pulse the PB badge gently; spring on `scale` keeps it organic.
             // Repeat-yoyo style via Framer's `repeatType: "reverse"`.
             animate={{ scale: [1, 1.12, 1] }}
@@ -241,7 +241,7 @@ function CardFront({ entry, pbState, seasonLabel, playerNumber, playerName }: Ca
             className="rounded-full border border-orange-400/70 bg-orange-500/20 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-orange-200 shadow-[0_0_12px_rgba(249,115,22,0.5)]"
           >
             ★ PB
-          </motion.span>
+          </m.span>
         )}
       </footer>
     </div>

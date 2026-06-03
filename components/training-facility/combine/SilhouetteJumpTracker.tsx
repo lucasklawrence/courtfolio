@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, type JSX } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { STANDING_REACH_IN } from '@/constants/movement'
 import type { Benchmark } from '@/types/movement'
@@ -243,7 +243,7 @@ export function SilhouetteJumpTracker({
             as the keyboard entry point: focusing it activates the panel so
             the orange jump cycle plays. Fades out once active and is removed
             from the tab order so focus moves on to the per-jump silhouettes. */}
-        <motion.g
+        <m.g
           role="button"
           tabIndex={isActive ? -1 : 0}
           aria-label={`Play jump animation — latest ${formatLatestLabel(latest)}`}
@@ -264,7 +264,7 @@ export function SilhouetteJumpTracker({
             pose="standing"
             color={chartPalette.courtLineCream}
           />
-        </motion.g>
+        </m.g>
 
         {/* Older jump silhouettes — hidden idle; ghost in on active as a
             staggered trail. Newest-older fades in first so the eye reads
@@ -279,7 +279,7 @@ export function SilhouetteJumpTracker({
           const stagger = (olderJumps.length - 1 - i) * 0.08
 
           return (
-            <motion.g
+            <m.g
               key={entry.date}
               role="button"
               tabIndex={isActive ? 0 : -1}
@@ -306,7 +306,7 @@ export function SilhouetteJumpTracker({
                 pose="apex"
                 color={chartPalette.courtLineCream}
               />
-            </motion.g>
+            </m.g>
           )
         })}
 
@@ -314,7 +314,7 @@ export function SilhouetteJumpTracker({
             between floor crouch and peak when the panel is active. The
             standing silhouette is the keyboard entry point in idle, so this
             element is removed from the tab order until the cycle is on. */}
-        <motion.g
+        <m.g
           role="button"
           tabIndex={isActive ? 0 : -1}
           aria-label={latestAccessibleLabel}
@@ -339,13 +339,13 @@ export function SilhouetteJumpTracker({
             pose="apex"
             color={chartPalette.rimOrange}
           />
-        </motion.g>
+        </m.g>
 
         {/* Latest jump label — appears alongside the orange figure during
             the active cycle and stays fixed at the peak-fingertip position
             so it doesn't bounce with the rising/falling figure. Hidden idle
             so the standing silhouette stands alone. */}
-        <motion.text
+        <m.text
           x={FIGURE_CX + 8}
           y={latestTopY + 2.5}
           fontSize={3}
@@ -357,7 +357,7 @@ export function SilhouetteJumpTracker({
           aria-hidden="true"
         >
           {formatLatestLabel(latest)}
-        </motion.text>
+        </m.text>
       </svg>
 
       {hovered && (
