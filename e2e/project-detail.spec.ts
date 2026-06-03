@@ -21,6 +21,14 @@ test.describe('project detail overlay', () => {
     await expect(detail.getByRole('link', { name: /view project/i })).toBeVisible()
   })
 
+  test("internal-href project's detail link opens in the same tab", async ({ page }) => {
+    // Courtfolio's href is "/", so the panel link must NOT force a new tab.
+    await page.getByRole('button', { name: /open courtfolio details/i }).click()
+    const link = page.getByTestId('project-detail').getByRole('link', { name: /view project/i })
+    await expect(link).toHaveAttribute('href', '/')
+    expect(await link.getAttribute('target')).toBeNull()
+  })
+
   test('closes on Escape', async ({ page }) => {
     await page.getByRole('button', { name: /open courtfolio details/i }).click()
     await expect(page.getByTestId('project-detail')).toBeVisible()

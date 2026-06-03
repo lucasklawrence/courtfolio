@@ -4,6 +4,7 @@ import { m, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import { useEffect, useId, useRef, type RefObject } from 'react'
 import { CARD_MORPH_SPRING, cardLayoutId } from './cardMorph'
+import { isExternalHref } from './TradeCard'
 import type { TradeCardProps } from './TradeCard'
 
 /** Props for the {@link ProjectDetail} overlay. */
@@ -85,6 +86,8 @@ export const ProjectDetail = ({ project, onClose, returnFocusTo }: ProjectDetail
   }, [onClose, returnFocusTo])
 
   const { name, slug, tagline, thumbnailUrl, stack, impact, year, moment, href } = project
+  // External links open in a new tab (↗); internal routes navigate in place (→).
+  const external = isExternalHref(href)
 
   return (
     // Backdrop doubles as the AnimatePresence child: its opacity exit animation
@@ -143,11 +146,10 @@ export const ProjectDetail = ({ project, onClose, returnFocusTo }: ProjectDetail
         {href && (
           <a
             href={href}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             className="mt-6 inline-block rounded-md bg-yellow-400 px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-yellow-300 transition"
           >
-            View Project →
+            View Project {external ? '↗' : '→'}
           </a>
         )}
       </m.div>

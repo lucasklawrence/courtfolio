@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { useSingleColumn } from '@/utils/hooks/useSingleColumn'
 import { TradeCard } from './TradeCard'
 import type { TradeCardProps } from './TradeCard'
@@ -120,15 +120,20 @@ export const ProjectGallery = () => {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
   const selectedProject = projects.find(project => project.slug === selectedSlug) ?? null
 
-  // The card that opened the overlay, captured at click time so focus can be
-  // restored on close. Must be captured before the gallery is marked `inert`
-  // (which blurs the focused trigger), so we record it here rather than reading
-  // `document.activeElement` from inside the dialog.
+  // The card button that opened the overlay, so focus can be restored to it on
+  // close. The card passes its button element directly (rather than us reading
+  // `document.activeElement`) because Safari/Firefox don't focus a button on
+  // mouse click, and because the gallery is marked `inert` on open — which would
+  // blur the trigger before the dialog could capture it.
   const triggerRef = useRef<HTMLElement | null>(null)
-  const openProject = (slug: string) => {
-    triggerRef.current = document.activeElement as HTMLElement | null
+  const openProject = (slug: string, trigger: HTMLElement) => {
+    triggerRef.current = trigger
     setSelectedSlug(slug)
   }
+  // Stable identity so the dialog's keydown/scroll-lock/focus effect doesn't
+  // re-run (and leak the scroll lock) when the gallery re-renders while open
+  // — e.g. a viewport resize flipping `useSingleColumn`.
+  const closeProject = useCallback(() => setSelectedSlug(null), [])
 
   const mid = Math.ceil(projects.length / 2)
   const leftColumn = projects.slice(0, mid)
@@ -155,7 +160,7 @@ export const ProjectGallery = () => {
               // `.reveal` fades each card up as it scrolls into view (native
               // scroll-driven CSS; inert in unsupporting browsers / reduced motion).
               <div key={project.slug} className="reveal">
-                <TradeCard {...project} onOpen={() => openProject(project.slug)} />
+                <TradeCard {...project} onOpen={trigger => openProject(project.slug, trigger)} />
               </div>
             ))}
           </div>
@@ -164,7 +169,7 @@ export const ProjectGallery = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
             {rightColumn.map(project => (
               <div key={project.slug} className="reveal">
-                <TradeCard {...project} onOpen={() => openProject(project.slug)} />
+                <TradeCard {...project} onOpen={trigger => openProject(project.slug, trigger)} />
               </div>
             ))}
           </div>
@@ -182,7 +187,7 @@ export const ProjectGallery = () => {
           <ProjectDetail
             key={selectedProject.slug}
             project={selectedProject}
-            onClose={() => setSelectedSlug(null)}
+            onClose={closeProject}
             returnFocusTo={triggerRef}
           />
         )}

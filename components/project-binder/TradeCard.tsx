@@ -62,19 +62,25 @@ type TradeCardComponentProps = TradeCardProps & {
    * clicking anywhere on the card morphs it into the `ProjectDetail` panel (the
    * two are linked by a shared `layoutId`). Projects with an external `href`
    * also expose a small "View Project" anchor that navigates instead.
+   *
+   * @param trigger - The card's open button, so the caller can restore focus to
+   *   it when the overlay closes. Passed explicitly rather than read from
+   *   `document.activeElement` because Safari/Firefox don't focus a button on
+   *   mouse click.
    */
-  onOpen?: () => void
+  onOpen?: (trigger: HTMLElement) => void
 }
 
 /**
  * True when `href` points off-site (absolute `http(s)` URL) rather than to an
- * internal route. Only external links get the gallery-level "View Project"
- * anchor — an outbound, crawlable, middle-clickable link is meaningful for
- * other sites but not for an internal route like `/`.
+ * internal route. External links open in a new tab and, on the gallery card,
+ * get a crawlable outbound anchor; internal routes (e.g. `/`) navigate in the
+ * same tab and get no card-level anchor. Shared by {@link TradeCard} and the
+ * detail panel so both surfaces apply one link policy.
  *
  * @param href - The project's optional link.
  */
-function isExternalHref(href: string | undefined): href is string {
+export function isExternalHref(href: string | undefined): href is string {
   return !!href && /^https?:\/\//.test(href)
 }
 
@@ -143,7 +149,7 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
        */}
       <button
         type="button"
-        onClick={onOpen}
+        onClick={event => onOpen?.(event.currentTarget)}
         aria-label={`Open ${name} details`}
         className="absolute inset-0 z-40 cursor-pointer rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-400"
       />
