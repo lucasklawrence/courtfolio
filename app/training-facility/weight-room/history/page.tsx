@@ -5,8 +5,10 @@ import { notFound } from 'next/navigation'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
 import { StrengthStats } from '@/components/training-facility/weight-room/StrengthStats'
+import { StrengthVsBodyweightChart } from '@/components/training-facility/weight-room/StrengthVsBodyweightChart'
 import { WeeklyVolumeChart } from '@/components/training-facility/weight-room/WeeklyVolumeChart'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
+import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 import { computeStrengthStats } from '@/lib/training-facility/weight-room-history'
@@ -35,11 +37,23 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
 
   // Catch transient read errors so a flaky Supabase response surfaces
   // as the empty-state copy rather than 500ing the whole page. Mirrors
-  // the same .catch() in the Settings page.
-  const data = await getWeightRoomDataServer().catch(() => null)
+  // the same .catch() in the Settings page. The cardio read (for the
+  // bodyweight overlay) runs alongside and degrades independently — a
+  // failed/empty cardio fetch just drops the relative-strength section.
+  const [data, cardio] = await Promise.all([
+    getWeightRoomDataServer().catch(() => null),
+    getCardioDataServer().catch(() => null),
+  ])
   const goals: readonly ExerciseGoal[] = data?.goals ?? []
   const sets = data?.sets ?? []
   const stats = computeStrengthStats(sets, goals)
+  const bodyMass = cardio?.body_mass_trend ?? []
+
+  // The relative-strength overlay is featured for pull-ups specifically —
+  // the most bodyweight-sensitive movement, where reps up + weight down
+  // is the clearest "improving on two fronts" story. Only render it when
+  // both halves exist: a configured pull-ups goal and bodyweight data.
+  const pullupsGoal = goals.find(g => g.exercise.toLowerCase() === 'pullups')
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -128,6 +142,23 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
                 </article>
               ))}
             </section>
+
+            {pullupsGoal && bodyMass.length > 0 && (
+              <section className="mt-10">
+                <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+                  Relative strength
+                </h2>
+                <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+                  Weekly pull-up volume (completed weeks) against morning bodyweight. Reps climbing
+                  while weight falls is improvement on two fronts at once.
+                </p>
+                <div className="mt-4 rounded-[1.2rem] border border-white/10 bg-white/5 p-5">
+                  <div className="overflow-x-auto">
+                    <StrengthVsBodyweightChart sets={sets} goal={pullupsGoal} bodyMass={bodyMass} />
+                  </div>
+                </div>
+              </section>
+            )}
 
             <section className="mt-10">
               <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
