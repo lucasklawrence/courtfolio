@@ -1,7 +1,7 @@
 'use client'
 
 import { type JSX } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import {
   RIM_HEIGHT_IN,
@@ -166,7 +166,7 @@ export function CeilingView({
         />
 
         {/* Rim */}
-        <motion.line
+        <m.line
           x1={RIM_LEFT_X}
           y1={rimY}
           x2={BACKBOARD_X}
@@ -234,7 +234,7 @@ export function CeilingView({
         })}
 
         {/* Cream bar from floor to current jump-touch */}
-        <motion.rect
+        <m.rect
           x={BAR_X}
           y={jumpTouchY}
           width={BAR_W}
@@ -286,7 +286,7 @@ export function CeilingView({
         {/* Milestone celebration: jump-touch ≥ rim */}
         {reachedRim && (
           <g>
-            <motion.circle
+            <m.circle
               cx={(RIM_LEFT_X + BACKBOARD_X) / 2}
               cy={rimY}
               r={5}

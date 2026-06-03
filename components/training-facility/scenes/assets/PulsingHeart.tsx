@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import type { JSX } from 'react'
 
 /** Props for {@link PulsingHeart}. */
@@ -45,7 +45,7 @@ export function PulsingHeart({ bpm }: PulsingHeartProps): JSX.Element {
   const cycleSeconds = safeBpm > 0 ? 60 / safeBpm : 0
   const shouldAnimate = !reduceMotion && cycleSeconds > 0
   return (
-    <motion.tspan
+    <m.tspan
       style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
       animate={shouldAnimate ? { scale: [1, 1.15, 1] } : { scale: 1 }}
       transition={
@@ -60,6 +60,6 @@ export function PulsingHeart({ bpm }: PulsingHeartProps): JSX.Element {
       aria-hidden="true"
     >
       ♥
-    </motion.tspan>
+    </m.tspan>
   )
 }

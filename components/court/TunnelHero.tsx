@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Typewriter } from 'react-simple-typewriter'
 import { useStaggerContainerProps, staggerItemProps } from '@/components/motion/primitives'
 
@@ -52,12 +52,12 @@ export function TunnelHero({ onIntroEnd }: { onIntroEnd: () => void }) {
       </div>
 
       {/* Foreground content */}
-      <motion.div {...containerProps} className="z-10 text-center px-4">
-        <motion.h1 {...itemProps} className="text-4xl md:text-6xl font-extrabold">
+      <m.div {...containerProps} className="z-10 text-center px-4">
+        <m.h1 {...itemProps} className="text-4xl md:text-6xl font-extrabold">
           Lucas Lawrence
-        </motion.h1>
+        </m.h1>
 
-        <motion.p {...itemProps} className="text-lg md:text-2xl mt-4 text-orange-300 font-mono">
+        <m.p {...itemProps} className="text-lg md:text-2xl mt-4 text-orange-300 font-mono">
           {showTyping && (
             <Typewriter
               words={words}
@@ -69,16 +69,16 @@ export function TunnelHero({ onIntroEnd }: { onIntroEnd: () => void }) {
               delaySpeed={1000}
             />
           )}
-        </motion.p>
+        </m.p>
 
-        <motion.button
+        <m.button
           {...itemProps}
           onClick={onIntroEnd}
           className="inline-block mt-10 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-orange-400 transition"
         >
           🏀 Step Onto the Court
-        </motion.button>
-      </motion.div>
+        </m.button>
+      </m.div>
     </section>
   )
 }

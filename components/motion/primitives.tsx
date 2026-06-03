@@ -1,13 +1,13 @@
 'use client'
 
-import { motion, useReducedMotion, type HTMLMotionProps, type MotionProps } from 'framer-motion'
+import { m, useReducedMotion, type HTMLMotionProps, type MotionProps } from 'framer-motion'
 
 type EntranceProps = Pick<MotionProps, 'initial' | 'animate' | 'transition'>
 
 /**
  * Returns Framer Motion props for a simple opacity fade-in entrance.
  *
- * Spread onto any `motion.X` element so the surrounding markup keeps its
+ * Spread onto any `m.X` element so the surrounding markup keeps its
  * semantic tag (no wrapper div). Skips the entrance keyframe entirely when
  * the user has `prefers-reduced-motion: reduce` set.
  *
@@ -30,7 +30,7 @@ export function useFadeInProps({
  * Returns Framer Motion props for a fade-and-rise entrance — opacity 0→1 while
  * translating from `y` pixels below to its resting position.
  *
- * Spread onto any `motion.X` element. Skips the entrance keyframe entirely when
+ * Spread onto any `m.X` element. Skips the entrance keyframe entirely when
  * the user has `prefers-reduced-motion: reduce` set.
  *
  * @param delay - Seconds before the animation starts. Default `0`.
@@ -54,7 +54,7 @@ export function useFadeUpProps({
  * Returns Framer Motion props for a spring-physics fade-and-rise entrance.
  *
  * Same shape as `useFadeUpProps` but uses a spring transition (`stiffness: 120`,
- * `damping: 12`) for a slightly bouncier feel. Spread onto any `motion.X`
+ * `damping: 12`) for a slightly bouncier feel. Spread onto any `m.X`
  * element. Skips the entrance keyframe entirely when the user has
  * `prefers-reduced-motion: reduce` set.
  *
@@ -79,11 +79,11 @@ type FadeUpDivProps = FadeInDivProps & { y?: number }
 type SpringUpDivProps = BaseDivProps & { delay?: number; y?: number }
 
 /**
- * `motion.div` wrapper that applies the `useFadeInProps` entrance.
+ * `m.div` wrapper that applies the `useFadeInProps` entrance.
  *
  * Use when a wrapping div is acceptable. For semantic elements (`h1`, `p`,
  * `button`, etc.), prefer the `useFadeInProps` hook spread onto the
- * `motion.X` directly so no extra div is injected.
+ * `m.X` directly so no extra div is injected.
  *
  * @param delay - Forwarded to `useFadeInProps`. Default `0`.
  * @param duration - Forwarded to `useFadeInProps`. Default `0.5`.
@@ -92,7 +92,7 @@ type SpringUpDivProps = BaseDivProps & { delay?: number; y?: number }
 export function FadeIn({ delay, duration, transition, ...rest }: FadeInDivProps) {
   const props = useFadeInProps({ delay, duration })
   return (
-    <motion.div
+    <m.div
       {...props}
       transition={{ ...props.transition, ...transition }}
       {...rest}
@@ -101,10 +101,10 @@ export function FadeIn({ delay, duration, transition, ...rest }: FadeInDivProps)
 }
 
 /**
- * `motion.div` wrapper that applies the `useFadeUpProps` entrance.
+ * `m.div` wrapper that applies the `useFadeUpProps` entrance.
  *
  * Use when a wrapping div is acceptable. For semantic elements, prefer the
- * `useFadeUpProps` hook spread onto the `motion.X` directly.
+ * `useFadeUpProps` hook spread onto the `m.X` directly.
  *
  * @param delay - Forwarded to `useFadeUpProps`. Default `0`.
  * @param duration - Forwarded to `useFadeUpProps`. Default `0.5`.
@@ -114,7 +114,7 @@ export function FadeIn({ delay, duration, transition, ...rest }: FadeInDivProps)
 export function FadeUp({ delay, duration, y, transition, ...rest }: FadeUpDivProps) {
   const props = useFadeUpProps({ delay, duration, y })
   return (
-    <motion.div
+    <m.div
       {...props}
       transition={{ ...props.transition, ...transition }}
       {...rest}
@@ -123,10 +123,10 @@ export function FadeUp({ delay, duration, y, transition, ...rest }: FadeUpDivPro
 }
 
 /**
- * `motion.div` wrapper that applies the `useSpringUpProps` entrance.
+ * `m.div` wrapper that applies the `useSpringUpProps` entrance.
  *
  * Use when a wrapping div is acceptable. For semantic elements, prefer the
- * `useSpringUpProps` hook spread onto the `motion.X` directly.
+ * `useSpringUpProps` hook spread onto the `m.X` directly.
  *
  * @param delay - Forwarded to `useSpringUpProps`. Default `0`.
  * @param y - Forwarded to `useSpringUpProps`. Default `20`.
@@ -135,7 +135,7 @@ export function FadeUp({ delay, duration, y, transition, ...rest }: FadeUpDivPro
 export function SpringUp({ delay, y, transition, ...rest }: SpringUpDivProps) {
   const props = useSpringUpProps({ delay, y })
   return (
-    <motion.div
+    <m.div
       {...props}
       transition={{ ...props.transition, ...transition }}
       {...rest}
@@ -151,7 +151,7 @@ type StaggerItemProps = Pick<MotionProps, 'variants'>
 
 /**
  * Returns Framer Motion props for a parent that orchestrates a staggered
- * entrance of its children. Spread onto the wrapping `motion.X`, then give each
+ * entrance of its children. Spread onto the wrapping `m.X`, then give each
  * child the props from {@link staggerItemProps}; the children animate in
  * sequence by inheriting the parent's `hidden`/`show` variant state, so no
  * per-child `delay` is needed — adding or removing a child reflows the cascade

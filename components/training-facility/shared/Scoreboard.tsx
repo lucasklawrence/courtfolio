@@ -3,7 +3,7 @@
 import { useEffect, useState, type CSSProperties, type JSX } from 'react'
 import {
   animate,
-  motion,
+  m,
   useMotionValue,
   useMotionValueEvent,
   useReducedMotion,
@@ -213,7 +213,7 @@ function SplitFlapDigits({
     >
       <span className="font-mono text-2xl font-bold tabular-nums tracking-tight text-amber-300 sm:text-4xl">
         {chars.map((char, i) => (
-          <motion.span
+          <m.span
             // Key includes the digit string identity so a future value
             // swap on the same cell retriggers the flip animation;
             // with just `i` the span would mutate without re-animating.
@@ -229,7 +229,7 @@ function SplitFlapDigits({
             }}
           >
             {char}
-          </motion.span>
+          </m.span>
         ))}
       </span>
       {trimmedUnit && (

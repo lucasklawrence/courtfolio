@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { useHasSeenIntro } from '@/utils/useHasSeenIntro'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion'
 import { HomeBody } from '@/components/HomeBody'
 import { TunnelHero } from '@/components/court/TunnelHero'
 
@@ -58,7 +58,7 @@ export default function HomePage() {
   return (
     <AnimatePresence mode="wait">
       {shouldShowIntro ? (
-        <motion.div
+        <m.div
           key="intro"
           initial={{ opacity: 1 }}
           // Slide up while fading out for a directional hand-off; reduced motion
@@ -67,9 +67,9 @@ export default function HomePage() {
           transition={{ duration }}
         >
           <TunnelHero onIntroEnd={handleIntroEnd} />
-        </motion.div>
+        </m.div>
       ) : (
-        <motion.div
+        <m.div
           key="main"
           data-testid="home-court-root"
           // Rise + settle into place as the court enters; reduced motion skips
@@ -80,7 +80,7 @@ export default function HomePage() {
           className="w-screen h-screen"
         >
           <HomeBody />
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

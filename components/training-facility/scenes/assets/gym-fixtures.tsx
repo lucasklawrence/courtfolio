@@ -171,7 +171,7 @@ export function HrMonitor({ bpm, sparkline }: HrMonitorProps = {}) {
       />
 
       {/* Header: `♥ resting hr` rendered as a single centered text block.
-          The heart is a `<motion.tspan>` inside the same `<text>` so the
+          The heart is a `<m.tspan>` inside the same `<text>` so the
           pulse animates the glyph in place without breaking the original
           layout. */}
       <text

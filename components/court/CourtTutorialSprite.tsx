@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { m, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { clampToCourt, getScaledCourtBounds } from '@/utils/movements'
 import { PLAYER_SIZE } from '@/constants/playerSize'
@@ -108,7 +108,7 @@ export function CourtTutorialSprite({
   }, [stepData.x, stepData.y])
 
   return (
-    <motion.div
+    <m.div
       style={{ x: springX, y: springY }}
       className="absolute pointer-events-none z-50"
       initial={{ opacity: 0 }}
@@ -127,6 +127,6 @@ export function CourtTutorialSprite({
         draggable={false}
       />
       <SpeechBubble text={stepData.text} scale={scale} facingLeft={facingLeft} />
-    </motion.div>
+    </m.div>
   )
 }

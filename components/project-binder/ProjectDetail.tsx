@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import { useEffect, useId, useRef } from 'react'
 import { CARD_MORPH_SPRING, cardLayoutId } from './cardMorph'
@@ -82,7 +82,7 @@ export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
     // Backdrop doubles as the AnimatePresence child: its opacity exit animation
     // keeps the panel mounted long enough to morph back to the card. Clicking it
     // closes; the panel stops propagation so inner clicks don't dismiss.
-    <motion.div
+    <m.div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -90,7 +90,7 @@ export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
       transition={{ duration: 0.2 }}
       onClick={onClose}
     >
-      <motion.div
+      <m.div
         ref={panelRef}
         layoutId={reduce ? undefined : cardLayoutId(slug)}
         transition={{ layout: CARD_MORPH_SPRING }}
@@ -142,7 +142,7 @@ export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
             View Project →
           </a>
         )}
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   )
 }
