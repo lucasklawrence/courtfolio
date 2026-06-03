@@ -3,7 +3,6 @@
 import { useSingleColumn } from '@/utils/hooks/useSingleColumn'
 import { TradeCard } from './TradeCard'
 import type { TradeCardProps } from './TradeCard'
-import { tr } from 'framer-motion/client'
 
 const projects: TradeCardProps[] = [
   {
@@ -125,14 +124,20 @@ export const ProjectGallery = () => {
           {/* Left Column */}
           <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
             {leftColumn.map(project => (
-              <TradeCard key={project.slug} {...project} />
+              // `.reveal` fades each card up as it scrolls into view (native
+              // scroll-driven CSS; inert in unsupporting browsers / reduced motion).
+              <div key={project.slug} className="reveal">
+                <TradeCard {...project} />
+              </div>
             ))}
           </div>
 
           {/* Right Column */}
           <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
             {rightColumn.map(project => (
-              <TradeCard key={project.slug} {...project} />
+              <div key={project.slug} className="reveal">
+                <TradeCard {...project} />
+              </div>
             ))}
           </div>
         </div>

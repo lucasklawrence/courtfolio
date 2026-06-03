@@ -49,3 +49,36 @@ html, body {
 .locker-zone:focus-visible {
   outline: none;
 }
+
+/* ── Scroll-driven reveal ──────────────────────────────────────────────
+   Native fade-up entrance for content sections (e.g. project cards), driven
+   by the element's own progress through the viewport — no JS, no scroll
+   listeners, runs off the main thread.
+
+   Progressive enhancement: the animation only applies in browsers that support
+   scroll-driven timelines AND when the user hasn't requested reduced motion.
+   Anywhere else `.reveal` is inert, so content renders in its natural,
+   fully-visible state — it is never left hidden (no base `opacity: 0`). */
+@keyframes reveal-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-fade-up linear both;
+      animation-timeline: view();
+      /* Begin as the element's top edge enters the viewport and finish once it
+         is 35% of the way across — a quick reveal that settles before the card
+         reaches reading position. */
+      animation-range: entry 0% cover 35%;
+    }
+  }
+}
