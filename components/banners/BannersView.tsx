@@ -5,13 +5,30 @@ import { BannerCard, BannerProps } from '@/components/common/BannerCard'
 import { NextStopNav } from '@/components/common/NextStopNav'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 
+/** A labeled group of {@link BannerCard}s rendered together under a heading. */
 export type BannerSection = {
+  /** Section heading shown above its banners. */
   label: string
+  /** Emoji/glyph associated with the section. */
   icon: string
+  /** Banners belonging to this section. */
   banners: BannerProps[]
 }
 
-export function BannersView({ sections }: { sections: BannerSection[] }) {
+/** Props for {@link BannersView}. */
+type BannersViewProps = {
+  /** Ordered banner groups to display top-to-bottom. */
+  sections: BannerSection[]
+}
+
+/**
+ * "The Rafters" page view — renders championship/achievement banners grouped
+ * into labeled sections (each banner swaying independently via {@link BannerCard})
+ * plus next-stop navigation. Fades and scales in on mount.
+ *
+ * @param props - {@link BannersViewProps}.
+ */
+export function BannersView({ sections }: BannersViewProps) {
   return (
     <m.div
       className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white"

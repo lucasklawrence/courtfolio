@@ -1,6 +1,12 @@
 import { m } from 'framer-motion'
 
-// components/LegacyRibbon.tsx
+/**
+ * Small "Legacy" ribbon pinned to the top-left corner of a project card to mark
+ * an archived/older project. Bobs gently up and down on an infinite loop.
+ *
+ * Positioned `absolute`, so it must render inside a `relative` container (the
+ * card it badges).
+ */
 export const LegacyRibbon = () => (
   <m.div
     initial={{ opacity: 0.9, y: 0 }}

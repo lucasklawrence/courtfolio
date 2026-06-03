@@ -2,15 +2,29 @@
 
 import { m } from 'framer-motion'
 
+/** Props for {@link BannerCard}. */
 export type BannerProps = {
+  /** Season/championship year shown at the top of the banner (e.g. "2024"). */
   year: string
+  /** Banner caption / achievement title. */
   title: string
+  /** Optional emoji or glyph displayed above the title. */
   icon?: string
+  /** Optional category grouping label (used by callers to group banners). */
   category?: string
+  /** Seconds to delay the sway loop so adjacent banners sway out of phase. Default `0`. */
   swayDelay?: number
+  /** Peak sway rotation in degrees. Default `1.5`. */
   swayAmount?: number
 }
 
+/**
+ * A single hanging "rafters" banner: a cloth panel with a hanging bar, rope,
+ * year, icon, and title that sways continuously on an eased rotate loop. Used
+ * by {@link BannersView}.
+ *
+ * @param props - {@link BannerProps}.
+ */
 export function BannerCard({ year, title, icon, swayDelay = 0, swayAmount = 1.5 }: BannerProps) {
   return (
     <m.div
