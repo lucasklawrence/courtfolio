@@ -31,7 +31,7 @@ export default defineConfig({
   projects: [
     {
       name: 'default-routes',
-      testMatch: /(?:home|rooms|training-facility-disabled)\.spec\.ts/,
+      testMatch: /(?:home|rooms|project-detail|training-facility-disabled)\.spec\.ts/,
       use: {
         baseURL: DEFAULT_BASE_URL,
       },
