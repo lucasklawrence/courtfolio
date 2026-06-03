@@ -1,8 +1,11 @@
 'use client'
 
+import { AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 import { useSingleColumn } from '@/utils/hooks/useSingleColumn'
 import { TradeCard } from './TradeCard'
 import type { TradeCardProps } from './TradeCard'
+import { ProjectDetail } from './ProjectDetail'
 
 const projects: TradeCardProps[] = [
   {
@@ -113,6 +116,10 @@ const projects: TradeCardProps[] = [
 export const ProjectGallery = () => {
   const isSingleColumn = useSingleColumn()
 
+  // Slug of the project whose detail overlay is open, or null when none is.
+  const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
+  const selectedProject = projects.find(project => project.slug === selectedSlug) ?? null
+
   const mid = Math.ceil(projects.length / 2)
   const leftColumn = projects.slice(0, mid)
   const rightColumn = projects.slice(mid)
@@ -127,7 +134,7 @@ export const ProjectGallery = () => {
               // `.reveal` fades each card up as it scrolls into view (native
               // scroll-driven CSS; inert in unsupporting browsers / reduced motion).
               <div key={project.slug} className="reveal">
-                <TradeCard {...project} />
+                <TradeCard {...project} onOpen={() => setSelectedSlug(project.slug)} />
               </div>
             ))}
           </div>
@@ -136,7 +143,7 @@ export const ProjectGallery = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 sm:justify-items-start justify-items-center">
             {rightColumn.map(project => (
               <div key={project.slug} className="reveal">
-                <TradeCard {...project} />
+                <TradeCard {...project} onOpen={() => setSelectedSlug(project.slug)} />
               </div>
             ))}
           </div>
@@ -146,6 +153,18 @@ export const ProjectGallery = () => {
       {!isSingleColumn && (
         <div className="absolute inset-y-0 left-1/2 w-[2px] bg-neutral-800/30 shadow-inner z-10 pointer-events-none" />
       )}
+
+      {/* Shared-element morph target: the selected card flies open into this
+          overlay and back. AnimatePresence keeps it mounted through the exit. */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectDetail
+            key={selectedProject.slug}
+            project={selectedProject}
+            onClose={() => setSelectedSlug(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 }
