@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
 import { CARD_MORPH_SPRING, cardLayoutId } from './cardMorph'
 import type { TradeCardProps } from './TradeCard'
 
@@ -24,19 +24,47 @@ type ProjectDetailProps = {
  * `layoutId` is dropped, so there is no layout morph — the overlay simply fades
  * (the backdrop's opacity transition, inherited by the panel).
  *
- * While open it locks body scroll, closes on Escape, and moves focus to the
- * close button.
+ * While open it behaves as a modal dialog: it locks body scroll, closes on
+ * Escape, moves focus to the close button, traps Tab focus within the panel,
+ * and restores focus to the element that opened it (the originating card) on
+ * close.
  */
 export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
   const reduce = useReducedMotion()
+  const panelRef = useRef<HTMLDivElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
+  const titleId = useId()
 
-  // Escape-to-close + body scroll lock + initial focus for the lifetime of the
-  // overlay. Restores the previous body overflow on unmount.
+  // Modal lifecycle: Escape-to-close, body scroll lock, initial focus, a Tab
+  // focus trap, and focus restoration to the trigger on unmount.
   useEffect(() => {
+    const trigger = document.activeElement as HTMLElement | null
+
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
+      if (event.key === 'Escape') {
+        onClose()
+        return
+      }
+      if (event.key !== 'Tab') return
+      // Keep Tab/Shift+Tab cycling within the dialog so focus can't reach the
+      // obscured gallery behind the backdrop.
+      const panel = panelRef.current
+      if (!panel) return
+      const focusables = panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+      if (focusables.length === 0) return
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
     }
+
     document.addEventListener('keydown', onKey)
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
@@ -44,6 +72,7 @@ export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = previousOverflow
+      trigger?.focus?.()
     }
   }, [onClose])
 
@@ -62,12 +91,13 @@ export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
       onClick={onClose}
     >
       <motion.div
+        ref={panelRef}
         layoutId={reduce ? undefined : cardLayoutId(slug)}
         transition={{ layout: CARD_MORPH_SPRING }}
         onClick={event => event.stopPropagation()}
         role="dialog"
         aria-modal="true"
-        aria-label={`${name} details`}
+        aria-labelledby={titleId}
         data-testid="project-detail"
         className="relative z-10 w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl border border-yellow-400 bg-neutral-900 text-white p-6 shadow-2xl"
       >
@@ -91,7 +121,9 @@ export const ProjectDetail = ({ project, onClose }: ProjectDetailProps) => {
           />
         </div>
 
-        <h2 className="mt-5 text-2xl font-bold leading-tight">{name}</h2>
+        <h2 id={titleId} className="mt-5 text-2xl font-bold leading-tight">
+          {name}
+        </h2>
         <p className="mt-1 text-sm text-neutral-400 italic">{tagline}</p>
 
         <p className="mt-4 text-sm text-yellow-200">{impact}</p>

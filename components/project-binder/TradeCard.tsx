@@ -105,9 +105,21 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
       : 'border-neutral-700'
 
   return (
-    <motion.button
-      type="button"
+    // A div with `role="button"` rather than a real <button>: the card's
+    // content is block-level (heading, paragraphs, absolutely-positioned
+    // overlays), which is invalid inside a <button> (phrasing content only) and
+    // trips React's DOM-nesting validation. role + tabIndex + key handler keeps
+    // it keyboard-operable while preserving valid markup and the inner heading.
+    <motion.div
+      role="button"
+      tabIndex={0}
       onClick={onOpen}
+      onKeyDown={event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          onOpen?.()
+        }
+      }}
       aria-label={`Open ${name} details`}
       // Shared id with the detail panel drives the open/close morph; dropped
       // under reduced motion so the overlay cross-fades instead of morphing.
@@ -143,6 +155,6 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
       <RarityBadge featured={featured} experimental={experimental} />
 
       {status && <StatusOverlay status={status} />}
-    </motion.button>
+    </motion.div>
   )
 }

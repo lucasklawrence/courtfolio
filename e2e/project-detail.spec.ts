@@ -36,4 +36,19 @@ test.describe('project detail overlay', () => {
     await page.getByRole('button', { name: /close project details/i }).click()
     await expect(page.getByTestId('project-detail')).toHaveCount(0)
   })
+
+  test('is keyboard operable and restores focus to the card on close', async ({ page }) => {
+    const card = page.getByRole('button', { name: /open courtfolio details/i })
+
+    // The card is a div with role="button"; Enter must activate it like a
+    // native button would.
+    await card.focus()
+    await page.keyboard.press('Enter')
+    await expect(page.getByTestId('project-detail')).toBeVisible()
+
+    await page.keyboard.press('Escape')
+    await expect(page.getByTestId('project-detail')).toHaveCount(0)
+    // Focus returns to the triggering card, not the document body.
+    await expect(card).toBeFocused()
+  })
 })
