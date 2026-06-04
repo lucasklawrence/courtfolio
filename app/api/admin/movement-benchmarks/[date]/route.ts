@@ -10,6 +10,7 @@ import { ZodError } from 'zod'
 import { requireAdmin } from '@/lib/auth/require-admin'
 import { BenchmarkUpdateSchema, isValidDate } from '@/lib/schemas/movement'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
+import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 interface Context {
   params: Promise<{ date: string }>
@@ -35,7 +36,7 @@ interface Context {
  * @throws when Supabase env vars are missing (misconfigured deploy).
  *   Domain failures are returned as JSON responses, not thrown.
  */
-export async function PUT(request: NextRequest, ctx: Context): Promise<NextResponse> {
+async function handlePUT(request: NextRequest, ctx: Context): Promise<NextResponse> {
   const auth = await requireAdmin()
   if (!auth.ok) return auth.response
 
@@ -58,7 +59,7 @@ export async function PUT(request: NextRequest, ctx: Context): Promise<NextRespo
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
@@ -75,7 +76,7 @@ export async function PUT(request: NextRequest, ctx: Context): Promise<NextRespo
   if (error) {
     return NextResponse.json(
       { error: `Failed to update benchmark: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
   if (!data) {
@@ -83,6 +84,9 @@ export async function PUT(request: NextRequest, ctx: Context): Promise<NextRespo
   }
   return NextResponse.json(data, { status: 200 })
 }
+
+/** `handlePUT` wrapped with one-event-per-request telemetry (#220). */
+export const PUT = withTelemetry('PUT /api/admin/movement-benchmarks/[date]', handlePUT)
 
 /**
  * Delete the benchmark identified by `date`.
@@ -102,7 +106,7 @@ export async function PUT(request: NextRequest, ctx: Context): Promise<NextRespo
  * @throws when Supabase env vars are missing (misconfigured deploy).
  *   Domain failures are returned as JSON responses, not thrown.
  */
-export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextResponse> {
+async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextResponse> {
   const auth = await requireAdmin()
   if (!auth.ok) return auth.response
 
@@ -122,7 +126,7 @@ export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextR
   if (error) {
     return NextResponse.json(
       { error: `Failed to delete benchmark: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
   if (!data) {
@@ -130,3 +134,6 @@ export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextR
   }
   return NextResponse.json(data, { status: 200 })
 }
+
+/** `handleDELETE` wrapped with one-event-per-request telemetry (#220). */
+export const DELETE = withTelemetry('DELETE /api/admin/movement-benchmarks/[date]', handleDELETE)

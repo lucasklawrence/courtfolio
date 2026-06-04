@@ -8,6 +8,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 import { requireAdmin } from '@/lib/auth/require-admin'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
+import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 interface Context {
   params: Promise<{ id: string }>
@@ -38,7 +39,7 @@ const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12
  * @throws when Supabase env vars are missing (misconfigured deploy).
  *   Domain failures are returned as JSON responses, not thrown.
  */
-export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextResponse> {
+async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextResponse> {
   const auth = await requireAdmin()
   if (!auth.ok) return auth.response
 
@@ -56,13 +57,13 @@ export async function DELETE(_request: NextRequest, ctx: Context): Promise<NextR
     .maybeSingle()
 
   if (error) {
-    return NextResponse.json(
-      { error: `Failed to delete set: ${error.message}` },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: `Failed to delete set: ${error.message}` }, { status: 500 })
   }
   if (!data) {
     return NextResponse.json({ error: `No set for id '${id}'.` }, { status: 404 })
   }
   return NextResponse.json(data, { status: 200 })
 }
+
+/** `handleDELETE` wrapped with one-event-per-request telemetry (#220). */
+export const DELETE = withTelemetry('DELETE /api/admin/weight-room/sets/[id]', handleDELETE)

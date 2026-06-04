@@ -15,6 +15,7 @@ import { NextResponse } from 'next/server'
 
 import { isAdminEmail } from '@/lib/auth/admin-allowlist'
 import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 /**
  * Resolve the current viewer's admin status from the session cookies.
@@ -25,7 +26,7 @@ import { createServerSupabaseClient } from '@/lib/supabase/server'
  * @throws when Supabase env vars are missing (misconfigured deploy).
  *   Auth lookup failures are normalized to logged-out.
  */
-export async function GET(): Promise<NextResponse> {
+async function handleGET(): Promise<NextResponse> {
   const supabase = await createServerSupabaseClient()
   const { data, error } = await supabase.auth.getUser()
   if (error || !data?.user) {
@@ -34,3 +35,6 @@ export async function GET(): Promise<NextResponse> {
   const email = data.user.email ?? null
   return NextResponse.json({ isAdmin: isAdminEmail(email), email })
 }
+
+/** `handleGET` wrapped with one-event-per-request telemetry (#220). */
+export const GET = withTelemetry('GET /api/admin/check', handleGET)

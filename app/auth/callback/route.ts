@@ -11,6 +11,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 /**
  * Exchange the URL's `?code=` for a Supabase session.
@@ -22,30 +23,28 @@ import { createServerSupabaseClient } from '@/lib/supabase/server'
  *   Auth-exchange failures (expired/invalid code) are surfaced as a
  *   redirect to `/admin/login?error=...`, not thrown.
  */
-export async function GET(request: NextRequest): Promise<NextResponse> {
+async function handleGET(request: NextRequest): Promise<NextResponse> {
   const url = new URL(request.url)
   const code = url.searchParams.get('code')
   const next = sanitizeNext(url.searchParams.get('next'))
 
   if (!code) {
-    return NextResponse.redirect(
-      new URL('/admin/login?error=missing_code', request.url),
-    )
+    return NextResponse.redirect(new URL('/admin/login?error=missing_code', request.url))
   }
 
   const supabase = await createServerSupabaseClient()
   const { error } = await supabase.auth.exchangeCodeForSession(code)
   if (error) {
     return NextResponse.redirect(
-      new URL(
-        `/admin/login?error=${encodeURIComponent(error.message)}`,
-        request.url,
-      ),
+      new URL(`/admin/login?error=${encodeURIComponent(error.message)}`, request.url)
     )
   }
 
   return NextResponse.redirect(new URL(next, request.url))
 }
+
+/** `handleGET` wrapped with one-event-per-request telemetry (#220). */
+export const GET = withTelemetry('GET /auth/callback', handleGET)
 
 /**
  * Restrict `?next=` to same-origin paths so an attacker can't craft a
