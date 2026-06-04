@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
 import { emitEvent } from '@/lib/telemetry/client'
+import { scheduleFlush } from '@/lib/telemetry/with-telemetry'
 
 /** Discriminated result of {@link sendMagicLink}. */
 export type SendMagicLinkResult = { ok: true } | { ok: false; error: string }
@@ -37,6 +38,7 @@ export async function sendMagicLink(email: string): Promise<SendMagicLinkResult>
     status: result.ok ? 'ok' : 'error',
     durationMs: Math.round(performance.now() - startedAt),
   })
+  scheduleFlush()
   return result
 }
 

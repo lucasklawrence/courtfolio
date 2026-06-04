@@ -32,7 +32,7 @@ export const onRequestError: Instrumentation.onRequestError = async (err, reques
 
   // Dynamic import keeps the Pub/Sub dependency out of the edge bundle and
   // defers credential-touching code until an error actually occurs.
-  const { emitEvent } = await import('@/lib/telemetry/client')
+  const { emitEvent, flush } = await import('@/lib/telemetry/client')
   emitEvent('unhandled_error', {
     status: 'error',
     attributes: {
@@ -43,4 +43,8 @@ export const onRequestError: Instrumentation.onRequestError = async (err, reques
       route_type: context.routeType,
     },
   })
+  // Next awaits this hook's promise (waitUntil), so draining here keeps the
+  // Vercel instance alive until the publish lands — errors are exactly the
+  // events that must not be lost to an instance freeze.
+  await flush()
 }

@@ -14,7 +14,30 @@
 
 import 'server-only'
 
-import { emitEvent } from '@/lib/telemetry/client'
+import { after } from 'next/server'
+
+import { emitEvent, flush } from '@/lib/telemetry/client'
+
+/**
+ * Schedule a telemetry {@link flush} for after the response is sent.
+ *
+ * Emission is fire-and-forget, but on Vercel the function instance can be
+ * frozen as soon as the response goes out — an in-flight Pub/Sub publish
+ * would silently never complete. `after()` runs inside the platform's
+ * `waitUntil` scope, which keeps the instance alive until the queued
+ * publishes drain, without adding latency to the response itself.
+ *
+ * Safe to call from any server context: outside a request scope (unit
+ * tests, scripts) `after()` throws, which is caught here — the client's
+ * `beforeExit` hook still drains queued publishes on natural process exit.
+ */
+export function scheduleFlush(): void {
+  try {
+    after(flush)
+  } catch {
+    // Not in a request scope — rely on the client's exit-flush hook.
+  }
+}
 
 /**
  * Wrap a route handler with one-event-per-request telemetry.
@@ -57,6 +80,10 @@ export function withTelemetry<Args extends unknown[], Res extends Response>(
         },
       })
       throw err
+    } finally {
+      // Drain this request's publishes (including any domain metrics the
+      // handler emitted) once the response is out — see scheduleFlush.
+      scheduleFlush()
     }
   }
 }

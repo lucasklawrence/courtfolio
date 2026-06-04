@@ -10,16 +10,27 @@
 
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { withTelemetry } from './with-telemetry'
+import { scheduleFlush, withTelemetry } from './with-telemetry'
 
 const emitEventMock = vi.hoisted(() => vi.fn())
+const flushMock = vi.hoisted(() => vi.fn())
+const afterMock = vi.hoisted(() => vi.fn())
 
 vi.mock('@/lib/telemetry/client', () => ({
   emitEvent: emitEventMock,
+  flush: flushMock,
+}))
+
+// `after()` only works inside a Next.js request scope; capture the callback
+// instead so tests can assert the post-response flush is scheduled.
+vi.mock('next/server', () => ({
+  after: afterMock,
 }))
 
 beforeEach(() => {
   emitEventMock.mockReset()
+  flushMock.mockReset()
+  afterMock.mockReset()
 })
 
 describe('withTelemetry', () => {
@@ -93,5 +104,31 @@ describe('withTelemetry', () => {
     await expect(wrapped()).rejects.toBe('string failure')
     const [, opts] = emitEventMock.mock.calls[0]
     expect(opts.attributes).toEqual({ error_type: 'string' })
+  })
+
+  it('schedules a post-response flush on success and on throw', async () => {
+    const ok = withTelemetry('GET /api/admin/check', async () =>
+      Response.json({}, { status: 200 })
+    )
+    await ok()
+    expect(afterMock).toHaveBeenCalledTimes(1)
+    // The scheduled callback is the client's flush — draining the publish
+    // queue inside the platform's waitUntil scope.
+    expect(afterMock.mock.calls[0][0]).toBe(flushMock)
+
+    const boom = withTelemetry('GET /resume', async () => {
+      throw new Error('boom')
+    })
+    await expect(boom()).rejects.toThrow('boom')
+    expect(afterMock).toHaveBeenCalledTimes(2)
+  })
+})
+
+describe('scheduleFlush', () => {
+  it('swallows after() throwing outside a request scope', () => {
+    afterMock.mockImplementationOnce(() => {
+      throw new Error('`after` was called outside a request scope')
+    })
+    expect(() => scheduleFlush()).not.toThrow()
   })
 })
