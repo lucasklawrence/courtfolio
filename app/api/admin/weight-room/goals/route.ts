@@ -15,6 +15,7 @@ import { ZodError } from 'zod'
 import { requireAdmin } from '@/lib/auth/require-admin'
 import { WeightRoomGoalUpsertSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
+import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 /**
  * Upsert a goal — create-or-replace by `exercise`. Body must conform
@@ -34,7 +35,7 @@ import { createAdminSupabaseClient } from '@/lib/supabase/admin'
  * @throws when Supabase env vars are missing (misconfigured deploy).
  *   Domain failures are returned as JSON responses, not thrown.
  */
-export async function POST(request: NextRequest): Promise<NextResponse> {
+async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const auth = await requireAdmin()
   if (!auth.ok) return auth.response
 
@@ -52,7 +53,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
@@ -72,11 +73,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     .single()
 
   if (error) {
-    return NextResponse.json(
-      { error: `Failed to upsert goal: ${error.message}` },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: `Failed to upsert goal: ${error.message}` }, { status: 500 })
   }
 
   return NextResponse.json(data, { status: 200 })
 }
+
+/** `handlePOST` wrapped with one-event-per-request telemetry (#220). */
+export const POST = withTelemetry('POST /api/admin/weight-room/goals', handlePOST)

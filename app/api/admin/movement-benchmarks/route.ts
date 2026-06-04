@@ -17,6 +17,7 @@ import { ZodError } from 'zod'
 import { requireAdmin } from '@/lib/auth/require-admin'
 import { BenchmarkSchema } from '@/lib/schemas/movement'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
+import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 /**
  * Insert a new benchmark entry. Body must conform to `BenchmarkSchema`.
@@ -35,7 +36,7 @@ import { createAdminSupabaseClient } from '@/lib/supabase/admin'
  *   Domain failures (auth, validation, conflict) are returned as JSON
  *   responses with the appropriate status code, not thrown.
  */
-export async function POST(request: NextRequest): Promise<NextResponse> {
+async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const auth = await requireAdmin()
   if (!auth.ok) return auth.response
 
@@ -53,32 +54,31 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
   }
 
   const supabase = createAdminSupabaseClient()
-  const { data, error } = await supabase
-    .from('movement_benchmarks')
-    .insert(entry)
-    .select()
-    .single()
+  const { data, error } = await supabase.from('movement_benchmarks').insert(entry).select().single()
 
   if (error) {
     // Postgres unique-violation on the `date` primary key.
     if (error.code === '23505') {
       return NextResponse.json(
         { error: `Benchmark for ${entry.date} already exists. Use PUT to overwrite.` },
-        { status: 409 },
+        { status: 409 }
       )
     }
     return NextResponse.json(
       { error: `Failed to insert benchmark: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
 
   return NextResponse.json(data, { status: 201 })
 }
+
+/** `handlePOST` wrapped with one-event-per-request telemetry (#220). */
+export const POST = withTelemetry('POST /api/admin/movement-benchmarks', handlePOST)

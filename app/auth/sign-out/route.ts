@@ -9,6 +9,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 /**
  * End the Supabase session for the requesting user and 303-redirect
@@ -31,7 +32,7 @@ import { createServerSupabaseClient } from '@/lib/supabase/server'
  *   failure (see "Failure mode" above for the rationale).
  * @throws when Supabase env vars are missing (misconfigured deploy).
  */
-export async function POST(request: NextRequest): Promise<NextResponse> {
+async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const supabase = await createServerSupabaseClient()
   // Belt-and-suspenders: signOut() returns `{ error }` for "soft"
   // failures, but the SDK can also throw on transport errors. Both
@@ -48,3 +49,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
   return NextResponse.redirect(new URL('/', request.url), { status: 303 })
 }
+
+/** `handlePOST` wrapped with one-event-per-request telemetry (#220). */
+export const POST = withTelemetry('POST /auth/sign-out', handlePOST)

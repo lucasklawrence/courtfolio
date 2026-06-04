@@ -14,6 +14,8 @@ import { ZodError } from 'zod'
 import { requireAdmin } from '@/lib/auth/require-admin'
 import { WeightRoomSetCreateSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
+import { emitMetric } from '@/lib/telemetry/client'
+import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 /**
  * Insert a new strength set. Body must conform to
@@ -34,7 +36,7 @@ import { createAdminSupabaseClient } from '@/lib/supabase/admin'
  * @throws when Supabase env vars are missing (misconfigured deploy).
  *   Domain failures are returned as JSON responses, not thrown.
  */
-export async function POST(request: NextRequest): Promise<NextResponse> {
+async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const auth = await requireAdmin()
   if (!auth.ok) return auth.response
 
@@ -52,7 +54,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
@@ -77,14 +79,22 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         {
           error: `Exercise '${entry.exercise}' is not configured. Add it via the settings UI before logging sets.`,
         },
-        { status: 409 },
+        { status: 409 }
       )
     }
-    return NextResponse.json(
-      { error: `Failed to insert set: ${error.message}` },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: `Failed to insert set: ${error.message}` }, { status: 500 })
   }
+
+  // Domain metric for the App-health dashboard (#220): one sample per
+  // logged set, reps as the value. The exercise name is a low-cardinality
+  // dimension (the FK above guarantees it's from the configured goal list).
+  emitMetric('weight_room_set_logged', entry.reps, {
+    unit: 'reps',
+    attributes: { exercise: entry.exercise },
+  })
 
   return NextResponse.json(data, { status: 201 })
 }
+
+/** `handlePOST` wrapped with one-event-per-request telemetry (#220). */
+export const POST = withTelemetry('POST /api/admin/weight-room/sets', handlePOST)

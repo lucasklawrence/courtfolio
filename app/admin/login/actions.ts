@@ -3,11 +3,11 @@
 import { headers } from 'next/headers'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { emitEvent } from '@/lib/telemetry/client'
+import { scheduleFlush } from '@/lib/telemetry/with-telemetry'
 
 /** Discriminated result of {@link sendMagicLink}. */
-export type SendMagicLinkResult =
-  | { ok: true }
-  | { ok: false; error: string }
+export type SendMagicLinkResult = { ok: true } | { ok: false; error: string }
 
 /**
  * Server action: send a Supabase Auth OTP magic link to `email`.
@@ -29,6 +29,21 @@ export type SendMagicLinkResult =
  *   thrown exception during the request.
  */
 export async function sendMagicLink(email: string): Promise<SendMagicLinkResult> {
+  const startedAt = performance.now()
+  const result = await sendMagicLinkImpl(email)
+  // One telemetry event per action invocation (#220). Only the outcome and
+  // duration are emitted — never the email or the error message, both of
+  // which can carry the user's address (PII rule).
+  emitEvent('action send_magic_link', {
+    status: result.ok ? 'ok' : 'error',
+    durationMs: Math.round(performance.now() - startedAt),
+  })
+  scheduleFlush()
+  return result
+}
+
+/** Untimed body of {@link sendMagicLink}; see its JSDoc for the contract. */
+async function sendMagicLinkImpl(email: string): Promise<SendMagicLinkResult> {
   const trimmed = email.trim()
   if (!trimmed) {
     return { ok: false, error: 'Enter an email.' }

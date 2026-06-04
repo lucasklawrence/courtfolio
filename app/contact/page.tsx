@@ -47,7 +47,7 @@ export default function ContactPage() {
             <FrontOfficeZone x={550} y={620} width={350} height={100}>
               <div className="w-full h-full flex flex-col justify-center items-center">
                 <a
-                  href="/LucasLawrenceResume.pdf"
+                  href="/resume"
                   target="_blank"
                   className="text-sm text-black font-semibold underline hover:text-blue-700"
                   style={{
