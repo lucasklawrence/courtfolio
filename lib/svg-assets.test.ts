@@ -60,15 +60,25 @@ describe('symbol SVG assets survive optimization (#201)', () => {
     // Size floor catches a fully-gutted or path-stripped file...
     expect(statSync(file).size).toBeGreaterThan(MIN_BYTES)
 
-    // ...and the id must still equal the filename, because that's the exact
+    const symbolTag = readFileSync(file, 'utf8').match(/<symbol\b[^>]*>/)?.[0] ?? ''
+
+    // ...the id must still equal the filename, because that's the exact
     // fragment `SvgUse` references (`/<file>.svg#<filename>`). Asserting the
     // value — not just "some <symbol id>" — also catches a renamed/minified id,
     // not only whole-symbol removal.
     const id = basename(file, '.svg')
-    const match = readFileSync(file, 'utf8').match(/<symbol\b[^>]*\bid="([^"]+)"/)
     expect(
-      match?.[1],
+      symbolTag.match(/\bid="([^"]+)"/)?.[1],
       `${file} must expose <symbol id="${id}"> for its external <use href>`
     ).toBe(id)
+
+    // ...and the symbol's own viewBox must survive — it establishes the
+    // coordinate system the <use> scales into. Stripping it (e.g. a future
+    // `removeViewBox` plugin) wouldn't change the id or much of the size, but
+    // would render every consumer mis-scaled/clipped.
+    expect(
+      symbolTag,
+      `${file} symbol must keep its viewBox — <use> scaling depends on it`
+    ).toMatch(/\bviewBox="/)
   })
 })
