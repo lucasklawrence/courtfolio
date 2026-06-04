@@ -34,6 +34,7 @@
     - all        wait until every check in the rollup is terminal (default)
     - Vercel     wait only on the Vercel preview deploy
     - e2e        wait only on the Playwright e2e workflow
+    - unit       wait only on the vitest Unit tests workflow
     - CodeRabbit wait only on the CodeRabbit review status context
 
 .PARAMETER TimeoutSec
@@ -54,7 +55,7 @@ param(
   [Parameter(Mandatory = $true)]
   [int]$Pr,
 
-  [ValidateSet('all', 'Vercel', 'e2e', 'CodeRabbit')]
+  [ValidateSet('all', 'Vercel', 'e2e', 'unit', 'CodeRabbit')]
   [string]$Check = 'all',
 
   [ValidateRange(10, 3600)]
