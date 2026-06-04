@@ -14,6 +14,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          # Read-only job — don't leave the GITHUB_TOKEN in .git/config.
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
