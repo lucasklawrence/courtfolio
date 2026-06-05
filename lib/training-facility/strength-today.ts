@@ -103,3 +103,68 @@ export function computeRingPercent(
   if (goal.daily_target <= 0) return 0
   return totalReps / goal.daily_target
 }
+
+/**
+ * Strict `YYYY-MM-DD` shape produced by {@link toLocalDateKey} and the
+ * native `<input type="date">` value. Anchored so a stray timestamp
+ * (`2026-05-25T08:00`) doesn't silently parse as a day key.
+ */
+const DAY_KEY_REGEX = /^(\d{4})-(\d{2})-(\d{2})$/
+
+/**
+ * Parse a `YYYY-MM-DD` day key into a Date at *local noon* of that day.
+ * Component-wise rather than `new Date(dayKey)` — the Date constructor
+ * treats a bare date string as UTC midnight, which lands on the
+ * *previous* local day in negative-offset timezones.
+ *
+ * @returns The local-noon Date, or `null` when `dayKey` isn't a valid
+ *   calendar day (bad shape, or component overflow like `2026-02-31`
+ *   that would silently roll into March).
+ */
+function parseDayKeyToLocalNoon(dayKey: string): Date | null {
+  const match = DAY_KEY_REGEX.exec(dayKey)
+  if (!match) return null
+  const [, yyyy, mm, dd] = match
+  const d = new Date(Number(yyyy), Number(mm) - 1, Number(dd), 12, 0, 0)
+  if (!Number.isFinite(d.getTime()) || toLocalDateKey(d) !== dayKey) return null
+  return d
+}
+
+/**
+ * ISO timestamp for *local noon* of a `YYYY-MM-DD` day key. Used when
+ * backdating a QuickLog set (#202): stamping the set at the middle of
+ * the day keeps it inside the intended calendar day for any plausible
+ * timezone the data is later viewed in, instead of straddling a
+ * midnight boundary the way a 00:00 stamp would.
+ *
+ * @param dayKey `YYYY-MM-DD` key as produced by {@link toLocalDateKey}
+ *   or an `<input type="date">` value.
+ * @returns ISO 8601 UTC timestamp of the day's local noon, or `''` when
+ *   `dayKey` isn't a valid day key (so callers can fall back to the
+ *   server-side `now()` default instead of throwing).
+ */
+export function localNoonIsoForDay(dayKey: string): string {
+  const d = parseDayKeyToLocalNoon(dayKey)
+  return d ? d.toISOString() : ''
+}
+
+/**
+ * Human-readable label for a `YYYY-MM-DD` day key — e.g. `"Mon, May 25"`
+ * in the caller's locale. Used by the Log view's day-picker indicator
+ * and SetList heading when viewing a backfill day (#202). Year is
+ * omitted: the date input next to the label already shows it, and
+ * backfills more than a few days old are rare.
+ *
+ * @param dayKey `YYYY-MM-DD` key as produced by {@link toLocalDateKey}.
+ * @returns Locale-formatted weekday + date, or `''` when `dayKey` is
+ *   unparseable.
+ */
+export function formatDayLabel(dayKey: string): string {
+  const d = parseDayKeyToLocalNoon(dayKey)
+  if (!d) return ''
+  return d.toLocaleDateString(undefined, {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  })
+}

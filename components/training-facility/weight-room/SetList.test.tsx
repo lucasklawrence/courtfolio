@@ -119,6 +119,31 @@ describe('SetList', () => {
     expect(totals).toHaveTextContent('/ 30')
   })
 
+  it('headlines a custom dayLabel when viewing a backfill day', () => {
+    render(
+      <SetList
+        setsToday={[set()]}
+        goalsByExercise={{ pushups: PUSHUPS }}
+        dayLabel="Mon, May 25"
+      />,
+    )
+    expect(
+      screen.getByRole('heading', { name: 'Mon, May 25' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('region', { name: /sets logged on Mon, May 25/i }),
+    ).toBeInTheDocument()
+  })
+
+  it('adapts the empty-state copy to the backfill day', () => {
+    render(
+      <SetList setsToday={[]} goalsByExercise={{}} dayLabel="Mon, May 25" />,
+    )
+    expect(
+      screen.getByText(/no sets logged on Mon, May 25/i),
+    ).toBeInTheDocument()
+  })
+
   it('omits the goal denominator when the exercise has no configured goal', () => {
     render(
       <SetList
