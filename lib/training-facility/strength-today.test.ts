@@ -5,6 +5,8 @@ import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 import {
   computeRingPercent,
   filterSetsForDay,
+  formatDayLabel,
+  localNoonIsoForDay,
   sumReps,
   toLocalDateKey,
   totalsByExercise,
@@ -110,5 +112,46 @@ describe('computeRingPercent', () => {
 
   it('returns 0 when no reps logged', () => {
     expect(computeRingPercent(0, PUSHUPS)).toBe(0)
+  })
+})
+
+describe('localNoonIsoForDay', () => {
+  it('round-trips back to the same local day key', () => {
+    // The exact UTC string depends on the test runner's timezone; the
+    // contract is "this instant buckets onto the requested day."
+    expect(toLocalDateKey(localNoonIsoForDay('2026-05-25'))).toBe('2026-05-25')
+  })
+
+  it('stamps local noon, not midnight', () => {
+    const d = new Date(localNoonIsoForDay('2026-05-25'))
+    expect(d.getHours()).toBe(12)
+    expect(d.getMinutes()).toBe(0)
+  })
+
+  it('returns "" for a non-day-key string', () => {
+    expect(localNoonIsoForDay('not-a-date')).toBe('')
+    expect(localNoonIsoForDay('2026-05-25T08:00:00')).toBe('')
+    expect(localNoonIsoForDay('')).toBe('')
+  })
+
+  it('returns "" for component overflow instead of rolling the date', () => {
+    // new Date(2026, 1, 31) would silently roll to March 3.
+    expect(localNoonIsoForDay('2026-02-31')).toBe('')
+  })
+})
+
+describe('formatDayLabel', () => {
+  it('formats weekday, month, and day', () => {
+    // 2026-05-25 is a Monday. Exact strings are locale-dependent; assert
+    // on the en-US pieces the CI/dev environments produce.
+    const label = formatDayLabel('2026-05-25')
+    expect(label).toContain('Mon')
+    expect(label).toContain('May')
+    expect(label).toContain('25')
+  })
+
+  it('returns "" for an unparseable key', () => {
+    expect(formatDayLabel('not-a-date')).toBe('')
+    expect(formatDayLabel('2026-02-31')).toBe('')
   })
 })

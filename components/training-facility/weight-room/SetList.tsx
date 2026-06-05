@@ -7,9 +7,11 @@ import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 /** Props for {@link SetList}. */
 export interface SetListProps {
   /**
-   * Today's sets, sorted oldest → newest. The list reverses internally
-   * so the most recent set appears at the top — that's the entry the
-   * user usually wants to undo.
+   * The displayed day's sets (today by default, or a backfill day when
+   * the Log view's day picker is set to the past — see {@link dayLabel}),
+   * sorted oldest → newest. The list reverses internally so the most
+   * recent set appears at the top — that's the entry the user usually
+   * wants to undo.
    */
   setsToday: readonly StrengthSet[]
   /**
@@ -31,6 +33,12 @@ export interface SetListProps {
    * button so a row can't be dropped twice.
    */
   busy?: boolean
+  /**
+   * Heading for the list — `'Today'` (the default) or a formatted past
+   * day like `'Mon, May 25'` when the Log view is backfilling (#202).
+   * Also adjusts the empty-state copy and the section's accessible name.
+   */
+  dayLabel?: string
 }
 
 /**
@@ -50,9 +58,13 @@ export function SetList({
   goalsByExercise,
   onDelete,
   busy = false,
+  dayLabel = 'Today',
 }: SetListProps): JSX.Element {
   const [error, setError] = useState<string | null>(null)
   const [pendingId, setPendingId] = useState<string | null>(null)
+
+  const isToday = dayLabel === 'Today'
+  const sectionLabel = isToday ? 'Today’s sets' : `Sets logged on ${dayLabel}`
 
   async function handleDelete(set: StrengthSet): Promise<void> {
     if (!onDelete) return
@@ -69,12 +81,12 @@ export function SetList({
 
   if (setsToday.length === 0) {
     return (
-      <section aria-label="Today’s sets" className="space-y-2" data-testid="set-list-empty">
+      <section aria-label={sectionLabel} className="space-y-2" data-testid="set-list-empty">
         <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
-          Today
+          {dayLabel}
         </h2>
         <p className="rounded-2xl border border-dashed border-white/10 bg-black/20 px-4 py-6 text-center text-[13px] text-white/55">
-          No sets logged yet today.
+          {isToday ? 'No sets logged yet today.' : `No sets logged on ${dayLabel}.`}
         </p>
       </section>
     )
@@ -93,9 +105,9 @@ export function SetList({
   }
 
   return (
-    <section aria-label="Today’s sets" className="space-y-2" data-testid="set-list">
+    <section aria-label={sectionLabel} className="space-y-2" data-testid="set-list">
       <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
-        Today
+        {dayLabel}
       </h2>
       {error ? (
         <p

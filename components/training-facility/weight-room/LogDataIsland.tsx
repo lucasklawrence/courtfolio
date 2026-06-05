@@ -6,12 +6,15 @@ import { getWeightRoomData } from '@/lib/data/weight-room'
 import { computeStrengthStreaks } from '@/lib/training-facility/strength-streaks'
 import {
   filterSetsForDay,
+  formatDayLabel,
+  localNoonIsoForDay,
   toLocalDateKey,
   totalsByExercise,
 } from '@/lib/training-facility/strength-today'
 import type { StrengthSet, WeightRoomData } from '@/types/weight-room'
 
 import { ActivityRings, type RingProgress } from './ActivityRings'
+import { LogDayPicker } from './LogDayPicker'
 import { QuickLog } from './QuickLog'
 import { SetList } from './SetList'
 import { StreakBadge } from './StreakBadge'
@@ -20,8 +23,14 @@ import { StreakBadge } from './StreakBadge'
  * Admin Log View data island (#197). Owns the strength dataset that
  * powers the dashboard-style admin page at
  * `/training-facility/weight-room/log` — activity rings, streak
- * badges, the QuickLog form, and today's SetList live here behind a
- * single `getWeightRoomData()` read.
+ * badges, the QuickLog form, and the selected day's SetList live here
+ * behind a single `getWeightRoomData()` read.
+ *
+ * The view is day-addressable (#202): a {@link LogDayPicker} above the
+ * grid defaults to today, and selecting a past day flips rings, totals,
+ * and the set list to that day while stamping newly logged sets onto it
+ * (local noon, via `logged_at`). Streak badges always show the all-time
+ * computation regardless of the selected day.
  *
  * Always renders the admin-only surfaces (quick-log form + set-list
  * delete buttons) because the parent page is already admin-gated by
@@ -40,6 +49,12 @@ export function LogDataIsland(): JSX.Element {
   // transient Supabase blip from masquerading as "no data yet."
   const [loadError, setLoadError] = useState<string | null>(null)
   const [busy, setBusy] = useState<boolean>(false)
+  // Day the whole view is pointed at (#202) — rings, totals, SetList,
+  // and the `logged_at` of newly logged sets all follow this key. Lazy
+  // initializer so "today" is computed once at mount, not every render.
+  const [selectedDay, setSelectedDay] = useState<string>(() =>
+    toLocalDateKey(new Date()),
+  )
   const requestIdRef = useRef(0)
 
   useEffect(() => {
@@ -99,8 +114,12 @@ export function LogDataIsland(): JSX.Element {
   // render in their empty state.
   const surfaceData: WeightRoomData = data ?? { goals: [], sets: [], imported_at: '' }
   const todayKey = toLocalDateKey(new Date())
-  const setsToday = filterSetsForDay(surfaceData.sets, todayKey)
-  const totals = totalsByExercise(setsToday)
+  // After a midnight rollover `selectedDay` (set at mount) lags
+  // `todayKey` — that's intentional: the view stays on the day the
+  // admin was logging against, now flagged as a backfill by the picker.
+  const isBackfilling = selectedDay !== todayKey
+  const setsForDay = filterSetsForDay(surfaceData.sets, selectedDay)
+  const totals = totalsByExercise(setsForDay)
   const rings: RingProgress[] = surfaceData.goals.map((goal) => ({
     goal,
     totalReps: totals.get(goal.exercise) ?? 0,
@@ -113,6 +132,12 @@ export function LogDataIsland(): JSX.Element {
   return (
     <div className="flex flex-col gap-8">
       {loadError ? <LoadErrorBanner message={loadError} /> : null}
+
+      <LogDayPicker
+        selectedDay={selectedDay}
+        todayKey={todayKey}
+        onSelectDay={setSelectedDay}
+      />
 
       <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-start">
         <div className="flex flex-col items-center gap-4">
@@ -134,7 +159,19 @@ export function LogDataIsland(): JSX.Element {
             <QuickLog
               goals={surfaceData.goals}
               lastReps={lastReps}
-              onLog={({ exercise, reps }) => logSet(exercise, reps, setBusy, refetch)}
+              onLog={({ exercise, reps }) =>
+                logSet(
+                  exercise,
+                  reps,
+                  // Backfills stamp local noon of the selected day; same-day
+                  // logs omit logged_at so the API keeps its now() default
+                  // (real time-of-day on the set row). `|| undefined` guards
+                  // the '' unparseable-key fallback.
+                  isBackfilling ? localNoonIsoForDay(selectedDay) || undefined : undefined,
+                  setBusy,
+                  refetch,
+                )
+              }
               busy={busy}
             />
           ) : (
@@ -150,10 +187,11 @@ export function LogDataIsland(): JSX.Element {
             </p>
           )}
           <SetList
-            setsToday={setsToday}
+            setsToday={setsForDay}
             goalsByExercise={goalsByExercise}
             onDelete={(s) => deleteSet(s, setBusy, refetch)}
             busy={busy}
+            dayLabel={isBackfilling ? formatDayLabel(selectedDay) || selectedDay : 'Today'}
           />
         </div>
       </div>
@@ -163,10 +201,15 @@ export function LogDataIsland(): JSX.Element {
 
 /**
  * POST a new strength set, then refetch so rings + list reflect on-disk truth.
+ *
+ * @param loggedAt Optional ISO timestamp for backdated sets (#202).
+ *   Omitted for same-day logs so the API's `now()` default stamps the
+ *   real time-of-day.
  */
 async function logSet(
   exercise: string,
   reps: number,
+  loggedAt: string | undefined,
   setBusy: (v: boolean) => void,
   refetch: () => Promise<void>,
 ): Promise<void> {
@@ -175,7 +218,9 @@ async function logSet(
     const res = await fetch('/api/admin/weight-room/sets', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ exercise, reps }),
+      body: JSON.stringify(
+        loggedAt ? { exercise, reps, logged_at: loggedAt } : { exercise, reps },
+      ),
     })
     if (!res.ok) {
       const body = (await res.json().catch(() => ({}))) as { error?: string }
