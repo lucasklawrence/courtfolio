@@ -63,10 +63,11 @@ export function LogDayPicker({
         max={todayKey}
         onChange={(e) => {
           const next = e.target.value
-          // Ignore a cleared input and (typed) future dates — the
-          // controlled value snaps the input back to the last valid
-          // day. Lexicographic compare is safe on YYYY-MM-DD keys.
-          if (next === '' || next > todayKey) return
+          // Ignore anything that isn't a strict YYYY-MM-DD key (cleared
+          // input, exotic 5+-digit years) and typed future dates — the
+          // controlled value snaps the input back to the last valid day.
+          // Lexicographic compare is safe once the shape is pinned.
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(next) || next > todayKey) return
           onSelectDay(next)
         }}
         data-testid="log-day-input"

@@ -44,6 +44,9 @@ describe('LogDayPicker', () => {
     const input = screen.getByTestId('log-day-input')
     fireEvent.change(input, { target: { value: '2026-06-05' } })
     fireEvent.change(input, { target: { value: '' } })
+    // 5-digit year would defeat the lexicographic future-date compare if
+    // the shape weren't pinned first.
+    fireEvent.change(input, { target: { value: '10000-01-01' } })
     expect(onSelectDay).not.toHaveBeenCalled()
   })
 
