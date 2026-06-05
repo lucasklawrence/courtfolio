@@ -17,12 +17,16 @@ describe('LogDayPicker', () => {
     expect(input).toHaveAttribute('max', TODAY)
   })
 
-  it('hides the reset chip and indicator when viewing today', () => {
+  it('hides the reset chip and empties the indicator when viewing today', () => {
     render(
       <LogDayPicker selectedDay={TODAY} todayKey={TODAY} onSelectDay={vi.fn()} />,
     )
     expect(screen.queryByTestId('log-day-reset')).not.toBeInTheDocument()
-    expect(screen.queryByTestId('log-day-indicator')).not.toBeInTheDocument()
+    // The live region stays mounted (so AT announces the text swap, #229)
+    // but is empty and visually hidden while viewing today.
+    const indicator = screen.getByTestId('log-day-indicator')
+    expect(indicator).toBeEmptyDOMElement()
+    expect(indicator).toHaveClass('sr-only')
   })
 
   it('forwards a picked past day to onSelectDay', () => {

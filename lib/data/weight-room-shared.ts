@@ -60,8 +60,18 @@ const WeightRoomGoalRowsSchema = z.array(WeightRoomGoalRowSchema)
 export async function assembleWeightRoomData(
   supabase: SupabaseClient,
 ): Promise<WeightRoomData | null> {
+  // Secondary sort keys make ties deterministic (#229): backdated sets
+  // all stamp local noon of their day, so `logged_at` alone left their
+  // relative order unstable between fetches. `updated_at` resolves ties
+  // by insertion order (sets have no update path), and `id` backstops
+  // same-transaction inserts whose `updated_at` also collides.
   const [setsRes, goalsRes] = await Promise.all([
-    supabase.from(SETS_TABLE).select(SETS_COLUMNS).order('logged_at', { ascending: true }),
+    supabase
+      .from(SETS_TABLE)
+      .select(SETS_COLUMNS)
+      .order('logged_at', { ascending: true })
+      .order('updated_at', { ascending: true })
+      .order('id', { ascending: true }),
     supabase.from(GOALS_TABLE).select(GOALS_COLUMNS).order('exercise', { ascending: true }),
   ])
 

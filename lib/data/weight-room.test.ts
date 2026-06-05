@@ -11,9 +11,23 @@ import { getWeightRoomData } from './weight-room'
  * Sibling pattern: `lib/data/cardio.test.ts`.
  */
 
-interface FakeQuery {
+/** Stubbed PostgREST result a {@link FakeQuery} resolves with when awaited. */
+interface FakeResult {
+  data: Array<Record<string, unknown>> | null
+  error: unknown
+}
+
+/**
+ * Chainable + awaitable fake of the Supabase query builder. `select`/
+ * `order` return the builder itself (so multi-key `.order().order()`
+ * chains work, #229) and awaiting it resolves with {@link FakeQuery.result}
+ * — mirroring the real builder, which is a thenable.
+ */
+interface FakeQuery extends PromiseLike<FakeResult> {
   select: ReturnType<typeof vi.fn>
   order: ReturnType<typeof vi.fn>
+  /** Result the await resolves with; {@link stubTable} overwrites it. */
+  result: FakeResult
 }
 
 const queriesByTable: Record<string, FakeQuery> = {}
@@ -22,9 +36,13 @@ const fromMock = vi.fn((table: string): FakeQuery => {
     const query: FakeQuery = {
       select: vi.fn(),
       order: vi.fn(),
+      result: { data: [], error: null },
+      then(onFulfilled, onRejected) {
+        return Promise.resolve(this.result).then(onFulfilled, onRejected)
+      },
     }
     query.select.mockReturnValue(query)
-    query.order.mockResolvedValue({ data: [], error: null })
+    query.order.mockReturnValue(query)
     queriesByTable[table] = query
   }
   return queriesByTable[table]
@@ -52,8 +70,7 @@ function stubTable(
   error: unknown = null,
 ): void {
   const query = fromMock(table)
-  query.order.mockReset()
-  query.order.mockResolvedValue({ data, error })
+  query.result = { data, error }
 }
 
 describe('getWeightRoomData', () => {
@@ -68,14 +85,18 @@ describe('getWeightRoomData', () => {
     expect(fromMock).toHaveBeenCalledWith('weight_room_goals')
   })
 
-  it('orders sets by logged_at ascending and goals by exercise ascending', async () => {
+  it('orders sets by logged_at with deterministic tie-breakers, goals by exercise', async () => {
     stubTable('weight_room_sets', [])
     stubTable('weight_room_goals', [])
     await getWeightRoomData()
 
-    expect(queriesByTable.weight_room_sets.order).toHaveBeenCalledWith('logged_at', {
-      ascending: true,
-    })
+    // Backdated sets share an identical noon logged_at (#229), so the
+    // query must chain updated_at + id to keep tie order stable.
+    expect(queriesByTable.weight_room_sets.order.mock.calls).toEqual([
+      ['logged_at', { ascending: true }],
+      ['updated_at', { ascending: true }],
+      ['id', { ascending: true }],
+    ])
     expect(queriesByTable.weight_room_goals.order).toHaveBeenCalledWith('exercise', {
       ascending: true,
     })

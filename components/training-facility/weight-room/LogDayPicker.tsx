@@ -36,6 +36,10 @@ export interface LogDayPickerProps {
  * Native `<input type="date">` so mobile gets the platform date picker
  * for free. `max` blocks future days in the picker UI; typed future
  * dates are dropped in the change handler as well.
+ *
+ * The backfill indicator is a permanently-mounted `role="status"` live
+ * region whose text swaps with the mode (#229) — conditional mounting
+ * would skip the screen-reader announcement on most AT.
  */
 export function LogDayPicker({
   selectedDay,
@@ -74,25 +78,33 @@ export function LogDayPicker({
         className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white [color-scheme:dark] focus:border-amber-300/60 focus:outline-none"
       />
       {isBackfilling ? (
-        <>
-          <button
-            type="button"
-            onClick={() => onSelectDay(todayKey)}
-            data-testid="log-day-reset"
-            className="min-h-[40px] rounded-full border border-amber-200/30 bg-amber-200/10 px-4 font-mono text-[11px] uppercase tracking-[0.22em] text-amber-100 transition hover:bg-amber-200/20"
-          >
-            Back to today
-          </button>
-          <p
-            role="status"
-            data-testid="log-day-indicator"
-            className="basis-full font-mono text-[12px] text-amber-200/90"
-          >
-            Viewing {formatDayLabel(selectedDay)} — new sets will be logged
-            to this day.
-          </p>
-        </>
+        <button
+          type="button"
+          onClick={() => onSelectDay(todayKey)}
+          data-testid="log-day-reset"
+          className="min-h-[40px] rounded-full border border-amber-200/30 bg-amber-200/10 px-4 font-mono text-[11px] uppercase tracking-[0.22em] text-amber-100 transition hover:bg-amber-200/20"
+        >
+          Back to today
+        </button>
       ) : null}
+      {/* Permanently-mounted live region (#229): a role="status" element
+          that enters the DOM already populated often isn't announced, so
+          the node stays mounted and only its text swaps. sr-only keeps
+          the empty state out of the visual layout without removing it
+          from the accessibility tree. */}
+      <p
+        role="status"
+        data-testid="log-day-indicator"
+        className={
+          isBackfilling
+            ? 'basis-full font-mono text-[12px] text-amber-200/90'
+            : 'sr-only'
+        }
+      >
+        {isBackfilling
+          ? `Viewing ${formatDayLabel(selectedDay)} — new sets will be logged to this day.`
+          : null}
+      </p>
     </div>
   )
 }
