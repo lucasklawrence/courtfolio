@@ -114,9 +114,11 @@ export function LogDataIsland(): JSX.Element {
   // render in their empty state.
   const surfaceData: WeightRoomData = data ?? { goals: [], sets: [], imported_at: '' }
   const todayKey = toLocalDateKey(new Date())
-  // After a midnight rollover `selectedDay` (set at mount) lags
-  // `todayKey` — that's intentional: the view stays on the day the
-  // admin was logging against, now flagged as a backfill by the picker.
+  // Display-only backfill flag. After a midnight rollover `selectedDay`
+  // (set at mount) lags `todayKey` — that's intentional: the view stays
+  // on the day the admin was logging against, now flagged as a backfill
+  // by the picker. The *write* path recomputes this at tap time inside
+  // onLog so a stale render closure can't stamp the wrong day.
   const isBackfilling = selectedDay !== todayKey
   const setsForDay = filterSetsForDay(surfaceData.sets, selectedDay)
   const totals = totalsByExercise(setsForDay)
@@ -159,19 +161,27 @@ export function LogDataIsland(): JSX.Element {
             <QuickLog
               goals={surfaceData.goals}
               lastReps={lastReps}
-              onLog={({ exercise, reps }) =>
-                logSet(
+              onLog={({ exercise, reps }) => {
+                // Recompute "today" at tap time rather than reusing the
+                // render-scoped isBackfilling — a page left mounted across
+                // local midnight would otherwise have a stale closure and
+                // silently stamp the set with the new day's now() while
+                // the view still shows the previous day (Codex P2 on
+                // #228). Backfills stamp local noon of the selected day;
+                // same-day logs omit logged_at so the API keeps its now()
+                // default (real time-of-day on the set row). `|| undefined`
+                // guards the '' unparseable-key fallback.
+                const isBackfillAtTap = selectedDay !== toLocalDateKey(new Date())
+                return logSet(
                   exercise,
                   reps,
-                  // Backfills stamp local noon of the selected day; same-day
-                  // logs omit logged_at so the API keeps its now() default
-                  // (real time-of-day on the set row). `|| undefined` guards
-                  // the '' unparseable-key fallback.
-                  isBackfilling ? localNoonIsoForDay(selectedDay) || undefined : undefined,
+                  isBackfillAtTap
+                    ? localNoonIsoForDay(selectedDay) || undefined
+                    : undefined,
                   setBusy,
                   refetch,
                 )
-              }
+              }}
               busy={busy}
             />
           ) : (
