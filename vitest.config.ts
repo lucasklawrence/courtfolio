@@ -50,6 +50,10 @@ export default defineConfig({
         // "scoped to the modules added during the Training Facility build."
         'constants/playerSize.ts',
         'constants/tourSteps.ts',
+        // Pure demo-data blobs with no logic to cover; counting their
+        // 0% lines dragged constants/** below the 80% gate (#225, #227).
+        'constants/training-facility-demo-fixture.ts',
+        'constants/weight-room-demo-fixture.ts',
       ],
       thresholds: {
         'lib/**': { lines: 80 },
