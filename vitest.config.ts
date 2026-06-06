@@ -50,10 +50,13 @@ export default defineConfig({
         // "scoped to the modules added during the Training Facility build."
         'constants/playerSize.ts',
         'constants/tourSteps.ts',
-        // Pure demo-data blobs with no logic to cover; counting their
-        // 0% lines dragged constants/** below the 80% gate (#225, #227).
-        'constants/training-facility-demo-fixture.ts',
-        'constants/weight-room-demo-fixture.ts',
+        // Demo/preview fixtures, excluded by policy rather than because
+        // they're logic-free (buildWeightRoomDemoData() does real date
+        // math): they only feed admin-preview / empty-state surfaces, so
+        // their lines aren't worth gating. Counting the uncovered
+        // weight-room fixture's 0% dragged constants/** below the 80%
+        // gate (#225; #227 misnames it "training-facility-demo-fixture").
+        'constants/*-demo-fixture.ts',
       ],
       thresholds: {
         'lib/**': { lines: 80 },
