@@ -6,11 +6,14 @@
  *
  * Failure modes redirect to `/admin/login?error=...` so the user sees
  * a visible message instead of a blank page or a stale stuck state.
+ * Each failure also emits an `auth_callback_failed` domain event so the
+ * App-health dashboard can see failed exchanges despite the 3xx (#227).
  */
 
 import { NextResponse, type NextRequest } from 'next/server'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { emitEvent } from '@/lib/telemetry/client'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 /**
@@ -29,18 +32,37 @@ async function handleGET(request: NextRequest): Promise<NextResponse> {
   const next = sanitizeNext(url.searchParams.get('next'))
 
   if (!code) {
+    emitAuthCallbackFailed('missing_code')
     return NextResponse.redirect(new URL('/admin/login?error=missing_code', request.url))
   }
 
   const supabase = await createServerSupabaseClient()
   const { error } = await supabase.auth.exchangeCodeForSession(code)
   if (error) {
+    emitAuthCallbackFailed('exchange_failed')
     return NextResponse.redirect(
       new URL(`/admin/login?error=${encodeURIComponent(error.message)}`, request.url)
     )
   }
 
   return NextResponse.redirect(new URL(next, request.url))
+}
+
+/**
+ * Domain event for a failed magic-link exchange (#227). The wrapper's
+ * per-request health event can't see these — the failure path returns a
+ * 3xx redirect, which it labels `status='ok'` — so dashboards chart
+ * `auth_callback_failed` directly instead of parsing redirect targets.
+ *
+ * @param reason Low-cardinality failure bucket. Never the Supabase
+ *   error message — messages can embed user input (PII rule, see
+ *   {@link withTelemetry}).
+ */
+function emitAuthCallbackFailed(reason: 'missing_code' | 'exchange_failed'): void {
+  emitEvent('auth_callback_failed', {
+    status: 'error',
+    attributes: { reason },
+  })
 }
 
 /** `handleGET` wrapped with one-event-per-request telemetry (#220). */
