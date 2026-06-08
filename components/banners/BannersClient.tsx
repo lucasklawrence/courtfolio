@@ -17,6 +17,12 @@ const groupedBanners: BannerSection[] = [
         icon: '🗂️',
         category: 'tech',
       },
+      {
+        year: '2026',
+        title: 'Featured 3× in Snap Ads Internal AI Newsletter',
+        icon: '📰',
+        category: 'tech',
+      },
     ],
   },
   {
