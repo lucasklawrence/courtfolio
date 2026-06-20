@@ -1,0 +1,27 @@
+version: 2
+updates:
+  # Application dependencies (single-package repo — singular `directory: /`,
+  # not multi-directory globs, which can trip frozen-lockfile installs).
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      # Fold minor/patch bumps into one weekly PR to keep the noise down;
+      # majors stay ungrouped so each gets its own review.
+      npm-minor-patch:
+        update-types:
+          - minor
+          - patch
+
+  # GitHub Actions used by the workflows in .github/workflows.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      # All action bumps land in a single weekly PR.
+      github-actions:
+        patterns:
+          - "*"
