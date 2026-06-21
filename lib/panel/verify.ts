@@ -28,10 +28,12 @@ export async function verifyGaps(
   evidence: EvidenceContext,
   config: PanelConfig
 ): Promise<VerifiedGap[]> {
-  const flat = verdicts.flatMap(v => v.gaps.map(gap => ({ personaId: v.personaId, gap })))
+  const flat = verdicts.flatMap(v =>
+    v.gaps.map((gap, gapIndex) => ({ personaId: v.personaId, gapIndex, gap }))
+  )
 
   return Promise.all(
-    flat.map(async ({ personaId, gap }): Promise<VerifiedGap> => {
+    flat.map(async ({ personaId, gapIndex, gap }): Promise<VerifiedGap> => {
       const ruling = await generateStructured<VerifyVerdictOutput>({
         model: config.lineup.verifier,
         system:
@@ -39,15 +41,19 @@ export async function verifyGaps(
         prompt: buildVerifyPrompt(gap, evidence),
         schema: verifyVerdictSchema,
       })
-      return { ...gap, personaId, verdict: ruling.verdict, verifyNote: ruling.verifyNote }
+      return { ...gap, personaId, gapIndex, verdict: ruling.verdict, verifyNote: ruling.verifyNote }
     })
   )
 }
 
-/** A set of `personaId|citation` keys, identifying gaps the verifier refuted. */
+/**
+ * The set of `personaId|gapIndex` keys the verifier refuted. Keying on the gap's
+ * position (not its citation) means refuting one gap can't strip a sibling gap
+ * that cites the same file.
+ */
 function refutedKeys(verifiedGaps: VerifiedGap[]): Set<string> {
   return new Set(
-    verifiedGaps.filter(g => g.verdict === 'refuted').map(g => `${g.personaId}|${g.citation}`)
+    verifiedGaps.filter(g => g.verdict === 'refuted').map(g => `${g.personaId}|${g.gapIndex}`)
   )
 }
 
@@ -62,7 +68,7 @@ export function stripRefutedGaps(
   const refuted = refutedKeys(verifiedGaps)
   return verdicts.map(v => ({
     ...v,
-    gaps: v.gaps.filter(g => !refuted.has(`${v.personaId}|${g.citation}`)),
+    gaps: v.gaps.filter((_g, i) => !refuted.has(`${v.personaId}|${i}`)),
   }))
 }
 

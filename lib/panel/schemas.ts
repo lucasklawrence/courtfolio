@@ -49,7 +49,7 @@ export const personaVerdictSchema = z.object({
     .array(gapSchema)
     .min(1)
     .max(4)
-    .describe('2–4 grounded gaps between the thesis and the artifact.'),
+    .describe('1–4 grounded gaps between the thesis and the artifact (aim for 2–4).'),
   uncomfortableTruth: z
     .string()
     .describe('The single thing the author least wants to hear, in this persona’s voice.'),

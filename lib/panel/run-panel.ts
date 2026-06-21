@@ -51,7 +51,9 @@ export async function runPersonaPanel(
         scores: out.scores,
         gaps: out.gaps.map(toGap),
         uncomfortableTruth: out.uncomfortableTruth,
-        ...(out.standoutObservation ? { standoutObservation: out.standoutObservation } : {}),
+        ...(out.standoutObservation === null
+          ? {}
+          : { standoutObservation: out.standoutObservation }),
       }
     })
   )

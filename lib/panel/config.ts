@@ -44,7 +44,8 @@ export const portfolioConfig: PanelConfig = {
  * would otherwise surface as confusing mid-run model errors.
  *
  * @throws if the config has no personas, no axes, fewer than two model families
- *   among personas, or a persona whose family has no model in the lineup.
+ *   among personas, or a missing/blank model id for any role (a persona family,
+ *   the meta-judge, or the verifier).
  */
 export function assertValidConfig(config: PanelConfig): void {
   if (config.personas.length === 0) throw new Error('PanelConfig has no personas.')
@@ -56,11 +57,16 @@ export function assertValidConfig(config: PanelConfig): void {
       `PanelConfig "${config.name}" spans only one model family (${[...families].join(', ')}); cross-family diversity needs ≥2.`
     )
   }
+  const blank = (id: string | undefined) => !id || id.trim().length === 0
   for (const family of families) {
-    if (!config.lineup.personas[family]) {
+    if (blank(config.lineup.personas[family])) {
       throw new Error(
         `PanelConfig "${config.name}" has personas in family "${family}" but no model for it in the lineup.`
       )
     }
   }
+  if (blank(config.lineup.metaJudge))
+    throw new Error(`PanelConfig "${config.name}" has no metaJudge model id.`)
+  if (blank(config.lineup.verifier))
+    throw new Error(`PanelConfig "${config.name}" has no verifier model id.`)
 }

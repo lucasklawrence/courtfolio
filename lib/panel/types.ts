@@ -150,6 +150,12 @@ export type VerifyVerdict = 'upheld' | 'refuted' | 'unverifiable'
 export interface VerifiedGap extends Gap {
   /** Persona that originally raised the gap. */
   personaId: string
+  /**
+   * Position of this gap within its persona's gap list. Together with
+   * `personaId` it uniquely identifies a gap, so refuting one gap never strips
+   * a sibling that happens to cite the same file.
+   */
+  gapIndex: number
   /** The verifier's ruling. */
   verdict: VerifyVerdict
   /** One-line justification for the ruling, grounded in the evidence. */

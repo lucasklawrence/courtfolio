@@ -31,6 +31,7 @@ const verified: VerifiedGap[] = [
     citation: 'a.ts',
     confidence: 0.9,
     personaId: 'hiring-manager',
+    gapIndex: 0,
     verdict: 'upheld',
     verifyNote: 'backed',
   },
@@ -40,15 +41,39 @@ const verified: VerifiedGap[] = [
     citation: 'b.ts',
     confidence: 0.6,
     personaId: 'hiring-manager',
+    gapIndex: 1,
     verdict: 'refuted',
     verifyNote: 'morph exists in cardMorph.ts',
   },
 ]
 
 describe('stripRefutedGaps', () => {
-  it('removes only the refuted gap, matched by persona+citation', () => {
+  it('removes only the refuted gap, matched by persona+gapIndex', () => {
     const out = stripRefutedGaps(verdicts, verified)
     expect(out[0].gaps.map(g => g.citation)).toEqual(['a.ts'])
+  })
+
+  it('does not strip a sibling gap that cites the same file as a refuted one', () => {
+    // Both gaps cite the same file; only index 0 is refuted. Index-based keying
+    // must keep index 1 (the regression both review bots flagged).
+    const sameCite = [
+      {
+        personaId: 'p',
+        label: 'P',
+        scores: [],
+        uncomfortableTruth: 't',
+        gaps: [
+          { claim: 'wrong', artifactShows: 'a', citation: 'cardMorph.ts', confidence: 0.5 },
+          { claim: 'right', artifactShows: 'b', citation: 'cardMorph.ts', confidence: 0.9 },
+        ],
+      },
+    ]
+    const rulings: VerifiedGap[] = [
+      { ...sameCite[0].gaps[0], personaId: 'p', gapIndex: 0, verdict: 'refuted', verifyNote: 'no' },
+      { ...sameCite[0].gaps[1], personaId: 'p', gapIndex: 1, verdict: 'upheld', verifyNote: 'yes' },
+    ]
+    const out = stripRefutedGaps(sameCite, rulings)
+    expect(out[0].gaps.map(g => g.claim)).toEqual(['right'])
   })
 
   it('does not mutate the input verdicts', () => {
@@ -86,6 +111,7 @@ describe('verifyGaps', () => {
 
     expect(out).toHaveLength(2)
     expect(out.map(g => g.verdict)).toEqual(['upheld', 'refuted'])
+    expect(out.map(g => g.gapIndex)).toEqual([0, 1])
     expect(out.every(g => g.personaId === 'hiring-manager')).toBe(true)
     expect(
       generateStructured.mock.calls.every(c => c[0].model === portfolioConfig.lineup.verifier)

@@ -16,8 +16,7 @@ import type { EvidenceContext, PanelConfig, PanelResult, Thesis } from './types'
  *
  * @param thesis the author's claim to pressure-test
  * @param evidence the grounding the panel reasons over (from an evidence adapter)
- * @param config personas, axes, and model lineup; defaults to {@link portfolioConfig}
- * @returns every stage's output — verdicts, verified gaps, and the synthesis
+ * @param config personas, axes, and model lineup (e.g. {@link portfolioConfig})
  * @throws if the config is invalid or any model stage fails
  */
 export async function runPanel(

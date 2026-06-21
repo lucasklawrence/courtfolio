@@ -23,15 +23,31 @@ describe('assertValidConfig', () => {
     expect(() => assertValidConfig(oneFamily)).toThrow(/one model family/)
   })
 
-  it('rejects a persona family with no model in the lineup', () => {
+  it('rejects a persona family with a missing or blank model in the lineup', () => {
     const missingModel: PanelConfig = {
       ...portfolioConfig,
       lineup: {
         ...portfolioConfig.lineup,
-        personas: { ...portfolioConfig.lineup.personas, google: '' },
+        personas: { ...portfolioConfig.lineup.personas, google: '   ' },
       },
     }
     expect(() => assertValidConfig(missingModel)).toThrow(/no model for it/)
+  })
+
+  it('rejects a blank meta-judge model id', () => {
+    const cfg: PanelConfig = {
+      ...portfolioConfig,
+      lineup: { ...portfolioConfig.lineup, metaJudge: '' },
+    }
+    expect(() => assertValidConfig(cfg)).toThrow(/no metaJudge model/)
+  })
+
+  it('rejects a blank verifier model id', () => {
+    const cfg: PanelConfig = {
+      ...portfolioConfig,
+      lineup: { ...portfolioConfig.lineup, verifier: '  ' },
+    }
+    expect(() => assertValidConfig(cfg)).toThrow(/no verifier model/)
   })
 })
 
