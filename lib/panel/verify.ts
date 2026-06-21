@@ -1,0 +1,84 @@
+/**
+ * Stage 2: adversarial verification. Every grounded gap is re-checked against
+ * the same evidence by a separate model. This is the prototype's load-bearing
+ * finding: panelists produce confident, grounded-*sounding*, false claims
+ * (a hallucinated "the morph doesn't exist", a real accomplishment misread as
+ * "fake"), and only checking each claim against the artifact catches them.
+ *
+ * `refuted` gaps are removed from the synthesis and surfaced as caught errors —
+ * visible, not silently dropped.
+ */
+import { generateStructured } from './models'
+import { verifyVerdictSchema } from './schemas'
+import type { VerifyVerdictOutput } from './schemas'
+import { buildVerifyPrompt } from './prompts'
+import type { EvidenceContext, PanelConfig, PersonaVerdict, VerifiedGap } from './types'
+
+/**
+ * Verify every gap from every persona, concurrently.
+ *
+ * @param verdicts the independent persona verdicts
+ * @param evidence the sole source of truth the verifier may use
+ * @param config supplies the verifier model id
+ * @returns one {@link VerifiedGap} per input gap, tagged with the verifier's ruling
+ * @throws if a verifier model call fails
+ */
+export async function verifyGaps(
+  verdicts: PersonaVerdict[],
+  evidence: EvidenceContext,
+  config: PanelConfig
+): Promise<VerifiedGap[]> {
+  const flat = verdicts.flatMap(v => v.gaps.map(gap => ({ personaId: v.personaId, gap })))
+
+  return Promise.all(
+    flat.map(async ({ personaId, gap }): Promise<VerifiedGap> => {
+      const ruling = await generateStructured<VerifyVerdictOutput>({
+        model: config.lineup.verifier,
+        system:
+          'You are a precise, adversarial fact-checker. You only trust the evidence in front of you.',
+        prompt: buildVerifyPrompt(gap, evidence),
+        schema: verifyVerdictSchema,
+      })
+      return { ...gap, personaId, verdict: ruling.verdict, verifyNote: ruling.verifyNote }
+    })
+  )
+}
+
+/** A set of `personaId|citation` keys, identifying gaps the verifier refuted. */
+function refutedKeys(verifiedGaps: VerifiedGap[]): Set<string> {
+  return new Set(
+    verifiedGaps.filter(g => g.verdict === 'refuted').map(g => `${g.personaId}|${g.citation}`)
+  )
+}
+
+/**
+ * Return copies of the verdicts with refuted gaps removed — what the meta-judge
+ * should synthesize from. Pure; no model calls.
+ */
+export function stripRefutedGaps(
+  verdicts: PersonaVerdict[],
+  verifiedGaps: VerifiedGap[]
+): PersonaVerdict[] {
+  const refuted = refutedKeys(verifiedGaps)
+  return verdicts.map(v => ({
+    ...v,
+    gaps: v.gaps.filter(g => !refuted.has(`${v.personaId}|${g.citation}`)),
+  }))
+}
+
+/** The refuted gaps, shaped for {@link MetaSynthesis.caughtErrors}. Pure. */
+export function caughtErrors(
+  verifiedGaps: VerifiedGap[]
+): { personaId: string; claim: string; verifyNote: string }[] {
+  return verifiedGaps
+    .filter(g => g.verdict === 'refuted')
+    .map(g => ({ personaId: g.personaId, claim: g.claim, verifyNote: g.verifyNote }))
+}
+
+/** A human-readable list of discarded gaps for the synthesis prompt. Pure. */
+export function refutedNote(verifiedGaps: VerifiedGap[]): string {
+  return verifiedGaps
+    .filter(g => g.verdict === 'refuted')
+    .map(g => `- (${g.personaId}) "${g.claim}" — refuted: ${g.verifyNote}`)
+    .join('\n')
+}
