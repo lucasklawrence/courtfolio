@@ -3,6 +3,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from 'react'
 
 import { getWeightRoomData } from '@/lib/data/weight-room'
+import {
+  activeFocusForDay,
+  computeFocusAdherence,
+  computeFocusLoadStats,
+  upcomingFocuses,
+} from '@/lib/training-facility/monthly-focus'
 import { computeStrengthStreaks } from '@/lib/training-facility/strength-streaks'
 import {
   filterSetsForDay,
@@ -11,13 +17,15 @@ import {
   toLocalDateKey,
   totalsByExercise,
 } from '@/lib/training-facility/strength-today'
-import type { StrengthSet, WeightRoomData } from '@/types/weight-room'
+import type { MonthlyFocus, StrengthSet, WeightRoomData } from '@/types/weight-room'
 
 import { ActivityRings, type RingProgress } from './ActivityRings'
 import { LogDayPicker } from './LogDayPicker'
+import { MonthlyFocusCard } from './MonthlyFocusCard'
 import { QuickLog } from './QuickLog'
 import { SetList } from './SetList'
 import { StreakBadge } from './StreakBadge'
+import { UpcomingFocusStrip } from './UpcomingFocusStrip'
 
 /**
  * Admin Log View data island (#197). Owns the strength dataset that
@@ -127,14 +135,33 @@ export function LogDataIsland(): JSX.Element {
   const isBackfilling = selectedDay !== todayKey
   const setsForDay = filterSetsForDay(surfaceData.sets, selectedDay)
   const totals = totalsByExercise(setsForDay)
-  const rings: RingProgress[] = surfaceData.goals.map((goal) => ({
+
+  // The focus active on the *viewed* day (#255). A `kind: 'focus'` goal
+  // only earns a ring / streak / quick-log button while its window
+  // covers the day, so a finished or future focus doesn't leave a stale
+  // empty ring. Permanent goals always show.
+  const activeFocus = activeFocusForDay(surfaceData.monthly_focus, selectedDay)
+  const visibleGoals = surfaceData.goals.filter(
+    (goal) => goal.kind !== 'focus' || goal.exercise === activeFocus?.exercise,
+  )
+  const upcoming = upcomingFocuses(surfaceData.monthly_focus, todayKey)
+
+  const rings: RingProgress[] = visibleGoals.map((goal) => ({
     goal,
     totalReps: totals.get(goal.exercise) ?? 0,
   }))
-  const streaks = computeStrengthStreaks(surfaceData.sets, surfaceData.goals)
+  const streaks = computeStrengthStreaks(surfaceData.sets, visibleGoals)
+  // SetList color/label lookup spans *all* goals (incl. inactive focuses)
+  // so a backfilled out-of-window set still resolves its exercise.
   const goalsByExercise = Object.fromEntries(
     surfaceData.goals.map((g) => [g.exercise, g]),
   )
+
+  // Focus card inputs: today's progress in the focus's own unit (reps or
+  // distinct sets), plus windowed adherence and load stats.
+  const focusCard = activeFocus
+    ? buildFocusCardProps(activeFocus, setsForDay, surfaceData.sets)
+    : null
 
   return (
     <div className="flex flex-col gap-8">
@@ -146,11 +173,13 @@ export function LogDataIsland(): JSX.Element {
         onSelectDay={setSelectedDay}
       />
 
+      <UpcomingFocusStrip focuses={upcoming} />
+
       <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-start">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex w-full max-w-[264px] flex-col items-center gap-4">
           <ActivityRings rings={rings} size={264} className="w-full max-w-[264px]" />
-          <div className="grid w-full max-w-[264px] gap-2">
-            {surfaceData.goals.map((goal) => (
+          <div className="grid w-full gap-2">
+            {visibleGoals.map((goal) => (
               <StreakBadge
                 key={goal.exercise}
                 exercise={goal.exercise}
@@ -159,12 +188,20 @@ export function LogDataIsland(): JSX.Element {
               />
             ))}
           </div>
+          {focusCard ? (
+            <MonthlyFocusCard
+              focus={focusCard.focus}
+              todayProgress={focusCard.todayProgress}
+              adherence={focusCard.adherence}
+              loadStats={focusCard.loadStats}
+            />
+          ) : null}
         </div>
 
         <div className="flex flex-col gap-6">
-          {surfaceData.goals.length > 0 ? (
+          {visibleGoals.length > 0 ? (
             <QuickLog
-              goals={surfaceData.goals}
+              goals={visibleGoals}
               lastReps={lastReps}
               onLog={({ exercise, reps }) => {
                 // Recompute "today" at tap time rather than reusing the
@@ -288,6 +325,39 @@ function computeLastRepsByExercise(
     out[s.exercise] = s.reps
   }
   return out
+}
+
+/**
+ * Assemble {@link MonthlyFocusCard} inputs for the active focus: today's
+ * progress in the focus's own unit (total reps, or distinct-set count
+ * for a `sets` target), plus windowed adherence and load stats computed
+ * over the full set history.
+ *
+ * @param focus The focus active on the viewed day.
+ * @param setsForDay Sets already filtered to the viewed day.
+ * @param allSets The full set log, for window-spanning adherence + load.
+ */
+function buildFocusCardProps(
+  focus: MonthlyFocus,
+  setsForDay: readonly StrengthSet[],
+  allSets: readonly StrengthSet[],
+): {
+  focus: MonthlyFocus
+  todayProgress: number
+  adherence: ReturnType<typeof computeFocusAdherence>
+  loadStats: ReturnType<typeof computeFocusLoadStats>
+} {
+  const focusSetsToday = setsForDay.filter((s) => s.exercise === focus.exercise)
+  const todayProgress =
+    focus.target_kind === 'sets'
+      ? focusSetsToday.length
+      : focusSetsToday.reduce((n, s) => n + s.reps, 0)
+  return {
+    focus,
+    todayProgress,
+    adherence: computeFocusAdherence(focus, allSets),
+    loadStats: computeFocusLoadStats(focus, allSets),
+  }
 }
 
 function LoadErrorBanner({ message }: { message: string }): JSX.Element {
