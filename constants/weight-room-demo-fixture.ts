@@ -142,5 +142,10 @@ export function buildWeightRoomDemoData(now: Date = new Date()): WeightRoomData 
     imported_at: now.toISOString(),
     sets,
     goals: DEMO_GOALS,
+    // The empty-state preview demonstrates the permanent rings; a
+    // monthly focus (#255) is date-windowed and would only render in
+    // its month, so the demo leaves it empty rather than faking an
+    // always-active campaign.
+    monthly_focus: [],
   }
 }

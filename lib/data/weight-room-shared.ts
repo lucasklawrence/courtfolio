@@ -3,7 +3,9 @@ import { z } from 'zod'
 
 import {
   WeightRoomGoalRowSchema,
+  WeightRoomMonthlyFocusRowSchema,
   WeightRoomSetRowSchema,
+  focusRowToMonthlyFocus,
   goalRowToExerciseGoal,
   setRowToStrengthSet,
 } from '@/lib/schemas/weight-room'
@@ -22,13 +24,17 @@ import type { WeightRoomData } from '@/types/weight-room'
 
 const SETS_TABLE = 'weight_room_sets'
 const GOALS_TABLE = 'weight_room_goals'
+const FOCUS_TABLE = 'weight_room_monthly_focus'
 
 /** Whitelisted column lists for each table; `updated_at` rides along for `imported_at` computation. */
-const SETS_COLUMNS = 'id, logged_at, exercise, reps, updated_at'
-const GOALS_COLUMNS = 'exercise, daily_target, color, updated_at'
+const SETS_COLUMNS = 'id, logged_at, exercise, reps, weight_lbs, updated_at'
+const GOALS_COLUMNS = 'exercise, daily_target, color, kind, updated_at'
+const FOCUS_COLUMNS =
+  'id, exercise, daily_target, target_kind, color, start_date, end_date, updated_at'
 
 const WeightRoomSetRowsSchema = z.array(WeightRoomSetRowSchema)
 const WeightRoomGoalRowsSchema = z.array(WeightRoomGoalRowSchema)
+const WeightRoomMonthlyFocusRowsSchema = z.array(WeightRoomMonthlyFocusRowSchema)
 
 /**
  * Fetch the full Weight Room dataset from Supabase using the supplied
@@ -65,7 +71,7 @@ export async function assembleWeightRoomData(
   // relative order unstable between fetches. `updated_at` resolves ties
   // by insertion order (sets have no update path), and `id` backstops
   // same-transaction inserts whose `updated_at` also collides.
-  const [setsRes, goalsRes] = await Promise.all([
+  const [setsRes, goalsRes, focusRes] = await Promise.all([
     supabase
       .from(SETS_TABLE)
       .select(SETS_COLUMNS)
@@ -73,6 +79,9 @@ export async function assembleWeightRoomData(
       .order('updated_at', { ascending: true })
       .order('id', { ascending: true }),
     supabase.from(GOALS_TABLE).select(GOALS_COLUMNS).order('exercise', { ascending: true }),
+    // Newest window first so the "Upcoming"/roadmap UI can slice from
+    // the head without re-sorting.
+    supabase.from(FOCUS_TABLE).select(FOCUS_COLUMNS).order('start_date', { ascending: false }),
   ])
 
   if (setsRes.error) {
@@ -81,15 +90,23 @@ export async function assembleWeightRoomData(
   if (goalsRes.error) {
     throw new Error(`Failed to load weight room goals: ${goalsRes.error.message}`)
   }
+  if (focusRes.error) {
+    throw new Error(`Failed to load weight room monthly focus: ${focusRes.error.message}`)
+  }
 
   const setsRaw = (setsRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const goalsRaw = (goalsRes.data ?? []) as unknown as Array<Record<string, unknown>>
+  const focusRaw = (focusRes.data ?? []) as unknown as Array<Record<string, unknown>>
 
   // Compute imported_at before stripping `updated_at` — that column lives
   // on every row but isn't part of the row-shape schema (`.strict()`
   // would reject it).
-  const importedAt = computeImportedAt([setsRaw, goalsRaw])
+  const importedAt = computeImportedAt([setsRaw, goalsRaw, focusRaw])
 
+  // A monthly focus can't exist without its `kind: 'focus'` goal anchor
+  // (FK), so sets+goals empty still means "no data" — focus is implied
+  // empty. Keeping the original two-table condition preserves the
+  // pre-baseline null contract.
   if (setsRaw.length === 0 && goalsRaw.length === 0) {
     return null
   }
@@ -102,11 +119,18 @@ export async function assembleWeightRoomData(
   if (!goalsParsed.success) {
     throw new Error(`weight_room_goals failed schema validation: ${goalsParsed.error.message}`)
   }
+  const focusParsed = WeightRoomMonthlyFocusRowsSchema.safeParse(focusRaw.map(stripUpdatedAt))
+  if (!focusParsed.success) {
+    throw new Error(
+      `weight_room_monthly_focus failed schema validation: ${focusParsed.error.message}`,
+    )
+  }
 
   return {
     imported_at: importedAt,
     sets: setsParsed.data.map(setRowToStrengthSet),
     goals: goalsParsed.data.map(goalRowToExerciseGoal),
+    monthly_focus: focusParsed.data.map(focusRowToMonthlyFocus),
   }
 }
 

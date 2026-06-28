@@ -112,7 +112,12 @@ export function LogDataIsland(): JSX.Element {
   // mount-fetch failure that settled the state to null). Either way,
   // surface the form so the admin can add their first set; the rings
   // render in their empty state.
-  const surfaceData: WeightRoomData = data ?? { goals: [], sets: [], imported_at: '' }
+  const surfaceData: WeightRoomData = data ?? {
+    goals: [],
+    sets: [],
+    imported_at: '',
+    monthly_focus: [],
+  }
   const todayKey = toLocalDateKey(new Date())
   // Display-only backfill flag. After a midnight rollover `selectedDay`
   // (set at mount) lags `todayKey` — that's intentional: the view stays

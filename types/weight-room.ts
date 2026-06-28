@@ -25,6 +25,14 @@ export interface StrengthSet {
   exercise: string
   /** Rep count for this single set. Always positive (DB CHECK enforces). */
   reps: number
+  /**
+   * Optional external load in pounds for this set — e.g. weighted
+   * shrugs in a monthly focus (#255). Absent for bodyweight movements
+   * (pushups, pullups). Feeds the load stats (top set, avg load,
+   * tonnage = Σ reps×weight); never part of the daily-ring rollup,
+   * which is rep-based.
+   */
+  weight_lbs?: number
 }
 
 /**
@@ -48,6 +56,54 @@ export interface ExerciseGoal {
    * require a code change.
    */
   color: string
+  /**
+   * Whether this is a permanent daily ring or the anchor row for a
+   * time-boxed monthly focus (#255). Absent is treated as
+   * `'permanent'` (every pre-#255 goal). A `'focus'` goal is rendered
+   * on the Today View only while its {@link MonthlyFocus} window covers
+   * the viewed day, so a finished focus doesn't leave a stale empty
+   * ring. Mirrors `weight_room_goals.kind`.
+   */
+  kind?: 'permanent' | 'focus'
+}
+
+/**
+ * One "grease the groove" monthly focus (#255) — a time-boxed campaign
+ * to do an accessory movement every day for a month, then rotate.
+ * Mirrors a row of `public.weight_room_monthly_focus`. The roadmap is
+ * the full list (past, active, upcoming); "upcoming" = a focus whose
+ * {@link MonthlyFocus.start_date} is after today.
+ *
+ * A focus shares its `exercise` with a `kind: 'focus'`
+ * {@link ExerciseGoal} so its sets log and roll up through the exact
+ * same machinery as permanent exercises.
+ */
+export interface MonthlyFocus {
+  /** UUID primary key, generated server-side. */
+  id: string
+  /**
+   * Exercise name (e.g. `shrugs`). Foreign-keyed to the matching
+   * `kind: 'focus'` {@link ExerciseGoal.exercise} that anchors logging.
+   */
+  exercise: string
+  /**
+   * Target for the daily ring during the focus window. Interpreted per
+   * {@link MonthlyFocus.target_kind}: reps/day or distinct sets/day.
+   */
+  daily_target: number
+  /**
+   * Whether {@link MonthlyFocus.daily_target} counts reps (`'reps'`,
+   * the default — ring fills on rep total) or distinct logged sets
+   * (`'sets'`). `'sets'` is modeled but unused until a future focus
+   * needs it.
+   */
+  target_kind: 'reps' | 'sets'
+  /** Hex color for the focus's ring/strip (e.g. `#C9A268`). */
+  color: string
+  /** Inclusive first day of the focus window, `YYYY-MM-DD` local date. */
+  start_date: string
+  /** Inclusive last day of the focus window, `YYYY-MM-DD` local date. */
+  end_date: string
 }
 
 /**
@@ -68,4 +124,10 @@ export interface WeightRoomData {
   sets: StrengthSet[]
   /** Every configured exercise goal, ordered by exercise name. */
   goals: ExerciseGoal[]
+  /**
+   * "Grease the groove" monthly focuses (#255), ordered newest window
+   * first. Empty when none are configured. Includes past, active, and
+   * upcoming focuses — callers slice by date against today.
+   */
+  monthly_focus: MonthlyFocus[]
 }
