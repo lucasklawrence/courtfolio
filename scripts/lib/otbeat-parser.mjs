@@ -29,11 +29,18 @@
  * @returns {string} Flattened text.
  */
 export function cleanHtml(html) {
-  return html
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&zwnj;|&nbsp;|&#160;/g, '')
-    .replace(/&amp;/g, '&')
-    .replace(/\s+/g, ' ')
+  return (
+    html
+      .replace(/<[^>]+>/g, ' ')
+      // Zero-width joiners/non-joiners are layout noise — drop them outright.
+      .replace(/&zwnj;|&zwj;|&#8204;|&#8205;/g, '')
+      // Non-breaking spaces are real separators (OTbeat uses them between the
+      // date/time/coach tokens) — collapse to a normal space, don't delete, or
+      // adjacent tokens fuse and the header regexes stop matching.
+      .replace(/&nbsp;|&#160;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/\s+/g, ' ')
+  )
 }
 
 /**

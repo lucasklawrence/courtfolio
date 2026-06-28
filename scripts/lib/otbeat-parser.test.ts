@@ -86,6 +86,18 @@ describe('parseOtbeatHtml', () => {
     expect(parseOtbeatHtml(withCoach('DJ Joseph')).coach).toBe('DJ Joseph')
     expect(parseOtbeatHtml(withCoach('Anastasia McGregor')).coach).toBe('Anastasia McGregor')
   })
+
+  it('treats &nbsp; / &#160; as separators (not deletions) in real HTML', () => {
+    // If NBSP were stripped instead of spaced, the header tokens would fuse
+    // ("06/27/20269:30AM…") and date/time/coach would fail to match.
+    const html =
+      'STUDIO WORKOUT SUMMARY Marina Del Rey, CA 06/27/2026&nbsp;9:30&nbsp;AM&nbsp;' +
+      'Mara Magistad&#160;1 11 29 14 1 MINUTES / ZONE 776 CALORIES BURNED'
+    const rec = parseOtbeatHtml(html)
+    expect(rec.date).toBe('06/27/2026')
+    expect(rec.time).toBe('9:30AM')
+    expect(rec.coach).toBe('Mara Magistad')
+  })
 })
 
 describe('mmssToSec', () => {

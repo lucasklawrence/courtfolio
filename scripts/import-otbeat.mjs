@@ -43,12 +43,26 @@ function requireEnv(name) {
   return v
 }
 
+/** Per-request timeout for Gmail HTTP calls, so a stalled request can't run out the CI job clock. */
+const HTTP_TIMEOUT_MS = 30_000
+
+/** `fetch` with an {@link HTTP_TIMEOUT_MS} abort, so a hung token/API call fails fast instead of hanging. */
+async function fetchWithTimeout(url, options = {}) {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), HTTP_TIMEOUT_MS)
+  try {
+    return await fetch(url, { ...options, signal: controller.signal })
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
 /**
  * Exchange the long-lived Gmail refresh token for a short-lived access token.
  * @returns {Promise<string>} OAuth2 access token.
  */
 async function gmailAccessToken() {
-  const res = await fetch('https://oauth2.googleapis.com/token', {
+  const res = await fetchWithTimeout('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
@@ -68,9 +82,12 @@ async function gmailAccessToken() {
 
 /** GET a Gmail REST endpoint (path relative to `users/me/`) as JSON. */
 async function gmailGet(pathAndQuery, token) {
-  const res = await fetch(`https://gmail.googleapis.com/gmail/v1/users/me/${pathAndQuery}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  })
+  const res = await fetchWithTimeout(
+    `https://gmail.googleapis.com/gmail/v1/users/me/${pathAndQuery}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  )
   if (!res.ok) {
     throw new Error(`Gmail GET ${pathAndQuery} failed: ${res.status} ${await res.text()}`)
   }
@@ -101,7 +118,7 @@ async function listMessageIds(token, lookbackDays) {
   let pageToken = ''
   do {
     const page = await gmailGet(
-      `messages?q=${q}&maxResults=100${pageToken ? `&pageToken=${pageToken}` : ''}`,
+      `messages?q=${q}&maxResults=100${pageToken ? `&pageToken=${encodeURIComponent(pageToken)}` : ''}`,
       token
     )
     for (const m of page.messages ?? []) ids.push(m.id)
