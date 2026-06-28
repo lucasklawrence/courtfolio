@@ -34,14 +34,14 @@ export default defineConfig({
     {
       name: 'default-routes',
       testMatch:
-        /(?:home|rooms|project-detail|resume|draft-room|training-facility-disabled)\.spec\.ts/,
+        /(?:home|rooms|project-detail|resume|draft-room-disabled|training-facility-disabled)\.spec\.ts/,
       use: {
         baseURL: DEFAULT_BASE_URL,
       },
     },
     {
       name: 'training-facility-enabled',
-      testMatch: /training-facility-enabled\.spec\.ts/,
+      testMatch: /(?:training-facility-enabled|draft-room-enabled)\.spec\.ts/,
       use: {
         baseURL: TRAINING_FACILITY_BASE_URL,
       },

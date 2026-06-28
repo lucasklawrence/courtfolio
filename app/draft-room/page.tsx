@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { DraftRoom } from '@/components/draft-room/DraftRoom'
+import { isDraftRoomEnabled } from '@/lib/feature-flags'
 import { courtfolioPanelResult, PANEL_RESULT_IS_ILLUSTRATIVE } from './panelResult'
 
 /** Page metadata for the Draft Room showcase. */
@@ -17,6 +19,10 @@ export const metadata: Metadata = {
  * visit. The arena gradient + spotlight match the rest of the portfolio.
  */
 export default function DraftRoomPage() {
+  // Feature-gated like the Training Facility: 404s until the flag is on (live
+  // data swapped in + nav wired). See lib/feature-flags.ts.
+  if (!isDraftRoomEnabled()) notFound()
+
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-black via-neutral-900 to-black text-white">
       {/* Orange spotlight wash behind the content — purely decorative. */}

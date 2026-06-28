@@ -13,3 +13,12 @@
 export function isTrainingFacilityEnabled(): boolean {
   return process.env.NEXT_PUBLIC_ENABLE_TRAINING_FACILITY === 'true'
 }
+
+/**
+ * True when the Draft Room panel showcase (#234 / #241) should be visible and
+ * navigable. Defaults to `false` so the route 404s until the showcase is ready
+ * to ship publicly (live-run data swapped in + a nav entry wired up).
+ */
+export function isDraftRoomEnabled(): boolean {
+  return process.env.NEXT_PUBLIC_ENABLE_DRAFT_ROOM === 'true'
+}
