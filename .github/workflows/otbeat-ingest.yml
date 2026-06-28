@@ -1,0 +1,49 @@
+name: OTbeat ingest
+
+on:
+  schedule:
+    # Mondays 14:00 UTC (~7am Pacific). The import's 8-day lookback window is
+    # wider than this weekly cadence, so a missed/failed run self-heals on the
+    # next one without gaps or duplicates (append-only, dedupe by started_at).
+    - cron: '0 14 * * 1'
+  # Manual trigger for the first run and ad-hoc catch-ups.
+  workflow_dispatch: {}
+
+# Read-only on the repo (only `checkout` needs it); the job writes to
+# Supabase, not back to git, so no `contents: write`.
+permissions:
+  contents: read
+
+# Never run two ingests at once (e.g. a manual run during a scheduled one).
+concurrency:
+  group: otbeat-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Ingest new OTbeat sessions into Supabase
+        env:
+          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+          GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run import-otbeat
