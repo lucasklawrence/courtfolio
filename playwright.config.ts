@@ -20,7 +20,9 @@ export default defineConfig({
   retries: IS_CI ? 2 : 0,
   workers: IS_CI ? 1 : undefined,
   timeout: 60_000,
-  reporter: IS_CI ? [['github'], ['html', { open: 'never' }]] : [['list'], ['html', { open: 'never' }]],
+  reporter: IS_CI
+    ? [['github'], ['html', { open: 'never' }]]
+    : [['list'], ['html', { open: 'never' }]],
   use: {
     browserName: 'chromium',
     headless: true,
@@ -31,7 +33,8 @@ export default defineConfig({
   projects: [
     {
       name: 'default-routes',
-      testMatch: /(?:home|rooms|project-detail|resume|training-facility-disabled)\.spec\.ts/,
+      testMatch:
+        /(?:home|rooms|project-detail|resume|draft-room|training-facility-disabled)\.spec\.ts/,
       use: {
         baseURL: DEFAULT_BASE_URL,
       },
