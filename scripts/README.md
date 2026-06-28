@@ -15,6 +15,7 @@ powershell -File scripts/await-pr-checks.ps1 -Pr <num> [-Check all|Vercel|e2e|Co
 ```
 
 Examples:
+
 - Wait on every check: `powershell -File scripts/await-pr-checks.ps1 -Pr 192`
 - Wait only on Vercel: `powershell -File scripts/await-pr-checks.ps1 -Pr 192 -Check Vercel`
 
@@ -89,7 +90,7 @@ Non-tracked workout types from the Apple Health export (cycling, rowing, etc.) a
 
 ### Privacy
 
-The intermediate `public/data/cardio.json` is **gitignored** because Apple Health exports include personal medical metrics. The `cardio_*` Supabase rows are **publicly readable** through the anon key — RLS allows `select` for `anon`/`authenticated` so the dashboard can render without sign-in, which means anyone with the public Supabase URL can hit the REST endpoint and download the cardio data. That's intentional for this single-user portfolio site (Lucas's data is the *content*), but worth knowing before pushing data you wouldn't put on a public résumé. To make rows private instead, replace the `using (true)` clause in `supabase/migrations/20260430120000_cardio_tables.sql` with an authenticated-user check and re-apply the migration.
+The intermediate `public/data/cardio.json` is **gitignored** because Apple Health exports include personal medical metrics. The `cardio_*` Supabase rows are **publicly readable** through the anon key — RLS allows `select` for `anon`/`authenticated` so the dashboard can render without sign-in, which means anyone with the public Supabase URL can hit the REST endpoint and download the cardio data. That's intentional for this single-user portfolio site (Lucas's data is the _content_), but worth knowing before pushing data you wouldn't put on a public résumé. To make rows private instead, replace the `using (true)` clause in `supabase/migrations/20260430120000_cardio_tables.sql` with an authenticated-user check and re-apply the migration.
 
 The same public-read RLS now applies to the slice C-data lifestyle tables — `cardio_hrv_trend`, `cardio_walking_hr_trend`, `cardio_body_mass_trend`, `cardio_step_count_trend`, `cardio_sleep_trend`, `cardio_active_energy_trend`. Body mass, sleep duration, and step count are arguably more personal than the cardio session data, so think twice before importing fresh metrics. The same `using (true)` → authenticated swap on the lifestyle tables' migration flips them private without touching the cardio side.
 
@@ -115,7 +116,7 @@ Pulls Orangetheory **OTbeat "Studio Workout Summary"** emails from Gmail, parses
 
 Pipeline:
 
-1. `scripts/import-otbeat.mjs` exchanges a Gmail OAuth **refresh token** for an access token (native `fetch`, no Google SDK), then queries `from:OTbeatReport@orangetheoryfitness.com newer_than:8d`.
+1. `scripts/import-otbeat.mjs` exchanges a Gmail OAuth **refresh token** for an access token (native `fetch`, no Google SDK), then queries `from:OTbeatReport@orangetheoryfitness.com newer_than:{OTBEAT_LOOKBACK_DAYS}d` (default 8 — see below).
 2. For each match it reads the `text/html` body (the treadmill/rower stats live only there) and runs `parseOtbeatHtml` (`scripts/lib/otbeat-parser.mjs`) → a structured record (date, time, coach, studio, zone minutes, calories, splat, HR, steps, `treadmill{}`, `rower{}`).
 3. `upsertOtfSessions` (`scripts/lib/otbeat-supabase.mjs`) **appends** rows whose `started_at` isn't already present.
 
@@ -125,7 +126,7 @@ Pipeline:
 
 `OTBEAT_LOOKBACK_DAYS` (default `8`) controls the Gmail query window. It's deliberately wider than the weekly cron so a skipped run self-heals. For a full historical backfill, widen it:
 
-```
+```bash
 OTBEAT_LOOKBACK_DAYS=3650 npm run import-otbeat
 ```
 
@@ -144,11 +145,11 @@ Local runs read `.env.local`; the Action reads repo **Actions secrets**. Both ne
 ### One-time Gmail OAuth setup
 
 1. **Google Cloud Console** → create/pick a project → **APIs & Services → Library** → enable the **Gmail API**.
-2. **OAuth consent screen** → *External* → add the receiving Gmail address as a **Test user** → add scope `https://www.googleapis.com/auth/gmail.readonly`.
-3. **Credentials → Create credentials → OAuth client ID** → *Web application* → add authorized redirect URI `https://developers.google.com/oauthplayground`. Copy the **Client ID** and **Client secret**.
-4. **Get a refresh token** at [OAuth 2.0 Playground](https://developers.google.com/oauthplayground): gear icon → *Use your own OAuth credentials* → paste the client id/secret → in the left panel authorize `https://www.googleapis.com/auth/gmail.readonly` → *Exchange authorization code for tokens* → copy the **refresh token**. (The playground requests `access_type=offline` + `prompt=consent`, so a refresh token is returned.)
-5. **Add the five secrets** in GitHub → *Settings → Secrets and variables → Actions* (and to `.env.local` for local runs).
-6. **Verify**: *Actions → OTbeat ingest → Run workflow*. A healthy first run logs `added 0 … (already present)` if the backfill already covered everything, or `added N` for genuinely new sessions.
+2. **OAuth consent screen** → _External_ → add the receiving Gmail address as a **Test user** → add scope `https://www.googleapis.com/auth/gmail.readonly`.
+3. **Credentials → Create credentials → OAuth client ID** → _Web application_ → add authorized redirect URI `https://developers.google.com/oauthplayground`. Copy the **Client ID** and **Client secret**.
+4. **Get a refresh token** at [OAuth 2.0 Playground](https://developers.google.com/oauthplayground): gear icon → _Use your own OAuth credentials_ → paste the client id/secret → in the left panel authorize `https://www.googleapis.com/auth/gmail.readonly` → _Exchange authorization code for tokens_ → copy the **refresh token**. (The playground requests `access_type=offline` + `prompt=consent`, so a refresh token is returned.)
+5. **Add the five secrets** in GitHub → _Settings → Secrets and variables → Actions_ (and to `.env.local` for local runs).
+6. **Verify**: _Actions → OTbeat ingest → Run workflow_. A healthy first run logs `added 0 … (already present)` if the backfill already covered everything, or `added N` for genuinely new sessions.
 
 ### Schema & privacy
 

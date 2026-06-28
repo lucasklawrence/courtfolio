@@ -127,9 +127,27 @@ async function listMessageIds(token, lookbackDays) {
   return ids
 }
 
+/**
+ * Resolve the Gmail lookback window from `OTBEAT_LOOKBACK_DAYS`, defaulting to
+ * {@link DEFAULT_LOOKBACK_DAYS}. Rejects non-positive / non-integer values
+ * rather than letting `Number()` coerce them into a `newer_than:NaNd` /
+ * `newer_than:0d` query that silently returns the wrong window.
+ */
+function resolveLookbackDays() {
+  const raw = process.env.OTBEAT_LOOKBACK_DAYS
+  if (raw == null || raw.trim() === '') return DEFAULT_LOOKBACK_DAYS
+  const n = Number(raw)
+  if (!Number.isInteger(n) || n <= 0) {
+    throw new Error(
+      `OTBEAT_LOOKBACK_DAYS must be a positive integer (days); got ${JSON.stringify(raw)}`
+    )
+  }
+  return n
+}
+
 async function main() {
   loadEnv()
-  const lookbackDays = Number(process.env.OTBEAT_LOOKBACK_DAYS ?? DEFAULT_LOOKBACK_DAYS)
+  const lookbackDays = resolveLookbackDays()
 
   const token = await gmailAccessToken()
   const ids = await listMessageIds(token, lookbackDays)
@@ -144,8 +162,11 @@ async function main() {
       continue
     }
     const rec = parseOtbeatHtml(html)
-    if (!rec.date || !rec.time) {
-      console.warn(`  ! message ${id} parsed without a date/time — skipping`)
+    // Require the workout-summary signal — date + time + the MINUTES/ZONE
+    // block — so a non-summary email from the same sender can't slip through
+    // as a mostly-null otf_sessions row.
+    if (!rec.date || !rec.time || !rec.zones_min) {
+      console.warn(`  ! message ${id} isn't a parseable workout summary — skipping`)
       continue
     }
     records.push(rec)
