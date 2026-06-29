@@ -10,7 +10,34 @@ import { describe, expect, it } from 'vitest'
 
 import { recordToRow, toStartedAt, upsertOtfSessions } from './otbeat-supabase.mjs'
 
+/** Local alias for the parser's JSDoc record type, for typing fixtures. */
+type OtbeatRecord = import('./otbeat-parser.mjs').OtbeatRecord
+
 const TZ = 'America/Los_Angeles'
+
+/**
+ * Full {@link OtbeatRecord} with every stat field nulled — the realistic
+ * "header-only" shape the parser emits for a class format that reports
+ * only date/time (the parser always assigns every field, `null` when
+ * absent). Keeps the dedupe fixtures terse while satisfying the record's
+ * required-but-nullable properties.
+ */
+function bareRecord(date: string, time: string): OtbeatRecord {
+  return {
+    date,
+    time,
+    coach: null,
+    studio: null,
+    zones_min: null,
+    calories: null,
+    splat: null,
+    avg_hr: null,
+    peak_hr: null,
+    steps: null,
+    treadmill: null,
+    rower: null,
+  }
+}
 
 describe('toStartedAt', () => {
   it('interprets the wall time in Pacific DAYLIGHT time (summer, -07:00)', () => {
@@ -51,8 +78,8 @@ describe('recordToRow', () => {
         avg_hr: 133,
         peak_hr: 164,
         steps: 3508,
-        treadmill: { distance_mi: 1.09 },
-        rower: { distance_m: 2509 },
+        treadmill: { distance_mi: 1.09, time: '11:24' },
+        rower: { distance_m: 2509, time: '7:58' },
       },
       TZ
     )
@@ -76,10 +103,7 @@ describe('recordToRow', () => {
   })
 
   it('nulls out missing zones / blocks', () => {
-    const row = recordToRow(
-      { date: '05/30/2026', time: '9:30AM', zones_min: null, treadmill: null, rower: null },
-      TZ
-    )
+    const row = recordToRow(bareRecord('05/30/2026', '9:30AM'), TZ)
     expect(row.zone_gray_min).toBeNull()
     expect(row.treadmill).toBeNull()
     expect(row.rower).toBeNull()
@@ -87,19 +111,31 @@ describe('recordToRow', () => {
 })
 
 /**
- * Minimal stand-in for the supabase-js client: `from().select()` resolves to
- * the seeded existing keys; `from().upsert()` records what was written.
+ * The fake's public shape — the client param `upsertOtfSessions` expects,
+ * intersected with the `inserted` capture so tests can assert what was
+ * written. Deriving the client type from the function's own parameter
+ * keeps the fake in lockstep with the real signature.
  */
-function fakeClient(existingStartedAt) {
-  const inserted = []
+type FakeClient = Parameters<typeof upsertOtfSessions>[0] & {
+  inserted: Array<Record<string, unknown>>
+}
+
+/**
+ * Minimal stand-in for the supabase-js client: `from().select()` resolves to
+ * the seeded existing keys; `from().upsert()` records what was written. Cast
+ * through `unknown` to the real client type — only the `from`/`select`/
+ * `upsert` surface the upsert path touches is implemented.
+ */
+function fakeClient(existingStartedAt: string[]): FakeClient {
+  const inserted: Array<Record<string, unknown>> = []
   const client = {
     from() {
       return {
         select: async () => ({
-          data: existingStartedAt.map(s => ({ started_at: s })),
+          data: existingStartedAt.map((s) => ({ started_at: s })),
           error: null,
         }),
-        upsert: async rows => {
+        upsert: async (rows: Array<Record<string, unknown>>) => {
           inserted.push(...rows)
           return { error: null }
         },
@@ -107,12 +143,12 @@ function fakeClient(existingStartedAt) {
     },
     inserted,
   }
-  return client
+  return client as unknown as FakeClient
 }
 
 describe('upsertOtfSessions (append-only)', () => {
-  const recA = { date: '06/27/2026', time: '9:30AM', zones_min: null, treadmill: null, rower: null }
-  const recB = { date: '06/25/2026', time: '6:45PM', zones_min: null, treadmill: null, rower: null }
+  const recA = bareRecord('06/27/2026', '9:30AM')
+  const recB = bareRecord('06/25/2026', '6:45PM')
 
   it('inserts only sessions whose started_at is not already present', async () => {
     // recA already in the table; recB is new.
