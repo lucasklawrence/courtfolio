@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "optimize:svg": "svgo -rf public/locker-room && svgo -rf public/training-facility && svgo -rf public/contact && svgo -rf public/common",
     "import-health": "node scripts/import-health.mjs",

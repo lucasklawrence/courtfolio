@@ -1,0 +1,35 @@
+name: Typecheck
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          # Read-only job — don't leave the GITHUB_TOKEN in .git/config.
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        # `tsc --noEmit` over the whole repo (tests included). Catches type
+        # regressions that vitest can't — a `.ts` test with broken fixtures
+        # still runs green, but won't compile. This gate is what would have
+        # caught the otbeat test type errors before merge.
+        run: npm run typecheck
