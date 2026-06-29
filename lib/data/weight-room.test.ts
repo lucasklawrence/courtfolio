@@ -148,6 +148,76 @@ describe('getWeightRoomData', () => {
         { exercise: 'pushups', daily_target: 100, color: '#EA580C' },
         { exercise: 'pullups', daily_target: 30, color: '#0EA5A1' },
       ],
+      monthly_focus: [],
+    })
+  })
+
+  it('assembles weighted sets, focus goals, and the monthly-focus roadmap (#255)', async () => {
+    stubTable('weight_room_sets', [
+      {
+        id: '22222222-2222-4222-8222-222222222222',
+        logged_at: '2026-07-01T08:00:00Z',
+        exercise: 'shrugs',
+        reps: 20,
+        weight_lbs: 100,
+        updated_at: '2026-07-01T08:00:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [
+      {
+        exercise: 'shrugs',
+        daily_target: 100,
+        color: '#C9A268',
+        kind: 'focus',
+        updated_at: '2026-07-01T08:00:00Z',
+      },
+    ])
+    stubTable('weight_room_monthly_focus', [
+      {
+        id: '33333333-3333-4333-8333-333333333333',
+        exercise: 'shrugs',
+        daily_target: 100,
+        target_kind: 'reps',
+        color: '#C9A268',
+        start_date: '2026-07-01',
+        end_date: '2026-07-31',
+        updated_at: '2026-07-01T08:00:00Z',
+      },
+    ])
+
+    const data = await getWeightRoomData()
+    expect(data?.sets).toEqual([
+      {
+        id: '22222222-2222-4222-8222-222222222222',
+        logged_at: '2026-07-01T08:00:00Z',
+        exercise: 'shrugs',
+        reps: 20,
+        weight_lbs: 100,
+      },
+    ])
+    expect(data?.goals).toEqual([
+      { exercise: 'shrugs', daily_target: 100, color: '#C9A268', kind: 'focus' },
+    ])
+    expect(data?.monthly_focus).toEqual([
+      {
+        id: '33333333-3333-4333-8333-333333333333',
+        exercise: 'shrugs',
+        daily_target: 100,
+        target_kind: 'reps',
+        color: '#C9A268',
+        start_date: '2026-07-01',
+        end_date: '2026-07-31',
+      },
+    ])
+  })
+
+  it('orders the monthly-focus roadmap by start_date descending (newest window first)', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [])
+    await getWeightRoomData()
+
+    expect(queriesByTable.weight_room_monthly_focus.order).toHaveBeenCalledWith('start_date', {
+      ascending: false,
     })
   })
 

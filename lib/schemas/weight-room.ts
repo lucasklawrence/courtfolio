@@ -12,7 +12,7 @@
 
 import { z } from 'zod'
 
-import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 /**
  * Hex-color regex used for the per-exercise display token. Loose enough
@@ -21,6 +21,23 @@ import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
  * settings UI shouldn't require a schema bump.
  */
 const HEX_COLOR_REGEX = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/
+
+/**
+ * `YYYY-MM-DD` calendar-date regex for the monthly-focus window columns
+ * (#255). PostgREST renders a Postgres `date` as this bare string (no
+ * time, no zone), so the focus schema validates the shape rather than
+ * round-tripping through `Date` (which would reintroduce a UTC-midnight
+ * timezone hazard).
+ */
+const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/
+
+/**
+ * Optional non-negative load in pounds for a set (#255). Accepts a
+ * number, `null` (PostgREST emits `null` for bodyweight sets where the
+ * column is unset), or absent — normalized to absent by the row
+ * converter so {@link StrengthSet.weight_lbs} stays `number | undefined`.
+ */
+const optionalWeightLbs = () => z.number().nonnegative().nullable().optional()
 
 /**
  * Positive-integer Zod check. Inlined as a `.refine` rather than
@@ -72,6 +89,7 @@ export const WeightRoomSetRowSchema = z
     logged_at: z.string().min(1, 'logged_at must be an ISO timestamp'),
     exercise: z.string().min(1),
     reps: positiveInt(),
+    weight_lbs: optionalWeightLbs(),
   })
   .strict()
 
@@ -88,6 +106,11 @@ export const WeightRoomGoalRowSchema = z
     exercise: z.string().min(1),
     daily_target: positiveInt(),
     color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C'),
+    // Optional + nullable so pre-#255 rows (and fixtures) without the
+    // column still validate; the DB column is NOT NULL DEFAULT
+    // 'permanent', so live rows always carry it. Absent → treated as
+    // 'permanent' by the row converter.
+    kind: z.enum(['permanent', 'focus']).nullable().optional(),
   })
   .strict()
 
@@ -140,6 +163,9 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     logged_at: row.logged_at,
     exercise: row.exercise,
     reps: row.reps,
+    // Normalize null/absent to absent so StrengthSet.weight_lbs stays
+    // `number | undefined` (bodyweight sets omit the field entirely).
+    ...(row.weight_lbs != null ? { weight_lbs: row.weight_lbs } : {}),
   }
 }
 
@@ -153,5 +179,72 @@ export function goalRowToExerciseGoal(row: WeightRoomGoalRow): ExerciseGoal {
     exercise: row.exercise,
     daily_target: row.daily_target,
     color: row.color,
+    // Absent/null → omit so it defaults to 'permanent' at read sites
+    // (pre-#255 goals and fixtures never carry kind).
+    ...(row.kind != null ? { kind: row.kind } : {}),
+  }
+}
+
+/**
+ * Zod schema for one row of `public.weight_room_monthly_focus` (#255).
+ * Mirrors the table in
+ * `supabase/migrations/20260628120000_weight_room_monthly_focus.sql`.
+ *
+ * `start_date` / `end_date` are bare `YYYY-MM-DD` strings (PostgREST's
+ * rendering of a Postgres `date`), validated by shape rather than
+ * parsed to a `Date` to avoid a UTC-midnight timezone shift.
+ */
+export const WeightRoomMonthlyFocusRowSchema = z
+  .object({
+    id: z.string().uuid(),
+    exercise: z.string().min(1),
+    daily_target: positiveInt(),
+    target_kind: z.enum(['reps', 'sets']),
+    color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #C9A268'),
+    start_date: z.string().regex(DATE_REGEX, 'start_date must be YYYY-MM-DD'),
+    end_date: z.string().regex(DATE_REGEX, 'end_date must be YYYY-MM-DD'),
+  })
+  .strict()
+
+/** Validated `weight_room_monthly_focus` row inferred from {@link WeightRoomMonthlyFocusRowSchema}. */
+export type WeightRoomMonthlyFocusRow = z.infer<typeof WeightRoomMonthlyFocusRowSchema>
+
+/**
+ * Request-body schema for the monthly-focus admin route (#255).
+ * Lowercases `exercise` (same anti-duplicate reasoning as
+ * {@link exerciseWriteField}) and defaults `target_kind` to `'reps'`.
+ */
+export const WeightRoomMonthlyFocusCreateSchema = z
+  .object({
+    exercise: exerciseWriteField(),
+    daily_target: positiveInt(),
+    target_kind: z.enum(['reps', 'sets']).default('reps'),
+    color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #C9A268'),
+    start_date: z.string().regex(DATE_REGEX, 'start_date must be YYYY-MM-DD'),
+    end_date: z.string().regex(DATE_REGEX, 'end_date must be YYYY-MM-DD'),
+  })
+  .strict()
+  .refine((v) => v.end_date >= v.start_date, {
+    message: 'end_date must be on or after start_date',
+    path: ['end_date'],
+  })
+
+/** Validated body of the monthly-focus admin route. */
+export type WeightRoomMonthlyFocusCreate = z.infer<typeof WeightRoomMonthlyFocusCreateSchema>
+
+/**
+ * Translate a validated `weight_room_monthly_focus` row into the public
+ * {@link MonthlyFocus} shape. Pass-through; sibling-symmetric with
+ * {@link setRowToStrengthSet} / {@link goalRowToExerciseGoal}.
+ */
+export function focusRowToMonthlyFocus(row: WeightRoomMonthlyFocusRow): MonthlyFocus {
+  return {
+    id: row.id,
+    exercise: row.exercise,
+    daily_target: row.daily_target,
+    target_kind: row.target_kind,
+    color: row.color,
+    start_date: row.start_date,
+    end_date: row.end_date,
   }
 }
