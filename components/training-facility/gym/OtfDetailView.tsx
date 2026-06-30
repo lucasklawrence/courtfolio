@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Fragment, useEffect, useMemo, useRef, useState, type JSX } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type JSX } from 'react'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { RoughLine } from '@/components/training-facility/shared/charts/RoughLine'
@@ -50,7 +50,30 @@ export function OtfDetailView(): JSX.Element {
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('ALL', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
-  const cardSizerRef = useRef<HTMLDivElement>(null)
+
+  // The chart wrapper mounts only after data arrives (it lives inside the data
+  // branch), so observe it via a callback ref. A mount effect would run while
+  // the node is still null and never attach, freezing the width at the default.
+  const observerRef = useRef<ResizeObserver | null>(null)
+  const measureChart = useCallback((node: HTMLDivElement | null) => {
+    observerRef.current?.disconnect()
+    if (!node || typeof ResizeObserver === 'undefined') return
+    const observer = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
+        setChartWidth(prev => (prev === next ? prev : next))
+      }
+    })
+    observer.observe(node)
+    observerRef.current = observer
+  }, [])
+
+  // Track manual range edits so the post-load re-anchor doesn't stomp them.
+  const userAdjustedRange = useRef(false)
+  const handleRangeChange = useCallback((next: DateRange) => {
+    userAdjustedRange.current = true
+    setRange(next)
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -71,23 +94,18 @@ export function OtfDetailView(): JSX.Element {
     }
   }, [])
 
-  useEffect(() => {
-    const node = cardSizerRef.current
-    if (!node || typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
-        setChartWidth(prev => (prev === next ? prev : next))
-      }
-    })
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [])
-
   const earliest = useMemo(
     () => (data ? (earliestOtfDate(data.sessions) ?? EARLIEST_FALLBACK) : EARLIEST_FALLBACK),
     [data]
   )
+
+  // Re-anchor the default "All" range once the real earliest session date is
+  // known — the dataset loads after mount, so the mount-time range was built
+  // from EARLIEST_FALLBACK. Skipped after the user picks a range.
+  useEffect(() => {
+    if (userAdjustedRange.current || !data) return
+    setRange(rangeForPreset('ALL', earliest))
+  }, [earliest, data])
 
   const sessions = useMemo(
     () => (data ? filterOtfSessionsInRange(data.sessions, range) : []),
@@ -134,7 +152,12 @@ export function OtfDetailView(): JSX.Element {
         </header>
 
         <div className="mt-8">
-          <DateFilter earliestDate={earliest} defaultPreset="ALL" onChange={setRange} />
+          <DateFilter
+            key={earliest.getTime()}
+            earliestDate={earliest}
+            defaultPreset="ALL"
+            onChange={handleRangeChange}
+          />
         </div>
 
         {loadError ? (
@@ -152,7 +175,7 @@ export function OtfDetailView(): JSX.Element {
                 title="Minutes in zone"
                 helper="Total minutes per OTbeat HR zone across the filtered window."
               >
-                <div ref={cardSizerRef}>
+                <div ref={measureChart}>
                   <OtfZoneBars
                     buckets={buckets}
                     width={chartWidth}

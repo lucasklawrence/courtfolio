@@ -80,8 +80,12 @@ export function OtfZoneBars({
     offset: (xScale(b.shortLabel) ?? 0) + xScale.bandwidth() / 2,
   }))
 
+  // Format with the scale's own precision rather than `Math.round`, so a small
+  // range whose nice ticks are fractional doesn't collapse to duplicate labels
+  // (e.g. 0m / 1m / 1m). Whole-minute ranges still read as plain integers.
+  const formatYTick = yScale.tickFormat(5)
   const yTicks: AxisTick[] = yScale.ticks(5).map(tick => ({
-    value: `${Math.round(tick)}m`,
+    value: `${formatYTick(tick)}m`,
     offset: yScale(tick),
   }))
 
