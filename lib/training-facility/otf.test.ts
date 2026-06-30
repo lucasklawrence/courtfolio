@@ -1,0 +1,96 @@
+import { describe, expect, it } from 'vitest'
+
+import type { OtfSession } from '@/types/otf'
+
+import {
+  aggregateOtfZoneMinutes,
+  earliestOtfDate,
+  filterOtfSessionsInRange,
+  formatOtfDate,
+  otfHighlights,
+  otfMetricTrend,
+} from './otf'
+
+/** Tiny session factory for the helper tests. */
+function mk(started_at: string, extra: Partial<OtfSession> = {}): OtfSession {
+  return { started_at, ...extra }
+}
+
+describe('filterOtfSessionsInRange', () => {
+  it('keeps only sessions whose start falls inside the inclusive range', () => {
+    const sessions = [
+      mk('2026-04-15T12:00:00Z'), // before
+      mk('2026-06-15T12:00:00Z'), // inside
+      mk('2026-08-15T12:00:00Z'), // after
+    ]
+    // Wide local bounds (weeks of margin) so the assertion is timezone-robust.
+    const range = { start: new Date(2026, 4, 1), end: new Date(2026, 6, 1) }
+    expect(filterOtfSessionsInRange(sessions, range).map(s => s.started_at)).toEqual([
+      '2026-06-15T12:00:00Z',
+    ])
+  })
+})
+
+describe('aggregateOtfZoneMinutes', () => {
+  it('sums each zone across sessions in canonical order; missing blocks contribute zero', () => {
+    const sessions = [
+      mk('a', { zones_min: { gray: 1, blue: 2, green: 3, orange: 4, red: 5 } }),
+      mk('b', { zones_min: { gray: 1, blue: 1, green: 1, orange: 1, red: 1 } }),
+      mk('c'), // no zone block
+    ]
+    expect(aggregateOtfZoneMinutes(sessions).map(b => [b.key, b.minutes])).toEqual([
+      ['gray', 2],
+      ['blue', 3],
+      ['green', 4],
+      ['orange', 5],
+      ['red', 6],
+    ])
+  })
+})
+
+describe('otfHighlights', () => {
+  it('computes totals, average, and bests, treating absent metrics as zero', () => {
+    const sessions = [
+      mk('a', { splat: 10, calories: 500 }),
+      mk('b', { splat: 20, calories: 800 }),
+      mk('c'),
+    ]
+    expect(otfHighlights(sessions)).toEqual({
+      classes: 3,
+      totalSplat: 30,
+      totalCalories: 1300,
+      avgSplat: 10,
+      bestSplat: 20,
+      bestCalories: 800,
+    })
+  })
+
+  it('avgSplat is 0 with no sessions', () => {
+    expect(otfHighlights([]).avgSplat).toBe(0)
+  })
+})
+
+describe('otfMetricTrend', () => {
+  it('emits one dated point per session that has the metric, dropping the rest', () => {
+    const points = otfMetricTrend(
+      [mk('2026-06-01T12:00:00Z', { splat: 10 }), mk('2026-06-02T12:00:00Z')],
+      'splat'
+    )
+    expect(points).toHaveLength(1)
+    expect(points[0].value).toBe(10)
+    expect(points[0].date).toBeInstanceOf(Date)
+  })
+})
+
+describe('earliestOtfDate / formatOtfDate', () => {
+  it('earliestOtfDate returns the minimum start, or null when empty', () => {
+    expect(earliestOtfDate([])).toBeNull()
+    const earliest = earliestOtfDate([mk('2026-06-15T12:00:00Z'), mk('2026-04-01T12:00:00Z')])
+    expect(earliest?.getTime()).toBe(new Date('2026-04-01T12:00:00Z').getTime())
+  })
+
+  it('formatOtfDate renders YYYY-MM-DD', () => {
+    // Noon UTC avoids a day flip under negative-offset test runners.
+    expect(formatOtfDate(mk('2026-06-27T12:00:00Z'))).toMatch(/^2026-06-27$/)
+  })
+})

@@ -1,0 +1,547 @@
+'use client'
+
+import Link from 'next/link'
+import { Fragment, useEffect, useMemo, useRef, useState, type JSX } from 'react'
+
+import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { RoughLine } from '@/components/training-facility/shared/charts/RoughLine'
+import { chartPalette } from '@/components/training-facility/shared/charts/palette'
+import { defaultMargin } from '@/components/training-facility/shared/charts/types'
+import {
+  DateFilter,
+  rangeForPreset,
+  type DateRange,
+} from '@/components/training-facility/shared/DateFilter'
+import { getOtfData } from '@/lib/data'
+import {
+  OTF_ZONES,
+  aggregateOtfZoneMinutes,
+  earliestOtfDate,
+  filterOtfSessionsInRange,
+  formatOtfDate,
+  otfHighlights,
+  otfMetricTrend,
+  type OtfTrendPoint,
+} from '@/lib/training-facility/otf'
+import type { OtfData, OtfRower, OtfSession, OtfTreadmill } from '@/types/otf'
+
+import { OtfZoneBars } from './OtfZoneBars'
+
+const CHART_HEIGHT = 280
+const MIN_CHART_WIDTH = 280
+const DEFAULT_CHART_WIDTH = 560
+const EARLIEST_FALLBACK = new Date(2026, 0, 1)
+const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
+
+/** Empty dataset used while loading resolves to "no sessions yet" instead of spinning forever. */
+const EMPTY_OTF: OtfData = { imported_at: '', sessions: [] }
+
+/**
+ * OrangeTheory detail view (#256) — renders the `otf_sessions` data the
+ * OTbeat ingestion pipeline (#251) feeds into Supabase. Sibling of the
+ * cardio Gym detail views (`TreadmillDetailView` et al.): same dark-arena
+ * shell, `DateFilter`, `ChartCard` chrome, and loading/error panels, with
+ * OTF-specific charts — minutes-in-zone bars (gray→red) and splat / calorie
+ * / avg-HR trend lines — plus an expandable session log surfacing each
+ * class's treadmill and rower performance blocks.
+ */
+export function OtfDetailView(): JSX.Element {
+  const [data, setData] = useState<OtfData | null>(null)
+  const [loadError, setLoadError] = useState<Error | null>(null)
+  const [range, setRange] = useState<DateRange>(() => rangeForPreset('ALL', EARLIEST_FALLBACK))
+  const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
+  const cardSizerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    getOtfData()
+      .then(otf => {
+        if (cancelled) return
+        // `getOtfData()` resolves to `null` when `otf_sessions` is empty;
+        // substitute an empty dataset so we land on the empty state rather
+        // than the perpetual loading panel.
+        setData(otf ?? EMPTY_OTF)
+      })
+      .catch((err: unknown) => {
+        if (cancelled) return
+        setLoadError(err instanceof Error ? err : new Error(String(err)))
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  useEffect(() => {
+    const node = cardSizerRef.current
+    if (!node || typeof ResizeObserver === 'undefined') return
+    const observer = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
+        setChartWidth(prev => (prev === next ? prev : next))
+      }
+    })
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  const earliest = useMemo(
+    () => (data ? (earliestOtfDate(data.sessions) ?? EARLIEST_FALLBACK) : EARLIEST_FALLBACK),
+    [data]
+  )
+
+  const sessions = useMemo(
+    () => (data ? filterOtfSessionsInRange(data.sessions, range) : []),
+    [data, range]
+  )
+  const buckets = useMemo(() => aggregateOtfZoneMinutes(sessions), [sessions])
+  const splatTrend = useMemo(() => otfMetricTrend(sessions, 'splat'), [sessions])
+  const calorieTrend = useMemo(() => otfMetricTrend(sessions, 'calories'), [sessions])
+  const hrTrend = useMemo(() => otfMetricTrend(sessions, 'avg_hr'), [sessions])
+  const highlights = useMemo(() => otfHighlights(sessions), [sessions])
+
+  const hasAnySessions = !!data && data.sessions.length > 0
+
+  return (
+    <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.12),transparent_30%),linear-gradient(180deg,#241811_0%,#120d0a_52%,#0b0806_100%)]"
+      />
+
+      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-5xl flex-col px-6 py-8 sm:px-8 lg:px-12">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <BackToCourtButton />
+          <Link
+            href="/training-facility/gym"
+            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+          >
+            ← The Gym
+          </Link>
+        </div>
+
+        <header className="mt-12">
+          <div className="text-xs font-semibold uppercase tracking-[0.38em] text-[#f97316]">
+            OrangeTheory
+          </div>
+          <h1 className="mt-3 text-4xl font-black uppercase tracking-[0.08em] text-[#fff7ec] sm:text-5xl">
+            Splat points, zones, and the row-tread grind
+          </h1>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:text-base">
+            Every studio class, straight from the OTbeat summary emails — time in each HR zone,
+            splat and calorie trends, and the treadmill + rower splits underneath each session.
+            Scoped to the date range.
+          </p>
+        </header>
+
+        <div className="mt-8">
+          <DateFilter earliestDate={earliest} defaultPreset="ALL" onChange={setRange} />
+        </div>
+
+        {loadError ? (
+          <ErrorPanel error={loadError} />
+        ) : !data ? (
+          <LoadingPanel />
+        ) : !hasAnySessions ? (
+          <EmptyState />
+        ) : (
+          <>
+            <HighlightStrip highlights={highlights} />
+
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+              <ChartCard
+                title="Minutes in zone"
+                helper="Total minutes per OTbeat HR zone across the filtered window."
+              >
+                <div ref={cardSizerRef}>
+                  <OtfZoneBars
+                    buckets={buckets}
+                    width={chartWidth}
+                    height={CHART_HEIGHT}
+                    fontFamily={FONT_FAMILY}
+                  />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="Splat points per class"
+                helper="Minutes in the orange + red zones. One point per class."
+              >
+                <OtfTrendChart
+                  data={splatTrend}
+                  width={chartWidth}
+                  yLabel="Splat"
+                  ariaLabel="Splat points per class over time"
+                  emptyMessage="No splat data in range"
+                />
+              </ChartCard>
+            </div>
+
+            <div className="mt-6 grid gap-6 lg:grid-cols-2">
+              <ChartCard
+                title="Calories per class"
+                helper="Total calories burned, one point per class."
+              >
+                <OtfTrendChart
+                  data={calorieTrend}
+                  width={chartWidth}
+                  yLabel="Calories"
+                  ariaLabel="Calories per class over time"
+                  emptyMessage="No calorie data in range"
+                />
+              </ChartCard>
+
+              <ChartCard title="Average heart rate" helper="Mean HR per class, BPM.">
+                <OtfTrendChart
+                  data={hrTrend}
+                  width={chartWidth}
+                  yLabel="Avg HR"
+                  ariaLabel="Average heart rate per class over time"
+                  emptyMessage="No heart-rate data in range"
+                />
+              </ChartCard>
+            </div>
+
+            <SessionLogTable sessions={sessions} range={range} />
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
+/** Shared trend-line chart — `RoughLine` over `{date, value}` points with the OTF font/tick style. */
+function OtfTrendChart({
+  data,
+  width,
+  yLabel,
+  ariaLabel,
+  emptyMessage,
+}: {
+  data: OtfTrendPoint[]
+  width: number
+  yLabel: string
+  ariaLabel: string
+  emptyMessage: string
+}): JSX.Element {
+  return (
+    <RoughLine<OtfTrendPoint>
+      data={data}
+      x={p => p.date}
+      y={p => p.value}
+      width={width}
+      height={CHART_HEIGHT}
+      margin={defaultMargin}
+      fontFamily={FONT_FAMILY}
+      yLabel={yLabel}
+      yTickFormat={v => `${Math.round(v)}`}
+      ariaLabel={ariaLabel}
+      emptyMessage={emptyMessage}
+    />
+  )
+}
+
+/** Headline stat tiles for the active range. */
+function HighlightStrip({
+  highlights,
+}: {
+  highlights: ReturnType<typeof otfHighlights>
+}): JSX.Element {
+  const tiles: Array<{ label: string; value: string }> = [
+    { label: 'Classes', value: `${highlights.classes}` },
+    { label: 'Total splat', value: `${highlights.totalSplat}` },
+    { label: 'Avg splat', value: highlights.avgSplat.toFixed(1) },
+    { label: 'Best splat', value: `${highlights.bestSplat}` },
+    { label: 'Total calories', value: highlights.totalCalories.toLocaleString() },
+    { label: 'Best calories', value: highlights.bestCalories.toLocaleString() },
+  ]
+  return (
+    <dl className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      {tiles.map(t => (
+        <div
+          key={t.label}
+          className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-center"
+        >
+          <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-white/55">
+            {t.label}
+          </dt>
+          <dd className="mt-1 text-2xl font-black text-[#f97316]">{t.value}</dd>
+        </div>
+      ))}
+    </dl>
+  )
+}
+
+interface ChartCardProps {
+  title: string
+  helper: string
+  children: JSX.Element
+}
+
+/** Cream chart card chrome — mirrors the inline `ChartCard` in the cardio detail views. */
+function ChartCard({ title, helper, children }: ChartCardProps): JSX.Element {
+  return (
+    <section className="rounded-[1.6rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_18px_46px_rgba(0,0,0,0.34)]">
+      <header className="mb-2 flex flex-wrap items-baseline justify-between gap-3">
+        <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0a0a0a]">
+          {title}
+        </h2>
+      </header>
+      <p className="mb-4 text-xs leading-5 text-[#404040]">{helper}</p>
+      <div className="overflow-x-auto">{children}</div>
+    </section>
+  )
+}
+
+interface SessionLogTableProps {
+  sessions: readonly OtfSession[]
+  range: DateRange
+}
+
+/** Per-class log with rows expandable to the treadmill + rower performance blocks. */
+function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element {
+  // Newest first.
+  const rows = useMemo(() => sessions.slice().reverse(), [sessions])
+  const [expandedKey, setExpandedKey] = useState<string | null>(null)
+
+  return (
+    <section className="mt-8 rounded-[1.6rem] border border-white/10 bg-black/25 p-5">
+      <header className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
+        <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-white/80">
+          Classes
+        </h2>
+        <p className="text-xs text-white/55">
+          {sessions.length === 0 ? 'No classes in range' : `${sessions.length} in range`}
+          <span className="ml-2 text-white/35">
+            ({formatBound(range.start)} → {formatBound(range.end)})
+          </span>
+        </p>
+      </header>
+      {rows.length === 0 ? (
+        <p className="px-2 py-6 text-center text-sm text-white/55">
+          No OrangeTheory classes in the selected range.
+        </p>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[720px] border-separate border-spacing-y-1 text-left text-sm">
+            <thead className="text-xs uppercase tracking-[0.18em] text-white/55">
+              <tr>
+                <th scope="col" className="px-3 py-2 font-semibold">
+                  Date
+                </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
+                  Coach
+                </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
+                  Splat
+                </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
+                  Calories
+                </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
+                  Avg HR
+                </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
+                  Peak HR
+                </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
+                  <span className="sr-only">Expand</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-[#f7ead9]">
+              {rows.map((s, i) => {
+                const rowKey = `${s.started_at}-${i}`
+                const expandable = !!s.treadmill || !!s.rower || !!s.zones_min
+                const isExpanded = expandedKey === rowKey
+                const toggle = () => {
+                  if (!expandable) return
+                  setExpandedKey(isExpanded ? null : rowKey)
+                }
+                return (
+                  <Fragment key={rowKey}>
+                    <tr
+                      className={`rounded-md bg-white/5 align-middle ${
+                        expandable
+                          ? 'cursor-pointer transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60'
+                          : ''
+                      }`}
+                      {...(expandable
+                        ? {
+                            role: 'button',
+                            tabIndex: 0,
+                            'aria-expanded': isExpanded,
+                            onClick: toggle,
+                            onKeyDown: (e: React.KeyboardEvent<HTMLTableRowElement>) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault()
+                                toggle()
+                              }
+                            },
+                          }
+                        : {})}
+                    >
+                      <td className="rounded-l-md px-3 py-2 font-mono">{formatOtfDate(s)}</td>
+                      <td className="px-3 py-2">{s.coach ?? '—'}</td>
+                      <td className="px-3 py-2 font-mono text-[#f97316]">{numCell(s.splat)}</td>
+                      <td className="px-3 py-2 font-mono">{numCell(s.calories)}</td>
+                      <td className="px-3 py-2 font-mono">{numCell(s.avg_hr)}</td>
+                      <td className="px-3 py-2 font-mono">{numCell(s.peak_hr)}</td>
+                      <td className="rounded-r-md px-3 py-2 text-right font-mono text-white/45">
+                        {expandable ? (isExpanded ? '▾' : '▸') : ''}
+                      </td>
+                    </tr>
+                    {isExpanded && expandable && (
+                      <tr>
+                        <td colSpan={7} className="px-3 pb-3">
+                          <ExpandedSession session={s} />
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  )
+}
+
+/** Expanded row body: zone minutes plus the treadmill and rower performance blocks. */
+function ExpandedSession({ session }: { session: OtfSession }): JSX.Element {
+  // Capture into a local so the truthiness narrowing carries into the `.map`
+  // callback (a property access doesn't stay narrowed across the closure).
+  const zones = session.zones_min
+  return (
+    <div className="grid gap-4 rounded-xl bg-black/30 p-4 text-xs sm:grid-cols-3">
+      <div>
+        <p className="mb-2 font-mono uppercase tracking-[0.18em] text-white/55">Zones</p>
+        {zones ? (
+          <ul className="space-y-1">
+            {OTF_ZONES.map(z => (
+              <li key={z.key} className="flex items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-2.5 w-2.5 rounded-sm"
+                  style={{ backgroundColor: z.color }}
+                />
+                <span className="text-white/70">{z.shortLabel}</span>
+                <span className="ml-auto font-mono text-white/90">{zones[z.key]}m</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-white/45">No zone data.</p>
+        )}
+      </div>
+      <StatBlock title="Treadmill" rows={treadmillRows(session.treadmill)} />
+      <StatBlock title="Rower" rows={rowerRows(session.rower)} />
+    </div>
+  )
+}
+
+/** A labeled stat list used by the treadmill / rower blocks. Renders a placeholder when absent. */
+function StatBlock({
+  title,
+  rows,
+}: {
+  title: string
+  rows: Array<[string, string]> | null
+}): JSX.Element {
+  return (
+    <div>
+      <p className="mb-2 font-mono uppercase tracking-[0.18em] text-white/55">{title}</p>
+      {rows ? (
+        <dl className="space-y-1">
+          {rows.map(([label, value]) => (
+            <div key={label} className="flex items-center justify-between gap-2">
+              <dt className="text-white/60">{label}</dt>
+              <dd className="font-mono text-white/90">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : (
+        <p className="text-white/45">Not in this class format.</p>
+      )}
+    </div>
+  )
+}
+
+/** Format the treadmill block into label/value pairs, or `null` when absent. */
+function treadmillRows(t: OtfTreadmill | undefined): Array<[string, string]> | null {
+  if (!t) return null
+  const rows: Array<[string, string]> = [
+    ['Distance', `${t.distance_mi} mi`],
+    ['Time', t.time],
+  ]
+  if (t.avg_pace) rows.push(['Avg pace', `${t.avg_pace}/mi`])
+  if (t.fastest_pace) rows.push(['Best pace', `${t.fastest_pace}/mi`])
+  if (t.avg_mph !== undefined) rows.push(['Avg speed', `${t.avg_mph} mph`])
+  if (t.avg_incline !== undefined) rows.push(['Avg incline', `${t.avg_incline}%`])
+  if (t.elevation_ft !== undefined) rows.push(['Elevation', `${t.elevation_ft} ft`])
+  return rows
+}
+
+/** Format the rower block into label/value pairs, or `null` when absent. */
+function rowerRows(r: OtfRower | undefined): Array<[string, string]> | null {
+  if (!r) return null
+  const rows: Array<[string, string]> = [
+    ['Distance', `${r.distance_m} m`],
+    ['Time', r.time],
+  ]
+  if (r.split_500m) rows.push(['Avg /500m', r.split_500m])
+  if (r.best_split_500m) rows.push(['Best /500m', r.best_split_500m])
+  if (r.avg_watt !== undefined) rows.push(['Avg watts', `${r.avg_watt}`])
+  if (r.avg_spm !== undefined) rows.push(['Avg SPM', `${r.avg_spm}`])
+  return rows
+}
+
+/** Render a numeric cell, rounding to a whole number, or an em dash when absent. */
+function numCell(value: number | undefined): string {
+  return typeof value === 'number' ? `${Math.round(value)}` : '—'
+}
+
+/** `YYYY-MM-DD` for a date-range bound. */
+function formatBound(d: Date): string {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(
+    d.getDate()
+  ).padStart(2, '0')}`
+}
+
+function LoadingPanel(): JSX.Element {
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="mt-10 rounded-[1.6rem] border border-white/10 bg-black/25 p-8 text-center text-sm text-white/65"
+    >
+      Loading OrangeTheory data…
+    </div>
+  )
+}
+
+function EmptyState(): JSX.Element {
+  return (
+    <div className="mt-10 rounded-[1.6rem] border border-white/10 bg-black/25 p-8 text-center text-sm leading-6 text-white/65">
+      <p className="font-semibold uppercase tracking-[0.18em] text-white/80">
+        No OrangeTheory classes yet
+      </p>
+      <p className="mt-2 text-white/55">
+        Sessions land here automatically each week as the OTbeat summary emails are ingested.
+      </p>
+    </div>
+  )
+}
+
+function ErrorPanel({ error }: { error: Error }): JSX.Element {
+  return (
+    <div
+      role="alert"
+      className="mt-10 rounded-[1.6rem] border border-red-400/30 bg-red-950/40 p-6 text-sm leading-6 text-red-100"
+    >
+      <p className="font-semibold uppercase tracking-[0.18em]">Could not load OrangeTheory data</p>
+      <p className="mt-2 text-red-100/80">{error.message}</p>
+    </div>
+  )
+}
