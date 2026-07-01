@@ -7,12 +7,7 @@ import {
   pickLatestVo2max,
 } from '@/lib/training-facility/wall-fixtures'
 
-import {
-  HardwoodFloor,
-  SCENE_PALETTE,
-  SceneDefs,
-  WallBand,
-} from './scene-primitives'
+import { HardwoodFloor, SCENE_PALETTE, SceneDefs, WallBand } from './scene-primitives'
 import { Basketball, SweatTowel, WaterBottle } from './assets/character-props'
 import {
   BenchWithTablet,
@@ -32,6 +27,9 @@ const FLOOR_TOP = 600
 /** Cap matches the existing painted polylines so chart geometry stays stable between empty and populated states. */
 const HR_SPARKLINE_LIMIT = 9
 const VO2_TREND_LIMIT = 7
+
+/** Hand-marked font for the OrangeTheory signpost, matching the scene's other captions. */
+const SIGN_FONT = "'Patrick Hand', system-ui, sans-serif"
 
 /** Props for {@link GymScene}. */
 export interface GymSceneProps {
@@ -74,13 +72,7 @@ export function GymScene({ cardioData = null }: GymSceneProps = {}) {
       <SceneDefs />
 
       <WallBand width={VIEWBOX_WIDTH} height={FLOOR_TOP} />
-      <rect
-        x={0}
-        y={0}
-        width={VIEWBOX_WIDTH}
-        height={FLOOR_TOP}
-        fill="url(#sceneSpotlight)"
-      />
+      <rect x={0} y={0} width={VIEWBOX_WIDTH} height={FLOOR_TOP} fill="url(#sceneSpotlight)" />
 
       {/*
         Indoor-track group — same hover/focus pattern as the treadmill and
@@ -117,11 +109,7 @@ export function GymScene({ cardioData = null }: GymSceneProps = {}) {
         />
       </Link>
 
-      <HardwoodFloor
-        y={FLOOR_TOP}
-        height={VIEWBOX_HEIGHT - FLOOR_TOP}
-        width={VIEWBOX_WIDTH}
-      />
+      <HardwoodFloor y={FLOOR_TOP} height={VIEWBOX_HEIGHT - FLOOR_TOP} width={VIEWBOX_WIDTH} />
 
       {/* Wall fixtures (back-most) */}
       <HrMonitor bpm={hr?.bpm} sparkline={hr?.series} />
@@ -229,6 +217,89 @@ export function GymScene({ cardioData = null }: GymSceneProps = {}) {
         mark="H₂O"
         seed={920}
       />
+
+      {/*
+        OrangeTheory signpost — the "lighter" entry chosen for #256 instead of
+        a bespoke equipment asset. A freestanding floor placard in the empty
+        left-foreground, using the same group hover/focus overlay pattern as
+        the equipment links. A bespoke OTF equipment illustration can replace
+        it later (tracked as a follow-up).
+      */}
+      <Link
+        href="/training-facility/gym/otf"
+        aria-label="Open the OrangeTheory detail view"
+        className="group focus:outline-none"
+      >
+        {/* Base shadow + post */}
+        <ellipse cx={67} cy={858} rx={42} ry={7} fill={SCENE_PALETTE.ink} opacity={0.5} />
+        <rect x={62} y={718} width={10} height={138} fill={SCENE_PALETTE.hardwoodDark} />
+        {/* Placard */}
+        <rect
+          x={20}
+          y={628}
+          width={94}
+          height={98}
+          rx={6}
+          fill={SCENE_PALETTE.creamBright}
+          stroke={SCENE_PALETTE.ink}
+          strokeWidth={3}
+        />
+        <text
+          x={67}
+          y={668}
+          textAnchor="middle"
+          fill={SCENE_PALETTE.rim}
+          fontFamily={SIGN_FONT}
+          fontSize={34}
+          fontWeight={700}
+        >
+          OTF
+        </text>
+        <text
+          x={67}
+          y={690}
+          textAnchor="middle"
+          fill={SCENE_PALETTE.inkSoft}
+          fontFamily={SIGN_FONT}
+          fontSize={11}
+          letterSpacing={1}
+        >
+          orangetheory
+        </text>
+        <text
+          x={67}
+          y={712}
+          textAnchor="middle"
+          fill={SCENE_PALETTE.inkSoft}
+          fontFamily={SIGN_FONT}
+          fontSize={15}
+          fontWeight={700}
+        >
+          studio →
+        </text>
+        {/* Hover tint */}
+        <rect
+          x={18}
+          y={620}
+          width={94}
+          height={245}
+          fill={SCENE_PALETTE.creamBright}
+          className="opacity-0 transition-opacity group-hover:opacity-10 group-focus-visible:opacity-15"
+        />
+        {/* Focus ring */}
+        <rect
+          x={18}
+          y={620}
+          width={94}
+          height={245}
+          fill="none"
+          stroke={SCENE_PALETTE.rim}
+          strokeWidth={4}
+          strokeDasharray="6 4"
+          rx={6}
+          className="opacity-0 transition-opacity group-focus-visible:opacity-100"
+        />
+      </Link>
 
       <DoorToCombine />
     </svg>
