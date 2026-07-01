@@ -6,7 +6,10 @@ import {
   aggregateOtfZoneMinutes,
   earliestOtfDate,
   filterOtfSessionsInRange,
+  formatMmss,
   formatOtfDate,
+  mmssToSeconds,
+  otfBlockTrend,
   otfHighlights,
   otfMetricTrend,
 } from './otf'
@@ -92,5 +95,49 @@ describe('earliestOtfDate / formatOtfDate', () => {
   it('formatOtfDate renders YYYY-MM-DD', () => {
     // Noon UTC avoids a day flip under negative-offset test runners.
     expect(formatOtfDate(mk('2026-06-27T12:00:00Z'))).toMatch(/^2026-06-27$/)
+  })
+})
+
+describe('mmssToSeconds / formatMmss', () => {
+  it('parses MM:SS to whole seconds', () => {
+    expect(mmssToSeconds('16:44')).toBe(1004)
+    expect(mmssToSeconds('01:56')).toBe(116)
+  })
+
+  it('returns null on empty or malformed input', () => {
+    expect(mmssToSeconds('')).toBeNull()
+    expect(mmssToSeconds(null)).toBeNull()
+    expect(mmssToSeconds('nope')).toBeNull()
+  })
+
+  it('formats seconds back to M:SS (round-trip)', () => {
+    expect(formatMmss(1004)).toBe('16:44')
+    expect(formatMmss(116)).toBe('1:56')
+    expect(formatMmss(0)).toBe('0:00')
+  })
+})
+
+describe('otfBlockTrend', () => {
+  it('reads a numeric field from the treadmill block, dropping sessions without it', () => {
+    const sessions = [
+      mk('2026-06-01T12:00:00Z', { treadmill: { distance_mi: 1.1, time: '16:00' } }),
+      mk('2026-06-02T12:00:00Z', { rower: { distance_m: 2000, time: '13:00' } }), // no treadmill
+      mk('2026-06-03T12:00:00Z', { treadmill: { distance_mi: 1.4, time: '17:00' } }),
+    ]
+    expect(otfBlockTrend(sessions, 'treadmill', t => t.distance_mi).map(p => p.value)).toEqual([
+      1.1, 1.4,
+    ])
+  })
+
+  it('supports MM:SS metrics via mmssToSeconds and drops null picks', () => {
+    const sessions = [
+      mk('2026-06-01T12:00:00Z', {
+        rower: { distance_m: 2000, time: '13:00', split_500m: '01:56' },
+      }),
+      mk('2026-06-02T12:00:00Z', { rower: { distance_m: 1900, time: '12:00' } }), // no split
+    ]
+    const points = otfBlockTrend(sessions, 'rower', r => mmssToSeconds(r.split_500m))
+    expect(points).toHaveLength(1)
+    expect(points[0].value).toBe(116)
   })
 })

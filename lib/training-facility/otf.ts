@@ -96,6 +96,54 @@ export function otfMetricTrend(
   return points
 }
 
+/**
+ * Parse an "MM:SS" duration (how OTbeat reports paces / splits / times) into
+ * whole seconds for a numeric axis. Returns `null` on empty or malformed input.
+ */
+export function mmssToSeconds(value: string | null | undefined): number | null {
+  if (!value || !value.includes(':')) return null
+  const [mm, ss] = value.split(':')
+  const minutes = Number(mm)
+  const seconds = Number(ss)
+  if (!Number.isFinite(minutes) || !Number.isFinite(seconds)) return null
+  return minutes * 60 + seconds
+}
+
+/** Format whole seconds back to "M:SS" — for pace / split axis ticks. */
+export function formatMmss(seconds: number): string {
+  const total = Math.max(0, Math.round(seconds))
+  const m = Math.floor(total / 60)
+  const s = total % 60
+  return `${m}:${String(s).padStart(2, '0')}`
+}
+
+/**
+ * Build a `{date, value}` trend from a numeric field inside each session's
+ * `treadmill` or `rower` JSONB block. Sessions whose block is absent, or whose
+ * picked value isn't a finite number, are dropped so the line isn't pinned to
+ * zero on class formats that omit that machine.
+ *
+ * @param block Which performance block to read.
+ * @param pick Extracts the metric from the block, e.g. `t => t.distance_mi` or
+ *   `r => mmssToSeconds(r.split_500m)` for a "MM:SS" split.
+ */
+export function otfBlockTrend<K extends 'treadmill' | 'rower'>(
+  sessions: readonly OtfSession[],
+  block: K,
+  pick: (b: NonNullable<OtfSession[K]>) => number | null | undefined
+): OtfTrendPoint[] {
+  const points: OtfTrendPoint[] = []
+  for (const s of sessions) {
+    const b = s[block] as NonNullable<OtfSession[K]> | undefined
+    if (!b) continue
+    const value = pick(b)
+    if (typeof value !== 'number' || !Number.isFinite(value)) continue
+    const date = otfSessionDate(s)
+    if (Number.isFinite(date.getTime())) points.push({ date, value })
+  }
+  return points
+}
+
 /** Headline stats for the OTF highlights strip, computed over a session set. */
 export interface OtfHighlights {
   /** Number of classes. */

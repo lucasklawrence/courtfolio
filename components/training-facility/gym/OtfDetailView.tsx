@@ -18,7 +18,10 @@ import {
   aggregateOtfZoneMinutes,
   earliestOtfDate,
   filterOtfSessionsInRange,
+  formatMmss,
   formatOtfDate,
+  mmssToSeconds,
+  otfBlockTrend,
   otfHighlights,
   otfMetricTrend,
   type OtfTrendPoint,
@@ -115,6 +118,22 @@ export function OtfDetailView(): JSX.Element {
   const splatTrend = useMemo(() => otfMetricTrend(sessions, 'splat'), [sessions])
   const calorieTrend = useMemo(() => otfMetricTrend(sessions, 'calories'), [sessions])
   const hrTrend = useMemo(() => otfMetricTrend(sessions, 'avg_hr'), [sessions])
+  const treadDistanceTrend = useMemo(
+    () => otfBlockTrend(sessions, 'treadmill', t => t.distance_mi),
+    [sessions]
+  )
+  const treadPaceTrend = useMemo(
+    () => otfBlockTrend(sessions, 'treadmill', t => mmssToSeconds(t.avg_pace)),
+    [sessions]
+  )
+  const rowerDistanceTrend = useMemo(
+    () => otfBlockTrend(sessions, 'rower', r => r.distance_m),
+    [sessions]
+  )
+  const rowerSplitTrend = useMemo(
+    () => otfBlockTrend(sessions, 'rower', r => mmssToSeconds(r.split_500m)),
+    [sessions]
+  )
   const highlights = useMemo(() => otfHighlights(sessions), [sessions])
 
   const hasAnySessions = !!data && data.sessions.length > 0
@@ -224,6 +243,56 @@ export function OtfDetailView(): JSX.Element {
               </ChartCard>
             </div>
 
+            <SectionLabel>Treadmill</SectionLabel>
+            <div className="mt-4 grid gap-6 lg:grid-cols-2">
+              <ChartCard title="Distance per class" helper="Treadmill miles per class.">
+                <OtfTrendChart
+                  data={treadDistanceTrend}
+                  width={chartWidth}
+                  yLabel="Miles"
+                  yTickFormat={v => v.toFixed(2)}
+                  ariaLabel="Treadmill distance per class over time"
+                  emptyMessage="No treadmill distance in range"
+                />
+              </ChartCard>
+              <ChartCard
+                title="Avg pace"
+                helper="Average treadmill pace per mile — lower is faster."
+              >
+                <OtfTrendChart
+                  data={treadPaceTrend}
+                  width={chartWidth}
+                  yLabel="min/mi"
+                  yTickFormat={formatMmss}
+                  ariaLabel="Treadmill average pace over time"
+                  emptyMessage="No treadmill pace in range"
+                />
+              </ChartCard>
+            </div>
+
+            <SectionLabel>Rower</SectionLabel>
+            <div className="mt-4 grid gap-6 lg:grid-cols-2">
+              <ChartCard title="Distance per class" helper="Rower meters per class.">
+                <OtfTrendChart
+                  data={rowerDistanceTrend}
+                  width={chartWidth}
+                  yLabel="Meters"
+                  ariaLabel="Rower distance per class over time"
+                  emptyMessage="No rower distance in range"
+                />
+              </ChartCard>
+              <ChartCard title="500m split" helper="Average time per 500m — lower is faster.">
+                <OtfTrendChart
+                  data={rowerSplitTrend}
+                  width={chartWidth}
+                  yLabel="/500m"
+                  yTickFormat={formatMmss}
+                  ariaLabel="Rower 500m split over time"
+                  emptyMessage="No rower split in range"
+                />
+              </ChartCard>
+            </div>
+
             <SessionLogTable sessions={sessions} range={range} />
           </>
         )}
@@ -239,12 +308,15 @@ function OtfTrendChart({
   yLabel,
   ariaLabel,
   emptyMessage,
+  yTickFormat,
 }: {
   data: OtfTrendPoint[]
   width: number
   yLabel: string
   ariaLabel: string
   emptyMessage: string
+  /** Optional y-axis tick formatter (e.g. `formatMmss` for pace/split). Defaults to whole numbers. */
+  yTickFormat?: (value: number) => string
 }): JSX.Element {
   return (
     <RoughLine<OtfTrendPoint>
@@ -256,10 +328,19 @@ function OtfTrendChart({
       margin={defaultMargin}
       fontFamily={FONT_FAMILY}
       yLabel={yLabel}
-      yTickFormat={v => `${Math.round(v)}`}
+      yTickFormat={yTickFormat ?? (v => `${Math.round(v)}`)}
       ariaLabel={ariaLabel}
       emptyMessage={emptyMessage}
     />
+  )
+}
+
+/** Small orange divider label for the machine-specific chart groups. */
+function SectionLabel({ children }: { children: string }): JSX.Element {
+  return (
+    <h2 className="mt-10 font-mono text-sm font-bold uppercase tracking-[0.28em] text-[#f97316]">
+      {children}
+    </h2>
   )
 }
 
