@@ -134,6 +134,14 @@ export function OtfDetailView(): JSX.Element {
     () => otfBlockTrend(sessions, 'rower', r => mmssToSeconds(r.split_500m)),
     [sessions]
   )
+  const treadInclineTrend = useMemo(
+    () => otfBlockTrend(sessions, 'treadmill', t => t.avg_incline),
+    [sessions]
+  )
+  const rowerWattsTrend = useMemo(
+    () => otfBlockTrend(sessions, 'rower', r => r.avg_watt),
+    [sessions]
+  )
   const highlights = useMemo(() => otfHighlights(sessions), [sessions])
 
   const hasAnySessions = !!data && data.sessions.length > 0
@@ -268,6 +276,19 @@ export function OtfDetailView(): JSX.Element {
                   emptyMessage="No treadmill pace in range"
                 />
               </ChartCard>
+              <ChartCard
+                title="Avg incline"
+                helper="Average treadmill incline — context for pace (a slow mile may be a steep one)."
+              >
+                <OtfTrendChart
+                  data={treadInclineTrend}
+                  width={chartWidth}
+                  yLabel="Incline %"
+                  yTickFormat={v => v.toFixed(1)}
+                  ariaLabel="Treadmill average incline over time"
+                  emptyMessage="No treadmill incline in range"
+                />
+              </ChartCard>
             </div>
 
             <SectionLabel>Rower</SectionLabel>
@@ -289,6 +310,18 @@ export function OtfDetailView(): JSX.Element {
                   yTickFormat={formatMmss}
                   ariaLabel="Rower 500m split over time"
                   emptyMessage="No rower split in range"
+                />
+              </ChartCard>
+              <ChartCard
+                title="Avg watts"
+                helper="Average rower power output — higher is stronger."
+              >
+                <OtfTrendChart
+                  data={rowerWattsTrend}
+                  width={chartWidth}
+                  yLabel="Watts"
+                  ariaLabel="Rower average wattage over time"
+                  emptyMessage="No rower wattage in range"
                 />
               </ChartCard>
             </div>
