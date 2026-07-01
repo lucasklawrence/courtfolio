@@ -8,21 +8,53 @@ import type { OtfSession, OtfZoneMinutes } from '@/types/otf'
  * date-range filtering, zone aggregation, and headline stats.
  */
 
-/** OTbeat HR-zone display order + colors (gray → red), as the email reports them. */
-export const OTF_ZONES: ReadonlyArray<{
+/** One OTbeat HR zone: display config plus its %-of-maxHR band boundaries. */
+export interface OtfZoneConfig {
   /** Zone key matching {@link OtfZoneMinutes}. */
   key: keyof OtfZoneMinutes
-  /** Short axis/label text. */
+  /** Short axis/label text (OTbeat names its zones by color). */
   shortLabel: string
+  /** Long display name — OTbeat's effort description for the zone. */
+  label: string
   /** Display color (OTbeat's zone palette). */
   color: string
-}> = [
-  { key: 'gray', shortLabel: 'Gray', color: '#9ca3af' },
-  { key: 'blue', shortLabel: 'Blue', color: '#3b82f6' },
-  { key: 'green', shortLabel: 'Green', color: '#22c55e' },
-  { key: 'orange', shortLabel: 'Orange', color: '#f97316' },
-  { key: 'red', shortLabel: 'Red', color: '#dc2626' },
+  /**
+   * Lower band bound as a fraction of max HR, inclusive. As OTbeat publishes
+   * them (#261) — uneven bands, unlike the Apple model's even 10% steps.
+   */
+  minPct: number
+  /**
+   * Upper band bound as a fraction of max HR, inclusive. OTbeat publishes
+   * integer percentages with 1%-point gaps between zones (e.g. gray ends at
+   * 60%, blue starts at 61%), so this is not exactly the next zone's `minPct`.
+   */
+  maxPct: number
+}
+
+/**
+ * OTbeat HR-zone display order + colors (gray → red) and %-of-maxHR bands, as
+ * the OrangeTheory app reports them. Bands are uneven (green is a wide
+ * 71–83%, orange a narrow 84–91%) and are off OTF's *own* maxHR estimate —
+ * see {@link bpmRangeForOtfZone} to resolve them to bpm for a chosen maxHR.
+ */
+export const OTF_ZONES: readonly OtfZoneConfig[] = [
+  { key: 'gray', shortLabel: 'Gray', label: 'Very light', color: '#9ca3af', minPct: 0.5, maxPct: 0.6 },
+  { key: 'blue', shortLabel: 'Blue', label: 'Light', color: '#3b82f6', minPct: 0.61, maxPct: 0.7 },
+  { key: 'green', shortLabel: 'Green', label: 'Base', color: '#22c55e', minPct: 0.71, maxPct: 0.83 },
+  { key: 'orange', shortLabel: 'Orange', label: 'Challenging', color: '#f97316', minPct: 0.84, maxPct: 0.91 },
+  { key: 'red', shortLabel: 'Red', label: 'All out', color: '#dc2626', minPct: 0.92, maxPct: 1.0 },
 ]
+
+/**
+ * Resolve an OTF zone's literal BPM range for a given max HR — the OTbeat
+ * counterpart to `bpmRangeForZone` (Apple) in `constants/hr-zones.ts`. Used
+ * by the zone-comparison view to label each band with concrete BPM values.
+ *
+ * @returns `[minBpm, maxBpm]` rounded to whole BPM.
+ */
+export function bpmRangeForOtfZone(zone: OtfZoneConfig, maxHr: number): [number, number] {
+  return [Math.round(zone.minPct * maxHr), Math.round(zone.maxPct * maxHr)]
+}
 
 /** One zone's display config plus its aggregated minutes, for {@link OTF_ZONES}-ordered bar charts. */
 export interface OtfZoneBucket {
