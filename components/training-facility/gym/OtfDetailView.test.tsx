@@ -16,6 +16,7 @@ const getOtfDataMock = vi.fn()
 
 vi.mock('@/lib/data', () => ({ getOtfData: () => getOtfDataMock() }))
 vi.mock('./OtfZoneBars', () => ({ OtfZoneBars: () => null }))
+vi.mock('./OtfSparklineSummary', () => ({ OtfSparklineSummary: () => null }))
 vi.mock('@/components/training-facility/shared/charts/RoughLine', () => ({ RoughLine: () => null }))
 vi.mock('next/navigation', () => ({
   usePathname: () => '/training-facility/gym/otf',

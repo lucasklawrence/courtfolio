@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { RoughBar, RoughLine, RoughScatter } from './'
+import { RoughBar, RoughLine, RoughScatter, RoughSparkline } from './'
 
 /**
  * Minimal render coverage for the chart primitives. Per the issue's P2 list:
@@ -112,6 +112,34 @@ describe('RoughBar', () => {
       />,
     )
     expect(screen.getByRole('img', { name: 'HR zone distribution' })).toBeInTheDocument()
+  })
+})
+
+describe('RoughSparkline', () => {
+  const pts = (ys: number[]) => ys.map((y, i) => ({ x: i, y }))
+
+  it('renders an empty (no-path) svg with its label when there are no points', () => {
+    render(<RoughSparkline points={[]} width={140} height={32} ariaLabel="distance sparkline" />)
+    expect(screen.getByRole('img', { name: 'distance sparkline' })).toBeInTheDocument()
+  })
+
+  it('plumbs ariaLabel through to the SVG when points are present', () => {
+    render(
+      <RoughSparkline
+        points={pts([2100, 2340, 2260, 2510, 2620])}
+        width={140}
+        height={32}
+        ariaLabel="rower distance sparkline"
+      />,
+    )
+    expect(screen.getByRole('img', { name: 'rower distance sparkline' })).toBeInTheDocument()
+  })
+
+  it('renders a single point without throwing (draws just the dot)', () => {
+    render(
+      <RoughSparkline points={pts([2000])} width={140} height={32} ariaLabel="one point" />,
+    )
+    expect(screen.getByRole('img', { name: 'one point' })).toBeInTheDocument()
   })
 })
 

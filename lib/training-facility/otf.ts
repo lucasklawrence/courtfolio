@@ -144,6 +144,27 @@ export function otfBlockTrend<K extends 'treadmill' | 'rower'>(
   return points
 }
 
+/**
+ * The first and latest values of a trend, for the sparkline summary's
+ * `first → latest` labels (#266). `null` when the trend is empty.
+ */
+export interface OtfTrendEndpoints {
+  /** Value at the earliest point in the trend. */
+  first: number
+  /** Value at the latest point in the trend. */
+  last: number
+}
+
+/**
+ * First and last value of a `{date, value}` trend (assumed ascending, as the
+ * dataset arrives). Returns `null` for an empty trend so callers render a
+ * "no data" label instead of a range.
+ */
+export function otfTrendEndpoints(trend: readonly OtfTrendPoint[]): OtfTrendEndpoints | null {
+  if (trend.length === 0) return null
+  return { first: trend[0].value, last: trend[trend.length - 1].value }
+}
+
 /** Headline stats for the OTF highlights strip, computed over a session set. */
 export interface OtfHighlights {
   /** Number of classes. */

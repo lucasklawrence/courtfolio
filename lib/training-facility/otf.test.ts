@@ -12,6 +12,8 @@ import {
   otfBlockTrend,
   otfHighlights,
   otfMetricTrend,
+  otfTrendEndpoints,
+  type OtfTrendPoint,
 } from './otf'
 
 /** Tiny session factory for the helper tests. */
@@ -139,5 +141,27 @@ describe('otfBlockTrend', () => {
     const points = otfBlockTrend(sessions, 'rower', r => mmssToSeconds(r.split_500m))
     expect(points).toHaveLength(1)
     expect(points[0].value).toBe(116)
+  })
+})
+
+describe('otfTrendEndpoints', () => {
+  const pt = (day: number, value: number): OtfTrendPoint => ({
+    date: new Date(2026, 5, day),
+    value,
+  })
+
+  it('returns the first and last values of an ascending trend', () => {
+    expect(otfTrendEndpoints([pt(1, 100), pt(2, 200), pt(3, 150)])).toEqual({
+      first: 100,
+      last: 150,
+    })
+  })
+
+  it('first === last for a single-point trend', () => {
+    expect(otfTrendEndpoints([pt(1, 42)])).toEqual({ first: 42, last: 42 })
+  })
+
+  it('returns null for an empty trend', () => {
+    expect(otfTrendEndpoints([])).toBeNull()
   })
 })
