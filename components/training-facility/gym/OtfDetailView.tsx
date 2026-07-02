@@ -185,12 +185,20 @@ export function OtfDetailView(): JSX.Element {
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-5xl flex-col px-6 py-8 sm:px-8 lg:px-12">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <BackToCourtButton />
-          <Link
-            href="/training-facility/gym"
-            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
-          >
-            ← The Gym
-          </Link>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/training-facility/gym/zones"
+              className="rounded-full border border-[#f97316]/40 bg-[#f97316]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#f9a870] transition hover:bg-[#f97316]/20"
+            >
+              Zones vs Apple →
+            </Link>
+            <Link
+              href="/training-facility/gym"
+              className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+            >
+              ← The Gym
+            </Link>
+          </div>
         </div>
 
         <header className="mt-12">
