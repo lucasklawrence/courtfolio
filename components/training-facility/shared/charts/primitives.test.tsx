@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { RoughBar, RoughLine, RoughMultiLine, RoughScatter } from './'
+import { RoughBar, RoughLine, RoughScatter, RoughSparkline } from './'
 
 /**
  * Minimal render coverage for the chart primitives. Per the issue's P2 list:
@@ -115,53 +115,31 @@ describe('RoughBar', () => {
   })
 })
 
-describe('RoughMultiLine', () => {
-  const dateSeries = (label: string, ys: number[]) => ({
-    label,
-    color: '#ea580c',
-    points: ys.map((y, i) => ({ x: new Date(2026, 5, i + 1), y })),
+describe('RoughSparkline', () => {
+  const pts = (ys: number[]) => ys.map((y, i) => ({ x: i, y }))
+
+  it('renders an empty (no-path) svg with its label when there are no points', () => {
+    render(<RoughSparkline points={[]} width={140} height={32} ariaLabel="distance sparkline" />)
+    expect(screen.getByRole('img', { name: 'distance sparkline' })).toBeInTheDocument()
   })
 
-  it('renders the EmptyChart placeholder when every series is empty', () => {
+  it('plumbs ariaLabel through to the SVG when points are present', () => {
     render(
-      <RoughMultiLine
-        series={[
-          { label: 'a', color: '#ea580c', points: [] },
-          { label: 'b', color: '#2563eb', points: [] },
-        ]}
-        width={400}
-        height={200}
-        ariaLabel="combined chart"
-        emptyMessage="No machine data yet"
+      <RoughSparkline
+        points={pts([2100, 2340, 2260, 2510, 2620])}
+        width={140}
+        height={32}
+        ariaLabel="rower distance sparkline"
       />,
     )
-    expect(screen.getByText('No machine data yet')).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'rower distance sparkline' })).toBeInTheDocument()
   })
 
-  it('plumbs ariaLabel through to the SVG when at least one series has points', () => {
+  it('renders a single point without throwing (draws just the dot)', () => {
     render(
-      <RoughMultiLine
-        series={[dateSeries('distance', [0, 1]), dateSeries('time', [0.2, 0.8])]}
-        width={400}
-        height={200}
-        yDomain={[0, 1]}
-        ariaLabel="rower combined trends"
-      />,
+      <RoughSparkline points={pts([2000])} width={140} height={32} ariaLabel="one point" />,
     )
-    expect(screen.getByRole('img', { name: 'rower combined trends' })).toBeInTheDocument()
-  })
-
-  it('renders even when only some series have points (skips the empty ones)', () => {
-    render(
-      <RoughMultiLine
-        series={[dateSeries('distance', [0, 1]), { label: 'pace', color: '#16a34a', points: [] }]}
-        width={400}
-        height={200}
-        yDomain={[0, 1]}
-        ariaLabel="partial combined trends"
-      />,
-    )
-    expect(screen.getByRole('img', { name: 'partial combined trends' })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'one point' })).toBeInTheDocument()
   })
 })
 

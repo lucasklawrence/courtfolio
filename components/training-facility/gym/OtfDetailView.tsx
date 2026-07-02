@@ -28,7 +28,7 @@ import {
 } from '@/lib/training-facility/otf'
 import type { OtfData, OtfRower, OtfSession, OtfTreadmill } from '@/types/otf'
 
-import { OtfCombinedTrendChart, type OtfCombinedSeries } from './OtfCombinedTrendChart'
+import { OtfSparklineSummary, type OtfSparklineRow } from './OtfSparklineSummary'
 import { OtfZoneBars } from './OtfZoneBars'
 
 const CHART_HEIGHT = 280
@@ -36,18 +36,6 @@ const MIN_CHART_WIDTH = 280
 const DEFAULT_CHART_WIDTH = 560
 const EARLIEST_FALLBACK = new Date(2026, 0, 1)
 const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
-
-/**
- * Line colors for the combined machine overlays (#266), shared across the
- * treadmill and rower cards so a given metric reads the same on both: distance
- * is always orange, time always blue, the third metric (pace / watts) green.
- * Chosen for contrast on the cream chart card.
- */
-const COMBINED_COLORS = {
-  distance: '#ea580c',
-  time: '#2563eb',
-  third: '#16a34a',
-} as const
 
 /** Empty dataset used while loading resolves to "no sessions yet" instead of spinning forever. */
 const EMPTY_OTF: OtfData = { imported_at: '', sessions: [] }
@@ -165,57 +153,23 @@ export function OtfDetailView(): JSX.Element {
     () => otfBlockTrend(sessions, 'rower', r => mmssToSeconds(r.time)),
     [sessions]
   )
-  const treadCombined = useMemo<OtfCombinedSeries[]>(
+  const treadRows = useMemo<OtfSparklineRow[]>(
     () => [
-      {
-        key: 'distance',
-        label: 'Distance',
-        color: COMBINED_COLORS.distance,
-        trend: treadDistanceTrend,
-        format: v => `${v.toFixed(2)} mi`,
-      },
-      {
-        key: 'time',
-        label: 'Time',
-        color: COMBINED_COLORS.time,
-        trend: treadTimeTrend,
-        format: formatMmss,
-      },
-      {
-        key: 'pace',
-        label: 'Pace',
-        color: COMBINED_COLORS.third,
-        trend: treadPaceTrend,
-        format: v => `${formatMmss(v)}/mi`,
-      },
+      { key: 'distance', label: 'Distance', trend: treadDistanceTrend, format: v => `${v.toFixed(2)} mi` },
+      { key: 'time', label: 'Time', trend: treadTimeTrend, format: formatMmss },
+      { key: 'pace', label: 'Avg pace', trend: treadPaceTrend, format: v => `${formatMmss(v)}/mi` },
+      { key: 'incline', label: 'Avg incline', trend: treadInclineTrend, format: v => `${v.toFixed(1)}%` },
     ],
-    [treadDistanceTrend, treadTimeTrend, treadPaceTrend]
+    [treadDistanceTrend, treadTimeTrend, treadPaceTrend, treadInclineTrend]
   )
-  const rowerCombined = useMemo<OtfCombinedSeries[]>(
+  const rowerRows = useMemo<OtfSparklineRow[]>(
     () => [
-      {
-        key: 'distance',
-        label: 'Distance',
-        color: COMBINED_COLORS.distance,
-        trend: rowerDistanceTrend,
-        format: v => `${Math.round(v)} m`,
-      },
-      {
-        key: 'time',
-        label: 'Time',
-        color: COMBINED_COLORS.time,
-        trend: rowerTimeTrend,
-        format: formatMmss,
-      },
-      {
-        key: 'watts',
-        label: 'Avg watts',
-        color: COMBINED_COLORS.third,
-        trend: rowerWattsTrend,
-        format: v => `${Math.round(v)} W`,
-      },
+      { key: 'distance', label: 'Distance', trend: rowerDistanceTrend, format: v => `${Math.round(v)} m` },
+      { key: 'time', label: 'Time', trend: rowerTimeTrend, format: formatMmss },
+      { key: 'watts', label: 'Avg watts', trend: rowerWattsTrend, format: v => `${Math.round(v)} W` },
+      { key: 'split', label: '500m split', trend: rowerSplitTrend, format: v => `${formatMmss(v)}/500m` },
     ],
-    [rowerDistanceTrend, rowerTimeTrend, rowerWattsTrend]
+    [rowerDistanceTrend, rowerTimeTrend, rowerWattsTrend, rowerSplitTrend]
   )
   const highlights = useMemo(() => otfHighlights(sessions), [sessions])
 
@@ -327,18 +281,15 @@ export function OtfDetailView(): JSX.Element {
             </div>
 
             <SectionLabel>Treadmill</SectionLabel>
-            <div className="mt-4 grid gap-6 lg:grid-cols-2">
+            <div className="mt-4">
               <ChartCard
-                title="Combined trends"
-                helper="Distance, time, and pace on one axis — each normalized to its own range, so you read the shape of a class at a glance. Absolute ranges in the legend."
+                title="At a glance"
+                helper="Each metric's own trend across the range, first → latest. Sparklines share the date axis; each keeps its own scale (compare direction, not magnitudes)."
               >
-                <OtfCombinedTrendChart
-                  series={treadCombined}
-                  width={chartWidth}
-                  ariaLabel="Treadmill distance, time, and pace per class, each normalized to its own range"
-                  emptyMessage="No treadmill data in range"
-                />
+                <OtfSparklineSummary rows={treadRows} ariaLabelPrefix="Treadmill" />
               </ChartCard>
+            </div>
+            <div className="mt-6 grid gap-6 lg:grid-cols-2">
               <ChartCard title="Distance per class" helper="Treadmill miles per class.">
                 <OtfTrendChart
                   data={treadDistanceTrend}
@@ -378,18 +329,15 @@ export function OtfDetailView(): JSX.Element {
             </div>
 
             <SectionLabel>Rower</SectionLabel>
-            <div className="mt-4 grid gap-6 lg:grid-cols-2">
+            <div className="mt-4">
               <ChartCard
-                title="Combined trends"
-                helper="Distance, time, and avg watts on one axis — each normalized to its own range, so you read the shape of a class at a glance. Absolute ranges in the legend."
+                title="At a glance"
+                helper="Each metric's own trend across the range, first → latest. Sparklines share the date axis; each keeps its own scale (compare direction, not magnitudes)."
               >
-                <OtfCombinedTrendChart
-                  series={rowerCombined}
-                  width={chartWidth}
-                  ariaLabel="Rower distance, time, and average watts per class, each normalized to its own range"
-                  emptyMessage="No rower data in range"
-                />
+                <OtfSparklineSummary rows={rowerRows} ariaLabelPrefix="Rower" />
               </ChartCard>
+            </div>
+            <div className="mt-6 grid gap-6 lg:grid-cols-2">
               <ChartCard title="Distance per class" helper="Rower meters per class.">
                 <OtfTrendChart
                   data={rowerDistanceTrend}

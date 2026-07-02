@@ -145,40 +145,24 @@ export function otfBlockTrend<K extends 'treadmill' | 'rower'>(
 }
 
 /**
- * A trend rescaled to its own [0, 1] range so it can be overlaid with other
- * metrics of different units on one shared axis (the combined machine charts,
- * #266). `min`/`max` carry the original absolute range for the legend, since
- * normalization discards it.
+ * The first and latest values of a trend, for the sparkline summary's
+ * `first → latest` labels (#266). `null` when the trend is empty.
  */
-export interface OtfNormalizedTrend {
-  /** Same dates as the input, with `value` remapped into [0, 1]. */
-  points: OtfTrendPoint[]
-  /** Smallest raw value in the input (0 when the input was empty). */
-  min: number
-  /** Largest raw value in the input (0 when the input was empty). */
-  max: number
+export interface OtfTrendEndpoints {
+  /** Value at the earliest point in the trend. */
+  first: number
+  /** Value at the latest point in the trend. */
+  last: number
 }
 
 /**
- * Min–max normalize a trend to [0, 1] for the multi-metric overlay (#266).
- * A flat trend (every value equal, including a single point) maps to a
- * constant 0.5 so the line sits mid-axis rather than dividing by a zero span.
- * An empty trend yields no points and a `[0, 0]` range.
+ * First and last value of a `{date, value}` trend (assumed ascending, as the
+ * dataset arrives). Returns `null` for an empty trend so callers render a
+ * "no data" label instead of a range.
  */
-export function normalizeOtfTrend(trend: readonly OtfTrendPoint[]): OtfNormalizedTrend {
-  if (trend.length === 0) return { points: [], min: 0, max: 0 }
-  let min = Infinity
-  let max = -Infinity
-  for (const p of trend) {
-    if (p.value < min) min = p.value
-    if (p.value > max) max = p.value
-  }
-  const span = max - min
-  const points = trend.map(p => ({
-    date: p.date,
-    value: span === 0 ? 0.5 : (p.value - min) / span,
-  }))
-  return { points, min, max }
+export function otfTrendEndpoints(trend: readonly OtfTrendPoint[]): OtfTrendEndpoints | null {
+  if (trend.length === 0) return null
+  return { first: trend[0].value, last: trend[trend.length - 1].value }
 }
 
 /** Headline stats for the OTF highlights strip, computed over a session set. */
