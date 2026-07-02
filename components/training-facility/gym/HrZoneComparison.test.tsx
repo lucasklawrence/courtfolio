@@ -100,12 +100,22 @@ describe('HrZoneComparison', () => {
     expect(screen.getByText('170')).toBeInTheDocument()
   })
 
-  it('shows the error panel when both datasets are unavailable', async () => {
+  it('renders the empty state (not an error) when both tables are empty', async () => {
+    // Both readers resolve null on an empty table — the sibling views' empty
+    // contract. That is not a failure; it should not surface the error panel.
     getCardioDataMock.mockResolvedValue(null)
     getOtfDataMock.mockResolvedValue(null)
     render(<HrZoneComparison />)
-    await waitFor(() =>
-      expect(screen.getByRole('alert')).toHaveTextContent(/no cardio or orangetheory data/i),
-    )
+    await waitFor(() => expect(screen.getByText(/no time-in-zone yet/i)).toBeInTheDocument())
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+  })
+
+  it('shows the error panel when a data read genuinely fails', async () => {
+    // A real query/schema failure rejects (rather than resolving null); it must
+    // surface, not be masked into a partial "the other source is just empty".
+    getCardioDataMock.mockRejectedValue(new Error('boom'))
+    getOtfDataMock.mockResolvedValue(OTF)
+    render(<HrZoneComparison />)
+    await waitFor(() => expect(screen.getByRole('alert')).toHaveTextContent(/boom/))
   })
 })

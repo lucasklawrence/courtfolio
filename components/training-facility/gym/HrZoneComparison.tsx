@@ -34,14 +34,15 @@ export function HrZoneComparison(): JSX.Element {
 
   useEffect(() => {
     let cancelled = false
-    Promise.all([getCardioData().catch(() => null), getOtfData().catch(() => null)])
+    // Both readers resolve `null` on an *empty table* (the sibling views' empty
+    // contract) and reject only on a real query/schema failure. Let a genuine
+    // rejection from either source propagate to the error panel rather than
+    // swallowing it to `null` — a masked failure would render a partial
+    // comparison that looks like "the other source is just empty". Two empty
+    // tables are not an error; they fall through to the empty state.
+    Promise.all([getCardioData(), getOtfData()])
       .then(([cardioData, otfData]) => {
         if (cancelled) return
-        // A total failure of both reads surfaces as the error panel; a single
-        // source being empty is fine — the comparison still renders the other.
-        if (cardioData === null && otfData === null) {
-          setLoadError(new Error('No cardio or OrangeTheory data available yet.'))
-        }
         setCardio(cardioData)
         setOtf(otfData)
         setReady(true)
