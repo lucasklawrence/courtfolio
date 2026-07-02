@@ -1,0 +1,111 @@
+import { render, screen, waitFor } from '@testing-library/react'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import type { CardioData } from '@/types/cardio'
+import type { OtfData } from '@/types/otf'
+
+import { HrZoneComparison } from './HrZoneComparison'
+
+/**
+ * Render tests for the HR-zone reconciliation view (#261). Both data readers
+ * are mocked; the tests focus on branch decisions (loading → data, empty,
+ * error) and that both systems' derived boundaries surface. Sibling pattern:
+ * `OtfDetailView.test.tsx`.
+ */
+
+const getCardioDataMock = vi.fn()
+const getOtfDataMock = vi.fn()
+
+vi.mock('@/lib/data', () => ({
+  getCardioData: () => getCardioDataMock(),
+  getOtfData: () => getOtfDataMock(),
+}))
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/training-facility/gym/zones',
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), prefetch: vi.fn() }),
+  useSearchParams: () => new URLSearchParams(),
+}))
+
+const CARDIO: CardioData = {
+  imported_at: '2026-06-30T07:53:00+00:00',
+  sessions: [
+    {
+      date: '2026-06-27',
+      activity: 'stair',
+      duration_seconds: 600,
+      max_hr: 158,
+      hr_seconds_in_zone: { 1: 0, 2: 300, 3: 300, 4: 0, 5: 0 },
+    },
+  ],
+  resting_hr_trend: [],
+  vo2max_trend: [],
+}
+
+const OTF: OtfData = {
+  imported_at: '2026-06-30T07:53:00+00:00',
+  sessions: [
+    {
+      started_at: '2026-06-27T16:30:00+00:00',
+      peak_hr: 175,
+      avg_hr: 125,
+      zones_min: { gray: 1, blue: 11, green: 29, orange: 14, red: 1 },
+    },
+  ],
+}
+
+beforeEach(() => {
+  getCardioDataMock.mockReset()
+  getOtfDataMock.mockReset()
+})
+
+describe('HrZoneComparison', () => {
+  it('renders the header and a link back to the OrangeTheory view', () => {
+    getCardioDataMock.mockResolvedValue(CARDIO)
+    getOtfDataMock.mockResolvedValue(OTF)
+    render(<HrZoneComparison />)
+    expect(screen.getByRole('heading', { level: 1, name: /apple watch vs orangetheory/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /orangetheory/i })).toHaveAttribute(
+      'href',
+      '/training-facility/gym/otf',
+    )
+  })
+
+  it('derives the shared max HR from the observed peak and renders both systems', async () => {
+    getCardioDataMock.mockResolvedValue(CARDIO)
+    getOtfDataMock.mockResolvedValue(OTF)
+    render(<HrZoneComparison />)
+
+    await waitFor(() => expect(screen.getByText('Shared max HR')).toBeInTheDocument())
+
+    // Observed peak 175 wins over the cardio max of 158.
+    expect(screen.getByText('175')).toBeInTheDocument()
+    // Both system cards render.
+    expect(screen.getByRole('heading', { name: 'Apple Watch' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'OrangeTheory' })).toBeInTheDocument()
+    // A derived Apple boundary (Z1 at 175 = 88–105) is shown.
+    expect(screen.getAllByText('88–105').length).toBeGreaterThan(0)
+    // The recommendation note is always present with data.
+    expect(screen.getByRole('heading', { name: /which to follow/i })).toBeInTheDocument()
+  })
+
+  it('shows the empty state when neither system logged zone time', async () => {
+    getCardioDataMock.mockResolvedValue(null)
+    getOtfDataMock.mockResolvedValue({
+      imported_at: '',
+      sessions: [{ started_at: '2026-06-27T16:30:00+00:00', peak_hr: 170 }],
+    } satisfies OtfData)
+    render(<HrZoneComparison />)
+    await waitFor(() => expect(screen.getByText(/no time-in-zone yet/i)).toBeInTheDocument())
+    // Max HR callout still resolves the observed peak even with no zone time.
+    expect(screen.getByText('170')).toBeInTheDocument()
+  })
+
+  it('shows the error panel when both datasets are unavailable', async () => {
+    getCardioDataMock.mockResolvedValue(null)
+    getOtfDataMock.mockResolvedValue(null)
+    render(<HrZoneComparison />)
+    await waitFor(() =>
+      expect(screen.getByRole('alert')).toHaveTextContent(/no cardio or orangetheory data/i),
+    )
+  })
+})
