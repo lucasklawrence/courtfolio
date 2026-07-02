@@ -28,6 +28,7 @@ import {
 } from '@/lib/training-facility/otf'
 import type { OtfData, OtfRower, OtfSession, OtfTreadmill } from '@/types/otf'
 
+import { OtfSparklineSummary, type OtfSparklineRow } from './OtfSparklineSummary'
 import { OtfZoneBars } from './OtfZoneBars'
 
 const CHART_HEIGHT = 280
@@ -141,6 +142,34 @@ export function OtfDetailView(): JSX.Element {
   const rowerWattsTrend = useMemo(
     () => otfBlockTrend(sessions, 'rower', r => r.avg_watt),
     [sessions]
+  )
+  // Machine time-on-machine, parsed from the "MM:SS" block field, feeds the
+  // combined overlays alongside distance and pace/watts.
+  const treadTimeTrend = useMemo(
+    () => otfBlockTrend(sessions, 'treadmill', t => mmssToSeconds(t.time)),
+    [sessions]
+  )
+  const rowerTimeTrend = useMemo(
+    () => otfBlockTrend(sessions, 'rower', r => mmssToSeconds(r.time)),
+    [sessions]
+  )
+  const treadRows = useMemo<OtfSparklineRow[]>(
+    () => [
+      { key: 'distance', label: 'Distance', trend: treadDistanceTrend, format: v => `${v.toFixed(2)} mi` },
+      { key: 'time', label: 'Time', trend: treadTimeTrend, format: formatMmss },
+      { key: 'pace', label: 'Avg pace', trend: treadPaceTrend, format: v => `${formatMmss(v)}/mi` },
+      { key: 'incline', label: 'Avg incline', trend: treadInclineTrend, format: v => `${v.toFixed(1)}%` },
+    ],
+    [treadDistanceTrend, treadTimeTrend, treadPaceTrend, treadInclineTrend]
+  )
+  const rowerRows = useMemo<OtfSparklineRow[]>(
+    () => [
+      { key: 'distance', label: 'Distance', trend: rowerDistanceTrend, format: v => `${Math.round(v)} m` },
+      { key: 'time', label: 'Time', trend: rowerTimeTrend, format: formatMmss },
+      { key: 'watts', label: 'Avg watts', trend: rowerWattsTrend, format: v => `${Math.round(v)} W` },
+      { key: 'split', label: '500m split', trend: rowerSplitTrend, format: v => `${formatMmss(v)}/500m` },
+    ],
+    [rowerDistanceTrend, rowerTimeTrend, rowerWattsTrend, rowerSplitTrend]
   )
   const highlights = useMemo(() => otfHighlights(sessions), [sessions])
 
@@ -260,7 +289,15 @@ export function OtfDetailView(): JSX.Element {
             </div>
 
             <SectionLabel>Treadmill</SectionLabel>
-            <div className="mt-4 grid gap-6 lg:grid-cols-2">
+            <div className="mt-4">
+              <ChartCard
+                title="At a glance"
+                helper="Each metric's own trend across the range, first → latest. Sparklines share the date axis; each keeps its own scale (compare direction, not magnitudes)."
+              >
+                <OtfSparklineSummary rows={treadRows} ariaLabelPrefix="Treadmill" />
+              </ChartCard>
+            </div>
+            <div className="mt-6 grid gap-6 lg:grid-cols-2">
               <ChartCard title="Distance per class" helper="Treadmill miles per class.">
                 <OtfTrendChart
                   data={treadDistanceTrend}
@@ -300,7 +337,15 @@ export function OtfDetailView(): JSX.Element {
             </div>
 
             <SectionLabel>Rower</SectionLabel>
-            <div className="mt-4 grid gap-6 lg:grid-cols-2">
+            <div className="mt-4">
+              <ChartCard
+                title="At a glance"
+                helper="Each metric's own trend across the range, first → latest. Sparklines share the date axis; each keeps its own scale (compare direction, not magnitudes)."
+              >
+                <OtfSparklineSummary rows={rowerRows} ariaLabelPrefix="Rower" />
+              </ChartCard>
+            </div>
+            <div className="mt-6 grid gap-6 lg:grid-cols-2">
               <ChartCard title="Distance per class" helper="Rower meters per class.">
                 <OtfTrendChart
                   data={rowerDistanceTrend}
