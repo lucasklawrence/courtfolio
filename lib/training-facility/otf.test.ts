@@ -9,9 +9,11 @@ import {
   formatMmss,
   formatOtfDate,
   mmssToSeconds,
+  normalizeOtfTrend,
   otfBlockTrend,
   otfHighlights,
   otfMetricTrend,
+  type OtfTrendPoint,
 } from './otf'
 
 /** Tiny session factory for the helper tests. */
@@ -139,5 +141,38 @@ describe('otfBlockTrend', () => {
     const points = otfBlockTrend(sessions, 'rower', r => mmssToSeconds(r.split_500m))
     expect(points).toHaveLength(1)
     expect(points[0].value).toBe(116)
+  })
+})
+
+describe('normalizeOtfTrend', () => {
+  const pt = (day: number, value: number): OtfTrendPoint => ({
+    date: new Date(2026, 5, day),
+    value,
+  })
+
+  it('rescales values to [0,1] against their own min/max, preserving dates', () => {
+    const input = [pt(1, 100), pt(2, 200), pt(3, 150)]
+    const { points, min, max } = normalizeOtfTrend(input)
+    expect(min).toBe(100)
+    expect(max).toBe(200)
+    expect(points.map(p => p.value)).toEqual([0, 1, 0.5])
+    expect(points.map(p => p.date)).toEqual(input.map(p => p.date))
+  })
+
+  it('maps a flat trend (equal values) to a constant 0.5 rather than dividing by zero', () => {
+    const { points, min, max } = normalizeOtfTrend([pt(1, 5), pt(2, 5)])
+    expect(min).toBe(5)
+    expect(max).toBe(5)
+    expect(points.map(p => p.value)).toEqual([0.5, 0.5])
+  })
+
+  it('maps a single point to 0.5 with min === max', () => {
+    const { points, min, max } = normalizeOtfTrend([pt(1, 42)])
+    expect([min, max]).toEqual([42, 42])
+    expect(points[0].value).toBe(0.5)
+  })
+
+  it('yields no points and a [0,0] range for an empty trend', () => {
+    expect(normalizeOtfTrend([])).toEqual({ points: [], min: 0, max: 0 })
   })
 })

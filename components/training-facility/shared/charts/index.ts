@@ -1,4 +1,9 @@
 export { RoughLine, type RoughLineProps } from './RoughLine'
+export {
+  RoughMultiLine,
+  type RoughMultiLineProps,
+  type RoughLineSeries,
+} from './RoughMultiLine'
 export { RoughBar, type RoughBarProps } from './RoughBar'
 export { RoughScatter, type RoughScatterProps } from './RoughScatter'
 export { BodyweightOverlay, type BodyweightOverlayProps } from './BodyweightOverlay'
