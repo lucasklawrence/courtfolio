@@ -1,6 +1,6 @@
 ---
 name: log-workout
-description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x10 shrugs at 100lb" (weighted), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets and any per-set load, writes them to Supabase, and reports today's totals against the daily goals.
+description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x10 shrugs at 100lb" (weighted), "shrugs 15 db - 25 reps" (dumbbell, load-first), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets and any per-set load, writes them to Supabase, and reports today's totals against the daily goals.
 ---
 
 # Log Workout
@@ -17,6 +17,7 @@ The user casually reports completed bodyweight work. Triggers look like:
 - "did 25 pushups" / "25 pushups" (single set)
 - "1 set of 5 pullups" / "1x5 pullups"
 - "3x10 shrugs at 100lb" / "25 shrugs @ 95 lbs" (weighted — see step 1b)
+- "shrugs 15 db - 25 reps" / "15 db 25 reps" (dumbbell notation, load-first — see step 1b)
 - "logged 12 dips this morning" / "20 pushups yesterday" (back-dating — see step 3)
 
 This skill is for **strength sets only** (`weight_room_sets`). Cardio
@@ -95,8 +96,22 @@ carries a load, attach it to each set's `weight_lbs` (pounds). Accepted forms:
 
 - "3x10 shrugs **@ 100lb**" / "3 sets of 10 shrugs **at 100 lbs**" → each set `weight_lbs = 100`
 - "25 shrugs **100lb**" / "25 shrugs **at 95 pounds**" → `weight_lbs = 95`
+- "shrugs **15 db** - 25 reps" / "**15 db** 25 reps" → each set `weight_lbs = 15`
+  (dumbbell notation, load-first — see below)
 - no load mentioned → **omit** `weight_lbs` (null) — the bodyweight default, so
   pushups/pullups are unaffected.
+
+**The load can come before the movement/reps, not just after it.** The examples
+above put the load last, but the natural shorthand often leads with it —
+"shrugs 15 db - 25 reps" is `{shrugs, 25, weight_lbs: 15}`, not 15 reps. Read the
+load and the reps by their **units** (`db`/`lb`/`reps`), not their position, and
+don't let a leading load get mistaken for the rep count. A `-` (or `x`) between
+the load and the reps is just a separator.
+
+**`db` / `dumbbell(s)` is a load unit** — a synonym for pounds. "15 db" means a
+**15-lb dumbbell**, so record `weight_lbs = 15` (the number as stated). Do **not**
+double it to a two-dumbbell total; if the user clearly means the combined pair
+load, that's a one-question clarification, not a silent ×2.
 
 A single load in the message applies to **every set in that message** (the common
 "5 sets at 100" case). Differing per-set loads in one message
@@ -104,8 +119,8 @@ A single load in the message applies to **every set in that message** (the commo
 the message or confirm a single load rather than guessing.
 
 **Units are pounds.** `weight_lbs` is lbs (matches the column and the load
-stats). If the user gives kg, convert (`lbs = kg × 2.20462`) and say so in the
-reply.
+stats). `lb`/`lbs`/`pounds`/`db`/`dumbbell` are all pounds; if the user gives kg,
+convert (`lbs = kg × 2.20462`) and say so in the reply.
 
 **Sanity-check the load**, same spirit as the rep check. The DB CHECK only
 rejects negatives (`weight_lbs >= 0`), so a fat-finger — `1000 lb` on shrugs, or
