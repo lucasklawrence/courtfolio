@@ -5,6 +5,7 @@ import type { OtfSession } from '@/types/otf'
 import {
   aggregateOtfZoneMinutes,
   earliestOtfDate,
+  excludeInvalidOtfSessions,
   filterOtfSessionsInRange,
   formatMmss,
   formatOtfDate,
@@ -33,6 +34,22 @@ describe('filterOtfSessionsInRange', () => {
     expect(filterOtfSessionsInRange(sessions, range).map(s => s.started_at)).toEqual([
       '2026-06-15T12:00:00Z',
     ])
+  })
+})
+
+describe('excludeInvalidOtfSessions', () => {
+  it('drops sessions flagged excluded, keeps the rest in order', () => {
+    const sessions = [
+      mk('a'),
+      mk('b', { excluded: true, excluded_reason: 'auto: malfunction' }),
+      mk('c', { excluded: false }),
+    ]
+    expect(excludeInvalidOtfSessions(sessions).map(s => s.started_at)).toEqual(['a', 'c'])
+  })
+
+  it('is a no-op when nothing is excluded', () => {
+    const sessions = [mk('a'), mk('b')]
+    expect(excludeInvalidOtfSessions(sessions)).toHaveLength(2)
   })
 })
 

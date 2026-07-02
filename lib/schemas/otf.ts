@@ -77,6 +77,8 @@ export const OtfSessionRowSchema = z
     zone_red_min: z.number().nonnegative().optional(),
     treadmill: OtfTreadmillSchema.optional(),
     rower: OtfRowerSchema.optional(),
+    excluded: z.boolean().optional(),
+    excluded_reason: z.string().optional(),
   })
   .strict()
 
@@ -122,5 +124,7 @@ export function otfRowToSession(row: OtfSessionRow): OtfSession {
 
   if (row.treadmill !== undefined) session.treadmill = row.treadmill
   if (row.rower !== undefined) session.rower = row.rower
+  if (row.excluded !== undefined) session.excluded = row.excluded
+  if (row.excluded_reason !== undefined) session.excluded_reason = row.excluded_reason
   return session
 }

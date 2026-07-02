@@ -82,6 +82,18 @@ export function otfSessionDate(session: OtfSession): Date {
 }
 
 /**
+ * Drop sessions flagged `excluded` — invalid/anomalous classes (e.g. an
+ * equipment malfunction, #268) that must stay out of every aggregate, trend,
+ * and highlight while the session log still lists them, muted. Preserves order.
+ *
+ * Apply this to the range-filtered sessions before any aggregation; keep the
+ * unfiltered set for the log so the excluded rows remain visible.
+ */
+export function excludeInvalidOtfSessions(sessions: readonly OtfSession[]): OtfSession[] {
+  return sessions.filter(s => !s.excluded)
+}
+
+/**
  * Filter sessions to those whose start falls within the inclusive
  * {@link DateRange}, preserving order (the dataset arrives ascending).
  */

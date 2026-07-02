@@ -142,6 +142,23 @@ describe('getOtfData', () => {
     })
   })
 
+  it('passes the excluded flag + reason through to the session (#268)', async () => {
+    stubSessions([
+      {
+        started_at: '2026-05-30T16:30:00+00:00',
+        coach: 'Jacob Buckenmeyer',
+        calories: 4,
+        splat: 0,
+        excluded: true,
+        excluded_reason: 'auto: near-zero output with no treadmill or rower block',
+        updated_at: '2026-05-30T17:00:00+00:00',
+      },
+    ])
+    const data = await getOtfData()
+    expect(data?.sessions[0].excluded).toBe(true)
+    expect(data?.sessions[0].excluded_reason).toMatch(/near-zero output/)
+  })
+
   it('takes imported_at from the latest updated_at', async () => {
     stubSessions([
       {

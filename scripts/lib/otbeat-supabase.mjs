@@ -16,6 +16,7 @@
  * Loaded as ESM from `.mjs` callers — no TypeScript transpile step.
  */
 
+import { classifyOtfAnomaly } from './otbeat-anomaly.mjs'
 import { createServiceRoleClient, loadEnv } from './cardio-supabase.mjs'
 
 export { createServiceRoleClient, loadEnv }
@@ -103,12 +104,24 @@ export function toStartedAt(date, time, timeZone) {
  * the treadmill and rower blocks pass straight through as JSONB (`null` when
  * the class format omitted them). `updated_at` is left to the column default.
  *
+ * `excluded` / `excluded_reason` are set from {@link classifyOtfAnomaly} so a
+ * malfunction session (near-zero output, no machine block — #268) is flagged
+ * at first insert. Because {@link upsertOtfSessions} is append-only
+ * (`ignoreDuplicates`), this only ever runs on a row's *first* write, so a
+ * manual override made later in Supabase is never clobbered by a re-pull.
+ *
  * @param {import('./otbeat-parser.mjs').OtbeatRecord} rec Parsed session.
  * @param {string} [timeZone] Studio timezone for `started_at`.
  * @returns {Record<string, unknown>} Row payload for `otf_sessions`.
  */
 export function recordToRow(rec, timeZone = DEFAULT_STUDIO_TZ) {
   const z = rec.zones_min ?? null
+  const anomaly = classifyOtfAnomaly({
+    calories: rec.calories,
+    splat: rec.splat,
+    hasTreadmill: rec.treadmill != null,
+    hasRower: rec.rower != null,
+  })
   return {
     started_at: toStartedAt(rec.date, rec.time, timeZone),
     coach: rec.coach ?? null,
@@ -125,6 +138,8 @@ export function recordToRow(rec, timeZone = DEFAULT_STUDIO_TZ) {
     zone_red_min: z?.red ?? null,
     treadmill: rec.treadmill ?? null,
     rower: rec.rower ?? null,
+    excluded: anomaly.excluded,
+    excluded_reason: anomaly.reason,
   }
 }
 

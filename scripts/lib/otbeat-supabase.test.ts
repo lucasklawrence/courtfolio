@@ -108,6 +108,28 @@ describe('recordToRow', () => {
     expect(row.treadmill).toBeNull()
     expect(row.rower).toBeNull()
   })
+
+  it('auto-flags a belt-malfunction session as excluded (#268)', () => {
+    // 05/30 anomaly: near-zero output, no machine block.
+    const row = recordToRow({ ...bareRecord('05/30/2026', '9:30AM'), calories: 4, splat: 0 }, TZ)
+    expect(row.excluded).toBe(true)
+    expect(row.excluded_reason).toMatch(/^auto:/)
+  })
+
+  it('leaves a real class un-excluded', () => {
+    const row = recordToRow(
+      {
+        ...bareRecord('06/27/2026', '9:30AM'),
+        calories: 776,
+        splat: 15,
+        treadmill: { distance_mi: 1.09, time: '11:24' },
+        rower: { distance_m: 2509, time: '7:58' },
+      },
+      TZ
+    )
+    expect(row.excluded).toBe(false)
+    expect(row.excluded_reason).toBeNull()
+  })
 })
 
 /**

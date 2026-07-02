@@ -17,6 +17,7 @@ import {
   OTF_ZONES,
   aggregateOtfZoneMinutes,
   earliestOtfDate,
+  excludeInvalidOtfSessions,
   filterOtfSessionsInRange,
   formatMmss,
   formatOtfDate,
@@ -115,43 +116,48 @@ export function OtfDetailView(): JSX.Element {
     () => (data ? filterOtfSessionsInRange(data.sessions, range) : []),
     [data, range]
   )
-  const buckets = useMemo(() => aggregateOtfZoneMinutes(sessions), [sessions])
-  const splatTrend = useMemo(() => otfMetricTrend(sessions, 'splat'), [sessions])
-  const calorieTrend = useMemo(() => otfMetricTrend(sessions, 'calories'), [sessions])
-  const hrTrend = useMemo(() => otfMetricTrend(sessions, 'avg_hr'), [sessions])
+  // Aggregates, trends, sparklines, and highlights run over the *active*
+  // sessions only — invalid/anomalous classes (e.g. an equipment malfunction,
+  // #268) are dropped so they can't skew a total, average, or trend line. The
+  // full `sessions` set still feeds the session log, which shows them muted.
+  const activeSessions = useMemo(() => excludeInvalidOtfSessions(sessions), [sessions])
+  const buckets = useMemo(() => aggregateOtfZoneMinutes(activeSessions), [activeSessions])
+  const splatTrend = useMemo(() => otfMetricTrend(activeSessions, 'splat'), [activeSessions])
+  const calorieTrend = useMemo(() => otfMetricTrend(activeSessions, 'calories'), [activeSessions])
+  const hrTrend = useMemo(() => otfMetricTrend(activeSessions, 'avg_hr'), [activeSessions])
   const treadDistanceTrend = useMemo(
-    () => otfBlockTrend(sessions, 'treadmill', t => t.distance_mi),
-    [sessions]
+    () => otfBlockTrend(activeSessions, 'treadmill', t => t.distance_mi),
+    [activeSessions]
   )
   const treadPaceTrend = useMemo(
-    () => otfBlockTrend(sessions, 'treadmill', t => mmssToSeconds(t.avg_pace)),
-    [sessions]
+    () => otfBlockTrend(activeSessions, 'treadmill', t => mmssToSeconds(t.avg_pace)),
+    [activeSessions]
   )
   const rowerDistanceTrend = useMemo(
-    () => otfBlockTrend(sessions, 'rower', r => r.distance_m),
-    [sessions]
+    () => otfBlockTrend(activeSessions, 'rower', r => r.distance_m),
+    [activeSessions]
   )
   const rowerSplitTrend = useMemo(
-    () => otfBlockTrend(sessions, 'rower', r => mmssToSeconds(r.split_500m)),
-    [sessions]
+    () => otfBlockTrend(activeSessions, 'rower', r => mmssToSeconds(r.split_500m)),
+    [activeSessions]
   )
   const treadInclineTrend = useMemo(
-    () => otfBlockTrend(sessions, 'treadmill', t => t.avg_incline),
-    [sessions]
+    () => otfBlockTrend(activeSessions, 'treadmill', t => t.avg_incline),
+    [activeSessions]
   )
   const rowerWattsTrend = useMemo(
-    () => otfBlockTrend(sessions, 'rower', r => r.avg_watt),
-    [sessions]
+    () => otfBlockTrend(activeSessions, 'rower', r => r.avg_watt),
+    [activeSessions]
   )
   // Machine time-on-machine, parsed from the "MM:SS" block field, feeds the
   // combined overlays alongside distance and pace/watts.
   const treadTimeTrend = useMemo(
-    () => otfBlockTrend(sessions, 'treadmill', t => mmssToSeconds(t.time)),
-    [sessions]
+    () => otfBlockTrend(activeSessions, 'treadmill', t => mmssToSeconds(t.time)),
+    [activeSessions]
   )
   const rowerTimeTrend = useMemo(
-    () => otfBlockTrend(sessions, 'rower', r => mmssToSeconds(r.time)),
-    [sessions]
+    () => otfBlockTrend(activeSessions, 'rower', r => mmssToSeconds(r.time)),
+    [activeSessions]
   )
   const treadRows = useMemo<OtfSparklineRow[]>(
     () => [
@@ -171,7 +177,7 @@ export function OtfDetailView(): JSX.Element {
     ],
     [rowerDistanceTrend, rowerTimeTrend, rowerWattsTrend, rowerSplitTrend]
   )
-  const highlights = useMemo(() => otfHighlights(sessions), [sessions])
+  const highlights = useMemo(() => otfHighlights(activeSessions), [activeSessions])
 
   const hasAnySessions = !!data && data.sessions.length > 0
 
@@ -493,6 +499,11 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
   const rows = useMemo(() => sessions.slice().reverse(), [sessions])
   const [expandedKey, setExpandedKey] = useState<string | null>(null)
 
+  // The log lists excluded classes too (muted), so split the count: N valid
+  // classes drive the aggregates; excluded ones are called out separately.
+  const excludedCount = useMemo(() => sessions.filter(s => s.excluded).length, [sessions])
+  const activeCount = sessions.length - excludedCount
+
   return (
     <section className="mt-8 rounded-[1.6rem] border border-white/10 bg-black/25 p-5">
       <header className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
@@ -500,7 +511,10 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
           Classes
         </h2>
         <p className="text-xs text-white/55">
-          {sessions.length === 0 ? 'No classes in range' : `${sessions.length} in range`}
+          {sessions.length === 0 ? 'No classes in range' : `${activeCount} in range`}
+          {excludedCount > 0 && (
+            <span className="ml-1 text-[#f9a870]/80">· {excludedCount} excluded</span>
+          )}
           <span className="ml-2 text-white/35">
             ({formatBound(range.start)} → {formatBound(range.end)})
           </span>
@@ -541,7 +555,10 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
             <tbody className="text-[#f7ead9]">
               {rows.map((s, i) => {
                 const rowKey = `${s.started_at}-${i}`
-                const expandable = !!s.treadmill || !!s.rower || !!s.zones_min
+                const excluded = !!s.excluded
+                // Excluded rows are always expandable so the exclusion reason
+                // stays reachable even when the class has no machine/zone block.
+                const expandable = !!s.treadmill || !!s.rower || !!s.zones_min || excluded
                 const isExpanded = expandedKey === rowKey
                 const toggle = () => {
                   if (!expandable) return
@@ -550,7 +567,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                 return (
                   <Fragment key={rowKey}>
                     <tr
-                      className={`rounded-md bg-white/5 align-middle ${
+                      className={`rounded-md align-middle ${excluded ? 'bg-white/[0.02] opacity-55' : 'bg-white/5'} ${
                         expandable
                           ? 'cursor-pointer transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60'
                           : ''
@@ -570,9 +587,29 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                           }
                         : {})}
                     >
-                      <td className="rounded-l-md px-3 py-2 font-mono">{formatOtfDate(s)}</td>
+                      <td className="rounded-l-md px-3 py-2 font-mono">
+                        <span className="inline-flex flex-wrap items-center gap-2">
+                          <span
+                            className={excluded ? 'line-through decoration-white/40' : undefined}
+                          >
+                            {formatOtfDate(s)}
+                          </span>
+                          {excluded && (
+                            <span
+                              title={s.excluded_reason ?? undefined}
+                              className="rounded-full border border-[#f9a870]/40 bg-[#f9a870]/10 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-[#f9a870]"
+                            >
+                              Excluded
+                            </span>
+                          )}
+                        </span>
+                      </td>
                       <td className="px-3 py-2">{s.coach ?? '—'}</td>
-                      <td className="px-3 py-2 font-mono text-[#f97316]">{numCell(s.splat)}</td>
+                      <td
+                        className={`px-3 py-2 font-mono ${excluded ? 'text-white/50' : 'text-[#f97316]'}`}
+                      >
+                        {numCell(s.splat)}
+                      </td>
                       <td className="px-3 py-2 font-mono">{numCell(s.calories)}</td>
                       <td className="px-3 py-2 font-mono">{numCell(s.avg_hr)}</td>
                       <td className="px-3 py-2 font-mono">{numCell(s.peak_hr)}</td>
@@ -604,29 +641,37 @@ function ExpandedSession({ session }: { session: OtfSession }): JSX.Element {
   // callback (a property access doesn't stay narrowed across the closure).
   const zones = session.zones_min
   return (
-    <div className="grid gap-4 rounded-xl bg-black/30 p-4 text-xs sm:grid-cols-3">
-      <div>
-        <p className="mb-2 font-mono uppercase tracking-[0.18em] text-white/55">Zones</p>
-        {zones ? (
-          <ul className="space-y-1">
-            {OTF_ZONES.map(z => (
-              <li key={z.key} className="flex items-center gap-2">
-                <span
-                  aria-hidden="true"
-                  className="inline-block h-2.5 w-2.5 rounded-sm"
-                  style={{ backgroundColor: z.color }}
-                />
-                <span className="text-white/70">{z.shortLabel}</span>
-                <span className="ml-auto font-mono text-white/90">{zones[z.key]}m</span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-white/45">No zone data.</p>
-        )}
+    <div className="space-y-3">
+      {session.excluded && (
+        <p className="rounded-lg border border-[#f9a870]/30 bg-[#f9a870]/10 px-3 py-2 text-xs leading-5 text-[#f9c79b]">
+          <span className="font-semibold uppercase tracking-[0.14em]">Excluded from charts</span>
+          {session.excluded_reason ? ` — ${session.excluded_reason}` : ''}
+        </p>
+      )}
+      <div className="grid gap-4 rounded-xl bg-black/30 p-4 text-xs sm:grid-cols-3">
+        <div>
+          <p className="mb-2 font-mono uppercase tracking-[0.18em] text-white/55">Zones</p>
+          {zones ? (
+            <ul className="space-y-1">
+              {OTF_ZONES.map(z => (
+                <li key={z.key} className="flex items-center gap-2">
+                  <span
+                    aria-hidden="true"
+                    className="inline-block h-2.5 w-2.5 rounded-sm"
+                    style={{ backgroundColor: z.color }}
+                  />
+                  <span className="text-white/70">{z.shortLabel}</span>
+                  <span className="ml-auto font-mono text-white/90">{zones[z.key]}m</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-white/45">No zone data.</p>
+          )}
+        </div>
+        <StatBlock title="Treadmill" rows={treadmillRows(session.treadmill)} />
+        <StatBlock title="Rower" rows={rowerRows(session.rower)} />
       </div>
-      <StatBlock title="Treadmill" rows={treadmillRows(session.treadmill)} />
-      <StatBlock title="Rower" rows={rowerRows(session.rower)} />
     </div>
   )
 }
