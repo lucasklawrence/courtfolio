@@ -51,6 +51,16 @@ describe('OtfSessionRowSchema', () => {
   it('rejects an empty started_at', () => {
     expect(OtfSessionRowSchema.safeParse({ started_at: '' }).success).toBe(false)
   })
+
+  it('accepts the excluded flag + reason (#268)', () => {
+    const parsed = OtfSessionRowSchema.safeParse({
+      started_at: '2026-05-30T16:30:00+00:00',
+      calories: 4,
+      excluded: true,
+      excluded_reason: 'auto: equipment malfunction',
+    })
+    expect(parsed.success).toBe(true)
+  })
 })
 
 describe('otfRowToSession', () => {
@@ -82,5 +92,22 @@ describe('otfRowToSession', () => {
   it('defaults missing zones to 0 when at least one is present', () => {
     const session = otfRowToSession({ started_at: '2026-06-27T16:30:00+00:00', zone_orange_min: 5 })
     expect(session.zones_min).toEqual({ gray: 0, blue: 0, green: 0, orange: 5, red: 0 })
+  })
+
+  it('passes the excluded flag + reason through (#268)', () => {
+    const session = otfRowToSession({
+      started_at: '2026-05-30T16:30:00+00:00',
+      calories: 4,
+      excluded: true,
+      excluded_reason: 'auto: equipment malfunction',
+    })
+    expect(session.excluded).toBe(true)
+    expect(session.excluded_reason).toBe('auto: equipment malfunction')
+  })
+
+  it('omits excluded when the column is absent', () => {
+    const session = otfRowToSession({ started_at: '2026-06-27T16:30:00+00:00' })
+    expect(session).not.toHaveProperty('excluded')
+    expect(session).not.toHaveProperty('excluded_reason')
   })
 })

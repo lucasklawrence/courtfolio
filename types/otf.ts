@@ -101,6 +101,15 @@ export interface OtfSession {
   treadmill?: OtfTreadmill
   /** Rower performance block. Omitted when the class format had none. */
   rower?: OtfRower
+  /**
+   * True when the session is invalid/anomalous (e.g. an equipment malfunction)
+   * and should be left out of every aggregate and chart — the session log still
+   * lists it, muted. Auto-detected at ingest (#268) or set manually in Supabase.
+   * Absent/false means a valid session.
+   */
+  excluded?: boolean
+  /** Why the session was excluded (prefixed `auto:` when set by the ingest heuristic). Present only when {@link excluded}. */
+  excluded_reason?: string
 }
 
 /** Full OrangeTheory dataset consumed by the Gym OTF view. */
