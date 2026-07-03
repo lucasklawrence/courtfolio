@@ -12,6 +12,7 @@ import {
   type SystemZoneComparison,
   type ZoneTimeShare,
 } from '@/lib/training-facility/hr-zone-comparison'
+import { excludeInvalidOtfSessions } from '@/lib/training-facility/otf'
 import type { CardioData } from '@/types/cardio'
 import type { OtfData } from '@/types/otf'
 
@@ -57,7 +58,11 @@ export function HrZoneComparison(): JSX.Element {
     }
   }, [])
 
-  const otfSessions = useMemo(() => otf?.sessions ?? [], [otf])
+  // Drop excluded/anomalous OTF sessions (#268) so a malfunction or a manual
+  // exclusion (bogus peak_hr / zone minutes) can't skew the shared max HR, the
+  // OTF time-in-zone totals, or the avg-peak/avg-HR markers. This view reads
+  // otf.sessions independently of OtfDetailView, so it needs the same filter.
+  const otfSessions = useMemo(() => excludeInvalidOtfSessions(otf?.sessions ?? []), [otf])
   const cardioSessions = useMemo(() => cardio?.sessions ?? [], [cardio])
 
   const comparison = useMemo(

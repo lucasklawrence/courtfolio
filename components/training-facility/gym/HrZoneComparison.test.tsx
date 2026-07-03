@@ -88,6 +88,30 @@ describe('HrZoneComparison', () => {
     expect(screen.getByRole('heading', { name: /which to follow/i })).toBeInTheDocument()
   })
 
+  it('ignores excluded OTF sessions when deriving the shared max HR (#268)', async () => {
+    getCardioDataMock.mockResolvedValue(CARDIO)
+    getOtfDataMock.mockResolvedValue({
+      imported_at: '2026-06-30T07:53:00+00:00',
+      sessions: [
+        ...OTF.sessions,
+        // Anomaly with a bogus sky-high peak — must not become the shared max.
+        {
+          started_at: '2026-05-30T16:30:00+00:00',
+          peak_hr: 210,
+          avg_hr: 200,
+          excluded: true,
+          excluded_reason: 'auto: equipment malfunction',
+        },
+      ],
+    } satisfies OtfData)
+    render(<HrZoneComparison />)
+
+    await waitFor(() => expect(screen.getByText('Shared max HR')).toBeInTheDocument())
+    // Still 175 (the valid peak), not 210 from the excluded session.
+    expect(screen.getByText('175')).toBeInTheDocument()
+    expect(screen.queryByText('210')).not.toBeInTheDocument()
+  })
+
   it('shows the empty state when neither system logged zone time', async () => {
     getCardioDataMock.mockResolvedValue(null)
     getOtfDataMock.mockResolvedValue({
