@@ -17,6 +17,8 @@
  */
 
 import { classifyOtfAnomaly } from './otbeat-anomaly.mjs'
+import { classifyOtfClassType } from './otbeat-class-type.mjs'
+import { mmssToSec } from './otbeat-parser.mjs'
 import { createServiceRoleClient, loadEnv } from './cardio-supabase.mjs'
 
 export { createServiceRoleClient, loadEnv }
@@ -106,9 +108,12 @@ export function toStartedAt(date, time, timeZone) {
  *
  * `excluded` / `excluded_reason` are set from {@link classifyOtfAnomaly} so a
  * malfunction session (near-zero output, no machine block — #268) is flagged
- * at first insert. Because {@link upsertOtfSessions} is append-only
- * (`ignoreDuplicates`), this only ever runs on a row's *first* write, so a
- * manual override made later in Supabase is never clobbered by a re-pull.
+ * at first insert. `class_type` is the coarse machine-signature label from
+ * {@link classifyOtfClassType} (#271); `class_type_override` is left unset so a
+ * manual Supabase edit owns it. Because {@link upsertOtfSessions} is
+ * append-only (`ignoreDuplicates`), both auto columns only ever run on a row's
+ * *first* write, so a manual override made later in Supabase is never clobbered
+ * by a re-pull.
  *
  * @param {import('./otbeat-parser.mjs').OtbeatRecord} rec Parsed session.
  * @param {string} [timeZone] Studio timezone for `started_at`.
@@ -116,11 +121,20 @@ export function toStartedAt(date, time, timeZone) {
  */
 export function recordToRow(rec, timeZone = DEFAULT_STUDIO_TZ) {
   const z = rec.zones_min ?? null
+  const hasTreadmill = rec.treadmill != null
+  const hasRower = rec.rower != null
   const anomaly = classifyOtfAnomaly({
     calories: rec.calories,
     splat: rec.splat,
-    hasTreadmill: rec.treadmill != null,
-    hasRower: rec.rower != null,
+    hasTreadmill,
+    hasRower,
+  })
+  const classType = classifyOtfClassType({
+    hasTreadmill,
+    hasRower,
+    treadSec: mmssToSec(rec.treadmill?.time),
+    rowerSec: mmssToSec(rec.rower?.time),
+    calories: rec.calories,
   })
   return {
     started_at: toStartedAt(rec.date, rec.time, timeZone),
@@ -140,6 +154,7 @@ export function recordToRow(rec, timeZone = DEFAULT_STUDIO_TZ) {
     rower: rec.rower ?? null,
     excluded: anomaly.excluded,
     excluded_reason: anomaly.reason,
+    class_type: classType,
   }
 }
 

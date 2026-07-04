@@ -110,6 +110,20 @@ export interface OtfSession {
   excluded?: boolean
   /** Why the session was excluded (prefixed `auto:` when set by the ingest heuristic). Present only when {@link excluded}. */
   excluded_reason?: string
+  /**
+   * Coarse class-type label inferred at ingest from the machine signature
+   * (#271): `'Tread + Row'`, `'Tread-focused'`, `'Row-focused'`, or
+   * `'Strength / Floor'`. Absent for a near-zero malfunction. NOT OTF's
+   * official format name — see {@link class_type_override}.
+   */
+  class_type?: string
+  /**
+   * Manually-set real OTF format name (e.g. `'2G'`, `'Strength 50'`) that wins
+   * over {@link class_type}. Set by hand in Supabase; never written by the
+   * append-only importer. The view uses `class_type_override ?? class_type` as
+   * the effective type.
+   */
+  class_type_override?: string
 }
 
 /** Full OrangeTheory dataset consumed by the Gym OTF view. */

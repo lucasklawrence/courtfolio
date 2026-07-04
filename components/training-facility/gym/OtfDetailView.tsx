@@ -17,14 +17,18 @@ import {
   OTF_ZONES,
   aggregateOtfZoneMinutes,
   earliestOtfDate,
+  effectiveOtfClassType,
   excludeInvalidOtfSessions,
+  filterOtfSessionsByClassType,
   filterOtfSessionsInRange,
   formatMmss,
   formatOtfDate,
   mmssToSeconds,
   otfBlockTrend,
+  otfClassTypes,
   otfHighlights,
   otfMetricTrend,
+  resolveOtfClassTypeFilter,
   type OtfTrendPoint,
 } from '@/lib/training-facility/otf'
 import type { OtfData, OtfRower, OtfSession, OtfTreadmill } from '@/types/otf'
@@ -55,6 +59,9 @@ export function OtfDetailView(): JSX.Element {
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('ALL', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
+  // Coarse class-type filter (#271); `null` = "All". Scopes both the log and
+  // every aggregate, composing with the date range and the #268 exclusion.
+  const [classType, setClassType] = useState<string | null>(null)
 
   // The chart wrapper mounts only after data arrives (it lives inside the data
   // branch), so observe it via a callback ref. A mount effect would run while
@@ -112,9 +119,34 @@ export function OtfDetailView(): JSX.Element {
     setRange(rangeForPreset('ALL', earliest))
   }, [earliest, data])
 
-  const sessions = useMemo(
+  const rangeSessions = useMemo(
     () => (data ? filterOtfSessionsInRange(data.sessions, range) : []),
     [data, range]
+  )
+  // Class types present in the current window drive the filter chips. Derived
+  // before the class filter so every option stays reachable.
+  const availableClassTypes = useMemo(() => otfClassTypes(rangeSessions), [rangeSessions])
+
+  // Reconcile the stored selection against the window synchronously: `effective`
+  // is what actually filters this render (never a stale value), `visible` keeps
+  // the control — and its "All" clear button — reachable while a filter is on.
+  const { effective: effectiveClassType, visible: showClassTypeFilter } = useMemo(
+    () => resolveOtfClassTypeFilter(classType, availableClassTypes),
+    [classType, availableClassTypes]
+  )
+
+  // Tidy the stored state when the selection leaves the window (e.g. the range
+  // narrowed past it) so a later widen doesn't silently resurrect the filter.
+  // `effectiveClassType` already prevents a stale-render flicker meanwhile.
+  useEffect(() => {
+    if (classType && !availableClassTypes.includes(classType)) setClassType(null)
+  }, [classType, availableClassTypes])
+
+  // Apply the class-type filter on top of the date range; this scoped set feeds
+  // both the log and (after exclusion) every aggregate.
+  const sessions = useMemo(
+    () => filterOtfSessionsByClassType(rangeSessions, effectiveClassType),
+    [rangeSessions, effectiveClassType]
   )
   // Aggregates, trends, sparklines, and highlights run over the *active*
   // sessions only — invalid/anomalous classes (e.g. an equipment malfunction,
@@ -229,6 +261,14 @@ export function OtfDetailView(): JSX.Element {
             onChange={handleRangeChange}
           />
         </div>
+
+        {showClassTypeFilter && (
+          <ClassTypeFilter
+            options={availableClassTypes}
+            value={effectiveClassType}
+            onChange={setClassType}
+          />
+        )}
 
         {loadError ? (
           <ErrorPanel error={loadError} />
@@ -393,6 +433,54 @@ export function OtfDetailView(): JSX.Element {
   )
 }
 
+/**
+ * Coarse class-type filter (#271) — an "All" pill plus one per available
+ * inferred/overridden type. Selecting one scopes the whole view (aggregates +
+ * log). Rendered only when 2+ types are present in the window.
+ */
+function ClassTypeFilter({
+  options,
+  value,
+  onChange,
+}: {
+  options: readonly string[]
+  value: string | null
+  onChange: (next: string | null) => void
+}): JSX.Element {
+  const pill = (active: boolean): string =>
+    `rounded-full border px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] transition ${
+      active
+        ? 'border-[#f97316]/60 bg-[#f97316]/20 text-[#f9a870]'
+        : 'border-white/15 bg-white/5 text-white/70 hover:bg-white/10'
+    }`
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-2">
+      <span className="mr-1 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/45">
+        Class type
+      </span>
+      <button
+        type="button"
+        aria-pressed={value === null}
+        onClick={() => onChange(null)}
+        className={pill(value === null)}
+      >
+        All
+      </button>
+      {options.map(opt => (
+        <button
+          key={opt}
+          type="button"
+          aria-pressed={value === opt}
+          onClick={() => onChange(opt)}
+          className={pill(value === opt)}
+        >
+          {opt}
+        </button>
+      ))}
+    </div>
+  )
+}
+
 /** Shared trend-line chart — `RoughLine` over `{date, value}` points with the OTF font/tick style. */
 function OtfTrendChart({
   data,
@@ -536,6 +624,9 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                   Coach
                 </th>
                 <th scope="col" className="px-3 py-2 font-semibold">
+                  Type
+                </th>
+                <th scope="col" className="px-3 py-2 font-semibold">
                   Splat
                 </th>
                 <th scope="col" className="px-3 py-2 font-semibold">
@@ -605,6 +696,9 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                         </span>
                       </td>
                       <td className="px-3 py-2">{s.coach ?? '—'}</td>
+                      <td className="px-3 py-2">
+                        <ClassTypeCell session={s} />
+                      </td>
                       <td
                         className={`px-3 py-2 font-mono ${excluded ? 'text-white/50' : 'text-[#f97316]'}`}
                       >
@@ -619,7 +713,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                     </tr>
                     {isExpanded && expandable && (
                       <tr>
-                        <td colSpan={7} className="px-3 pb-3">
+                        <td colSpan={8} className="px-3 pb-3">
                           <ExpandedSession session={s} />
                         </td>
                       </tr>
@@ -730,6 +824,30 @@ function rowerRows(r: OtfRower | undefined): Array<[string, string]> | null {
   if (r.avg_watt !== undefined) rows.push(['Avg watts', `${r.avg_watt}`])
   if (r.avg_spm !== undefined) rows.push(['Avg SPM', `${r.avg_spm}`])
   return rows
+}
+
+/**
+ * The session's effective class type (#271) as a small chip, or an em dash when
+ * none. A trailing dot marks a manual `class_type_override`; the `title`
+ * distinguishes an override from the auto-inferred label on hover.
+ */
+function ClassTypeCell({ session }: { session: OtfSession }): JSX.Element {
+  const type = effectiveOtfClassType(session)
+  if (!type) return <span className="text-white/35">—</span>
+  const isOverride = !!session.class_type_override?.trim()
+  return (
+    <span
+      title={isOverride ? 'Manual override' : 'Inferred from machine signature'}
+      className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[0.65rem] font-medium text-white/75"
+    >
+      {type}
+      {isOverride && (
+        <span aria-hidden="true" className="text-[#f9a870]">
+          •
+        </span>
+      )}
+    </span>
+  )
 }
 
 /** Render a numeric cell, rounding to a whole number, or an em dash when absent. */

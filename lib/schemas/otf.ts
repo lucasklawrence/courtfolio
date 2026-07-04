@@ -79,6 +79,8 @@ export const OtfSessionRowSchema = z
     rower: OtfRowerSchema.optional(),
     excluded: z.boolean().optional(),
     excluded_reason: z.string().optional(),
+    class_type: z.string().optional(),
+    class_type_override: z.string().optional(),
   })
   .strict()
 
@@ -126,5 +128,7 @@ export function otfRowToSession(row: OtfSessionRow): OtfSession {
   if (row.rower !== undefined) session.rower = row.rower
   if (row.excluded !== undefined) session.excluded = row.excluded
   if (row.excluded_reason !== undefined) session.excluded_reason = row.excluded_reason
+  if (row.class_type !== undefined) session.class_type = row.class_type
+  if (row.class_type_override !== undefined) session.class_type_override = row.class_type_override
   return session
 }

@@ -94,6 +94,103 @@ export function excludeInvalidOtfSessions(sessions: readonly OtfSession[]): OtfS
 }
 
 /**
+ * Canonical display order for the coarse auto-inferred class-type labels (#271).
+ *
+ * KEEP IN SYNC WITH the label constants in
+ * `scripts/lib/otbeat-class-type.mjs` (guarded by a drift test in
+ * `otf.test.ts`). Manual `class_type_override` values that aren't in this list
+ * (e.g. "2G", "Strength 50") sort after these, alphabetically, in
+ * {@link otfClassTypes}.
+ */
+export const OTF_CLASS_TYPE_ORDER: readonly string[] = [
+  'Tread + Row',
+  'Tread-focused',
+  'Row-focused',
+  'Strength / Floor',
+]
+
+/**
+ * The class type the view should treat a session as: the manual
+ * `class_type_override` when set, otherwise the auto-inferred `class_type`
+ * (#271). Blank/whitespace strings count as unset. `undefined` when the session
+ * has neither (e.g. a near-zero malfunction with no inferred type).
+ */
+export function effectiveOtfClassType(session: OtfSession): string | undefined {
+  const override = session.class_type_override?.trim()
+  if (override) return override
+  const auto = session.class_type?.trim()
+  return auto ? auto : undefined
+}
+
+/**
+ * Distinct effective class types present across the sessions, for the filter
+ * control's options. Known auto labels come first in {@link OTF_CLASS_TYPE_ORDER}
+ * order; any manual-override values not in that list follow, sorted
+ * alphabetically for a stable, session-order-independent result. Sessions with
+ * no effective type are omitted.
+ */
+export function otfClassTypes(sessions: readonly OtfSession[]): string[] {
+  const present = new Set<string>()
+  for (const s of sessions) {
+    const t = effectiveOtfClassType(s)
+    if (t) present.add(t)
+  }
+  const known = OTF_CLASS_TYPE_ORDER.filter(t => present.has(t))
+  const extras = [...present].filter(t => !OTF_CLASS_TYPE_ORDER.includes(t)).sort()
+  return [...known, ...extras]
+}
+
+/**
+ * Filter sessions to those whose {@link effectiveOtfClassType} equals
+ * `classType`, preserving order. A `null` `classType` is the "All" sentinel and
+ * returns every session (a fresh array). Composes with
+ * {@link filterOtfSessionsInRange} and {@link excludeInvalidOtfSessions}.
+ */
+export function filterOtfSessionsByClassType(
+  sessions: readonly OtfSession[],
+  classType: string | null
+): OtfSession[] {
+  if (!classType) return [...sessions]
+  return sessions.filter(s => effectiveOtfClassType(s) === classType)
+}
+
+/** Resolved state of the class-type filter for one render. */
+export interface OtfClassTypeFilterState {
+  /**
+   * The class type actually applied this render: the user's `selected` value
+   * when it's still among the `available` options, else `null` ("All"). Derived
+   * synchronously so filtering never lags behind a window change by a render.
+   */
+  effective: string | null
+  /**
+   * Whether the filter control should render — either there's a real choice
+   * (2+ options) or a filter is active and needs a reachable "All" to clear it.
+   */
+  visible: boolean
+}
+
+/**
+ * Reconcile the class-type filter's stored `selected` value against the types
+ * currently `available` in the window (#271).
+ *
+ * Two failure modes this closes:
+ * - **Stale render:** when `selected` just left `available`, `effective` falls
+ *   back to `null` immediately, so the log/aggregates don't render empty for a
+ *   frame while a reset effect catches up.
+ * - **Unclearable filter:** when the window narrows to a single type that's the
+ *   active selection, `visible` stays `true` so the "All" button is still there
+ *   to clear it (otherwise untyped/excluded rows would be hidden with no way
+ *   back).
+ */
+export function resolveOtfClassTypeFilter(
+  selected: string | null,
+  available: readonly string[]
+): OtfClassTypeFilterState {
+  const effective = selected && available.includes(selected) ? selected : null
+  return { effective, visible: available.length > 1 || effective !== null }
+}
+
+/**
  * Filter sessions to those whose start falls within the inclusive
  * {@link DateRange}, preserving order (the dataset arrives ascending).
  */
