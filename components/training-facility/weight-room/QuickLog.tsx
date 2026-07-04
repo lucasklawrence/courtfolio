@@ -19,12 +19,27 @@ export interface QuickLogProps {
    */
   lastReps?: Readonly<Record<string, number | undefined>>
   /**
+   * Previously-logged variants per exercise (#254), most-recent first —
+   * populates each row's grip datalist so a repeat grip is one pick and
+   * a new grip is still typeable. Absent / empty for an exercise renders
+   * a plain free-text input with no suggestions.
+   */
+  variantSuggestions?: Readonly<Record<string, readonly string[] | undefined>>
+  /**
    * Async submit handler. Called once per logged set; the parent is
    * expected to POST to `/api/admin/weight-room/sets` and then refetch
    * its data so the rings + set list pick up the new row. Rejects
    * surface as an inline error message; resolves clear the message.
+   *
+   * `variant` carries the row's optional grip / width / tempo (#254),
+   * already trimmed; omitted / empty when the user didn't tag one. The
+   * write schema lowercases it, so callers don't need to normalize case.
    */
-  onLog: (entry: { exercise: string; reps: number }) => Promise<void>
+  onLog: (entry: {
+    exercise: string
+    reps: number
+    variant?: string
+  }) => Promise<void>
   /**
    * `false` while a parent action is in flight (e.g. another quick-log
    * still resolving). Disables every button so the form can't submit
@@ -58,17 +73,26 @@ export const DEFAULT_PRESETS: readonly number[] = [5, 10, 15, 20, 25] as const
 export function QuickLog({
   goals,
   lastReps = {},
+  variantSuggestions = {},
   onLog,
   busy = false,
 }: QuickLogProps): JSX.Element {
   const [error, setError] = useState<string | null>(null)
   const [pendingExercise, setPendingExercise] = useState<string | null>(null)
 
-  async function handleLog(exercise: string, reps: number): Promise<void> {
+  async function handleLog(
+    exercise: string,
+    reps: number,
+    variant?: string,
+  ): Promise<void> {
     setError(null)
     setPendingExercise(exercise)
     try {
-      await onLog({ exercise, reps })
+      // Trim here so the row's raw input state stays untouched but the
+      // parent never sees surrounding whitespace; empty → omit so an
+      // untagged set logs without a variant.
+      const trimmed = variant?.trim()
+      await onLog({ exercise, reps, ...(trimmed ? { variant: trimmed } : {}) })
     } catch (err) {
       setError(
         err instanceof Error ? err.message : `Couldn’t log ${reps} ${exercise}.`,
@@ -106,6 +130,7 @@ export function QuickLog({
             key={goal.exercise}
             goal={goal}
             lastReps={lastReps[goal.exercise]}
+            variantSuggestions={variantSuggestions[goal.exercise]}
             // Disable every row's chips while any request is in flight,
             // including the row that fired it — without this lock, a
             // second tap on the pending row before the POST returns
@@ -125,22 +150,31 @@ export function QuickLog({
 interface QuickLogRowProps {
   goal: ExerciseGoal
   lastReps: number | undefined
+  variantSuggestions: readonly string[] | undefined
   disabled: boolean
   pending: boolean
-  onLog: (exercise: string, reps: number) => Promise<void>
+  onLog: (exercise: string, reps: number, variant?: string) => Promise<void>
 }
 
 function QuickLogRow({
   goal,
   lastReps,
+  variantSuggestions,
   disabled,
   pending,
   onLog,
 }: QuickLogRowProps): JSX.Element {
   const customInputId = useId()
+  const variantListId = useId()
   const [customOpen, setCustomOpen] = useState<boolean>(false)
   const seedCustom = lastReps ?? DEFAULT_PRESETS[1]
   const [customValue, setCustomValue] = useState<string>(String(seedCustom))
+  // The grip/width/tempo attached to the *next* logged set (#254).
+  // Deliberately persists across taps within the row so a run of
+  // same-grip "grease the groove" sets is one tap each after typing the
+  // grip once; the user clears or edits it to switch grips. Empty logs
+  // without a variant, keeping the no-variant path a pure one-tap.
+  const [variant, setVariant] = useState<string>('')
 
   // Re-seed the Custom input whenever `lastReps` changes (e.g. after a
   // successful preset log + parent refetch). The row stays mounted across
@@ -152,15 +186,17 @@ function QuickLogRow({
     if (!customOpen) setCustomValue(String(seedCustom))
   }, [seedCustom, customOpen])
 
+  const suggestions = variantSuggestions ?? []
+
   async function handlePreset(reps: number): Promise<void> {
-    await onLog(goal.exercise, reps)
+    await onLog(goal.exercise, reps, variant)
   }
 
   async function handleCustomSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault()
     const reps = Number(customValue)
     if (!Number.isFinite(reps) || reps <= 0 || !Number.isInteger(reps)) return
-    await onLog(goal.exercise, reps)
+    await onLog(goal.exercise, reps, variant)
     setCustomOpen(false)
   }
 
@@ -206,6 +242,42 @@ function QuickLogRow({
           Custom
         </button>
       </div>
+      {/* Optional grip / width / tempo for the next logged set (#254).
+          Free-text with a datalist of this exercise's recent grips so a
+          repeat is one pick and a new grip is typeable. Persists across
+          taps; empty = untagged. A `list` pointing at an empty datalist
+          is harmless — the input just shows no suggestions. */}
+      <label className="mt-3 flex flex-wrap items-center gap-2 text-[12px] text-white/60">
+        <span className="font-mono uppercase tracking-[0.18em]">grip</span>
+        <input
+          type="text"
+          value={variant}
+          list={suggestions.length > 0 ? variantListId : undefined}
+          onChange={(e) => setVariant(e.target.value)}
+          disabled={disabled}
+          placeholder="optional"
+          aria-label={`Variant for ${goal.exercise} (optional)`}
+          data-testid={`quick-log-${goal.exercise}-variant`}
+          className="w-32 rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white placeholder:text-white/30 focus:border-amber-300/60 focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"
+        />
+        {variant.trim() ? (
+          <button
+            type="button"
+            disabled={disabled}
+            onClick={() => setVariant('')}
+            className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45 underline-offset-4 transition hover:text-white/70 disabled:opacity-40"
+          >
+            clear
+          </button>
+        ) : null}
+        {suggestions.length > 0 ? (
+          <datalist id={variantListId}>
+            {suggestions.map((s) => (
+              <option key={s} value={s} />
+            ))}
+          </datalist>
+        ) : null}
+      </label>
       {/* Form stays mounted so the Custom button's `aria-controls` always
           points to a real element. Toggling `hidden` removes it from the
           accessibility tree and the visual layout when closed; auto-focus

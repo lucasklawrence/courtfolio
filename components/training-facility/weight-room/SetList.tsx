@@ -182,6 +182,14 @@ export function SetList({
               <span className="font-mono text-base font-semibold tabular-nums text-white">
                 {s.reps}
               </span>
+              {s.variant ? (
+                <span
+                  data-testid={`set-row-variant-${s.id}`}
+                  className="rounded-full border border-white/15 bg-white/5 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/60"
+                >
+                  {s.variant}
+                </span>
+              ) : null}
               <span className="ml-auto font-mono text-[11px] tabular-nums text-white/55">
                 {formatTimeOfDay(s.logged_at)}
               </span>

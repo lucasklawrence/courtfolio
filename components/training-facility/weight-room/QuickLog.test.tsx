@@ -26,6 +26,64 @@ describe('QuickLog', () => {
     expect(onLog).toHaveBeenCalledWith({ exercise: 'pushups', reps: 10 })
   })
 
+  it('attaches a typed variant to a preset log (#254)', async () => {
+    const onLog = vi.fn().mockResolvedValue(undefined)
+    render(<QuickLog goals={[PULLUPS]} onLog={onLog} />)
+    await userEvent.type(
+      screen.getByTestId('quick-log-pullups-variant'),
+      'wide',
+    )
+    await userEvent.click(screen.getByTestId('quick-log-pullups-10'))
+    expect(onLog).toHaveBeenCalledWith({
+      exercise: 'pullups',
+      reps: 10,
+      variant: 'wide',
+    })
+  })
+
+  it('trims a variant and omits it entirely when blank', async () => {
+    const onLog = vi.fn().mockResolvedValue(undefined)
+    render(<QuickLog goals={[PULLUPS]} onLog={onLog} />)
+    // Whitespace-only stays untagged — the object must not carry a
+    // `variant` key at all so the write path logs it as unspecified.
+    await userEvent.type(screen.getByTestId('quick-log-pullups-variant'), '   ')
+    await userEvent.click(screen.getByTestId('quick-log-pullups-10'))
+    expect(onLog).toHaveBeenCalledWith({ exercise: 'pullups', reps: 10 })
+  })
+
+  it('reuses the same variant across a run of sets until changed', async () => {
+    const onLog = vi.fn().mockResolvedValue(undefined)
+    render(<QuickLog goals={[PULLUPS]} onLog={onLog} />)
+    await userEvent.type(screen.getByTestId('quick-log-pullups-variant'), 'close')
+    await userEvent.click(screen.getByTestId('quick-log-pullups-5'))
+    await userEvent.click(screen.getByTestId('quick-log-pullups-5'))
+    expect(onLog).toHaveBeenNthCalledWith(1, {
+      exercise: 'pullups',
+      reps: 5,
+      variant: 'close',
+    })
+    expect(onLog).toHaveBeenNthCalledWith(2, {
+      exercise: 'pullups',
+      reps: 5,
+      variant: 'close',
+    })
+  })
+
+  it('offers recent variants as datalist suggestions', () => {
+    render(
+      <QuickLog
+        goals={[PULLUPS]}
+        variantSuggestions={{ pullups: ['wide', 'close'] }}
+        onLog={vi.fn()}
+      />,
+    )
+    const input = screen.getByTestId('quick-log-pullups-variant')
+    const listId = input.getAttribute('list')
+    expect(listId).toBeTruthy()
+    const datalist = document.getElementById(listId as string)
+    expect(datalist?.querySelectorAll('option')).toHaveLength(2)
+  })
+
   it('renders a card for each goal', () => {
     render(<QuickLog goals={[PUSHUPS, PULLUPS]} onLog={vi.fn()} />)
     expect(screen.getByText('pushups')).toBeInTheDocument()
