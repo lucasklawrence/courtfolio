@@ -94,6 +94,67 @@ export function excludeInvalidOtfSessions(sessions: readonly OtfSession[]): OtfS
 }
 
 /**
+ * Canonical display order for the coarse auto-inferred class-type labels (#271).
+ *
+ * KEEP IN SYNC WITH the label constants in
+ * `scripts/lib/otbeat-class-type.mjs` (guarded by a drift test in
+ * `otf.test.ts`). Manual `class_type_override` values that aren't in this list
+ * (e.g. "2G", "Strength 50") sort after these, alphabetically, in
+ * {@link otfClassTypes}.
+ */
+export const OTF_CLASS_TYPE_ORDER: readonly string[] = [
+  'Tread + Row',
+  'Tread-focused',
+  'Row-focused',
+  'Strength / Floor',
+]
+
+/**
+ * The class type the view should treat a session as: the manual
+ * `class_type_override` when set, otherwise the auto-inferred `class_type`
+ * (#271). Blank/whitespace strings count as unset. `undefined` when the session
+ * has neither (e.g. a near-zero malfunction with no inferred type).
+ */
+export function effectiveOtfClassType(session: OtfSession): string | undefined {
+  const override = session.class_type_override?.trim()
+  if (override) return override
+  const auto = session.class_type?.trim()
+  return auto ? auto : undefined
+}
+
+/**
+ * Distinct effective class types present across the sessions, for the filter
+ * control's options. Known auto labels come first in {@link OTF_CLASS_TYPE_ORDER}
+ * order; any manual-override values not in that list follow, sorted
+ * alphabetically for a stable, session-order-independent result. Sessions with
+ * no effective type are omitted.
+ */
+export function otfClassTypes(sessions: readonly OtfSession[]): string[] {
+  const present = new Set<string>()
+  for (const s of sessions) {
+    const t = effectiveOtfClassType(s)
+    if (t) present.add(t)
+  }
+  const known = OTF_CLASS_TYPE_ORDER.filter(t => present.has(t))
+  const extras = [...present].filter(t => !OTF_CLASS_TYPE_ORDER.includes(t)).sort()
+  return [...known, ...extras]
+}
+
+/**
+ * Filter sessions to those whose {@link effectiveOtfClassType} equals
+ * `classType`, preserving order. A `null` `classType` is the "All" sentinel and
+ * returns every session (a fresh array). Composes with
+ * {@link filterOtfSessionsInRange} and {@link excludeInvalidOtfSessions}.
+ */
+export function filterOtfSessionsByClassType(
+  sessions: readonly OtfSession[],
+  classType: string | null
+): OtfSession[] {
+  if (!classType) return [...sessions]
+  return sessions.filter(s => effectiveOtfClassType(s) === classType)
+}
+
+/**
  * Filter sessions to those whose start falls within the inclusive
  * {@link DateRange}, preserving order (the dataset arrives ascending).
  */

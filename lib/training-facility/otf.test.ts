@@ -3,14 +3,24 @@ import { describe, expect, it } from 'vitest'
 import type { OtfSession } from '@/types/otf'
 
 import {
+  OTF_CLASS_TYPE_BOTH,
+  OTF_CLASS_TYPE_ROW,
+  OTF_CLASS_TYPE_STRENGTH,
+  OTF_CLASS_TYPE_TREAD,
+} from '../../scripts/lib/otbeat-class-type.mjs'
+import {
+  OTF_CLASS_TYPE_ORDER,
   aggregateOtfZoneMinutes,
   earliestOtfDate,
+  effectiveOtfClassType,
   excludeInvalidOtfSessions,
+  filterOtfSessionsByClassType,
   filterOtfSessionsInRange,
   formatMmss,
   formatOtfDate,
   mmssToSeconds,
   otfBlockTrend,
+  otfClassTypes,
   otfHighlights,
   otfMetricTrend,
   otfTrendEndpoints,
@@ -50,6 +60,90 @@ describe('excludeInvalidOtfSessions', () => {
   it('is a no-op when nothing is excluded', () => {
     const sessions = [mk('a'), mk('b')]
     expect(excludeInvalidOtfSessions(sessions)).toHaveLength(2)
+  })
+})
+
+describe('class-type helpers (#271)', () => {
+  it('OTF_CLASS_TYPE_ORDER stays in sync with the ingest label constants', () => {
+    // Drift guard: the display order and the .mjs classifier must name the same
+    // four auto labels (they live in two files — see the KEEP IN SYNC notes).
+    expect([...OTF_CLASS_TYPE_ORDER].sort()).toEqual(
+      [
+        OTF_CLASS_TYPE_BOTH,
+        OTF_CLASS_TYPE_TREAD,
+        OTF_CLASS_TYPE_ROW,
+        OTF_CLASS_TYPE_STRENGTH,
+      ].sort()
+    )
+  })
+
+  describe('effectiveOtfClassType', () => {
+    it('prefers a manual override over the inferred class_type', () => {
+      expect(effectiveOtfClassType(mk('a', { class_type: 'Tread + Row', class_type_override: '2G' }))).toBe(
+        '2G'
+      )
+    })
+
+    it('falls back to class_type when there is no override', () => {
+      expect(effectiveOtfClassType(mk('a', { class_type: 'Tread-focused' }))).toBe('Tread-focused')
+    })
+
+    it('treats a blank override as unset', () => {
+      expect(
+        effectiveOtfClassType(mk('a', { class_type: 'Row-focused', class_type_override: '  ' }))
+      ).toBe('Row-focused')
+    })
+
+    it('is undefined when the session has neither', () => {
+      expect(effectiveOtfClassType(mk('a'))).toBeUndefined()
+    })
+  })
+
+  describe('otfClassTypes', () => {
+    it('lists distinct effective types, known labels first then extras alphabetically', () => {
+      const sessions = [
+        mk('a', { class_type: 'Row-focused' }),
+        mk('b', { class_type: 'Tread + Row' }),
+        mk('c', { class_type: 'Tread + Row' }), // duplicate collapses
+        mk('d', { class_type: 'Tread-focused' }),
+        mk('e', { class_type: 'Tread + Row', class_type_override: 'Strength 50' }), // manual extra
+        mk('f'), // no type → omitted
+      ]
+      expect(otfClassTypes(sessions)).toEqual([
+        'Tread + Row',
+        'Tread-focused',
+        'Row-focused',
+        'Strength 50',
+      ])
+    })
+
+    it('returns an empty list when no session has a type', () => {
+      expect(otfClassTypes([mk('a'), mk('b')])).toEqual([])
+    })
+  })
+
+  describe('filterOtfSessionsByClassType', () => {
+    const sessions = [
+      mk('a', { class_type: 'Tread + Row' }),
+      mk('b', { class_type: 'Row-focused' }),
+      mk('c', { class_type: 'Tread + Row', class_type_override: '2G' }), // effective = '2G'
+    ]
+
+    it('keeps only sessions whose effective type matches', () => {
+      expect(filterOtfSessionsByClassType(sessions, 'Tread + Row').map(s => s.started_at)).toEqual([
+        'a',
+      ])
+    })
+
+    it('matches on the override, not the inferred label', () => {
+      expect(filterOtfSessionsByClassType(sessions, '2G').map(s => s.started_at)).toEqual(['c'])
+    })
+
+    it('returns every session (a fresh array) for the null "All" sentinel', () => {
+      const result = filterOtfSessionsByClassType(sessions, null)
+      expect(result).toHaveLength(3)
+      expect(result).not.toBe(sessions)
+    })
   })
 })
 

@@ -130,6 +130,42 @@ describe('recordToRow', () => {
     expect(row.excluded).toBe(false)
     expect(row.excluded_reason).toBeNull()
   })
+
+  it('infers class_type from the machine signature and never writes class_type_override (#271)', () => {
+    // Both blocks, tread 11:24 (684s) > rower 7:58 (478s) → 'Tread + Row'.
+    const row = recordToRow(
+      {
+        ...bareRecord('06/27/2026', '9:30AM'),
+        calories: 776,
+        splat: 15,
+        treadmill: { distance_mi: 1.09, time: '11:24' },
+        rower: { distance_m: 2509, time: '7:58' },
+      },
+      TZ
+    )
+    expect(row.class_type).toBe('Tread + Row')
+    // The override column is manual-only; the append-only importer must never
+    // set it (else a re-pull would clobber a human edit).
+    expect(row.class_type_override).toBeUndefined()
+  })
+
+  it('labels a tread-only class Tread-focused', () => {
+    const row = recordToRow(
+      {
+        ...bareRecord('05/07/2026', '9:30AM'),
+        calories: 692,
+        splat: 15,
+        treadmill: { distance_mi: 2.4, time: '26:13' },
+      },
+      TZ
+    )
+    expect(row.class_type).toBe('Tread-focused')
+  })
+
+  it('leaves class_type null for the belt-malfunction shape', () => {
+    const row = recordToRow({ ...bareRecord('05/30/2026', '9:30AM'), calories: 4, splat: 0 }, TZ)
+    expect(row.class_type).toBeNull()
+  })
 })
 
 /**

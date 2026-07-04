@@ -26,7 +26,7 @@ const SESSIONS_TABLE = 'otf_sessions'
 const SESSIONS_COLUMNS =
   'started_at, coach, studio, calories, splat, steps, avg_hr, peak_hr, ' +
   'zone_gray_min, zone_blue_min, zone_green_min, zone_orange_min, zone_red_min, ' +
-  'treadmill, rower, excluded, excluded_reason, updated_at'
+  'treadmill, rower, excluded, excluded_reason, class_type, class_type_override, updated_at'
 
 /** Array form of {@link OtfSessionRowSchema} for validating the full read. */
 const OtfSessionRowsSchema = z.array(OtfSessionRowSchema)

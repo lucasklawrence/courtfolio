@@ -61,6 +61,15 @@ describe('OtfSessionRowSchema', () => {
     })
     expect(parsed.success).toBe(true)
   })
+
+  it('accepts class_type + class_type_override (#271)', () => {
+    const parsed = OtfSessionRowSchema.safeParse({
+      started_at: '2026-06-27T16:30:00+00:00',
+      class_type: 'Tread + Row',
+      class_type_override: '2G',
+    })
+    expect(parsed.success).toBe(true)
+  })
 })
 
 describe('otfRowToSession', () => {
@@ -109,5 +118,21 @@ describe('otfRowToSession', () => {
     const session = otfRowToSession({ started_at: '2026-06-27T16:30:00+00:00' })
     expect(session).not.toHaveProperty('excluded')
     expect(session).not.toHaveProperty('excluded_reason')
+  })
+
+  it('passes class_type + class_type_override through (#271)', () => {
+    const session = otfRowToSession({
+      started_at: '2026-06-27T16:30:00+00:00',
+      class_type: 'Tread + Row',
+      class_type_override: '2G',
+    })
+    expect(session.class_type).toBe('Tread + Row')
+    expect(session.class_type_override).toBe('2G')
+  })
+
+  it('omits class_type / class_type_override when absent', () => {
+    const session = otfRowToSession({ started_at: '2026-06-27T16:30:00+00:00' })
+    expect(session).not.toHaveProperty('class_type')
+    expect(session).not.toHaveProperty('class_type_override')
   })
 })
