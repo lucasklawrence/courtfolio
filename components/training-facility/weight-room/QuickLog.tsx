@@ -57,6 +57,31 @@ export interface QuickLogProps {
 export const DEFAULT_PRESETS: readonly number[] = [5, 10, 15, 20, 25] as const
 
 /**
+ * Curated grip / variant quick-picks per exercise (#254 follow-up),
+ * keyed by lowercased exercise name. These pre-populate the QuickLog
+ * grip dropdown so the common grips are a one-tap pick and the spelling
+ * stays canonical — a curated `chin-up` can't fork into a mistyped
+ * `chinup` bucket in the History breakdown. Values are already lowercase
+ * to match the write-side normalization ({@link variantWriteField}).
+ *
+ * Exercises absent here aren't locked out: their dropdown is built from
+ * whatever grips they've already been logged with (DB-seen recents),
+ * and every exercise always gets the `Custom…` free-text escape for a
+ * brand-new grip.
+ */
+export const GRIP_OPTIONS: Readonly<Record<string, readonly string[]>> = {
+  pullups: ['wide', 'close', 'neutral', 'chin-up'],
+  pushups: ['standard', 'wide', 'diamond', 'military', 'shoulder'],
+}
+
+/**
+ * Sentinel `<option>` value for the grip dropdown's "Custom…" choice —
+ * selecting it reveals the free-text input. A `__`-fenced string no real
+ * lowercased variant can collide with.
+ */
+const CUSTOM_GRIP = '__custom__'
+
+/**
  * Quick-log control for the Today View (#80). Renders one card per
  * goal with a row of preset chips (`+5 / +10 / …`) and a "Custom"
  * affordance that opens a numeric input. Hits the issue's "2 taps
@@ -171,10 +196,12 @@ function QuickLogRow({
   const [customValue, setCustomValue] = useState<string>(String(seedCustom))
   // The grip/width/tempo attached to the *next* logged set (#254).
   // Deliberately persists across taps within the row so a run of
-  // same-grip "grease the groove" sets is one tap each after typing the
-  // grip once; the user clears or edits it to switch grips. Empty logs
+  // same-grip "grease the groove" sets is one tap each after picking the
+  // grip once; the user clears or reselects to switch grips. Empty logs
   // without a variant, keeping the no-variant path a pure one-tap.
   const [variant, setVariant] = useState<string>('')
+  // Whether the grip dropdown's "Custom…" free-text input is showing.
+  const [gripCustomOpen, setGripCustomOpen] = useState<boolean>(false)
 
   // Re-seed the Custom input whenever `lastReps` changes (e.g. after a
   // successful preset log + parent refetch). The row stays mounted across
@@ -186,7 +213,34 @@ function QuickLogRow({
     if (!customOpen) setCustomValue(String(seedCustom))
   }, [seedCustom, customOpen])
 
-  const suggestions = variantSuggestions ?? []
+  // Grip dropdown options: this exercise's curated quick-picks first,
+  // then any DB-seen grips not already curated. A unified <select> for
+  // every exercise means shrugs (and any new movement) can pick from the
+  // grips it's already been logged with — not just free-text — while
+  // pull-ups / push-ups lead with their canonical list.
+  const recents = variantSuggestions ?? []
+  const curated = GRIP_OPTIONS[goal.exercise.toLowerCase()] ?? []
+  const gripOptions = [...curated, ...recents.filter((r) => !curated.includes(r))]
+  // Reveal the free-text input when Custom… is chosen, or when the
+  // current variant isn't a listed option (e.g. a legacy value) so it
+  // stays editable instead of being silently dropped by the <select>.
+  const variantIsListed = variant === '' || gripOptions.includes(variant)
+  const showGripCustom = gripCustomOpen || !variantIsListed
+  const gripSelectValue = showGripCustom ? CUSTOM_GRIP : variant
+
+  function handleGripSelect(value: string): void {
+    if (value === CUSTOM_GRIP) {
+      setGripCustomOpen(true)
+    } else {
+      setGripCustomOpen(false)
+      setVariant(value)
+    }
+  }
+
+  function clearGrip(): void {
+    setGripCustomOpen(false)
+    setVariant('')
+  }
 
   async function handlePreset(reps: number): Promise<void> {
     await onLog(goal.exercise, reps, variant)
@@ -243,37 +297,55 @@ function QuickLogRow({
         </button>
       </div>
       {/* Optional grip / width / tempo for the next logged set (#254).
-          Free-text with a datalist of this exercise's recent grips so a
-          repeat is one pick and a new grip is typeable. Persists across
-          taps; empty = untagged. A `list` pointing at an empty datalist
-          is harmless — the input just shows no suggestions. */}
+          A dropdown of curated + previously-seen grips, plus a Custom…
+          escape that reveals a free-text input (with a recents datalist)
+          for a brand-new grip. Persists across taps; "no grip" = untagged
+          and keeps the common path a pure one-tap. */}
       <label className="mt-3 flex flex-wrap items-center gap-2 text-[12px] text-white/60">
         <span className="font-mono uppercase tracking-[0.18em]">grip</span>
-        <input
-          type="text"
-          value={variant}
-          list={suggestions.length > 0 ? variantListId : undefined}
-          onChange={(e) => setVariant(e.target.value)}
+        <select
+          value={gripSelectValue}
+          onChange={(e) => handleGripSelect(e.target.value)}
           disabled={disabled}
-          placeholder="optional"
-          aria-label={`Variant for ${goal.exercise} (optional)`}
-          data-testid={`quick-log-${goal.exercise}-variant`}
-          className="w-32 rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white placeholder:text-white/30 focus:border-amber-300/60 focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"
-        />
-        {variant.trim() ? (
+          aria-label={`Grip for ${goal.exercise} (optional)`}
+          data-testid={`quick-log-${goal.exercise}-grip`}
+          className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          <option value="">no grip</option>
+          {gripOptions.map((g) => (
+            <option key={g} value={g}>
+              {g}
+            </option>
+          ))}
+          <option value={CUSTOM_GRIP}>Custom…</option>
+        </select>
+        {showGripCustom ? (
+          <input
+            type="text"
+            value={variant}
+            list={gripOptions.length > 0 ? variantListId : undefined}
+            onChange={(e) => setVariant(e.target.value)}
+            disabled={disabled}
+            placeholder="type a grip"
+            aria-label={`Custom grip for ${goal.exercise}`}
+            data-testid={`quick-log-${goal.exercise}-variant`}
+            className="w-32 rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white placeholder:text-white/30 focus:border-amber-300/60 focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"
+          />
+        ) : null}
+        {variant.trim() || gripCustomOpen ? (
           <button
             type="button"
             disabled={disabled}
-            onClick={() => setVariant('')}
+            onClick={clearGrip}
             className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45 underline-offset-4 transition hover:text-white/70 disabled:opacity-40"
           >
             clear
           </button>
         ) : null}
-        {suggestions.length > 0 ? (
+        {gripOptions.length > 0 ? (
           <datalist id={variantListId}>
-            {suggestions.map((s) => (
-              <option key={s} value={s} />
+            {gripOptions.map((g) => (
+              <option key={g} value={g} />
             ))}
           </datalist>
         ) : null}
