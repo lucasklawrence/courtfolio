@@ -2,10 +2,14 @@ name: OTbeat ingest
 
 on:
   schedule:
-    # Mondays 14:00 UTC (~7am Pacific). The import's 8-day lookback window is
-    # wider than this weekly cadence, so a missed/failed run self-heals on the
-    # next one without gaps or duplicates (append-only, dedupe by started_at).
-    - cron: '0 14 * * 1'
+    # Daily 07:00 UTC (~midnight Pacific): the evening's classes have already
+    # emailed their OTbeat summaries, and life's gym-visits republisher runs at
+    # 08:00 UTC -- one hour later -- so a class reaches the telemetry warehouse
+    # (and the fitness dashboard's pace stat) the same night, instead of up to
+    # a week later on the old Monday-weekly cadence (life#221). The import's
+    # 8-day lookback dwarfs the daily cadence, so missed/failed runs self-heal
+    # without gaps or duplicates (append-only, dedupe by started_at).
+    - cron: '0 7 * * *'
   # Manual trigger for the first run and ad-hoc catch-ups.
   workflow_dispatch: {}
 
