@@ -458,13 +458,19 @@ function ClassTypeFilter({
       <span className="mr-1 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/45">
         Class type
       </span>
-      <button type="button" onClick={() => onChange(null)} className={pill(value === null)}>
+      <button
+        type="button"
+        aria-pressed={value === null}
+        onClick={() => onChange(null)}
+        className={pill(value === null)}
+      >
         All
       </button>
       {options.map(opt => (
         <button
           key={opt}
           type="button"
+          aria-pressed={value === opt}
           onClick={() => onChange(opt)}
           className={pill(value === opt)}
         >

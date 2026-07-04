@@ -145,14 +145,19 @@ describe('OtfDetailView', () => {
     // All three classes present before filtering.
     expect(screen.getByText('Row Coach')).toBeInTheDocument()
     expect(screen.getByText('Tread Coach')).toBeInTheDocument()
+    // "All" starts pressed (unfiltered); the type pills do not.
+    expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'true')
     // Pick the Tread-focused pill (a button — disambiguates from the Type cell).
     fireEvent.click(screen.getByRole('button', { name: 'Tread-focused' }))
     // Only the tread-only class stays in the log…
     expect(screen.getByText('Tread Coach')).toBeInTheDocument()
     expect(screen.queryByText('Mara Magistad')).not.toBeInTheDocument()
     expect(screen.queryByText('Row Coach')).not.toBeInTheDocument()
-    // …and the aggregates follow: 1 class in range.
+    // …the aggregates follow: 1 class in range…
     expect(screen.getByText(/1 in range/)).toBeInTheDocument()
+    // …and the selected state is exposed to assistive tech.
+    expect(screen.getByRole('button', { name: 'Tread-focused', pressed: true })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'false')
   })
 
   it('marks a manual class-type override in the log (#271)', async () => {
