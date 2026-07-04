@@ -124,4 +124,27 @@ describe('POST /api/admin/weight-room/sets', () => {
       expect.objectContaining({ exercise: 'pushups', reps: 25, logged_at: expect.any(String) }),
     )
   })
+
+  it('threads a lowercased/trimmed variant into the insert (#254)', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    insertMock.mockResolvedValueOnce({ data: { id: 'x' }, error: null })
+    const res = await POST(
+      makeRequest({ exercise: 'pullups', reps: 5, variant: '  Wide  ' }) as never,
+    )
+    expect(res.status).toBe(201)
+    expect(supabaseChain.insert).toHaveBeenCalledWith(
+      expect.objectContaining({ exercise: 'pullups', reps: 5, variant: 'wide' }),
+    )
+  })
+
+  it('omits the variant column entirely when none is supplied (#254)', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    insertMock.mockResolvedValueOnce({ data: { id: 'x' }, error: null })
+    const res = await POST(makeRequest({ exercise: 'pushups', reps: 25 }) as never)
+    expect(res.status).toBe(201)
+    // An untagged set must not send `variant` so the DB keeps its null
+    // default — not an empty-string bucket.
+    const insertArg = supabaseChain.insert.mock.calls[0][0]
+    expect('variant' in insertArg).toBe(false)
+  })
 })
