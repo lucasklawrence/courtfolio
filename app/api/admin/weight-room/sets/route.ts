@@ -65,6 +65,12 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     exercise: entry.exercise,
     reps: entry.reps,
     logged_at: entry.logged_at ?? new Date().toISOString(),
+    // Only send `variant` when the writer supplied one (#254). The
+    // schema normalizes empty / whitespace / null to `undefined`, so an
+    // omitted grip leaves the column at its `null` DB default rather
+    // than writing an empty-string bucket the History View would have
+    // to special-case.
+    ...(entry.variant != null ? { variant: entry.variant } : {}),
   }
   const { data, error } = await supabase
     .from('weight_room_sets')

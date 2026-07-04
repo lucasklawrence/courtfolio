@@ -83,6 +83,79 @@ export function totalsByExercise(
 }
 
 /**
+ * One variant's slice of an exercise's volume (#254) — how much of the
+ * total came from sets tagged with this grip / width / tempo. Feeds the
+ * History View's per-exercise variant breakdown.
+ */
+export interface VariantSlice {
+  /**
+   * The variant label as stored (already lowercased on write), or
+   * `null` for the "unspecified" bucket (sets logged without a variant).
+   */
+  variant: string | null
+  /** Total reps across every set in this slice. */
+  reps: number
+  /** Number of logged sets in this slice. */
+  sets: number
+  /**
+   * Fraction of the exercise's total reps this slice represents, in
+   * `[0, 1]`. Shares across an exercise's slices sum to 1 (barring float
+   * rounding); `0` when the exercise logged no reps.
+   */
+  share: number
+}
+
+/**
+ * Break a slice of sets down by variant (#254) — per-variant rep and
+ * set counts plus each variant's share of total reps. Sets logged
+ * without a variant collapse into a single `null` "unspecified" slice.
+ *
+ * This is a *view* of the same sets that roll up into the exercise's
+ * daily ring: summing `reps` across the returned slices equals the
+ * input's rep total, so the breakdown can never disagree with the ring.
+ * Callers pre-filter to one exercise (and usually one window) so the
+ * shares are meaningful — mixing exercises would compute shares against
+ * a cross-exercise total.
+ *
+ * @param sets Sets to break down, already filtered to one exercise.
+ * @returns Slices sorted by reps descending; ties broken by variant
+ *   name with the `null` unspecified bucket sorted last. Empty when
+ *   `sets` is empty.
+ */
+export function variantBreakdown(sets: readonly StrengthSet[]): VariantSlice[] {
+  const buckets = new Map<string | null, { reps: number; sets: number }>()
+  let totalReps = 0
+  for (const s of sets) {
+    const key = s.variant ?? null
+    const bucket = buckets.get(key) ?? { reps: 0, sets: 0 }
+    bucket.reps += s.reps
+    bucket.sets += 1
+    buckets.set(key, bucket)
+    totalReps += s.reps
+  }
+
+  const slices: VariantSlice[] = []
+  for (const [variant, { reps, sets: setCount }] of buckets) {
+    slices.push({
+      variant,
+      reps,
+      sets: setCount,
+      share: totalReps > 0 ? reps / totalReps : 0,
+    })
+  }
+
+  slices.sort((a, b) => {
+    if (b.reps !== a.reps) return b.reps - a.reps
+    // Unspecified sorts after any named variant on a rep tie so the
+    // breakdown reads "wide, close, …, unspecified".
+    if (a.variant === null) return 1
+    if (b.variant === null) return -1
+    return a.variant.localeCompare(b.variant)
+  })
+  return slices
+}
+
+/**
  * Fraction of `goal.daily_target` that today's reps cover. Returned
  * unclamped — callers that animate a ring usually `Math.min(1, …)` the
  * stroke offset, but the center-text "75 / 100" surface keeps the raw

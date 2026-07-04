@@ -27,7 +27,7 @@ const GOALS_TABLE = 'weight_room_goals'
 const FOCUS_TABLE = 'weight_room_monthly_focus'
 
 /** Whitelisted column lists for each table; `updated_at` rides along for `imported_at` computation. */
-const SETS_COLUMNS = 'id, logged_at, exercise, reps, weight_lbs, updated_at'
+const SETS_COLUMNS = 'id, logged_at, exercise, reps, weight_lbs, variant, updated_at'
 const GOALS_COLUMNS = 'exercise, daily_target, color, kind, updated_at'
 const FOCUS_COLUMNS =
   'id, exercise, daily_target, target_kind, color, start_date, end_date, updated_at'
