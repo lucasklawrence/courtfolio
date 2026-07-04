@@ -24,6 +24,7 @@ import {
   otfHighlights,
   otfMetricTrend,
   otfTrendEndpoints,
+  resolveOtfClassTypeFilter,
   type OtfTrendPoint,
 } from './otf'
 
@@ -119,6 +120,57 @@ describe('class-type helpers (#271)', () => {
 
     it('returns an empty list when no session has a type', () => {
       expect(otfClassTypes([mk('a'), mk('b')])).toEqual([])
+    })
+  })
+
+  describe('resolveOtfClassTypeFilter', () => {
+    it('keeps a valid selection and shows the control when there is a real choice', () => {
+      expect(resolveOtfClassTypeFilter('Tread + Row', ['Tread + Row', 'Row-focused'])).toEqual({
+        effective: 'Tread + Row',
+        visible: true,
+      })
+    })
+
+    it('stays visible when the window narrows to the single active type (clearable)', () => {
+      // codex #275: without this the control vanishes with no "All" to clear it,
+      // hiding untyped/excluded rows the log should keep showing.
+      expect(resolveOtfClassTypeFilter('Tread + Row', ['Tread + Row'])).toEqual({
+        effective: 'Tread + Row',
+        visible: true,
+      })
+    })
+
+    it('falls back to null the same render the selection leaves the window', () => {
+      // CodeRabbit #275: filtering must not use a stale type for a frame.
+      expect(resolveOtfClassTypeFilter('Row-focused', ['Tread + Row', 'Tread-focused'])).toEqual({
+        effective: null,
+        visible: true,
+      })
+    })
+
+    it('hides the control with a single option and no active filter', () => {
+      expect(resolveOtfClassTypeFilter(null, ['Tread + Row'])).toEqual({
+        effective: null,
+        visible: false,
+      })
+    })
+
+    it('hides the control when a dropped selection leaves only one option', () => {
+      expect(resolveOtfClassTypeFilter('Row-focused', ['Tread + Row'])).toEqual({
+        effective: null,
+        visible: false,
+      })
+      expect(resolveOtfClassTypeFilter('Row-focused', [])).toEqual({
+        effective: null,
+        visible: false,
+      })
+    })
+
+    it('shows the control with 2+ options even when nothing is selected', () => {
+      expect(resolveOtfClassTypeFilter(null, ['Tread + Row', 'Row-focused'])).toEqual({
+        effective: null,
+        visible: true,
+      })
     })
   })
 

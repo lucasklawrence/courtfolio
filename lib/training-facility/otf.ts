@@ -154,6 +154,42 @@ export function filterOtfSessionsByClassType(
   return sessions.filter(s => effectiveOtfClassType(s) === classType)
 }
 
+/** Resolved state of the class-type filter for one render. */
+export interface OtfClassTypeFilterState {
+  /**
+   * The class type actually applied this render: the user's `selected` value
+   * when it's still among the `available` options, else `null` ("All"). Derived
+   * synchronously so filtering never lags behind a window change by a render.
+   */
+  effective: string | null
+  /**
+   * Whether the filter control should render — either there's a real choice
+   * (2+ options) or a filter is active and needs a reachable "All" to clear it.
+   */
+  visible: boolean
+}
+
+/**
+ * Reconcile the class-type filter's stored `selected` value against the types
+ * currently `available` in the window (#271).
+ *
+ * Two failure modes this closes:
+ * - **Stale render:** when `selected` just left `available`, `effective` falls
+ *   back to `null` immediately, so the log/aggregates don't render empty for a
+ *   frame while a reset effect catches up.
+ * - **Unclearable filter:** when the window narrows to a single type that's the
+ *   active selection, `visible` stays `true` so the "All" button is still there
+ *   to clear it (otherwise untyped/excluded rows would be hidden with no way
+ *   back).
+ */
+export function resolveOtfClassTypeFilter(
+  selected: string | null,
+  available: readonly string[]
+): OtfClassTypeFilterState {
+  const effective = selected && available.includes(selected) ? selected : null
+  return { effective, visible: available.length > 1 || effective !== null }
+}
+
 /**
  * Filter sessions to those whose start falls within the inclusive
  * {@link DateRange}, preserving order (the dataset arrives ascending).

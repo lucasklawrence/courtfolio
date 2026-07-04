@@ -28,6 +28,7 @@ import {
   otfClassTypes,
   otfHighlights,
   otfMetricTrend,
+  resolveOtfClassTypeFilter,
   type OtfTrendPoint,
 } from '@/lib/training-facility/otf'
 import type { OtfData, OtfRower, OtfSession, OtfTreadmill } from '@/types/otf'
@@ -126,8 +127,17 @@ export function OtfDetailView(): JSX.Element {
   // before the class filter so every option stays reachable.
   const availableClassTypes = useMemo(() => otfClassTypes(rangeSessions), [rangeSessions])
 
-  // Reset the class filter when the selected type leaves the window (e.g. the
-  // date range narrowed past it) so we don't get stuck showing nothing.
+  // Reconcile the stored selection against the window synchronously: `effective`
+  // is what actually filters this render (never a stale value), `visible` keeps
+  // the control — and its "All" clear button — reachable while a filter is on.
+  const { effective: effectiveClassType, visible: showClassTypeFilter } = useMemo(
+    () => resolveOtfClassTypeFilter(classType, availableClassTypes),
+    [classType, availableClassTypes]
+  )
+
+  // Tidy the stored state when the selection leaves the window (e.g. the range
+  // narrowed past it) so a later widen doesn't silently resurrect the filter.
+  // `effectiveClassType` already prevents a stale-render flicker meanwhile.
   useEffect(() => {
     if (classType && !availableClassTypes.includes(classType)) setClassType(null)
   }, [classType, availableClassTypes])
@@ -135,8 +145,8 @@ export function OtfDetailView(): JSX.Element {
   // Apply the class-type filter on top of the date range; this scoped set feeds
   // both the log and (after exclusion) every aggregate.
   const sessions = useMemo(
-    () => filterOtfSessionsByClassType(rangeSessions, classType),
-    [rangeSessions, classType]
+    () => filterOtfSessionsByClassType(rangeSessions, effectiveClassType),
+    [rangeSessions, effectiveClassType]
   )
   // Aggregates, trends, sparklines, and highlights run over the *active*
   // sessions only — invalid/anomalous classes (e.g. an equipment malfunction,
@@ -252,10 +262,10 @@ export function OtfDetailView(): JSX.Element {
           />
         </div>
 
-        {availableClassTypes.length > 1 && (
+        {showClassTypeFilter && (
           <ClassTypeFilter
             options={availableClassTypes}
-            value={classType}
+            value={effectiveClassType}
             onChange={setClassType}
           />
         )}
