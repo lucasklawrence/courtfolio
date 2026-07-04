@@ -144,7 +144,8 @@ describe('POST /api/admin/weight-room/sets', () => {
     expect(res.status).toBe(201)
     // An untagged set must not send `variant` so the DB keeps its null
     // default — not an empty-string bucket.
-    const insertArg = supabaseChain.insert.mock.calls[0][0]
-    expect('variant' in insertArg).toBe(false)
+    expect(supabaseChain.insert).toHaveBeenCalledWith(
+      expect.not.objectContaining({ variant: expect.anything() }),
+    )
   })
 })
