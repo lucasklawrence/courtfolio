@@ -27,6 +27,7 @@ import {
   otfBlockTrend,
   otfClassTypes,
   otfHighlights,
+  otfLinearRegression,
   otfMetricTrend,
   resolveOtfClassTypeFilter,
   type OtfTrendPoint,
@@ -498,6 +499,10 @@ function OtfTrendChart({
   /** Optional y-axis tick formatter (e.g. `formatMmss` for pace/split). Defaults to whole numbers. */
   yTickFormat?: (value: number) => string
 }): JSX.Element {
+  // Least-squares trend line drawn as a dashed overlay — the "am I improving?"
+  // read. `null` (fewer than two classes, or all on one day) hides it.
+  const regression = otfLinearRegression(data)
+  const overlay = regression?.points.map(p => ({ x: p.date, y: p.value }))
   return (
     <RoughLine<OtfTrendPoint>
       data={data}
@@ -509,6 +514,7 @@ function OtfTrendChart({
       fontFamily={FONT_FAMILY}
       yLabel={yLabel}
       yTickFormat={yTickFormat ?? (v => `${Math.round(v)}`)}
+      overlay={overlay}
       ariaLabel={ariaLabel}
       emptyMessage={emptyMessage}
     />

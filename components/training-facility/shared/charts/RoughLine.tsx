@@ -15,6 +15,19 @@ export interface RoughLineProps<T> extends ChartCommonProps {
   /** Render a small rough dot at each data point. */
   showDots?: boolean
   dotRadius?: number
+  /**
+   * Optional secondary line drawn over the data line (but under the dots) as a
+   * crisp dashed path — e.g. a regression or rolling-average trend. Its x-type
+   * must match the data's (`number` or `Date`); its points are folded into the
+   * axis extents so it never clips. Fewer than two points renders nothing.
+   */
+  overlay?: { x: number | Date; y: number }[]
+  /** Overlay line color. Defaults to a muted ink so the data line stays dominant. */
+  overlayStroke?: string
+  /** Overlay stroke width. Defaults to 1.5. */
+  overlayStrokeWidth?: number
+  /** Overlay `stroke-dasharray`. Defaults to `'6 4'` — reads as "computed". */
+  overlayDash?: string
   xLabel?: string
   yLabel?: string
   xTickCount?: number
@@ -38,6 +51,10 @@ export function RoughLine<T>({
   strokeWidth = 2,
   showDots = true,
   dotRadius = 4,
+  overlay,
+  overlayStroke = chartPalette.inkSoft,
+  overlayStrokeWidth = 1.5,
+  overlayDash = '6 4',
   roughness = 1.4,
   seed = 1,
   fontFamily = 'inherit',
@@ -73,6 +90,8 @@ export function RoughLine<T>({
 
   const xValues = data.map(x)
   const yValues = data.map(y)
+  const overlayXValues = overlay?.map((d) => d.x) ?? []
+  const overlayYValues = overlay?.map((d) => d.y) ?? []
   const usingTime = isDateValue(xValues[0])
 
   // Each branch keeps its scale fully typed, so the rest of the function
@@ -82,7 +101,8 @@ export function RoughLine<T>({
   let xTicks: AxisTick[]
   if (usingTime) {
     const dateValues = xValues as Date[]
-    const [tMin, tMax] = extent(dateValues.map((d) => d.getTime()))
+    const overlayTimes = (overlayXValues as Date[]).map((d) => d.getTime())
+    const [tMin, tMax] = extent([...dateValues.map((d) => d.getTime()), ...overlayTimes])
     const timeScale: ScaleTime<number, number> = scaleTime()
       .domain([new Date(tMin), new Date(tMax)])
       .range([0, innerW])
@@ -94,7 +114,7 @@ export function RoughLine<T>({
       offset: timeScale(tick),
     }))
   } else {
-    const [xMin, xMax] = extent(xValues as number[])
+    const [xMin, xMax] = extent([...(xValues as number[]), ...(overlayXValues as number[])])
     const linearScale: ScaleLinear<number, number> = scaleLinear()
       .domain([xMin, xMax])
       .range([0, innerW])
@@ -105,7 +125,7 @@ export function RoughLine<T>({
     }))
   }
 
-  const [yMin, yMax] = extent(yValues)
+  const [yMin, yMax] = extent([...yValues, ...overlayYValues])
   const yPad = (yMax - yMin) * 0.1 || 1
   const yScale = scaleLinear()
     .domain([yMin - yPad, yMax + yPad])
@@ -113,6 +133,8 @@ export function RoughLine<T>({
     .range([innerH, 0])
 
   const points: [number, number][] = data.map((d) => [scaleX(x(d)), yScale(y(d))])
+  const overlayPoints: [number, number][] =
+    overlay?.map((d) => [scaleX(d.x), yScale(d.y)]) ?? []
 
   const gen = getGenerator()
   const linePath = gen.linearPath(points, { stroke, strokeWidth, roughness, seed })
@@ -168,6 +190,20 @@ export function RoughLine<T>({
             strokeLinejoin="round"
           />
         ))}
+        {overlayPoints.length >= 2 && (
+          <path
+            data-testid="rough-line-overlay"
+            d={overlayPoints
+              .map(([px, py], i) => `${i === 0 ? 'M' : 'L'}${px},${py}`)
+              .join(' ')}
+            stroke={overlayStroke}
+            strokeWidth={overlayStrokeWidth}
+            strokeDasharray={overlayDash}
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        )}
         {showDots &&
           points.map(([px, py], i) => {
             const dot = gen.circle(px, py, dotRadius * 2, {
