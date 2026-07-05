@@ -30,14 +30,28 @@ const CARDIO_METRICS = Object.keys(CARDIO_METRIC_TABLES) as [
   ...CardioMetric[],
 ]
 
-const CardioTrendUpsertSchema = z.object({
-  /** ISO date string (YYYY-MM-DD). */
-  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  /** Metric type — one of the {@link CARDIO_METRIC_TABLES} keys. */
-  metric: z.enum(CARDIO_METRICS),
-  /** Numeric value (units depend on metric). */
-  value: z.number().nonnegative(),
-})
+/**
+ * Metrics whose DB CHECK is `value > 0` (a 0 reading is implausible). The
+ * volume metrics — steps, sleep, active_energy — allow 0 (a true rest day).
+ * Mirrors the per-metric constraints in `lib/schemas/cardio-sync.ts` so a
+ * 0 for a strictly-positive metric fails here with a clean 400 rather than
+ * tripping the DB CHECK and surfacing as a 500.
+ */
+const POSITIVE_METRICS = new Set<CardioMetric>(['hrv', 'walking_hr', 'body_mass'])
+
+const CardioTrendUpsertSchema = z
+  .object({
+    /** ISO date string (YYYY-MM-DD). */
+    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    /** Metric type — one of the {@link CARDIO_METRIC_TABLES} keys. */
+    metric: z.enum(CARDIO_METRICS),
+    /** Numeric value (units depend on metric); 0 only valid for volume metrics. */
+    value: z.number().nonnegative(),
+  })
+  .refine((data) => !POSITIVE_METRICS.has(data.metric) || data.value > 0, {
+    message: 'value must be greater than 0 for this metric',
+    path: ['value'],
+  })
 
 type CardioTrendUpsert = z.infer<typeof CardioTrendUpsertSchema>
 

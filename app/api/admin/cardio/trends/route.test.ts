@@ -120,6 +120,36 @@ describe('POST /api/admin/cardio/trends', () => {
     expect(res.status).toBe(400)
   })
 
+  it('returns 400 when value is 0 for a strictly-positive metric (body_mass)', async () => {
+    vi.stubEnv('CARDIO_TRENDS_API_KEY', 'valid-key')
+    const req = new Request('http://localhost:3000/api/admin/cardio/trends', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Cardio-Trends-Key': 'valid-key',
+      },
+      body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 0 }),
+    })
+    const res = await POST(req as any)
+    expect(res.status).toBe(400)
+    expect((await res.json()).error).toBe('Validation failed.')
+  })
+
+  it('allows value 0 for a volume metric (steps)', async () => {
+    vi.stubEnv('CARDIO_TRENDS_API_KEY', 'valid-key')
+    const req = new Request('http://localhost:3000/api/admin/cardio/trends', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Cardio-Trends-Key': 'valid-key',
+      },
+      body: JSON.stringify({ date: '2026-07-01', metric: 'steps', value: 0 }),
+    })
+    const res = await POST(req as any)
+    expect(res.status).toBe(200)
+    expect(fromMock).toHaveBeenCalledWith('cardio_step_count_trend')
+  })
+
   it('returns 200 and upserts body_mass when valid', async () => {
     vi.stubEnv('CARDIO_TRENDS_API_KEY', 'valid-key')
     const req = new Request('http://localhost:3000/api/admin/cardio/trends', {

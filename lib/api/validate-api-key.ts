@@ -1,3 +1,5 @@
+import { timingSafeEqual } from 'node:crypto'
+
 import type { NextRequest } from 'next/server'
 
 /**
@@ -29,5 +31,11 @@ export function validateApiKey(
     console.error(`${envVarName} env var not set — endpoint is disabled`)
     return false
   }
-  return key === expectedKey
+  // Constant-time compare so a wrong key can't be recovered byte-by-byte via
+  // response timing. `timingSafeEqual` throws on unequal-length buffers, so
+  // gate on byte length first (length isn't the secret).
+  const keyBuf = Buffer.from(key ?? '')
+  const expectedBuf = Buffer.from(expectedKey)
+  if (keyBuf.length !== expectedBuf.length) return false
+  return timingSafeEqual(keyBuf, expectedBuf)
 }

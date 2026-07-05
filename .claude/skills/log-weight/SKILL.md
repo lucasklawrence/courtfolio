@@ -103,7 +103,7 @@ limit 7;
 Then POST each `(date, value)` pair to the admin endpoint. This uses
 service-role credentials and bypasses RLS, ensuring writes succeed:
 
-```
+```http
 POST /api/admin/cardio/trends
 Content-Type: application/json
 X-Cardio-Trends-Key: [CARDIO_TRENDS_API_KEY env var]
