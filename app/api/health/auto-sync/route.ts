@@ -17,7 +17,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { ZodError } from 'zod'
 
 import { CardioSyncBatchSchema } from '@/lib/schemas/cardio-sync'
-import { createServiceRoleClient } from '@/lib/supabase/admin'
+import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 
 /**
  * Validate the API key from the Authorization header.
@@ -66,7 +66,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   // Upsert each metric into its table
-  const supabase = createServiceRoleClient()
+  const supabase = createAdminSupabaseClient()
   const results = { hrv: 0, walking_hr: 0, steps: 0, sleep: 0, active_energy: 0 }
   const errors: string[] = []
 
