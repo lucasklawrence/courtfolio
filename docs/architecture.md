@@ -77,8 +77,9 @@ flowchart LR
 ## 2. Containers (L2)
 
 The separately runnable pieces and where data lives. Note the deliberate split: the **browser client reads
-Supabase directly** (anon key under RLS) — there is no read API — while **all writes** funnel through the server
-behind an auth gate using the service‑role key.
+Supabase directly** (anon key under RLS) — there is no read API — while **every write uses the service‑role
+key** — through an auth‑gated server route for app writes, or straight to Postgres from the batch ingestion
+jobs (§4). The browser never writes.
 
 ```mermaid
 flowchart LR
