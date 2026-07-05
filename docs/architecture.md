@@ -12,7 +12,10 @@ CI and scheduled jobs on GitHub Actions.
 > **How to read this.** C4 describes software as four nested levels of zoom — **Context** (the system among its
 > users and neighbours), **Containers** (separately deployable/runnable things + data stores), **Components**
 > (the major building blocks inside a container), and Code. This doc covers L1–L3 plus two supplementary views
-> (data ingestion and the data model). All diagrams are Mermaid and render on GitHub.
+> (data ingestion and the data model). All diagrams are Mermaid and render on GitHub. The L1–L3 views
+> express C4 semantics as colour‑coded flowcharts — **orange** = the system & its containers, **dark** = people,
+> **tan** = external systems, **green cylinders** = data stores, **dashed** = batch/offline jobs — laid out for
+> clean arrow routing.
 
 ---
 
@@ -21,33 +24,34 @@ CI and scheduled jobs on GitHub Actions.
 Who and what Court Vision talks to.
 
 ```mermaid
-C4Context
-  title System Context - Court Vision (lucasklawrence.com)
+flowchart LR
+  visitor(["Visitor / Recruiter"]):::person
+  owner(["Owner / Admin (Lucas)"]):::person
+  applehealth["Apple Health"]:::ext
+  shortcut["iPhone Health Shortcut"]:::ext
+  otf["OrangeTheory"]:::ext
+  gmail["Gmail"]:::ext
+  cv["Court Vision<br/>Next.js site + fitness dashboard"]:::sys
+  supabase[("Supabase<br/>Postgres + Auth")]:::store
+  telemetry[("Pub/Sub to BigQuery<br/>telemetry")]:::store
+  analytics["Vercel Web Analytics"]:::ext
+  aigw["Vercel AI Gateway<br/>(offline only)"]:::ext
 
-  Person(visitor, "Visitor / Recruiter", "Browses the portfolio, projects and public fitness dashboards")
-  Person(owner, "Owner / Admin (Lucas)", "Signs in via magic link to log workouts and manage goals")
+  visitor -->|"browses"| cv
+  owner -->|"logs workouts, manages data"| cv
+  applehealth -->|"on device"| shortcut
+  shortcut -->|"POST daily metrics + secret"| cv
+  otf -->|"emails summaries"| gmail
+  gmail -->|"read by daily cron"| cv
+  cv -->|"reads / writes + auth"| supabase
+  cv -->|"events & metrics"| telemetry
+  cv -->|"page metrics"| analytics
+  cv -->|"grades projects (build-time)"| aigw
 
-  System(cv, "Court Vision", "Next.js 15 personal portfolio + personal-analytics dashboard on Vercel")
-
-  System_Ext(shortcut, "iPhone Health Shortcut", "Device automation; POSTs daily Apple Health metrics")
-  System_Ext(applehealth, "Apple Health", "Source of HR, HRV, sleep, steps, energy")
-  System_Ext(otf, "OrangeTheory", "Emails per-class workout summaries")
-  System_Ext(gmail, "Gmail", "Mailbox receiving the OrangeTheory emails")
-  System_Ext(supabase, "Supabase", "Postgres data store + magic-link Auth")
-  System_Ext(telemetry, "Pub/Sub -> BigQuery", "Personal telemetry sink (koy-engineering)")
-  System_Ext(analytics, "Vercel Web Analytics", "Client-side RUM")
-  System_Ext(aigw, "Vercel AI Gateway", "LLM routing (Anthropic/OpenAI/Google); offline only")
-
-  Rel(visitor, cv, "Browses", "HTTPS")
-  Rel(owner, cv, "Logs workouts, manages data", "HTTPS")
-  Rel(cv, supabase, "Reads (anon/RLS), writes (service-role), authenticates", "HTTPS")
-  Rel(applehealth, shortcut, "Read on device")
-  Rel(shortcut, cv, "POSTs daily health metrics", "HTTPS + secret")
-  Rel(otf, gmail, "Emails workout summaries")
-  Rel(cv, gmail, "Reads workout emails (scheduled)", "Gmail REST + OAuth")
-  Rel(cv, telemetry, "Publishes events & metrics", "Pub/Sub")
-  Rel(visitor, analytics, "Sends page metrics", "beacon")
-  Rel(cv, aigw, "Grades projects (build-time only)", "HTTPS")
+  classDef person fill:#201b16,stroke:#000000,color:#f5efe1;
+  classDef sys fill:#ea580c,stroke:#7c2d12,color:#ffffff;
+  classDef ext fill:#efe7d6,stroke:#8a5a2b,color:#2a2018;
+  classDef store fill:#e9f5ef,stroke:#2f855a,color:#173d2b;
 ```
 
 **Actors**
@@ -77,45 +81,50 @@ Supabase directly** (anon key under RLS) — there is no read API — while **al
 behind an auth gate using the service‑role key.
 
 ```mermaid
-C4Container
-  title Container Diagram - Court Vision
+flowchart LR
+  visitor(["Visitor / Recruiter"]):::person
+  owner(["Owner / Admin"]):::person
+  applehealth["Apple Health"]:::ext
+  shortcut["iPhone Health Shortcut"]:::ext
+  gmail["Gmail<br/>(OTF emails)"]:::ext
+  analytics["Vercel Web Analytics"]:::ext
+  telemetry[("Pub/Sub to BigQuery")]:::store
+  aigw["Vercel AI Gateway"]:::ext
 
-  Person(visitor, "Visitor / Recruiter", "")
-  Person(owner, "Owner / Admin (Lucas)", "")
-  System_Ext(shortcut, "iPhone Health Shortcut", "Device automation")
-  System_Ext(applehealth, "Apple Health", "Export / device data")
-  System_Ext(gmail, "Gmail", "OrangeTheory workout emails")
-  System_Ext(analytics, "Vercel Web Analytics", "")
-  System_Ext(telemetry, "Pub/Sub -> BigQuery", "koy-engineering telemetry")
-  System_Ext(aigw, "Vercel AI Gateway", "Anthropic / OpenAI / Google")
+  subgraph CV["Court Vision"]
+    direction TB
+    clientapp["Interactive Client<br/>React 19 (browser)"]:::sys
+    server["Next.js Server<br/>App Router on Vercel"]:::sys
+    postgres[("Supabase Postgres<br/>RLS")]:::store
+    auth["Supabase Auth"]:::ext
+    ingest["OTbeat Ingestion Job<br/>GitHub Actions cron"]:::batch
+    importcli["Health Import CLI<br/>Node + Python"]:::batch
+    panelcli["Judge-Panel CLI<br/>offline"]:::batch
+  end
 
-  System_Boundary(cv, "Court Vision") {
-    Container(clientapp, "Interactive Client", "React 19 in the browser", "Basketball-arena UI + flag-gated fitness dashboards; reads Supabase directly via anon key")
-    Container(server, "Next.js Server", "Next.js 15 App Router on Vercel", "SSR / RSC, admin write APIs, magic-link auth, health-sync ingest, telemetry")
-    ContainerDb(postgres, "Application Database", "Supabase Postgres + RLS", "cardio, OTF, weight-room, lifestyle & benchmark tables")
-    Container(auth, "Auth", "Supabase Auth (managed)", "Passwordless magic-link sessions in cookies")
-    Container(ingest, "OTbeat Ingestion Job", "Node on GitHub Actions (daily cron)", "Reads OTF emails, parses & classifies, upserts otf_sessions")
-    Container(importcli, "Health Import CLI", "Node + Python (local, manual)", "Apple Health export to cardio tables (mirror & prune)")
-    Container(panelcli, "Judge-Panel CLI", "Node + AI SDK (offline)", "Runs the multi-LLM panel; bakes a static result into the Draft Room")
-  }
+  visitor -->|"uses"| clientapp
+  owner -->|"logs, edits"| clientapp
+  applehealth -->|"on device"| shortcut
+  shortcut -->|"POST + secret"| server
+  applehealth -->|"health export"| importcli
+  gmail -->|"emails, read daily"| ingest
+  server -->|"delivers SSR / RSC"| clientapp
+  clientapp -->|"admin writes + check"| server
+  clientapp -->|"reads (anon, RLS)"| postgres
+  server -->|"reads + writes (service-role)"| postgres
+  ingest -->|"upserts otf_sessions"| postgres
+  importcli -->|"writes cardio tables"| postgres
+  server -->|"magic-link / session"| auth
+  clientapp -->|"page metrics"| analytics
+  server -->|"events & metrics"| telemetry
+  panelcli -->|"generates verdicts"| aigw
+  panelcli -.->|"bakes result"| clientapp
 
-  Rel(visitor, clientapp, "Uses", "HTTPS")
-  Rel(owner, clientapp, "Logs workouts, edits goals", "HTTPS")
-  Rel(server, clientapp, "Delivers SSR HTML / RSC payload", "HTTPS")
-  Rel(clientapp, postgres, "Reads dashboard data (anon, RLS)", "PostgREST")
-  Rel(clientapp, server, "Calls admin write APIs + admin-check", "HTTPS/JSON")
-  Rel(clientapp, analytics, "Page metrics", "beacon")
-  Rel(shortcut, server, "POST daily health metrics", "HTTPS + secret")
-  Rel(applehealth, shortcut, "Read on device")
-  Rel(server, postgres, "SSR reads (anon) + writes (service-role)", "PostgREST")
-  Rel(server, auth, "Magic-link exchange / session", "HTTPS")
-  Rel(server, telemetry, "Events & metrics", "Pub/Sub")
-  Rel(ingest, gmail, "Reads workout emails", "Gmail REST + OAuth")
-  Rel(ingest, postgres, "Upserts otf_sessions (service-role)", "PostgREST")
-  Rel(importcli, applehealth, "Reads export", "file")
-  Rel(importcli, postgres, "Writes cardio tables (service-role)", "PostgREST")
-  Rel(panelcli, aigw, "Generates verdicts", "HTTPS")
-  Rel(panelcli, clientapp, "Bakes static result into source", "build-time")
+  classDef person fill:#201b16,stroke:#000000,color:#f5efe1;
+  classDef sys fill:#ea580c,stroke:#7c2d12,color:#ffffff;
+  classDef batch fill:#f6edda,stroke:#a9791f,color:#4a3617,stroke-dasharray:5 3;
+  classDef ext fill:#efe7d6,stroke:#8a5a2b,color:#2a2018;
+  classDef store fill:#e9f5ef,stroke:#2f855a,color:#173d2b;
 ```
 
 | Container | Tech | Responsibility |
@@ -135,55 +144,64 @@ C4Container
 Zooming into the Next.js container (client + server components share a module tree in App Router).
 
 ```mermaid
-C4Component
-  title Component Diagram - Next.js Web App (client + server)
+flowchart TB
+  visitor(["Visitor"]):::person
+  owner(["Owner / Admin"]):::person
+  shortcut["iPhone Shortcut"]:::ext
 
-  Person(visitor, "Visitor", "")
-  Person(owner, "Owner / Admin", "")
-  System_Ext(shortcut, "iPhone Health Shortcut", "")
+  subgraph UI["UI (client)"]
+    direction LR
+    publicui["Public Arena UI"]:::sys
+    fitui["Training Facility UI<br/>(flag-gated)"]:::sys
+    charts["Chart Library<br/>roughjs + d3-scale"]:::comp
+    motion["Motion<br/>LazyMotion + m"]:::comp
+    svg["SVG Composition"]:::comp
+    flags["Feature Flags"]:::comp
+  end
 
-  Container_Boundary(web, "Next.js Web App") {
-    Component(publicui, "Public Arena UI", "React client components", "Court, Locker Room, Project Binder, Banners, Contact, Draft Room (static replay)")
-    Component(fitui, "Training Facility UI", "React (flag-gated)", "Gym / Weight Room / Combine dashboards")
-    Component(charts, "Chart Library", "roughjs + d3-scale", "Hand-drawn SVG line/bar/sparkline/zone charts + regression overlay")
-    Component(motion, "Motion System", "framer-motion (LazyMotion + m)", "Code-split entrance & layout animations")
-    Component(svg, "SVG Composition", "React SVG + foreignObject", "SvgUse / SafeSvgHtml; Safari variants")
-    Component(flags, "Feature Flags", "NEXT_PUBLIC_ENABLE_*", "Gate Training Facility + Draft Room")
+  subgraph DATA["Data access"]
+    direction LR
+    databrowser["Data Access (browser)"]:::comp
+    dataserver["Data Access (server)"]:::comp
+    datashared["Assemblers + Zod schemas"]:::comp
+  end
 
-    Component(dataserver, "Data Access (server)", "lib/data/*-server.ts", "RSC reads via server Supabase client")
-    Component(databrowser, "Data Access (browser)", "lib/data/*.ts", "Client reads via browser Supabase client")
-    Component(datashared, "Assemblers + Schemas", "lib/data/*-shared.ts + Zod", "Pure row-to-view shaping shared by both read paths")
+  subgraph SRV["Server & platform"]
+    direction LR
+    api["Route Handlers<br/>app/api/**"]:::sys
+    authz["Auth & Authorization"]:::comp
+    supaclients["Supabase Clients<br/>anon / cookie / service-role"]:::comp
+    telem["Telemetry<br/>withTelemetry"]:::comp
+  end
 
-    Component(api, "Route Handlers", "app/api/**", "Admin writes, admin-check, health auto-sync")
-    Component(authz, "Auth & Authorization", "lib/auth + app/auth", "Magic-link login, callback, requireAdmin, ADMIN_EMAILS allowlist")
-    Component(supaclients, "Supabase Clients", "lib/supabase", "anon (RLS) / anon+cookie / service-role")
-    Component(telemetry, "Telemetry", "withTelemetry + lib/telemetry", "Per-request events + domain metrics")
-  }
+  postgres[("Supabase Postgres")]:::store
+  authsvc["Supabase Auth"]:::ext
+  pubsub[("Pub/Sub to BigQuery")]:::store
 
-  ContainerDb(postgres, "Supabase Postgres", "", "")
-  Container(authsvc, "Supabase Auth", "", "")
-  System_Ext(pubsub, "Pub/Sub -> BigQuery", "")
+  visitor --> publicui
+  owner --> fitui
+  shortcut -->|"POST /api/health/auto-sync"| api
+  publicui --> motion
+  publicui --> svg
+  fitui --> charts
+  fitui --> databrowser
+  flags -->|"gates"| fitui
+  databrowser --> datashared
+  dataserver --> datashared
+  databrowser --> supaclients
+  dataserver --> supaclients
+  api --> authz
+  api --> supaclients
+  api --> telem
+  authz --> authsvc
+  supaclients --> postgres
+  telem --> pubsub
 
-  Rel(visitor, publicui, "Uses", "HTTPS")
-  Rel(owner, fitui, "Logs sets / edits goals", "HTTPS")
-  Rel(shortcut, api, "POST /api/health/auto-sync", "HTTPS + key")
-
-  Rel(publicui, motion, "Animates with")
-  Rel(publicui, svg, "Renders")
-  Rel(fitui, charts, "Renders")
-  Rel(fitui, databrowser, "Reads via")
-  Rel(flags, fitui, "Gates")
-
-  Rel(dataserver, datashared, "Shapes rows with")
-  Rel(databrowser, datashared, "Shapes rows with")
-  Rel(dataserver, supaclients, "Server client")
-  Rel(databrowser, supaclients, "Browser client")
-  Rel(api, authz, "Guards with requireAdmin")
-  Rel(api, supaclients, "Writes via service-role")
-  Rel(api, telemetry, "Wrapped by")
-  Rel(authz, authsvc, "Magic-link / session", "HTTPS")
-  Rel(supaclients, postgres, "Reads / writes", "PostgREST")
-  Rel(telemetry, pubsub, "Publishes", "Pub/Sub")
+  classDef person fill:#201b16,stroke:#000000,color:#f5efe1;
+  classDef sys fill:#ea580c,stroke:#7c2d12,color:#ffffff;
+  classDef comp fill:#fbf8f1,stroke:#b98a3e,color:#3a2c17;
+  classDef ext fill:#efe7d6,stroke:#8a5a2b,color:#2a2018;
+  classDef store fill:#e9f5ef,stroke:#2f855a,color:#173d2b;
 ```
 
 **UI**
