@@ -133,7 +133,12 @@ describe('POST /api/admin/cardio/trends', () => {
     const res = await POST(req as any)
     expect(res.status).toBe(200)
     expect(fromMock).toHaveBeenCalledWith('cardio_body_mass_trend')
-    expect(upsertMock).toHaveBeenCalledWith({ date: '2026-07-01', value: 233.8 })
+    // Payload carries the value and an explicit updated_at stamp (the tables
+    // have no update trigger, so a re-log must bump it for imported_at).
+    expect(upsertMock).toHaveBeenCalledWith(
+      expect.objectContaining({ date: '2026-07-01', value: 233.8 })
+    )
+    expect(typeof upsertMock.mock.calls[0][0].updated_at).toBe('string')
     const body = await res.json()
     expect(body.message).toContain('body_mass for 2026-07-01 upserted successfully')
   })
@@ -151,7 +156,9 @@ describe('POST /api/admin/cardio/trends', () => {
     const res = await POST(req as any)
     expect(res.status).toBe(200)
     expect(fromMock).toHaveBeenCalledWith('cardio_hrv_trend')
-    expect(upsertMock).toHaveBeenCalledWith({ date: '2026-07-02', value: 45.2 })
+    expect(upsertMock).toHaveBeenCalledWith(
+      expect.objectContaining({ date: '2026-07-02', value: 45.2 })
+    )
   })
 
   it('returns 500 when database upsert fails', async () => {

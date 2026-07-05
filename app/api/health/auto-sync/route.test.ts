@@ -90,7 +90,11 @@ describe('POST /api/health/auto-sync', () => {
       'cardio_active_energy_trend',
       'cardio_body_mass_trend',
     ])
-    expect(upsertMock).toHaveBeenCalledWith({ date: '2026-07-01', value: 233.8 })
+    expect(upsertMock).toHaveBeenCalledWith(
+      expect.objectContaining({ date: '2026-07-01', value: 233.8 })
+    )
+    // updated_at is stamped so re-syncing an existing day advances imported_at.
+    expect(typeof upsertMock.mock.calls.at(-1)?.[0].updated_at).toBe('string')
     expect((await res.json()).results).toEqual({
       hrv: 1,
       walking_hr: 1,

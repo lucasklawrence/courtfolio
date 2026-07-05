@@ -94,9 +94,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     for (const { field, metric } of SYNC_FIELDS) {
       const value = entry[field]
       if (value === null || value === undefined) continue
+      // Stamp `updated_at`: the trend tables default it on INSERT but have no
+      // update trigger, so re-syncing an existing day must set it here or
+      // `imported_at` (MAX(updated_at)) never advances. Matches the import script.
       const { error } = await supabase
         .from(CARDIO_METRIC_TABLES[metric])
-        .upsert({ date: entry.date, value })
+        .upsert({ date: entry.date, value, updated_at: new Date().toISOString() })
       if (error) errors.push(`${metric} upsert for ${entry.date}: ${error.message}`)
       else results[metric]++
     }

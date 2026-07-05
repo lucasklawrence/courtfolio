@@ -76,11 +76,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   // table lookup always resolves.
   const table = CARDIO_METRIC_TABLES[input.metric]
 
-  // Upsert via service-role client (bypasses RLS)
+  // Upsert via service-role client (bypasses RLS). Stamp `updated_at`
+  // explicitly: the trend tables default it on INSERT but have no update
+  // trigger, so overwriting an existing day would otherwise leave the old
+  // timestamp — and `imported_at` (MAX(updated_at)) would never advance on a
+  // correction/re-log. Matches the import script.
   const supabase = createAdminSupabaseClient()
   const { error, data } = await supabase
     .from(table)
-    .upsert({ date: input.date, value: input.value })
+    .upsert({ date: input.date, value: input.value, updated_at: new Date().toISOString() })
     .select()
 
   if (error) {
