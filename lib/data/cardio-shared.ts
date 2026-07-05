@@ -222,7 +222,7 @@ export async function assembleCardioData(
   }
 
   const sessionsParsed = CardioSessionRowsSchema.safeParse(
-    sessionsRaw.map(stripNulls).map(stripUpdatedAt),
+    sessionsRaw.map(normalizeRow),
   )
   if (!sessionsParsed.success) {
     throw new Error(
@@ -230,7 +230,7 @@ export async function assembleCardioData(
     )
   }
   const restingParsed = CardioTrendRowsSchema.safeParse(
-    restingRaw.map(stripNulls).map(stripUpdatedAt),
+    restingRaw.map(normalizeRow),
   )
   if (!restingParsed.success) {
     throw new Error(
@@ -238,7 +238,7 @@ export async function assembleCardioData(
     )
   }
   const vo2Parsed = CardioTrendRowsSchema.safeParse(
-    vo2Raw.map(stripNulls).map(stripUpdatedAt),
+    vo2Raw.map(normalizeRow),
   )
   if (!vo2Parsed.success) {
     throw new Error(`cardio_vo2max failed schema validation: ${vo2Parsed.error.message}`)
@@ -253,7 +253,7 @@ export async function assembleCardioData(
     const raw = lifestyleRaw[i]
     if (raw.length === 0) continue
     const parsed = CardioTrendRowsSchema.safeParse(
-      raw.map(stripNulls).map(stripUpdatedAt),
+      raw.map(normalizeRow),
     )
     if (!parsed.success) {
       throw new Error(`${table} failed schema validation: ${parsed.error.message}`)
@@ -295,6 +295,16 @@ function stripUpdatedAt(row: Record<string, unknown>): Record<string, unknown> {
   if (!('updated_at' in row)) return row
   const { updated_at: _ignored, ...rest } = row
   return rest
+}
+
+/**
+ * Normalize a raw Supabase row for Zod-parsing in a single pass:
+ * `null` → absent ({@link stripNulls}), then drop the `updated_at` audit
+ * column ({@link stripUpdatedAt}). Chaining `.map(stripNulls).map(stripUpdatedAt)`
+ * would walk each row twice; this walks it once.
+ */
+function normalizeRow(row: Record<string, unknown>): Record<string, unknown> {
+  return stripUpdatedAt(stripNulls(row))
 }
 
 /**

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { getCardioSession } from './cardio-server'
 
@@ -78,6 +78,12 @@ beforeEach(() => {
     order: vi.fn(() => samplesBuilder),
     range: vi.fn(() => Promise.resolve({ data: [], error: null })),
   }
+})
+
+afterEach(() => {
+  // Match the sibling `cardio.test.ts`: clear any queued `.mock…Once`
+  // implementations so a per-test override can't leak into the next test.
+  vi.clearAllMocks()
 })
 
 describe('getCardioSession', () => {

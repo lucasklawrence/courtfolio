@@ -1,5 +1,5 @@
 /**
- * Cardio lifestyle-trend upsert endpoint (#279 follow-up).
+ * Cardio lifestyle-trend upsert endpoint.
  *
  * Upserts daily measurements (HRV, walking HR, steps, sleep, active energy,
  * body mass) into their corresponding Supabase trend tables. Uses service-role
@@ -17,25 +17,24 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { ZodError } from 'zod'
 import { z } from 'zod'
 
+import { validateApiKey } from '@/lib/api/validate-api-key'
+import {
+  CARDIO_METRIC_TABLES,
+  type CardioMetric,
+} from '@/lib/schemas/cardio-sync'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 
-/**
- * Metric type to table name mapping.
- */
-const METRIC_TABLES: Record<string, string> = {
-  hrv: 'cardio_hrv_trend',
-  walking_hr: 'cardio_walking_hr_trend',
-  steps: 'cardio_step_count_trend',
-  sleep: 'cardio_sleep_trend',
-  active_energy: 'cardio_active_energy_trend',
-  body_mass: 'cardio_body_mass_trend',
-}
+/** The accepted metric keys, derived from the canonical table map. */
+const CARDIO_METRICS = Object.keys(CARDIO_METRIC_TABLES) as [
+  CardioMetric,
+  ...CardioMetric[],
+]
 
 const CardioTrendUpsertSchema = z.object({
   /** ISO date string (YYYY-MM-DD). */
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  /** Metric type — one of the keys in METRIC_TABLES. */
-  metric: z.enum(['hrv', 'walking_hr', 'steps', 'sleep', 'active_energy', 'body_mass']),
+  /** Metric type — one of the {@link CARDIO_METRIC_TABLES} keys. */
+  metric: z.enum(CARDIO_METRICS),
   /** Numeric value (units depend on metric). */
   value: z.number().nonnegative(),
 })
@@ -43,26 +42,11 @@ const CardioTrendUpsertSchema = z.object({
 type CardioTrendUpsert = z.infer<typeof CardioTrendUpsertSchema>
 
 /**
- * Validate the API key from the request header.
- */
-function validateApiKey(request: NextRequest): boolean {
-  const key = request.headers.get('X-Cardio-Trends-Key')
-  const expectedKey = process.env.CARDIO_TRENDS_API_KEY
-  if (!expectedKey) {
-    console.error(
-      'CARDIO_TRENDS_API_KEY env var not set — cardio trends endpoint is disabled'
-    )
-    return false
-  }
-  return key === expectedKey
-}
-
-/**
  * POST /api/admin/cardio/trends — upsert a cardio lifestyle-trend measurement.
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
   // Auth check
-  if (!validateApiKey(request)) {
+  if (!validateApiKey(request, 'X-Cardio-Trends-Key', 'CARDIO_TRENDS_API_KEY')) {
     return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 })
   }
 
@@ -88,14 +72,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     throw err
   }
 
-  // Get the table name
-  const table = METRIC_TABLES[input.metric]
-  if (!table) {
-    return NextResponse.json(
-      { error: `Unknown metric: ${input.metric}` },
-      { status: 400 }
-    )
-  }
+  // The enum guarantees `metric` is a key of CARDIO_METRIC_TABLES, so the
+  // table lookup always resolves.
+  const table = CARDIO_METRIC_TABLES[input.metric]
 
   // Upsert via service-role client (bypasses RLS)
   const supabase = createAdminSupabaseClient()
