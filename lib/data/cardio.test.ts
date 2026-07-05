@@ -14,6 +14,7 @@ import { getCardioData } from './cardio'
 interface FakeQuery {
   select: ReturnType<typeof vi.fn>
   order: ReturnType<typeof vi.fn>
+  range: ReturnType<typeof vi.fn>
 }
 
 const queriesByTable: Record<string, FakeQuery> = {}
@@ -22,9 +23,15 @@ const fromMock = vi.fn((table: string): FakeQuery => {
     const query: FakeQuery = {
       select: vi.fn(),
       order: vi.fn(),
+      range: vi.fn(),
     }
     query.select.mockReturnValue(query)
-    query.order.mockResolvedValue({ data: [], error: null })
+    // `.range()` is now the awaited call (the data layer pages around
+    // PostgREST's row cap). `.order()` just returns the builder so the
+    // chain reaches `.range()`. A single short page (< the page size)
+    // resolves the whole table by default.
+    query.order.mockReturnValue(query)
+    query.range.mockResolvedValue({ data: [], error: null })
     queriesByTable[table] = query
   }
   return queriesByTable[table]
@@ -84,8 +91,11 @@ const LIFESTYLE_TABLES: ReadonlyArray<[keyof CardioDataLike, string]> = [
  */
 function stubTable(table: string, data: Array<Record<string, unknown>> | null, error: unknown = null): void {
   const query = fromMock(table)
-  query.order.mockReset()
-  query.order.mockResolvedValue({ data, error })
+  // Resolve the table in a single `.range()` page. `data` shorter than the
+  // page size terminates the pagination loop after one request, so this
+  // stubs the common "small table, one page" case.
+  query.range.mockReset()
+  query.range.mockResolvedValue({ data, error })
 }
 
 describe('getCardioData', () => {
@@ -359,6 +369,46 @@ describe('getCardioData', () => {
     expect(data).not.toHaveProperty('step_count_trend')
     expect(data).not.toHaveProperty('sleep_trend')
     expect(data).not.toHaveProperty('active_energy_trend')
+  })
+
+  it('pages past the PostgREST row cap so a large table keeps its recent rows', async () => {
+    // Regression: a bare ascending `.order()` returns only PostgREST's
+    // first 1000 rows — the *oldest* — so a trend table past the cap loses
+    // its most recent data and renders "No data in range" despite the rows
+    // existing. The data layer must page with `.range()` until a short
+    // page. This reproduces the bug that hid HRV / walking-HR / steps /
+    // active-energy on the All Cardio overview.
+    const firstPage = Array.from({ length: 1000 }, (_, i) => ({
+      date: '2020-01-01',
+      value: i,
+      updated_at: '2020-01-01T00:00:00Z',
+    }))
+    const secondPage = [
+      { date: '2026-07-01', value: 42, updated_at: '2026-07-01T00:00:00Z' },
+    ]
+    stubTable('cardio_sessions', [])
+    stubTable('cardio_resting_hr', [])
+    stubTable('cardio_vo2max', [])
+    for (const [, table] of LIFESTYLE_TABLES) {
+      if (table === 'cardio_hrv_trend') continue
+      stubTable(table, [])
+    }
+    // A full first page (== page size) forces a second request; the short
+    // second page (one recent row) terminates the loop.
+    const hrv = fromMock('cardio_hrv_trend')
+    hrv.range.mockReset()
+    hrv.range
+      .mockResolvedValueOnce({ data: firstPage, error: null })
+      .mockResolvedValueOnce({ data: secondPage, error: null })
+
+    const data = await getCardioData()
+
+    // The recent row survived — it only exists on the second page.
+    expect(data?.hrv_trend).toContainEqual({ date: '2026-07-01', value: 42 })
+    expect(data?.hrv_trend).toHaveLength(1001)
+    // Two contiguous windows were requested with the right bounds.
+    expect(hrv.range).toHaveBeenNthCalledWith(1, 0, 999)
+    expect(hrv.range).toHaveBeenNthCalledWith(2, 1000, 1999)
   })
 
   it('imported_at advances when only a lifestyle table is the freshest', async () => {

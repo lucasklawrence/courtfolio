@@ -77,6 +77,63 @@ const CardioSessionRowsSchema = z.array(CardioSessionRowSchema)
 const CardioTrendRowsSchema = z.array(CardioTrendRowSchema)
 
 /**
+ * PostgREST caps every response at a fixed row count (1000 on Supabase's
+ * hosted default). {@link fetchAllRows} pages around that cap.
+ */
+const SUPABASE_PAGE_SIZE = 1000
+
+/**
+ * Minimal structural view of the slice of a Supabase query builder that
+ * {@link fetchAllRows} drives: a `.range()` that yields an awaitable page
+ * result. Typed structurally so the helper stays decoupled from
+ * `@supabase/supabase-js` generics (the client is already typed loosely
+ * as `SupabaseClient` for the same reason — see {@link assembleCardioData}).
+ */
+type PagedQuery = {
+  range: (
+    from: number,
+    to: number,
+  ) => PromiseLike<{ data: unknown; error: { message: string } | null }>
+}
+
+/**
+ * Fetch **every** row a query would return, defeating PostgREST's
+ * per-response row cap ({@link SUPABASE_PAGE_SIZE}).
+ *
+ * A bare `.select().order('date', { ascending: true })` silently returns
+ * only the first page — and because the sort is ascending, that page is
+ * the *oldest* rows. Any table past the cap therefore loses its most
+ * recent data entirely: a 1171-row trend renders nothing newer than its
+ * 1000th-oldest date, so a current-month view reads "no data in range"
+ * even though the rows exist. This pages through with `.range()` until a
+ * short page proves the tail was reached.
+ *
+ * @param makeQuery Builds a *fresh* query on each call. A PostgREST
+ *   builder can only be awaited once, so every page needs its own; the
+ *   builder must already carry its `.select()`/`.order()` — this helper
+ *   only appends `.range()`.
+ * @param label Table name, used only in the thrown error message.
+ * @throws when any page errors (propagates the PostgREST message so the
+ *   existing per-table error assertions keep matching).
+ */
+export async function fetchAllRows(
+  makeQuery: () => PagedQuery,
+  label: string,
+): Promise<Array<Record<string, unknown>>> {
+  const rows: Array<Record<string, unknown>> = []
+  for (let from = 0; ; from += SUPABASE_PAGE_SIZE) {
+    const { data, error } = await makeQuery().range(from, from + SUPABASE_PAGE_SIZE - 1)
+    if (error) {
+      throw new Error(`Failed to load ${label}: ${error.message}`)
+    }
+    const page = (data ?? []) as Array<Record<string, unknown>>
+    rows.push(...page)
+    if (page.length < SUPABASE_PAGE_SIZE) break
+  }
+  return rows
+}
+
+/**
  * Fetch the full cardio dataset from Supabase using the supplied
  * client. Shared between `getCardioData` (browser) and
  * `getCardioDataServer` (server) so the two read paths can't drift in
@@ -119,39 +176,34 @@ export async function assembleCardioData(
     [LifestyleTrendKey, string]
   >
 
-  const coreQueries = [
-    supabase.from(SESSIONS_TABLE).select(SESSIONS_COLUMNS).order('started_at', { ascending: true }),
-    supabase.from(RESTING_HR_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
-    supabase.from(VO2MAX_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
-  ]
-  const lifestyleQueries = lifestyleEntries.map(([, table]) =>
-    supabase.from(table).select(TREND_COLUMNS).order('date', { ascending: true }),
-  )
-  const allResults = await Promise.all([...coreQueries, ...lifestyleQueries])
-  const [sessionsRes, restingRes, vo2Res, ...lifestyleResults] = allResults
-
-  if (sessionsRes.error) {
-    throw new Error(`Failed to load cardio sessions: ${sessionsRes.error.message}`)
-  }
-  if (restingRes.error) {
-    throw new Error(`Failed to load resting HR trend: ${restingRes.error.message}`)
-  }
-  if (vo2Res.error) {
-    throw new Error(`Failed to load VO2max trend: ${vo2Res.error.message}`)
-  }
-  for (const [i, res] of lifestyleResults.entries()) {
-    if (res.error) {
-      const [, table] = lifestyleEntries[i]
-      throw new Error(`Failed to load ${table}: ${res.error.message}`)
-    }
-  }
-
-  const sessionsRaw = (sessionsRes.data ?? []) as unknown as Array<Record<string, unknown>>
-  const restingRaw = (restingRes.data ?? []) as unknown as Array<Record<string, unknown>>
-  const vo2Raw = (vo2Res.data ?? []) as unknown as Array<Record<string, unknown>>
-  const lifestyleRaw = lifestyleResults.map(
-    (res) => (res.data ?? []) as unknown as Array<Record<string, unknown>>,
-  )
+  // Every table is fetched via `fetchAllRows` so a table past PostgREST's
+  // row cap doesn't silently lose its most recent rows (see
+  // {@link fetchAllRows}). The pagination loops run concurrently across
+  // tables; only the pages *within* one table are sequential.
+  const [sessionsRaw, restingRaw, vo2Raw, ...lifestyleRaw] = await Promise.all([
+    fetchAllRows(
+      () =>
+        supabase
+          .from(SESSIONS_TABLE)
+          .select(SESSIONS_COLUMNS)
+          .order('started_at', { ascending: true }),
+      SESSIONS_TABLE,
+    ),
+    fetchAllRows(
+      () => supabase.from(RESTING_HR_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
+      RESTING_HR_TABLE,
+    ),
+    fetchAllRows(
+      () => supabase.from(VO2MAX_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
+      VO2MAX_TABLE,
+    ),
+    ...lifestyleEntries.map(([, table]) =>
+      fetchAllRows(
+        () => supabase.from(table).select(TREND_COLUMNS).order('date', { ascending: true }),
+        table,
+      ),
+    ),
+  ])
 
   // Compute imported_at across every cardio table — including the 6
   // lifestyle trends — so a fresh import that only updates lifestyle
