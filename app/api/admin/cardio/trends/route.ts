@@ -6,9 +6,8 @@
  * credentials to bypass RLS — unlike raw MCP SQL which gets blocked by
  * SELECT-only policies.
  *
- * Authenticated via admin check (signed-in user only); no API key needed.
- * This is for manual logging via the weight/cardio skills, not for
- * automated device ingestion (which has its own /api/health/auto-sync).
+ * Authenticated via API key header (CARDIO_TRENDS_API_KEY env var).
+ * This is for manual logging via the weight/cardio skills.
  *
  * Request body: `{ date: "YYYY-MM-DD", metric: "hrv" | "walking_hr" | "steps" | "sleep" | "active_energy" | "body_mass", value: number }`
  * Response: 200 on success, 400 on validation error, 401 on auth, 500 on DB error.
@@ -18,7 +17,6 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { ZodError } from 'zod'
 import { z } from 'zod'
 
-import { requireAdmin } from '@/lib/auth/require-admin'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 
 /**
@@ -45,12 +43,28 @@ const CardioTrendUpsertSchema = z.object({
 type CardioTrendUpsert = z.infer<typeof CardioTrendUpsertSchema>
 
 /**
+ * Validate the API key from the request header.
+ */
+function validateApiKey(request: NextRequest): boolean {
+  const key = request.headers.get('X-Cardio-Trends-Key')
+  const expectedKey = process.env.CARDIO_TRENDS_API_KEY
+  if (!expectedKey) {
+    console.error(
+      'CARDIO_TRENDS_API_KEY env var not set — cardio trends endpoint is disabled'
+    )
+    return false
+  }
+  return key === expectedKey
+}
+
+/**
  * POST /api/admin/cardio/trends — upsert a cardio lifestyle-trend measurement.
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
   // Auth check
-  const auth = await requireAdmin()
-  if (!auth.ok) return auth.response
+  if (!validateApiKey(request)) {
+    return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 })
+  }
 
   // Parse request body
   let payload: unknown
