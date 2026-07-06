@@ -188,7 +188,7 @@ export function goalRowToExerciseGoal(row: WeightRoomGoalRow): ExerciseGoal {
 /**
  * Zod schema for one row of `public.weight_room_monthly_focus` (#255).
  * Mirrors the table in
- * `supabase/migrations/20260628120000_weight_room_monthly_focus.sql`.
+ * `supabase/migrations/20260628120100_weight_room_monthly_focus.sql`.
  *
  * `start_date` / `end_date` are bare `YYYY-MM-DD` strings (PostgREST's
  * rendering of a Postgres `date`), validated by shape rather than
