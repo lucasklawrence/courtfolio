@@ -95,11 +95,20 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   // trigger, so overwriting an existing day would otherwise leave the old
   // timestamp — and `imported_at` (MAX(updated_at)) would never advance on a
   // correction/re-log. Matches the import script.
+  //
+  // Body mass is multi-source: tag these writes `source='manual'` so the full
+  // Apple Health import (which only upserts/prunes `source='apple_health'`)
+  // never overwrites or deletes a manually-logged weigh-in. Only
+  // `cardio_body_mass_trend` has the column, so scope it to that metric.
+  const row: {
+    date: string
+    value: number
+    updated_at: string
+    source?: 'manual'
+  } = { date: input.date, value: input.value, updated_at: new Date().toISOString() }
+  if (input.metric === 'body_mass') row.source = 'manual'
   const supabase = createAdminSupabaseClient()
-  const { error, data } = await supabase
-    .from(table)
-    .upsert({ date: input.date, value: input.value, updated_at: new Date().toISOString() })
-    .select()
+  const { error, data } = await supabase.from(table).upsert(row).select()
 
   if (error) {
     return NextResponse.json(

@@ -31,7 +31,15 @@ just swap the table name (see "Sibling tables" below).
 | --- | --- | --- |
 | `date` | `date` **PK** | one row per calendar day; the primary key |
 | `value` | `numeric` | bodyweight in **pounds**; CHECK `value > 0` |
+| `source` | `text` | `'manual'` (this skill) or `'apple_health'` (archive import / auto-sync); CHECK constrains to those two |
 | `created_at` / `updated_at` | `timestamptz` | bookkeeping |
+
+**Multi-source safety:** this table is written by both the log-weight skill and
+the Apple Health importer (`scripts/import-health.mjs`). The `/api/admin/cardio/trends`
+endpoint tags this skill's writes `source='manual'`, and the full import only
+upserts/prunes `source='apple_health'` rows — so a re-import can never overwrite
+or delete a manual morning weigh-in. Manual always wins for a given day. (You
+don't set `source` yourself; the endpoint does it for `body_mass`.)
 
 Because `date` is the primary key, weight is a **once-per-day measurement**, not
 an append log. Re-reporting a day **overwrites** that day's value (this is the

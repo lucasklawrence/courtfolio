@@ -90,16 +90,49 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
   const errors: string[] = []
 
+  // Body mass is multi-source: the log-weight skill writes manual morning
+  // weigh-ins (`source='manual'`), which always win over an Apple Health scale
+  // reading. Fetch the manual dates once (only when this batch actually carries
+  // body mass) so those days can be skipped below and never overwritten.
+  const manualBodyMassDates = new Set<string>()
+  const hasBodyMass = batch.data.some(
+    (entry) => entry.body_mass_lbs !== null && entry.body_mass_lbs !== undefined
+  )
+  if (hasBodyMass) {
+    const { data: manualRows, error: manualErr } = await supabase
+      .from('cardio_body_mass_trend')
+      .select('date')
+      .eq('source', 'manual')
+    if (manualErr) {
+      return NextResponse.json(
+        { error: `Database error reading manual weigh-ins: ${manualErr.message}` },
+        { status: 500 }
+      )
+    }
+    for (const r of (manualRows ?? []) as Array<{ date: string }>) {
+      manualBodyMassDates.add(String(r.date).slice(0, 10))
+    }
+  }
+
   for (const entry of batch.data) {
     for (const { field, metric } of SYNC_FIELDS) {
       const value = entry[field]
       if (value === null || value === undefined) continue
+      // A manual weigh-in owns its day — don't let a scale reading overwrite it.
+      if (metric === 'body_mass' && manualBodyMassDates.has(entry.date)) continue
       // Stamp `updated_at`: the trend tables default it on INSERT but have no
       // update trigger, so re-syncing an existing day must set it here or
       // `imported_at` (MAX(updated_at)) never advances. Matches the import script.
-      const { error } = await supabase
-        .from(CARDIO_METRIC_TABLES[metric])
-        .upsert({ date: entry.date, value, updated_at: new Date().toISOString() })
+      // Tag body mass `source='apple_health'` (only that table has the column)
+      // so the full import can tell scale readings from manual weigh-ins.
+      const row: {
+        date: string
+        value: number
+        updated_at: string
+        source?: 'apple_health'
+      } = { date: entry.date, value, updated_at: new Date().toISOString() }
+      if (metric === 'body_mass') row.source = 'apple_health'
+      const { error } = await supabase.from(CARDIO_METRIC_TABLES[metric]).upsert(row)
       if (error) errors.push(`${metric} upsert for ${entry.date}: ${error.message}`)
       else results[metric]++
     }

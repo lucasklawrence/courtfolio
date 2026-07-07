@@ -187,6 +187,13 @@ function sessionToRow(session, importedAt) {
  * pass a deliberately-truncated payload (e.g. "just the last 30 days")
  * unless you want everything older removed.
  *
+ * Body-mass exception: `cardio_body_mass_trend` is multi-source. Manual
+ * weigh-ins logged by the log-weight skill carry `source='manual'`; this
+ * import writes `source='apple_health'`. To keep manual entries authoritative,
+ * the import drops any payload day that already has a manual row and scopes its
+ * prune to `source='apple_health'` — so a full import never overwrites or
+ * deletes a manually-logged day, even one absent from the Apple Health export.
+ *
  * Idempotent — re-running on the same payload is a series of no-op
  * upserts (which still bump `updated_at` to the new batch timestamp)
  * and zero deletes (every row's `updated_at` matches the batch, so
@@ -212,7 +219,10 @@ function sessionToRow(session, importedAt) {
 const LIFESTYLE_TREND_TABLES = [
   ['hrv_trend', 'cardio_hrv_trend'],
   ['walking_hr_trend', 'cardio_walking_hr_trend'],
-  ['body_mass_trend', 'cardio_body_mass_trend'],
+  // body_mass_trend is handled separately (source-aware) in
+  // {@link upsertCardioData}: it is multi-source (manual weigh-ins from the
+  // log-weight skill + Apple Health scale readings), so its upsert and prune
+  // must be scoped to `source='apple_health'` and never touch manual rows.
   ['step_count_trend', 'cardio_step_count_trend'],
   ['sleep_trend', 'cardio_sleep_trend'],
   ['active_energy_trend', 'cardio_active_energy_trend'],
@@ -255,6 +265,36 @@ export async function upsertCardioData(supabase, data) {
     })),
   }))
 
+  // Body mass is multi-source. The log-weight skill writes daily manual
+  // weigh-ins (`source='manual'`); this import writes Apple Health scale
+  // readings (`source='apple_health'`). Manual always wins, so a full import
+  // must never overwrite or prune a day that already has a manual row. Fetch
+  // the manual dates up front (only when the payload actually carries body
+  // mass) and drop those days from the batch; the prune below is likewise
+  // scoped to `source='apple_health'`.
+  const bodyMassPayload = parsed.body_mass_trend ?? []
+  let manualBodyMassDates = new Set()
+  if (bodyMassPayload.length > 0) {
+    const { data: manualRows, error: manualErr } = await supabase
+      .from('cardio_body_mass_trend')
+      .select('date')
+      .eq('source', 'manual')
+    if (manualErr) {
+      throw new Error(`Failed to read manual body-mass dates: ${manualErr.message}`)
+    }
+    manualBodyMassDates = new Set(
+      (manualRows ?? []).map((r) => String(r.date).slice(0, 10)),
+    )
+  }
+  const bodyMassRows = bodyMassPayload
+    .filter((point) => !manualBodyMassDates.has(point.date))
+    .map((point) => ({
+      date: point.date,
+      value: point.value,
+      source: 'apple_health',
+      updated_at: importedAt,
+    }))
+
   if (sessionRows.length > 0) {
     const { error } = await supabase
       .from('cardio_sessions')
@@ -291,6 +331,14 @@ export async function upsertCardioData(supabase, data) {
       throw new Error(`Failed to upsert ${table}: ${error.message}`)
     }
   }
+  if (bodyMassRows.length > 0) {
+    const { error } = await supabase
+      .from('cardio_body_mass_trend')
+      .upsert(bodyMassRows, { onConflict: 'date' })
+    if (error) {
+      throw new Error(`Failed to upsert cardio_body_mass_trend: ${error.message}`)
+    }
+  }
 
   const sessionsPruned = await pruneStaleRows(
     supabase,
@@ -316,6 +364,15 @@ export async function upsertCardioData(supabase, data) {
     lifestyleCounts[field] = rows.length
     lifestylePruned += await pruneStaleRows(supabase, table, importedAt, rows.length > 0)
   }
+  // Scope the body-mass prune to apple_health so manual weigh-ins survive a
+  // full import that doesn't include them (see bodyMassRows above).
+  const bodyMassPruned = await pruneStaleRows(
+    supabase,
+    'cardio_body_mass_trend',
+    importedAt,
+    bodyMassRows.length > 0,
+    'apple_health',
+  )
 
   return {
     sessions: sessionRows.length,
@@ -323,7 +380,11 @@ export async function upsertCardioData(supabase, data) {
     vo2max: vo2Rows.length,
     hrSamples: hrSamplesInserted,
     ...lifestyleCounts,
-    pruned: sessionsPruned + restingPruned + vo2Pruned + lifestylePruned,
+    // Count of Apple Health body-mass rows written (manual days are excluded
+    // from the batch, so this can be < the payload's body_mass_trend length).
+    body_mass_trend: bodyMassRows.length,
+    pruned:
+      sessionsPruned + restingPruned + vo2Pruned + lifestylePruned + bodyMassPruned,
   }
 }
 
@@ -440,13 +501,19 @@ export async function upsertHrSamples(supabase, sessions) {
  * @param {boolean} hadAnyUpserts True iff at least one row was
  *   upserted into `table` in this batch. When false the prune is
  *   skipped entirely (see Empty-payload guard above).
+ * @param {string|null} source When non-null, restrict the prune to rows
+ *   with this `source` value. Used for multi-source tables like
+ *   `cardio_body_mass_trend`, where a full Apple Health import
+ *   (`source='apple_health'`) must not delete manually-logged weigh-ins
+ *   (`source='manual'`) that simply aren't in the export. `null` (the
+ *   default) prunes regardless of source, preserving the original
+ *   single-source behavior for every other table.
  */
-export async function pruneStaleRows(supabase, table, importedAt, hadAnyUpserts) {
+export async function pruneStaleRows(supabase, table, importedAt, hadAnyUpserts, source = null) {
   if (!hadAnyUpserts) return 0
-  const { error, count } = await supabase
-    .from(table)
-    .delete({ count: 'exact' })
-    .lt('updated_at', importedAt)
+  let query = supabase.from(table).delete({ count: 'exact' }).lt('updated_at', importedAt)
+  if (source !== null) query = query.eq('source', source)
+  const { error, count } = await query
   if (error) {
     throw new Error(`Failed to prune stale rows from ${table}: ${error.message}`)
   }
