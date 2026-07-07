@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 // Vitest happily resolves `.mjs` from a `.ts` test file. Public surface is
 // minimal — only the helpers exported for cross-module use are reachable.
-import { pruneStaleRows, upsertHrSamples } from './cardio-supabase.mjs'
+import { pruneStaleRows, upsertCardioData, upsertHrSamples } from './cardio-supabase.mjs'
 
 /**
  * Tests for the stale-row prune helper that backs the "exact mirror"
@@ -265,5 +265,94 @@ describe('upsertHrSamples', () => {
         },
       ]),
     ).rejects.toThrow(/Failed to insert cardio_session_hr_samples.*unique violation/)
+  })
+})
+
+/**
+ * Build a Supabase double for a body-mass-only `upsertCardioData` batch. It
+ * records every `upsert(rows)` and every prune (`delete().lt()[.eq()]`) so a
+ * test can assert that manual weigh-ins are excluded from the apple_health
+ * upsert and that the prune is scoped to `source='apple_health'`. `manualDates`
+ * is what the manual-lookup (`select('date').eq('source','manual')`) returns.
+ */
+function makeBodyMassFakeSupabase(manualDates: string[]): {
+  supabase: { from: ReturnType<typeof vi.fn> }
+  upserts: Array<{ table: string; rows: Array<Record<string, unknown>> }>
+  prunes: Array<{ table: string; source: string | null }>
+} {
+  const upserts: Array<{ table: string; rows: Array<Record<string, unknown>> }> = []
+  const prunes: Array<{ table: string; source: string | null }> = []
+  const supabase = {
+    from: vi.fn((table: string) => ({
+      upsert: (rows: unknown) => {
+        upserts.push({
+          table,
+          rows: (Array.isArray(rows) ? rows : [rows]) as Array<Record<string, unknown>>,
+        })
+        return Promise.resolve({ error: null })
+      },
+      // manual-weigh-in lookup: from(bodyMass).select('date').eq('source','manual')
+      select: () => ({
+        eq: () => Promise.resolve({ data: manualDates.map((d) => ({ date: d })), error: null }),
+      }),
+      // prune chain: delete({count}).lt('updated_at', ts) then optional .eq('source', src)
+      delete: () => {
+        const chain: Record<string, unknown> = { source: null }
+        chain.lt = () => chain
+        chain.eq = (_col: string, value: string) => {
+          chain.source = value
+          return chain
+        }
+        chain.then = (resolve: (r: unknown) => void) => {
+          prunes.push({ table, source: chain.source as string | null })
+          resolve({ error: null, count: 0 })
+        }
+        return chain
+      },
+    })),
+  }
+  return { supabase, upserts, prunes }
+}
+
+/** Minimal valid CardioData with no sessions/HR/VO2max — body mass only. */
+const EMPTY_CARDIO = {
+  imported_at: '2026-07-04T00:00:00Z',
+  sessions: [],
+  resting_hr_trend: [],
+  vo2max_trend: [],
+}
+
+describe('upsertCardioData body-mass source handling', () => {
+  it('excludes manual days from the apple_health upsert and scopes the prune to apple_health', async () => {
+    const { supabase, upserts, prunes } = makeBodyMassFakeSupabase(['2026-06-30'])
+    const counts = await upsertCardioData(supabase, {
+      ...EMPTY_CARDIO,
+      body_mass_trend: [
+        { date: '2026-06-30', value: 232 }, // manual day — must be skipped
+        { date: '2026-07-03', value: 234.4 }, // apple_health-only — must be written
+      ],
+    })
+    const bmUpsert = upserts.find((u) => u.table === 'cardio_body_mass_trend')
+    // The manual day is dropped from the batch; only the apple_health-only day
+    // is written, tagged source='apple_health'.
+    expect(bmUpsert?.rows.map((r) => r.date)).toEqual(['2026-07-03'])
+    expect(bmUpsert?.rows.every((r) => r.source === 'apple_health')).toBe(true)
+    expect(counts.body_mass_trend).toBe(1)
+    // The prune must carry the source filter — this is what stops a full import
+    // from deleting manually-logged days that aren't in the Apple Health export.
+    expect(prunes.find((p) => p.table === 'cardio_body_mass_trend')?.source).toBe('apple_health')
+  })
+
+  it('writes every body-mass day when none are manual', async () => {
+    const { supabase, upserts } = makeBodyMassFakeSupabase([])
+    await upsertCardioData(supabase, {
+      ...EMPTY_CARDIO,
+      body_mass_trend: [
+        { date: '2026-07-02', value: 233 },
+        { date: '2026-07-03', value: 234 },
+      ],
+    })
+    const bmUpsert = upserts.find((u) => u.table === 'cardio_body_mass_trend')
+    expect(bmUpsert?.rows.map((r) => r.date)).toEqual(['2026-07-02', '2026-07-03'])
   })
 })

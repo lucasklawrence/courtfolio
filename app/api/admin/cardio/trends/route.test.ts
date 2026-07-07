@@ -163,10 +163,11 @@ describe('POST /api/admin/cardio/trends', () => {
     const res = await POST(req as any)
     expect(res.status).toBe(200)
     expect(fromMock).toHaveBeenCalledWith('cardio_body_mass_trend')
-    // Payload carries the value and an explicit updated_at stamp (the tables
-    // have no update trigger, so a re-log must bump it for imported_at).
+    // Payload carries the value, an explicit updated_at stamp (the tables have
+    // no update trigger, so a re-log must bump it for imported_at), and
+    // source='manual' so the full Apple Health import never overwrites it.
     expect(upsertMock).toHaveBeenCalledWith(
-      expect.objectContaining({ date: '2026-07-01', value: 233.8 })
+      expect.objectContaining({ date: '2026-07-01', value: 233.8, source: 'manual' })
     )
     expect(typeof upsertMock.mock.calls[0][0].updated_at).toBe('string')
     const body = await res.json()
@@ -189,6 +190,8 @@ describe('POST /api/admin/cardio/trends', () => {
     expect(upsertMock).toHaveBeenCalledWith(
       expect.objectContaining({ date: '2026-07-02', value: 45.2 })
     )
+    // The manual-source tag is scoped to body mass — hrv has no source column.
+    expect(upsertMock.mock.calls[0][0]).not.toHaveProperty('source')
   })
 
   it('returns 500 when database upsert fails', async () => {
