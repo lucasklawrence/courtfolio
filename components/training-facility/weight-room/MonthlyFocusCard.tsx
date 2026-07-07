@@ -5,7 +5,7 @@ import type { MonthlyFocus } from '@/types/weight-room'
 
 /** Props for {@link MonthlyFocusCard}. */
 export interface MonthlyFocusCardProps {
-  /** The active focus to display (caller resolves it via `activeFocusForDay`). */
+  /** The active focus to display (caller resolves it via `activeFocusesForDay`). */
   focus: MonthlyFocus
   /**
    * The focus exercise's total for the viewed day — reps when
