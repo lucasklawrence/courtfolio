@@ -193,7 +193,7 @@ export function LogDataIsland(): JSX.Element {
           </div>
           {focusCards.map((card) => (
             <MonthlyFocusCard
-              key={card.focus.exercise}
+              key={card.focus.id}
               focus={card.focus}
               todayProgress={card.todayProgress}
               adherence={card.adherence}
