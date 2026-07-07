@@ -33,6 +33,7 @@ const validFocus = {
   exercise: 'shrugs',
   daily_target: 100,
   color: '#C9A268',
+  category: 'upper',
   start_date: '2026-07-01',
   end_date: '2026-07-31',
 }
@@ -94,6 +95,19 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
     expect(res.status).toBe(400)
   })
 
+  it('returns 400 when category is not upper or lower', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    const res = await POST(makeRequest({ ...validFocus, category: 'core' }) as never)
+    expect(res.status).toBe(400)
+  })
+
+  it('returns 400 when category is missing', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    const { category: _omit, ...noCategory } = validFocus
+    const res = await POST(makeRequest(noCategory) as never)
+    expect(res.status).toBe(400)
+  })
+
   it('returns 500 when the goal-anchor upsert fails', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     upsertResultMock.mockResolvedValueOnce({ error: { code: 'XX001', message: 'boom' } })
@@ -121,11 +135,12 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
       expect.objectContaining({ exercise: 'shrugs', kind: 'focus', daily_target: 100 }),
       { onConflict: 'exercise', ignoreDuplicates: true },
     )
-    // Focus insert defaults target_kind to 'reps'.
+    // Focus insert defaults target_kind to 'reps' and carries the category lane.
     expect(supabaseChain.insert).toHaveBeenCalledWith(
       expect.objectContaining({
         exercise: 'shrugs',
         target_kind: 'reps',
+        category: 'upper',
         start_date: '2026-07-01',
         end_date: '2026-07-31',
       }),

@@ -30,7 +30,7 @@ const FOCUS_TABLE = 'weight_room_monthly_focus'
 const SETS_COLUMNS = 'id, logged_at, exercise, reps, weight_lbs, updated_at'
 const GOALS_COLUMNS = 'exercise, daily_target, color, kind, updated_at'
 const FOCUS_COLUMNS =
-  'id, exercise, daily_target, target_kind, color, start_date, end_date, updated_at'
+  'id, exercise, daily_target, target_kind, color, category, start_date, end_date, updated_at'
 
 const WeightRoomSetRowsSchema = z.array(WeightRoomSetRowSchema)
 const WeightRoomGoalRowsSchema = z.array(WeightRoomGoalRowSchema)

@@ -1,4 +1,4 @@
-import type { MonthlyFocus, StrengthSet } from '@/types/weight-room'
+import type { FocusCategory, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import { toLocalDateKey } from './strength-today'
 
@@ -28,27 +28,37 @@ export function isFocusActiveOnDay(focus: MonthlyFocus, dayKey: string): boolean
   return focus.start_date <= dayKey && dayKey <= focus.end_date
 }
 
+/** Render + resolution order for concurrent focuses: upper lane first. */
+const FOCUS_CATEGORY_ORDER: readonly FocusCategory[] = ['upper', 'lower']
+
 /**
- * The single focus active on `dayKey`, or `null` if none. When more than
- * one window overlaps the day (not expected — focuses are meant to be a
- * non-overlapping monthly rotation), the one that started most recently
- * wins, so a deliberately-overlapping replacement takes precedence.
+ * The active focuses on `dayKey` — at most one per {@link FocusCategory}
+ * (#286), so an upper-body and a lower-body campaign can run concurrently.
+ * Within a lane the most recently started focus wins, so a deliberately
+ * overlapping replacement supersedes the one it replaces (the pre-#286
+ * single-slot rule, now applied per lane rather than globally). Returned in
+ * {@link FOCUS_CATEGORY_ORDER} (upper before lower) so rendering is stable.
  *
  * @param focuses All configured focuses, usually `WeightRoomData.monthly_focus`.
- * @param dayKey `YYYY-MM-DD` key for the viewed day.
+ * @param dayKey `YYYY-MM-DD` key for the viewed day; `''` (an unparseable
+ *   "today") yields an empty array.
  */
-export function activeFocusForDay(
+export function activeFocusesForDay(
   focuses: readonly MonthlyFocus[],
   dayKey: string,
-): MonthlyFocus | null {
-  let active: MonthlyFocus | null = null
+): MonthlyFocus[] {
+  const byCategory = new Map<FocusCategory, MonthlyFocus>()
   for (const focus of focuses) {
     if (!isFocusActiveOnDay(focus, dayKey)) continue
-    if (active === null || focus.start_date > active.start_date) {
-      active = focus
+    const current = byCategory.get(focus.category)
+    if (current === undefined || focus.start_date > current.start_date) {
+      byCategory.set(focus.category, focus)
     }
   }
-  return active
+  return FOCUS_CATEGORY_ORDER.flatMap((category) => {
+    const focus = byCategory.get(category)
+    return focus ? [focus] : []
+  })
 }
 
 /**

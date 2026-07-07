@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from 'rea
 
 import { getWeightRoomData } from '@/lib/data/weight-room'
 import {
-  activeFocusForDay,
+  activeFocusesForDay,
   computeFocusAdherence,
   computeFocusLoadStats,
   upcomingFocuses,
@@ -136,13 +136,15 @@ export function LogDataIsland(): JSX.Element {
   const setsForDay = filterSetsForDay(surfaceData.sets, selectedDay)
   const totals = totalsByExercise(setsForDay)
 
-  // The focus active on the *viewed* day (#255). A `kind: 'focus'` goal
-  // only earns a ring / streak / quick-log button while its window
-  // covers the day, so a finished or future focus doesn't leave a stale
-  // empty ring. Permanent goals always show.
-  const activeFocus = activeFocusForDay(surfaceData.monthly_focus, selectedDay)
+  // The focuses active on the *viewed* day (#255, #286) — up to one per
+  // category (upper + lower). A `kind: 'focus'` goal only earns a ring /
+  // streak / quick-log button while its window covers the day, so a
+  // finished or future focus doesn't leave a stale empty ring. Permanent
+  // goals always show.
+  const activeFocuses = activeFocusesForDay(surfaceData.monthly_focus, selectedDay)
+  const activeFocusExercises = new Set(activeFocuses.map((focus) => focus.exercise))
   const visibleGoals = surfaceData.goals.filter(
-    (goal) => goal.kind !== 'focus' || goal.exercise === activeFocus?.exercise,
+    (goal) => goal.kind !== 'focus' || activeFocusExercises.has(goal.exercise),
   )
   const upcoming = upcomingFocuses(surfaceData.monthly_focus, todayKey)
 
@@ -157,11 +159,12 @@ export function LogDataIsland(): JSX.Element {
     surfaceData.goals.map((g) => [g.exercise, g]),
   )
 
-  // Focus card inputs: today's progress in the focus's own unit (reps or
-  // distinct sets), plus windowed adherence and load stats.
-  const focusCard = activeFocus
-    ? buildFocusCardProps(activeFocus, setsForDay, surfaceData.sets)
-    : null
+  // Focus card inputs per active focus: today's progress in the focus's
+  // own unit (reps or distinct sets), plus windowed adherence and load
+  // stats.
+  const focusCards = activeFocuses.map((focus) =>
+    buildFocusCardProps(focus, setsForDay, surfaceData.sets),
+  )
 
   return (
     <div className="flex flex-col gap-8">
@@ -188,14 +191,15 @@ export function LogDataIsland(): JSX.Element {
               />
             ))}
           </div>
-          {focusCard ? (
+          {focusCards.map((card) => (
             <MonthlyFocusCard
-              focus={focusCard.focus}
-              todayProgress={focusCard.todayProgress}
-              adherence={focusCard.adherence}
-              loadStats={focusCard.loadStats}
+              key={card.focus.id}
+              focus={card.focus}
+              todayProgress={card.todayProgress}
+              adherence={card.adherence}
+              loadStats={card.loadStats}
             />
-          ) : null}
+          ))}
         </div>
 
         <div className="flex flex-col gap-6">

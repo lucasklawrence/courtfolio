@@ -27,8 +27,8 @@ import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 /**
  * Create a monthly focus. Body must conform to
  * {@link WeightRoomMonthlyFocusCreateSchema} — `exercise` (lowercased),
- * `daily_target`, `color`, `start_date`, `end_date` required;
- * `target_kind` defaults to `'reps'`.
+ * `daily_target`, `color`, `category` (`'upper'` | `'lower'`),
+ * `start_date`, `end_date` required; `target_kind` defaults to `'reps'`.
  *
  * Status codes:
  * - 201 — created (response echoes the focus row)
@@ -96,6 +96,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
       daily_target: focus.daily_target,
       target_kind: focus.target_kind,
       color: focus.color,
+      category: focus.category,
       start_date: focus.start_date,
       end_date: focus.end_date,
       updated_at: now,

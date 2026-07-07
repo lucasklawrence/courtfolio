@@ -5,7 +5,7 @@ import type { MonthlyFocus } from '@/types/weight-room'
 
 /** Props for {@link MonthlyFocusCard}. */
 export interface MonthlyFocusCardProps {
-  /** The active focus to display (caller resolves it via `activeFocusForDay`). */
+  /** The active focus to display (caller resolves it via `activeFocusesForDay`). */
   focus: MonthlyFocus
   /**
    * The focus exercise's total for the viewed day — reps when
@@ -46,6 +46,7 @@ export function MonthlyFocusCard({
   const metGoal = todayProgress >= focus.daily_target
   const dayOfWindow = Math.min(adherence.daysElapsed, adherence.daysInWindow)
   const hasLoad = loadStats.weightedSets > 0
+  const categoryLabel = focus.category === 'lower' ? 'Lower Focus' : 'Upper Focus'
 
   return (
     <div
@@ -55,7 +56,7 @@ export function MonthlyFocusCard({
     >
       <div className="flex items-center justify-between gap-3">
         <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-white/55">
-          Focus of the Month
+          {categoryLabel}
         </span>
         <span
           className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em]"
