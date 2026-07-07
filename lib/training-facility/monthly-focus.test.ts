@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import type { MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import {
-  activeFocusForDay,
+  activeFocusesForDay,
   computeFocusAdherence,
   computeFocusLoadStats,
   isFocusActiveOnDay,
@@ -22,6 +22,7 @@ const JULY_SHRUGS: MonthlyFocus = {
   daily_target: 100,
   target_kind: 'reps',
   color: '#C9A268',
+  category: 'upper',
   start_date: '2026-07-01',
   end_date: '2026-07-31',
 }
@@ -32,8 +33,21 @@ const AUGUST_CALVES: MonthlyFocus = {
   daily_target: 150,
   target_kind: 'reps',
   color: '#0EA5A1',
+  category: 'lower',
   start_date: '2026-08-01',
   end_date: '2026-08-31',
+}
+
+/** A lower-lane July focus, concurrent with JULY_SHRUGS (upper), for two-lane cases. */
+const JULY_NORDICS: MonthlyFocus = {
+  id: '55555555-5555-4555-8555-555555555555',
+  exercise: 'nordic-curls',
+  daily_target: 40,
+  target_kind: 'reps',
+  color: '#2563EB',
+  category: 'lower',
+  start_date: '2026-07-01',
+  end_date: '2026-07-31',
 }
 
 /** Build a set on a given local calendar day at noon (stable bucketing). */
@@ -68,18 +82,27 @@ describe('isFocusActiveOnDay', () => {
   })
 })
 
-describe('activeFocusForDay', () => {
-  it('returns the focus whose window covers the day', () => {
-    expect(activeFocusForDay([JULY_SHRUGS, AUGUST_CALVES], '2026-07-10')).toEqual(JULY_SHRUGS)
-    expect(activeFocusForDay([JULY_SHRUGS, AUGUST_CALVES], '2026-08-10')).toEqual(AUGUST_CALVES)
+describe('activeFocusesForDay', () => {
+  it('returns the single active focus for the day, wrapped in an array', () => {
+    expect(activeFocusesForDay([JULY_SHRUGS, AUGUST_CALVES], '2026-07-10')).toEqual([JULY_SHRUGS])
+    expect(activeFocusesForDay([JULY_SHRUGS, AUGUST_CALVES], '2026-08-10')).toEqual([AUGUST_CALVES])
   })
 
-  it('returns null when no window covers the day', () => {
-    expect(activeFocusForDay([JULY_SHRUGS, AUGUST_CALVES], '2026-09-01')).toBeNull()
-    expect(activeFocusForDay([], '2026-07-10')).toBeNull()
+  it('returns both lanes when an upper and a lower focus are active at once, upper first', () => {
+    // Ordered by category (upper before lower), not by input order.
+    expect(activeFocusesForDay([JULY_NORDICS, JULY_SHRUGS], '2026-07-10')).toEqual([
+      JULY_SHRUGS,
+      JULY_NORDICS,
+    ])
   })
 
-  it('prefers the most recently started focus when windows overlap', () => {
+  it('returns an empty array when no window covers the day', () => {
+    expect(activeFocusesForDay([JULY_SHRUGS, AUGUST_CALVES], '2026-09-01')).toEqual([])
+    expect(activeFocusesForDay([], '2026-07-10')).toEqual([])
+    expect(activeFocusesForDay([JULY_SHRUGS], '')).toEqual([])
+  })
+
+  it('prefers the most recently started focus within a category', () => {
     const replacement: MonthlyFocus = {
       ...JULY_SHRUGS,
       id: 'replacement',
@@ -87,7 +110,22 @@ describe('activeFocusForDay', () => {
       start_date: '2026-07-15',
       end_date: '2026-07-31',
     }
-    expect(activeFocusForDay([JULY_SHRUGS, replacement], '2026-07-20')).toEqual(replacement)
+    // Same 'upper' lane → newer start supersedes; only one upper returned.
+    expect(activeFocusesForDay([JULY_SHRUGS, replacement], '2026-07-20')).toEqual([replacement])
+  })
+
+  it('resolves each category independently — a newer upper does not evict the lower lane', () => {
+    const replacement: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: 'replacement',
+      exercise: 'heavy-shrugs',
+      start_date: '2026-07-15',
+      end_date: '2026-07-31',
+    }
+    expect(activeFocusesForDay([JULY_SHRUGS, replacement, JULY_NORDICS], '2026-07-20')).toEqual([
+      replacement,
+      JULY_NORDICS,
+    ])
   })
 })
 

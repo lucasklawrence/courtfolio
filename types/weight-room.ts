@@ -68,6 +68,13 @@ export interface ExerciseGoal {
 }
 
 /**
+ * Body-region lane for a {@link MonthlyFocus} (#286). Two focuses can run
+ * concurrently — at most one per category — so the Today View shows an
+ * upper-body and a lower-body "grease the groove" campaign side by side.
+ */
+export type FocusCategory = 'upper' | 'lower'
+
+/**
  * One "grease the groove" monthly focus (#255) — a time-boxed campaign
  * to do an accessory movement every day for a month, then rotate.
  * Mirrors a row of `public.weight_room_monthly_focus`. The roadmap is
@@ -100,6 +107,13 @@ export interface MonthlyFocus {
   target_kind: 'reps' | 'sets'
   /** Hex color for the focus's ring/strip (e.g. `#C9A268`). */
   color: string
+  /**
+   * Body-region lane (#286). The read layer surfaces one active focus per
+   * category, so an `'upper'` and a `'lower'` focus render as two rings at
+   * once. When more than one focus in the same lane overlaps a day, the
+   * most recently started ({@link MonthlyFocus.start_date}) wins.
+   */
+  category: FocusCategory
   /** Inclusive first day of the focus window, `YYYY-MM-DD` local date. */
   start_date: string
   /** Inclusive last day of the focus window, `YYYY-MM-DD` local date. */

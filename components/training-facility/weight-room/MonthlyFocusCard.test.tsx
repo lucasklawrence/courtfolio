@@ -12,6 +12,7 @@ const FOCUS: MonthlyFocus = {
   daily_target: 100,
   target_kind: 'reps',
   color: '#C9A268',
+  category: 'upper',
   start_date: '2026-07-01',
   end_date: '2026-07-31',
 }
@@ -39,7 +40,7 @@ const BODYWEIGHT_LOAD: FocusLoadStats = {
 }
 
 describe('MonthlyFocusCard', () => {
-  it('shows the focus label, exercise, and today progress against the target', () => {
+  it('shows the category label, exercise, and today progress against the target', () => {
     render(
       <MonthlyFocusCard
         focus={FOCUS}
@@ -48,10 +49,23 @@ describe('MonthlyFocusCard', () => {
         loadStats={WEIGHTED_LOAD}
       />,
     )
-    expect(screen.getByText('Focus of the Month')).toBeInTheDocument()
+    expect(screen.getByText('Upper Focus')).toBeInTheDocument()
     expect(screen.getByText('shrugs')).toBeInTheDocument()
     expect(screen.getByText('60')).toBeInTheDocument()
     expect(screen.getByText(/\/ 100 reps today/)).toBeInTheDocument()
+  })
+
+  it('labels a lower-body focus as "Lower Focus"', () => {
+    render(
+      <MonthlyFocusCard
+        focus={{ ...FOCUS, category: 'lower' }}
+        todayProgress={60}
+        adherence={ADHERENCE}
+        loadStats={BODYWEIGHT_LOAD}
+      />,
+    )
+    expect(screen.getByText('Lower Focus')).toBeInTheDocument()
+    expect(screen.queryByText('Upper Focus')).not.toBeInTheDocument()
   })
 
   it('renders windowed adherence (day, days-hit, streak)', () => {

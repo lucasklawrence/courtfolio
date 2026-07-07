@@ -49,6 +49,12 @@ export function UpcomingFocusStrip({ focuses }: UpcomingFocusStripProps): JSX.El
           <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
             {focus.exercise}
           </span>
+          <span
+            data-testid={`upcoming-focus-${focus.exercise}-category`}
+            className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/45"
+          >
+            {focus.category}
+          </span>
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
             {focusMonthLabel(focus)}
           </span>
