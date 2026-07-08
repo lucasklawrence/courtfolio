@@ -38,7 +38,7 @@ Two Supabase tables back the Weight Room (see
   per set. `exercise` is a FK to `weight_room_goals(exercise)` — inserting a set
   for an exercise that isn't configured fails with a `23503` FK violation.
   `weight_lbs` (added by #255, migration
-  `20260628120000_weight_room_monthly_focus.sql`) is an **optional** load in
+  `20260628120100_weight_room_monthly_focus.sql`) is an **optional** load in
   pounds: set it for weighted movements (shrugs, carries), leave it **null** for
   bodyweight (pushups, pullups). It never affects the rep-based daily ring — it
   feeds the load stats (top set, avg load, tonnage).
