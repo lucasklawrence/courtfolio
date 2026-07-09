@@ -11,7 +11,7 @@ import {
 } from '@/lib/schemas/cardio'
 import type { CardioData, CardioSession, HrSample } from '@/types/cardio'
 
-import { assembleCardioData, stripNulls } from './cardio-shared'
+import { assembleCardioData, fetchAllRows, stripNulls } from './cardio-shared'
 
 /**
  * Server-side cardio dataset reader for Server Components and route
@@ -87,26 +87,31 @@ export async function getCardioSession(
   startedAt: string,
 ): Promise<CardioSessionDetail | null> {
   const supabase = await createServerSupabaseClient()
-  const [sessionRes, samplesRes] = await Promise.all([
+  // A busy 60-minute class can log >1000 HR samples (one session already
+  // has 1287), which is PostgREST's per-response cap — so the samples must
+  // be paged, or the tail of the HR curve is silently dropped. See
+  // {@link fetchAllRows}.
+  const [sessionRes, samplesRaw] = await Promise.all([
     supabase
       .from('cardio_sessions')
       .select(SESSION_COLUMNS)
       .eq('started_at', startedAt)
       .maybeSingle(),
-    supabase
-      .from('cardio_session_hr_samples')
-      .select(HR_SAMPLE_COLUMNS)
-      .eq('session_started_at', startedAt)
-      .order('sample_at', { ascending: true }),
+    fetchAllRows(
+      () =>
+        supabase
+          .from('cardio_session_hr_samples')
+          .select(HR_SAMPLE_COLUMNS)
+          .eq('session_started_at', startedAt)
+          .order('sample_at', { ascending: true }),
+      'cardio_session_hr_samples',
+    ),
   ])
 
   if (sessionRes.error) {
     throw new Error(`Failed to load cardio session: ${sessionRes.error.message}`)
   }
   if (!sessionRes.data) return null
-  if (samplesRes.error) {
-    throw new Error(`Failed to load cardio session HR samples: ${samplesRes.error.message}`)
-  }
 
   const sessionRaw = stripNulls(sessionRes.data as unknown as Record<string, unknown>)
   const sessionParsed = CardioSessionRowSchema.safeParse(sessionRaw)
@@ -116,7 +121,6 @@ export async function getCardioSession(
     )
   }
 
-  const samplesRaw = (samplesRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const samplesParsed = z.array(CardioSessionHrSampleRowSchema).safeParse(samplesRaw)
   if (!samplesParsed.success) {
     throw new Error(

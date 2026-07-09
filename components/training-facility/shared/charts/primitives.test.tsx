@@ -79,6 +79,77 @@ describe('RoughLine', () => {
     // role=img plus aria-labelledby resolves the accessible name from the heading.
     expect(screen.getByRole('img', { name: 'Chart heading' })).toBeInTheDocument()
   })
+
+  it('draws a dashed overlay path when a two-point overlay is supplied (#267)', () => {
+    const { container } = render(
+      <RoughLine
+        data={[
+          { x: 0, y: 1 },
+          { x: 1, y: 2 },
+          { x: 2, y: 3 },
+        ]}
+        x={(d) => d.x}
+        y={(d) => d.y}
+        width={400}
+        height={200}
+        overlay={[
+          { x: 0, y: 1 },
+          { x: 2, y: 3 },
+        ]}
+        ariaLabel="trend with overlay"
+      />,
+    )
+    const overlayPath = container.querySelector('[data-testid="rough-line-overlay"]')
+    expect(overlayPath).not.toBeNull()
+    // Crisp polyline (M…L…), dashed, not a rough.js multi-stroke sketch.
+    expect(overlayPath?.getAttribute('d')).toMatch(/^M[\d.-]+,[\d.-]+ L/)
+    expect(overlayPath?.getAttribute('stroke-dasharray')).toBe('6 4')
+  })
+
+  it('draws a time-axis overlay (the OTF regression path) without clipping (#267)', () => {
+    // Mirrors OtfTrendChart: Date x + a two-point regression overlay whose
+    // endpoints exceed the data's y-range, so the extent-folding must widen
+    // the y-domain to keep the dashed line on-canvas.
+    const { container } = render(
+      <RoughLine
+        data={[
+          { x: new Date(2026, 5, 1), y: 10 },
+          { x: new Date(2026, 5, 3), y: 14 },
+          { x: new Date(2026, 5, 5), y: 12 },
+        ]}
+        x={(d) => d.x}
+        y={(d) => d.y}
+        width={400}
+        height={200}
+        overlay={[
+          { x: new Date(2026, 5, 1), y: 9 },
+          { x: new Date(2026, 5, 5), y: 15 },
+        ]}
+        ariaLabel="date trend with regression"
+      />,
+    )
+    const overlayPath = container.querySelector('[data-testid="rough-line-overlay"]')
+    expect(overlayPath).not.toBeNull()
+    expect(overlayPath?.getAttribute('stroke-dasharray')).toBe('6 4')
+  })
+
+  it('renders no overlay path when the overlay has fewer than two points', () => {
+    const { container } = render(
+      <RoughLine
+        data={[
+          { x: 0, y: 1 },
+          { x: 1, y: 2 },
+        ]}
+        x={(d) => d.x}
+        y={(d) => d.y}
+        width={400}
+        height={200}
+        overlay={[{ x: 0, y: 1 }]}
+        ariaLabel="trend with degenerate overlay"
+      />,
+    )
+    expect(container.querySelector('[data-testid="rough-line-overlay"]')).toBeNull()
+  })
 })
 
 describe('RoughBar', () => {

@@ -11,6 +11,7 @@ const SHRUGS: MonthlyFocus = {
   daily_target: 100,
   target_kind: 'reps',
   color: '#C9A268',
+  category: 'upper',
   start_date: '2026-07-01',
   end_date: '2026-07-31',
 }
@@ -21,6 +22,7 @@ const CALVES: MonthlyFocus = {
   daily_target: 150,
   target_kind: 'reps',
   color: '#0EA5A1',
+  category: 'lower',
   start_date: '2026-08-01',
   end_date: '2026-08-31',
 }
@@ -38,5 +40,11 @@ describe('UpcomingFocusStrip', () => {
     expect(screen.getByTestId('upcoming-focus-calf-raises')).toBeInTheDocument()
     // Month label derived from start_date (locale-formatted; assert the year is present).
     expect(screen.getByTestId('upcoming-focus-shrugs').textContent).toMatch(/2026/)
+  })
+
+  it('tags each chip with its body-region category', () => {
+    render(<UpcomingFocusStrip focuses={[SHRUGS, CALVES]} />)
+    expect(screen.getByTestId('upcoming-focus-shrugs-category').textContent).toBe('upper')
+    expect(screen.getByTestId('upcoming-focus-calf-raises-category').textContent).toBe('lower')
   })
 })

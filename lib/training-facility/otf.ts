@@ -306,6 +306,92 @@ export function otfTrendEndpoints(trend: readonly OtfTrendPoint[]): OtfTrendEndp
   return { first: trend[0].value, last: trend[trend.length - 1].value }
 }
 
+/**
+ * A least-squares trend line fitted over a `{date, value}` trend, expressed as
+ * the two endpoints to draw plus the daily slope for a direction read-out.
+ */
+export interface OtfTrendLine {
+  /**
+   * Two points on the fitted line — at the earliest and latest dates in the
+   * trend — so a chart can draw the regression as a single straight segment
+   * spanning the same x-domain as the data.
+   */
+  points: OtfTrendPoint[]
+  /**
+   * Change in the fitted value per calendar day. Positive means the metric is
+   * rising over time; the caller decides whether up is good (watts, distance)
+   * or bad (pace, split).
+   */
+  slopePerDay: number
+}
+
+/** Milliseconds in a day — converts the ms-based regression slope to per-day. */
+const MS_PER_DAY = 86_400_000
+
+/**
+ * Fit a least-squares regression line to a `{date, value}` trend, using each
+ * point's epoch-milliseconds as x. Returns the line's endpoints (at the min and
+ * max date, so it spans the data's x-domain) and its per-day slope.
+ *
+ * Returns `null` when the line is undefined: fewer than two points, or every
+ * point sharing the same date (zero x-variance — a vertical line has no slope).
+ */
+export function otfLinearRegression(trend: readonly OtfTrendPoint[]): OtfTrendLine | null {
+  if (trend.length < 2) return null
+  const n = trend.length
+  let sumX = 0
+  let sumY = 0
+  let sumXY = 0
+  let sumXX = 0
+  let minX = Infinity
+  let maxX = -Infinity
+  for (const p of trend) {
+    const x = p.date.getTime()
+    const y = p.value
+    sumX += x
+    sumY += y
+    sumXY += x * y
+    sumXX += x * x
+    if (x < minX) minX = x
+    if (x > maxX) maxX = x
+  }
+  const denom = n * sumXX - sumX * sumX
+  if (denom === 0) return null
+  const slopePerMs = (n * sumXY - sumX * sumY) / denom
+  const intercept = (sumY - slopePerMs * sumX) / n
+  return {
+    points: [
+      { date: new Date(minX), value: slopePerMs * minX + intercept },
+      { date: new Date(maxX), value: slopePerMs * maxX + intercept },
+    ],
+    slopePerDay: slopePerMs * MS_PER_DAY,
+  }
+}
+
+/**
+ * Trailing moving average of a `{date, value}` trend. Each output point keeps
+ * its original date and replaces the value with the mean of up to `window`
+ * values ending at that point (min-periods 1, so the output is the same length
+ * as the input and the leading points average whatever is available so far).
+ *
+ * @param window Number of trailing points to average; values below 1 are
+ *   treated as 1, yielding the original trend.
+ */
+export function otfRollingAverage(
+  trend: readonly OtfTrendPoint[],
+  window: number
+): OtfTrendPoint[] {
+  const size = Math.max(1, Math.floor(window))
+  const out: OtfTrendPoint[] = []
+  for (let i = 0; i < trend.length; i++) {
+    const start = Math.max(0, i - size + 1)
+    let sum = 0
+    for (let j = start; j <= i; j++) sum += trend[j].value
+    out.push({ date: trend[i].date, value: sum / (i - start + 1) })
+  }
+  return out
+}
+
 /** Headline stats for the OTF highlights strip, computed over a session set. */
 export interface OtfHighlights {
   /** Number of classes. */

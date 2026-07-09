@@ -22,7 +22,9 @@ import {
   otfBlockTrend,
   otfClassTypes,
   otfHighlights,
+  otfLinearRegression,
   otfMetricTrend,
+  otfRollingAverage,
   otfTrendEndpoints,
   resolveOtfClassTypeFilter,
   type OtfTrendPoint,
@@ -326,5 +328,90 @@ describe('otfTrendEndpoints', () => {
 
   it('returns null for an empty trend', () => {
     expect(otfTrendEndpoints([])).toBeNull()
+  })
+})
+
+describe('otfLinearRegression (#267)', () => {
+  // One point per day starting 2026-06-01, so `slopePerDay` is directly the
+  // per-step delta in the fitted values.
+  const pt = (day: number, value: number): OtfTrendPoint => ({
+    date: new Date(2026, 5, day),
+    value,
+  })
+
+  it('fits a rising line with positive per-day slope', () => {
+    const line = otfLinearRegression([pt(1, 10), pt(2, 20), pt(3, 30)])
+    expect(line).not.toBeNull()
+    expect(line!.slopePerDay).toBeCloseTo(10, 6)
+  })
+
+  it('fits a falling line with negative per-day slope', () => {
+    const line = otfLinearRegression([pt(1, 30), pt(2, 20), pt(3, 10)])
+    expect(line!.slopePerDay).toBeCloseTo(-10, 6)
+  })
+
+  it('spans the trend x-domain: endpoints sit at the min and max dates', () => {
+    const line = otfLinearRegression([pt(1, 10), pt(2, 20), pt(3, 30)])!
+    expect(line.points).toHaveLength(2)
+    expect(line.points[0].date.getTime()).toBe(new Date(2026, 5, 1).getTime())
+    expect(line.points[1].date.getTime()).toBe(new Date(2026, 5, 3).getTime())
+    // On a perfectly linear trend the fitted endpoints equal the data.
+    expect(line.points[0].value).toBeCloseTo(10, 6)
+    expect(line.points[1].value).toBeCloseTo(30, 6)
+  })
+
+  it('fits the least-squares line through noisy data', () => {
+    // y ≈ 5x + noise; the closed-form least-squares slope for
+    // (1,4)(2,11)(3,14)(4,21) is 108/20 = 5.4 per day.
+    const line = otfLinearRegression([pt(1, 4), pt(2, 11), pt(3, 14), pt(4, 21)])!
+    expect(line.slopePerDay).toBeCloseTo(5.4, 4)
+  })
+
+  it('returns null for fewer than two points', () => {
+    expect(otfLinearRegression([])).toBeNull()
+    expect(otfLinearRegression([pt(1, 10)])).toBeNull()
+  })
+
+  it('returns null when every point shares one date (zero x-variance)', () => {
+    const sameDay = { date: new Date(2026, 5, 1), value: 0 }
+    expect(
+      otfLinearRegression([
+        { ...sameDay, value: 10 },
+        { ...sameDay, value: 20 },
+      ])
+    ).toBeNull()
+  })
+})
+
+describe('otfRollingAverage (#267)', () => {
+  const pt = (day: number, value: number): OtfTrendPoint => ({
+    date: new Date(2026, 5, day),
+    value,
+  })
+
+  it('averages up to `window` trailing points, keeping original dates', () => {
+    const avg = otfRollingAverage([pt(1, 10), pt(2, 20), pt(3, 30), pt(4, 40)], 2)
+    expect(avg.map(p => p.value)).toEqual([10, 15, 25, 35])
+    expect(avg.map(p => p.date.getTime())).toEqual([
+      new Date(2026, 5, 1).getTime(),
+      new Date(2026, 5, 2).getTime(),
+      new Date(2026, 5, 3).getTime(),
+      new Date(2026, 5, 4).getTime(),
+    ])
+  })
+
+  it('uses min-periods 1 so output length matches input', () => {
+    const avg = otfRollingAverage([pt(1, 10), pt(2, 20), pt(3, 30)], 3)
+    expect(avg.map(p => p.value)).toEqual([10, 15, 20])
+  })
+
+  it('a window of 1 (or below) returns the original values', () => {
+    const trend = [pt(1, 10), pt(2, 20)]
+    expect(otfRollingAverage(trend, 1).map(p => p.value)).toEqual([10, 20])
+    expect(otfRollingAverage(trend, 0).map(p => p.value)).toEqual([10, 20])
+  })
+
+  it('returns an empty array for an empty trend', () => {
+    expect(otfRollingAverage([], 3)).toEqual([])
   })
 })

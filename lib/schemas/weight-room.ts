@@ -225,7 +225,7 @@ export function goalRowToExerciseGoal(row: WeightRoomGoalRow): ExerciseGoal {
 /**
  * Zod schema for one row of `public.weight_room_monthly_focus` (#255).
  * Mirrors the table in
- * `supabase/migrations/20260628120000_weight_room_monthly_focus.sql`.
+ * `supabase/migrations/20260628120100_weight_room_monthly_focus.sql`.
  *
  * `start_date` / `end_date` are bare `YYYY-MM-DD` strings (PostgREST's
  * rendering of a Postgres `date`), validated by shape rather than
@@ -238,6 +238,7 @@ export const WeightRoomMonthlyFocusRowSchema = z
     daily_target: positiveInt(),
     target_kind: z.enum(['reps', 'sets']),
     color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #C9A268'),
+    category: z.enum(['upper', 'lower']),
     start_date: z.string().regex(DATE_REGEX, 'start_date must be YYYY-MM-DD'),
     end_date: z.string().regex(DATE_REGEX, 'end_date must be YYYY-MM-DD'),
   })
@@ -257,6 +258,7 @@ export const WeightRoomMonthlyFocusCreateSchema = z
     daily_target: positiveInt(),
     target_kind: z.enum(['reps', 'sets']).default('reps'),
     color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #C9A268'),
+    category: z.enum(['upper', 'lower']),
     start_date: z.string().regex(DATE_REGEX, 'start_date must be YYYY-MM-DD'),
     end_date: z.string().regex(DATE_REGEX, 'end_date must be YYYY-MM-DD'),
   })
@@ -281,6 +283,7 @@ export function focusRowToMonthlyFocus(row: WeightRoomMonthlyFocusRow): MonthlyF
     daily_target: row.daily_target,
     target_kind: row.target_kind,
     color: row.color,
+    category: row.category,
     start_date: row.start_date,
     end_date: row.end_date,
   }

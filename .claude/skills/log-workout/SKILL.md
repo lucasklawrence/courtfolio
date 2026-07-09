@@ -1,6 +1,6 @@
 ---
 name: log-workout
-description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x10 shrugs at 100lb" (weighted), "shrugs 15 db - 25 reps" (dumbbell, load-first), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets and any per-set load, writes them to Supabase, and reports today's totals against the daily goals.
+description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x20 squats" (bodyweight), "3x10 shrugs at 100lb" (weighted), "shrugs 15 db - 25 reps" (dumbbell, load-first), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets and any per-set load, writes them to Supabase, and reports today's totals against the daily goals.
 ---
 
 # Log Workout
@@ -16,6 +16,7 @@ The user casually reports completed bodyweight work. Triggers look like:
 - "another 3 sets of 10 pushups" (append to today — see step 4)
 - "did 25 pushups" / "25 pushups" (single set)
 - "1 set of 5 pullups" / "1x5 pullups"
+- "3x20 squats" / "did 50 squats" (bodyweight lower-body — no load)
 - "3x10 shrugs at 100lb" / "25 shrugs @ 95 lbs" (weighted — see step 1b)
 - "shrugs 15 db - 25 reps" / "15 db 25 reps" (dumbbell notation, load-first — see step 1b)
 - "logged 12 dips this morning" / "20 pushups yesterday" (back-dating — see step 3)
@@ -37,7 +38,7 @@ Two Supabase tables back the Weight Room (see
   per set. `exercise` is a FK to `weight_room_goals(exercise)` — inserting a set
   for an exercise that isn't configured fails with a `23503` FK violation.
   `weight_lbs` (added by #255, migration
-  `20260628120000_weight_room_monthly_focus.sql`) is an **optional** load in
+  `20260628120100_weight_room_monthly_focus.sql`) is an **optional** load in
   pounds: set it for weighted movements (shrugs, carries), leave it **null** for
   bodyweight (pushups, pullups). It never affects the rep-based daily ring — it
   feeds the load stats (top set, avg load, tonnage).
@@ -88,6 +89,15 @@ select exercise from public.weight_room_goals order by exercise;
 Use the **exact stored key** for the insert (e.g. parsed `Pull-ups` → stored
 `pullups`). If nothing matches, treat it as a new exercise — see step 6; do not
 invent a near-duplicate key.
+
+**The exercise roster is a moving target — read it live every time; never work
+from a remembered or hardcoded list.** Permanent rings get added over time (e.g.
+`squats`, a bodyweight lower-body goal), and the monthly focus rotates a
+different accessory in each month (`shrugs` in July). Because logging keys purely
+off the `exercise` column in `weight_room_goals`, the skill stays correct across
+new exercises and focus rotations with no change here — *provided* you
+canonicalize against the live table each run rather than assuming only
+pushups/pullups/shrugs exist.
 
 ### 1b. Parse the load (optional)
 
