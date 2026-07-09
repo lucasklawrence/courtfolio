@@ -6,6 +6,7 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
 import { StrengthStats } from '@/components/training-facility/weight-room/StrengthStats'
 import { StrengthVsBodyweightChart } from '@/components/training-facility/weight-room/StrengthVsBodyweightChart'
+import { VariantBreakdown } from '@/components/training-facility/weight-room/VariantBreakdown'
 import { WeeklyVolumeChart } from '@/components/training-facility/weight-room/WeeklyVolumeChart'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
@@ -139,6 +140,10 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
                       <WeeklyVolumeChart sets={sets} goal={goal} />
                     </div>
                   </div>
+                  {/* Renders only once this exercise has grip-tagged sets
+                      (#254); otherwise it's null and the article ends at
+                      the volume chart. */}
+                  <VariantBreakdown sets={sets} goal={goal} />
                 </article>
               ))}
             </section>

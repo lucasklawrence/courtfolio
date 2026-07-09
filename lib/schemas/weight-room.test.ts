@@ -7,6 +7,7 @@ import {
   WeightRoomMonthlyFocusRowSchema,
   WeightRoomSetCreateSchema,
   WeightRoomSetRowSchema,
+  setRowToStrengthSet,
 } from './weight-room'
 
 /**
@@ -102,6 +103,16 @@ describe('WeightRoomSetRowSchema (read)', () => {
     expect(parsed.exercise).toBe('Pushups')
   })
 
+  it('accepts a null variant (unspecified set)', () => {
+    const parsed = WeightRoomSetRowSchema.parse({ ...base, variant: null })
+    expect(parsed.variant).toBeNull()
+  })
+
+  it('preserves variant casing on read like exercise', () => {
+    const parsed = WeightRoomSetRowSchema.parse({ ...base, variant: 'Wide' })
+    expect(parsed.variant).toBe('Wide')
+  })
+
   it('rejects a non-uuid id', () => {
     expect(() => WeightRoomSetRowSchema.parse({ ...base, id: 'nope' })).toThrow()
   })
@@ -127,10 +138,54 @@ describe('WeightRoomSetCreateSchema (write body)', () => {
     expect(parsed.logged_at).toBe('2026-04-14T08:00:00.000Z')
   })
 
+  it('lowercases and trims a provided variant so buckets never split on case', () => {
+    const parsed = WeightRoomSetCreateSchema.parse({
+      exercise: 'pullups',
+      reps: 5,
+      variant: '  Wide  ',
+    })
+    expect(parsed.variant).toBe('wide')
+  })
+
+  it('normalizes an empty / whitespace / null variant to undefined', () => {
+    for (const variant of ['', '   ', null]) {
+      const parsed = WeightRoomSetCreateSchema.parse({ exercise: 'pullups', reps: 5, variant })
+      expect(parsed.variant).toBeUndefined()
+    }
+  })
+
+  it('leaves variant undefined when the field is omitted', () => {
+    const parsed = WeightRoomSetCreateSchema.parse({ exercise: 'pullups', reps: 5 })
+    expect(parsed.variant).toBeUndefined()
+  })
+
   it('rejects unknown fields via .strict()', () => {
     expect(() =>
       WeightRoomSetCreateSchema.parse({ exercise: 'pushups', reps: 25, surprise: 'no' }),
     ).toThrow()
+  })
+})
+
+describe('setRowToStrengthSet (row → public shape)', () => {
+  const row = {
+    id: '00000000-0000-0000-0000-000000000000',
+    logged_at: '2026-04-14T08:00:00.000Z',
+    exercise: 'pullups',
+    reps: 5,
+  }
+
+  it('carries a present variant through onto the StrengthSet', () => {
+    expect(setRowToStrengthSet({ ...row, variant: 'wide' }).variant).toBe('wide')
+  })
+
+  it('omits variant entirely when the column is null', () => {
+    const set = setRowToStrengthSet({ ...row, variant: null })
+    expect('variant' in set).toBe(false)
+  })
+
+  it('omits variant when it is an empty string so no phantom bucket leaks', () => {
+    const set = setRowToStrengthSet({ ...row, variant: '' })
+    expect('variant' in set).toBe(false)
   })
 })
 

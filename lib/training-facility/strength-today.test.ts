@@ -10,6 +10,7 @@ import {
   sumReps,
   toLocalDateKey,
   totalsByExercise,
+  variantBreakdown,
 } from './strength-today'
 
 /** Helper — assemble a {@link StrengthSet} with sensible defaults. */
@@ -94,6 +95,63 @@ describe('totalsByExercise', () => {
 
   it('returns an empty map for no sets', () => {
     expect(totalsByExercise([]).size).toBe(0)
+  })
+
+  it('rolls every variant of an exercise into one total (#254)', () => {
+    // The whole point of #254: a variant is a slice label, never a
+    // rollup key. Two different-grip pullup sets must sum into the
+    // single `pullups` ring, not split into `pullups/wide` +
+    // `pullups/close`.
+    const totals = totalsByExercise([
+      set({ exercise: 'pullups', reps: 10, variant: 'wide' }),
+      set({ exercise: 'pullups', reps: 5, variant: 'close' }),
+      set({ exercise: 'pullups', reps: 3 }),
+    ])
+    expect(totals.get('pullups')).toBe(18)
+    expect(totals.size).toBe(1)
+  })
+})
+
+describe('variantBreakdown', () => {
+  it('buckets reps and sets by variant with shares of the total', () => {
+    const slices = variantBreakdown([
+      set({ reps: 10, variant: 'wide' }),
+      set({ reps: 20, variant: 'wide' }),
+      set({ reps: 20, variant: 'close' }),
+    ])
+    const wide = slices.find((s) => s.variant === 'wide')
+    const close = slices.find((s) => s.variant === 'close')
+    expect(wide).toEqual({ variant: 'wide', reps: 30, sets: 2, share: 0.6 })
+    expect(close).toEqual({ variant: 'close', reps: 20, sets: 1, share: 0.4 })
+  })
+
+  it('collapses untagged sets into a single null "unspecified" slice', () => {
+    const slices = variantBreakdown([set({ reps: 10 }), set({ reps: 5 })])
+    expect(slices).toEqual([{ variant: null, reps: 15, sets: 2, share: 1 }])
+  })
+
+  it('sorts by reps desc, unspecified last on a tie', () => {
+    const slices = variantBreakdown([
+      set({ reps: 5, variant: 'close' }),
+      set({ reps: 10, variant: 'wide' }),
+      set({ reps: 10 }),
+    ])
+    // wide (10) and unspecified (10) tie on reps; unspecified sorts last.
+    expect(slices.map((s) => s.variant)).toEqual(['wide', null, 'close'])
+  })
+
+  it('shares across the slices sum to 1', () => {
+    const slices = variantBreakdown([
+      set({ reps: 7, variant: 'wide' }),
+      set({ reps: 11, variant: 'close' }),
+      set({ reps: 13 }),
+    ])
+    const totalShare = slices.reduce((sum, s) => sum + s.share, 0)
+    expect(totalShare).toBeCloseTo(1, 10)
+  })
+
+  it('returns an empty array for no sets', () => {
+    expect(variantBreakdown([])).toEqual([])
   })
 })
 

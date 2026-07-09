@@ -104,6 +104,10 @@ export function LogDataIsland(): JSX.Element {
     () => (data ? computeLastRepsByExercise(data.sets) : {}),
     [data],
   )
+  const variantSuggestions = useMemo(
+    () => (data ? computeVariantSuggestionsByExercise(data.sets) : {}),
+    [data],
+  )
 
   if (data === undefined) {
     return (
@@ -207,7 +211,8 @@ export function LogDataIsland(): JSX.Element {
             <QuickLog
               goals={visibleGoals}
               lastReps={lastReps}
-              onLog={({ exercise, reps }) => {
+              variantSuggestions={variantSuggestions}
+              onLog={({ exercise, reps, variant }) => {
                 // Recompute "today" at tap time rather than reusing the
                 // render-scoped isBackfilling — a page left mounted across
                 // local midnight would otherwise have a stale closure and
@@ -224,6 +229,7 @@ export function LogDataIsland(): JSX.Element {
                   isBackfillAtTap
                     ? localNoonIsoForDay(selectedDay) || undefined
                     : undefined,
+                  variant,
                   setBusy,
                   refetch,
                 )
@@ -261,11 +267,15 @@ export function LogDataIsland(): JSX.Element {
  * @param loggedAt Optional ISO timestamp for backdated sets (#202).
  *   Omitted for same-day logs so the API's `now()` default stamps the
  *   real time-of-day.
+ * @param variant Optional grip / width / tempo (#254), already trimmed.
+ *   Omitted from the body when empty so the set logs unspecified; the
+ *   API lowercases it, so no case normalization is needed here.
  */
 async function logSet(
   exercise: string,
   reps: number,
   loggedAt: string | undefined,
+  variant: string | undefined,
   setBusy: (v: boolean) => void,
   refetch: () => Promise<void>,
 ): Promise<void> {
@@ -274,9 +284,12 @@ async function logSet(
     const res = await fetch('/api/admin/weight-room/sets', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(
-        loggedAt ? { exercise, reps, logged_at: loggedAt } : { exercise, reps },
-      ),
+      body: JSON.stringify({
+        exercise,
+        reps,
+        ...(loggedAt ? { logged_at: loggedAt } : {}),
+        ...(variant ? { variant } : {}),
+      }),
     })
     if (!res.ok) {
       const body = (await res.json().catch(() => ({}))) as { error?: string }
@@ -327,6 +340,28 @@ function computeLastRepsByExercise(
   const out: Record<string, number> = {}
   for (const s of sets) {
     out[s.exercise] = s.reps
+  }
+  return out
+}
+
+/**
+ * Per-exercise list of previously-logged variants (#254), most-recent
+ * first with duplicates removed — feeds each QuickLog row's grip
+ * datalist. `sets` arrives oldest → newest, so we walk it forward and
+ * unshift each newly-seen variant to keep the freshest grips at the top
+ * of the suggestion list. Untagged sets contribute nothing.
+ */
+function computeVariantSuggestionsByExercise(
+  sets: readonly StrengthSet[],
+): Record<string, string[]> {
+  const out: Record<string, string[]> = {}
+  for (const s of sets) {
+    const variant = s.variant
+    if (!variant) continue
+    const list = (out[s.exercise] ??= [])
+    const existing = list.indexOf(variant)
+    if (existing !== -1) list.splice(existing, 1)
+    list.unshift(variant)
   }
   return out
 }

@@ -75,6 +75,29 @@ const exerciseWriteField = () =>
     .transform((s) => s.toLowerCase())
 
 /**
+ * Write-only `variant` field (#254) — the optional grip / width / tempo
+ * for a logged set. Accepts a string, `null`, or absent; trims and
+ * lowercases a provided value, and normalizes empty / whitespace-only /
+ * null / absent all to `undefined` (the API omits the column, so the DB
+ * stores `null` = "unspecified").
+ *
+ * Lowercasing mirrors {@link exerciseWriteField}'s anti-duplicate intent:
+ * the History View buckets an exercise's volume by exact variant string,
+ * so `"Wide"` and `"wide"` logged on different days must collapse to one
+ * bucket rather than reading as two grips. Read schemas preserve DB
+ * casing; writes canonicalize going forward.
+ */
+const variantWriteField = () =>
+  z
+    .union([z.string(), z.null()])
+    .optional()
+    .transform((v) => {
+      if (v == null) return undefined
+      const normalized = v.trim().toLowerCase()
+      return normalized === '' ? undefined : normalized
+    })
+
+/**
  * Zod schema for one row of `public.weight_room_sets`. Mirrors the
  * table definition in
  * `supabase/migrations/20260507120000_weight_room_tables.sql`.
@@ -90,6 +113,12 @@ export const WeightRoomSetRowSchema = z
     exercise: z.string().min(1),
     reps: positiveInt(),
     weight_lbs: optionalWeightLbs(),
+    // Optional + nullable so pre-#254 rows (and fixtures) without the
+    // column still validate; PostgREST emits `null` for unspecified
+    // sets. Casing preserved on read (writes lowercase it) — see
+    // {@link variantWriteField}. Normalized to absent by the row
+    // converter so {@link StrengthSet.variant} stays `string | undefined`.
+    variant: z.string().nullable().optional(),
   })
   .strict()
 
@@ -145,6 +174,10 @@ export const WeightRoomSetCreateSchema = z
     exercise: exerciseWriteField(),
     reps: positiveInt(),
     logged_at: z.string().min(1).optional(),
+    // Optional grip / width / tempo (#254). Lowercased + trimmed;
+    // empty / whitespace / null all normalize to `undefined` so the
+    // route omits the column and the DB stores `null` (unspecified).
+    variant: variantWriteField(),
   })
   .strict()
 
@@ -166,6 +199,10 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     // Normalize null/absent to absent so StrengthSet.weight_lbs stays
     // `number | undefined` (bodyweight sets omit the field entirely).
     ...(row.weight_lbs != null ? { weight_lbs: row.weight_lbs } : {}),
+    // Same normalization for variant (#254): null / absent / empty all
+    // collapse to absent so an unspecified set never surfaces a phantom
+    // "" variant bucket in the History View breakdown.
+    ...(row.variant != null && row.variant !== '' ? { variant: row.variant } : {}),
   }
 }
 

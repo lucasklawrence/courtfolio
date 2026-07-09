@@ -16,6 +16,13 @@ const PULLUPS: ExerciseGoal = {
   daily_target: 30,
   color: '#0EA5A1',
 }
+/** A goal with no curated grip list — exercises the DB-seen fallback. */
+const SHRUGS: ExerciseGoal = {
+  exercise: 'shrugs',
+  daily_target: 100,
+  color: '#C9A268',
+  kind: 'focus',
+}
 
 describe('QuickLog', () => {
   it('logs a preset rep count with a single click', async () => {
@@ -24,6 +31,114 @@ describe('QuickLog', () => {
     await userEvent.click(screen.getByTestId('quick-log-pushups-10'))
     expect(onLog).toHaveBeenCalledTimes(1)
     expect(onLog).toHaveBeenCalledWith({ exercise: 'pushups', reps: 10 })
+  })
+
+  it('attaches a selected grip to a preset log (#254)', async () => {
+    const onLog = vi.fn().mockResolvedValue(undefined)
+    render(<QuickLog goals={[PULLUPS]} onLog={onLog} />)
+    await userEvent.selectOptions(
+      screen.getByTestId('quick-log-pullups-grip'),
+      'wide',
+    )
+    await userEvent.click(screen.getByTestId('quick-log-pullups-10'))
+    expect(onLog).toHaveBeenCalledWith({
+      exercise: 'pullups',
+      reps: 10,
+      variant: 'wide',
+    })
+  })
+
+  it('exposes each exercise its curated grip list', () => {
+    render(<QuickLog goals={[PULLUPS, PUSHUPS]} onLog={vi.fn()} />)
+    const pullupOptions = Array.from(
+      screen.getByTestId('quick-log-pullups-grip').querySelectorAll('option'),
+    ).map((o) => o.value)
+    // no-grip + 4 curated pull-up grips + Custom…
+    expect(pullupOptions).toEqual(['', 'wide', 'close', 'neutral', 'chin-up', '__custom__'])
+    const pushupOptions = Array.from(
+      screen.getByTestId('quick-log-pushups-grip').querySelectorAll('option'),
+    ).map((o) => o.value)
+    expect(pushupOptions).toEqual([
+      '',
+      'standard',
+      'wide',
+      'diamond',
+      'military',
+      'shoulder',
+      '__custom__',
+    ])
+  })
+
+  it('logs without a grip when the dropdown is left on "no grip"', async () => {
+    const onLog = vi.fn().mockResolvedValue(undefined)
+    render(<QuickLog goals={[PULLUPS]} onLog={onLog} />)
+    await userEvent.click(screen.getByTestId('quick-log-pullups-10'))
+    // The object must not carry a `variant` key so the write path logs
+    // it as unspecified.
+    expect(onLog).toHaveBeenCalledWith({ exercise: 'pullups', reps: 10 })
+  })
+
+  it('reuses the selected grip across a run of sets until changed', async () => {
+    const onLog = vi.fn().mockResolvedValue(undefined)
+    render(<QuickLog goals={[PULLUPS]} onLog={onLog} />)
+    await userEvent.selectOptions(screen.getByTestId('quick-log-pullups-grip'), 'close')
+    await userEvent.click(screen.getByTestId('quick-log-pullups-5'))
+    await userEvent.click(screen.getByTestId('quick-log-pullups-5'))
+    expect(onLog).toHaveBeenNthCalledWith(1, {
+      exercise: 'pullups',
+      reps: 5,
+      variant: 'close',
+    })
+    expect(onLog).toHaveBeenNthCalledWith(2, {
+      exercise: 'pullups',
+      reps: 5,
+      variant: 'close',
+    })
+  })
+
+  it('merges DB-seen grips into the dropdown so non-curated exercises can select (#254)', async () => {
+    // shrugs has no curated list — the "db selection" path. A grip it's
+    // been logged with before must show up as a selectable option, not
+    // just be typeable.
+    const onLog = vi.fn().mockResolvedValue(undefined)
+    render(
+      <QuickLog
+        goals={[SHRUGS]}
+        variantSuggestions={{ shrugs: ['heavy'] }}
+        onLog={onLog}
+      />,
+    )
+    const options = Array.from(
+      screen.getByTestId('quick-log-shrugs-grip').querySelectorAll('option'),
+    ).map((o) => o.value)
+    expect(options).toEqual(['', 'heavy', '__custom__'])
+    await userEvent.selectOptions(screen.getByTestId('quick-log-shrugs-grip'), 'heavy')
+    await userEvent.click(screen.getByTestId('quick-log-shrugs-10'))
+    expect(onLog).toHaveBeenCalledWith({ exercise: 'shrugs', reps: 10, variant: 'heavy' })
+  })
+
+  it('reveals a free-text input for a brand-new grip via Custom…', async () => {
+    const onLog = vi.fn().mockResolvedValue(undefined)
+    render(<QuickLog goals={[PULLUPS]} onLog={onLog} />)
+    // No free-text input until Custom… is chosen.
+    expect(screen.queryByTestId('quick-log-pullups-variant')).not.toBeInTheDocument()
+    await userEvent.selectOptions(screen.getByTestId('quick-log-pullups-grip'), '__custom__')
+    await userEvent.type(screen.getByTestId('quick-log-pullups-variant'), 'archer')
+    await userEvent.click(screen.getByTestId('quick-log-pullups-10'))
+    expect(onLog).toHaveBeenCalledWith({
+      exercise: 'pullups',
+      reps: 10,
+      variant: 'archer',
+    })
+  })
+
+  it('omits a Custom… grip that is only whitespace', async () => {
+    const onLog = vi.fn().mockResolvedValue(undefined)
+    render(<QuickLog goals={[PULLUPS]} onLog={onLog} />)
+    await userEvent.selectOptions(screen.getByTestId('quick-log-pullups-grip'), '__custom__')
+    await userEvent.type(screen.getByTestId('quick-log-pullups-variant'), '   ')
+    await userEvent.click(screen.getByTestId('quick-log-pullups-10'))
+    expect(onLog).toHaveBeenCalledWith({ exercise: 'pullups', reps: 10 })
   })
 
   it('renders a card for each goal', () => {

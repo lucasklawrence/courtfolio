@@ -33,6 +33,16 @@ export interface StrengthSet {
    * which is rep-based.
    */
   weight_lbs?: number
+  /**
+   * Optional exercise variant for this set (#254) — the grip / width /
+   * tempo used, e.g. `wide` / `close` / `neutral` for pullups. Absent
+   * means "unspecified" (the set still counts, just without a tagged
+   * grip). Lowercased on write so the History View can bucket by exact
+   * string. Does NOT affect the daily-ring rollup: every variant of an
+   * exercise sums into that exercise's single ring — it exists only to
+   * *slice* volume by variant in the History View, never to split it.
+   */
+  variant?: string
 }
 
 /**
