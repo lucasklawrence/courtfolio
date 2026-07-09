@@ -13,7 +13,7 @@
 -- Nullable, no backfill, no default: every existing row reads as
 -- "unspecified" (null), and bodyweight sets logged without a grip stay
 -- null. Mirrors the nullable `weight_lbs` column added in
--- `20260628120000_weight_room_monthly_focus.sql`. Idempotent so
+-- `20260628120100_weight_room_monthly_focus.sql`. Idempotent so
 -- re-applying on a fresh dev project (or after a branch reset) is a safe
 -- no-op.
 
