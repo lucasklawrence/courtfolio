@@ -32,8 +32,8 @@ test.describe('draft room showcase', () => {
   })
 
   test('shows the verifier’s overruled claims and the final verdict', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: /overruled panel claims/i })).toBeVisible()
-    await expect(page.getByText('The verdict')).toBeVisible()
+    await expect(page.getByRole('heading', { name: /overruled scouting claims/i })).toBeVisible()
+    await expect(page.getByText(/front office verdict/i)).toBeVisible()
   })
 
   test('explains why the panel does not debate', async ({ page }) => {

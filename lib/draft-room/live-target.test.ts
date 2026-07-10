@@ -3,7 +3,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { courtfolioPanelResult } from '@/app/draft-room/panelResult'
-import { portfolioConfig } from '@/lib/panel/config'
+import { DRAFT_ROOM_PERSONAS } from '@/lib/panel/personas'
 
 import { PANEL_STAGE_LIMITS } from './limits'
 import {
@@ -44,13 +44,9 @@ describe('livePanelConfig', () => {
     expect(livePanelConfig.limits).toBe(PANEL_STAGE_LIMITS)
   })
 
-  it('runs the portfolio persona set (live runs stay comparable with the shipped replay)', () => {
-    expect(livePanelConfig.personas).toBe(portfolioConfig.personas)
-    expect(livePanelConfig.personas.map(p => p.id)).toEqual([
-      'hiring-manager',
-      'staff-mentor',
-      'skeptical-peer',
-    ])
+  it('runs the draft-room persona set — the front office judges live runs (#302)', () => {
+    expect(livePanelConfig.personas).toBe(DRAFT_ROOM_PERSONAS)
+    expect(livePanelConfig.personas.map(p => p.id)).toEqual(['gm', 'scout', 'coach'])
   })
 })
 

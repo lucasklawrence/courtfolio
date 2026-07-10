@@ -14,6 +14,7 @@
 import { z } from 'zod'
 
 import { portfolioConfig } from '@/lib/panel/config'
+import { DRAFT_ROOM_PERSONAS } from '@/lib/panel/personas'
 import type { EvidenceContext, PanelConfig, Thesis } from '@/lib/panel/types'
 import bakedCourtfolio from '@/lib/panel/evidence/baked/courtfolio.json'
 
@@ -52,12 +53,15 @@ export const COURTFOLIO_THESIS: Thesis = {
 
 /**
  * The run config for live panels: the validated portfolio set plus the #241
- * per-stage output-token ceilings. Swapping to the draft-room persona skin
- * (GM / scout / coach) is a one-field change here, deferred so live runs stay
- * comparable with the shipped replay.
+ * per-stage output-token ceilings — and the draft-room persona skin (#302):
+ * live runs are judged by the GM / Film-Room Scout / Head Coach, the theme's
+ * front office. The stored replay stays portfolio-voiced until a real run
+ * replaces it (the #301 editorial step), so the two persona sets coexist
+ * until then.
  */
 export const livePanelConfig: PanelConfig = {
   ...portfolioConfig,
+  personas: DRAFT_ROOM_PERSONAS,
   limits: PANEL_STAGE_LIMITS,
 }
 

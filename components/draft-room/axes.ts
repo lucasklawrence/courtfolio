@@ -14,3 +14,11 @@ export const AXIS_LABEL: Record<string, string> = {
 export function axisLabel(axisId: string): string {
   return AXIS_LABEL[axisId] ?? axisId
 }
+
+/**
+ * Display name for a target id on the report's PROSPECT line (`courtfolio` →
+ * `Courtfolio`). Presentation only — ids stay slugs everywhere else.
+ */
+export function prospectLabel(targetId: string): string {
+  return targetId.charAt(0).toUpperCase() + targetId.slice(1)
+}

@@ -99,7 +99,7 @@ describe('SynthesisPanel', () => {
     render(<SynthesisPanel synthesis={synthesis} />)
     expect(screen.getByText('buries its best signal')).toBeInTheDocument()
     expect(screen.getByText('lead with the sprint race')).toBeInTheDocument()
-    const caught = screen.getByText(/Overruled panel claims/).closest('section')
+    const caught = screen.getByText(/Overruled scouting claims/).closest('section')
     expect(caught).not.toBeNull()
     expect(within(caught as HTMLElement).getByText(/the morph does not exist/)).toBeInTheDocument()
     expect(screen.getByText(/the front door hides/)).toBeInTheDocument()
@@ -107,6 +107,6 @@ describe('SynthesisPanel', () => {
 
   it('hides the overruled-claims section when nothing was refuted', () => {
     render(<SynthesisPanel synthesis={{ ...synthesis, caughtErrors: [] }} />)
-    expect(screen.queryByText(/Overruled panel claims/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Overruled scouting claims/)).not.toBeInTheDocument()
   })
 })
