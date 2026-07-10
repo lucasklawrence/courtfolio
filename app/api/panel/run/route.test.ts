@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import type { NextRequest } from 'next/server'
 import type {
   MetaSynthesis,
   PanelResult,
@@ -38,6 +39,7 @@ const { POST, maxDuration } = await import('./route')
 const { PanelDegradedError } = await import('@/lib/panel')
 
 /** One parsed NDJSON frame; loose-typed so tests can reach into any variant. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- test-only wire frame: NDJSON events are a heterogeneous union and assertions reach into variant-specific fields without narrowing
 type WireEvent = { type: string } & Record<string, any>
 
 /** Build a POST request to the route. Same-origin by default (host set, no origin). */
@@ -127,7 +129,7 @@ describe('POST /api/panel/run', () => {
 
   it('returns 404 when the live-panel flag is off, before any metering', async () => {
     vi.stubEnv('NEXT_PUBLIC_ENABLE_PANEL_LIVE', '')
-    const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+    const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
     expect(res.status).toBe(404)
     expect(await res.json()).toEqual({ error: 'Not found.' })
     expect(hashClientIpMock).not.toHaveBeenCalled()
@@ -137,7 +139,7 @@ describe('POST /api/panel/run', () => {
   describe('origin guard', () => {
     it('returns 403 on a cross-origin POST', async () => {
       const res = await POST(
-        postRun({ targetId: 'courtfolio' }, { origin: 'https://evil.example' }) as any
+        postRun({ targetId: 'courtfolio' }, { origin: 'https://evil.example' }) as NextRequest
       )
       expect(res.status).toBe(403)
       expect(await res.json()).toEqual({ error: 'Cross-origin requests are not allowed.' })
@@ -145,14 +147,14 @@ describe('POST /api/panel/run', () => {
     })
 
     it('returns 403 on a malformed Origin header', async () => {
-      const res = await POST(postRun({ targetId: 'courtfolio' }, { origin: 'not a url' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }, { origin: 'not a url' }) as NextRequest)
       expect(res.status).toBe(403)
       expect(admitLiveRunMock).not.toHaveBeenCalled()
     })
 
     it('proceeds when the Origin matches the host', async () => {
       const res = await POST(
-        postRun({ targetId: 'courtfolio' }, { origin: 'http://localhost:3000' }) as any
+        postRun({ targetId: 'courtfolio' }, { origin: 'http://localhost:3000' }) as NextRequest
       )
       expect(res.status).toBe(200)
       await res.text()
@@ -160,7 +162,7 @@ describe('POST /api/panel/run', () => {
     })
 
     it('proceeds when no Origin header is present', async () => {
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       expect(res.status).toBe(200)
       await res.text()
       expect(admitLiveRunMock).toHaveBeenCalled()
@@ -169,14 +171,14 @@ describe('POST /api/panel/run', () => {
 
   describe('body validation', () => {
     it('returns 400 when the body is not valid JSON', async () => {
-      const res = await POST(postRun('not valid json {') as any)
+      const res = await POST(postRun('not valid json {') as NextRequest)
       expect(res.status).toBe(400)
       expect(await res.json()).toEqual({ error: 'Body must be valid JSON.' })
       expect(admitLiveRunMock).not.toHaveBeenCalled()
     })
 
     it('returns 400 with issues when targetId is missing', async () => {
-      const res = await POST(postRun({}) as any)
+      const res = await POST(postRun({}) as NextRequest)
       expect(res.status).toBe(400)
       const body = await res.json()
       expect(body.error).toBe('Validation failed.')
@@ -185,7 +187,7 @@ describe('POST /api/panel/run', () => {
     })
 
     it('returns 400 for a targetId not in the registry', async () => {
-      const res = await POST(postRun({ targetId: 'nope' }) as any)
+      const res = await POST(postRun({ targetId: 'nope' }) as NextRequest)
       expect(res.status).toBe(400)
       expect(await res.json()).toEqual({ error: 'Unknown target: nope' })
       expect(admitLiveRunMock).not.toHaveBeenCalled()
@@ -195,7 +197,7 @@ describe('POST /api/panel/run', () => {
   describe('stub seam', () => {
     it('streams the stub replay without metering when PANEL_LIVE_STUB=1 outside production', async () => {
       vi.stubEnv('PANEL_LIVE_STUB', '1')
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       expect(res.status).toBe(200)
       expect(res.headers.get('content-type')).toBe('application/x-ndjson; charset=utf-8')
 
@@ -224,7 +226,7 @@ describe('POST /api/panel/run', () => {
     it('returns 503 when the IP salt is unavailable (hashClientIp → null)', async () => {
       hashClientIpMock.mockReturnValue(null)
       const res = await POST(
-        postRun({ targetId: 'courtfolio' }, { 'x-forwarded-for': '1.2.3.4, 5.6.7.8' }) as any
+        postRun({ targetId: 'courtfolio' }, { 'x-forwarded-for': '1.2.3.4, 5.6.7.8' }) as NextRequest
       )
       expect(res.status).toBe(503)
       expect(await res.json()).toEqual({ error: 'Live runs are unavailable.' })
@@ -234,7 +236,7 @@ describe('POST /api/panel/run', () => {
     })
 
     it('meters as "unknown" when no x-forwarded-for header exists', async () => {
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       expect(res.status).toBe(200)
       await res.text()
       expect(hashClientIpMock).toHaveBeenCalledWith('unknown')
@@ -244,7 +246,7 @@ describe('POST /api/panel/run', () => {
     it('returns 503 when the admission store throws', async () => {
       const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
       admitLiveRunMock.mockRejectedValue(new Error('supabase down'))
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       expect(res.status).toBe(503)
       expect(await res.json()).toEqual({ error: 'Live runs are unavailable.' })
       expect(runPanelMock).not.toHaveBeenCalled()
@@ -256,7 +258,7 @@ describe('POST /api/panel/run', () => {
         kind: 'rejected',
         rejection: { kind: 'ip-limit', retryAfterSeconds: 3600 },
       })
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       expect(res.status).toBe(429)
       expect(res.headers.get('retry-after')).toBe('3600')
       const body = await res.json()
@@ -273,7 +275,7 @@ describe('POST /api/panel/run', () => {
         kind: 'rejected',
         rejection: { kind: 'in-progress', retryAfterSeconds: 90 },
       })
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       expect(res.status).toBe(429)
       expect(res.headers.get('retry-after')).toBe('90')
       const body = await res.json()
@@ -292,7 +294,7 @@ describe('POST /api/panel/run', () => {
         kind: 'cached',
         run: { id: 'run-7', result: fixtureResult, createdAt },
       })
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       expect(res.status).toBe(200)
       expect(res.headers.get('content-type')).toBe('application/x-ndjson; charset=utf-8')
 
@@ -318,7 +320,7 @@ describe('POST /api/panel/run', () => {
         return fixtureResult
       })
 
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       expect(res.status).toBe(200)
       expect(res.headers.get('content-type')).toBe('application/x-ndjson; charset=utf-8')
 
@@ -373,7 +375,7 @@ describe('POST /api/panel/run', () => {
       }
       runPanelMock.mockResolvedValue(degraded)
 
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       await res.text()
       expect(markCompletedMock).toHaveBeenCalledWith('run-42', degraded, 1)
     })
@@ -388,7 +390,7 @@ describe('POST /api/panel/run', () => {
       }
       runPanelMock.mockResolvedValue(verifierDegraded)
 
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       await res.text()
       // 1 benched persona + 1 verifier-failed ruling = degradation count 2.
       expect(markCompletedMock).toHaveBeenCalledWith('run-42', verifierDegraded, 2)
@@ -397,7 +399,7 @@ describe('POST /api/panel/run', () => {
     it('records a client abort as AbortError (exempt from the failure cooldown)', async () => {
       runPanelMock.mockRejectedValue(new DOMException('Client disconnected.', 'AbortError'))
 
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       const events = await readEvents(res)
 
       const runError = events.find(e => e.type === 'run-error')
@@ -409,7 +411,7 @@ describe('POST /api/panel/run', () => {
     it('ends with run-error stage personas and records the failure when the engine rejects early', async () => {
       runPanelMock.mockRejectedValue(new Error('boom'))
 
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       expect(res.status).toBe(200)
 
       const events = await readEvents(res)
@@ -434,7 +436,7 @@ describe('POST /api/panel/run', () => {
         throw new Error('boom')
       })
 
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       const events = await readEvents(res)
 
       // The verify-start frame itself was forwarded before the failure.
@@ -459,7 +461,7 @@ describe('POST /api/panel/run', () => {
         )
       )
 
-      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as NextRequest)
       const events = await readEvents(res)
       expect(events[events.length - 1]).toEqual({
         type: 'run-error',

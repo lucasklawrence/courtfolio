@@ -6,6 +6,7 @@ export function useHasSeenTour() {
 
   useEffect(() => {
     const seen = localStorage.getItem('hasSeenCourtTour')
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional client-only localStorage read; starts null so SSR and first client render agree
     setHasSeen(seen === 'true')
   }, [])
 

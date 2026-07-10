@@ -17,7 +17,7 @@
  */
 
 import { DEFAULT_MAX_HR, HR_ZONES, bpmRangeForZone } from '@/constants/hr-zones'
-import type { CardioSession, HrZone } from '@/types/cardio'
+import type { CardioSession } from '@/types/cardio'
 import type { OtfSession } from '@/types/otf'
 
 import { OTF_ZONES, bpmRangeForOtfZone } from './otf'

@@ -81,6 +81,10 @@ export const ProjectDetail = ({ project, onClose, returnFocusTo }: ProjectDetail
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = previousOverflow
+      // Read returnFocusTo.current at cleanup (close) time on purpose: focus
+      // returns to wherever the trigger ref points when the panel actually
+      // closes, not to whatever it was when the panel opened.
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- intentional cleanup-time ref read; see comment above
       ;(returnFocusTo?.current ?? fallbackTrigger)?.focus?.()
     }
   }, [onClose, returnFocusTo])

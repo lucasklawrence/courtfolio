@@ -37,7 +37,7 @@ describe('PersonaVerdictCard', () => {
   })
 
   it('omits the standout line when none is present', () => {
-    const { standoutObservation, ...rest } = verdict
+    const { standoutObservation: _standoutObservation, ...rest } = verdict
     render(<PersonaVerdictCard verdict={rest} />)
     expect(screen.queryByText(/Standout/)).not.toBeInTheDocument()
   })

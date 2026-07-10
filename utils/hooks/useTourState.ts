@@ -18,6 +18,13 @@ export function useTourState({ hasSeen, markAsSeen }: Props) {
     setTourStep(0)
   }, [])
 
+  // Stop tour and mark as seen. Declared before `nextStep` so the latter can
+  // depend on a stable, already-initialized reference.
+  const stopTour = useCallback(() => {
+    setTourActive(false)
+    markAsSeen()
+  }, [markAsSeen])
+
   // Go to next step
   const nextStep = useCallback(() => {
     if (tourStep < tourSteps.length - 1) {
@@ -25,17 +32,15 @@ export function useTourState({ hasSeen, markAsSeen }: Props) {
     } else {
       stopTour()
     }
-  }, [tourStep])
+  }, [tourStep, stopTour])
 
-  // Stop tour and mark as seen
-  const stopTour = useCallback(() => {
-    setTourActive(false)
-    markAsSeen()
-  }, [markAsSeen])
-
-  // Auto-start if user has not seen yet
+  // Auto-start once the persisted "has seen" flag resolves to `false`. This
+  // reacts to an async localStorage read (hasSeen: null -> false), so it can't
+  // be derived during render or seeded as initial state without reintroducing
+  // an SSR/hydration mismatch.
   useEffect(() => {
     if (hasSeen === false) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: reacts to an async-loaded persisted flag; see comment above
       startTour()
     }
   }, [hasSeen, startTour])

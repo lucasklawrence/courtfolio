@@ -5,7 +5,6 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type JSX }
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { RoughLine } from '@/components/training-facility/shared/charts/RoughLine'
-import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
 import {
   DateFilter,
@@ -140,6 +139,7 @@ export function OtfDetailView(): JSX.Element {
   // narrowed past it) so a later widen doesn't silently resurrect the filter.
   // `effectiveClassType` already prevents a stale-render flicker meanwhile.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional cleanup: drop a stored class-type filter once it leaves the available window
     if (classType && !availableClassTypes.includes(classType)) setClassType(null)
   }, [classType, availableClassTypes])
 

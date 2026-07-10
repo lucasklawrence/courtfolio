@@ -90,6 +90,11 @@ export function useMaxHr(): UseMaxHrResult {
   const [ready, setReady] = useState(false)
   const [isUserSet, setIsUserSet] = useState(false)
 
+  // Intentional client-only localStorage read on mount. Per the hook's JSDoc,
+  // SSR/pre-hydration returns the default with ready=false; the real value is
+  // only applied after hydration, so seeding it as initial state would
+  // reintroduce a server/client mismatch.
+  /* eslint-disable react-hooks/set-state-in-effect -- intentional post-hydration localStorage read; see comment above */
   useEffect(() => {
     try {
       const raw = localStorage.getItem(MAX_HR_STORAGE_KEY)
@@ -105,6 +110,7 @@ export function useMaxHr(): UseMaxHrResult {
       setReady(true)
     }
   }, [])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const setMaxHr = useCallback((value: number): boolean => {
     const parsed = parseMaxHr(value)

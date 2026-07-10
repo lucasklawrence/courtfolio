@@ -43,6 +43,7 @@ export function MaxHrControl({ onChange }: MaxHrControlProps): JSX.Element {
   }, [maxHr, onChange])
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: reflect the async-loaded maxHr into the draft field, but not mid-edit
     if (!editing) setDraft(String(maxHr))
   }, [maxHr, editing])
 

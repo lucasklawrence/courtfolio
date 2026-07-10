@@ -8,7 +8,7 @@ export function useElementSize<T extends Element>(ref: RefObject<T | null>) {
     if (!el) return
 
     const observer = new ResizeObserver(entries => {
-      for (let entry of entries) {
+      for (const entry of entries) {
         setSize({
           width: entry.contentRect.width,
           height: entry.contentRect.height,

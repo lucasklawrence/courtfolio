@@ -5,7 +5,6 @@ import { LockerRoomSvg } from '@/components/locker-room/LockerRoomSvg'
 import { DadJerseySVG } from '@/components/locker-room/assets/DadJerseySvg'
 import { LockerZone } from '@/components/locker-room/LockerZone'
 import { LockerPlacardSVG } from '@/components/locker-room/LockerPlacardSvg'
-import { InteractiveLockerItem } from '@/components/locker-room/InteractiveLockerItem'
 import { ZoeSvg } from '@/components/locker-room/assets/Zoe'
 import { BasketballSvg } from '@/components/locker-room/assets/basketballSvg'
 import { Melo2sSvg } from '@/components/locker-room/assets/Melo2s'
@@ -28,7 +27,6 @@ import { SnapGhost } from '@/components/locker-room/assets/SnapGhost'
 import { KindSmartCreativeBooks } from '@/components/locker-room/assets/KindSmartCreativeBooks'
 import { SnapchatShoes } from '@/components/locker-room/assets/SnapShoes'
 import { LockerZoneId } from '@/components/locker-room/types'
-import { isSafari } from '@/utils/isSafari'
 
 /**
  * Renders the Locker Room page of the basketball-themed portfolio.

@@ -31,7 +31,7 @@ export const LockerRoomSvg: React.FC<LockerRoomSvgProps> = ({
       viewBox="0 0 1536 1024"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
-      className="w-full h-full max-w-none touch-pan-x touch-pan-y touch-pinch-zoom"
+      className={`w-full h-full max-w-none touch-pan-x touch-pan-y touch-pinch-zoom ${className ?? ''}`.trim()}
     >
       <g fill="none" strokeLinecap="butt" strokeWidth="2.00">
         <g id="grouped-lockers">

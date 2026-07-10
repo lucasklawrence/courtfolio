@@ -63,6 +63,7 @@ export function WallActivityRings({
   // and the rings re-render with today's correct totals + streaks.
   const [now, setNow] = useState<Date | null>(null)
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: the viewer's clock must be read post-mount (see comment above) to keep SSR and first client render identical
     setNow(new Date())
   }, [])
 

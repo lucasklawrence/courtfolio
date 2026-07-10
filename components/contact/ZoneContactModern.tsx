@@ -80,7 +80,7 @@ export function ZoneContactModern() {
           </div>
         </div>
         <div className="text-center text-[10px] text-gray-500 mt-10 italic">
-          "Plays drawn in code. Championships built in commits."
+          &ldquo;Plays drawn in code. Championships built in commits.&rdquo;
         </div>
       </SpringUp>
     </SafeSvgHtml>

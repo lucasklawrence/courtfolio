@@ -210,6 +210,7 @@ function QuickLogRow({
   // is open so the user's in-progress edits don't get yanked out from
   // under them mid-type.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional re-seed on lastReps change (row stays mounted across logs); skipped while the form is open
     if (!customOpen) setCustomValue(String(seedCustom))
   }, [seedCustom, customOpen])
 

@@ -97,7 +97,6 @@ describe('withTelemetry', () => {
 
   it('labels non-Error throws with their typeof', async () => {
     const wrapped = withTelemetry('GET /resume', async () => {
-      // eslint-disable-next-line no-throw-literal
       throw 'string failure'
     })
 

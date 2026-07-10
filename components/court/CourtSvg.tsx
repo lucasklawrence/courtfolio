@@ -53,7 +53,7 @@ export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
         ref={ref}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
-        className="w-full h-full touch-pan-x touch-pan-y touch-pinch-zoom"
+        className={`w-full h-full touch-pan-x touch-pan-y touch-pinch-zoom ${className}`.trim()}
       >
         <g strokeWidth="2.00" fill="none" strokeLinecap="butt">
           <g id="zone-0" onClick={() => console.log('Clicked zone 0')}>
@@ -2963,3 +2963,5 @@ export const CourtSvg = forwardRef<SVGSVGElement, CourtSvgProps>(
     )
   }
 )
+
+CourtSvg.displayName = 'CourtSvg'

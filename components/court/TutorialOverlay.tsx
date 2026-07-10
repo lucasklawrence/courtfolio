@@ -91,7 +91,12 @@ export function TutorialOverlay({ active, stepData, glow, svgRef, onPositionChan
 
     const padding = typeof stepData.paddingFactor === 'number' ? stepData.paddingFactor : 1.1
 
+    // Reading svgRef during render is intentional: glow bounds are measured off
+    // the live SVG, and this memo recomputes exactly when it matters — on step /
+    // active / glow changes, by which point the SVG element is mounted.
+    // eslint-disable-next-line react-hooks/refs -- intentional measurement read; see comment above
     if (stepData.targetId && svgRef.current) {
+      // eslint-disable-next-line react-hooks/refs -- intentional measurement read; see comment above
       return getGlowBoundsFromTarget(stepData.targetId, svgRef.current, padding)
     }
 

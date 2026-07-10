@@ -31,7 +31,7 @@
  */
 
 /** @type {import('svgo').Config} */
-export default {
+const config = {
   // Re-run plugins until the output stabilizes — squeezes out the last
   // few percent on these many-path files at negligible build-time cost.
   multipass: true,
@@ -50,3 +50,5 @@ export default {
     },
   ],
 }
+
+export default config
