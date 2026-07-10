@@ -116,11 +116,15 @@ function renderVerdict(v: PersonaVerdict): string {
  * @param thesis the claim under test
  * @param verdicts the independent panelist verdicts (with refuted gaps removed)
  * @param refutedNote a human-readable list of gaps the verifier threw out
+ * @param absenceNote one-line note when personas are benched (failed model
+ *   calls), so the meta-judge synthesizes from the verdicts that exist rather
+ *   than inventing the missing perspectives (empty when the panel is whole)
  */
 export function buildSynthesisPrompt(
   thesis: Thesis,
   verdicts: PersonaVerdict[],
-  refutedNote: string
+  refutedNote: string,
+  absenceNote = ''
 ): string {
   return [
     `You are the meta-judge. Synthesize these INDEPENDENT panelist verdicts into one honest assessment. Do not average away disagreement — where panelists split, the split itself is the most honest signal, so surface it.`,
@@ -130,6 +134,7 @@ export function buildSynthesisPrompt(
     ``,
     `## Panelist verdicts (refuted gaps already removed)`,
     verdicts.map(renderVerdict).join('\n\n'),
+    ...(absenceNote ? [``, `## Panel note`, absenceNote] : []),
     ``,
     `## Gaps the fact-checker discarded`,
     refutedNote || '(none)',

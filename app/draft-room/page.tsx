@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { DraftRoom } from '@/components/draft-room/DraftRoom'
-import { isDraftRoomEnabled } from '@/lib/feature-flags'
+import { LiveDraftRoom } from '@/components/draft-room/LiveDraftRoom'
+import { isDraftRoomEnabled, isPanelLiveEnabled } from '@/lib/feature-flags'
 import { courtfolioPanelResult, PANEL_RESULT_IS_ILLUSTRATIVE } from './panelResult'
 
 /** Page metadata for the Draft Room showcase. */
@@ -14,9 +15,16 @@ export const metadata: Metadata = {
 
 /**
  * The Draft Room route (#234 Phase 2 / #241) — the public surface of the judge
- * panel. A pre-baked showcase: it replays a stored {@link courtfolioPanelResult}
- * with an animated reveal, so the page makes no model calls and costs nothing to
- * visit. The arena gradient + spotlight match the rest of the portfolio.
+ * panel. Two modes behind two flags:
+ *
+ * - Replay (default): a pre-baked showcase replaying the stored
+ *   {@link courtfolioPanelResult} with an animated reveal — no model calls, no
+ *   client JS, costs nothing to visit.
+ * - Live (`NEXT_PUBLIC_ENABLE_PANEL_LIVE`): the same page plus a guarded
+ *   "Run it live" button that streams a real cross-family run through
+ *   `/api/panel/run` (#241) — rate-limited, budget-capped, cached.
+ *
+ * The arena gradient + spotlight match the rest of the portfolio.
  */
 export default function DraftRoomPage() {
   // Feature-gated like the Training Facility: 404s until the flag is on (live
@@ -31,7 +39,15 @@ export default function DraftRoomPage() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[60vh] bg-[radial-gradient(circle_at_50%_0%,rgba(249,115,22,0.18),rgba(0,0,0,0)_60%)]"
       />
       <div className="relative">
-        <DraftRoom result={courtfolioPanelResult} illustrative={PANEL_RESULT_IS_ILLUSTRATIVE} />
+        {isPanelLiveEnabled() ? (
+          <LiveDraftRoom
+            replay={courtfolioPanelResult}
+            illustrative={PANEL_RESULT_IS_ILLUSTRATIVE}
+            targetId="courtfolio"
+          />
+        ) : (
+          <DraftRoom result={courtfolioPanelResult} illustrative={PANEL_RESULT_IS_ILLUSTRATIVE} />
+        )}
         <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
           <BackToCourtButton />
         </div>

@@ -84,6 +84,15 @@ async function main() {
     `Running ${portfolioConfig.personas.length}-persona panel on "${evidence.title}"…\n`
   )
   const result = await runPanel(thesis, evidence, portfolioConfig)
+  if (result.personaFailures?.length) {
+    // Degraded run: persona failures bench rather than reject (#241) — say so
+    // loudly, since a partial panel shouldn't be pasted anywhere as complete.
+    process.stderr.write(
+      `\n⚠️  Degraded run — ${result.personaFailures.length} persona(s) failed: ${result.personaFailures
+        .map(f => `${f.personaId} (${f.errorType})`)
+        .join(', ')}\n`
+    )
+  }
   printSynthesis(result.synthesis)
 }
 

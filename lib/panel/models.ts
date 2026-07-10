@@ -39,6 +39,10 @@ export interface GenerateStructuredArgs<T> {
   prompt: string
   /** Zod schema the output must satisfy; the SDK retries the model on mismatch. */
   schema: ZodType<T>
+  /** Output-token ceiling for this call (cost guard). Omit for the SDK default. */
+  maxOutputTokens?: number
+  /** Cancellation signal — aborts the underlying call (and its retries). */
+  signal?: AbortSignal
 }
 
 /**
@@ -46,15 +50,31 @@ export interface GenerateStructuredArgs<T> {
  * validated object. Thin wrapper so the judgment stages stay model-agnostic and
  * testable.
  *
- * @throws if the model call fails after the SDK's retries (e.g. missing gateway
- *   credentials, an unknown model id, or repeated schema-validation failure).
+ * Retries are pinned to 1 (down from the SDK default of 2): a public run fans
+ * out up to ~16 calls, so default retries would let one flaky vendor amplify a
+ * run to 48 attempts. One retry absorbs transient gateway hiccups; anything
+ * worse should fail fast and surface (#241 cost guard).
+ *
+ * @throws if the model call fails after the retry (e.g. missing gateway
+ *   credentials, an unknown model id, or repeated schema-validation failure),
+ *   or if `signal` aborts.
  */
 export async function generateStructured<T>({
   model,
   system,
   prompt,
   schema,
+  maxOutputTokens,
+  signal,
 }: GenerateStructuredArgs<T>): Promise<T> {
-  const { object } = await generateObject({ model, system, prompt, schema })
+  const { object } = await generateObject({
+    model,
+    system,
+    prompt,
+    schema,
+    maxRetries: 1,
+    ...(maxOutputTokens === undefined ? {} : { maxOutputTokens }),
+    ...(signal === undefined ? {} : { abortSignal: signal }),
+  })
   return object as T
 }

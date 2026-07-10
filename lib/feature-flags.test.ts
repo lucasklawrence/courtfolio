@@ -1,7 +1,7 @@
 // @vitest-environment node
 
 import { afterEach, describe, it, expect, vi } from 'vitest'
-import { isTrainingFacilityEnabled } from './feature-flags'
+import { isPanelLiveEnabled, isTrainingFacilityEnabled } from './feature-flags'
 
 afterEach(() => {
   vi.unstubAllEnvs()
@@ -23,6 +23,26 @@ describe('isTrainingFacilityEnabled', () => {
     (value) => {
       vi.stubEnv('NEXT_PUBLIC_ENABLE_TRAINING_FACILITY', value)
       expect(isTrainingFacilityEnabled()).toBe(false)
+    },
+  )
+})
+
+describe('isPanelLiveEnabled', () => {
+  it('returns true only when the env var is exactly the string "true"', () => {
+    vi.stubEnv('NEXT_PUBLIC_ENABLE_PANEL_LIVE', 'true')
+    expect(isPanelLiveEnabled()).toBe(true)
+  })
+
+  it('returns false when the env var is unset', () => {
+    vi.stubEnv('NEXT_PUBLIC_ENABLE_PANEL_LIVE', '')
+    expect(isPanelLiveEnabled()).toBe(false)
+  })
+
+  it.each(['false', 'TRUE', '1', 'yes', 'on'])(
+    'returns false for any non-"true" string (%s) — defensive against truthy-coercion bugs',
+    (value) => {
+      vi.stubEnv('NEXT_PUBLIC_ENABLE_PANEL_LIVE', value)
+      expect(isPanelLiveEnabled()).toBe(false)
     },
   )
 })

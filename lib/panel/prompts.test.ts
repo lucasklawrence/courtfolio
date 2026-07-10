@@ -82,4 +82,17 @@ describe('buildSynthesisPrompt', () => {
     const prompt = buildSynthesisPrompt(thesis, [verdict], '')
     expect(prompt).toContain('(none)')
   })
+
+  it('renders a "## Panel note" section containing a non-empty absence note', () => {
+    const note =
+      '1 persona(s) failed to report and are absent from this panel: skeptical-peer. Synthesize from the verdicts above only.'
+    const prompt = buildSynthesisPrompt(thesis, [verdict], '', note)
+    expect(prompt).toContain('## Panel note')
+    expect(prompt).toContain(note)
+  })
+
+  it('renders no panel-note section when the absence note is empty or omitted', () => {
+    expect(buildSynthesisPrompt(thesis, [verdict], '')).not.toContain('## Panel note')
+    expect(buildSynthesisPrompt(thesis, [verdict], '', '')).not.toContain('## Panel note')
+  })
 })

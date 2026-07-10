@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { PersonaVerdict, VerifiedGap } from './types'
+import type { PanelEvent, PersonaVerdict, VerifiedGap } from './types'
 
 const generateStructured = vi.fn()
 vi.mock('./models', async importOriginal => ({
@@ -100,7 +100,12 @@ describe('caughtErrors / refutedNote', () => {
 })
 
 describe('verifyGaps', () => {
-  beforeEach(() => generateStructured.mockReset())
+  // Braces matter: `mockReset()` returns the mock, and a function returned
+  // from `beforeEach` is treated as a cleanup hook — vitest would then invoke
+  // the mock itself (arg-less) after every test.
+  beforeEach(() => {
+    generateStructured.mockReset()
+  })
 
   it('verifies every gap on the verifier model and tags each ruling', async () => {
     generateStructured
@@ -116,5 +121,69 @@ describe('verifyGaps', () => {
     expect(
       generateStructured.mock.calls.every(c => c[0].model === portfolioConfig.lineup.verifier)
     ).toBe(true)
+  })
+
+  it('degrades a failed verifier call to "unverifiable" while other gaps get real rulings', async () => {
+    generateStructured
+      .mockRejectedValueOnce(new TypeError('verifier down'))
+      .mockResolvedValueOnce({ verdict: 'upheld', verifyNote: 'backed' })
+
+    const out = await verifyGaps(verdicts, textEvidence('t', 'T', 's'), portfolioConfig)
+
+    expect(out).toHaveLength(2)
+    expect(out[0].verdict).toBe('unverifiable')
+    expect(out[0].verifyNote).toBe('Verifier unavailable (TypeError).')
+    expect(out[1].verdict).toBe('upheld')
+    expect(out[1].verifyNote).toBe('backed')
+  })
+
+  it('emits verify-start, one gap-verified per gap with a running count, then gaps-verified', async () => {
+    generateStructured
+      .mockResolvedValueOnce({ verdict: 'upheld', verifyNote: 'backed' })
+      .mockResolvedValueOnce({ verdict: 'refuted', verifyNote: 'wrong' })
+
+    const events: PanelEvent[] = []
+    const out = await verifyGaps(verdicts, textEvidence('t', 'T', 's'), portfolioConfig, {
+      onEvent: e => events.push(e),
+    })
+
+    expect(events.map(e => e.type)).toEqual([
+      'verify-start',
+      'gap-verified',
+      'gap-verified',
+      'gaps-verified',
+    ])
+    expect(events[0]).toEqual({ type: 'verify-start', gapCount: 2 })
+    const gapEvents = events.filter(
+      (e): e is Extract<PanelEvent, { type: 'gap-verified' }> => e.type === 'gap-verified'
+    )
+    expect(gapEvents.map(e => e.done)).toEqual([1, 2])
+    expect(gapEvents.every(e => e.total === 2)).toBe(true)
+    expect(gapEvents.every(e => e.personaId === 'hiring-manager')).toBe(true)
+    expect(events[events.length - 1]).toEqual({ type: 'gaps-verified', verifiedGaps: out })
+  })
+
+  it('propagates an abort instead of degrading to unverifiable', async () => {
+    const ac = new AbortController()
+    ac.abort()
+    generateStructured.mockRejectedValue(new DOMException('run aborted', 'AbortError'))
+
+    await expect(
+      verifyGaps(verdicts, textEvidence('t', 'T', 's'), portfolioConfig, { signal: ac.signal })
+    ).rejects.toMatchObject({ name: 'AbortError' })
+  })
+
+  it('forwards the verifier token cap and signal to every model call', async () => {
+    generateStructured.mockResolvedValue({ verdict: 'upheld', verifyNote: 'b' })
+    const config = { ...portfolioConfig, limits: { verifierMaxOutputTokens: 600 } }
+    const ac = new AbortController()
+
+    await verifyGaps(verdicts, textEvidence('t', 'T', 's'), config, { signal: ac.signal })
+
+    expect(generateStructured).toHaveBeenCalledTimes(2)
+    for (const call of generateStructured.mock.calls) {
+      expect(call[0].maxOutputTokens).toBe(600)
+      expect(call[0].signal).toBe(ac.signal)
+    }
   })
 })
