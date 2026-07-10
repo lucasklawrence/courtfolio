@@ -22,3 +22,14 @@ export function isTrainingFacilityEnabled(): boolean {
 export function isDraftRoomEnabled(): boolean {
   return process.env.NEXT_PUBLIC_ENABLE_DRAFT_ROOM === 'true'
 }
+
+/**
+ * True when the Draft Room's *live* panel run (#241) is enabled: the
+ * "Run it live" button and the paid `/api/panel/run` endpoint. Separate from
+ * {@link isDraftRoomEnabled} so the zero-cost replay page can ship (or stay
+ * up) with the paid endpoint dark — flipping this flag on is the moment the
+ * abuse/cost guards go live-fire. Defaults to `false`.
+ */
+export function isPanelLiveEnabled(): boolean {
+  return process.env.NEXT_PUBLIC_ENABLE_PANEL_LIVE === 'true'
+}

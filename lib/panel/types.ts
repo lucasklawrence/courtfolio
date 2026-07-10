@@ -160,6 +160,13 @@ export interface VerifiedGap extends Gap {
   verdict: VerifyVerdict
   /** One-line justification for the ruling, grounded in the evidence. */
   verifyNote: string
+  /**
+   * Set when the verifier's *model call failed* and the `unverifiable` ruling
+   * is a degradation, not a judgment. Lets callers tell "the evidence can't
+   * decide" apart from "the fact-checker never ran" — a run full of the
+   * latter shouldn't be showcased as a clean result (#241).
+   */
+  verifierFailed?: true
 }
 
 /** A point where multiple personas independently agreed — high-confidence signal. */
@@ -220,6 +227,21 @@ export interface ModelLineup {
 }
 
 /**
+ * Per-stage output-token ceilings, passed through to every model call in the
+ * stage (#241 cost guard). Omitted fields fall back to the SDK default (no
+ * cap). Structured outputs are compact — real persona verdicts run ~300–400
+ * output tokens — so caps mainly bound schema-retry worst cases.
+ */
+export interface StageLimits {
+  /** Max output tokens per persona verdict call. */
+  personaMaxOutputTokens?: number
+  /** Max output tokens per verifier ruling call. */
+  verifierMaxOutputTokens?: number
+  /** Max output tokens for the meta-judge synthesis call. */
+  metaJudgeMaxOutputTokens?: number
+}
+
+/**
  * A fully-specified panel run. Bundles the personas, scoring axes, and model
  * lineup. One config per application skin (portfolio, decisions, growth coach).
  */
@@ -232,6 +254,74 @@ export interface PanelConfig {
   axes: Axis[]
   /** Gateway model ids for each role. */
   lineup: ModelLineup
+  /** Optional per-stage output-token ceilings (cost guard for public runs). */
+  limits?: StageLimits
+}
+
+/**
+ * A persona whose model call failed. The run proceeds with the survivors
+ * (degradation, not rejection — see {@link PanelRunOptions.minSurvivors}), and
+ * the failure is recorded so no output ever pretends the bench was the plan.
+ */
+export interface PersonaFailure {
+  /** {@link Persona.id} whose call failed. */
+  personaId: string
+  /** Error constructor name only — never the message, which can carry payloads. */
+  errorType: string
+}
+
+/**
+ * Progress events emitted during a run via {@link PanelRunOptions.onEvent}, in
+ * pipeline order. Verdict-granular by design: each payload is a *complete*
+ * object when it arrives (no partial-object states for consumers to handle).
+ */
+export type PanelEvent =
+  /** A persona's model call settled successfully. */
+  | { type: 'persona-verdict'; verdict: PersonaVerdict }
+  /** A persona's model call failed; the run continues with the survivors. */
+  | { type: 'persona-error'; personaId: string; errorType: string }
+  /** The verify stage is starting on `gapCount` gaps. */
+  | { type: 'verify-start'; gapCount: number }
+  /**
+   * One gap's verifier ruling settled (`done` of `total` so far).
+   * `personaId` + `gapIndex` address the gap the ruling lands on — the same
+   * identity {@link VerifiedGap} uses, so a UI can badge the exact gap on the
+   * exact card.
+   */
+  | {
+      type: 'gap-verified'
+      personaId: string
+      gapIndex: number
+      verdict: VerifyVerdict
+      done: number
+      total: number
+    }
+  /** The verify stage finished; the complete ruling set. */
+  | { type: 'gaps-verified'; verifiedGaps: VerifiedGap[] }
+
+/**
+ * Options for a {@link runPanel} run. All optional — the default run is
+ * identical to the pre-#241 behavior except that persona failures degrade to
+ * survivors instead of rejecting the whole panel.
+ */
+export interface PanelRunOptions {
+  /**
+   * Progress listener, called as each stage's units settle. Exceptions thrown
+   * by the listener are swallowed — observing a run can never fail it.
+   */
+  onEvent?: (event: PanelEvent) => void
+  /**
+   * Cancellation signal, forwarded to every model call. An aborted run throws
+   * (`AbortError`/`TimeoutError`); it is never treated as persona degradation.
+   */
+  signal?: AbortSignal
+  /**
+   * Minimum surviving persona verdicts required to proceed past stage 1
+   * (default 1). A public "panel" surface should demand ≥2 — one surviving
+   * model is an opinion, not a panel. Failing the floor throws
+   * {@link PanelDegradedError} before any verify/synthesis spend.
+   */
+  minSurvivors?: number
 }
 
 /** The complete result of {@link runPanel}: every stage's output, for display or storage. */
@@ -244,4 +334,6 @@ export interface PanelResult {
   verifiedGaps: VerifiedGap[]
   /** The meta-judge synthesis. */
   synthesis: MetaSynthesis
+  /** Personas that failed and are absent from the verdicts, when any (#241). */
+  personaFailures?: PersonaFailure[]
 }

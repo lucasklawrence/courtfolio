@@ -9,41 +9,98 @@
  * visible, not silently dropped.
  */
 import { generateStructured } from './models'
+import { emitPanelEvent, errorTypeOf, isAbortError } from './events'
 import { verifyVerdictSchema } from './schemas'
 import type { VerifyVerdictOutput } from './schemas'
 import { buildVerifyPrompt } from './prompts'
-import type { EvidenceContext, PanelConfig, PersonaVerdict, VerifiedGap } from './types'
+import type {
+  EvidenceContext,
+  PanelConfig,
+  PanelRunOptions,
+  PersonaVerdict,
+  VerifiedGap,
+} from './types'
 
 /**
- * Verify every gap from every persona, concurrently.
+ * Verify every gap from every persona, concurrently. Emits `verify-start`,
+ * one `gap-verified` per settled ruling, and a final `gaps-verified`.
+ *
+ * A failed verifier call degrades that gap to the existing `unverifiable`
+ * lane (the ruling for "the evidence can't tell") rather than rejecting the
+ * whole stage — the gap survives to synthesis unadjudicated, which is the
+ * honest reading of "the fact-checker couldn't run" (#241). Cancellation
+ * still propagates.
  *
  * @param verdicts the independent persona verdicts
  * @param evidence the sole source of truth the verifier may use
- * @param config supplies the verifier model id
+ * @param config supplies the verifier model id and optional stage limits
+ * @param opts progress listener, cancellation signal
  * @returns one {@link VerifiedGap} per input gap, tagged with the verifier's ruling
- * @throws if a verifier model call fails
+ * @throws only on cancellation (`opts.signal` aborted)
  */
 export async function verifyGaps(
   verdicts: PersonaVerdict[],
   evidence: EvidenceContext,
-  config: PanelConfig
+  config: PanelConfig,
+  opts: PanelRunOptions = {}
 ): Promise<VerifiedGap[]> {
   const flat = verdicts.flatMap(v =>
     v.gaps.map((gap, gapIndex) => ({ personaId: v.personaId, gapIndex, gap }))
   )
 
-  return Promise.all(
+  emitPanelEvent(opts, { type: 'verify-start', gapCount: flat.length })
+
+  // Shared settle counter for gap-verified progress events. Safe: JS callbacks
+  // run one at a time, so increments never interleave.
+  let done = 0
+
+  const verifiedGaps = await Promise.all(
     flat.map(async ({ personaId, gapIndex, gap }): Promise<VerifiedGap> => {
-      const ruling = await generateStructured<VerifyVerdictOutput>({
-        model: config.lineup.verifier,
-        system:
-          'You are a precise, adversarial fact-checker. You only trust the evidence in front of you.',
-        prompt: buildVerifyPrompt(gap, evidence),
-        schema: verifyVerdictSchema,
+      let ruling: VerifyVerdictOutput
+      let verifierFailed = false
+      try {
+        ruling = await generateStructured<VerifyVerdictOutput>({
+          model: config.lineup.verifier,
+          system:
+            'You are a precise, adversarial fact-checker. You only trust the evidence in front of you.',
+          prompt: buildVerifyPrompt(gap, evidence),
+          schema: verifyVerdictSchema,
+          maxOutputTokens: config.limits?.verifierMaxOutputTokens,
+          signal: opts.signal,
+        })
+      } catch (err) {
+        if (opts.signal?.aborted || isAbortError(err)) throw err
+        verifierFailed = true
+        ruling = {
+          verdict: 'unverifiable',
+          verifyNote: `Verifier unavailable (${errorTypeOf(err)}).`,
+        }
+      }
+      const verified: VerifiedGap = {
+        ...gap,
+        personaId,
+        gapIndex,
+        verdict: ruling.verdict,
+        verifyNote: ruling.verifyNote,
+        // Distinguish "couldn't run" from "couldn't decide" — consumers use
+        // this to keep fact-check-less runs out of public showcases.
+        ...(verifierFailed ? { verifierFailed: true as const } : {}),
+      }
+      done += 1
+      emitPanelEvent(opts, {
+        type: 'gap-verified',
+        personaId,
+        gapIndex,
+        verdict: verified.verdict,
+        done,
+        total: flat.length,
       })
-      return { ...gap, personaId, gapIndex, verdict: ruling.verdict, verifyNote: ruling.verifyNote }
+      return verified
     })
   )
+
+  emitPanelEvent(opts, { type: 'gaps-verified', verifiedGaps })
+  return verifiedGaps
 }
 
 /**

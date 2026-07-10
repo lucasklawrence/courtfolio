@@ -9,7 +9,7 @@ import { generateStructured } from './models'
 import { metaSynthesisSchema } from './schemas'
 import type { MetaSynthesisOutput } from './schemas'
 import { buildSynthesisPrompt } from './prompts'
-import type { MetaSynthesis, PanelConfig, PersonaVerdict, Thesis } from './types'
+import type { MetaSynthesis, PanelConfig, PanelRunOptions, PersonaVerdict, Thesis } from './types'
 
 /** Build the deterministic scoreboard straight from the verdicts (not model-produced). */
 export function buildScoreboard(verdicts: PersonaVerdict[]): MetaSynthesis['scoreboard'] {
@@ -24,20 +24,28 @@ export function buildScoreboard(verdicts: PersonaVerdict[]): MetaSynthesis['scor
  * @param thesis the claim under test
  * @param strippedVerdicts verdicts with refuted gaps already removed
  * @param refutedNote human-readable list of discarded gaps (may be empty)
- * @param config supplies the meta-judge model id
+ * @param config supplies the meta-judge model id and optional stage limits
+ * @param opts cancellation signal (progress has no per-unit events here)
+ * @param absenceNote one-line note when personas are benched, so the meta-judge
+ *   acknowledges the missing voices instead of treating the survivors as the
+ *   whole plan (may be empty)
  * @throws if the meta-judge model call fails
  */
 export function synthesize(
   thesis: Thesis,
   strippedVerdicts: PersonaVerdict[],
   refutedNote: string,
-  config: PanelConfig
+  config: PanelConfig,
+  opts: PanelRunOptions = {},
+  absenceNote = ''
 ): Promise<MetaSynthesisOutput> {
   return generateStructured<MetaSynthesisOutput>({
     model: config.lineup.metaJudge,
     system:
       'You are a fair, incisive meta-judge. You never average away disagreement; you surface it.',
-    prompt: buildSynthesisPrompt(thesis, strippedVerdicts, refutedNote),
+    prompt: buildSynthesisPrompt(thesis, strippedVerdicts, refutedNote, absenceNote),
     schema: metaSynthesisSchema,
+    maxOutputTokens: config.limits?.metaJudgeMaxOutputTokens,
+    signal: opts.signal,
   })
 }
