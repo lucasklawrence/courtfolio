@@ -36,7 +36,7 @@ comment on column public.panel_runs.ip_hash is
   'sha256(client IP + PANEL_IP_HASH_SALT). Never the raw IP — the hash only needs to bucket requests for the per-IP window count.';
 
 comment on column public.panel_runs.persona_failure_count is
-  'How many personas were benched (failed model calls) in this run. Only runs with 0 are served from the shared cache — a degraded panel is never the showcase.';
+  'Degradation count for the run: benched personas (failed model calls) plus verifier-failed gap rulings. Only runs with 0 are served from the shared cache — a panel missing voices or its fact-checker is a record, not a replay.';
 
 comment on column public.panel_runs.result is
   'The full PanelResult JSON for completed runs; replayed byte-identical through the same wire protocol a live run streams.';

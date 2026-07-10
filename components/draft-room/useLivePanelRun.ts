@@ -168,6 +168,9 @@ export function useLivePanelRun(targetId: string): UseLivePanelRun {
   const [state, dispatch] = useReducer(reduce, IDLE_STATE)
   const abortRef = useRef<AbortController | null>(null)
   const stallTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // Monotonic run id: a superseded run's late rejection/cleanup must not
+  // touch the state or timers of the run that replaced it.
+  const generationRef = useRef(0)
 
   // Abort on unmount: the server treats a cancelled stream as "stop paying".
   useEffect(() => {
@@ -179,11 +182,16 @@ export function useLivePanelRun(targetId: string): UseLivePanelRun {
 
   const start = useCallback(() => {
     abortRef.current?.abort()
+    const generation = ++generationRef.current
     const controller = new AbortController()
     abortRef.current = controller
     dispatch({ type: 'connecting' })
 
+    /** Whether this run is still the one the UI is following. */
+    const current = () => generationRef.current === generation
+
     const armStallWatchdog = () => {
+      if (!current()) return
       if (stallTimerRef.current) clearTimeout(stallTimerRef.current)
       stallTimerRef.current = setTimeout(() => {
         dispatch({ type: 'failed', error: { kind: 'stalled' } })
@@ -192,6 +200,10 @@ export function useLivePanelRun(targetId: string): UseLivePanelRun {
     }
 
     const run = async () => {
+      // Armed before the fetch: a POST that hangs before response headers is
+      // just as stalled as a wedged stream, and must not strand the UI in
+      // 'connecting' forever.
+      armStallWatchdog()
       const res = await fetch('/api/panel/run', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -200,7 +212,8 @@ export function useLivePanelRun(targetId: string): UseLivePanelRun {
       })
 
       if (!res.ok || !res.body) {
-        dispatch({ type: 'failed', error: await errorFromResponse(res) })
+        const error = await errorFromResponse(res)
+        if (current()) dispatch({ type: 'failed', error })
         return
       }
 
@@ -228,22 +241,24 @@ export function useLivePanelRun(targetId: string): UseLivePanelRun {
             continue
           }
           if (event.type === 'done' || event.type === 'run-error') terminal = true
-          dispatch({ type: 'frame', event })
+          if (current()) dispatch({ type: 'frame', event })
         }
       }
 
       // Stream ended without `done`/`run-error`: the connection dropped.
-      if (!terminal) dispatch({ type: 'failed', error: { kind: 'network' } })
+      if (!terminal && current()) dispatch({ type: 'failed', error: { kind: 'network' } })
     }
 
     run()
       .catch(() => {
-        // fetch/read threw (abort, network drop). The reducer ignores this
-        // after a terminal frame or an earlier failure (e.g. the watchdog).
-        dispatch({ type: 'failed', error: { kind: 'network' } })
+        // fetch/read threw (abort, network drop). Superseded runs stay
+        // silent; the reducer also ignores this after a terminal frame or an
+        // earlier failure (e.g. the watchdog).
+        if (current()) dispatch({ type: 'failed', error: { kind: 'network' } })
       })
       .finally(() => {
-        if (stallTimerRef.current) clearTimeout(stallTimerRef.current)
+        // Only the run that owns the watchdog may disarm it.
+        if (current() && stallTimerRef.current) clearTimeout(stallTimerRef.current)
       })
   }, [targetId])
 

@@ -32,7 +32,7 @@ interface LiveDraftRoomProps {
   targetId: string
 }
 
-/** Human copy per early-failure kind (no run content on screen yet). */
+/** Human copy per early-failure kind (no run content on screen yet — the stored replay stays below). */
 const FAILURE_COPY: Record<string, string> = {
   'rate-limited':
     'The panel has hit its run budget for now — the most recent result is shown below.',
@@ -40,6 +40,15 @@ const FAILURE_COPY: Record<string, string> = {
   unavailable: 'Live runs are unavailable right now — the stored result is shown below.',
   network: 'The stream dropped before finishing — the stored result is shown below.',
   stalled: 'The stream went quiet and was cut off — the stored result is shown below.',
+}
+
+/** Human copy per failure kind once a run has started streaming (its cards stay on screen, so don't promise the replay). */
+const MIDRUN_FAILURE_COPY: Record<string, string> = {
+  network: 'The stream dropped before finishing — everything above arrived before the cut.',
+  stalled: 'The stream went quiet and was cut off — everything above arrived before the cut.',
+  'rate-limited': 'The panel hit its run budget mid-run — everything above arrived before the cut.',
+  'in-progress': 'Another run took over — everything above arrived before the cut.',
+  unavailable: 'Live runs became unavailable mid-run — everything above arrived before the cut.',
 }
 
 /** Minutes since an ISO timestamp, floored at 1. */
@@ -172,7 +181,7 @@ function LiveBody({ state }: { state: LivePanelRunState }) {
         <p className="rounded-lg border border-yellow-400/30 bg-yellow-400/5 px-3 py-2 text-xs text-yellow-200/90">
           {state.error.kind === 'run-error'
             ? `The run failed during the ${state.error.stage ?? 'run'} stage. Everything above streamed before it died — kept as-is.`
-            : (FAILURE_COPY[state.error.kind] ?? FAILURE_COPY.network)}
+            : (MIDRUN_FAILURE_COPY[state.error.kind] ?? MIDRUN_FAILURE_COPY.network)}
         </p>
       ) : null}
     </>

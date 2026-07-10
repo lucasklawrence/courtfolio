@@ -125,6 +125,12 @@ async function findCachedRun(supabase: SupabaseClient, targetId: string): Promis
  * Seconds until the failed-run cooldown lapses, or 0 when no recent failure.
  * Stops a flaky gateway from being retry-stormed into repeated partial-cost
  * runs.
+ *
+ * Windowed on `completed_at` — when the failure actually happened — so a run
+ * that dies at its 120s wall-clock abort still cools the full window. Client
+ * aborts (`AbortError`) are excluded: a visitor closing their tab says
+ * nothing about gateway health, and counting it would let one tab-close (or
+ * a hostile abort loop) 429-lock the feature for everyone.
  */
 async function failureCooldownSeconds(
   supabase: SupabaseClient,
@@ -132,16 +138,17 @@ async function failureCooldownSeconds(
 ): Promise<number> {
   const { data, error } = await supabase
     .from('panel_runs')
-    .select('created_at')
+    .select('completed_at')
     .eq('target_id', targetId)
     .eq('status', 'failed')
-    .gte('created_at', isoAgo(FAILED_RUN_COOLDOWN_MS))
-    .order('created_at', { ascending: false })
+    .neq('error_type', 'AbortError')
+    .gte('completed_at', isoAgo(FAILED_RUN_COOLDOWN_MS))
+    .order('completed_at', { ascending: false })
     .limit(1)
     .maybeSingle()
   if (error) throw new Error(`panel_runs cooldown lookup failed: ${error.message}`)
-  if (!data) return 0
-  const elapsedMs = Date.now() - new Date(data.created_at).getTime()
+  if (!data || !data.completed_at) return 0
+  const elapsedMs = Date.now() - new Date(data.completed_at).getTime()
   return Math.max(1, Math.ceil((FAILED_RUN_COOLDOWN_MS - elapsedMs) / 1000))
 }
 
@@ -190,13 +197,15 @@ export async function admitLiveRun(targetId: string, ipHash: string): Promise<Ad
 
   await sweepStaleRunning(supabase, targetId)
 
+  // Cache first: a stored run replays for free, so nothing that only guards
+  // *spend* (cooldown, limits) should ever withhold it.
+  const cached = await findCachedRun(supabase, targetId)
+  if (cached) return { kind: 'cached', run: cached }
+
   const cooldown = await failureCooldownSeconds(supabase, targetId)
   if (cooldown > 0) {
     return { kind: 'rejected', rejection: { kind: 'cooldown', retryAfterSeconds: cooldown } }
   }
-
-  const cached = await findCachedRun(supabase, targetId)
-  if (cached) return { kind: 'cached', run: cached }
 
   // Single-flight: the partial unique index allows one `running` row per
   // target; a concurrent second visitor gets a unique violation, not a bill.
@@ -217,37 +226,50 @@ export async function admitLiveRun(targetId: string, ipHash: string): Promise<Ad
   const runId = data.id as string
 
   // Insert-then-count: both concurrent racers count each other and both
-  // reject — worst case slight under-serving, never over-spending.
-  const ipCount = await countRealRuns(supabase, { ipHash, sinceMs: 60 * 60 * 1000 })
-  if (ipCount > PER_IP_RUNS_PER_HOUR) {
-    await markRejected(supabase, runId)
-    return {
-      kind: 'rejected',
-      rejection: { kind: 'ip-limit', retryAfterSeconds: 3600 },
+  // reject — worst case slight under-serving, never over-spending. If a
+  // count blips, release the row before rethrowing: an orphaned `running`
+  // row would hold the single-flight lock for the sweep window and consume
+  // budget for a run that never spent.
+  try {
+    const ipCount = await countRealRuns(supabase, { ipHash, sinceMs: 60 * 60 * 1000 })
+    if (ipCount > PER_IP_RUNS_PER_HOUR) {
+      await markRejected(supabase, runId)
+      return {
+        kind: 'rejected',
+        rejection: { kind: 'ip-limit', retryAfterSeconds: 3600 },
+      }
     }
-  }
 
-  const globalCount = await countRealRuns(supabase, { sinceMs: 24 * 60 * 60 * 1000 })
-  if (globalCount > GLOBAL_RUNS_PER_DAY) {
-    await markRejected(supabase, runId)
-    return {
-      kind: 'rejected',
-      rejection: { kind: 'global-limit', retryAfterSeconds: 3600 },
+    const globalCount = await countRealRuns(supabase, { sinceMs: 24 * 60 * 60 * 1000 })
+    if (globalCount > GLOBAL_RUNS_PER_DAY) {
+      await markRejected(supabase, runId)
+      return {
+        kind: 'rejected',
+        rejection: { kind: 'global-limit', retryAfterSeconds: 3600 },
+      }
     }
+  } catch (err) {
+    await markRejected(supabase, runId).catch(() => undefined)
+    throw err
   }
 
   return { kind: 'admitted', runId }
 }
 
 /**
- * Persist a finished run. Degraded runs (benched personas) are stored for the
- * record but excluded from the shared cache by {@link admitLiveRun}'s
+ * Persist a finished run. Degraded runs are stored for the record but
+ * excluded from the shared cache by {@link admitLiveRun}'s
  * `persona_failure_count = 0` filter.
+ *
+ * @param degradationCount how many of the run's units degraded: benched
+ *   personas plus verifier-failed gap rulings (`VerifiedGap.verifierFailed`).
+ *   Anything above 0 keeps the run out of the shared showcase — a panel
+ *   missing voices or its fact-checker is a record, not a replay.
  */
 export async function markCompleted(
   runId: string,
   result: PanelResult,
-  personaFailureCount: number
+  degradationCount: number
 ): Promise<void> {
   const supabase = createAdminSupabaseClient()
   const { error } = await supabase
@@ -255,7 +277,7 @@ export async function markCompleted(
     .update({
       status: 'completed',
       result,
-      persona_failure_count: personaFailureCount,
+      persona_failure_count: degradationCount,
       completed_at: new Date().toISOString(),
     })
     .eq('id', runId)

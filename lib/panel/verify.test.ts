@@ -133,8 +133,12 @@ describe('verifyGaps', () => {
     expect(out).toHaveLength(2)
     expect(out[0].verdict).toBe('unverifiable')
     expect(out[0].verifyNote).toBe('Verifier unavailable (TypeError).')
+    // The degradation is flagged so consumers can tell "couldn't run" apart
+    // from a genuine unverifiable judgment (cache showcase filter, #241).
+    expect(out[0].verifierFailed).toBe(true)
     expect(out[1].verdict).toBe('upheld')
     expect(out[1].verifyNote).toBe('backed')
+    expect(out[1]).not.toHaveProperty('verifierFailed')
   })
 
   it('emits verify-start, one gap-verified per gap with a running count, then gaps-verified', async () => {

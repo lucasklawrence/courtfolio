@@ -17,8 +17,9 @@ import {
  * method returns the builder, and each *terminal* operation (an awaited
  * builder, `.single()`, or `.maybeSingle()`) consumes the next preconfigured
  * response. `admitLiveRun` issues its queries strictly sequentially, so the
- * queue order mirrors the documented admission order: stale sweep → cooldown →
- * cache → single-flight insert → per-IP count → global count (→ reject update).
+ * queue order mirrors the documented admission order: stale sweep → cache →
+ * cooldown → single-flight insert → per-IP count → global count (→ reject
+ * update).
  */
 
 /** One preconfigured terminal-query response. */
@@ -40,7 +41,7 @@ function nextResponse(): QueryResponse {
   return next
 }
 
-const CHAIN_METHODS = ['select', 'update', 'insert', 'eq', 'in', 'gte', 'lt', 'order', 'limit'] as const
+const CHAIN_METHODS = ['select', 'update', 'insert', 'eq', 'neq', 'in', 'gte', 'lt', 'order', 'limit'] as const
 
 function makeBuilder(): Record<string, unknown> {
   const builder: Record<string, unknown> = {}
@@ -94,11 +95,11 @@ const storedResult: PanelResult = {
   },
 }
 
-/** The happy-path response prefix: sweep ok, no cooldown row, no cached row. */
+/** The happy-path response prefix: sweep ok, no cached row, no cooldown row. */
 function queueCleanPreamble(): void {
   responses.push({ error: null }) // stale sweep update
-  responses.push({ data: null, error: null }) // cooldown lookup
   responses.push({ data: null, error: null }) // cache lookup
+  responses.push({ data: null, error: null }) // cooldown lookup
 }
 
 function updatePayloads(): Record<string, unknown>[] {
@@ -138,8 +139,9 @@ describe('hashClientIp', () => {
 describe('admitLiveRun', () => {
   it('rejects with a cooldown when a recent failed run exists', async () => {
     responses.push({ error: null }) // stale sweep
+    responses.push({ data: null, error: null }) // cache lookup: nothing stored
     responses.push({
-      data: { created_at: new Date(Date.now() - 60_000).toISOString() },
+      data: { completed_at: new Date(Date.now() - 60_000).toISOString() },
       error: null,
     }) // cooldown lookup: failed 1 min ago
 
@@ -152,16 +154,22 @@ describe('admitLiveRun', () => {
     expect(outcome.rejection.retryAfterSeconds).toBeLessThanOrEqual(FAILED_RUN_COOLDOWN_MS / 1000)
     // Refused before any paid admission: nothing was inserted.
     expect(calls.some(c => c.method === 'insert')).toBe(false)
+    // The cooldown is anchored on when the failure happened and ignores
+    // client aborts — a tab-close must never 429-lock the feature.
+    expect(calls.some(c => c.method === 'neq' && c.args[0] === 'error_type' && c.args[1] === 'AbortError')).toBe(true)
+    expect(calls.some(c => c.method === 'gte' && c.args[0] === 'completed_at')).toBe(true)
   })
 
-  it('serves a fresh completed run from cache without inserting a new row', async () => {
+  it('serves a fresh completed run from cache without inserting a new row (and before the cooldown gate)', async () => {
     const createdAt = new Date(Date.now() - 10_000).toISOString()
     responses.push({ error: null }) // stale sweep
-    responses.push({ data: null, error: null }) // cooldown lookup
     responses.push({
       data: { id: 'row-1', result: storedResult, created_at: createdAt },
       error: null,
     }) // cache lookup
+    // No cooldown response queued: a cache hit must short-circuit before the
+    // cooldown query — a free replay is never withheld by a spend guard
+    // (queue exhaustion would throw if the order regressed).
 
     const outcome = await admitLiveRun('courtfolio', 'hash')
 
@@ -239,6 +247,27 @@ describe('admitLiveRun', () => {
     responses.push({ data: null, error: { code: '57014', message: 'timeout' } }) // insert
 
     await expect(admitLiveRun('courtfolio', 'hash')).rejects.toThrow(/insert failed: timeout/)
+  })
+
+  it('releases the inserted row (markRejected) before rethrowing when a window count blips', async () => {
+    queueCleanPreamble()
+    responses.push({ data: { id: 'run-1' }, error: null }) // insert
+    responses.push({ error: { message: 'read blip' } }) // per-IP count fails
+    responses.push({ error: null }) // best-effort markRejected
+
+    await expect(admitLiveRun('courtfolio', 'hash')).rejects.toThrow(/window count failed: read blip/)
+    // The orphan would otherwise hold the single-flight lock for the sweep
+    // window and consume budget for a run that never spent.
+    expect(updatePayloads()).toContainEqual(expect.objectContaining({ status: 'rejected' }))
+  })
+
+  it('still rethrows the count error when the release itself fails', async () => {
+    queueCleanPreamble()
+    responses.push({ data: { id: 'run-1' }, error: null }) // insert
+    responses.push({ error: { message: 'read blip' } }) // per-IP count fails
+    responses.push({ error: { message: 'also down' } }) // markRejected fails too
+
+    await expect(admitLiveRun('courtfolio', 'hash')).rejects.toThrow(/window count failed: read blip/)
   })
 })
 

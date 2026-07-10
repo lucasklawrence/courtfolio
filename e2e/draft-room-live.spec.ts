@@ -25,6 +25,11 @@ test.describe('draft room live mode (stubbed stream)', () => {
   })
 
   test('streams a run: cards fill, rulings land, synthesis arrives last', async ({ page }) => {
+    // Generous per-assertion timeouts: under a full-suite run the dev server
+    // compiles several routes concurrently and the paced stub stream can
+    // trickle — the lifecycle order is what's under test, not wall-clock.
+    const streamed = { timeout: 15_000 }
+
     await page.getByRole('button', { name: /run it live/i }).click()
 
     // The stream announces itself and the button locks while deliberating.
@@ -33,20 +38,26 @@ test.describe('draft room live mode (stubbed stream)', () => {
     // All three persona cards fill in (stub paces events, so these appear
     // progressively; the assertions just wait for each).
     const verdicts = page.getByRole('region', { name: /panelist verdicts/i })
-    await expect(verdicts.getByRole('heading', { name: 'Skeptical Hiring Manager' })).toBeVisible()
-    await expect(verdicts.getByRole('heading', { name: 'Staff-Engineer Mentor' })).toBeVisible()
-    await expect(verdicts.getByRole('heading', { name: 'Skeptical Peer' })).toBeVisible()
+    await expect(
+      verdicts.getByRole('heading', { name: 'Skeptical Hiring Manager' })
+    ).toBeVisible(streamed)
+    await expect(
+      verdicts.getByRole('heading', { name: 'Staff-Engineer Mentor' })
+    ).toBeVisible(streamed)
+    await expect(verdicts.getByRole('heading', { name: 'Skeptical Peer' })).toBeVisible(streamed)
 
     // The fact-checker's per-gap rulings land on the finished cards.
-    await expect(verdicts.getByText(/upheld|overruled|unverifiable/).first()).toBeVisible()
+    await expect(verdicts.getByText(/upheld|overruled|unverifiable/).first()).toBeVisible(streamed)
 
     // The synthesis arrives last: map, overruled claims, verdict.
-    await expect(page.getByRole('heading', { name: /where they split/i })).toBeVisible()
-    await expect(page.getByRole('heading', { name: /overruled panel claims/i })).toBeVisible()
-    await expect(page.getByText('The verdict')).toBeVisible()
+    await expect(page.getByRole('heading', { name: /where they split/i })).toBeVisible(streamed)
+    await expect(
+      page.getByRole('heading', { name: /overruled panel claims/i })
+    ).toBeVisible(streamed)
+    await expect(page.getByText('The verdict')).toBeVisible(streamed)
 
     // Terminal state: the button unlocks for another run.
-    await expect(page.getByRole('button', { name: /run it live/i })).toBeEnabled()
+    await expect(page.getByRole('button', { name: /run it live/i })).toBeEnabled(streamed)
   })
 
   test('keeps the why-no-debate note in the live layout', async ({ page }) => {

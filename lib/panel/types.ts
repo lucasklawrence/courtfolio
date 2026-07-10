@@ -160,6 +160,13 @@ export interface VerifiedGap extends Gap {
   verdict: VerifyVerdict
   /** One-line justification for the ruling, grounded in the evidence. */
   verifyNote: string
+  /**
+   * Set when the verifier's *model call failed* and the `unverifiable` ruling
+   * is a degradation, not a judgment. Lets callers tell "the evidence can't
+   * decide" apart from "the fact-checker never ran" — a run full of the
+   * latter shouldn't be showcased as a clean result (#241).
+   */
+  verifierFailed?: true
 }
 
 /** A point where multiple personas independently agreed — high-confidence signal. */
@@ -275,7 +282,12 @@ export type PanelEvent =
   | { type: 'persona-error'; personaId: string; errorType: string }
   /** The verify stage is starting on `gapCount` gaps. */
   | { type: 'verify-start'; gapCount: number }
-  /** One gap's verifier ruling settled (`done` of `total` so far). */
+  /**
+   * One gap's verifier ruling settled (`done` of `total` so far).
+   * `personaId` + `gapIndex` address the gap the ruling lands on — the same
+   * identity {@link VerifiedGap} uses, so a UI can badge the exact gap on the
+   * exact card.
+   */
   | {
       type: 'gap-verified'
       personaId: string

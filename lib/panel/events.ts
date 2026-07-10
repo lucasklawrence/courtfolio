@@ -18,13 +18,24 @@ export function emitPanelEvent(opts: PanelRunOptions | undefined, event: PanelEv
   }
 }
 
+/** The error's `name` when it exposes one — duck-typed rather than `instanceof Error`, because abort reasons (DOMExceptions) can originate in another realm where `instanceof` fails. */
+function errorName(err: unknown): string | undefined {
+  if (err && typeof err === 'object' && 'name' in err) {
+    const name = (err as { name: unknown }).name
+    if (typeof name === 'string' && name) return name
+  }
+  return undefined
+}
+
 /**
  * The error's constructor/DOMException name, for events and telemetry. Never
  * the message — error messages can embed prompts or payloads (PII rule, same
  * convention as {@link withTelemetry}).
  */
 export function errorTypeOf(err: unknown): string {
-  if (err instanceof Error) return err.name || err.constructor.name
+  const name = errorName(err)
+  if (name) return name
+  if (err instanceof Error) return err.constructor.name
   return typeof err
 }
 
@@ -34,5 +45,6 @@ export function errorTypeOf(err: unknown): string {
  * aborts with a `TimeoutError` DOMException, manual aborts with `AbortError`.
  */
 export function isAbortError(err: unknown): boolean {
-  return err instanceof Error && (err.name === 'AbortError' || err.name === 'TimeoutError')
+  const name = errorName(err)
+  return name === 'AbortError' || name === 'TimeoutError'
 }

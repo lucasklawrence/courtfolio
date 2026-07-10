@@ -60,8 +60,10 @@ export type LivePanelEvent =
   | { type: 'done'; elapsedMs: number }
   /**
    * Terminal failure frame. Everything already streamed stays valid — the
-   * client keeps rendered cards and shows the failure honestly. `errorType`
-   * is a constructor name only (never a message).
+   * client keeps rendered cards and shows the failure honestly. `stage` is
+   * the pipeline stage the run died in, inferred from the events emitted so
+   * far (`'run'` is the client-side fallback when no stage is known);
+   * `errorType` is a constructor name only (never a message).
    */
   | { type: 'run-error'; stage: 'personas' | 'verify' | 'synthesis' | 'run'; errorType: string }
 

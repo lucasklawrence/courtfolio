@@ -378,6 +378,34 @@ describe('POST /api/panel/run', () => {
       expect(markCompletedMock).toHaveBeenCalledWith('run-42', degraded, 1)
     })
 
+    it('counts verifier-failed rulings in the degradation count (kept out of the shared cache)', async () => {
+      const verifierDegraded: PanelResult = {
+        ...fixtureResult,
+        verifiedGaps: [
+          { ...fixtureGap, verdict: 'unverifiable', verifyNote: 'Verifier unavailable (APICallError).', verifierFailed: true },
+        ],
+        personaFailures: [{ personaId: 'staff-mentor', errorType: 'APICallError' }],
+      }
+      runPanelMock.mockResolvedValue(verifierDegraded)
+
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      await res.text()
+      // 1 benched persona + 1 verifier-failed ruling = degradation count 2.
+      expect(markCompletedMock).toHaveBeenCalledWith('run-42', verifierDegraded, 2)
+    })
+
+    it('records a client abort as AbortError (exempt from the failure cooldown)', async () => {
+      runPanelMock.mockRejectedValue(new DOMException('Client disconnected.', 'AbortError'))
+
+      const res = await POST(postRun({ targetId: 'courtfolio' }) as any)
+      const events = await readEvents(res)
+
+      const runError = events.find(e => e.type === 'run-error')
+      expect(runError).toMatchObject({ stage: 'personas', errorType: 'AbortError' })
+      expect(markFailedMock).toHaveBeenCalledWith('run-42', 'AbortError')
+      expect(markCompletedMock).not.toHaveBeenCalled()
+    })
+
     it('ends with run-error stage personas and records the failure when the engine rejects early', async () => {
       runPanelMock.mockRejectedValue(new Error('boom'))
 

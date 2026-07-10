@@ -26,6 +26,7 @@ import { z, ZodError } from 'zod'
 
 import { isPanelLiveEnabled } from '@/lib/feature-flags'
 import { runPanel, PanelDegradedError } from '@/lib/panel'
+import { errorTypeOf } from '@/lib/panel/events'
 import type { PanelEvent, PanelResult } from '@/lib/panel/types'
 import {
   HEARTBEAT_INTERVAL_MS,
@@ -143,6 +144,24 @@ function failureStage(seen: {
   return 'synthesis'
 }
 
+/**
+ * Classify a live-run failure for the `run-error` frame and the ledger.
+ * Cancellations are normalized (`TimeoutError` for the 120s brake,
+ * `AbortError` for a client walking away — the store exempts the latter from
+ * the failure cooldown); everything else reports its constructor name only.
+ */
+function classifyRunError(err: unknown, abortSignal: AbortSignal): string {
+  if (err instanceof PanelDegradedError) return 'PanelDegradedError'
+  const name = errorTypeOf(err)
+  if (name === 'TimeoutError') return 'TimeoutError'
+  if (name === 'AbortError' || abortSignal.aborted) {
+    // Distinguish "the 120s brake fired" from "the client disconnected" by
+    // the abort reason — both surface as cancellations mid-pipeline.
+    return errorTypeOf(abortSignal.reason) === 'TimeoutError' ? 'TimeoutError' : 'AbortError'
+  }
+  return name
+}
+
 /** Run the live pipeline and stream every event as it settles. */
 function streamLiveRun(
   target: (typeof LIVE_TARGETS)[string],
@@ -153,12 +172,19 @@ function streamLiveRun(
   const startedMs = Date.now()
 
   // One controller for the whole run: the 120s wall-clock brake and a client
-  // disconnect both cancel every in-flight model call immediately.
+  // disconnect both cancel every in-flight model call immediately. An
+  // already-aborted request signal never fires its listener, so check it
+  // directly — a client that vanished during admission must not fund a full
+  // run nobody is reading.
   const abort = new AbortController()
   const timeout = setTimeout(() => abort.abort(new DOMException('Run timed out.', 'TimeoutError')), RUN_TIMEOUT_MS)
-  request.signal.addEventListener('abort', () => abort.abort(request.signal.reason), {
-    once: true,
-  })
+  if (request.signal.aborted) {
+    abort.abort(request.signal.reason)
+  } else {
+    request.signal.addEventListener('abort', () => abort.abort(request.signal.reason), {
+      once: true,
+    })
+  }
 
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
@@ -207,18 +233,18 @@ function streamLiveRun(
         // Best-effort bookkeeping AFTER the terminal frame: a store blip here
         // must not turn a delivered run into a run-error (the only cost is
         // this run not populating the shared cache).
-        await markCompleted(runId, result, result.personaFailures?.length ?? 0).catch(err =>
+        const degradationCount =
+          (result.personaFailures?.length ?? 0) +
+          result.verifiedGaps.filter(g => g.verifierFailed).length
+        await markCompleted(runId, result, degradationCount).catch(err =>
           console.error('panel run completion bookkeeping failed:', err instanceof Error ? err.message : err)
         )
       } catch (err) {
-        const errorType =
-          err instanceof PanelDegradedError
-            ? 'PanelDegradedError'
-            : err instanceof Error
-              ? err.name || err.constructor.name
-              : typeof err
+        const errorType = classifyRunError(err, abort.signal)
         write({ type: 'run-error', stage: failureStage(seen), errorType })
         // Best-effort bookkeeping: the stream outcome was already delivered.
+        // AbortError rows are exempted from the failure cooldown in the store
+        // — a visitor walking away says nothing about gateway health.
         await markFailed(runId, errorType).catch(() => undefined)
       } finally {
         clearInterval(heartbeat)

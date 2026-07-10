@@ -57,6 +57,7 @@ export async function verifyGaps(
   const verifiedGaps = await Promise.all(
     flat.map(async ({ personaId, gapIndex, gap }): Promise<VerifiedGap> => {
       let ruling: VerifyVerdictOutput
+      let verifierFailed = false
       try {
         ruling = await generateStructured<VerifyVerdictOutput>({
           model: config.lineup.verifier,
@@ -69,6 +70,7 @@ export async function verifyGaps(
         })
       } catch (err) {
         if (opts.signal?.aborted || isAbortError(err)) throw err
+        verifierFailed = true
         ruling = {
           verdict: 'unverifiable',
           verifyNote: `Verifier unavailable (${errorTypeOf(err)}).`,
@@ -80,6 +82,9 @@ export async function verifyGaps(
         gapIndex,
         verdict: ruling.verdict,
         verifyNote: ruling.verifyNote,
+        // Distinguish "couldn't run" from "couldn't decide" — consumers use
+        // this to keep fact-check-less runs out of public showcases.
+        ...(verifierFailed ? { verifierFailed: true as const } : {}),
       }
       done += 1
       emitPanelEvent(opts, {
