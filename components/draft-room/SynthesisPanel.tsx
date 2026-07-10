@@ -48,9 +48,11 @@ export function SynthesisPanel({ synthesis }: SynthesisPanelProps) {
 
       {synthesis.caughtErrors.length > 0 ? (
         <section className="rounded-2xl border border-yellow-400/30 bg-neutral-800 p-5">
-          <h3 className="font-sans text-lg font-bold text-yellow-300">⚠️ Overruled panel claims</h3>
+          <h3 className="font-sans text-lg font-bold text-yellow-300">
+            ⚠️ Overruled scouting claims
+          </h3>
           <p className="mt-1 text-xs text-neutral-400">
-            The fact-checker re-checked every grounded claim against the code and threw these out —
+            The fact-checker re-checked every grounded claim against the film and threw these out —
             confident-sounding, but wrong.
           </p>
           <ul className="mt-3 flex flex-col gap-3">
@@ -65,10 +67,10 @@ export function SynthesisPanel({ synthesis }: SynthesisPanelProps) {
       ) : null}
 
       <section className="rounded-2xl border border-orange-500/40 bg-gradient-to-b from-neutral-800 to-neutral-900 p-6">
-        <span className="font-mono text-[0.625rem] uppercase tracking-[0.16em] text-orange-300">
-          The verdict
+        <span className="inline-block -rotate-1 rounded border-2 border-orange-500/60 px-2 py-0.5 font-mono text-[0.625rem] font-bold uppercase tracking-[0.2em] text-orange-300">
+          Front office verdict
         </span>
-        <p className="mt-2 text-base leading-relaxed text-neutral-100">{synthesis.verdict}</p>
+        <p className="mt-3 text-base leading-relaxed text-neutral-100">{synthesis.verdict}</p>
       </section>
     </div>
   )

@@ -27,6 +27,7 @@ import { z, ZodError } from 'zod'
 import { isPanelLiveEnabled } from '@/lib/feature-flags'
 import { runPanel, PanelDegradedError } from '@/lib/panel'
 import { errorTypeOf } from '@/lib/panel/events'
+import { PORTFOLIO_PERSONAS } from '@/lib/panel/personas'
 import type { PanelEvent, PanelResult } from '@/lib/panel/types'
 import {
   HEARTBEAT_INTERVAL_MS,
@@ -316,13 +317,17 @@ async function handlePOST(request: NextRequest): Promise<Response> {
   // pattern, production-gated so a leaked env var can never serve fabricated
   // "live" runs on the real site. Streams via the same resultToEvents used by
   // the cache-hit path, so the stub cannot drift from the wire protocol.
+  // Roster maps come from the personas the STORED result was judged by (the
+  // portfolio set, until the #301 editorial swap) — the live config's
+  // draft-room personas (#302) wouldn't match the replayed verdicts' ids.
   if (process.env.NODE_ENV !== 'production' && process.env.PANEL_LIVE_STUB === '1') {
+    const stubRosterConfig = { ...target.config, personas: PORTFOLIO_PERSONAS }
     return streamReplay(
       resultToEvents(withReconstructedRulings(courtfolioPanelResult), {
         cached: false,
         startedAt: new Date().toISOString(),
-        modelByPersonaId: modelByPersonaId(target.config),
-        lensByPersonaId: lensByPersonaId(target.config),
+        modelByPersonaId: modelByPersonaId(stubRosterConfig),
+        lensByPersonaId: lensByPersonaId(stubRosterConfig),
       }),
       0.2
     )

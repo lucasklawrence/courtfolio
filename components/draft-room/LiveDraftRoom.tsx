@@ -13,6 +13,7 @@
  * whatever already streamed — nothing is papered over.
  */
 import type { PanelResult } from '@/lib/panel/types'
+import { prospectLabel } from './axes'
 import { DraftRoomHeader } from './DraftRoomHeader'
 import { DraftRoomBody } from './DraftRoomBody'
 import { PersonaVerdictCard } from './PersonaVerdictCard'
@@ -118,11 +119,14 @@ function LiveBody({ state }: { state: LivePanelRunState }) {
   const errorById = Object.fromEntries(state.personaErrors.map(e => [e.personaId, e.errorType]))
   const labelById = Object.fromEntries(runStart.personas.map(p => [p.id, p.label]))
 
+  const prospect = prospectLabel(runStart.targetId)
+  const evalStamp = runStart.cached ? 'cached' : 'live'
+
   return (
     <>
       <section aria-label="Panelist verdicts" className="flex flex-col gap-5">
         <h2 className="font-sans text-2xl font-bold text-white">
-          The panel weighs in — independently
+          The scouting reports come in — filed independently
         </h2>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {runStart.personas.map(persona => {
@@ -133,6 +137,10 @@ function LiveBody({ state }: { state: LivePanelRunState }) {
                   key={persona.id}
                   verdict={verdict}
                   gapRulings={state.gapRulings[persona.id]}
+                  prospect={prospect}
+                  model={persona.model || undefined}
+                  evalStamp={evalStamp}
+                  evalDate={runStart.startedAt}
                 />
               )
             }
@@ -154,7 +162,7 @@ function LiveBody({ state }: { state: LivePanelRunState }) {
 
       {state.verify && !state.synthesis && state.status !== 'error' ? (
         <p aria-live="polite" className="font-mono text-xs text-neutral-400">
-          Fact-checking the panel’s claims against the evidence… {state.verify.done}/
+          Fact-checking the scouts’ claims against the film… {state.verify.done}/
           {state.verify.total} gaps re-checked.
         </p>
       ) : null}
@@ -162,7 +170,9 @@ function LiveBody({ state }: { state: LivePanelRunState }) {
       {state.synthesis ? (
         <>
           <section aria-label="Agreement and disagreement" className="flex flex-col gap-5">
-            <h2 className="font-sans text-2xl font-bold text-white">Converge vs. split</h2>
+            <h2 className="font-sans text-2xl font-bold text-white">
+              The war room — converge vs. split
+            </h2>
             <AgreementMap
               convergence={state.synthesis.convergence}
               disagreements={state.synthesis.disagreements}
@@ -171,7 +181,7 @@ function LiveBody({ state }: { state: LivePanelRunState }) {
           </section>
 
           <section aria-label="Meta-judge synthesis" className="flex flex-col gap-5">
-            <h2 className="font-sans text-2xl font-bold text-white">The meta-judge synthesizes</h2>
+            <h2 className="font-sans text-2xl font-bold text-white">The front office decides</h2>
             <SynthesisPanel synthesis={state.synthesis} />
           </section>
         </>

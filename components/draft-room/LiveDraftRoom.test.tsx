@@ -114,10 +114,10 @@ describe('LiveDraftRoom', () => {
     const start = renderWith(IDLE_STATE)
 
     expect(
-      screen.getByRole('heading', { name: 'The panel weighs in — independently' })
+      screen.getByRole('heading', { name: 'The scouting reports are in — filed independently' })
     ).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Replay Peer' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The meta-judge synthesizes' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The front office decides' })).toBeInTheDocument()
     // The replay is hand-authored, and idle says so.
     expect(screen.getByText(/Illustrative —/)).toBeInTheDocument()
 
@@ -175,9 +175,9 @@ describe('LiveDraftRoom', () => {
     const progress = screen.getByText(/Fact-checking/)
     expect(progress).toHaveTextContent('3/5 gaps re-checked')
     // No synthesis yet, so the closing sections are absent.
-    expect(screen.queryByRole('heading', { name: 'Converge vs. split' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'The war room — converge vs. split' })).not.toBeInTheDocument()
     expect(
-      screen.queryByRole('heading', { name: 'The meta-judge synthesizes' })
+      screen.queryByRole('heading', { name: 'The front office decides' })
     ).not.toBeInTheDocument()
   })
 
@@ -192,8 +192,8 @@ describe('LiveDraftRoom', () => {
       })
     )
 
-    expect(screen.getByRole('heading', { name: 'Converge vs. split' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The meta-judge synthesizes' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The war room — converge vs. split' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The front office decides' })).toBeInTheDocument()
     expect(screen.getByText('the live synthesis verdict')).toBeInTheDocument()
     // The synthesis supersedes the verify progress line.
     expect(screen.queryByText(/Fact-checking/)).not.toBeInTheDocument()
@@ -250,7 +250,7 @@ describe('LiveDraftRoom', () => {
 
     expect(screen.getByText(/hit its run budget/)).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Replay Peer' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'The meta-judge synthesizes' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'The front office decides' })).toBeInTheDocument()
     // No stream ever started, so nothing live is on screen.
     expect(screen.queryByText('Deliberating…')).not.toBeInTheDocument()
   })

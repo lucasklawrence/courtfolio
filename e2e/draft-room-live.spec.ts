@@ -52,9 +52,9 @@ test.describe('draft room live mode (stubbed stream)', () => {
     // The synthesis arrives last: map, overruled claims, verdict.
     await expect(page.getByRole('heading', { name: /where they split/i })).toBeVisible(streamed)
     await expect(
-      page.getByRole('heading', { name: /overruled panel claims/i })
+      page.getByRole('heading', { name: /overruled scouting claims/i })
     ).toBeVisible(streamed)
-    await expect(page.getByText('The verdict')).toBeVisible(streamed)
+    await expect(page.getByText(/front office verdict/i)).toBeVisible(streamed)
 
     // Terminal state: the button unlocks for another run.
     await expect(page.getByRole('button', { name: /run it live/i })).toBeEnabled(streamed)
