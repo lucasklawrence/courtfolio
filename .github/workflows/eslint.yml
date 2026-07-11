@@ -6,6 +6,12 @@ on:
     branches:
       - main
 
+# Read-only on the repo (only `checkout` needs it); this job lints and reports
+# a status, never writing back to git. Least-privilege token, matching
+# otbeat-ingest.yml.
+permissions:
+  contents: read
+
 jobs:
   eslint:
     runs-on: ubuntu-latest
