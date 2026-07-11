@@ -44,7 +44,9 @@ export function FreeRoamPlayer({
   // Refs for input state (no re-renders needed)
   const keysRef = useRef(new Set<string>())
   const clickTargetRef = useRef<{ x: number; y: number } | null>(null)
-  const lastMoveTimeRef = useRef(performance.now())
+  // Seeded to 0 and set to the real clock when the game loop starts (see
+  // `start()`); `performance.now()` is impure and must not run during render.
+  const lastMoveTimeRef = useRef(0)
   const walkFrameTimeRef = useRef(0)
   const gameLoopRef = useRef(0)
   const shootPoseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -248,6 +250,9 @@ export function FreeRoamPlayer({
       // Reset the clock so the first frame after a pause produces a small dt
       // instead of "time since the loop last ran".
       prevTime = performance.now()
+      // Seed the idle baseline here (not during render) so the shooting-pose
+      // timer measures from when the loop actually starts.
+      lastMoveTimeRef.current = performance.now()
       gameLoopRef.current = requestAnimationFrame(tick)
     }
 
@@ -331,6 +336,7 @@ export function FreeRoamPlayer({
           marginTop: -PLAYER_SIZE / 2,
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element -- walk-cycle game sprite: currentSprite swaps every animation frame; next/image's optimizer/loader is the wrong tool for a tiny local sprite */}
         <img
           src={currentSprite}
           alt=""

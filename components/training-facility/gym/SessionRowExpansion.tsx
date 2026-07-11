@@ -166,6 +166,7 @@ export function ExpandedHrZoneRow({
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional post-hydration mount flag (defers client-only measurement to avoid an SSR mismatch)
     setMounted(true)
   }, [])
 

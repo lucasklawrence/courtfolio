@@ -15,6 +15,7 @@ export const MobileSwipeHint: React.FC = () => {
     } catch {}
     const mql = window.matchMedia(MQL_QUERY)
     if (!mql.matches) return
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional client-only reveal: gated on localStorage + matchMedia, which must not run during SSR
     setVisible(true)
   }, [])
 

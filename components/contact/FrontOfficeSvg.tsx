@@ -2,11 +2,8 @@
 
 import React from 'react'
 
-import { useCallback } from 'react'
-
 type FrontOfficeSvgProps = {
-  onZoneClick?: (zoneId: string) => void
-  className?: string
+  /** Content injected per named zone, rendered as an SVG overlay group after the artwork. */
   zoneContent?: Record<string, React.ReactNode>
 }
 
@@ -14,19 +11,7 @@ type FrontOfficeSvgProps = {
  * Inline SVG of a basketball court with zone interactivity.
  * Allows content injection per zone via `zoneContent`.
  */
-export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({
-  onZoneClick,
-  className,
-  zoneContent = {},
-}) => {
-  const handleClick = useCallback(
-    (zoneId: string) => {
-      if (onZoneClick) {
-        onZoneClick(zoneId)
-      }
-    },
-    [onZoneClick]
-  )
+export const FrontOfficeSvg: React.FC<FrontOfficeSvgProps> = ({ zoneContent = {} }) => {
   return (
     <svg
       viewBox="0 0 1536 1024"

@@ -9,7 +9,6 @@ import { CourtTitleSolo } from '@/components/court/CourtTitleSolo'
 import { CourtZone } from '@/components/court/CourtZone'
 import { ZoneBioCard } from '@/components/court/zones/ZoneBioCard'
 import { ZoneCareerStats } from '@/components/court/zones/ZoneCareerStats'
-import { ZoneProjects } from '@/components/court/zones/ZoneProjects'
 import { ZoneEntryButton } from '@/components/common/ZoneEntryButton'
 import { TrainingFacilityCourtEntry } from '@/components/training-facility/TrainingFacilityCourtEntry'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
@@ -30,7 +29,6 @@ type UseZoneContentProps = {
 
 export function useZoneContent({
   tourActive,
-  tourStep,
   isMobile,
   hasSeen,
   markAsSeen,

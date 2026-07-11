@@ -56,6 +56,7 @@ export function LazyMount({
     if (typeof IntersectionObserver === 'undefined') {
       // Old browsers without IO: fall back to immediate mount so the
       // content always renders; the perf optimization is best-effort.
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional one-shot fallback inside the IntersectionObserver setup effect
       setVisible(true)
       return
     }

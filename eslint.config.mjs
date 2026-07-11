@@ -10,11 +10,13 @@ import nextTypeScript from 'eslint-config-next/typescript'
  * rules) and `typescript` (typescript-eslint) — then globally ignores build
  * output, coverage, and tooling directories.
  *
- * Two deliberate deviations from the presets are documented inline below:
+ * One deliberate deviation from the presets is documented inline below:
  *  - `settings.react.version` is pinned to work around an ESLint 10 crash in the
- *    preset's bundled `eslint-plugin-react`.
- *  - a batch of rules is temporarily lowered to `warn` so the migration lands on
- *    a passing baseline; burn-down + restoration is tracked in #292.
+ *    preset's bundled `eslint-plugin-react`. This is an upstream blocker, so the
+ *    pin stays until `eslint-config-next` supports ESLint 10 (#292).
+ *
+ * The migration's temporary `warn` downgrades have been burned down and every
+ * rule is restored to `error` (#292).
  */
 const eslintConfig = [
   ...nextCoreWebVitals,
@@ -23,8 +25,9 @@ const eslintConfig = [
   // caps at `eslint ^9.7`. ESLint 10 removed the deprecated `context.getFilename()`
   // that the plugin's React-version auto-detection calls, so linting crashes with
   // "context.getFilename is not a function". Pinning the version here skips that
-  // auto-detection codepath. Remove once the preset officially supports ESLint 10
-  // (tracked in #292).
+  // auto-detection codepath. Remove once eslint-config-next (and its bundled
+  // eslint-plugin-react) officially support ESLint 10 — an upstream blocker
+  // intentionally left in place; see #292 for context.
   { settings: { react: { version: '19' } } },
   {
     ignores: [
@@ -36,22 +39,41 @@ const eslintConfig = [
     ],
   },
   {
-    // Running `eslint .` across the whole repo for the first time (the removed
-    // `next lint` only scanned a subset and hadn't been run recently) surfaced a
-    // pre-existing backlog plus newer react-hooks rules. These are lowered from
-    // `error` to `warn` so the migration ships on a green baseline without hiding
-    // anything — every violation still prints. Burn the backlog down and restore
-    // each rule to `error` per #292.
+    // Honor the leading-underscore convention for intentionally-unused bindings:
+    // destructuring-omit idioms (`const { key: _omit, ...rest } = obj`), unused
+    // callback params kept for signature shape (`(_req, _ctx) => ...`), and
+    // caught errors that are deliberately swallowed. The Next preset's
+    // `no-unused-vars` doesn't set these patterns, so `_`-prefixed names were
+    // being flagged despite the convention.
     rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
-      'react/no-unescaped-entities': 'warn',
-      'react/display-name': 'warn',
-      'prefer-const': 'warn',
-      'react-hooks/set-state-in-effect': 'warn',
-      'react-hooks/refs': 'warn',
-      'react-hooks/purity': 'warn',
-      'react-hooks/immutability': 'warn',
-      'react-hooks/preserve-manual-memoization': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+        },
+      ],
+    },
+  },
+  {
+    // These rules were temporarily lowered to `warn` when `eslint .` first ran
+    // across the whole repo (#289) so the Next 16 migration could land on a green
+    // baseline. The backlog has since been burned down (#292), so each is
+    // restored to `error` and enforced. Kept explicit — rather than deleting the
+    // block to inherit preset defaults — so the enforcement intent is documented
+    // and survives future preset-default changes.
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'error',
+      'react/no-unescaped-entities': 'error',
+      'react/display-name': 'error',
+      'prefer-const': 'error',
+      'react-hooks/set-state-in-effect': 'error',
+      'react-hooks/refs': 'error',
+      'react-hooks/purity': 'error',
+      'react-hooks/immutability': 'error',
+      'react-hooks/preserve-manual-memoization': 'error',
     },
   },
 ]

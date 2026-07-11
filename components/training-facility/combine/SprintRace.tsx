@@ -213,6 +213,7 @@ export function SprintRace({ entries }: SprintRaceProps): JSX.Element | null {
   // post-effect state — and reduced-motion's snap-to-finish behaviour
   // takes effect immediately instead of after a flash.
   const effectiveEnabled =
+    // eslint-disable-next-line react-hooks/refs -- intentional first-paint read (see comment above): treats "nothing seen yet" as "all visible" so the initial frame matches the post-effect state
     enabled.size === 0 && knownDatesRef.current.size === 0
       ? new Set(runs.map((r) => r.date))
       : enabled
@@ -566,6 +567,11 @@ function useSprintElapsed({ runs, replayKey, reducedMotion }: UseSprintElapsedAr
     [runs],
   )
 
+  // Drives the elapsed-time clock via requestAnimationFrame. The synchronous
+  // setElapsed calls seed the animation (snap-to-finish for reduced motion, or
+  // reset to 0 before the rAF loop); the per-frame updates run in the rAF
+  // callback, not the effect body.
+  /* eslint-disable react-hooks/set-state-in-effect -- intentional animation seed; see comment above */
   useEffect(() => {
     if (reducedMotion || maxSeconds <= 0) {
       setElapsed(maxSeconds)
@@ -591,6 +597,7 @@ function useSprintElapsed({ runs, replayKey, reducedMotion }: UseSprintElapsedAr
       cancelAnimationFrame(raf)
     }
   }, [maxSeconds, runsKey, replayKey, reducedMotion])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return elapsed
 }

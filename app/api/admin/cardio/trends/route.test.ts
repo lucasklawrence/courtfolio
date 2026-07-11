@@ -1,3 +1,4 @@
+import type { NextRequest } from 'next/server'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { POST } from './route'
@@ -40,7 +41,7 @@ describe('POST /api/admin/cardio/trends', () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 233.8 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(401)
     expect(await res.json()).toEqual({ error: 'Unauthorized.' })
   })
@@ -55,7 +56,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 233.8 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(401)
   })
 
@@ -69,7 +70,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: 'not valid json {',
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(400)
     expect(await res.json()).toEqual({ error: 'Body must be valid JSON.' })
   })
@@ -84,7 +85,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-7-1', metric: 'body_mass', value: 233.8 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(400)
     const body = await res.json()
     expect(body.error).toBe('Validation failed.')
@@ -100,7 +101,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-07-01', metric: 'unknown_metric', value: 233.8 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(400)
     const body = await res.json()
     expect(body.error).toBe('Validation failed.')
@@ -116,7 +117,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: -100 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(400)
   })
 
@@ -130,7 +131,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 0 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(400)
     expect((await res.json()).error).toBe('Validation failed.')
   })
@@ -145,7 +146,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-07-01', metric: 'steps', value: 0 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(200)
     expect(fromMock).toHaveBeenCalledWith('cardio_step_count_trend')
   })
@@ -160,7 +161,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 233.8 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(200)
     expect(fromMock).toHaveBeenCalledWith('cardio_body_mass_trend')
     // Payload carries the value, an explicit updated_at stamp (the tables have
@@ -184,7 +185,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-07-02', metric: 'hrv', value: 45.2 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(200)
     expect(fromMock).toHaveBeenCalledWith('cardio_hrv_trend')
     expect(upsertMock).toHaveBeenCalledWith(
@@ -208,7 +209,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 233.8 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(500)
     const body = await res.json()
     expect(body.error).toContain('Database error')
@@ -224,7 +225,7 @@ describe('POST /api/admin/cardio/trends', () => {
       },
       body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 233.8 }),
     })
-    const res = await POST(req as any)
+    const res = await POST(req as NextRequest)
     expect(res.status).toBe(401)
   })
 })

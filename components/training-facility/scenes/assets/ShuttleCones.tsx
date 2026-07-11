@@ -2,7 +2,6 @@ import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
 import {
   RoughEllipse,
   RoughLineShape,
-  RoughPath,
   RoughPolygon,
   RoughRect,
 } from './rough-shapes'

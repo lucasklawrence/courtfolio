@@ -42,8 +42,6 @@ const FRAME_WIDTH = 200
 const FRAME_HEIGHT = 440
 /** Inset between outer frame and inner door panel. */
 const INSET_X = 16
-/** Vertical inset to the inner door panel. */
-const INSET_TOP = 20
 /** Inset between inner panel and recessed sub-panels. */
 const PANEL_INSET = 36
 

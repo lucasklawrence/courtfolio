@@ -105,7 +105,7 @@ export function ZoneContactSafari() {
           marginTop: '0.75rem',
         }}
       >
-        "Plays drawn in code. Championships built in commits."
+        &ldquo;Plays drawn in code. Championships built in commits.&rdquo;
       </div>
     </SafeSvgHtml>
   )

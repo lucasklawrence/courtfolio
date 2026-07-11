@@ -1,5 +1,4 @@
 import { m, useAnimation } from 'framer-motion'
-import { useEffect } from 'react'
 
 /**
  * Wraps any locker item with subtle swing animation on hover (desktop) or tap (mobile).

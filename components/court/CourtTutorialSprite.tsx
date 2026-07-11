@@ -93,19 +93,21 @@ export function CourtTutorialSprite({
     }
   }, [stepData.x, stepData.y, svgRef, scale, x, y, onPositionChange, svgSize])
 
-  // Flip logic
+  // Flip logic — face the direction the sprite is stepping toward, or an
+  // explicit per-step override. Reacts to tutorial-step position changes, so it
+  // has to live in an effect and set state from the new step.
   useEffect(() => {
+    let nextFacingLeft: boolean | null = null
     if (typeof stepData.facingLeft === 'boolean') {
-      setFacingLeft(stepData.facingLeft)
-    } else {
-      if (stepData.x < prevX.current) {
-        setFacingLeft(true)
-      } else if (stepData.x > prevX.current) {
-        setFacingLeft(false)
-      }
+      nextFacingLeft = stepData.facingLeft
+    } else if (stepData.x < prevX.current) {
+      nextFacingLeft = true
+    } else if (stepData.x > prevX.current) {
+      nextFacingLeft = false
     }
+    if (nextFacingLeft !== null) setFacingLeft(nextFacingLeft)
     prevX.current = stepData.x
-  }, [stepData.x, stepData.y])
+  }, [stepData.x, stepData.y, stepData.facingLeft])
 
   return (
     <m.div
@@ -115,6 +117,7 @@ export function CourtTutorialSprite({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
+      {/* eslint-disable-next-line @next/next/no-img-element -- animated tutorial sprite: src swaps per step and flips via scaleX; next/image's optimizer/loader is the wrong tool for a tiny local sprite */}
       <img
         src={stepData.img}
         alt="Sprite"

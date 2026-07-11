@@ -612,6 +612,11 @@ interface UseShuttleElapsedArgs {
 function useShuttleElapsed({ maxSeconds, replayKey, reducedMotion }: UseShuttleElapsedArgs): number {
   const [elapsed, setElapsed] = useState(0)
 
+  // Drives the elapsed-time clock via requestAnimationFrame. The synchronous
+  // setElapsed calls seed the animation (snap-to-finish for reduced motion, or
+  // reset to 0 before the rAF loop); the per-frame updates run in the rAF
+  // callback, not the effect body.
+  /* eslint-disable react-hooks/set-state-in-effect -- intentional animation seed; see comment above */
   useEffect(() => {
     if (reducedMotion || maxSeconds <= 0) {
       setElapsed(maxSeconds)
@@ -637,6 +642,7 @@ function useShuttleElapsed({ maxSeconds, replayKey, reducedMotion }: UseShuttleE
       cancelAnimationFrame(raf)
     }
   }, [maxSeconds, replayKey, reducedMotion])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return elapsed
 }

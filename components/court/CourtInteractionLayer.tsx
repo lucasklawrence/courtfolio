@@ -112,7 +112,7 @@ export function CourtInteractionLayer({
     return () => {
       svg.removeEventListener('pointerup', handlePointerUp)
     }
-  }, [handlePointerUp])
+  }, [handlePointerUp, svgRef])
 
   return null
 }

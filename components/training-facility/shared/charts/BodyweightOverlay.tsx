@@ -120,6 +120,7 @@ export function BodyweightOverlay({
   // SSR/client rough.js generator divergence this avoids.
   const [hydrated, setHydrated] = useState(false)
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional post-hydration flag: defers the rough.js overlay layer to avoid an SSR/client generator divergence
     setHydrated(true)
   }, [])
 

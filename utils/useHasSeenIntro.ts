@@ -4,6 +4,10 @@ export function useHasSeenIntro() {
   const [ready, setReady] = useState(false)
   const [showIntro, setShowIntro] = useState(false)
 
+  // Intentional client-only localStorage read on mount: both state values stay
+  // false during SSR and the first client render, then resolve post-hydration,
+  // so there's no server/client mismatch.
+  /* eslint-disable react-hooks/set-state-in-effect -- intentional post-hydration localStorage read; see comment above */
   useEffect(() => {
     try {
       const hasSeen = localStorage.getItem('hasSeenIntro')
@@ -19,6 +23,7 @@ export function useHasSeenIntro() {
       setReady(true)
     }
   }, [])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return { ready, showIntro }
 }

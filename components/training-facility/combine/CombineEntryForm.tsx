@@ -253,6 +253,10 @@ function CombineEntryFormImpl({
   // recreate the just-deleted benchmark. We gate the cleanup on
   // `wasEditingRef` so the initial mount (when both `editingEntry`
   // and the ref are falsy) doesn't clobber the today-date effect.
+  // Syncs the form panel (open/error/saved state + react-hook-form reset) to the
+  // incoming editingEntry prop — an intentional prop->state sync, gated on
+  // wasEditingRef so the initial mount doesn't clobber the today-date effect.
+  /* eslint-disable react-hooks/set-state-in-effect -- intentional prop->state sync; see comment above */
   useEffect(() => {
     if (editingEntry) {
       reset(toFormValues(editingEntry))
@@ -268,6 +272,7 @@ function CombineEntryFormImpl({
       wasEditingRef.current = false
     }
   }, [editingEntry, reset])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   function handleCancelEdit(): void {
     setIsOpen(false)

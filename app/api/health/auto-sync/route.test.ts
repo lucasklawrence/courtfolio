@@ -1,3 +1,4 @@
+import type { NextRequest } from 'next/server'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { POST } from './route'
@@ -35,40 +36,44 @@ afterEach(() => {
   vi.unstubAllEnvs()
 })
 
-/** Build a POST request with the given JSON body and (optional) key header. */
-function makeRequest(body: unknown, key: string | null = 'valid-key'): Request {
+/**
+ * Build a POST request with the given JSON body and (optional) key header.
+ * Down-cast to `NextRequest` (which extends `Request`) so it drops straight into
+ * the route handler's signature — the handler only touches `Request` members.
+ */
+function makeRequest(body: unknown, key: string | null = 'valid-key'): NextRequest {
   const headers: Record<string, string> = { 'Content-Type': 'application/json' }
   if (key !== null) headers['X-Health-Sync-Key'] = key
   return new Request('http://localhost:3000/api/health/auto-sync', {
     method: 'POST',
     headers,
     body: typeof body === 'string' ? body : JSON.stringify(body),
-  })
+  }) as NextRequest
 }
 
 describe('POST /api/health/auto-sync', () => {
   it('returns 401 when the API key is missing', async () => {
     vi.stubEnv('HEALTH_AUTO_SYNC_API_KEY', 'valid-key')
-    const res = await POST(makeRequest({ data: [] }, null) as any)
+    const res = await POST(makeRequest({ data: [] }, null))
     expect(res.status).toBe(401)
   })
 
   it('returns 401 when the API key is wrong', async () => {
     vi.stubEnv('HEALTH_AUTO_SYNC_API_KEY', 'correct-key')
-    const res = await POST(makeRequest({ data: [] }, 'wrong-key') as any)
+    const res = await POST(makeRequest({ data: [] }, 'wrong-key'))
     expect(res.status).toBe(401)
   })
 
   it('returns 400 when the body is invalid JSON', async () => {
     vi.stubEnv('HEALTH_AUTO_SYNC_API_KEY', 'valid-key')
-    const res = await POST(makeRequest('not json {') as any)
+    const res = await POST(makeRequest('not json {'))
     expect(res.status).toBe(400)
     expect(await res.json()).toEqual({ error: 'Body must be valid JSON.' })
   })
 
   it('returns 400 when a date is malformed', async () => {
     vi.stubEnv('HEALTH_AUTO_SYNC_API_KEY', 'valid-key')
-    const res = await POST(makeRequest({ data: [{ date: '2026-7-1', steps: 100 }] }) as any)
+    const res = await POST(makeRequest({ data: [{ date: '2026-7-1', steps: 100 }] }))
     expect(res.status).toBe(400)
     expect((await res.json()).error).toBe('Validation failed.')
   })
@@ -88,8 +93,7 @@ describe('POST /api/health/auto-sync', () => {
             body_mass_lbs: 233.8,
           },
         ],
-      }) as any
-    )
+      })    )
     expect(res.status).toBe(200)
     const tables = upsertMock.mock.calls.map((c) => c[0])
     expect(tables).toEqual([
@@ -126,8 +130,7 @@ describe('POST /api/health/auto-sync', () => {
     const res = await POST(
       makeRequest({
         data: [{ date: '2026-07-01', steps: 9000, hrv_ms: null }],
-      }) as any
-    )
+      })    )
     expect(res.status).toBe(200)
     // Only the steps table was touched — null hrv and absent fields skipped.
     expect(upsertMock.mock.calls.map((c) => c[0])).toEqual(['cardio_step_count_trend'])
@@ -140,8 +143,7 @@ describe('POST /api/health/auto-sync', () => {
     const res = await POST(
       makeRequest({
         data: [{ date: '2026-07-01', steps: 9000, body_mass_lbs: 240 }],
-      }) as any
-    )
+      })    )
     expect(res.status).toBe(200)
     // steps still written; body_mass skipped because the day is manual.
     expect(upsertMock.mock.calls.map((c) => c[0])).toEqual(['cardio_step_count_trend'])
@@ -151,7 +153,7 @@ describe('POST /api/health/auto-sync', () => {
   it('returns 500 when a metric upsert fails', async () => {
     vi.stubEnv('HEALTH_AUTO_SYNC_API_KEY', 'valid-key')
     upsertMock.mockResolvedValueOnce({ error: { message: 'statement timeout' } })
-    const res = await POST(makeRequest({ data: [{ date: '2026-07-01', steps: 9000 }] }) as any)
+    const res = await POST(makeRequest({ data: [{ date: '2026-07-01', steps: 9000 }] }))
     expect(res.status).toBe(500)
     expect((await res.json()).details[0]).toContain('statement timeout')
   })
