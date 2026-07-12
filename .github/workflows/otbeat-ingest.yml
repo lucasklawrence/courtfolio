@@ -34,14 +34,8 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
+      - name: Set up Node.js and install dependencies
+        uses: ./.github/actions/node-setup
 
       - name: Ingest new OTbeat sessions into Supabase
         env:

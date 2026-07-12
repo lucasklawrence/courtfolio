@@ -6,6 +6,18 @@ on:
     branches:
       - main
 
+# Read-only on the repo (only `checkout` needs it); this job runs the E2E suite
+# and reports a status, never writing back to git. Least-privilege token,
+# matching otbeat-ingest.yml.
+permissions:
+  contents: read
+
+# Cancel a stale run when a newer commit is pushed to the same ref — successive
+# fixups to a PR shouldn't burn parallel runners when only the latest matters.
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   e2e:
     runs-on: ubuntu-latest
@@ -18,14 +30,8 @@ jobs:
           # Read-only job — don't leave the GITHUB_TOKEN in .git/config.
           persist-credentials: false
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
+      - name: Set up Node.js and install dependencies
+        uses: ./.github/actions/node-setup
 
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
