@@ -15,9 +15,17 @@ updates:
           - minor
           - patch
 
-  # GitHub Actions used by the workflows in .github/workflows.
+  # GitHub Actions used by the workflows in .github/workflows AND by the
+  # composite action in .github/actions. Dependabot's github-actions ecosystem
+  # only scans `.github/workflows` for a bare `directory: /`; action references
+  # inside a composite `action.yml` (e.g. actions/setup-node in
+  # .github/actions/node-setup) are NOT covered without an explicit directory
+  # (dependabot-core#6704). `directories` lists both so the composite's pinned
+  # actions keep getting bumps; the shared `groups` folds them into one PR.
   - package-ecosystem: github-actions
-    directory: /
+    directories:
+      - /
+      - /.github/actions/node-setup
     schedule:
       interval: weekly
     groups:

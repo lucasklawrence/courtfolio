@@ -1,0 +1,53 @@
+name: Panel evidence
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+# Read-only on the repo (only `checkout` needs it); this job re-bakes evidence
+# and reports whether the committed JSON is current, never writing back to git.
+permissions:
+  contents: read
+
+# Cancel a stale run when a newer commit is pushed to the same PR ref —
+# successive fixups shouldn't burn parallel runners when only the latest
+# matters. Gated to non-main refs so every commit on `main` keeps a completed
+# CI verdict (back-to-back merges must not cancel an earlier commit's run).
+concurrency:
+  group: panel-evidence-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  panel-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          # Read-only job — don't leave the GITHUB_TOKEN in .git/config.
+          persist-credentials: false
+
+      - name: Set up Node.js and install dependencies
+        uses: ./.github/actions/node-setup
+
+      - name: Verify baked panel evidence is current
+        # `panel:bake` is a pure file read (no secrets/network), so re-running it
+        # here and diffing is a cheap gate. The baked JSON under
+        # lib/panel/evidence/baked/ is what the Draft Room / live panel serves,
+        # and it mirrors real source files (see scripts/panel-projects.ts). Since
+        # baking is a manual step, source edits can silently stale it — this gate
+        # makes staleness a red check instead of a latent bug that only surfaces
+        # when the panel is enabled. The bake is deterministic (repo-relative
+        # paths, truncated file contents, no timestamps), so a clean tree here
+        # means the committed evidence matches HEAD's source.
+        run: |
+          npm run panel:bake
+          if ! git diff --quiet -- lib/panel/evidence/baked/; then
+            echo "::error::Baked panel evidence is out of date. Run 'npm run panel:bake' and commit the changes under lib/panel/evidence/baked/."
+            git --no-pager diff -- lib/panel/evidence/baked/
+            exit 1
+          fi
