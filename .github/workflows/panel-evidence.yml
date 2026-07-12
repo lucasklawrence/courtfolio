@@ -36,7 +36,7 @@ jobs:
 
       - name: Verify baked panel evidence is current
         # `panel:bake` is a pure file read (no secrets/network), so re-running it
-        # here and diffing is a cheap gate. The baked JSON under
+        # here and checking for changes is a cheap gate. The baked JSON under
         # lib/panel/evidence/baked/ is what the Draft Room / live panel serves,
         # and it mirrors real source files (see scripts/panel-projects.ts). Since
         # baking is a manual step, source edits can silently stale it — this gate
@@ -44,10 +44,19 @@ jobs:
         # when the panel is enabled. The bake is deterministic (repo-relative
         # paths, truncated file contents, no timestamps), so a clean tree here
         # means the committed evidence matches HEAD's source.
+        #
+        # Use `git status --porcelain`, not `git diff --quiet`: when a new
+        # PANEL_PROJECTS entry is added, baking emits a brand-new
+        # baked/<slug>.json that is *untracked*, and `git diff` ignores untracked
+        # files — so a bare diff check would pass green while the new evidence
+        # went uncommitted. Porcelain reports modified-tracked (` M`) and
+        # untracked (`??`) alike, so both forms of staleness fail the gate.
         run: |
           npm run panel:bake
-          if ! git diff --quiet -- lib/panel/evidence/baked/; then
+          changes="$(git status --porcelain -- lib/panel/evidence/baked/)"
+          if [ -n "$changes" ]; then
             echo "::error::Baked panel evidence is out of date. Run 'npm run panel:bake' and commit the changes under lib/panel/evidence/baked/."
+            echo "$changes"
             git --no-pager diff -- lib/panel/evidence/baked/
             exit 1
           fi
