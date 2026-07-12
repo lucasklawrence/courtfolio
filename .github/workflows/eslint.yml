@@ -12,11 +12,13 @@ on:
 permissions:
   contents: read
 
-# Cancel a stale run when a newer commit is pushed to the same ref — successive
-# fixups to a PR shouldn't burn parallel runners when only the latest matters.
+# Cancel a stale run when a newer commit is pushed to the same PR ref —
+# successive fixups shouldn't burn parallel runners when only the latest
+# matters. Gated to non-main refs so every commit on `main` keeps a completed
+# CI verdict (back-to-back merges must not cancel an earlier commit's run).
 concurrency:
   group: lint-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   eslint:
