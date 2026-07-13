@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
 import { StrengthStats } from '@/components/training-facility/weight-room/StrengthStats'
 import { StrengthVsBodyweightChart } from '@/components/training-facility/weight-room/StrengthVsBodyweightChart'
@@ -12,6 +13,7 @@ import { WeightRoomSubNav } from '@/components/training-facility/weight-room/Wei
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { buildMovementLoads } from '@/lib/training-facility/load-management'
 import { computeStrengthStats } from '@/lib/training-facility/weight-room-history'
 import type { ExerciseGoal } from '@/types/weight-room'
 
@@ -48,6 +50,7 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
   const goals: readonly ExerciseGoal[] = data?.goals ?? []
   const sets = data?.sets ?? []
   const stats = computeStrengthStats(sets, goals)
+  const loads = buildMovementLoads(sets, goals)
   const bodyMass = cardio?.body_mass_trend ?? []
 
   // The relative-strength overlay is featured for pull-ups specifically —
@@ -108,6 +111,24 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
           </section>
         ) : (
           <>
+            <section className="mt-10">
+              <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+                Load Management
+              </h2>
+              <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+                Ramp rate per movement, bucketed in Pacific time. The injury driver for tendon is how
+                fast weekly volume climbs, not its absolute size &mdash; a{' '}
+                <abbr title="week-over-week">WoW</abbr> jump past +10% or an{' '}
+                <abbr title="acute:chronic workload ratio — acute 7-day volume over the 28-day weekly baseline">
+                  ACWR
+                </abbr>{' '}
+                over 1.3 flags for a closer look.
+              </p>
+              <div className="mt-4">
+                <LoadManagementPanel loads={loads} />
+              </div>
+            </section>
+
             <section
               aria-label="Per-exercise heatmaps"
               data-testid="weight-room-heatmaps"
