@@ -27,17 +27,20 @@ export const PACIFIC_TZ = 'America/Los_Angeles'
 
 /** Trailing days in the acute window. */
 const ACUTE_DAYS = 7
-/** Trailing days in the chronic window; ÷4 gives the chronic weekly baseline. */
-const CHRONIC_DAYS = 28
-/** Trailing days rendered in each movement's sparkline. */
-const SPARKLINE_DAYS = 28
 /**
- * Fraction of a movement's sets that must carry external load before it's
- * treated as a loaded movement (driven by load-volume) rather than a
- * bodyweight one (driven by rep volume). At `0.5`, an all-weighted
+ * Trailing days in the chronic window; ÷4 gives the chronic weekly
+ * baseline. Also the length of each movement's sparkline, so the sparkline
+ * and the chronic total are always the same 28 days of data.
+ */
+const CHRONIC_DAYS = 28
+/**
+ * Fraction of a movement's *in-window* sets that must carry external load
+ * before it's treated as a loaded movement (driven by load-volume) rather
+ * than a bodyweight one (driven by rep volume). At `0.5`, an all-weighted
  * movement like shrugs uses tonnage while a mostly-bodyweight movement
  * like pull-ups stays rep-based even if it has the occasional weighted
- * set.
+ * set. Decided over the chronic window (not all history) so a movement
+ * that recently switched loading regime is scored on its current scale.
  */
 const LOADED_SET_FRACTION = 0.5
 
@@ -88,18 +91,6 @@ function shiftDayKey(key: string, delta: number): string {
   return `${yy}-${mm}-${dd}`
 }
 
-/**
- * Sum `days` of daily volume ending at (and including) `endKey`, reading
- * missing days as zero.
- */
-function sumWindow(volByDay: ReadonlyMap<string, number>, endKey: string, days: number): number {
-  let total = 0
-  for (let i = 0; i < days; i++) {
-    total += volByDay.get(shiftDayKey(endKey, -i)) ?? 0
-  }
-  return total
-}
-
 /** One point in a movement's trailing daily-volume sparkline. */
 export interface DailyVolumePoint {
   /** `YYYY-MM-DD` Pacific calendar day. */
@@ -133,14 +124,18 @@ export interface MovementLoad {
   chronicWeekly: number
   /**
    * Week-over-week fractional change of the trailing-7 volume
-   * (`(acute − prior) ÷ prior`). `null` when `prior7d` is `0` (a
-   * brand-new ramp with no week to compare against).
+   * (`(acute − prior) ÷ prior`), rounded to whole percent so the card's
+   * displayed number and its flag color are computed from the same value
+   * and can never disagree at the threshold. `null` when `prior7d` is `0`
+   * (a brand-new ramp with no week to compare against).
    */
   wowPct: number | null
   /**
-   * Acute:chronic workload ratio (`acute7d ÷ chronicWeekly`). Always
-   * finite for a rendered movement, since movements with no chronic
-   * volume are filtered out.
+   * Acute:chronic workload ratio (`acute7d ÷ chronicWeekly`), rounded to
+   * two decimals to match the displayed value. `null` until the movement's
+   * history spans the full chronic window — ACWR's baseline is a 4-week
+   * average, and dividing a partial window by 4 would raise a false alarm,
+   * so a young movement shows no ratio rather than a misleading one.
    */
   acwr: number | null
   /** Overall flag — the worst of {@link wowFlag} and {@link acwrFlag}. */
@@ -149,7 +144,7 @@ export interface MovementLoad {
   wowFlag: RampFlag
   /** Flag from the ACWR signal alone. */
   acwrFlag: RampFlag
-  /** Trailing {@link SPARKLINE_DAYS}-day daily volume, oldest → newest. */
+  /** Trailing {@link CHRONIC_DAYS}-day daily volume, oldest → newest. */
   sparkline: DailyVolumePoint[]
 }
 
@@ -180,6 +175,16 @@ export function buildMovementLoads(
   const todayKey = pacificDayKey(now)
   const colorByExercise = new Map(goals.map(g => [g.exercise, g.color]))
 
+  // Precompute the trailing chronic-window day keys once — they're shared
+  // by every movement. Index 0 is today; index CHRONIC_DAYS-1 is the
+  // window's oldest day. This replaces per-set/per-window `shiftDayKey`
+  // calls (which built dozens of throwaway Dates per movement) with a
+  // single O(1) offset lookup keyed on the Pacific day.
+  const trailingKeys: string[] = []
+  for (let i = 0; i < CHRONIC_DAYS; i++) trailingKeys.push(shiftDayKey(todayKey, -i))
+  const offsetByKey = new Map(trailingKeys.map((key, i) => [key, i]))
+  const chronicStartKey = trailingKeys[CHRONIC_DAYS - 1]
+
   const byExercise = new Map<string, StrengthSet[]>()
   for (const s of sets) {
     const arr = byExercise.get(s.exercise)
@@ -189,42 +194,69 @@ export function buildMovementLoads(
 
   const loads: MovementLoad[] = []
   for (const [movement, exSets] of byExercise) {
-    // Primary metric: load-volume when the movement is predominantly
-    // weighted, else reps. Decided over all sets so an occasional
-    // weighted rep on a bodyweight movement doesn't flip its whole scale.
-    const weightedCount = exSets.filter(
-      s => typeof s.weight_lbs === 'number' && s.weight_lbs > 0,
-    ).length
-    const loaded = exSets.length > 0 && weightedCount / exSets.length >= LOADED_SET_FRACTION
+    // Bucket every set into the trailing window as BOTH rep volume and
+    // load volume; pick which one drives the ramp math afterward from the
+    // sets that actually fall inside the window. Tracking both means a
+    // movement that switched loading regime (weighted → bodyweight) is
+    // scored on its current scale instead of vanishing to zero tonnage.
+    const repByOffset: number[] = new Array(CHRONIC_DAYS).fill(0)
+    const loadByOffset: number[] = new Array(CHRONIC_DAYS).fill(0)
+    let inWindowSets = 0
+    let inWindowWeighted = 0
+    let earliestKey: string | null = null
 
-    const volByDay = new Map<string, number>()
     for (const s of exSets) {
       const d = new Date(s.logged_at)
       if (!Number.isFinite(d.getTime())) continue
       const key = pacificDayKey(d)
-      const vol = loaded ? s.reps * (s.weight_lbs ?? 0) : s.reps
-      volByDay.set(key, (volByDay.get(key) ?? 0) + vol)
+      if (earliestKey === null || key < earliestKey) earliestKey = key
+      const offset = offsetByKey.get(key)
+      if (offset === undefined) continue // outside the trailing chronic window
+      const weight = typeof s.weight_lbs === 'number' && s.weight_lbs > 0 ? s.weight_lbs : 0
+      repByOffset[offset] += s.reps
+      loadByOffset[offset] += s.reps * weight
+      inWindowSets += 1
+      if (weight > 0) inWindowWeighted += 1
     }
 
-    const chronic28d = sumWindow(volByDay, todayKey, CHRONIC_DAYS)
     // Dormant movement — nothing in the trailing chronic window. Skip so
     // the panel only shows what's actively being ramped.
+    if (inWindowSets === 0) continue
+
+    const loaded = inWindowWeighted / inWindowSets >= LOADED_SET_FRACTION
+    const volByOffset = loaded ? loadByOffset : repByOffset
+
+    let chronic28d = 0
+    for (let i = 0; i < CHRONIC_DAYS; i++) chronic28d += volByOffset[i]
+    // A loaded movement whose only in-window sets carry no external load
+    // has zero tonnage — nothing to ramp. Skip it.
     if (chronic28d <= 0) continue
 
-    const acute7d = sumWindow(volByDay, todayKey, ACUTE_DAYS)
-    const prior7d = sumWindow(volByDay, shiftDayKey(todayKey, -ACUTE_DAYS), ACUTE_DAYS)
-    const chronicWeekly = chronic28d / (CHRONIC_DAYS / ACUTE_DAYS)
+    let acute7d = 0
+    for (let i = 0; i < ACUTE_DAYS; i++) acute7d += volByOffset[i]
+    let prior7d = 0
+    for (let i = ACUTE_DAYS; i < 2 * ACUTE_DAYS; i++) prior7d += volByOffset[i]
 
-    const wowPct = prior7d === 0 ? null : (acute7d - prior7d) / prior7d
-    const acwr = chronicWeekly === 0 ? null : acute7d / chronicWeekly
+    const wowExact = prior7d === 0 ? null : (acute7d - prior7d) / prior7d
+    // Round to the precision the card renders so the displayed number and
+    // the flag color are derived from one value — no "+10% tinted yellow".
+    const wowPct = wowExact === null ? null : Math.round(wowExact * 100) / 100
+
+    // ACWR is trustworthy only once the chronic window is a full 4 weeks of
+    // the movement's life; before that its ÷4 baseline is understated and
+    // would false-alarm. Show no ratio until the earliest set predates the
+    // window (ISO day keys compare lexically).
+    const chronicWeekly = chronic28d / (CHRONIC_DAYS / ACUTE_DAYS)
+    const hasChronicBase = earliestKey !== null && earliestKey <= chronicStartKey
+    const acwrExact = hasChronicBase ? acute7d / chronicWeekly : null
+    const acwr = acwrExact === null ? null : Math.round(acwrExact * 100) / 100
 
     const wowFlag = classifyWowPct(wowPct)
     const acwrFlag = classifyAcwr(acwr)
 
     const sparkline: DailyVolumePoint[] = []
-    for (let i = SPARKLINE_DAYS - 1; i >= 0; i--) {
-      const key = shiftDayKey(todayKey, -i)
-      sparkline.push({ dayKey: key, volume: volByDay.get(key) ?? 0 })
+    for (let i = CHRONIC_DAYS - 1; i >= 0; i--) {
+      sparkline.push({ dayKey: trailingKeys[i], volume: volByOffset[i] })
     }
 
     loads.push({
