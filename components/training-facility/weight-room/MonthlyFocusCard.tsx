@@ -1,6 +1,10 @@
 import type { JSX } from 'react'
 
-import type { FocusAdherence, FocusLoadStats } from '@/lib/training-facility/monthly-focus'
+import {
+  formatFocusWindow,
+  type FocusAdherence,
+  type FocusLoadStats,
+} from '@/lib/training-facility/monthly-focus'
 import type { MonthlyFocus } from '@/types/weight-room'
 
 /** Props for {@link MonthlyFocusCard}. */
@@ -27,9 +31,10 @@ function trim1(n: number): string {
 /**
  * "Focus of the Month" card for the Weight Room Log View (#255). Surfaces
  * the active "grease the groove" campaign: today's progress toward the
- * daily target, windowed adherence (day N of the month, days hit, current
- * streak), and — for weighted focuses like shrugs — load stats (top set,
- * average load, tonnage).
+ * daily target, the campaign's calendar window (e.g. `Jul 1 – Jul 31`),
+ * windowed adherence (day N of the month, days hit, current streak), and —
+ * for weighted focuses like shrugs — load stats (top set, average load,
+ * tonnage).
  *
  * Renders nothing about load when the focus is bodyweight
  * (`loadStats.weightedSets === 0`), so a calisthenics focus doesn't show
@@ -81,12 +86,20 @@ export function MonthlyFocusCard({
         ) : null}
       </div>
 
-      {/* Windowed adherence. */}
-      <dl className="grid grid-cols-3 gap-3 text-center">
-        <FocusStat label="Day" value={`${dayOfWindow}/${adherence.daysInWindow}`} />
-        <FocusStat label="Days hit" value={`${adherence.daysHit}`} />
-        <FocusStat label="Streak" value={`${adherence.currentStreak}d`} />
-      </dl>
+      {/* Campaign window + windowed adherence. */}
+      <div className="flex flex-col gap-3">
+        <span
+          data-testid={`monthly-focus-${focus.exercise}-window`}
+          className="text-center font-mono text-[10px] uppercase tracking-[0.18em] tabular-nums text-white/45"
+        >
+          {formatFocusWindow(focus)}
+        </span>
+        <dl className="grid grid-cols-3 gap-3 text-center">
+          <FocusStat label="Day" value={`${dayOfWindow}/${adherence.daysInWindow}`} />
+          <FocusStat label="Days hit" value={`${adherence.daysHit}`} />
+          <FocusStat label="Streak" value={`${adherence.currentStreak}d`} />
+        </dl>
+      </div>
 
       {/* Load stats — only for weighted focuses. */}
       {hasLoad ? (

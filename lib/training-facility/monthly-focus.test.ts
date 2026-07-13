@@ -6,6 +6,7 @@ import {
   activeFocusesForDay,
   computeFocusAdherence,
   computeFocusLoadStats,
+  formatFocusWindow,
   isFocusActiveOnDay,
   upcomingFocuses,
 } from './monthly-focus'
@@ -79,6 +80,26 @@ describe('isFocusActiveOnDay', () => {
     expect(isFocusActiveOnDay(JULY_SHRUGS, '2026-06-30')).toBe(false)
     expect(isFocusActiveOnDay(JULY_SHRUGS, '2026-08-01')).toBe(false)
     expect(isFocusActiveOnDay(JULY_SHRUGS, '')).toBe(false)
+  })
+})
+
+describe('formatFocusWindow', () => {
+  it('formats a same-month window as a short day range without a year', () => {
+    expect(formatFocusWindow(JULY_SHRUGS)).toBe('Jul 1 – Jul 31')
+  })
+
+  it('spans a month/year boundary', () => {
+    const winter: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      start_date: '2026-12-15',
+      end_date: '2027-01-12',
+    }
+    expect(formatFocusWindow(winter)).toBe('Dec 15 – Jan 12')
+  })
+
+  it('falls back to the raw ISO keys when a date is unparseable', () => {
+    const broken: MonthlyFocus = { ...JULY_SHRUGS, end_date: 'not-a-date' }
+    expect(formatFocusWindow(broken)).toBe('2026-07-01 – not-a-date')
   })
 })
 

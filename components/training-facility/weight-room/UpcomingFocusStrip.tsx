@@ -1,5 +1,6 @@
 import type { JSX } from 'react'
 
+import { formatFocusWindow } from '@/lib/training-facility/monthly-focus'
 import type { MonthlyFocus } from '@/types/weight-room'
 
 /** Props for {@link UpcomingFocusStrip}. */
@@ -9,17 +10,6 @@ export interface UpcomingFocusStripProps {
    * `upcomingFocuses`. The strip renders nothing when this is empty.
    */
   focuses: readonly MonthlyFocus[]
-}
-
-/**
- * Format a focus's start date as a short month label (e.g. `Jul 2026`)
- * for the "Up Next" chips. Parses at local noon so the bare
- * `YYYY-MM-DD` doesn't shift a month boundary in negative-offset zones.
- */
-function focusMonthLabel(focus: MonthlyFocus): string {
-  const d = new Date(focus.start_date + 'T12:00:00')
-  if (!Number.isFinite(d.getTime())) return focus.start_date
-  return d.toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
 }
 
 /**
@@ -55,8 +45,11 @@ export function UpcomingFocusStrip({ focuses }: UpcomingFocusStripProps): JSX.El
           >
             {focus.category}
           </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
-            {focusMonthLabel(focus)}
+          <span
+            data-testid={`upcoming-focus-${focus.exercise}-window`}
+            className="font-mono text-[10px] uppercase tracking-[0.14em] tabular-nums text-white/45"
+          >
+            {formatFocusWindow(focus)}
           </span>
         </span>
       ))}
