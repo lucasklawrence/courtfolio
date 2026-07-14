@@ -16,7 +16,7 @@
 
 import { z } from 'zod'
 
-import type { OtfSession } from '@/types/otf'
+import type { OtfMileageAward, OtfSession } from '@/types/otf'
 
 /**
  * Treadmill JSONB block. Non-strict (extra keys stripped, not rejected) so
@@ -132,3 +132,58 @@ export function otfRowToSession(row: OtfSessionRow): OtfSession {
   if (row.class_type_override !== undefined) session.class_type_override = row.class_type_override
   return session
 }
+
+/**
+ * Zod schema for one row of `public.otf_mileage_awards` (#321) on read.
+ * `.strict()` so a column added to the table without updating this schema /
+ * the data-layer whitelist fails loudly instead of leaking to the view.
+ * `color` is `.optional()` (not `.nullable()`): the data layer maps Postgres
+ * `NULL` → absent before validation, matching {@link OtfSessionRowSchema}.
+ */
+export const OtfMileageAwardRowSchema = z
+  .object({
+    id: z.string().uuid(),
+    label: z.string().min(1),
+    miles: z.number().positive(),
+    color: z.string().optional(),
+  })
+  .strict()
+
+/** Validated `otf_mileage_awards` row inferred from {@link OtfMileageAwardRowSchema}. */
+export type OtfMileageAwardRow = z.infer<typeof OtfMileageAwardRowSchema>
+
+/** Translate a validated `otf_mileage_awards` row into the consumed {@link OtfMileageAward} shape. */
+export function otfMileageAwardRowToAward(row: OtfMileageAwardRow): OtfMileageAward {
+  const award: OtfMileageAward = { id: row.id, label: row.label, miles: row.miles }
+  if (row.color !== undefined) award.color = row.color
+  return award
+}
+
+/**
+ * Request-body schema for creating a mileage award tier via the admin route
+ * (`POST /api/admin/otf/mileage-awards`). `label` is trimmed and length-capped;
+ * `miles` must be positive; `color` is optional (UI applies a default accent
+ * when absent). Extra keys are stripped.
+ */
+export const OtfMileageAwardCreateSchema = z.object({
+  label: z.string().trim().min(1, 'label is required').max(60, 'label is too long'),
+  miles: z.number().positive('miles must be positive'),
+  color: z.string().trim().min(1).optional(),
+})
+
+/** Validated create payload inferred from {@link OtfMileageAwardCreateSchema}. */
+export type OtfMileageAwardCreate = z.infer<typeof OtfMileageAwardCreateSchema>
+
+/**
+ * Request-body schema for editing a tier via the admin item route
+ * (`PATCH /api/admin/otf/mileage-awards/[id]`). Every field is optional so a
+ * caller can change just the label or just the threshold, but the body must
+ * carry at least one field — an empty patch is a client bug, not a no-op.
+ */
+export const OtfMileageAwardUpdateSchema = OtfMileageAwardCreateSchema.partial().refine(
+  (patch) => Object.keys(patch).length > 0,
+  { message: 'At least one field (label, miles, or color) is required.' },
+)
+
+/** Validated update payload inferred from {@link OtfMileageAwardUpdateSchema}. */
+export type OtfMileageAwardUpdate = z.infer<typeof OtfMileageAwardUpdateSchema>

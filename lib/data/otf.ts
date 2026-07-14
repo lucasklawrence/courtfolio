@@ -1,7 +1,7 @@
 import { getBrowserSupabaseClient } from '@/lib/supabase/browser'
-import type { OtfData } from '@/types/otf'
+import type { OtfData, OtfMileageAward } from '@/types/otf'
 
-import { assembleOtfData } from './otf-shared'
+import { assembleOtfData, assembleOtfMileageAwards } from './otf-shared'
 
 /**
  * Browser-side OrangeTheory dataset reader. Wraps the shared
@@ -14,4 +14,16 @@ import { assembleOtfData } from './otf-shared'
  */
 export async function getOtfData(): Promise<OtfData | null> {
   return assembleOtfData(getBrowserSupabaseClient())
+}
+
+/**
+ * Browser-side reader for the monthly-mileage milestone ladder (#321). Wraps
+ * {@link assembleOtfMileageAwards} with the cached browser client; the OTF
+ * mileage section fetches it alongside {@link getOtfData} from a client effect.
+ *
+ * @throws See {@link assembleOtfMileageAwards}. The view downgrades this to an
+ *   empty ladder so a read blip can't blank the page.
+ */
+export async function getOtfMileageAwards(): Promise<OtfMileageAward[]> {
+  return assembleOtfMileageAwards(getBrowserSupabaseClient())
 }

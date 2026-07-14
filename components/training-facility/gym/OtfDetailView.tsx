@@ -11,7 +11,8 @@ import {
   rangeForPreset,
   type DateRange,
 } from '@/components/training-facility/shared/DateFilter'
-import { getOtfData } from '@/lib/data'
+import { useAdminSession } from '@/lib/auth/use-admin-session'
+import { getOtfData, getOtfMileageAwards } from '@/lib/data'
 import {
   OTF_ZONES,
   aggregateOtfZoneMinutes,
@@ -31,8 +32,9 @@ import {
   resolveOtfClassTypeFilter,
   type OtfTrendPoint,
 } from '@/lib/training-facility/otf'
-import type { OtfData, OtfRower, OtfSession, OtfTreadmill } from '@/types/otf'
+import type { OtfData, OtfMileageAward, OtfRower, OtfSession, OtfTreadmill } from '@/types/otf'
 
+import { OtfMileageSection } from './OtfMileageSection'
 import { OtfSparklineSummary, type OtfSparklineRow } from './OtfSparklineSummary'
 import { OtfZoneBars } from './OtfZoneBars'
 
@@ -56,6 +58,11 @@ const EMPTY_OTF: OtfData = { imported_at: '', sessions: [] }
  */
 export function OtfDetailView(): JSX.Element {
   const [data, setData] = useState<OtfData | null>(null)
+  // Milestone ladder for the monthly-mileage section (#321). Independent of the
+  // session read: a failure here downgrades to an empty ladder (no badges)
+  // rather than blanking the page, so it never blocks the charts.
+  const [mileageAwards, setMileageAwards] = useState<OtfMileageAward[]>([])
+  const { isAdmin } = useAdminSession()
   const [loadError, setLoadError] = useState<Error | null>(null)
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('ALL', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
@@ -100,6 +107,17 @@ export function OtfDetailView(): JSX.Element {
       .catch((err: unknown) => {
         if (cancelled) return
         setLoadError(err instanceof Error ? err : new Error(String(err)))
+      })
+    // Load the milestone ladder in parallel; its failure is non-fatal (the
+    // mileage section just shows no badges), so it has its own catch and never
+    // trips `loadError`.
+    getOtfMileageAwards()
+      .then(awards => {
+        if (cancelled) return
+        setMileageAwards(awards)
+      })
+      .catch(() => {
+        /* leave the ladder empty — the section renders miles with no badges */
       })
     return () => {
       cancelled = true
@@ -253,6 +271,14 @@ export function OtfDetailView(): JSX.Element {
             Scoped to the date range.
           </p>
         </header>
+
+        {data ? (
+          <OtfMileageSection
+            sessions={data.sessions}
+            awards={mileageAwards}
+            isAdmin={isAdmin}
+          />
+        ) : null}
 
         <div className="mt-8">
           <DateFilter

@@ -133,3 +133,33 @@ export interface OtfData {
   /** Every OTF session, ascending by `started_at`. */
   sessions: OtfSession[]
 }
+
+/**
+ * One monthly-mileage milestone award tier (#321). Mirrors a row of
+ * `public.otf_mileage_awards`
+ * (`supabase/migrations/20260713120000_otf_mileage_awards.sql`).
+ *
+ * A calendar month "earns" this badge when its cumulative treadmill + rower
+ * mileage reaches {@link OtfMileageAward.miles}. The ladder is owner-editable
+ * at runtime via the admin settings page; the public OTF view reads it and
+ * recomputes which months earned which badges statelessly on every render.
+ *
+ * KEEP IN SYNC WITH: the Zod schemas in `lib/schemas/otf.ts`.
+ */
+export interface OtfMileageAward {
+  /** UUID primary key, generated server-side. */
+  id: string
+  /** Badge name, e.g. `Marathon`. Unique across the ladder. */
+  label: string
+  /**
+   * Mileage threshold in miles. A month earns this badge when its cumulative
+   * treadmill (`distance_mi`) + rower (`distance_m / 1609.344`) mileage reaches
+   * this value. Always positive.
+   */
+  miles: number
+  /**
+   * Optional hex badge tint (e.g. `#F97316`). Absent lets the UI apply a
+   * default accent rather than requiring a color per tier.
+   */
+  color?: string
+}
