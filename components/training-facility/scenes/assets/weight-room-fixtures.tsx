@@ -34,7 +34,36 @@ const RING_CY = FRAME_Y + 130
 const OUTER_RADIUS = 58
 const RING_STROKE = 14
 const RING_GAP = 4
+const MIN_RING_STROKE = 4
+const MIN_RING_GAP = 1
 const TRACK_OPACITY = 0.2
+
+/**
+ * Pick a `stroke` + `gap` that fit every configured ring inside
+ * {@link OUTER_RADIUS}. Mirrors `fitRingDimensions` in the Log View's
+ * {@link import('../../weight-room/ActivityRings').ActivityRings} so this
+ * decorative wall fixture renders *every* goal instead of silently
+ * dropping the inner rings once the count passes three — pushups,
+ * pullups, squats plus an active monthly-focus lane already make four,
+ * and the fixed geometry pushed the fourth ring below the render cutoff.
+ * Defaults to the generous (`RING_STROKE`, `RING_GAP`) sizes for the
+ * common 1–2 goal case and shrinks toward (`MIN_RING_STROKE`,
+ * `MIN_RING_GAP`) as goals accumulate.
+ *
+ * @param availableRadius Radius of the outermost ring's centerline —
+ *   {@link OUTER_RADIUS} for this fixture.
+ * @param ringCount Number of concentric rings to fit.
+ */
+function fitRingDimensions(
+  availableRadius: number,
+  ringCount: number,
+): { stroke: number; gap: number } {
+  if (ringCount <= 0) return { stroke: RING_STROKE, gap: RING_GAP }
+  const requiredStroke = Math.floor(availableRadius / (ringCount * 1.6))
+  const stroke = Math.max(MIN_RING_STROKE, Math.min(RING_STROKE, requiredStroke))
+  const gap = Math.max(MIN_RING_GAP, Math.min(RING_GAP, Math.floor(stroke * 0.3)))
+  return { stroke, gap }
+}
 
 /**
  * Wall-mounted "today's progress" fixture for the Weight Room scene
@@ -88,6 +117,26 @@ export function WallActivityRings({
       ? Math.min(1, primary.total / primary.target)
       : 0
 
+  // Auto-fit stroke/gap so every configured goal renders a ring. The old
+  // fixed geometry dropped any ring past the third (a permanent squats
+  // goal vanished the moment the shrugs focus lane pushed the count to
+  // four); this mirrors the Log View's auto-fit.
+  const { stroke: ringStroke, gap: ringGap } = fitRingDimensions(
+    OUTER_RADIUS,
+    rings.length,
+  )
+
+  // Tally band — the per-exercise labels stack below the rings inside the
+  // board's lower margin. Spacing + font shrink with the goal count so a
+  // 4-goal wall labels every ring instead of the old hard `slice(0, 2)`,
+  // which left the inner rings anonymous.
+  const ringsBottom = RING_CY + OUTER_RADIUS + ringStroke / 2
+  const tallyTop = ringsBottom + 6
+  const tallyBandHeight = Math.max(0, FRAME_Y + FRAME_H - 12 - tallyTop)
+  const tallySpacing =
+    rings.length > 0 ? Math.min(22, tallyBandHeight / rings.length) : 22
+  const tallyFontSize = Math.max(10, Math.min(16, Math.round(tallySpacing * 0.72)))
+
   return (
     <g aria-hidden="true">
       {/* Board frame */}
@@ -133,15 +182,20 @@ export function WallActivityRings({
       {rings.length > 0 ? (
         <g transform={`rotate(-90 ${RING_CX} ${RING_CY})`}>
           {rings.map((ring, i) => {
-            const radius = OUTER_RADIUS - i * (RING_STROKE + RING_GAP)
-            if (radius < RING_STROKE / 2) return null
+            // Clamp to a positive radius so the innermost ring still
+            // renders for pathological goal counts; `fitRingDimensions`
+            // already shrank stroke/gap to keep this in range.
+            const radius = Math.max(
+              ringStroke / 2,
+              OUTER_RADIUS - i * (ringStroke + ringGap),
+            )
             const circumference = 2 * Math.PI * radius
             const rawPercent =
               ring.target > 0 ? ring.total / ring.target : 0
             const clamped = Math.min(1, Math.max(0, rawPercent))
             const dashOffset = circumference * (1 - clamped)
             return (
-              <g key={ring.exercise}>
+              <g key={ring.exercise} data-testid={`wall-ring-${ring.exercise}`}>
                 {/* Track */}
                 <circle
                   cx={RING_CX}
@@ -150,7 +204,7 @@ export function WallActivityRings({
                   fill="none"
                   stroke={ring.color}
                   strokeOpacity={TRACK_OPACITY}
-                  strokeWidth={RING_STROKE}
+                  strokeWidth={ringStroke}
                 />
                 {/* Progress arc */}
                 <circle
@@ -159,7 +213,7 @@ export function WallActivityRings({
                   r={radius}
                   fill="none"
                   stroke={ring.color}
-                  strokeWidth={RING_STROKE}
+                  strokeWidth={ringStroke}
                   strokeLinecap="round"
                   strokeDasharray={circumference}
                   strokeDashoffset={dashOffset}
@@ -223,15 +277,16 @@ export function WallActivityRings({
 
       {/* Per-exercise tallies + streak under the rings */}
       {rings.length > 0 ? (
-        rings.slice(0, 2).map((ring, i) => (
+        rings.map((ring, i) => (
           <text
             key={`tally-${ring.exercise}`}
+            data-testid={`wall-tally-${ring.exercise}`}
             x={RING_CX}
-            y={FRAME_Y + FRAME_H - 50 + i * 22}
+            y={tallyTop + tallySpacing * (i + 0.85)}
             textAnchor="middle"
             fill={ring.color}
             fontFamily={HANDWRITING_FONT}
-            fontSize={16}
+            fontSize={tallyFontSize}
           >
             {ring.exercise} {ring.total}/{ring.target}
             {ring.streak > 0 ? `  ·  🔥${ring.streak}d` : ''}
