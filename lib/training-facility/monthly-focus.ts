@@ -80,6 +80,28 @@ export function upcomingFocuses(
 }
 
 /**
+ * Format a focus's `[start_date, end_date]` window as a short human
+ * range, e.g. `Jul 1 – Jul 31` (or `Dec 15 – Jan 12` across a month/year
+ * boundary). Each bare `YYYY-MM-DD` is parsed at local noon so the range
+ * isn't shifted by the viewer's UTC offset, matching the rest of this
+ * module's date handling. Falls back to the raw ISO keys if either date
+ * is unparseable. No year is shown — the rotation is near-term and the
+ * label stays compact; callers wanting the year can read `start_date`.
+ *
+ * @param focus The focus whose window to label.
+ */
+export function formatFocusWindow(focus: MonthlyFocus): string {
+  const start = new Date(focus.start_date + 'T12:00:00')
+  const end = new Date(focus.end_date + 'T12:00:00')
+  if (!Number.isFinite(start.getTime()) || !Number.isFinite(end.getTime())) {
+    return `${focus.start_date} – ${focus.end_date}`
+  }
+  const short = (d: Date): string =>
+    d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+  return `${short(start)} – ${short(end)}`
+}
+
+/**
  * Add `n` days to a `YYYY-MM-DD` key, returning a new key. Local-noon
  * base time so DST transitions don't shift the calendar day. Same helper
  * shape as `strength-streaks.addDays`.

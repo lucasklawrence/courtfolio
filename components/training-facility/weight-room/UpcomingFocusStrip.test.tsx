@@ -33,13 +33,18 @@ describe('UpcomingFocusStrip', () => {
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('lists each upcoming focus with its exercise and month', () => {
+  it('lists each upcoming focus with its exercise and full window', () => {
     render(<UpcomingFocusStrip focuses={[SHRUGS, CALVES]} />)
     expect(screen.getByText('Up Next')).toBeInTheDocument()
     expect(screen.getByTestId('upcoming-focus-shrugs')).toBeInTheDocument()
     expect(screen.getByTestId('upcoming-focus-calf-raises')).toBeInTheDocument()
-    // Month label derived from start_date (locale-formatted; assert the year is present).
-    expect(screen.getByTestId('upcoming-focus-shrugs').textContent).toMatch(/2026/)
+    // Window derived from [start_date, end_date] (locale-formatted, no year).
+    expect(screen.getByTestId('upcoming-focus-shrugs-window').textContent).toMatch(
+      /Jul 1 .* Jul 31/,
+    )
+    expect(screen.getByTestId('upcoming-focus-calf-raises-window').textContent).toMatch(
+      /Aug 1 .* Aug 31/,
+    )
   })
 
   it('tags each chip with its body-region category', () => {

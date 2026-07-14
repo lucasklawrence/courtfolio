@@ -82,6 +82,20 @@ describe('MonthlyFocusCard', () => {
     expect(screen.getByText('1d')).toBeInTheDocument()
   })
 
+  it('shows the campaign calendar window', () => {
+    render(
+      <MonthlyFocusCard
+        focus={FOCUS}
+        todayProgress={60}
+        adherence={ADHERENCE}
+        loadStats={BODYWEIGHT_LOAD}
+      />,
+    )
+    expect(screen.getByTestId('monthly-focus-shrugs-window').textContent).toMatch(
+      /Jul 1 .* Jul 31/,
+    )
+  })
+
   it('shows load stats only when the focus has weighted sets', () => {
     const { rerender } = render(
       <MonthlyFocusCard
