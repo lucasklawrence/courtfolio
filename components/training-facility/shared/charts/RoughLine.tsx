@@ -40,6 +40,25 @@ function isDateValue(v: number | Date): v is Date {
   return v instanceof Date
 }
 
+/** Domain span past which date ticks carry a year, in ms (~13 months). */
+const YEAR_LABEL_THRESHOLD_MS = 400 * 24 * 60 * 60 * 1000
+
+/**
+ * Default label formatter for a time axis. `d3` places multi-year `.ticks()` on
+ * January-1 boundaries, so a bare `month day` formatter renders a useless row
+ * of identical "Jan 1" labels. Once the visible span exceeds ~a year, switch to
+ * `month year` (e.g. `Jan 2024`) so each tick is distinguishable; keep the
+ * compact `month day` for shorter spans.
+ *
+ * @param tick - Tick date to label.
+ * @param spanMs - Full domain width in milliseconds.
+ */
+export function formatDateAxisTick(tick: Date, spanMs: number): string {
+  return spanMs > YEAR_LABEL_THRESHOLD_MS
+    ? tick.toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
+    : tick.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+}
+
 export function RoughLine<T>({
   data,
   x,
@@ -107,10 +126,9 @@ export function RoughLine<T>({
       .domain([new Date(tMin), new Date(tMax)])
       .range([0, innerW])
     scaleX = (v) => timeScale(v as Date)
+    const spanMs = tMax - tMin
     xTicks = timeScale.ticks(xTickCount).map((tick) => ({
-      value: xTickFormat
-        ? xTickFormat(tick)
-        : tick.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+      value: xTickFormat ? xTickFormat(tick) : formatDateAxisTick(tick, spanMs),
       offset: timeScale(tick),
     }))
   } else {

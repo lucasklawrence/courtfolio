@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { RoughBar, RoughLine, RoughScatter, RoughSparkline } from './'
+import { formatDateAxisTick } from './RoughLine'
 
 /**
  * Minimal render coverage for the chart primitives. Per the issue's P2 list:
@@ -149,6 +150,56 @@ describe('RoughLine', () => {
       />,
     )
     expect(container.querySelector('[data-testid="rough-line-overlay"]')).toBeNull()
+  })
+
+  it('labels multi-year date ticks with a year so they are not all "Jan"', () => {
+    // A >1yr Date domain: d3 lands ticks on year boundaries. Without a year in
+    // the label every tick reads identically ("Jan 1"); the span-aware default
+    // formatter must include the year instead.
+    render(
+      <RoughLine
+        data={[
+          { x: new Date(2023, 0, 1), y: 1 },
+          { x: new Date(2024, 6, 1), y: 2 },
+          { x: new Date(2025, 11, 1), y: 3 },
+        ]}
+        x={(d) => d.x}
+        y={(d) => d.y}
+        width={600}
+        height={200}
+        ariaLabel="multi-year trend"
+      />,
+    )
+    expect(screen.getAllByText(/20\d\d/).length).toBeGreaterThan(0)
+  })
+
+  it('omits the year on sub-year date spans (compact month/day labels)', () => {
+    render(
+      <RoughLine
+        data={[
+          { x: new Date(2026, 0, 1), y: 1 },
+          { x: new Date(2026, 1, 15), y: 2 },
+        ]}
+        x={(d) => d.x}
+        y={(d) => d.y}
+        width={400}
+        height={200}
+        ariaLabel="two-month trend"
+      />,
+    )
+    expect(screen.queryAllByText(/20\d\d/)).toHaveLength(0)
+  })
+})
+
+describe('formatDateAxisTick', () => {
+  const DAY = 24 * 60 * 60 * 1000
+
+  it('includes the year once the span exceeds ~13 months', () => {
+    expect(formatDateAxisTick(new Date(2024, 0, 1), 500 * DAY)).toMatch(/2024/)
+  })
+
+  it('uses a compact month/day label for sub-year spans', () => {
+    expect(formatDateAxisTick(new Date(2026, 3, 1), 60 * DAY)).not.toMatch(/20\d\d/)
   })
 })
 

@@ -20,9 +20,12 @@ import {
 } from '@/components/training-facility/shared/DateFilter'
 import {
   aggregateHrZoneSeconds,
+  avgHrGranularityForSpanDays,
+  bucketAvgHr,
   formatDuration,
   parseSessionDate,
   perSessionAvgHr,
+  rangeSpanDays,
   sessionDetailHref,
 } from '@/lib/training-facility/cardio-shared'
 import {
@@ -189,7 +192,13 @@ export function TrackDetailView(): JSX.Element {
     [data],
   )
   const buckets = useMemo(() => aggregateHrZoneSeconds(walkingSessions), [walkingSessions])
-  const avgHrPoints = useMemo(() => perSessionAvgHr(walkingSessions), [walkingSessions])
+  // Avg-HR bars aggregate to weekly/monthly means on wide windows so a
+  // multi-year "All" view doesn't collapse into an unreadable picket fence of
+  // per-session bars (granularity keyed off the visible span).
+  const avgHrPoints = useMemo(
+    () => bucketAvgHr(perSessionAvgHr(walkingSessions), avgHrGranularityForSpanDays(rangeSpanDays(range))),
+    [walkingSessions, range],
+  )
   const paceTrend = useMemo(() => paceTrendPoints(walkingSessions), [walkingSessions])
   const efficiencyTrend = useMemo(
     () => cardiacEfficiencyPoints(walkingSessions),

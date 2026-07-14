@@ -24,7 +24,12 @@ import {
   parseSessionDate,
   perSessionAvgHr,
 } from '@/lib/training-facility/stair'
-import { sessionDetailHref } from '@/lib/training-facility/cardio-shared'
+import {
+  avgHrGranularityForSpanDays,
+  bucketAvgHr,
+  rangeSpanDays,
+  sessionDetailHref,
+} from '@/lib/training-facility/cardio-shared'
 import { computePreviousRange } from '@/lib/training-facility/period-comparison'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import {
@@ -318,7 +323,13 @@ export function StairDetailView(): JSX.Element {
     [data, previousRange],
   )
   const buckets = useMemo(() => aggregateHrZoneSeconds(stairSessions), [stairSessions])
-  const avgHrPoints = useMemo(() => perSessionAvgHr(stairSessions), [stairSessions])
+  // Avg-HR bars aggregate to weekly/monthly means on wide windows so a
+  // multi-year "All" view doesn't collapse into an unreadable picket fence of
+  // per-session bars (granularity keyed off the visible span).
+  const avgHrPoints = useMemo(
+    () => bucketAvgHr(perSessionAvgHr(stairSessions), avgHrGranularityForSpanDays(rangeSpanDays(range))),
+    [stairSessions, range],
+  )
 
   // Training load aggregates ALL cardio activities (stair, running, walking) —
   // TRIMP / ATL / CTL is a whole-athlete metric and excluding modalities would
