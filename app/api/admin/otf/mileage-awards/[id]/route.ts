@@ -76,9 +76,9 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
     throw err
   }
 
-  // Only the supplied fields are written; `color` maps undefined → null so a
-  // caller can clear the accent by sending `null`-equivalent (omitting it keeps
-  // the current value, sending it as an empty string is rejected by the schema).
+  // Patch semantics: only fields present in the validated body are written, so
+  // omitting a field leaves the column untouched. The schema rejects an empty
+  // string for `color`, so a tier's accent can be changed but not cleared here.
   const update: Record<string, unknown> = { updated_at: new Date().toISOString() }
   if (patch.label !== undefined) update.label = patch.label
   if (patch.miles !== undefined) update.miles = patch.miles
