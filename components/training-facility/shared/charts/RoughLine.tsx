@@ -54,9 +54,11 @@ const YEAR_LABEL_THRESHOLD_MS = 400 * 24 * 60 * 60 * 1000
  * @param spanMs - Full domain width in milliseconds.
  */
 export function formatDateAxisTick(tick: Date, spanMs: number): string {
+  // Pin the locale so axis labels read identically for every viewer instead of
+  // following the runtime locale (`janv.` / `1月`).
   return spanMs > YEAR_LABEL_THRESHOLD_MS
-    ? tick.toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
-    : tick.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+    ? tick.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+    : tick.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
 export function RoughLine<T>({

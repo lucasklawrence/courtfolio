@@ -224,7 +224,10 @@ export function bucketAvgHr(
     const g = groups.get(key)!
     const label =
       granularity === 'month'
-        ? `${g.anchor.toLocaleDateString(undefined, { month: 'short' })} '${String(g.anchor.getFullYear()).slice(-2)}`
+        ? // Pin the locale so month buckets read the same for every viewer (a
+          // runtime locale would render `avr.` / `4月`) and the label is stable
+          // for tests.
+          `${g.anchor.toLocaleDateString('en-US', { month: 'short' })} '${String(g.anchor.getFullYear()).slice(-2)}`
         : `${g.anchor.getMonth() + 1}/${g.anchor.getDate()}`
     return { date: g.date, label, avgHr: g.sum / g.count }
   })
