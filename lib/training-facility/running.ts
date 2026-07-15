@@ -19,6 +19,35 @@ import { filterCardioSessionsByActivity, parseSessionDate } from './cardio-share
 export const METERS_PER_MILE = 1609.344
 
 /**
+ * Fastest pace we treat as real, in sec/mi (2:30/mi). Faster than any
+ * human-sustainable treadmill/track pace, so anything below is a bad import.
+ */
+const MIN_PLAUSIBLE_PACE_SEC_PER_MILE = 150
+
+/**
+ * Slowest pace we treat as real, in sec/mi (40:00/mi). Covers slow walking on
+ * the track view (which reuses these helpers) while rejecting the paused /
+ * zero-distance artifacts that surface as absurd `1000:00 /mi` outliers and
+ * flatten the whole y-domain.
+ */
+const MAX_PLAUSIBLE_PACE_SEC_PER_MILE = 2400
+
+/**
+ * Largest cardiac-efficiency value we treat as real, in m/heartbeat. Normal
+ * running is ~0.5–2.5 m/beat; a value above this needs implausibly fast travel
+ * per beat and comes from a session with a bad HR reading, not real fitness.
+ */
+const MAX_PLAUSIBLE_METERS_PER_HEARTBEAT = 10
+
+/** True when a converted pace (sec/mi) falls in the human-plausible band. */
+function isPlausiblePaceSecPerMile(secPerMile: number): boolean {
+  return (
+    secPerMile >= MIN_PLAUSIBLE_PACE_SEC_PER_MILE &&
+    secPerMile <= MAX_PLAUSIBLE_PACE_SEC_PER_MILE
+  )
+}
+
+/**
  * Convert a pace from `sec/km` (the format `cardio.json` stores) to `sec/mi`
  * (the format the UI renders). Exported so the data helpers and the table-row
  * formatter share the conversion without duplicating the constant.
@@ -59,9 +88,10 @@ export interface PaceTrendPoint {
  *
  * Source data is `pace_seconds_per_km`; conversion is `× 1609.344 / 1000`.
  * Sessions without a numeric pace, with non-positive pace (sentinel for
- * "missing" in some Apple Health exports), or with an unparseable date are
- * dropped — the chart renders gaps as missing points rather than zero-pace
- * outliers that would compress the y-domain.
+ * "missing" in some Apple Health exports), with a converted pace outside the
+ * human-plausible band (see {@link isPlausiblePaceSecPerMile}), or with an
+ * unparseable date are dropped — the chart renders gaps as missing points
+ * rather than outliers that would compress the y-domain.
  *
  * @param sessions - Filtered, sorted running sessions.
  */
@@ -70,13 +100,11 @@ export function paceTrendPoints(sessions: readonly CardioSession[]): PaceTrendPo
   for (const s of sessions) {
     const secPerKm = s.pace_seconds_per_km
     if (typeof secPerKm !== 'number' || !Number.isFinite(secPerKm) || secPerKm <= 0) continue
+    const paceSecondsPerMile = secPerKmToSecPerMile(secPerKm)
+    if (!isPlausiblePaceSecPerMile(paceSecondsPerMile)) continue
     const date = parseSessionDate(s.date)
     if (!Number.isFinite(date.getTime())) continue
-    out.push({
-      date,
-      rawDate: s.date,
-      paceSecondsPerMile: secPerKmToSecPerMile(secPerKm),
-    })
+    out.push({ date, rawDate: s.date, paceSecondsPerMile })
   }
   return out
 }
@@ -94,7 +122,9 @@ export interface CardiacEfficiencyPoint {
 /**
  * Project running sessions to cardiac-efficiency points (m/heartbeat over
  * time). Sessions missing `meters_per_heartbeat`, with non-positive values,
- * or with an unparseable date are dropped.
+ * with an implausibly high value (see {@link MAX_PLAUSIBLE_METERS_PER_HEARTBEAT}
+ * — a bad-HR artifact that spikes the y-domain), or with an unparseable date
+ * are dropped.
  *
  * @param sessions - Filtered, sorted running sessions.
  */
@@ -105,6 +135,7 @@ export function cardiacEfficiencyPoints(
   for (const s of sessions) {
     const mph = s.meters_per_heartbeat
     if (typeof mph !== 'number' || !Number.isFinite(mph) || mph <= 0) continue
+    if (mph > MAX_PLAUSIBLE_METERS_PER_HEARTBEAT) continue
     const date = parseSessionDate(s.date)
     if (!Number.isFinite(date.getTime())) continue
     out.push({ date, rawDate: s.date, metersPerHeartbeat: mph })
@@ -124,9 +155,11 @@ export interface PaceAtHrPoint {
 
 /**
  * Project running sessions to scatter-plot points (avg HR vs pace). Both
- * fields must be present and positive — there's no defensible value to plot
- * for a session that's missing either coordinate. The lower-left quadrant is
- * "fast at low effort" (most efficient).
+ * fields must be present and positive, and the converted pace must fall in the
+ * human-plausible band (see {@link isPlausiblePaceSecPerMile}) — there's no
+ * defensible value to plot for a session missing either coordinate or carrying
+ * an artifact pace. The lower-left quadrant is "fast at low effort" (most
+ * efficient).
  *
  * @param sessions - Filtered, sorted running sessions.
  */
@@ -136,11 +169,9 @@ export function paceAtHrPoints(sessions: readonly CardioSession[]): PaceAtHrPoin
     if (typeof s.avg_hr !== 'number' || !Number.isFinite(s.avg_hr) || s.avg_hr <= 0) continue
     const secPerKm = s.pace_seconds_per_km
     if (typeof secPerKm !== 'number' || !Number.isFinite(secPerKm) || secPerKm <= 0) continue
-    out.push({
-      rawDate: s.date,
-      avgHr: s.avg_hr,
-      paceSecondsPerMile: secPerKmToSecPerMile(secPerKm),
-    })
+    const paceSecondsPerMile = secPerKmToSecPerMile(secPerKm)
+    if (!isPlausiblePaceSecPerMile(paceSecondsPerMile)) continue
+    out.push({ rawDate: s.date, avgHr: s.avg_hr, paceSecondsPerMile })
   }
   return out
 }

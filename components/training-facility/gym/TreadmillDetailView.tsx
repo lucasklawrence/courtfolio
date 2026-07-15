@@ -20,9 +20,12 @@ import {
 } from '@/components/training-facility/shared/DateFilter'
 import {
   aggregateHrZoneSeconds,
+  avgHrGranularityForSpanDays,
+  bucketAvgHr,
   formatDuration,
   parseSessionDate,
   perSessionAvgHr,
+  rangeSpanDays,
   sessionDetailHref,
 } from '@/lib/training-facility/cardio-shared'
 import {
@@ -192,7 +195,13 @@ export function TreadmillDetailView(): JSX.Element {
     [data],
   )
   const buckets = useMemo(() => aggregateHrZoneSeconds(runningSessions), [runningSessions])
-  const avgHrPoints = useMemo(() => perSessionAvgHr(runningSessions), [runningSessions])
+  // Avg-HR bars aggregate to weekly/monthly means on wide windows so a
+  // multi-year "All" view doesn't collapse into an unreadable picket fence of
+  // per-session bars (granularity keyed off the visible span).
+  const avgHrPoints = useMemo(
+    () => bucketAvgHr(perSessionAvgHr(runningSessions), avgHrGranularityForSpanDays(rangeSpanDays(range))),
+    [runningSessions, range],
+  )
   const paceTrend = useMemo(() => paceTrendPoints(runningSessions), [runningSessions])
   const efficiencyTrend = useMemo(
     () => cardiacEfficiencyPoints(runningSessions),
@@ -314,7 +323,7 @@ export function TreadmillDetailView(): JSX.Element {
 
               <ChartCard
                 title="Avg HR per session"
-                helper="One bar per session — y-axis padded to the visible range so trends pop."
+                helper="One bar per session, bucketed to weekly/monthly means on wider ranges. Y-axis padded to the visible range so trends pop."
               >
                 <AvgHrBars
                   points={avgHrPoints}

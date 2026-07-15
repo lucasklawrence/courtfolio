@@ -23,6 +23,29 @@ export interface AvgHrBarsProps extends ChartCommonProps {
   points: readonly SessionAvgHrPoint[]
   /** Inner padding between bars (0–1). Defaults to 0.3. */
   padding?: number
+  /** Max x-axis labels before thinning kicks in. Defaults to 12. */
+  maxXLabels?: number
+}
+
+/**
+ * Pick up to `maxLabels` evenly-spaced indices from `[0, total)`, always
+ * including the first and last. Used to thin the x-axis so a wide window
+ * doesn't render an unreadable picket fence of overlapping date labels; every
+ * bar still draws, only its label may be dropped. Returns fewer than
+ * `maxLabels` indices when `total` is smaller (each point keeps its label).
+ *
+ * @param total - Number of bars/points.
+ * @param maxLabels - Ceiling on rendered labels (must be ≥ 1).
+ */
+export function pickEvenlySpacedIndices(total: number, maxLabels: number): number[] {
+  if (total <= 0) return []
+  const count = Math.min(total, Math.max(1, maxLabels))
+  if (count <= 1) return [0]
+  const seen = new Set<number>()
+  for (let k = 0; k < count; k++) {
+    seen.add(Math.round((k * (total - 1)) / (count - 1)))
+  }
+  return [...seen].sort((a, b) => a - b)
 }
 
 /**
@@ -40,6 +63,7 @@ export function AvgHrBars({
   height,
   margin,
   padding = 0.3,
+  maxXLabels = 12,
   roughness = 1.4,
   seed = 8,
   fontFamily = 'inherit',
@@ -87,10 +111,15 @@ export function AvgHrBars({
 
   const gen = getGenerator()
 
-  const xTicks: AxisTick[] = points.map((p, i) => ({
-    value: p.label,
-    offset: (xScale(i) ?? 0) + xScale.bandwidth() / 2,
-  }))
+  // Thin the x labels: on a wide window (weekly/monthly buckets over years)
+  // one label per bar overlaps into an unreadable smear. Every bar still
+  // renders below; only its label may be dropped.
+  const labelIndices = new Set(pickEvenlySpacedIndices(points.length, maxXLabels))
+  const xTicks: AxisTick[] = points.flatMap((p, i) =>
+    labelIndices.has(i)
+      ? [{ value: p.label, offset: (xScale(i) ?? 0) + xScale.bandwidth() / 2 }]
+      : [],
+  )
 
   const yTicks: AxisTick[] = yScale.ticks(5).map((tick) => ({
     value: String(tick),

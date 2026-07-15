@@ -110,7 +110,10 @@ export function aggregateHrZoneSeconds(sessions: readonly CardioSession[]): HrZo
 export interface SessionAvgHrPoint {
   /** Original session date string (ISO or `YYYY-MM-DD`). */
   date: string
-  /** Short label rendered on the x-axis — `M/D` in local time. */
+  /**
+   * Short label rendered on the x-axis. `M/D` in local time for per-session /
+   * weekly points; `Mon 'YY` for monthly buckets (see {@link bucketAvgHr}).
+   */
   label: string
   /** Average heart rate, BPM. Sessions missing `avg_hr` are excluded upstream. */
   avgHr: number
@@ -135,6 +138,99 @@ export function perSessionAvgHr(sessions: readonly CardioSession[]): SessionAvgH
     out.push({ date: s.date, label, avgHr: s.avg_hr })
   }
   return out
+}
+
+/**
+ * Aggregation granularity for the avg-HR bar chart.
+ *
+ * - `session` — one bar per session (the raw {@link perSessionAvgHr} output).
+ * - `week` — sessions collapsed to weekly means.
+ * - `month` — sessions collapsed to monthly means.
+ */
+export type AvgHrGranularity = 'session' | 'week' | 'month'
+
+/** Milliseconds in a day, for span math. */
+const MS_PER_DAY = 86_400_000
+
+/**
+ * Whole-day span of a {@link DateRange}, used to pick chart aggregation.
+ * Fractional because range bounds are local day edges, not whole days.
+ *
+ * @param range - Inclusive date window from the `DateFilter`.
+ */
+export function rangeSpanDays(range: DateRange): number {
+  return (range.end.getTime() - range.start.getTime()) / MS_PER_DAY
+}
+
+/**
+ * Choose avg-HR bar granularity from the visible span. Per-session bars stay
+ * legible for a few months (`1M`/`3M`); past that they smear into an unreadable
+ * picket fence, so wider windows roll up to weekly (`6M`/`1Y`) then monthly
+ * (multi-year `All`) means.
+ *
+ * Thresholds: ≤ ~100 days → `session`, ≤ ~13 months → `week`, else `month`.
+ *
+ * @param spanDays - Visible window width in days (see {@link rangeSpanDays}).
+ */
+export function avgHrGranularityForSpanDays(spanDays: number): AvgHrGranularity {
+  if (spanDays > 400) return 'month'
+  if (spanDays > 100) return 'week'
+  return 'session'
+}
+
+/** Local Monday 00:00 of the week containing `d` — the weekly bucket anchor. */
+function weekStart(d: Date): Date {
+  const out = new Date(d.getFullYear(), d.getMonth(), d.getDate())
+  const dayOffset = (out.getDay() + 6) % 7 // Mon=0 … Sun=6
+  out.setDate(out.getDate() - dayOffset)
+  return out
+}
+
+/**
+ * Collapse per-session avg-HR points into time buckets, averaging `avgHr`
+ * within each bucket. `session` granularity (or an empty input) returns the
+ * points unchanged. Input must be chronologically sorted; buckets come out in
+ * that same order. Each bucket's `date` is its first session's date and its
+ * `label` reflects the granularity — `M/D` of the week start for `week`,
+ * `Mon 'YY` for `month`.
+ *
+ * @param points - Per-session points from {@link perSessionAvgHr}, sorted ascending.
+ * @param granularity - Bucket size, typically from {@link avgHrGranularityForSpanDays}.
+ */
+export function bucketAvgHr(
+  points: readonly SessionAvgHrPoint[],
+  granularity: AvgHrGranularity,
+): SessionAvgHrPoint[] {
+  if (granularity === 'session' || points.length === 0) return [...points]
+
+  const groups = new Map<string, { sum: number; count: number; anchor: Date; date: string }>()
+  const order: string[] = []
+  for (const p of points) {
+    const d = parseSessionDate(p.date)
+    if (!Number.isFinite(d.getTime())) continue
+    const anchor = granularity === 'month' ? new Date(d.getFullYear(), d.getMonth(), 1) : weekStart(d)
+    const key = `${anchor.getFullYear()}-${anchor.getMonth()}-${anchor.getDate()}`
+    let g = groups.get(key)
+    if (!g) {
+      g = { sum: 0, count: 0, anchor, date: p.date }
+      groups.set(key, g)
+      order.push(key)
+    }
+    g.sum += p.avgHr
+    g.count += 1
+  }
+
+  return order.map((key) => {
+    const g = groups.get(key)!
+    const label =
+      granularity === 'month'
+        ? // Pin the locale so month buckets read the same for every viewer (a
+          // runtime locale would render `avr.` / `4月`) and the label is stable
+          // for tests.
+          `${g.anchor.toLocaleDateString('en-US', { month: 'short' })} '${String(g.anchor.getFullYear()).slice(-2)}`
+        : `${g.anchor.getMonth() + 1}/${g.anchor.getDate()}`
+    return { date: g.date, label, avgHr: g.sum / g.count }
+  })
 }
 
 /**

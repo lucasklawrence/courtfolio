@@ -76,6 +76,22 @@ describe('paceTrendPoints', () => {
     const out = paceTrendPoints(sessions)
     expect(out.map((p) => p.rawDate)).toEqual(['2026-04-05'])
   })
+
+  it('drops implausible pace outliers that would flatten the y-domain', () => {
+    const sessions: CardioSession[] = [
+      run('2026-04-01', { pace_seconds_per_km: 40000 }), // ~1072:00 /mi — paused/artifact
+      run('2026-04-02', { pace_seconds_per_km: 50 }), // ~1:20 /mi — impossibly fast
+      run('2026-04-03', { pace_seconds_per_km: 360 }), // ~9:39 /mi — real
+    ]
+    const out = paceTrendPoints(sessions)
+    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-03'])
+  })
+
+  it('keeps a slow-but-plausible walking pace (helper is reused for the track view)', () => {
+    // 745 sec/km ≈ 19:59 /mi — a real slow walk, under the 40:00 /mi ceiling.
+    const out = paceTrendPoints([run('2026-04-01', { pace_seconds_per_km: 745 })])
+    expect(out).toHaveLength(1)
+  })
 })
 
 describe('cardiacEfficiencyPoints', () => {
@@ -106,6 +122,15 @@ describe('cardiacEfficiencyPoints', () => {
     ]
     const out = cardiacEfficiencyPoints(sessions)
     expect(out.map((p) => p.rawDate)).toEqual(['2026-04-05'])
+  })
+
+  it('drops implausibly high m/heartbeat (bad-HR artifact spiking the y-domain)', () => {
+    const sessions: CardioSession[] = [
+      run('2026-04-01', { meters_per_heartbeat: 60 }), // artifact
+      run('2026-04-02', { meters_per_heartbeat: 1.6 }), // real
+    ]
+    const out = cardiacEfficiencyPoints(sessions)
+    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-02'])
   })
 })
 
@@ -154,6 +179,15 @@ describe('paceAtHrPoints', () => {
     ]
     const out = paceAtHrPoints(sessions)
     expect(out.map((p) => p.rawDate)).toEqual(['2026-04-05'])
+  })
+
+  it('drops points whose converted pace is an implausible outlier', () => {
+    const sessions: CardioSession[] = [
+      run('2026-04-01', { avg_hr: 150, pace_seconds_per_km: 40000 }), // artifact pace
+      run('2026-04-02', { avg_hr: 150, pace_seconds_per_km: 350 }), // real
+    ]
+    const out = paceAtHrPoints(sessions)
+    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-02'])
   })
 })
 
