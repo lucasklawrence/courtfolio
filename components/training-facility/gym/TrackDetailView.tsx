@@ -321,7 +321,7 @@ export function TrackDetailView(): JSX.Element {
 
               <ChartCard
                 title="Avg HR per session"
-                helper="One bar per walk — a steady or downward trend means the engine is getting more efficient at the same pace."
+                helper="One bar per walk, bucketed to weekly/monthly means on wider ranges; a steady or downward trend means the engine is getting more efficient at the same pace."
               >
                 <AvgHrBars
                   points={avgHrPoints}

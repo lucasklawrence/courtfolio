@@ -323,7 +323,7 @@ export function TreadmillDetailView(): JSX.Element {
 
               <ChartCard
                 title="Avg HR per session"
-                helper="One bar per session — y-axis padded to the visible range so trends pop."
+                helper="One bar per session, bucketed to weekly/monthly means on wider ranges. Y-axis padded to the visible range so trends pop."
               >
                 <AvgHrBars
                   points={avgHrPoints}
