@@ -1,8 +1,13 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 
-import { OtfSessionRowSchema, otfRowToSession } from '@/lib/schemas/otf'
-import type { OtfData } from '@/types/otf'
+import {
+  OtfMileageAwardRowSchema,
+  OtfSessionRowSchema,
+  otfMileageAwardRowToAward,
+  otfRowToSession,
+} from '@/lib/schemas/otf'
+import type { OtfData, OtfMileageAward } from '@/types/otf'
 
 /**
  * Pure OTF-read helper shared between the browser entry (`lib/data/otf.ts`)
@@ -30,6 +35,52 @@ const SESSIONS_COLUMNS =
 
 /** Array form of {@link OtfSessionRowSchema} for validating the full read. */
 const OtfSessionRowsSchema = z.array(OtfSessionRowSchema)
+
+/** Supabase table backing the monthly-mileage milestone ladder (#321). */
+const MILEAGE_AWARDS_TABLE = 'otf_mileage_awards'
+
+/** Whitelisted columns for `otf_mileage_awards`, in sync with {@link OtfMileageAwardRowSchema}. */
+const MILEAGE_AWARDS_COLUMNS = 'id, label, miles, color'
+
+/** Array form of {@link OtfMileageAwardRowSchema} for validating the awards read. */
+const OtfMileageAwardRowsSchema = z.array(OtfMileageAwardRowSchema)
+
+/**
+ * Fetch the monthly-mileage milestone ladder (#321) using the supplied client.
+ * Shared between `getOtfMileageAwards` (browser) and `getOtfMileageAwardsServer`
+ * (server) so the read shape and validation can't drift.
+ *
+ * Unlike {@link assembleOtfData}, returns an **empty array** (not `null`) when
+ * the table is empty — the mileage card always renders its current-month total,
+ * just with no badges to unlock, so an empty ladder is a valid steady state
+ * rather than a "no data yet" branch. Ordered by `miles` ascending so callers
+ * get the tiers low → high without re-sorting.
+ *
+ * @param supabase Browser or server SSR client (both anon role; the table's RLS
+ *   allows anon SELECT).
+ * @throws when the Supabase query fails or row-shape validation fails. The OTF
+ *   view downgrades this to an empty ladder so a read blip can't blank the page.
+ */
+export async function assembleOtfMileageAwards(
+  supabase: SupabaseClient,
+): Promise<OtfMileageAward[]> {
+  const res = await supabase
+    .from(MILEAGE_AWARDS_TABLE)
+    .select(MILEAGE_AWARDS_COLUMNS)
+    .order('miles', { ascending: true })
+
+  if (res.error) {
+    throw new Error(`Failed to load OTF mileage awards: ${res.error.message}`)
+  }
+
+  const raw = (res.data ?? []) as unknown as Array<Record<string, unknown>>
+  const parsed = OtfMileageAwardRowsSchema.safeParse(raw.map(stripNulls))
+  if (!parsed.success) {
+    throw new Error(`otf_mileage_awards failed schema validation: ${parsed.error.message}`)
+  }
+
+  return parsed.data.map(otfMileageAwardRowToAward)
+}
 
 /**
  * Fetch the full OrangeTheory dataset from Supabase using the supplied

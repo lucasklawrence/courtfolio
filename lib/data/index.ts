@@ -18,7 +18,7 @@
  */
 
 export { getCardioData } from './cardio';
-export { getOtfData } from './otf';
+export { getOtfData, getOtfMileageAwards } from './otf';
 export {
   getMovementBenchmarks,
   logBenchmark,

@@ -14,7 +14,17 @@ import { OtfDetailView } from './OtfDetailView'
 
 const getOtfDataMock = vi.fn()
 
-vi.mock('@/lib/data', () => ({ getOtfData: () => getOtfDataMock() }))
+vi.mock('@/lib/data', () => ({
+  getOtfData: () => getOtfDataMock(),
+  // The mileage section (#321) fetches its ladder here; an empty ladder keeps
+  // these branch tests focused on the session-driven states.
+  getOtfMileageAwards: () => Promise.resolve([]),
+}))
+// The mileage section reads admin state to decide whether to show the
+// Milestones link; stub it non-admin so no network call escapes the test.
+vi.mock('@/lib/auth/use-admin-session', () => ({
+  useAdminSession: () => ({ isAdmin: false, isLoading: false, email: null }),
+}))
 vi.mock('./OtfZoneBars', () => ({ OtfZoneBars: () => null }))
 vi.mock('./OtfSparklineSummary', () => ({ OtfSparklineSummary: () => null }))
 vi.mock('@/components/training-facility/shared/charts/RoughLine', () => ({ RoughLine: () => null }))

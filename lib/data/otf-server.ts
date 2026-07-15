@@ -1,9 +1,9 @@
 import 'server-only'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
-import type { OtfData } from '@/types/otf'
+import type { OtfData, OtfMileageAward } from '@/types/otf'
 
-import { assembleOtfData } from './otf-shared'
+import { assembleOtfData, assembleOtfMileageAwards } from './otf-shared'
 
 /**
  * Server-side OrangeTheory dataset reader (SSR / Server Components). Wraps
@@ -16,4 +16,17 @@ import { assembleOtfData } from './otf-shared'
 export async function getOtfDataServer(): Promise<OtfData | null> {
   const supabase = await createServerSupabaseClient()
   return assembleOtfData(supabase)
+}
+
+/**
+ * Server-side reader for the monthly-mileage milestone ladder (#321), for the
+ * admin settings page's initial hydration. Wraps {@link assembleOtfMileageAwards}
+ * with the request-scoped server client.
+ *
+ * @throws See {@link assembleOtfMileageAwards}. The settings page
+ *   `.catch(() => [])` so a read blip renders an empty editor rather than 500ing.
+ */
+export async function getOtfMileageAwardsServer(): Promise<OtfMileageAward[]> {
+  const supabase = await createServerSupabaseClient()
+  return assembleOtfMileageAwards(supabase)
 }
