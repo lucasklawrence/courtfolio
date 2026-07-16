@@ -5,7 +5,7 @@
  * so the look can be swapped without touching index.html:
  *
  *     const avatar = NigiriAvatar.create(mountEl);
- *     avatar.bite();        // play one chomp -> {remaining, finished, ignored}
+ *     avatar.bite();        // eat the piece -> {remaining, finished, ignored}
  *     avatar.freshPiece();  // bring in a new full nigiri
  *     avatar.reset();       // back to idle, full nigiri
  *     avatar.remaining      // bites left on the current piece
@@ -15,12 +15,17 @@
  * gen_avatar.py (edit + rerun that script to restyle, e.g. to a chibi look).
  * Every frame shares one canvas and is drawn in place, so the person and
  * nigiri layers line up just by stacking them.
+ *
+ * One bite per piece: a single bite eats the whole nigiri (it lifts into the
+ * mouth and fades out) and freshPiece() immediately plates the next full one,
+ * so there is always a nigiri on the plate.
  */
 (function () {
   "use strict";
 
   var STYLE = "pixel";
-  var BITES = 8;
+  var BITES = 1;            // bites needed to finish one piece
+  var FULL = 8;            // frame index of a full, untouched piece (nigiri_8)
   var DIR = "frames/";
   var PERSON = { idle: "person_idle", blink: "person_blink", open: "person_open", chew: "person_chew" };
 
@@ -28,7 +33,7 @@
   var cache = {};
   function preload(name) { var i = new Image(); i.src = DIR + name + ".png"; cache[name] = i; }
   Object.keys(PERSON).forEach(function (k) { preload(PERSON[k]); });
-  for (var r = 0; r <= BITES; r++) preload("nigiri_" + r);
+  for (var r = 0; r <= FULL; r++) preload("nigiri_" + r);
 
   function el(tag, cls) { var e = document.createElement(tag); if (cls) e.className = cls; return e; }
 
@@ -38,7 +43,7 @@
     person.src = DIR + PERSON.idle + ".png";
     person.alt = "Pixel-art avatar eating nigiri";
     var nigiri = el("img", "av-layer av-nigiri");
-    nigiri.src = DIR + "nigiri_" + BITES + ".png";
+    nigiri.src = DIR + "nigiri_" + FULL + ".png";
     nigiri.alt = "";
     var crumbs = el("div", "av-crumbs");
     stage.appendChild(person);
@@ -85,15 +90,19 @@
     function bite() {
       if (remaining <= 0) return { remaining: 0, finished: false, ignored: true };
       clearTimers();
-      remaining--;
+      remaining--;                     // one bite finishes the whole piece
       var finished = remaining === 0;
 
-      setPerson("open");             // mouth opens
-      nigiri.classList.add("lift");  // food rises into the mouth
+      setPerson("open");               // mouth opens
+      nigiri.classList.remove("pop");
+      nigiri.classList.add("lift");    // the piece rises toward the mouth...
       spawnCrumbs();
-      after(110, function () { setNigiri(remaining); });                 // a bite disappears
-      after(185, function () { nigiri.classList.remove("lift"); if (!finished) setPerson("chew"); });
-      after(350, function () { if (!finished) setPerson("idle"); });
+      after(90, function () { nigiri.classList.add("eaten"); });  // ...and is eaten (fades into the mouth)
+      // The chew/idle beats below only apply if a future style uses more than
+      // one bite per piece; at one bite the counter calls freshPiece() to plate
+      // the next piece, which resets the person to idle.
+      after(160, function () { if (!finished) { nigiri.classList.remove("lift"); setPerson("chew"); } });
+      after(330, function () { if (!finished) setPerson("idle"); });
 
       return { remaining: remaining, finished: finished, ignored: false };
     }
@@ -102,19 +111,22 @@
       clearTimers();
       remaining = BITES;
       setPerson("idle");
-      setNigiri(BITES);
       nigiri.classList.remove("lift");
+      nigiri.classList.remove("eaten");
+      setNigiri(FULL);                 // a fresh, full piece back on the plate
       nigiri.classList.remove("pop");
       void nigiri.offsetWidth;
-      nigiri.classList.add("pop");
+      nigiri.classList.add("pop");     // pop it in
     }
 
     function reset() {
       clearTimers();
       remaining = BITES;
       setPerson("idle");
-      setNigiri(BITES);
       nigiri.classList.remove("lift");
+      nigiri.classList.remove("eaten");
+      nigiri.classList.remove("pop");
+      setNigiri(FULL);
     }
 
     // gentle idle blink
