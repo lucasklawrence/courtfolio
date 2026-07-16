@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nigiri Counter</title>
+<style>
+  :root {
+    --bg1: #fff6ec;
+    --bg2: #ffe4cf;
+    --card: #fffdfa;
+    --card-edge: #f0e4d3;
+    --text: #3a2e26;
+    --muted: #9a8879;
+    --accent: #ff7a4d;
+    --accent-dark: #ef6134;
+    --spot: #ffe7d3;
+    --shadow: rgba(120, 78, 45, 0.18);
+    --btn-shadow: rgba(239, 97, 52, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg1: #221913;
+      --bg2: #17110d;
+      --card: #2a201a;
+      --card-edge: #3a2c22;
+      --text: #f4e9dd;
+      --muted: #b39a86;
+      --accent: #ff8a5f;
+      --accent-dark: #ff764a;
+      --spot: #3a2b21;
+      --shadow: rgba(0, 0, 0, 0.5);
+      --btn-shadow: rgba(255, 122, 77, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    color: var(--text);
+    background: radial-gradient(120% 90% at 50% 0%, var(--bg1) 0%, var(--bg2) 70%);
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+  }
+
+  .card {
+    position: relative;
+    width: min(440px, 92vw);
+    background: var(--card);
+    border: 1px solid var(--card-edge);
+    border-radius: 28px;
+    padding: 26px 26px 30px;
+    box-shadow: 0 30px 60px -24px var(--shadow), 0 2px 0 rgba(255,255,255,0.4) inset;
+    text-align: center;
+  }
+
+  .title {
+    margin: 2px 0 0;
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .subtitle { margin: 4px 0 0; font-size: 12.5px; color: var(--muted); opacity: 0.85; }
+
+  /* stage + avatar */
+  .stage { position: relative; margin: 10px auto 2px; width: 264px; max-width: 78vw; }
+  .stage::before {
+    content: ""; position: absolute; left: 50%; bottom: 6%;
+    width: 78%; height: 20%; transform: translateX(-50%);
+    background: radial-gradient(closest-side, var(--spot), transparent 78%);
+    z-index: 0;
+  }
+  .avatar-wrap { position: relative; z-index: 1; transform-origin: 50% 88%; will-change: transform; }
+  .avatar-wrap.chomp { animation: chomp 0.32s ease; }
+  @keyframes chomp {
+    0%   { transform: scale(1, 1); }
+    28%  { transform: scale(1.05, 0.92); }
+    58%  { transform: scale(0.98, 1.03); }
+    100% { transform: scale(1, 1); }
+  }
+
+  .av-stage { position: relative; width: 100%; aspect-ratio: 44 / 48; }
+  .av-layer {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    image-rendering: pixelated; image-rendering: crisp-edges;
+    user-select: none; -webkit-user-drag: none;
+  }
+  .av-nigiri { transition: transform 0.12s cubic-bezier(.3, 1.5, .5, 1); }
+  .av-nigiri.lift { transform: translate(-4.5%, -13%); }
+  .av-nigiri.pop { animation: nigiriPop 0.45s ease; }
+  @keyframes nigiriPop {
+    0%   { transform: scale(0.5) translateY(-8%); opacity: 0; }
+    55%  { opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .av-crumbs { position: absolute; inset: 0; pointer-events: none; overflow: visible; z-index: 2; }
+  .av-crumb { position: absolute; width: 7px; height: 7px; border-radius: 2px; will-change: transform, opacity; }
+
+  /* count + controls */
+  .count-row {
+    display: flex; align-items: baseline; justify-content: center;
+    gap: 8px; margin-top: 6px; position: relative;
+  }
+  .count {
+    font-size: 66px; line-height: 1; font-weight: 800;
+    letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--text);
+  }
+  .count-row .label { font-size: 14px; color: var(--muted); font-weight: 600; }
+  .pop {
+    position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+    font-weight: 800; font-size: 20px; color: var(--accent);
+    pointer-events: none; opacity: 0;
+  }
+  .pop.go { animation: pop 0.6s ease forwards; }
+  @keyframes pop {
+    0%   { opacity: 0; transform: translate(-50%, 6px) scale(0.8); }
+    30%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -34px) scale(1.1); }
+  }
+
+  .stats { margin: 12px 0 18px; font-size: 13.5px; color: var(--muted); }
+  .stats b { color: var(--text); font-weight: 700; }
+
+  .controls { display: flex; align-items: center; justify-content: center; gap: 14px; }
+  button {
+    font-family: inherit; cursor: pointer; border: none;
+    transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  button:active { transform: scale(0.92); }
+  .eat {
+    width: 92px; height: 92px; border-radius: 50%;
+    background: radial-gradient(120% 120% at 30% 25%, var(--accent) 0%, var(--accent-dark) 100%);
+    color: #fff; font-size: 42px; font-weight: 700; line-height: 1;
+    box-shadow: 0 14px 24px -8px var(--btn-shadow), 0 2px 0 rgba(255,255,255,0.35) inset;
+  }
+  .eat:hover { transform: translateY(-2px); }
+  .eat:active { transform: scale(0.9); }
+  .ghost {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: transparent; color: var(--muted);
+    border: 1.5px solid var(--card-edge);
+    font-size: 20px; display: grid; place-items: center;
+  }
+  .ghost:hover { color: var(--text); border-color: var(--muted); }
+
+  .hint { margin-top: 16px; font-size: 12px; color: var(--muted); opacity: 0.8; }
+  kbd {
+    font-family: inherit; font-size: 11px; background: var(--spot);
+    border: 1px solid var(--card-edge); border-radius: 6px; padding: 1px 6px; color: var(--text);
+  }
+
+  .toast {
+    position: absolute; left: 50%; top: 14px; transform: translateX(-50%);
+    background: var(--accent); color: #fff; font-weight: 700; font-size: 13px;
+    padding: 7px 16px; border-radius: 999px; white-space: nowrap;
+    box-shadow: 0 10px 20px -8px var(--btn-shadow);
+    opacity: 0; pointer-events: none; z-index: 5;
+  }
+  .toast.show { animation: toast 1.5s ease; }
+  @keyframes toast {
+    0%   { opacity: 0; transform: translate(-50%, -8px) scale(0.9); }
+    15%  { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    80%  { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -8px) scale(0.95); }
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="toast" id="toast">ごちそうさま! 🍣</div>
+    <h1 class="title">Nigiri Counter</h1>
+    <p class="subtitle">every tap, you take a bite · finish a piece to plate it</p>
+
+    <div class="stage">
+      <div class="avatar-wrap" id="avatarWrap">
+        <!-- pixel avatar mounts here (see avatar.js) -->
+        <div id="avatarMount"></div>
+      </div>
+    </div>
+
+    <div class="count-row">
+      <span class="count" id="count">0</span>
+      <span class="label">bites</span>
+      <span class="pop" id="pop">+1</span>
+    </div>
+
+    <div class="stats">
+      Plated: <b id="finished">0</b> 🍣 &nbsp;·&nbsp; This piece: <b id="progress">0/8</b>
+    </div>
+
+    <div class="controls">
+      <button class="ghost" id="mute" title="Toggle sound" aria-label="Toggle sound">🔊</button>
+      <button class="eat" id="eat" title="Take a bite" aria-label="Take a bite">＋</button>
+      <button class="ghost" id="reset" title="Reset" aria-label="Reset">↺</button>
+    </div>
+
+    <p class="hint">Tap the button, press <kbd>Space</kbd>, or <kbd>Enter</kbd> to eat 🥢</p>
+  </main>
+
+  <script src="avatar.js"></script>
+  <script>
+  (() => {
+    const A = window.NigiriAvatar;
+    const BPN = A.BITES;
+    const avatar = A.create(document.getElementById('avatarMount'));
+
+    const el = {
+      count: document.getElementById('count'),
+      finished: document.getElementById('finished'),
+      progress: document.getElementById('progress'),
+      wrap: document.getElementById('avatarWrap'),
+      pop: document.getElementById('pop'),
+      toast: document.getElementById('toast'),
+      eat: document.getElementById('eat'),
+      reset: document.getElementById('reset'),
+      mute: document.getElementById('mute'),
+    };
+
+    let count = 0;
+    let finished = 0;
+    let transitioning = false;
+    let muted = false;
+    let audioCtx = null;
+
+    const setProgress = () => {
+      el.count.textContent = count;
+      el.finished.textContent = finished;
+      el.progress.textContent = `${BPN - avatar.remaining}/${BPN}`;
+    };
+
+    function chompSound() {
+      if (muted) return;
+      try {
+        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const t = audioCtx.currentTime;
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = 'triangle';
+        o.frequency.setValueAtTime(300, t);
+        o.frequency.exponentialRampToValueAtTime(150, t + 0.09);
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.16, t + 0.012);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+        o.connect(g).connect(audioCtx.destination);
+        o.start(t); o.stop(t + 0.18);
+      } catch (e) { /* audio optional */ }
+    }
+
+    function chompAnim() {
+      el.wrap.classList.remove('chomp');
+      void el.wrap.offsetWidth;
+      el.wrap.classList.add('chomp');
+    }
+    function popPlus() {
+      el.pop.classList.remove('go');
+      void el.pop.offsetWidth;
+      el.pop.classList.add('go');
+    }
+    function showToast() {
+      el.toast.classList.remove('show');
+      void el.toast.offsetWidth;
+      el.toast.classList.add('show');
+    }
+
+    function takeBite() {
+      if (transitioning) return;
+      const res = avatar.bite();
+      if (res.ignored) return;
+      count++;
+      chompAnim();
+      popPlus();
+      chompSound();
+      setProgress();
+      if (res.finished) {
+        finished++;
+        setProgress();
+        showToast();
+        transitioning = true; // lock input during the plate-and-refill transition
+        setTimeout(() => {
+          avatar.freshPiece();
+          transitioning = false;
+          setProgress();
+        }, 660);
+      }
+    }
+
+    function resetAll() {
+      count = 0; finished = 0; transitioning = false;
+      avatar.reset();
+      setProgress();
+    }
+
+    el.eat.addEventListener('click', takeBite);
+    el.reset.addEventListener('click', resetAll);
+    el.mute.addEventListener('click', () => {
+      muted = !muted;
+      el.mute.textContent = muted ? '🔇' : '🔊';
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' || e.code === 'Enter') {
+        if (e.target.tagName === 'BUTTON') return;
+        e.preventDefault();
+        takeBite();
+      }
+    });
+
+    setProgress();
+  })();
+  </script>
+</body>
+</html>
