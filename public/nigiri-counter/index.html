@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Deployed under /nigiri-counter/ inside the Next.js site. This <base> anchors
+     the app's relative asset paths (avatar.js, frames/*.png) so they resolve
+     correctly even when the clean URL /nigiri-counter has no trailing slash. -->
+<base href="/nigiri-counter/" />
 <title>Nigiri Counter</title>
 <style>
   :root {
