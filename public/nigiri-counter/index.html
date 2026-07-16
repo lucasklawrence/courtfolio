@@ -95,27 +95,24 @@
     image-rendering: pixelated; image-rendering: crisp-edges;
     user-select: none; -webkit-user-drag: none;
   }
-  /* The piece on the plate never changes opacity -- it only scales -- so it is
-     always visible, even mid-animation or if the animation is throttled. */
-  .av-nigiri { will-change: transform; transform-origin: 50% 82%; }
-  .av-nigiri.refill { animation: nigiriRefill 0.44s cubic-bezier(.3, 1.4, .5, 1); }
-  @keyframes nigiriRefill {
-    0%   { transform: scale(0.4); }
-    55%  { transform: scale(1.08); }
-    100% { transform: scale(1); }
+  /* The piece rests just below the mouth and, on a bite, travels UP to the
+     mouth, is bitten there, then a fresh piece settles back down. Opacity is
+     never touched -- only transform -- so a nigiri is on screen at all times.
+     The -13% Y raise matches gen_avatar.py's bite pose (nigiri composited into
+     the open mouth), so the piece lands squarely at the mouth, not over it. */
+  .av-nigiri {
+    will-change: transform;
+    transform-origin: 50% 55%;
+    transform: translate(0, 5%); /* rest: held just below the mouth */
   }
-  /* A transient copy of the eaten piece flies up into the mouth and fades out.
-     It is separate from the plate piece, so the plate is never left empty. */
-  .av-nigiri-ghost {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    image-rendering: pixelated; image-rendering: crisp-edges;
-    user-select: none; -webkit-user-drag: none; pointer-events: none; z-index: 1;
-    transform-origin: 50% 82%;
-    animation: nigiriEaten 0.34s ease-in forwards;
-  }
-  @keyframes nigiriEaten {
-    0%   { transform: translate(0, 0) scale(1); opacity: 1; }
-    100% { transform: translate(-3%, -42%) scale(0.42); opacity: 0; }
+  .av-nigiri.bite { animation: nigiriBite 0.56s cubic-bezier(.34, .85, .4, 1); }
+  @keyframes nigiriBite {
+    0%   { transform: translate(0, 5%) scale(1); }           /* held below the mouth */
+    26%  { transform: translate(-4.5%, -13%) scale(0.95); }  /* raised up to the mouth */
+    36%  { transform: translate(-4.5%, -13%) scale(0.98); }  /* at the mouth */
+    52%  { transform: translate(-4.5%, -12%) scale(0.38); }  /* the bite */
+    72%  { transform: translate(-2%, -3%) scale(0.74); }     /* fresh piece coming back down */
+    100% { transform: translate(0, 5%) scale(1); }           /* full, back at rest */
   }
   .av-crumbs { position: absolute; inset: 0; pointer-events: none; overflow: visible; z-index: 2; }
   .av-crumb { position: absolute; width: 7px; height: 7px; border-radius: 2px; will-change: transform, opacity; }

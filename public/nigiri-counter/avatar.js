@@ -16,12 +16,13 @@
  * Every frame shares one canvas and is drawn in place, so the person and
  * nigiri layers line up just by stacking them.
  *
- * One bite per piece: a single tap eats the whole nigiri and the next full
- * piece is served in the same beat. The piece on the plate is a persistent
- * element that is ALWAYS opaque -- it only scales (a "pop"), never fades to
- * zero -- so the plate can never be empty even if an animation is interrupted
- * or throttled. The eaten piece is a separate transient "ghost" that flies up
- * into the mouth and removes itself.
+ * One bite per piece: the piece rests just below the mouth and, on a tap,
+ * visibly travels UP to the mouth, is bitten there, then a fresh full piece
+ * settles back down. The piece is a single persistent element whose opacity is
+ * NEVER changed -- it only moves and scales -- so there is always a nigiri on
+ * screen, even mid-animation or when animations are throttled. The "raised to
+ * the mouth" offset (translate -4.5%, -13%) matches gen_avatar.py's bite pose,
+ * where the nigiri is composited into the open mouth at logical offset (-2,-6).
  */
 (function () {
   "use strict";
@@ -45,7 +46,7 @@
     var person = el("img", "av-layer av-person");
     person.src = DIR + PERSON.idle + ".png";
     person.alt = "Pixel-art avatar eating nigiri";
-    // The persistent piece on the plate. It is never hidden -- see the note above.
+    // The persistent piece. It is never hidden -- see the note above.
     var nigiri = el("img", "av-layer av-nigiri");
     nigiri.src = DIR + "nigiri_" + FULL + ".png";
     nigiri.alt = "";
@@ -65,18 +66,12 @@
     function isPerson(k) { return person.src.indexOf(PERSON[k] + ".png") >= 0; }
     function setNigiri(n) { nigiri.src = DIR + "nigiri_" + Math.max(0, n) + ".png"; }
 
-    function removeGhosts() {
-      var gs = stage.querySelectorAll(".av-nigiri-ghost");
-      for (var i = 0; i < gs.length; i++) gs[i].remove();
-    }
-
-    // Restart the scale "pop" so a fresh full piece visibly drops onto the
-    // plate. Opacity is never touched here, so the piece stays visible even if
-    // this animation is interrupted, throttled, or never runs.
-    function popPlate() {
-      nigiri.classList.remove("refill");
+    // Restart the "raise to the mouth, bite, settle back" animation. Opacity is
+    // never touched, so the piece stays visible even if this is interrupted.
+    function playBite() {
+      nigiri.classList.remove("bite");
       void nigiri.offsetWidth;
-      nigiri.classList.add("refill");
+      nigiri.classList.add("bite");
     }
 
     function spawnCrumbs() {
@@ -111,28 +106,13 @@
       remaining--;                     // one bite finishes the whole piece
       var finished = remaining === 0;
 
-      setPerson("open");               // mouth opens
-
-      // A ghost copy of the piece flies up into the mouth (the "eaten" piece)...
-      var ghost = el("img", "av-nigiri-ghost");
-      ghost.src = DIR + "nigiri_" + FULL + ".png";
-      ghost.alt = "";
-      stage.insertBefore(ghost, crumbs);
-      ghost.addEventListener("animationend", function () { ghost.remove(); });
-      setTimeout(function () { if (ghost.parentNode) ghost.remove(); }, 700); // safety cleanup
-
-      spawnCrumbs();
-
-      // ...while the plate immediately pops a fresh full piece in. The plate
-      // piece never leaves, so there is always a nigiri on screen.
-      setNigiri(FULL);
-      popPlate();
+      setPerson("open");               // mouth opens to receive the piece
+      playBite();                      // raise to the mouth, bite, settle a fresh piece back
+      after(180, spawnCrumbs);         // crumbs land when the piece reaches the mouth
+      after(250, function () { setPerson("chew"); });
+      after(560, function () { setPerson("idle"); });
 
       remaining = BITES;               // ready for the next tap right away
-
-      // chew, then settle back to idle
-      after(150, function () { setPerson("chew"); });
-      after(380, function () { setPerson("idle"); });
 
       return { remaining: remaining, finished: finished, ignored: false };
     }
@@ -141,17 +121,15 @@
       clearTimers();
       remaining = BITES;
       setPerson("idle");
-      removeGhosts();
+      nigiri.classList.remove("bite");
       setNigiri(FULL);
-      popPlate();
     }
 
     function reset() {
       clearTimers();
       remaining = BITES;
       setPerson("idle");
-      removeGhosts();
-      nigiri.classList.remove("refill");
+      nigiri.classList.remove("bite");
       setNigiri(FULL);
     }
 
