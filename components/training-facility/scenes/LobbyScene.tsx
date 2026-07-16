@@ -138,7 +138,11 @@ export function LobbyScene() {
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
       className="h-full w-full select-none"
-      role="img"
+      // Deliberately NOT role="img": this is the only path into the three
+      // sub-areas, and `img` is a presentational-children role that would
+      // drop the door <Link>s from the accessibility tree. Leaving the svg
+      // as a labelled graphics-document keeps each doorway a real link for
+      // screen-reader / keyboard users.
       aria-label="The Training Facility lobby — a corridor with a door into The Combine on the left, Weight Room on the right, and The Gym straight ahead at the end of the hall."
     >
       <SceneDefs />
