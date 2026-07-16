@@ -10,14 +10,13 @@ import { LobbyScene } from './LobbyScene'
  * silently break a route or drop a doorway.
  */
 describe('LobbyScene', () => {
-  it('labels the scene for assistive tech without hiding the door links', () => {
-    // The svg is intentionally not role="img" (a presentational-children
-    // role) so the three door links stay in the accessibility tree — it
-    // carries a descriptive aria-label instead.
-    const { container } = render(<LobbyScene />)
-    const svg = container.querySelector('svg')
-    expect(svg?.getAttribute('role')).toBeNull()
-    expect(svg?.getAttribute('aria-label')).toMatch(/training facility lobby/i)
+  it('exposes the doors inside a labelled navigation landmark', () => {
+    // The scene is the facility's sole navigation, so it's a `navigation`
+    // landmark — not role="img", which marks descendants presentational
+    // and would drop the three door links from the accessibility tree.
+    const { getByRole } = render(<LobbyScene />)
+    const nav = getByRole('navigation', { name: /training facility rooms/i })
+    expect(nav.tagName.toLowerCase()).toBe('svg')
   })
 
   it.each([
