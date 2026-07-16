@@ -95,19 +95,27 @@
     image-rendering: pixelated; image-rendering: crisp-edges;
     user-select: none; -webkit-user-drag: none;
   }
-  .av-nigiri { transition: transform 0.12s cubic-bezier(.3, 1.5, .5, 1); }
-  .av-nigiri.lift { transform: translate(-4.5%, -13%); }
-  /* one-bite: the whole piece lifts into the mouth and fades away */
-  .av-nigiri.eaten {
-    opacity: 0;
-    transform: translate(-4.5%, -26%) scale(0.5);
-    transition: opacity 0.16s ease-in, transform 0.18s ease-in;
+  /* The piece on the plate never changes opacity -- it only scales -- so it is
+     always visible, even mid-animation or if the animation is throttled. */
+  .av-nigiri { will-change: transform; transform-origin: 50% 82%; }
+  .av-nigiri.refill { animation: nigiriRefill 0.44s cubic-bezier(.3, 1.4, .5, 1); }
+  @keyframes nigiriRefill {
+    0%   { transform: scale(0.4); }
+    55%  { transform: scale(1.08); }
+    100% { transform: scale(1); }
   }
-  .av-nigiri.pop { animation: nigiriPop 0.45s ease; }
-  @keyframes nigiriPop {
-    0%   { transform: scale(0.5) translateY(-8%); opacity: 0; }
-    55%  { opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
+  /* A transient copy of the eaten piece flies up into the mouth and fades out.
+     It is separate from the plate piece, so the plate is never left empty. */
+  .av-nigiri-ghost {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    image-rendering: pixelated; image-rendering: crisp-edges;
+    user-select: none; -webkit-user-drag: none; pointer-events: none; z-index: 1;
+    transform-origin: 50% 82%;
+    animation: nigiriEaten 0.34s ease-in forwards;
+  }
+  @keyframes nigiriEaten {
+    0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(-3%, -42%) scale(0.42); opacity: 0; }
   }
   .av-crumbs { position: absolute; inset: 0; pointer-events: none; overflow: visible; z-index: 2; }
   .av-crumb { position: absolute; width: 7px; height: 7px; border-radius: 2px; will-change: transform, opacity; }
@@ -230,7 +238,6 @@
     };
 
     let count = 0;
-    let transitioning = false;
     let muted = false;
     let audioCtx = null;
 
@@ -274,7 +281,8 @@
     }
 
     function takeBite() {
-      if (transitioning) return;
+      // One tap eats the whole piece; avatar.bite() plates the next one in the
+      // same beat (the plate is never left empty), so there's no input lock.
       const res = avatar.bite();
       if (res.ignored) return;
       count++;
@@ -283,17 +291,10 @@
       chompSound();
       setProgress();
       if (count % 10 === 0) showToast(); // celebrate every tenth piece, not every tap
-      // one bite finishes the piece: briefly plate it, then bring the next one in
-      transitioning = true; // lock input during the quick plate-and-refill
-      setTimeout(() => {
-        avatar.freshPiece();
-        transitioning = false;
-        setProgress();
-      }, 300);
     }
 
     function resetAll() {
-      count = 0; transitioning = false;
+      count = 0;
       avatar.reset();
       setProgress();
     }
