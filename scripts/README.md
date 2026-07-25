@@ -184,6 +184,39 @@ Both are stored as **repo secrets**, not variables. Despite the `NEXT_PUBLIC_` p
 
 Deliberately uses plain `fetch` rather than `@supabase/supabase-js`, which needs a native WebSocket and throws on Node 20 — a drift check that only runs on the newest Node is one that gets skipped.
 
+## `staging:sync`
+
+`npm run staging:sync`
+
+Copies production data into the staging Supabase project (`court-vision-preview`, ref `tztrsfefesacnbreerhp`), which exists so preview deploys can render realistic data without holding a credential that can write production.
+
+Rows stream directly between the two PostgREST endpoints — a full refresh is ~45k rows, dominated by `cardio_session_hr_samples`, and none of it passes through a CI log or an agent's memory.
+
+**Staging is a snapshot, not a mirror.** Nothing dual-writes to it: the OTbeat cron, the `log-workout` / `log-weight` skills, and the Apple Health import all target production only. So staging is stale from the moment a sync finishes, and it looks convincingly current — never read it to answer a question about the data.
+
+Semantics:
+
+- **Upsert** on each table's key, so production edits propagate (a corrected weight, a manual `class_type_override`, a hand-flipped `excluded`).
+- Rows existing **only** in staging survive, so hand-made test data isn't clobbered.
+- **Deletions do not propagate.** Accepted deliberately — a delete-aware sync needs a prune pass or a truncate-and-reload, and truncating would destroy the staging-only rows the previous point protects. Rebuild the project if that matters.
+
+Production often runs *ahead* of `main` (a branch's migration gets applied before its PR merges), so each row is projected onto the columns staging actually has; unknown columns are dropped and reported rather than 400-ing the table.
+
+`panel_runs` is deliberately not synced: it's service-role-only in production, and live-panel history doesn't affect what a preview renders.
+
+### Required env vars
+
+| Var | Why |
+|---|---|
+| `PROD_SUPABASE_URL` | Read source. |
+| `PROD_SUPABASE_ANON_KEY` | Anon suffices — every synced table has an RLS `using (true)` SELECT policy. The job must **never** hold production's service-role key; a workflow that can write production defeats the point of staging. |
+| `STAGING_SUPABASE_URL` | Write target. |
+| `STAGING_SUPABASE_SECRET_KEY` | Staging RLS grants anon SELECT only, and the OpenAPI schema endpoint used for column discovery requires a secret key. |
+
+Exits 0 on success, 1 if any table failed, 2 on missing config — including a guard that refuses to run when both URLs point at the same project.
+
+The `staging-sync` workflow runs it Sundays at 08:00 UTC (an hour after the OTbeat ingest, so a refresh includes that morning's classes) and on `workflow_dispatch` for "make staging current before I review this preview".
+
 ### Writing a migration
 
 1. Write the file first, `<version>_<name>.sql`. The `<name>` must match the name you apply it under — it's the only key tying the file to the ledger.

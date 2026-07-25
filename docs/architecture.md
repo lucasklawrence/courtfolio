@@ -333,6 +333,7 @@ flowchart TB
 |---|---|
 | **Anon reads, gated writes** | Public dashboards read Supabase directly (anon key, RLS `SELECT`) — no bespoke read API to maintain. Writes are impossible with the anon key; they must pass through a server route holding the service‑role key. Security lives in RLS + one app‑layer gate. |
 | **Three Supabase clients** | browser (anon) · server (anon + cookie) · admin (service‑role, `server-only`). The service‑role key never reaches the browser and is only reachable behind `requireAdmin` or the auto‑sync secret. |
+| **Two Supabase projects** | production (`ryxbnvhxxkrmsrmocume`) is the source of truth and the target of every write — the OTbeat cron, the log‑workout/log‑weight skills, the Health import. Staging (`tztrsfefesacnbreerhp`) is a point‑in‑time **copy** for preview deploys and for rehearsing destructive migrations; nothing dual‑writes to it, so it is stale by design. Never read staging to answer a question about the data. |
 | **`server / shared / browser` data split** | `*-shared.ts` holds the pure row→view logic and imports no client, guaranteeing the server and browser read paths produce identical shapes and neither bundle leaks into the other. |
 | **Feature flags for dark launch** | `NEXT_PUBLIC_ENABLE_TRAINING_FACILITY` and `NEXT_PUBLIC_ENABLE_DRAFT_ROOM` (both default **off**) gate whole areas to 404, so in‑progress features ship to `main` without being publicly reachable. |
 | **No middleware** | Route protection is per‑route (`requireAdmin` / `requireAdminPage`), keeping auth logic beside the code it protects and off the edge. |
@@ -360,7 +361,8 @@ flowchart TB
 | Telemetry | `lib/telemetry/**`, `instrumentation.ts` |
 | Offline judge panel | `lib/panel/**`, `scripts/panel.ts`, `app/draft-room/panelResult.ts` |
 | Ingestion scripts | `scripts/*.mjs`, `scripts/lib/**` |
-| DB schema | `supabase/migrations/*.sql` — every file must also appear in the applied ledger; `npm run migrations:check` verifies both directions |
+| DB schema | `supabase/migrations/*.sql` — every file must also appear in the applied ledger; `npm run migrations:check` verifies both directions. Apply to **both** Supabase projects (see below) |
+| Staging refresh | `scripts/sync-staging.mjs` (`npm run staging:sync`), weekly via `.github/workflows/staging-sync.yml` |
 | CI + scheduled cron | `.github/workflows/**` (`otbeat-ingest.yml` is the daily cron) |
 
 ---
