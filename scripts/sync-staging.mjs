@@ -52,7 +52,33 @@ const WRITE_BATCH = 500
 /**
  * Tables to copy, **parents before children** so foreign keys resolve
  * (cardio_sessions → cardio_session_hr_samples, weight_room_goals →
- * weight_room_sets). `conflict` is the key upserts resolve on.
+ * weight_room_sets).
+ *
+ * `mode` picks how a table reconciles, and the choice follows from its key:
+ *
+ * - `upsert` (default) — resolve on `conflict`, a **natural** key that means the
+ *   same thing in both projects (`date`, `started_at`, `exercise`, `label`).
+ *   Safe because the same logical row carries the same key everywhere.
+ *
+ * - `replace` — delete staging's rows, then insert production's verbatim. For
+ *   tables whose primary key is a **`gen_random_uuid()` surrogate** *and* whose
+ *   rows are seeded by a migration: both projects run that migration
+ *   independently, so the same logical row gets a different id in each. Upserting
+ *   on `id` then never matches, and the insert either trips a unique business-key
+ *   index (weight_room_achievements: 409 on
+ *   `(exercise, scope, measure, threshold)`) or, worse, silently duplicates the
+ *   row where no such index exists — which is how staging ended up with two July
+ *   shrugs focuses against production's one.
+ *
+ *   PostgREST can't fix this by conflicting on the natural key instead:
+ *   weight_room_achievements' uniqueness lives in two *partial* indexes
+ *   (`where exercise is not null` / `where exercise is null`), and `on_conflict`
+ *   has no way to supply an index predicate. Replace sidesteps inference
+ *   entirely and has the side benefit of carrying production's ids across, so a
+ *   row's identity is stable between the two projects.
+ *
+ *   Only safe because these are reference tables nobody hand-edits in staging.
+ *   Never mark a table `replace` if you'd mind losing staging-only rows in it.
  *
  * `panel_runs` is deliberately absent: it's service-role-only in production so
  * the anon read would return nothing, and live-panel run history has no bearing
@@ -73,8 +99,10 @@ const TABLES = [
   { name: 'otf_sessions', conflict: 'started_at' },
   { name: 'otf_mileage_awards', conflict: 'label' },
   { name: 'weight_room_goals', conflict: 'exercise' },
-  { name: 'weight_room_achievements', conflict: 'id' },
-  { name: 'weight_room_monthly_focus', conflict: 'id' },
+  { name: 'weight_room_achievements', mode: 'replace', key: 'id' },
+  { name: 'weight_room_monthly_focus', mode: 'replace', key: 'id' },
+  // Real logged data, not migration-seeded: its uuids originate in production
+  // and nothing regenerates them in staging, so upserting on id is correct.
   { name: 'weight_room_sets', conflict: 'id' },
 ]
 
@@ -126,6 +154,39 @@ async function writeBatch(table, conflict, rows) {
   if (!res.ok) throw new Error(`write ${table}: ${res.status} ${await res.text()}`)
 }
 
+/** Plain insert, no conflict resolution — for `replace` tables, post-clear. */
+async function insertBatch(table, rows) {
+  const res = await fetch(`${STAGING_URL}/rest/v1/${table}`, {
+    method: 'POST',
+    headers: {
+      apikey: STAGING_KEY,
+      authorization: `Bearer ${STAGING_KEY}`,
+      'content-type': 'application/json',
+      prefer: 'return=minimal',
+    },
+    body: JSON.stringify(rows),
+  })
+  if (!res.ok) throw new Error(`insert ${table}: ${res.status} ${await res.text()}`)
+}
+
+/**
+ * Empty a staging table ahead of a `replace` copy.
+ *
+ * PostgREST refuses an unfiltered DELETE, so filter on the key being non-null —
+ * true for every row, since it's the primary key.
+ */
+async function clearTable(table, key) {
+  const res = await fetch(`${STAGING_URL}/rest/v1/${table}?${key}=not.is.null`, {
+    method: 'DELETE',
+    headers: {
+      apikey: STAGING_KEY,
+      authorization: `Bearer ${STAGING_KEY}`,
+      prefer: 'return=minimal',
+    },
+  })
+  if (!res.ok) throw new Error(`clear ${table}: ${res.status} ${await res.text()}`)
+}
+
 /** Drop keys staging doesn't have, so production running ahead can't 400 a table. */
 function project(row, allowed) {
   const out = {}
@@ -133,9 +194,12 @@ function project(row, allowed) {
   return out
 }
 
-async function copyTable({ name, conflict }, allowed) {
+async function copyTable({ name, conflict, mode, key }, allowed) {
   let copied = 0
   const dropped = new Set()
+  // Clear before the first insert, not after reading — a `replace` table is
+  // small reference data, so the window where staging is empty is negligible.
+  if (mode === 'replace') await clearTable(name, key)
   for (let offset = 0; ; offset += READ_PAGE) {
     const page = await readPage(name, offset)
     if (page.length === 0) break
@@ -144,12 +208,14 @@ async function copyTable({ name, conflict }, allowed) {
     }
     const rows = page.map((r) => project(r, allowed))
     for (let i = 0; i < rows.length; i += WRITE_BATCH) {
-      await writeBatch(name, conflict, rows.slice(i, i + WRITE_BATCH))
+      const batch = rows.slice(i, i + WRITE_BATCH)
+      if (mode === 'replace') await insertBatch(name, batch)
+      else await writeBatch(name, conflict, batch)
     }
     copied += page.length
     if (page.length < READ_PAGE) break
   }
-  return { copied, dropped: [...dropped] }
+  return { copied, dropped: [...dropped], mode: mode ?? 'upsert' }
 }
 
 async function main() {
@@ -187,10 +253,11 @@ async function main() {
       continue
     }
     try {
-      const { copied, dropped } = await copyTable(table, allowed)
+      const { copied, dropped, mode } = await copyTable(table, allowed)
       total += copied
       const note = dropped.length > 0 ? `  (dropped ahead-of-staging columns: ${dropped.join(', ')})` : ''
-      console.log(`${copied === 0 ? '·' : '✓'} ${table.name}: ${copied}${note}`)
+      const how = mode === 'replace' ? ' [replaced]' : ''
+      console.log(`${copied === 0 ? '·' : '✓'} ${table.name}: ${copied}${how}${note}`)
     } catch (err) {
       console.error(`✗ ${table.name}: ${err.message}`)
       failed += 1

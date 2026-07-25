@@ -200,6 +200,12 @@ Semantics:
 - Rows existing **only** in staging survive, so hand-made test data isn't clobbered.
 - **Deletions do not propagate.** Accepted deliberately — a delete-aware sync needs a prune pass or a truncate-and-reload, and truncating would destroy the staging-only rows the previous point protects. Rebuild the project if that matters.
 
+Two tables use `mode: 'replace'` (clear staging, then insert production verbatim) rather than upsert: `weight_room_achievements` and `weight_room_monthly_focus`. Both have a `gen_random_uuid()` primary key **and** are seeded by a migration, so each project generates its *own* id for the same logical row. Upserting on `id` therefore never matches, and the follow-up insert either trips a unique business-key index or — where none exists — silently duplicates the row. That's not hypothetical: the first real run 409'd on `weight_room_achievements` and had quietly left staging with two July shrugs focuses against production's one.
+
+Conflicting on the natural key instead isn't available: `weight_room_achievements` enforces uniqueness through two *partial* indexes (`where exercise is not null` / `where exercise is null`), and PostgREST's `on_conflict` can't supply an index predicate. Replace avoids inference entirely and carries production's ids over, so row identity is stable across projects.
+
+Only mark a table `replace` if losing staging-only rows in it is acceptable — these two are reference data nobody hand-edits.
+
 Production often runs *ahead* of `main` (a branch's migration gets applied before its PR merges), so each row is projected onto the columns staging actually has; unknown columns are dropped and reported rather than 400-ing the table.
 
 `panel_runs` is deliberately not synced: it's service-role-only in production, and live-panel history doesn't affect what a preview renders.
