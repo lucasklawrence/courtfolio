@@ -72,8 +72,14 @@ export function TrophyRoom({ view }: TrophyRoomProps): JSX.Element {
             {recent.map((entry, index) => (
               <BannerCard
                 key={entry.achievement.id}
-                year={formatEarnedOn(entry.firstEarnedOn, entry.achievement.scope)}
-                title={entry.achievement.label}
+                // The most recent earn, so a re-earned banner reads as fresh
+                // rather than showing a date from months ago.
+                year={formatEarnedOn(entry.lastEarnedOn, entry.achievement.scope)}
+                title={
+                  entry.timesEarned > 1
+                    ? `${entry.achievement.label} ×${entry.timesEarned.toLocaleString('en-US')}`
+                    : entry.achievement.label
+                }
                 icon={achievementIcon(entry.achievement)}
                 swayDelay={index * 0.4}
                 swayAmount={1.2 + (index % 3) * 0.3}
@@ -238,10 +244,12 @@ function BadgeTile({
   entry: ResolvedAchievement
   accent: string
 }): JSX.Element {
-  const { achievement, earned, best, progress, remaining, timesEarned, firstEarnedOn } = entry
+  const { achievement, earned, best, progress, remaining, timesEarned } = entry
   const color = achievement.color ?? accent
   const pct = Math.round(progress * 100)
-  const earnedOn = formatEarnedOn(firstEarnedOn, achievement.scope)
+  const lastOn = formatEarnedOn(entry.lastEarnedOn, achievement.scope)
+  const firstOn = formatEarnedOn(entry.firstEarnedOn, achievement.scope)
+  const isRepeat = timesEarned > 1
   // Streak thresholds count days; every other scope counts reps.
   const unit = achievement.scope === 'streak' ? 'days' : 'reps'
 
@@ -282,10 +290,27 @@ function BadgeTile({
       </div>
 
       {earned ? (
-        <p className="mt-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/55">
-          {earnedOn ? `Raised ${earnedOn}` : 'Raised'}
-          {timesEarned > 1 ? ` · ×${timesEarned.toLocaleString('en-US')}` : ''}
-        </p>
+        <div className="mt-2.5">
+          <p className="flex flex-wrap items-center gap-x-1.5 gap-y-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white/55">
+            <span>{lastOn ? `${isRepeat ? 'Last' : 'Raised'} ${lastOn}` : 'Raised'}</span>
+            {isRepeat ? (
+              <span
+                style={{ borderColor: color, color }}
+                className="rounded-full border px-1.5 py-px text-[9px] tracking-[0.12em]"
+                // The count is the point of a repeatable badge, so it gets its
+                // own chip rather than trailing the date as plain text.
+                title={`Earned ${timesEarned.toLocaleString('en-US')} times`}
+              >
+                ×{timesEarned.toLocaleString('en-US')}
+              </span>
+            ) : null}
+          </p>
+          {isRepeat && firstOn ? (
+            <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white/35">
+              first {firstOn}
+            </p>
+          ) : null}
+        </div>
       ) : (
         <div className="mt-2.5">
           <div

@@ -171,3 +171,61 @@ describe('TrophyRoom', () => {
     expect(within(screen.getByTestId('trophy-badge-a')).getByText(/×3/)).toBeInTheDocument()
   })
 })
+
+describe('TrophyRoom — repeatable badges', () => {
+  const CENTURY = [tier('a', 'pushups', 'day', 100, 'Century Club')]
+
+  it('leads with the most recent earn and dates the first one separately', () => {
+    const repeats = [
+      set('2026-07-14', 'pushups', 120),
+      set('2026-07-20', 'pushups', 130),
+      set('2026-07-24', 'pushups', 110),
+    ]
+    renderRoom(repeats, CENTURY)
+    const badge = within(screen.getByTestId('trophy-badge-a'))
+    expect(badge.getByText('Last Jul 24, 2026')).toBeInTheDocument()
+    expect(badge.getByText('first Jul 14, 2026')).toBeInTheDocument()
+    expect(badge.getByText('×3')).toBeInTheDocument()
+  })
+
+  it('says "Raised" with no repeat chip for a badge earned exactly once', () => {
+    renderRoom([set('2026-07-14', 'pushups', 120)], CENTURY)
+    const badge = within(screen.getByTestId('trophy-badge-a'))
+    expect(badge.getByText('Raised Jul 14, 2026')).toBeInTheDocument()
+    expect(badge.queryByText(/^×/)).not.toBeInTheDocument()
+    expect(badge.queryByText(/^first /)).not.toBeInTheDocument()
+  })
+
+  it('bubbles a re-earned banner back to the front of the rafters', () => {
+    const ladder = [
+      tier('a', 'pushups', 'day', 100, 'Century Club'),
+      tier('d', 'pullups', 'day', 50, 'Half Century'),
+    ]
+    const sets = [
+      // Century Club earned first, but re-earned most recently — so it should
+      // lead the strip even though Half Century's only earn came in between.
+      set('2026-07-01', 'pushups', 120),
+      set('2026-07-10', 'pullups', 60),
+      set('2026-07-24', 'pushups', 150),
+    ]
+    renderRoom(sets, ladder)
+    const recent = screen.getByRole('region', { name: 'Recently raised banners' })
+    const titles = within(recent)
+      .getAllByText(/Century Club|Half Century/)
+      .map((n) => n.textContent)
+    expect(titles[0]).toBe('Century Club ×2')
+    expect(titles[1]).toBe('Half Century')
+  })
+
+  it('shows a lifetime badge as a one-time earn even after piling on reps', () => {
+    const sets = [
+      set('2026-07-01', 'pushups', 600),
+      set('2026-07-02', 'pushups', 600),
+      set('2026-07-03', 'pushups', 600),
+    ]
+    renderRoom(sets, [tier('L', 'pushups', 'lifetime', 1000, 'Grand Club')])
+    const badge = within(screen.getByTestId('trophy-badge-L'))
+    expect(badge.getByText('Raised Jul 2, 2026')).toBeInTheDocument()
+    expect(badge.queryByText(/^×/)).not.toBeInTheDocument()
+  })
+})

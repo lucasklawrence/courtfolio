@@ -108,17 +108,30 @@ export interface ResolvedAchievement {
   /** Reps (or days, for `'streak'`) still needed; `0` once earned. */
   remaining: number
   /**
-   * How many times the tier has been earned — qualifying days / weeks /
-   * months / sets, or distinct streak runs that reached the threshold.
-   * `'lifetime'` is `1` or `0` (a cumulative total is crossed once).
+   * Every bucket in which the tier was earned, chronological. Most badges are
+   * *repeatable*: each qualifying day / week / month / set earns it again, and
+   * a streak re-earns it once per run that reaches the threshold. Two entries
+   * can share a key — two 20-rep sets on the same day are two earns of a
+   * `'set'` tier.
+   *
+   * Keys are day keys (`YYYY-MM-DD`) for every scope except `'month'`
+   * (`YYYY-MM`). Format one with {@link formatEarnedOn}.
+   *
+   * `'lifetime'` is the one non-repeatable scope — a cumulative total is
+   * crossed exactly once — so it holds at most one entry.
    */
+  earnedOn: string[]
+  /** How many times the tier has been earned; `earnedOn.length`. */
   timesEarned: number
-  /**
-   * Bucket key of the first time it was earned, or `null` if never. A day key
-   * (`YYYY-MM-DD`) for every scope except `'month'`, which is `YYYY-MM`. Format
-   * it with {@link formatEarnedOn}.
-   */
+  /** First time it was earned, or `null` if never. */
   firstEarnedOn: string | null
+  /**
+   * Most recent time it was earned, or `null` if never. Equals
+   * {@link firstEarnedOn} for a badge earned exactly once. This is what the
+   * Trophy Room's "recently raised" strip orders by, so re-earning an old
+   * badge brings it back to the front of the rafters.
+   */
+  lastEarnedOn: string | null
 }
 
 /** One exercise's (or the pooled ladder's) tiers, with its own tally. */
@@ -248,90 +261,97 @@ function buildMetrics(
   return metrics
 }
 
-/** The per-scope resolution result, before it's paired back with its tier. */
+/**
+ * The per-scope resolution result, before it's paired back with its tier.
+ *
+ * @property best     Biggest value ever recorded against the metric.
+ * @property earnedOn Every bucket that cleared the threshold, chronological —
+ *   the raw material for `timesEarned` / `firstEarnedOn` / `lastEarnedOn`.
+ */
 interface MetricOutcome {
   best: number
-  timesEarned: number
-  firstEarnedOn: string | null
+  earnedOn: string[]
 }
 
 /**
  * Resolve a bucketed volume metric (`'day'` / `'week'` / `'month'`): the
- * biggest bucket, how many buckets cleared the threshold, and the earliest one
- * that did.
+ * biggest bucket, and every bucket that cleared the threshold. Repeatable —
+ * a second 100-rep day earns the Century Club a second time.
+ *
+ * The keys are sorted rather than taken in `Map` insertion order: buckets are
+ * filled in set order, which is chronological today, but sorting makes
+ * "first" and "last" correct regardless of how the map was populated.
  */
 function resolveBuckets(buckets: ReadonlyMap<string, number>, threshold: number): MetricOutcome {
   let best = 0
-  let timesEarned = 0
-  let firstEarnedOn: string | null = null
+  const earnedOn: string[] = []
   for (const [key, value] of buckets) {
     if (value > best) best = value
-    if (value < threshold) continue
-    timesEarned++
-    if (firstEarnedOn === null || key < firstEarnedOn) firstEarnedOn = key
+    if (value >= threshold) earnedOn.push(key)
   }
-  return { best, timesEarned, firstEarnedOn }
+  earnedOn.sort()
+  return { best, earnedOn }
 }
 
 /**
  * Resolve the `'lifetime'` scope: the all-time rep total, and the day the
- * running total first crossed the threshold. Earned at most once — a
- * cumulative total only goes up, so it's crossed exactly one time.
+ * running total first crossed the threshold.
+ *
+ * The one non-repeatable scope — a cumulative total only goes up, so it's
+ * crossed exactly once and `earnedOn` holds at most one day.
  */
 function resolveLifetime(metrics: MovementMetrics, threshold: number): MetricOutcome {
   const days = [...metrics.byDay.keys()].sort()
   let running = 0
-  let firstEarnedOn: string | null = null
+  let crossedOn: string | null = null
   for (const day of days) {
     running += metrics.byDay.get(day) ?? 0
-    if (firstEarnedOn === null && running >= threshold) firstEarnedOn = day
+    if (crossedOn === null && running >= threshold) crossedOn = day
   }
-  return { best: running, timesEarned: firstEarnedOn === null ? 0 : 1, firstEarnedOn }
+  return { best: running, earnedOn: crossedOn === null ? [] : [crossedOn] }
 }
 
 /**
- * Resolve the `'set'` scope: the biggest single set, how many sets cleared the
- * threshold, and the day of the first one that did.
+ * Resolve the `'set'` scope: the biggest single set, and the day of every set
+ * that cleared the threshold. Repeatable per *set*, not per day — two 20-rep
+ * sets in one session earn a 20-rep tier twice, so the same day key can appear
+ * more than once.
+ *
+ * `metrics.sets` is already chronological (see {@link buildMetrics}), so the
+ * result needs no sort.
  */
 function resolveSets(metrics: MovementMetrics, threshold: number): MetricOutcome {
   let best = 0
-  let timesEarned = 0
-  let firstEarnedOn: string | null = null
+  const earnedOn: string[] = []
   for (const { day, reps } of metrics.sets) {
     if (reps > best) best = reps
-    if (reps < threshold) continue
-    timesEarned++
-    if (firstEarnedOn === null) firstEarnedOn = day
+    if (reps >= threshold) earnedOn.push(day)
   }
-  return { best, timesEarned, firstEarnedOn }
+  return { best, earnedOn }
 }
 
 /**
  * Resolve the `'streak'` scope: the longest run of consecutive goal-hit days,
- * how many distinct runs reached the threshold, and the day the first such run
- * hit it.
+ * and the day each qualifying run reached the threshold.
  *
  * A run counts once, on the day it *reaches* the threshold — a 20-day run earns
- * the 7-day badge one time, not fourteen.
+ * the 7-day badge one time, not fourteen — but a *later* run earns it again, so
+ * the badge is repeatable across separate streaks.
  */
 function resolveStreak(metrics: MovementMetrics, threshold: number): MetricOutcome {
   let best = 0
   let run = 0
-  let timesEarned = 0
-  let firstEarnedOn: string | null = null
+  const earnedOn: string[] = []
   let previous: string | null = null
 
   for (const day of metrics.hitDays) {
     run = previous !== null && addDays(previous, 1) === day ? run + 1 : 1
     previous = day
     if (run > best) best = run
-    if (run === threshold) {
-      timesEarned++
-      if (firstEarnedOn === null) firstEarnedOn = day
-    }
+    if (run === threshold) earnedOn.push(day)
   }
 
-  return { best, timesEarned, firstEarnedOn }
+  return { best, earnedOn }
 }
 
 /** Dispatch one tier to the resolver for its scope. */
@@ -375,15 +395,17 @@ export function resolveAchievements(
     // Guard the divisor: the DB CHECK enforces `threshold > 0`, but a tier
     // slipping through with 0 would make `progress` Infinity/NaN.
     const threshold = Math.max(1, achievement.threshold)
-    const earned = outcome.timesEarned > 0
+    const { earnedOn } = outcome
     return {
       achievement,
-      earned,
+      earned: earnedOn.length > 0,
       best: outcome.best,
       progress: Math.max(0, Math.min(1, outcome.best / threshold)),
       remaining: Math.max(0, threshold - outcome.best),
-      timesEarned: outcome.timesEarned,
-      firstEarnedOn: outcome.firstEarnedOn,
+      earnedOn,
+      timesEarned: earnedOn.length,
+      firstEarnedOn: earnedOn[0] ?? null,
+      lastEarnedOn: earnedOn[earnedOn.length - 1] ?? null,
     }
   })
 }
@@ -446,14 +468,18 @@ export function buildTrophyRoomView(
 
   const recent = resolved
     .filter((e) => e.earned)
-    // Newest first; a `null` earn date (shouldn't happen for an earned tier,
-    // but the types allow it) sorts to the end rather than to the top.
+    // Ordered by the *most recent* earn, not the first, so re-earning an old
+    // badge brings it back to the front of the rafters — the strip reads as
+    // "what I just did", not "what I did once, months ago".
+    //
+    // A `null` earn date (shouldn't happen for an earned tier, but the types
+    // allow it) sorts to the end rather than to the top.
     //
     // Keys are compared as strings across mixed granularity: a `'month'` tier's
     // `YYYY-MM` is a prefix of any day key in that month, so it sorts just
     // before same-month day tiers. That's the honest ordering — "earned in
     // July" genuinely can't be placed against "earned July 14".
-    .sort((a, b) => (b.firstEarnedOn ?? '').localeCompare(a.firstEarnedOn ?? ''))
+    .sort((a, b) => (b.lastEarnedOn ?? '').localeCompare(a.lastEarnedOn ?? ''))
     .slice(0, STRIP_SIZE)
 
   const nextUp = resolved

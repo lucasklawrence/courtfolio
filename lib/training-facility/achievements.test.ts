@@ -93,6 +93,8 @@ describe('resolveAchievements — day scope', () => {
     expect(result.timesEarned).toBe(2)
     expect(result.best).toBe(150)
     expect(result.firstEarnedOn).toBe('2026-07-14')
+    expect(result.lastEarnedOn).toBe('2026-07-20')
+    expect(result.earnedOn).toEqual(['2026-07-14', '2026-07-20'])
   })
 
   it('ignores other exercises', () => {
@@ -269,6 +271,72 @@ describe('resolveAchievements — pooled ladder', () => {
     const pooled = resolveOne(sets, tier(null, 'streak', 3))
     expect(pooled.earned).toBe(true)
     expect(pooled.best).toBe(3)
+  })
+})
+
+describe('resolveAchievements — repeatable badges', () => {
+  it('re-earns a day tier every qualifying day, in order', () => {
+    const sets = [
+      set('2026-07-14', 'pushups', 120),
+      set('2026-07-18', 'pushups', 105),
+      set('2026-07-22', 'pushups', 300),
+    ]
+    const result = resolveOne(sets, tier('pushups', 'day', 100))
+    expect(result.timesEarned).toBe(3)
+    expect(result.earnedOn).toEqual(['2026-07-14', '2026-07-18', '2026-07-22'])
+    expect(result.firstEarnedOn).toBe('2026-07-14')
+    expect(result.lastEarnedOn).toBe('2026-07-22')
+  })
+
+  it('re-earns a set tier per qualifying set, so one day can earn it twice', () => {
+    const sets = [
+      set('2026-07-14', 'pushups', 25),
+      set('2026-07-14', 'pushups', 22),
+      set('2026-07-14', 'pushups', 8),
+    ]
+    const result = resolveOne(sets, tier('pushups', 'set', 20))
+    expect(result.timesEarned).toBe(2)
+    expect(result.earnedOn).toEqual(['2026-07-14', '2026-07-14'])
+  })
+
+  it('re-earns a streak tier once per separate run', () => {
+    const day = (n: number) => `2026-07-${String(n).padStart(2, '0')}`
+    const sets = [
+      // Three-day run, a miss, then another three-day run.
+      ...[1, 2, 3].map((n) => set(day(n), 'pushups', 100)),
+      ...[10, 11, 12].map((n) => set(day(n), 'pushups', 100)),
+    ]
+    const result = resolveOne(sets, tier('pushups', 'streak', 3))
+    expect(result.timesEarned).toBe(2)
+    expect(result.earnedOn).toEqual(['2026-07-03', '2026-07-12'])
+    expect(result.lastEarnedOn).toBe('2026-07-12')
+  })
+
+  it('never re-earns a lifetime tier — a cumulative total is crossed once', () => {
+    const sets = [
+      set('2026-07-01', 'pushups', 600),
+      set('2026-07-02', 'pushups', 600),
+      set('2026-07-03', 'pushups', 600),
+    ]
+    const result = resolveOne(sets, tier('pushups', 'lifetime', 1000))
+    expect(result.timesEarned).toBe(1)
+    expect(result.firstEarnedOn).toBe('2026-07-02')
+    expect(result.lastEarnedOn).toBe('2026-07-02')
+  })
+
+  it('reports first and last as the same bucket for a single earn', () => {
+    const result = resolveOne([set('2026-07-14', 'pushups', 120)], tier('pushups', 'day', 100))
+    expect(result.timesEarned).toBe(1)
+    expect(result.firstEarnedOn).toBe('2026-07-14')
+    expect(result.lastEarnedOn).toBe('2026-07-14')
+  })
+
+  it('leaves an unearned tier with no earn history', () => {
+    const result = resolveOne([set('2026-07-14', 'pushups', 40)], tier('pushups', 'day', 100))
+    expect(result.earnedOn).toEqual([])
+    expect(result.timesEarned).toBe(0)
+    expect(result.firstEarnedOn).toBeNull()
+    expect(result.lastEarnedOn).toBeNull()
   })
 })
 
