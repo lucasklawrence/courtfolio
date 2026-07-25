@@ -1,0 +1,52 @@
+name: Migration drift
+
+# Only PRs that touch migrations. Running this on every PR would be noise: the
+# convention is to apply a migration *before* committing it, so any PR opened
+# while a sibling migration PR is unmerged sees that migration as applied with no
+# file on this branch, through no fault of its own.
+on:
+  pull_request:
+    paths:
+      - 'supabase/migrations/**'
+      - 'scripts/check-migration-drift.mjs'
+      - '.github/workflows/migration-drift.yml'
+
+# Read-only on the repo (only `checkout` needs it); this job reports a status and
+# never writes back to git. Least-privilege token, matching otbeat-ingest.yml.
+permissions:
+  contents: read
+
+concurrency:
+  group: migration-drift-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          # Read-only job — don't leave the GITHUB_TOKEN in .git/config.
+          persist-credentials: false
+
+      - name: Set up Node.js and install dependencies
+        uses: ./.github/actions/node-setup
+
+      - name: Check migrations against the applied ledger
+        # `--allow-untracked` so only the blocking failure mode blocks:
+        # committed-but-never-applied, which is the #271 shape that left three
+        # OTF sessions unusable for 20 days. Applied-with-no-file is *reported*
+        # but doesn't fail, because in a repo with concurrent PRs it usually just
+        # means a sibling migration hasn't merged yet rather than real drift.
+        # Run `npm run migrations:check` (strict, no flag) before merging to see
+        # that class too.
+        #
+        # Secrets are absent on fork PRs; the script exits 2 ("cannot tell")
+        # rather than passing, so a green check always means genuinely verified.
+        run: node scripts/check-migration-drift.mjs --allow-untracked
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
