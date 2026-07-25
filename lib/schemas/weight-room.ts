@@ -398,6 +398,14 @@ const achievementWriteFields = {
   icon: z.string().trim().min(1).max(8, 'icon should be a single emoji').nullable(),
 }
 
+/**
+ * Request-body schema for `POST /api/admin/weight-room/achievements`.
+ *
+ * `label`, `scope`, and `threshold` are required. An omitted `exercise`
+ * defaults to `null` (the pooled "all movements" ladder) and an omitted
+ * `measure` to `'reps'`, so the common case — a rep tier — needs neither.
+ * `color` and `icon` stay optional; the UI supplies its own fallbacks.
+ */
 export const WeightRoomAchievementCreateSchema = z
   .object({
     ...achievementWriteFields,

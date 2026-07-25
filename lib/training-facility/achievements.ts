@@ -37,9 +37,6 @@ import { pacificDayKey } from './load-management'
  * `load-management.ts` (#319).
  */
 
-/** Map key standing in for the pooled "all movements" ladder (`exercise: null`). */
-const POOLED_KEY = '*'
-
 /** Render order for scopes — volume ladders first, then the "how" scopes. */
 const SCOPE_ORDER: readonly AchievementScope[] = [
   'day',
@@ -286,7 +283,7 @@ function emptyMetrics(): MovementMetrics {
 function buildMetrics(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
-): Map<string, MovementMetrics> {
+): Map<string | null, MovementMetrics> {
   // Implements moved per set, per exercise. An exercise with no configured
   // goal — or one predating the column — falls back to a single implement,
   // which is the only safe default: it can understate a pair, but it can
@@ -294,9 +291,13 @@ function buildMetrics(
   const multiplierByExercise = new Map(
     goals.map((g) => [g.exercise, Math.max(1, g.load_multiplier ?? 1)]),
   )
-  const metrics = new Map<string, MovementMetrics>()
+  // Keyed by exercise name, with `null` — a perfectly good `Map` key — standing
+  // for the pooled "all movements" ladder. Deliberately not a string sentinel:
+  // any non-empty string is a valid exercise name, so a sentinel could collide
+  // with a real movement rather than staying distinct from every one of them.
+  const metrics = new Map<string | null, MovementMetrics>()
   const pooled = emptyMetrics()
-  metrics.set(POOLED_KEY, pooled)
+  metrics.set(null, pooled)
 
   const forExercise = (exercise: string): MovementMetrics => {
     let m = metrics.get(exercise)
@@ -526,8 +527,10 @@ export function resolveAchievements(
   const metrics = buildMetrics(sets, goals)
 
   return achievements.map((achievement) => {
-    const key = achievement.exercise ?? POOLED_KEY
-    const outcome = resolveMetric(metrics.get(key) ?? emptyMetrics(), achievement)
+    const outcome = resolveMetric(
+      metrics.get(achievement.exercise) ?? emptyMetrics(),
+      achievement,
+    )
     // Guard the divisor: the DB CHECK enforces `threshold > 0`, but a tier
     // slipping through with 0 would make `progress` Infinity/NaN.
     const threshold = Math.max(1, achievement.threshold)
@@ -574,9 +577,9 @@ export function buildTrophyRoomView(
     goals.map((g) => [g.exercise, Math.max(1, g.load_multiplier ?? 1)]),
   )
 
-  const byExercise = new Map<string, ResolvedAchievement[]>()
+  const byExercise = new Map<string | null, ResolvedAchievement[]>()
   for (const entry of resolved) {
-    const key = entry.achievement.exercise ?? POOLED_KEY
+    const key = entry.achievement.exercise
     const bucket = byExercise.get(key)
     if (bucket) bucket.push(entry)
     else byExercise.set(key, [entry])
@@ -585,12 +588,12 @@ export function buildTrophyRoomView(
   const groups: AchievementGroup[] = [...byExercise.entries()]
     .sort(([a], [b]) => {
       // Pooled ladder first, then alphabetical by exercise.
-      if (a === POOLED_KEY) return -1
-      if (b === POOLED_KEY) return 1
+      if (a === null) return -1
+      if (b === null) return 1
       return a.localeCompare(b)
     })
     .map(([key, entries]) => {
-      const isPooled = key === POOLED_KEY
+      const isPooled = key === null
       entries.sort((a, b) => {
         const scopeDelta =
           SCOPE_ORDER.indexOf(a.achievement.scope) - SCOPE_ORDER.indexOf(b.achievement.scope)

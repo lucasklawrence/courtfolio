@@ -520,6 +520,20 @@ describe('resolveAchievements — edge cases', () => {
     expect(result.best).toBe(60)
   })
 
+  it('keeps an exercise literally named "*" separate from the pooled ladder', () => {
+    // Uniqueness used to be keyed on `coalesce(exercise, '*')`, which collapsed
+    // a movement named `*` onto the pooled row. The resolver had the same
+    // sentinel; both now key on `null` itself.
+    const sets = [set('2026-07-14', '*', 40), set('2026-07-14', 'pushups', 90)]
+    const starred = resolveOne(sets, tier('*', 'day', 100))
+    const pooled = resolveOne(sets, tier(null, 'day', 100))
+
+    expect(starred.best).toBe(40) // only the `*` movement
+    expect(starred.earned).toBe(false)
+    expect(pooled.best).toBe(130) // every movement, including `*`
+    expect(pooled.earned).toBe(true)
+  })
+
   it('resolves a tier for an exercise that has never been logged', () => {
     const result = resolveOne([set('2026-07-14', 'pushups', 100)], tier('dips', 'day', 50))
     expect(result.earned).toBe(false)
