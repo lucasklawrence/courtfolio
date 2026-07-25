@@ -228,15 +228,24 @@ export function computeFocusAdherence(
  * `weight_lbs`).
  */
 export interface FocusLoadStats {
-  /** Heaviest single set's load in lbs, or `null` if no weighted sets. */
+  /**
+   * Heaviest single set's load in lbs **per implement**, or `null` if no
+   * weighted sets — the number stamped on the dumbbell, which is how the load
+   * is read off the equipment and stated ("60 lb DBs"). Deliberately *not*
+   * multiplied by `loadMultiplier`: see {@link computeFocusLoadStats}.
+   */
   topSetLbs: number | null
   /**
-   * Mean load across weighted sets in lbs (unrounded), or `null` if
-   * none. Only sets that carry a `weight_lbs` count toward the average —
+   * Mean per-implement load across weighted sets in lbs (unrounded), or `null`
+   * if none. Only sets that carry a `weight_lbs` count toward the average —
    * an unweighted warmup set doesn't drag it down.
    */
   avgLoadLbs: number | null
-  /** Total tonnage = Σ `reps × weight_lbs` over weighted sets, in lbs. */
+  /**
+   * Total tonnage in lbs = Σ `reps × weight_lbs × loadMultiplier` over weighted
+   * sets — the *actual* weight moved, counting every implement. A two-dumbbell
+   * shrug moves both, so its tonnage is double the per-hand arithmetic.
+   */
   tonnageLbs: number
   /** Number of in-window sets that carried a load. */
   weightedSets: number
@@ -246,13 +255,31 @@ export interface FocusLoadStats {
  * Compute load stats for a focus from the full set log, restricted to
  * the focus's `exercise` and `[start_date, end_date]` window.
  *
+ * WHY TONNAGE AND LOAD DIVERGE: `weight_lbs` records one implement's load,
+ * because that's how it's read off the equipment. "How heavy did you go?" is
+ * naturally answered per-implement (you shrug the 60s), but "how much did you
+ * move?" has to count both hands. So {@link FocusLoadStats.topSetLbs} and
+ * {@link FocusLoadStats.avgLoadLbs} stay per-implement while
+ * {@link FocusLoadStats.tonnageLbs} applies `loadMultiplier`.
+ *
+ * The Trophy Room's `load` measure makes the opposite choice — it reports total
+ * pounds carried — because a badge threshold needs one unambiguous number and
+ * its group header says which. Both are labeled where they're shown; the thing
+ * that would be wrong is an *unlabeled* mix.
+ *
  * @param focus The focus to summarize.
  * @param sets All logged sets, usually `WeightRoomData.sets`.
+ * @param loadMultiplier Implements moved per set, from the matching
+ *   {@link import('@/types/weight-room').ExerciseGoal.load_multiplier}.
+ *   Defaults to `1` (single implement). Values below 1 are clamped up, so a bad
+ *   config can't erase tonnage.
  */
 export function computeFocusLoadStats(
   focus: MonthlyFocus,
   sets: readonly StrengthSet[],
+  loadMultiplier = 1,
 ): FocusLoadStats {
+  const implements_ = Math.max(1, loadMultiplier)
   let topSetLbs: number | null = null
   let loadSum = 0
   let tonnageLbs = 0
@@ -265,7 +292,7 @@ export function computeFocusLoadStats(
     if (s.weight_lbs == null) continue
     weightedSets++
     loadSum += s.weight_lbs
-    tonnageLbs += s.reps * s.weight_lbs
+    tonnageLbs += s.reps * s.weight_lbs * implements_
     if (topSetLbs === null || s.weight_lbs > topSetLbs) topSetLbs = s.weight_lbs
   }
 

@@ -264,4 +264,28 @@ describe('computeFocusLoadStats', () => {
     expect(stats.weightedSets).toBe(1)
     expect(stats.tonnageLbs).toBe(2000)
   })
+
+  it('scales tonnage by the load multiplier but leaves load per-implement', () => {
+    const sets: StrengthSet[] = [
+      setOn('shrugs', 2026, 6, 1, 20, 100),
+      setOn('shrugs', 2026, 6, 2, 15, 120),
+    ]
+    const stats = computeFocusLoadStats(JULY_SHRUGS, sets, 2)
+    // Both dumbbells move, so tonnage doubles...
+    expect(stats.tonnageLbs).toBe((20 * 100 + 15 * 120) * 2)
+    // ...but "how heavy did you go" stays the number on one dumbbell.
+    expect(stats.topSetLbs).toBe(120)
+    expect(stats.avgLoadLbs).toBeCloseTo(110)
+  })
+
+  it('defaults to a single implement when no multiplier is supplied', () => {
+    const sets: StrengthSet[] = [setOn('shrugs', 2026, 6, 1, 10, 50)]
+    expect(computeFocusLoadStats(JULY_SHRUGS, sets).tonnageLbs).toBe(500)
+    expect(computeFocusLoadStats(JULY_SHRUGS, sets, 1).tonnageLbs).toBe(500)
+  })
+
+  it('clamps a non-positive multiplier so tonnage can’t be erased', () => {
+    const sets: StrengthSet[] = [setOn('shrugs', 2026, 6, 1, 10, 50)]
+    expect(computeFocusLoadStats(JULY_SHRUGS, sets, 0).tonnageLbs).toBe(500)
+  })
 })
