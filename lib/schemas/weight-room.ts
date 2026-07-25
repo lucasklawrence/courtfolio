@@ -371,15 +371,40 @@ export function achievementRowToAchievement(
  * ladder. Omitting it defaults to `null`, so a caller that doesn't care about
  * per-exercise scoping gets the pooled tier.
  */
+/**
+ * The achievement write fields, without any `.default()`.
+ *
+ * Kept default-free so {@link WeightRoomAchievementUpdateSchema} can be built
+ * from it safely. Zod 4 applies `.default()` to a missing key *even inside*
+ * `.partial()` (a deliberate change from Zod 3), so deriving the PATCH schema
+ * from a create schema that carries defaults would inject `exercise: null` and
+ * `measure: 'reps'` into every patch — and the route writes any key that isn't
+ * `undefined`. Retuning one threshold would silently convert a per-exercise
+ * tier into a pooled one and reset its measure. Defaults belong only on the
+ * create path, where a missing key really does mean "use the default".
+ */
+const achievementWriteFields = {
+  label: z.string().trim().min(1, 'label is required').max(60, 'label is too long'),
+  exercise: exerciseWriteField().nullable(),
+  scope: achievementScope(),
+  measure: achievementMeasure(),
+  threshold: positiveInt(),
+  color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C'),
+  /**
+   * Badge emoji. `null` explicitly clears it back to the scope default — the
+   * editor needs a way to say "remove this", which an omitted key can't express
+   * under PATCH semantics.
+   */
+  icon: z.string().trim().min(1).max(8, 'icon should be a single emoji').nullable(),
+}
+
 export const WeightRoomAchievementCreateSchema = z
   .object({
-    label: z.string().trim().min(1, 'label is required').max(60, 'label is too long'),
-    exercise: exerciseWriteField().nullable().default(null),
-    scope: achievementScope(),
-    measure: achievementMeasure().default('reps'),
-    threshold: positiveInt(),
-    color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C').optional(),
-    icon: z.string().trim().min(1).max(8, 'icon should be a single emoji').optional(),
+    ...achievementWriteFields,
+    exercise: achievementWriteFields.exercise.default(null),
+    measure: achievementWriteFields.measure.default('reps'),
+    color: achievementWriteFields.color.optional(),
+    icon: achievementWriteFields.icon.optional(),
   })
   .strict()
 
@@ -390,11 +415,18 @@ export type WeightRoomAchievementCreate = z.infer<typeof WeightRoomAchievementCr
  * Request-body schema for `PATCH /api/admin/weight-room/achievements/[id]`.
  * Every field optional so a caller can retune just the threshold, but the body
  * must carry at least one field — an empty patch is a client bug, not a no-op.
+ *
+ * Built from the default-free {@link achievementWriteFields} so an omitted key
+ * stays omitted; see that constant for why that matters.
  */
-export const WeightRoomAchievementUpdateSchema = WeightRoomAchievementCreateSchema.partial().refine(
-  (patch) => Object.keys(patch).length > 0,
-  { message: 'At least one field (label, exercise, scope, threshold, color, or icon) is required.' },
-)
+export const WeightRoomAchievementUpdateSchema = z
+  .object(achievementWriteFields)
+  .strict()
+  .partial()
+  .refine((patch) => Object.keys(patch).length > 0, {
+    message:
+      'At least one field (label, exercise, scope, measure, threshold, color, or icon) is required.',
+  })
 
 /** Validated body of `PATCH /api/admin/weight-room/achievements/[id]`. */
 export type WeightRoomAchievementUpdate = z.infer<typeof WeightRoomAchievementUpdateSchema>

@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  WeightRoomAchievementCreateSchema,
+  WeightRoomAchievementUpdateSchema,
   WeightRoomGoalRowSchema,
   WeightRoomGoalUpsertSchema,
   WeightRoomMonthlyFocusCreateSchema,
@@ -256,5 +258,67 @@ describe('WeightRoomMonthlyFocusCreateSchema (write body)', () => {
         end_date: '2026-07-01',
       }),
     ).toThrow()
+  })
+})
+
+describe('WeightRoomAchievementCreateSchema', () => {
+  const base = { label: 'Century Club', scope: 'day' as const, threshold: 100 }
+
+  it('defaults a missing exercise to the pooled ladder and measure to reps', () => {
+    expect(WeightRoomAchievementCreateSchema.parse(base)).toMatchObject({
+      exercise: null,
+      measure: 'reps',
+    })
+  })
+
+  it('lowercases a supplied exercise', () => {
+    expect(WeightRoomAchievementCreateSchema.parse({ ...base, exercise: 'PushUps' })).toMatchObject({
+      exercise: 'pushups',
+    })
+  })
+
+  it('rejects a non-positive threshold and an unknown measure', () => {
+    expect(() => WeightRoomAchievementCreateSchema.parse({ ...base, threshold: 0 })).toThrow()
+    expect(() =>
+      WeightRoomAchievementCreateSchema.parse({ ...base, measure: 'calories' }),
+    ).toThrow()
+  })
+})
+
+describe('WeightRoomAchievementUpdateSchema', () => {
+  /**
+   * The regression this guards: Zod 4 applies `.default()` to a missing key even
+   * inside `.partial()`. Deriving the PATCH schema from a create schema carrying
+   * defaults injected `exercise: null` and `measure: 'reps'` into every patch,
+   * and the route writes any key that isn't `undefined` — so retuning a single
+   * threshold silently converted a per-exercise tier into a pooled one and reset
+   * its measure.
+   */
+  it('carries only the keys that were actually sent', () => {
+    expect(WeightRoomAchievementUpdateSchema.parse({ threshold: 500 })).toEqual({ threshold: 500 })
+    expect(WeightRoomAchievementUpdateSchema.parse({ label: 'Renamed' })).toEqual({
+      label: 'Renamed',
+    })
+  })
+
+  it('never injects a default exercise or measure', () => {
+    const patch = WeightRoomAchievementUpdateSchema.parse({ threshold: 500 })
+    expect('exercise' in patch).toBe(false)
+    expect('measure' in patch).toBe(false)
+  })
+
+  it('still applies an explicitly supplied value', () => {
+    expect(WeightRoomAchievementUpdateSchema.parse({ exercise: null })).toEqual({ exercise: null })
+    expect(WeightRoomAchievementUpdateSchema.parse({ measure: 'tonnage' })).toEqual({
+      measure: 'tonnage',
+    })
+  })
+
+  it('accepts an explicit null icon so the editor can clear one', () => {
+    expect(WeightRoomAchievementUpdateSchema.parse({ icon: null })).toEqual({ icon: null })
+  })
+
+  it('rejects an empty patch', () => {
+    expect(() => WeightRoomAchievementUpdateSchema.parse({})).toThrow()
   })
 })

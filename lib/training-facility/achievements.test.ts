@@ -19,14 +19,15 @@ import {
 } from './achievements'
 
 /**
- * Set factory. Timestamps are local-noon so the bucketing (which uses the
- * *local* calendar day) is stable regardless of the runner's timezone — the
- * same trick `strength-today`'s backdating helper uses.
+ * Set factory. `19:00Z` is midday Pacific year-round (noon PDT / 11am PST), so
+ * `day` is the Pacific calendar day the resolver buckets it under no matter
+ * what timezone the test runner is in — a bare local timestamp would drift on
+ * any runner far from Pacific.
  */
 function set(day: string, exercise: string, reps: number): StrengthSet {
   return {
     id: `${exercise}-${day}-${reps}-${Math.random()}`,
-    logged_at: `${day}T12:00:00`,
+    logged_at: `${day}T19:00:00Z`,
     exercise,
     reps,
   }
@@ -347,7 +348,7 @@ describe('resolveAchievements — load measures', () => {
   function wset(day: string, exercise: string, reps: number, weight: number): StrengthSet {
     return {
       id: `${exercise}-${day}-${reps}x${weight}`,
-      logged_at: `${day}T12:00:00`,
+      logged_at: `${day}T19:00:00Z`,
       exercise,
       reps,
       weight_lbs: weight,
@@ -447,6 +448,53 @@ describe('resolveAchievements — load measures', () => {
       wset('2026-07-02', 'shrugs', 100, 50),
     ]
     const result = loaded(sets, tier('shrugs', 'streak', 2, { measure: 'tonnage' }))
+    expect(result.best).toBe(2)
+    expect(result.earned).toBe(true)
+  })
+})
+
+describe('resolveAchievements — Pacific day bucketing', () => {
+  /** A set at an explicit UTC instant, so the bucketing zone is what's under test. */
+  function utcSet(iso: string, exercise: string, reps: number): StrengthSet {
+    return { id: `${exercise}-${iso}-${reps}`, logged_at: iso, exercise, reps }
+  }
+
+  it('keeps a late-evening Pacific set on the Pacific day, not the UTC one', () => {
+    // 2026-07-15T05:00:00Z is 10pm PT on the 14th. Bucketing by UTC would file
+    // it under the 15th and split the day's total in half.
+    const sets = [
+      utcSet('2026-07-14T20:00:00Z', 'pushups', 60), // 1pm PT, the 14th
+      utcSet('2026-07-15T05:00:00Z', 'pushups', 60), // 10pm PT, still the 14th
+    ]
+    const result = resolveOne(sets, tier('pushups', 'day', 100))
+    expect(result.best).toBe(120)
+    expect(result.earned).toBe(true)
+    expect(result.firstEarnedOn).toBe('2026-07-14')
+  })
+
+  it('keeps an early-morning UTC set on the previous Pacific day', () => {
+    // 2026-07-15T06:59:00Z is 11:59pm PT on the 14th.
+    const result = resolveOne(
+      [utcSet('2026-07-15T06:59:00Z', 'pushups', 100)],
+      tier('pushups', 'day', 100),
+    )
+    expect(result.firstEarnedOn).toBe('2026-07-14')
+  })
+
+  it('does not merge two genuinely different Pacific days', () => {
+    const sets = [
+      utcSet('2026-07-15T05:00:00Z', 'pushups', 60), // 10pm PT the 14th
+      utcSet('2026-07-15T17:00:00Z', 'pushups', 60), // 10am PT the 15th
+    ]
+    expect(resolveOne(sets, tier('pushups', 'day', 100)).earned).toBe(false)
+  })
+
+  it('counts a Pacific-midnight-spanning pair as a two-day streak', () => {
+    const sets = [
+      utcSet('2026-07-15T05:00:00Z', 'pushups', 100), // 10pm PT the 14th
+      utcSet('2026-07-16T05:00:00Z', 'pushups', 100), // 10pm PT the 15th
+    ]
+    const result = resolveOne(sets, tier('pushups', 'streak', 2))
     expect(result.best).toBe(2)
     expect(result.earned).toBe(true)
   })

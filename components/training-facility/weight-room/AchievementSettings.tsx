@@ -43,7 +43,7 @@ const DEFAULT_NEW_COLOR = '#FACC15'
 /** Sentinel `<option>` value standing in for `exercise: null` (the pooled ladder). */
 const POOLED_OPTION = '__pooled__'
 
-/** The write payload shared by create and update. */
+/** The full write payload, as `POST` requires it. */
 interface AchievementBody {
   label: string
   exercise: string | null
@@ -51,8 +51,19 @@ interface AchievementBody {
   measure: AchievementMeasure
   threshold: number
   color: string
-  icon?: string
+  /** Badge emoji; `null` clears it back to the scope default. */
+  icon?: string | null
 }
+
+/**
+ * A `PATCH` body: only the fields that actually changed.
+ *
+ * The route writes every key present and leaves absent ones alone, so sending
+ * full state would stamp unrelated columns — most visibly, a tier with no
+ * configured `color` would have the picker's default written over its
+ * inherit-from-goal fallback the first time any other field was edited.
+ */
+type AchievementPatch = Partial<AchievementBody>
 
 /**
  * Admin-only editor for the Weight Room achievement ladder (#336). Renders each
@@ -106,7 +117,7 @@ export function AchievementSettings({
     return true
   }
 
-  async function updateAchievement(id: string, body: AchievementBody): Promise<void> {
+  async function updateAchievement(id: string, body: AchievementPatch): Promise<void> {
     setError(null)
     const res = await fetch(`/api/admin/weight-room/achievements/${encodeURIComponent(id)}`, {
       method: 'PATCH',
@@ -195,7 +206,7 @@ interface AchievementRowProps {
   achievement: WeightRoomAchievement
   exerciseOptions: readonly string[]
   disabled: boolean
-  onSave: (id: string, body: AchievementBody) => Promise<void>
+  onSave: (id: string, body: AchievementPatch) => Promise<void>
   onDelete: (achievement: WeightRoomAchievement) => Promise<void>
 }
 
@@ -229,15 +240,26 @@ function AchievementRow({
     const trimmedLabel = label.trim()
     const trimmedIcon = icon.trim()
     if (!dirty || trimmedLabel.length === 0 || !Number.isInteger(threshold) || threshold <= 0) return
-    await onSave(achievement.id, {
-      label: trimmedLabel,
-      exercise: exercise === POOLED_OPTION ? null : exercise,
-      scope,
-      measure,
-      threshold,
-      color,
-      ...(trimmedIcon === '' ? {} : { icon: trimmedIcon }),
-    })
+
+    // Diff against the row as loaded — see {@link AchievementPatch} for why
+    // sending unchanged fields is not harmless.
+    const nextExercise = exercise === POOLED_OPTION ? null : exercise
+    const patch: AchievementPatch = {}
+    if (trimmedLabel !== achievement.label) patch.label = trimmedLabel
+    if (nextExercise !== achievement.exercise) patch.exercise = nextExercise
+    if (scope !== achievement.scope) patch.scope = scope
+    if (measure !== (achievement.measure ?? 'reps')) patch.measure = measure
+    if (threshold !== achievement.threshold) patch.threshold = threshold
+    if (color !== (achievement.color ?? DEFAULT_NEW_COLOR)) patch.color = color
+    // An emptied icon input sends an explicit `null` to clear it; omitting the
+    // key would read as "leave unchanged" and the emoji would come back on the
+    // next refresh.
+    if (trimmedIcon !== (achievement.icon ?? '')) {
+      patch.icon = trimmedIcon === '' ? null : trimmedIcon
+    }
+    if (Object.keys(patch).length === 0) return
+
+    await onSave(achievement.id, patch)
   }
 
   return (

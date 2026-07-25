@@ -18,6 +18,27 @@ import {
  */
 const DEFAULT_ACCENT = '#FACC15'
 
+/**
+ * A faint wash of `color` for an earned tile's background.
+ *
+ * Appending an alpha pair only yields valid CSS for a 6-digit hex, but the
+ * schema also accepts `#FA0` and `#EA580C88` — `#FA014` and `#EA580C8814` are
+ * both nonsense, and an invalid `backgroundColor` drops the tint silently.
+ * Shorthand is expanded and an existing alpha replaced; anything else falls
+ * back to a neutral wash so the tile still reads as lit.
+ *
+ * @param color Hex color from the tier or its exercise goal.
+ */
+function tint(color: string): string {
+  const hex = /^#([0-9a-fA-F]{3,8})$/.exec(color)?.[1]
+  if (hex?.length === 3) {
+    const [r, g, b] = hex
+    return `#${r}${r}${g}${g}${b}${b}14`
+  }
+  if (hex?.length === 6 || hex?.length === 8) return `#${hex.slice(0, 6)}14`
+  return 'rgba(255,255,255,0.06)'
+}
+
 /** Props for {@link TrophyRoom}. */
 export interface TrophyRoomProps {
   /**
@@ -266,7 +287,7 @@ function BadgeTile({
   const isRepeat = timesEarned > 1
   const unit = achievementUnit(achievement)
 
-  const litStyle: CSSProperties = { borderColor: color, backgroundColor: `${color}14` }
+  const litStyle: CSSProperties = { borderColor: color, backgroundColor: tint(color) }
 
   return (
     <div

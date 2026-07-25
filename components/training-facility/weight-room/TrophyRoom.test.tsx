@@ -33,8 +33,9 @@ const GOALS: ExerciseGoal[] = [
   { exercise: 'pullups', daily_target: 30, color: '#0EA5A1' },
 ]
 
+/** `19:00Z` is midday Pacific year-round, so `day` is the bucket regardless of runner timezone. */
 function set(day: string, exercise: string, reps: number): StrengthSet {
-  return { id: `${exercise}-${day}-${reps}`, logged_at: `${day}T12:00:00`, exercise, reps }
+  return { id: `${exercise}-${day}-${reps}`, logged_at: `${day}T19:00:00Z`, exercise, reps }
 }
 
 function tier(

@@ -6,7 +6,7 @@ import type {
   WeightRoomAchievement,
 } from '@/types/weight-room'
 
-import { toLocalDateKey } from './strength-today'
+import { pacificDayKey } from './load-management'
 
 /**
  * Pure resolver for the Weight Room Trophy Room (#336) — "grease the groove"
@@ -29,9 +29,12 @@ import { toLocalDateKey } from './strength-today'
  * log, not about "now") — so it unit-tests cleanly and runs on either side of
  * the SSR/CSR boundary.
  *
- * All bucketing uses *local* calendar days via {@link toLocalDateKey}, and ISO
- * (Mon–Sun) weeks, matching the History view's heatmap rows and weekly-volume
- * chart so a badge can never disagree with a bar the user is looking at.
+ * All bucketing uses **Pacific** calendar days via {@link pacificDayKey}, and
+ * ISO (Mon–Sun) weeks. Pacific rather than the runtime's local zone because the
+ * Trophy Room renders in a Server Component and Vercel runs in UTC — a set
+ * logged at 10pm Pacific would otherwise land on the following day, splitting
+ * daily totals and breaking streaks that are actually intact. Same anchor as
+ * `load-management.ts` (#319).
  */
 
 /** Map key standing in for the pooled "all movements" ladder (`exercise: null`). */
@@ -207,19 +210,45 @@ export interface TrophyRoomView {
   nextUp: ResolvedAchievement[]
 }
 
-/** ISO-week (Monday) key for a `YYYY-MM-DD` day key. Local noon so DST can't shift the day. */
-function weekKeyOf(dayKey: string): string {
-  const d = new Date(dayKey + 'T12:00:00')
-  const dow = d.getDay()
-  d.setDate(d.getDate() - (dow === 0 ? 6 : dow - 1))
-  return toLocalDateKey(d)
+/** Two-digit zero-pad for assembling a `YYYY-MM-DD` key. */
+function pad2(n: number): string {
+  return String(n).padStart(2, '0')
 }
 
-/** Add `n` days to a `YYYY-MM-DD` key. Local-noon base so DST can't shift the day. */
+/**
+ * Pacific day key for a set's `logged_at`, or `''` when the timestamp is
+ * unparseable. {@link pacificDayKey} would throw a `RangeError` on an Invalid
+ * Date; callers here treat `''` as "skip this set", so a single malformed row
+ * can't take down the whole wall.
+ */
+function safePacificDayKey(loggedAt: string): string {
+  const d = new Date(loggedAt)
+  return Number.isFinite(d.getTime()) ? pacificDayKey(d) : ''
+}
+
+/**
+ * Add `n` days to a `YYYY-MM-DD` key.
+ *
+ * Arithmetic runs in UTC on a bare calendar date, which makes it exact: the
+ * key is already a *Pacific* day (see {@link pacificDayKey}), so re-entering a
+ * timezone here — even via a local-noon `Date` — would only reintroduce a zone
+ * the caller has already resolved. UTC has no DST, so "+1 day" is always
+ * exactly 86,400,000 ms.
+ */
 function addDays(dayKey: string, n: number): string {
-  const d = new Date(dayKey + 'T12:00:00')
-  d.setDate(d.getDate() + n)
-  return toLocalDateKey(d)
+  const [y, m, d] = dayKey.split('-').map(Number)
+  const dt = new Date(Date.UTC(y, m - 1, d) + n * 86_400_000)
+  return `${dt.getUTCFullYear()}-${pad2(dt.getUTCMonth() + 1)}-${pad2(dt.getUTCDate())}`
+}
+
+/**
+ * ISO-week (Monday) key for a `YYYY-MM-DD` day key — the Monday at or before
+ * it. Same zone-free arithmetic as {@link addDays}.
+ */
+function weekKeyOf(dayKey: string): string {
+  const [y, m, d] = dayKey.split('-').map(Number)
+  const dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay()
+  return addDays(dayKey, -(dow === 0 ? 6 : dow - 1))
 }
 
 /** Increment a `key → number` tally, treating a missing key as `0`. */
@@ -281,7 +310,7 @@ function buildMetrics(
   // Sets arrive oldest-first from the data layer, but sort defensively: the
   // `'set'` and `'lifetime'` earn dates both depend on chronological order.
   const ordered = [...sets]
-    .map((s) => ({ set: s, day: toLocalDateKey(s.logged_at) }))
+    .map((s) => ({ set: s, day: safePacificDayKey(s.logged_at) }))
     .filter((entry) => entry.day !== '')
     .sort((a, b) => (a.day < b.day ? -1 : a.day > b.day ? 1 : 0))
 
