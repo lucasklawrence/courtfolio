@@ -70,6 +70,32 @@ applied-with-no-file is usually just a sibling PR that hasn't landed yet, so it'
 reported rather than enforced. The strict local run is what catches genuine
 untracked drift.
 
+## Two Supabase projects
+
+| | ref | Holds |
+|---|---|---|
+| **production** | `ryxbnvhxxkrmsrmocume` | The real data. Source of truth. |
+| **staging** | `tztrsfefesacnbreerhp` | A point-in-time copy, for preview deploys. |
+
+**Everything that writes, writes to production.** The OTbeat cron, the
+`log-workout` and `log-weight` skills (both hardcode the production ref), and the
+Apple Health import. Nothing dual-writes. So:
+
+- **Never read staging to answer a question about the data.** "How many classes
+  in July", "what did I lift yesterday" — always production. Staging is stale by
+  design and looks convincingly current, which is the trap.
+- **Apply every migration to both.** `apply_migration` takes a `project_id`, so
+  one session can do both; run `migrations:check` against each afterwards
+  (point `NEXT_PUBLIC_SUPABASE_URL` / `_ANON_KEY` at whichever you're checking).
+  Production usually runs *ahead* of `main`, because a feature branch's migration
+  is applied before its PR merges — that's expected, not drift.
+- **Refresh staging with `npm run staging:sync`**, or the weekly
+  `staging-sync` workflow. Upsert-based: production edits propagate,
+  staging-only rows survive, deletions do **not** propagate.
+
+Staging is also the place to rehearse a destructive migration — a `drop`, a type
+change, a `not null` backfill — before running it anywhere near production.
+
 ## Throwaway screenshots
 
 Write any temporary screenshots (audit runs, verification captures, mobile spot-checks, anything you take just to look at) to the `screenshots/` directory at the repo root. Its contents are gitignored. Don't drop screenshots at the repo root — they'll show up as untracked clutter in `git status` and complicate every future stage.
