@@ -13,14 +13,17 @@ test.describe('training facility enabled', () => {
     await expect(page.getByRole('button', { name: /enter the training facility/i })).toBeVisible()
   })
 
-  test('renders the top-level shell route with all three doors active', async ({ page }) => {
+  test('renders the corridor lobby with all three doors active', async ({ page }) => {
     await page.goto('/training-facility')
 
-    await expect(page.getByRole('heading', { name: /pick a door\./i })).toBeVisible()
-    await expect(page.getByRole('link', { name: /the gym/i })).toBeVisible()
-    await expect(page.getByRole('link', { name: /the combine/i })).toBeVisible()
-    // Slice #82 lights up Weight Room — was previously a disabled button.
-    await expect(page.getByRole('link', { name: /weight room/i })).toBeVisible()
+    // Scene-first layout (#326): the h1 is visually hidden but present for
+    // screen readers + this assertion; wayfinding lives on the door signs.
+    await expect(page.getByRole('heading', { name: /^training facility$/i })).toBeAttached()
+    // The three doorways are SVG anchors — assert on the DOM href/aria so
+    // the check doesn't depend on SVG bounding-box visibility.
+    await expect(page.locator('a[href="/training-facility/gym"]')).toHaveCount(1)
+    await expect(page.locator('a[href="/training-facility/combine"]')).toHaveCount(1)
+    await expect(page.locator('a[href="/training-facility/weight-room"]')).toHaveCount(1)
   })
 
   test('renders the gym and combine placeholder routes', async ({ page }) => {
@@ -54,10 +57,9 @@ test.describe('training facility enabled', () => {
     await expect(subNav).toBeVisible()
   })
 
-  test('the Weight Room door on the shell points to the Today View', async ({ page }) => {
+  test('the Weight Room door in the corridor points to the Today View', async ({ page }) => {
     await page.goto('/training-facility')
-    const door = page.getByRole('link', { name: /weight room/i })
-    await expect(door).toBeVisible()
+    const door = page.locator('a[aria-label="Enter the Weight Room"]')
     await expect(door).toHaveAttribute('href', '/training-facility/weight-room')
   })
 })
