@@ -104,8 +104,17 @@ export function MonthlyFocusCard({
       {/* Load stats — only for weighted focuses. */}
       {hasLoad ? (
         <dl className="grid grid-cols-3 gap-3 border-t border-white/10 pt-4 text-center">
-          <FocusStat label="Top set" value={`${trim1(loadStats.topSetLbs ?? 0)} lb`} />
-          <FocusStat label="Avg load" value={`${trim1(loadStats.avgLoadLbs ?? 0)} lb`} />
+          <FocusStat
+            label="Top set"
+            value={`${trim1(loadStats.topSetLbs ?? 0)} lb`}
+            sub={totalLoadNote(loadStats.topSetLbs, loadStats.loadMultiplier)}
+          />
+          <FocusStat
+            label="Avg load"
+            value={`${trim1(loadStats.avgLoadLbs ?? 0)} lb`}
+            sub={totalLoadNote(loadStats.avgLoadLbs, loadStats.loadMultiplier)}
+          />
+          {/* Tonnage already counts every implement, so it needs no second reading. */}
           <FocusStat label="Tonnage" value={`${loadStats.tonnageLbs.toLocaleString()} lb`} />
         </dl>
       ) : null}
@@ -113,11 +122,45 @@ export function MonthlyFocusCard({
   )
 }
 
+/**
+ * The second reading of a load for a multi-implement movement, e.g. `×2 · 120 lb`
+ * under a `60 lb` top set.
+ *
+ * `topSetLbs` / `avgLoadLbs` are per *implement* — the number stamped on one
+ * dumbbell, which is how the load is read off the rack and how it gets logged.
+ * That's the right answer to "how heavy did you go", but it leaves "how much was
+ * actually in my hands" unstated, and the Trophy Room's load badges are keyed to
+ * that total. Showing both here means neither surface has to be translated.
+ *
+ * @returns `undefined` for a single-implement movement, where the two readings
+ *   are the same number and a second line would be noise.
+ */
+function totalLoadNote(perImplementLbs: number | null, loadMultiplier: number): string | undefined {
+  if (perImplementLbs === null || loadMultiplier <= 1) return undefined
+  return `×${loadMultiplier} · ${trim1(perImplementLbs * loadMultiplier)} lb`
+}
+
 /** Single labelled stat cell inside the focus card's grids. */
-function FocusStat({ label, value }: { label: string; value: string }): JSX.Element {
+function FocusStat({
+  label,
+  value,
+  sub,
+}: {
+  label: string
+  value: string
+  /** Optional secondary reading rendered under the value, e.g. a total-load note. */
+  sub?: string
+}): JSX.Element {
   return (
     <div className="flex flex-col gap-1">
-      <dd className="font-mono text-base font-semibold tabular-nums text-white">{value}</dd>
+      <dd className="font-mono text-base font-semibold tabular-nums text-white">
+        {value}
+        {sub ? (
+          <span className="mt-0.5 block text-[9px] font-normal tracking-[0.08em] text-white/45">
+            {sub}
+          </span>
+        ) : null}
+      </dd>
       <dt className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/45">{label}</dt>
     </div>
   )

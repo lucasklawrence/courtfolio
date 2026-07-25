@@ -249,6 +249,13 @@ export interface FocusLoadStats {
   tonnageLbs: number
   /** Number of in-window sets that carried a load. */
   weightedSets: number
+  /**
+   * Implements moved per set, echoed back from the argument so a renderer can
+   * show both readings of a load without re-plumbing the goal. `1` for a single
+   * implement, in which case per-implement and total are the same number and
+   * there's nothing extra to show.
+   */
+  loadMultiplier: number
 }
 
 /**
@@ -301,5 +308,6 @@ export function computeFocusLoadStats(
     avgLoadLbs: weightedSets === 0 ? null : loadSum / weightedSets,
     tonnageLbs,
     weightedSets,
+    loadMultiplier: implements_,
   }
 }

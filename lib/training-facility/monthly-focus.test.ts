@@ -251,6 +251,7 @@ describe('computeFocusLoadStats', () => {
       avgLoadLbs: null,
       tonnageLbs: 0,
       weightedSets: 0,
+      loadMultiplier: 1,
     })
   })
 

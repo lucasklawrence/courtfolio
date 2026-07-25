@@ -30,6 +30,16 @@ const WEIGHTED_LOAD: FocusLoadStats = {
   avgLoadLbs: 105,
   tonnageLbs: 5800,
   weightedSets: 6,
+  loadMultiplier: 1,
+}
+
+/** A two-dumbbell movement: same per-implement loads, doubled tonnage. */
+const PAIRED_LOAD: FocusLoadStats = {
+  topSetLbs: 60,
+  avgLoadLbs: 50,
+  tonnageLbs: 11600,
+  weightedSets: 6,
+  loadMultiplier: 2,
 }
 
 const BODYWEIGHT_LOAD: FocusLoadStats = {
@@ -37,6 +47,7 @@ const BODYWEIGHT_LOAD: FocusLoadStats = {
   avgLoadLbs: null,
   tonnageLbs: 0,
   weightedSets: 0,
+  loadMultiplier: 1,
 }
 
 describe('MonthlyFocusCard', () => {
@@ -118,6 +129,39 @@ describe('MonthlyFocusCard', () => {
       />,
     )
     expect(screen.queryByText('Top set')).not.toBeInTheDocument()
+  })
+
+  it('shows only the per-implement load for a single-implement movement', () => {
+    render(
+      <MonthlyFocusCard
+        focus={FOCUS}
+        todayProgress={100}
+        adherence={ADHERENCE}
+        loadStats={WEIGHTED_LOAD}
+      />,
+    )
+    // Nothing to disambiguate when one implement is moved, so no second reading.
+    expect(screen.queryByText(/^×\d/)).not.toBeInTheDocument()
+  })
+
+  it('shows both readings of the load for a two-implement movement', () => {
+    render(
+      <MonthlyFocusCard
+        focus={FOCUS}
+        todayProgress={100}
+        adherence={ADHERENCE}
+        loadStats={PAIRED_LOAD}
+      />,
+    )
+    // Per-implement headline — the number on one dumbbell, as logged...
+    expect(screen.getByText('60 lb')).toBeInTheDocument()
+    expect(screen.getByText('50 lb')).toBeInTheDocument()
+    // ...with the total actually carried underneath, matching the Trophy Room's
+    // load badges so neither surface has to be translated.
+    expect(screen.getByText('×2 · 120 lb')).toBeInTheDocument()
+    expect(screen.getByText('×2 · 100 lb')).toBeInTheDocument()
+    // Tonnage already counts both implements, so it gets no second reading.
+    expect(screen.getByText('11,600 lb')).toBeInTheDocument()
   })
 
   it('marks the daily target as met when today progress reaches it', () => {
