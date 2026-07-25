@@ -323,7 +323,7 @@ flowchart TB
 | **Lifestyle trends** | `cardio_{hrv,walking_hr,body_mass,step_count,sleep,active_energy}_trend` | Six identical `(date PK, value)` tables. |
 | **OrangeTheory** | `otf_sessions` (PK `started_at`) | Per‑class metrics + `treadmill`/`rower` JSONB, `excluded` anomaly flag, inferred `class_type` (+ manual override). Append‑only. |
 | **Weight Room** | `weight_room_goals` (PK `exercise`), `weight_room_sets` (FK→goals), `weight_room_monthly_focus` | "Grease the groove" strength logging + rotating monthly focus. |
-| **Combine** | `movement_benchmarks` (PK `date`) | Athletic benchmarks. Migration applied directly to Supabase (not in `supabase/migrations/`). |
+| **Combine** | `movement_benchmarks` (PK `date`) | Athletic benchmarks. The only table maintaining `updated_at` with a `set_updated_at` trigger rather than the column default — the admin write path depends on it. |
 
 ---
 
@@ -360,7 +360,7 @@ flowchart TB
 | Telemetry | `lib/telemetry/**`, `instrumentation.ts` |
 | Offline judge panel | `lib/panel/**`, `scripts/panel.ts`, `app/draft-room/panelResult.ts` |
 | Ingestion scripts | `scripts/*.mjs`, `scripts/lib/**` |
-| DB schema | `supabase/migrations/*.sql` |
+| DB schema | `supabase/migrations/*.sql` — every file must also appear in the applied ledger; `npm run migrations:check` verifies both directions |
 | CI + scheduled cron | `.github/workflows/**` (`otbeat-ingest.yml` is the daily cron) |
 
 ---
