@@ -28,6 +28,7 @@ import {
   otfClassTypes,
   otfHighlights,
   otfLinearRegression,
+  otfClassTypeLabel,
   otfMetricTrend,
   resolveOtfClassTypeFilter,
   type OtfTrendPoint,
@@ -501,7 +502,7 @@ function ClassTypeFilter({
           onClick={() => onChange(opt)}
           className={pill(value === opt)}
         >
-          {opt}
+          {otfClassTypeLabel(opt)}
         </button>
       ))}
     </div>
@@ -624,9 +625,9 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
   const excludedCount = useMemo(() => sessions.filter(s => s.excluded).length, [sessions])
   const activeCount = sessions.length - excludedCount
   // Counted classes that carry no class type still land in every aggregate, but
-  // they're only reachable through the "Unclassified" chip — so say how many
+  // they're only reachable through the "No class type" chip — so say how many
   // there are rather than letting them read as missing data.
-  const unclassifiedCount = useMemo(
+  const untypedCount = useMemo(
     () => sessions.filter(s => !s.excluded && !effectiveOtfClassType(s)).length,
     [sessions]
   )
@@ -642,8 +643,8 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
           {excludedCount > 0 && (
             <span className="ml-1 text-[#f9a870]/80">· {excludedCount} excluded</span>
           )}
-          {unclassifiedCount > 0 && (
-            <span className="ml-1 text-white/45">· {unclassifiedCount} unclassified</span>
+          {untypedCount > 0 && (
+            <span className="ml-1 text-white/45">· {untypedCount} untyped</span>
           )}
           <span className="ml-2 text-white/35">
             ({formatBound(range.start)} → {formatBound(range.end)})

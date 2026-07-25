@@ -110,16 +110,33 @@ export const OTF_CLASS_TYPE_ORDER: readonly string[] = [
 ]
 
 /**
- * Filter-only sentinel for sessions with no effective class type.
+ * Filter-only sentinel selecting the sessions with no effective class type.
  *
- * Not a `class_type` value the ingest path ever writes — it exists so untyped
- * sessions stay *reachable* in the UI. Without it, a session whose `class_type`
- * is null (an ingest that raced the #271 backfill, or a near-zero malfunction)
- * matched no chip and was silently dropped by every non-`null` selection, with
- * nothing in the log or the counts to say it had been. Selecting this option
- * filters to exactly those sessions; it sorts last in {@link otfClassTypes}.
+ * It exists so untyped sessions stay *reachable* in the UI. Without it, a
+ * session whose `class_type` is null (an ingest that raced the #271 backfill, or
+ * a near-zero malfunction) matched no chip and was silently dropped by every
+ * non-`null` selection, with nothing in the log or the counts to say it had
+ * been. Sorts last in {@link otfClassTypes}.
+ *
+ * The leading NUL is deliberate: `class_type_override` is unrestricted free text
+ * a human types into Supabase, so a *readable* sentinel like `'Untyped'` could
+ * collide with a real override — the option list would carry two identical
+ * entries (duplicate React keys) and the overridden session would vanish when
+ * its own chip was selected, since the filter would read the selection as the
+ * sentinel. No parsed or hand-entered value contains a NUL, so this cannot
+ * collide. Never stored in the database; render it via
+ * {@link otfClassTypeLabel}, never directly.
  */
-export const OTF_CLASS_TYPE_UNCLASSIFIED = 'Unclassified'
+export const OTF_CLASS_TYPE_UNTYPED = '\u0000otf-untyped'
+
+/**
+ * Human label for a class-type filter option — the value itself, except for the
+ * non-printable {@link OTF_CLASS_TYPE_UNTYPED} sentinel. Use for any option
+ * rendered to the user.
+ */
+export function otfClassTypeLabel(classType: string): string {
+  return classType === OTF_CLASS_TYPE_UNTYPED ? 'No class type' : classType
+}
 
 /**
  * The class type the view should treat a session as: the manual
@@ -141,7 +158,7 @@ export function effectiveOtfClassType(session: OtfSession): string | undefined {
  * alphabetically for a stable, session-order-independent result.
  *
  * Sessions with no effective type contribute the
- * {@link OTF_CLASS_TYPE_UNCLASSIFIED} sentinel, last — so the options always
+ * {@link OTF_CLASS_TYPE_UNTYPED} sentinel, last — so the options always
  * partition the window and no session is unreachable through the filter.
  */
 export function otfClassTypes(sessions: readonly OtfSession[]): string[] {
@@ -154,7 +171,7 @@ export function otfClassTypes(sessions: readonly OtfSession[]): string[] {
   }
   const known = OTF_CLASS_TYPE_ORDER.filter(t => present.has(t))
   const extras = [...present].filter(t => !OTF_CLASS_TYPE_ORDER.includes(t)).sort()
-  return [...known, ...extras, ...(hasUntyped ? [OTF_CLASS_TYPE_UNCLASSIFIED] : [])]
+  return [...known, ...extras, ...(hasUntyped ? [OTF_CLASS_TYPE_UNTYPED] : [])]
 }
 
 /**
@@ -163,7 +180,7 @@ export function otfClassTypes(sessions: readonly OtfSession[]): string[] {
  * returns every session (a fresh array). Composes with
  * {@link filterOtfSessionsInRange} and {@link excludeInvalidOtfSessions}.
  *
- * {@link OTF_CLASS_TYPE_UNCLASSIFIED} selects the sessions that have *no*
+ * {@link OTF_CLASS_TYPE_UNTYPED} selects the sessions that have *no*
  * effective type, which no real label can match — keeping untyped classes
  * reachable rather than silently filtered away.
  */
@@ -172,7 +189,7 @@ export function filterOtfSessionsByClassType(
   classType: string | null
 ): OtfSession[] {
   if (!classType) return [...sessions]
-  if (classType === OTF_CLASS_TYPE_UNCLASSIFIED) {
+  if (classType === OTF_CLASS_TYPE_UNTYPED) {
     return sessions.filter(s => !effectiveOtfClassType(s))
   }
   return sessions.filter(s => effectiveOtfClassType(s) === classType)

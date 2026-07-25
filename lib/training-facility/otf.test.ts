@@ -10,7 +10,7 @@ import {
 } from '../../scripts/lib/otbeat-class-type.mjs'
 import {
   OTF_CLASS_TYPE_ORDER,
-  OTF_CLASS_TYPE_UNCLASSIFIED,
+  OTF_CLASS_TYPE_UNTYPED,
   aggregateOtfZoneMinutes,
   earliestOtfDate,
   effectiveOtfClassType,
@@ -21,6 +21,7 @@ import {
   formatOtfDate,
   mmssToSeconds,
   otfBlockTrend,
+  otfClassTypeLabel,
   otfClassTypes,
   otfHighlights,
   otfLinearRegression,
@@ -111,24 +112,24 @@ describe('class-type helpers (#271)', () => {
         mk('c', { class_type: 'Tread + Row' }), // duplicate collapses
         mk('d', { class_type: 'Tread-focused' }),
         mk('e', { class_type: 'Tread + Row', class_type_override: 'Strength 50' }), // manual extra
-        mk('f'), // no type → the Unclassified sentinel, last
+        mk('f'), // no type → the untyped sentinel, last
       ]
       expect(otfClassTypes(sessions)).toEqual([
         'Tread + Row',
         'Tread-focused',
         'Row-focused',
         'Strength 50',
-        OTF_CLASS_TYPE_UNCLASSIFIED,
+        OTF_CLASS_TYPE_UNTYPED,
       ])
     })
 
-    it('omits the Unclassified sentinel when every session has a type', () => {
+    it('omits the untyped sentinel when every session has a type', () => {
       const sessions = [mk('a', { class_type: 'Tread + Row' }), mk('b', { class_type: 'Row-focused' })]
       expect(otfClassTypes(sessions)).toEqual(['Tread + Row', 'Row-focused'])
     })
 
-    it('offers only the Unclassified sentinel when no session has a type', () => {
-      expect(otfClassTypes([mk('a'), mk('b')])).toEqual([OTF_CLASS_TYPE_UNCLASSIFIED])
+    it('offers only the untyped sentinel when no session has a type', () => {
+      expect(otfClassTypes([mk('a'), mk('b')])).toEqual([OTF_CLASS_TYPE_UNTYPED])
     })
   })
 
@@ -206,10 +207,10 @@ describe('class-type helpers (#271)', () => {
       expect(result).not.toBe(sessions)
     })
 
-    it('selects the untyped sessions for the Unclassified sentinel', () => {
+    it('selects the untyped sessions for the untyped sentinel', () => {
       const withUntyped = [...sessions, mk('d'), mk('e', { class_type: '  ' })]
       expect(
-        filterOtfSessionsByClassType(withUntyped, OTF_CLASS_TYPE_UNCLASSIFIED).map(s => s.started_at)
+        filterOtfSessionsByClassType(withUntyped, OTF_CLASS_TYPE_UNTYPED).map(s => s.started_at)
       ).toEqual(['d', 'e'])
     })
 
@@ -223,6 +224,45 @@ describe('class-type helpers (#271)', () => {
         options.flatMap(o => filterOtfSessionsByClassType(withUntyped, o).map(s => s.started_at))
       )
       expect(reached).toEqual(new Set(['a', 'b', 'c', 'd']))
+    })
+
+    // codex #334: `class_type_override` is unrestricted free text, so a readable
+    // sentinel could be typed in as a real override — the option list would carry
+    // two identical entries (duplicate React keys) and the overridden session
+    // would vanish under its own chip. The non-printable sentinel can't collide.
+    it('keeps a human-readable override distinct from the untyped sentinel', () => {
+      const withCollider = [
+        mk('a', { class_type: 'Tread + Row' }),
+        mk('b', { class_type_override: 'No class type' }), // the sentinel's *label*
+        mk('c'), // genuinely untyped
+      ]
+      const options = otfClassTypes(withCollider)
+      // Two distinct options, no duplicates — safe as React keys.
+      expect(options).toEqual(['Tread + Row', 'No class type', OTF_CLASS_TYPE_UNTYPED])
+      expect(new Set(options).size).toBe(options.length)
+      // Each chip selects only its own session.
+      expect(filterOtfSessionsByClassType(withCollider, 'No class type').map(s => s.started_at)).toEqual(
+        ['b']
+      )
+      expect(
+        filterOtfSessionsByClassType(withCollider, OTF_CLASS_TYPE_UNTYPED).map(s => s.started_at)
+      ).toEqual(['c'])
+    })
+  })
+
+  describe('otfClassTypeLabel', () => {
+    it('renders the untyped sentinel as readable text', () => {
+      expect(otfClassTypeLabel(OTF_CLASS_TYPE_UNTYPED)).toBe('No class type')
+    })
+
+    it('passes a real class type through unchanged', () => {
+      expect(otfClassTypeLabel('Tread + Row')).toBe('Tread + Row')
+      expect(otfClassTypeLabel('2G')).toBe('2G')
+    })
+
+    it('does not disguise an override that matches the sentinel label', () => {
+      // The override is a real, selectable type — it must not be relabelled.
+      expect(otfClassTypeLabel('No class type')).toBe('No class type')
     })
   })
 })
