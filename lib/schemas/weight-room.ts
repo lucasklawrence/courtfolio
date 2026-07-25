@@ -12,7 +12,14 @@
 
 import { z } from 'zod'
 
-import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
+import type {
+  AchievementMeasure,
+  AchievementScope,
+  ExerciseGoal,
+  MonthlyFocus,
+  StrengthSet,
+  WeightRoomAchievement,
+} from '@/types/weight-room'
 
 /**
  * Hex-color regex used for the per-exercise display token. Loose enough
@@ -140,6 +147,10 @@ export const WeightRoomGoalRowSchema = z
     // 'permanent', so live rows always carry it. Absent → treated as
     // 'permanent' by the row converter.
     kind: z.enum(['permanent', 'focus']).nullable().optional(),
+    // Optional + nullable so pre-load-ladder rows (and fixtures) without the
+    // column still validate; the DB column is NOT NULL DEFAULT 1, so live rows
+    // always carry it. Absent → treated as 1 by the row converter.
+    load_multiplier: positiveInt().nullable().optional(),
   })
   .strict()
 
@@ -219,6 +230,8 @@ export function goalRowToExerciseGoal(row: WeightRoomGoalRow): ExerciseGoal {
     // Absent/null → omit so it defaults to 'permanent' at read sites
     // (pre-#255 goals and fixtures never carry kind).
     ...(row.kind != null ? { kind: row.kind } : {}),
+    // Same treatment: absent/null → omit so read sites default it to 1.
+    ...(row.load_multiplier != null ? { load_multiplier: row.load_multiplier } : {}),
   }
 }
 
@@ -288,3 +301,140 @@ export function focusRowToMonthlyFocus(row: WeightRoomMonthlyFocusRow): MonthlyF
     end_date: row.end_date,
   }
 }
+
+/** The six achievement scopes, as a Zod enum reused by the row + write schemas. */
+const achievementScope = (): z.ZodType<AchievementScope> =>
+  z.enum(['day', 'week', 'month', 'streak', 'lifetime', 'set'])
+
+/** The three achievement measures, as a Zod enum reused by the row + write schemas. */
+const achievementMeasure = (): z.ZodType<AchievementMeasure> =>
+  z.enum(['reps', 'tonnage', 'load'])
+
+/**
+ * Zod schema for one row of `public.weight_room_achievements` (#336) on read.
+ * `.strict()` so a column added to the table without updating this schema /
+ * the data-layer whitelist fails loudly instead of leaking to the view.
+ *
+ * `color` / `icon` are `.optional()` (not `.nullable()`) — the data layer maps
+ * Postgres `NULL` → absent before validating, matching the sibling schemas.
+ * `exercise` is the deliberate exception: it stays explicitly `.nullable()`
+ * because `null` *means* something here (the pooled all-movements ladder)
+ * rather than "not supplied", and collapsing it to `undefined` would erase
+ * that distinction.
+ */
+export const WeightRoomAchievementRowSchema = z
+  .object({
+    id: z.string().uuid(),
+    label: z.string().min(1),
+    exercise: z.string().min(1).nullable(),
+    scope: achievementScope(),
+    // Optional so pre-load-ladder rows (and fixtures) still validate; the DB
+    // column is NOT NULL DEFAULT 'reps'. Absent → treated as 'reps'.
+    measure: achievementMeasure().optional(),
+    threshold: positiveInt(),
+    color: z.string().optional(),
+    icon: z.string().optional(),
+  })
+  .strict()
+
+/** Validated `weight_room_achievements` row inferred from {@link WeightRoomAchievementRowSchema}. */
+export type WeightRoomAchievementRow = z.infer<typeof WeightRoomAchievementRowSchema>
+
+/**
+ * Translate a validated `weight_room_achievements` row into the consumed
+ * {@link WeightRoomAchievement} shape. `exercise` passes through as-is
+ * (`null` is meaningful); `color` / `icon` are omitted when absent so the
+ * optional fields stay `string | undefined`.
+ */
+export function achievementRowToAchievement(
+  row: WeightRoomAchievementRow,
+): WeightRoomAchievement {
+  const achievement: WeightRoomAchievement = {
+    id: row.id,
+    label: row.label,
+    exercise: row.exercise,
+    scope: row.scope,
+    threshold: row.threshold,
+  }
+  if (row.measure !== undefined) achievement.measure = row.measure
+  if (row.color !== undefined) achievement.color = row.color
+  if (row.icon !== undefined) achievement.icon = row.icon
+  return achievement
+}
+
+/**
+ * Request-body schema for `POST /api/admin/weight-room/achievements` (#336).
+ *
+ * `exercise` accepts a string (lowercased, matching {@link exerciseWriteField}'s
+ * anti-duplicate reasoning — a tier for `"Pushups"` must resolve against the
+ * same metric as one for `"pushups"`), or an explicit `null` for the pooled
+ * ladder. Omitting it defaults to `null`, so a caller that doesn't care about
+ * per-exercise scoping gets the pooled tier.
+ */
+/**
+ * The achievement write fields, without any `.default()`.
+ *
+ * Kept default-free so {@link WeightRoomAchievementUpdateSchema} can be built
+ * from it safely. Zod 4 applies `.default()` to a missing key *even inside*
+ * `.partial()` (a deliberate change from Zod 3), so deriving the PATCH schema
+ * from a create schema that carries defaults would inject `exercise: null` and
+ * `measure: 'reps'` into every patch — and the route writes any key that isn't
+ * `undefined`. Retuning one threshold would silently convert a per-exercise
+ * tier into a pooled one and reset its measure. Defaults belong only on the
+ * create path, where a missing key really does mean "use the default".
+ */
+const achievementWriteFields = {
+  label: z.string().trim().min(1, 'label is required').max(60, 'label is too long'),
+  exercise: exerciseWriteField().nullable(),
+  scope: achievementScope(),
+  measure: achievementMeasure(),
+  threshold: positiveInt(),
+  color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C'),
+  /**
+   * Badge emoji. `null` explicitly clears it back to the scope default — the
+   * editor needs a way to say "remove this", which an omitted key can't express
+   * under PATCH semantics.
+   */
+  icon: z.string().trim().min(1).max(8, 'icon should be a single emoji').nullable(),
+}
+
+/**
+ * Request-body schema for `POST /api/admin/weight-room/achievements`.
+ *
+ * `label`, `scope`, and `threshold` are required. An omitted `exercise`
+ * defaults to `null` (the pooled "all movements" ladder) and an omitted
+ * `measure` to `'reps'`, so the common case — a rep tier — needs neither.
+ * `color` and `icon` stay optional; the UI supplies its own fallbacks.
+ */
+export const WeightRoomAchievementCreateSchema = z
+  .object({
+    ...achievementWriteFields,
+    exercise: achievementWriteFields.exercise.default(null),
+    measure: achievementWriteFields.measure.default('reps'),
+    color: achievementWriteFields.color.optional(),
+    icon: achievementWriteFields.icon.optional(),
+  })
+  .strict()
+
+/** Validated body of `POST /api/admin/weight-room/achievements`. */
+export type WeightRoomAchievementCreate = z.infer<typeof WeightRoomAchievementCreateSchema>
+
+/**
+ * Request-body schema for `PATCH /api/admin/weight-room/achievements/[id]`.
+ * Every field optional so a caller can retune just the threshold, but the body
+ * must carry at least one field — an empty patch is a client bug, not a no-op.
+ *
+ * Built from the default-free {@link achievementWriteFields} so an omitted key
+ * stays omitted; see that constant for why that matters.
+ */
+export const WeightRoomAchievementUpdateSchema = z
+  .object(achievementWriteFields)
+  .strict()
+  .partial()
+  .refine((patch) => Object.keys(patch).length > 0, {
+    message:
+      'At least one field (label, exercise, scope, measure, threshold, color, or icon) is required.',
+  })
+
+/** Validated body of `PATCH /api/admin/weight-room/achievements/[id]`. */
+export type WeightRoomAchievementUpdate = z.infer<typeof WeightRoomAchievementUpdateSchema>

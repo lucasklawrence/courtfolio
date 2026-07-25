@@ -2,14 +2,18 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 
 import {
+  WeightRoomAchievementRowSchema,
   WeightRoomGoalRowSchema,
   WeightRoomMonthlyFocusRowSchema,
   WeightRoomSetRowSchema,
+  achievementRowToAchievement,
   focusRowToMonthlyFocus,
   goalRowToExerciseGoal,
   setRowToStrengthSet,
 } from '@/lib/schemas/weight-room'
-import type { WeightRoomData } from '@/types/weight-room'
+import type { WeightRoomAchievement, WeightRoomData } from '@/types/weight-room'
+
+import { fetchAllRows } from './paged-read'
 
 /**
  * Pure Weight Room read helpers shared between the browser entry
@@ -28,13 +32,85 @@ const FOCUS_TABLE = 'weight_room_monthly_focus'
 
 /** Whitelisted column lists for each table; `updated_at` rides along for `imported_at` computation. */
 const SETS_COLUMNS = 'id, logged_at, exercise, reps, weight_lbs, variant, updated_at'
-const GOALS_COLUMNS = 'exercise, daily_target, color, kind, updated_at'
+const GOALS_COLUMNS = 'exercise, daily_target, color, kind, load_multiplier, updated_at'
 const FOCUS_COLUMNS =
   'id, exercise, daily_target, target_kind, color, category, start_date, end_date, updated_at'
 
 const WeightRoomSetRowsSchema = z.array(WeightRoomSetRowSchema)
 const WeightRoomGoalRowsSchema = z.array(WeightRoomGoalRowSchema)
 const WeightRoomMonthlyFocusRowsSchema = z.array(WeightRoomMonthlyFocusRowSchema)
+
+/** Supabase table backing the Trophy Room achievement ladder (#336). */
+const ACHIEVEMENTS_TABLE = 'weight_room_achievements'
+
+/** Whitelisted columns for `weight_room_achievements`, in sync with {@link WeightRoomAchievementRowSchema}. */
+const ACHIEVEMENTS_COLUMNS = 'id, label, exercise, scope, measure, threshold, color, icon'
+
+/** Array form of {@link WeightRoomAchievementRowSchema} for validating the ladder read. */
+const WeightRoomAchievementRowsSchema = z.array(WeightRoomAchievementRowSchema)
+
+/**
+ * Fetch the Trophy Room achievement ladder (#336) using the supplied client.
+ * Shared between `getWeightRoomAchievements` (browser) and
+ * `getWeightRoomAchievementsServer` (server) so the read shape and validation
+ * can't drift.
+ *
+ * Unlike {@link assembleWeightRoomData}, returns an **empty array** (not
+ * `null`) when the table is empty — the Trophy Room always renders its metric
+ * summary, just with no badges to unlock, so an empty ladder is a valid steady
+ * state rather than a "no data yet" branch. Ordered by exercise then scope
+ * then threshold so callers get the wall grouped and low → high without
+ * re-sorting.
+ *
+ * @param supabase Browser or server SSR client (both anon role; the table's RLS
+ *   allows anon SELECT).
+ * @throws when the Supabase query fails or row-shape validation fails. The
+ *   Trophy Room downgrades this to an empty ladder so a read blip can't blank
+ *   the page.
+ */
+export async function assembleWeightRoomAchievements(
+  supabase: SupabaseClient,
+): Promise<WeightRoomAchievement[]> {
+  // `nullsFirst` puts the pooled "all movements" tiers at the head of the
+  // ladder, which is also where the Trophy Room renders them.
+  const res = await supabase
+    .from(ACHIEVEMENTS_TABLE)
+    .select(ACHIEVEMENTS_COLUMNS)
+    .order('exercise', { ascending: true, nullsFirst: true })
+    .order('scope', { ascending: true })
+    .order('threshold', { ascending: true })
+
+  if (res.error) {
+    throw new Error(`Failed to load weight room achievements: ${res.error.message}`)
+  }
+
+  const raw = (res.data ?? []) as unknown as Array<Record<string, unknown>>
+  const parsed = WeightRoomAchievementRowsSchema.safeParse(raw.map(stripNullBadgeFields))
+  if (!parsed.success) {
+    throw new Error(
+      `weight_room_achievements failed schema validation: ${parsed.error.message}`,
+    )
+  }
+
+  return parsed.data.map(achievementRowToAchievement)
+}
+
+/**
+ * Drop `color` / `icon` when Postgres returned `NULL`, so they validate as
+ * `.optional()` rather than needing `.nullable()` — the convention every
+ * sibling row schema follows.
+ *
+ * `exercise` is deliberately left alone: a `null` there is the pooled
+ * "all movements" ladder, a real value rather than an absent one.
+ */
+function stripNullBadgeFields(row: Record<string, unknown>): Record<string, unknown> {
+  const out: Record<string, unknown> = {}
+  for (const [key, value] of Object.entries(row)) {
+    if (value === null && key !== 'exercise') continue
+    out[key] = value
+  }
+  return out
+}
 
 /**
  * Fetch the full Weight Room dataset from Supabase using the supplied
@@ -71,22 +147,27 @@ export async function assembleWeightRoomData(
   // relative order unstable between fetches. `updated_at` resolves ties
   // by insertion order (sets have no update path), and `id` backstops
   // same-transaction inserts whose `updated_at` also collides.
-  const [setsRes, goalsRes, focusRes] = await Promise.all([
-    supabase
-      .from(SETS_TABLE)
-      .select(SETS_COLUMNS)
-      .order('logged_at', { ascending: true })
-      .order('updated_at', { ascending: true })
-      .order('id', { ascending: true }),
+  const [setsRaw, goalsRes, focusRes] = await Promise.all([
+    // Paged — the set log is the one table here that grows without bound, and
+    // it crossed PostgREST's response cap in July 2026, silently dropping the
+    // *newest* sets (this query sorts ascending). The multi-key order above is
+    // also what makes paging stable. See {@link fetchAllRows}.
+    fetchAllRows(
+      () =>
+        supabase
+          .from(SETS_TABLE)
+          .select(SETS_COLUMNS)
+          .order('logged_at', { ascending: true })
+          .order('updated_at', { ascending: true })
+          .order('id', { ascending: true }),
+      'weight room sets',
+    ),
     supabase.from(GOALS_TABLE).select(GOALS_COLUMNS).order('exercise', { ascending: true }),
     // Newest window first so the "Upcoming"/roadmap UI can slice from
     // the head without re-sorting.
     supabase.from(FOCUS_TABLE).select(FOCUS_COLUMNS).order('start_date', { ascending: false }),
   ])
 
-  if (setsRes.error) {
-    throw new Error(`Failed to load weight room sets: ${setsRes.error.message}`)
-  }
   if (goalsRes.error) {
     throw new Error(`Failed to load weight room goals: ${goalsRes.error.message}`)
   }
@@ -94,7 +175,6 @@ export async function assembleWeightRoomData(
     throw new Error(`Failed to load weight room monthly focus: ${focusRes.error.message}`)
   }
 
-  const setsRaw = (setsRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const goalsRaw = (goalsRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const focusRaw = (focusRes.data ?? []) as unknown as Array<Record<string, unknown>>
 

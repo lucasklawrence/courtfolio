@@ -1,9 +1,12 @@
 import 'server-only'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
-import type { WeightRoomData } from '@/types/weight-room'
+import type { WeightRoomAchievement, WeightRoomData } from '@/types/weight-room'
 
-import { assembleWeightRoomData } from './weight-room-shared'
+import {
+  assembleWeightRoomAchievements,
+  assembleWeightRoomData,
+} from './weight-room-shared'
 
 /**
  * Server-side Weight Room dataset reader (#79) for Server Components
@@ -27,4 +30,21 @@ import { assembleWeightRoomData } from './weight-room-shared'
 export async function getWeightRoomDataServer(): Promise<WeightRoomData | null> {
   const supabase = await createServerSupabaseClient()
   return assembleWeightRoomData(supabase)
+}
+
+/**
+ * Server-side reader for the Trophy Room achievement ladder (#336) — used by
+ * the `/training-facility/weight-room/achievements` page and the Settings
+ * page's initial hydration. Wraps {@link assembleWeightRoomAchievements} with
+ * the per-request SSR client.
+ *
+ * Returns an empty array (never `null`) when no tiers are configured — see
+ * {@link assembleWeightRoomAchievements}.
+ *
+ * @throws See {@link assembleWeightRoomAchievements}. Both call sites
+ *   downgrade this to an empty ladder rather than failing the page.
+ */
+export async function getWeightRoomAchievementsServer(): Promise<WeightRoomAchievement[]> {
+  const supabase = await createServerSupabaseClient()
+  return assembleWeightRoomAchievements(supabase)
 }

@@ -167,7 +167,15 @@ export function LogDataIsland(): JSX.Element {
   // own unit (reps or distinct sets), plus windowed adherence and load
   // stats.
   const focusCards = activeFocuses.map((focus) =>
-    buildFocusCardProps(focus, setsForDay, surfaceData.sets),
+    buildFocusCardProps(
+      focus,
+      setsForDay,
+      surfaceData.sets,
+      // Implements moved per set — shrugs carry two dumbbells, so their tonnage
+      // counts both. Without this the card would disagree with the Trophy
+      // Room's figure for the same movement.
+      goalsByExercise[focus.exercise]?.load_multiplier ?? 1,
+    ),
   )
 
   return (
@@ -375,11 +383,14 @@ function computeVariantSuggestionsByExercise(
  * @param focus The focus active on the viewed day.
  * @param setsForDay Sets already filtered to the viewed day.
  * @param allSets The full set log, for window-spanning adherence + load.
+ * @param loadMultiplier Implements moved per set, from the focus exercise's
+ *   goal. Scales tonnage only — top set and average load stay per-implement.
  */
 function buildFocusCardProps(
   focus: MonthlyFocus,
   setsForDay: readonly StrengthSet[],
   allSets: readonly StrengthSet[],
+  loadMultiplier = 1,
 ): {
   focus: MonthlyFocus
   todayProgress: number
@@ -395,7 +406,7 @@ function buildFocusCardProps(
     focus,
     todayProgress,
     adherence: computeFocusAdherence(focus, allSets),
-    loadStats: computeFocusLoadStats(focus, allSets),
+    loadStats: computeFocusLoadStats(focus, allSets, loadMultiplier),
   }
 }
 

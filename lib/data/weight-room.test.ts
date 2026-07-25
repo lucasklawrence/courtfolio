@@ -19,15 +19,22 @@ interface FakeResult {
 
 /**
  * Chainable + awaitable fake of the Supabase query builder. `select`/
- * `order` return the builder itself (so multi-key `.order().order()`
+ * `order`/`range` return the builder itself (so multi-key `.order().order()`
  * chains work, #229) and awaiting it resolves with {@link FakeQuery.result}
  * — mirroring the real builder, which is a thenable.
+ *
+ * When `.range(from, to)` has been called, the await resolves with just that
+ * slice of `result.data`, so the paged sets read (#336) walks real page
+ * boundaries instead of getting the whole array back on every request.
  */
 interface FakeQuery extends PromiseLike<FakeResult> {
   select: ReturnType<typeof vi.fn>
   order: ReturnType<typeof vi.fn>
+  range: ReturnType<typeof vi.fn>
   /** Result the await resolves with; {@link stubTable} overwrites it. */
   result: FakeResult
+  /** Inclusive `[from, to]` window from the most recent `.range()` call. */
+  lastRange: [number, number] | null
 }
 
 const queriesByTable: Record<string, FakeQuery> = {}
@@ -36,13 +43,24 @@ const fromMock = vi.fn((table: string): FakeQuery => {
     const query: FakeQuery = {
       select: vi.fn(),
       order: vi.fn(),
+      range: vi.fn(),
       result: { data: [], error: null },
+      lastRange: null,
       then(onFulfilled, onRejected) {
-        return Promise.resolve(this.result).then(onFulfilled, onRejected)
+        const { data, error } = this.result
+        const paged =
+          this.lastRange !== null && data !== null
+            ? data.slice(this.lastRange[0], this.lastRange[1] + 1)
+            : data
+        return Promise.resolve({ data: paged, error }).then(onFulfilled, onRejected)
       },
     }
     query.select.mockReturnValue(query)
     query.order.mockReturnValue(query)
+    query.range.mockImplementation((from: number, to: number) => {
+      query.lastRange = [from, to]
+      return query
+    })
     queriesByTable[table] = query
   }
   return queriesByTable[table]
@@ -290,6 +308,70 @@ describe('getWeightRoomData', () => {
     )
     await expect(getWeightRoomData()).rejects.toThrow(
       /weight_room_sets failed schema validation/,
+    )
+  })
+})
+
+describe('getWeightRoomData — paged sets read (#336)', () => {
+  /** `count` well-formed set rows, one per minute so `logged_at` stays unique. */
+  function manySets(count: number): Array<Record<string, unknown>> {
+    return Array.from({ length: count }, (_, i) => ({
+      id: `11111111-1111-4111-8111-${String(i).padStart(12, '0')}`,
+      logged_at: new Date(Date.UTC(2026, 0, 1, 0, i)).toISOString(),
+      exercise: 'pushups',
+      reps: 10,
+      updated_at: new Date(Date.UTC(2026, 0, 1, 0, i)).toISOString(),
+    }))
+  }
+
+  const GOAL = {
+    exercise: 'pushups',
+    daily_target: 100,
+    color: '#EA580C',
+    updated_at: '2026-01-01T00:00:00.000Z',
+  }
+
+  it('reads every set past PostgREST’s 1000-row response cap', async () => {
+    // The real regression: an unbounded select silently returned only the
+    // first 1000 rows, dropping the newest sets (the query sorts ascending).
+    stubTable('weight_room_sets', manySets(1038))
+    stubTable('weight_room_goals', [GOAL])
+
+    const data = await getWeightRoomData()
+    expect(data?.sets).toHaveLength(1038)
+    // The last row is the one truncation used to eat.
+    expect(data?.sets.at(-1)?.id).toBe('11111111-1111-4111-8111-000000001037')
+  })
+
+  it('requests successive pages until one comes back short', async () => {
+    stubTable('weight_room_sets', manySets(1038))
+    stubTable('weight_room_goals', [GOAL])
+
+    await getWeightRoomData()
+
+    expect(queriesByTable.weight_room_sets.range.mock.calls).toEqual([
+      [0, 999],
+      [1000, 1999],
+    ])
+  })
+
+  it('stops after a single page when the table fits under the cap', async () => {
+    stubTable('weight_room_sets', manySets(3))
+    stubTable('weight_room_goals', [GOAL])
+
+    const data = await getWeightRoomData()
+    expect(data?.sets).toHaveLength(3)
+    // One full-size request returns 3 rows (< PAGE_SIZE), so the loop ends
+    // without a second round-trip.
+    expect(queriesByTable.weight_room_sets.range.mock.calls).toEqual([[0, 999]])
+  })
+
+  it('surfaces a page error rather than returning a partial log', async () => {
+    stubTable('weight_room_sets', null, { message: 'connection reset' })
+    stubTable('weight_room_goals', [GOAL])
+
+    await expect(getWeightRoomData()).rejects.toThrow(
+      /Failed to load weight room sets: connection reset/,
     )
   })
 })

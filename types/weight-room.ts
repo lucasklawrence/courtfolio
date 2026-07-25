@@ -75,6 +75,21 @@ export interface ExerciseGoal {
    * ring. Mirrors `weight_room_goals.kind`.
    */
   kind?: 'permanent' | 'focus'
+  /**
+   * How many loaded implements this movement moves per set. Absent is treated
+   * as `1`.
+   *
+   * {@link StrengthSet.weight_lbs} records the load on *one* implement, since
+   * that's how it's read off the equipment — a "60 lb dumbbell shrug" is 60 per
+   * hand, not 60 total. Shrugs are carried two at a time, so they set this to
+   * `2` and their effective load is `weight_lbs × 2`. Every single-implement
+   * movement (barbell, vest, dip belt, bodyweight) leaves it at `1`.
+   *
+   * Lives on the goal rather than the set because it describes how the movement
+   * is performed, not one logged instance — so setting it corrects the entire
+   * history at once.
+   */
+  load_multiplier?: number
 }
 
 /**
@@ -128,6 +143,85 @@ export interface MonthlyFocus {
   start_date: string
   /** Inclusive last day of the focus window, `YYYY-MM-DD` local date. */
   end_date: string
+}
+
+/**
+ * Which metric an {@link WeightRoomAchievement} threshold measures (#336).
+ *
+ * - `'day'` / `'week'` / `'month'` — reps summed over that calendar bucket.
+ *   Weeks are ISO (Mon–Sun), matching the History view's heatmap rows and
+ *   weekly-volume chart so a badge and a bar can't disagree.
+ * - `'streak'` — consecutive calendar days hitting the daily target; the
+ *   threshold counts *days*, not reps.
+ * - `'lifetime'` — cumulative reps across the entire log.
+ * - `'set'` — reps in a single unbroken set.
+ */
+export type AchievementScope = 'day' | 'week' | 'month' | 'streak' | 'lifetime' | 'set'
+
+/**
+ * What an {@link WeightRoomAchievement} threshold counts, orthogonal to its
+ * {@link AchievementScope} (which says over what window).
+ *
+ * - `'reps'` — rep count. The default, and what every rep-volume tier uses.
+ * - `'tonnage'` — pounds moved: `reps × weight_lbs × load_multiplier`, summed
+ *   over the scope window. For `scope: 'set'` it's one set's reps × load.
+ * - `'load'` — pounds under load on a single set
+ *   (`weight_lbs × load_multiplier`) — a strength PR rather than a volume one.
+ *
+ * Bodyweight sets carry no `weight_lbs`, so they contribute `0` to both
+ * `'tonnage'` and `'load'`.
+ */
+export type AchievementMeasure = 'reps' | 'tonnage' | 'load'
+
+/**
+ * One badge tier on the Trophy Room ladder (#336) — mirrors a row of
+ * `public.weight_room_achievements`.
+ *
+ * Earned state is never stored: {@link import('@/lib/training-facility/achievements').resolveAchievements}
+ * recomputes every badge (and its first-earned date) from the full set log on
+ * each render, so retuning a threshold re-lights the wall immediately and a
+ * backdated set retroactively earns what it should.
+ */
+export interface WeightRoomAchievement {
+  /** UUID primary key, generated server-side. */
+  id: string
+  /**
+   * Display name, e.g. `Century Club`. Not unique — the same label can exist
+   * for several exercises; the `(exercise, scope, threshold)` triple is what's
+   * unique.
+   */
+  label: string
+  /**
+   * Exercise this tier measures, matching {@link ExerciseGoal.exercise}, or
+   * `null` for the pooled "all movements" ladder — reps summed across every
+   * exercise for the volume scopes, days hitting *at least one* goal for
+   * `'streak'`, and the best single set of any exercise for `'set'`.
+   */
+  exercise: string | null
+  /** Which window {@link threshold} is measured over. */
+  scope: AchievementScope
+  /**
+   * What {@link threshold} counts within that window. Absent is treated as
+   * `'reps'` (every tier predating the load ladder).
+   */
+  measure?: AchievementMeasure
+  /**
+   * Value the metric must reach to earn the badge. Units follow
+   * {@link measure} and {@link scope}: reps for `'reps'` (days for
+   * `scope: 'streak'`), pounds for `'tonnage'` and `'load'`. Reaching it
+   * exactly earns it.
+   */
+  threshold: number
+  /**
+   * Optional hex badge tint (e.g. `#EA580C`). Absent falls back to the
+   * matching exercise goal's color, then to a default accent.
+   */
+  color?: string
+  /**
+   * Optional emoji shown on the badge face (e.g. `💯`). Absent renders a
+   * scope-derived default glyph.
+   */
+  icon?: string
 }
 
 /**
