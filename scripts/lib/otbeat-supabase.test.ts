@@ -185,6 +185,8 @@ type FakeClient = Parameters<typeof upsertOtfSessions>[0] & {
   updates: Array<Record<string, unknown>>
   /** The seeded rows, mutated in place by the backfill, for post-assertions. */
   rows: Array<Record<string, unknown>>
+  /** Every `[from, to]` page requested, to assert the read paginates. */
+  ranges: Array<[number, number]>
 }
 
 /** A seeded existing row. A bare string is shorthand for "already has a type". */
@@ -210,9 +212,15 @@ function fakeClient(existing: SeedRow[]): FakeClient {
   const inserted: Array<Record<string, unknown>> = []
   const updates: Array<Record<string, unknown>> = []
 
-  /** Thenable query builder: collects filters, resolves to the matching rows. */
+  /**
+   * Thenable query builder: collects filters, resolves to the matching rows.
+   * `range` slices like PostgREST's inclusive bounds so the paginated read of
+   * existing keys is exercised for real, and every page request is recorded.
+   */
+  const ranges: Array<[number, number]> = []
   function builder() {
     const filters: Array<(r: Record<string, unknown>) => boolean> = []
+    let slice: [number, number] | null = null
     const self = {
       eq(col: string, val: unknown) {
         filters.push((r) => r[col] === val)
@@ -225,11 +233,17 @@ function fakeClient(existing: SeedRow[]): FakeClient {
       order() {
         return self
       },
+      range(from: number, to: number) {
+        slice = [from, to]
+        ranges.push([from, to])
+        return self
+      },
       then<T>(
         resolve: (v: { data: Array<Record<string, unknown>>; error: null }) => T,
         reject?: (e: unknown) => T
       ) {
-        const data = rows.filter((r) => filters.every((f) => f(r)))
+        let data = rows.filter((r) => filters.every((f) => f(r)))
+        if (slice) data = data.slice(slice[0], slice[1] + 1) // `to` is inclusive
         return Promise.resolve({ data, error: null }).then(resolve, reject)
       },
     }
@@ -257,6 +271,7 @@ function fakeClient(existing: SeedRow[]): FakeClient {
     inserted,
     updates,
     rows,
+    ranges,
   }
   return client as unknown as FakeClient
 }
@@ -287,6 +302,57 @@ describe('upsertOtfSessions (append-only)', () => {
     const summary = await upsertOtfSessions(client, [recA, recA], { timeZone: TZ })
     expect(summary.added).toBe(1)
     expect(client.inserted).toHaveLength(1)
+  })
+})
+
+/**
+ * CodeRabbit #334: an unranged select is capped at PostgREST's `max_rows` and
+ * returns the first page with no error, so past that cap existing rows would
+ * look absent — invisible to the class_type backfill and miscounted in `total`.
+ */
+describe('upsertOtfSessions (paginated read of existing keys)', () => {
+  /** One more than a full 500-row page, so a second page is required. */
+  const PAGE = 500
+  const seeded = Array.from({ length: PAGE + 1 }, (_, i) => ({
+    // Distinct, ordered timestamps: 2026-01-01T00:00Z + i minutes.
+    started_at: new Date(Date.UTC(2026, 0, 1, 0, i)).toISOString(),
+    class_type: 'Tread + Row',
+  }))
+
+  it('pages until a short page, seeing every existing row', async () => {
+    const client = fakeClient(seeded)
+    // This record matches the first seeded row, so there is nothing new to add.
+    const rec = bareRecord('01/01/2026', '12:00AM')
+    const summary = await upsertOtfSessions(client, [rec], { timeZone: 'UTC' })
+
+    // Two pages requested: [0,499] then [500,999] (short → stop).
+    expect(client.ranges).toEqual([
+      [0, PAGE - 1],
+      [PAGE, 2 * PAGE - 1],
+    ])
+    // All 501 existing rows were seen, so `total` isn't truncated to 500.
+    expect(summary.total).toBe(PAGE + 1)
+    expect(summary.added).toBe(0)
+  })
+
+  it('finds a row beyond the first page, so the backfill is not truncated', async () => {
+    // The LAST seeded row (index 500, i.e. on page 2) is the one missing a type.
+    const withLateNull = seeded.map((r, i) =>
+      i === PAGE ? { ...r, class_type: null } : r
+    )
+    const client = fakeClient(withLateNull)
+    // A record matching that last row (00:00Z + 500 min = 08:20Z), carrying a
+    // treadmill block so the classifier yields 'Tread-focused'.
+    expect(withLateNull[PAGE].started_at).toBe('2026-01-01T08:20:00.000Z')
+    const rec = {
+      ...bareRecord('01/01/2026', '8:20AM'),
+      treadmill: { time: '20:00' },
+    } as OtbeatRecord
+    const summary = await upsertOtfSessions(client, [rec], { timeZone: 'UTC' })
+
+    expect(summary.added).toBe(0)
+    expect(summary.repaired).toBe(1) // would be 0 if the read stopped at page 1
+    expect(client.rows[PAGE].class_type).toBe('Tread-focused')
   })
 })
 

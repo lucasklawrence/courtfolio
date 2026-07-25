@@ -209,7 +209,11 @@ async function main() {
         `OTBEAT_LOOKBACK_DAYS to let the backfill reach them, or add a repair ` +
         `migration modelled on 20260724120000_otf_sessions_class_type_repair.sql.`
     )
-    process.exit(1)
+    // exitCode rather than process.exit(1): the diagnostic above is the whole
+    // point of failing, and an immediate exit can truncate buffered stderr when
+    // it's piped (CI log capture). Setting the code lets main() return and the
+    // stream drain on its own.
+    process.exitCode = 1
   }
 }
 

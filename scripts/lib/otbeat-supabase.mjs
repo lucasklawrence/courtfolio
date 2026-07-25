@@ -164,6 +164,51 @@ export function recordToRow(rec, timeZone = DEFAULT_STUDIO_TZ) {
 }
 
 /**
+ * Rows per page when reading the existing session keys. Below Supabase's
+ * default `max_rows` of 1000 so a page is never server-truncated.
+ */
+const READ_PAGE_SIZE = 500
+
+/**
+ * Read `started_at` + `class_type` for **every** row in `otf_sessions`, paging
+ * until a short page ends it.
+ *
+ * Pagination is not optional: PostgREST caps an unbounded `select` at
+ * `max_rows` (1000 on Supabase by default) and returns the first page with no
+ * error, so a single unranged read would silently look like the whole table.
+ * Past that cap the omitted rows would read as absent — re-offered to the
+ * insert (harmless, `ON CONFLICT DO NOTHING` absorbs it) but invisible to the
+ * `class_type` backfill and miscounted in `total`, which is exactly the kind of
+ * quiet drift this module now exists to prevent.
+ *
+ * Ordered by `started_at` so pages don't overlap or skip — without an explicit
+ * order PostgREST may use an unstable internal sort across requests. The stored
+ * `started_at` string is returned verbatim: it's the filter value for the repair
+ * update, so it has to match the row exactly.
+ *
+ * @param {ReturnType<createServiceRoleClient>} supabase Service-role client.
+ * @returns {Promise<Array<{ started_at: string, class_type: string | null }>>}
+ *   Every row, oldest first.
+ * @throws {Error} on any Supabase read failure.
+ */
+async function readAllOtfSessionKeys(supabase) {
+  const all = []
+  for (let from = 0; ; from += READ_PAGE_SIZE) {
+    const { data, error } = await supabase
+      .from('otf_sessions')
+      .select('started_at, class_type')
+      .order('started_at', { ascending: true })
+      .range(from, from + READ_PAGE_SIZE - 1)
+    if (error) {
+      throw new Error(`Failed to read existing otf_sessions: ${error.message}`)
+    }
+    const page = data ?? []
+    all.push(...page)
+    if (page.length < READ_PAGE_SIZE) return all
+  }
+}
+
+/**
  * Append-only upsert of parsed OTbeat sessions into `otf_sessions`, plus a
  * null-only backfill of `class_type` on rows that are already present.
  *
@@ -214,18 +259,8 @@ export async function upsertOtfSessions(supabase, records, opts = {}) {
     if (!byKey.has(key)) byKey.set(key, row)
   }
 
-  // `class_type` comes along so the backfill pass can spot existing rows that
-  // are missing one. Keep the stored `started_at` verbatim — it's the filter
-  // value for the repair update, so it must match the row exactly.
-  const { data: existingRows, error: readErr } = await supabase
-    .from('otf_sessions')
-    .select('started_at, class_type')
-  if (readErr) {
-    throw new Error(`Failed to read existing otf_sessions: ${readErr.message}`)
-  }
-  const existing = new Map(
-    (existingRows ?? []).map(r => [new Date(r.started_at).getTime(), r])
-  )
+  const existingRows = await readAllOtfSessionKeys(supabase)
+  const existing = new Map(existingRows.map(r => [new Date(r.started_at).getTime(), r]))
 
   const toInsert = [...byKey.entries()].filter(([key]) => !existing.has(key)).map(([, row]) => row)
 
@@ -278,6 +313,11 @@ export async function upsertOtfSessions(supabase, records, opts = {}) {
  *
  * Excluded rows are exempt: a belt malfunction legitimately has no machine block
  * and so no inferable type.
+ *
+ * Unpaginated, unlike {@link readAllOtfSessionKeys}: the filter is narrow enough
+ * that a healthy table returns zero rows, and PostgREST's `max_rows` cap can
+ * only ever shorten a *non-empty* result — it can't turn offenders into an empty
+ * one, so the pass/fail signal is never wrong, only the printed list.
  *
  * @param {ReturnType<createServiceRoleClient>} supabase Service-role client.
  * @returns {Promise<Array<{ started_at: string, coach: string | null, calories: number | null }>>}
