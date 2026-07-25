@@ -10,10 +10,19 @@
 -- set, with `search_path` pinned to '' so every reference is schema-qualified
 -- and the body can't be redirected by a caller-controlled path.
 --
--- EXECUTE is revoked from the default PUBLIC grant and given to service_role
--- only. The check runs with the service-role key (locally from .env.local, in CI
--- from repo secrets); anon and authenticated must not be able to enumerate the
--- schema history, which would leak table and feature names ahead of release.
+-- EXECUTE is granted to anon as well as service_role, deliberately. The obvious
+-- instinct is to restrict this to service_role so the schema history can't be
+-- enumerated — but this repository is PUBLIC, so every file in
+-- supabase/migrations/ is already on GitHub and the names this function returns
+-- are public by construction. Restricting it would buy nothing and cost a great
+-- deal: the drift check would need the service-role key, and CI runs it from a
+-- pull-request checkout, so any PR that edited the check could exfiltrate a
+-- credential that bypasses RLS entirely on production. Reading with the anon key
+-- (itself public — it ships in the client bundle) keeps that key out of
+-- PR-controlled code completely.
+--
+-- The function returns only `version` and `name`. It exposes no row data and
+-- cannot be used to reach any other schema.
 --
 -- Idempotent: `create or replace` plus unconditional grants, so re-applying on a
 -- fresh project or a branch reset is a safe no-op.
@@ -30,9 +39,11 @@ as $function$
 $function$;
 
 comment on function public.applied_migrations is
-  'Migration ledger (supabase_migrations.schema_migrations) exposed for the drift check in scripts/check-migration-drift.mjs, since PostgREST only serves the public schema. SECURITY DEFINER, service_role only — not for application use.';
+  'Migration ledger (supabase_migrations.schema_migrations) exposed for the drift check in scripts/check-migration-drift.mjs, since PostgREST only serves the public schema. SECURITY DEFINER, readable with the anon key — the migration names are already public in this open-source repo, and requiring the service-role key would put an RLS-bypassing credential in reach of pull-request code. Returns names only, no row data. Not for application use.';
 
+-- Drop the blanket PUBLIC grant that `create function` adds by default, then
+-- name the roles explicitly rather than relying on it.
 revoke execute on function public.applied_migrations() from public;
-revoke execute on function public.applied_migrations() from anon;
-revoke execute on function public.applied_migrations() from authenticated;
+grant execute on function public.applied_migrations() to anon;
+grant execute on function public.applied_migrations() to authenticated;
 grant execute on function public.applied_migrations() to service_role;

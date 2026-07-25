@@ -172,13 +172,15 @@ Two failure modes, treated differently:
 - **Committed but not applied** — always fails. This is the shape of the #271 race that left three OTF sessions unreachable.
 - **Applied but no file** — fails locally, *reported* in CI. Since the convention is apply-then-commit, a sibling PR's migration is legitimately applied while its file sits on an unmerged branch, so any branch cut from `main` would otherwise fail through no fault of its own.
 
-Reads the ledger through the `public.applied_migrations()` RPC (`SECURITY DEFINER`, `service_role` only) because PostgREST exposes just `public` and `graphql_public` — selecting `supabase_migrations.schema_migrations` directly returns PGRST106.
+Reads the ledger through the `public.applied_migrations()` RPC because PostgREST exposes just `public` and `graphql_public` — selecting `supabase_migrations.schema_migrations` directly returns PGRST106. The function is `SECURITY DEFINER`, returns `version` and `name` only, and is granted to `anon`.
 
 Exits 0 in sync, 1 on drift, **2 when it cannot tell** — an unreachable database must never read as a pass.
 
 ### Required env vars
 
-`NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` (`.env.local` locally; repo secrets in CI). Deliberately uses plain `fetch` rather than `@supabase/supabase-js`, which needs a native WebSocket and throws on Node 20 — a drift check that only runs on the newest Node is one that gets skipped.
+`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` — both public values. It **must not** use the service-role key: the CI job runs this script from a pull-request checkout and triggers on changes to the script itself, so a PR could rewrite it to exfiltrate whatever is in the job env, and service-role bypasses RLS on production entirely. Granting the RPC to `anon` costs nothing here because this repo is public, so every migration name it returns is already on GitHub.
+
+Deliberately uses plain `fetch` rather than `@supabase/supabase-js`, which needs a native WebSocket and throws on Node 20 — a drift check that only runs on the newest Node is one that gets skipped.
 
 ### Writing a migration
 

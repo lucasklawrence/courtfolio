@@ -31,9 +31,10 @@
  * of its own. Committed-but-unapplied (`pending`) is never downgraded — that's
  * the #271 failure mode and always blocks.
  *
- * Requires NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (same pair the
- * import scripts use). Exits 0 when in sync, 1 on drift, 2 when it cannot tell
- * — an unreachable database is not a passing check.
+ * Requires NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_ANON_KEY — both
+ * public values, never the service-role key (see `appliedMigrations`). Exits 0
+ * when in sync, 1 on drift, 2 when it cannot tell — an unreachable database is
+ * not a passing check.
  *
  * Talks to PostgREST with plain `fetch` rather than `@supabase/supabase-js`
  * deliberately: the client pulls in a realtime transport that needs a native
@@ -85,19 +86,27 @@ function repoMigrations() {
  * Calls the `public.applied_migrations()` RPC rather than selecting the ledger
  * table directly: it lives in `supabase_migrations`, which PostgREST doesn't
  * expose (only `public` and `graphql_public`), so a direct read returns
- * PGRST106. The function is SECURITY DEFINER and granted to service_role only —
- * see 20260726120000_applied_migrations_rpc.sql.
+ * PGRST106. The function is SECURITY DEFINER, returns names only, and is granted
+ * to anon — see 20260726120000_applied_migrations_rpc.sql.
  *
  * @returns {Promise<string[]>}
  * @throws {Error} when the env is incomplete or the ledger can't be read.
  */
 async function appliedMigrations() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim()
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  // The anon key by preference, service-role only as a local fallback. The RPC
+  // is granted to anon precisely so this check never needs a privileged
+  // credential: CI runs it from a pull-request checkout, and a service-role key
+  // there could be exfiltrated by a PR that edits this file — it bypasses RLS on
+  // production. The anon key is public by design (it ships in the client
+  // bundle), so exposing it to PR code costs nothing.
+  const key =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim() ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
   if (!url || !key) {
     throw new Error(
-      'NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must both be set ' +
-        '(.env.local locally, repo secrets in CI).'
+      'NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY must both be ' +
+        'set (.env.local locally, repo variables in CI).'
     )
   }
   const res = await fetch(`${url.replace(/\/$/, '')}/rest/v1/rpc/applied_migrations`, {

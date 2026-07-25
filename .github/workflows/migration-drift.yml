@@ -44,9 +44,22 @@ jobs:
         # Run `npm run migrations:check` (strict, no flag) before merging to see
         # that class too.
         #
-        # Secrets are absent on fork PRs; the script exits 2 ("cannot tell")
-        # rather than passing, so a green check always means genuinely verified.
+        # Reads with the ANON key, never the service-role key. This job runs the
+        # script *from the PR checkout*, and the workflow deliberately triggers
+        # on changes to that script — so a PR could rewrite it to exfiltrate
+        # whatever is in `env`. A service-role key there would hand over
+        # RLS-bypassing production access (codex, #338). The anon key is public
+        # by design and `applied_migrations()` is granted to it, returning
+        # migration names that are already in this open-source repo anyway.
+        #
+        # If the values are missing the script exits 2 ("cannot tell") rather
+        # than passing, so a green check always means genuinely verified.
         run: node scripts/check-migration-drift.mjs --allow-untracked
         env:
+          # `vars`, not `secrets` — both values are public (the URL and the
+          # sb_publishable_* key both ship in the browser bundle), so storing
+          # them as repo variables keeps it obvious that nothing privileged is
+          # in reach of this job. The URL stays a secret reference only because
+          # it predates this workflow.
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
