@@ -204,7 +204,9 @@ Two tables use `mode: 'replace'` (clear staging, then insert production verbatim
 
 Conflicting on the natural key instead isn't available: `weight_room_achievements` enforces uniqueness through two *partial* indexes (`where exercise is not null` / `where exercise is null`), and PostgREST's `on_conflict` can't supply an index predicate. Replace avoids inference entirely and carries production's ids over, so row identity is stable across projects.
 
-Only mark a table `replace` if losing staging-only rows in it is acceptable — these two are reference data nobody hand-edits.
+Replace reads the entire replacement set from production *before* deleting anything, so a transient read failure can't leave staging's reference table empty — which would render as "no badges" in a preview rather than as an error. That leaves one clear-then-insert window; closing it completely would take a transactional delete-and-insert RPC on staging, deliberately not built, since that's a migration on both projects to protect a table that a re-run rebuilds.
+
+Only mark a table `replace` if losing staging-only rows in it is acceptable — these two are reference data nobody hand-edits. It also buffers the whole table in memory, which is fine at ~93 rows and would not be for `cardio_session_hr_samples`.
 
 Production often runs *ahead* of `main` (a branch's migration gets applied before its PR merges), so each row is projected onto the columns staging actually has; unknown columns are dropped and reported rather than 400-ing the table.
 

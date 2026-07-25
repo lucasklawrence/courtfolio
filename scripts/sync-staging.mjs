@@ -195,27 +195,53 @@ function project(row, allowed) {
 }
 
 async function copyTable({ name, conflict, mode, key }, allowed) {
-  let copied = 0
   const dropped = new Set()
-  // Clear before the first insert, not after reading — a `replace` table is
-  // small reference data, so the window where staging is empty is negligible.
-  if (mode === 'replace') await clearTable(name, key)
-  for (let offset = 0; ; offset += READ_PAGE) {
-    const page = await readPage(name, offset)
-    if (page.length === 0) break
+  const noteDropped = (page) => {
     for (const row of page) {
       for (const k of Object.keys(row)) if (!allowed.includes(k)) dropped.add(k)
     }
+  }
+
+  if (mode === 'replace') {
+    // Read the whole replacement set BEFORE deleting anything (codex/CodeRabbit
+    // #344). Clearing first meant a transient read failure left staging's
+    // reference table empty until the next successful sync — and since these
+    // tables drive the Trophy Room, empty renders as "no badges" in a preview
+    // rather than as an error. Buffering is fine here and nowhere else: replace
+    // is reserved for small reference tables (~93 rows), while the streaming
+    // path below has to cope with 37k HR samples.
+    const rows = []
+    for (let offset = 0; ; offset += READ_PAGE) {
+      const page = await readPage(name, offset)
+      if (page.length === 0) break
+      noteDropped(page)
+      rows.push(...page.map((r) => project(r, allowed)))
+      if (page.length < READ_PAGE) break
+    }
+    await clearTable(name, key)
+    for (let i = 0; i < rows.length; i += WRITE_BATCH) {
+      await insertBatch(name, rows.slice(i, i + WRITE_BATCH))
+    }
+    // Residual exposure is now one clear + one insert request for a table this
+    // size. Closing it fully would need a transactional delete-and-insert RPC on
+    // staging — deliberately not built: that's a migration on both projects to
+    // protect a rebuildable staging table, and re-running the sync fixes it.
+    return { copied: rows.length, dropped: [...dropped], mode }
+  }
+
+  let copied = 0
+  for (let offset = 0; ; offset += READ_PAGE) {
+    const page = await readPage(name, offset)
+    if (page.length === 0) break
+    noteDropped(page)
     const rows = page.map((r) => project(r, allowed))
     for (let i = 0; i < rows.length; i += WRITE_BATCH) {
-      const batch = rows.slice(i, i + WRITE_BATCH)
-      if (mode === 'replace') await insertBatch(name, batch)
-      else await writeBatch(name, conflict, batch)
+      await writeBatch(name, conflict, rows.slice(i, i + WRITE_BATCH))
     }
     copied += page.length
     if (page.length < READ_PAGE) break
   }
-  return { copied, dropped: [...dropped], mode: mode ?? 'upsert' }
+  return { copied, dropped: [...dropped], mode: 'upsert' }
 }
 
 async function main() {
