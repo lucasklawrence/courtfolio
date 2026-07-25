@@ -15,8 +15,12 @@
  *    weekly cron so a missed run self-heals via the overlap.
  *  - Reads each match's `text/html` body (the tread/rower stats live only
  *    there), parses it, and append-only upserts (dedupe by `started_at`,
- *    never prunes — see `upsertOtfSessions`).
+ *    never prunes — see `upsertOtfSessions`), backfilling a null `class_type`
+ *    on rows already present.
  *  - Idempotent: re-running over the overlap window adds 0.
+ *  - **Exits 1** when any counted session still lacks a `class_type` — such a
+ *    row matches no filter chip in the OTF view and reads as a missing workout,
+ *    so the run fails rather than letting the drift go unseen.
  *
  * Required env (CI: GitHub secrets → job env; local: `.env.local`):
  *   GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN,
@@ -27,7 +31,12 @@
  */
 
 import { parseOtbeatHtml } from './lib/otbeat-parser.mjs'
-import { createServiceRoleClient, loadEnv, upsertOtfSessions } from './lib/otbeat-supabase.mjs'
+import {
+  createServiceRoleClient,
+  findUntypedOtfSessions,
+  loadEnv,
+  upsertOtfSessions,
+} from './lib/otbeat-supabase.mjs'
 
 const OTBEAT_SENDER = 'OTbeatReport@orangetheoryfitness.com'
 const DEFAULT_LOOKBACK_DAYS = 8
@@ -176,9 +185,32 @@ async function main() {
   const summary = await upsertOtfSessions(supabase, records)
   console.log(
     `✓ otbeat ingest: added ${summary.added}, skipped ${summary.skipped} ` +
-      `(already present), ${summary.total} total in otf_sessions.`
+      `(already present), repaired ${summary.repaired} null class_type, ` +
+      `${summary.total} total in otf_sessions.`
   )
   console.log(JSON.stringify(summary))
+
+  // Data-quality gate: every counted session must carry a class_type, or it
+  // matches no filter chip and reads as a missing workout. The in-window
+  // backfill above fixes what this pull can see; anything left is an older
+  // orphan outside the lookback that needs a repair migration, so fail loudly
+  // rather than let it sit unnoticed (it took 20 days last time).
+  const untyped = await findUntypedOtfSessions(supabase)
+  if (untyped.length > 0) {
+    console.error(
+      `\n✗ ${untyped.length} counted session(s) have no class_type — they are ` +
+        `only reachable via the "Unclassified" filter and skew nothing but look missing:`
+    )
+    for (const s of untyped) {
+      console.error(`    ${s.started_at}  ${s.coach ?? '(no coach)'}  ${s.calories ?? '?'} cal`)
+    }
+    console.error(
+      `\n  These predate this pull's lookback window. Widen it with ` +
+        `OTBEAT_LOOKBACK_DAYS to let the backfill reach them, or add a repair ` +
+        `migration modelled on 20260724120000_otf_sessions_class_type_repair.sql.`
+    )
+    process.exit(1)
+  }
 }
 
 main().catch(err => {

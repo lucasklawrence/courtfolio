@@ -8,7 +8,12 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { recordToRow, toStartedAt, upsertOtfSessions } from './otbeat-supabase.mjs'
+import {
+  findUntypedOtfSessions,
+  recordToRow,
+  toStartedAt,
+  upsertOtfSessions,
+} from './otbeat-supabase.mjs'
 
 /** Local alias for the parser's JSDoc record type, for typing fixtures. */
 type OtbeatRecord = import('./otbeat-parser.mjs').OtbeatRecord
@@ -176,30 +181,82 @@ describe('recordToRow', () => {
  */
 type FakeClient = Parameters<typeof upsertOtfSessions>[0] & {
   inserted: Array<Record<string, unknown>>
+  /** Captured `update()` patches from the class_type backfill pass. */
+  updates: Array<Record<string, unknown>>
+  /** The seeded rows, mutated in place by the backfill, for post-assertions. */
+  rows: Array<Record<string, unknown>>
 }
 
+/** A seeded existing row. A bare string is shorthand for "already has a type". */
+type SeedRow = string | { started_at: string; class_type?: string | null; excluded?: boolean }
+
 /**
- * Minimal stand-in for the supabase-js client: `from().select()` resolves to
- * the seeded existing keys; `from().upsert()` records what was written. Cast
- * through `unknown` to the real client type — only the `from`/`select`/
- * `upsert` surface the upsert path touches is implemented.
+ * Minimal stand-in for the supabase-js client. `from().select()` returns a
+ * thenable builder so it serves both the upsert path's direct `await select()`
+ * and the `.eq().is().order()` chain in `findUntypedOtfSessions`;
+ * `from().upsert()` captures inserts, and `from().update().eq()` applies the
+ * class_type backfill to the seeded rows and captures it. Cast through
+ * `unknown` to the real client type — only the surface these paths touch is
+ * implemented.
  */
-function fakeClient(existingStartedAt: string[]): FakeClient {
+function fakeClient(existing: SeedRow[]): FakeClient {
+  // A bare string seeds a row that already has a class_type, so the backfill
+  // pass leaves it alone — that's the pre-existing tests' expectation.
+  const rows: Array<Record<string, unknown>> = existing.map((s) =>
+    typeof s === 'string'
+      ? { started_at: s, class_type: 'Tread + Row', excluded: false, coach: null, calories: null }
+      : { excluded: false, coach: null, calories: null, class_type: null, ...s }
+  )
   const inserted: Array<Record<string, unknown>> = []
+  const updates: Array<Record<string, unknown>> = []
+
+  /** Thenable query builder: collects filters, resolves to the matching rows. */
+  function builder() {
+    const filters: Array<(r: Record<string, unknown>) => boolean> = []
+    const self = {
+      eq(col: string, val: unknown) {
+        filters.push((r) => r[col] === val)
+        return self
+      },
+      is(col: string, val: unknown) {
+        filters.push((r) => (val === null ? r[col] == null : r[col] === val))
+        return self
+      },
+      order() {
+        return self
+      },
+      then<T>(
+        resolve: (v: { data: Array<Record<string, unknown>>; error: null }) => T,
+        reject?: (e: unknown) => T
+      ) {
+        const data = rows.filter((r) => filters.every((f) => f(r)))
+        return Promise.resolve({ data, error: null }).then(resolve, reject)
+      },
+    }
+    return self
+  }
+
   const client = {
     from() {
       return {
-        select: async () => ({
-          data: existingStartedAt.map((s) => ({ started_at: s })),
-          error: null,
-        }),
-        upsert: async (rows: Array<Record<string, unknown>>) => {
-          inserted.push(...rows)
+        select: () => builder(),
+        upsert: async (newRows: Array<Record<string, unknown>>) => {
+          inserted.push(...newRows)
           return { error: null }
         },
+        update: (patch: Record<string, unknown>) => ({
+          eq: async (col: string, val: unknown) => {
+            const target = rows.find((r) => r[col] === val)
+            if (target) Object.assign(target, patch)
+            updates.push({ ...patch, [col]: val })
+            return { error: null }
+          },
+        }),
       }
     },
     inserted,
+    updates,
+    rows,
   }
   return client as unknown as FakeClient
 }
@@ -212,7 +269,7 @@ describe('upsertOtfSessions (append-only)', () => {
     // recA already in the table; recB is new.
     const client = fakeClient(['2026-06-27T16:30:00+00:00'])
     const summary = await upsertOtfSessions(client, [recA, recB], { timeZone: TZ })
-    expect(summary).toEqual({ added: 1, skipped: 1, total: 2 })
+    expect(summary).toEqual({ added: 1, skipped: 1, repaired: 0, total: 2 })
     expect(client.inserted).toHaveLength(1)
     expect(client.inserted[0].started_at).toBe('2026-06-26T01:45:00.000Z') // recB (06/25 6:45PM PDT)
   })
@@ -220,8 +277,9 @@ describe('upsertOtfSessions (append-only)', () => {
   it('is idempotent — a re-pull with everything present adds 0 and writes nothing', async () => {
     const client = fakeClient(['2026-06-27T16:30:00+00:00', '2026-06-26T01:45:00+00:00'])
     const summary = await upsertOtfSessions(client, [recA, recB], { timeZone: TZ })
-    expect(summary).toEqual({ added: 0, skipped: 2, total: 2 })
+    expect(summary).toEqual({ added: 0, skipped: 2, repaired: 0, total: 2 })
     expect(client.inserted).toHaveLength(0)
+    expect(client.updates).toHaveLength(0)
   })
 
   it('dedupes duplicates within a single batch', async () => {
@@ -229,5 +287,69 @@ describe('upsertOtfSessions (append-only)', () => {
     const summary = await upsertOtfSessions(client, [recA, recA], { timeZone: TZ })
     expect(summary.added).toBe(1)
     expect(client.inserted).toHaveLength(1)
+  })
+})
+
+/**
+ * The #271 ingest race: rows inserted by a pre-#271 importer kept
+ * `class_type = null`, and append-only insertion could never fix them.
+ */
+describe('upsertOtfSessions (null class_type backfill)', () => {
+  const recA = bareRecord('06/27/2026', '9:30AM')
+  const KEY_A = '2026-06-27T16:30:00+00:00'
+
+  /** recA has no treadmill/rower and 0 calories, so give it a real machine block. */
+  function typedRecord(): OtbeatRecord {
+    return { ...bareRecord('06/27/2026', '9:30AM'), treadmill: { time: '20:00' } } as OtbeatRecord
+  }
+
+  it('backfills a null class_type on a row that is already present', async () => {
+    const client = fakeClient([{ started_at: KEY_A, class_type: null }])
+    const summary = await upsertOtfSessions(client, [typedRecord()], { timeZone: TZ })
+    expect(summary).toEqual({ added: 0, skipped: 1, repaired: 1, total: 1 })
+    // Only class_type is written — never the override or the excluded flags.
+    expect(client.updates).toEqual([{ class_type: 'Tread-focused', started_at: KEY_A }])
+    expect(client.rows[0].class_type).toBe('Tread-focused')
+  })
+
+  it('never overwrites a class_type that is already set', async () => {
+    const client = fakeClient([{ started_at: KEY_A, class_type: '2G' }])
+    const summary = await upsertOtfSessions(client, [typedRecord()], { timeZone: TZ })
+    expect(summary.repaired).toBe(0)
+    expect(client.updates).toHaveLength(0)
+    expect(client.rows[0].class_type).toBe('2G')
+  })
+
+  it('leaves a null class_type alone when the classifier also yields null', async () => {
+    // recA has no machine block and 0 calories — the belt-malfunction shape,
+    // which classifies to null and must stay null rather than churn an update.
+    const client = fakeClient([{ started_at: KEY_A, class_type: null, excluded: true }])
+    const summary = await upsertOtfSessions(client, [recA], { timeZone: TZ })
+    expect(summary.repaired).toBe(0)
+    expect(client.updates).toHaveLength(0)
+    expect(client.rows[0].class_type).toBeNull()
+  })
+})
+
+describe('findUntypedOtfSessions', () => {
+  it('returns counted sessions missing a class_type', async () => {
+    const client = fakeClient([
+      { started_at: '2026-07-02T16:30:00+00:00', class_type: null },
+      { started_at: '2026-07-03T16:30:00+00:00', class_type: 'Tread + Row' },
+    ])
+    const untyped = await findUntypedOtfSessions(client)
+    expect(untyped.map((s) => s.started_at)).toEqual(['2026-07-02T16:30:00+00:00'])
+  })
+
+  it('exempts excluded sessions — a malfunction has no inferable type', async () => {
+    const client = fakeClient([
+      { started_at: '2026-05-30T16:30:00+00:00', class_type: null, excluded: true },
+    ])
+    expect(await findUntypedOtfSessions(client)).toEqual([])
+  })
+
+  it('is empty when every counted session has a type', async () => {
+    const client = fakeClient(['2026-07-03T16:30:00+00:00'])
+    expect(await findUntypedOtfSessions(client)).toEqual([])
   })
 })

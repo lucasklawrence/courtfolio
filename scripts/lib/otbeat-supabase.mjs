@@ -4,7 +4,8 @@
  * Reuses the service-role client + env loader from `cardio-supabase.mjs`
  * (one place for the credential plumbing), and adds the OTbeat-specific
  * bits: turning a parsed {@link import('./otbeat-parser.mjs').OtbeatRecord}
- * into an `otf_sessions` row, and an **append-only** upsert.
+ * into an `otf_sessions` row, an **append-only** upsert, and the data-quality
+ * invariant check that guards it ({@link findUntypedOtfSessions}).
  *
  * Why a separate upsert from the cardio one: `upsertCardioData` mirrors the
  * full Apple-Health archive and prunes rows missing from the export. OTbeat
@@ -110,10 +111,14 @@ export function toStartedAt(date, time, timeZone) {
  * malfunction session (near-zero output, no machine block — #268) is flagged
  * at first insert. `class_type` is the coarse machine-signature label from
  * {@link classifyOtfClassType} (#271); `class_type_override` is left unset so a
- * manual Supabase edit owns it. Because {@link upsertOtfSessions} is
- * append-only (`ignoreDuplicates`), both auto columns only ever run on a row's
- * *first* write, so a manual override made later in Supabase is never clobbered
- * by a re-pull.
+ * manual Supabase edit owns it.
+ *
+ * `excluded` / `excluded_reason` are written only on a row's *first* insert,
+ * since {@link upsertOtfSessions} inserts-if-absent. `class_type` is the one
+ * exception: that same append-only property left three rows permanently null
+ * when an old importer raced the #271 backfill, so the upsert also backfills a
+ * *null* `class_type` on an existing row. A non-null label — and
+ * `class_type_override` in every case — is never touched by a re-pull.
  *
  * @param {import('./otbeat-parser.mjs').OtbeatRecord} rec Parsed session.
  * @param {string} [timeZone] Studio timezone for `started_at`.
@@ -159,19 +164,42 @@ export function recordToRow(rec, timeZone = DEFAULT_STUDIO_TZ) {
 }
 
 /**
- * Append-only upsert of parsed OTbeat sessions into `otf_sessions`.
+ * Append-only upsert of parsed OTbeat sessions into `otf_sessions`, plus a
+ * null-only backfill of `class_type` on rows that are already present.
  *
  * Reads the existing `started_at` keys, inserts only rows whose timestamp
  * isn't already present, and never deletes. Re-running over an overlapping
  * lookback window is therefore idempotent (adds 0 the second time) and can
  * never prune history — the opposite of the cardio mirror-and-prune import.
  *
+ * **The backfill pass** exists because append-only insertion alone cannot
+ * self-heal. `class_type` was previously written only on a row's first insert,
+ * so three classes ingested on 2026-07-04 by a pre-#271 importer — hours after
+ * the #271 migration had already backfilled — kept `class_type = null`
+ * indefinitely; no number of re-pulls could fix them, and a null class type is
+ * invisible to every filter chip. So after inserting, any *existing* row whose
+ * stored `class_type` is null gets the freshly-classified value written back.
+ *
+ * Deliberately narrow, to preserve the guarantee #268/#271 rely on:
+ * - Only `class_type`, and only when the stored value is null — a row that
+ *   already has a label is never rewritten, so a corrected label survives.
+ * - Never `class_type_override`, `excluded`, or `excluded_reason`. A targeted
+ *   per-row `update` of the single column, *not* a full-row upsert: supabase-js
+ *   `upsert` with `ignoreDuplicates: false` would `DO UPDATE SET` every column
+ *   and clobber a manual override.
+ * - Only when the classifier yields a non-null label, so the 2026-05-30
+ *   belt-malfunction row (no machine block → null, correctly `excluded`) is
+ *   left exactly as it is.
+ *
+ * Only reaches sessions still inside the caller's email lookback window. For an
+ * older orphan, {@link findUntypedOtfSessions} is the backstop that surfaces it.
+ *
  * @param {ReturnType<createServiceRoleClient>} supabase Service-role client.
  * @param {import('./otbeat-parser.mjs').OtbeatRecord[]} records Parsed sessions.
  * @param {{ timeZone?: string }} [opts] Studio timezone override.
- * @returns {Promise<{ added: number, skipped: number, total: number }>}
- *   `added` = newly inserted, `skipped` = already present, `total` = rows now
- *   in the table.
+ * @returns {Promise<{ added: number, skipped: number, repaired: number, total: number }>}
+ *   `added` = newly inserted, `skipped` = already present, `repaired` = existing
+ *   rows whose null `class_type` was backfilled, `total` = rows now in the table.
  * @throws {Error} on any Supabase read/write failure.
  */
 export async function upsertOtfSessions(supabase, records, opts = {}) {
@@ -186,13 +214,18 @@ export async function upsertOtfSessions(supabase, records, opts = {}) {
     if (!byKey.has(key)) byKey.set(key, row)
   }
 
+  // `class_type` comes along so the backfill pass can spot existing rows that
+  // are missing one. Keep the stored `started_at` verbatim — it's the filter
+  // value for the repair update, so it must match the row exactly.
   const { data: existingRows, error: readErr } = await supabase
     .from('otf_sessions')
-    .select('started_at')
+    .select('started_at, class_type')
   if (readErr) {
     throw new Error(`Failed to read existing otf_sessions: ${readErr.message}`)
   }
-  const existing = new Set((existingRows ?? []).map(r => new Date(r.started_at).getTime()))
+  const existing = new Map(
+    (existingRows ?? []).map(r => [new Date(r.started_at).getTime(), r])
+  )
 
   const toInsert = [...byKey.entries()].filter(([key]) => !existing.has(key)).map(([, row]) => row)
 
@@ -207,9 +240,59 @@ export async function upsertOtfSessions(supabase, records, opts = {}) {
     }
   }
 
+  // Backfill class_type on already-present rows that lack one (see above).
+  let repaired = 0
+  for (const [key, row] of byKey) {
+    const stored = existing.get(key)
+    if (!stored || stored.class_type != null || row.class_type == null) continue
+    const { error: repairErr } = await supabase
+      .from('otf_sessions')
+      .update({ class_type: row.class_type })
+      .eq('started_at', stored.started_at)
+    if (repairErr) {
+      throw new Error(
+        `Failed to backfill class_type for otf_session ${stored.started_at}: ${repairErr.message}`
+      )
+    }
+    repaired += 1
+  }
+
   return {
     added: toInsert.length,
     skipped: byKey.size - toInsert.length,
+    repaired,
     total: existing.size + toInsert.length,
   }
+}
+
+/**
+ * Find counted sessions that carry no `class_type` — the data-quality invariant
+ * the OTF view depends on.
+ *
+ * Every non-`excluded` row must have a class type, because a null one matches no
+ * filter chip: before the `Unclassified` sentinel existed, selecting any type
+ * silently dropped such rows from the session log *and* every aggregate, with
+ * nothing in the UI counts to say so. That drift went unnoticed for 20 days.
+ * Call this after a pull and fail the run on a non-empty result, so the next gap
+ * surfaces the same day instead of being spotted by eye in a chart.
+ *
+ * Excluded rows are exempt: a belt malfunction legitimately has no machine block
+ * and so no inferable type.
+ *
+ * @param {ReturnType<createServiceRoleClient>} supabase Service-role client.
+ * @returns {Promise<Array<{ started_at: string, coach: string | null, calories: number | null }>>}
+ *   The offending rows, oldest first; empty when the invariant holds.
+ * @throws {Error} on any Supabase read failure.
+ */
+export async function findUntypedOtfSessions(supabase) {
+  const { data, error } = await supabase
+    .from('otf_sessions')
+    .select('started_at, coach, calories')
+    .eq('excluded', false)
+    .is('class_type', null)
+    .order('started_at', { ascending: true })
+  if (error) {
+    throw new Error(`Failed to check otf_sessions class_type coverage: ${error.message}`)
+  }
+  return data ?? []
 }
