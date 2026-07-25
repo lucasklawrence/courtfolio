@@ -18,21 +18,27 @@ describe('WeightRoomSubNav — non-admin viewer', () => {
     mockUseAdminSession.mockReturnValue({ isAdmin: false, isLoading: false, email: null })
   })
 
-  it('renders only the public Today + History pills', () => {
+  it('renders only the public Today + History + Trophies pills', () => {
     const { getByRole, queryByRole } = render(<WeightRoomSubNav active="today" />)
     expect(getByRole('link', { name: 'Today' })).toBeInTheDocument()
     expect(getByRole('link', { name: 'History' })).toBeInTheDocument()
+    expect(getByRole('link', { name: 'Trophies' })).toBeInTheDocument()
     expect(queryByRole('link', { name: 'Settings' })).not.toBeInTheDocument()
     expect(queryByRole('link', { name: 'Log' })).not.toBeInTheDocument()
   })
 
   it.each([
-    ['today', '/training-facility/weight-room'],
-    ['history', '/training-facility/weight-room/history'],
-  ] as const)('routes the %s pill to %s', (label, href) => {
-    const labelText = label.charAt(0).toUpperCase() + label.slice(1)
+    ['Today', '/training-facility/weight-room'],
+    ['History', '/training-facility/weight-room/history'],
+    ['Trophies', '/training-facility/weight-room/achievements'],
+  ] as const)('routes the %s pill to %s', (labelText, href) => {
     const { getByRole } = render(<WeightRoomSubNav active="today" />)
     expect(getByRole('link', { name: labelText })).toHaveAttribute('href', href)
+  })
+
+  it('marks the trophies pill as the current page when active', () => {
+    const { getByRole } = render(<WeightRoomSubNav active="achievements" />)
+    expect(getByRole('link', { name: 'Trophies' })).toHaveAttribute('aria-current', 'page')
   })
 
   it('marks the history pill as the current page when active', () => {
@@ -62,10 +68,11 @@ describe('WeightRoomSubNav — admin viewer', () => {
     })
   })
 
-  it('renders all four pills (Today / History / Log / Settings)', () => {
+  it('renders all five pills (Today / History / Trophies / Log / Settings)', () => {
     const { getByRole } = render(<WeightRoomSubNav active="today" />)
     expect(getByRole('link', { name: 'Today' })).toBeInTheDocument()
     expect(getByRole('link', { name: 'History' })).toBeInTheDocument()
+    expect(getByRole('link', { name: 'Trophies' })).toBeInTheDocument()
     expect(getByRole('link', { name: 'Log' })).toBeInTheDocument()
     expect(getByRole('link', { name: 'Settings' })).toBeInTheDocument()
   })
@@ -82,6 +89,7 @@ describe('WeightRoomSubNav — admin viewer', () => {
   it.each([
     ['today', 'Today'],
     ['history', 'History'],
+    ['achievements', 'Trophies'],
     ['log', 'Log'],
     ['settings', 'Settings'],
   ] as const)('marks the %s pill as the current page when active', (active, label) => {

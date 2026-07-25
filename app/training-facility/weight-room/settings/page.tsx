@@ -3,10 +3,14 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { AchievementSettings } from '@/components/training-facility/weight-room/AchievementSettings'
 import { StrengthSettings } from '@/components/training-facility/weight-room/StrengthSettings'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
-import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
+import {
+  getWeightRoomAchievementsServer,
+  getWeightRoomDataServer,
+} from '@/lib/data/weight-room-server'
 import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 
 /**
@@ -31,8 +35,12 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
   // Catch transient read errors so a flaky Supabase response surfaces
   // as an empty editor instead of 500ing the whole page. The Settings
   // UI handles `goals: []` gracefully (renders the add-exercise form
-  // without an existing-goal table).
-  const data = await getWeightRoomDataServer().catch(() => null)
+  // without an existing-goal table). The achievement ladder read (#336)
+  // degrades independently — a failed fetch just empties that editor.
+  const [data, achievements] = await Promise.all([
+    getWeightRoomDataServer().catch(() => null),
+    getWeightRoomAchievementsServer().catch(() => []),
+  ])
   const goals = data?.goals ?? []
 
   return (
@@ -70,6 +78,26 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
 
         <section className="mt-10">
           <StrengthSettings initialGoals={goals} />
+        </section>
+
+        <section className="mt-14 border-t border-white/10 pt-10">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+            Trophy Room
+          </h2>
+          <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+            The achievement ladder behind{' '}
+            <Link
+              href="/training-facility/weight-room/achievements"
+              className="underline decoration-dotted underline-offset-4 hover:text-amber-200"
+            >
+              the trophy room
+            </Link>
+            . Nothing is stored as &ldquo;earned&rdquo; &mdash; retune a threshold and the wall
+            re-resolves from the whole set log on the next visit.
+          </p>
+          <div className="mt-6">
+            <AchievementSettings initialAchievements={achievements} exercises={goals.map(g => g.exercise)} />
+          </div>
         </section>
       </div>
     </div>

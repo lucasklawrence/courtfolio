@@ -131,6 +131,63 @@ export interface MonthlyFocus {
 }
 
 /**
+ * Which metric an {@link WeightRoomAchievement} threshold measures (#336).
+ *
+ * - `'day'` / `'week'` / `'month'` — reps summed over that calendar bucket.
+ *   Weeks are ISO (Mon–Sun), matching the History view's heatmap rows and
+ *   weekly-volume chart so a badge and a bar can't disagree.
+ * - `'streak'` — consecutive calendar days hitting the daily target; the
+ *   threshold counts *days*, not reps.
+ * - `'lifetime'` — cumulative reps across the entire log.
+ * - `'set'` — reps in a single unbroken set.
+ */
+export type AchievementScope = 'day' | 'week' | 'month' | 'streak' | 'lifetime' | 'set'
+
+/**
+ * One badge tier on the Trophy Room ladder (#336) — mirrors a row of
+ * `public.weight_room_achievements`.
+ *
+ * Earned state is never stored: {@link import('@/lib/training-facility/achievements').resolveAchievements}
+ * recomputes every badge (and its first-earned date) from the full set log on
+ * each render, so retuning a threshold re-lights the wall immediately and a
+ * backdated set retroactively earns what it should.
+ */
+export interface WeightRoomAchievement {
+  /** UUID primary key, generated server-side. */
+  id: string
+  /**
+   * Display name, e.g. `Century Club`. Not unique — the same label can exist
+   * for several exercises; the `(exercise, scope, threshold)` triple is what's
+   * unique.
+   */
+  label: string
+  /**
+   * Exercise this tier measures, matching {@link ExerciseGoal.exercise}, or
+   * `null` for the pooled "all movements" ladder — reps summed across every
+   * exercise for the volume scopes, days hitting *at least one* goal for
+   * `'streak'`, and the best single set of any exercise for `'set'`.
+   */
+  exercise: string | null
+  /** Which metric {@link threshold} applies to. */
+  scope: AchievementScope
+  /**
+   * Value the scope's metric must reach to earn the badge — reps for every
+   * scope except `'streak'`, which counts days. Reaching it exactly earns it.
+   */
+  threshold: number
+  /**
+   * Optional hex badge tint (e.g. `#EA580C`). Absent falls back to the
+   * matching exercise goal's color, then to a default accent.
+   */
+  color?: string
+  /**
+   * Optional emoji shown on the badge face (e.g. `💯`). Absent renders a
+   * scope-derived default glyph.
+   */
+  icon?: string
+}
+
+/**
  * Full Weight Room dataset — the assembled shape returned by
  * `getWeightRoomData()` / `getWeightRoomDataServer()`. `imported_at` is
  * `MAX(updated_at)` across both tables; mirrors the cardio "last

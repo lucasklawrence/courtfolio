@@ -2,14 +2,16 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 
 import {
+  WeightRoomAchievementRowSchema,
   WeightRoomGoalRowSchema,
   WeightRoomMonthlyFocusRowSchema,
   WeightRoomSetRowSchema,
+  achievementRowToAchievement,
   focusRowToMonthlyFocus,
   goalRowToExerciseGoal,
   setRowToStrengthSet,
 } from '@/lib/schemas/weight-room'
-import type { WeightRoomData } from '@/types/weight-room'
+import type { WeightRoomAchievement, WeightRoomData } from '@/types/weight-room'
 
 /**
  * Pure Weight Room read helpers shared between the browser entry
@@ -35,6 +37,78 @@ const FOCUS_COLUMNS =
 const WeightRoomSetRowsSchema = z.array(WeightRoomSetRowSchema)
 const WeightRoomGoalRowsSchema = z.array(WeightRoomGoalRowSchema)
 const WeightRoomMonthlyFocusRowsSchema = z.array(WeightRoomMonthlyFocusRowSchema)
+
+/** Supabase table backing the Trophy Room achievement ladder (#336). */
+const ACHIEVEMENTS_TABLE = 'weight_room_achievements'
+
+/** Whitelisted columns for `weight_room_achievements`, in sync with {@link WeightRoomAchievementRowSchema}. */
+const ACHIEVEMENTS_COLUMNS = 'id, label, exercise, scope, threshold, color, icon'
+
+/** Array form of {@link WeightRoomAchievementRowSchema} for validating the ladder read. */
+const WeightRoomAchievementRowsSchema = z.array(WeightRoomAchievementRowSchema)
+
+/**
+ * Fetch the Trophy Room achievement ladder (#336) using the supplied client.
+ * Shared between `getWeightRoomAchievements` (browser) and
+ * `getWeightRoomAchievementsServer` (server) so the read shape and validation
+ * can't drift.
+ *
+ * Unlike {@link assembleWeightRoomData}, returns an **empty array** (not
+ * `null`) when the table is empty — the Trophy Room always renders its metric
+ * summary, just with no badges to unlock, so an empty ladder is a valid steady
+ * state rather than a "no data yet" branch. Ordered by exercise then scope
+ * then threshold so callers get the wall grouped and low → high without
+ * re-sorting.
+ *
+ * @param supabase Browser or server SSR client (both anon role; the table's RLS
+ *   allows anon SELECT).
+ * @throws when the Supabase query fails or row-shape validation fails. The
+ *   Trophy Room downgrades this to an empty ladder so a read blip can't blank
+ *   the page.
+ */
+export async function assembleWeightRoomAchievements(
+  supabase: SupabaseClient,
+): Promise<WeightRoomAchievement[]> {
+  // `nullsFirst` puts the pooled "all movements" tiers at the head of the
+  // ladder, which is also where the Trophy Room renders them.
+  const res = await supabase
+    .from(ACHIEVEMENTS_TABLE)
+    .select(ACHIEVEMENTS_COLUMNS)
+    .order('exercise', { ascending: true, nullsFirst: true })
+    .order('scope', { ascending: true })
+    .order('threshold', { ascending: true })
+
+  if (res.error) {
+    throw new Error(`Failed to load weight room achievements: ${res.error.message}`)
+  }
+
+  const raw = (res.data ?? []) as unknown as Array<Record<string, unknown>>
+  const parsed = WeightRoomAchievementRowsSchema.safeParse(raw.map(stripNullBadgeFields))
+  if (!parsed.success) {
+    throw new Error(
+      `weight_room_achievements failed schema validation: ${parsed.error.message}`,
+    )
+  }
+
+  return parsed.data.map(achievementRowToAchievement)
+}
+
+/**
+ * Drop `color` / `icon` when Postgres returned `NULL`, so they validate as
+ * `.optional()` rather than needing `.nullable()` — the convention every
+ * sibling row schema follows.
+ *
+ * `exercise` is deliberately left alone: a `null` there is the pooled
+ * "all movements" ladder, a real value rather than an absent one.
+ */
+function stripNullBadgeFields(row: Record<string, unknown>): Record<string, unknown> {
+  const out: Record<string, unknown> = {}
+  for (const [key, value] of Object.entries(row)) {
+    if (value === null && key !== 'exercise') continue
+    out[key] = value
+  }
+  return out
+}
 
 /**
  * Fetch the full Weight Room dataset from Supabase using the supplied
@@ -71,22 +145,27 @@ export async function assembleWeightRoomData(
   // relative order unstable between fetches. `updated_at` resolves ties
   // by insertion order (sets have no update path), and `id` backstops
   // same-transaction inserts whose `updated_at` also collides.
-  const [setsRes, goalsRes, focusRes] = await Promise.all([
-    supabase
-      .from(SETS_TABLE)
-      .select(SETS_COLUMNS)
-      .order('logged_at', { ascending: true })
-      .order('updated_at', { ascending: true })
-      .order('id', { ascending: true }),
+  const [setsRaw, goalsRes, focusRes] = await Promise.all([
+    // Paged — the set log is the one table here that grows without bound and
+    // it crossed PostgREST's row cap in July 2026. See {@link fetchAllRows}.
+    fetchAllRows(
+      SETS_TABLE,
+      (from, to) =>
+        supabase
+          .from(SETS_TABLE)
+          .select(SETS_COLUMNS)
+          .order('logged_at', { ascending: true })
+          .order('updated_at', { ascending: true })
+          .order('id', { ascending: true })
+          .range(from, to),
+      'Failed to load weight room sets',
+    ),
     supabase.from(GOALS_TABLE).select(GOALS_COLUMNS).order('exercise', { ascending: true }),
     // Newest window first so the "Upcoming"/roadmap UI can slice from
     // the head without re-sorting.
     supabase.from(FOCUS_TABLE).select(FOCUS_COLUMNS).order('start_date', { ascending: false }),
   ])
 
-  if (setsRes.error) {
-    throw new Error(`Failed to load weight room sets: ${setsRes.error.message}`)
-  }
   if (goalsRes.error) {
     throw new Error(`Failed to load weight room goals: ${goalsRes.error.message}`)
   }
@@ -94,7 +173,6 @@ export async function assembleWeightRoomData(
     throw new Error(`Failed to load weight room monthly focus: ${focusRes.error.message}`)
   }
 
-  const setsRaw = (setsRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const goalsRaw = (goalsRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const focusRaw = (focusRes.data ?? []) as unknown as Array<Record<string, unknown>>
 
@@ -132,6 +210,68 @@ export async function assembleWeightRoomData(
     goals: goalsParsed.data.map(goalRowToExerciseGoal),
     monthly_focus: focusParsed.data.map(focusRowToMonthlyFocus),
   }
+}
+
+/**
+ * Rows requested per page. PostgREST caps a single response at the project's
+ * `max-rows` setting (1000 on Supabase by default), so this is an upper bound
+ * on what one request can return, not a guarantee.
+ */
+const PAGE_SIZE = 1000
+
+/**
+ * Safety bound on total rows pulled, so a pathological response (a server that
+ * keeps returning full pages) can't spin forever. Far above any realistic set
+ * count — ~137 years of logging at 20 sets/day.
+ */
+const MAX_ROWS = 1_000_000
+
+/**
+ * Fetch every row of a table by walking `.range()` windows until a page comes
+ * back empty.
+ *
+ * WHY: PostgREST silently truncates an unbounded `select()` at the project's
+ * `max-rows` (1000). It returns 200 with a short body rather than erroring, so
+ * the overflow is invisible to the caller — `weight_room_sets` crossed 1000
+ * rows in July 2026 and the read started silently dropping the *newest* sets
+ * (the query is ordered oldest-first), quietly under-reporting today's rings,
+ * the heatmap, lifetime totals, and streaks.
+ *
+ * A page shorter than {@link PAGE_SIZE} ends the walk, so the common
+ * under-the-cap case costs exactly one request. That termination rule assumes
+ * the server's `max-rows` is not *below* {@link PAGE_SIZE} — which holds
+ * because PAGE_SIZE is set to Supabase's own default cap, so a full page is the
+ * only ambiguous response. Lowering `max-rows` under 1000 in the project
+ * settings would silently truncate again; raising it is harmless.
+ *
+ * The query's ordering is fully deterministic (#229: `logged_at`, `updated_at`,
+ * `id`), which is what makes paging stable — an ambiguous sort could repeat or
+ * skip rows across page boundaries.
+ *
+ * @param table Table name, used only in the error message.
+ * @param page Builds the request for one `[from, to]` inclusive window.
+ * @param errorPrefix Prefix for the thrown error message.
+ * @throws when any page's query fails, or when {@link MAX_ROWS} is exceeded.
+ */
+async function fetchAllRows(
+  table: string,
+  page: (
+    from: number,
+    to: number,
+  ) => PromiseLike<{ data: unknown; error: { message: string } | null }>,
+  errorPrefix: string,
+): Promise<Array<Record<string, unknown>>> {
+  const rows: Array<Record<string, unknown>> = []
+  for (let from = 0; from < MAX_ROWS; from += PAGE_SIZE) {
+    const res = await page(from, from + PAGE_SIZE - 1)
+    if (res.error) {
+      throw new Error(`${errorPrefix}: ${res.error.message}`)
+    }
+    const batch = (res.data ?? []) as Array<Record<string, unknown>>
+    rows.push(...batch)
+    if (batch.length < PAGE_SIZE) return rows
+  }
+  throw new Error(`${errorPrefix}: ${table} exceeded the ${MAX_ROWS}-row read cap.`)
 }
 
 /**

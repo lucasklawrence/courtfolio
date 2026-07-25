@@ -11,7 +11,12 @@ import { useAdminSession } from '@/lib/auth/use-admin-session'
  * corresponds to one of the routes under
  * `/training-facility/weight-room/*`.
  */
-export type WeightRoomSubNavSection = 'today' | 'history' | 'settings' | 'log'
+export type WeightRoomSubNavSection =
+  | 'today'
+  | 'history'
+  | 'achievements'
+  | 'settings'
+  | 'log'
 
 /** Props for {@link WeightRoomSubNav}. */
 export interface WeightRoomSubNavProps {
@@ -38,15 +43,20 @@ interface SubNavItem {
 }
 
 /**
- * Weight Room sub-routes in display order. Today + History are public.
- * Settings + Log are admin-only — they're hidden from non-admin viewers
- * so the routes don't even hint at their existence. The underlying
- * pages still gate themselves with `requireAdminPage()` so direct URL
- * hits 404 regardless of the nav state.
+ * Weight Room sub-routes in display order. Today + History + Trophies
+ * are public. Settings + Log are admin-only — they're hidden from
+ * non-admin viewers so the routes don't even hint at their existence.
+ * The underlying pages still gate themselves with `requireAdminPage()`
+ * so direct URL hits 404 regardless of the nav state.
  */
 const ITEMS: readonly SubNavItem[] = [
   { section: 'today', label: 'Today', href: '/training-facility/weight-room' },
   { section: 'history', label: 'History', href: '/training-facility/weight-room/history' },
+  {
+    section: 'achievements',
+    label: 'Trophies',
+    href: '/training-facility/weight-room/achievements',
+  },
   { section: 'log', label: 'Log', href: '/training-facility/weight-room/log', adminOnly: true },
   { section: 'settings', label: 'Settings', href: '/training-facility/weight-room/settings', adminOnly: true },
 ]
