@@ -16,8 +16,11 @@
 --     changes to the check itself. A service-role key in that job's env could be
 --     exfiltrated by a PR that edits the script, and service-role bypasses RLS
 --     on production entirely.
---   * The anon key is public by construction (it ships in the browser bundle),
---     so exposing it to PR-controlled code costs nothing.
+--   * The anon key is read-only and bounded by RLS, so a PR that exfiltrated it
+--     could read what the site already serves publicly — not write, and not
+--     bypass a policy. It is still stored as a repo secret rather than a public
+--     value: the routes that would inline it into a client bundle are
+--     flag-gated off in production, so it isn't actually published yet.
 --   * The function returns `version` and `name` only — no row data, no reach
 --     into any other schema.
 --

@@ -178,7 +178,9 @@ Exits 0 in sync, 1 on drift, **2 when it cannot tell** — an unreachable databa
 
 ### Required env vars
 
-`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` — both public values. It **must not** use the service-role key: the CI job runs this script from a pull-request checkout and triggers on changes to the script itself, so a PR could rewrite it to exfiltrate whatever is in the job env, and service-role bypasses RLS on production entirely. Granting the RPC to `anon` costs nothing here because this repo is public, so every migration name it returns is already on GitHub.
+`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. It **must not** use the service-role key: the CI job runs this script from a pull-request checkout and triggers on changes to the script itself, so a PR could rewrite it to exfiltrate whatever is in the job env, and service-role bypasses RLS on production entirely. The anon key is read-only and bounded by RLS, and granting the RPC to `anon` leaks nothing extra — every migration name it returns is already on GitHub in this public repo.
+
+Both are stored as **repo secrets**, not variables. Despite the `NEXT_PUBLIC_` prefix the anon key isn't actually published today: the training-facility routes that would inline it into a client bundle are flag-gated off in production, and RLS is `using (true)` for reads, so that key is currently the only thing between the internet and the fitness data. A public repo has public Actions logs, and secrets get redacted from them where variables don't. (Masking only stops *accidental* logging — a deliberately malicious PR can print anything in its env either way. What protects this job is that nothing privileged is in it.)
 
 Deliberately uses plain `fetch` rather than `@supabase/supabase-js`, which needs a native WebSocket and throws on Node 20 — a drift check that only runs on the newest Node is one that gets skipped.
 
