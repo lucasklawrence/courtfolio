@@ -17,9 +17,11 @@
 -- are public by construction. Restricting it would buy nothing and cost a great
 -- deal: the drift check would need the service-role key, and CI runs it from a
 -- pull-request checkout, so any PR that edited the check could exfiltrate a
--- credential that bypasses RLS entirely on production. Reading with the anon key
--- (itself public — it ships in the client bundle) keeps that key out of
--- PR-controlled code completely.
+-- credential that bypasses RLS entirely and grants writes on production. The
+-- anon key is read-only and bounded by RLS, so reading with it keeps the
+-- privileged credential out of PR-controlled code entirely. (The anon key is
+-- still handled as a secret rather than a public value — the routes that would
+-- publish it in a client bundle are flag-gated off in production.)
 --
 -- The function returns only `version` and `name`. It exposes no row data and
 -- cannot be used to reach any other schema.
