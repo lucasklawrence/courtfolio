@@ -75,6 +75,21 @@ export interface ExerciseGoal {
    * ring. Mirrors `weight_room_goals.kind`.
    */
   kind?: 'permanent' | 'focus'
+  /**
+   * How many loaded implements this movement moves per set. Absent is treated
+   * as `1`.
+   *
+   * {@link StrengthSet.weight_lbs} records the load on *one* implement, since
+   * that's how it's read off the equipment — a "60 lb dumbbell shrug" is 60 per
+   * hand, not 60 total. Shrugs are carried two at a time, so they set this to
+   * `2` and their effective load is `weight_lbs × 2`. Every single-implement
+   * movement (barbell, vest, dip belt, bodyweight) leaves it at `1`.
+   *
+   * Lives on the goal rather than the set because it describes how the movement
+   * is performed, not one logged instance — so setting it corrects the entire
+   * history at once.
+   */
+  load_multiplier?: number
 }
 
 /**
@@ -144,6 +159,21 @@ export interface MonthlyFocus {
 export type AchievementScope = 'day' | 'week' | 'month' | 'streak' | 'lifetime' | 'set'
 
 /**
+ * What an {@link WeightRoomAchievement} threshold counts, orthogonal to its
+ * {@link AchievementScope} (which says over what window).
+ *
+ * - `'reps'` — rep count. The default, and what every rep-volume tier uses.
+ * - `'tonnage'` — pounds moved: `reps × weight_lbs × load_multiplier`, summed
+ *   over the scope window. For `scope: 'set'` it's one set's reps × load.
+ * - `'load'` — pounds under load on a single set
+ *   (`weight_lbs × load_multiplier`) — a strength PR rather than a volume one.
+ *
+ * Bodyweight sets carry no `weight_lbs`, so they contribute `0` to both
+ * `'tonnage'` and `'load'`.
+ */
+export type AchievementMeasure = 'reps' | 'tonnage' | 'load'
+
+/**
  * One badge tier on the Trophy Room ladder (#336) — mirrors a row of
  * `public.weight_room_achievements`.
  *
@@ -168,11 +198,18 @@ export interface WeightRoomAchievement {
    * `'streak'`, and the best single set of any exercise for `'set'`.
    */
   exercise: string | null
-  /** Which metric {@link threshold} applies to. */
+  /** Which window {@link threshold} is measured over. */
   scope: AchievementScope
   /**
-   * Value the scope's metric must reach to earn the badge — reps for every
-   * scope except `'streak'`, which counts days. Reaching it exactly earns it.
+   * What {@link threshold} counts within that window. Absent is treated as
+   * `'reps'` (every tier predating the load ladder).
+   */
+  measure?: AchievementMeasure
+  /**
+   * Value the metric must reach to earn the badge. Units follow
+   * {@link measure} and {@link scope}: reps for `'reps'` (days for
+   * `scope: 'streak'`), pounds for `'tonnage'` and `'load'`. Reaching it
+   * exactly earns it.
    */
   threshold: number
   /**

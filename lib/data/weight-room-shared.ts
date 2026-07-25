@@ -32,7 +32,7 @@ const FOCUS_TABLE = 'weight_room_monthly_focus'
 
 /** Whitelisted column lists for each table; `updated_at` rides along for `imported_at` computation. */
 const SETS_COLUMNS = 'id, logged_at, exercise, reps, weight_lbs, variant, updated_at'
-const GOALS_COLUMNS = 'exercise, daily_target, color, kind, updated_at'
+const GOALS_COLUMNS = 'exercise, daily_target, color, kind, load_multiplier, updated_at'
 const FOCUS_COLUMNS =
   'id, exercise, daily_target, target_kind, color, category, start_date, end_date, updated_at'
 
@@ -44,7 +44,7 @@ const WeightRoomMonthlyFocusRowsSchema = z.array(WeightRoomMonthlyFocusRowSchema
 const ACHIEVEMENTS_TABLE = 'weight_room_achievements'
 
 /** Whitelisted columns for `weight_room_achievements`, in sync with {@link WeightRoomAchievementRowSchema}. */
-const ACHIEVEMENTS_COLUMNS = 'id, label, exercise, scope, threshold, color, icon'
+const ACHIEVEMENTS_COLUMNS = 'id, label, exercise, scope, measure, threshold, color, icon'
 
 /** Array form of {@link WeightRoomAchievementRowSchema} for validating the ladder read. */
 const WeightRoomAchievementRowsSchema = z.array(WeightRoomAchievementRowSchema)

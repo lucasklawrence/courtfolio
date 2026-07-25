@@ -10,10 +10,12 @@ import type {
 import {
   POOLED_LABEL,
   achievementIcon,
+  achievementUnit,
   buildTrophyRoomView,
   describeAchievement,
   formatEarnedOn,
   resolveAchievements,
+  sectionLabel,
 } from './achievements'
 
 /**
@@ -340,6 +342,116 @@ describe('resolveAchievements — repeatable badges', () => {
   })
 })
 
+describe('resolveAchievements — load measures', () => {
+  /** A weighted set: `weight` is the per-implement load, as logged. */
+  function wset(day: string, exercise: string, reps: number, weight: number): StrengthSet {
+    return {
+      id: `${exercise}-${day}-${reps}x${weight}`,
+      logged_at: `${day}T12:00:00`,
+      exercise,
+      reps,
+      weight_lbs: weight,
+    }
+  }
+
+  /** shrugs carries two dumbbells; pushups is a single-implement (vest) movement. */
+  const LOAD_GOALS: ExerciseGoal[] = [
+    { exercise: 'shrugs', daily_target: 100, color: '#C9A268', load_multiplier: 2 },
+    { exercise: 'pushups', daily_target: 100, color: '#EA580C' },
+  ]
+
+  const loaded = (
+    sets: StrengthSet[],
+    achievement: WeightRoomAchievement,
+  ): ReturnType<typeof resolveOne> => resolveOne(sets, achievement, LOAD_GOALS)
+
+  it('doubles tonnage for a two-implement movement', () => {
+    // 10 reps × 60 lb per hand × 2 dumbbells = 1,200 lb.
+    const result = loaded(
+      [wset('2026-07-14', 'shrugs', 10, 60)],
+      tier('shrugs', 'day', 1200, { measure: 'tonnage' }),
+    )
+    expect(result.best).toBe(1200)
+    expect(result.earned).toBe(true)
+  })
+
+  it('leaves a single-implement movement at face value', () => {
+    // 10 reps × 20 lb vest × 1 = 200 lb, not 400.
+    const result = loaded(
+      [wset('2026-07-14', 'pushups', 10, 20)],
+      tier('pushups', 'day', 400, { measure: 'tonnage' }),
+    )
+    expect(result.best).toBe(200)
+    expect(result.earned).toBe(false)
+  })
+
+  it('treats a missing multiplier as a single implement', () => {
+    const result = resolveOne(
+      [wset('2026-07-14', 'dips', 10, 25)],
+      tier('dips', 'day', 250, { measure: 'tonnage' }),
+      [],
+    )
+    expect(result.best).toBe(250)
+    expect(result.earned).toBe(true)
+  })
+
+  it('sums tonnage across a week and a month', () => {
+    const sets = [
+      wset('2026-07-13', 'shrugs', 10, 50), // 1,000
+      wset('2026-07-19', 'shrugs', 10, 50), // 1,000 — same ISO week
+      wset('2026-07-20', 'shrugs', 10, 50), // 1,000 — next week, same month
+    ]
+    expect(loaded(sets, tier('shrugs', 'week', 2000, { measure: 'tonnage' })).best).toBe(2000)
+    expect(loaded(sets, tier('shrugs', 'month', 3000, { measure: 'tonnage' })).best).toBe(3000)
+  })
+
+  it('measures top-set load as total pounds under load', () => {
+    const sets = [wset('2026-07-14', 'shrugs', 8, 45), wset('2026-07-16', 'shrugs', 5, 60)]
+    const result = loaded(sets, tier('shrugs', 'set', 120, { measure: 'load' }))
+    expect(result.best).toBe(120) // 60 in each hand
+    expect(result.earned).toBe(true)
+    expect(result.firstEarnedOn).toBe('2026-07-16')
+  })
+
+  it('measures single-set tonnage as reps × total load, not the day total', () => {
+    const sets = [wset('2026-07-14', 'shrugs', 10, 50), wset('2026-07-14', 'shrugs', 10, 50)]
+    const result = loaded(sets, tier('shrugs', 'set', 1500, { measure: 'tonnage' }))
+    // Each set is 10 × 100 = 1,000; the day totals 2,000 but no single set clears 1,500.
+    expect(result.best).toBe(1000)
+    expect(result.earned).toBe(false)
+  })
+
+  it('never earns a load or tonnage tier from bodyweight sets', () => {
+    const bodyweight = [set('2026-07-14', 'pushups', 200)]
+    expect(loaded(bodyweight, tier('pushups', 'set', 20, { measure: 'load' })).earned).toBe(false)
+    expect(loaded(bodyweight, tier('pushups', 'day', 100, { measure: 'tonnage' })).earned).toBe(
+      false,
+    )
+    // The same sets still earn the rep ladder.
+    expect(loaded(bodyweight, tier('pushups', 'day', 100)).earned).toBe(true)
+  })
+
+  it('pools tonnage across movements using each one’s own multiplier', () => {
+    const sets = [
+      wset('2026-07-14', 'shrugs', 10, 50), // 10 × 100 = 1,000
+      wset('2026-07-14', 'pushups', 10, 20), // 10 ×  20 =   200
+    ]
+    expect(loaded(sets, tier(null, 'day', 1200, { measure: 'tonnage' })).best).toBe(1200)
+  })
+
+  it('keeps a streak on reps even when the tier asks for tonnage', () => {
+    // A streak has no tonnage bar to clear — daily_target is a rep target — so
+    // it resolves as a plain rep streak rather than silently reporting zero.
+    const sets = [
+      wset('2026-07-01', 'shrugs', 100, 50),
+      wset('2026-07-02', 'shrugs', 100, 50),
+    ]
+    const result = loaded(sets, tier('shrugs', 'streak', 2, { measure: 'tonnage' }))
+    expect(result.best).toBe(2)
+    expect(result.earned).toBe(true)
+  })
+})
+
 describe('resolveAchievements — edge cases', () => {
   it('resolves every tier to zero when there are no sets', () => {
     const results = resolveAchievements([], GOALS, [
@@ -443,6 +555,41 @@ describe('describeAchievement', () => {
     expect(describeAchievement(tier('pushups', 'streak', 30))).toBe('30-day streak')
     expect(describeAchievement(tier('pushups', 'lifetime', 10000))).toBe('10,000 reps all-time')
     expect(describeAchievement(tier('pushups', 'set', 20))).toBe('20 reps in one set')
+  })
+
+  it('switches to pounds for tonnage and load tiers', () => {
+    expect(describeAchievement(tier('shrugs', 'day', 10000, { measure: 'tonnage' }))).toBe(
+      '10,000 lb in a day',
+    )
+    expect(describeAchievement(tier('shrugs', 'set', 1400, { measure: 'tonnage' }))).toBe(
+      '1,400 lb in one set',
+    )
+    expect(describeAchievement(tier('shrugs', 'set', 120, { measure: 'load' }))).toBe(
+      '120 lb on one set',
+    )
+  })
+
+  it('still counts days for a streak whatever the measure', () => {
+    expect(describeAchievement(tier('shrugs', 'streak', 14, { measure: 'tonnage' }))).toBe(
+      '14-day streak',
+    )
+  })
+})
+
+describe('achievementUnit', () => {
+  it('labels reps, pounds, and days', () => {
+    expect(achievementUnit(tier('pushups', 'day', 100))).toBe('reps')
+    expect(achievementUnit(tier('shrugs', 'day', 5000, { measure: 'tonnage' }))).toBe('lb')
+    expect(achievementUnit(tier('shrugs', 'set', 120, { measure: 'load' }))).toBe('lb')
+    expect(achievementUnit(tier('pushups', 'streak', 7))).toBe('days')
+  })
+})
+
+describe('sectionLabel', () => {
+  it('distinguishes the rep, tonnage, and load ladders of one scope', () => {
+    expect(sectionLabel('day', 'reps')).toBe('Single day')
+    expect(sectionLabel('day', 'tonnage')).toBe('Single day · weight moved')
+    expect(sectionLabel('set', 'load')).toBe('Top-set load')
   })
 })
 

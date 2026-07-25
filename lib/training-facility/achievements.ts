@@ -1,4 +1,5 @@
 import type {
+  AchievementMeasure,
   AchievementScope,
   ExerciseGoal,
   StrengthSet,
@@ -46,6 +47,9 @@ const SCOPE_ORDER: readonly AchievementScope[] = [
   'set',
 ]
 
+/** Render order for measures within a scope — reps, then the load ladders. */
+const MEASURE_ORDER: readonly AchievementMeasure[] = ['reps', 'tonnage', 'load']
+
 /** Short section heading per scope, for the Trophy Room's grouped layout. */
 export const SCOPE_LABELS: Readonly<Record<AchievementScope, string>> = {
   day: 'Single day',
@@ -70,6 +74,19 @@ const SCOPE_ICONS: Readonly<Record<AchievementScope, string>> = {
 export const POOLED_LABEL = 'All movements'
 
 /**
+ * Heading for one subsection of a movement's ladder. Tiers are grouped by
+ * scope *and* measure, so "100 reps in a day" and "10,000 lb in a day" don't
+ * share a heading and look like contradictory thresholds.
+ */
+export function sectionLabel(scope: AchievementScope, measure: AchievementMeasure): string {
+  if (measure === 'load') {
+    return scope === 'set' ? 'Top-set load' : `${SCOPE_LABELS[scope]} · heaviest set`
+  }
+  if (measure === 'tonnage') return `${SCOPE_LABELS[scope]} · weight moved`
+  return SCOPE_LABELS[scope]
+}
+
+/**
  * Per-metric aggregates for one exercise (or the pooled ladder), built once
  * from the set log and then queried by every tier that measures it.
  */
@@ -80,8 +97,21 @@ interface MovementMetrics {
   byWeek: Map<string, number>
   /** Calendar month key (`YYYY-MM`) → reps logged that month. */
   byMonth: Map<string, number>
-  /** Every set as `{ day, reps }`, in chronological order — the `'set'` scope's source. */
-  sets: { day: string; reps: number }[]
+  /** Local day key → pounds moved that day (`Σ reps × effective load`). */
+  tonnageByDay: Map<string, number>
+  /** ISO-week Monday key → pounds moved that week. */
+  tonnageByWeek: Map<string, number>
+  /** Calendar month key → pounds moved that month. */
+  tonnageByMonth: Map<string, number>
+  /**
+   * Every set in chronological order — the `'set'` scope's source.
+   *
+   * `load` is the *effective* load: the logged per-implement `weight_lbs`
+   * times the movement's `load_multiplier`, so a 60 lb two-dumbbell shrug
+   * reads as the 120 lb it actually is. `tonnage` is `reps × load`. Both are
+   * `0` for a bodyweight set.
+   */
+  sets: { day: string; reps: number; load: number; tonnage: number }[]
   /**
    * Day keys that met the daily target, ascending — the `'streak'` scope's
    * source. For a single exercise that's `reps >= its goal.daily_target`; for
@@ -142,6 +172,14 @@ export interface AchievementGroup {
   label: string
   /** Accent from the matching {@link ExerciseGoal.color}, or `null` when unknown. */
   color: string | null
+  /**
+   * Implements moved per set, from the matching
+   * {@link ExerciseGoal.load_multiplier}. `1` for the pooled group and for any
+   * single-implement movement. The Trophy Room surfaces anything above `1` in
+   * the group header, so a 120 lb shrug tier reads as two 60s rather than
+   * looking like a typo.
+   */
+  loadMultiplier: number
   /** Tiers in this group, ordered by {@link SCOPE_ORDER} then ascending threshold. */
   achievements: ResolvedAchievement[]
   /** How many of {@link achievements} are earned. */
@@ -191,7 +229,16 @@ function bump(map: Map<string, number>, key: string, by: number): void {
 
 /** An empty metrics bundle — the shape a tier for an exercise with no sets resolves against. */
 function emptyMetrics(): MovementMetrics {
-  return { byDay: new Map(), byWeek: new Map(), byMonth: new Map(), sets: [], hitDays: [] }
+  return {
+    byDay: new Map(),
+    byWeek: new Map(),
+    byMonth: new Map(),
+    tonnageByDay: new Map(),
+    tonnageByWeek: new Map(),
+    tonnageByMonth: new Map(),
+    sets: [],
+    hitDays: [],
+  }
 }
 
 /**
@@ -201,14 +248,23 @@ function emptyMetrics(): MovementMetrics {
  *
  * @param sets All logged sets, usually `WeightRoomData.sets`.
  * @param goals Configured exercises — supplies each `daily_target`, which is
- *   what makes a day count toward a `'streak'`. An exercise with no goal still
- *   gets volume metrics; its streak is simply always `0` (there's no bar to
- *   clear). Non-positive targets are treated the same way.
+ *   what makes a day count toward a `'streak'`, and each `load_multiplier`,
+ *   which converts a per-implement `weight_lbs` into the effective load. An
+ *   exercise with no goal still gets volume metrics (at multiplier 1); its
+ *   streak is simply always `0` (there's no bar to clear). Non-positive
+ *   targets are treated the same way.
  */
 function buildMetrics(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
 ): Map<string, MovementMetrics> {
+  // Implements moved per set, per exercise. An exercise with no configured
+  // goal — or one predating the column — falls back to a single implement,
+  // which is the only safe default: it can understate a pair, but it can
+  // never invent load that isn't there.
+  const multiplierByExercise = new Map(
+    goals.map((g) => [g.exercise, Math.max(1, g.load_multiplier ?? 1)]),
+  )
   const metrics = new Map<string, MovementMetrics>()
   const pooled = emptyMetrics()
   metrics.set(POOLED_KEY, pooled)
@@ -232,11 +288,18 @@ function buildMetrics(
   for (const { set, day } of ordered) {
     const week = weekKeyOf(day)
     const month = day.slice(0, 7)
-    const observation = { day, reps: set.reps }
+    // Effective load: what's actually being moved, not what's stamped on one
+    // dumbbell. Bodyweight sets carry no `weight_lbs` and contribute 0.
+    const load = (set.weight_lbs ?? 0) * (multiplierByExercise.get(set.exercise) ?? 1)
+    const tonnage = set.reps * load
+    const observation = { day, reps: set.reps, load, tonnage }
     for (const m of [forExercise(set.exercise), pooled]) {
       bump(m.byDay, day, set.reps)
       bump(m.byWeek, week, set.reps)
       bump(m.byMonth, month, set.reps)
+      bump(m.tonnageByDay, day, tonnage)
+      bump(m.tonnageByWeek, week, tonnage)
+      bump(m.tonnageByMonth, month, tonnage)
       // A pooled *set* is still one exercise's set — the pooled `'set'` ladder
       // asks "biggest single set of anything", not "reps across a day's sets".
       m.sets.push(observation)
@@ -294,38 +357,51 @@ function resolveBuckets(buckets: ReadonlyMap<string, number>, threshold: number)
 }
 
 /**
- * Resolve the `'lifetime'` scope: the all-time rep total, and the day the
- * running total first crossed the threshold.
+ * Resolve the `'lifetime'` scope: the all-time running total of `daily`, and
+ * the day it first crossed the threshold.
  *
  * The one non-repeatable scope — a cumulative total only goes up, so it's
  * crossed exactly once and `earnedOn` holds at most one day.
+ *
+ * @param daily Per-day totals — reps or tonnage, depending on the measure.
  */
-function resolveLifetime(metrics: MovementMetrics, threshold: number): MetricOutcome {
-  const days = [...metrics.byDay.keys()].sort()
+function resolveLifetime(daily: ReadonlyMap<string, number>, threshold: number): MetricOutcome {
+  const days = [...daily.keys()].sort()
   let running = 0
   let crossedOn: string | null = null
   for (const day of days) {
-    running += metrics.byDay.get(day) ?? 0
+    running += daily.get(day) ?? 0
     if (crossedOn === null && running >= threshold) crossedOn = day
   }
   return { best: running, earnedOn: crossedOn === null ? [] : [crossedOn] }
 }
 
 /**
- * Resolve the `'set'` scope: the biggest single set, and the day of every set
- * that cleared the threshold. Repeatable per *set*, not per day — two 20-rep
- * sets in one session earn a 20-rep tier twice, so the same day key can appear
- * more than once.
+ * Resolve the `'set'` scope: the biggest single set by `pick`, and the day of
+ * every set that cleared the threshold. Repeatable per *set*, not per day — two
+ * 20-rep sets in one session earn a 20-rep tier twice, so the same day key can
+ * appear more than once.
  *
  * `metrics.sets` is already chronological (see {@link buildMetrics}), so the
  * result needs no sort.
+ *
+ * @param pick Which per-set value the threshold applies to: reps, effective
+ *   load, or the set's tonnage.
  */
-function resolveSets(metrics: MovementMetrics, threshold: number): MetricOutcome {
+function resolveSets(
+  metrics: MovementMetrics,
+  threshold: number,
+  pick: (set: MovementMetrics['sets'][number]) => number,
+): MetricOutcome {
   let best = 0
   const earnedOn: string[] = []
-  for (const { day, reps } of metrics.sets) {
-    if (reps > best) best = reps
-    if (reps >= threshold) earnedOn.push(day)
+  for (const observation of metrics.sets) {
+    const value = pick(observation)
+    if (value > best) best = value
+    // A bodyweight set has 0 load and 0 tonnage; it must never earn a load or
+    // tonnage tier, which a `>= threshold` test would allow only if a tier
+    // somehow had a non-positive threshold. Guard it explicitly.
+    if (value > 0 && value >= threshold) earnedOn.push(observation.day)
   }
   return { best, earnedOn }
 }
@@ -354,21 +430,52 @@ function resolveStreak(metrics: MovementMetrics, threshold: number): MetricOutco
   return { best, earnedOn }
 }
 
-/** Dispatch one tier to the resolver for its scope. */
+/**
+ * Dispatch one tier to the resolver for its scope × measure.
+ *
+ * `'streak'` is measure-agnostic: a day counts toward a streak when it hits the
+ * exercise's `daily_target`, which is a rep target, so a tonnage or load streak
+ * would have no bar to clear. Such a tier resolves as a plain rep streak rather
+ * than silently reporting zero.
+ *
+ * `'load'` over a windowed scope means "heaviest single set in that window", so
+ * its `best` matches the all-time top set. That combination is allowed but
+ * rarely more useful than `scope: 'set'`.
+ */
 function resolveMetric(metrics: MovementMetrics, achievement: WeightRoomAchievement): MetricOutcome {
+  const { threshold } = achievement
+  const measure: AchievementMeasure = achievement.measure ?? 'reps'
+
+  if (achievement.scope === 'streak') {
+    return resolveStreak(metrics, threshold)
+  }
+
+  if (achievement.scope === 'set') {
+    const pick =
+      measure === 'tonnage'
+        ? (s: MovementMetrics['sets'][number]) => s.tonnage
+        : measure === 'load'
+          ? (s: MovementMetrics['sets'][number]) => s.load
+          : (s: MovementMetrics['sets'][number]) => s.reps
+    return resolveSets(metrics, threshold, pick)
+  }
+
+  // A windowed `'load'` tier asks for the heaviest set inside the window, which
+  // isn't a sum — resolve it off the per-set observations rather than a bucket.
+  if (measure === 'load') {
+    return resolveSets(metrics, threshold, (s) => s.load)
+  }
+
+  const isTonnage = measure === 'tonnage'
   switch (achievement.scope) {
     case 'day':
-      return resolveBuckets(metrics.byDay, achievement.threshold)
+      return resolveBuckets(isTonnage ? metrics.tonnageByDay : metrics.byDay, threshold)
     case 'week':
-      return resolveBuckets(metrics.byWeek, achievement.threshold)
+      return resolveBuckets(isTonnage ? metrics.tonnageByWeek : metrics.byWeek, threshold)
     case 'month':
-      return resolveBuckets(metrics.byMonth, achievement.threshold)
+      return resolveBuckets(isTonnage ? metrics.tonnageByMonth : metrics.byMonth, threshold)
     case 'lifetime':
-      return resolveLifetime(metrics, achievement.threshold)
-    case 'set':
-      return resolveSets(metrics, achievement.threshold)
-    case 'streak':
-      return resolveStreak(metrics, achievement.threshold)
+      return resolveLifetime(isTonnage ? metrics.tonnageByDay : metrics.byDay, threshold)
   }
 }
 
@@ -434,6 +541,9 @@ export function buildTrophyRoomView(
 ): TrophyRoomView {
   const resolved = resolveAchievements(sets, goals, achievements)
   const colorByExercise = new Map(goals.map((g) => [g.exercise, g.color]))
+  const multiplierByExercise = new Map(
+    goals.map((g) => [g.exercise, Math.max(1, g.load_multiplier ?? 1)]),
+  )
 
   const byExercise = new Map<string, ResolvedAchievement[]>()
   for (const entry of resolved) {
@@ -455,12 +565,25 @@ export function buildTrophyRoomView(
       entries.sort((a, b) => {
         const scopeDelta =
           SCOPE_ORDER.indexOf(a.achievement.scope) - SCOPE_ORDER.indexOf(b.achievement.scope)
-        return scopeDelta !== 0 ? scopeDelta : a.achievement.threshold - b.achievement.threshold
+        if (scopeDelta !== 0) return scopeDelta
+        // Then by measure, so a scope's rep tiers stay together and its
+        // tonnage/load tiers form their own runs — the subsections the Trophy
+        // Room renders are built by walking this order.
+        const measureDelta =
+          MEASURE_ORDER.indexOf(a.achievement.measure ?? 'reps') -
+          MEASURE_ORDER.indexOf(b.achievement.measure ?? 'reps')
+        return measureDelta !== 0
+          ? measureDelta
+          : a.achievement.threshold - b.achievement.threshold
       })
       return {
         exercise: isPooled ? null : key,
         label: isPooled ? POOLED_LABEL : key,
         color: isPooled ? null : (colorByExercise.get(key) ?? null),
+        // The pooled ladder spans movements with different multipliers, so it
+        // has no single one of its own — its tonnage already has each set's
+        // multiplier baked in.
+        loadMultiplier: isPooled ? 1 : (multiplierByExercise.get(key) ?? 1),
         achievements: entries,
         earnedCount: entries.filter((e) => e.earned).length,
       }
@@ -503,20 +626,36 @@ export function buildTrophyRoomView(
  */
 export function describeAchievement(achievement: WeightRoomAchievement): string {
   const n = achievement.threshold.toLocaleString('en-US')
+  const measure: AchievementMeasure = achievement.measure ?? 'reps'
+
+  // A streak always counts days against the rep target, whatever the measure.
+  if (achievement.scope === 'streak') return `${n}-day streak`
+
+  // Load is a property of one set no matter the window it's scoped to.
+  if (measure === 'load') return `${n} lb on one set`
+
+  const noun = measure === 'tonnage' ? 'lb' : 'reps'
   switch (achievement.scope) {
     case 'day':
-      return `${n} reps in a day`
+      return `${n} ${noun} in a day`
     case 'week':
-      return `${n} reps in a week`
+      return `${n} ${noun} in a week`
     case 'month':
-      return `${n} reps in a month`
-    case 'streak':
-      return `${n}-day streak`
+      return `${n} ${noun} in a month`
     case 'lifetime':
-      return `${n} reps all-time`
+      return `${n} ${noun} all-time`
     case 'set':
-      return `${n} reps in one set`
+      return `${n} ${noun} in one set`
   }
+}
+
+/**
+ * Unit label for a tier's threshold and `best` — `days` for a streak, `lb` for
+ * a load or tonnage tier, `reps` otherwise. Used for the "N to go" copy.
+ */
+export function achievementUnit(achievement: WeightRoomAchievement): string {
+  if (achievement.scope === 'streak') return 'days'
+  return achievement.measure === 'tonnage' || achievement.measure === 'load' ? 'lb' : 'reps'
 }
 
 /** The emoji shown on a badge face — the tier's own `icon`, else a scope default. */

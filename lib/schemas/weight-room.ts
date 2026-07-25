@@ -13,6 +13,7 @@
 import { z } from 'zod'
 
 import type {
+  AchievementMeasure,
   AchievementScope,
   ExerciseGoal,
   MonthlyFocus,
@@ -146,6 +147,10 @@ export const WeightRoomGoalRowSchema = z
     // 'permanent', so live rows always carry it. Absent → treated as
     // 'permanent' by the row converter.
     kind: z.enum(['permanent', 'focus']).nullable().optional(),
+    // Optional + nullable so pre-load-ladder rows (and fixtures) without the
+    // column still validate; the DB column is NOT NULL DEFAULT 1, so live rows
+    // always carry it. Absent → treated as 1 by the row converter.
+    load_multiplier: positiveInt().nullable().optional(),
   })
   .strict()
 
@@ -225,6 +230,8 @@ export function goalRowToExerciseGoal(row: WeightRoomGoalRow): ExerciseGoal {
     // Absent/null → omit so it defaults to 'permanent' at read sites
     // (pre-#255 goals and fixtures never carry kind).
     ...(row.kind != null ? { kind: row.kind } : {}),
+    // Same treatment: absent/null → omit so read sites default it to 1.
+    ...(row.load_multiplier != null ? { load_multiplier: row.load_multiplier } : {}),
   }
 }
 
@@ -299,6 +306,10 @@ export function focusRowToMonthlyFocus(row: WeightRoomMonthlyFocusRow): MonthlyF
 const achievementScope = (): z.ZodType<AchievementScope> =>
   z.enum(['day', 'week', 'month', 'streak', 'lifetime', 'set'])
 
+/** The three achievement measures, as a Zod enum reused by the row + write schemas. */
+const achievementMeasure = (): z.ZodType<AchievementMeasure> =>
+  z.enum(['reps', 'tonnage', 'load'])
+
 /**
  * Zod schema for one row of `public.weight_room_achievements` (#336) on read.
  * `.strict()` so a column added to the table without updating this schema /
@@ -317,6 +328,9 @@ export const WeightRoomAchievementRowSchema = z
     label: z.string().min(1),
     exercise: z.string().min(1).nullable(),
     scope: achievementScope(),
+    // Optional so pre-load-ladder rows (and fixtures) still validate; the DB
+    // column is NOT NULL DEFAULT 'reps'. Absent → treated as 'reps'.
+    measure: achievementMeasure().optional(),
     threshold: positiveInt(),
     color: z.string().optional(),
     icon: z.string().optional(),
@@ -342,6 +356,7 @@ export function achievementRowToAchievement(
     scope: row.scope,
     threshold: row.threshold,
   }
+  if (row.measure !== undefined) achievement.measure = row.measure
   if (row.color !== undefined) achievement.color = row.color
   if (row.icon !== undefined) achievement.icon = row.icon
   return achievement
@@ -361,6 +376,7 @@ export const WeightRoomAchievementCreateSchema = z
     label: z.string().trim().min(1, 'label is required').max(60, 'label is too long'),
     exercise: exerciseWriteField().nullable().default(null),
     scope: achievementScope(),
+    measure: achievementMeasure().default('reps'),
     threshold: positiveInt(),
     color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C').optional(),
     icon: z.string().trim().min(1).max(8, 'icon should be a single emoji').optional(),

@@ -3,14 +3,14 @@ import type { CSSProperties, JSX } from 'react'
 import { BannerCard } from '@/components/common/BannerCard'
 import {
   achievementIcon,
+  achievementUnit,
   describeAchievement,
   formatEarnedOn,
-  SCOPE_LABELS,
+  sectionLabel,
   type AchievementGroup,
   type ResolvedAchievement,
   type TrophyRoomView,
 } from '@/lib/training-facility/achievements'
-import type { AchievementScope } from '@/types/weight-room'
 
 /**
  * Accent for a tier with no configured `color` and no exercise goal color to
@@ -185,14 +185,20 @@ function SectionHeading({
 /** One exercise's (or the pooled ladder's) tiers, split into scope subsections. */
 function GroupCard({ group }: { group: AchievementGroup }): JSX.Element {
   const accent = group.color ?? DEFAULT_ACCENT
-  // Preserve the scope ordering the resolver already applied rather than
-  // re-sorting: `achievements` arrives ordered by scope then threshold, so
+  // Preserve the ordering the resolver already applied rather than re-sorting:
+  // `achievements` arrives ordered by scope, then measure, then threshold, so
   // walking it in order yields subsections in the same intended sequence.
-  const byScope = new Map<AchievementScope, ResolvedAchievement[]>()
+  //
+  // Keyed by scope *and* measure — "100 reps in a day" and "10,000 lb in a day"
+  // are different ladders and must not share a heading.
+  const sections = new Map<string, { heading: string; entries: ResolvedAchievement[] }>()
   for (const entry of group.achievements) {
-    const bucket = byScope.get(entry.achievement.scope)
-    if (bucket) bucket.push(entry)
-    else byScope.set(entry.achievement.scope, [entry])
+    const { scope } = entry.achievement
+    const measure = entry.achievement.measure ?? 'reps'
+    const key = `${scope}|${measure}`
+    const bucket = sections.get(key)
+    if (bucket) bucket.entries.push(entry)
+    else sections.set(key, { heading: sectionLabel(scope, measure), entries: [entry] })
   }
 
   return (
@@ -202,10 +208,18 @@ function GroupCard({ group }: { group: AchievementGroup }): JSX.Element {
     >
       <header className="flex flex-wrap items-baseline justify-between gap-3">
         <h3
-          className="font-mono text-sm font-bold uppercase tracking-[0.2em]"
+          className="flex flex-wrap items-baseline gap-2 font-mono text-sm font-bold uppercase tracking-[0.2em]"
           style={{ color: accent }}
         >
           {group.label}
+          {group.loadMultiplier > 1 ? (
+            // Loads are logged per implement, so a two-dumbbell movement's
+            // thresholds are double the number stamped on the weight. Say so
+            // here rather than letting "120 lb" read as a typo.
+            <span className="font-normal normal-case tracking-normal text-white/45">
+              ×{group.loadMultiplier} implements · weights below are the total
+            </span>
+          ) : null}
         </h3>
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
           {group.earnedCount} / {group.achievements.length} raised
@@ -213,13 +227,13 @@ function GroupCard({ group }: { group: AchievementGroup }): JSX.Element {
       </header>
 
       <div className="mt-5 space-y-6">
-        {[...byScope.entries()].map(([scope, entries]) => (
-          <section key={scope} aria-label={`${group.label} — ${SCOPE_LABELS[scope]}`}>
+        {[...sections.entries()].map(([key, section]) => (
+          <section key={key} aria-label={`${group.label} — ${section.heading}`}>
             <h4 className="font-mono text-[10px] uppercase tracking-[0.28em] text-white/45">
-              {SCOPE_LABELS[scope]}
+              {section.heading}
             </h4>
             <ul className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-              {entries.map((entry) => (
+              {section.entries.map((entry) => (
                 <li key={entry.achievement.id}>
                   <BadgeTile entry={entry} accent={accent} />
                 </li>
@@ -250,8 +264,7 @@ function BadgeTile({
   const lastOn = formatEarnedOn(entry.lastEarnedOn, achievement.scope)
   const firstOn = formatEarnedOn(entry.firstEarnedOn, achievement.scope)
   const isRepeat = timesEarned > 1
-  // Streak thresholds count days; every other scope counts reps.
-  const unit = achievement.scope === 'streak' ? 'days' : 'reps'
+  const unit = achievementUnit(achievement)
 
   const litStyle: CSSProperties = { borderColor: color, backgroundColor: `${color}14` }
 
@@ -340,7 +353,7 @@ function ChaseCard({ entry }: { entry: ResolvedAchievement }): JSX.Element {
   const { achievement, best, progress, remaining } = entry
   const color = achievement.color ?? DEFAULT_ACCENT
   const pct = Math.round(progress * 100)
-  const unit = achievement.scope === 'streak' ? 'days' : 'reps'
+  const unit = achievementUnit(achievement)
   const scopeOwner = achievement.exercise ?? 'all movements'
 
   return (

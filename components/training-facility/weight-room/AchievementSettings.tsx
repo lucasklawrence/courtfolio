@@ -4,7 +4,11 @@ import { useRouter } from 'next/navigation'
 import { useMemo, useState, useTransition, type FormEvent, type JSX } from 'react'
 
 import { SCOPE_LABELS, POOLED_LABEL } from '@/lib/training-facility/achievements'
-import type { AchievementScope, WeightRoomAchievement } from '@/types/weight-room'
+import type {
+  AchievementMeasure,
+  AchievementScope,
+  WeightRoomAchievement,
+} from '@/types/weight-room'
 
 /** Props for {@link AchievementSettings}. */
 export interface AchievementSettingsProps {
@@ -26,6 +30,13 @@ export interface AchievementSettingsProps {
 /** Scope options in the same order the Trophy Room renders them. */
 const SCOPES: readonly AchievementScope[] = ['day', 'week', 'month', 'streak', 'lifetime', 'set']
 
+/** Measure options, with the wording used on the wall. */
+const MEASURES: readonly { value: AchievementMeasure; label: string }[] = [
+  { value: 'reps', label: 'Reps' },
+  { value: 'tonnage', label: 'Weight moved' },
+  { value: 'load', label: 'Set load' },
+]
+
 /** Accent applied to a new tier's color picker before the admin changes it — banner yellow. */
 const DEFAULT_NEW_COLOR = '#FACC15'
 
@@ -37,6 +48,7 @@ interface AchievementBody {
   label: string
   exercise: string | null
   scope: AchievementScope
+  measure: AchievementMeasure
   threshold: number
   color: string
   icon?: string
@@ -198,6 +210,7 @@ function AchievementRow({
   const [label, setLabel] = useState<string>(achievement.label)
   const [exercise, setExercise] = useState<string>(achievement.exercise ?? POOLED_OPTION)
   const [scope, setScope] = useState<AchievementScope>(achievement.scope)
+  const [measure, setMeasure] = useState<AchievementMeasure>(achievement.measure ?? 'reps')
   const [threshold, setThreshold] = useState<number>(achievement.threshold)
   const [color, setColor] = useState<string>(achievement.color ?? DEFAULT_NEW_COLOR)
   const [icon, setIcon] = useState<string>(achievement.icon ?? '')
@@ -206,6 +219,7 @@ function AchievementRow({
     label !== achievement.label ||
     exercise !== (achievement.exercise ?? POOLED_OPTION) ||
     scope !== achievement.scope ||
+    measure !== (achievement.measure ?? 'reps') ||
     threshold !== achievement.threshold ||
     color !== (achievement.color ?? DEFAULT_NEW_COLOR) ||
     icon !== (achievement.icon ?? '')
@@ -219,6 +233,7 @@ function AchievementRow({
       label: trimmedLabel,
       exercise: exercise === POOLED_OPTION ? null : exercise,
       scope,
+      measure,
       threshold,
       color,
       ...(trimmedIcon === '' ? {} : { icon: trimmedIcon }),
@@ -239,10 +254,13 @@ function AchievementRow({
         <Field label="movement">
           <ExerciseSelect value={exercise} options={exerciseOptions} onChange={setExercise} />
         </Field>
-        <Field label="measures">
+        <Field label="window">
           <ScopeSelect value={scope} onChange={setScope} />
         </Field>
-        <Field label={scope === 'streak' ? 'days' : 'reps'}>
+        <Field label="counts">
+          <MeasureSelect value={measure} onChange={setMeasure} />
+        </Field>
+        <Field label={thresholdUnit(scope, measure)}>
           <input
             type="number"
             min={1}
@@ -308,6 +326,7 @@ function AddAchievementForm({
   const [label, setLabel] = useState<string>('')
   const [exercise, setExercise] = useState<string>(exerciseOptions[0] ?? POOLED_OPTION)
   const [scope, setScope] = useState<AchievementScope>('day')
+  const [measure, setMeasure] = useState<AchievementMeasure>('reps')
   const [threshold, setThreshold] = useState<number>(100)
   const [color, setColor] = useState<string>(DEFAULT_NEW_COLOR)
   const [icon, setIcon] = useState<string>('')
@@ -321,6 +340,7 @@ function AddAchievementForm({
       label: trimmedLabel,
       exercise: exercise === POOLED_OPTION ? null : exercise,
       scope,
+      measure,
       threshold,
       color,
       ...(trimmedIcon === '' ? {} : { icon: trimmedIcon }),
@@ -349,10 +369,13 @@ function AddAchievementForm({
       <Field label="movement">
         <ExerciseSelect value={exercise} options={exerciseOptions} onChange={setExercise} />
       </Field>
-      <Field label="measures">
+      <Field label="window">
         <ScopeSelect value={scope} onChange={setScope} />
       </Field>
-      <Field label={scope === 'streak' ? 'days' : 'reps'}>
+      <Field label="counts">
+        <MeasureSelect value={measure} onChange={setMeasure} />
+      </Field>
+      <Field label={thresholdUnit(scope, measure)}>
         <input
           type="number"
           min={1}
@@ -421,6 +444,39 @@ function ExerciseSelect({
       {options.map((name) => (
         <option key={name} value={name}>
           {name}
+        </option>
+      ))}
+    </select>
+  )
+}
+
+/**
+ * Unit label for the threshold input, so the admin can see at a glance whether
+ * they're typing reps, pounds, or days. Mirrors the resolver's rule that a
+ * streak always counts days regardless of measure.
+ */
+function thresholdUnit(scope: AchievementScope, measure: AchievementMeasure): string {
+  if (scope === 'streak') return 'days'
+  return measure === 'reps' ? 'reps' : 'lb'
+}
+
+/** Measure dropdown — what the threshold counts within the chosen window. */
+function MeasureSelect({
+  value,
+  onChange,
+}: {
+  value: AchievementMeasure
+  onChange: (next: AchievementMeasure) => void
+}): JSX.Element {
+  return (
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value as AchievementMeasure)}
+      className={`${FIELD_CLASS} w-32`}
+    >
+      {MEASURES.map((m) => (
+        <option key={m.value} value={m.value}>
+          {m.label}
         </option>
       ))}
     </select>
