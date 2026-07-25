@@ -9,6 +9,8 @@ import {
 } from '@/lib/schemas/cardio'
 import type { CardioData } from '@/types/cardio'
 
+import { fetchAllRows } from './paged-read'
+
 /**
  * Pure cardio-read helpers shared between the browser entry
  * (`lib/data/cardio.ts`) and the server entry (`lib/data/cardio-server.ts`).
@@ -77,61 +79,11 @@ const CardioSessionRowsSchema = z.array(CardioSessionRowSchema)
 const CardioTrendRowsSchema = z.array(CardioTrendRowSchema)
 
 /**
- * PostgREST caps every response at a fixed row count (1000 on Supabase's
- * hosted default). {@link fetchAllRows} pages around that cap.
+ * Re-exported so existing importers (`lib/data/cardio-server.ts`) keep their
+ * import path. The implementation moved to `./paged-read` when the weight-room
+ * read layer needed the same cap-defeating pagination (#336).
  */
-const SUPABASE_PAGE_SIZE = 1000
-
-/**
- * Minimal structural view of the slice of a Supabase query builder that
- * {@link fetchAllRows} drives: a `.range()` that yields an awaitable page
- * result. Typed structurally so the helper stays decoupled from
- * `@supabase/supabase-js` generics (the client is already typed loosely
- * as `SupabaseClient` for the same reason — see {@link assembleCardioData}).
- */
-type PagedQuery = {
-  range: (
-    from: number,
-    to: number,
-  ) => PromiseLike<{ data: unknown; error: { message: string } | null }>
-}
-
-/**
- * Fetch **every** row a query would return, defeating PostgREST's
- * per-response row cap ({@link SUPABASE_PAGE_SIZE}).
- *
- * A bare `.select().order('date', { ascending: true })` silently returns
- * only the first page — and because the sort is ascending, that page is
- * the *oldest* rows. Any table past the cap therefore loses its most
- * recent data entirely: a 1171-row trend renders nothing newer than its
- * 1000th-oldest date, so a current-month view reads "no data in range"
- * even though the rows exist. This pages through with `.range()` until a
- * short page proves the tail was reached.
- *
- * @param makeQuery Builds a *fresh* query on each call. A PostgREST
- *   builder can only be awaited once, so every page needs its own; the
- *   builder must already carry its `.select()`/`.order()` — this helper
- *   only appends `.range()`.
- * @param label Table name, used only in the thrown error message.
- * @throws when any page errors (propagates the PostgREST message so the
- *   existing per-table error assertions keep matching).
- */
-export async function fetchAllRows(
-  makeQuery: () => PagedQuery,
-  label: string,
-): Promise<Array<Record<string, unknown>>> {
-  const rows: Array<Record<string, unknown>> = []
-  for (let from = 0; ; from += SUPABASE_PAGE_SIZE) {
-    const { data, error } = await makeQuery().range(from, from + SUPABASE_PAGE_SIZE - 1)
-    if (error) {
-      throw new Error(`Failed to load ${label}: ${error.message}`)
-    }
-    const page = (data ?? []) as Array<Record<string, unknown>>
-    rows.push(...page)
-    if (page.length < SUPABASE_PAGE_SIZE) break
-  }
-  return rows
-}
+export { fetchAllRows }
 
 /**
  * Fetch the full cardio dataset from Supabase using the supplied

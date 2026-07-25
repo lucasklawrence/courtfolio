@@ -13,6 +13,8 @@ import {
 } from '@/lib/schemas/weight-room'
 import type { WeightRoomAchievement, WeightRoomData } from '@/types/weight-room'
 
+import { fetchAllRows } from './paged-read'
+
 /**
  * Pure Weight Room read helpers shared between the browser entry
  * (`lib/data/weight-room.ts`) and the server entry
@@ -146,19 +148,19 @@ export async function assembleWeightRoomData(
   // by insertion order (sets have no update path), and `id` backstops
   // same-transaction inserts whose `updated_at` also collides.
   const [setsRaw, goalsRes, focusRes] = await Promise.all([
-    // Paged — the set log is the one table here that grows without bound and
-    // it crossed PostgREST's row cap in July 2026. See {@link fetchAllRows}.
+    // Paged — the set log is the one table here that grows without bound, and
+    // it crossed PostgREST's response cap in July 2026, silently dropping the
+    // *newest* sets (this query sorts ascending). The multi-key order above is
+    // also what makes paging stable. See {@link fetchAllRows}.
     fetchAllRows(
-      SETS_TABLE,
-      (from, to) =>
+      () =>
         supabase
           .from(SETS_TABLE)
           .select(SETS_COLUMNS)
           .order('logged_at', { ascending: true })
           .order('updated_at', { ascending: true })
-          .order('id', { ascending: true })
-          .range(from, to),
-      'Failed to load weight room sets',
+          .order('id', { ascending: true }),
+      'weight room sets',
     ),
     supabase.from(GOALS_TABLE).select(GOALS_COLUMNS).order('exercise', { ascending: true }),
     // Newest window first so the "Upcoming"/roadmap UI can slice from
@@ -210,68 +212,6 @@ export async function assembleWeightRoomData(
     goals: goalsParsed.data.map(goalRowToExerciseGoal),
     monthly_focus: focusParsed.data.map(focusRowToMonthlyFocus),
   }
-}
-
-/**
- * Rows requested per page. PostgREST caps a single response at the project's
- * `max-rows` setting (1000 on Supabase by default), so this is an upper bound
- * on what one request can return, not a guarantee.
- */
-const PAGE_SIZE = 1000
-
-/**
- * Safety bound on total rows pulled, so a pathological response (a server that
- * keeps returning full pages) can't spin forever. Far above any realistic set
- * count — ~137 years of logging at 20 sets/day.
- */
-const MAX_ROWS = 1_000_000
-
-/**
- * Fetch every row of a table by walking `.range()` windows until a page comes
- * back empty.
- *
- * WHY: PostgREST silently truncates an unbounded `select()` at the project's
- * `max-rows` (1000). It returns 200 with a short body rather than erroring, so
- * the overflow is invisible to the caller — `weight_room_sets` crossed 1000
- * rows in July 2026 and the read started silently dropping the *newest* sets
- * (the query is ordered oldest-first), quietly under-reporting today's rings,
- * the heatmap, lifetime totals, and streaks.
- *
- * A page shorter than {@link PAGE_SIZE} ends the walk, so the common
- * under-the-cap case costs exactly one request. That termination rule assumes
- * the server's `max-rows` is not *below* {@link PAGE_SIZE} — which holds
- * because PAGE_SIZE is set to Supabase's own default cap, so a full page is the
- * only ambiguous response. Lowering `max-rows` under 1000 in the project
- * settings would silently truncate again; raising it is harmless.
- *
- * The query's ordering is fully deterministic (#229: `logged_at`, `updated_at`,
- * `id`), which is what makes paging stable — an ambiguous sort could repeat or
- * skip rows across page boundaries.
- *
- * @param table Table name, used only in the error message.
- * @param page Builds the request for one `[from, to]` inclusive window.
- * @param errorPrefix Prefix for the thrown error message.
- * @throws when any page's query fails, or when {@link MAX_ROWS} is exceeded.
- */
-async function fetchAllRows(
-  table: string,
-  page: (
-    from: number,
-    to: number,
-  ) => PromiseLike<{ data: unknown; error: { message: string } | null }>,
-  errorPrefix: string,
-): Promise<Array<Record<string, unknown>>> {
-  const rows: Array<Record<string, unknown>> = []
-  for (let from = 0; from < MAX_ROWS; from += PAGE_SIZE) {
-    const res = await page(from, from + PAGE_SIZE - 1)
-    if (res.error) {
-      throw new Error(`${errorPrefix}: ${res.error.message}`)
-    }
-    const batch = (res.data ?? []) as Array<Record<string, unknown>>
-    rows.push(...batch)
-    if (batch.length < PAGE_SIZE) return rows
-  }
-  throw new Error(`${errorPrefix}: ${table} exceeded the ${MAX_ROWS}-row read cap.`)
 }
 
 /**
