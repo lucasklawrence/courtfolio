@@ -48,18 +48,23 @@ jobs:
         # script *from the PR checkout*, and the workflow deliberately triggers
         # on changes to that script — so a PR could rewrite it to exfiltrate
         # whatever is in `env`. A service-role key there would hand over
-        # RLS-bypassing production access (codex, #338). The anon key is public
-        # by design and `applied_migrations()` is granted to it, returning
-        # migration names that are already in this open-source repo anyway.
+        # RLS-bypassing write access to production (codex, #338); the anon key is
+        # read-only and bounded by RLS, which is why the swap mattered.
+        # `applied_migrations()` is granted to anon, and returns only migration
+        # names that are already in this open-source repo.
         #
         # If the values are missing the script exits 2 ("cannot tell") rather
         # than passing, so a green check always means genuinely verified.
         run: node scripts/check-migration-drift.mjs --allow-untracked
         env:
-          # `vars`, not `secrets` — both values are public (the URL and the
-          # sb_publishable_* key both ship in the browser bundle), so storing
-          # them as repo variables keeps it obvious that nothing privileged is
-          # in reach of this job. The URL stays a secret reference only because
-          # it predates this workflow.
+          # Both as `secrets`, so GitHub redacts them from logs. This repo is
+          # public, which makes its Actions logs public too, and the anon key
+          # is not currently published anywhere: the training-facility routes
+          # that would put it in a client bundle are flag-gated off in
+          # production. Since RLS is `using (true)` for reads, that key is today
+          # the only thing between the internet and the fitness data — so it gets
+          # masked, even though a determined PR could still print it (see above:
+          # what the earlier fix bought was removing the *privileged* key, not
+          # making this job safe to hand any credential).
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}

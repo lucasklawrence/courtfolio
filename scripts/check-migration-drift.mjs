@@ -31,10 +31,9 @@
  * of its own. Committed-but-unapplied (`pending`) is never downgraded — that's
  * the #271 failure mode and always blocks.
  *
- * Requires NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_ANON_KEY — both
- * public values, never the service-role key (see `appliedMigrations`). Exits 0
- * when in sync, 1 on drift, 2 when it cannot tell — an unreachable database is
- * not a passing check.
+ * Requires NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_ANON_KEY, never the
+ * service-role key (see `appliedMigrations`). Exits 0 when in sync, 1 on drift,
+ * 2 when it cannot tell — an unreachable database is not a passing check.
  *
  * Talks to PostgREST with plain `fetch` rather than `@supabase/supabase-js`
  * deliberately: the client pulls in a realtime transport that needs a native
@@ -97,9 +96,12 @@ async function appliedMigrations() {
   // The anon key by preference, service-role only as a local fallback. The RPC
   // is granted to anon precisely so this check never needs a privileged
   // credential: CI runs it from a pull-request checkout, and a service-role key
-  // there could be exfiltrated by a PR that edits this file — it bypasses RLS on
-  // production. The anon key is public by design (it ships in the client
-  // bundle), so exposing it to PR code costs nothing.
+  // there could be exfiltrated by a PR that edits this file — it bypasses RLS
+  // entirely and grants writes. The anon key is read-only and bounded by RLS,
+  // which is the whole point of the swap. It is still stored as a secret rather
+  // than a variable: the training-facility routes that would publish it in a
+  // client bundle are flag-gated off in production, so it isn't public today,
+  // and this repo's Actions logs are.
   const key =
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim() ||
     process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
