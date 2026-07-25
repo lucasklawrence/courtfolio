@@ -10,6 +10,7 @@ import {
 } from '../../scripts/lib/otbeat-class-type.mjs'
 import {
   OTF_CLASS_TYPE_ORDER,
+  OTF_CLASS_TYPE_UNCLASSIFIED,
   aggregateOtfZoneMinutes,
   earliestOtfDate,
   effectiveOtfClassType,
@@ -110,18 +111,24 @@ describe('class-type helpers (#271)', () => {
         mk('c', { class_type: 'Tread + Row' }), // duplicate collapses
         mk('d', { class_type: 'Tread-focused' }),
         mk('e', { class_type: 'Tread + Row', class_type_override: 'Strength 50' }), // manual extra
-        mk('f'), // no type → omitted
+        mk('f'), // no type → the Unclassified sentinel, last
       ]
       expect(otfClassTypes(sessions)).toEqual([
         'Tread + Row',
         'Tread-focused',
         'Row-focused',
         'Strength 50',
+        OTF_CLASS_TYPE_UNCLASSIFIED,
       ])
     })
 
-    it('returns an empty list when no session has a type', () => {
-      expect(otfClassTypes([mk('a'), mk('b')])).toEqual([])
+    it('omits the Unclassified sentinel when every session has a type', () => {
+      const sessions = [mk('a', { class_type: 'Tread + Row' }), mk('b', { class_type: 'Row-focused' })]
+      expect(otfClassTypes(sessions)).toEqual(['Tread + Row', 'Row-focused'])
+    })
+
+    it('offers only the Unclassified sentinel when no session has a type', () => {
+      expect(otfClassTypes([mk('a'), mk('b')])).toEqual([OTF_CLASS_TYPE_UNCLASSIFIED])
     })
   })
 
@@ -197,6 +204,25 @@ describe('class-type helpers (#271)', () => {
       const result = filterOtfSessionsByClassType(sessions, null)
       expect(result).toHaveLength(3)
       expect(result).not.toBe(sessions)
+    })
+
+    it('selects the untyped sessions for the Unclassified sentinel', () => {
+      const withUntyped = [...sessions, mk('d'), mk('e', { class_type: '  ' })]
+      expect(
+        filterOtfSessionsByClassType(withUntyped, OTF_CLASS_TYPE_UNCLASSIFIED).map(s => s.started_at)
+      ).toEqual(['d', 'e'])
+    })
+
+    // The #271 regression: three real July classes were ingested with a null
+    // class_type, so every chip dropped them from the log and the aggregates
+    // with nothing to indicate it. The options must partition the window.
+    it('keeps every session reachable through some option', () => {
+      const withUntyped = [...sessions, mk('d')]
+      const options = otfClassTypes(withUntyped)
+      const reached = new Set(
+        options.flatMap(o => filterOtfSessionsByClassType(withUntyped, o).map(s => s.started_at))
+      )
+      expect(reached).toEqual(new Set(['a', 'b', 'c', 'd']))
     })
   })
 })

@@ -623,6 +623,13 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
   // classes drive the aggregates; excluded ones are called out separately.
   const excludedCount = useMemo(() => sessions.filter(s => s.excluded).length, [sessions])
   const activeCount = sessions.length - excludedCount
+  // Counted classes that carry no class type still land in every aggregate, but
+  // they're only reachable through the "Unclassified" chip — so say how many
+  // there are rather than letting them read as missing data.
+  const unclassifiedCount = useMemo(
+    () => sessions.filter(s => !s.excluded && !effectiveOtfClassType(s)).length,
+    [sessions]
+  )
 
   return (
     <section className="mt-8 rounded-[1.6rem] border border-white/10 bg-black/25 p-5">
@@ -634,6 +641,9 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
           {sessions.length === 0 ? 'No classes in range' : `${activeCount} in range`}
           {excludedCount > 0 && (
             <span className="ml-1 text-[#f9a870]/80">· {excludedCount} excluded</span>
+          )}
+          {unclassifiedCount > 0 && (
+            <span className="ml-1 text-white/45">· {unclassifiedCount} unclassified</span>
           )}
           <span className="ml-2 text-white/35">
             ({formatBound(range.start)} → {formatBound(range.end)})
