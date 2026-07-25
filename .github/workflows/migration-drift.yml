@@ -1,0 +1,65 @@
+name: Migration drift
+
+# Only PRs that touch migrations. Running this on every PR would be noise: the
+# convention is to apply a migration *before* committing it, so any PR opened
+# while a sibling migration PR is unmerged sees that migration as applied with no
+# file on this branch, through no fault of its own.
+on:
+  pull_request:
+    paths:
+      - 'supabase/migrations/**'
+      - 'scripts/check-migration-drift.mjs'
+      - '.github/workflows/migration-drift.yml'
+
+# Read-only on the repo (only `checkout` needs it); this job reports a status and
+# never writes back to git. Least-privilege token, matching otbeat-ingest.yml.
+permissions:
+  contents: read
+
+concurrency:
+  group: migration-drift-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          # Read-only job — don't leave the GITHUB_TOKEN in .git/config.
+          persist-credentials: false
+
+      - name: Set up Node.js and install dependencies
+        uses: ./.github/actions/node-setup
+
+      - name: Check migrations against the applied ledger
+        # `--allow-untracked` so only the blocking failure mode blocks:
+        # committed-but-never-applied, which is the #271 shape that left three
+        # OTF sessions unusable for 20 days. Applied-with-no-file is *reported*
+        # but doesn't fail, because in a repo with concurrent PRs it usually just
+        # means a sibling migration hasn't merged yet rather than real drift.
+        # Run `npm run migrations:check` (strict, no flag) before merging to see
+        # that class too.
+        #
+        # Reads with the ANON key, never the service-role key. This job runs the
+        # script *from the PR checkout*, and the workflow deliberately triggers
+        # on changes to that script — so a PR could rewrite it to exfiltrate
+        # whatever is in `env`. A service-role key there would hand over
+        # RLS-bypassing production access (codex, #338). The anon key is public
+        # by design and `applied_migrations()` is granted to it, returning
+        # migration names that are already in this open-source repo anyway.
+        #
+        # If the values are missing the script exits 2 ("cannot tell") rather
+        # than passing, so a green check always means genuinely verified.
+        run: node scripts/check-migration-drift.mjs --allow-untracked
+        env:
+          # `vars`, not `secrets` — both values are public (the URL and the
+          # sb_publishable_* key both ship in the browser bundle), so storing
+          # them as repo variables keeps it obvious that nothing privileged is
+          # in reach of this job. The URL stays a secret reference only because
+          # it predates this workflow.
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}

@@ -32,6 +32,44 @@ When to skip:
 - Local variables, internal helpers whose name already says it all, and one-line inferred types. Don't restate what TypeScript already conveys (`/** A string. */` on a `string` field is noise).
 - Don't reference the current task or fix in a doc comment — that belongs in the commit message.
 
+## Database migrations
+
+Every schema change is a committed `.sql` file in `supabase/migrations/` **and** a
+recorded entry in the migration ledger. Both, always — the two drift apart
+silently otherwise, and nothing in the app surfaces it.
+
+The order matters:
+
+1. **Write the file first**, named `<version>_<name>.sql`. The `<name>` must match
+   the name you apply it under — the filename timestamp and the applied version
+   are unrelated (files use a synthetic stamp; Supabase records the moment it
+   actually ran), so the *name* is the only key tying the two sides together.
+2. **Apply it with `apply_migration`** (the Supabase MCP tool) or the CLI, which
+   records it in the ledger. Never run schema DDL through `execute_sql` or a raw
+   query — that changes the database without recording anything, leaving a table
+   the repo can't rebuild and the ledger doesn't know about.
+3. **Commit the file.** A migration applied from an uncommitted file is drift the
+   moment the session ends.
+
+Write DDL idempotently — `create table if not exists`, `add column if not exists`,
+`create policy` wrapped in a `do $$ ... exception when duplicate_object $$` block.
+Re-applying on a fresh project or a branch reset should be a safe no-op. Guard
+backfill `update`s with a `where <col> is null` so they never re-stamp a row.
+
+**Backfills race deploys.** A migration that backfills a column derived by the
+ingest path can be overtaken by a pull still running the previous code — that is
+exactly how three OTF sessions kept a null `class_type` for 20 days (#334). When
+a migration and a code change have to agree, make the ingest path self-heal the
+null rather than assuming the backfill caught everything.
+
+`npm run migrations:check` compares the two sides and fails on either kind of
+gap: committed-but-unapplied, or applied-with-no-file. Run it after applying
+anything. CI runs it with `--allow-untracked` on PRs touching
+`supabase/migrations/`, so only committed-but-unapplied blocks a merge —
+applied-with-no-file is usually just a sibling PR that hasn't landed yet, so it's
+reported rather than enforced. The strict local run is what catches genuine
+untracked drift.
+
 ## Throwaway screenshots
 
 Write any temporary screenshots (audit runs, verification captures, mobile spot-checks, anything you take just to look at) to the `screenshots/` directory at the repo root. Its contents are gitignored. Don't drop screenshots at the repo root — they'll show up as untracked clutter in `git status` and complicate every future stage.

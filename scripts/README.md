@@ -154,3 +154,38 @@ Local runs read `.env.local`; the Action reads repo **Actions secrets**. Both ne
 ### Schema & privacy
 
 Table: `supabase/migrations/20260628120000_otf_sessions.sql`. Like the `cardio_*` tables, `otf_sessions` is **publicly readable** via the anon key (RLS `using (true)`) so the dashboard renders without sign-in. Flip it private by swapping `using (true)` for an authenticated check and re-applying. Zone minutes are explicit columns; the treadmill and rower blocks are JSONB (`null` on class formats that omit them — e.g. tread-only days, and the occasional belt-malfunction "4 calorie" summary).
+
+### Data-quality gate
+
+The run **exits non-zero** if any counted (non-`excluded`) session lacks a `class_type`. Such a row matches no filter chip in the OTF view, so it silently vanishes from the log and every aggregate — three sessions sat that way for 20 days before anyone noticed (#334). The importer also backfills a *null* `class_type` on rows already present, so a future ingest/migration race repairs itself on the next pull; anything the lookback window can't reach is what the exit code is for.
+
+## `migrations:check`
+
+`npm run migrations:check`
+
+Compares the `.sql` files in `supabase/migrations/` against the migrations actually recorded as applied, and fails when they disagree. Add `--allow-untracked` to downgrade the applied-with-no-file case to a warning, or `--json` for a machine-readable report.
+
+Why it exists: a migration's **filename timestamp and its applied version are unrelated**. Files carry a synthetic stamp chosen when written (`20260430120000_cardio_tables.sql`); Supabase records the moment it ran (`20260501063801`). The only shared key is the name, so nothing was comparing them, and drift accumulated in both directions — `create_movement_benchmarks` was applied for three months with no file in the repo, meaning a rebuild from source produced a database missing that table entirely.
+
+Two failure modes, treated differently:
+
+- **Committed but not applied** — always fails. This is the shape of the #271 race that left three OTF sessions unreachable.
+- **Applied but no file** — fails locally, *reported* in CI. Since the convention is apply-then-commit, a sibling PR's migration is legitimately applied while its file sits on an unmerged branch, so any branch cut from `main` would otherwise fail through no fault of its own.
+
+Reads the ledger through the `public.applied_migrations()` RPC because PostgREST exposes just `public` and `graphql_public` — selecting `supabase_migrations.schema_migrations` directly returns PGRST106. The function is `SECURITY DEFINER`, returns `version` and `name` only, and is granted to `anon`.
+
+Exits 0 in sync, 1 on drift, **2 when it cannot tell** — an unreachable database must never read as a pass.
+
+### Required env vars
+
+`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` — both public values. It **must not** use the service-role key: the CI job runs this script from a pull-request checkout and triggers on changes to the script itself, so a PR could rewrite it to exfiltrate whatever is in the job env, and service-role bypasses RLS on production entirely. Granting the RPC to `anon` costs nothing here because this repo is public, so every migration name it returns is already on GitHub.
+
+Deliberately uses plain `fetch` rather than `@supabase/supabase-js`, which needs a native WebSocket and throws on Node 20 — a drift check that only runs on the newest Node is one that gets skipped.
+
+### Writing a migration
+
+1. Write the file first, `<version>_<name>.sql`. The `<name>` must match the name you apply it under — it's the only key tying the file to the ledger.
+2. Apply it with the Supabase `apply_migration` tool (or the CLI), which records it. **Never** run schema DDL through `execute_sql` or a raw query: that changes the database without recording anything.
+3. Commit the file. A migration applied from an uncommitted file is drift the moment the session ends.
+
+Write DDL idempotently (`create table if not exists`, `add column if not exists`, `create policy` inside a `do $$ ... exception when duplicate_object $$` block) and guard backfill `update`s with `where <col> is null`.
