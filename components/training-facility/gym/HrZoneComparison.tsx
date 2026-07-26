@@ -1,10 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useMemo, useState, type JSX } from 'react'
+import { useMemo, type JSX } from 'react'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
-import { getCardioData, getOtfData } from '@/lib/data'
 import {
   averageOf,
   bandForBpm,
@@ -16,6 +15,27 @@ import { excludeInvalidOtfSessions } from '@/lib/training-facility/otf'
 import type { CardioData } from '@/types/cardio'
 import type { OtfData } from '@/types/otf'
 
+/** Props for {@link HrZoneComparison}. */
+export interface HrZoneComparisonProps {
+  /**
+   * The Apple cardio dataset, or `null` when the table is empty. Read
+   * server-side by the page — see the component's docs for why.
+   */
+  cardio: CardioData | null
+  /** The OrangeTheory dataset, or `null` when the table is empty. */
+  otf: OtfData | null
+  /**
+   * Message from a failed read, rendered in place of the comparison.
+   *
+   * Both readers resolve `null` on an *empty table* and reject only on a real
+   * query/schema failure, so this is reserved for genuine failures. A masked
+   * failure would render a partial comparison that looks like "the other
+   * source is just empty"; two empty tables are not an error and fall through
+   * to the empty state.
+   */
+  loadError?: string
+}
+
 /**
  * Apple-vs-OrangeTheory HR-zone reconciliation view (#261). Loads both the
  * Apple cardio dataset and the OTbeat session data, derives one shared maxHR
@@ -24,39 +44,23 @@ import type { OtfData } from '@/types/otf'
  * one-to-one mapping. Ends with a short recommendation on which to treat as the
  * canonical cross-session model.
  *
- * Self-contained (own dark-arena shell + loading/error panels), matching the
- * sibling `OtfDetailView`; reached from a link in that view's header.
+ * Owns its dark-arena shell and error panel, matching the sibling
+ * `OtfDetailView`; reached from a link in that view's header.
+ *
+ * Data arrives as props from the page rather than a mount effect (#345). This
+ * route is publicly reachable, and a client-side Supabase read would inline
+ * `NEXT_PUBLIC_SUPABASE_ANON_KEY` into its bundle. Still a Client Component —
+ * the memoized derivations below run in the browser — but one with no Supabase
+ * import, which is what keeps the key out.
+ *
+ * Consequently there is no loading state: the server resolves both datasets
+ * before this renders.
  */
-export function HrZoneComparison(): JSX.Element {
-  const [cardio, setCardio] = useState<CardioData | null>(null)
-  const [otf, setOtf] = useState<OtfData | null>(null)
-  const [ready, setReady] = useState(false)
-  const [loadError, setLoadError] = useState<Error | null>(null)
-
-  useEffect(() => {
-    let cancelled = false
-    // Both readers resolve `null` on an *empty table* (the sibling views' empty
-    // contract) and reject only on a real query/schema failure. Let a genuine
-    // rejection from either source propagate to the error panel rather than
-    // swallowing it to `null` — a masked failure would render a partial
-    // comparison that looks like "the other source is just empty". Two empty
-    // tables are not an error; they fall through to the empty state.
-    Promise.all([getCardioData(), getOtfData()])
-      .then(([cardioData, otfData]) => {
-        if (cancelled) return
-        setCardio(cardioData)
-        setOtf(otfData)
-        setReady(true)
-      })
-      .catch((err: unknown) => {
-        if (cancelled) return
-        setLoadError(err instanceof Error ? err : new Error(String(err)))
-        setReady(true)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
+export function HrZoneComparison({
+  cardio,
+  otf,
+  loadError,
+}: HrZoneComparisonProps): JSX.Element {
 
   // Drop excluded/anomalous OTF sessions (#268) so a malfunction or a manual
   // exclusion (bogus peak_hr / zone minutes) can't skew the shared max HR, the
@@ -111,9 +115,7 @@ export function HrZoneComparison(): JSX.Element {
         </header>
 
         {loadError ? (
-          <ErrorPanel error={loadError} />
-        ) : !ready ? (
-          <LoadingPanel />
+          <ErrorPanel message={loadError} />
         ) : (
           <>
             <MaxHrCallout
@@ -317,6 +319,39 @@ function ZoneChip({ band }: { band: ZoneTimeShare }): JSX.Element {
   )
 }
 
+/** Short recommendation on which model to treat as canonical, and why. */
+function RecommendationNote({
+  source,
+  observedPeak,
+}: {
+  source: 'observed' | 'default'
+  observedPeak: number | null
+}): JSX.Element {
+  return (
+    <section className="mt-8 rounded-[1.6rem] border border-[#f97316]/25 bg-[#f97316]/5 p-5">
+      <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#f97316]">
+        Which to follow
+      </h2>
+      <div className="mt-3 space-y-3 text-sm leading-7 text-[#e8d5be]">
+        <p>
+          For cross-session consistency, follow the <strong>Apple even-band model</strong> on the
+          shared observed max HR
+          {source === 'observed' && observedPeak !== null ? ` (${observedPeak} bpm)` : ''} as the
+          canonical model. It&rsquo;s built from raw samples we control, so the same bpm means the
+          same zone in every session — and it&rsquo;s the all-day model, not tied to one studio
+          format.
+        </p>
+        <p>
+          Keep OrangeTheory&rsquo;s bands as <strong>studio-effort context</strong>, not a second
+          truth: its minutes arrive pre-bucketed off OTF&rsquo;s own age-based max HR, so they
+          can&rsquo;t be re-bucketed to match. Read splat (orange + red) as &ldquo;how hard was that
+          class,&rdquo; and read the Apple zones for everything cross-session.
+        </p>
+      </div>
+    </section>
+  )
+}
+
 /**
  * Proportional time-in-zone strip — the {@link ZoneTimeShare} bands as adjacent
  * colored segments sized by `share`. Mirrors `SessionZoneStrip`'s look (rounded,
@@ -358,50 +393,6 @@ function ZoneShareStrip({ system }: { system: SystemZoneComparison }): JSX.Eleme
   )
 }
 
-/** Short recommendation on which model to treat as canonical, and why. */
-function RecommendationNote({
-  source,
-  observedPeak,
-}: {
-  source: 'observed' | 'default'
-  observedPeak: number | null
-}): JSX.Element {
-  return (
-    <section className="mt-8 rounded-[1.6rem] border border-[#f97316]/25 bg-[#f97316]/5 p-5">
-      <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#f97316]">
-        Which to follow
-      </h2>
-      <div className="mt-3 space-y-3 text-sm leading-7 text-[#e8d5be]">
-        <p>
-          For cross-session consistency, follow the <strong>Apple even-band model</strong> on the
-          shared observed max HR
-          {source === 'observed' && observedPeak !== null ? ` (${observedPeak} bpm)` : ''} as the
-          canonical model. It&rsquo;s built from raw samples we control, so the same bpm means the
-          same zone in every session — and it&rsquo;s the all-day model, not tied to one studio
-          format.
-        </p>
-        <p>
-          Keep OrangeTheory&rsquo;s bands as <strong>studio-effort context</strong>, not a second
-          truth: its minutes arrive pre-bucketed off OTF&rsquo;s own age-based max HR, so they
-          can&rsquo;t be re-bucketed to match. Read splat (orange + red) as &ldquo;how hard was that
-          class,&rdquo; and read the Apple zones for everything cross-session.
-        </p>
-      </div>
-    </section>
-  )
-}
-
-function LoadingPanel(): JSX.Element {
-  return (
-    <div
-      role="status"
-      aria-live="polite"
-      className="mt-10 rounded-[1.6rem] border border-white/10 bg-black/25 p-8 text-center text-sm text-white/65"
-    >
-      Loading heart-rate data…
-    </div>
-  )
-}
 
 function EmptyState(): JSX.Element {
   return (
@@ -415,14 +406,14 @@ function EmptyState(): JSX.Element {
   )
 }
 
-function ErrorPanel({ error }: { error: Error }): JSX.Element {
+function ErrorPanel({ message }: { message: string }): JSX.Element {
   return (
     <div
       role="alert"
       className="mt-10 rounded-[1.6rem] border border-red-400/30 bg-red-950/40 p-6 text-sm leading-6 text-red-100"
     >
       <p className="font-semibold uppercase tracking-[0.18em]">Could not load heart-rate data</p>
-      <p className="mt-2 text-red-100/80">{error.message}</p>
+      <p className="mt-2 text-red-100/80">{message}</p>
     </div>
   )
 }

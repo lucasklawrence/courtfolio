@@ -1,6 +1,3 @@
-import { z } from 'zod'
-
-import { BenchmarkSchema } from '@/lib/schemas/movement'
 import { getBrowserSupabaseClient } from '@/lib/supabase/browser'
 import type {
   Benchmark,
@@ -8,78 +5,30 @@ import type {
   BenchmarkUpdate,
 } from '@/types/movement'
 
+import { assembleMovementBenchmarks } from './movement-shared'
+
 /** Admin-only API route prefix for benchmark writes (#131). */
 const WRITE_ROUTE = '/api/admin/movement-benchmarks'
-
-/** Supabase table containing benchmark rows. Created via migration in #131. */
-const TABLE = 'movement_benchmarks'
-
-/**
- * Whitelisted column list for benchmark reads. Mirrors the {@link Benchmark}
- * shape so a future column addition (e.g. a `bench_press_lbs` field) doesn't
- * silently leak through to consumers without a corresponding type update.
- */
-const SELECT_COLUMNS =
-  'date, bodyweight_lbs, shuttle_5_10_5_s, vertical_in, sprint_10y_s, notes, is_complete'
-
-/**
- * Validates an array of rows returned from the Supabase select. Each
- * row is normalized (null → omitted) and then run through the
- * canonical {@link BenchmarkSchema} so a DB-shape drift (e.g. a
- * future column added without updating the type, or a hand-edited
- * malformed row) surfaces as a loud error instead of silently flowing
- * into the public UI.
- */
-const BenchmarkRowsSchema = z
-  .array(BenchmarkSchema)
-  .describe('movement_benchmarks rows after null-stripping')
 
 /**
  * Fetch all logged Combine benchmarks from Supabase, newest date first.
  *
  * Returns an empty array when no rows exist (typical pre-baseline state).
  * RLS allows anon SELECT on `movement_benchmarks`, so this works without
- * the user being signed in. Each row is parsed against
- * {@link BenchmarkSchema} after null values are dropped, so a DB-shape
- * drift fails fast at the data-layer boundary instead of producing a
- * confused render downstream.
+ * the user being signed in.
  *
- * @throws when the Supabase query fails (network error, misconfigured
- *   env) or when a row fails Zod validation. Callers usually downgrade
- *   this to an empty render — see `CombineDataIsland`.
+ * **Client-side.** Importing this pulls in the browser Supabase client, which
+ * inlines the anon key into the bundle — fine for the admin-gated Combine
+ * form, not for a public route. Server Components should use
+ * {@link import('./movement-server').getMovementBenchmarksServer} instead
+ * (#345).
+ *
+ * @throws See {@link assembleMovementBenchmarks} — Supabase query failures or
+ *   row-shape validation errors. Callers usually downgrade this to an empty
+ *   render — see `CombineDataIsland`.
  */
 export async function getMovementBenchmarks(): Promise<Benchmark[]> {
-  const supabase = getBrowserSupabaseClient()
-  const { data, error } = await supabase
-    .from(TABLE)
-    .select(SELECT_COLUMNS)
-    .order('date', { ascending: false })
-  if (error) {
-    throw new Error(`Failed to load movement benchmarks: ${error.message}`)
-  }
-  const stripped = (data ?? []).map(stripNulls)
-  const parsed = BenchmarkRowsSchema.safeParse(stripped)
-  if (!parsed.success) {
-    throw new Error(
-      `Movement benchmarks failed schema validation: ${parsed.error.message}`,
-    )
-  }
-  return parsed.data
-}
-
-/**
- * Postgres returns `null` for omitted optional columns, but the
- * `Benchmark` type and `BenchmarkSchema` declare fields as
- * `T | undefined` (via `?:` / `.optional()`). Map `null` → omitted so
- * downstream validation accepts the row the same way it accepts the
- * legacy JSON shape (which used absent keys, never `null`).
- */
-function stripNulls(row: Record<string, unknown>): Record<string, unknown> {
-  const out: Record<string, unknown> = {}
-  for (const [key, value] of Object.entries(row)) {
-    if (value !== null) out[key] = value
-  }
-  return out
+  return assembleMovementBenchmarks(getBrowserSupabaseClient())
 }
 
 /**
