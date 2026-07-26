@@ -247,6 +247,32 @@ describe('OtfDetailView chart width', () => {
     expect(chartWidth(container)).toBeGreaterThan(330)
   })
 
+  it('asks the browser about the same breakpoint the CSS uses', () => {
+    // Tailwind v4 defines `lg` as `64rem`, so a px query would disagree with
+    // the grid whenever the root font size is not 16px — and reapply the
+    // mobile floor to a desktop column.
+    const seen: string[] = []
+    vi.stubGlobal('matchMedia', (query: string) => {
+      seen.push(query)
+      return {
+        matches: true,
+        media: query,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      }
+    })
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+      },
+    )
+    renderView({ otf: DATA })
+    expect(seen).toContain('(min-width: 64rem)')
+  })
+
   it('never exceeds the 412px column on desktop', () => {
     stubLayout(true)
     const { container } = renderView({ otf: DATA })

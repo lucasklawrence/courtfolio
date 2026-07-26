@@ -61,8 +61,18 @@ const CHART_HEIGHT = 280
 const MOBILE_MIN_CHART_WIDTH = 480
 const DESKTOP_MIN_CHART_WIDTH = 280
 
-/** Tailwind's `lg` — the breakpoint where the chart grid becomes two columns. */
-const TWO_COLUMN_QUERY = '(min-width: 1024px)'
+/**
+ * Tailwind's `lg` — the breakpoint where the chart grid becomes two columns.
+ *
+ * Expressed in `rem`, not `px`, because that is how Tailwind v4 defines it
+ * (`--breakpoint-lg: 64rem`). A hard-coded `1024px` agrees only while the
+ * browser's root font size is the default 16px. At 12px the CSS grid would
+ * switch to two columns at 768px while this query still reported "stacked",
+ * applying the mobile floor to a ~300px column and clipping the charts —
+ * exactly the bug this floor exists to avoid, just for users who scale their
+ * text.
+ */
+const TWO_COLUMN_QUERY = '(min-width: 64rem)'
 
 const DEFAULT_CHART_WIDTH = 560
 const EARLIEST_FALLBACK = new Date(2026, 0, 1)
