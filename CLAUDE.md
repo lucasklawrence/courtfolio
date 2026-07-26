@@ -36,10 +36,18 @@ Before every commit, confirm you're where you think you are — `git branch
 --show-current`. Finding the main checkout on someone else's branch is the
 signal that another session is live; don't switch it back, use a worktree.
 
-After merging, clean up with `git worktree remove <path> --force`. If you remove
-the `node_modules` junction by hand first, use `cmd /c rmdir`, **never**
-`Remove-Item -Recurse` — the latter follows the junction and deletes the main
-checkout's real `node_modules`.
+After merging, clean up with:
+
+```
+powershell -File scripts/worktree-remove.ps1 -Path .claude/worktrees/<slug>
+```
+
+**Do not use `git worktree remove` directly on a worktree the bootstrap
+linked.** Its recursive delete does not step over a directory junction — it
+deletes *through* `node_modules` into the main checkout's real installation,
+emptying it and breaking every other worktree at once. Recovery is `npm ci` in
+the main checkout. The wrapper unlinks the junction first, then removes, then
+verifies the main install survived.
 
 ## Bash commands
 

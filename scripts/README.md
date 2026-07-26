@@ -28,7 +28,26 @@ Refuses to run in the main checkout, where `node_modules` is real. Exits `0` whe
 
 Without this, the first thing a new worktree shows you is a wall of red tests — which is how a worktree convention dies. See `CLAUDE.md` § Work in a worktree.
 
-> **Removing the junction by hand:** `cmd /c rmdir <path>`, never `Remove-Item -Recurse`. PowerShell's recursive delete follows the junction and deletes the *target* — the main checkout's real `node_modules`. `git worktree remove` handles it correctly on its own.
+## `worktree-remove.ps1` — take a worktree down safely
+
+```
+powershell -File scripts/worktree-remove.ps1 -Path .claude/worktrees/<slug>
+```
+
+The counterpart to `worktree-init.ps1`, and **not optional if that script linked the worktree**.
+
+`git worktree remove` deletes the worktree directory recursively and does *not* step over a directory junction — it deletes straight **through** `node_modules` into the main checkout's real installation, leaving it empty. Every other worktree points at the same target, so they all break together, and the symptom is a confusing wall of module-resolution errors rather than anything that names the cause.
+
+This is not hypothetical: it happened to this repo's main checkout minutes after a note claiming `git worktree remove` "handles this correctly on its own" was written. It doesn't.
+
+So the order is a script, not a thing to remember:
+
+1. Unlink `node_modules` if it's a junction (`cmd /c rmdir` — removes the link only).
+2. `git worktree remove --force`.
+3. Delete the branch unless `-KeepBranch`.
+4. **Verify the main checkout's install is still populated** and fail loudly with the repair command if not — checking a real file inside it, since the failure leaves an empty directory that any `Test-Path node_modules` would call fine.
+
+A worktree with a *real* `node_modules` (a dependency-changing branch) is left for git to delete normally — there's no link to follow. Refuses to remove the worktree the current shell is standing in, and refuses any path `git worktree list` doesn't know, so a typo can't delete something unrelated.
 
 ## `await-*.ps1` — bounded polling helpers
 

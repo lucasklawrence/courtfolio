@@ -55,11 +55,15 @@
   powershell -File scripts/worktree-init.ps1
 
 .NOTES
-  REMOVING THE JUNCTION: use `cmd /c rmdir <path>`, never
-  `Remove-Item -Recurse`. PowerShell's recursive delete follows the junction
-  and deletes the *target* — i.e. the main checkout's real node_modules.
-  `git worktree remove` handles this correctly on its own; this note is for
-  when you clean up by hand.
+  REMOVING A WORKTREE THIS SCRIPT LINKED: use
+  `scripts/worktree-remove.ps1 -Path <path>`, which unlinks the junction before
+  deleting.
+
+  Do NOT reach for `git worktree remove` directly, and do NOT use
+  `Remove-Item -Recurse` on the junction. Both delete straight THROUGH the link
+  into the main checkout's real node_modules, emptying it and breaking every
+  other worktree pointing at it. (An earlier version of this note claimed
+  `git worktree remove` was safe here. It is not — verified the hard way.)
 #>
 [CmdletBinding()]
 param(
