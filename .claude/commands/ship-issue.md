@@ -20,15 +20,16 @@ Take the GitHub issue at `$ARGUMENTS` from open to PR-ready in one shot. Argumen
 ## Phase 2 — Worktree + implement
 
 1. Pick a `<slug>` — 2–4 words from the issue title in kebab-case (e.g. `data-layer`, `trading-card`). Reuse this same slug for the worktree name and the remote branch in Phase 3.
-2. `EnterWorktree` named `issue-<number>-<slug>`.
-3. Implement against the issue's "Done when" criteria. Don't scope-creep. If a step fails (build error, test failure), fix and retry; if you can't, surface to the user.
-4. **Audit tests that the change may have invalidated.** If you touched user-facing copy, ARIA labels/roles, route shapes, public function signatures, exported types, or test IDs, grep `e2e/` and co-located `*.test.ts(x)` for assertions on the old shape and update them in the same commit. A test left asserting on yesterday's behavior is a regression you've shipped to `main` — even if it was green when the PR merged, the next push will go red. Don't gate the merge on the test "deserving" an update; if reality changed, the assertion changes too.
-5. Verify locally:
+2. `EnterWorktree` named `issue-<number>-<slug>`. If that crashes (it has — a `bash.exe.stackdump` and the new worktree missing from `git worktree list`), fall back to `git worktree add .claude/worktrees/issue-<number>-<slug> -b <branch> origin/main` then `EnterWorktree({ path })`.
+3. **`powershell -File scripts/worktree-init.ps1`** — links `node_modules` and copies `.env.local`. Skip it and Phase 2's `npm test` fails ~22 files on `server-only`, and anything touching Supabase fails on missing env. Idempotent, so re-running is free.
+4. Implement against the issue's "Done when" criteria. Don't scope-creep. If a step fails (build error, test failure), fix and retry; if you can't, surface to the user.
+5. **Audit tests that the change may have invalidated.** If you touched user-facing copy, ARIA labels/roles, route shapes, public function signatures, exported types, or test IDs, grep `e2e/` and co-located `*.test.ts(x)` for assertions on the old shape and update them in the same commit. A test left asserting on yesterday's behavior is a regression you've shipped to `main` — even if it was green when the PR merged, the next push will go red. Don't gate the merge on the test "deserving" an update; if reality changed, the assertion changes too.
+6. Verify locally:
    - `npx tsc --noEmit` — must be clean.
    - `npx next build` — must compile.
    - `npm test` — vitest unit suite must pass.
    - `npm run test:e2e` — only if you touched routes, page DOM, or anything else under Playwright coverage. Skip for pure-internal refactors. (Suite takes ~30–60s.)
-6. Commit using a conventional message:
+7. Commit using a conventional message:
    ```
    <type>(<scope>): <one-line summary>
 

@@ -1,5 +1,22 @@
 # scripts
 
+## `worktree-init.ps1` — make a fresh worktree usable
+
+```
+powershell -File scripts/worktree-init.ps1
+```
+
+Run once after entering a new worktree. `git worktree add` copies the *tracked* files and nothing else, so a bare worktree is missing the two untracked things this repo needs:
+
+- **`node_modules`** — `vitest.config.ts` aliases `server-only` to `path.resolve(__dirname, 'node_modules/server-only/empty.js')`, an **absolute** path inside the worktree. Node's own resolution would walk up to the main checkout, but the alias never does, so ~22 test files fail with `Cannot find module 'server-only'`. The script creates a directory **junction** to the main checkout's `node_modules` — no disk cost, no second install.
+- **`.env.local`** — gitignored, so `migrations:check`, `import-otbeat`, and `staging:sync` all fail on missing Supabase credentials until it's copied.
+
+Idempotent (an existing junction and `.env.local` are left alone; `-Force` overwrites the env file), and it refuses to run in the main checkout, where `node_modules` is real. Exits `0` when ready, `1` if run from the wrong place or the main checkout has no install to link.
+
+Without this, the first thing a new worktree shows you is a wall of red tests — which is how a worktree convention dies. See `CLAUDE.md` § Work in a worktree.
+
+> **Removing the junction by hand:** `cmd /c rmdir <path>`, never `Remove-Item -Recurse`. PowerShell's recursive delete follows the junction and deletes the *target* — the main checkout's real `node_modules`. `git worktree remove` handles it correctly on its own.
+
 ## `await-*.ps1` — bounded polling helpers
 
 Three PowerShell scripts that replace the ad-hoc `until <check>; do sleep N; done` shell loops that piled up across `/ship-issue` runs. Each has a real timeout (no more hanging on a vanished check) and exit codes a caller can branch on: `0` on success, `2` on timeout, `1` on usage error.
