@@ -40,20 +40,30 @@ import { OtfZoneBars } from './OtfZoneBars'
 const CHART_HEIGHT = 280
 
 /**
- * Narrowest a chart is allowed to get before it stops shrinking and starts
- * overflowing its card instead.
+ * Narrowest a chart may get before it stops shrinking and overflows its card
+ * instead — and the floor is **breakpoint-dependent**, because the two layouts
+ * want opposite things.
  *
- * At 280 this sat below every phone width, so on mobile the charts always
- * squeezed to fit — a season of classes crushed into ~330px, with nothing to
- * scroll because nothing overflowed. `ChartCard` already wraps its children in
- * `overflow-x-auto`; the charts simply never grew past it.
+ * Stacked (below `lg`) the card spans the viewport, so on a phone the chart
+ * area is ~330px and a season of classes gets crushed into it. There is nothing
+ * to drag sideways either: `ChartCard` wraps its children in `overflow-x-auto`,
+ * but the chart never grows past it. A floor above phone width makes the chart
+ * legible and lets that scroll container do its job — matching the Weight Room
+ * heatmap, which has always sized itself from its data and scrolled.
  *
- * 480 is above a phone viewport and below a desktop column in the
- * `lg:grid-cols-2` grid, so phones now scroll a legible chart (matching the
- * Weight Room heatmap, which has always sized itself from its data and
- * scrolled) while desktop keeps filling its column exactly as before.
+ * Two-column (`lg` and up) the arithmetic is tight and a floor is actively
+ * harmful: `max-w-5xl` (1024) less `lg:px-12` (96) is 928, less the grid's
+ * `gap-6` (24) halves to 452 per column, less `ChartCard`'s `p-5` (40) leaves
+ * **412px**. Any floor above that clips the right edge of every desktop chart
+ * behind a scrollbar. So desktop keeps a floor low enough to never bind, and
+ * the chart simply fills its column.
  */
-const MIN_CHART_WIDTH = 480
+const MOBILE_MIN_CHART_WIDTH = 480
+const DESKTOP_MIN_CHART_WIDTH = 280
+
+/** Tailwind's `lg` — the breakpoint where the chart grid becomes two columns. */
+const TWO_COLUMN_QUERY = '(min-width: 1024px)'
+
 const DEFAULT_CHART_WIDTH = 560
 const EARLIEST_FALLBACK = new Date(2026, 0, 1)
 const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
@@ -105,7 +115,14 @@ export function OtfDetailView({
   // view lands on its empty state rather than null-checking at every use site.
   const data = useMemo<OtfData>(() => otf ?? EMPTY_OTF, [otf])
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('ALL', EARLIEST_FALLBACK))
-  const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
+  // Raw container width; the legibility floor is applied at render (below), so
+  // a breakpoint change re-derives the width without the observer holding a
+  // stale floor in its closure.
+  const [measuredWidth, setMeasuredWidth] = useState(DEFAULT_CHART_WIDTH)
+  // Start `true` so the server and first client render agree: SSR has no
+  // viewport, and the desktop floor never binds, so the chart renders at its
+  // measured width either way and hydration can't mismatch.
+  const [isTwoColumn, setIsTwoColumn] = useState(true)
   // Coarse class-type filter (#271); `null` = "All". Scopes both the log and
   // every aggregate, composing with the date range and the #268 exclusion.
   const [classType, setClassType] = useState<string | null>(null)
@@ -119,13 +136,30 @@ export function OtfDetailView({
     if (!node || typeof ResizeObserver === 'undefined') return
     const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
-        const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
-        setChartWidth(prev => (prev === next ? prev : next))
+        const next = Math.floor(entry.contentRect.width)
+        setMeasuredWidth(prev => (prev === next ? prev : next))
       }
     })
     observer.observe(node)
     observerRef.current = observer
   }, [])
+
+  // Which floor applies is a question about the *layout*, not the container:
+  // a stacked card and a two-column card can be within ~80px of each other, so
+  // a width threshold could not tell them apart. Track the breakpoint itself.
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    const query = window.matchMedia(TWO_COLUMN_QUERY)
+    const sync = () => setIsTwoColumn(query.matches)
+    sync()
+    query.addEventListener('change', sync)
+    return () => query.removeEventListener('change', sync)
+  }, [])
+
+  const chartWidth = Math.max(
+    isTwoColumn ? DESKTOP_MIN_CHART_WIDTH : MOBILE_MIN_CHART_WIDTH,
+    measuredWidth,
+  )
 
   // Track manual range edits so the post-load re-anchor doesn't stomp them.
   const userAdjustedRange = useRef(false)
