@@ -6,8 +6,39 @@ import { useSingleColumn } from '@/utils/hooks/useSingleColumn'
 import { TradeCard } from './TradeCard'
 import type { TradeCardProps } from './TradeCard'
 import { ProjectDetail } from './ProjectDetail'
+import { isGymEnabled, isWeightRoomEnabled } from '@/lib/feature-flags'
+
+/**
+ * Slug of the card whose destination is feature-flagged, and the check that
+ * says whether that destination exists (#345).
+ *
+ * The Training Facility card's only `href` is the tracking hub, which 404s
+ * unless the Gym or the Weight Room is published. Advertising it while it is
+ * dark is the binder's version of a door into a wall — the same rule the
+ * lobby doors and the scene doors follow.
+ */
+const FLAGGED_PROJECT = {
+  slug: 'training-facility',
+  isLive: () => isGymEnabled() || isWeightRoomEnabled(),
+} as const
 
 const projects: TradeCardProps[] = [
+  {
+    name: 'Training Facility',
+    slug: 'training-facility',
+    tagline: 'A self-built fitness database — every set and every class, tracked without an app',
+    thumbnailUrl: '/thumbnails/TrackingThumbnail.png',
+    stack: ['Next.js', 'TypeScript', 'Supabase', 'Postgres RLS', 'Vitest', 'Playwright'],
+    impact:
+      'Replaces three fitness apps with one Postgres database I own — ingest, schema, charts, and an achievement engine that answers questions a subscription never would',
+    year: 2026,
+    moment:
+      'Built a stateless achievement resolver: no badge is ever stored as earned, so retuning a threshold re-lights the whole wall and a backdated set earns retroactively',
+    // Flagged experimental rather than featured: the data surfaces are solid,
+    // but the illustrated room scenes are still being designed.
+    experimental: true,
+    href: '/training-facility/tracking',
+  },
   {
     name: 'Courtfolio',
     slug: 'courtfolio',
@@ -116,9 +147,15 @@ const projects: TradeCardProps[] = [
 export const ProjectGallery = () => {
   const isSingleColumn = useSingleColumn()
 
+  // Read at render rather than module scope: the flags are inlined at build
+  // time, but keeping the call here means a test can stub the env per case.
+  const visibleProjects = projects.filter(
+    project => project.slug !== FLAGGED_PROJECT.slug || FLAGGED_PROJECT.isLive(),
+  )
+
   // Slug of the project whose detail overlay is open, or null when none is.
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
-  const selectedProject = projects.find(project => project.slug === selectedSlug) ?? null
+  const selectedProject = visibleProjects.find(project => project.slug === selectedSlug) ?? null
 
   // The card button that opened the overlay, so focus can be restored to it on
   // close. The card passes its button element directly (rather than us reading
@@ -135,9 +172,9 @@ export const ProjectGallery = () => {
   // — e.g. a viewport resize flipping `useSingleColumn`.
   const closeProject = useCallback(() => setSelectedSlug(null), [])
 
-  const mid = Math.ceil(projects.length / 2)
-  const leftColumn = projects.slice(0, mid)
-  const rightColumn = projects.slice(mid)
+  const mid = Math.ceil(visibleProjects.length / 2)
+  const leftColumn = visibleProjects.slice(0, mid)
+  const rightColumn = visibleProjects.slice(mid)
 
   return (
     <div className="relative min-h-screen bg-[url('/textures/binder-leather.png')] bg-cover bg-center px-2 sm:px-6 py-12 shadow-[inset_0_0_60px_rgba(0,0,0,0.3)]">

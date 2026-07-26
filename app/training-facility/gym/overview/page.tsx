@@ -2,6 +2,7 @@ import { Suspense, type JSX } from 'react'
 import { notFound } from 'next/navigation'
 
 import { AllCardioOverview } from '@/components/training-facility/gym/AllCardioOverview'
+import { isAdminRequest } from '@/lib/auth/admin-session'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { firstRejectionMessage, settledOr } from '@/lib/data/settled'
 import { isGymEnabled } from '@/lib/feature-flags'
@@ -28,13 +29,17 @@ import { isGymEnabled } from '@/lib/feature-flags'
 export default async function TrainingFacilityGymOverviewPage(): Promise<JSX.Element> {
   if (!isGymEnabled()) notFound()
 
-  const [cardioResult] = await Promise.allSettled([getCardioDataServer()])
+  const [cardioResult, adminResult] = await Promise.allSettled([
+    getCardioDataServer(),
+    isAdminRequest(),
+  ])
 
   return (
     <Suspense fallback={null}>
       <AllCardioOverview
         cardio={settledOr(cardioResult, null)}
         loadError={firstRejectionMessage(cardioResult)}
+        isAdmin={settledOr(adminResult, false)}
       />
     </Suspense>
   )

@@ -97,6 +97,12 @@ export interface AllCardioOverviewProps {
   cardio: CardioData | null
   /** Message from a failed read, rendered in place of the charts. */
   loadError?: string
+  /**
+   * Whether the viewer is the owner. Only gates the private lifestyle metrics
+   * (body mass, sleep), which RLS withholds from everyone else (#345) — see
+   * {@link import('./lifestyle/LifestyleMetricsSection').LifestyleMetricsSectionProps.showPrivateMetrics}.
+   */
+  isAdmin?: boolean
 }
 
 /**
@@ -125,7 +131,11 @@ export interface AllCardioOverviewProps {
  * just one with no Supabase import. There is consequently no loading panel; the
  * server resolves the data before this renders.
  */
-export function AllCardioOverview({ cardio, loadError }: AllCardioOverviewProps): JSX.Element {
+export function AllCardioOverview({
+  cardio,
+  loadError,
+  isAdmin = false,
+}: AllCardioOverviewProps): JSX.Element {
   // `realData` is what the server read returned; `data` (further down) is the
   // surface-rendered version after the preview hook runs (#162). `null` means
   // every cardio table was empty (#152) — substitute an empty dataset so the
@@ -360,6 +370,7 @@ export function AllCardioOverview({ cardio, loadError }: AllCardioOverviewProps)
               range={range}
               chartWidth={chartWidth}
               fontFamily={FONT_FAMILY}
+              showPrivateMetrics={isAdmin}
             />
 
             <SessionLogTable sessions={sessions} range={range} />

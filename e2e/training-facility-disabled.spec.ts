@@ -2,12 +2,23 @@ import { expect, test } from '@playwright/test'
 
 import { bypassHomeIntro } from './helpers/intro'
 
-/** Routes that should continue to render the custom 404 while the feature flag is off. */
+/**
+ * Runs against the all-flags-off server, which is production's current state.
+ *
+ * Since the flag split (#345) this file owns the dark-route coverage for every
+ * area, including the tracking hub — the sibling `-enabled` spec now runs the
+ * *shipping* combination (Gym and Weight Room live, lobby and Combine dark)
+ * rather than an everything-on state no environment uses.
+ */
 const gatedRoutes = [
   '/training-facility',
+  '/training-facility/tracking',
   '/training-facility/gym',
+  '/training-facility/gym/otf',
   '/training-facility/combine',
   '/training-facility/weight-room',
+  '/training-facility/weight-room/achievements',
+  '/training-facility/weight-room/history',
 ]
 
 test.describe('training facility disabled', () => {
@@ -19,6 +30,15 @@ test.describe('training facility disabled', () => {
     await page.goto('/')
 
     await expect(page.getByRole('button', { name: /enter the training facility/i })).toHaveCount(0)
+  })
+
+  test('does not advertise the tracking project in the binder', async ({ page }) => {
+    // The card's only destination is the hub, which 404s here — a project card
+    // into a dead route is the binder equivalent of a door into a wall.
+    await page.goto('/projects')
+    await expect(page.getByRole('button', { name: /open training facility details/i })).toHaveCount(
+      0,
+    )
   })
 
   for (const route of gatedRoutes) {

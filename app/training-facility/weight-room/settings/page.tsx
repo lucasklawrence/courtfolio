@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
-import { LobbyBackLink } from '@/components/training-facility/LobbyBackLink'
+import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { AchievementSettings } from '@/components/training-facility/weight-room/AchievementSettings'
 import { StrengthSettings } from '@/components/training-facility/weight-room/StrengthSettings'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
@@ -54,7 +54,7 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-3xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <BackToCourtButton />
-          <LobbyBackLink />
+          <FacilityBackLink />
         </div>
 
         <header className="mt-12">

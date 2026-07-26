@@ -1,6 +1,6 @@
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
-import { LobbyBackLink } from '@/components/training-facility/LobbyBackLink'
+import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 
 /**
  * Props for the placeholder Training Facility sub-area shell used by Gym and Combine.
@@ -61,7 +61,7 @@ export function TrainingFacilitySubareaShell({
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-5xl flex-col px-6 py-8 sm:px-8 lg:px-12">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <BackToCourtButton />
-          <LobbyBackLink />
+          <FacilityBackLink />
         </div>
 
         <div className="mt-16 overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_28px_70px_rgba(0,0,0,0.34)] backdrop-blur-sm">
