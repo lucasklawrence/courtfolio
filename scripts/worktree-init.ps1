@@ -98,7 +98,21 @@ $dstModules = Join-Path $worktreeRoot 'node_modules'
 # junction into the main checkout's node_modules, corrupting every other
 # worktree sharing it and any session mid-test-run. So dependency branches get
 # a real, isolated install instead.
-$depsChanged = [bool](git diff --name-only 'origin/main...HEAD' -- package.json package-lock.json 2>$null)
+# Both git calls are checked rather than silenced. Swallowing an error here
+# would evaluate to "no dependency changes" and fall through to the shared
+# junction -- failing open into exactly the case this check exists to catch
+# (CodeRabbit, #358). An unresolvable base is a question, not a default.
+git rev-parse --verify --quiet 'origin/main' > $null 2>&1
+if ($LASTEXITCODE -ne 0) {
+  Write-Error 'Cannot resolve origin/main - run `git fetch origin main`, then re-run. (Needed to tell whether this branch changes dependencies.)'
+  exit 1
+}
+$changedDepFiles = git diff --name-only 'origin/main...HEAD' -- package.json package-lock.json
+if ($LASTEXITCODE -ne 0) {
+  Write-Error 'git diff against origin/main failed - cannot determine whether this branch changes dependencies.'
+  exit 1
+}
+$depsChanged = [bool]$changedDepFiles
 
 if ($depsChanged -and -not $Link) {
   Write-Host 'node_modules  branch changes dependencies - installing in isolation'

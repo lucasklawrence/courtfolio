@@ -8,7 +8,7 @@ Take the GitHub issue at `$ARGUMENTS` from open to PR-ready in one shot. Argumen
 
 **Deliverable:** a PR sitting in "ready to merge" state with a test plan in the description. **You do not merge.** The user reviews and runs `gh pr merge` themselves.
 
-**Prerequisite:** must run from the main repo, NOT from inside another worktree — Phase 2 calls `EnterWorktree` which fails if the session is already in one. If you're inside a worktree, `ExitWorktree` (action: keep or remove as appropriate) first, or ask the user.
+**Prerequisite:** best run from the main repo. Phase 2 now creates the worktree with `git worktree add` and enters it by path, which does work from inside another worktree — but starting from the main checkout keeps the worktree list flat and makes cleanup obvious. If you're already in one and it's unrelated, `ExitWorktree` (keep or remove as appropriate) first, or ask.
 
 ## Phase 1 — Read the issue + upfront alignment
 
@@ -20,7 +20,11 @@ Take the GitHub issue at `$ARGUMENTS` from open to PR-ready in one shot. Argumen
 ## Phase 2 — Worktree + implement
 
 1. Pick a `<slug>` — 2–4 words from the issue title in kebab-case (e.g. `data-layer`, `trading-card`). Reuse this same slug for the worktree name and the remote branch in Phase 3.
-2. `EnterWorktree` named `issue-<number>-<slug>`. If that crashes (it has — a `bash.exe.stackdump` and the new worktree missing from `git worktree list`), fall back to `git worktree add .claude/worktrees/issue-<number>-<slug> -b <branch> origin/main` then `EnterWorktree({ path })`.
+2. Create the worktree explicitly, then enter it by path:
+   ```
+   git worktree add .claude/worktrees/issue-<number>-<slug> -b feat/<number>-<slug> origin/main
+   ```
+   then `EnterWorktree({ path: "<absolute path>" })`. Don't use `EnterWorktree({ name })` — it has crashed here mid-create, leaving an empty phantom directory the session still switches into, after which `git -C` silently resolves to the main repo. Branching from `origin/main` explicitly also satisfies Phase 3's "base is current" check for free.
 3. **`powershell -File scripts/worktree-init.ps1`** — links `node_modules` and copies `.env.local`. Skip it and Phase 2's `npm test` fails ~22 files on `server-only`, and anything touching Supabase fails on missing env. If the issue involves adding or removing a dependency, expect this step to run a real `npm ci` (a minute or two) rather than a junction — that's deliberate isolation, see `scripts/README.md`.
 4. Implement against the issue's "Done when" criteria. Don't scope-creep. If a step fails (build error, test failure), fix and retry; if you can't, surface to the user.
 5. **Audit tests that the change may have invalidated.** If you touched user-facing copy, ARIA labels/roles, route shapes, public function signatures, exported types, or test IDs, grep `e2e/` and co-located `*.test.ts(x)` for assertions on the old shape and update them in the same commit. A test left asserting on yesterday's behavior is a regression you've shipped to `main` — even if it was green when the PR merged, the next push will go red. Don't gate the merge on the test "deserving" an update; if reality changed, the assertion changes too.
