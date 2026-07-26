@@ -11,8 +11,15 @@
        ABSOLUTE path inside the worktree. Node's own resolution would happily
        walk up to the main checkout, but that alias never does, so ~22 test
        files fail with "Cannot find module 'server-only'" until a local
-       `node_modules` exists. A directory junction to the main checkout's
-       `node_modules` is enough, and costs no disk.
+       `node_modules` exists.
+
+       Normally a directory junction to the main checkout's `node_modules` is
+       enough, and costs no disk. But when the branch changes `package.json`
+       or `package-lock.json`, sharing is wrong twice over: the suite would run
+       against a tree that doesn't match the branch, and `npm install` here
+       writes THROUGH the junction into the main checkout's `node_modules`,
+       corrupting every other worktree and any session mid-test-run. Those
+       branches get a real `npm ci` instead — slower, isolated, correct.
 
     2. `.env.local` — gitignored, so anything reading Supabase credentials
        (`npm run migrations:check`, `import-otbeat`, `staging:sync`) fails
@@ -22,8 +29,11 @@
   tests, which is a good way to make people stop using worktrees. Run it once
   after entering a worktree.
 
-  Idempotent: an existing junction and an existing `.env.local` are both left
-  alone, so re-running is a no-op.
+  Safe to re-run. An existing junction, an existing real install, and an
+  existing `.env.local` are all left alone — so for a normal branch a re-run is
+  a no-op. On a dependency-changing branch it re-runs `npm ci` every time,
+  which is slow but is the only way to stay honest about a lockfile that may
+  have moved since the last run.
 
   Exit codes:
     0 — worktree ready (or already was)
@@ -34,6 +44,12 @@
   Replace an existing `.env.local` with the main checkout's copy. Off by
   default so a worktree pointed at a different project (e.g. staging) is not
   silently reset to production credentials.
+
+.PARAMETER Link
+  Junction `node_modules` even when the branch changes dependencies, and
+  replace an existing real install with a junction. An escape hatch for when
+  you know the dependency delta is irrelevant to what you're running and don't
+  want to wait for `npm ci`. Understand what it shares before using it.
 
 .EXAMPLE
   powershell -File scripts/worktree-init.ps1
@@ -47,7 +63,8 @@
 #>
 [CmdletBinding()]
 param(
-  [switch]$Force
+  [switch]$Force,
+  [switch]$Link
 )
 
 $ErrorActionPreference = 'Stop'
@@ -73,24 +90,52 @@ $worktreeRoot = (git rev-parse --show-toplevel)
 $srcModules = Join-Path $mainRoot 'node_modules'
 $dstModules = Join-Path $worktreeRoot 'node_modules'
 
-if (-not (Test-Path $srcModules)) {
+# Does this branch change dependencies? A junction makes the worktree's
+# node_modules IDENTICAL to the main checkout's, which is simply wrong for a
+# branch that adds or removes packages: the suite would run against a tree that
+# doesn't match package.json, passing on packages the branch deleted or failing
+# on ones it added. And the repair -- `npm install` here -- writes THROUGH the
+# junction into the main checkout's node_modules, corrupting every other
+# worktree sharing it and any session mid-test-run. So dependency branches get
+# a real, isolated install instead.
+$depsChanged = [bool](git diff --name-only 'origin/main...HEAD' -- package.json package-lock.json 2>$null)
+
+if ($depsChanged -and -not $Link) {
+  Write-Host 'node_modules  branch changes dependencies - installing in isolation'
+  $existing = if (Test-Path $dstModules) { Get-Item $dstModules -Force } else { $null }
+  if ($existing -and $existing.LinkType -eq 'Junction') {
+    # Never Remove-Item -Recurse a junction: it deletes the TARGET.
+    cmd /c rmdir "$dstModules" | Out-Null
+  }
+  # `ci` not `install`: honours the lockfile the branch is actually changing.
+  npm ci --prefix "$worktreeRoot"
+  if ($LASTEXITCODE -ne 0) {
+    Write-Error 'npm ci failed - the worktree has no usable node_modules.'
+    exit 1
+  }
+}
+elseif (-not (Test-Path $srcModules)) {
   Write-Error "Main checkout has no node_modules at $srcModules - run npm install there first."
   exit 1
 }
-
-# --- node_modules junction -------------------------------------------------
-$existing = if (Test-Path $dstModules) { Get-Item $dstModules -Force } else { $null }
-if ($existing -and $existing.LinkType -eq 'Junction') {
-  Write-Host "node_modules  already linked"
-}
 else {
-  if ($existing) {
-    # A real directory here is almost always vitest's `.vite` cache, created by
-    # running tests before this script. Safe to drop; it is regenerated.
-    cmd /c rmdir /s /q "$dstModules" | Out-Null
+  $existing = if (Test-Path $dstModules) { Get-Item $dstModules -Force } else { $null }
+  if ($existing -and $existing.LinkType -eq 'Junction') {
+    Write-Host "node_modules  already linked"
   }
-  New-Item -ItemType Junction -Path $dstModules -Target $srcModules | Out-Null
-  Write-Host "node_modules  linked -> $srcModules"
+  elseif ($existing -and -not $Link) {
+    # A real install already here (e.g. this branch used to change deps, or
+    # -Link was never passed). Leave it: replacing a correct isolated tree with
+    # a shared junction is a downgrade.
+    Write-Host "node_modules  real install present - left alone"
+  }
+  else {
+    if ($existing) {
+      cmd /c rmdir /s /q "$dstModules" | Out-Null
+    }
+    New-Item -ItemType Junction -Path $dstModules -Target $srcModules | Out-Null
+    Write-Host "node_modules  linked -> $srcModules"
+  }
 }
 
 # --- .env.local ------------------------------------------------------------

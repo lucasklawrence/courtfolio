@@ -16,6 +16,12 @@ scripts/worktree-init.ps1`** — a bare worktree has no `node_modules` and no
 `.env.local`, so without it ~22 test files fail on `server-only` and every
 Supabase script fails on missing env. See `scripts/README.md`.
 
+**Never run `npm install` in a worktree whose `node_modules` is a junction** —
+it writes through the link into the main checkout's install and every other
+worktree sharing it. The bootstrap avoids this by giving dependency-changing
+branches a real isolated `npm ci` instead of a junction; if you need to change
+dependencies in a worktree that's already linked, re-run the bootstrap.
+
 Prefer `git worktree add` + `EnterWorktree({ path })` over
 `EnterWorktree({ name })`: the latter has crashed here mid-create, leaving an
 empty phantom directory that the session still switches into, after which
