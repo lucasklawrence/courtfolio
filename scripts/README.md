@@ -200,6 +200,14 @@ Semantics:
 - Rows existing **only** in staging survive, so hand-made test data isn't clobbered.
 - **Deletions do not propagate.** Accepted deliberately — a delete-aware sync needs a prune pass or a truncate-and-reload, and truncating would destroy the staging-only rows the previous point protects. Rebuild the project if that matters.
 
+Two tables use `mode: 'replace'` (clear staging, then insert production verbatim) rather than upsert: `weight_room_achievements` and `weight_room_monthly_focus`. Both have a `gen_random_uuid()` primary key **and** are seeded by a migration, so each project generates its *own* id for the same logical row. Upserting on `id` therefore never matches, and the follow-up insert either trips a unique business-key index or — where none exists — silently duplicates the row. That's not hypothetical: the first real run 409'd on `weight_room_achievements` and had quietly left staging with two July shrugs focuses against production's one.
+
+Conflicting on the natural key instead isn't available: `weight_room_achievements` enforces uniqueness through two *partial* indexes (`where exercise is not null` / `where exercise is null`), and PostgREST's `on_conflict` can't supply an index predicate. Replace avoids inference entirely and carries production's ids over, so row identity is stable across projects.
+
+Replace reads the entire replacement set from production *before* deleting anything, so a transient read failure can't leave staging's reference table empty — which would render as "no badges" in a preview rather than as an error. That leaves one clear-then-insert window; closing it completely would take a transactional delete-and-insert RPC on staging, deliberately not built, since that's a migration on both projects to protect a table that a re-run rebuilds.
+
+Only mark a table `replace` if losing staging-only rows in it is acceptable — these two are reference data nobody hand-edits. It also buffers the whole table in memory, which is fine at ~93 rows and would not be for `cardio_session_hr_samples`.
+
 Production often runs *ahead* of `main` (a branch's migration gets applied before its PR merges), so each row is projected onto the columns staging actually has; unknown columns are dropped and reported rather than 400-ing the table.
 
 `panel_runs` is deliberately not synced: it's service-role-only in production, and live-panel history doesn't affect what a preview renders.
