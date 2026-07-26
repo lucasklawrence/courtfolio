@@ -26,14 +26,18 @@ const projects: TradeCardProps[] = [
   {
     name: 'Training Facility',
     slug: 'training-facility',
-    tagline: 'A self-built fitness database — every set and every class, tracked without an app',
+    // Card copy is length-sensitive: the card is `max-w-xs` with a
+    // content-driven height, and every card in a row grows to the tallest one.
+    // Keep these near the length of their neighbours — the long version of this
+    // entry stood a head above the rest of the binder. The full story lives on
+    // the tracking hub, which is what the card links to.
+    tagline: 'Every set and every class, tracked without a fitness app',
     thumbnailUrl: '/thumbnails/TrackingThumbnail.png',
-    stack: ['Next.js', 'TypeScript', 'Supabase', 'Postgres RLS', 'Vitest', 'Playwright'],
-    impact:
-      'Replaces three fitness apps with one Postgres database I own — ingest, schema, charts, and an achievement engine that answers questions a subscription never would',
+    stack: ['Next.js', 'TypeScript', 'Supabase', 'Postgres RLS'],
+    impact: 'One Postgres database replacing three fitness apps',
     year: 2026,
     moment:
-      'Built a stateless achievement resolver: no badge is ever stored as earned, so retuning a threshold re-lights the whole wall and a backdated set earns retroactively',
+      'Badges are never stored — the whole wall recomputes from the log on every visit',
     // Flagged experimental rather than featured: the data surfaces are solid,
     // but the illustrated room scenes are still being designed.
     experimental: true,
