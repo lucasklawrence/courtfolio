@@ -26,6 +26,20 @@ export interface LifestyleMetricsSectionProps {
   chartWidth: number
   /** Font family for axes / empty-state copy. */
   fontFamily: string
+  /**
+   * Whether the viewer may see the private metrics — body mass and sleep.
+   *
+   * Those two tables are restricted to the owner at the RLS layer (#345), so
+   * for a public visitor they don't arrive at all. Their cards are hidden
+   * rather than rendered empty: an empty card here normally means "not
+   * imported yet", which is a useful nudge to the owner but a permanently dead
+   * tile to everyone else.
+   *
+   * Defaults to `false` — the safe direction, since the cost of wrongly
+   * hiding is a missing card and the cost of wrongly showing is a card that
+   * can never fill.
+   */
+  showPrivateMetrics?: boolean
 }
 
 /**
@@ -42,6 +56,11 @@ export interface LifestyleMetricsSectionProps {
  * import / partial dataset / fully populated" states and makes the empty
  * state a teaching moment ("import Apple Health to populate this").
  *
+ * The exception is body mass and sleep, which are owner-only at the RLS layer
+ * (#345). For a public visitor those are not "not imported yet" but "never
+ * arriving", so their cards are omitted entirely — see
+ * {@link LifestyleMetricsSectionProps.showPrivateMetrics}.
+ *
  * Lifted out of `AllCardioOverview.tsx` (#178 follow-up) so the parent
  * file stays under 600 lines and the lifestyle section sits with its
  * sibling chart wrappers.
@@ -51,6 +70,7 @@ export function LifestyleMetricsSection({
   range,
   chartWidth,
   fontFamily,
+  showPrivateMetrics = false,
 }: LifestyleMetricsSectionProps): JSX.Element {
   // Memoize so the six chart wrappers receive a stable shared-props
   // reference until the inputs actually change. Without this the
@@ -72,8 +92,9 @@ export function LifestyleMetricsSection({
           Lifestyle metrics
         </h2>
         <p className="mt-1 text-xs text-white/55">
-          Heart-rate variability, walking HR, body mass, daily steps, sleep,
-          and active energy across the active range.
+          Heart-rate variability, walking HR, daily steps
+          {showPrivateMetrics ? ', body mass, sleep,' : ','} and active energy across the active
+          range.
         </p>
       </header>
       <div className="grid gap-6 lg:grid-cols-2">
@@ -89,24 +110,28 @@ export function LifestyleMetricsSection({
         >
           <WalkingHrTrendChart points={data.walking_hr_trend} {...sharedProps} />
         </ChartCard>
-        <ChartCard
-          title="Body mass"
-          helper="Daily latest reading, normalized to pounds at preprocess time."
-        >
-          <BodyMassTrendChart points={data.body_mass_trend} {...sharedProps} />
-        </ChartCard>
+        {showPrivateMetrics && (
+          <ChartCard
+            title="Body mass"
+            helper="Daily latest reading, normalized to pounds at preprocess time."
+          >
+            <BodyMassTrendChart points={data.body_mass_trend} {...sharedProps} />
+          </ChartCard>
+        )}
         <ChartCard
           title="Daily steps"
           helper="Apple's per-burst step records summed into one total per local calendar day."
         >
           <StepCountTrendChart points={data.step_count_trend} {...sharedProps} />
         </ChartCard>
-        <ChartCard
-          title="Sleep"
-          helper="Asleep-only hours per wake-day — in-bed-but-awake time is excluded."
-        >
-          <SleepTrendChart points={data.sleep_trend} {...sharedProps} />
-        </ChartCard>
+        {showPrivateMetrics && (
+          <ChartCard
+            title="Sleep"
+            helper="Asleep-only hours per wake-day — in-bed-but-awake time is excluded."
+          >
+            <SleepTrendChart points={data.sleep_trend} {...sharedProps} />
+          </ChartCard>
+        )}
         <ChartCard
           title="Active energy"
           helper="Per-burst active-energy records summed per day. Rest days drop toward zero."

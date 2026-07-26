@@ -11,8 +11,6 @@ import {
   rangeForPreset,
   type DateRange,
 } from '@/components/training-facility/shared/DateFilter'
-import { useAdminSession } from '@/lib/auth/use-admin-session'
-import { getOtfData, getOtfMileageAwards } from '@/lib/data'
 import {
   OTF_ZONES,
   aggregateOtfZoneMinutes,
@@ -48,6 +46,31 @@ const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
 /** Empty dataset used while loading resolves to "no sessions yet" instead of spinning forever. */
 const EMPTY_OTF: OtfData = { imported_at: '', sessions: [] }
 
+/** Props for {@link OtfDetailView}. */
+export interface OtfDetailViewProps {
+  /**
+   * The OrangeTheory dataset read server-side, or `null` when `otf_sessions`
+   * is empty — a normal pre-baseline state, not a failure.
+   */
+  otf: OtfData | null
+  /**
+   * Milestone ladder for the monthly-mileage section (#321). Independent of the
+   * session read: the page downgrades a failure here to an empty ladder (no
+   * badges) rather than blanking the view, so it never blocks the charts.
+   */
+  mileageAwards: OtfMileageAward[]
+  /**
+   * Whether the viewer is an admin — gates the milestone-settings link.
+   *
+   * Resolved server-side by the page rather than by `useAdminSession` here:
+   * that hook builds a browser Supabase client to watch for auth changes, and
+   * this route is publicly reachable (#345).
+   */
+  isAdmin: boolean
+  /** Message from a failed session read, rendered in place of the charts. */
+  loadError?: string
+}
+
 /**
  * OrangeTheory detail view (#256) — renders the `otf_sessions` data the
  * OTbeat ingestion pipeline (#251) feeds into Supabase. Sibling of the
@@ -57,14 +80,15 @@ const EMPTY_OTF: OtfData = { imported_at: '', sessions: [] }
  * / avg-HR trend lines — plus an expandable session log surfacing each
  * class's treadmill and rower performance blocks.
  */
-export function OtfDetailView(): JSX.Element {
-  const [data, setData] = useState<OtfData | null>(null)
-  // Milestone ladder for the monthly-mileage section (#321). Independent of the
-  // session read: a failure here downgrades to an empty ladder (no badges)
-  // rather than blanking the page, so it never blocks the charts.
-  const [mileageAwards, setMileageAwards] = useState<OtfMileageAward[]>([])
-  const { isAdmin } = useAdminSession()
-  const [loadError, setLoadError] = useState<Error | null>(null)
+export function OtfDetailView({
+  otf,
+  mileageAwards,
+  isAdmin,
+  loadError,
+}: OtfDetailViewProps): JSX.Element {
+  // `null` means `otf_sessions` is empty; substitute an empty dataset so the
+  // view lands on its empty state rather than null-checking at every use site.
+  const data = useMemo<OtfData>(() => otf ?? EMPTY_OTF, [otf])
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('ALL', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
   // Coarse class-type filter (#271); `null` = "All". Scopes both the log and
@@ -93,36 +117,6 @@ export function OtfDetailView(): JSX.Element {
   const handleRangeChange = useCallback((next: DateRange) => {
     userAdjustedRange.current = true
     setRange(next)
-  }, [])
-
-  useEffect(() => {
-    let cancelled = false
-    getOtfData()
-      .then(otf => {
-        if (cancelled) return
-        // `getOtfData()` resolves to `null` when `otf_sessions` is empty;
-        // substitute an empty dataset so we land on the empty state rather
-        // than the perpetual loading panel.
-        setData(otf ?? EMPTY_OTF)
-      })
-      .catch((err: unknown) => {
-        if (cancelled) return
-        setLoadError(err instanceof Error ? err : new Error(String(err)))
-      })
-    // Load the milestone ladder in parallel; its failure is non-fatal (the
-    // mileage section just shows no badges), so it has its own catch and never
-    // trips `loadError`.
-    getOtfMileageAwards()
-      .then(awards => {
-        if (cancelled) return
-        setMileageAwards(awards)
-      })
-      .catch(() => {
-        /* leave the ladder empty — the section renders miles with no badges */
-      })
-    return () => {
-      cancelled = true
-    }
   }, [])
 
   const earliest = useMemo(
@@ -299,7 +293,7 @@ export function OtfDetailView(): JSX.Element {
         )}
 
         {loadError ? (
-          <ErrorPanel error={loadError} />
+          <ErrorPanel message={loadError} />
         ) : !data ? (
           <LoadingPanel />
         ) : !hasAnySessions ? (
@@ -926,14 +920,14 @@ function EmptyState(): JSX.Element {
   )
 }
 
-function ErrorPanel({ error }: { error: Error }): JSX.Element {
+function ErrorPanel({ message }: { message: string }): JSX.Element {
   return (
     <div
       role="alert"
       className="mt-10 rounded-[1.6rem] border border-red-400/30 bg-red-950/40 p-6 text-sm leading-6 text-red-100"
     >
       <p className="font-semibold uppercase tracking-[0.18em]">Could not load OrangeTheory data</p>
-      <p className="mt-2 text-red-100/80">{error.message}</p>
+      <p className="mt-2 text-red-100/80">{message}</p>
     </div>
   )
 }

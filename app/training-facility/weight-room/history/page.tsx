@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
-import { LobbyBackLink } from '@/components/training-facility/LobbyBackLink'
+import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
 import { StrengthStats } from '@/components/training-facility/weight-room/StrengthStats'
@@ -74,7 +74,7 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-5xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <BackToCourtButton />
-          <LobbyBackLink />
+          <FacilityBackLink />
         </div>
 
         <header className="mt-12">

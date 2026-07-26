@@ -1,3 +1,5 @@
+import { isGymEnabled } from '@/lib/feature-flags'
+
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
 import {
   RoughCircle,
@@ -375,8 +377,14 @@ export function TapeMeasure() {
  * extends to x=1590). The Gym puts `DoorToCombine` at the mirror x=1300 spot,
  * but the Combine's right wall is occupied by the Vertec's wall-mounted reach
  * badge, so the door sits in the gap to its left rather than the right corner.
+ *
+ * Renders nothing when the Gym is dark (#345) — the mirror of `DoorToCombine`.
+ * The two areas have separate flags, so either can be live while the other is
+ * not, and a painted, signposted door into a 404 is worse than a blank wall.
  */
 export function DoorToGym() {
+  if (!isGymEnabled()) return null
+
   return (
     <SceneDoor
       href="/training-facility/gym"

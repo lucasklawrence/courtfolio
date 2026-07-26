@@ -5,7 +5,6 @@ import { Fragment, useEffect, useMemo, useRef, useState, type JSX } from 'react'
 import type { CardioData, CardioSession } from '@/types/cardio'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
-import { getCardioData } from '@/lib/data'
 import {
   useCardioPreview,
   useCardioPreviewHref,
@@ -89,6 +88,23 @@ function formatTotalMiles(meters: number): string {
   return `${(meters / METERS_PER_MILE).toFixed(1)} mi`
 }
 
+/** Props for {@link AllCardioOverview}. */
+export interface AllCardioOverviewProps {
+  /**
+   * The cardio dataset read server-side, or `null` when every cardio table is
+   * empty (#152) — a normal pre-baseline state, not a failure.
+   */
+  cardio: CardioData | null
+  /** Message from a failed read, rendered in place of the charts. */
+  loadError?: string
+  /**
+   * Whether the viewer is the owner. Only gates the private lifestyle metrics
+   * (body mass, sleep), which RLS withholds from everyone else (#345) — see
+   * {@link import('./lifestyle/LifestyleMetricsSection').LifestyleMetricsSectionProps.showPrivateMetrics}.
+   */
+  isAdmin?: boolean
+}
+
 /**
  * All-cardio overview (PRD §7.4) — the "stats wall" view that aggregates stair,
  * running, and walking sessions into a single page. Sits at
@@ -107,13 +123,27 @@ function formatTotalMiles(meters: number): string {
  *
  * Skips the pace and cardiac-efficiency charts — combining walking and running
  * paces on one axis is misleading, and stair sessions don't have pace at all.
+ *
+ * Data arrives as props from the page rather than a mount effect (#345): this
+ * route is publicly reachable, and a client-side Supabase read would inline
+ * `NEXT_PUBLIC_SUPABASE_ANON_KEY` into its bundle. Still a Client Component for
+ * the range picker, the resize observers and the localStorage max-HR control —
+ * just one with no Supabase import. There is consequently no loading panel; the
+ * server resolves the data before this renders.
  */
-export function AllCardioOverview(): JSX.Element {
-  // `realData` is what `getCardioData()` returned; `data` (further
-  // down) is the surface-rendered version after the preview hook
-  // runs (#162).
-  const [realData, setRealData] = useState<CardioData | null>(null)
-  const [loadError, setLoadError] = useState<Error | null>(null)
+export function AllCardioOverview({
+  cardio,
+  loadError,
+  isAdmin = false,
+}: AllCardioOverviewProps): JSX.Element {
+  // `realData` is what the server read returned; `data` (further down) is the
+  // surface-rendered version after the preview hook runs (#162). `null` means
+  // every cardio table was empty (#152) — substitute an empty dataset so the
+  // component lands in its empty-state branch.
+  const realData = useMemo<CardioData>(
+    () => cardio ?? { imported_at: '', sessions: [], resting_hr_trend: [], vo2max_trend: [] },
+    [cardio],
+  )
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
   const [wideWidth, setWideWidth] = useState(DEFAULT_WIDE_WIDTH)
@@ -123,33 +153,6 @@ export function AllCardioOverview(): JSX.Element {
   const [maxHr, setMaxHr] = useState<number>(DEFAULT_MAX_HR)
   const cardSizerRef = useRef<HTMLDivElement>(null)
   const wideSizerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    let cancelled = false
-    getCardioData()
-      .then((next) => {
-        if (cancelled) return
-        // Same empty-shape substitution as Stair/Treadmill/Track —
-        // `null` means every Supabase cardio table is empty (#152).
-        // Render the empty-state branch instead of sitting on the
-        // loading panel.
-        setRealData(
-          next ?? {
-            imported_at: '',
-            sessions: [],
-            resting_hr_trend: [],
-            vo2max_trend: [],
-          },
-        )
-      })
-      .catch((err: unknown) => {
-        if (cancelled) return
-        setLoadError(err instanceof Error ? err : new Error(String(err)))
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
 
   // Empty-state preview affordance (#162). Cross-activity surface,
   // so no `requireActivity` — any real session of any activity
@@ -281,7 +284,7 @@ export function AllCardioOverview(): JSX.Element {
         </div>
 
         {loadError ? (
-          <ErrorPanel error={loadError} />
+          <ErrorPanel message={loadError} />
         ) : !data ? (
           <LoadingPanel />
         ) : (
@@ -367,6 +370,7 @@ export function AllCardioOverview(): JSX.Element {
               range={range}
               chartWidth={chartWidth}
               fontFamily={FONT_FAMILY}
+              showPrivateMetrics={isAdmin}
             />
 
             <SessionLogTable sessions={sessions} range={range} />
@@ -651,14 +655,14 @@ function LoadingPanel(): JSX.Element {
   )
 }
 
-function ErrorPanel({ error }: { error: Error }): JSX.Element {
+function ErrorPanel({ message }: { message: string }): JSX.Element {
   return (
     <div
       role="alert"
       className="mt-10 rounded-[1.6rem] border border-red-400/30 bg-red-950/40 p-6 text-sm leading-6 text-red-100"
     >
       <p className="font-semibold uppercase tracking-[0.18em]">Could not load cardio data</p>
-      <p className="mt-2 text-red-100/80">{error.message}</p>
+      <p className="mt-2 text-red-100/80">{message}</p>
       <p className="mt-4 text-xs text-red-100/60">
         Run <code className="rounded bg-black/40 px-1.5 py-0.5">npm run import-health</code> to
         regenerate <code className="rounded bg-black/40 px-1.5 py-0.5">public/data/cardio.json</code>{' '}

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
-import { LobbyBackLink } from '@/components/training-facility/LobbyBackLink'
+import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { GymScene } from '@/components/training-facility/scenes/GymScene'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
@@ -66,7 +66,7 @@ export default async function TrainingFacilityGymPage({ searchParams }: PageProp
       <div className="pointer-events-none absolute inset-0 z-10">
         <div className="pointer-events-auto absolute inset-x-0 top-0 flex flex-wrap items-center justify-between gap-3 p-4 sm:p-6 lg:p-8">
           <BackToCourtButton />
-          <LobbyBackLink />
+          <FacilityBackLink />
         </div>
 
         {isPreviewMode ? (

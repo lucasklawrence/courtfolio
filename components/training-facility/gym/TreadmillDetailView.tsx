@@ -6,7 +6,6 @@ import type { CardioData, CardioSession } from '@/types/cardio'
 import type { Benchmark } from '@/types/movement'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
-import { getCardioData, getMovementBenchmarks } from '@/lib/data'
 import {
   useCardioPreview,
   useCardioPreviewHref,
@@ -71,6 +70,19 @@ const DEFAULT_PACE_WIDTH = 880
 const EARLIEST_FALLBACK = new Date(2024, 0, 1)
 const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
 
+/** Props for {@link TreadmillDetailView}. */
+export interface TreadmillDetailViewProps {
+  /**
+   * The cardio dataset read server-side, or `null` when every cardio table is
+   * empty (#152) — a normal pre-baseline state, not a failure.
+   */
+  cardio: CardioData | null
+  /** Combine benchmarks, for the pace-projection overlays. Empty when none logged. */
+  benchmarks: Benchmark[]
+  /** Message from a failed read, rendered in place of the charts. */
+  loadError?: string
+}
+
 /**
  * Treadmill detail view (PRD §7.4) — running-modality charts over the cardio
  * data layer, mirroring `StairDetailView` for shared concerns (HR-zone bars,
@@ -82,16 +94,30 @@ const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
  *   3. Pace-at-HR scatter (`RoughScatter`) — fast-at-low-HR sessions land in
  *      the lower-left quadrant (most efficient).
  *
- * Loading and error states are first-class so a missing `cardio.json` reads as
- * "no data yet" rather than an empty chart wall.
+ * Error state is first-class so an unreadable dataset reads as "no data yet"
+ * rather than an empty chart wall.
+ *
+ * Data arrives as props from the page rather than a mount effect (#345): this
+ * route is publicly reachable, and a client-side Supabase read would inline
+ * `NEXT_PUBLIC_SUPABASE_ANON_KEY` into its bundle. Still a Client Component for
+ * the range picker, the resize observers and the localStorage max-HR control —
+ * just one with no Supabase import. There is consequently no loading panel; the
+ * server resolves the data before this renders.
  */
-export function TreadmillDetailView(): JSX.Element {
-  // `realData` is what `getCardioData()` returned; `data` (further
-  // down) is the surface-rendered version after the preview hook
-  // runs (#162). Real data wins once any session lands.
-  const [realData, setRealData] = useState<CardioData | null>(null)
-  const [benchmarks, setBenchmarks] = useState<Benchmark[]>([])
-  const [loadError, setLoadError] = useState<Error | null>(null)
+export function TreadmillDetailView({
+  cardio,
+  benchmarks,
+  loadError,
+}: TreadmillDetailViewProps): JSX.Element {
+  // `realData` is what the server read returned; `data` (further down) is the
+  // surface-rendered version after the preview hook runs (#162). `null` means
+  // every cardio table was empty (#152) — substitute an empty dataset so the
+  // component lands in its empty-state branch instead of a null check at every
+  // use site.
+  const realData = useMemo<CardioData>(
+    () => cardio ?? { imported_at: '', sessions: [], resting_hr_trend: [], vo2max_trend: [] },
+    [cardio],
+  )
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
   const [paceWidth, setPaceWidth] = useState(DEFAULT_PACE_WIDTH)
@@ -104,39 +130,6 @@ export function TreadmillDetailView(): JSX.Element {
   // (observing the grid wrapper would over-report on `lg:grid-cols-2`).
   const cardSizerRef = useRef<HTMLDivElement>(null)
   const paceSizerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    let cancelled = false
-    Promise.all([getCardioData(), getMovementBenchmarks()])
-      .then(([cardio, bench]) => {
-        if (cancelled) return
-        // `getCardioData()` resolves to `null` when every Supabase
-        // cardio table is empty (#152). Substitute an empty `CardioData`
-        // so the component progresses past the loading panel into the
-        // empty-state branch — without this, a fresh deploy against an
-        // unseeded project would sit on "Loading cardio data…" forever.
-        setRealData(
-          cardio ?? {
-            imported_at: '',
-            sessions: [],
-            resting_hr_trend: [],
-            vo2max_trend: [],
-          },
-        )
-        setBenchmarks(bench)
-      })
-      .catch((err: unknown) => {
-        if (cancelled) return
-        // Real failures (network, 5xx, malformed JSON) surface the error
-        // panel. The "no rows" case is handled as empty in `.then` above; this
-        // path only runs for genuine errors that `getCardioData()` /
-        // `getMovementBenchmarks()` choose to throw.
-        setLoadError(err instanceof Error ? err : new Error(String(err)))
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
 
   // Empty-state preview affordance (#162). Activity-scoped to
   // `running` so a DB with only stair / walking data still surfaces
@@ -290,7 +283,7 @@ export function TreadmillDetailView(): JSX.Element {
         </div>
 
         {loadError ? (
-          <ErrorPanel error={loadError} />
+          <ErrorPanel message={loadError} />
         ) : !data ? (
           <LoadingPanel />
         ) : (
@@ -605,14 +598,14 @@ function LoadingPanel(): JSX.Element {
   )
 }
 
-function ErrorPanel({ error }: { error: Error }): JSX.Element {
+function ErrorPanel({ message }: { message: string }): JSX.Element {
   return (
     <div
       role="alert"
       className="mt-10 rounded-[1.6rem] border border-red-400/30 bg-red-950/40 p-6 text-sm leading-6 text-red-100"
     >
       <p className="font-semibold uppercase tracking-[0.18em]">Could not load cardio data</p>
-      <p className="mt-2 text-red-100/80">{error.message}</p>
+      <p className="mt-2 text-red-100/80">{message}</p>
       <p className="mt-4 text-xs text-red-100/60">
         Run <code className="rounded bg-black/40 px-1.5 py-0.5">npm run import-health</code> to
         regenerate <code className="rounded bg-black/40 px-1.5 py-0.5">public/data/cardio.json</code>{' '}
