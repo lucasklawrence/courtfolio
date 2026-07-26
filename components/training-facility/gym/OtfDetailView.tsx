@@ -38,7 +38,22 @@ import { OtfSparklineSummary, type OtfSparklineRow } from './OtfSparklineSummary
 import { OtfZoneBars } from './OtfZoneBars'
 
 const CHART_HEIGHT = 280
-const MIN_CHART_WIDTH = 280
+
+/**
+ * Narrowest a chart is allowed to get before it stops shrinking and starts
+ * overflowing its card instead.
+ *
+ * At 280 this sat below every phone width, so on mobile the charts always
+ * squeezed to fit — a season of classes crushed into ~330px, with nothing to
+ * scroll because nothing overflowed. `ChartCard` already wraps its children in
+ * `overflow-x-auto`; the charts simply never grew past it.
+ *
+ * 480 is above a phone viewport and below a desktop column in the
+ * `lg:grid-cols-2` grid, so phones now scroll a legible chart (matching the
+ * Weight Room heatmap, which has always sized itself from its data and
+ * scrolled) while desktop keeps filling its column exactly as before.
+ */
+const MIN_CHART_WIDTH = 480
 const DEFAULT_CHART_WIDTH = 560
 const EARLIEST_FALLBACK = new Date(2026, 0, 1)
 const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
