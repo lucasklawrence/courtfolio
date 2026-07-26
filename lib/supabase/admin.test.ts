@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { createAdminSupabaseClient } from './admin'
+import { canPerformAdminWrites, createAdminSupabaseClient } from './admin'
 
 const createClientMock =
   vi.fn<(url: string, key: string, options?: unknown) => unknown>(() => ({
@@ -47,5 +47,33 @@ describe('createAdminSupabaseClient', () => {
         },
       },
     )
+  })
+})
+
+describe('canPerformAdminWrites', () => {
+  it('is true when both credentials are present', () => {
+    vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', 'https://abc.supabase.co')
+    vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY', 'srv_key')
+    expect(canPerformAdminWrites()).toBe(true)
+  })
+
+  it('is false without a service-role key — the preview-deployment case', () => {
+    vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', 'https://abc.supabase.co')
+    vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY', '')
+    expect(canPerformAdminWrites()).toBe(false)
+  })
+
+  it('is false without a URL', () => {
+    vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', '')
+    vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY', 'srv_key')
+    expect(canPerformAdminWrites()).toBe(false)
+  })
+
+  it('treats whitespace-only values as absent, matching the client factory', () => {
+    vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', 'https://abc.supabase.co')
+    vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY', '   ')
+    expect(canPerformAdminWrites()).toBe(false)
+    // The factory rejects the same value, so the two can never disagree.
+    expect(() => createAdminSupabaseClient()).toThrow(/SUPABASE_SERVICE_ROLE_KEY/)
   })
 })
