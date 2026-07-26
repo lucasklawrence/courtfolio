@@ -1,8 +1,8 @@
 import type { JSX } from 'react'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { LobbyBackLink } from '@/components/training-facility/LobbyBackLink'
 import { WeightRoomScene } from '@/components/training-facility/scenes/WeightRoomScene'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
@@ -79,12 +79,7 @@ export default async function TrainingFacilityWeightRoomPage({
       <div className="pointer-events-none absolute inset-0 z-10">
         <div className="pointer-events-auto absolute inset-x-0 top-0 flex flex-wrap items-center justify-between gap-3 p-4 sm:p-6 lg:p-8">
           <BackToCourtButton />
-          <Link
-            href="/training-facility"
-            className="rounded-full border border-white/15 bg-[#120d0a]/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 backdrop-blur transition hover:bg-[#120d0a]/95"
-          >
-            ← Training Facility
-          </Link>
+          <LobbyBackLink />
         </div>
 
         <div className="pointer-events-auto absolute inset-x-0 top-20 flex justify-center sm:top-24">
