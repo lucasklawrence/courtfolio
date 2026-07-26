@@ -1,15 +1,16 @@
 import type { JSX } from 'react'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { LobbyBackLink } from '@/components/training-facility/LobbyBackLink'
 import { WeightRoomScene } from '@/components/training-facility/scenes/WeightRoomScene'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
+import { isAdminRequest } from '@/lib/auth/admin-session'
 import { buildWeightRoomDemoData } from '@/constants/weight-room-demo-fixture'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isWeightRoomEnabled } from '@/lib/feature-flags'
 import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
 
 /** Search-params shape Next.js passes to a server-rendered page. */
@@ -43,9 +44,14 @@ interface PageProps {
 export default async function TrainingFacilityWeightRoomPage({
   searchParams,
 }: PageProps): Promise<JSX.Element> {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isWeightRoomEnabled()) notFound()
 
-  const realData = await getWeightRoomDataServer().catch(() => null)
+  // `isAdmin` is resolved here rather than by the sub-nav so this page ships
+  // no browser Supabase client — see WeightRoomSubNavProps.isAdmin (#345).
+  const [realData, isAdmin] = await Promise.all([
+    getWeightRoomDataServer().catch(() => null),
+    isAdminRequest().catch(() => false),
+  ])
   const params = await searchParams
   const previewRequested = isPreviewDemoActive(params.preview)
   const realIsEmpty = realData === null || realData.sets.length === 0
@@ -73,16 +79,11 @@ export default async function TrainingFacilityWeightRoomPage({
       <div className="pointer-events-none absolute inset-0 z-10">
         <div className="pointer-events-auto absolute inset-x-0 top-0 flex flex-wrap items-center justify-between gap-3 p-4 sm:p-6 lg:p-8">
           <BackToCourtButton />
-          <Link
-            href="/training-facility"
-            className="rounded-full border border-white/15 bg-[#120d0a]/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 backdrop-blur transition hover:bg-[#120d0a]/95"
-          >
-            ← Training Facility
-          </Link>
+          <LobbyBackLink />
         </div>
 
         <div className="pointer-events-auto absolute inset-x-0 top-20 flex justify-center sm:top-24">
-          <WeightRoomSubNav active="today" />
+          <WeightRoomSubNav active="today" isAdmin={isAdmin} />
         </div>
 
         {isPreviewMode ? (

@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 import { TrackDetailView } from '@/components/training-facility/gym/TrackDetailView'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isGymEnabled } from '@/lib/feature-flags'
 
 /**
  * Track detail view (PRD §7.4) — walking-modality charts. Reachable from the
@@ -16,7 +16,7 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * `TrackDetailView` already owns its own `LoadingPanel`.
  */
 export default function TrainingFacilityGymTrackPage() {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isGymEnabled()) notFound()
 
   return (
     <Suspense fallback={null}>

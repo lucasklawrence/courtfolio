@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
 import type { CardioTimePoint } from '@/types/cardio'
 
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
@@ -646,8 +647,14 @@ export function BenchWithTablet() {
  * cross-link are thin wrappers around the shared {@link SceneDoor}
  * primitive (#176 follow-up); only the href, sign text, x-offset, and
  * rough.js seed base differ.
+ *
+ * Renders nothing when the Combine is dark (#345). The Gym has its own flag
+ * now, so it can be published while the Combine is still being designed —
+ * and a painted, signposted door into a 404 is worse than a blank wall.
  */
 export function DoorToCombine() {
+  if (!isTrainingFacilityEnabled()) return null
+
   return (
     <SceneDoor
       href="/training-facility/combine"

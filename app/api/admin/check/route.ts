@@ -13,8 +13,7 @@
 
 import { NextResponse } from 'next/server'
 
-import { isAdminEmail } from '@/lib/auth/admin-allowlist'
-import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { resolveAdminSession } from '@/lib/auth/admin-session'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 
 /**
@@ -27,13 +26,8 @@ import { withTelemetry } from '@/lib/telemetry/with-telemetry'
  *   Auth lookup failures are normalized to logged-out.
  */
 async function handleGET(): Promise<NextResponse> {
-  const supabase = await createServerSupabaseClient()
-  const { data, error } = await supabase.auth.getUser()
-  if (error || !data?.user) {
-    return NextResponse.json({ isAdmin: false, email: null })
-  }
-  const email = data.user.email ?? null
-  return NextResponse.json({ isAdmin: isAdminEmail(email), email })
+  const { isAdmin, email } = await resolveAdminSession()
+  return NextResponse.json({ isAdmin, email })
 }
 
 /** `handleGET` wrapped with one-event-per-request telemetry (#220). */

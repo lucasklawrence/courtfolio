@@ -1,13 +1,13 @@
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { LobbyBackLink } from '@/components/training-facility/LobbyBackLink'
 import { GymScene } from '@/components/training-facility/scenes/GymScene'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { CARDIO_DEMO_DATA } from '@/constants/cardio-demo-fixture'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isGymEnabled } from '@/lib/feature-flags'
 // Server component — must import the predicate from the non-`'use client'`
 // module. The same predicate is re-exported from `use-cardio-preview.ts`
 // for client callers, but importing it through that boundary here would
@@ -42,7 +42,7 @@ interface PageProps {
  * "Preview with sample data" CTA over the scene offers the opt-in.
  */
 export default async function TrainingFacilityGymPage({ searchParams }: PageProps) {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isGymEnabled()) notFound()
   // Catch transient read errors so a flaky Supabase response doesn't
   // 500 the whole page — the fixtures gracefully fall back to placeholders.
   const realCardioData = await getCardioDataServer().catch(() => null)
@@ -66,12 +66,7 @@ export default async function TrainingFacilityGymPage({ searchParams }: PageProp
       <div className="pointer-events-none absolute inset-0 z-10">
         <div className="pointer-events-auto absolute inset-x-0 top-0 flex flex-wrap items-center justify-between gap-3 p-4 sm:p-6 lg:p-8">
           <BackToCourtButton />
-          <Link
-            href="/training-facility"
-            className="rounded-full border border-white/15 bg-[#120d0a]/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 backdrop-blur transition hover:bg-[#120d0a]/95"
-          >
-            ← Training Facility
-          </Link>
+          <LobbyBackLink />
         </div>
 
         {isPreviewMode ? (

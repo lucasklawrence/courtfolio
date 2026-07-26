@@ -2,8 +2,7 @@ import 'server-only'
 
 import { NextResponse } from 'next/server'
 
-import { createServerSupabaseClient } from '@/lib/supabase/server'
-import { isAdminEmail } from './admin-allowlist'
+import { resolveAdminSession } from './admin-session'
 
 /**
  * Result of an admin-authorization check on an incoming request.
@@ -34,20 +33,19 @@ export type AdminCheck =
  *   failure (no session, wrong email) is returned as `{ ok: false }`.
  */
 export async function requireAdmin(): Promise<AdminCheck> {
-  const supabase = await createServerSupabaseClient()
-  const { data, error } = await supabase.auth.getUser()
-  if (error || !data?.user) {
+  const { signedIn, email, isAdmin } = await resolveAdminSession()
+  if (!signedIn) {
     return {
       ok: false,
       response: NextResponse.json({ error: 'Sign in required.' }, { status: 401 }),
     }
   }
-  const email = data.user.email ?? null
-  if (!isAdminEmail(email)) {
+  if (!isAdmin) {
     return {
       ok: false,
       response: NextResponse.json({ error: 'Admin only.' }, { status: 403 }),
     }
   }
+  // `isAdmin` is only true when the allowlist matched a non-null email.
   return { ok: true, email: email as string }
 }

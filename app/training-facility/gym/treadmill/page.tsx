@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 import { TreadmillDetailView } from '@/components/training-facility/gym/TreadmillDetailView'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isGymEnabled } from '@/lib/feature-flags'
 
 /**
  * Treadmill detail view (PRD §7.4) — running-modality charts. Reachable from
@@ -16,7 +16,7 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * `TreadmillDetailView` already owns its own `LoadingPanel`.
  */
 export default function TrainingFacilityGymTreadmillPage() {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isGymEnabled()) notFound()
 
   return (
     <Suspense fallback={null}>

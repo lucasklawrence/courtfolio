@@ -1,12 +1,12 @@
 import type { JSX } from 'react'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { LobbyBackLink } from '@/components/training-facility/LobbyBackLink'
 import { LogDataIsland } from '@/components/training-facility/weight-room/LogDataIsland'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isWeightRoomEnabled } from '@/lib/feature-flags'
 
 /**
  * Weight Room Log page (#197). Admin-only owner-facing surface where
@@ -24,7 +24,7 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * after each mutation without a router refresh round-trip.
  */
 export default async function WeightRoomLogPage(): Promise<JSX.Element> {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isWeightRoomEnabled()) notFound()
   await requireAdminPage()
 
   return (
@@ -37,12 +37,7 @@ export default async function WeightRoomLogPage(): Promise<JSX.Element> {
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-5xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <BackToCourtButton />
-          <Link
-            href="/training-facility"
-            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
-          >
-            ← Training Facility
-          </Link>
+          <LobbyBackLink />
         </div>
 
         <header className="mt-12">
@@ -57,7 +52,7 @@ export default async function WeightRoomLogPage(): Promise<JSX.Element> {
             one. The Today view is read-only for visitors; data entry
             lives here.
           </p>
-          <WeightRoomSubNav active="log" className="mt-5" />
+          <WeightRoomSubNav active="log" className="mt-5" isAdmin />
         </header>
 
         <section className="mt-10 flex-1">
