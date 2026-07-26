@@ -7,7 +7,7 @@ import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewM
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { CARDIO_DEMO_DATA } from '@/constants/cardio-demo-fixture'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isGymEnabled } from '@/lib/feature-flags'
 // Server component — must import the predicate from the non-`'use client'`
 // module. The same predicate is re-exported from `use-cardio-preview.ts`
 // for client callers, but importing it through that boundary here would
@@ -42,7 +42,7 @@ interface PageProps {
  * "Preview with sample data" CTA over the scene offers the opt-in.
  */
 export default async function TrainingFacilityGymPage({ searchParams }: PageProps) {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isGymEnabled()) notFound()
   // Catch transient read errors so a flaky Supabase response doesn't
   // 500 the whole page — the fixtures gracefully fall back to placeholders.
   const realCardioData = await getCardioDataServer().catch(() => null)

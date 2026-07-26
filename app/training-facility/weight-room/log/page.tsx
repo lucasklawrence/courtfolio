@@ -6,7 +6,7 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { LogDataIsland } from '@/components/training-facility/weight-room/LogDataIsland'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isWeightRoomEnabled } from '@/lib/feature-flags'
 
 /**
  * Weight Room Log page (#197). Admin-only owner-facing surface where
@@ -24,7 +24,7 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * after each mutation without a router refresh round-trip.
  */
 export default async function WeightRoomLogPage(): Promise<JSX.Element> {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isWeightRoomEnabled()) notFound()
   await requireAdminPage()
 
   return (
@@ -57,7 +57,7 @@ export default async function WeightRoomLogPage(): Promise<JSX.Element> {
             one. The Today view is read-only for visitors; data entry
             lives here.
           </p>
-          <WeightRoomSubNav active="log" className="mt-5" />
+          <WeightRoomSubNav active="log" className="mt-5" isAdmin />
         </header>
 
         <section className="mt-10 flex-1">

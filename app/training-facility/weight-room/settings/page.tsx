@@ -11,7 +11,7 @@ import {
   getWeightRoomAchievementsServer,
   getWeightRoomDataServer,
 } from '@/lib/data/weight-room-server'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isWeightRoomEnabled } from '@/lib/feature-flags'
 
 /**
  * Weight Room settings page (#79). Admin-only — non-admins get a 404
@@ -29,7 +29,7 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * `router.refresh()` after each mutation to pick up the new state.
  */
 export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isWeightRoomEnabled()) notFound()
   await requireAdminPage()
 
   // Catch transient read errors so a flaky Supabase response surfaces
@@ -73,7 +73,7 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
             heatmap. Add new exercises here — the rings populate live as
             soon as you log a set.
           </p>
-          <WeightRoomSubNav active="settings" className="mt-5" />
+          <WeightRoomSubNav active="settings" className="mt-5" isAdmin />
         </header>
 
         <section className="mt-10">

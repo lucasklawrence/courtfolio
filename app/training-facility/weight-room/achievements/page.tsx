@@ -5,11 +5,12 @@ import { notFound } from 'next/navigation'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { TrophyRoom } from '@/components/training-facility/weight-room/TrophyRoom'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
+import { isAdminRequest } from '@/lib/auth/admin-session'
 import {
   getWeightRoomAchievementsServer,
   getWeightRoomDataServer,
 } from '@/lib/data/weight-room-server'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isWeightRoomEnabled } from '@/lib/feature-flags'
 import { buildTrophyRoomView } from '@/lib/training-facility/achievements'
 
 /**
@@ -28,11 +29,14 @@ import { buildTrophyRoomView } from '@/lib/training-facility/achievements'
  * empty-state copy.
  */
 export default async function WeightRoomAchievementsPage(): Promise<JSX.Element> {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isWeightRoomEnabled()) notFound()
 
-  const [data, achievements] = await Promise.all([
+  // `isAdmin` is resolved here rather than by the sub-nav so this page ships
+  // no browser Supabase client — see WeightRoomSubNavProps.isAdmin (#345).
+  const [data, achievements, isAdmin] = await Promise.all([
     getWeightRoomDataServer().catch(() => null),
     getWeightRoomAchievementsServer().catch(() => []),
+    isAdminRequest().catch(() => false),
   ])
 
   const view = buildTrophyRoomView(data?.sets ?? [], data?.goals ?? [], achievements)
@@ -67,7 +71,7 @@ export default async function WeightRoomAchievementsPage(): Promise<JSX.Element>
             streaks that survived a Tuesday &mdash; earned off the same set log that fills the
             rings. Nothing is stored: the wall is recomputed from scratch every visit.
           </p>
-          <WeightRoomSubNav active="achievements" className="mt-5" />
+          <WeightRoomSubNav active="achievements" className="mt-5" isAdmin={isAdmin} />
         </header>
 
         <div className="mt-10 pb-16">

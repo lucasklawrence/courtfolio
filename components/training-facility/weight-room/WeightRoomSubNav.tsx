@@ -1,9 +1,5 @@
-'use client'
-
 import type { JSX } from 'react'
 import Link from 'next/link'
-
-import { useAdminSession } from '@/lib/auth/use-admin-session'
 
 /**
  * Identifier for the active Weight Room sub-page (#82, #197). Drives
@@ -32,6 +28,23 @@ export interface WeightRoomSubNavProps {
    * a page tweak vertical spacing without rewriting the chrome.
    */
   className?: string
+  /**
+   * Whether the viewer is an admin — controls whether the Log and Settings
+   * pills render at all.
+   *
+   * Required, and resolved by the *caller* on the server, because this
+   * component used to call `useAdminSession` itself. That hook builds a
+   * browser Supabase client to watch for auth changes, which inlines
+   * `NEXT_PUBLIC_SUPABASE_ANON_KEY` into every bundle reaching it — and this
+   * nav renders on all five Weight Room pages, three of which are public
+   * (#345). Taking the answer as a prop is what keeps the key out of them.
+   *
+   * Public pages resolve it with `isAdminRequest()` from
+   * `@/lib/auth/admin-session`. The admin-only pages can pass `true`
+   * outright: `requireAdminPage()` has already 404'd anyone else, so if the
+   * page is rendering, the viewer is an admin.
+   */
+  isAdmin: boolean
 }
 
 interface SubNavItem {
@@ -63,10 +76,18 @@ const ITEMS: readonly SubNavItem[] = [
 
 /**
  * Pill-row sub-nav for the Weight Room area (#82, #197). Renders the
- * Today / History pills for everyone; Settings + Log pills appear only
- * for admin viewers (resolved via {@link useAdminSession}). While the
- * admin check is in flight the admin-only pills stay hidden — better
- * to add them in than to flash them out.
+ * Today / History / Trophies pills for everyone; Settings + Log pills
+ * appear only for admin viewers. While a client-side admin check is in
+ * flight the admin-only pills stay hidden — better to add them in than
+ * to flash them out.
+ *
+ * Admin status arrives as a prop, resolved server-side by the caller — this
+ * component deliberately holds no client-side Supabase dependency, because it
+ * renders on three publicly reachable pages (#345). See
+ * {@link WeightRoomSubNavProps.isAdmin}.
+ *
+ * No longer a Client Component: with the hook gone there is nothing to
+ * hydrate, so it renders on the server as plain links.
  *
  * Visual: cream-on-amber for the active pill (matches the existing
  * "View all cardio →" CTA on the Gym page), quiet white-on-translucent
@@ -77,8 +98,11 @@ const ITEMS: readonly SubNavItem[] = [
  * Mobile-first: pills wrap rather than scroll horizontally — three /
  * four short labels fit on a 390 px viewport without truncation.
  */
-export function WeightRoomSubNav({ active, className = '' }: WeightRoomSubNavProps): JSX.Element {
-  const { isAdmin } = useAdminSession()
+export function WeightRoomSubNav({
+  active,
+  className = '',
+  isAdmin,
+}: WeightRoomSubNavProps): JSX.Element {
   const visibleItems = ITEMS.filter((item) => !item.adminOnly || isAdmin)
   return (
     <nav

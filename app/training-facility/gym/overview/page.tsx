@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 import { AllCardioOverview } from '@/components/training-facility/gym/AllCardioOverview'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isGymEnabled } from '@/lib/feature-flags'
 
 /**
  * Renders the All Cardio overview / stats wall (PRD §7.4) — the cross-activity
@@ -16,7 +16,7 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * `AllCardioOverview` already owns its own `LoadingPanel`.
  */
 export default function TrainingFacilityGymOverviewPage() {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isGymEnabled()) notFound()
 
   return (
     <Suspense fallback={null}>

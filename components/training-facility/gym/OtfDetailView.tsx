@@ -664,9 +664,6 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                   Date
                 </th>
                 <th scope="col" className="px-3 py-2 font-semibold">
-                  Coach
-                </th>
-                <th scope="col" className="px-3 py-2 font-semibold">
                   Type
                 </th>
                 <th scope="col" className="px-3 py-2 font-semibold">
@@ -738,7 +735,6 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                           )}
                         </span>
                       </td>
-                      <td className="px-3 py-2">{s.coach ?? '—'}</td>
                       <td className="px-3 py-2">
                         <ClassTypeCell session={s} />
                       </td>

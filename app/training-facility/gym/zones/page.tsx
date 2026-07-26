@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 
 import { HrZoneComparison } from '@/components/training-facility/gym/HrZoneComparison'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isGymEnabled } from '@/lib/feature-flags'
 
 /**
  * HR-zone reconciliation view (#261) — Apple Watch vs OrangeTheory zones on one
@@ -14,7 +14,7 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * both datasets client-side from a mount effect.
  */
 export default function TrainingFacilityGymZonesPage() {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isGymEnabled()) notFound()
 
   return <HrZoneComparison />
 }

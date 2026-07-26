@@ -36,7 +36,6 @@ vi.mock('next/navigation', () => ({
 
 const VALID_SESSION = {
   started_at: '2026-06-27T16:30:00+00:00',
-  coach: 'Mara Magistad',
   studio: 'Marina Del Rey, CA',
   splat: 15,
   calories: 776,
@@ -58,7 +57,6 @@ const DATA_WITH_EXCLUDED: OtfData = {
   sessions: [
     {
       started_at: '2026-05-30T16:30:00+00:00',
-      coach: 'Jacob Buckenmeyer',
       studio: 'Marina Del Rey, CA',
       splat: 0,
       calories: 4,
@@ -77,14 +75,12 @@ const MULTI_TYPE_DATA: OtfData = {
   sessions: [
     {
       started_at: '2026-06-20T16:30:00+00:00',
-      coach: 'Row Coach',
       splat: 8,
       calories: 668,
       class_type: 'Row-focused',
     },
     {
       started_at: '2026-06-24T16:30:00+00:00',
-      coach: 'Tread Coach',
       splat: 13,
       calories: 697,
       class_type: 'Tread-focused',
@@ -111,7 +107,7 @@ describe('OtfDetailView', () => {
   it('renders the highlights strip and session log once data loads', async () => {
     getOtfDataMock.mockResolvedValue(DATA)
     render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByText('Mara Magistad')).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
     // Highlights strip (unique tile label) + the session-log heading.
     expect(screen.getByText('Total splat')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /classes/i })).toBeInTheDocument()
@@ -122,8 +118,9 @@ describe('OtfDetailView', () => {
   it('lists an excluded session in the log with a badge but keeps it out of the class count (#268)', async () => {
     getOtfDataMock.mockResolvedValue(DATA_WITH_EXCLUDED)
     render(<OtfDetailView />)
-    // The anomaly's coach is still rendered — excluded rows stay in the log.
-    await waitFor(() => expect(screen.getByText('Jacob Buckenmeyer')).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
+    // The anomaly stays in the log — 4 cal is its row, not an aggregate.
+    expect(within(screen.getByRole('table')).getByText('4')).toBeInTheDocument()
     // …flagged with an "Excluded" badge carrying the reason as its title.
     const badge = screen.getByText('Excluded')
     expect(badge).toHaveAttribute('title', expect.stringContaining('near-zero output'))
@@ -139,7 +136,7 @@ describe('OtfDetailView', () => {
   it('shows each session\'s class type in the log Type column (#271)', async () => {
     getOtfDataMock.mockResolvedValue(MULTI_TYPE_DATA)
     render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByText('Mara Magistad')).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
     const table = screen.getByRole('table')
     expect(within(table).getByRole('columnheader', { name: 'Type' })).toBeInTheDocument()
     // Scope to the table so the filter pills (same labels) don't collide.
@@ -151,18 +148,22 @@ describe('OtfDetailView', () => {
   it('scopes the whole view to a picked class type, composing with the range (#271)', async () => {
     getOtfDataMock.mockResolvedValue(MULTI_TYPE_DATA)
     render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByText('Mara Magistad')).toBeInTheDocument())
-    // All three classes present before filtering.
-    expect(screen.getByText('Row Coach')).toBeInTheDocument()
-    expect(screen.getByText('Tread Coach')).toBeInTheDocument()
+    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
+    // All three classes present before filtering, identified by their
+    // distinct calorie totals. Scoped to the table throughout: the highlights
+    // tiles show sums, and a filtered sum can equal a surviving row's value.
+    const rows = () => within(screen.getByRole('table'))
+    expect(rows().getByText('668')).toBeInTheDocument()
+    expect(rows().getByText('697')).toBeInTheDocument()
+    expect(rows().getByText('776')).toBeInTheDocument()
     // "All" starts pressed (unfiltered); the type pills do not.
     expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'true')
     // Pick the Tread-focused pill (a button — disambiguates from the Type cell).
     fireEvent.click(screen.getByRole('button', { name: 'Tread-focused' }))
     // Only the tread-only class stays in the log…
-    expect(screen.getByText('Tread Coach')).toBeInTheDocument()
-    expect(screen.queryByText('Mara Magistad')).not.toBeInTheDocument()
-    expect(screen.queryByText('Row Coach')).not.toBeInTheDocument()
+    expect(rows().getByText('697')).toBeInTheDocument()
+    expect(rows().queryByText('776')).not.toBeInTheDocument()
+    expect(rows().queryByText('668')).not.toBeInTheDocument()
     // …the aggregates follow: 1 class in range…
     expect(screen.getByText(/1 in range/)).toBeInTheDocument()
     // …and the selected state is exposed to assistive tech.
@@ -176,7 +177,7 @@ describe('OtfDetailView', () => {
       sessions: [{ ...VALID_SESSION, class_type: 'Tread + Row', class_type_override: '2G' }],
     })
     render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByText('Mara Magistad')).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
     // Override wins over the inferred label and is flagged as manual on hover.
     const chip = screen.getByText('2G')
     expect(chip).toHaveAttribute('title', 'Manual override')

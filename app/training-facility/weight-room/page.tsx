@@ -7,9 +7,10 @@ import { WeightRoomScene } from '@/components/training-facility/scenes/WeightRoo
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
+import { isAdminRequest } from '@/lib/auth/admin-session'
 import { buildWeightRoomDemoData } from '@/constants/weight-room-demo-fixture'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isWeightRoomEnabled } from '@/lib/feature-flags'
 import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
 
 /** Search-params shape Next.js passes to a server-rendered page. */
@@ -43,9 +44,14 @@ interface PageProps {
 export default async function TrainingFacilityWeightRoomPage({
   searchParams,
 }: PageProps): Promise<JSX.Element> {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isWeightRoomEnabled()) notFound()
 
-  const realData = await getWeightRoomDataServer().catch(() => null)
+  // `isAdmin` is resolved here rather than by the sub-nav so this page ships
+  // no browser Supabase client — see WeightRoomSubNavProps.isAdmin (#345).
+  const [realData, isAdmin] = await Promise.all([
+    getWeightRoomDataServer().catch(() => null),
+    isAdminRequest().catch(() => false),
+  ])
   const params = await searchParams
   const previewRequested = isPreviewDemoActive(params.preview)
   const realIsEmpty = realData === null || realData.sets.length === 0
@@ -82,7 +88,7 @@ export default async function TrainingFacilityWeightRoomPage({
         </div>
 
         <div className="pointer-events-auto absolute inset-x-0 top-20 flex justify-center sm:top-24">
-          <WeightRoomSubNav active="today" />
+          <WeightRoomSubNav active="today" isAdmin={isAdmin} />
         </div>
 
         {isPreviewMode ? (

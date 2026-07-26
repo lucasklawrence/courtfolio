@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 import { StairDetailView } from '@/components/training-facility/gym/StairDetailView'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isGymEnabled } from '@/lib/feature-flags'
 
 /**
  * Renders the Stair Climber detail view (PRD §7.4) — the first Gym detail
@@ -17,7 +17,7 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * `StairDetailView` already owns its own `LoadingPanel`.
  */
 export default function TrainingFacilityGymStairPage() {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isGymEnabled()) notFound()
 
   return (
     <Suspense fallback={null}>

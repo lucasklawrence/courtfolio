@@ -27,9 +27,19 @@ const SESSIONS_TABLE = 'otf_sessions'
  * the table without updating the schema fails loudly instead of leaking to
  * the view. `updated_at` is pulled to compute `imported_at`, then stripped
  * before validation.
+ *
+ * **`coach` is deliberately excluded** (#345). It names a third party, and the
+ * OTF view is publicly reachable — anything read here is served to anyone, in
+ * bulk. The column still exists in the table and the ingest path still writes
+ * it; it simply never leaves the database.
+ *
+ * Excluding it here rather than hiding it in the UI is the only version that
+ * actually withholds it: `OtfDetailView` is a Client Component, so a value
+ * fetched for an "admin-only" column would travel in the RSC payload to every
+ * viewer regardless of what got rendered.
  */
 const SESSIONS_COLUMNS =
-  'started_at, coach, studio, calories, splat, steps, avg_hr, peak_hr, ' +
+  'started_at, studio, calories, splat, steps, avg_hr, peak_hr, ' +
   'zone_gray_min, zone_blue_min, zone_green_min, zone_orange_min, zone_red_min, ' +
   'treadmill, rower, excluded, excluded_reason, class_type, class_type_override, updated_at'
 
