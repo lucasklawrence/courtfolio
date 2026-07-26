@@ -1,13 +1,23 @@
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { TrainingFacilityDoor } from '@/components/training-facility/TrainingFacilityDoor'
+import { isGymEnabled, isWeightRoomEnabled } from '@/lib/feature-flags'
 
 /**
  * Main Training Facility shell scene rendered from the new top-level route.
  *
  * This deliberately ships a route-first hallway scene with wired navigation,
  * while leaving the bespoke Gym / Combine SVG build for the follow-up issue.
+ *
+ * Each wing's door follows its own flag (#345). The areas ship independently
+ * now, so a door can point at a route that 404s — and "Pick a door." is a
+ * worse promise than usual to break. A dark wing renders as an inert door
+ * rather than disappearing: the room is three doors by design, and a visitor
+ * who can see what is coming is better served than one shown a gap.
  */
 export function TrainingFacilityShell() {
+  const gymLive = isGymEnabled()
+  const weightRoomLive = isWeightRoomEnabled()
+
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#160f0c] text-[#f7ead9]">
       <div
@@ -52,7 +62,8 @@ export function TrainingFacilityShell() {
             href="/training-facility/gym"
             description="The cardio dashboard moves into courtfolio here: stair-climber work, running, walking, and the stat wall that ties them together."
             doorwayHint="Stairs + treadmill"
-            footer="Route live now"
+            footer={gymLive ? 'Route live now' : 'Still building'}
+            disabled={!gymLive}
             tone="amber"
           />
           <TrainingFacilityDoor
@@ -70,7 +81,8 @@ export function TrainingFacilityShell() {
             href="/training-facility/weight-room"
             description="Grease-the-groove bodyweight work — pushups and pullups counted across the day, with activity rings, a streak counter, and a goal-percentage heatmap."
             doorwayHint="Pushups + pullups"
-            footer="Route live now"
+            footer={weightRoomLive ? 'Route live now' : 'Still building'}
+            disabled={!weightRoomLive}
             tone="slate"
           />
         </div>
