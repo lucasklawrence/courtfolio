@@ -1,30 +1,26 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { fireEvent, render, screen, within } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 
 import type { OtfData } from '@/types/otf'
 
 import { OtfDetailView } from './OtfDetailView'
 
 /**
- * Render tests for the OTF detail view (#256). `getOtfData` is mocked and the
- * heavy SVG chart children are stubbed to `null`, so the tests focus on the
- * branch decisions (loading → data, empty state, error panel) rather than
- * chart geometry. Sibling pattern: `StairDetailView.test.tsx`.
+ * Render tests for the OTF detail view (#256). Sessions, the milestone ladder
+ * and admin state all arrive as props now that the page reads them server-side
+ * (#345), so there is nothing to mock and nothing async to settle — the tests
+ * focus on branch decisions (data, empty state, error panel) rather than chart
+ * geometry. Heavy SVG chart children are still stubbed to `null`.
+ * Sibling pattern: `StairDetailView.test.tsx`.
  */
 
-const getOtfDataMock = vi.fn()
+/** Render with the default surrounding props; only `otf` usually varies. */
+function renderView(props: Partial<React.ComponentProps<typeof OtfDetailView>> = {}) {
+  return render(
+    <OtfDetailView otf={null} mileageAwards={[]} isAdmin={false} {...props} />,
+  )
+}
 
-vi.mock('@/lib/data', () => ({
-  getOtfData: () => getOtfDataMock(),
-  // The mileage section (#321) fetches its ladder here; an empty ladder keeps
-  // these branch tests focused on the session-driven states.
-  getOtfMileageAwards: () => Promise.resolve([]),
-}))
-// The mileage section reads admin state to decide whether to show the
-// Milestones link; stub it non-admin so no network call escapes the test.
-vi.mock('@/lib/auth/use-admin-session', () => ({
-  useAdminSession: () => ({ isAdmin: false, isLoading: false, email: null }),
-}))
 vi.mock('./OtfZoneBars', () => ({ OtfZoneBars: () => null }))
 vi.mock('./OtfSparklineSummary', () => ({ OtfSparklineSummary: () => null }))
 vi.mock('@/components/training-facility/shared/charts/RoughLine', () => ({ RoughLine: () => null }))
@@ -89,14 +85,9 @@ const MULTI_TYPE_DATA: OtfData = {
   ],
 }
 
-beforeEach(() => {
-  getOtfDataMock.mockReset()
-})
-
 describe('OtfDetailView', () => {
   it('always renders the header and a link back to the Gym', () => {
-    getOtfDataMock.mockResolvedValue(DATA)
-    render(<OtfDetailView />)
+    renderView({ otf: DATA })
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /the gym/i })).toHaveAttribute(
       'href',
@@ -104,10 +95,8 @@ describe('OtfDetailView', () => {
     )
   })
 
-  it('renders the highlights strip and session log once data loads', async () => {
-    getOtfDataMock.mockResolvedValue(DATA)
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
+  it('renders the highlights strip and session log once data loads', () => {
+    renderView({ otf: DATA })
     // Highlights strip (unique tile label) + the session-log heading.
     expect(screen.getByText('Total splat')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /classes/i })).toBeInTheDocument()
@@ -115,10 +104,8 @@ describe('OtfDetailView', () => {
     expect(screen.getAllByText('15').length).toBeGreaterThan(0)
   })
 
-  it('lists an excluded session in the log with a badge but keeps it out of the class count (#268)', async () => {
-    getOtfDataMock.mockResolvedValue(DATA_WITH_EXCLUDED)
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
+  it('lists an excluded session in the log with a badge but keeps it out of the class count (#268)', () => {
+    renderView({ otf: DATA_WITH_EXCLUDED })
     // The anomaly stays in the log — 4 cal is its row, not an aggregate.
     expect(within(screen.getByRole('table')).getByText('4')).toBeInTheDocument()
     // …flagged with an "Excluded" badge carrying the reason as its title.
@@ -133,10 +120,8 @@ describe('OtfDetailView', () => {
     expect(within(calTile).getByText('776')).toBeInTheDocument()
   })
 
-  it('shows each session\'s class type in the log Type column (#271)', async () => {
-    getOtfDataMock.mockResolvedValue(MULTI_TYPE_DATA)
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
+  it('shows each session\'s class type in the log Type column (#271)', () => {
+    renderView({ otf: MULTI_TYPE_DATA })
     const table = screen.getByRole('table')
     expect(within(table).getByRole('columnheader', { name: 'Type' })).toBeInTheDocument()
     // Scope to the table so the filter pills (same labels) don't collide.
@@ -145,10 +130,8 @@ describe('OtfDetailView', () => {
     expect(within(table).getByText('Row-focused')).toBeInTheDocument()
   })
 
-  it('scopes the whole view to a picked class type, composing with the range (#271)', async () => {
-    getOtfDataMock.mockResolvedValue(MULTI_TYPE_DATA)
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
+  it('scopes the whole view to a picked class type, composing with the range (#271)', () => {
+    renderView({ otf: MULTI_TYPE_DATA })
     // All three classes present before filtering, identified by their
     // distinct calorie totals. Scoped to the table throughout: the highlights
     // tiles show sums, and a filtered sum can equal a surviving row's value.
@@ -171,30 +154,24 @@ describe('OtfDetailView', () => {
     expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'false')
   })
 
-  it('marks a manual class-type override in the log (#271)', async () => {
-    getOtfDataMock.mockResolvedValue({
+  it('marks a manual class-type override in the log (#271)', () => {
+    renderView({ otf: {
       imported_at: '2026-06-30T07:53:00+00:00',
       sessions: [{ ...VALID_SESSION, class_type: 'Tread + Row', class_type_override: '2G' }],
-    })
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByRole('table')).toBeInTheDocument())
+    } })
     // Override wins over the inferred label and is flagged as manual on hover.
     const chip = screen.getByText('2G')
     expect(chip).toHaveAttribute('title', 'Manual override')
     expect(screen.queryByText('Tread + Row')).not.toBeInTheDocument()
   })
 
-  it('shows the empty state when there are no sessions', async () => {
-    getOtfDataMock.mockResolvedValue(null)
-    render(<OtfDetailView />)
-    await waitFor(() =>
-      expect(screen.getByText(/no orangetheory classes yet/i)).toBeInTheDocument()
-    )
+  it('shows the empty state when there are no sessions', () => {
+    renderView({ otf: null })
+    expect(screen.getByText(/no orangetheory classes yet/i)).toBeInTheDocument()
   })
 
-  it('shows the error panel when the load throws', async () => {
-    getOtfDataMock.mockRejectedValue(new Error('boom'))
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByRole('alert')).toHaveTextContent(/boom/))
+  it('shows the error panel when the load throws', () => {
+    renderView({ loadError: 'boom' })
+    expect(screen.getByRole('alert')).toHaveTextContent(/boom/)
   })
 })
