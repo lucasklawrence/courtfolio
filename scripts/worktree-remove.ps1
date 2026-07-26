@@ -88,9 +88,14 @@ if ($here -and ((Resolve-Path $here).Path -eq $target)) {
 }
 
 # Only operate on something git actually knows about, so a typo can't delete an
-# unrelated directory.
+# unrelated directory. Stale (prunable) registrations are skipped rather than
+# resolved: git still lists a worktree whose directory was deleted by hand, and
+# Resolve-Path on it throws under ErrorActionPreference = 'Stop', so one
+# unrelated stale entry would otherwise block removing a perfectly good worktree
+# (codex, #360).
 $known = (git worktree list --porcelain) -match '^worktree\s+(.+)$' | ForEach-Object {
-  (Resolve-Path ($_ -replace '^worktree\s+', '')).Path
+  $listed = $_ -replace '^worktree\s+', ''
+  if (Test-Path $listed) { (Resolve-Path $listed).Path }
 }
 if ($known -notcontains $target) {
   Write-Error "Not a registered worktree: $target  (see: git worktree list)"
@@ -106,6 +111,21 @@ if (Test-Path $modules) {
   if ($item.LinkType -eq 'Junction') {
     # rmdir on a junction removes the link and leaves the target alone.
     cmd /c rmdir "$modules" | Out-Null
+    # $ErrorActionPreference = 'Stop' does NOT make a native command's nonzero
+    # exit terminating, so this has to be checked by hand. Without it a locked
+    # or permission-denied junction would be reported as unlinked and we'd hand
+    # git a live link to delete through - recreating the exact failure this
+    # wrapper exists to prevent (codex, #360).
+    if ($LASTEXITCODE -ne 0) {
+      Write-Error "Could not unlink $modules (rmdir exit $LASTEXITCODE). Refusing to continue - git would delete through the junction into the main checkout's node_modules. Close anything holding it open and retry."
+      exit 1
+    }
+    # Verify rather than trust the exit code: the whole point of this script is
+    # that the link is gone before git touches the directory.
+    if (Test-Path $modules) {
+      Write-Error "$modules still exists after rmdir. Refusing to continue for the same reason."
+      exit 1
+    }
     Write-Host 'node_modules  junction unlinked (target preserved)'
   }
   else {
