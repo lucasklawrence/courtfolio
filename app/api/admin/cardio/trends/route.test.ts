@@ -12,14 +12,23 @@ const upsertMock = vi.fn()
 const selectMock = vi.fn()
 const fromMock = vi.fn()
 
+/**
+ * Whether this "deployment" holds write credentials. Mocked rather than driven
+ * by env vars so the preview-deployment case is exercised directly.
+ */
+const canWriteMock = vi.fn<() => boolean>()
+
 vi.mock('@/lib/supabase/admin', () => ({
   createAdminSupabaseClient: () => ({
     from: fromMock,
   }),
+  canPerformAdminWrites: () => canWriteMock(),
 }))
 
 beforeEach(() => {
   vi.resetAllMocks()
+  // Default: a deployment that can write (production). The 503 case overrides.
+  canWriteMock.mockReturnValue(true)
   // Default: successful upsert
   selectMock.mockResolvedValue({
     error: null,
@@ -222,6 +231,43 @@ describe('POST /api/admin/cardio/trends', () => {
       headers: {
         'Content-Type': 'application/json',
         'X-Cardio-Trends-Key': 'any-key',
+      },
+      body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 233.8 }),
+    })
+    const res = await POST(req as NextRequest)
+    expect(res.status).toBe(401)
+  })
+
+  it('returns 503 on a deployment without write credentials, never touching Supabase', async () => {
+    // The preview-deployment case: authenticated, but no service-role key. This
+    // route can't use requireAdmin (it authenticates by API key), so it carries
+    // the capability gate itself.
+    vi.stubEnv('CARDIO_TRENDS_API_KEY', 'valid-key')
+    canWriteMock.mockReturnValue(false)
+    const req = new Request('http://localhost:3000/api/admin/cardio/trends', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Cardio-Trends-Key': 'valid-key',
+      },
+      body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 233.8 }),
+    })
+    const res = await POST(req as NextRequest)
+    expect(res.status).toBe(503)
+    const body = await res.json()
+    expect(body.error).toMatch(/unavailable on this deployment/i)
+    // Short-circuits before any client is built, so no write is attempted.
+    expect(fromMock).not.toHaveBeenCalled()
+  })
+
+  it('checks auth before write capability, so config is not disclosed unauthenticated', async () => {
+    vi.stubEnv('CARDIO_TRENDS_API_KEY', 'valid-key')
+    canWriteMock.mockReturnValue(false)
+    const req = new Request('http://localhost:3000/api/admin/cardio/trends', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Cardio-Trends-Key': 'wrong-key',
       },
       body: JSON.stringify({ date: '2026-07-01', metric: 'body_mass', value: 233.8 }),
     })
