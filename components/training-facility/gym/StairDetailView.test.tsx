@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { CARDIO_DEMO_DATA } from '@/constants/cardio-demo-fixture'
 import type { CardioData } from '@/types/cardio'
@@ -17,12 +17,10 @@ import { StairDetailView } from './StairDetailView'
  * Heavy chart children are stubbed to keep the test focused on the
  * branch decisions (badge rendered, CTA rendered, neither). The point
  * is not to render real SVGs — those have their own coverage.
+ *
+ * Cardio data arrives as a prop now that the page reads it server-side (#345),
+ * so there is no reader to mock and nothing async to settle.
  */
-
-const getCardioDataMock = vi.fn()
-vi.mock('@/lib/data', () => ({
-  getCardioData: () => getCardioDataMock(),
-}))
 
 const searchParamsMock = vi.fn<() => URLSearchParams>(() => new URLSearchParams())
 const pathnameMock = vi.fn<() => string>(() => '/training-facility/gym/stair')
@@ -74,7 +72,6 @@ const populatedRunningOnly: CardioData = {
 }
 
 beforeEach(() => {
-  getCardioDataMock.mockReset()
   searchParamsMock.mockReset()
   searchParamsMock.mockReturnValue(new URLSearchParams())
   pathnameMock.mockReset()
@@ -87,15 +84,12 @@ afterEach(() => {
 })
 
 describe('StairDetailView preview wiring (#162)', () => {
-  it('shows the empty-state CTA when no stair sessions and no preview param', async () => {
-    getCardioDataMock.mockResolvedValueOnce(null)
-    render(<StairDetailView />)
+  it('shows the empty-state CTA when no stair sessions and no preview param', () => {
+    render(<StairDetailView cardio={null} />)
 
-    await waitFor(() =>
-      expect(
-        screen.getByRole('link', { name: /preview with sample data/i }),
-      ).toBeInTheDocument(),
-    )
+    expect(
+      screen.getByRole('link', { name: /preview with sample data/i }),
+    ).toBeInTheDocument()
     // CTA href is sourced from `usePathname()` so a route move follows along.
     expect(
       screen.getByRole('link', { name: /preview with sample data/i }),
@@ -103,60 +97,47 @@ describe('StairDetailView preview wiring (#162)', () => {
     expect(screen.queryByText(/preview — sample data/i)).not.toBeInTheDocument()
   })
 
-  it('shows the badge and the demo fixture when preview=demo and no real stair sessions', async () => {
-    getCardioDataMock.mockResolvedValueOnce(null)
+  it('shows the badge and the demo fixture when preview=demo and no real stair sessions', () => {
     searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
-    render(<StairDetailView />)
+    render(<StairDetailView cardio={null} />)
 
-    await waitFor(() => expect(getCardioDataMock).toHaveBeenCalledTimes(1))
-    await waitFor(() =>
-      expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument(),
-    )
+    expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument()
     expect(
       screen.queryByRole('link', { name: /preview with sample data/i }),
     ).not.toBeInTheDocument()
   })
 
-  it('shows the preview affordance when real DB has sessions but none for stair (activity scoping)', async () => {
+  it('shows the preview affordance when real DB has sessions but none for stair (activity scoping)', () => {
     // The hook's `requireActivity: 'stair'` path — real running data
     // shouldn't suppress the preview here because Stair has nothing
     // to render either way.
-    getCardioDataMock.mockResolvedValueOnce(populatedRunningOnly)
-    render(<StairDetailView />)
+    render(<StairDetailView cardio={populatedRunningOnly} />)
 
-    await waitFor(() =>
-      expect(
-        screen.getByRole('link', { name: /preview with sample data/i }),
-      ).toBeInTheDocument(),
-    )
+    expect(
+      screen.getByRole('link', { name: /preview with sample data/i }),
+    ).toBeInTheDocument()
   })
 
-  it('hides both preview surfaces when real stair sessions exist (real data wins)', async () => {
-    getCardioDataMock.mockResolvedValueOnce(populatedStair)
+  it('hides both preview surfaces when real stair sessions exist (real data wins)', () => {
     searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
-    render(<StairDetailView />)
+    render(<StairDetailView cardio={populatedStair} />)
 
-    await waitFor(() => expect(getCardioDataMock).toHaveBeenCalledTimes(1))
-    // Give React a tick to settle past the loading branch and into
-    // the data-rendered tree before asserting absence.
-    await waitFor(() => expect(screen.queryByText(/loading cardio data/i)).not.toBeInTheDocument())
     expect(screen.queryByText(/preview — sample data/i)).not.toBeInTheDocument()
     expect(
       screen.queryByRole('link', { name: /preview with sample data/i }),
     ).not.toBeInTheDocument()
   })
 
-  it('exits preview by replacing to the bare pathname when the badge button is clicked', async () => {
-    getCardioDataMock.mockResolvedValueOnce(null)
+  it('exits preview by replacing to the bare pathname when the badge button is clicked', () => {
     searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
-    render(<StairDetailView />)
+    render(<StairDetailView cardio={null} />)
 
-    const exit = await screen.findByRole('button', { name: /exit preview/i })
+    const exit = screen.getByRole('button', { name: /exit preview/i })
     exit.click()
     expect(routerReplaceMock).toHaveBeenCalledWith('/training-facility/gym/stair')
   })
 
-  it('passes the demo fixture to downstream surfaces when in preview mode', async () => {
+  it('passes the demo fixture to downstream surfaces when in preview mode', () => {
     // Sanity check: preview mode means the badge appears AND the
     // fixture's stair sessions ought to flow through. We can't easily
     // inspect the chart children (they're mocked), so verify the
