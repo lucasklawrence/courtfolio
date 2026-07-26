@@ -1,5 +1,46 @@
 # Working style
 
+## Work in a worktree, not the shared checkout
+
+**If you are going to commit, work in a git worktree branched off `origin/main`.**
+Several agent sessions run against this repo at once, and they all share the main
+checkout's single HEAD. When one switches branches, the other's next commit lands
+on the wrong branch — silently, with nothing in `git status` to warn you.
+
+```
+git worktree add .claude/worktrees/<slug> -b <branch> origin/main
+```
+
+then `EnterWorktree({ path: "<absolute path>" })`, then **`powershell -File
+scripts/worktree-init.ps1`** — a bare worktree has no `node_modules` and no
+`.env.local`, so without it ~22 test files fail on `server-only` and every
+Supabase script fails on missing env. See `scripts/README.md`.
+
+**Never run `npm install` in a worktree whose `node_modules` is a junction** —
+it writes through the link into the main checkout's install and every other
+worktree sharing it. The bootstrap avoids this by giving dependency-changing
+branches a real isolated `npm ci` instead of a junction; if you need to change
+dependencies in a worktree that's already linked, re-run the bootstrap.
+
+Prefer `git worktree add` + `EnterWorktree({ path })` over
+`EnterWorktree({ name })`: the latter has crashed here mid-create, leaving an
+empty phantom directory that the session still switches into, after which
+`git -C` silently resolves to the main repo. If a `name`-created worktree is
+missing from `git worktree list`, that's what happened.
+
+**You don't need one for** read-only investigation, answering questions, the
+`log-workout` / `log-weight` skills (they write to Supabase via MCP and touch no
+git), or migrations and data work that produce no commit.
+
+Before every commit, confirm you're where you think you are — `git branch
+--show-current`. Finding the main checkout on someone else's branch is the
+signal that another session is live; don't switch it back, use a worktree.
+
+After merging, clean up with `git worktree remove <path> --force`. If you remove
+the `node_modules` junction by hand first, use `cmd /c rmdir`, **never**
+`Remove-Item -Recurse` — the latter follows the junction and deletes the main
+checkout's real `node_modules`.
+
 ## Bash commands
 
 Prefer one discrete action per `Bash` tool call. Avoid chaining with `&&`, `;`, or `||` even when steps depend on each other — separate calls keep output readable, isolate errors to the failing step, and make retries straightforward. Pipes within a single pipeline (e.g. `grep foo | head`) are fine; they're one logical command.
