@@ -17,13 +17,12 @@ import { isAdminRequest } from '@/lib/auth/admin-session'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
-import { buildMovementLoads } from '@/lib/training-facility/load-management'
+import { buildMovementLoads, pacificDayKey } from '@/lib/training-facility/load-management'
 import {
   buildFocusLaneCells,
   computeFocusAdherence,
   computeFocusLoadStats,
 } from '@/lib/training-facility/monthly-focus'
-import { toLocalDateKey } from '@/lib/training-facility/strength-today'
 import { computeStrengthStats } from '@/lib/training-facility/weight-room-history'
 import type { ExerciseGoal } from '@/types/weight-room'
 
@@ -71,8 +70,8 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
   // shows their history instead.
   const permanentGoals = goals.filter((g) => g.kind !== 'focus')
 
-  const stats = computeStrengthStats(sets, goals)
-  const loads = buildMovementLoads(sets, permanentGoals)
+  const stats = computeStrengthStats(sets, permanentGoals)
+  const loads = buildMovementLoads(sets, goals)
   const bodyMass = cardio?.body_mass_trend ?? []
 
   // The relative-strength overlay is featured for pull-ups specifically —
@@ -87,7 +86,7 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
   // Combined lane heatmaps — one series per body-region spanning all
   // focus windows stitched together. Built once server-side so the SVG
   // renderer receives a flat cells array.
-  const today = toLocalDateKey(new Date())
+  const today = pacificDayKey(new Date())
   const upperCells = buildFocusLaneCells(focuses, sets, 'upper', today)
   const lowerCells = buildFocusLaneCells(focuses, sets, 'lower', today)
 

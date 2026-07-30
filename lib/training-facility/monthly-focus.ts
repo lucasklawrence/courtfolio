@@ -1,5 +1,5 @@
 import type { FocusCategory, MonthlyFocus, StrengthSet } from '@/types/weight-room'
-import { toLocalDateKey } from './strength-today'
+import { pacificDayKey } from './load-management'
 
 export type { FocusCategory }
 
@@ -11,17 +11,30 @@ export type { FocusCategory }
  * mirroring `strength-today.ts` / `strength-streaks.ts`.
  *
  * All window math compares bare `YYYY-MM-DD` keys. PostgREST renders a
- * Postgres `date` in that canonical form, and `toLocalDateKey` produces
- * it for set timestamps, so lexicographic string comparison is exactly
- * chronological comparison — no `Date` parsing (and no UTC-midnight
- * timezone hazard) needed for the inclusive `start <= day <= end` test.
+ * Postgres `date` in that canonical form, and {@link pacificDayKey}
+ * produces it for set timestamps, so lexicographic string comparison is
+ * exactly chronological comparison — no `Date` parsing needed for the
+ * inclusive `start <= day <= end` test. Pacific is used throughout (same
+ * anchor as `load-management.ts` and `achievements.ts`, #319) so a set
+ * logged at 10 pm Pacific isn't displaced onto the following UTC day when
+ * this module runs inside a Vercel Server Component.
  */
+
+/**
+ * Convert an ISO timestamp string to a Pacific `YYYY-MM-DD` key, or `''`
+ * when the string doesn't parse. Mirrors `safePacificDayKey` in
+ * `achievements.ts`.
+ */
+function safePacificDayKey(ts: string): string {
+  const d = new Date(ts)
+  return Number.isFinite(d.getTime()) ? pacificDayKey(d) : ''
+}
 
 /**
  * Whether a focus window covers `dayKey` (inclusive on both ends).
  *
  * @param focus The focus whose `[start_date, end_date]` window to test.
- * @param dayKey `YYYY-MM-DD` key, e.g. from {@link toLocalDateKey}. An
+ * @param dayKey `YYYY-MM-DD` key, e.g. from {@link pacificDayKey}. An
  *   empty string (unparseable "today") is never in-window.
  */
 export function isFocusActiveOnDay(focus: MonthlyFocus, dayKey: string): boolean {
@@ -103,14 +116,16 @@ export function formatFocusWindow(focus: MonthlyFocus): string {
 }
 
 /**
- * Add `n` days to a `YYYY-MM-DD` key, returning a new key. Local-noon
- * base time so DST transitions don't shift the calendar day. Same helper
- * shape as `strength-streaks.addDays`.
+ * Add `n` days to a `YYYY-MM-DD` key, returning a new key. UTC-noon base
+ * time anchors the arithmetic so DST transitions don't shift the calendar
+ * day — the input key is already a resolved Pacific day, and pure date
+ * arithmetic doesn't re-introduce a zone. Same helper shape as
+ * `strength-streaks.addDays` / `achievements.addDays`.
  */
 function addDays(dateKey: string, n: number): string {
-  const d = new Date(dateKey + 'T12:00:00')
-  d.setDate(d.getDate() + n)
-  return toLocalDateKey(d)
+  const d = new Date(dateKey + 'T12:00:00Z')
+  d.setUTCDate(d.getUTCDate() + n)
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`
 }
 
 /**
@@ -162,9 +177,10 @@ export interface FocusAdherence {
  * @param focus The focus to score.
  * @param sets All logged sets, usually `WeightRoomData.sets`; filtered to
  *   this focus's `exercise` and window internally.
- * @param now Clock for "today" (local). Defaults to `new Date()`; pass
- *   the viewer's clock from server-rendered surfaces so UTC doesn't
- *   disagree with their timezone (#197).
+ * @param now Clock for "today". Defaults to `new Date()`; pass a fixed
+ *   instant in unit tests to keep assertions stable over real time. The
+ *   day key is derived via {@link pacificDayKey} so that server-rendered
+ *   pages (Vercel UTC) and the user's browser agree on "today" (#319).
  */
 export function computeFocusAdherence(
   focus: MonthlyFocus,
@@ -172,7 +188,7 @@ export function computeFocusAdherence(
   now: Date = new Date(),
 ): FocusAdherence {
   const daysInWindow = inclusiveDaySpan(focus.start_date, focus.end_date)
-  const today = toLocalDateKey(now)
+  const today = pacificDayKey(now)
 
   // Last elapsed day = min(today, end_date); nothing elapsed if today is
   // before the window opens.
@@ -193,7 +209,7 @@ export function computeFocusAdherence(
   const volumeByDay = new Map<string, number>()
   for (const s of sets) {
     if (s.exercise !== focus.exercise) continue
-    const day = toLocalDateKey(s.logged_at)
+    const day = safePacificDayKey(s.logged_at)
     if (day === '' || day < focus.start_date || day > lastElapsed) continue
     const increment = focus.target_kind === 'sets' ? 1 : s.reps
     volumeByDay.set(day, (volumeByDay.get(day) ?? 0) + increment)
@@ -295,7 +311,7 @@ export function computeFocusLoadStats(
 
   for (const s of sets) {
     if (s.exercise !== focus.exercise) continue
-    const day = toLocalDateKey(s.logged_at)
+    const day = safePacificDayKey(s.logged_at)
     if (day === '' || day < focus.start_date || day > focus.end_date) continue
     if (s.weight_lbs == null) continue
     weightedSets++
@@ -388,7 +404,7 @@ export function buildFocusLaneCells(
   const repsByKey = new Map<string, number>()
   const setCountByKey = new Map<string, number>()
   for (const s of sets) {
-    const day = toLocalDateKey(s.logged_at)
+    const day = safePacificDayKey(s.logged_at)
     if (day === '') continue
     const k = `${s.exercise}|${day}`
     repsByKey.set(k, (repsByKey.get(k) ?? 0) + s.reps)

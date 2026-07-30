@@ -13,9 +13,10 @@ import {
 } from './monthly-focus'
 
 /**
- * Unit tests for the monthly-focus helpers (#255). All dates use local
- * construction (`new Date(y, mIndex, d, …)`) so the local-timezone day
- * bucketing in `toLocalDateKey` matches the `YYYY-MM-DD` window keys.
+ * Unit tests for the monthly-focus helpers (#255). Set timestamps use
+ * ISO strings with a UTC noon offset so `pacificDayKey` maps them to the
+ * expected Pacific calendar day (noon UTC = 5 am PDT, well within the
+ * same calendar day in both zones).
  */
 
 const JULY_SHRUGS: MonthlyFocus = {
@@ -52,7 +53,11 @@ const JULY_NORDICS: MonthlyFocus = {
   end_date: '2026-07-31',
 }
 
-/** Build a set on a given local calendar day at noon (stable bucketing). */
+/**
+ * Build a set at UTC noon on the given calendar date. UTC noon = 5 am PDT,
+ * which `pacificDayKey` resolves to the same `YYYY-MM-DD` as the arguments,
+ * so tests are stable on any CI timezone.
+ */
 function setOn(
   exercise: string,
   year: number,
@@ -63,7 +68,7 @@ function setOn(
 ): StrengthSet {
   return {
     id: `${exercise}-${year}-${monthIndex}-${day}-${reps}-${weight_lbs ?? 'bw'}`,
-    logged_at: new Date(year, monthIndex, day, 12, 0, 0).toISOString(),
+    logged_at: new Date(Date.UTC(year, monthIndex, day, 12, 0, 0)).toISOString(),
     exercise,
     reps,
     ...(weight_lbs != null ? { weight_lbs } : {}),
