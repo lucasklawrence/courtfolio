@@ -1,6 +1,7 @@
 import type { FocusCategory, MonthlyFocus, StrengthSet } from '@/types/weight-room'
-
 import { toLocalDateKey } from './strength-today'
+
+export type { FocusCategory }
 
 /**
  * Pure helpers for the "grease the groove" monthly focus (#255) — which
@@ -310,4 +311,111 @@ export function computeFocusLoadStats(
     weightedSets,
     loadMultiplier: implements_,
   }
+}
+
+// ---------------------------------------------------------------------------
+// Combined lane heatmap helpers (#361)
+// ---------------------------------------------------------------------------
+
+/**
+ * One day's slot in a stitched focus-lane heatmap. Each cell carries the
+ * calendar day, which focus was active in the lane on that day (or `null`
+ * for a gap between windows), and the normalized volume so the renderer
+ * can pick an intensity bucket without re-running the arithmetic.
+ */
+export interface FocusDayCell {
+  /** Local `YYYY-MM-DD` key for this calendar day. */
+  dayKey: string
+  /**
+   * The focus active in this cell's body-region lane on `dayKey`, or
+   * `null` when no focus window covers the day (a gap between rotations).
+   * Gap cells still appear in the returned array so the renderer can emit
+   * a visible break rather than silently collapsing the timeline.
+   */
+  focus: MonthlyFocus | null
+  /**
+   * Volume logged for `focus.exercise` on `dayKey`, interpreted per
+   * `focus.target_kind`: total reps for `'reps'`, distinct set count for
+   * `'sets'`. Always `0` for gap cells and days with no sets logged.
+   */
+  volume: number
+  /**
+   * `volume / focus.daily_target` — un-clamped so `1.0` means "exactly
+   * hit the goal" and `>1.0` is an over-day. Always `0` for gap cells and
+   * days with no sets logged.
+   */
+  pct: number
+}
+
+/**
+ * Build the ordered sequence of {@link FocusDayCell}s for one body-region
+ * lane (`category`), running from the earliest focus `start_date` through
+ * `today`. Used by the History page's "Grease the Groove Rotation" combined
+ * heatmap lane (#361).
+ *
+ * **Performance:** `sets` is pre-bucketed into `Map<string, number>` keyed
+ * by `${exercise}|${dayKey}` before the day-iteration loop, keeping the
+ * overall cost at O(sets + days) rather than O(sets × days).
+ *
+ * **Gap cells:** if no focus window covers a day in `[earliestStart, today]`,
+ * the cell is emitted with `focus: null, volume: 0, pct: 0` so the renderer
+ * can draw a visible gap rather than silently collapsing the timeline.
+ *
+ * @param focuses All configured focuses (across all categories); filtered to
+ *   `category` internally.
+ * @param sets All logged sets, usually `WeightRoomData.sets`.
+ * @param category Body-region lane to build — `'upper'` or `'lower'`.
+ * @param today Local `YYYY-MM-DD` key for the viewed day. An empty string
+ *   or a key before the earliest focus window returns an empty array.
+ */
+export function buildFocusLaneCells(
+  focuses: readonly MonthlyFocus[],
+  sets: readonly StrengthSet[],
+  category: FocusCategory,
+  today: string,
+): FocusDayCell[] {
+  const laneFocuses = focuses.filter((f) => f.category === category)
+  if (laneFocuses.length === 0 || today === '') return []
+
+  let earliestStart = laneFocuses[0].start_date
+  for (const f of laneFocuses) {
+    if (f.start_date < earliestStart) earliestStart = f.start_date
+  }
+
+  if (today < earliestStart) return []
+
+  // Pre-bucket sets by `${exercise}|${dayKey}` for O(sets + days) performance.
+  const repsByKey = new Map<string, number>()
+  const setCountByKey = new Map<string, number>()
+  for (const s of sets) {
+    const day = toLocalDateKey(s.logged_at)
+    if (day === '') continue
+    const k = `${s.exercise}|${day}`
+    repsByKey.set(k, (repsByKey.get(k) ?? 0) + s.reps)
+    setCountByKey.set(k, (setCountByKey.get(k) ?? 0) + 1)
+  }
+
+  const cells: FocusDayCell[] = []
+  let cursor = earliestStart
+
+  while (cursor <= today) {
+    // `activeFocusesForDay` handles within-lane resolution; since `laneFocuses`
+    // is already filtered to one category, at most one element is returned.
+    const active = activeFocusesForDay(laneFocuses, cursor)
+    const focus = active[0] ?? null
+
+    if (focus === null) {
+      cells.push({ dayKey: cursor, focus: null, volume: 0, pct: 0 })
+    } else {
+      const k = `${focus.exercise}|${cursor}`
+      const volume =
+        focus.target_kind === 'sets' ? (setCountByKey.get(k) ?? 0) : (repsByKey.get(k) ?? 0)
+      const pct = focus.daily_target > 0 ? volume / focus.daily_target : 0
+      cells.push({ dayKey: cursor, focus, volume, pct })
+    }
+
+    cursor = addDays(cursor, 1)
+  }
+
+  return cells
 }

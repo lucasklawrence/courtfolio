@@ -1,9 +1,10 @@
-import { describe, expect, it } from 'vitest'
+﻿import { describe, expect, it } from 'vitest'
 
 import type { MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import {
   activeFocusesForDay,
+  buildFocusLaneCells,
   computeFocusAdherence,
   computeFocusLoadStats,
   formatFocusWindow,
@@ -285,8 +286,120 @@ describe('computeFocusLoadStats', () => {
     expect(computeFocusLoadStats(JULY_SHRUGS, sets, 1).tonnageLbs).toBe(500)
   })
 
-  it('clamps a non-positive multiplier so tonnage can’t be erased', () => {
+  it("clamps a non-positive multiplier so tonnage can't be erased", () => {
     const sets: StrengthSet[] = [setOn('shrugs', 2026, 6, 1, 10, 50)]
     expect(computeFocusLoadStats(JULY_SHRUGS, sets, 0).tonnageLbs).toBe(500)
+  })
+})
+
+describe('buildFocusLaneCells', () => {
+  it('returns empty when focuses list is empty', () => {
+    expect(buildFocusLaneCells([], [], 'upper', '2026-07-10')).toEqual([])
+  })
+
+  it('returns empty when no focuses exist for the requested category', () => {
+    // AUGUST_CALVES is lower; asking for upper should produce nothing.
+    expect(buildFocusLaneCells([AUGUST_CALVES], [], 'upper', '2026-08-10')).toEqual([])
+  })
+
+  it('returns empty when today is before the earliest focus start_date', () => {
+    expect(buildFocusLaneCells([JULY_SHRUGS], [], 'upper', '2026-06-30')).toEqual([])
+  })
+
+  it('returns empty when today is an empty string', () => {
+    expect(buildFocusLaneCells([JULY_SHRUGS], [], 'upper', '')).toEqual([])
+  })
+
+  it('builds one cell per day from start_date through today', () => {
+    const cells = buildFocusLaneCells([JULY_SHRUGS], [], 'upper', '2026-07-03')
+    expect(cells).toHaveLength(3)
+    expect(cells[0].dayKey).toBe('2026-07-01')
+    expect(cells[1].dayKey).toBe('2026-07-02')
+    expect(cells[2].dayKey).toBe('2026-07-03')
+  })
+
+  it('assigns the correct focus and computes pct from focus.daily_target', () => {
+    const sets: StrengthSet[] = [
+      setOn('shrugs', 2026, 6, 1, 100), // 100 reps — hits the 100-rep target exactly
+      setOn('shrugs', 2026, 6, 2, 50), //  50 reps — 50 % of target
+    ]
+    const cells = buildFocusLaneCells([JULY_SHRUGS], sets, 'upper', '2026-07-03')
+
+    expect(cells[0]).toMatchObject({ dayKey: '2026-07-01', focus: JULY_SHRUGS, volume: 100, pct: 1 })
+    expect(cells[1]).toMatchObject({ dayKey: '2026-07-02', focus: JULY_SHRUGS, volume: 50, pct: 0.5 })
+    // Jul 3: no sets logged — volume 0, pct 0
+    expect(cells[2]).toMatchObject({ dayKey: '2026-07-03', focus: JULY_SHRUGS, volume: 0, pct: 0 })
+  })
+
+  it('counts set count (not reps) for target_kind = sets', () => {
+    const setsFocus: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: 'sets-focus',
+      target_kind: 'sets',
+      daily_target: 3,
+    }
+    const sets: StrengthSet[] = [
+      setOn('shrugs', 2026, 6, 1, 30), // set 1: 30 reps
+      setOn('shrugs', 2026, 6, 1, 25), // set 2: 25 reps
+    ]
+    const cells = buildFocusLaneCells([setsFocus], sets, 'upper', '2026-07-01')
+    expect(cells[0].volume).toBe(2) // 2 sets, not 55 reps
+    expect(cells[0].pct).toBeCloseTo(2 / 3)
+  })
+
+  it('emits explicit gap cells for days between focus windows', () => {
+    // earlyFocus: upper, ends Jun 28 → gap Jun 29 & 30 → JULY_SHRUGS starts Jul 1
+    const earlyFocus: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: 'early-upper',
+      exercise: 'rows',
+      start_date: '2026-06-01',
+      end_date: '2026-06-28',
+    }
+    const cells = buildFocusLaneCells([earlyFocus, JULY_SHRUGS], [], 'upper', '2026-07-02')
+    const gapCells = cells.filter((c) => c.focus === null)
+    expect(gapCells).toHaveLength(2)
+    expect(gapCells[0].dayKey).toBe('2026-06-29')
+    expect(gapCells[1].dayKey).toBe('2026-06-30')
+    // Cells outside the gap should have their focus
+    const julyCells = cells.filter((c) => c.focus?.id === JULY_SHRUGS.id)
+    expect(julyCells.map((c) => c.dayKey)).toEqual(['2026-07-01', '2026-07-02'])
+  })
+
+  it('ignores sets for other exercises and other lanes', () => {
+    const sets: StrengthSet[] = [
+      setOn('shrugs', 2026, 6, 1, 80),        // correct
+      setOn('pushups', 2026, 6, 1, 50),        // wrong exercise
+      setOn('nordic-curls', 2026, 6, 1, 40),   // lower-lane exercise, not this lane
+    ]
+    // Both focuses present; asking for upper isolates shrugs
+    const cells = buildFocusLaneCells([JULY_SHRUGS, JULY_NORDICS], sets, 'upper', '2026-07-01')
+    expect(cells).toHaveLength(1)
+    expect(cells[0].volume).toBe(80)
+    expect(cells[0].pct).toBeCloseTo(0.8)
+  })
+
+  it('lower lane returns only lower-category focus data', () => {
+    const sets: StrengthSet[] = [
+      setOn('shrugs', 2026, 6, 1, 100),      // upper — ignored
+      setOn('nordic-curls', 2026, 6, 1, 20), // lower — counted
+    ]
+    const cells = buildFocusLaneCells([JULY_SHRUGS, JULY_NORDICS], sets, 'lower', '2026-07-01')
+    expect(cells[0].focus?.exercise).toBe('nordic-curls')
+    expect(cells[0].volume).toBe(20)
+    expect(cells[0].pct).toBeCloseTo(20 / 40)
+  })
+
+  it('does not exceed today even when end_date is later', () => {
+    // JULY_SHRUGS ends Jul 31 but today is Jul 5
+    const cells = buildFocusLaneCells([JULY_SHRUGS], [], 'upper', '2026-07-05')
+    expect(cells[cells.length - 1].dayKey).toBe('2026-07-05')
+    expect(cells).toHaveLength(5)
+  })
+
+  it('pct over 1 is allowed (over-day)', () => {
+    const sets: StrengthSet[] = [setOn('shrugs', 2026, 6, 1, 200)] // 200 reps vs 100 target
+    const cells = buildFocusLaneCells([JULY_SHRUGS], sets, 'upper', '2026-07-01')
+    expect(cells[0].pct).toBe(2)
   })
 })

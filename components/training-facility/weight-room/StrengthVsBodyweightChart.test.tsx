@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
 import type { CardioTimePoint } from '@/types/cardio'
@@ -59,11 +59,20 @@ describe('StrengthVsBodyweightChart legend', () => {
 
   it('omits the legend when there are too few weeks to plot', () => {
     // Below two completed weeks the chart renders its empty-state line instead,
-    // so there are no series to name.
+    // so there are no series to name. Freeze the clock so the set date
+    // (2026-07-13, a Monday) always falls in the current in-progress week and
+    // is excluded by the `slice(0, -1)` trim — without this the test breaks
+    // once real time advances past that week.
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-07-17T12:00:00.000Z'))
     const oneWeek: StrengthSet[] = [
       { id: 'a', logged_at: '2026-07-13T19:00:00Z', exercise: 'pullups', reps: 40 },
     ]
-    render(<StrengthVsBodyweightChart sets={oneWeek} goal={GOAL} bodyMass={BODY_MASS} />)
-    expect(screen.queryByText('pullups / week')).not.toBeInTheDocument()
+    try {
+      render(<StrengthVsBodyweightChart sets={oneWeek} goal={GOAL} bodyMass={BODY_MASS} />)
+      expect(screen.queryByText('pullups / week')).not.toBeInTheDocument()
+    } finally {
+      vi.useRealTimers()
+    }
   })
 })
