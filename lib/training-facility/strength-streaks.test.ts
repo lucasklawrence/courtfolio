@@ -158,3 +158,65 @@ describe('computeStrengthStreaks', () => {
     })
   })
 })
+
+/**
+ * Effective-dated target coverage (#362) for the multi-goal streak path.
+ * Mirrors the single-goal cases in `weight-room-history.test.ts` — the two
+ * implementations must agree on what counts as a hit day.
+ */
+describe('computeStrengthStreaks with effective-dated targets (#362)', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  /** Pullups seeded at 30, raised to 50 on Aug 1. */
+  const PULLUPS_RAISED: ExerciseGoal = {
+    exercise: 'pullups',
+    daily_target: 50,
+    color: '#0EA5A1',
+    target_history: [
+      { daily_target: 30, effective_from: '2026-05-01' },
+      { daily_target: 50, effective_from: '2026-08-01' },
+    ],
+  }
+
+  it('counts a pre-change day against the old target', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-07-16T12:00:00'))
+    const result = computeStrengthStreaks([s('pullups', '2026-07-15', 30)], [PULLUPS_RAISED])
+    // 30 reps cleared the 30 goal live that day, so it stays a hit even
+    // though the goal is now 50.
+    expect(result.pullups).toEqual({ current: 1, longest: 1 })
+  })
+
+  it('does not count a post-change day that only clears the old target', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-08-16T12:00:00'))
+    const result = computeStrengthStreaks([s('pullups', '2026-08-15', 30)], [PULLUPS_RAISED])
+    expect(result.pullups).toEqual({ current: 0, longest: 0 })
+  })
+
+  it('runs a streak across the boundary without a false break', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-08-02T12:00:00'))
+    const result = computeStrengthStreaks(
+      [
+        s('pullups', '2026-07-31', 30),
+        s('pullups', '2026-08-01', 50),
+        s('pullups', '2026-08-02', 50),
+      ],
+      [PULLUPS_RAISED],
+    )
+    expect(result.pullups).toEqual({ current: 3, longest: 3 })
+  })
+
+  it('leaves a goal with no history scored exactly as before', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-07-16T12:00:00'))
+    const result = computeStrengthStreaks(
+      [s('pushups', '2026-07-15', 100), s('pushups', '2026-07-16', 100)],
+      [PUSHUPS],
+    )
+    expect(result.pushups).toEqual({ current: 2, longest: 2 })
+  })
+})

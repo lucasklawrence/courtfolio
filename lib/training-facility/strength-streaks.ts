@@ -1,16 +1,16 @@
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
+import { targetResolverFor } from './goal-targets'
 import { toLocalDateKey } from './strength-today'
 
 /**
  * Per-exercise streak result, mirrored on
  * {@link import('./streaks').StreakResult} so the UI surfaces can stay
  * shape-compatible across cardio and weight-room. "Goal hit" here means
- * the exercise's total reps for the day reached
- * {@link ExerciseGoal.daily_target} — note that historical changes to
- * the target aren't tracked, so the streak is computed against today's
- * configured target across the entire history (best we can do without
- * a target-history table).
+ * the exercise's total reps for the day reached the target that was in
+ * effect *on that day*, resolved from the goal's effective-dated history
+ * (#362) — so raising or lowering a target never re-scores days already
+ * completed.
  */
 export interface StrengthStreakResult {
   /**
@@ -43,8 +43,8 @@ function addDays(dateKey: string, n: number): string {
  * full row of `StreakBadge`s without juggling fallbacks.
  *
  * "Hit the goal" means the exercise's total reps for that calendar
- * day reach {@link ExerciseGoal.daily_target}. Multiple sets on the
- * same day sum together; the goal applies to the day, not per-set.
+ * day reach the target in effect on that day (#362). Multiple sets on
+ * the same day sum together; the goal applies to the day, not per-set.
  *
  * The "current" streak counts back from today (or yesterday if no
  * goal-hit set has been logged today yet) and is `0` when the most
@@ -54,8 +54,9 @@ function addDays(dateKey: string, n: number): string {
  *
  * @param sets All logged sets, usually `WeightRoomData.sets`.
  * @param goals All configured exercises, usually `WeightRoomData.goals`.
- *   Streaks are only computed for goals whose `daily_target > 0`;
+ *   Streaks are only computed for goals whose current `daily_target > 0`;
  *   non-positive targets short-circuit to `{ current: 0, longest: 0 }`.
+ *   Each day's bar comes from the goal's `target_history` when present.
  * @param now The clock used to derive "today" / "yesterday." Defaults
  *   to `new Date()`. Pass an explicit value from the viewer's clock
  *   when calling from a server-rendered surface so server-side UTC
@@ -93,10 +94,14 @@ export function computeStrengthStreaks(
     }
     const dayMap = repsByExerciseAndDay.get(goal.exercise) ?? new Map<string, number>()
 
+    // Per-day target resolution (#362) — bound once per goal so the history
+    // is sorted a single time rather than once per logged day.
+    const targetFor = targetResolverFor(goal)
+
     // "Goal-hit" calendar days, in chronological order.
     const hitDays: string[] = []
     for (const [day, total] of dayMap) {
-      if (total >= goal.daily_target) hitDays.push(day)
+      if (total >= targetFor(day)) hitDays.push(day)
     }
     hitDays.sort()
 

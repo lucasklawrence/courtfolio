@@ -679,3 +679,73 @@ describe('formatEarnedOn', () => {
     expect(formatEarnedOn('nonsense', 'day')).toBe('')
   })
 })
+
+/**
+ * Effective-dated targets (#362). Badges are recomputed from the full log on
+ * every render, so a `'streak'` tier that read the *current* target would
+ * un-light the moment a goal was raised — retroactively taking away a badge
+ * that was genuinely earned.
+ */
+describe('streak scope with effective-dated targets (#362)', () => {
+  /** Pullups seeded at 30, raised to 50 on 2026-08-01. */
+  const PULLUPS_RAISED: ExerciseGoal = {
+    exercise: 'pullups',
+    daily_target: 50,
+    color: '#0EA5A1',
+    target_history: [
+      { daily_target: 30, effective_from: '2026-05-01' },
+      { daily_target: 50, effective_from: '2026-08-01' },
+    ],
+  }
+
+  /** Three consecutive 30-rep July days — a 3-day streak against the 30 goal. */
+  const JULY_STREAK: StrengthSet[] = [
+    set('2026-07-15', 'pullups', 30),
+    set('2026-07-16', 'pullups', 30),
+    set('2026-07-17', 'pullups', 30),
+  ]
+
+  it('keeps a streak badge earned after the goal is raised', () => {
+    const result = resolveOne(JULY_STREAK, tier('pullups', 'streak', 3), [PULLUPS_RAISED])
+    expect(result.earned).toBe(true)
+    expect(result.best).toBe(3)
+  })
+
+  it('un-lights nothing that was never earned — a post-change miss still misses', () => {
+    const augustShort = [
+      set('2026-08-15', 'pullups', 30),
+      set('2026-08-16', 'pullups', 30),
+      set('2026-08-17', 'pullups', 30),
+    ]
+    // 30 reps no longer clears the 50 bar in force in August.
+    const result = resolveOne(augustShort, tier('pullups', 'streak', 3), [PULLUPS_RAISED])
+    expect(result.earned).toBe(false)
+    expect(result.best).toBe(0)
+  })
+
+  it('counts a streak spanning the change against each day’s own target', () => {
+    const spanning = [
+      set('2026-07-30', 'pullups', 30),
+      set('2026-07-31', 'pullups', 30),
+      set('2026-08-01', 'pullups', 50),
+      set('2026-08-02', 'pullups', 50),
+    ]
+    const result = resolveOne(spanning, tier('pullups', 'streak', 4), [PULLUPS_RAISED])
+    expect(result.earned).toBe(true)
+    expect(result.best).toBe(4)
+  })
+
+  it('leaves a goal with no target history scored exactly as before', () => {
+    const result = resolveOne(
+      [
+        set('2026-07-15', 'pushups', 100),
+        set('2026-07-16', 'pushups', 100),
+        set('2026-07-17', 'pushups', 100),
+      ],
+      tier('pushups', 'streak', 3),
+      GOALS,
+    )
+    expect(result.earned).toBe(true)
+    expect(result.best).toBe(3)
+  })
+})

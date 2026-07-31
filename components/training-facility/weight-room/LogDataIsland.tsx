@@ -9,6 +9,7 @@ import {
   computeFocusLoadStats,
   upcomingFocuses,
 } from '@/lib/training-facility/monthly-focus'
+import { targetForDay } from '@/lib/training-facility/goal-targets'
 import { computeStrengthStreaks } from '@/lib/training-facility/strength-streaks'
 import {
   filterSetsForDay,
@@ -17,7 +18,12 @@ import {
   toLocalDateKey,
   totalsByExercise,
 } from '@/lib/training-facility/strength-today'
-import type { MonthlyFocus, StrengthSet, WeightRoomData } from '@/types/weight-room'
+import type {
+  ExerciseGoal,
+  MonthlyFocus,
+  StrengthSet,
+  WeightRoomData,
+} from '@/types/weight-room'
 
 import { ActivityRings, type RingProgress } from './ActivityRings'
 import { LogDayPicker } from './LogDayPicker'
@@ -152,16 +158,31 @@ export function LogDataIsland(): JSX.Element {
   )
   const upcoming = upcomingFocuses(surfaceData.monthly_focus, todayKey)
 
+  // Score the viewed day against the target that was live *that* day (#362).
+  // The picker can point this whole surface at a past date, so reading the
+  // current target would render a completed July day as 30/50 instead of the
+  // 30/30 it actually was — the same retroactive re-scoring the history view
+  // fixes. `target_history` is deliberately preserved so anything downstream
+  // that resolves per-day (streaks) still sees the full series.
+  const forSelectedDay = (goal: ExerciseGoal): ExerciseGoal => ({
+    ...goal,
+    daily_target: targetForDay(goal, selectedDay),
+  })
+
   const rings: RingProgress[] = visibleGoals.map((goal) => ({
-    goal,
+    goal: forSelectedDay(goal),
     totalReps: totals.get(goal.exercise) ?? 0,
   }))
+  // Streaks get the unmodified goals: they span the whole log and resolve
+  // each day's bar themselves, so pinning one day's target here would be
+  // exactly wrong.
   const streaks = computeStrengthStreaks(surfaceData.sets, visibleGoals)
   // SetList color/label lookup spans *all* goals (incl. inactive focuses)
   // so a backfilled out-of-window set still resolves its exercise.
   const goalsByExercise = Object.fromEntries(
-    surfaceData.goals.map((g) => [g.exercise, g]),
+    surfaceData.goals.map((g) => [g.exercise, forSelectedDay(g)]),
   )
+  const quickLogGoals = visibleGoals.map(forSelectedDay)
 
   // Focus card inputs per active focus: today's progress in the focus's
   // own unit (reps or distinct sets), plus windowed adherence and load
@@ -217,7 +238,7 @@ export function LogDataIsland(): JSX.Element {
         <div className="flex flex-col gap-6">
           {visibleGoals.length > 0 ? (
             <QuickLog
-              goals={visibleGoals}
+              goals={quickLogGoals}
               lastReps={lastReps}
               variantSuggestions={variantSuggestions}
               onLog={({ exercise, reps, variant }) => {

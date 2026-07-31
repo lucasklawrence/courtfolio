@@ -158,16 +158,48 @@ export const WeightRoomGoalRowSchema = z
 export type WeightRoomGoalRow = z.infer<typeof WeightRoomGoalRowSchema>
 
 /**
+ * Zod schema for one row of `public.weight_room_goal_targets` (#362).
+ * Mirrors the table in
+ * `supabase/migrations/20260730120000_weight_room_goal_targets.sql`.
+ *
+ * `effective_from` is a bare `YYYY-MM-DD` string (PostgREST's rendering of a
+ * Postgres `date`), validated by shape rather than parsed to a `Date` — the
+ * resolution helpers compare these keys lexicographically, so parsing would
+ * only introduce the UTC-midnight shift they exist to avoid.
+ */
+export const WeightRoomGoalTargetRowSchema = z
+  .object({
+    id: z.string().uuid(),
+    exercise: z.string().min(1),
+    daily_target: positiveInt(),
+    effective_from: z.string().regex(DATE_REGEX, 'effective_from must be YYYY-MM-DD'),
+  })
+  .strict()
+
+/** Validated `weight_room_goal_targets` row inferred from {@link WeightRoomGoalTargetRowSchema}. */
+export type WeightRoomGoalTargetRow = z.infer<typeof WeightRoomGoalTargetRowSchema>
+
+/**
  * Request-body schema for `POST /api/admin/weight-room/goals`. Same
  * shape as {@link WeightRoomGoalRowSchema} but lowercases `exercise` on
  * parse so direct API consumers can't create case-divergent duplicates
  * of an existing row.
+ *
+ * `effective_from` (#362) declares the day the supplied `daily_target` takes
+ * effect. Optional — omitted means "from today" — and backdatable, so a
+ * target change can be recorded after the fact against the day it really
+ * started. It only matters when `daily_target` actually changes; a
+ * colour-only edit appends no history row.
  */
 export const WeightRoomGoalUpsertSchema = z
   .object({
     exercise: exerciseWriteField(),
     daily_target: positiveInt(),
     color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C'),
+    effective_from: z
+      .string()
+      .regex(DATE_REGEX, 'effective_from must be YYYY-MM-DD')
+      .optional(),
   })
   .strict()
 

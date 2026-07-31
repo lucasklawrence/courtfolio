@@ -4,6 +4,7 @@ import { z } from 'zod'
 import {
   WeightRoomAchievementRowSchema,
   WeightRoomGoalRowSchema,
+  WeightRoomGoalTargetRowSchema,
   WeightRoomMonthlyFocusRowSchema,
   WeightRoomSetRowSchema,
   achievementRowToAchievement,
@@ -11,7 +12,11 @@ import {
   goalRowToExerciseGoal,
   setRowToStrengthSet,
 } from '@/lib/schemas/weight-room'
-import type { WeightRoomAchievement, WeightRoomData } from '@/types/weight-room'
+import type {
+  GoalTargetPoint,
+  WeightRoomAchievement,
+  WeightRoomData,
+} from '@/types/weight-room'
 
 import { fetchAllRows } from './paged-read'
 
@@ -29,16 +34,20 @@ import { fetchAllRows } from './paged-read'
 const SETS_TABLE = 'weight_room_sets'
 const GOALS_TABLE = 'weight_room_goals'
 const FOCUS_TABLE = 'weight_room_monthly_focus'
+/** Effective-dated daily-target history backing per-day goal resolution (#362). */
+const GOAL_TARGETS_TABLE = 'weight_room_goal_targets'
 
 /** Whitelisted column lists for each table; `updated_at` rides along for `imported_at` computation. */
 const SETS_COLUMNS = 'id, logged_at, exercise, reps, weight_lbs, variant, updated_at'
 const GOALS_COLUMNS = 'exercise, daily_target, color, kind, load_multiplier, updated_at'
 const FOCUS_COLUMNS =
   'id, exercise, daily_target, target_kind, color, category, start_date, end_date, updated_at'
+const GOAL_TARGETS_COLUMNS = 'id, exercise, daily_target, effective_from, updated_at'
 
 const WeightRoomSetRowsSchema = z.array(WeightRoomSetRowSchema)
 const WeightRoomGoalRowsSchema = z.array(WeightRoomGoalRowSchema)
 const WeightRoomMonthlyFocusRowsSchema = z.array(WeightRoomMonthlyFocusRowSchema)
+const WeightRoomGoalTargetRowsSchema = z.array(WeightRoomGoalTargetRowSchema)
 
 /** Supabase table backing the Trophy Room achievement ladder (#336). */
 const ACHIEVEMENTS_TABLE = 'weight_room_achievements'
@@ -147,7 +156,7 @@ export async function assembleWeightRoomData(
   // relative order unstable between fetches. `updated_at` resolves ties
   // by insertion order (sets have no update path), and `id` backstops
   // same-transaction inserts whose `updated_at` also collides.
-  const [setsRaw, goalsRes, focusRes] = await Promise.all([
+  const [setsRaw, goalsRes, focusRes, goalTargetsRes] = await Promise.all([
     // Paged — the set log is the one table here that grows without bound, and
     // it crossed PostgREST's response cap in July 2026, silently dropping the
     // *newest* sets (this query sorts ascending). The multi-key order above is
@@ -166,6 +175,13 @@ export async function assembleWeightRoomData(
     // Newest window first so the "Upcoming"/roadmap UI can slice from
     // the head without re-sorting.
     supabase.from(FOCUS_TABLE).select(FOCUS_COLUMNS).order('start_date', { ascending: false }),
+    // Oldest window first: `targetForDay` wants ascending order, and sorting
+    // here means the resolver's defensive re-sort is a no-op on live data.
+    supabase
+      .from(GOAL_TARGETS_TABLE)
+      .select(GOAL_TARGETS_COLUMNS)
+      .order('exercise', { ascending: true })
+      .order('effective_from', { ascending: true }),
   ])
 
   if (goalsRes.error) {
@@ -174,14 +190,18 @@ export async function assembleWeightRoomData(
   if (focusRes.error) {
     throw new Error(`Failed to load weight room monthly focus: ${focusRes.error.message}`)
   }
+  if (goalTargetsRes.error) {
+    throw new Error(`Failed to load weight room goal targets: ${goalTargetsRes.error.message}`)
+  }
 
   const goalsRaw = (goalsRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const focusRaw = (focusRes.data ?? []) as unknown as Array<Record<string, unknown>>
+  const goalTargetsRaw = (goalTargetsRes.data ?? []) as unknown as Array<Record<string, unknown>>
 
   // Compute imported_at before stripping `updated_at` — that column lives
   // on every row but isn't part of the row-shape schema (`.strict()`
   // would reject it).
-  const importedAt = computeImportedAt([setsRaw, goalsRaw, focusRaw])
+  const importedAt = computeImportedAt([setsRaw, goalsRaw, focusRaw, goalTargetsRaw])
 
   // A monthly focus can't exist without its `kind: 'focus'` goal anchor
   // (FK), so sets+goals empty still means "no data" — focus is implied
@@ -205,13 +225,67 @@ export async function assembleWeightRoomData(
       `weight_room_monthly_focus failed schema validation: ${focusParsed.error.message}`,
     )
   }
+  const goalTargetsParsed = WeightRoomGoalTargetRowsSchema.safeParse(
+    goalTargetsRaw.map(stripUpdatedAt),
+  )
+  if (!goalTargetsParsed.success) {
+    throw new Error(
+      `weight_room_goal_targets failed schema validation: ${goalTargetsParsed.error.message}`,
+    )
+  }
+
+  const historyByExercise = groupTargetHistory(goalTargetsParsed.data)
 
   return {
     imported_at: importedAt,
     sets: setsParsed.data.map(setRowToStrengthSet),
-    goals: goalsParsed.data.map(goalRowToExerciseGoal),
+    goals: goalsParsed.data.map((row) => {
+      const goal = goalRowToExerciseGoal(row)
+      const history = historyByExercise.get(goal.exercise)
+      // Omit rather than attach `[]` so "no recorded history" is a single
+      // shape everywhere — `targetForDay` treats absent and empty the same,
+      // but keeping one of them off the wire makes fixtures and snapshots
+      // easier to read.
+      return history === undefined ? goal : { ...goal, target_history: history }
+    }),
     monthly_focus: focusParsed.data.map(focusRowToMonthlyFocus),
   }
+}
+
+/**
+ * Group validated `weight_room_goal_targets` rows into per-exercise history
+ * arrays, oldest entry first.
+ *
+ * Exercises with no rows are simply absent from the map, so the caller omits
+ * `target_history` entirely for them and every consumer falls back to the
+ * goal's current `daily_target` — the pre-#362 behavior.
+ *
+ * @param rows Validated target rows, in any order.
+ */
+function groupTargetHistory(
+  rows: readonly { exercise: string; daily_target: number; effective_from: string }[],
+): Map<string, GoalTargetPoint[]> {
+  const byExercise = new Map<string, GoalTargetPoint[]>()
+  for (const row of rows) {
+    const entry = byExercise.get(row.exercise)
+    const point: GoalTargetPoint = {
+      daily_target: row.daily_target,
+      effective_from: row.effective_from,
+    }
+    if (entry === undefined) {
+      byExercise.set(row.exercise, [point])
+    } else {
+      entry.push(point)
+    }
+  }
+  // The query orders by effective_from, but sort defensively so a fixture or
+  // a future query change can't hand the resolver unordered history.
+  for (const history of byExercise.values()) {
+    history.sort((a, b) =>
+      a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0,
+    )
+  }
+  return byExercise
 }
 
 /**

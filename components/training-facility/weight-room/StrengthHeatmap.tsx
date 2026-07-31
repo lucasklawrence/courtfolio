@@ -1,11 +1,15 @@
 import type { JSX } from 'react'
 
+import { type GoalTargetChange, goalTargetChanges } from '@/lib/training-facility/goal-targets'
 import {
   buildStrengthHeatmap,
   intensityFromPct,
   type StrengthHeatmapCell,
+  type StrengthHeatmapGrid,
 } from '@/lib/training-facility/weight-room-history'
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+
+import { GoalChangeMarker } from './GoalChangeMarker'
 
 /** Props for {@link StrengthHeatmap}. */
 export interface StrengthHeatmapProps {
@@ -16,9 +20,14 @@ export interface StrengthHeatmapProps {
    */
   sets: readonly StrengthSet[]
   /**
-   * The exercise to render — supplies the color (used as the cell
-   * fill at full intensity) and `daily_target` (the denominator that
-   * decides which intensity bucket each cell falls into).
+   * The exercise to render — supplies the color (used as the cell fill at
+   * full intensity) and the daily target behind each cell's intensity
+   * bucket.
+   *
+   * That denominator is resolved **per day** from `target_history` (#362),
+   * not read off the current `daily_target`, so cells on either side of a
+   * goal change keep the intensity they earned. Any change in the history
+   * that falls inside the rendered window also draws a boundary marker.
    */
   goal: ExerciseGoal
   /** Inclusive start of the visible window. Omit for the trailing 52 weeks. */
@@ -92,7 +101,8 @@ export function StrengthHeatmap({
   fontFamily = 'inherit',
   ariaLabel,
 }: StrengthHeatmapProps): JSX.Element {
-  const { grid, monthLabels } = buildStrengthHeatmap(sets, goal, dateFrom, dateTo)
+  const heatmap = buildStrengthHeatmap(sets, goal, dateFrom, dateTo)
+  const { grid, monthLabels } = heatmap
   const cols = grid[0]?.length ?? 0
   const cellInner = cellSize - cellGap
   const gridWidth = cols * cellSize
@@ -100,6 +110,14 @@ export function StrengthHeatmap({
   const totalWidth = DAY_LABEL_WIDTH + gridWidth
   const totalHeight = MONTH_LABEL_HEIGHT + gridHeight + LEGEND_HEIGHT
   const label = ariaLabel ?? `${goal.exercise} heatmap`
+
+  // Boundary markers for target changes (#362), dropped to whichever column
+  // holds the effective date. Changes outside the visible window resolve to
+  // `null` and are filtered out rather than clamped to an edge, which would
+  // plant a marker on a week the change didn't happen in.
+  const visibleChanges = goalTargetChanges(goal)
+    .map((change) => ({ change, col: columnForDayKey(heatmap, change.effective_from) }))
+    .filter((entry): entry is { change: GoalTargetChange; col: number } => entry.col !== null)
 
   return (
     // No `maxWidth: 100%` on the SVG — the page wraps each heatmap in
@@ -172,6 +190,20 @@ export function StrengthHeatmap({
         )}
       </g>
 
+      {/* Goal-change boundary markers, drawn over the cells so the rule
+          reads as an annotation rather than another data mark (#362). */}
+      <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT})`}>
+        {visibleChanges.map(({ change, col }) => (
+          <GoalChangeMarker
+            key={`goal-change-${change.effective_from}`}
+            change={change}
+            x={col * cellSize - cellGap / 2}
+            y={0}
+            height={gridHeight}
+          />
+        ))}
+      </g>
+
       {/* Legend strip — "Less" + 4 swatches + "More" */}
       <g
         transform={`translate(${DAY_LABEL_WIDTH + Math.max(0, gridWidth - 140)}, ${MONTH_LABEL_HEIGHT + gridHeight + 14})`}
@@ -208,6 +240,9 @@ export function StrengthHeatmap({
  * of goal)` for active days, just the formatted date for empty days.
  * Reads naturally for both sighted users (browser title-tooltip on
  * hover) and screen readers.
+ *
+ * The percentage is against the target in effect *that* day, so a cell on
+ * the far side of a goal change explains its own colour (#362).
  */
 function describeCell(cell: StrengthHeatmapCell, goal: ExerciseGoal): string {
   const dateLabel = cell.date.toLocaleDateString('en-US', {
@@ -218,5 +253,43 @@ function describeCell(cell: StrengthHeatmapCell, goal: ExerciseGoal): string {
   if (cell.reps === 0) return dateLabel
   const setNoun = cell.setCount === 1 ? 'set' : 'sets'
   const pctLabel = `${Math.round(cell.pct * 100)}%`
-  return `${dateLabel}: ${cell.reps} reps (${cell.setCount} ${setNoun}, ${pctLabel} of ${goal.exercise} goal)`
+  return `${dateLabel}: ${cell.reps} reps (${cell.setCount} ${setNoun}, ${pctLabel} of ${cell.dailyTarget} ${goal.exercise} goal)`
+}
+
+/**
+ * Column index whose week contains `dayKey`, or `null` when the day falls
+ * outside the rendered window.
+ *
+ * Scans the Monday row and returns the last column that starts on or before
+ * the target day — the grid's columns are contiguous weeks, so that column is
+ * the one containing it. Comparing `YYYY-MM-DD` keys keeps this consistent
+ * with the rest of the day math (no `Date` arithmetic, no DST edge).
+ *
+ * @param heatmap The built grid to locate the day within.
+ * @param dayKey `YYYY-MM-DD` day to find.
+ */
+function columnForDayKey(heatmap: StrengthHeatmapGrid, dayKey: string): number | null {
+  const mondays = heatmap.grid[0]
+  if (mondays === undefined || mondays.length === 0) return null
+
+  const keyOf = (d: Date): string =>
+    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+
+  // Before the first rendered week — the change predates the window.
+  if (dayKey < keyOf(mondays[0].date)) return null
+
+  let found = -1
+  for (let col = 0; col < mondays.length; col++) {
+    if (keyOf(mondays[col].date) <= dayKey) found = col
+    else break
+  }
+  if (found === -1) return null
+
+  // Past the final week's Sunday — the change is after the window.
+  const lastRow = heatmap.grid[6]
+  if (lastRow !== undefined && found === mondays.length - 1) {
+    const sunday = lastRow[found]
+    if (sunday !== undefined && dayKey > keyOf(sunday.date)) return null
+  }
+  return found
 }

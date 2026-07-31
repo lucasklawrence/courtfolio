@@ -17,6 +17,7 @@ const PUSHUP_STATS: StrengthExerciseStats = {
   lastMonthReps: 980,
   avgSetsPerActiveDay: 3.5,
   allTimeReps: 12_400,
+  targetChanges: [],
 }
 
 describe('StrengthStats', () => {
@@ -81,5 +82,51 @@ describe('StrengthStats', () => {
     // jsdom canonicalizes inline `style` to lowercase rgb(); accept either.
     const styleAttr = heading.getAttribute('style') ?? ''
     expect(styleAttr).toMatch(/#EA580C|rgb\(\s*234,\s*88,\s*12\s*\)/i)
+  })
+})
+
+describe('StrengthStats — goal changes (#362)', () => {
+  it('renders no goal-changes footer when the target has never moved', () => {
+    const { queryByTestId } = render(<StrengthStats stats={[PUSHUP_STATS]} />)
+    expect(queryByTestId('strength-stat-goal-changes-pushups')).toBeNull()
+  })
+
+  it('lists each target change with its old value, new value, and date', () => {
+    const { getByTestId } = render(
+      <StrengthStats
+        stats={[
+          {
+            ...PUSHUP_STATS,
+            exercise: 'pullups',
+            dailyTarget: 50,
+            targetChanges: [{ from: 30, to: 50, effective_from: '2026-08-01' }],
+          },
+        ]}
+      />,
+    )
+    const footer = getByTestId('strength-stat-goal-changes-pullups')
+    expect(footer).toHaveTextContent('30')
+    expect(footer).toHaveTextContent('50')
+    expect(footer).toHaveTextContent('Aug 1')
+  })
+
+  it('lists multiple changes oldest-first', () => {
+    const { getByTestId } = render(
+      <StrengthStats
+        stats={[
+          {
+            ...PUSHUP_STATS,
+            targetChanges: [
+              { from: 100, to: 150, effective_from: '2026-06-01' },
+              { from: 150, to: 200, effective_from: '2026-09-01' },
+            ],
+          },
+        ]}
+      />,
+    )
+    const items = getByTestId('strength-stat-goal-changes-pushups').querySelectorAll('li')
+    expect(items).toHaveLength(2)
+    expect(items[0].textContent).toContain('Jun 1')
+    expect(items[1].textContent).toContain('Sep 1')
   })
 })
