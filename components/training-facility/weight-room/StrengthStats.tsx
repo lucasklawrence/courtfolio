@@ -1,5 +1,6 @@
 import type { JSX } from 'react'
 
+import { describeGoalTargetChange } from '@/lib/training-facility/goal-targets'
 import type { StrengthExerciseStats } from '@/lib/training-facility/weight-room-history'
 
 /** Props for {@link StrengthStats}. */
@@ -91,6 +92,30 @@ function ExerciseStatCard({ stat }: ExerciseStatCardProps): JSX.Element {
         />
         <SimpleCell label="all-time reps" value={stat.allTimeReps.toLocaleString('en-US')} />
       </div>
+
+      {stat.targetChanges.length > 0 ? (
+        <footer
+          data-testid={`strength-stat-goal-changes-${stat.exercise}`}
+          className="mt-4 border-t border-[#0a0a0a]/10 pt-3"
+        >
+          <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-[#0a0a0a]/65">
+            goal changes
+          </p>
+          {/* Streaks and heatmap cells above are scored against the target
+              that was live each day, so this line is what explains a step in
+              those numbers rather than leaving it looking like a data glitch. */}
+          <ul className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
+            {stat.targetChanges.map((change) => (
+              <li
+                key={change.effective_from}
+                className="font-mono text-[11px] tabular-nums text-[#0a0a0a]/70"
+              >
+                {describeGoalTargetChange(change)}
+              </li>
+            ))}
+          </ul>
+        </footer>
+      ) : null}
     </article>
   )
 }

@@ -46,6 +46,32 @@ export interface StrengthSet {
 }
 
 /**
+ * One entry in an exercise's daily-target history (#362) — the target that
+ * took effect on {@link effective_from} and stayed in effect until the next
+ * entry (or forever, if it's the newest). Mirrors a row of
+ * `public.weight_room_goal_targets`.
+ *
+ * Resolve "what was the target on day D" with
+ * {@link import('@/lib/training-facility/goal-targets').targetForDay} rather
+ * than scanning this array by hand — it owns the before-first-entry fallback
+ * and the non-positive-target clamp.
+ */
+export interface GoalTargetPoint {
+  /**
+   * Target reps per day that took effect on {@link effective_from}. Positive
+   * (DB CHECK enforces), same units as {@link ExerciseGoal.daily_target}.
+   */
+  daily_target: number
+  /**
+   * Inclusive first day this target applies to, as a bare `YYYY-MM-DD` local
+   * date. PostgREST renders a Postgres `date` in this canonical form, so
+   * lexicographic string comparison against a day key is exactly
+   * chronological comparison — no `Date` parsing needed.
+   */
+  effective_from: string
+}
+
+/**
  * Per-exercise daily target + display color. Drives the Today View's
  * activity rings and the History View's heatmap intensity. Managed via
  * the Settings UI; the migration seeds `pushups` (rim-orange) and
@@ -57,6 +83,12 @@ export interface ExerciseGoal {
   /**
    * Target reps per day for the "grease the groove" goal. Activity
    * rings fill toward this number; the heatmap colors by % of target.
+   *
+   * This is the *current* target — a denormalized mirror of the newest
+   * {@link target_history} entry, kept for cheap reads. Historical rollups
+   * must NOT divide by it; they resolve the target in effect on each day via
+   * {@link import('@/lib/training-facility/goal-targets').targetForDay}, or a
+   * goal change would retroactively re-score days already completed (#362).
    */
   daily_target: number
   /**
@@ -90,6 +122,17 @@ export interface ExerciseGoal {
    * history at once.
    */
   load_multiplier?: number
+  /**
+   * Effective-dated history of this goal's {@link daily_target} (#362), oldest
+   * entry first. Attached by the data layer from
+   * `public.weight_room_goal_targets`.
+   *
+   * Absent or empty means "no recorded history" — every consumer then falls
+   * back to {@link daily_target} for all days, which is exactly the pre-#362
+   * behavior. The migration backfills one entry per goal dated at or before
+   * the earliest logged set, so in practice this is populated.
+   */
+  target_history?: GoalTargetPoint[]
 }
 
 /**

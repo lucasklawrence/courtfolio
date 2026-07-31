@@ -6,6 +6,7 @@ import type {
   WeightRoomAchievement,
 } from '@/types/weight-room'
 
+import { targetResolverFor } from './goal-targets'
 import { pacificDayKey } from './load-management'
 
 /**
@@ -273,12 +274,18 @@ function emptyMetrics(): MovementMetrics {
  * per tier.
  *
  * @param sets All logged sets, usually `WeightRoomData.sets`.
- * @param goals Configured exercises — supplies each `daily_target`, which is
- *   what makes a day count toward a `'streak'`, and each `load_multiplier`,
- *   which converts a per-implement `weight_lbs` into the effective load. An
- *   exercise with no goal still gets volume metrics (at multiplier 1); its
- *   streak is simply always `0` (there's no bar to clear). Non-positive
- *   targets are treated the same way.
+ * @param goals Configured exercises — supplies each effective-dated daily
+ *   target, which is what makes a day count toward a `'streak'`, and each
+ *   `load_multiplier`, which converts a per-implement `weight_lbs` into the
+ *   effective load. An exercise with no goal still gets volume metrics (at
+ *   multiplier 1); its streak is simply always `0` (there's no bar to clear).
+ *   Non-positive targets are treated the same way.
+ *
+ *   Each day is tested against the target in effect *that day* (#362).
+ *   Because badges are recomputed from the full log on every render, reading
+ *   the current target here would un-light earned streak badges the moment a
+ *   goal was raised — the exact retroactive rewrite this module's "earned
+ *   state is never stored" design otherwise avoids.
  */
 function buildMetrics(
   sets: readonly StrengthSet[],
@@ -342,8 +349,10 @@ function buildMetrics(
   for (const goal of goals) {
     const m = metrics.get(goal.exercise)
     if (!m || goal.daily_target <= 0) continue
+    // Per-day bar (#362), bound once per goal rather than per logged day.
+    const targetFor = targetResolverFor(goal)
     for (const [day, reps] of m.byDay) {
-      if (reps < goal.daily_target) continue
+      if (reps < targetFor(day)) continue
       m.hitDays.push(day)
       pooledHits.add(day)
     }

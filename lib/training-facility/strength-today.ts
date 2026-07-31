@@ -1,5 +1,7 @@
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
+import { targetForDay } from './goal-targets'
+
 /**
  * Pure helpers for the Weight Room Today View (#80) — date bucketing,
  * per-exercise totals, and ring-percent computation. Lives separate
@@ -156,25 +158,32 @@ export function variantBreakdown(sets: readonly StrengthSet[]): VariantSlice[] {
 }
 
 /**
- * Fraction of `goal.daily_target` that today's reps cover. Returned
+ * Fraction of the day's target that a day's reps cover. Returned
  * unclamped — callers that animate a ring usually `Math.min(1, …)` the
  * stroke offset, but the center-text "75 / 100" surface keeps the raw
  * value so a 110-rep day reads as "110 / 100" not "100 / 100".
  *
- * Returns `0` when `goal.daily_target` is non-positive (defensive
+ * Returns `0` when the resolved target is non-positive (defensive
  * against a future settings UI accepting 0 — the schema currently
  * enforces `> 0`, but the helper shouldn't `Infinity` if that changes).
  *
- * @param totalReps Total reps logged for the exercise today, usually
- *   sourced from {@link totalsByExercise}.
+ * @param totalReps Total reps logged for the exercise on the day in
+ *   question, usually sourced from {@link totalsByExercise}.
  * @param goal The exercise's configured goal.
+ * @param dayKey Optional `YYYY-MM-DD` key for the day being scored. When
+ *   supplied, the denominator is the target that was in effect that day
+ *   (#362) rather than the goal's current one — so rendering a past day
+ *   shows the ring as it was actually earned. Omitted keeps the current
+ *   target, which is what the Today View wants.
  */
 export function computeRingPercent(
   totalReps: number,
   goal: ExerciseGoal,
+  dayKey?: string,
 ): number {
-  if (goal.daily_target <= 0) return 0
-  return totalReps / goal.daily_target
+  const target = dayKey === undefined ? goal.daily_target : targetForDay(goal, dayKey)
+  if (target <= 0) return 0
+  return totalReps / target
 }
 
 /**

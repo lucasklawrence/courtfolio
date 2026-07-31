@@ -361,3 +361,149 @@ describe('computeStrengthStats', () => {
     expect(stats.longestStreak).toBe(2)
   })
 })
+
+/**
+ * Effective-dated target coverage (#362). The scenario throughout is the
+ * issue's: pullups at 30, raised to 50 effective Aug 1. Everything before
+ * that boundary must stay scored against 30.
+ */
+describe('effective-dated targets (#362)', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  /** Pullups seeded at 30, raised to 50 on Aug 1. */
+  const PULLUPS_RAISED: ExerciseGoal = {
+    exercise: 'pullups',
+    daily_target: 50,
+    color: '#0EA5A1',
+    target_history: [
+      { daily_target: 30, effective_from: '2026-05-01' },
+      { daily_target: 50, effective_from: '2026-08-01' },
+    ],
+  }
+
+  /** Pullups lowered 50 -> 30 on Aug 1 — the symmetric case. */
+  const PULLUPS_LOWERED: ExerciseGoal = {
+    exercise: 'pullups',
+    daily_target: 30,
+    color: '#0EA5A1',
+    target_history: [
+      { daily_target: 50, effective_from: '2026-05-01' },
+      { daily_target: 30, effective_from: '2026-08-01' },
+    ],
+  }
+
+  /** Find the heatmap cell for a given local date key. */
+  function cellFor(
+    grid: ReturnType<typeof buildStrengthHeatmap>,
+    dateKey: string,
+  ): { reps: number; pct: number; dailyTarget: number } | undefined {
+    for (const row of grid.grid) {
+      for (const cell of row) {
+        const key = `${cell.date.getFullYear()}-${String(cell.date.getMonth() + 1).padStart(2, '0')}-${String(cell.date.getDate()).padStart(2, '0')}`
+        if (key === dateKey) return cell
+      }
+    }
+    return undefined
+  }
+
+  it('scores a pre-change heatmap cell against the old target', () => {
+    // 30 reps on Jul 15 was a full day against a 30 goal. After raising the
+    // goal to 50 it must still read as 100%, not 60%.
+    const sets = [set('2026-07-15', 'pullups', 30)]
+    const grid = buildStrengthHeatmap(
+      sets,
+      PULLUPS_RAISED,
+      new Date('2026-07-01T12:00:00'),
+      new Date('2026-08-31T12:00:00'),
+    )
+    const cell = cellFor(grid, '2026-07-15')
+    expect(cell?.reps).toBe(30)
+    expect(cell?.dailyTarget).toBe(30)
+    expect(cell?.pct).toBe(1)
+    expect(intensityFromPct(cell!.pct)).toBe(3)
+  })
+
+  it('scores a post-change heatmap cell against the new target', () => {
+    const sets = [set('2026-08-15', 'pullups', 40)]
+    const grid = buildStrengthHeatmap(
+      sets,
+      PULLUPS_RAISED,
+      new Date('2026-07-01T12:00:00'),
+      new Date('2026-08-31T12:00:00'),
+    )
+    const cell = cellFor(grid, '2026-08-15')
+    expect(cell?.dailyTarget).toBe(50)
+    expect(cell?.pct).toBe(0.8)
+    expect(intensityFromPct(cell!.pct)).toBe(2)
+  })
+
+  it('computes a streak across the boundary with no false break', () => {
+    // 30 reps/day Jul 30-31 (hits the 30 goal), 50 reps/day Aug 1-2 (hits
+    // the raised 50 goal). All four days are hits, so the streak is 4.
+    const sets = [
+      set('2026-07-30', 'pullups', 30),
+      set('2026-07-31', 'pullups', 30),
+      set('2026-08-01', 'pullups', 50),
+      set('2026-08-02', 'pullups', 50),
+    ]
+    const streak = computeStrengthStreaks(sets, PULLUPS_RAISED, new Date('2026-08-02T12:00:00'))
+    expect(streak.current).toBe(4)
+    expect(streak.longest).toBe(4)
+  })
+
+  it('breaks the streak on a post-change day that misses the raised target', () => {
+    // Aug 1 has 30 reps — enough for the old goal, short of the new one, so
+    // it must not count as a hit. Anchoring "now" at Aug 2 puts the last hit
+    // (Jul 31) outside the today/yesterday grace window, so the break shows
+    // up in `current` rather than being masked by it.
+    const sets = [
+      set('2026-07-30', 'pullups', 30),
+      set('2026-07-31', 'pullups', 30),
+      set('2026-08-01', 'pullups', 30),
+    ]
+    const streak = computeStrengthStreaks(sets, PULLUPS_RAISED, new Date('2026-08-02T12:00:00'))
+    expect(streak.current).toBe(0)
+    expect(streak.longest).toBe(2)
+  })
+
+  it('keeps the streak alive under the grace period when today has not yet cleared the new bar', () => {
+    // Same data, anchored at Aug 1: Jul 31 is "yesterday" and still a hit, so
+    // the streak is legitimately alive at 2 even though today falls short.
+    const sets = [
+      set('2026-07-30', 'pullups', 30),
+      set('2026-07-31', 'pullups', 30),
+      set('2026-08-01', 'pullups', 30),
+    ]
+    const streak = computeStrengthStreaks(sets, PULLUPS_RAISED, new Date('2026-08-01T12:00:00'))
+    expect(streak.current).toBe(2)
+    expect(streak.longest).toBe(2)
+  })
+
+  it('does not retroactively credit past days when a target is lowered', () => {
+    // 40 reps on Jul 15 missed the 50 goal in force at the time. Lowering
+    // the goal to 30 in August must not turn it into a hit.
+    const sets = [set('2026-07-15', 'pullups', 40), set('2026-08-15', 'pullups', 40)]
+    const streak = computeStrengthStreaks(sets, PULLUPS_LOWERED, new Date('2026-08-15T12:00:00'))
+    expect(streak.current).toBe(1)
+    expect(streak.longest).toBe(1)
+  })
+
+  it('surfaces the change on the stats payload and keeps dailyTarget current', () => {
+    const sets = [set('2026-07-15', 'pullups', 30)]
+    const [stats] = computeStrengthStats(sets, [PULLUPS_RAISED], new Date('2026-08-15T12:00:00'))
+    expect(stats.dailyTarget).toBe(50)
+    expect(stats.targetChanges).toEqual([
+      { from: 30, to: 50, effective_from: '2026-08-01' },
+    ])
+  })
+
+  it('leaves a goal with no history scored exactly as before', () => {
+    const sets = [set('2026-04-15', 'pushups', 100), set('2026-04-16', 'pushups', 100)]
+    const streak = computeStrengthStreaks(sets, PUSHUPS, new Date('2026-04-16T12:00:00'))
+    expect(streak).toEqual({ current: 2, longest: 2 })
+    const [stats] = computeStrengthStats(sets, [PUSHUPS], new Date('2026-04-16T12:00:00'))
+    expect(stats.targetChanges).toEqual([])
+  })
+})

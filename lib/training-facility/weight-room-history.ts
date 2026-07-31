@@ -1,5 +1,7 @@
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
+import { type GoalTargetChange, goalTargetChanges, targetResolverFor } from './goal-targets'
+
 /**
  * Pure helpers for the Weight Room History View (#81). Mirrors the
  * cardio-side `heatmap-grid.ts` + `streaks.ts` split: this module owns
@@ -11,6 +13,12 @@ import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
  * Strength sets carry an ISO `logged_at` timestamp; heatmap and stats
  * both bucket by *local* calendar day so a set logged at 11pm doesn't
  * silently roll into the next day.
+ *
+ * Every goal-relative number here resolves the target **per day** via
+ * {@link targetResolverFor} rather than reading `goal.daily_target` (#362).
+ * Dividing the whole history by the current target meant raising a goal
+ * retroactively re-scored days already completed — closed rings re-opened,
+ * streaks collapsed, full-intensity cells dropped to half.
  */
 
 /** A single cell in the strength heatmap grid for one exercise. */
@@ -24,8 +32,18 @@ export interface StrengthHeatmapCell {
   /**
    * `reps / dailyTarget` — un-clamped, so 100% means "exactly hit the
    * goal" and 1.5 means "150% of goal". Empty days are `0`.
+   *
+   * The denominator is the target that was in effect on {@link date}, not
+   * the goal's current target (#362), so a cell keeps the intensity it
+   * earned when the goal later moves.
    */
   pct: number
+  /**
+   * The daily target in effect on {@link date} — the denominator behind
+   * {@link pct}. Surfaced so a tooltip can say "32 of 30" using the bar that
+   * actually applied rather than today's.
+   */
+  dailyTarget: number
 }
 
 /** Result of {@link buildStrengthHeatmap}. */
@@ -61,11 +79,22 @@ export interface StrengthExerciseStats {
   exercise: string
   /** Hex color from the matching {@link ExerciseGoal.color}. */
   color: string
-  /** Daily target reps from the matching goal. */
+  /**
+   * The goal's *current* daily target — what the panel labels the exercise
+   * with today. Historical rollups on this same object (the streaks) resolve
+   * their own per-day targets and do NOT divide by this (#362); read
+   * {@link targetChanges} for where the bar moved.
+   */
   dailyTarget: number
-  /** Consecutive days (ending today or yesterday) hitting the daily target. */
+  /**
+   * Consecutive days (ending today or yesterday) hitting the daily target,
+   * each day tested against the target in effect that day.
+   */
   currentStreak: number
-  /** Longest run of consecutive days hitting the daily target, all-time. */
+  /**
+   * Longest run of consecutive days hitting the daily target, all-time, each
+   * day tested against the target in effect that day.
+   */
   longestStreak: number
   /** Total reps logged this ISO week (Mon–Sun, current). */
   thisWeekReps: number
@@ -85,6 +114,13 @@ export interface StrengthExerciseStats {
   avgSetsPerActiveDay: number
   /** All-time total reps for this exercise. */
   allTimeReps: number
+  /**
+   * Every point at which this goal's target moved, oldest first (#362) —
+   * empty for a goal that has never been edited. The stats panel renders
+   * these as "30 → 50 on Aug 1" so a step in adherence is explained rather
+   * than mysterious.
+   */
+  targetChanges: GoalTargetChange[]
 }
 
 const DAY_MS = 86_400_000
@@ -153,7 +189,9 @@ export function intensityFromPct(pct: number): 0 | 1 | 2 | 3 {
  * Each cell carries the day's rep total, set count, and `pct = reps /
  * dailyTarget` so the renderer can pick a color via
  * {@link intensityFromPct} and a tooltip can read "32 reps (3 sets,
- * 32% of goal)".
+ * 32% of goal)". The denominator is resolved per cell from the goal's
+ * effective-dated history (#362), so cells on either side of a goal change
+ * are each scored against the bar that was live that day.
  *
  * Sets whose `exercise` doesn't match `goal.exercise` are silently
  * ignored — call once per exercise.
@@ -161,7 +199,8 @@ export function intensityFromPct(pct: number): 0 | 1 | 2 | 3 {
  * @param sets every logged set from {@link import('@/types/weight-room').WeightRoomData.sets};
  *   the helper filters to the matching exercise.
  * @param goal the {@link ExerciseGoal} for the target exercise; supplies
- *   the `daily_target` denominator for `pct`.
+ *   the per-day `daily_target` denominator for `pct` via its
+ *   `target_history` (falling back to `daily_target` when absent).
  * @param dateFrom optional inclusive start of the range; clamped to ~2
  *   years before `dateTo` if longer.
  * @param dateTo optional inclusive end; defaults to today.
@@ -202,10 +241,10 @@ export function buildStrengthHeatmap(
     lookup.set(key, entry)
   }
 
-  // Belt-and-suspenders: the schema (`WeightRoomGoalRowSchema`) already
-  // enforces a positive integer, but a 0/negative target slipping
-  // through would divide-by-zero or invert the intensity bucket.
-  const target = Math.max(1, goal.daily_target)
+  // Per-day target resolution (#362). Bound once so the history is sorted
+  // a single time rather than per cell; the resolver also owns the
+  // non-positive clamp that used to live here inline.
+  const targetFor = targetResolverFor(goal)
   const startMs = startMonday.getTime()
   const totalCols = Math.floor((endDate.getTime() - startMs) / WEEK_MS) + 1
   const grid: StrengthHeatmapCell[][] = Array.from({ length: 7 }, () => [])
@@ -218,11 +257,13 @@ export function buildStrengthHeatmap(
       const key = toDateKey(date)
       const entry = lookup.get(key)
       const reps = entry?.reps ?? 0
+      const dailyTarget = targetFor(key)
       grid[row].push({
         date,
         reps,
         setCount: entry?.setCount ?? 0,
-        pct: reps / target,
+        pct: reps / dailyTarget,
+        dailyTarget,
       })
 
       if (date.getMonth() !== lastMonth) {
@@ -246,9 +287,14 @@ export function buildStrengthHeatmap(
  * crossed the target yet) and is `0` when the most recent goal-hit day
  * is older than yesterday. `longest` is the all-time best.
  *
+ * Each day is tested against the target that was in effect *that day*
+ * (#362), so a streak spanning a goal change is neither falsely broken (old
+ * days re-tested against a raised bar) nor falsely continued (old days
+ * credited against a lowered one).
+ *
  * @param sets every logged set; filtered to `goal.exercise` internally.
- * @param goal the {@link ExerciseGoal} whose `daily_target` defines the
- *   bar to clear.
+ * @param goal the {@link ExerciseGoal} whose effective-dated target defines
+ *   the bar to clear on each day.
  * @param now optional override for the "today" anchor used to decide
  *   whether `current` includes the most recent hit-day. Defaults to
  *   `new Date()`. Threaded through from {@link computeStrengthStats}
@@ -267,7 +313,7 @@ export function computeStrengthStreaks(
     const key = toDateKey(d)
     dailyReps.set(key, (dailyReps.get(key) ?? 0) + s.reps)
   }
-  return streakFromDailyReps(dailyReps, goal.daily_target, now)
+  return streakFromDailyReps(dailyReps, targetResolverFor(goal), now)
 }
 
 /**
@@ -278,23 +324,21 @@ export function computeStrengthStreaks(
  * the stats path avoid a second traversal of `sets` per goal.
  *
  * @param dailyReps Reps summed per local-date key.
- * @param dailyTarget The exercise's `daily_target`. Clamped to a
- *   minimum of `1` so a 0/negative slip-through (the schema enforces
- *   `> 0` so it shouldn't happen) doesn't invert the hit-day predicate.
+ * @param targetFor Resolves the target in effect on a given day key, from
+ *   {@link targetResolverFor}. Taking a resolver rather than a scalar is
+ *   what makes the hit-test effective-dated (#362); it already clamps
+ *   non-positive targets to `1` so the predicate can't invert.
  * @param now Anchor for the current/yesterday rolling-day grace
  *   period.
  */
 function streakFromDailyReps(
   dailyReps: ReadonlyMap<string, number>,
-  dailyTarget: number,
+  targetFor: (dayKey: string) => number,
   now: Date
 ): { current: number; longest: number } {
-  // Belt-and-suspenders — same reason as in `buildStrengthHeatmap`.
-  const target = Math.max(1, dailyTarget)
-
   const hitDays: string[] = []
   for (const [key, reps] of dailyReps) {
-    if (reps >= target) hitDays.push(key)
+    if (reps >= targetFor(key)) hitDays.push(key)
   }
   if (hitDays.length === 0) return { current: 0, longest: 0 }
   hitDays.sort()
@@ -401,7 +445,7 @@ export function computeStrengthStats(
     }
 
     const avgSetsPerActiveDay = dailyReps.size === 0 ? 0 : validSetCount / dailyReps.size
-    const streak = streakFromDailyReps(dailyReps, goal.daily_target, now)
+    const streak = streakFromDailyReps(dailyReps, targetResolverFor(goal), now)
 
     return {
       exercise: goal.exercise,
@@ -415,6 +459,7 @@ export function computeStrengthStats(
       lastMonthReps,
       avgSetsPerActiveDay,
       allTimeReps,
+      targetChanges: goalTargetChanges(goal),
     }
   })
 }
