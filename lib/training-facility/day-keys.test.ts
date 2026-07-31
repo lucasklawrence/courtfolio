@@ -4,6 +4,7 @@ import {
   dayKeyToPacificNoon,
   dayKeyToPacificNoonIso,
   firstDayOfMonth,
+  formatDayKey,
   inclusiveDaySpan,
   isDayKey,
   isoWeekdayOfDayKey,
@@ -212,5 +213,35 @@ describe('dayKeyToPacificNoonIso', () => {
 describe('todayDayKey', () => {
   it('uses the supplied clock', () => {
     expect(todayDayKey(new Date('2026-07-12T05:00:00Z'))).toBe('2026-07-11')
+  })
+})
+
+describe('formatDayKey', () => {
+  it('names the Pacific day regardless of the viewer timezone', () => {
+    // The underlying instant is 19:00Z, which is already the *next* local day
+    // in Asia/Tokyo (UTC+9). Formatting it viewer-local would render "Jul 12"
+    // for a 2026-07-11 key and contradict the key it came from.
+    expect(formatDayKey('2026-07-11', { month: 'short', day: 'numeric' }, 'en-US')).toBe('Jul 11')
+  })
+
+  it('ignores a caller-supplied timeZone', () => {
+    const label = formatDayKey(
+      '2026-07-11',
+      { month: 'short', day: 'numeric', timeZone: 'Asia/Tokyo' },
+      'en-US',
+    )
+    expect(label).toBe('Jul 11')
+  })
+
+  it('formats a weekday label', () => {
+    // 2026-05-25 is a Monday.
+    expect(
+      formatDayKey('2026-05-25', { weekday: 'short', month: 'short', day: 'numeric' }, 'en-US'),
+    ).toBe('Mon, May 25')
+  })
+
+  it('returns an empty string for an invalid key', () => {
+    expect(formatDayKey('nope', { month: 'short' }, 'en-US')).toBe('')
+    expect(formatDayKey('2026-02-31', { month: 'short' }, 'en-US')).toBe('')
   })
 })

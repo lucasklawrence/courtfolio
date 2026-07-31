@@ -1,10 +1,6 @@
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
-import {
-  dayKeyToPacificNoon,
-  dayKeyToPacificNoonIso,
-  safePacificDayKey,
-} from './day-keys'
+import { dayKeyToPacificNoonIso, formatDayKey, safePacificDayKey } from './day-keys'
 import { targetForDay } from './goal-targets'
 
 /**
@@ -225,11 +221,5 @@ export function localNoonIsoForDay(dayKey: string): string {
  *   unparseable.
  */
 export function formatDayLabel(dayKey: string): string {
-  const d = dayKeyToPacificNoon(dayKey)
-  if (!d) return ''
-  return d.toLocaleDateString(undefined, {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-  })
+  return formatDayKey(dayKey, { weekday: 'short', month: 'short', day: 'numeric' })
 }

@@ -197,3 +197,33 @@ export function dayKeyToPacificNoonIso(key: string): string {
 export function todayDayKey(now: Date = new Date()): string {
   return pacificDayKey(now)
 }
+
+/**
+ * Human-format a day key, rendering the **Pacific** calendar day.
+ *
+ * Use this rather than `dayKeyToPacificNoon(key).toLocaleDateString(...)`.
+ * That instant is 19:00Z, which is *already the next local day* for any viewer
+ * at UTC+5 or further east — so in Tokyo a `2026-07-11` key would render as
+ * "Jul 12", contradicting the key it came from. Pinning `timeZone` makes the
+ * label agree with the key everywhere.
+ *
+ * The locale is left to the viewer (`undefined`) unless a caller pins one;
+ * only the *zone* has to be fixed, because only the zone can change which day
+ * is named.
+ *
+ * @param key `YYYY-MM-DD`.
+ * @param options `Intl.DateTimeFormat` options — e.g.
+ *   `{ weekday: 'short', month: 'short', day: 'numeric' }`. A caller-supplied
+ *   `timeZone` is ignored; that's the whole point.
+ * @param locale BCP-47 tag, or `undefined` for the viewer's.
+ * @returns The formatted label, or `''` when `key` isn't a valid calendar day.
+ */
+export function formatDayKey(
+  key: string,
+  options: Intl.DateTimeFormatOptions,
+  locale?: string,
+): string {
+  const d = dayKeyToPacificNoon(key)
+  if (d === null) return ''
+  return d.toLocaleDateString(locale, { ...options, timeZone: PACIFIC_TZ })
+}
