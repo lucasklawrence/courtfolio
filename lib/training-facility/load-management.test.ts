@@ -2,7 +2,8 @@ import { describe, it, expect } from 'vitest'
 
 import type { StrengthSet } from '@/types/weight-room'
 
-import { buildMovementLoads, pacificDayKey } from './load-management'
+import { pacificDayKey } from './day-keys'
+import { buildMovementLoads } from './load-management'
 
 /**
  * Minimal {@link StrengthSet} stamped at noon Pacific on `dayKey` (noon so

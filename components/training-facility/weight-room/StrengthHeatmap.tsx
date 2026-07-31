@@ -1,5 +1,6 @@
 import type { JSX } from 'react'
 
+import { formatDayKey } from '@/lib/training-facility/day-keys'
 import { type GoalTargetChange, goalTargetChanges } from '@/lib/training-facility/goal-targets'
 import {
   buildStrengthHeatmap,
@@ -243,13 +244,18 @@ export function StrengthHeatmap({
  *
  * The percentage is against the target in effect *that* day, so a cell on
  * the far side of a goal change explains its own colour (#362).
+ *
+ * Formatted from the cell's day key through {@link formatDayKey}, which pins
+ * the Pacific zone (#319). Formatting `cell.date` in viewer-local time would
+ * name the *following* day for anyone at UTC+5 or east of it, so the tooltip
+ * would contradict the square it's attached to.
  */
 function describeCell(cell: StrengthHeatmapCell, goal: ExerciseGoal): string {
-  const dateLabel = cell.date.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  })
+  const dateLabel = formatDayKey(
+    cell.dayKey,
+    { month: 'short', day: 'numeric', year: 'numeric' },
+    'en-US',
+  )
   if (cell.reps === 0) return dateLabel
   const setNoun = cell.setCount === 1 ? 'set' : 'sets'
   const pctLabel = `${Math.round(cell.pct * 100)}%`
@@ -262,8 +268,11 @@ function describeCell(cell: StrengthHeatmapCell, goal: ExerciseGoal): string {
  *
  * Scans the Monday row and returns the last column that starts on or before
  * the target day — the grid's columns are contiguous weeks, so that column is
- * the one containing it. Comparing `YYYY-MM-DD` keys keeps this consistent
- * with the rest of the day math (no `Date` arithmetic, no DST edge).
+ * the one containing it.
+ *
+ * Compares each cell's own `dayKey` (#319). This used to re-derive a key from
+ * `cell.date` in the *viewer's* timezone, which could name a different day
+ * than the cell was built for and drop a marker onto the neighbouring column.
  *
  * @param heatmap The built grid to locate the day within.
  * @param dayKey `YYYY-MM-DD` day to find.
@@ -272,15 +281,12 @@ function columnForDayKey(heatmap: StrengthHeatmapGrid, dayKey: string): number |
   const mondays = heatmap.grid[0]
   if (mondays === undefined || mondays.length === 0) return null
 
-  const keyOf = (d: Date): string =>
-    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-
   // Before the first rendered week — the change predates the window.
-  if (dayKey < keyOf(mondays[0].date)) return null
+  if (dayKey < mondays[0].dayKey) return null
 
   let found = -1
   for (let col = 0; col < mondays.length; col++) {
-    if (keyOf(mondays[col].date) <= dayKey) found = col
+    if (mondays[col].dayKey <= dayKey) found = col
     else break
   }
   if (found === -1) return null
@@ -289,7 +295,7 @@ function columnForDayKey(heatmap: StrengthHeatmapGrid, dayKey: string): number |
   const lastRow = heatmap.grid[6]
   if (lastRow !== undefined && found === mondays.length - 1) {
     const sunday = lastRow[found]
-    if (sunday !== undefined && dayKey > keyOf(sunday.date)) return null
+    if (sunday !== undefined && dayKey > sunday.dayKey) return null
   }
   return found
 }
