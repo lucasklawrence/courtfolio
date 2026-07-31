@@ -7,8 +7,10 @@ import {
   buildFocusLaneCells,
   computeFocusAdherence,
   computeFocusLoadStats,
+  focusTargetHistory,
   formatFocusWindow,
   isFocusActiveOnDay,
+  summarizeFocusCampaigns,
   upcomingFocuses,
 } from './monthly-focus'
 
@@ -406,5 +408,108 @@ describe('buildFocusLaneCells', () => {
     const sets: StrengthSet[] = [setOn('shrugs', 2026, 6, 1, 200)] // 200 reps vs 100 target
     const cells = buildFocusLaneCells([JULY_SHRUGS], sets, 'upper', '2026-07-01')
     expect(cells[0].pct).toBe(2)
+  })
+})
+
+describe('focusTargetHistory', () => {
+  it('returns nothing for an exercise with no rotations', () => {
+    expect(focusTargetHistory([JULY_SHRUGS], 'pushups')).toEqual([])
+  })
+
+  it('emits one point per window start, oldest first', () => {
+    const octoberShrugs: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: '55555555-5555-4555-8555-555555555555',
+      daily_target: 150,
+      start_date: '2026-10-01',
+      end_date: '2026-10-31',
+    }
+    // Supplied newest-first to prove the sort.
+    expect(focusTargetHistory([octoberShrugs, JULY_SHRUGS], 'shrugs')).toEqual([
+      { daily_target: 100, effective_from: '2026-07-01' },
+      { daily_target: 150, effective_from: '2026-10-01' },
+    ])
+  })
+
+  it('skips a window with a non-positive target', () => {
+    const broken: MonthlyFocus = { ...JULY_SHRUGS, daily_target: 0 }
+    expect(focusTargetHistory([broken], 'shrugs')).toEqual([])
+  })
+})
+
+describe('summarizeFocusCampaigns', () => {
+  /** Two shrug days inside the July window: one hit (100), one miss (40). */
+  const JULY_SETS: StrengthSet[] = [
+    { id: 'a', logged_at: '2026-07-02T19:00:00Z', exercise: 'shrugs', reps: 100 },
+    { id: 'b', logged_at: '2026-07-03T19:00:00Z', exercise: 'shrugs', reps: 40 },
+  ]
+
+  it('returns null for an exercise with no rotations', () => {
+    expect(summarizeFocusCampaigns([JULY_SHRUGS], 'pushups', [], new Date('2026-08-15T19:00:00Z')))
+      .toBeNull()
+  })
+
+  it('reports a closed rotation as inactive with its window fully elapsed', () => {
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS],
+      'shrugs',
+      JULY_SETS,
+      new Date('2026-08-15T19:00:00Z'),
+    )
+    expect(summary?.isActive).toBe(false)
+    expect(summary?.rotations).toBe(1)
+    expect(summary?.daysElapsed).toBe(31)
+    expect(summary?.daysHit).toBe(1)
+    expect(summary?.campaignReps).toBe(140)
+  })
+
+  it('reports an in-window rotation as active', () => {
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS],
+      'shrugs',
+      JULY_SETS,
+      new Date('2026-07-10T19:00:00Z'),
+    )
+    expect(summary?.isActive).toBe(true)
+    expect(summary?.daysElapsed).toBe(10)
+  })
+
+  it('aggregates days and reps across multiple rotations', () => {
+    const octoberShrugs: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: '55555555-5555-4555-8555-555555555555',
+      start_date: '2026-10-01',
+      end_date: '2026-10-31',
+    }
+    const sets: StrengthSet[] = [
+      ...JULY_SETS,
+      { id: 'c', logged_at: '2026-10-02T19:00:00Z', exercise: 'shrugs', reps: 100 },
+    ]
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS, octoberShrugs],
+      'shrugs',
+      sets,
+      new Date('2026-11-15T19:00:00Z'),
+    )
+    expect(summary?.rotations).toBe(2)
+    expect(summary?.daysElapsed).toBe(62)
+    expect(summary?.daysHit).toBe(2)
+    expect(summary?.campaignReps).toBe(240)
+    expect(summary?.latestWindowLabel).toContain('Oct')
+  })
+
+  it('excludes off-campaign sets from campaignReps', () => {
+    const sets: StrengthSet[] = [
+      ...JULY_SETS,
+      // August shrugs, after the window closed — not part of the campaign.
+      { id: 'd', logged_at: '2026-08-02T19:00:00Z', exercise: 'shrugs', reps: 500 },
+    ]
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS],
+      'shrugs',
+      sets,
+      new Date('2026-09-01T19:00:00Z'),
+    )
+    expect(summary?.campaignReps).toBe(140)
   })
 })

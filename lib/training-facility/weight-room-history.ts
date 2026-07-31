@@ -1,6 +1,11 @@
-import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import { type GoalTargetChange, goalTargetChanges, targetResolverFor } from './goal-targets'
+import {
+  type FocusCampaignSummary,
+  focusTargetHistory,
+  summarizeFocusCampaigns,
+} from './monthly-focus'
 
 /**
  * Pure helpers for the Weight Room History View (#81). Mirrors the
@@ -121,6 +126,17 @@ export interface StrengthExerciseStats {
    * than mysterious.
    */
   targetChanges: GoalTargetChange[]
+  /**
+   * Campaign rollup when this exercise is a "grease the groove" focus (#367),
+   * aggregated across every rotation it has run. Absent for permanent goals
+   * and for focus anchors with no window configured yet.
+   *
+   * The stats card uses {@link FocusCampaignSummary.isActive} to decide which
+   * cells to show: a live campaign keeps the week/month rollups, a closed one
+   * swaps them for campaign-scoped numbers, since "0 reps this week" is a true
+   * but useless reading of a rotation that ended in July.
+   */
+  focus?: FocusCampaignSummary
 }
 
 const DAY_MS = 86_400_000
@@ -396,11 +412,18 @@ function streakFromDailyReps(
  * @param now optional override for the "today" anchor used by the week
  *   / month / streak math. Defaults to `new Date()`. Tests pass a
  *   fixed date to make week boundaries deterministic.
+ * @param focuses the configured "grease the groove" rotations (#367). Supply
+ *   them to include focus-anchored exercises meaningfully: their days score
+ *   against the *window's* target rather than the anchor goal's scalar, and
+ *   each gets a {@link StrengthExerciseStats.focus} campaign rollup. Omitted,
+ *   focus goals still produce stats — just scored against the anchor scalar,
+ *   which is the pre-#367 behavior.
  */
 export function computeStrengthStats(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
-  now: Date = new Date()
+  now: Date = new Date(),
+  focuses: readonly MonthlyFocus[] = []
 ): StrengthExerciseStats[] {
   const todayMonday = getMondayOf(now)
   const thisWeekStart = toDateKey(todayMonday)
@@ -414,6 +437,15 @@ export function computeStrengthStats(
   const lastMonthEnd = toDateKey(new Date(now.getFullYear(), now.getMonth(), 0))
 
   return goals.map(goal => {
+    // A focus anchor's real bar is its rotation's target, not the anchor's
+    // scalar (#367). Synthesizing a target history from the windows routes it
+    // through the same `targetForDay` every other goal uses, so two rotations
+    // at different targets score correctly without a focus-only code path.
+    const windowHistory = focusTargetHistory(focuses, goal.exercise)
+    const scoringGoal: ExerciseGoal =
+      windowHistory.length > 0 ? { ...goal, target_history: windowHistory } : goal
+    const focusSummary = summarizeFocusCampaigns(focuses, goal.exercise, sets, now)
+
     const dailyReps = new Map<string, number>()
     let allTimeReps = 0
     let validSetCount = 0
@@ -445,7 +477,7 @@ export function computeStrengthStats(
     }
 
     const avgSetsPerActiveDay = dailyReps.size === 0 ? 0 : validSetCount / dailyReps.size
-    const streak = streakFromDailyReps(dailyReps, targetResolverFor(goal), now)
+    const streak = streakFromDailyReps(dailyReps, targetResolverFor(scoringGoal), now)
 
     return {
       exercise: goal.exercise,
@@ -460,6 +492,7 @@ export function computeStrengthStats(
       avgSetsPerActiveDay,
       allTimeReps,
       targetChanges: goalTargetChanges(goal),
+      ...(focusSummary !== null ? { focus: focusSummary } : {}),
     }
   })
 }

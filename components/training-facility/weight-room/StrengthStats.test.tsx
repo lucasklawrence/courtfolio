@@ -130,3 +130,76 @@ describe('StrengthStats — goal changes (#362)', () => {
     expect(items[1].textContent).toContain('Sep 1')
   })
 })
+
+describe('StrengthStats — focus rotations (#367)', () => {
+  /** Campaign summary for a rotation that has ended. */
+  const CLOSED_FOCUS = {
+    isActive: false,
+    rotations: 1,
+    daysHit: 26,
+    daysElapsed: 31,
+    campaignReps: 3113,
+    latestWindowLabel: 'Jul 1 – Jul 31',
+  }
+
+  const SHRUGS_STATS: StrengthExerciseStats = {
+    ...PUSHUP_STATS,
+    exercise: 'shrugs',
+    color: '#C9A268',
+    dailyTarget: 100,
+    thisWeekReps: 0,
+    lastWeekReps: 0,
+    thisMonthReps: 0,
+    lastMonthReps: 0,
+    focus: CLOSED_FOCUS,
+  }
+
+  it('renders a GTG badge and the window label for a focus exercise', () => {
+    const { getByTestId } = render(<StrengthStats stats={[SHRUGS_STATS]} />)
+    expect(getByTestId('strength-stat-focus-badge-shrugs')).toBeInTheDocument()
+    expect(getByTestId('strength-stat-card-shrugs')).toHaveTextContent('Jul 1 – Jul 31')
+  })
+
+  it('swaps the dead week/month cells for campaign numbers once the window closes', () => {
+    const { getByTestId } = render(<StrengthStats stats={[SHRUGS_STATS]} />)
+    const card = getByTestId('strength-stat-card-shrugs')
+    expect(card).toHaveTextContent('26/31')
+    expect(card).toHaveTextContent('days hit')
+    expect(card).toHaveTextContent('3,113')
+    expect(card).toHaveTextContent('campaign reps')
+    // The zero-value cells a closed campaign would otherwise show are gone.
+    expect(card).not.toHaveTextContent('this week')
+    expect(card).not.toHaveTextContent('this month')
+  })
+
+  it('keeps the week/month cells while the rotation is still live', () => {
+    const { getByTestId } = render(
+      <StrengthStats
+        stats={[
+          {
+            ...SHRUGS_STATS,
+            thisWeekReps: 380,
+            focus: { ...CLOSED_FOCUS, isActive: true },
+          },
+        ]}
+      />,
+    )
+    const card = getByTestId('strength-stat-card-shrugs')
+    expect(card).toHaveTextContent('this week')
+    expect(card).toHaveTextContent('380')
+    expect(card).not.toHaveTextContent('campaign reps')
+  })
+
+  it('notes the rotation count when an exercise has run more than once', () => {
+    const { getByTestId } = render(
+      <StrengthStats stats={[{ ...SHRUGS_STATS, focus: { ...CLOSED_FOCUS, rotations: 2 } }]} />,
+    )
+    expect(getByTestId('strength-stat-card-shrugs')).toHaveTextContent('2 rotations')
+  })
+
+  it('renders no focus chrome for a permanent goal', () => {
+    const { queryByTestId, getByTestId } = render(<StrengthStats stats={[PUSHUP_STATS]} />)
+    expect(queryByTestId('strength-stat-focus-badge-pushups')).toBeNull()
+    expect(getByTestId('strength-stat-card-pushups')).toHaveTextContent('this week')
+  })
+})

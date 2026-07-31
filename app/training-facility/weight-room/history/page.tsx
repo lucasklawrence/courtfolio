@@ -1,14 +1,15 @@
-import type { JSX } from 'react'
+import { Suspense, type JSX } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
+import { ExerciseFilter } from '@/components/training-facility/weight-room/ExerciseFilter'
 import { FocusLaneHeatmap } from '@/components/training-facility/weight-room/FocusLaneHeatmap'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
 import { PastFocusCard } from '@/components/training-facility/weight-room/PastFocusCard'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
-import { StrengthStats } from '@/components/training-facility/weight-room/StrengthStats'
+import { ExerciseStatCard } from '@/components/training-facility/weight-room/StrengthStats'
 import { StrengthVsBodyweightChart } from '@/components/training-facility/weight-room/StrengthVsBodyweightChart'
 import { VariantBreakdown } from '@/components/training-facility/weight-room/VariantBreakdown'
 import { WeeklyVolumeChart } from '@/components/training-facility/weight-room/WeeklyVolumeChart'
@@ -70,7 +71,12 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
   // shows their history instead.
   const permanentGoals = goals.filter((g) => g.kind !== 'focus')
 
-  const stats = computeStrengthStats(sets, permanentGoals)
+  // Stats cover *every* exercise including focus anchors (#367). The heatmap
+  // exclusion above is about empty year-long grids, which the stats panel
+  // doesn't have — leaving focuses out of it only hid their streaks and
+  // totals for no benefit. Passing `focuses` scores their days against the
+  // rotation's target rather than the anchor's scalar.
+  const stats = computeStrengthStats(sets, goals, new Date(), focuses)
   const loads = buildMovementLoads(sets, goals)
   const bodyMass = cardio?.body_mass_trend ?? []
 
@@ -187,71 +193,86 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
               </section>
             )}
 
-            <section
-              aria-label="Per-exercise heatmaps"
-              data-testid="weight-room-heatmaps"
-              className="mt-10 space-y-8"
+            {/* Suspense is required around anything reading `useSearchParams`
+                in a statically prerendered route (#367). The fallback is the
+                unfiltered heading strip so the page doesn't jump. */}
+            <Suspense
+              fallback={
+                <div className="mt-8 h-8" aria-hidden="true" data-testid="exercise-filter-loading" />
+              }
             >
-              {permanentGoals.map(goal => (
-                <article
-                  key={goal.exercise}
-                  className="rounded-[1.2rem] border border-white/10 bg-white/5 p-5"
-                >
-                  <header className="mb-4 flex items-baseline justify-between gap-3">
-                    <h2
-                      className="font-mono text-sm font-bold uppercase tracking-[0.2em]"
-                      style={{ color: goal.color }}
-                    >
-                      {goal.exercise}
-                    </h2>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
-                      goal {goal.daily_target}/day
-                    </span>
-                  </header>
-                  <div className="overflow-x-auto">
-                    <StrengthHeatmap sets={sets} goal={goal} />
-                  </div>
-                  <div className="mt-5 border-t border-white/10 pt-4">
-                    <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
-                      Weekly volume · last 12 weeks
-                    </p>
-                    <div className="overflow-x-auto">
-                      <WeeklyVolumeChart sets={sets} goal={goal} />
-                    </div>
-                  </div>
-                  {/* Renders only once this exercise has grip-tagged sets
-                      (#254); otherwise it's null and the article ends at
-                      the volume chart. */}
-                  <VariantBreakdown sets={sets} goal={goal} />
-                </article>
-              ))}
-            </section>
-
-            {pullupsGoal && bodyMass.length > 0 && (
-              <section className="mt-10">
-                <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
-                  Relative strength
-                </h2>
-                <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
-                  Weekly pull-up volume (completed weeks) against morning bodyweight. Reps climbing
-                  while weight falls is improvement on two fronts at once.
-                </p>
-                <div className="mt-4 rounded-[1.2rem] border border-white/10 bg-white/5 p-5">
-                  <div className="overflow-x-auto">
-                    <StrengthVsBodyweightChart sets={sets} goal={pullupsGoal} bodyMass={bodyMass} />
-                  </div>
-                </div>
-              </section>
-            )}
-
-            <section className="mt-10">
-              <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
-                Stats
-              </h2>
-              <div className="mt-4">
-                <StrengthStats stats={stats} />
-              </div>
-            </section>
+              <ExerciseFilter
+                exercises={goals.map(goal => ({
+                  exercise: goal.exercise,
+                  color: goal.color,
+                  isFocus: goal.kind === 'focus',
+                }))}
+                sections={permanentGoals.map(goal => ({
+                  exercise: goal.exercise,
+                  node: (
+                    <article className="rounded-[1.2rem] border border-white/10 bg-white/5 p-5">
+                      <header className="mb-4 flex items-baseline justify-between gap-3">
+                        <h2
+                          className="font-mono text-sm font-bold uppercase tracking-[0.2em]"
+                          style={{ color: goal.color }}
+                        >
+                          {goal.exercise}
+                        </h2>
+                        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
+                          goal {goal.daily_target}/day
+                        </span>
+                      </header>
+                      <div className="overflow-x-auto">
+                        <StrengthHeatmap sets={sets} goal={goal} />
+                      </div>
+                      <div className="mt-5 border-t border-white/10 pt-4">
+                        <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
+                          Weekly volume · last 12 weeks
+                        </p>
+                        <div className="overflow-x-auto">
+                          <WeeklyVolumeChart sets={sets} goal={goal} />
+                        </div>
+                      </div>
+                      {/* Renders only once this exercise has grip-tagged sets
+                          (#254); otherwise it's null and the article ends at
+                          the volume chart. */}
+                      <VariantBreakdown sets={sets} goal={goal} />
+                    </article>
+                  ),
+                }))}
+                afterSections={
+                  pullupsGoal && bodyMass.length > 0 ? (
+                    <section className="mt-10">
+                      <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+                        Relative strength
+                      </h2>
+                      <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+                        Weekly pull-up volume (completed weeks) against morning bodyweight. Reps
+                        climbing while weight falls is improvement on two fronts at once.
+                      </p>
+                      <div className="mt-4 rounded-[1.2rem] border border-white/10 bg-white/5 p-5">
+                        <div className="overflow-x-auto">
+                          <StrengthVsBodyweightChart
+                            sets={sets}
+                            goal={pullupsGoal}
+                            bodyMass={bodyMass}
+                          />
+                        </div>
+                      </div>
+                    </section>
+                  ) : null
+                }
+                statsHeading={
+                  <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+                    Stats
+                  </h2>
+                }
+                statsSections={stats.map(stat => ({
+                  exercise: stat.exercise,
+                  node: <ExerciseStatCard stat={stat} />,
+                }))}
+              />
+            </Suspense>
 
             {(upperCells.length > 0 || lowerCells.length > 0) && (
               <section

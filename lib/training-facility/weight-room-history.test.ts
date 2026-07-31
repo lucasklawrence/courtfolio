@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
 
-import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import {
   buildStrengthHeatmap,
@@ -505,5 +505,92 @@ describe('effective-dated targets (#362)', () => {
     expect(streak).toEqual({ current: 2, longest: 2 })
     const [stats] = computeStrengthStats(sets, [PUSHUPS], new Date('2026-04-16T12:00:00'))
     expect(stats.targetChanges).toEqual([])
+  })
+})
+
+/**
+ * Focus-anchored exercises in the stats panel (#367). A focus's real bar is
+ * its rotation's `daily_target`, scoped to the window — not the anchor goal's
+ * scalar — so scoring has to run through the synthesized window history.
+ */
+describe('computeStrengthStats with focus rotations (#367)', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  /** Anchor goal for a focus exercise; its scalar deliberately differs from the window target. */
+  const SHRUGS_ANCHOR: ExerciseGoal = {
+    exercise: 'shrugs',
+    daily_target: 500,
+    color: '#C9A268',
+    kind: 'focus',
+  }
+
+  /** July shrugs at 100/day. */
+  const JULY_SHRUGS: MonthlyFocus = {
+    id: 'f1',
+    exercise: 'shrugs',
+    daily_target: 100,
+    target_kind: 'reps',
+    color: '#C9A268',
+    category: 'upper',
+    start_date: '2026-07-01',
+    end_date: '2026-07-31',
+  }
+
+  it('scores focus days against the window target, not the anchor scalar', () => {
+    // 100 reps clears the window's 100 target but not the anchor's 500. With
+    // the anchor scalar it would read as a miss.
+    const sets = [set('2026-07-15', 'shrugs', 100)]
+    const [stats] = computeStrengthStats(
+      sets,
+      [SHRUGS_ANCHOR],
+      new Date('2026-07-16T12:00:00'),
+      [JULY_SHRUGS],
+    )
+    expect(stats.longestStreak).toBe(1)
+  })
+
+  it('falls back to the anchor scalar when no focuses are supplied', () => {
+    const sets = [set('2026-07-15', 'shrugs', 100)]
+    const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-07-16T12:00:00'))
+    // 100 < the anchor's 500, so no hit day — the pre-#367 reading.
+    expect(stats.longestStreak).toBe(0)
+    expect(stats.focus).toBeUndefined()
+  })
+
+  it('attaches a campaign summary marked inactive once the window closes', () => {
+    const sets = [set('2026-07-15', 'shrugs', 100)]
+    const [stats] = computeStrengthStats(
+      sets,
+      [SHRUGS_ANCHOR],
+      new Date('2026-08-15T12:00:00'),
+      [JULY_SHRUGS],
+    )
+    expect(stats.focus?.isActive).toBe(false)
+    expect(stats.focus?.rotations).toBe(1)
+    expect(stats.focus?.campaignReps).toBe(100)
+  })
+
+  it('marks the campaign active while the window covers today', () => {
+    const [stats] = computeStrengthStats(
+      [set('2026-07-15', 'shrugs', 100)],
+      [SHRUGS_ANCHOR],
+      new Date('2026-07-20T12:00:00'),
+      [JULY_SHRUGS],
+    )
+    expect(stats.focus?.isActive).toBe(true)
+  })
+
+  it('leaves permanent goals untouched when focuses are supplied', () => {
+    const sets = [set('2026-04-15', 'pushups', 100), set('2026-04-16', 'pushups', 100)]
+    const [stats] = computeStrengthStats(
+      sets,
+      [PUSHUPS],
+      new Date('2026-04-16T12:00:00'),
+      [JULY_SHRUGS],
+    )
+    expect(stats.focus).toBeUndefined()
+    expect(stats.currentStreak).toBe(2)
   })
 })
