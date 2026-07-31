@@ -21,19 +21,12 @@ vi.mock('@/lib/auth/require-admin', () => ({
  * naming each step lets a test program exactly the one it cares about and
  * leave the rest on sensible defaults.
  */
-type QueryKind =
-  | 'existingGoal'
-  | 'insertGoal'
-  | 'upsertGoal'
-  | 'historyCount'
-  | 'historyUpsert'
-  | 'currentTarget'
+type QueryKind = 'existingGoal' | 'insertGoal' | 'upsertGoal' | 'historyRead' | 'historyUpsert'
 
-/** A Supabase-shaped result. `count` is only read by the history-count query. */
+/** A Supabase-shaped result. */
 interface QueryResult {
   data?: unknown
   error?: unknown
-  count?: number
 }
 
 /** Programmed responses per query kind; anything unset falls back to a benign default. */
@@ -45,9 +38,8 @@ const DEFAULTS: Record<QueryKind, QueryResult> = {
   existingGoal: { data: null, error: null },
   insertGoal: { data: null, error: null },
   upsertGoal: { data: null, error: null },
-  historyCount: { count: 1, error: null },
+  historyRead: { data: [], error: null },
   historyUpsert: { data: null, error: null },
-  currentTarget: { data: null, error: null },
 }
 
 /**
@@ -68,10 +60,9 @@ function makeChain(table: string) {
   }
 
   const chain = {
-    select: vi.fn((_cols?: unknown, opts?: { count?: string; head?: boolean }) => {
+    select: vi.fn(() => {
       if (kind === undefined) {
-        if (table === 'weight_room_goals') kind = 'existingGoal'
-        else kind = opts?.head === true ? 'historyCount' : 'currentTarget'
+        kind = table === 'weight_room_goals' ? 'existingGoal' : 'historyRead'
         record.kind = kind
       }
       return chain
@@ -135,6 +126,16 @@ function makeRequest(body: unknown): Request {
 describe('POST /api/admin/weight-room/goals', () => {
   const validGoal = { exercise: 'pushups', daily_target: 100, color: '#EA580C' }
 
+  /** Steady state for pushups: goal on file at 100, one matching history row. */
+  function pushupsOnFile() {
+    responses.existingGoal = { data: { exercise: 'pushups', daily_target: 100 }, error: null }
+    responses.historyRead = {
+      data: [{ daily_target: 100, effective_from: '2020-01-01' }],
+      error: null,
+    }
+    responses.upsertGoal = { data: validGoal, error: null }
+  }
+
   it('returns 401 when not signed in', async () => {
     requireAdminMock.mockResolvedValueOnce({
       ok: false,
@@ -162,6 +163,7 @@ describe('POST /api/admin/weight-room/goals', () => {
 
   it('returns 500 on unexpected Supabase errors', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    pushupsOnFile()
     responses.upsertGoal = { data: null, error: { code: 'XX001', message: 'data corruption' } }
     const res = await POST(makeRequest(validGoal) as never)
     expect(res.status).toBe(500)
@@ -169,9 +171,7 @@ describe('POST /api/admin/weight-room/goals', () => {
 
   it('returns 200 with the upserted row on success', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
-    responses.existingGoal = { data: { exercise: 'pushups', daily_target: 100 }, error: null }
-    responses.currentTarget = { data: { daily_target: 100 }, error: null }
-    responses.upsertGoal = { data: validGoal, error: null }
+    pushupsOnFile()
     const res = await POST(makeRequest(validGoal) as never)
     expect(res.status).toBe(200)
     const body = await res.json()
@@ -184,9 +184,7 @@ describe('POST /api/admin/weight-room/goals', () => {
 
   it('stamps updated_at so edits advance the row freshness', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
-    responses.existingGoal = { data: { exercise: 'pushups', daily_target: 100 }, error: null }
-    responses.currentTarget = { data: { daily_target: 100 }, error: null }
-    responses.upsertGoal = { data: validGoal, error: null }
+    pushupsOnFile()
     await POST(makeRequest(validGoal) as never)
     expect(callFor('upsertGoal')?.payload).toEqual(
       // Loose ISO-8601 check: starts with YYYY-MM-DD.
@@ -203,12 +201,18 @@ describe('POST /api/admin/weight-room/goals', () => {
       vi.setSystemTime(new Date('2026-08-15T19:00:00Z'))
     })
 
-    it('appends a history row dated today when the target changes', async () => {
+    /** Pullups on file at 30 with a single seed row — the common starting point. */
+    function pullupsAt30() {
       responses.existingGoal = { data: { exercise: 'pullups', daily_target: 30 }, error: null }
-      responses.historyCount = { count: 1, error: null }
-      responses.currentTarget = { data: { daily_target: 50 }, error: null }
+      responses.historyRead = {
+        data: [{ daily_target: 30, effective_from: '2020-01-01' }],
+        error: null,
+      }
       responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
+    }
 
+    it('appends a history row dated today when the target changes', async () => {
+      pullupsAt30()
       const res = await POST(
         makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
       )
@@ -226,11 +230,7 @@ describe('POST /api/admin/weight-room/goals', () => {
     })
 
     it('honours a backdated effective_from', async () => {
-      responses.existingGoal = { data: { exercise: 'pullups', daily_target: 30 }, error: null }
-      responses.historyCount = { count: 1, error: null }
-      responses.currentTarget = { data: { daily_target: 50 }, error: null }
-      responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
-
+      pullupsAt30()
       await POST(
         makeRequest({
           exercise: 'pullups',
@@ -241,6 +241,35 @@ describe('POST /api/admin/weight-room/goals', () => {
       )
       expect(callFor('historyUpsert')?.payload).toEqual([
         expect.objectContaining({ effective_from: '2026-08-01', daily_target: 50 }),
+      ])
+    })
+
+    it('appends a backdate whose value matches the current mirror', async () => {
+      // History says 30 until Aug 10, then 50 — so the mirror reads 50.
+      // "The 50 actually started Aug 1" must still append, even though the
+      // payload target equals the mirror. Gating on the mirror dropped this
+      // silently and returned 200, defeating the point of backdating.
+      responses.existingGoal = { data: { exercise: 'pullups', daily_target: 50 }, error: null }
+      responses.historyRead = {
+        data: [
+          { daily_target: 30, effective_from: '2020-01-01' },
+          { daily_target: 50, effective_from: '2026-08-10' },
+        ],
+        error: null,
+      }
+      responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
+
+      const res = await POST(
+        makeRequest({
+          exercise: 'pullups',
+          daily_target: 50,
+          color: '#0EA5A1',
+          effective_from: '2026-08-01',
+        }) as never,
+      )
+      expect(res.status).toBe(200)
+      expect(callFor('historyUpsert')?.payload).toEqual([
+        expect.objectContaining({ daily_target: 50, effective_from: '2026-08-01' }),
       ])
     })
 
@@ -260,10 +289,7 @@ describe('POST /api/admin/weight-room/goals', () => {
     })
 
     it('does not append history for a colour-only edit', async () => {
-      responses.existingGoal = { data: { exercise: 'pullups', daily_target: 30 }, error: null }
-      responses.currentTarget = { data: { daily_target: 30 }, error: null }
-      responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
-
+      pullupsAt30()
       const res = await POST(
         makeRequest({ exercise: 'pullups', daily_target: 30, color: '#123456' }) as never,
       )
@@ -273,8 +299,7 @@ describe('POST /api/admin/weight-room/goals', () => {
 
     it('seeds a baseline row when an existing goal has no history yet', async () => {
       responses.existingGoal = { data: { exercise: 'pullups', daily_target: 30 }, error: null }
-      responses.historyCount = { count: 0, error: null }
-      responses.currentTarget = { data: { daily_target: 50 }, error: null }
+      responses.historyRead = { data: [], error: null }
       responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
 
       await POST(
@@ -288,13 +313,31 @@ describe('POST /api/admin/weight-room/goals', () => {
       ])
     })
 
+    it('repairs a history-less goal even when the target is unchanged', async () => {
+      // Reachable after a create whose history write failed: the goal row
+      // exists, history does not, and a retry with the same payload would
+      // never append under change-gated logic — leaving the goal permanently
+      // without history.
+      responses.existingGoal = { data: { exercise: 'pullups', daily_target: 50 }, error: null }
+      responses.historyRead = { data: [], error: null }
+      responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
+
+      await POST(
+        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
+      )
+      expect(callFor('historyUpsert')?.payload).toEqual([
+        expect.objectContaining({ daily_target: 50, effective_from: '1970-01-01' }),
+      ])
+    })
+
     it('seeds history for a brand-new goal', async () => {
       responses.existingGoal = { data: null, error: null }
-      responses.currentTarget = { data: { daily_target: 40 }, error: null }
+      responses.historyRead = { data: [], error: null }
       responses.upsertGoal = { data: { exercise: 'dips' }, error: null }
 
       await POST(makeRequest({ exercise: 'dips', daily_target: 40, color: '#123456' }) as never)
       expect(callFor('insertGoal')).toBeDefined()
+      // No retroactive baseline — a brand-new goal has no past to protect.
       expect(callFor('historyUpsert')?.payload).toEqual([
         expect.objectContaining({ daily_target: 40, effective_from: '2026-08-15' }),
       ])
@@ -302,10 +345,15 @@ describe('POST /api/admin/weight-room/goals', () => {
 
     it('mirrors the resolved current target, not the payload, when backdating behind a newer entry', async () => {
       responses.existingGoal = { data: { exercise: 'pullups', daily_target: 50 }, error: null }
-      responses.historyCount = { count: 2, error: null }
       // A newer entry (50, effective Aug 10) already governs today, so
       // backdating a 40 to Aug 1 must leave the mirror at 50.
-      responses.currentTarget = { data: { daily_target: 50 }, error: null }
+      responses.historyRead = {
+        data: [
+          { daily_target: 30, effective_from: '2020-01-01' },
+          { daily_target: 50, effective_from: '2026-08-10' },
+        ],
+        error: null,
+      }
       responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
 
       await POST(
@@ -321,9 +369,18 @@ describe('POST /api/admin/weight-room/goals', () => {
       )
     })
 
+    it('advances the mirror when the change is the newest entry', async () => {
+      pullupsAt30()
+      await POST(
+        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
+      )
+      expect(callFor('upsertGoal')?.payload).toEqual(
+        expect.objectContaining({ daily_target: 50 }),
+      )
+    })
+
     it('returns 500 and writes no mirror when the history write fails', async () => {
-      responses.existingGoal = { data: { exercise: 'pullups', daily_target: 30 }, error: null }
-      responses.historyCount = { count: 1, error: null }
+      pullupsAt30()
       responses.historyUpsert = { data: null, error: { message: 'conflict' } }
 
       const res = await POST(
@@ -333,6 +390,17 @@ describe('POST /api/admin/weight-room/goals', () => {
       // History is written first precisely so a failure here leaves the goal
       // row untouched rather than half-applied.
       expect(callFor('upsertGoal')).toBeUndefined()
+    })
+
+    it('returns 500 when the history read fails', async () => {
+      responses.existingGoal = { data: { exercise: 'pullups', daily_target: 30 }, error: null }
+      responses.historyRead = { data: null, error: { message: 'unavailable' } }
+
+      const res = await POST(
+        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
+      )
+      expect(res.status).toBe(500)
+      expect(callFor('historyUpsert')).toBeUndefined()
     })
   })
 })

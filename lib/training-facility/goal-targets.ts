@@ -190,12 +190,17 @@ export function formatGoalTargetChange(change: GoalTargetChange): string {
  * be shifted backwards by the viewer's UTC offset — the same guard
  * `formatFocusWindow` uses. Falls back to the raw key if it won't parse.
  *
+ * Pinned to `en-US` rather than the ambient locale: this label sits beside
+ * `describeCell`'s already-`en-US` tooltip on the same chart, so an ambient
+ * locale would let the two disagree on the same date — and it would make the
+ * rendered string depend on the test runner's locale.
+ *
  * @param change The change whose effective date to label.
  */
 export function formatGoalTargetDate(change: GoalTargetChange): string {
   const d = new Date(change.effective_from + 'T12:00:00')
   if (!Number.isFinite(d.getTime())) return change.effective_from
-  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
 /**

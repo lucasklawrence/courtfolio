@@ -115,9 +115,9 @@ interface MovementMetrics {
   sets: { day: string; reps: number; load: number; tonnage: number }[]
   /**
    * Day keys that met the daily target, ascending — the `'streak'` scope's
-   * source. For a single exercise that's `reps >= its goal.daily_target`; for
-   * the pooled ladder it's any day where *at least one* exercise hit its own
-   * target.
+   * source. For a single exercise that's `reps >=` the target in effect *on
+   * that day* (#362), not the goal's current one; for the pooled ladder it's
+   * any day where *at least one* exercise hit its own target for that day.
    */
   hitDays: string[]
 }
