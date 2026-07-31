@@ -4,11 +4,12 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
+import { ExerciseFilterChips } from '@/components/training-facility/weight-room/ExerciseFilterChips'
 import { FocusLaneHeatmap } from '@/components/training-facility/weight-room/FocusLaneHeatmap'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
 import { PastFocusCard } from '@/components/training-facility/weight-room/PastFocusCard'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
-import { StrengthStats } from '@/components/training-facility/weight-room/StrengthStats'
+import { ExerciseStatCard } from '@/components/training-facility/weight-room/StrengthStats'
 import { StrengthVsBodyweightChart } from '@/components/training-facility/weight-room/StrengthVsBodyweightChart'
 import { VariantBreakdown } from '@/components/training-facility/weight-room/VariantBreakdown'
 import { WeeklyVolumeChart } from '@/components/training-facility/weight-room/WeeklyVolumeChart'
@@ -17,7 +18,12 @@ import { isAdminRequest } from '@/lib/auth/admin-session'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
+import {
+  EXERCISE_FILTER_PARAM,
+  parseExerciseSelection,
+} from '@/lib/training-facility/exercise-filter'
 import { buildMovementLoads, pacificDayKey } from '@/lib/training-facility/load-management'
+import { TRAINING_FACILITY_PREVIEW_PARAM } from '@/lib/training-facility/preview-param'
 import {
   buildFocusLaneCells,
   computeFocusAdherence,
@@ -44,8 +50,26 @@ import type { ExerciseGoal } from '@/types/weight-room'
  * one heatmap per *goal*, not per encountered exercise — matching how
  * the Settings page treats goals as the source of truth.
  */
-export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
+/** Route the filter chips link back to. */
+const HISTORY_PATH = '/training-facility/weight-room/history'
+
+/**
+ * Query params the filter chips must preserve when toggling. Only the
+ * Training-Facility preview flag today — an allowlist rather than a
+ * pass-through so a chip href can't be turned into an open redirect vector by
+ * an arbitrary param riding along.
+ */
+const CARRIED_PARAMS = [TRAINING_FACILITY_PREVIEW_PARAM] as const
+
+export default async function WeightRoomHistoryPage({
+  searchParams,
+}: {
+  /** Next 15 passes search params as a promise. */
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}): Promise<JSX.Element> {
   if (!isWeightRoomEnabled()) notFound()
+
+  const params = await searchParams
 
   // Catch transient read errors so a flaky Supabase response surfaces
   // as the empty-state copy rather than 500ing the whole page. Mirrors
@@ -70,7 +94,30 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
   // shows their history instead.
   const permanentGoals = goals.filter((g) => g.kind !== 'focus')
 
-  const stats = computeStrengthStats(sets, permanentGoals)
+  // Stats cover *every* exercise including focus anchors (#367). The heatmap
+  // exclusion above is about empty year-long grids, which the stats panel
+  // doesn't have — leaving focuses out of it only hid their streaks and
+  // totals for no benefit. Passing `focuses` scores their days against the
+  // rotation's target rather than the anchor's scalar.
+  const stats = computeStrengthStats(sets, goals, new Date(), focuses)
+
+  // Filtering happens here, on the server (#367). The route is dynamic
+  // already — `isAdminRequest()` reads cookies — so resolving the selection
+  // from the URL costs nothing and means a *linked* filtered view paints
+  // correctly on first byte, with no flash of everything before narrowing and
+  // no dependence on JS having loaded.
+  const filterable = goals.map(g => g.exercise)
+  const selectedExercises = parseExerciseSelection(params[EXERCISE_FILTER_PARAM], filterable)
+  const selectedSet = new Set(selectedExercises)
+  const visibleGoals = permanentGoals.filter(g => selectedSet.has(g.exercise))
+  const visibleStats = stats.filter(s => selectedSet.has(s.exercise))
+
+  const carryParams: Record<string, string> = {}
+  for (const key of CARRIED_PARAMS) {
+    const raw = params[key]
+    const value = Array.isArray(raw) ? raw[0] : raw
+    if (typeof value === 'string' && value !== '') carryParams[key] = value
+  }
   const loads = buildMovementLoads(sets, goals)
   const bodyMass = cardio?.body_mass_trend ?? []
 
@@ -187,45 +234,65 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
               </section>
             )}
 
-            <section
-              aria-label="Per-exercise heatmaps"
-              data-testid="weight-room-heatmaps"
-              className="mt-10 space-y-8"
-            >
-              {permanentGoals.map(goal => (
-                <article
-                  key={goal.exercise}
-                  className="rounded-[1.2rem] border border-white/10 bg-white/5 p-5"
-                >
-                  <header className="mb-4 flex items-baseline justify-between gap-3">
-                    <h2
-                      className="font-mono text-sm font-bold uppercase tracking-[0.2em]"
-                      style={{ color: goal.color }}
-                    >
-                      {goal.exercise}
-                    </h2>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
-                      goal {goal.daily_target}/day
-                    </span>
-                  </header>
-                  <div className="overflow-x-auto">
-                    <StrengthHeatmap sets={sets} goal={goal} />
-                  </div>
-                  <div className="mt-5 border-t border-white/10 pt-4">
-                    <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
-                      Weekly volume · last 12 weeks
-                    </p>
+            <ExerciseFilterChips
+              exercises={goals.map(goal => ({
+                exercise: goal.exercise,
+                color: goal.color,
+                isFocus: goal.kind === 'focus',
+              }))}
+              selected={selectedExercises}
+              pathname={HISTORY_PATH}
+              carryParams={carryParams}
+            />
+
+            {visibleGoals.length > 0 ? (
+              <section
+                aria-label="Per-exercise heatmaps"
+                data-testid="weight-room-heatmaps"
+                className="mt-10 space-y-8"
+              >
+                {visibleGoals.map(goal => (
+                  <article
+                    key={goal.exercise}
+                    className="rounded-[1.2rem] border border-white/10 bg-white/5 p-5"
+                  >
+                    <header className="mb-4 flex items-baseline justify-between gap-3">
+                      <h2
+                        className="font-mono text-sm font-bold uppercase tracking-[0.2em]"
+                        style={{ color: goal.color }}
+                      >
+                        {goal.exercise}
+                      </h2>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
+                        goal {goal.daily_target}/day
+                      </span>
+                    </header>
                     <div className="overflow-x-auto">
-                      <WeeklyVolumeChart sets={sets} goal={goal} />
+                      <StrengthHeatmap sets={sets} goal={goal} />
                     </div>
-                  </div>
-                  {/* Renders only once this exercise has grip-tagged sets
-                      (#254); otherwise it's null and the article ends at
-                      the volume chart. */}
-                  <VariantBreakdown sets={sets} goal={goal} />
-                </article>
-              ))}
-            </section>
+                    <div className="mt-5 border-t border-white/10 pt-4">
+                      <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
+                        Weekly volume · last 12 weeks
+                      </p>
+                      <div className="overflow-x-auto">
+                        <WeeklyVolumeChart sets={sets} goal={goal} />
+                      </div>
+                    </div>
+                    {/* Renders only once this exercise has grip-tagged sets
+                        (#254); otherwise it's null and the article ends at
+                        the volume chart. */}
+                    <VariantBreakdown sets={sets} goal={goal} />
+                  </article>
+                ))}
+              </section>
+            ) : (
+              <p
+                data-testid="exercise-filter-empty"
+                className="mt-10 rounded-[1.2rem] border border-white/10 bg-white/5 p-6 text-center text-sm text-[#e8d5be]/70"
+              >
+                No exercises selected — pick one above to see its heatmap and stats.
+              </p>
+            )}
 
             {pullupsGoal && bodyMass.length > 0 && (
               <section className="mt-10">
@@ -244,14 +311,18 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
               </section>
             )}
 
-            <section className="mt-10">
-              <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
-                Stats
-              </h2>
-              <div className="mt-4">
-                <StrengthStats stats={stats} />
-              </div>
-            </section>
+            {visibleStats.length > 0 && (
+              <section className="mt-10">
+                <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+                  Stats
+                </h2>
+                <div className="mt-4 grid gap-4 md:grid-cols-2">
+                  {visibleStats.map(stat => (
+                    <ExerciseStatCard key={stat.exercise} stat={stat} />
+                  ))}
+                </div>
+              </section>
+            )}
 
             {(upperCells.length > 0 || lowerCells.length > 0) && (
               <section

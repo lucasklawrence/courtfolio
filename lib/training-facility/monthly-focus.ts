@@ -435,3 +435,165 @@ export function buildFocusLaneCells(
 
   return cells
 }
+
+/**
+ * Derive an effective-dated target history for a focus-anchored exercise from
+ * its rotation windows (#367).
+ *
+ * A focus carries its own {@link MonthlyFocus.daily_target} scoped to
+ * `[start_date, end_date]`, which is why focuses accidentally dodged the
+ * re-scoring bug that #362 fixed for permanent goals. But the anchor
+ * {@link import('@/types/weight-room').ExerciseGoal} still holds a single
+ * scalar, so scoring a focus exercise through the normal rollups would use
+ * that scalar for every day — wrong the moment two rotations of the same
+ * exercise use different targets (July shrugs at 100, October at 150).
+ *
+ * Emitting one point per window start lets the focus exercise flow through
+ * {@link import('./goal-targets').targetForDay} like any other goal, so there
+ * is one resolution path rather than a parallel focus-only one.
+ *
+ * Days *between* windows resolve to the preceding window's target — an
+ * off-campaign set still has a bar to clear, and the most recent campaign's is
+ * the honest one. Days before the first window fall back to the earliest
+ * target via `targetForDay`'s own before-first guard.
+ *
+ * **`target_kind: 'sets'` windows are excluded.** Their target counts distinct
+ * sets, not reps, and every consumer of this history compares it against a
+ * daily *rep* total — a 3-sets/day target would be satisfied by a single
+ * 20-rep set. Omitting them means such a focus falls back to its anchor goal's
+ * scalar (the pre-#367 reading) rather than being scored against the wrong
+ * unit. `'sets'` is modeled but unused today; wiring it up needs a set-count
+ * rollup, not a target here.
+ *
+ * @param focuses All configured focuses, usually `WeightRoomData.monthly_focus`.
+ * @param exercise Exercise name to filter to.
+ */
+export function focusTargetHistory(
+  focuses: readonly MonthlyFocus[],
+  exercise: string,
+): { daily_target: number; effective_from: string }[] {
+  return focuses
+    .filter(
+      (focus) =>
+        focus.exercise === exercise &&
+        focus.daily_target > 0 &&
+        focus.target_kind !== 'sets',
+    )
+    .map((focus) => ({
+      daily_target: focus.daily_target,
+      effective_from: focus.start_date,
+    }))
+    .sort((a, b) =>
+      a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0,
+    )
+}
+
+/**
+ * Campaign-scoped rollup for one focus-anchored exercise, aggregated across
+ * *every* rotation it has run (#367).
+ *
+ * The stats panel is keyed by exercise, so shrugs gets one card no matter how
+ * many times it has been the focus; per-window detail already lives in the GTG
+ * section's `PastFocusCard`s and isn't restated here. Aggregating means "26 of
+ * 31 days" becomes "52 of 62 days" once a second rotation runs, which is the
+ * reading that matches an all-time streak sitting beside it.
+ */
+export interface FocusCampaignSummary {
+  /**
+   * Where this exercise's rotation sits relative to today:
+   *
+   * - `'active'` — a window covers today.
+   * - `'upcoming'` — every window starts in the future. A scheduled campaign
+   *   is a supported roadmap state (see `upcomingFocuses`), and must not be
+   *   rendered as a finished one: it has zero elapsed days, so campaign-scoped
+   *   cells would read a meaningless `0/0`.
+   * - `'ended'` — the most recent window has closed.
+   */
+  status: 'active' | 'upcoming' | 'ended'
+  /**
+   * Whether a window covers today. Convenience mirror of
+   * `status === 'active'`.
+   */
+  isActive: boolean
+  /** How many rotations this exercise has had. */
+  rotations: number
+  /** Days hit, summed across every rotation's elapsed days. */
+  daysHit: number
+  /** Elapsed days, summed across every rotation — the denominator for adherence. */
+  daysElapsed: number
+  /** Reps logged inside any rotation window. Excludes off-campaign sets. */
+  campaignReps: number
+  /** Human window label for the most recent rotation, e.g. `Jul 1 – Jul 31`. */
+  latestWindowLabel: string
+}
+
+/**
+ * Summarize every rotation of one exercise into a {@link FocusCampaignSummary}.
+ *
+ * Returns `null` when the exercise has no focus windows, so a caller can treat
+ * "not a focus" and "a focus with no campaigns yet" the same way — neither
+ * should render focus chrome.
+ *
+ * @param focuses All configured focuses.
+ * @param exercise Exercise name to summarize.
+ * @param sets All logged sets; filtered to `exercise` and to window days.
+ * @param now Clock for "today"; defaults to `new Date()`. Threaded from the
+ *   caller so one fixed clock drives every rollup in a stats payload.
+ */
+export function summarizeFocusCampaigns(
+  focuses: readonly MonthlyFocus[],
+  exercise: string,
+  sets: readonly StrengthSet[],
+  now: Date = new Date(),
+): FocusCampaignSummary | null {
+  const windows = focuses
+    .filter((focus) => focus.exercise === exercise)
+    .sort((a, b) =>
+      a.start_date < b.start_date ? -1 : a.start_date > b.start_date ? 1 : 0,
+    )
+  if (windows.length === 0) return null
+
+  const today = pacificDayKey(now)
+  let daysHit = 0
+  let daysElapsed = 0
+  let isActive = false
+
+  for (const focus of windows) {
+    const adherence = computeFocusAdherence(focus, sets, now)
+    daysHit += adherence.daysHit
+    daysElapsed += adherence.daysElapsed
+    if (isFocusActiveOnDay(focus, today)) isActive = true
+  }
+
+  // Reps inside *any* window. Counted once per set even if windows overlap —
+  // two concurrent lanes are different exercises, so an overlap here would be
+  // two rotations of the same movement, and double-counting a shared day would
+  // overstate the campaign total.
+  let campaignReps = 0
+  for (const s of sets) {
+    if (s.exercise !== exercise) continue
+    const day = safePacificDayKey(s.logged_at)
+    if (day === '') continue
+    if (windows.some((focus) => isFocusActiveOnDay(focus, day))) campaignReps += s.reps
+  }
+
+  // "Upcoming" is every window still ahead of today — distinct from "ended",
+  // which a bare `!isActive` would conflate, and which would render a
+  // scheduled campaign as a finished one with `0/0` days hit.
+  const allUpcoming = today !== '' && windows.every((focus) => today < focus.start_date)
+  const status: FocusCampaignSummary['status'] = isActive
+    ? 'active'
+    : allUpcoming
+      ? 'upcoming'
+      : 'ended'
+
+  return {
+    status,
+    isActive,
+    rotations: windows.length,
+    daysHit,
+    daysElapsed,
+    campaignReps,
+    latestWindowLabel: formatFocusWindow(windows[windows.length - 1]),
+  }
+}
