@@ -47,6 +47,16 @@ export function StrengthStats({ stats }: StrengthStatsProps): JSX.Element {
   )
 }
 
+/**
+ * Tooltip copy for the `GTG` badge, per rotation status. Spelled out rather
+ * than derived so a scheduled campaign doesn't read as a finished one.
+ */
+const FOCUS_STATUS_LABEL: Record<'active' | 'upcoming' | 'ended', string> = {
+  active: 'Active grease-the-groove rotation',
+  upcoming: 'Upcoming grease-the-groove rotation',
+  ended: 'Past grease-the-groove rotation',
+}
+
 /** Props for {@link ExerciseStatCard}. */
 export interface ExerciseStatCardProps {
   /** The pre-computed rollup for one exercise. */
@@ -61,11 +71,14 @@ export interface ExerciseStatCardProps {
  */
 export function ExerciseStatCard({ stat }: ExerciseStatCardProps): JSX.Element {
   const isStreaking = stat.currentStreak > 0
-  // A rotation that has ended reports 0 reps this week and this month —
+  // A rotation that has *ended* reports 0 reps this week and this month —
   // true, but a useless reading of a campaign that closed in July. Swap those
-  // two cells for the campaign-scoped numbers instead (#367). A *live*
-  // rotation keeps them, because there they still say something.
-  const closedCampaign = stat.focus !== undefined && !stat.focus.isActive
+  // two cells for the campaign-scoped numbers instead (#367).
+  //
+  // Keyed on `status === 'ended'`, not `!isActive`: an *upcoming* campaign is
+  // also inactive but has zero elapsed days, so it would render a meaningless
+  // "0/0 days hit". A scheduled rotation keeps the ordinary cells.
+  const closedCampaign = stat.focus?.status === 'ended'
   return (
     <article
       data-testid={`strength-stat-card-${stat.exercise}`}
@@ -81,11 +94,7 @@ export function ExerciseStatCard({ stat }: ExerciseStatCardProps): JSX.Element {
             <span
               data-testid={`strength-stat-focus-badge-${stat.exercise}`}
               className="rounded-full border border-current px-1.5 py-0.5 text-[8px] tracking-[0.18em] opacity-80"
-              title={
-                stat.focus.isActive
-                  ? 'Active grease-the-groove rotation'
-                  : 'Past grease-the-groove rotation'
-              }
+              title={FOCUS_STATUS_LABEL[stat.focus.status]}
             >
               GTG
             </span>

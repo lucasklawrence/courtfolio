@@ -134,6 +134,7 @@ describe('StrengthStats — goal changes (#362)', () => {
 describe('StrengthStats — focus rotations (#367)', () => {
   /** Campaign summary for a rotation that has ended. */
   const CLOSED_FOCUS = {
+    status: 'ended' as const,
     isActive: false,
     rotations: 1,
     daysHit: 26,
@@ -179,7 +180,7 @@ describe('StrengthStats — focus rotations (#367)', () => {
           {
             ...SHRUGS_STATS,
             thisWeekReps: 380,
-            focus: { ...CLOSED_FOCUS, isActive: true },
+            focus: { ...CLOSED_FOCUS, status: 'active' as const, isActive: true },
           },
         ]}
       />,
@@ -201,5 +202,49 @@ describe('StrengthStats — focus rotations (#367)', () => {
     const { queryByTestId, getByTestId } = render(<StrengthStats stats={[PUSHUP_STATS]} />)
     expect(queryByTestId('strength-stat-focus-badge-pushups')).toBeNull()
     expect(getByTestId('strength-stat-card-pushups')).toHaveTextContent('this week')
+  })
+})
+
+describe('StrengthStats — upcoming rotations (#367 review)', () => {
+  /** A scheduled campaign: inactive, but nothing has elapsed yet. */
+  const UPCOMING_FOCUS = {
+    status: 'upcoming' as const,
+    isActive: false,
+    rotations: 1,
+    daysHit: 0,
+    daysElapsed: 0,
+    campaignReps: 0,
+    latestWindowLabel: 'Oct 1 – Oct 31',
+  }
+
+  it('does not render a scheduled rotation as a finished one', () => {
+    const { getByTestId } = render(
+      <StrengthStats
+        stats={[
+          {
+            ...PUSHUP_STATS,
+            exercise: 'calf-raises',
+            thisWeekReps: 0,
+            focus: UPCOMING_FOCUS,
+          },
+        ]}
+      />,
+    )
+    const card = getByTestId('strength-stat-card-calf-raises')
+    // A bare `!isActive` check would swap in campaign cells here and show a
+    // meaningless "0/0 days hit" for a campaign that hasn't started.
+    expect(card).not.toHaveTextContent('days hit')
+    expect(card).toHaveTextContent('this week')
+    expect(card).toHaveTextContent('Oct 1 – Oct 31')
+  })
+
+  it('labels the badge as upcoming rather than past', () => {
+    const { getByTestId } = render(
+      <StrengthStats stats={[{ ...PUSHUP_STATS, focus: UPCOMING_FOCUS }]} />,
+    )
+    expect(getByTestId('strength-stat-focus-badge-pushups')).toHaveAttribute(
+      'title',
+      'Upcoming grease-the-groove rotation',
+    )
   })
 })

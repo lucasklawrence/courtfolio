@@ -1,6 +1,11 @@
 import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
-import { type GoalTargetChange, goalTargetChanges, targetResolverFor } from './goal-targets'
+import {
+  type GoalTargetChange,
+  goalTargetChanges,
+  targetForDay,
+  targetResolverFor,
+} from './goal-targets'
 import {
   type FocusCampaignSummary,
   focusTargetHistory,
@@ -84,10 +89,15 @@ export interface StrengthExerciseStats {
   exercise: string
   /** Hex color from the matching {@link ExerciseGoal.color}. */
   color: string
-  /**
-   * The goal's *current* daily target — what the panel labels the exercise
-   * with today. Historical rollups on this same object (the streaks) resolve
-   * their own per-day targets and do NOT divide by this (#362); read
+   /**
+   * The daily target in effect today — what the panel labels the exercise
+   * with. For a focus-anchored exercise this is the *rotation's* target, not
+   * the anchor goal's scalar (#367): labelling a shrugs card "goal 500/day"
+   * beside a streak that counts 100-rep days as hits is a straight
+   * contradiction.
+   *
+   * Historical rollups on this same object (the streaks) resolve their own
+   * per-day targets and do NOT divide by this (#362); read
    * {@link targetChanges} for where the bar moved.
    */
   dailyTarget: number
@@ -482,7 +492,10 @@ export function computeStrengthStats(
     return {
       exercise: goal.exercise,
       color: goal.color,
-      dailyTarget: goal.daily_target,
+      // Resolved through `scoringGoal` so the label and the streak agree. For
+      // a permanent goal this is just today's target; for a focus it's the
+      // rotation's, falling back to the anchor scalar when no window applies.
+      dailyTarget: targetForDay(scoringGoal, toDateKey(now)),
       currentStreak: streak.current,
       longestStreak: streak.longest,
       thisWeekReps,

@@ -594,3 +594,55 @@ describe('computeStrengthStats with focus rotations (#367)', () => {
     expect(stats.currentStreak).toBe(2)
   })
 })
+
+describe('computeStrengthStats — focus dailyTarget label (#367 review)', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  const SHRUGS_ANCHOR: ExerciseGoal = {
+    exercise: 'shrugs',
+    daily_target: 500,
+    color: '#C9A268',
+    kind: 'focus',
+  }
+
+  const JULY_SHRUGS: MonthlyFocus = {
+    id: 'f1',
+    exercise: 'shrugs',
+    daily_target: 100,
+    target_kind: 'reps',
+    color: '#C9A268',
+    category: 'upper',
+    start_date: '2026-07-01',
+    end_date: '2026-07-31',
+  }
+
+  it('labels the card with the rotation target, not the anchor scalar', () => {
+    // Otherwise the card reads "goal 500/day" beside a streak that counts
+    // 100-rep days as hits — a straight contradiction.
+    const [stats] = computeStrengthStats(
+      [set('2026-07-15', 'shrugs', 100)],
+      [SHRUGS_ANCHOR],
+      new Date('2026-07-20T12:00:00'),
+      [JULY_SHRUGS],
+    )
+    expect(stats.dailyTarget).toBe(100)
+    expect(stats.longestStreak).toBe(1)
+  })
+
+  it('keeps the anchor scalar when no rotation applies', () => {
+    const [stats] = computeStrengthStats(
+      [],
+      [SHRUGS_ANCHOR],
+      new Date('2026-07-20T12:00:00'),
+      [],
+    )
+    expect(stats.dailyTarget).toBe(500)
+  })
+
+  it('leaves a permanent goal labelled with its own current target', () => {
+    const [stats] = computeStrengthStats([], [PUSHUPS], new Date('2026-07-20T12:00:00'), [])
+    expect(stats.dailyTarget).toBe(100)
+  })
+})

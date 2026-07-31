@@ -457,6 +457,14 @@ export function buildFocusLaneCells(
  * the honest one. Days before the first window fall back to the earliest
  * target via `targetForDay`'s own before-first guard.
  *
+ * **`target_kind: 'sets'` windows are excluded.** Their target counts distinct
+ * sets, not reps, and every consumer of this history compares it against a
+ * daily *rep* total — a 3-sets/day target would be satisfied by a single
+ * 20-rep set. Omitting them means such a focus falls back to its anchor goal's
+ * scalar (the pre-#367 reading) rather than being scored against the wrong
+ * unit. `'sets'` is modeled but unused today; wiring it up needs a set-count
+ * rollup, not a target here.
+ *
  * @param focuses All configured focuses, usually `WeightRoomData.monthly_focus`.
  * @param exercise Exercise name to filter to.
  */
@@ -465,7 +473,12 @@ export function focusTargetHistory(
   exercise: string,
 ): { daily_target: number; effective_from: string }[] {
   return focuses
-    .filter((focus) => focus.exercise === exercise && focus.daily_target > 0)
+    .filter(
+      (focus) =>
+        focus.exercise === exercise &&
+        focus.daily_target > 0 &&
+        focus.target_kind !== 'sets',
+    )
     .map((focus) => ({
       daily_target: focus.daily_target,
       effective_from: focus.start_date,
@@ -486,7 +499,21 @@ export function focusTargetHistory(
  * reading that matches an all-time streak sitting beside it.
  */
 export interface FocusCampaignSummary {
-  /** Whether any of this exercise's windows covers today. */
+  /**
+   * Where this exercise's rotation sits relative to today:
+   *
+   * - `'active'` — a window covers today.
+   * - `'upcoming'` — every window starts in the future. A scheduled campaign
+   *   is a supported roadmap state (see `upcomingFocuses`), and must not be
+   *   rendered as a finished one: it has zero elapsed days, so campaign-scoped
+   *   cells would read a meaningless `0/0`.
+   * - `'ended'` — the most recent window has closed.
+   */
+  status: 'active' | 'upcoming' | 'ended'
+  /**
+   * Whether a window covers today. Convenience mirror of
+   * `status === 'active'`.
+   */
   isActive: boolean
   /** How many rotations this exercise has had. */
   rotations: number
@@ -550,7 +577,18 @@ export function summarizeFocusCampaigns(
     if (windows.some((focus) => isFocusActiveOnDay(focus, day))) campaignReps += s.reps
   }
 
+  // "Upcoming" is every window still ahead of today — distinct from "ended",
+  // which a bare `!isActive` would conflate, and which would render a
+  // scheduled campaign as a finished one with `0/0` days hit.
+  const allUpcoming = today !== '' && windows.every((focus) => today < focus.start_date)
+  const status: FocusCampaignSummary['status'] = isActive
+    ? 'active'
+    : allUpcoming
+      ? 'upcoming'
+      : 'ended'
+
   return {
+    status,
     isActive,
     rotations: windows.length,
     daysHit,

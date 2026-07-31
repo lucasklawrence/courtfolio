@@ -513,3 +513,79 @@ describe('summarizeFocusCampaigns', () => {
     expect(summary?.campaignReps).toBe(140)
   })
 })
+
+/** Review fixes on #367: sets-targets, and upcoming vs ended. */
+describe('focusTargetHistory — set-based targets (#367 review)', () => {
+  it('excludes a sets-target window so a rep total is never compared against it', () => {
+    // 3 sets/day fed into the rep-based streak path would be satisfied by a
+    // single 20-rep set. Better to omit and fall back to the anchor scalar.
+    const setsFocus: MonthlyFocus = { ...JULY_SHRUGS, target_kind: 'sets', daily_target: 3 }
+    expect(focusTargetHistory([setsFocus], 'shrugs')).toEqual([])
+  })
+
+  it('keeps rep-target windows alongside an excluded sets one', () => {
+    const setsFocus: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: '66666666-6666-4666-8666-666666666666',
+      target_kind: 'sets',
+      daily_target: 3,
+      start_date: '2026-09-01',
+      end_date: '2026-09-30',
+    }
+    expect(focusTargetHistory([JULY_SHRUGS, setsFocus], 'shrugs')).toEqual([
+      { daily_target: 100, effective_from: '2026-07-01' },
+    ])
+  })
+})
+
+describe('summarizeFocusCampaigns — status (#367 review)', () => {
+  it('reports a scheduled campaign as upcoming, not ended', () => {
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS],
+      'shrugs',
+      [],
+      new Date('2026-06-01T19:00:00Z'),
+    )
+    expect(summary?.status).toBe('upcoming')
+    expect(summary?.isActive).toBe(false)
+    expect(summary?.daysElapsed).toBe(0)
+  })
+
+  it('reports an in-window campaign as active', () => {
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS],
+      'shrugs',
+      [],
+      new Date('2026-07-10T19:00:00Z'),
+    )
+    expect(summary?.status).toBe('active')
+  })
+
+  it('reports a finished campaign as ended', () => {
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS],
+      'shrugs',
+      [],
+      new Date('2026-08-10T19:00:00Z'),
+    )
+    expect(summary?.status).toBe('ended')
+  })
+
+  it('treats a past rotation plus a scheduled one as ended, not upcoming', () => {
+    const october: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: '77777777-7777-4777-8777-777777777777',
+      start_date: '2026-10-01',
+      end_date: '2026-10-31',
+    }
+    // July has run, October hasn't — "every window is ahead of today" is false,
+    // so this is a rotation with history rather than a purely scheduled one.
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS, october],
+      'shrugs',
+      [],
+      new Date('2026-08-10T19:00:00Z'),
+    )
+    expect(summary?.status).toBe('ended')
+  })
+})
