@@ -1,7 +1,8 @@
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
+import { pacificDayKey, safePacificDayKey } from './day-keys'
 import { targetResolverFor } from './goal-targets'
-import { toLocalDateKey } from './strength-today'
+import { type StreakCounts, streakFromDailyReps } from './hit-day-streaks'
 
 /**
  * Per-exercise streak result, mirrored on
@@ -11,30 +12,12 @@ import { toLocalDateKey } from './strength-today'
  * effect *on that day*, resolved from the goal's effective-dated history
  * (#362) — so raising or lowering a target never re-scores days already
  * completed.
+ *
+ * Structurally identical to {@link StreakCounts}, which is what the shared
+ * computation returns; kept as its own name because the cardio-side
+ * `StreakResult` pairing is what makes the two UI surfaces interchangeable.
  */
-export interface StrengthStreakResult {
-  /**
-   * Length in days of the active goal-hit streak ending at today, or
-   * yesterday if today's target hasn't been hit yet. `0` when the most
-   * recent goal-hit day is older than yesterday.
-   */
-  current: number
-  /**
-   * Longest run of consecutive calendar days that hit the goal, ever.
-   * Independent of {@link current}.
-   */
-  longest: number
-}
-
-/**
- * Add `n` days to a `YYYY-MM-DD` key, returning a new key. Local-noon
- * base time so DST transitions don't shift the calendar day.
- */
-function addDays(dateKey: string, n: number): string {
-  const d = new Date(dateKey + 'T12:00:00')
-  d.setDate(d.getDate() + n)
-  return toLocalDateKey(d)
-}
+export type StrengthStreakResult = StreakCounts
 
 /**
  * Compute streaks for every configured exercise. Returns a record
@@ -69,12 +52,12 @@ export function computeStrengthStreaks(
 ): Record<string, StrengthStreakResult> {
   const result: Record<string, StrengthStreakResult> = {}
 
-  // Bucket reps by exercise → day → running total. Uses Maps to keep
-  // the inner structure ordered insertion-wise; the streak loop sorts
-  // keys explicitly so the input order doesn't matter.
+  // Bucket reps by exercise -> day -> running total. Uses Maps to keep
+  // the inner structure ordered insertion-wise; the shared streak helper
+  // sorts keys explicitly so the input order doesn't matter.
   const repsByExerciseAndDay = new Map<string, Map<string, number>>()
   for (const s of sets) {
-    const day = toLocalDateKey(s.logged_at)
+    const day = safePacificDayKey(s.logged_at)
     if (day === '') continue
     let dayMap = repsByExerciseAndDay.get(s.exercise)
     if (!dayMap) {
@@ -84,8 +67,7 @@ export function computeStrengthStreaks(
     dayMap.set(day, (dayMap.get(day) ?? 0) + s.reps)
   }
 
-  const today = toLocalDateKey(now)
-  const yesterday = today === '' ? '' : addDays(today, -1)
+  const todayKey = pacificDayKey(now)
 
   for (const goal of goals) {
     if (goal.daily_target <= 0) {
@@ -93,55 +75,9 @@ export function computeStrengthStreaks(
       continue
     }
     const dayMap = repsByExerciseAndDay.get(goal.exercise) ?? new Map<string, number>()
-
     // Per-day target resolution (#362) — bound once per goal so the history
     // is sorted a single time rather than once per logged day.
-    const targetFor = targetResolverFor(goal)
-
-    // "Goal-hit" calendar days, in chronological order.
-    const hitDays: string[] = []
-    for (const [day, total] of dayMap) {
-      if (total >= targetFor(day)) hitDays.push(day)
-    }
-    hitDays.sort()
-
-    if (hitDays.length === 0) {
-      result[goal.exercise] = { current: 0, longest: 0 }
-      continue
-    }
-
-    // Longest run of consecutive goal-hit days, ever.
-    let longest = 1
-    let run = 1
-    for (let i = 1; i < hitDays.length; i++) {
-      if (addDays(hitDays[i - 1], 1) === hitDays[i]) {
-        run++
-        if (run > longest) longest = run
-      } else {
-        run = 1
-      }
-    }
-
-    // Current streak: walk backward from the latest goal-hit day if
-    // it's today or yesterday (matches `computeStreaks`'s rolling-day
-    // grace period).
-    const last = hitDays[hitDays.length - 1]
-    let current = 0
-    if (last === today || last === yesterday) {
-      current = 1
-      for (let i = hitDays.length - 2; i >= 0; i--) {
-        if (addDays(hitDays[i], 1) === hitDays[i + 1]) {
-          current++
-        } else {
-          break
-        }
-      }
-    }
-
-    result[goal.exercise] = {
-      current,
-      longest: Math.max(longest, current),
-    }
+    result[goal.exercise] = streakFromDailyReps(dayMap, targetResolverFor(goal), todayKey)
   }
 
   return result

@@ -24,7 +24,7 @@ import { WeightRoomGoalUpsertSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 import { targetForDay } from '@/lib/training-facility/goal-targets'
-import { pacificDayKey } from '@/lib/training-facility/load-management'
+import { pacificDayKey } from '@/lib/training-facility/day-keys'
 import type { GoalTargetPoint } from '@/types/weight-room'
 
 /**

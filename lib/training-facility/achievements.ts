@@ -7,7 +7,7 @@ import type {
 } from '@/types/weight-room'
 
 import { targetResolverFor } from './goal-targets'
-import { pacificDayKey } from './load-management'
+import { mondayOfDayKey, safePacificDayKey, shiftDayKey } from './day-keys'
 
 /**
  * Pure resolver for the Weight Room Trophy Room (#336) — "grease the groove"
@@ -208,47 +208,6 @@ export interface TrophyRoomView {
   nextUp: ResolvedAchievement[]
 }
 
-/** Two-digit zero-pad for assembling a `YYYY-MM-DD` key. */
-function pad2(n: number): string {
-  return String(n).padStart(2, '0')
-}
-
-/**
- * Pacific day key for a set's `logged_at`, or `''` when the timestamp is
- * unparseable. {@link pacificDayKey} would throw a `RangeError` on an Invalid
- * Date; callers here treat `''` as "skip this set", so a single malformed row
- * can't take down the whole wall.
- */
-function safePacificDayKey(loggedAt: string): string {
-  const d = new Date(loggedAt)
-  return Number.isFinite(d.getTime()) ? pacificDayKey(d) : ''
-}
-
-/**
- * Add `n` days to a `YYYY-MM-DD` key.
- *
- * Arithmetic runs in UTC on a bare calendar date, which makes it exact: the
- * key is already a *Pacific* day (see {@link pacificDayKey}), so re-entering a
- * timezone here — even via a local-noon `Date` — would only reintroduce a zone
- * the caller has already resolved. UTC has no DST, so "+1 day" is always
- * exactly 86,400,000 ms.
- */
-function addDays(dayKey: string, n: number): string {
-  const [y, m, d] = dayKey.split('-').map(Number)
-  const dt = new Date(Date.UTC(y, m - 1, d) + n * 86_400_000)
-  return `${dt.getUTCFullYear()}-${pad2(dt.getUTCMonth() + 1)}-${pad2(dt.getUTCDate())}`
-}
-
-/**
- * ISO-week (Monday) key for a `YYYY-MM-DD` day key — the Monday at or before
- * it. Same zone-free arithmetic as {@link addDays}.
- */
-function weekKeyOf(dayKey: string): string {
-  const [y, m, d] = dayKey.split('-').map(Number)
-  const dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay()
-  return addDays(dayKey, -(dow === 0 ? 6 : dow - 1))
-}
-
 /** Increment a `key → number` tally, treating a missing key as `0`. */
 function bump(map: Map<string, number>, key: string, by: number): void {
   map.set(key, (map.get(key) ?? 0) + by)
@@ -323,7 +282,7 @@ function buildMetrics(
     .sort((a, b) => (a.day < b.day ? -1 : a.day > b.day ? 1 : 0))
 
   for (const { set, day } of ordered) {
-    const week = weekKeyOf(day)
+    const week = mondayOfDayKey(day)
     const month = day.slice(0, 7)
     // Effective load: what's actually being moved, not what's stamped on one
     // dumbbell. Bodyweight sets carry no `weight_lbs` and contribute 0.
@@ -460,7 +419,7 @@ function resolveStreak(metrics: MovementMetrics, threshold: number): MetricOutco
   let previous: string | null = null
 
   for (const day of metrics.hitDays) {
-    run = previous !== null && addDays(previous, 1) === day ? run + 1 : 1
+    run = previous !== null && shiftDayKey(previous, 1) === day ? run + 1 : 1
     previous = day
     if (run > best) best = run
     if (run === threshold) earnedOn.push(day)

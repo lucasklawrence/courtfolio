@@ -174,16 +174,21 @@ describe('computeRingPercent', () => {
 })
 
 describe('localNoonIsoForDay', () => {
-  it('round-trips back to the same local day key', () => {
-    // The exact UTC string depends on the test runner's timezone; the
-    // contract is "this instant buckets onto the requested day."
+  it('round-trips back to the same day key', () => {
+    // The contract is "this instant buckets onto the requested day" — the
+    // only assertion that holds regardless of the runner's timezone.
     expect(toLocalDateKey(localNoonIsoForDay('2026-05-25'))).toBe('2026-05-25')
   })
 
-  it('stamps local noon, not midnight', () => {
-    const d = new Date(localNoonIsoForDay('2026-05-25'))
-    expect(d.getHours()).toBe(12)
-    expect(d.getMinutes()).toBe(0)
+  it('round-trips for a day on the PST side of the year too', () => {
+    expect(toLocalDateKey(localNoonIsoForDay('2026-01-15'))).toBe('2026-01-15')
+  })
+
+  it('stamps Pacific midday, not midnight', () => {
+    // Asserted in UTC rather than via getHours(): the stamp is Pacific noon
+    // (#319), so a local-hours assertion would read 12 only on a Pacific
+    // runner and 19 on the UTC one CI uses.
+    expect(localNoonIsoForDay('2026-05-25')).toBe('2026-05-25T19:00:00.000Z')
   })
 
   it('returns "" for a non-day-key string', () => {

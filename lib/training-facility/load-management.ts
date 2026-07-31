@@ -7,6 +7,8 @@ import {
 } from '@/constants/ramp-rate'
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
+import { pacificDayKey, shiftDayKey } from './day-keys'
+
 /**
  * Ramp-rate aggregation for the Weight Room Load Management panel (#316).
  *
@@ -46,50 +48,6 @@ const LOADED_SET_FRACTION = 0.5
 
 /** Movement color when no matching {@link ExerciseGoal} supplies one. Rim-orange. */
 const DEFAULT_MOVEMENT_COLOR = '#EA580C'
-
-/** Reused Pacific date formatter — constructing one per call is expensive. */
-const PACIFIC_DATE_FORMAT = new Intl.DateTimeFormat('en-CA', {
-  timeZone: PACIFIC_TZ,
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-})
-
-/**
- * The `YYYY-MM-DD` **Pacific** calendar day a timestamp falls on. A set
- * logged at `2026-07-12T05:00:00Z` (10pm PT on the 11th) buckets to
- * `2026-07-11`. Assembled from `formatToParts` rather than string-parsing
- * the formatter output so a locale/ICU quirk can't reorder the fields.
- *
- * @param d any `Date`; callers pass `new Date(set.logged_at)`.
- */
-export function pacificDayKey(d: Date): string {
-  const parts = PACIFIC_DATE_FORMAT.formatToParts(d)
-  let year = ''
-  let month = ''
-  let day = ''
-  for (const part of parts) {
-    if (part.type === 'year') year = part.value
-    else if (part.type === 'month') month = part.value
-    else if (part.type === 'day') day = part.value
-  }
-  return `${year}-${month}-${day}`
-}
-
-/**
- * Shift a `YYYY-MM-DD` calendar key by `delta` days. Arithmetic runs in
- * UTC on the bare calendar numbers (no zone, no DST), so the returned key
- * is always a clean calendar date — never off-by-an-hour onto the wrong
- * day the way raw millisecond math can be across a DST transition.
- */
-function shiftDayKey(key: string, delta: number): string {
-  const [y, m, d] = key.split('-').map(Number)
-  const dt = new Date(Date.UTC(y, m - 1, d + delta))
-  const yy = dt.getUTCFullYear()
-  const mm = String(dt.getUTCMonth() + 1).padStart(2, '0')
-  const dd = String(dt.getUTCDate()).padStart(2, '0')
-  return `${yy}-${mm}-${dd}`
-}
 
 /** One point in a movement's trailing daily-volume sparkline. */
 export interface DailyVolumePoint {

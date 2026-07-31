@@ -1,5 +1,5 @@
 import type { FocusCategory, MonthlyFocus, StrengthSet } from '@/types/weight-room'
-import { pacificDayKey } from './load-management'
+import { inclusiveDaySpan, pacificDayKey, safePacificDayKey, shiftDayKey } from './day-keys'
 
 export type { FocusCategory }
 
@@ -20,15 +20,6 @@ export type { FocusCategory }
  * this module runs inside a Vercel Server Component.
  */
 
-/**
- * Convert an ISO timestamp string to a Pacific `YYYY-MM-DD` key, or `''`
- * when the string doesn't parse. Mirrors `safePacificDayKey` in
- * `achievements.ts`.
- */
-function safePacificDayKey(ts: string): string {
-  const d = new Date(ts)
-  return Number.isFinite(d.getTime()) ? pacificDayKey(d) : ''
-}
 
 /**
  * Whether a focus window covers `dayKey` (inclusive on both ends).
@@ -116,35 +107,6 @@ export function formatFocusWindow(focus: MonthlyFocus): string {
 }
 
 /**
- * Add `n` days to a `YYYY-MM-DD` key, returning a new key. UTC-noon base
- * time anchors the arithmetic so DST transitions don't shift the calendar
- * day — the input key is already a resolved Pacific day, and pure date
- * arithmetic doesn't re-introduce a zone. Same helper shape as
- * `strength-streaks.addDays` / `achievements.addDays`.
- */
-function addDays(dateKey: string, n: number): string {
-  const d = new Date(dateKey + 'T12:00:00Z')
-  d.setUTCDate(d.getUTCDate() + n)
-  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`
-}
-
-/**
- * Inclusive day count between two `YYYY-MM-DD` keys (`end - start + 1`),
- * or `0` when `end` precedes `start`. Walks the calendar via
- * {@link addDays} so month boundaries and DST are handled correctly.
- */
-function inclusiveDaySpan(startKey: string, endKey: string): number {
-  if (endKey < startKey) return 0
-  let count = 1
-  let cursor = startKey
-  while (cursor < endKey) {
-    cursor = addDays(cursor, 1)
-    count++
-  }
-  return count
-}
-
-/**
  * Per-day target attainment for one focus, restricted to its window up
  * to "today". A day counts as hit when the day's logged volume reaches
  * {@link MonthlyFocus.daily_target} — interpreted as total reps for
@@ -227,7 +189,7 @@ export function computeFocusAdherence(
   let cursor = lastElapsed
   while (cursor >= focus.start_date && hit(cursor)) {
     currentStreak++
-    cursor = addDays(cursor, -1)
+    cursor = shiftDayKey(cursor, -1)
   }
 
   return {
@@ -430,7 +392,7 @@ export function buildFocusLaneCells(
       cells.push({ dayKey: cursor, focus, volume, pct })
     }
 
-    cursor = addDays(cursor, 1)
+    cursor = shiftDayKey(cursor, 1)
   }
 
   return cells
