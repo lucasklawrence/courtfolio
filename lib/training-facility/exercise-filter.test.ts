@@ -57,6 +57,14 @@ describe('serializeExerciseSelection', () => {
     expect(serializeExerciseSelection(['pushups', 'squats'], AVAILABLE)).toBe('pushups,squats')
   })
 
+  it('does not mistake a same-length selection for a complete one', () => {
+    // Length equality would drop the param here and silently widen the view
+    // back to everything.
+    expect(serializeExerciseSelection(['pushups', 'pushups'], ['pushups', 'pullups'])).toBe(
+      'pushups,pushups',
+    )
+  })
+
   it('encodes an empty selection as an empty string, not null', () => {
     // Distinguishable from "no param" so deselecting everything survives a
     // reload instead of silently resetting to all.

@@ -69,7 +69,12 @@ export function serializeExerciseSelection(
   selected: readonly string[],
   available: readonly string[],
 ): string | null {
-  if (selected.length === available.length) return null
+  // Membership, not length. Comparing counts is only sound while `selected` is
+  // a duplicate-free subset of `available` — true today (`exercise` is the
+  // primary key on `weight_room_goals`), but this function is exported and
+  // pure, so it shouldn't quietly depend on a caller's invariant.
+  const chosen = new Set(selected)
+  if (available.every((name) => chosen.has(name))) return null
   return selected.join(',')
 }
 
