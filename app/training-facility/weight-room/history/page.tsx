@@ -4,7 +4,9 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
+import { FocusLaneHeatmap } from '@/components/training-facility/weight-room/FocusLaneHeatmap'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
+import { PastFocusCard } from '@/components/training-facility/weight-room/PastFocusCard'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
 import { StrengthStats } from '@/components/training-facility/weight-room/StrengthStats'
 import { StrengthVsBodyweightChart } from '@/components/training-facility/weight-room/StrengthVsBodyweightChart'
@@ -15,7 +17,12 @@ import { isAdminRequest } from '@/lib/auth/admin-session'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
-import { buildMovementLoads } from '@/lib/training-facility/load-management'
+import { buildMovementLoads, pacificDayKey } from '@/lib/training-facility/load-management'
+import {
+  buildFocusLaneCells,
+  computeFocusAdherence,
+  computeFocusLoadStats,
+} from '@/lib/training-facility/monthly-focus'
 import { computeStrengthStats } from '@/lib/training-facility/weight-room-history'
 import type { ExerciseGoal } from '@/types/weight-room'
 
@@ -54,7 +61,16 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
   ])
   const goals: readonly ExerciseGoal[] = data?.goals ?? []
   const sets = data?.sets ?? []
-  const stats = computeStrengthStats(sets, goals)
+  const focuses = data?.monthly_focus ?? []
+
+  // Separate permanent heatmap goals from focus anchors (#361). Focus
+  // anchors are time-boxed campaigns whose window closes; keeping them in
+  // the per-exercise heatmap loop produces a "graveyard" of mostly-empty
+  // year-long charts once a rotation ends. The dedicated GTG section below
+  // shows their history instead.
+  const permanentGoals = goals.filter((g) => g.kind !== 'focus')
+
+  const stats = computeStrengthStats(sets, permanentGoals)
   const loads = buildMovementLoads(sets, goals)
   const bodyMass = cardio?.body_mass_trend ?? []
 
@@ -62,7 +78,17 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
   // the most bodyweight-sensitive movement, where reps up + weight down
   // is the clearest "improving on two fronts" story. Only render it when
   // both halves exist: a configured pull-ups goal and bodyweight data.
-  const pullupsGoal = goals.find(g => g.exercise.toLowerCase() === 'pullups')
+  const pullupsGoal = permanentGoals.find((g) => g.exercise.toLowerCase() === 'pullups')
+
+  // GTG rotation: sort newest-first so the latest campaign leads (#361).
+  const sortedFocuses = [...focuses].sort((a, b) => b.start_date.localeCompare(a.start_date))
+
+  // Combined lane heatmaps — one series per body-region spanning all
+  // focus windows stitched together. Built once server-side so the SVG
+  // renderer receives a flat cells array.
+  const today = pacificDayKey(new Date())
+  const upperCells = buildFocusLaneCells(focuses, sets, 'upper', today)
+  const lowerCells = buildFocusLaneCells(focuses, sets, 'lower', today)
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -85,14 +111,15 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
             Heatmap &amp; stats
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            One row per day for the trailing 52 weeks, colored by how close that day got to the
-            daily goal. Hover any cell for the day&rsquo;s breakdown. Stats below summarize the
-            current week, month, and all-time totals.
+            Per-exercise heatmaps, grease-the-groove rotation history, and all-time stats. Each
+            heatmap cell represents one day colored by adherence to the daily goal — hover for
+            the breakdown. GTG focuses are shown as a stitched timeline so each rotation&rsquo;s
+            exercise lines up with its own window.
           </p>
           <WeightRoomSubNav active="history" className="mt-5" isAdmin={isAdmin} />
         </header>
 
-        {goals.length === 0 ? (
+        {permanentGoals.length === 0 && focuses.length === 0 ? (
           <section
             data-testid="weight-room-history-empty"
             className="mt-10 rounded-[1.2rem] border border-white/10 bg-white/5 p-6 text-sm text-[#e8d5be]"
@@ -129,12 +156,43 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
               </div>
             </section>
 
+            {sortedFocuses.length > 0 && (
+              <section
+                aria-label="Grease the Groove rotation"
+                data-testid="weight-room-gtg-rotation"
+                className="mt-10"
+              >
+                <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+                  Grease the Groove Rotation
+                </h2>
+                <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+                  Each time-boxed focus in the rotation, newest first. The ring shows overall
+                  adherence — how many days in the window hit the daily target. Weighted focuses
+                  also show top set, average load, and cumulative tonnage.
+                </p>
+                <div className="mt-4 space-y-3">
+                  {sortedFocuses.map((focus) => (
+                    <PastFocusCard
+                      key={focus.id}
+                      focus={focus}
+                      adherence={computeFocusAdherence(focus, sets)}
+                      loadStats={computeFocusLoadStats(
+                        focus,
+                        sets,
+                        goals.find((g) => g.exercise === focus.exercise)?.load_multiplier ?? 1,
+                      )}
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
+
             <section
               aria-label="Per-exercise heatmaps"
               data-testid="weight-room-heatmaps"
               className="mt-10 space-y-8"
             >
-              {goals.map(goal => (
+              {permanentGoals.map(goal => (
                 <article
                   key={goal.exercise}
                   className="rounded-[1.2rem] border border-white/10 bg-white/5 p-5"
@@ -194,6 +252,37 @@ export default async function WeightRoomHistoryPage(): Promise<JSX.Element> {
                 <StrengthStats stats={stats} />
               </div>
             </section>
+
+            {(upperCells.length > 0 || lowerCells.length > 0) && (
+              <section
+                aria-label="Combined focus-lane heatmaps"
+                data-testid="weight-room-focus-lanes"
+                className="mt-10"
+              >
+                <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+                  Focus Lane History
+                </h2>
+                <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+                  One stitched heatmap per body region, spanning the full rotation. Each day is
+                  colored by how close that day got to the active focus&rsquo;s daily target —
+                  so shrugs in July and a new exercise in August sit on the same timeline.
+                </p>
+                {upperCells.length > 0 && (
+                  <div className="mt-4 rounded-[1.2rem] border border-white/10 bg-white/5 p-5">
+                    <div className="overflow-x-auto">
+                      <FocusLaneHeatmap cells={upperCells} label="Upper Focus Lane" />
+                    </div>
+                  </div>
+                )}
+                {lowerCells.length > 0 && (
+                  <div className="mt-4 rounded-[1.2rem] border border-white/10 bg-white/5 p-5">
+                    <div className="overflow-x-auto">
+                      <FocusLaneHeatmap cells={lowerCells} label="Lower Focus Lane" />
+                    </div>
+                  </div>
+                )}
+              </section>
+            )}
           </>
         )}
       </div>

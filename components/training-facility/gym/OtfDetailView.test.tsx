@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import type { OtfData } from '@/types/otf'
 
@@ -21,7 +21,13 @@ function renderView(props: Partial<React.ComponentProps<typeof OtfDetailView>> =
   )
 }
 
-vi.mock('./OtfZoneBars', () => ({ OtfZoneBars: () => null }))
+vi.mock('./OtfZoneBars', () => ({
+  // Reports the width it receives so chart sizing stays observable while the
+  // real SVG stays stubbed out.
+  OtfZoneBars: ({ width }: { width: number }) => (
+    <div data-testid="chart-probe" data-chart-width={width} />
+  ),
+}))
 vi.mock('./OtfSparklineSummary', () => ({ OtfSparklineSummary: () => null }))
 vi.mock('@/components/training-facility/shared/charts/RoughLine', () => ({ RoughLine: () => null }))
 vi.mock('next/navigation', () => ({
@@ -173,5 +179,104 @@ describe('OtfDetailView', () => {
   it('shows the error panel when the load throws', () => {
     renderView({ loadError: 'boom' })
     expect(screen.getByRole('alert')).toHaveTextContent(/boom/)
+  })
+})
+
+/**
+ * Chart sizing across the two layouts (#355 and its follow-up).
+ *
+ * The floor has been wrong in both directions now: too low, so mobile squeezed
+ * a season of classes into ~330px with nothing to scroll; then too high, so
+ * every desktop chart overflowed its 412px column and hid its right edge. The
+ * two card widths are only ~80px apart, so the rule keys off the *breakpoint*
+ * rather than the measured width — these pin both ends.
+ */
+describe('OtfDetailView chart width', () => {
+  /** Stub `matchMedia` for a given two-column verdict, plus a no-op observer. */
+  function stubLayout(twoColumn: boolean) {
+    const listeners: Array<() => void> = []
+    vi.stubGlobal(
+      'matchMedia',
+      (query: string) => ({
+        matches: twoColumn,
+        media: query,
+        addEventListener: (_: string, fn: () => void) => listeners.push(fn),
+        removeEventListener: () => {},
+      }),
+    )
+    // jsdom has no ResizeObserver; report a realistic card width for the layout.
+    const width = twoColumn ? 412 : 330
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        constructor(private cb: ResizeObserverCallback) {}
+        observe() {
+          this.cb(
+            [{ contentRect: { width } } as unknown as ResizeObserverEntry],
+            this as unknown as ResizeObserver,
+          )
+        }
+        unobserve() {}
+        disconnect() {}
+      },
+    )
+  }
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  /**
+   * Width handed to the charts, read off the stubbed child.
+   *
+   * Throws rather than defaulting when no probe rendered: an earlier draft of
+   * this suite measured `svg[width]`, found nothing (the charts are stubbed),
+   * and the desktop assertion passed on `0 <= 412` while checking nothing at
+   * all.
+   */
+  function chartWidth(container: HTMLElement): number {
+    const probe = container.querySelector('[data-chart-width]')
+    if (!probe) throw new Error('no chart rendered — the assertion would be vacuous')
+    return Number(probe.getAttribute('data-chart-width'))
+  }
+
+  it('overflows its card on a phone so the scroll container has something to scroll', () => {
+    stubLayout(false)
+    const { container } = renderView({ otf: DATA })
+    // Wider than the ~330px card: that overflow is what makes it draggable.
+    expect(chartWidth(container)).toBeGreaterThan(330)
+  })
+
+  it('asks the browser about the same breakpoint the CSS uses', () => {
+    // Tailwind v4 defines `lg` as `64rem`, so a px query would disagree with
+    // the grid whenever the root font size is not 16px — and reapply the
+    // mobile floor to a desktop column.
+    const seen: string[] = []
+    vi.stubGlobal('matchMedia', (query: string) => {
+      seen.push(query)
+      return {
+        matches: true,
+        media: query,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      }
+    })
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+      },
+    )
+    renderView({ otf: DATA })
+    expect(seen).toContain('(min-width: 64rem)')
+  })
+
+  it('never exceeds the 412px column on desktop', () => {
+    stubLayout(true)
+    const { container } = renderView({ otf: DATA })
+    // Anything wider clips the chart's right edge behind a scrollbar.
+    expect(chartWidth(container)).toBeLessThanOrEqual(412)
   })
 })

@@ -1,5 +1,54 @@
 # scripts
 
+## `worktree-init.ps1` — make a fresh worktree usable
+
+```
+powershell -File scripts/worktree-init.ps1
+```
+
+Run once after entering a new worktree. `git worktree add` copies the *tracked* files and nothing else, so a bare worktree is missing the two untracked things this repo needs:
+
+- **`node_modules`** — `vitest.config.ts` aliases `server-only` to `path.resolve(__dirname, 'node_modules/server-only/empty.js')`, an **absolute** path inside the worktree. Node's own resolution would walk up to the main checkout, but the alias never does, so ~22 test files fail with `Cannot find module 'server-only'`.
+- **`.env.local`** — gitignored, so `migrations:check`, `import-otbeat`, and `staging:sync` all fail on missing Supabase credentials until it's copied.
+
+### Shared junction, except when dependencies differ
+
+For a normal branch the script creates a directory **junction** to the main checkout's `node_modules` — no disk cost, no second install.
+
+When the branch changes `package.json` or `package-lock.json` it does a real `npm ci` in the worktree instead, because sharing would be wrong twice over:
+
+- The suite would run against a tree that doesn't match the branch — green on a package the branch deleted, red on one it added.
+- The obvious repair, `npm install`, writes **through** the junction into the main checkout's `node_modules`, corrupting every other worktree that shares it and any session mid-test-run.
+
+`-Link` forces the junction anyway, for when you know the dependency delta is irrelevant to what you're running. Know what it shares before reaching for it.
+
+Safe to re-run: an existing junction, an existing real install, and an existing `.env.local` are all left alone (`-Force` overwrites the env file). So a re-run is a no-op on a normal branch, but **does** repeat `npm ci` on a dependency branch — slow, and the only way to stay correct about a lockfile that may have moved.
+
+Refuses to run in the main checkout, where `node_modules` is real. Exits `0` when ready, `1` if run from the wrong place, the main checkout has no install to link, or `npm ci` fails.
+
+Without this, the first thing a new worktree shows you is a wall of red tests — which is how a worktree convention dies. See `CLAUDE.md` § Work in a worktree.
+
+## `worktree-remove.ps1` — take a worktree down safely
+
+```
+powershell -File scripts/worktree-remove.ps1 -Path .claude/worktrees/<slug>
+```
+
+The counterpart to `worktree-init.ps1`, and **not optional if that script linked the worktree**.
+
+`git worktree remove` deletes the worktree directory recursively and does *not* step over a directory junction — it deletes straight **through** `node_modules` into the main checkout's real installation, leaving it empty. Every other worktree points at the same target, so they all break together, and the symptom is a confusing wall of module-resolution errors rather than anything that names the cause.
+
+This is not hypothetical: it happened to this repo's main checkout minutes after a note claiming `git worktree remove` "handles this correctly on its own" was written. It doesn't.
+
+So the order is a script, not a thing to remember:
+
+1. Unlink `node_modules` if it's a junction (`cmd /c rmdir` — removes the link only).
+2. `git worktree remove --force`.
+3. Delete the branch unless `-KeepBranch`.
+4. **Verify the main checkout's install is still populated** and fail loudly with the repair command if not — checking a real file inside it, since the failure leaves an empty directory that any `Test-Path node_modules` would call fine.
+
+A worktree with a *real* `node_modules` (a dependency-changing branch) is left for git to delete normally — there's no link to follow. Refuses to remove the worktree the current shell is standing in, and refuses any path `git worktree list` doesn't know, so a typo can't delete something unrelated.
+
 ## `await-*.ps1` — bounded polling helpers
 
 Three PowerShell scripts that replace the ad-hoc `until <check>; do sleep N; done` shell loops that piled up across `/ship-issue` runs. Each has a real timeout (no more hanging on a vanished check) and exit codes a caller can branch on: `0` on success, `2` on timeout, `1` on usage error.
