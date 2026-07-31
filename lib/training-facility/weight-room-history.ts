@@ -173,7 +173,7 @@ export interface StrengthExerciseStats {
 
 /** Cap at ~2 years to limit DOM node count when a wide range is requested. */
 const MAX_COLS = 104
-/** Days per heatmap column. */
+/** Days in a calendar week — heatmap column height, and the week-key stride. */
 const DAYS_PER_WEEK = 7
 
 const MONTH_LABELS = [
@@ -238,11 +238,18 @@ export function buildStrengthHeatmap(
 ): StrengthHeatmapGrid {
   // Column boundaries walk day keys, not milliseconds (#319): a DST week is
   // 23 or 25 hours long, so `+ 7 * DAY_MS` drifts off the Monday twice a year.
-  const endMondayKey = mondayOfDayKey(pacificDayKey(dateTo ?? new Date()))
+  //
+  // Both bounds go through `safePacificDayKey` because they arrive as props
+  // from user-derived state: `pacificDayKey` throws `RangeError` on an Invalid
+  // Date, which would take the whole page down rather than degrading. An
+  // unusable bound falls back to the same default as omitting it.
+  const endKey = safePacificDayKey(dateTo ?? new Date())
+  const endMondayKey = mondayOfDayKey(endKey === '' ? pacificDayKey(new Date()) : endKey)
 
+  const startKey = dateFrom ? safePacificDayKey(dateFrom) : ''
   let startMondayKey: string
-  if (dateFrom) {
-    startMondayKey = mondayOfDayKey(pacificDayKey(dateFrom))
+  if (startKey !== '') {
+    startMondayKey = mondayOfDayKey(startKey)
     const maxStartKey = shiftDayKey(endMondayKey, -MAX_COLS * DAYS_PER_WEEK)
     if (startMondayKey < maxStartKey) startMondayKey = maxStartKey
   } else {

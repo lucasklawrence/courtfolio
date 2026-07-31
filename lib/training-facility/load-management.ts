@@ -14,7 +14,8 @@ import { pacificDayKey, shiftDayKey } from './day-keys'
  *
  * Turns raw {@link StrengthSet} rows into a per-movement view of how fast
  * volume is climbing relative to the tendon's recent baseline. All
- * calendar bucketing is anchored to **Pacific time** ({@link PACIFIC_TZ}),
+ * calendar bucketing is anchored to **Pacific time**
+ * ({@link import('./day-keys').PACIFIC_TZ}),
  * not the server's local zone — on Vercel the server runs in UTC, so
  * bucketing in local time would silently shift every day boundary. The
  * thresholds that turn these numbers into flags live in
@@ -23,9 +24,6 @@ import { pacificDayKey, shiftDayKey } from './day-keys'
  * Windows are **calendar-day** windows (not "last N sets"), so a rest day
  * contributes a real zero and correctly drags the acute load down.
  */
-
-/** IANA zone every day/week bucket is anchored to. Never bucket on raw UTC. */
-export const PACIFIC_TZ = 'America/Los_Angeles'
 
 /** Trailing days in the acute window. */
 const ACUTE_DAYS = 7

@@ -399,10 +399,13 @@ describe('effective-dated targets (#362)', () => {
     grid: ReturnType<typeof buildStrengthHeatmap>,
     dateKey: string,
   ): { reps: number; pct: number; dailyTarget: number } | undefined {
+    // Match on the cell's own `dayKey`, not a key re-derived from `cell.date`
+    // (#319). That Date is a fixed 19:00Z instant, so reading its local
+    // components would name the following day on a runner east of UTC+5 — the
+    // exact hazard `StrengthHeatmapCell.dayKey` exists to remove.
     for (const row of grid.grid) {
       for (const cell of row) {
-        const key = `${cell.date.getFullYear()}-${String(cell.date.getMonth() + 1).padStart(2, '0')}-${String(cell.date.getDate()).padStart(2, '0')}`
-        if (key === dateKey) return cell
+        if (cell.dayKey === dateKey) return cell
       }
     }
     return undefined
