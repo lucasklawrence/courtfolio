@@ -20,9 +20,14 @@ export interface StrengthHeatmapProps {
    */
   sets: readonly StrengthSet[]
   /**
-   * The exercise to render — supplies the color (used as the cell
-   * fill at full intensity) and `daily_target` (the denominator that
-   * decides which intensity bucket each cell falls into).
+   * The exercise to render — supplies the color (used as the cell fill at
+   * full intensity) and the daily target behind each cell's intensity
+   * bucket.
+   *
+   * That denominator is resolved **per day** from `target_history` (#362),
+   * not read off the current `daily_target`, so cells on either side of a
+   * goal change keep the intensity they earned. Any change in the history
+   * that falls inside the rendered window also draws a boundary marker.
    */
   goal: ExerciseGoal
   /** Inclusive start of the visible window. Omit for the trailing 52 weeks. */

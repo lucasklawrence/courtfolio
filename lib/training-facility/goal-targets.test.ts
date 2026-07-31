@@ -3,7 +3,9 @@ import { describe, expect, it } from 'vitest'
 import type { ExerciseGoal } from '@/types/weight-room'
 
 import {
+  describeGoalTargetChange,
   formatGoalTargetChange,
+  formatGoalTargetDate,
   goalTargetChanges,
   targetForDay,
   targetResolverFor,
@@ -193,6 +195,32 @@ describe('formatGoalTargetChange', () => {
   it('renders a compact arrow label without the date', () => {
     expect(formatGoalTargetChange({ from: 30, to: 50, effective_from: '2026-08-01' })).toBe(
       '30 → 50',
+    )
+  })
+})
+
+describe('formatGoalTargetDate', () => {
+  it('renders a short month/day label', () => {
+    expect(formatGoalTargetDate({ from: 30, to: 50, effective_from: '2026-08-01' })).toBe('Aug 1')
+  })
+
+  it('does not shift the day for viewers behind UTC', () => {
+    // Parsed at local noon, so a negative UTC offset can't roll the label
+    // back to Jul 31.
+    expect(formatGoalTargetDate({ from: 30, to: 50, effective_from: '2026-01-01' })).toBe('Jan 1')
+  })
+
+  it('falls back to the raw key when the date will not parse', () => {
+    expect(formatGoalTargetDate({ from: 30, to: 50, effective_from: 'not-a-date' })).toBe(
+      'not-a-date',
+    )
+  })
+})
+
+describe('describeGoalTargetChange', () => {
+  it('combines the arrow label and the effective date', () => {
+    expect(describeGoalTargetChange({ from: 30, to: 50, effective_from: '2026-08-01' })).toBe(
+      '30 → 50 on Aug 1',
     )
   })
 })
