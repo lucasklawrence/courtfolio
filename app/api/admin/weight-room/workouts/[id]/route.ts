@@ -23,7 +23,7 @@ interface Context {
 }
 
 /** Columns echoed back by both handlers, matching `WeightRoomWorkoutRowSchema`. */
-const WORKOUT_COLUMNS = 'id, started_at, ended_at, title, location, notes'
+const WORKOUT_COLUMNS = 'id, started_at, ended_at, template_id, title, location, notes'
 
 /** Postgres `invalid_text_representation` — a route segment that isn't a UUID. */
 const INVALID_UUID = '22P02'

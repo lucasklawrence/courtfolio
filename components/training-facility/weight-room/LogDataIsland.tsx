@@ -18,9 +18,16 @@ import {
   toLocalDateKey,
   totalsByExercise,
 } from '@/lib/training-facility/strength-today'
-import type { ExerciseGoal, MonthlyFocus, StrengthSet, WeightRoomData } from '@/types/weight-room'
+import type {
+  ExerciseGoal,
+  MonthlyFocus,
+  StrengthSet,
+  WeightRoomData,
+  WorkoutTemplate,
+} from '@/types/weight-room'
 
 import { ActivityRings, type RingProgress } from './ActivityRings'
+import { LiveWorkoutPanel } from './LiveWorkoutPanel'
 import { LogDayPicker } from './LogDayPicker'
 import { MonthlyFocusCard } from './MonthlyFocusCard'
 import { QuickLog } from './QuickLog'
@@ -57,7 +64,17 @@ import {
  * monotonic request id keeps a slow mount fetch from clobbering fresh
  * post-write data.
  */
-export function LogDataIsland(): JSX.Element {
+/** Props for {@link LogDataIsland}. */
+export interface LogDataIslandProps {
+  /**
+   * Templates available to start a workout from (#376), server-fetched by the
+   * page. Passed in rather than fetched here so the panel doesn't add a second
+   * client round trip on every mount of an admin page that already reads a lot.
+   */
+  templates?: readonly WorkoutTemplate[]
+}
+
+export function LogDataIsland({ templates = [] }: LogDataIslandProps = {}): JSX.Element {
   const [data, setData] = useState<WeightRoomData | null | undefined>(undefined)
   // `loadError` is the "fetch threw" branch, distinct from `data === null`
   // (the "tables are genuinely empty" branch). Splitting them keeps a
@@ -133,6 +150,10 @@ export function LogDataIsland(): JSX.Element {
     monthly_focus: [],
   }
   const todayKey = toLocalDateKey(new Date())
+  // Pickers offer live movements and templates only; archived ones stay
+  // rendered wherever they're already referenced, they just aren't selectable.
+  const activeExercises = (surfaceData.exercises ?? []).filter(e => e.archived !== true)
+  const activeTemplates = templates.filter(t => t.archived !== true)
   // Display-only backfill flag. After a midnight rollover `selectedDay`
   // (set at mount) lags `todayKey` — that's intentional: the view stays
   // on the day the admin was logging against, now flagged as a backfill
@@ -199,6 +220,18 @@ export function LogDataIsland(): JSX.Element {
   return (
     <div className="flex flex-col gap-8">
       {loadError ? <LoadErrorBanner message={loadError} /> : null}
+
+      {/* Live recording (#376) sits above the grease-the-groove dashboard
+          rather than replacing it: pull-ups and push-ups are in the templates
+          *and* in the daily rings, so forcing a choice between the two
+          surfaces would make one of them wrong. */}
+      <LiveWorkoutPanel
+        sets={surfaceData.sets}
+        exercises={activeExercises}
+        templates={activeTemplates}
+        disabled={busy}
+        onChanged={refetch}
+      />
 
       <LogDayPicker selectedDay={selectedDay} todayKey={todayKey} onSelectDay={setSelectedDay} />
 

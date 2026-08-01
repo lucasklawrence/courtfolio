@@ -181,6 +181,23 @@ describe('LogDataIsland — load states', () => {
   })
 })
 
+/**
+ * The set POST, found by URL rather than by call index.
+ *
+ * The live workout panel (#376) probes `GET /workouts?open=true` on mount, so
+ * `calls[0]` is no longer the write these assertions are about — and indexing
+ * blind would silently start asserting against the wrong request the next time
+ * anything else on the page fetches.
+ */
+function setPostCall(): [string, RequestInit] {
+  const call = fetchMock.mock.calls.find(
+    ([url, init]) =>
+      url === '/api/admin/weight-room/sets' && (init as RequestInit | undefined)?.method === 'POST'
+  )
+  if (!call) throw new Error('no POST to /api/admin/weight-room/sets was issued')
+  return [call[0] as string, call[1] as RequestInit]
+}
+
 describe('LogDataIsland — write orchestration', () => {
   it('stamps a backdated log with the selected day, not now', async () => {
     const user = userEvent.setup()
@@ -191,9 +208,9 @@ describe('LogDataIsland — write orchestration', () => {
     await user.click(await screen.findByTestId('quick-log-pullups-10'))
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalled())
-    const [url, init] = fetchMock.mock.calls[0]
+    const [url, init] = setPostCall()
     expect(url).toBe('/api/admin/weight-room/sets')
-    const body = JSON.parse((init as RequestInit).body as string)
+    const body = JSON.parse(init.body as string)
     expect(body.exercise).toBe('pullups')
     expect(body.reps).toBe(10)
     // Pacific midday of the picked day (#319), so the set buckets back onto
@@ -209,7 +226,7 @@ describe('LogDataIsland — write orchestration', () => {
     await user.click(await screen.findByTestId('quick-log-pullups-10'))
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalled())
-    const body = JSON.parse((fetchMock.mock.calls[0][1] as RequestInit).body as string)
+    const body = JSON.parse(setPostCall()[1].body as string)
     expect(body.logged_at).toBeUndefined()
   })
 

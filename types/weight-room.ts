@@ -67,6 +67,20 @@ export interface StrengthSet {
    * writer didn't care. Gaps are fine; nothing renumbers.
    */
   position?: number
+  /**
+   * The template slot this set was performed **for** (#376), or absent.
+   *
+   * Absent means two different things depending on {@link workout_id}: inside a
+   * workout it's **extra work** the template never prescribed; outside one it's
+   * an ordinary loose set.
+   *
+   * When present, comparing this set's {@link exercise} to the slot's *is* the
+   * substitution record — a dumbbell-bench set against a barbell-bench slot
+   * says the rack was taken, with no separate table and no flag. Nulled if the
+   * template is later deleted, so the session degrades to untemplated rather
+   * than the record being rewritten.
+   */
+  template_slot_id?: string
 }
 
 /**
@@ -111,7 +125,19 @@ export interface WeightRoomWorkout {
    * guess.
    */
   ended_at?: string
-  /** Free-text label, e.g. `Push Day`. Absent when unnamed. */
+  /**
+   * The {@link WorkoutTemplate} this session is running (#376), or absent for a
+   * freestyle workout — or for one whose template was deleted afterwards.
+   *
+   * The link is by id, never by {@link title}: template names aren't unique,
+   * and `title` is free text a user can edit, so matching on it resolves to the
+   * wrong prescription and attributes sets to the wrong slots.
+   */
+  template_id?: string
+  /**
+   * Free-text label, e.g. `Push Day`. Absent when unnamed. Human-facing only —
+   * see {@link template_id} for the link.
+   */
   title?: string
   /** Where it happened. Absent when unspecified. */
   location?: WorkoutLocation

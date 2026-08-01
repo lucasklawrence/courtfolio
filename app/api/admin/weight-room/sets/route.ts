@@ -72,11 +72,15 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     // than writing an empty-string bucket the History View would have
     // to special-case.
     ...(entry.variant != null ? { variant: entry.variant } : {}),
+    // External load, per implement (#376). Absent leaves the column null,
+    // which is what makes a set bodyweight.
+    ...(entry.weight_lbs != null ? { weight_lbs: entry.weight_lbs } : {}),
     // Session membership (#374), only when the caller asked for it. There is
     // deliberately no "attach to whatever workout is open" fallback: a
     // grease-the-groove set logged during a gym window must stay loose.
     ...(entry.workout_id != null ? { workout_id: entry.workout_id } : {}),
     ...(entry.position != null ? { position: entry.position } : {}),
+    ...(entry.template_slot_id != null ? { template_slot_id: entry.template_slot_id } : {}),
   }
   const { data, error } = await supabase
     .from('weight_room_sets')
@@ -92,6 +96,12 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     // since the exercise one is the far more common case and reads as the
     // sensible default.
     if (error.code === '23503') {
+      if (error.message.includes('template_slot_id')) {
+        return NextResponse.json(
+          { error: `Template slot '${entry.template_slot_id}' does not exist.` },
+          { status: 409 }
+        )
+      }
       if (error.message.includes('workout_id')) {
         return NextResponse.json(
           { error: `Workout '${entry.workout_id}' does not exist.` },

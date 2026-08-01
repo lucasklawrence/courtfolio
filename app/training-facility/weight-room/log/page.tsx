@@ -6,6 +6,7 @@ import { FacilityBackLink } from '@/components/training-facility/FacilityBackLin
 import { LogDataIsland } from '@/components/training-facility/weight-room/LogDataIsland'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
+import { getWorkoutTemplatesServer } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 
 /**
@@ -26,6 +27,12 @@ import { isWeightRoomEnabled } from '@/lib/feature-flags'
 export default async function WeightRoomLogPage(): Promise<JSX.Element> {
   if (!isWeightRoomEnabled()) notFound()
   await requireAdminPage()
+
+  // Templates are read server-side and handed down (#376) so the live panel
+  // doesn't add a client round trip on mount. A read failure degrades to
+  // "freestyle only" rather than failing the page — you can still start a
+  // workout and log into it without a prescription.
+  const templates = await getWorkoutTemplatesServer().catch(() => [])
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -55,7 +62,7 @@ export default async function WeightRoomLogPage(): Promise<JSX.Element> {
         </header>
 
         <section className="mt-10 flex-1">
-          <LogDataIsland />
+          <LogDataIsland templates={templates} />
         </section>
       </div>
     </div>
