@@ -5,11 +5,7 @@ import { m, useReducedMotion } from 'framer-motion'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { STANDING_REACH_IN } from '@/constants/movement'
 import type { Benchmark } from '@/types/movement'
-import {
-  freshnessOpacity,
-  selectJumpEntries,
-  type JumpEntry,
-} from './jump-tracker-utils'
+import { freshnessOpacity, selectJumpEntries, type JumpEntry } from './jump-tracker-utils'
 import { Silhouette } from './Silhouette'
 
 /** Props for {@link SilhouetteJumpTracker}. */
@@ -43,7 +39,20 @@ const STANDING_BODY_HEIGHT_RATIO = 0.91
 function formatLatestLabel(entry: JumpEntry): string {
   const [, monthStr, dayStr] = entry.date.split('-')
   const monthIndex = Number(monthStr) - 1
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
   const monthLabel = months[monthIndex] ?? monthStr
   return `${monthLabel} ${Number(dayStr)} · ${entry.verticalIn}"`
 }
@@ -145,8 +154,18 @@ export function SilhouetteJumpTracker({
   const latestTransition =
     isActive && !reduceMotion
       ? {
-          y: { duration: 0.8, repeat: Infinity, repeatType: 'reverse' as const, ease: 'easeOut' as const },
-          scaleY: { duration: 0.8, repeat: Infinity, repeatType: 'reverse' as const, ease: 'easeOut' as const },
+          y: {
+            duration: 0.8,
+            repeat: Infinity,
+            repeatType: 'reverse' as const,
+            ease: 'easeOut' as const,
+          },
+          scaleY: {
+            duration: 0.8,
+            repeat: Infinity,
+            repeatType: 'reverse' as const,
+            ease: 'easeOut' as const,
+          },
           opacity: { duration: 0.25 },
         }
       : { duration: 0.3 }
@@ -212,7 +231,7 @@ export function SilhouetteJumpTracker({
           strokeWidth={0.4}
           opacity={0.6}
         />
-        {tickInches.map((inches) => {
+        {tickInches.map(inches => {
           const y = standingReachY - inches
           return (
             <g key={`tick-${inches}`} aria-hidden="true">
@@ -249,7 +268,7 @@ export function SilhouetteJumpTracker({
           aria-label={`Play jump animation — latest ${formatLatestLabel(latest)}`}
           aria-hidden={isActive ? true : undefined}
           onFocus={() => setHovered(latest)}
-          onBlur={() => setHovered((h) => (h?.date === latest.date ? null : h))}
+          onBlur={() => setHovered(h => (h?.date === latest.date ? null : h))}
           animate={{ opacity: isActive ? 0 : 0.55 }}
           transition={{ duration: 0.4 }}
           style={{
@@ -286,11 +305,15 @@ export function SilhouetteJumpTracker({
               aria-label={accessibleLabel}
               aria-hidden={isActive ? undefined : true}
               onMouseEnter={() => setHovered(entry)}
-              onMouseLeave={() => setHovered((h) => (h?.date === entry.date ? null : h))}
+              onMouseLeave={() => setHovered(h => (h?.date === entry.date ? null : h))}
               onFocus={() => setHovered(entry)}
-              onBlur={() => setHovered((h) => (h?.date === entry.date ? null : h))}
+              onBlur={() => setHovered(h => (h?.date === entry.date ? null : h))}
               animate={{
-                opacity: isActive ? (isHovered ? Math.min(1, trailOpacity + 0.25) : trailOpacity) : 0,
+                opacity: isActive
+                  ? isHovered
+                    ? Math.min(1, trailOpacity + 0.25)
+                    : trailOpacity
+                  : 0,
               }}
               transition={{
                 duration: 0.45,
@@ -320,9 +343,9 @@ export function SilhouetteJumpTracker({
           aria-label={latestAccessibleLabel}
           aria-hidden={isActive ? undefined : true}
           onMouseEnter={() => setHovered(latest)}
-          onMouseLeave={() => setHovered((h) => (h?.date === latest.date ? null : h))}
+          onMouseLeave={() => setHovered(h => (h?.date === latest.date ? null : h))}
           onFocus={() => setHovered(latest)}
-          onBlur={() => setHovered((h) => (h?.date === latest.date ? null : h))}
+          onBlur={() => setHovered(h => (h?.date === latest.date ? null : h))}
           animate={latestAnimateState}
           transition={latestTransition}
           style={{

@@ -1,11 +1,7 @@
 import 'server-only'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
-import type {
-  WeightRoomAchievement,
-  WeightRoomData,
-  WeightRoomExercise,
-} from '@/types/weight-room'
+import type { WeightRoomAchievement, WeightRoomData, WeightRoomExercise } from '@/types/weight-room'
 
 import {
   assembleWeightRoomAchievements,

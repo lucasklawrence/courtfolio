@@ -87,9 +87,9 @@ describe('class-type helpers (#271)', () => {
 
   describe('effectiveOtfClassType', () => {
     it('prefers a manual override over the inferred class_type', () => {
-      expect(effectiveOtfClassType(mk('a', { class_type: 'Tread + Row', class_type_override: '2G' }))).toBe(
-        '2G'
-      )
+      expect(
+        effectiveOtfClassType(mk('a', { class_type: 'Tread + Row', class_type_override: '2G' }))
+      ).toBe('2G')
     })
 
     it('falls back to class_type when there is no override', () => {
@@ -127,7 +127,10 @@ describe('class-type helpers (#271)', () => {
     })
 
     it('omits the untyped sentinel when every session has a type', () => {
-      const sessions = [mk('a', { class_type: 'Tread + Row' }), mk('b', { class_type: 'Row-focused' })]
+      const sessions = [
+        mk('a', { class_type: 'Tread + Row' }),
+        mk('b', { class_type: 'Row-focused' }),
+      ]
       expect(otfClassTypes(sessions)).toEqual(['Tread + Row', 'Row-focused'])
     })
 
@@ -244,9 +247,9 @@ describe('class-type helpers (#271)', () => {
       expect(options).toEqual(['Tread + Row', 'No class type', OTF_CLASS_TYPE_UNTYPED])
       expect(new Set(options).size).toBe(options.length)
       // Each chip selects only its own session.
-      expect(filterOtfSessionsByClassType(withCollider, 'No class type').map(s => s.started_at)).toEqual(
-        ['b']
-      )
+      expect(
+        filterOtfSessionsByClassType(withCollider, 'No class type').map(s => s.started_at)
+      ).toEqual(['b'])
       expect(
         filterOtfSessionsByClassType(withCollider, OTF_CLASS_TYPE_UNTYPED).map(s => s.started_at)
       ).toEqual(['c'])

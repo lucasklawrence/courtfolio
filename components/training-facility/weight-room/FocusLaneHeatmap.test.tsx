@@ -32,7 +32,7 @@ function lane(from: string, days: number, focus: MonthlyFocus | null): FocusDayC
   return Array.from({ length: days }, (_, i) => {
     const d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i, 12)
     const dayKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(
-      d.getDate(),
+      d.getDate()
     ).padStart(2, '0')}`
     return { dayKey, focus, volume: focus === null ? 0 : 50, pct: focus === null ? 0 : 1 }
   })
@@ -48,13 +48,13 @@ function viewBox(container: HTMLElement): [number, number] {
 /** Rendered month labels, in document order. */
 function monthLabels(container: HTMLElement): string[] {
   const g = container.querySelector('svg > g')
-  return Array.from(g?.querySelectorAll('text') ?? []).map((t) => t.textContent ?? '')
+  return Array.from(g?.querySelectorAll('text') ?? []).map(t => t.textContent ?? '')
 }
 
 /** X offsets of the rendered month labels, in document order. */
 function monthLabelXs(container: HTMLElement): number[] {
   const g = container.querySelector('svg > g')
-  return Array.from(g?.querySelectorAll('text') ?? []).map((t) => Number(t.getAttribute('x')))
+  return Array.from(g?.querySelectorAll('text') ?? []).map(t => Number(t.getAttribute('x')))
 }
 
 /**
@@ -71,7 +71,7 @@ describe('FocusLaneHeatmap', () => {
 
   it('exposes the lane label on the SVG', () => {
     const { getByRole } = render(
-      <FocusLaneHeatmap cells={lane('2026-06-29', 36, SHRUGS)} label="Upper Focus Lane" />,
+      <FocusLaneHeatmap cells={lane('2026-06-29', 36, SHRUGS)} label="Upper Focus Lane" />
     )
     expect(getByRole('img', { name: 'Upper Focus Lane' })).toBeInTheDocument()
   })
@@ -82,7 +82,7 @@ describe('FocusLaneHeatmap', () => {
     // One ~5-week rotation — the exact case that rendered 116px wide inside
     // a 902px card at the fixed 14px stride.
     const { container } = render(
-      <FocusLaneHeatmap cells={lane('2026-06-29', 36, SHRUGS)} label="Upper Focus Lane" />,
+      <FocusLaneHeatmap cells={lane('2026-06-29', 36, SHRUGS)} label="Upper Focus Lane" />
     )
     const [width] = viewBox(container)
     expect(width).toBeGreaterThan(200)
@@ -92,7 +92,7 @@ describe('FocusLaneHeatmap', () => {
     // Two weeks is the shortest plausible lane; without a cap the stride
     // would balloon to fill the target width.
     const { container } = render(
-      <FocusLaneHeatmap cells={lane('2026-06-29', 14, SHRUGS)} label="Upper Focus Lane" />,
+      <FocusLaneHeatmap cells={lane('2026-06-29', 14, SHRUGS)} label="Upper Focus Lane" />
     )
     const [, height] = viewBox(container)
     // 7 rows at the 30px cap, plus the month row and legend strip.
@@ -135,7 +135,7 @@ describe('FocusLaneHeatmap', () => {
     // in the next one — the "JunJul" repro. On a lane this short the wider
     // stride is what separates them; the thinning rule is the backstop.
     const { container } = render(
-      <FocusLaneHeatmap cells={lane('2026-06-29', 36, SHRUGS)} label="Upper Focus Lane" />,
+      <FocusLaneHeatmap cells={lane('2026-06-29', 36, SHRUGS)} label="Upper Focus Lane" />
     )
     const xs = monthLabelXs(container)
     expect(xs.length).toBeGreaterThan(1)
@@ -148,7 +148,7 @@ describe('FocusLaneHeatmap', () => {
     // ~29 weeks renders at the 14px stride, so the same Jun/Jul adjacency
     // can no longer be solved by scaling — the sliver label is dropped.
     const { container } = render(
-      <FocusLaneHeatmap cells={lane('2026-06-29', 200, SHRUGS)} label="Upper Focus Lane" />,
+      <FocusLaneHeatmap cells={lane('2026-06-29', 200, SHRUGS)} label="Upper Focus Lane" />
     )
     const labels = monthLabels(container)
     expect(labels).not.toContain('Jun')
@@ -168,7 +168,7 @@ describe('FocusLaneHeatmap', () => {
 
     const g = container.querySelectorAll('svg > g')[0]
     const texts = Array.from(g.querySelectorAll('text'))
-    const lastX = Math.max(...texts.map((t) => Number(t.getAttribute('x'))))
+    const lastX = Math.max(...texts.map(t => Number(t.getAttribute('x'))))
     // 32px gutter + the label's own x + room for three glyphs at 11px.
     expect(width).toBeGreaterThanOrEqual(32 + lastX + 3 * 11 * 0.6)
   })
@@ -182,7 +182,7 @@ describe('FocusLaneHeatmap', () => {
 
     const groups = container.querySelectorAll('svg > g')
     const legend = groups[groups.length - 1]
-    const entries = Array.from(legend.querySelectorAll('g')).map((g) => {
+    const entries = Array.from(legend.querySelectorAll('g')).map(g => {
       const m = /translate\(([-\d.]+), ([-\d.]+)\)/.exec(g.getAttribute('transform') ?? '')
       return { x: Number(m?.[1]), y: Number(m?.[2]) }
     })

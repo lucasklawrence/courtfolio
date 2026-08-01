@@ -52,9 +52,7 @@ const updateBenchmarkMock = vi.fn()
 const deleteBenchmarkMock = vi.fn()
 
 vi.mock('@/lib/data/movement', async () => {
-  const actual = await vi.importActual<typeof import('@/lib/data/movement')>(
-    '@/lib/data/movement',
-  )
+  const actual = await vi.importActual<typeof import('@/lib/data/movement')>('@/lib/data/movement')
   return {
     ...actual,
     getMovementBenchmarks: (...args: unknown[]) => getMovementBenchmarksMock(...args),
@@ -88,14 +86,10 @@ afterEach(() => {
 
 describe('CombineDataIsland', () => {
   it('fetches entries on mount and renders the Scoreboard region', async () => {
-    getMovementBenchmarksMock.mockResolvedValueOnce([
-      { date: '2026-04-15', bodyweight_lbs: 232 },
-    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-15', bodyweight_lbs: 232 }])
     render(<CombineDataIsland />)
     await waitFor(() =>
-      expect(
-        screen.getByRole('group', { name: /combine scoreboard summary/i }),
-      ).toBeInTheDocument(),
+      expect(screen.getByRole('group', { name: /combine scoreboard summary/i })).toBeInTheDocument()
     )
     expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(1)
   })
@@ -104,15 +98,13 @@ describe('CombineDataIsland', () => {
     getMovementBenchmarksMock.mockRejectedValueOnce(new Error('network down'))
     render(<CombineDataIsland />)
     await waitFor(() =>
-      expect(screen.getByRole('group', { name: /combine scoreboard/i })).toBeInTheDocument(),
+      expect(screen.getByRole('group', { name: /combine scoreboard/i })).toBeInTheDocument()
     )
   })
 
   it('refetches after the form saves a new entry', async () => {
     getMovementBenchmarksMock.mockResolvedValueOnce([])
-    getMovementBenchmarksMock.mockResolvedValueOnce([
-      { date: '2026-04-20', bodyweight_lbs: 230 },
-    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-20', bodyweight_lbs: 230 }])
     logBenchmarkMock.mockResolvedValueOnce(undefined)
 
     const user = userEvent.setup()
@@ -131,13 +123,9 @@ describe('CombineDataIsland', () => {
   })
 
   it('renders the history table once entries fetch resolves', async () => {
-    getMovementBenchmarksMock.mockResolvedValueOnce([
-      { date: '2026-04-15', bodyweight_lbs: 232 },
-    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-15', bodyweight_lbs: 232 }])
     render(<CombineDataIsland />)
-    await waitFor(() =>
-      expect(screen.getByText(/benchmark history/i)).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText(/benchmark history/i)).toBeInTheDocument())
     await waitFor(() => expect(screen.getByText('2026-04-15')).toBeInTheDocument())
   })
 
@@ -147,49 +135,37 @@ describe('CombineDataIsland', () => {
       isLoading: false,
       email: null,
     })
-    getMovementBenchmarksMock.mockResolvedValueOnce([
-      { date: '2026-04-15', bodyweight_lbs: 232 },
-    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-15', bodyweight_lbs: 232 }])
     render(<CombineDataIsland />)
     await waitFor(() => expect(screen.getByText('2026-04-15')).toBeInTheDocument())
 
+    expect(screen.queryByRole('button', { name: /log a session/i })).not.toBeInTheDocument()
     expect(
-      screen.queryByRole('button', { name: /log a session/i }),
-    ).not.toBeInTheDocument()
-    expect(
-      screen.queryByRole('button', { name: /edit benchmark from 2026-04-15/i }),
+      screen.queryByRole('button', { name: /edit benchmark from 2026-04-15/i })
     ).not.toBeInTheDocument()
   })
 
   it('clicking Edit on a row puts the entry form into edit mode (prefilled, locked date)', async () => {
-    getMovementBenchmarksMock.mockResolvedValueOnce([
-      { date: '2026-04-15', bodyweight_lbs: 232 },
-    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-15', bodyweight_lbs: 232 }])
     const user = userEvent.setup()
     render(<CombineDataIsland />)
 
     await waitFor(() =>
       expect(
-        screen.getByRole('button', { name: /edit benchmark from 2026-04-15/i }),
-      ).toBeInTheDocument(),
+        screen.getByRole('button', { name: /edit benchmark from 2026-04-15/i })
+      ).toBeInTheDocument()
     )
-    await user.click(
-      screen.getByRole('button', { name: /edit benchmark from 2026-04-15/i }),
-    )
+    await user.click(screen.getByRole('button', { name: /edit benchmark from 2026-04-15/i }))
 
     expect(screen.getByText(/edit session for 2026-04-15/i)).toBeInTheDocument()
     const dateInput = screen.getByLabelText(/^date/i) as HTMLInputElement
     expect(dateInput.value).toBe('2026-04-15')
     expect(dateInput.readOnly).toBe(true)
-    expect((screen.getByLabelText(/bodyweight/i) as HTMLInputElement).value).toBe(
-      '232',
-    )
+    expect((screen.getByLabelText(/bodyweight/i) as HTMLInputElement).value).toBe('232')
   })
 
   it('Delete with confirmation calls deleteBenchmark and refetches', async () => {
-    getMovementBenchmarksMock.mockResolvedValueOnce([
-      { date: '2026-04-15', bodyweight_lbs: 232 },
-    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-15', bodyweight_lbs: 232 }])
     getMovementBenchmarksMock.mockResolvedValueOnce([])
     deleteBenchmarkMock.mockResolvedValueOnce(undefined)
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true)
@@ -198,15 +174,13 @@ describe('CombineDataIsland', () => {
 
     await waitFor(() =>
       expect(
-        screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }),
-      ).toBeInTheDocument(),
+        screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i })
+      ).toBeInTheDocument()
     )
-    await user.click(
-      screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }),
-    )
+    await user.click(screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }))
 
     expect(confirmSpy).toHaveBeenCalledWith(
-      expect.stringMatching(/delete benchmark from 2026-04-15.*cannot be undone/i),
+      expect.stringMatching(/delete benchmark from 2026-04-15.*cannot be undone/i)
     )
     await waitFor(() => expect(deleteBenchmarkMock).toHaveBeenCalledWith('2026-04-15'))
     await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(2))
@@ -214,21 +188,17 @@ describe('CombineDataIsland', () => {
   })
 
   it('Delete cancelled in confirm() short-circuits — no API call, no refetch', async () => {
-    getMovementBenchmarksMock.mockResolvedValueOnce([
-      { date: '2026-04-15', bodyweight_lbs: 232 },
-    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-15', bodyweight_lbs: 232 }])
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(false)
     const user = userEvent.setup()
     render(<CombineDataIsland />)
 
     await waitFor(() =>
       expect(
-        screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }),
-      ).toBeInTheDocument(),
+        screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i })
+      ).toBeInTheDocument()
     )
-    await user.click(
-      screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }),
-    )
+    await user.click(screen.getByRole('button', { name: /delete benchmark from 2026-04-15/i }))
 
     expect(deleteBenchmarkMock).not.toHaveBeenCalled()
     expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(1)
@@ -236,9 +206,7 @@ describe('CombineDataIsland', () => {
   })
 
   it('Mark-incomplete on a complete row sends is_complete: false', async () => {
-    getMovementBenchmarksMock.mockResolvedValueOnce([
-      { date: '2026-04-15', bodyweight_lbs: 232 },
-    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-15', bodyweight_lbs: 232 }])
     getMovementBenchmarksMock.mockResolvedValueOnce([
       { date: '2026-04-15', bodyweight_lbs: 232, is_complete: false },
     ])
@@ -250,19 +218,19 @@ describe('CombineDataIsland', () => {
       expect(
         screen.getByRole('button', {
           name: /mark benchmark from 2026-04-15 as incomplete/i,
-        }),
-      ).toBeInTheDocument(),
+        })
+      ).toBeInTheDocument()
     )
     await user.click(
       screen.getByRole('button', {
         name: /mark benchmark from 2026-04-15 as incomplete/i,
-      }),
+      })
     )
 
     await waitFor(() =>
       expect(updateBenchmarkMock).toHaveBeenCalledWith('2026-04-15', {
         is_complete: false,
-      }),
+      })
     )
     await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(2))
   })
@@ -280,31 +248,29 @@ describe('CombineDataIsland', () => {
       expect(
         screen.getByRole('button', {
           name: /mark benchmark from 2026-04-15 as complete/i,
-        }),
-      ).toBeInTheDocument(),
+        })
+      ).toBeInTheDocument()
     )
     await user.click(
       screen.getByRole('button', {
         name: /mark benchmark from 2026-04-15 as complete/i,
-      }),
+      })
     )
 
     await waitFor(() =>
       expect(updateBenchmarkMock).toHaveBeenCalledWith('2026-04-15', {
         is_complete: true,
-      }),
+      })
     )
   })
 
   it('does NOT let a stale mount-time fetch overwrite fresher post-save data (Codex P2 race)', async () => {
     let resolveMount: (data: unknown) => void = () => {}
-    const mountPromise = new Promise((resolve) => {
+    const mountPromise = new Promise(resolve => {
       resolveMount = resolve
     })
     getMovementBenchmarksMock.mockReturnValueOnce(mountPromise)
-    getMovementBenchmarksMock.mockResolvedValueOnce([
-      { date: '2026-04-20', bodyweight_lbs: 230 },
-    ])
+    getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-20', bodyweight_lbs: 230 }])
     logBenchmarkMock.mockResolvedValueOnce(undefined)
 
     const user = userEvent.setup()
@@ -317,12 +283,10 @@ describe('CombineDataIsland', () => {
     await user.type(screen.getByLabelText(/bodyweight/i), '230')
     await user.click(screen.getByRole('button', { name: /save entry/i }))
 
-    await waitFor(() =>
-      expect(screen.getByLabelText(/230\.0 lbs/i)).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByLabelText(/230\.0 lbs/i)).toBeInTheDocument())
 
     resolveMount([{ date: '2026-04-15', bodyweight_lbs: 999 }])
-    await new Promise((r) => setTimeout(r, 20))
+    await new Promise(r => setTimeout(r, 20))
 
     expect(screen.getByLabelText(/230\.0 lbs/i)).toBeInTheDocument()
     expect(screen.queryByLabelText(/999/i)).not.toBeInTheDocument()
@@ -340,16 +304,12 @@ describe('CombineDataIsland', () => {
       render(<CombineDataIsland />)
 
       await waitFor(() =>
-        expect(
-          screen.getByRole('link', { name: /preview with sample data/i }),
-        ).toBeInTheDocument(),
+        expect(screen.getByRole('link', { name: /preview with sample data/i })).toBeInTheDocument()
       )
       // Badge must NOT render in this branch — only the CTA.
       expect(screen.queryByText(/preview — sample data/i)).not.toBeInTheDocument()
       // The empty-state Scoreboard should still render below the CTA.
-      expect(
-        screen.getByRole('group', { name: /combine scoreboard summary/i }),
-      ).toBeInTheDocument()
+      expect(screen.getByRole('group', { name: /combine scoreboard summary/i })).toBeInTheDocument()
     })
 
     it('shows the demo fixture and badge when preview=demo and the real fetch is empty', async () => {
@@ -361,34 +321,28 @@ describe('CombineDataIsland', () => {
       // empty branch (preview is empty-state-only — preview mode is
       // never decided before the real fetch settles).
       await waitFor(() => expect(getMovementBenchmarksMock).toHaveBeenCalledTimes(1))
-      await waitFor(() =>
-        expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument(),
-      )
+      await waitFor(() => expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument())
 
       // History table should reflect a fixture row (`2026-05-01` is the
       // last entry in `COMBINE_DEMO_BENCHMARKS`).
       expect(await screen.findByText('2026-05-01')).toBeInTheDocument()
       // CTA must NOT render once we're in preview mode.
       expect(
-        screen.queryByRole('link', { name: /preview with sample data/i }),
+        screen.queryByRole('link', { name: /preview with sample data/i })
       ).not.toBeInTheDocument()
     })
 
     it('ignores preview=demo when real entries exist (real data wins)', async () => {
-      getMovementBenchmarksMock.mockResolvedValueOnce([
-        { date: '2026-04-15', bodyweight_lbs: 232 },
-      ])
+      getMovementBenchmarksMock.mockResolvedValueOnce([{ date: '2026-04-15', bodyweight_lbs: 232 }])
       searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
       render(<CombineDataIsland />)
 
-      await waitFor(() =>
-        expect(screen.getByText('2026-04-15')).toBeInTheDocument(),
-      )
+      await waitFor(() => expect(screen.getByText('2026-04-15')).toBeInTheDocument())
       // Neither preview surface should render — real data fully owns
       // the page once it lands.
       expect(screen.queryByText(/preview — sample data/i)).not.toBeInTheDocument()
       expect(
-        screen.queryByRole('link', { name: /preview with sample data/i }),
+        screen.queryByRole('link', { name: /preview with sample data/i })
       ).not.toBeInTheDocument()
       // The fixture's last-row date should NOT appear because the
       // demo set is never consulted in this branch.
@@ -402,9 +356,7 @@ describe('CombineDataIsland', () => {
       render(<CombineDataIsland />)
 
       await waitFor(() =>
-        expect(
-          screen.getByRole('button', { name: /exit preview/i }),
-        ).toBeInTheDocument(),
+        expect(screen.getByRole('button', { name: /exit preview/i })).toBeInTheDocument()
       )
       await user.click(screen.getByRole('button', { name: /exit preview/i }))
 
@@ -425,9 +377,7 @@ describe('CombineDataIsland', () => {
       render(<CombineDataIsland />)
 
       await waitFor(() =>
-        expect(
-          screen.getByRole('button', { name: /exit preview/i }),
-        ).toBeInTheDocument(),
+        expect(screen.getByRole('button', { name: /exit preview/i })).toBeInTheDocument()
       )
       await user.click(screen.getByRole('button', { name: /exit preview/i }))
 
@@ -449,14 +399,10 @@ describe('CombineDataIsland', () => {
       searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
       render(<CombineDataIsland />)
 
-      await waitFor(() =>
-        expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument(),
-      )
+      await waitFor(() => expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument())
       // Form's "Log a session" toggle button must not be in the DOM —
       // the entire form panel is suppressed, not just disabled.
-      expect(
-        screen.queryByRole('button', { name: /log a session/i }),
-      ).not.toBeInTheDocument()
+      expect(screen.queryByRole('button', { name: /log a session/i })).not.toBeInTheDocument()
     })
 
     it('shows the entry form again once preview is exited (admin signed in)', async () => {
@@ -473,9 +419,7 @@ describe('CombineDataIsland', () => {
       render(<CombineDataIsland />)
 
       await waitFor(() =>
-        expect(
-          screen.getByRole('button', { name: /log a session/i }),
-        ).toBeInTheDocument(),
+        expect(screen.getByRole('button', { name: /log a session/i })).toBeInTheDocument()
       )
     })
 
@@ -493,11 +437,9 @@ describe('CombineDataIsland', () => {
       searchParamsMock.mockReturnValue(new URLSearchParams('preview=demo'))
       render(<CombineDataIsland />)
 
-      await waitFor(() =>
-        expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument(),
-      )
+      await waitFor(() => expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument())
       expect(
-        screen.queryByRole('button', { name: /edit benchmark from 2026-05-01/i }),
+        screen.queryByRole('button', { name: /edit benchmark from 2026-05-01/i })
       ).not.toBeInTheDocument()
     })
   })

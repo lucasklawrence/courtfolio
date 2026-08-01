@@ -58,7 +58,7 @@ describe('bucketAvgHr', () => {
     // 2026-04-06 is a Monday; 04-08 is the same week; 04-13 is the next Monday.
     const out = bucketAvgHr(
       [pt('2026-04-06', 140), pt('2026-04-08', 160), pt('2026-04-13', 150)],
-      'week',
+      'week'
     )
     expect(out).toEqual([
       { date: '2026-04-06', label: '4/6', avgHr: 150 },
@@ -75,7 +75,7 @@ describe('bucketAvgHr', () => {
   it("averages sessions in the same month and labels them Mon 'YY", () => {
     const out = bucketAvgHr(
       [pt('2026-04-06', 140), pt('2026-04-20', 160), pt('2026-05-02', 150)],
-      'month',
+      'month'
     )
     expect(out).toEqual([
       { date: '2026-04-06', label: "Apr '26", avgHr: 150 },
@@ -86,9 +86,9 @@ describe('bucketAvgHr', () => {
   it('preserves chronological bucket order and keeps each bucket first date', () => {
     const out = bucketAvgHr(
       [pt('2026-01-05', 120), pt('2026-01-19', 130), pt('2026-03-02', 140)],
-      'month',
+      'month'
     )
-    expect(out.map((b) => b.date)).toEqual(['2026-01-05', '2026-03-02'])
+    expect(out.map(b => b.date)).toEqual(['2026-01-05', '2026-03-02'])
   })
 
   it('skips points whose date string cannot be parsed', () => {

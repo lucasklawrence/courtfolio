@@ -38,7 +38,7 @@ function tier(
   exercise: string | null,
   scope: AchievementScope,
   threshold: number,
-  extra: Partial<WeightRoomAchievement> = {},
+  extra: Partial<WeightRoomAchievement> = {}
 ): WeightRoomAchievement {
   return {
     id: `${exercise ?? '*'}-${scope}-${threshold}`,
@@ -59,7 +59,7 @@ const GOALS: ExerciseGoal[] = [
 function resolveOne(
   sets: StrengthSet[],
   achievement: WeightRoomAchievement,
-  goals: ExerciseGoal[] = GOALS,
+  goals: ExerciseGoal[] = GOALS
 ) {
   const [result] = resolveAchievements(sets, goals, [achievement])
   return result
@@ -157,7 +157,10 @@ describe('resolveAchievements — lifetime scope', () => {
   })
 
   it('reports the total as `best` when the threshold is not reached', () => {
-    const result = resolveOne([set('2026-07-01', 'pushups', 250)], tier('pushups', 'lifetime', 1000))
+    const result = resolveOne(
+      [set('2026-07-01', 'pushups', 250)],
+      tier('pushups', 'lifetime', 1000)
+    )
     expect(result.earned).toBe(false)
     expect(result.best).toBe(250)
     expect(result.remaining).toBe(750)
@@ -193,7 +196,12 @@ describe('resolveAchievements — streak scope', () => {
    * a local-noon Date, so a UTC round-trip would shift the key back a day in
    * any positive-offset timezone and make these assertions machine-dependent.
    */
-  function streakSets(start: string, days: number, exercise = 'pushups', reps = 100): StrengthSet[] {
+  function streakSets(
+    start: string,
+    days: number,
+    exercise = 'pushups',
+    reps = 100
+  ): StrengthSet[] {
     const out: StrengthSet[] = []
     const cursor = new Date(`${start}T12:00:00`)
     for (let i = 0; i < days; i++) {
@@ -306,8 +314,8 @@ describe('resolveAchievements — repeatable badges', () => {
     const day = (n: number) => `2026-07-${String(n).padStart(2, '0')}`
     const sets = [
       // Three-day run, a miss, then another three-day run.
-      ...[1, 2, 3].map((n) => set(day(n), 'pushups', 100)),
-      ...[10, 11, 12].map((n) => set(day(n), 'pushups', 100)),
+      ...[1, 2, 3].map(n => set(day(n), 'pushups', 100)),
+      ...[10, 11, 12].map(n => set(day(n), 'pushups', 100)),
     ]
     const result = resolveOne(sets, tier('pushups', 'streak', 3))
     expect(result.timesEarned).toBe(2)
@@ -363,14 +371,14 @@ describe('resolveAchievements — load measures', () => {
 
   const loaded = (
     sets: StrengthSet[],
-    achievement: WeightRoomAchievement,
+    achievement: WeightRoomAchievement
   ): ReturnType<typeof resolveOne> => resolveOne(sets, achievement, LOAD_GOALS)
 
   it('doubles tonnage for a two-implement movement', () => {
     // 10 reps × 60 lb per hand × 2 dumbbells = 1,200 lb.
     const result = loaded(
       [wset('2026-07-14', 'shrugs', 10, 60)],
-      tier('shrugs', 'day', 1200, { measure: 'tonnage' }),
+      tier('shrugs', 'day', 1200, { measure: 'tonnage' })
     )
     expect(result.best).toBe(1200)
     expect(result.earned).toBe(true)
@@ -380,7 +388,7 @@ describe('resolveAchievements — load measures', () => {
     // 10 reps × 20 lb vest × 1 = 200 lb, not 400.
     const result = loaded(
       [wset('2026-07-14', 'pushups', 10, 20)],
-      tier('pushups', 'day', 400, { measure: 'tonnage' }),
+      tier('pushups', 'day', 400, { measure: 'tonnage' })
     )
     expect(result.best).toBe(200)
     expect(result.earned).toBe(false)
@@ -390,7 +398,7 @@ describe('resolveAchievements — load measures', () => {
     const result = resolveOne(
       [wset('2026-07-14', 'dips', 10, 25)],
       tier('dips', 'day', 250, { measure: 'tonnage' }),
-      [],
+      []
     )
     expect(result.best).toBe(250)
     expect(result.earned).toBe(true)
@@ -426,7 +434,7 @@ describe('resolveAchievements — load measures', () => {
     const bodyweight = [set('2026-07-14', 'pushups', 200)]
     expect(loaded(bodyweight, tier('pushups', 'set', 20, { measure: 'load' })).earned).toBe(false)
     expect(loaded(bodyweight, tier('pushups', 'day', 100, { measure: 'tonnage' })).earned).toBe(
-      false,
+      false
     )
     // The same sets still earn the rep ladder.
     expect(loaded(bodyweight, tier('pushups', 'day', 100)).earned).toBe(true)
@@ -443,10 +451,7 @@ describe('resolveAchievements — load measures', () => {
   it('keeps a streak on reps even when the tier asks for tonnage', () => {
     // A streak has no tonnage bar to clear — daily_target is a rep target — so
     // it resolves as a plain rep streak rather than silently reporting zero.
-    const sets = [
-      wset('2026-07-01', 'shrugs', 100, 50),
-      wset('2026-07-02', 'shrugs', 100, 50),
-    ]
+    const sets = [wset('2026-07-01', 'shrugs', 100, 50), wset('2026-07-02', 'shrugs', 100, 50)]
     const result = loaded(sets, tier('shrugs', 'streak', 2, { measure: 'tonnage' }))
     expect(result.best).toBe(2)
     expect(result.earned).toBe(true)
@@ -476,7 +481,7 @@ describe('resolveAchievements — Pacific day bucketing', () => {
     // 2026-07-15T06:59:00Z is 11:59pm PT on the 14th.
     const result = resolveOne(
       [utcSet('2026-07-15T06:59:00Z', 'pushups', 100)],
-      tier('pushups', 'day', 100),
+      tier('pushups', 'day', 100)
     )
     expect(result.firstEarnedOn).toBe('2026-07-14')
   })
@@ -507,7 +512,7 @@ describe('resolveAchievements — edge cases', () => {
       tier('pushups', 'streak', 7),
       tier(null, 'lifetime', 1000),
     ])
-    expect(results.every((r) => !r.earned && r.best === 0 && r.progress === 0)).toBe(true)
+    expect(results.every(r => !r.earned && r.best === 0 && r.progress === 0)).toBe(true)
   })
 
   it('returns an empty array for an empty ladder', () => {
@@ -560,21 +565,31 @@ describe('buildTrophyRoomView', () => {
     // Tiers are deliberately not FK'd to goals — deleting a goal keeps its
     // badges — so a goals-only lookup would render the raw slug here (#384).
     const catalog = [
-      { slug: 'pushups', display_name: 'Pushups', equipment: 'bodyweight' as const, muscle_group: 'chest' as const },
-      { slug: 'pullups', display_name: 'Pullups', equipment: 'bodyweight' as const, muscle_group: 'back' as const },
+      {
+        slug: 'pushups',
+        display_name: 'Pushups',
+        equipment: 'bodyweight' as const,
+        muscle_group: 'chest' as const,
+      },
+      {
+        slug: 'pullups',
+        display_name: 'Pullups',
+        equipment: 'bodyweight' as const,
+        muscle_group: 'back' as const,
+      },
     ]
     const view = buildTrophyRoomView(SETS, [], LADDER, catalog)
-    expect(view.groups.map((g) => g.label)).toEqual([POOLED_LABEL, 'Pullups', 'Pushups'])
+    expect(view.groups.map(g => g.label)).toEqual([POOLED_LABEL, 'Pullups', 'Pushups'])
   })
 
   it('falls back to the slug with no catalog', () => {
     const view = buildTrophyRoomView(SETS, [], LADDER)
-    expect(view.groups.map((g) => g.label)).toEqual([POOLED_LABEL, 'pullups', 'pushups'])
+    expect(view.groups.map(g => g.label)).toEqual([POOLED_LABEL, 'pullups', 'pushups'])
   })
 
   it('puts the pooled ladder first, then exercises alphabetically', () => {
     const view = buildTrophyRoomView(SETS, GOALS, LADDER)
-    expect(view.groups.map((g) => g.label)).toEqual([POOLED_LABEL, 'pullups', 'pushups'])
+    expect(view.groups.map(g => g.label)).toEqual([POOLED_LABEL, 'pullups', 'pushups'])
     expect(view.groups[0].exercise).toBeNull()
   })
 
@@ -583,28 +598,28 @@ describe('buildTrophyRoomView', () => {
     // Earned: pushups day-100, pushups lifetime-1000 (270 total? no — 270 < 1000),
     // pullups day-50, pooled day-300 (210 on the 14th — not earned).
     expect(view.totalCount).toBe(5)
-    const pushups = view.groups.find((g) => g.exercise === 'pushups')
+    const pushups = view.groups.find(g => g.exercise === 'pushups')
     expect(pushups?.earnedCount).toBe(1)
     expect(view.earnedCount).toBe(2)
   })
 
   it('carries the exercise goal color onto its group', () => {
     const view = buildTrophyRoomView(SETS, GOALS, LADDER)
-    expect(view.groups.find((g) => g.exercise === 'pushups')?.color).toBe('#EA580C')
+    expect(view.groups.find(g => g.exercise === 'pushups')?.color).toBe('#EA580C')
     expect(view.groups[0].color).toBeNull()
   })
 
   it('orders tiers within a group by scope then ascending threshold', () => {
     const view = buildTrophyRoomView(SETS, GOALS, LADDER)
-    const pushups = view.groups.find((g) => g.exercise === 'pushups')
-    expect(pushups?.achievements.map((a) => a.achievement.threshold)).toEqual([100, 200, 1000])
+    const pushups = view.groups.find(g => g.exercise === 'pushups')
+    expect(pushups?.achievements.map(a => a.achievement.threshold)).toEqual([100, 200, 1000])
   })
 
   it('ranks nextUp by progress and excludes untouched tiers', () => {
     const view = buildTrophyRoomView(SETS, GOALS, LADDER)
     // pushups day-200 (150/200 = .75) beats pooled day-300 (210/300 = .7),
     // which beats pushups lifetime-1000 (270/1000 = .27).
-    expect(view.nextUp.map((e) => e.achievement.threshold)).toEqual([200, 300, 1000])
+    expect(view.nextUp.map(e => e.achievement.threshold)).toEqual([200, 300, 1000])
   })
 
   it('excludes zero-progress tiers from nextUp', () => {
@@ -616,7 +631,7 @@ describe('buildTrophyRoomView', () => {
   it('lists recently earned badges newest first', () => {
     const sets = [set('2026-07-01', 'pullups', 60), set('2026-07-20', 'pushups', 150)]
     const view = buildTrophyRoomView(sets, GOALS, LADDER)
-    expect(view.recent.map((e) => e.firstEarnedOn)).toEqual(['2026-07-20', '2026-07-01'])
+    expect(view.recent.map(e => e.firstEarnedOn)).toEqual(['2026-07-20', '2026-07-01'])
   })
 
   it('returns an empty view for an empty ladder', () => {
@@ -637,19 +652,19 @@ describe('describeAchievement', () => {
 
   it('switches to pounds for tonnage and load tiers', () => {
     expect(describeAchievement(tier('shrugs', 'day', 10000, { measure: 'tonnage' }))).toBe(
-      '10,000 lb in a day',
+      '10,000 lb in a day'
     )
     expect(describeAchievement(tier('shrugs', 'set', 1400, { measure: 'tonnage' }))).toBe(
-      '1,400 lb in one set',
+      '1,400 lb in one set'
     )
     expect(describeAchievement(tier('shrugs', 'set', 120, { measure: 'load' }))).toBe(
-      '120 lb on one set',
+      '120 lb on one set'
     )
   })
 
   it('still counts days for a streak whatever the measure', () => {
     expect(describeAchievement(tier('shrugs', 'streak', 14, { measure: 'tonnage' }))).toBe(
-      '14-day streak',
+      '14-day streak'
     )
   })
 })
@@ -759,7 +774,7 @@ describe('streak scope with effective-dated targets (#362)', () => {
         set('2026-07-17', 'pushups', 100),
       ],
       tier('pushups', 'streak', 3),
-      GOALS,
+      GOALS
     )
     expect(result.earned).toBe(true)
     expect(result.best).toBe(3)

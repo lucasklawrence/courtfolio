@@ -83,9 +83,7 @@ export interface CardioSessionDetail {
  *   schema validation. The page wraps this in `.catch(() => null)` so a
  *   flaky read 404s instead of 500ing.
  */
-export async function getCardioSession(
-  startedAt: string,
-): Promise<CardioSessionDetail | null> {
+export async function getCardioSession(startedAt: string): Promise<CardioSessionDetail | null> {
   const supabase = await createServerSupabaseClient()
   // A busy 60-minute class can log >1000 HR samples (one session already
   // has 1287), which is PostgREST's per-response cap — so the samples must
@@ -104,7 +102,7 @@ export async function getCardioSession(
           .select(HR_SAMPLE_COLUMNS)
           .eq('session_started_at', startedAt)
           .order('sample_at', { ascending: true }),
-      'cardio_session_hr_samples',
+      'cardio_session_hr_samples'
     ),
   ])
 
@@ -116,15 +114,13 @@ export async function getCardioSession(
   const sessionRaw = stripNulls(sessionRes.data as unknown as Record<string, unknown>)
   const sessionParsed = CardioSessionRowSchema.safeParse(sessionRaw)
   if (!sessionParsed.success) {
-    throw new Error(
-      `cardio_sessions row failed schema validation: ${sessionParsed.error.message}`,
-    )
+    throw new Error(`cardio_sessions row failed schema validation: ${sessionParsed.error.message}`)
   }
 
   const samplesParsed = z.array(CardioSessionHrSampleRowSchema).safeParse(samplesRaw)
   if (!samplesParsed.success) {
     throw new Error(
-      `cardio_session_hr_samples failed schema validation: ${samplesParsed.error.message}`,
+      `cardio_session_hr_samples failed schema validation: ${samplesParsed.error.message}`
     )
   }
 

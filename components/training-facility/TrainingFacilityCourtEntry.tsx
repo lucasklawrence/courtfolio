@@ -21,10 +21,7 @@ type TrainingFacilityCourtEntryProps = {
  * @param props.id - Optional DOM id used for testing hooks or guided-tour targeting.
  * @param props.onClick - Activation handler invoked when a visitor enters the tunnel.
  */
-export function TrainingFacilityCourtEntry({
-  id,
-  onClick,
-}: TrainingFacilityCourtEntryProps) {
+export function TrainingFacilityCourtEntry({ id, onClick }: TrainingFacilityCourtEntryProps) {
   return (
     <button
       id={id}

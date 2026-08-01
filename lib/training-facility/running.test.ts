@@ -35,9 +35,9 @@ describe('filterRunningSessions', () => {
     ]
     const out = filterRunningSessions(
       sessions,
-      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999'),
+      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999')
     )
-    expect(out.map((s) => s.date)).toEqual(['2026-04-01', '2026-04-10'])
+    expect(out.map(s => s.date)).toEqual(['2026-04-01', '2026-04-10'])
   })
 })
 
@@ -65,7 +65,7 @@ describe('paceTrendPoints', () => {
       run('2026-04-05', { pace_seconds_per_km: 360 }),
     ]
     const out = paceTrendPoints(sessions)
-    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-05'])
+    expect(out.map(p => p.rawDate)).toEqual(['2026-04-05'])
   })
 
   it('drops sessions whose date is unparseable', () => {
@@ -74,7 +74,7 @@ describe('paceTrendPoints', () => {
       run('2026-04-05', { pace_seconds_per_km: 360 }),
     ]
     const out = paceTrendPoints(sessions)
-    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-05'])
+    expect(out.map(p => p.rawDate)).toEqual(['2026-04-05'])
   })
 
   it('drops implausible pace outliers that would flatten the y-domain', () => {
@@ -84,7 +84,7 @@ describe('paceTrendPoints', () => {
       run('2026-04-03', { pace_seconds_per_km: 360 }), // ~9:39 /mi — real
     ]
     const out = paceTrendPoints(sessions)
-    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-03'])
+    expect(out.map(p => p.rawDate)).toEqual(['2026-04-03'])
   })
 
   it('keeps a slow-but-plausible walking pace (helper is reused for the track view)', () => {
@@ -101,7 +101,7 @@ describe('cardiacEfficiencyPoints', () => {
       run('2026-04-08', { meters_per_heartbeat: 1.51 }),
     ]
     const out = cardiacEfficiencyPoints(sessions)
-    expect(out.map((p) => p.metersPerHeartbeat)).toEqual([1.42, 1.51])
+    expect(out.map(p => p.metersPerHeartbeat)).toEqual([1.42, 1.51])
   })
 
   it('drops sessions missing the field or non-positive', () => {
@@ -112,7 +112,7 @@ describe('cardiacEfficiencyPoints', () => {
       run('2026-04-04', { meters_per_heartbeat: 1.6 }),
     ]
     const out = cardiacEfficiencyPoints(sessions)
-    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-04'])
+    expect(out.map(p => p.rawDate)).toEqual(['2026-04-04'])
   })
 
   it('drops sessions whose date is unparseable', () => {
@@ -121,7 +121,7 @@ describe('cardiacEfficiencyPoints', () => {
       run('2026-04-05', { meters_per_heartbeat: 1.5 }),
     ]
     const out = cardiacEfficiencyPoints(sessions)
-    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-05'])
+    expect(out.map(p => p.rawDate)).toEqual(['2026-04-05'])
   })
 
   it('drops implausibly high m/heartbeat (bad-HR artifact spiking the y-domain)', () => {
@@ -130,7 +130,7 @@ describe('cardiacEfficiencyPoints', () => {
       run('2026-04-02', { meters_per_heartbeat: 1.6 }), // real
     ]
     const out = cardiacEfficiencyPoints(sessions)
-    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-02'])
+    expect(out.map(p => p.rawDate)).toEqual(['2026-04-02'])
   })
 })
 
@@ -178,7 +178,7 @@ describe('paceAtHrPoints', () => {
       run('2026-04-05', { avg_hr: 150, pace_seconds_per_km: 350 }),
     ]
     const out = paceAtHrPoints(sessions)
-    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-05'])
+    expect(out.map(p => p.rawDate)).toEqual(['2026-04-05'])
   })
 
   it('drops points whose converted pace is an implausible outlier', () => {
@@ -187,7 +187,7 @@ describe('paceAtHrPoints', () => {
       run('2026-04-02', { avg_hr: 150, pace_seconds_per_km: 350 }), // real
     ]
     const out = paceAtHrPoints(sessions)
-    expect(out.map((p) => p.rawDate)).toEqual(['2026-04-02'])
+    expect(out.map(p => p.rawDate)).toEqual(['2026-04-02'])
   })
 })
 

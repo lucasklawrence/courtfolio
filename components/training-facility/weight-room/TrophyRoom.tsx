@@ -118,7 +118,7 @@ export function TrophyRoom({ view }: TrophyRoomProps): JSX.Element {
             note="Ranked by how close each one is."
           />
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-            {nextUp.map((entry) => (
+            {nextUp.map(entry => (
               <li key={entry.achievement.id}>
                 <ChaseCard entry={entry} />
               </li>
@@ -134,7 +134,7 @@ export function TrophyRoom({ view }: TrophyRoomProps): JSX.Element {
           note="Grouped by movement."
         />
         <div className="mt-6 space-y-8">
-          {groups.map((group) => (
+          {groups.map(group => (
             <GroupCard key={group.exercise ?? '*'} group={group} />
           ))}
         </div>
@@ -254,7 +254,7 @@ function GroupCard({ group }: { group: AchievementGroup }): JSX.Element {
               {section.heading}
             </h4>
             <ul className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-              {section.entries.map((entry) => (
+              {section.entries.map(entry => (
                 <li key={entry.achievement.id}>
                   <BadgeTile entry={entry} accent={accent} />
                 </li>
@@ -272,13 +272,7 @@ function GroupCard({ group }: { group: AchievementGroup }): JSX.Element {
  * date it was first earned; unearned tiles are dimmed, dashed, and show a
  * progress bar plus what's left to do.
  */
-function BadgeTile({
-  entry,
-  accent,
-}: {
-  entry: ResolvedAchievement
-  accent: string
-}): JSX.Element {
+function BadgeTile({ entry, accent }: { entry: ResolvedAchievement; accent: string }): JSX.Element {
   const { achievement, earned, best, progress, remaining, timesEarned } = entry
   const color = achievement.color ?? accent
   const pct = Math.round(progress * 100)

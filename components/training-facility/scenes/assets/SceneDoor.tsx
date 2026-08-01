@@ -83,11 +83,7 @@ export function SceneDoor({
   const signX = x - 4
 
   return (
-    <Link
-      href={href}
-      aria-label={ariaLabel}
-      className="group focus:outline-none"
-    >
+    <Link href={href} aria-label={ariaLabel} className="group focus:outline-none">
       {/* Door frame */}
       <RoughRect
         x={x}

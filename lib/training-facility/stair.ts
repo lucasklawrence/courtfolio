@@ -29,7 +29,7 @@ export type { HrZoneBucket, SessionAvgHrPoint } from './cardio-shared'
  */
 export function filterStairSessions(
   sessions: readonly CardioSession[],
-  range: DateRange,
+  range: DateRange
 ): CardioSession[] {
   return filterCardioSessionsByActivity(sessions, 'stair', range)
 }

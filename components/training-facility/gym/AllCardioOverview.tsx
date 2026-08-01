@@ -5,10 +5,7 @@ import { Fragment, useEffect, useMemo, useRef, useState, type JSX } from 'react'
 import type { CardioData, CardioSession } from '@/types/cardio'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
-import {
-  useCardioPreview,
-  useCardioPreviewHref,
-} from '@/lib/training-facility/use-cardio-preview'
+import { useCardioPreview, useCardioPreviewHref } from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -35,10 +32,7 @@ import {
   summarizeAllCardio,
   type ActivityCount,
 } from '@/lib/training-facility/all-cardio'
-import {
-  trainingLoadInRange,
-  type TrainingLoadPoint,
-} from '@/lib/training-facility/training-load'
+import { trainingLoadInRange, type TrainingLoadPoint } from '@/lib/training-facility/training-load'
 import { computeStreaks, type StreakResult } from '@/lib/training-facility/streaks'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { HrZoneBars } from './HrZoneBars'
@@ -142,7 +136,7 @@ export function AllCardioOverview({
   // component lands in its empty-state branch.
   const realData = useMemo<CardioData>(
     () => cardio ?? { imported_at: '', sessions: [], resting_hr_trend: [], vo2max_trend: [] },
-    [cardio],
+    [cardio]
   )
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
@@ -163,10 +157,10 @@ export function AllCardioOverview({
   useEffect(() => {
     const node = cardSizerRef.current
     if (!node || typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
-        setChartWidth((prev) => (prev === next ? prev : next))
+        setChartWidth(prev => (prev === next ? prev : next))
       }
     })
     observer.observe(node)
@@ -176,10 +170,10 @@ export function AllCardioOverview({
   useEffect(() => {
     const node = wideSizerRef.current
     if (!node || typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
-        setWideWidth((prev) => (prev === next ? prev : next))
+        setWideWidth(prev => (prev === next ? prev : next))
       }
     })
     observer.observe(node)
@@ -198,7 +192,7 @@ export function AllCardioOverview({
 
   const sessions = useMemo<CardioSession[]>(
     () => (data ? filterAllCardioSessions(data.sessions, range) : []),
-    [data, range],
+    [data, range]
   )
   const summary = useMemo(() => summarizeAllCardio(sessions), [sessions])
   const buckets = useMemo(() => aggregateHrZoneSeconds(sessions), [sessions])
@@ -210,7 +204,7 @@ export function AllCardioOverview({
   // per-equipment views, and threads the user's persisted max HR through.
   const trainingLoad = useMemo<TrainingLoadPoint[]>(
     () => (data ? trainingLoadInRange(data.sessions, range, { maxHr }) : []),
-    [data, range, maxHr],
+    [data, range, maxHr]
   )
 
   // Streaks (slice B of #75). All-time numbers come from `data.sessions`;
@@ -219,11 +213,11 @@ export function AllCardioOverview({
   // helper agrees with what the heatmap and session-log table also see.
   const allTimeStreak = useMemo<StreakResult>(
     () => (data ? computeStreaks(data.sessions) : { current: 0, longest: 0 }),
-    [data],
+    [data]
   )
   const filteredStreak = useMemo<StreakResult | null>(
     () => (sessions.length > 0 ? computeStreaks(sessions) : null),
-    [sessions],
+    [sessions]
   )
 
   return (
@@ -252,11 +246,10 @@ export function AllCardioOverview({
             All cardio — the stats wall
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Stair, run, walk — every cardio session in the window aggregated.
-            Time in zone is summed across activities; per-session avg HR is
-            color-coded so the activity mix is legible at a glance; training
-            load is whole-athlete (ATL / CTL / TSB don&rsquo;t care which
-            equipment you used).
+            Stair, run, walk — every cardio session in the window aggregated. Time in zone is summed
+            across activities; per-session avg HR is color-coded so the activity mix is legible at a
+            glance; training load is whole-athlete (ATL / CTL / TSB don&rsquo;t care which equipment
+            you used).
           </p>
         </header>
 
@@ -276,11 +269,7 @@ export function AllCardioOverview({
         ) : null}
 
         <div className="mt-8">
-          <DateFilter
-            earliestDate={earliestDate}
-            defaultPreset="1M"
-            onChange={setRange}
-          />
+          <DateFilter earliestDate={earliestDate} defaultPreset="1M" onChange={setRange} />
         </div>
 
         {loadError ? (
@@ -411,8 +400,7 @@ function SummaryRow({ summary }: SummaryRowProps): JSX.Element {
     {
       key: 'avg',
       label: 'Avg duration',
-      value:
-        summary.avgDurationSeconds === null ? '—' : formatDuration(summary.avgDurationSeconds),
+      value: summary.avgDurationSeconds === null ? '—' : formatDuration(summary.avgDurationSeconds),
     },
   ]
   return (
@@ -420,7 +408,7 @@ function SummaryRow({ summary }: SummaryRowProps): JSX.Element {
       aria-label="All-cardio totals"
       className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
     >
-      {cards.map((c) => (
+      {cards.map(c => (
         <article
           key={c.key}
           data-testid={`overview-stat-${c.key}`}
@@ -437,7 +425,6 @@ function SummaryRow({ summary }: SummaryRowProps): JSX.Element {
     </section>
   )
 }
-
 
 interface ActivityMixProps {
   counts: readonly ActivityCount[]
@@ -465,7 +452,7 @@ function ActivityMix({ counts }: ActivityMixProps): JSX.Element {
         </p>
       </header>
       <ul className="grid gap-3 sm:grid-cols-3">
-        {counts.map((row) => {
+        {counts.map(row => {
           const visual = ACTIVITY_VISUALS[row.activity]
           const sharePct =
             totalDurationAll > 0
@@ -503,7 +490,6 @@ function ActivityMix({ counts }: ActivityMixProps): JSX.Element {
     </section>
   )
 }
-
 
 interface SessionLogTableProps {
   sessions: readonly CardioSession[]
@@ -573,7 +559,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                   rowKey,
                   expansion,
                   interactive,
-                  'rounded-md bg-white/5 align-middle',
+                  'rounded-md bg-white/5 align-middle'
                 )
                 const isExpanded = expansion.expandedKey === rowKey
                 return (
@@ -582,8 +568,8 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                       <td className="rounded-l-md px-3 py-2 font-mono">
                         <Link
                           href={sessionDetailHref(s.date)}
-                          onClick={(e) => e.stopPropagation()}
-                          onKeyDown={(e) => e.stopPropagation()}
+                          onClick={e => e.stopPropagation()}
+                          onKeyDown={e => e.stopPropagation()}
                           className="rounded-sm text-[#f7ead9] underline decoration-white/20 underline-offset-4 transition hover:decoration-[#fff7ec] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
                         >
                           {formatRowDate(s.date)}
@@ -602,9 +588,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                       <td className="px-3 py-2 font-mono">
                         {formatDistanceMiles(s.distance_meters)}
                       </td>
-                      <td className="px-3 py-2 font-mono">
-                        {formatDuration(s.duration_seconds)}
-                      </td>
+                      <td className="px-3 py-2 font-mono">{formatDuration(s.duration_seconds)}</td>
                       <td className="px-3 py-2 font-mono">
                         {formatPaceCellFromSecPerKm(s.pace_seconds_per_km)}
                       </td>
@@ -665,8 +649,9 @@ function ErrorPanel({ message }: { message: string }): JSX.Element {
       <p className="mt-2 text-red-100/80">{message}</p>
       <p className="mt-4 text-xs text-red-100/60">
         Run <code className="rounded bg-black/40 px-1.5 py-0.5">npm run import-health</code> to
-        regenerate <code className="rounded bg-black/40 px-1.5 py-0.5">public/data/cardio.json</code>{' '}
-        from a fresh Apple Health export, then redeploy.
+        regenerate{' '}
+        <code className="rounded bg-black/40 px-1.5 py-0.5">public/data/cardio.json</code> from a
+        fresh Apple Health export, then redeploy.
       </p>
     </div>
   )

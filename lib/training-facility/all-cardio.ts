@@ -26,7 +26,7 @@ import { parseSessionDate, type SessionAvgHrPoint } from './cardio-shared'
  */
 export function filterAllCardioSessions(
   sessions: readonly CardioSession[],
-  range: DateRange,
+  range: DateRange
 ): CardioSession[] {
   const fromMs = range.start.getTime()
   const toMs = range.end.getTime()
@@ -38,7 +38,7 @@ export function filterAllCardioSessions(
     out.push({ session: s, ts })
   }
   out.sort((a, b) => a.ts - b.ts)
-  return out.map((entry) => entry.session)
+  return out.map(entry => entry.session)
 }
 
 /** Summary totals across the filtered session list (PRD §7.4 stats-wall row). */
@@ -116,7 +116,7 @@ export function countByActivity(sessions: readonly CardioSession[]): ActivityCou
       bucket.totalDurationSeconds += s.duration_seconds
     }
   }
-  return ACTIVITY_ORDER.map((a) => totals[a])
+  return ACTIVITY_ORDER.map(a => totals[a])
 }
 
 /**
@@ -138,7 +138,7 @@ export interface SessionAvgHrByActivityPoint extends SessionAvgHrPoint {
  * @param sessions - Filtered, sorted sessions.
  */
 export function perSessionAvgHrByActivity(
-  sessions: readonly CardioSession[],
+  sessions: readonly CardioSession[]
 ): SessionAvgHrByActivityPoint[] {
   const out: SessionAvgHrByActivityPoint[] = []
   for (const s of sessions) {

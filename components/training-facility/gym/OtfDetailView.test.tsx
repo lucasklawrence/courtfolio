@@ -16,9 +16,7 @@ import { OtfDetailView } from './OtfDetailView'
 
 /** Render with the default surrounding props; only `otf` usually varies. */
 function renderView(props: Partial<React.ComponentProps<typeof OtfDetailView>> = {}) {
-  return render(
-    <OtfDetailView otf={null} mileageAwards={[]} isAdmin={false} {...props} />,
-  )
+  return render(<OtfDetailView otf={null} mileageAwards={[]} isAdmin={false} {...props} />)
 }
 
 vi.mock('./OtfZoneBars', () => ({
@@ -126,7 +124,7 @@ describe('OtfDetailView', () => {
     expect(within(calTile).getByText('776')).toBeInTheDocument()
   })
 
-  it('shows each session\'s class type in the log Type column (#271)', () => {
+  it("shows each session's class type in the log Type column (#271)", () => {
     renderView({ otf: MULTI_TYPE_DATA })
     const table = screen.getByRole('table')
     expect(within(table).getByRole('columnheader', { name: 'Type' })).toBeInTheDocument()
@@ -161,10 +159,12 @@ describe('OtfDetailView', () => {
   })
 
   it('marks a manual class-type override in the log (#271)', () => {
-    renderView({ otf: {
-      imported_at: '2026-06-30T07:53:00+00:00',
-      sessions: [{ ...VALID_SESSION, class_type: 'Tread + Row', class_type_override: '2G' }],
-    } })
+    renderView({
+      otf: {
+        imported_at: '2026-06-30T07:53:00+00:00',
+        sessions: [{ ...VALID_SESSION, class_type: 'Tread + Row', class_type_override: '2G' }],
+      },
+    })
     // Override wins over the inferred label and is flagged as manual on hover.
     const chip = screen.getByText('2G')
     expect(chip).toHaveAttribute('title', 'Manual override')
@@ -195,15 +195,12 @@ describe('OtfDetailView chart width', () => {
   /** Stub `matchMedia` for a given two-column verdict, plus a no-op observer. */
   function stubLayout(twoColumn: boolean) {
     const listeners: Array<() => void> = []
-    vi.stubGlobal(
-      'matchMedia',
-      (query: string) => ({
-        matches: twoColumn,
-        media: query,
-        addEventListener: (_: string, fn: () => void) => listeners.push(fn),
-        removeEventListener: () => {},
-      }),
-    )
+    vi.stubGlobal('matchMedia', (query: string) => ({
+      matches: twoColumn,
+      media: query,
+      addEventListener: (_: string, fn: () => void) => listeners.push(fn),
+      removeEventListener: () => {},
+    }))
     // jsdom has no ResizeObserver; report a realistic card width for the layout.
     const width = twoColumn ? 412 : 330
     vi.stubGlobal(
@@ -213,12 +210,12 @@ describe('OtfDetailView chart width', () => {
         observe() {
           this.cb(
             [{ contentRect: { width } } as unknown as ResizeObserverEntry],
-            this as unknown as ResizeObserver,
+            this as unknown as ResizeObserver
           )
         }
         unobserve() {}
         disconnect() {}
-      },
+      }
     )
   }
 
@@ -267,7 +264,7 @@ describe('OtfDetailView chart width', () => {
         observe() {}
         unobserve() {}
         disconnect() {}
-      },
+      }
     )
     renderView({ otf: DATA })
     expect(seen).toContain('(min-width: 64rem)')

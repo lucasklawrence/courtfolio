@@ -23,7 +23,7 @@ import type { NextRequest } from 'next/server'
 export function validateApiKey(
   request: NextRequest,
   headerName: string,
-  envVarName: string,
+  envVarName: string
 ): boolean {
   const key = request.headers.get(headerName)
   const expectedKey = process.env[envVarName]

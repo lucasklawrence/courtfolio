@@ -79,10 +79,7 @@ export function isStaleOpenWorkout(startedAt: string, now: Date = new Date()): b
  * @param lastSetLoggedAt ISO timestamp of the newest set in the session, or
  *   `null` when it has none.
  */
-export function autoEndTimestamp(
-  startedAt: string,
-  lastSetLoggedAt: string | null,
-): string {
+export function autoEndTimestamp(startedAt: string, lastSetLoggedAt: string | null): string {
   if (lastSetLoggedAt === null) return startedAt
   const started = new Date(startedAt)
   const lastSet = new Date(lastSetLoggedAt)
@@ -124,7 +121,7 @@ export function endsBeforeStart(startedAt: string, endedAt: string): boolean | n
  * @param workout The session to measure.
  */
 export function workoutDurationMinutes(
-  workout: Pick<WeightRoomWorkout, 'started_at' | 'ended_at'>,
+  workout: Pick<WeightRoomWorkout, 'started_at' | 'ended_at'>
 ): number | null {
   if (workout.ended_at === undefined) return null
   const started = new Date(workout.started_at)

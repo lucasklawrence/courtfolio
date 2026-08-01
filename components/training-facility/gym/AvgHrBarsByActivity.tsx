@@ -1,10 +1,6 @@
 import type { JSX } from 'react'
 import { scaleBand, scaleLinear } from 'd3-scale'
-import {
-  Axis,
-  EmptyChart,
-  type AxisTick,
-} from '@/components/training-facility/shared/charts/axes'
+import { Axis, EmptyChart, type AxisTick } from '@/components/training-facility/shared/charts/axes'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import {
   drawableToPaths,
@@ -82,7 +78,7 @@ export function AvgHrBarsByActivity({
   const indices = points.map((_, i) => i)
   const xScale = scaleBand<number>().domain(indices).range([0, innerW]).padding(padding)
 
-  const values = points.map((p) => p.avgHr)
+  const values = points.map(p => p.avgHr)
   const [vMin, vMax] = extent(values)
   const span = vMax - vMin
   const pad = span > 0 ? span * 0.15 : 5
@@ -97,7 +93,7 @@ export function AvgHrBarsByActivity({
     offset: (xScale(i) ?? 0) + xScale.bandwidth() / 2,
   }))
 
-  const yTicks: AxisTick[] = yScale.ticks(5).map((tick) => ({
+  const yTicks: AxisTick[] = yScale.ticks(5).map(tick => ({
     value: String(tick),
     offset: yScale(tick),
   }))
@@ -188,7 +184,7 @@ export function ActivityLegend({ className = '' }: ActivityLegendProps): JSX.Ele
       className={`flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] uppercase tracking-[0.18em] text-[#0a0a0a]/65 ${className}`}
       aria-label="Activity color legend"
     >
-      {ACTIVITY_ORDER.map((activity) => {
+      {ACTIVITY_ORDER.map(activity => {
         const visual = ACTIVITY_VISUALS[activity]
         return (
           <li key={activity} className="flex items-center gap-1.5 font-mono">

@@ -14,7 +14,8 @@ const BACK_LINK_NAME = /home court/i
 const roomExpectations: RoomExpectation[] = [
   {
     route: '/locker-room',
-    locator: page => page.getByRole('heading', { name: /locker room - select an item to get more info/i }),
+    locator: page =>
+      page.getByRole('heading', { name: /locker room - select an item to get more info/i }),
   },
   {
     route: '/projects',

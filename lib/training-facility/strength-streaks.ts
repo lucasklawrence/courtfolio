@@ -48,7 +48,7 @@ export type StrengthStreakResult = StreakCounts
 export function computeStrengthStreaks(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
-  now: Date = new Date(),
+  now: Date = new Date()
 ): Record<string, StrengthStreakResult> {
   const result: Record<string, StrengthStreakResult> = {}
 

@@ -169,7 +169,7 @@ export function OtfDetailView({
 
   const chartWidth = Math.max(
     isTwoColumn ? DESKTOP_MIN_CHART_WIDTH : MOBILE_MIN_CHART_WIDTH,
-    measuredWidth,
+    measuredWidth
   )
 
   // Track manual range edits so the post-load re-anchor doesn't stomp them.
@@ -280,10 +280,20 @@ export function OtfDetailView({
   )
   const treadRows = useMemo<OtfSparklineRow[]>(
     () => [
-      { key: 'distance', label: 'Distance', trend: treadDistanceTrend, format: v => `${v.toFixed(2)} mi` },
+      {
+        key: 'distance',
+        label: 'Distance',
+        trend: treadDistanceTrend,
+        format: v => `${v.toFixed(2)} mi`,
+      },
       { key: 'time', label: 'Time', trend: treadTimeTrend, format: formatMmss },
       { key: 'pace', label: 'Avg pace', trend: treadPaceTrend, format: v => `${formatMmss(v)}/mi` },
-      { key: 'incline', label: 'Avg incline', trend: treadInclineTrend, format: v => `${v.toFixed(1)}%` },
+      {
+        key: 'incline',
+        label: 'Avg incline',
+        trend: treadInclineTrend,
+        format: v => `${v.toFixed(1)}%`,
+      },
       {
         key: 'gap',
         label: 'Grade-adj pace',
@@ -301,10 +311,25 @@ export function OtfDetailView({
   )
   const rowerRows = useMemo<OtfSparklineRow[]>(
     () => [
-      { key: 'distance', label: 'Distance', trend: rowerDistanceTrend, format: v => `${Math.round(v)} m` },
+      {
+        key: 'distance',
+        label: 'Distance',
+        trend: rowerDistanceTrend,
+        format: v => `${Math.round(v)} m`,
+      },
       { key: 'time', label: 'Time', trend: rowerTimeTrend, format: formatMmss },
-      { key: 'watts', label: 'Avg watts', trend: rowerWattsTrend, format: v => `${Math.round(v)} W` },
-      { key: 'split', label: '500m split', trend: rowerSplitTrend, format: v => `${formatMmss(v)}/500m` },
+      {
+        key: 'watts',
+        label: 'Avg watts',
+        trend: rowerWattsTrend,
+        format: v => `${Math.round(v)} W`,
+      },
+      {
+        key: 'split',
+        label: '500m split',
+        trend: rowerSplitTrend,
+        format: v => `${formatMmss(v)}/500m`,
+      },
     ],
     [rowerDistanceTrend, rowerTimeTrend, rowerWattsTrend, rowerSplitTrend]
   )
@@ -353,11 +378,7 @@ export function OtfDetailView({
         </header>
 
         {data ? (
-          <OtfMileageSection
-            sessions={data.sessions}
-            awards={mileageAwards}
-            isAdmin={isAdmin}
-          />
+          <OtfMileageSection sessions={data.sessions} awards={mileageAwards} isAdmin={isAdmin} />
         ) : null}
 
         <div className="mt-8">
@@ -735,9 +756,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
           {excludedCount > 0 && (
             <span className="ml-1 text-[#f9a870]/80">· {excludedCount} excluded</span>
           )}
-          {untypedCount > 0 && (
-            <span className="ml-1 text-white/45">· {untypedCount} untyped</span>
-          )}
+          {untypedCount > 0 && <span className="ml-1 text-white/45">· {untypedCount} untyped</span>}
           <span className="ml-2 text-white/35">
             ({formatBound(range.start)} → {formatBound(range.end)})
           </span>

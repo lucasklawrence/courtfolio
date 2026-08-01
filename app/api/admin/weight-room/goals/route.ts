@@ -195,7 +195,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     )
   }
 
-  const history: GoalTargetPoint[] = (historyRaw ?? []).map((row) => ({
+  const history: GoalTargetPoint[] = (historyRaw ?? []).map(row => ({
     daily_target: row.daily_target,
     effective_from: row.effective_from,
   }))
@@ -252,9 +252,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   // ("the 50 actually started Aug 1" while the mirror already read 50), which
   // is precisely the backdating case this endpoint exists to support.
   const targetOnEffectiveFrom =
-    history.length === 0
-      ? existing?.daily_target
-      : resolveRecordedTarget(history, effectiveFrom)
+    history.length === 0 ? existing?.daily_target : resolveRecordedTarget(history, effectiveFrom)
 
   if (targetOnEffectiveFrom !== goalFields.daily_target) {
     historyRows.push({
@@ -282,10 +280,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   // the current target is unchanged and writing the payload value would
   // wrongly advance it. Merged in memory so this costs no extra round trip.
   const mergedHistory = mergeHistory(history, historyRows)
-  const currentDailyTarget = targetForDay(
-    { ...goalFields, target_history: mergedHistory },
-    today
-  )
+  const currentDailyTarget = targetForDay({ ...goalFields, target_history: mergedHistory }, today)
 
   // Stamp `updated_at` explicitly so the upsert advances the row's audit
   // timestamp on edits — without this, the existing-row branch keeps

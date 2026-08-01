@@ -255,14 +255,14 @@ function emptyMetrics(): MovementMetrics {
  */
 function buildMetrics(
   sets: readonly StrengthSet[],
-  goals: readonly ExerciseGoal[],
+  goals: readonly ExerciseGoal[]
 ): Map<string | null, MovementMetrics> {
   // Implements moved per set, per exercise. An exercise with no configured
   // goal — or one predating the column — falls back to a single implement,
   // which is the only safe default: it can understate a pair, but it can
   // never invent load that isn't there.
   const multiplierByExercise = new Map(
-    goals.map((g) => [g.exercise, Math.max(1, g.load_multiplier ?? 1)]),
+    goals.map(g => [g.exercise, Math.max(1, g.load_multiplier ?? 1)])
   )
   // Keyed by exercise name, with `null` — a perfectly good `Map` key — standing
   // for the pooled "all movements" ladder. Deliberately not a string sentinel:
@@ -284,8 +284,8 @@ function buildMetrics(
   // Sets arrive oldest-first from the data layer, but sort defensively: the
   // `'set'` and `'lifetime'` earn dates both depend on chronological order.
   const ordered = [...sets]
-    .map((s) => ({ set: s, day: safePacificDayKey(s.logged_at) }))
-    .filter((entry) => entry.day !== '')
+    .map(s => ({ set: s, day: safePacificDayKey(s.logged_at) }))
+    .filter(entry => entry.day !== '')
     .sort((a, b) => (a.day < b.day ? -1 : a.day > b.day ? 1 : 0))
 
   for (const { set, day } of ordered) {
@@ -396,7 +396,7 @@ function resolveLifetime(daily: ReadonlyMap<string, number>, threshold: number):
 function resolveSets(
   metrics: MovementMetrics,
   threshold: number,
-  pick: (set: MovementMetrics['sets'][number]) => number,
+  pick: (set: MovementMetrics['sets'][number]) => number
 ): MetricOutcome {
   let best = 0
   const earnedOn: string[] = []
@@ -447,7 +447,10 @@ function resolveStreak(metrics: MovementMetrics, threshold: number): MetricOutco
  * its `best` matches the all-time top set. That combination is allowed but
  * rarely more useful than `scope: 'set'`.
  */
-function resolveMetric(metrics: MovementMetrics, achievement: WeightRoomAchievement): MetricOutcome {
+function resolveMetric(
+  metrics: MovementMetrics,
+  achievement: WeightRoomAchievement
+): MetricOutcome {
   const { threshold } = achievement
   const measure: AchievementMeasure = achievement.measure ?? 'reps'
 
@@ -468,7 +471,7 @@ function resolveMetric(metrics: MovementMetrics, achievement: WeightRoomAchievem
   // A windowed `'load'` tier asks for the heaviest set inside the window, which
   // isn't a sum — resolve it off the per-set observations rather than a bucket.
   if (measure === 'load') {
-    return resolveSets(metrics, threshold, (s) => s.load)
+    return resolveSets(metrics, threshold, s => s.load)
   }
 
   const isTonnage = measure === 'tonnage'
@@ -497,15 +500,12 @@ function resolveMetric(metrics: MovementMetrics, achievement: WeightRoomAchievem
 export function resolveAchievements(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
-  achievements: readonly WeightRoomAchievement[],
+  achievements: readonly WeightRoomAchievement[]
 ): ResolvedAchievement[] {
   const metrics = buildMetrics(sets, goals)
 
-  return achievements.map((achievement) => {
-    const outcome = resolveMetric(
-      metrics.get(achievement.exercise) ?? emptyMetrics(),
-      achievement,
-    )
+  return achievements.map(achievement => {
+    const outcome = resolveMetric(metrics.get(achievement.exercise) ?? emptyMetrics(), achievement)
     // Guard the divisor: the DB CHECK enforces `threshold > 0`, but a tier
     // slipping through with 0 would make `progress` Infinity/NaN.
     const threshold = Math.max(1, achievement.threshold)
@@ -549,9 +549,9 @@ export function buildTrophyRoomView(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   achievements: readonly WeightRoomAchievement[],
-  exercises: readonly WeightRoomExercise[] = [],
+  exercises: readonly WeightRoomExercise[] = []
 ): TrophyRoomView {
-  const colorByExercise = new Map(goals.map((g) => [g.exercise, g.color]))
+  const colorByExercise = new Map(goals.map(g => [g.exercise, g.color]))
   // Catalog first, goal-joined label second (#384). Achievements outlive their
   // goal, so a goals-only lookup would drop back to the slug for exactly the
   // movements whose badges were deliberately preserved.
@@ -561,12 +561,12 @@ export function buildTrophyRoomView(
   }
   for (const e of exercises) labelByExercise.set(e.slug, e.display_name)
   const multiplierByExercise = new Map(
-    goals.map((g) => [g.exercise, Math.max(1, g.load_multiplier ?? 1)]),
+    goals.map(g => [g.exercise, Math.max(1, g.load_multiplier ?? 1)])
   )
 
   // Attached once here rather than inside `resolveAchievements` so the groups
   // and both strips read the same label off the same objects.
-  const resolved = resolveAchievements(sets, goals, achievements).map((entry) => {
+  const resolved = resolveAchievements(sets, goals, achievements).map(entry => {
     const slug = entry.achievement.exercise
     const label = slug === null || slug === undefined ? undefined : labelByExercise.get(slug)
     return label === undefined ? entry : { ...entry, displayName: label }
@@ -599,9 +599,7 @@ export function buildTrophyRoomView(
         const measureDelta =
           MEASURE_ORDER.indexOf(a.achievement.measure ?? 'reps') -
           MEASURE_ORDER.indexOf(b.achievement.measure ?? 'reps')
-        return measureDelta !== 0
-          ? measureDelta
-          : a.achievement.threshold - b.achievement.threshold
+        return measureDelta !== 0 ? measureDelta : a.achievement.threshold - b.achievement.threshold
       })
       return {
         exercise: isPooled ? null : key,
@@ -612,12 +610,12 @@ export function buildTrophyRoomView(
         // multiplier baked in.
         loadMultiplier: isPooled ? 1 : (multiplierByExercise.get(key) ?? 1),
         achievements: entries,
-        earnedCount: entries.filter((e) => e.earned).length,
+        earnedCount: entries.filter(e => e.earned).length,
       }
     })
 
   const recent = resolved
-    .filter((e) => e.earned)
+    .filter(e => e.earned)
     // Ordered by the *most recent* earn, not the first, so re-earning an old
     // badge brings it back to the front of the rafters — the strip reads as
     // "what I just did", not "what I did once, months ago".
@@ -633,13 +631,13 @@ export function buildTrophyRoomView(
     .slice(0, STRIP_SIZE)
 
   const nextUp = resolved
-    .filter((e) => !e.earned && e.progress > 0)
+    .filter(e => !e.earned && e.progress > 0)
     .sort((a, b) => b.progress - a.progress)
     .slice(0, STRIP_SIZE)
 
   return {
     groups,
-    earnedCount: resolved.filter((e) => e.earned).length,
+    earnedCount: resolved.filter(e => e.earned).length,
     totalCount: resolved.length,
     recent,
     nextUp,
@@ -710,6 +708,6 @@ export function formatEarnedOn(bucketKey: string | null, scope: AchievementScope
     undefined,
     isMonth
       ? { month: 'short', year: 'numeric' }
-      : { month: 'short', day: 'numeric', year: 'numeric' },
+      : { month: 'short', day: 'numeric', year: 'numeric' }
   )
 }

@@ -93,9 +93,10 @@ describe('POST /api/health/auto-sync', () => {
             body_mass_lbs: 233.8,
           },
         ],
-      })    )
+      })
+    )
     expect(res.status).toBe(200)
-    const tables = upsertMock.mock.calls.map((c) => c[0])
+    const tables = upsertMock.mock.calls.map(c => c[0])
     expect(tables).toEqual([
       'cardio_hrv_trend',
       'cardio_walking_hr_trend',
@@ -106,9 +107,12 @@ describe('POST /api/health/auto-sync', () => {
     ])
     // body_mass is tagged source='apple_health' (only that table has the
     // column) and stamps updated_at so re-syncing advances imported_at.
-    const bodyMassRow = upsertMock.mock.calls.find(
-      (c) => c[0] === 'cardio_body_mass_trend'
-    )?.[1] as { date: string; value: number; source: string; updated_at: unknown }
+    const bodyMassRow = upsertMock.mock.calls.find(c => c[0] === 'cardio_body_mass_trend')?.[1] as {
+      date: string
+      value: number
+      source: string
+      updated_at: unknown
+    }
     expect(bodyMassRow).toMatchObject({
       date: '2026-07-01',
       value: 233.8,
@@ -130,10 +134,11 @@ describe('POST /api/health/auto-sync', () => {
     const res = await POST(
       makeRequest({
         data: [{ date: '2026-07-01', steps: 9000, hrv_ms: null }],
-      })    )
+      })
+    )
     expect(res.status).toBe(200)
     // Only the steps table was touched — null hrv and absent fields skipped.
-    expect(upsertMock.mock.calls.map((c) => c[0])).toEqual(['cardio_step_count_trend'])
+    expect(upsertMock.mock.calls.map(c => c[0])).toEqual(['cardio_step_count_trend'])
   })
 
   it('skips body_mass on days that already have a manual weigh-in', async () => {
@@ -143,10 +148,11 @@ describe('POST /api/health/auto-sync', () => {
     const res = await POST(
       makeRequest({
         data: [{ date: '2026-07-01', steps: 9000, body_mass_lbs: 240 }],
-      })    )
+      })
+    )
     expect(res.status).toBe(200)
     // steps still written; body_mass skipped because the day is manual.
-    expect(upsertMock.mock.calls.map((c) => c[0])).toEqual(['cardio_step_count_trend'])
+    expect(upsertMock.mock.calls.map(c => c[0])).toEqual(['cardio_step_count_trend'])
     expect((await res.json()).results.body_mass).toBe(0)
   })
 

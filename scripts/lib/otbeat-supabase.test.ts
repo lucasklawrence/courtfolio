@@ -204,7 +204,7 @@ type SeedRow = string | { started_at: string; class_type?: string | null; exclud
 function fakeClient(existing: SeedRow[]): FakeClient {
   // A bare string seeds a row that already has a class_type, so the backfill
   // pass leaves it alone — that's the pre-existing tests' expectation.
-  const rows: Array<Record<string, unknown>> = existing.map((s) =>
+  const rows: Array<Record<string, unknown>> = existing.map(s =>
     typeof s === 'string'
       ? { started_at: s, class_type: 'Tread + Row', excluded: false, coach: null, calories: null }
       : { excluded: false, coach: null, calories: null, class_type: null, ...s }
@@ -223,11 +223,11 @@ function fakeClient(existing: SeedRow[]): FakeClient {
     let slice: [number, number] | null = null
     const self = {
       eq(col: string, val: unknown) {
-        filters.push((r) => r[col] === val)
+        filters.push(r => r[col] === val)
         return self
       },
       is(col: string, val: unknown) {
-        filters.push((r) => (val === null ? r[col] == null : r[col] === val))
+        filters.push(r => (val === null ? r[col] == null : r[col] === val))
         return self
       },
       order() {
@@ -242,7 +242,7 @@ function fakeClient(existing: SeedRow[]): FakeClient {
         resolve: (v: { data: Array<Record<string, unknown>>; error: null }) => T,
         reject?: (e: unknown) => T
       ) {
-        let data = rows.filter((r) => filters.every((f) => f(r)))
+        let data = rows.filter(r => filters.every(f => f(r)))
         if (slice) data = data.slice(slice[0], slice[1] + 1) // `to` is inclusive
         return Promise.resolve({ data, error: null }).then(resolve, reject)
       },
@@ -260,7 +260,7 @@ function fakeClient(existing: SeedRow[]): FakeClient {
         },
         update: (patch: Record<string, unknown>) => ({
           eq: async (col: string, val: unknown) => {
-            const target = rows.find((r) => r[col] === val)
+            const target = rows.find(r => r[col] === val)
             if (target) Object.assign(target, patch)
             updates.push({ ...patch, [col]: val })
             return { error: null }
@@ -337,9 +337,7 @@ describe('upsertOtfSessions (paginated read of existing keys)', () => {
 
   it('finds a row beyond the first page, so the backfill is not truncated', async () => {
     // The LAST seeded row (index 500, i.e. on page 2) is the one missing a type.
-    const withLateNull = seeded.map((r, i) =>
-      i === PAGE ? { ...r, class_type: null } : r
-    )
+    const withLateNull = seeded.map((r, i) => (i === PAGE ? { ...r, class_type: null } : r))
     const client = fakeClient(withLateNull)
     // A record matching that last row (00:00Z + 500 min = 08:20Z), carrying a
     // treadmill block so the classifier yields 'Tread-focused'.
@@ -404,7 +402,7 @@ describe('findUntypedOtfSessions', () => {
       { started_at: '2026-07-03T16:30:00+00:00', class_type: 'Tread + Row' },
     ])
     const untyped = await findUntypedOtfSessions(client)
-    expect(untyped.map((s) => s.started_at)).toEqual(['2026-07-02T16:30:00+00:00'])
+    expect(untyped.map(s => s.started_at)).toEqual(['2026-07-02T16:30:00+00:00'])
   })
 
   it('exempts excluded sessions — a malfunction has no inferable type', async () => {

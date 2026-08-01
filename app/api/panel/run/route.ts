@@ -29,23 +29,10 @@ import { runPanel, PanelDegradedError } from '@/lib/panel'
 import { errorTypeOf } from '@/lib/panel/events'
 import { PORTFOLIO_PERSONAS } from '@/lib/panel/personas'
 import type { PanelEvent, PanelResult } from '@/lib/panel/types'
-import {
-  HEARTBEAT_INTERVAL_MS,
-  MIN_SURVIVORS,
-  RUN_TIMEOUT_MS,
-} from '@/lib/draft-room/limits'
-import {
-  lensByPersonaId,
-  LIVE_TARGETS,
-  modelByPersonaId,
-} from '@/lib/draft-room/live-target'
+import { HEARTBEAT_INTERVAL_MS, MIN_SURVIVORS, RUN_TIMEOUT_MS } from '@/lib/draft-room/limits'
+import { lensByPersonaId, LIVE_TARGETS, modelByPersonaId } from '@/lib/draft-room/live-target'
 import { resultToEvents, type LivePanelEvent } from '@/lib/draft-room/protocol'
-import {
-  admitLiveRun,
-  hashClientIp,
-  markCompleted,
-  markFailed,
-} from '@/lib/draft-room/run-store'
+import { admitLiveRun, hashClientIp, markCompleted, markFailed } from '@/lib/draft-room/run-store'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 import { courtfolioPanelResult } from '@/app/draft-room/panelResult'
 
@@ -178,7 +165,10 @@ function streamLiveRun(
   // directly — a client that vanished during admission must not fund a full
   // run nobody is reading.
   const abort = new AbortController()
-  const timeout = setTimeout(() => abort.abort(new DOMException('Run timed out.', 'TimeoutError')), RUN_TIMEOUT_MS)
+  const timeout = setTimeout(
+    () => abort.abort(new DOMException('Run timed out.', 'TimeoutError')),
+    RUN_TIMEOUT_MS
+  )
   if (request.signal.aborted) {
     abort.abort(request.signal.reason)
   } else {
@@ -238,7 +228,10 @@ function streamLiveRun(
           (result.personaFailures?.length ?? 0) +
           result.verifiedGaps.filter(g => g.verifierFailed).length
         await markCompleted(runId, result, degradationCount).catch(err =>
-          console.error('panel run completion bookkeeping failed:', err instanceof Error ? err.message : err)
+          console.error(
+            'panel run completion bookkeeping failed:',
+            err instanceof Error ? err.message : err
+          )
         )
       } catch (err) {
         const errorType = classifyRunError(err, abort.signal)
@@ -282,7 +275,10 @@ async function handlePOST(request: NextRequest): Promise<Response> {
   if (origin && host) {
     try {
       if (new URL(origin).host !== host) {
-        return NextResponse.json({ error: 'Cross-origin requests are not allowed.' }, { status: 403 })
+        return NextResponse.json(
+          { error: 'Cross-origin requests are not allowed.' },
+          { status: 403 }
+        )
       }
     } catch {
       return NextResponse.json({ error: 'Cross-origin requests are not allowed.' }, { status: 403 })

@@ -21,9 +21,7 @@ function personaOutput() {
       { axisId: 'learning-value', score: 7, rationale: 'r' },
       { axisId: 'portfolio-signal', score: 6, rationale: 'r' },
     ],
-    gaps: [
-      { claimIndex: 0, claim: 'c', artifactShows: 'a', citation: 'file.ts', confidence: 0.7 },
-    ],
+    gaps: [{ claimIndex: 0, claim: 'c', artifactShows: 'a', citation: 'file.ts', confidence: 0.7 }],
     uncomfortableTruth: 'buries its signal',
     standoutObservation: null,
   }
@@ -118,7 +116,10 @@ describe('runPanel (end-to-end orchestration, models mocked)', () => {
 
     const err: unknown = await runPanel(thesis, evidence, portfolioConfig, {
       minSurvivors: 2,
-    }).then(() => null, (e: unknown) => e)
+    }).then(
+      () => null,
+      (e: unknown) => e
+    )
 
     expect(err).toBeInstanceOf(PanelDegradedError)
     if (!(err instanceof PanelDegradedError)) throw new Error('unreachable')

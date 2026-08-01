@@ -44,7 +44,7 @@ function makeChain() {
       return chain
     }),
     maybeSingle: vi.fn(() =>
-      Promise.resolve(isUpdate ? results.update : isDelete ? results.remove : results.read),
+      Promise.resolve(isUpdate ? results.update : isDelete ? results.remove : results.read)
     ),
   }
   return chain
@@ -111,7 +111,10 @@ describe('PATCH /api/admin/weight-room/workouts/[id]', () => {
 
   it('404s when ending a workout that does not exist', async () => {
     results.read = { data: null, error: null }
-    const res = await PATCH(patchRequest({ ended_at: '2026-07-15T19:00:00Z' }) as never, ctx('nope'))
+    const res = await PATCH(
+      patchRequest({ ended_at: '2026-07-15T19:00:00Z' }) as never,
+      ctx('nope')
+    )
     expect(res.status).toBe(404)
   })
 

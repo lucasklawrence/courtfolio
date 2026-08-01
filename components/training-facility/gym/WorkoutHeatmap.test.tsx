@@ -7,7 +7,7 @@ import { WorkoutHeatmap } from './WorkoutHeatmap'
 
 function session(
   dateStr: string,
-  activity: CardioSession['activity'] = 'stair',
+  activity: CardioSession['activity'] = 'stair'
 ): Pick<CardioSession, 'date' | 'activity'> {
   return { date: `${dateStr}T08:00:00`, activity }
 }
@@ -57,13 +57,13 @@ describe('WorkoutHeatmap', () => {
     const from = new Date(2026, 3, 1)
     const to = new Date(2026, 3, 15)
     const { container } = render(
-      <WorkoutHeatmap sessions={[session('2026-04-14')]} dateFrom={from} dateTo={to} />,
+      <WorkoutHeatmap sessions={[session('2026-04-14')]} dateFrom={from} dateTo={to} />
     )
     // At least one rect should reference the rim-orange palette (either the
     // full hex or the rgba family).
     const rects = Array.from(container.querySelectorAll('svg rect'))
-    const fills = rects.map((r) => r.getAttribute('fill') ?? '')
-    expect(fills.some((f) => /234, 88, 12|EA580C/i.test(f))).toBe(true)
+    const fills = rects.map(r => r.getAttribute('fill') ?? '')
+    expect(fills.some(f => /234, 88, 12|EA580C/i.test(f))).toBe(true)
   })
 
   it('positions the legend strip flush with the SVG right edge at MAX_CELL_SIZE', () => {
@@ -80,8 +80,8 @@ describe('WorkoutHeatmap', () => {
     // The legend `<g>` is the only one whose transform x is computed as
     // `DAY_LABEL_WIDTH + gridWidth - legendWidth`. Pick it out by finding
     // the group containing the "More" text.
-    const legendGroup = Array.from(container.querySelectorAll('svg g')).find((g) =>
-      Array.from(g.querySelectorAll('text')).some((t) => t.textContent === 'More'),
+    const legendGroup = Array.from(container.querySelectorAll('svg g')).find(g =>
+      Array.from(g.querySelectorAll('text')).some(t => t.textContent === 'More')
     )
     expect(legendGroup).toBeDefined()
     const transform = legendGroup!.getAttribute('transform') ?? ''
@@ -106,12 +106,12 @@ describe('WorkoutHeatmap', () => {
         sessions={[session('2026-04-14', 'running'), session('2026-04-14', 'walking')]}
         dateFrom={from}
         dateTo={to}
-      />,
+      />
     )
     const titles = Array.from(container.querySelectorAll('svg rect title')).map(
-      (n) => n.textContent ?? '',
+      n => n.textContent ?? ''
     )
-    const populated = titles.find((t) => t.includes('2 sessions'))
+    const populated = titles.find(t => t.includes('2 sessions'))
     expect(populated).toBeDefined()
     expect(populated).toContain('Running')
     expect(populated).toContain('Walking')

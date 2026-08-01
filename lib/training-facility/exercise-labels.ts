@@ -51,9 +51,9 @@ export type ExerciseLabels = ReadonlyMap<string, string>
  *   every caller then falls back to the slug.
  */
 export function buildExerciseLabels(
-  exercises: readonly { slug: string; display_name: string }[] | undefined,
+  exercises: readonly { slug: string; display_name: string }[] | undefined
 ): ExerciseLabels {
-  return new Map((exercises ?? []).map((e) => [e.slug, e.display_name]))
+  return new Map((exercises ?? []).map(e => [e.slug, e.display_name]))
 }
 
 /**
@@ -67,10 +67,6 @@ export function buildExerciseLabels(
  * @param named The goal/focus for that slug, if the caller has one.
  * @param labels Catalog lookup from {@link buildExerciseLabels}, if available.
  */
-export function slugLabel(
-  slug: string,
-  named?: ExerciseNamed,
-  labels?: ExerciseLabels,
-): string {
+export function slugLabel(slug: string, named?: ExerciseNamed, labels?: ExerciseLabels): string {
   return labels?.get(slug) ?? named?.display_name ?? slug
 }

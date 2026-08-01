@@ -61,7 +61,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
@@ -88,12 +88,12 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
       kind: 'focus',
       updated_at: now,
     },
-    { onConflict: 'exercise', ignoreDuplicates: true },
+    { onConflict: 'exercise', ignoreDuplicates: true }
   )
   if (anchorError) {
     return NextResponse.json(
       { error: `Failed to anchor focus goal: ${anchorError.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
 
@@ -116,7 +116,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   if (error) {
     return NextResponse.json(
       { error: `Failed to create monthly focus: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
 

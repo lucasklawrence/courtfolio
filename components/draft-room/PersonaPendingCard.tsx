@@ -92,8 +92,8 @@ export function PersonaBenchedCard({ persona, errorType }: PersonaBenchedCardPro
       ) : null}
 
       <p className="text-sm text-neutral-600">
-        Did not report — the model call failed ({errorType}). The panel continued with the
-        remaining voices; the synthesis is told this seat was empty.
+        Did not report — the model call failed ({errorType}). The panel continued with the remaining
+        voices; the synthesis is told this seat was empty.
       </p>
     </article>
   )

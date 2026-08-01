@@ -23,9 +23,7 @@ export const ADMIN_WRITES_UNAVAILABLE =
  *   `NextResponse` (401 if not signed in, 403 if signed in but not admin,
  *   503 if admin writes are unavailable on this deployment).
  */
-export type AdminCheck =
-  | { ok: true; email: string }
-  | { ok: false; response: NextResponse }
+export type AdminCheck = { ok: true; email: string } | { ok: false; response: NextResponse }
 
 /**
  * Verify the current request may perform an admin write. Reads the Supabase

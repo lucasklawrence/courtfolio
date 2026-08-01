@@ -12,10 +12,7 @@ const range = (startIso: string, endIso: string) => ({
   end: new Date(endIso),
 })
 
-const stair = (
-  date: string,
-  extras: Partial<CardioSession> = {},
-): CardioSession => ({
+const stair = (date: string, extras: Partial<CardioSession> = {}): CardioSession => ({
   date,
   activity: 'stair',
   duration_seconds: 1800,
@@ -33,9 +30,9 @@ describe('filterStairSessions', () => {
     ]
     const out = filterStairSessions(
       sessions,
-      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999'),
+      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999')
     )
-    expect(out.map((s) => s.date)).toEqual(['2026-04-01', '2026-04-10'])
+    expect(out.map(s => s.date)).toEqual(['2026-04-01', '2026-04-10'])
   })
 
   it('is inclusive on both ends', () => {
@@ -47,21 +44,18 @@ describe('filterStairSessions', () => {
     ]
     const out = filterStairSessions(
       sessions,
-      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999'),
+      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999')
     )
-    expect(out.map((s) => s.date)).toEqual(['2026-04-01', '2026-04-15'])
+    expect(out.map(s => s.date)).toEqual(['2026-04-01', '2026-04-15'])
   })
 
   it('drops sessions with unparseable date strings rather than throwing', () => {
-    const sessions: CardioSession[] = [
-      stair('not-a-date'),
-      stair('2026-04-10'),
-    ]
+    const sessions: CardioSession[] = [stair('not-a-date'), stair('2026-04-10')]
     const out = filterStairSessions(
       sessions,
-      range('2026-01-01T00:00:00', '2026-12-31T23:59:59.999'),
+      range('2026-01-01T00:00:00', '2026-12-31T23:59:59.999')
     )
-    expect(out.map((s) => s.date)).toEqual(['2026-04-10'])
+    expect(out.map(s => s.date)).toEqual(['2026-04-10'])
   })
 })
 
@@ -76,21 +70,21 @@ describe('aggregateHrZoneSeconds', () => {
       }),
     ]
     const out = aggregateHrZoneSeconds(sessions)
-    expect(out.map((b) => b.seconds)).toEqual([50, 780, 1320, 940, 240])
-    expect(out.map((b) => b.zone)).toEqual(['Z1', 'Z2', 'Z3', 'Z4', 'Z5'])
+    expect(out.map(b => b.seconds)).toEqual([50, 780, 1320, 940, 240])
+    expect(out.map(b => b.zone)).toEqual(['Z1', 'Z2', 'Z3', 'Z4', 'Z5'])
   })
 
   it('returns five zero buckets when no session carries a zone breakdown', () => {
     const sessions: CardioSession[] = [stair('2026-04-01'), stair('2026-04-08')]
     const out = aggregateHrZoneSeconds(sessions)
     expect(out).toHaveLength(5)
-    expect(out.every((b) => b.seconds === 0)).toBe(true)
+    expect(out.every(b => b.seconds === 0)).toBe(true)
   })
 
   it('returns five zero buckets when given no sessions', () => {
     const out = aggregateHrZoneSeconds([])
-    expect(out.map((b) => b.zone)).toEqual(['Z1', 'Z2', 'Z3', 'Z4', 'Z5'])
-    expect(out.every((b) => b.seconds === 0)).toBe(true)
+    expect(out.map(b => b.zone)).toEqual(['Z1', 'Z2', 'Z3', 'Z4', 'Z5'])
+    expect(out.every(b => b.seconds === 0)).toBe(true)
   })
 })
 
@@ -114,7 +108,7 @@ describe('perSessionAvgHr', () => {
       stair('2026-04-10', { avg_hr: 150 }),
     ]
     const out = perSessionAvgHr(sessions)
-    expect(out.map((p) => p.avgHr)).toEqual([150])
+    expect(out.map(p => p.avgHr)).toEqual([150])
   })
 })
 

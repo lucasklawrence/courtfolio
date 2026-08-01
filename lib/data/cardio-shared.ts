@@ -121,9 +121,7 @@ export { fetchAllRows }
  *   misconfigured env / RLS regression) or when row-shape validation
  *   fails. Callers usually downgrade this to an empty render.
  */
-export async function assembleCardioData(
-  supabase: SupabaseClient,
-): Promise<CardioData | null> {
+export async function assembleCardioData(supabase: SupabaseClient): Promise<CardioData | null> {
   const lifestyleEntries = Object.entries(LIFESTYLE_TREND_TABLES) as Array<
     [LifestyleTrendKey, string]
   >
@@ -139,21 +137,22 @@ export async function assembleCardioData(
           .from(SESSIONS_TABLE)
           .select(SESSIONS_COLUMNS)
           .order('started_at', { ascending: true }),
-      SESSIONS_TABLE,
+      SESSIONS_TABLE
     ),
     fetchAllRows(
-      () => supabase.from(RESTING_HR_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
-      RESTING_HR_TABLE,
+      () =>
+        supabase.from(RESTING_HR_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
+      RESTING_HR_TABLE
     ),
     fetchAllRows(
       () => supabase.from(VO2MAX_TABLE).select(TREND_COLUMNS).order('date', { ascending: true }),
-      VO2MAX_TABLE,
+      VO2MAX_TABLE
     ),
     ...lifestyleEntries.map(([, table]) =>
       fetchAllRows(
         () => supabase.from(table).select(TREND_COLUMNS).order('date', { ascending: true }),
-        table,
-      ),
+        table
+      )
     ),
   ])
 
@@ -166,32 +165,22 @@ export async function assembleCardioData(
     sessionsRaw.length === 0 &&
     restingRaw.length === 0 &&
     vo2Raw.length === 0 &&
-    lifestyleRaw.every((rows) => rows.length === 0)
+    lifestyleRaw.every(rows => rows.length === 0)
   if (allEmpty) {
     // Preserves the pre-Supabase null-on-empty contract that detail
     // views already handle via `?? { imported_at: '', sessions: [], ... }`.
     return null
   }
 
-  const sessionsParsed = CardioSessionRowsSchema.safeParse(
-    sessionsRaw.map(normalizeRow),
-  )
+  const sessionsParsed = CardioSessionRowsSchema.safeParse(sessionsRaw.map(normalizeRow))
   if (!sessionsParsed.success) {
-    throw new Error(
-      `cardio_sessions failed schema validation: ${sessionsParsed.error.message}`,
-    )
+    throw new Error(`cardio_sessions failed schema validation: ${sessionsParsed.error.message}`)
   }
-  const restingParsed = CardioTrendRowsSchema.safeParse(
-    restingRaw.map(normalizeRow),
-  )
+  const restingParsed = CardioTrendRowsSchema.safeParse(restingRaw.map(normalizeRow))
   if (!restingParsed.success) {
-    throw new Error(
-      `cardio_resting_hr failed schema validation: ${restingParsed.error.message}`,
-    )
+    throw new Error(`cardio_resting_hr failed schema validation: ${restingParsed.error.message}`)
   }
-  const vo2Parsed = CardioTrendRowsSchema.safeParse(
-    vo2Raw.map(normalizeRow),
-  )
+  const vo2Parsed = CardioTrendRowsSchema.safeParse(vo2Raw.map(normalizeRow))
   if (!vo2Parsed.success) {
     throw new Error(`cardio_vo2max failed schema validation: ${vo2Parsed.error.message}`)
   }
@@ -200,13 +189,13 @@ export async function assembleCardioData(
   // is omitted from the returned shape (the `CardioData` keys are
   // optional) — components that haven't been wired to consume them keep
   // the same observable behavior they had before #75 slice C-data.
-  const lifestyleTrends: Partial<Record<LifestyleTrendKey, ReturnType<typeof trendRowToTimePoint>[]>> = {}
+  const lifestyleTrends: Partial<
+    Record<LifestyleTrendKey, ReturnType<typeof trendRowToTimePoint>[]>
+  > = {}
   for (const [i, [key, table]] of lifestyleEntries.entries()) {
     const raw = lifestyleRaw[i]
     if (raw.length === 0) continue
-    const parsed = CardioTrendRowsSchema.safeParse(
-      raw.map(normalizeRow),
-    )
+    const parsed = CardioTrendRowsSchema.safeParse(raw.map(normalizeRow))
     if (!parsed.success) {
       throw new Error(`${table} failed schema validation: ${parsed.error.message}`)
     }

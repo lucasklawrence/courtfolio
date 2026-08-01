@@ -82,14 +82,15 @@ export interface ComputeTrimpOptions {
  * @param session - One `CardioSession`.
  * @param options - See {@link ComputeTrimpOptions}.
  */
-export function computeTRIMP(
-  session: CardioSession,
-  options: ComputeTrimpOptions = {},
-): number {
+export function computeTRIMP(session: CardioSession, options: ComputeTrimpOptions = {}): number {
   const maxHr = options.maxHr ?? DEFAULT_MAX_HR
   const weights = options.intensityWeights ?? INTENSITY_WEIGHTS
   if (!Number.isFinite(maxHr) || maxHr <= 0) return 0
-  if (typeof session.avg_hr !== 'number' || !Number.isFinite(session.avg_hr) || session.avg_hr <= 0) {
+  if (
+    typeof session.avg_hr !== 'number' ||
+    !Number.isFinite(session.avg_hr) ||
+    session.avg_hr <= 0
+  ) {
     return 0
   }
   if (
@@ -152,7 +153,7 @@ export interface DailyTrimpSeriesOptions {
 
 export function dailyTrimpSeries(
   sessions: readonly CardioSession[],
-  options: DailyTrimpSeriesOptions = {},
+  options: DailyTrimpSeriesOptions = {}
 ): DailyTrimpPoint[] {
   if (sessions.length === 0) return []
 
@@ -221,9 +222,7 @@ export interface TrainingLoadPoint {
  *
  * @param series - Daily TRIMP series from {@link dailyTrimpSeries}.
  */
-export function computeTrainingLoad(
-  series: readonly DailyTrimpPoint[],
-): TrainingLoadPoint[] {
+export function computeTrainingLoad(series: readonly DailyTrimpPoint[]): TrainingLoadPoint[] {
   const out: TrainingLoadPoint[] = []
   let atl = 0
   let ctl = 0
@@ -263,7 +262,7 @@ export interface TrainingLoadInRangeOptions {
 export function trainingLoadInRange(
   sessions: readonly CardioSession[],
   range: DateRange,
-  options: TrainingLoadInRangeOptions = {},
+  options: TrainingLoadInRangeOptions = {}
 ): TrainingLoadPoint[] {
   if (sessions.length === 0) return []
   const series = dailyTrimpSeries(sessions, { maxHr: options.maxHr })
@@ -271,7 +270,7 @@ export function trainingLoadInRange(
   const full = computeTrainingLoad(series)
   const fromMs = range.start.getTime()
   const toMs = range.end.getTime()
-  return full.filter((p) => {
+  return full.filter(p => {
     const t = p.date.getTime()
     return t >= fromMs && t <= toMs
   })

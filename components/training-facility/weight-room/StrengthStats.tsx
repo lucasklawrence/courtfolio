@@ -40,7 +40,7 @@ export function StrengthStats({ stats }: StrengthStatsProps): JSX.Element {
 
   return (
     <section aria-label="Strength stats" className="grid gap-4 md:grid-cols-2">
-      {stats.map((stat) => (
+      {stats.map(stat => (
         <ExerciseStatCard key={stat.exercise} stat={stat} />
       ))}
     </section>
@@ -146,10 +146,7 @@ export function ExerciseStatCard({ stat }: ExerciseStatCardProps): JSX.Element {
           </>
         )}
 
-        <SimpleCell
-          label="avg sets / active day"
-          value={formatAvg(stat.avgSetsPerActiveDay)}
-        />
+        <SimpleCell label="avg sets / active day" value={formatAvg(stat.avgSetsPerActiveDay)} />
         <SimpleCell label="all-time reps" value={stat.allTimeReps.toLocaleString('en-US')} />
       </div>
 
@@ -165,7 +162,7 @@ export function ExerciseStatCard({ stat }: ExerciseStatCardProps): JSX.Element {
               that was live each day, so this line is what explains a step in
               those numbers rather than leaving it looking like a data glitch. */}
           <ul className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
-            {stat.targetChanges.map((change) => (
+            {stat.targetChanges.map(change => (
               <li
                 key={change.effective_from}
                 className="font-mono text-[11px] tabular-nums text-[#0a0a0a]/70"

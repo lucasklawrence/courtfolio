@@ -62,11 +62,7 @@ describe('computeStreaks', () => {
   it('current streak is 0 when last session was 2+ days ago', () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-04-16T12:00:00'))
-    const sessions = [
-      session('2026-04-10'),
-      session('2026-04-11'),
-      session('2026-04-12'),
-    ]
+    const sessions = [session('2026-04-10'), session('2026-04-11'), session('2026-04-12')]
     const result = computeStreaks(sessions)
     expect(result.current).toBe(0)
     expect(result.longest).toBe(3)

@@ -24,7 +24,7 @@ export const SUPABASE_PAGE_SIZE = 1000
 export type PagedQuery = {
   range: (
     from: number,
-    to: number,
+    to: number
   ) => PromiseLike<{ data: unknown; error: { message: string } | null }>
 }
 
@@ -59,7 +59,7 @@ export type PagedQuery = {
  */
 export async function fetchAllRows(
   makeQuery: () => PagedQuery,
-  label: string,
+  label: string
 ): Promise<Array<Record<string, unknown>>> {
   const rows: Array<Record<string, unknown>> = []
   for (let from = 0; ; from += SUPABASE_PAGE_SIZE) {

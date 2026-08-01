@@ -1,10 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import {
-  RIM_HEIGHT_IN,
-  STANDING_REACH_IN,
-  inchesToRim,
-  jumpTouchInches,
-} from './movement'
+import { RIM_HEIGHT_IN, STANDING_REACH_IN, inchesToRim, jumpTouchInches } from './movement'
 
 describe('movement constants', () => {
   it('exposes documented v1 anchor values', () => {

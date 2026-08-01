@@ -161,7 +161,7 @@ describe('POST /api/admin/weight-room/workouts', () => {
       postRequest({
         started_at: '2026-08-01T10:00:00Z',
         ended_at: '2026-08-01T05:00:00-07:00',
-      }) as never,
+      }) as never
     )
     expect(res.status).toBe(201)
   })
@@ -178,7 +178,7 @@ describe('POST /api/admin/weight-room/workouts', () => {
 
   it('rejects an unparseable ended_at with a 400 rather than passing it to Postgres', async () => {
     const res = await POST(
-      postRequest({ started_at: '2026-08-01T10:00:00Z', ended_at: 'yesterday' }) as never,
+      postRequest({ started_at: '2026-08-01T10:00:00Z', ended_at: 'yesterday' }) as never
     )
     expect(res.status).toBe(400)
     const body = await res.json()
@@ -190,7 +190,7 @@ describe('POST /api/admin/weight-room/workouts', () => {
       postRequest({
         started_at: '2026-07-15T18:00:00Z',
         ended_at: '2026-07-15T17:00:00Z',
-      }) as never,
+      }) as never
     )
     expect(res.status).toBe(400)
     const body = await res.json()
@@ -271,7 +271,7 @@ describe('POST /api/admin/weight-room/workouts', () => {
       postRequest({
         started_at: '2026-07-13T18:00:00Z',
         ended_at: '2026-07-13T19:00:00Z',
-      }) as never,
+      }) as never
     )
     expect(res.status).toBe(201)
     expect(updates).toHaveLength(0)

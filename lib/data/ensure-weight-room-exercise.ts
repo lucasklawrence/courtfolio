@@ -25,8 +25,8 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 export function titleCaseSlug(slug: string): string {
   return slug
     .split('-')
-    .filter((part) => part.length > 0)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .filter(part => part.length > 0)
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ')
 }
 
@@ -46,7 +46,7 @@ export function titleCaseSlug(slug: string): string {
  */
 export async function ensureWeightRoomExercise(
   supabase: SupabaseClient,
-  slug: string,
+  slug: string
 ): Promise<string | null> {
   const { error } = await supabase.from('weight_room_exercises').upsert(
     {
@@ -56,7 +56,7 @@ export async function ensureWeightRoomExercise(
       muscle_group: 'full-body',
       updated_at: new Date().toISOString(),
     },
-    { onConflict: 'slug', ignoreDuplicates: true },
+    { onConflict: 'slug', ignoreDuplicates: true }
   )
   return error === null ? null : `Failed to add '${slug}' to the movement catalog: ${error.message}`
 }

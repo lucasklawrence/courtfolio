@@ -24,7 +24,7 @@ describe('ActivityRings', () => {
           { goal: PUSHUPS, totalReps: 50 },
           { goal: PULLUPS, totalReps: 10 },
         ]}
-      />,
+      />
     )
     expect(screen.getByTestId('ring-pushups')).toBeInTheDocument()
     expect(screen.getByTestId('ring-pullups')).toBeInTheDocument()
@@ -64,17 +64,11 @@ describe('ActivityRings', () => {
           { goal: PUSHUPS, totalReps: 50 },
           { goal: PULLUPS, totalReps: 15 },
         ]}
-      />,
+      />
     )
     const svg = screen.getByRole('img')
-    expect(svg).toHaveAttribute(
-      'aria-label',
-      expect.stringContaining('pushups 50 of 100'),
-    )
-    expect(svg).toHaveAttribute(
-      'aria-label',
-      expect.stringContaining('pullups 15 of 30'),
-    )
+    expect(svg).toHaveAttribute('aria-label', expect.stringContaining('pushups 50 of 100'))
+    expect(svg).toHaveAttribute('aria-label', expect.stringContaining('pullups 15 of 30'))
   })
 
   it('renders every configured exercise even when the count is large', () => {
@@ -87,9 +81,7 @@ describe('ActivityRings', () => {
       daily_target: 50,
       color: '#EA580C',
     }))
-    render(
-      <ActivityRings rings={goals.map((g) => ({ goal: g, totalReps: 25 }))} />,
-    )
+    render(<ActivityRings rings={goals.map(g => ({ goal: g, totalReps: 25 }))} />)
     for (const g of goals) {
       expect(screen.getByTestId(`ring-${g.exercise}`)).toBeInTheDocument()
     }

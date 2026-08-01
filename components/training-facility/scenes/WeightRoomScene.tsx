@@ -42,9 +42,7 @@ export interface WeightRoomSceneProps {
  * facility. Read-only: visitors see the room "in use" without any
  * data-entry UI (admin owners log sets via `/training-facility/weight-room/log`).
  */
-export function WeightRoomScene({
-  data = null,
-}: WeightRoomSceneProps = {}) {
+export function WeightRoomScene({ data = null }: WeightRoomSceneProps = {}) {
   return (
     <svg
       viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
@@ -57,19 +55,9 @@ export function WeightRoomScene({
       <SceneDefs />
 
       <WallBand width={VIEWBOX_WIDTH} height={FLOOR_TOP} />
-      <rect
-        x={0}
-        y={0}
-        width={VIEWBOX_WIDTH}
-        height={FLOOR_TOP}
-        fill="url(#sceneSpotlight)"
-      />
+      <rect x={0} y={0} width={VIEWBOX_WIDTH} height={FLOOR_TOP} fill="url(#sceneSpotlight)" />
 
-      <HardwoodFloor
-        y={FLOOR_TOP}
-        height={VIEWBOX_HEIGHT - FLOOR_TOP}
-        width={VIEWBOX_WIDTH}
-      />
+      <HardwoodFloor y={FLOOR_TOP} height={VIEWBOX_HEIGHT - FLOOR_TOP} width={VIEWBOX_WIDTH} />
 
       {/* Wall fixture — today's activity rings, mounted above the squat rack. */}
       <WallActivityRings data={data} />
@@ -85,37 +73,13 @@ export function WeightRoomScene({
         preserveAspectRatio="xMidYMax meet"
       />
 
-      <SquatRackSvg
-        x={320}
-        y={260}
-        width={320}
-        height={600}
-        preserveAspectRatio="xMidYMax meet"
-      />
+      <SquatRackSvg x={320} y={260} width={320} height={600} preserveAspectRatio="xMidYMax meet" />
 
-      <BenchPressSvg
-        x={660}
-        y={460}
-        width={400}
-        height={400}
-        preserveAspectRatio="xMidYMax meet"
-      />
+      <BenchPressSvg x={660} y={460} width={400} height={400} preserveAspectRatio="xMidYMax meet" />
 
-      <PlyoBoxSvg
-        x={1080}
-        y={540}
-        width={250}
-        height={320}
-        preserveAspectRatio="xMidYMax meet"
-      />
+      <PlyoBoxSvg x={1080} y={540} width={250} height={320} preserveAspectRatio="xMidYMax meet" />
 
-      <YogaMatSvg
-        x={1340}
-        y={700}
-        width={240}
-        height={160}
-        preserveAspectRatio="xMidYMax meet"
-      />
+      <YogaMatSvg x={1340} y={700} width={240} height={160} preserveAspectRatio="xMidYMax meet" />
 
       {/* Caption — same handwritten flavor as the Gym caption strip */}
       <text

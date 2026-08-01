@@ -38,7 +38,7 @@ describe('LoadManagementPanel', () => {
     const { getByTestId } = render(
       <LoadManagementPanel
         loads={[PUSHUPS_LOAD, { ...PUSHUPS_LOAD, movement: 'squats', flag: 'red' }]}
-      />,
+      />
     )
     expect(getByTestId('load-card-pushups')).toHaveAttribute('data-flag', 'yellow')
     expect(getByTestId('load-card-squats')).toHaveAttribute('data-flag', 'red')
@@ -57,7 +57,7 @@ describe('LoadManagementPanel', () => {
     const { getByTestId } = render(
       <LoadManagementPanel
         loads={[{ ...PUSHUPS_LOAD, movement: 'shrugs', metric: 'load', unitLabel: 'lb' }]}
-      />,
+      />
     )
     const card = getByTestId('load-card-shrugs')
     expect(card.textContent).toContain('7d load volume')
@@ -66,7 +66,7 @@ describe('LoadManagementPanel', () => {
 
   it('renders an em-dash when WoW or ACWR is null', () => {
     const { getByTestId } = render(
-      <LoadManagementPanel loads={[{ ...PUSHUPS_LOAD, wowPct: null, acwr: null }]} />,
+      <LoadManagementPanel loads={[{ ...PUSHUPS_LOAD, wowPct: null, acwr: null }]} />
     )
     expect(getByTestId('load-card-pushups').textContent).toContain('—')
   })

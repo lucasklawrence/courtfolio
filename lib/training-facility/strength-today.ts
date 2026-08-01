@@ -48,12 +48,9 @@ export function toLocalDateKey(input: string | Date): string {
  *   Pass an empty string to get an empty array back (defensive — keeps
  *   callers from having to special-case unparseable "now" inputs).
  */
-export function filterSetsForDay(
-  sets: readonly StrengthSet[],
-  dayKey: string,
-): StrengthSet[] {
+export function filterSetsForDay(sets: readonly StrengthSet[], dayKey: string): StrengthSet[] {
   if (dayKey === '') return []
-  return sets.filter((s) => toLocalDateKey(s.logged_at) === dayKey)
+  return sets.filter(s => toLocalDateKey(s.logged_at) === dayKey)
 }
 
 /**
@@ -75,9 +72,7 @@ export function sumReps(sets: readonly StrengthSet[]): number {
  *
  * @param setsForDay Output of {@link filterSetsForDay}.
  */
-export function totalsByExercise(
-  setsForDay: readonly StrengthSet[],
-): Map<string, number> {
+export function totalsByExercise(setsForDay: readonly StrengthSet[]): Map<string, number> {
   const totals = new Map<string, number>()
   for (const s of setsForDay) {
     totals.set(s.exercise, (totals.get(s.exercise) ?? 0) + s.reps)
@@ -177,11 +172,7 @@ export function variantBreakdown(sets: readonly StrengthSet[]): VariantSlice[] {
  *   shows the ring as it was actually earned. Omitted keeps the current
  *   target, which is what the Today View wants.
  */
-export function computeRingPercent(
-  totalReps: number,
-  goal: ExerciseGoal,
-  dayKey?: string,
-): number {
+export function computeRingPercent(totalReps: number, goal: ExerciseGoal, dayKey?: string): number {
   const target = dayKey === undefined ? goal.daily_target : targetForDay(goal, dayKey)
   if (target <= 0) return 0
   return totalReps / target

@@ -116,14 +116,14 @@ export function BaseLifestyleTrendChart({
   // change identity often). #178 follow-up.
   const clipped = useMemo(
     () => clipToRange(points ?? [], dateFrom ?? null, dateTo ?? null),
-    [points, dateFrom, dateTo],
+    [points, dateFrom, dateTo]
   )
 
   return (
     <RoughLine<TrendPoint>
       data={clipped}
-      x={(p) => p.date}
-      y={(p) => p.value}
+      x={p => p.date}
+      y={p => p.value}
       width={width}
       height={height}
       margin={defaultMargin}
@@ -152,7 +152,7 @@ interface TrendPoint {
 function clipToRange(
   points: readonly CardioTimePoint[],
   dateFrom: Date | null,
-  dateTo: Date | null,
+  dateTo: Date | null
 ): TrendPoint[] {
   const fromMs = dateFrom?.getTime() ?? -Infinity
   const toMs = dateTo?.getTime() ?? Infinity

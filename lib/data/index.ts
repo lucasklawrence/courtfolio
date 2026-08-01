@@ -17,11 +17,6 @@
  *      any future API.
  */
 
-export { getCardioData } from './cardio';
-export { getOtfData, getOtfMileageAwards } from './otf';
-export {
-  getMovementBenchmarks,
-  logBenchmark,
-  updateBenchmark,
-  deleteBenchmark,
-} from './movement';
+export { getCardioData } from './cardio'
+export { getOtfData, getOtfMileageAwards } from './otf'
+export { getMovementBenchmarks, logBenchmark, updateBenchmark, deleteBenchmark } from './movement'

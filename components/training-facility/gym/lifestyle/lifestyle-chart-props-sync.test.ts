@@ -1,9 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import type {
-  BaseLifestyleTrendChartProps,
-  LifestyleChartProps,
-} from './BaseLifestyleTrendChart'
+import type { BaseLifestyleTrendChartProps, LifestyleChartProps } from './BaseLifestyleTrendChart'
 
 /**
  * Compile-time + runtime guard for the two-interface drift risk flagged

@@ -44,7 +44,7 @@ describe('BaseLifestyleTrendChart', () => {
         // Range is entirely after the data — every point should clip out.
         dateFrom={new Date(2026, 5, 1)}
         dateTo={new Date(2026, 5, 30)}
-      />,
+      />
     )
     expect(getByText('No HRV data in range')).toBeInTheDocument()
   })
@@ -61,7 +61,7 @@ describe('BaseLifestyleTrendChart', () => {
         points={data}
         dateFrom={new Date(2026, 1, 1)}
         dateTo={new Date(2026, 3, 31)}
-      />,
+      />
     )
     // No empty-state caption.
     expect(queryByText('No HRV data in range')).not.toBeInTheDocument()
@@ -76,12 +76,7 @@ describe('BaseLifestyleTrendChart', () => {
       ['2026-04-18', 51],
     ])
     const { container } = render(
-      <BaseLifestyleTrendChart
-        {...baseProps}
-        points={data}
-        width={500}
-        height={150}
-      />,
+      <BaseLifestyleTrendChart {...baseProps} points={data} width={500} height={150} />
     )
     const svg = container.querySelector('svg')
     expect(svg?.getAttribute('width')).toBe('500')
@@ -95,7 +90,7 @@ describe('BaseLifestyleTrendChart', () => {
       ['2026-04-18', 51],
     ])
     const { container, queryByText } = render(
-      <BaseLifestyleTrendChart {...baseProps} points={data} width={400} />,
+      <BaseLifestyleTrendChart {...baseProps} points={data} width={400} />
     )
     // Two valid points → not the empty state.
     expect(queryByText('No HRV data in range')).not.toBeInTheDocument()

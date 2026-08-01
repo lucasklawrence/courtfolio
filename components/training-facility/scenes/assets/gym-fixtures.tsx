@@ -5,13 +5,7 @@ import type { CardioTimePoint } from '@/types/cardio'
 
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
 import { PulsingHeart } from './PulsingHeart'
-import {
-  RoughCircle,
-  RoughEllipse,
-  RoughLineShape,
-  RoughPath,
-  RoughRect,
-} from './rough-shapes'
+import { RoughCircle, RoughEllipse, RoughLineShape, RoughPath, RoughRect } from './rough-shapes'
 import { SceneDoor } from './SceneDoor'
 
 /**
@@ -90,10 +84,10 @@ interface PolylineBox {
  */
 function projectSeriesPolyline(
   series: readonly CardioTimePoint[],
-  box: PolylineBox,
+  box: PolylineBox
 ): { points: string; coords: Array<[number, number]> } | null {
   if (series.length < 2) return null
-  const values = series.map((p) => p.value)
+  const values = series.map(p => p.value)
   const min = Math.min(...values)
   const max = Math.max(...values)
   const span = max - min
@@ -140,9 +134,7 @@ const HR_FALLBACK_PATH =
  */
 export function HrMonitor({ bpm, sparkline }: HrMonitorProps = {}) {
   const displayBpm = bpm ?? HR_FALLBACK_BPM
-  const projected = sparkline
-    ? projectSeriesPolyline(sparkline, HR_SPARKLINE_BOX)
-    : null
+  const projected = sparkline ? projectSeriesPolyline(sparkline, HR_SPARKLINE_BOX) : null
 
   return (
     <g>
@@ -241,7 +233,13 @@ const VO2_TREND_BOX: PolylineBox = { x: 420, y: 200, width: 300, height: 60 }
 const VO2_FALLBACK_VALUE = 47.8
 // Original painted trend coordinates — fallback when `trend` is missing.
 const VO2_FALLBACK_COORDS: Array<[number, number]> = [
-  [420, 250], [470, 238], [520, 242], [570, 224], [620, 218], [670, 206], [720, 200],
+  [420, 250],
+  [470, 238],
+  [520, 242],
+  [570, 224],
+  [620, 218],
+  [670, 206],
+  [720, 200],
 ]
 
 /**
@@ -252,10 +250,7 @@ const VO2_FALLBACK_COORDS: Array<[number, number]> = [
  * to the painted trend so the whiteboard isn't blank for first-time
  * visitors before they import any cardio data.
  */
-export function Vo2MaxWhiteboard({
-  value,
-  trend,
-}: Vo2MaxWhiteboardProps = {}) {
+export function Vo2MaxWhiteboard({ value, trend }: Vo2MaxWhiteboardProps = {}) {
   const displayValue = value ?? VO2_FALLBACK_VALUE
   const projected = trend ? projectSeriesPolyline(trend, VO2_TREND_BOX) : null
   const coords = projected?.coords ?? VO2_FALLBACK_COORDS
@@ -429,11 +424,7 @@ const WALL_FALLBACK = {
  * All three values default to placeholders so the static scene reads as a
  * populated room when `cardio.json` doesn't exist yet.
  */
-export function WallScoreboard({
-  sessions,
-  durationLabel,
-  milesLabel,
-}: WallScoreboardProps = {}) {
+export function WallScoreboard({ sessions, durationLabel, milesLabel }: WallScoreboardProps = {}) {
   const stats: Array<{ label: string; value: string }> = [
     { label: 'sessions', value: String(sessions ?? WALL_FALLBACK.sessions) },
     { label: 'time', value: durationLabel ?? WALL_FALLBACK.durationLabel },
@@ -472,8 +463,30 @@ export function WallScoreboard({
         seed={171}
       />
       {/* Mounting tabs */}
-      <RoughRect x={836} y={68} width={30} height={16} fill={SCENE_PALETTE.inkSoft} fillStyle="solid" stroke={SCENE_PALETTE.ink} strokeWidth={1.2} roughness={0.7} seed={172} />
-      <RoughRect x={1174} y={68} width={30} height={16} fill={SCENE_PALETTE.inkSoft} fillStyle="solid" stroke={SCENE_PALETTE.ink} strokeWidth={1.2} roughness={0.7} seed={173} />
+      <RoughRect
+        x={836}
+        y={68}
+        width={30}
+        height={16}
+        fill={SCENE_PALETTE.inkSoft}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={1.2}
+        roughness={0.7}
+        seed={172}
+      />
+      <RoughRect
+        x={1174}
+        y={68}
+        width={30}
+        height={16}
+        fill={SCENE_PALETTE.inkSoft}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={1.2}
+        roughness={0.7}
+        seed={173}
+      />
 
       <text
         x={1020}
@@ -583,10 +596,41 @@ export function BenchWithTablet() {
         seed={191}
       />
       {/* Wood grain hint */}
-      <RoughLineShape x1={950} y1={770} x2={1150} y2={770} stroke={SCENE_PALETTE.hardwoodDark} strokeWidth={0.8} roughness={1.6} seed={192} />
+      <RoughLineShape
+        x1={950}
+        y1={770}
+        x2={1150}
+        y2={770}
+        stroke={SCENE_PALETTE.hardwoodDark}
+        strokeWidth={0.8}
+        roughness={1.6}
+        seed={192}
+      />
       {/* Bench legs */}
-      <RoughRect x={960} y={780} width={14} height={50} fill={SCENE_PALETTE.hardwoodDark} fillStyle="solid" stroke={SCENE_PALETTE.ink} strokeWidth={1.5} roughness={0.9} seed={193} />
-      <RoughRect x={1126} y={780} width={14} height={50} fill={SCENE_PALETTE.hardwoodDark} fillStyle="solid" stroke={SCENE_PALETTE.ink} strokeWidth={1.5} roughness={0.9} seed={194} />
+      <RoughRect
+        x={960}
+        y={780}
+        width={14}
+        height={50}
+        fill={SCENE_PALETTE.hardwoodDark}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={1.5}
+        roughness={0.9}
+        seed={193}
+      />
+      <RoughRect
+        x={1126}
+        y={780}
+        width={14}
+        height={50}
+        fill={SCENE_PALETTE.hardwoodDark}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.ink}
+        strokeWidth={1.5}
+        roughness={0.9}
+        seed={194}
+      />
 
       {/* Clipboard, tilted */}
       <g transform="translate(960, 640) rotate(-6)">
@@ -603,7 +647,18 @@ export function BenchWithTablet() {
           seed={195}
         />
         {/* Clip at top */}
-        <RoughRect x={55} y={-10} width={60} height={20} fill={SCENE_PALETTE.inkSoft} fillStyle="solid" stroke={SCENE_PALETTE.ink} strokeWidth={1.5} roughness={0.7} seed={196} />
+        <RoughRect
+          x={55}
+          y={-10}
+          width={60}
+          height={20}
+          fill={SCENE_PALETTE.inkSoft}
+          fillStyle="solid"
+          stroke={SCENE_PALETTE.ink}
+          strokeWidth={1.5}
+          roughness={0.7}
+          seed={196}
+        />
         <text
           x={20}
           y={36}
@@ -624,8 +679,26 @@ export function BenchWithTablet() {
         >
           apr 24
         </text>
-        <RoughLineShape x1={20} y1={88} x2={150} y2={88} stroke={SCENE_PALETTE.inkSoft} strokeWidth={1.2} roughness={0.6} seed={197} />
-        <RoughLineShape x1={20} y1={104} x2={130} y2={104} stroke={SCENE_PALETTE.inkSoft} strokeWidth={1.2} roughness={0.6} seed={198} />
+        <RoughLineShape
+          x1={20}
+          y1={88}
+          x2={150}
+          y2={88}
+          stroke={SCENE_PALETTE.inkSoft}
+          strokeWidth={1.2}
+          roughness={0.6}
+          seed={197}
+        />
+        <RoughLineShape
+          x1={20}
+          y1={104}
+          x2={130}
+          y2={104}
+          stroke={SCENE_PALETTE.inkSoft}
+          strokeWidth={1.2}
+          roughness={0.6}
+          seed={198}
+        />
       </g>
 
       <text

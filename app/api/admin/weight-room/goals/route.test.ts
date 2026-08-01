@@ -114,7 +114,7 @@ vi.mock('@/lib/supabase/admin', () => ({
 
 /** The write recorded for a given query kind, or `undefined` if it never ran. */
 function callFor(kind: QueryKind) {
-  return calls.find((c) => c.kind === kind)
+  return calls.find(c => c.kind === kind)
 }
 
 beforeEach(() => {
@@ -161,7 +161,7 @@ describe('POST /api/admin/weight-room/goals', () => {
   it('returns 400 when color is not a hex string', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     const res = await POST(
-      makeRequest({ exercise: 'pushups', daily_target: 100, color: 'orange' }) as never,
+      makeRequest({ exercise: 'pushups', daily_target: 100, color: 'orange' }) as never
     )
     expect(res.status).toBe(400)
     const body = await res.json()
@@ -190,7 +190,7 @@ describe('POST /api/admin/weight-room/goals', () => {
     const body = await res.json()
     expect(body).toEqual(validGoal)
     expect(callFor('upsertGoal')?.payload).toEqual(
-      expect.objectContaining({ ...validGoal, updated_at: expect.any(String) }),
+      expect.objectContaining({ ...validGoal, updated_at: expect.any(String) })
     )
     expect(callFor('upsertGoal')?.options).toEqual({ onConflict: 'exercise' })
   })
@@ -201,7 +201,7 @@ describe('POST /api/admin/weight-room/goals', () => {
     await POST(makeRequest(validGoal) as never)
     expect(callFor('upsertGoal')?.payload).toEqual(
       // Loose ISO-8601 check: starts with YYYY-MM-DD.
-      expect.objectContaining({ updated_at: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T/) }),
+      expect.objectContaining({ updated_at: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T/) })
     )
   })
 
@@ -227,7 +227,7 @@ describe('POST /api/admin/weight-room/goals', () => {
     it('appends a history row dated today when the target changes', async () => {
       pullupsAt30()
       const res = await POST(
-        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
+        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never
       )
       expect(res.status).toBe(200)
       expect(callFor('historyUpsert')?.payload).toEqual([
@@ -250,7 +250,7 @@ describe('POST /api/admin/weight-room/goals', () => {
           daily_target: 50,
           color: '#0EA5A1',
           effective_from: '2026-08-01',
-        }) as never,
+        }) as never
       )
       expect(callFor('historyUpsert')?.payload).toEqual([
         expect.objectContaining({ effective_from: '2026-08-01', daily_target: 50 }),
@@ -278,7 +278,7 @@ describe('POST /api/admin/weight-room/goals', () => {
           daily_target: 50,
           color: '#0EA5A1',
           effective_from: '2026-08-01',
-        }) as never,
+        }) as never
       )
       expect(res.status).toBe(200)
       expect(callFor('historyUpsert')?.payload).toEqual([
@@ -293,7 +293,7 @@ describe('POST /api/admin/weight-room/goals', () => {
           daily_target: 50,
           color: '#0EA5A1',
           effective_from: '2026-09-01',
-        }) as never,
+        }) as never
       )
       expect(res.status).toBe(400)
       const body = await res.json()
@@ -304,7 +304,7 @@ describe('POST /api/admin/weight-room/goals', () => {
     it('does not append history for a colour-only edit', async () => {
       pullupsAt30()
       const res = await POST(
-        makeRequest({ exercise: 'pullups', daily_target: 30, color: '#123456' }) as never,
+        makeRequest({ exercise: 'pullups', daily_target: 30, color: '#123456' }) as never
       )
       expect(res.status).toBe(200)
       expect(callFor('historyUpsert')).toBeUndefined()
@@ -315,9 +315,7 @@ describe('POST /api/admin/weight-room/goals', () => {
       responses.historyRead = { data: [], error: null }
       responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
 
-      await POST(
-        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
-      )
+      await POST(makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never)
       // Old target anchored at the epoch so no logged day is left uncovered
       // and the past keeps scoring against 30.
       expect(callFor('historyUpsert')?.payload).toEqual([
@@ -335,9 +333,7 @@ describe('POST /api/admin/weight-room/goals', () => {
       responses.historyRead = { data: [], error: null }
       responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
 
-      await POST(
-        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
-      )
+      await POST(makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never)
       expect(callFor('historyUpsert')?.payload).toEqual([
         expect.objectContaining({ daily_target: 50, effective_from: '1970-01-01' }),
       ])
@@ -375,21 +371,15 @@ describe('POST /api/admin/weight-room/goals', () => {
           daily_target: 40,
           color: '#0EA5A1',
           effective_from: '2026-08-01',
-        }) as never,
+        }) as never
       )
-      expect(callFor('upsertGoal')?.payload).toEqual(
-        expect.objectContaining({ daily_target: 50 }),
-      )
+      expect(callFor('upsertGoal')?.payload).toEqual(expect.objectContaining({ daily_target: 50 }))
     })
 
     it('advances the mirror when the change is the newest entry', async () => {
       pullupsAt30()
-      await POST(
-        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
-      )
-      expect(callFor('upsertGoal')?.payload).toEqual(
-        expect.objectContaining({ daily_target: 50 }),
-      )
+      await POST(makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never)
+      expect(callFor('upsertGoal')?.payload).toEqual(expect.objectContaining({ daily_target: 50 }))
     })
 
     it('returns 500 and writes no mirror when the history write fails', async () => {
@@ -397,7 +387,7 @@ describe('POST /api/admin/weight-room/goals', () => {
       responses.historyUpsert = { data: null, error: { message: 'conflict' } }
 
       const res = await POST(
-        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
+        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never
       )
       expect(res.status).toBe(500)
       // History is written first precisely so a failure here leaves the goal
@@ -410,7 +400,7 @@ describe('POST /api/admin/weight-room/goals', () => {
       responses.historyRead = { data: null, error: { message: 'unavailable' } }
 
       const res = await POST(
-        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never,
+        makeRequest({ exercise: 'pullups', daily_target: 50, color: '#0EA5A1' }) as never
       )
       expect(res.status).toBe(500)
       expect(callFor('historyUpsert')).toBeUndefined()

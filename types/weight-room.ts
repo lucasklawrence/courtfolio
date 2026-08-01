@@ -128,14 +128,7 @@ export interface WeightRoomWorkout {
  * share-of-weighted-sets threshold in `load-management.ts`.
  */
 export type ExerciseEquipment =
-  | 'barbell'
-  | 'dumbbell'
-  | 'kettlebell'
-  | 'machine'
-  | 'cable'
-  | 'band'
-  | 'bodyweight'
-  | 'other'
+  'barbell' | 'dumbbell' | 'kettlebell' | 'machine' | 'cable' | 'band' | 'bodyweight' | 'other'
 
 /**
  * Coarse body region a movement trains (#373). Deliberately seven buckets
@@ -145,13 +138,7 @@ export type ExerciseEquipment =
  * change, not a redesign.
  */
 export type ExerciseMuscleGroup =
-  | 'chest'
-  | 'back'
-  | 'shoulders'
-  | 'arms'
-  | 'legs'
-  | 'core'
-  | 'full-body'
+  'chest' | 'back' | 'shoulders' | 'arms' | 'legs' | 'core' | 'full-body'
 
 /**
  * One movement in the Weight Room roster (#373) — mirrors a row of

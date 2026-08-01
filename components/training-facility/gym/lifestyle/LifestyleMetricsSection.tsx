@@ -83,7 +83,7 @@ export function LifestyleMetricsSection({
       width: chartWidth,
       fontFamily,
     }),
-    [range.start, range.end, chartWidth, fontFamily],
+    [range.start, range.end, chartWidth, fontFamily]
   )
   return (
     <section aria-label="Lifestyle metrics" className="mt-8">

@@ -47,7 +47,7 @@ export interface SessionRowExpansionState {
 export function useSessionRowExpansion(): SessionRowExpansionState {
   const [expandedKey, setExpandedKey] = useState<string | null>(null)
   const toggle = useCallback((key: string) => {
-    setExpandedKey((prev) => (prev === key ? null : key))
+    setExpandedKey(prev => (prev === key ? null : key))
   }, [])
   return { expandedKey, toggle }
 }
@@ -60,7 +60,7 @@ export function useSessionRowExpansion(): SessionRowExpansionState {
  */
 export function hasZoneData(hrSecondsInZone?: Record<HrZone, number>): boolean {
   if (!hrSecondsInZone) return false
-  return (Object.values(hrSecondsInZone) as number[]).some((v) => (v ?? 0) > 0)
+  return (Object.values(hrSecondsInZone) as number[]).some(v => (v ?? 0) > 0)
 }
 
 /**
@@ -101,7 +101,7 @@ export function getRowExpansionProps(
   key: string,
   state: SessionRowExpansionState,
   hasZoneData: boolean,
-  baseClassName: string,
+  baseClassName: string
 ): RowExpansionProps {
   if (!hasZoneData) {
     return {
@@ -119,7 +119,7 @@ export function getRowExpansionProps(
     tabIndex: 0,
     'aria-expanded': isExpanded,
     onClick: () => state.toggle(key),
-    onKeyDown: (e) => {
+    onKeyDown: e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault()
         state.toggle(key)
@@ -173,10 +173,10 @@ export function ExpandedHrZoneRow({
   useEffect(() => {
     const node = sizerRef.current
     if (!node || typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const next = Math.max(MIN_PANEL_WIDTH, Math.floor(entry.contentRect.width))
-        setWidth((prev) => (prev === next ? prev : next))
+        setWidth(prev => (prev === next ? prev : next))
       }
     })
     observer.observe(node)

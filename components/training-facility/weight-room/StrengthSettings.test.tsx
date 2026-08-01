@@ -54,7 +54,7 @@ describe('StrengthSettings', () => {
   it('shows the empty-state copy and the add form when no goals exist', () => {
     render(<StrengthSettings initialGoals={[]} />)
     expect(
-      screen.getByText(/no exercises yet — add one below to start logging sets\./i),
+      screen.getByText(/no exercises yet — add one below to start logging sets\./i)
     ).toBeInTheDocument()
     expect(screen.queryAllByRole('button', { name: /^save$/i })).toHaveLength(0)
     expect(screen.getByRole('button', { name: /^add$/i })).toBeInTheDocument()

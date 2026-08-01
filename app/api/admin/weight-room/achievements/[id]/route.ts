@@ -78,7 +78,7 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
@@ -104,12 +104,12 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
     if (error.code === UNIQUE_VIOLATION) {
       return NextResponse.json(
         { error: 'Another tier already covers that exercise, scope, and threshold.' },
-        { status: 409 },
+        { status: 409 }
       )
     }
     return NextResponse.json(
       { error: `Failed to update achievement: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
   if (!data) {
@@ -155,7 +155,7 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
   if (error) {
     return NextResponse.json(
       { error: `Failed to delete achievement: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
   if (!data) {

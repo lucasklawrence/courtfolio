@@ -12,10 +12,7 @@ import {
 import type { CardioSession } from '@/types/cardio'
 import type { DateRange } from '@/components/training-facility/shared/DateFilter'
 
-const session = (
-  date: string,
-  extras: Partial<CardioSession> = {},
-): CardioSession => ({
+const session = (date: string, extras: Partial<CardioSession> = {}): CardioSession => ({
   date,
   activity: 'running',
   duration_seconds: 1800,
@@ -30,8 +27,18 @@ describe('computeTRIMP', () => {
   })
 
   it('applies modality weights', () => {
-    const stair: CardioSession = { date: '2026-04-01', activity: 'stair', duration_seconds: 1800, avg_hr: 148 }
-    const walk: CardioSession = { date: '2026-04-01', activity: 'walking', duration_seconds: 1800, avg_hr: 148 }
+    const stair: CardioSession = {
+      date: '2026-04-01',
+      activity: 'stair',
+      duration_seconds: 1800,
+      avg_hr: 148,
+    }
+    const walk: CardioSession = {
+      date: '2026-04-01',
+      activity: 'walking',
+      duration_seconds: 1800,
+      avg_hr: 148,
+    }
     const stairTrimp = computeTRIMP(stair, { maxHr: 185 })
     const walkTrimp = computeTRIMP(walk, { maxHr: 185 })
     // stair weight 1.2; walking weight 0.5
@@ -92,13 +99,13 @@ describe('dailyTrimpSeries', () => {
       session('2026-04-04', { avg_hr: 148 }),
     ]
     const out = dailyTrimpSeries(sessions, { maxHr: 185 })
-    expect(out.map((p) => p.isoDate)).toEqual([
+    expect(out.map(p => p.isoDate)).toEqual([
       '2026-04-01',
       '2026-04-02',
       '2026-04-03',
       '2026-04-04',
     ])
-    expect(out.map((p) => p.trimp > 0)).toEqual([true, false, false, true])
+    expect(out.map(p => p.trimp > 0)).toEqual([true, false, false, true])
   })
 
   it('returns [] for empty input', () => {
@@ -106,18 +113,12 @@ describe('dailyTrimpSeries', () => {
   })
 
   it('respects the endDate option to extend past the last session', () => {
-    const sessions: CardioSession[] = [
-      session('2026-04-01', { avg_hr: 148 }),
-    ]
+    const sessions: CardioSession[] = [session('2026-04-01', { avg_hr: 148 })]
     const out = dailyTrimpSeries(sessions, {
       maxHr: 185,
       endDate: new Date('2026-04-03T00:00:00'),
     })
-    expect(out.map((p) => p.isoDate)).toEqual([
-      '2026-04-01',
-      '2026-04-02',
-      '2026-04-03',
-    ])
+    expect(out.map(p => p.isoDate)).toEqual(['2026-04-01', '2026-04-02', '2026-04-03'])
     expect(out[0].trimp).toBeGreaterThan(0)
     expect(out[1].trimp).toBe(0)
     expect(out[2].trimp).toBe(0)
@@ -129,7 +130,7 @@ describe('dailyTrimpSeries', () => {
       session('2026-04-05', { avg_hr: 148 }),
     ]
     const out = dailyTrimpSeries(sessions, { maxHr: 185 })
-    expect(out.map((p) => p.isoDate)).toEqual(['2026-04-05'])
+    expect(out.map(p => p.isoDate)).toEqual(['2026-04-05'])
   })
 })
 
@@ -157,7 +158,7 @@ describe('computeTrainingLoad', () => {
       trimp: 100,
     }))
     const out = computeTrainingLoad(series)
-    expect(out.every((p) => p.tsb <= 0)).toBe(true)
+    expect(out.every(p => p.tsb <= 0)).toBe(true)
     // ATL warms toward 100 much faster than CTL toward 100.
     expect(out[20].atl).toBeGreaterThan(out[20].ctl)
   })

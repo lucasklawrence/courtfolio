@@ -58,9 +58,7 @@ const BenchmarkRowsSchema = z
  *   when a row fails Zod validation. Callers usually downgrade this to an
  *   empty render.
  */
-export async function assembleMovementBenchmarks(
-  supabase: SupabaseClient,
-): Promise<Benchmark[]> {
+export async function assembleMovementBenchmarks(supabase: SupabaseClient): Promise<Benchmark[]> {
   const { data, error } = await supabase
     .from(MOVEMENT_TABLE)
     .select(MOVEMENT_SELECT_COLUMNS)

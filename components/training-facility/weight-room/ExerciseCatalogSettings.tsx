@@ -95,7 +95,7 @@ export function ExerciseCatalogSettings({
 
   const visible = useMemo(() => {
     const needle = query.trim().toLowerCase()
-    return initialExercises.filter((exercise) => {
+    return initialExercises.filter(exercise => {
       if (!showArchived && exercise.archived === true) return false
       if (needle.length === 0) return true
       return (
@@ -108,8 +108,8 @@ export function ExerciseCatalogSettings({
   }, [initialExercises, query, showArchived])
 
   const archivedCount = useMemo(
-    () => initialExercises.filter((exercise) => exercise.archived === true).length,
-    [initialExercises],
+    () => initialExercises.filter(exercise => exercise.archived === true).length,
+    [initialExercises]
   )
 
   function refresh(): void {
@@ -146,7 +146,7 @@ export function ExerciseCatalogSettings({
 
   async function patchExercise(
     slug: string,
-    patch: Partial<ExerciseDraft> & { archived?: boolean },
+    patch: Partial<ExerciseDraft> & { archived?: boolean }
   ): Promise<void> {
     clearError()
     const res = await fetch(`/api/admin/weight-room/exercises/${encodeURIComponent(slug)}`, {
@@ -165,7 +165,7 @@ export function ExerciseCatalogSettings({
   async function deleteExercise(slug: string): Promise<void> {
     clearError()
     const ok = window.confirm(
-      `Delete "${slug}" from the catalog? This only works if it has no logged sets, no daily goal, and no monthly focus — otherwise archive it instead.`,
+      `Delete "${slug}" from the catalog? This only works if it has no logged sets, no daily goal, and no monthly focus — otherwise archive it instead.`
     )
     if (!ok) return
     const res = await fetch(`/api/admin/weight-room/exercises/${encodeURIComponent(slug)}`, {
@@ -199,7 +199,7 @@ export function ExerciseCatalogSettings({
           <input
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={e => setQuery(e.target.value)}
             placeholder="Filter by name, equipment, or muscle…"
             autoCapitalize="none"
             className="w-full rounded border border-white/15 bg-black/40 px-3 py-2 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
@@ -210,7 +210,7 @@ export function ExerciseCatalogSettings({
             <input
               type="checkbox"
               checked={showArchived}
-              onChange={(e) => setShowArchived(e.target.checked)}
+              onChange={e => setShowArchived(e.target.checked)}
               className="h-4 w-4 accent-amber-300"
             />
             Show archived ({archivedCount})
@@ -227,7 +227,7 @@ export function ExerciseCatalogSettings({
           </p>
         ) : (
           <ul className="space-y-2">
-            {visible.map((exercise) => (
+            {visible.map(exercise => (
               <ExerciseRow
                 key={exercise.slug}
                 exercise={exercise}
@@ -251,7 +251,7 @@ export function ExerciseCatalogSettings({
         </h3>
         <AddExerciseForm
           disabled={isPending}
-          existingSlugs={initialExercises.map((exercise) => exercise.slug)}
+          existingSlugs={initialExercises.map(exercise => exercise.slug)}
           onAdd={createExercise}
         />
       </section>
@@ -265,10 +265,7 @@ interface ExerciseRowProps {
   disabled: boolean
   /** Failure from this row's last save/archive/delete, or null. */
   error: string | null
-  onPatch: (
-    slug: string,
-    patch: Partial<ExerciseDraft> & { archived?: boolean },
-  ) => Promise<void>
+  onPatch: (slug: string, patch: Partial<ExerciseDraft> & { archived?: boolean }) => Promise<void>
   onDelete: (slug: string) => Promise<void>
 }
 
@@ -341,7 +338,7 @@ function ExerciseRow({
               required
               maxLength={60}
               value={draft.display_name}
-              onChange={(e) => setDraft({ ...draft, display_name: e.target.value })}
+              onChange={e => setDraft({ ...draft, display_name: e.target.value })}
               className="rounded border border-white/15 bg-black/40 px-2 py-1.5 text-sm text-white focus:border-amber-300/60 focus:outline-none"
             />
           </label>
@@ -351,12 +348,12 @@ function ExerciseRow({
               <span className="font-mono uppercase tracking-[0.18em]">equipment</span>
               <select
                 value={draft.equipment}
-                onChange={(e) =>
+                onChange={e =>
                   setDraft({ ...draft, equipment: e.target.value as ExerciseEquipment })
                 }
                 className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
               >
-                {EQUIPMENT_OPTIONS.map((option) => (
+                {EQUIPMENT_OPTIONS.map(option => (
                   <option key={option} value={option} className="bg-[#120d0a]">
                     {option}
                   </option>
@@ -367,12 +364,12 @@ function ExerciseRow({
               <span className="font-mono uppercase tracking-[0.18em]">muscle group</span>
               <select
                 value={draft.muscle_group}
-                onChange={(e) =>
+                onChange={e =>
                   setDraft({ ...draft, muscle_group: e.target.value as ExerciseMuscleGroup })
                 }
                 className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
               >
-                {MUSCLE_OPTIONS.map((option) => (
+                {MUSCLE_OPTIONS.map(option => (
                   <option key={option} value={option} className="bg-[#120d0a]">
                     {option}
                   </option>
@@ -389,9 +386,7 @@ function ExerciseRow({
                 min={1}
                 inputMode="numeric"
                 value={draft.load_multiplier}
-                onChange={(e) =>
-                  setDraft({ ...draft, load_multiplier: Number(e.target.value) })
-                }
+                onChange={e => setDraft({ ...draft, load_multiplier: Number(e.target.value) })}
                 className="w-20 rounded border border-white/15 bg-black/40 px-2 py-1.5 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
               />
             </label>
@@ -399,16 +394,16 @@ function ExerciseRow({
               <input
                 type="checkbox"
                 checked={draft.is_unilateral}
-                onChange={(e) => setDraft({ ...draft, is_unilateral: e.target.checked })}
+                onChange={e => setDraft({ ...draft, is_unilateral: e.target.checked })}
                 className="h-4 w-4 accent-amber-300"
               />
               <span className="font-mono uppercase tracking-[0.18em]">unilateral</span>
             </label>
           </div>
           <p className="text-[11px] leading-5 text-white/40">
-            Weight is recorded <strong>per implement</strong> — a 60 lb dumbbell shrug is 60
-            per hand. Set implements&nbsp;/&nbsp;set to 2 for anything carried as a pair, so
-            tonnage counts both.
+            Weight is recorded <strong>per implement</strong> — a 60 lb dumbbell shrug is 60 per
+            hand. Set implements&nbsp;/&nbsp;set to 2 for anything carried as a pair, so tonnage
+            counts both.
           </p>
 
           <div className="flex flex-wrap gap-2">
@@ -490,11 +485,7 @@ function slugify(displayName: string): string {
     .replace(/^-+|-+$/g, '')
 }
 
-function AddExerciseForm({
-  disabled,
-  existingSlugs,
-  onAdd,
-}: AddExerciseFormProps): JSX.Element {
+function AddExerciseForm({ disabled, existingSlugs, onAdd }: AddExerciseFormProps): JSX.Element {
   const [displayName, setDisplayName] = useState('')
   const [equipment, setEquipment] = useState<ExerciseEquipment>('barbell')
   const [muscleGroup, setMuscleGroup] = useState<ExerciseMuscleGroup>('chest')
@@ -532,7 +523,7 @@ function AddExerciseForm({
           required
           maxLength={60}
           value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
+          onChange={e => setDisplayName(e.target.value)}
           placeholder="Barbell Bench Press"
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
@@ -553,10 +544,10 @@ function AddExerciseForm({
           <span className="font-mono uppercase tracking-[0.18em]">equipment</span>
           <select
             value={equipment}
-            onChange={(e) => setEquipment(e.target.value as ExerciseEquipment)}
+            onChange={e => setEquipment(e.target.value as ExerciseEquipment)}
             className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
           >
-            {EQUIPMENT_OPTIONS.map((option) => (
+            {EQUIPMENT_OPTIONS.map(option => (
               <option key={option} value={option} className="bg-[#120d0a]">
                 {option}
               </option>
@@ -567,10 +558,10 @@ function AddExerciseForm({
           <span className="font-mono uppercase tracking-[0.18em]">muscle group</span>
           <select
             value={muscleGroup}
-            onChange={(e) => setMuscleGroup(e.target.value as ExerciseMuscleGroup)}
+            onChange={e => setMuscleGroup(e.target.value as ExerciseMuscleGroup)}
             className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
           >
-            {MUSCLE_OPTIONS.map((option) => (
+            {MUSCLE_OPTIONS.map(option => (
               <option key={option} value={option} className="bg-[#120d0a]">
                 {option}
               </option>
@@ -587,7 +578,7 @@ function AddExerciseForm({
             min={1}
             inputMode="numeric"
             value={loadMultiplier}
-            onChange={(e) => setLoadMultiplier(Number(e.target.value))}
+            onChange={e => setLoadMultiplier(Number(e.target.value))}
             className="w-20 rounded border border-white/15 bg-black/40 px-2 py-1.5 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
           />
         </label>
@@ -595,7 +586,7 @@ function AddExerciseForm({
           <input
             type="checkbox"
             checked={isUnilateral}
-            onChange={(e) => setIsUnilateral(e.target.checked)}
+            onChange={e => setIsUnilateral(e.target.checked)}
             className="h-4 w-4 accent-amber-300"
           />
           <span className="font-mono uppercase tracking-[0.18em]">unilateral</span>

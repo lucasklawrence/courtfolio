@@ -89,7 +89,11 @@ const LIFESTYLE_TABLES: ReadonlyArray<[keyof CardioDataLike, string]> = [
  * must call `fromMock.mockClear()` between `stubTable` setup and the
  * assertion, otherwise the assertion is a tautology.
  */
-function stubTable(table: string, data: Array<Record<string, unknown>> | null, error: unknown = null): void {
+function stubTable(
+  table: string,
+  data: Array<Record<string, unknown>> | null,
+  error: unknown = null
+): void {
   const query = fromMock(table)
   // Resolve the table in a single `.range()` page. `data` shorter than the
   // page size terminates the pagination loop after one request, so this
@@ -133,35 +137,30 @@ describe('getCardioData', () => {
   })
 
   it('assembles the legacy CardioData shape and reconstructs hr_seconds_in_zone', async () => {
-    stubTable(
-      'cardio_sessions',
-      [
-        {
-          started_at: '2026-04-26T08:00:00Z',
-          activity: 'stair',
-          duration_seconds: 1980,
-          distance_meters: null,
-          avg_hr: 158,
-          max_hr: 178,
-          pace_seconds_per_km: null,
-          zone1_seconds: 10,
-          zone2_seconds: 280,
-          zone3_seconds: 740,
-          zone4_seconds: 680,
-          zone5_seconds: 270,
-          meters_per_heartbeat: null,
-          updated_at: '2026-04-26T08:30:00Z',
-        },
-      ],
-    )
-    stubTable(
-      'cardio_resting_hr',
-      [{ date: '2026-04-26', value: 57, updated_at: '2026-04-26T08:30:00Z' }],
-    )
-    stubTable(
-      'cardio_vo2max',
-      [{ date: '2026-04-26', value: 43.4, updated_at: '2026-04-26T08:30:00Z' }],
-    )
+    stubTable('cardio_sessions', [
+      {
+        started_at: '2026-04-26T08:00:00Z',
+        activity: 'stair',
+        duration_seconds: 1980,
+        distance_meters: null,
+        avg_hr: 158,
+        max_hr: 178,
+        pace_seconds_per_km: null,
+        zone1_seconds: 10,
+        zone2_seconds: 280,
+        zone3_seconds: 740,
+        zone4_seconds: 680,
+        zone5_seconds: 270,
+        meters_per_heartbeat: null,
+        updated_at: '2026-04-26T08:30:00Z',
+      },
+    ])
+    stubTable('cardio_resting_hr', [
+      { date: '2026-04-26', value: 57, updated_at: '2026-04-26T08:30:00Z' },
+    ])
+    stubTable('cardio_vo2max', [
+      { date: '2026-04-26', value: 43.4, updated_at: '2026-04-26T08:30:00Z' },
+    ])
 
     const data = await getCardioData()
     expect(data).toEqual({
@@ -182,27 +181,24 @@ describe('getCardioData', () => {
   })
 
   it('omits hr_seconds_in_zone when every zone column is null (Apple Watch off)', async () => {
-    stubTable(
-      'cardio_sessions',
-      [
-        {
-          started_at: '2026-04-21T07:00:00Z',
-          activity: 'walking',
-          duration_seconds: 1800,
-          distance_meters: 2400,
-          avg_hr: null,
-          max_hr: null,
-          pace_seconds_per_km: 750,
-          zone1_seconds: null,
-          zone2_seconds: null,
-          zone3_seconds: null,
-          zone4_seconds: null,
-          zone5_seconds: null,
-          meters_per_heartbeat: null,
-          updated_at: '2026-04-21T07:30:00Z',
-        },
-      ],
-    )
+    stubTable('cardio_sessions', [
+      {
+        started_at: '2026-04-21T07:00:00Z',
+        activity: 'walking',
+        duration_seconds: 1800,
+        distance_meters: 2400,
+        avg_hr: null,
+        max_hr: null,
+        pace_seconds_per_km: 750,
+        zone1_seconds: null,
+        zone2_seconds: null,
+        zone3_seconds: null,
+        zone4_seconds: null,
+        zone5_seconds: null,
+        meters_per_heartbeat: null,
+        updated_at: '2026-04-21T07:30:00Z',
+      },
+    ])
     stubTable('cardio_resting_hr', [])
     stubTable('cardio_vo2max', [])
 
@@ -222,35 +218,30 @@ describe('getCardioData', () => {
     // nothing changed (the import script writes `updated_at = now()` on
     // each upsert payload). `created_at` is frozen at first-insert and
     // would go stale, so the data layer reads `updated_at`.
-    stubTable(
-      'cardio_sessions',
-      [
-        {
-          started_at: '2026-02-08T08:00:00Z',
-          activity: 'stair',
-          duration_seconds: 1440,
-          distance_meters: null,
-          avg_hr: null,
-          max_hr: null,
-          pace_seconds_per_km: null,
-          zone1_seconds: null,
-          zone2_seconds: null,
-          zone3_seconds: null,
-          zone4_seconds: null,
-          zone5_seconds: null,
-          meters_per_heartbeat: null,
-          updated_at: '2026-02-08T09:00:00Z',
-        },
-      ],
-    )
-    stubTable(
-      'cardio_resting_hr',
-      [{ date: '2026-04-26', value: 57, updated_at: '2026-04-26T08:30:00Z' }],
-    )
-    stubTable(
-      'cardio_vo2max',
-      [{ date: '2026-03-01', value: 42, updated_at: '2026-03-01T09:00:00Z' }],
-    )
+    stubTable('cardio_sessions', [
+      {
+        started_at: '2026-02-08T08:00:00Z',
+        activity: 'stair',
+        duration_seconds: 1440,
+        distance_meters: null,
+        avg_hr: null,
+        max_hr: null,
+        pace_seconds_per_km: null,
+        zone1_seconds: null,
+        zone2_seconds: null,
+        zone3_seconds: null,
+        zone4_seconds: null,
+        zone5_seconds: null,
+        meters_per_heartbeat: null,
+        updated_at: '2026-02-08T09:00:00Z',
+      },
+    ])
+    stubTable('cardio_resting_hr', [
+      { date: '2026-04-26', value: 57, updated_at: '2026-04-26T08:30:00Z' },
+    ])
+    stubTable('cardio_vo2max', [
+      { date: '2026-03-01', value: 42, updated_at: '2026-03-01T09:00:00Z' },
+    ])
 
     const data = await getCardioData()
     expect(data?.imported_at).toBe('2026-04-26T08:30:00Z')
@@ -292,27 +283,24 @@ describe('getCardioData', () => {
   }
 
   it('throws when a row fails schema validation (e.g. unknown activity)', async () => {
-    stubTable(
-      'cardio_sessions',
-      [
-        {
-          started_at: '2026-04-26T08:00:00Z',
-          activity: 'cycling', // not in the enum — Zod rejects.
-          duration_seconds: 1200,
-          distance_meters: null,
-          avg_hr: null,
-          max_hr: null,
-          pace_seconds_per_km: null,
-          zone1_seconds: null,
-          zone2_seconds: null,
-          zone3_seconds: null,
-          zone4_seconds: null,
-          zone5_seconds: null,
-          meters_per_heartbeat: null,
-          updated_at: '2026-04-26T08:30:00Z',
-        },
-      ],
-    )
+    stubTable('cardio_sessions', [
+      {
+        started_at: '2026-04-26T08:00:00Z',
+        activity: 'cycling', // not in the enum — Zod rejects.
+        duration_seconds: 1200,
+        distance_meters: null,
+        avg_hr: null,
+        max_hr: null,
+        pace_seconds_per_km: null,
+        zone1_seconds: null,
+        zone2_seconds: null,
+        zone3_seconds: null,
+        zone4_seconds: null,
+        zone5_seconds: null,
+        meters_per_heartbeat: null,
+        updated_at: '2026-04-26T08:30:00Z',
+      },
+    ])
     stubTable('cardio_resting_hr', [])
     stubTable('cardio_vo2max', [])
     await expect(getCardioData()).rejects.toThrow(/cardio_sessions failed schema validation/)
@@ -342,19 +330,16 @@ describe('getCardioData', () => {
 
   it('populates each lifestyle field when its table has rows; omits empty ones', async () => {
     stubTable('cardio_sessions', [])
-    stubTable(
-      'cardio_resting_hr',
-      [{ date: '2026-04-26', value: 57, updated_at: '2026-04-26T08:30:00Z' }],
-    )
+    stubTable('cardio_resting_hr', [
+      { date: '2026-04-26', value: 57, updated_at: '2026-04-26T08:30:00Z' },
+    ])
     stubTable('cardio_vo2max', [])
-    stubTable(
-      'cardio_hrv_trend',
-      [{ date: '2026-04-26', value: 54, updated_at: '2026-04-26T08:30:00Z' }],
-    )
-    stubTable(
-      'cardio_body_mass_trend',
-      [{ date: '2026-04-25', value: 179.0, updated_at: '2026-04-25T08:30:00Z' }],
-    )
+    stubTable('cardio_hrv_trend', [
+      { date: '2026-04-26', value: 54, updated_at: '2026-04-26T08:30:00Z' },
+    ])
+    stubTable('cardio_body_mass_trend', [
+      { date: '2026-04-25', value: 179.0, updated_at: '2026-04-25T08:30:00Z' },
+    ])
     stubTable('cardio_walking_hr_trend', [])
     stubTable('cardio_step_count_trend', [])
     stubTable('cardio_sleep_trend', [])
@@ -383,9 +368,7 @@ describe('getCardioData', () => {
       value: i,
       updated_at: '2020-01-01T00:00:00Z',
     }))
-    const secondPage = [
-      { date: '2026-07-01', value: 42, updated_at: '2026-07-01T00:00:00Z' },
-    ]
+    const secondPage = [{ date: '2026-07-01', value: 42, updated_at: '2026-07-01T00:00:00Z' }]
     stubTable('cardio_sessions', [])
     stubTable('cardio_resting_hr', [])
     stubTable('cardio_vo2max', [])
@@ -416,33 +399,29 @@ describe('getCardioData', () => {
     // weighed themselves but did no cardio that day) still need to bump
     // imported_at — the wall display should read "synced today" not
     // "synced last week."
-    stubTable(
-      'cardio_sessions',
-      [
-        {
-          started_at: '2026-02-08T08:00:00Z',
-          activity: 'stair',
-          duration_seconds: 1440,
-          distance_meters: null,
-          avg_hr: null,
-          max_hr: null,
-          pace_seconds_per_km: null,
-          zone1_seconds: null,
-          zone2_seconds: null,
-          zone3_seconds: null,
-          zone4_seconds: null,
-          zone5_seconds: null,
-          meters_per_heartbeat: null,
-          updated_at: '2026-02-08T09:00:00Z',
-        },
-      ],
-    )
+    stubTable('cardio_sessions', [
+      {
+        started_at: '2026-02-08T08:00:00Z',
+        activity: 'stair',
+        duration_seconds: 1440,
+        distance_meters: null,
+        avg_hr: null,
+        max_hr: null,
+        pace_seconds_per_km: null,
+        zone1_seconds: null,
+        zone2_seconds: null,
+        zone3_seconds: null,
+        zone4_seconds: null,
+        zone5_seconds: null,
+        meters_per_heartbeat: null,
+        updated_at: '2026-02-08T09:00:00Z',
+      },
+    ])
     stubTable('cardio_resting_hr', [])
     stubTable('cardio_vo2max', [])
-    stubTable(
-      'cardio_body_mass_trend',
-      [{ date: '2026-04-25', value: 179.0, updated_at: '2026-05-06T08:30:00Z' }],
-    )
+    stubTable('cardio_body_mass_trend', [
+      { date: '2026-04-25', value: 179.0, updated_at: '2026-05-06T08:30:00Z' },
+    ])
     for (const [, table] of LIFESTYLE_TABLES) {
       if (table === 'cardio_body_mass_trend') continue
       stubTable(table, [])
@@ -459,7 +438,7 @@ describe('getCardioData', () => {
     stubTable(
       'cardio_hrv_trend',
       // Missing `date` — Zod rejects on the trend row schema.
-      [{ value: 54, updated_at: '2026-04-26T08:30:00Z' }],
+      [{ value: 54, updated_at: '2026-04-26T08:30:00Z' }]
     )
     for (const [, table] of LIFESTYLE_TABLES) {
       if (table === 'cardio_hrv_trend') continue

@@ -100,13 +100,13 @@ export default function ChartsDemoPage(): JSX.Element {
         <Section title="RoughLine — Vertical jump over time">
           <RoughLine
             data={verticalJumpData}
-            x={(d) => d.date}
-            y={(d) => d.inches}
+            x={d => d.date}
+            y={d => d.inches}
             width={720}
             height={300}
             xLabel="Date"
             yLabel="Vertical (in)"
-            yTickFormat={(v) => `${v}`}
+            yTickFormat={v => `${v}`}
             ariaLabel="Vertical jump in inches by month, January through April 2026"
           />
         </Section>
@@ -114,13 +114,13 @@ export default function ChartsDemoPage(): JSX.Element {
         <Section title="RoughBar — Time in HR zone (single session)">
           <RoughBar
             data={hrZoneData}
-            x={(d) => d.zone}
-            y={(d) => d.minutes}
+            x={d => d.zone}
+            y={d => d.minutes}
             width={720}
             height={300}
             xLabel="Zone"
             yLabel="Minutes"
-            yTickFormat={(v) => `${v}`}
+            yTickFormat={v => `${v}`}
             ariaLabel="Minutes spent in each heart-rate zone for a single session"
           />
         </Section>
@@ -128,14 +128,14 @@ export default function ChartsDemoPage(): JSX.Element {
         <Section title="RoughScatter — Pace at heart rate">
           <RoughScatter
             data={paceVsHrData}
-            x={(d) => d.hr}
-            y={(d) => d.pace}
+            x={d => d.hr}
+            y={d => d.pace}
             width={720}
             height={300}
             xLabel="Heart rate (bpm)"
             yLabel="Pace (min/mi)"
-            xTickFormat={(v) => `${v}`}
-            yTickFormat={(v) => v.toFixed(1)}
+            xTickFormat={v => `${v}`}
+            yTickFormat={v => v.toFixed(1)}
             ariaLabel="Pace in minutes per mile plotted against heart rate during a stair session"
           />
         </Section>
@@ -153,13 +153,13 @@ export default function ChartsDemoPage(): JSX.Element {
           >
             <RoughLine
               data={overlayBenchmarks}
-              x={(d) => new Date(d.date)}
-              y={(d) => d.vertical_in ?? 0}
+              x={d => new Date(d.date)}
+              y={d => d.vertical_in ?? 0}
               width={720}
               height={300}
               xLabel="Date"
               yLabel="Vertical (in)"
-              yTickFormat={(v) => `${v}`}
+              yTickFormat={v => `${v}`}
               ariaLabel="Vertical jump in inches by month"
             />
           </BodyweightOverlay>
@@ -169,7 +169,7 @@ export default function ChartsDemoPage(): JSX.Element {
           <RoughLine
             data={[]}
             x={(d: { date: Date; inches: number }) => d.date}
-            y={(d) => d.inches}
+            y={d => d.inches}
             width={720}
             height={140}
             ariaLabel="Vertical jump trend (no data yet)"

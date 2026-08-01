@@ -39,7 +39,7 @@ const supabaseChain = {
   limit: vi.fn((_count: number) => supabaseChain),
   select: vi.fn(() => supabaseChain),
   maybeSingle: vi.fn(() =>
-    lastTable === 'weight_room_monthly_focus' ? focusMock() : deleteMock(),
+    lastTable === 'weight_room_monthly_focus' ? focusMock() : deleteMock()
   ),
 }
 vi.mock('@/lib/supabase/admin', () => ({
@@ -70,7 +70,7 @@ beforeEach(() => {
   supabaseChain.limit.mockReturnValue(supabaseChain)
   supabaseChain.select.mockReturnValue(supabaseChain)
   supabaseChain.maybeSingle.mockImplementation(() =>
-    lastTable === 'weight_room_monthly_focus' ? focusMock() : deleteMock(),
+    lastTable === 'weight_room_monthly_focus' ? focusMock() : deleteMock()
   )
   // Default: no focus depends on the goal, so the guard waves everything
   // through and the pre-#384 cases read unchanged.

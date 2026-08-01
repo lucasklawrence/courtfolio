@@ -39,7 +39,10 @@ export interface OtfSparklineSummaryProps {
  *
  * Used for the rower and treadmill summary cards in {@link OtfDetailView}.
  */
-export function OtfSparklineSummary({ rows, ariaLabelPrefix }: OtfSparklineSummaryProps): JSX.Element {
+export function OtfSparklineSummary({
+  rows,
+  ariaLabelPrefix,
+}: OtfSparklineSummaryProps): JSX.Element {
   // One shared x-domain (min→max class date across every row) so points line up
   // by date down the column — a dip in the same week reads across rows.
   let minMs = Infinity

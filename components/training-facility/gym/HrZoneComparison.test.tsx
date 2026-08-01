@@ -50,10 +50,12 @@ const OTF: OtfData = {
 describe('HrZoneComparison', () => {
   it('renders the header and a link back to the OrangeTheory view', () => {
     render(<HrZoneComparison cardio={CARDIO} otf={OTF} />)
-    expect(screen.getByRole('heading', { level: 1, name: /apple watch vs orangetheory/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { level: 1, name: /apple watch vs orangetheory/i })
+    ).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /orangetheory/i })).toHaveAttribute(
       'href',
-      '/training-facility/gym/otf',
+      '/training-facility/gym/otf'
     )
   })
 

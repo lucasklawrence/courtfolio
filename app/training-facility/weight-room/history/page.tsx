@@ -102,8 +102,7 @@ export default async function WeightRoomHistoryPage({
   // Gated on the real data being empty, so a populated deploy ignores the
   // param entirely.
   const realIsEmpty = realData === null || realData.sets.length === 0
-  const isPreviewMode =
-    realIsEmpty && isPreviewDemoActive(params[TRAINING_FACILITY_PREVIEW_PARAM])
+  const isPreviewMode = realIsEmpty && isPreviewDemoActive(params[TRAINING_FACILITY_PREVIEW_PARAM])
   const data = isPreviewMode ? buildWeightRoomDemoData() : realData
 
   const goals: readonly ExerciseGoal[] = data?.goals ?? []
@@ -115,7 +114,7 @@ export default async function WeightRoomHistoryPage({
   // the per-exercise heatmap loop produces a "graveyard" of mostly-empty
   // year-long charts once a rotation ends. The dedicated GTG section below
   // shows their history instead.
-  const permanentGoals = goals.filter((g) => g.kind !== 'focus')
+  const permanentGoals = goals.filter(g => g.kind !== 'focus')
 
   // Stats cover *every* exercise including focus anchors (#367). The heatmap
   // exclusion above is about empty year-long grids, which the stats panel
@@ -151,7 +150,7 @@ export default async function WeightRoomHistoryPage({
   // the most bodyweight-sensitive movement, where reps up + weight down
   // is the clearest "improving on two fronts" story. Only render it when
   // both halves exist: a configured pull-ups goal and bodyweight data.
-  const pullupsGoal = permanentGoals.find((g) => g.exercise.toLowerCase() === 'pullups')
+  const pullupsGoal = permanentGoals.find(g => g.exercise.toLowerCase() === 'pullups')
 
   // GTG rotation: sort newest-first so the latest campaign leads (#361).
   const sortedFocuses = [...focuses].sort((a, b) => b.start_date.localeCompare(a.start_date))
@@ -185,8 +184,8 @@ export default async function WeightRoomHistoryPage({
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-7 text-[#e8d5be] sm:text-base">
             Per-exercise heatmaps, grease-the-groove rotation history, and all-time stats. Each
-            heatmap cell represents one day colored by adherence to the daily goal — hover for
-            the breakdown. GTG focuses are shown as a stitched timeline so each rotation&rsquo;s
+            heatmap cell represents one day colored by adherence to the daily goal — hover for the
+            breakdown. GTG focuses are shown as a stitched timeline so each rotation&rsquo;s
             exercise lines up with its own window.
           </p>
           <WeightRoomSubNav active="history" className="mt-5" isAdmin={isAdmin} />
@@ -226,8 +225,8 @@ export default async function WeightRoomHistoryPage({
                 Load Management
               </h2>
               <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
-                Ramp rate per movement, bucketed in Pacific time. The injury driver for tendon is how
-                fast weekly volume climbs, not its absolute size &mdash; a{' '}
+                Ramp rate per movement, bucketed in Pacific time. The injury driver for tendon is
+                how fast weekly volume climbs, not its absolute size &mdash; a{' '}
                 <abbr title="week-over-week">WoW</abbr> jump past +10% or an{' '}
                 <abbr title="acute:chronic workload ratio — acute 7-day volume over the 28-day weekly baseline">
                   ACWR
@@ -254,7 +253,7 @@ export default async function WeightRoomHistoryPage({
                   also show top set, average load, and cumulative tonnage.
                 </p>
                 <div className="mt-4 space-y-3">
-                  {sortedFocuses.map((focus) => (
+                  {sortedFocuses.map(focus => (
                     <PastFocusCard
                       key={focus.id}
                       focus={focus}
@@ -262,7 +261,7 @@ export default async function WeightRoomHistoryPage({
                       loadStats={computeFocusLoadStats(
                         focus,
                         sets,
-                        goals.find((g) => g.exercise === focus.exercise)?.load_multiplier ?? 1,
+                        goals.find(g => g.exercise === focus.exercise)?.load_multiplier ?? 1
                       )}
                     />
                   ))}
@@ -371,18 +370,14 @@ export default async function WeightRoomHistoryPage({
                   Focus Lane History
                 </h2>
                 <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
-                  A stitched heatmap for each body region that has a rotation on file. Each day
-                  is colored by how close it came to the active focus&rsquo;s daily target, and
-                  every rotation keeps its own color — so when the focus changes, the next
-                  exercise picks up on the same timeline. Faint cells are days between rotations.
+                  A stitched heatmap for each body region that has a rotation on file. Each day is
+                  colored by how close it came to the active focus&rsquo;s daily target, and every
+                  rotation keeps its own color — so when the focus changes, the next exercise picks
+                  up on the same timeline. Faint cells are days between rotations.
                 </p>
                 <div className="mt-4 grid gap-4 md:grid-cols-2">
-                  {upperCells.length > 0 && (
-                    <FocusLaneCard cells={upperCells} title="Upper" />
-                  )}
-                  {lowerCells.length > 0 && (
-                    <FocusLaneCard cells={lowerCells} title="Lower" />
-                  )}
+                  {upperCells.length > 0 && <FocusLaneCard cells={upperCells} title="Upper" />}
+                  {lowerCells.length > 0 && <FocusLaneCard cells={lowerCells} title="Lower" />}
                 </div>
               </section>
             )}

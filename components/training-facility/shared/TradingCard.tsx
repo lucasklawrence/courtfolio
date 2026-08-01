@@ -3,7 +3,12 @@
 import { useMemo, useState, type CSSProperties, type JSX } from 'react'
 import { m } from 'framer-motion'
 import type { Benchmark } from '@/types/movement'
-import { BENCHMARKS, METRIC_KEYS, type BenchmarkConfig, type MetricKey } from '@/constants/benchmarks'
+import {
+  BENCHMARKS,
+  METRIC_KEYS,
+  type BenchmarkConfig,
+  type MetricKey,
+} from '@/constants/benchmarks'
 
 /**
  * The card iterates {@link METRIC_KEYS} (not `Object.keys(BENCHMARKS)`) to
@@ -12,7 +17,7 @@ import { BENCHMARKS, METRIC_KEYS, type BenchmarkConfig, type MetricKey } from '@
  * faces need to render a metric.
  */
 const CARD_METRICS: ReadonlyArray<{ key: MetricKey; spec: BenchmarkConfig }> = METRIC_KEYS.map(
-  (key) => ({ key, spec: BENCHMARKS[key] }),
+  key => ({ key, spec: BENCHMARKS[key] })
 )
 
 /** Props for {@link TradingCard}. */
@@ -53,17 +58,17 @@ export function isPersonalBest(
   entry: Benchmark,
   history: readonly Benchmark[],
   key: MetricKey,
-  spec: BenchmarkConfig,
+  spec: BenchmarkConfig
 ): boolean {
   const value = entry[key]
   if (typeof value !== 'number') return false
   const priorValues = history
-    .filter((h) => h.date < entry.date && h.is_complete !== false && typeof h[key] === 'number')
-    .map((h) => h[key] as number)
+    .filter(h => h.date < entry.date && h.is_complete !== false && typeof h[key] === 'number')
+    .map(h => h[key] as number)
   if (priorValues.length === 0) return false
   return spec.direction === 'lower'
-    ? priorValues.every((v) => value < v)
-    : priorValues.every((v) => value > v)
+    ? priorValues.every(v => value < v)
+    : priorValues.every(v => value > v)
 }
 
 /** Format a benchmark value for the front-of-card line, or em-dash when absent. */
@@ -150,7 +155,7 @@ export function TradingCard({
   return (
     <m.button
       type="button"
-      onClick={() => setFlipped((f) => !f)}
+      onClick={() => setFlipped(f => !f)}
       aria-pressed={flipped}
       aria-label={`Trading card for ${seasonLabel} — ${flipped ? 'showing history, click to show stats' : 'showing stats, click to show history'}`}
       whileHover={{ rotate: 1.2, y: -3 }}
@@ -185,7 +190,13 @@ interface CardFrontProps {
   playerName: string
 }
 
-function CardFront({ entry, pbState, seasonLabel, playerNumber, playerName }: CardFrontProps): JSX.Element {
+function CardFront({
+  entry,
+  pbState,
+  seasonLabel,
+  playerNumber,
+  playerName,
+}: CardFrontProps): JSX.Element {
   return (
     <div
       // backfaceVisibility hides this face when rotated 180°; the parent's
@@ -217,13 +228,15 @@ function CardFront({ entry, pbState, seasonLabel, playerNumber, playerName }: Ca
               </span>
               <span className="flex items-baseline gap-1.5 text-amber-50">
                 {isPb && (
-                  <span aria-label="personal best" className="text-orange-400" title="Personal best">
+                  <span
+                    aria-label="personal best"
+                    className="text-orange-400"
+                    title="Personal best"
+                  >
                     ★
                   </span>
                 )}
-                <span className="font-semibold tabular-nums">
-                  {formatValue(value, spec)}
-                </span>
+                <span className="font-semibold tabular-nums">{formatValue(value, spec)}</span>
               </span>
             </li>
           )
@@ -284,7 +297,7 @@ function CardBack({ history, latestNotes }: CardBackProps): JSX.Element {
               </td>
             </tr>
           )}
-          {history.map((row) => (
+          {history.map(row => (
             <tr key={row.date} className="border-b border-neutral-700/10 last:border-b-0">
               <td className="py-1 text-neutral-700">{row.date.slice(5)}</td>
               {CARD_METRICS.map(({ key, spec }) => (
