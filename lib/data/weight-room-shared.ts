@@ -4,6 +4,11 @@ import { z } from 'zod'
 import {
   WeightRoomAchievementRowSchema,
   WeightRoomExerciseRowSchema,
+  WeightRoomTemplateAlternateRowSchema,
+  WeightRoomTemplateSlotRowSchema,
+  WeightRoomTemplateSlotStepRowSchema,
+  WeightRoomWorkoutTemplateRowSchema,
+  assembleWorkoutTemplates as assembleTemplateShape,
   WeightRoomGoalRowSchema,
   WeightRoomGoalTargetRowSchema,
   WeightRoomMonthlyFocusRowSchema,
@@ -21,6 +26,7 @@ import type {
   WeightRoomAchievement,
   WeightRoomData,
   WeightRoomExercise,
+  WorkoutTemplate,
 } from '@/types/weight-room'
 
 import { fetchAllRows } from './paged-read'
@@ -101,6 +107,110 @@ export async function assembleWeightRoomExercises(
   }
 
   return parseExerciseRows((res.data ?? []) as unknown as Array<Record<string, unknown>>)
+}
+
+/** Workout-template tables (#375). */
+const TEMPLATES_TABLE = 'weight_room_workout_templates'
+const TEMPLATE_SLOTS_TABLE = 'weight_room_template_slots'
+const TEMPLATE_STEPS_TABLE = 'weight_room_template_slot_steps'
+const TEMPLATE_ALTERNATES_TABLE = 'weight_room_template_alternates'
+
+/** Whitelisted columns for `weight_room_workout_templates`, in sync with its row schema. */
+const TEMPLATES_COLUMNS = 'id, name, description, color, category, position, archived'
+/** Whitelisted columns for `weight_room_template_slots`. */
+const TEMPLATE_SLOTS_COLUMNS =
+  'id, template_id, position, exercise, target_sets, target_sets_max, target_reps, target_reps_max, target_weight_lbs, rest_seconds, notes'
+/** Whitelisted columns for `weight_room_template_slot_steps`. */
+const TEMPLATE_STEPS_COLUMNS =
+  'id, slot_id, position, exercise, target_reps, target_weight_lbs, notes'
+/** Whitelisted columns for `weight_room_template_alternates`. */
+const TEMPLATE_ALTERNATES_COLUMNS = 'id, slot_id, position, exercise'
+
+const WeightRoomWorkoutTemplateRowsSchema = z.array(WeightRoomWorkoutTemplateRowSchema)
+const WeightRoomTemplateSlotRowsSchema = z.array(WeightRoomTemplateSlotRowSchema)
+const WeightRoomTemplateSlotStepRowsSchema = z.array(WeightRoomTemplateSlotStepRowSchema)
+const WeightRoomTemplateAlternateRowsSchema = z.array(WeightRoomTemplateAlternateRowSchema)
+
+/**
+ * Fetch every workout template (#375) with its slots, steps, and alternates
+ * attached, ordered by `position` at every level.
+ *
+ * Reads the four tables in parallel and assembles in memory rather than using a
+ * PostgREST embedded select. An embed returns a nested object that no single
+ * `.strict()` row schema can validate — which is exactly how a column added to
+ * one of these tables would slip past validation unnoticed, the failure mode
+ * the whitelist-plus-strict-schema convention exists to prevent.
+ *
+ * Returns an empty array (never `null`) when nothing is configured, matching
+ * {@link assembleWeightRoomExercises}. Includes archived templates so the
+ * builder can un-archive them; pickers filter.
+ *
+ * @param supabase Browser or server SSR client (both anon role; RLS allows
+ *   anon SELECT on all four tables).
+ * @throws when any query fails or any row-shape validation fails.
+ */
+export async function assembleWorkoutTemplates(
+  supabase: SupabaseClient
+): Promise<WorkoutTemplate[]> {
+  const [templatesRes, slotsRes, stepsRes, alternatesRes] = await Promise.all([
+    supabase.from(TEMPLATES_TABLE).select(TEMPLATES_COLUMNS).order('position', { ascending: true }),
+    supabase
+      .from(TEMPLATE_SLOTS_TABLE)
+      .select(TEMPLATE_SLOTS_COLUMNS)
+      .order('position', { ascending: true }),
+    supabase
+      .from(TEMPLATE_STEPS_TABLE)
+      .select(TEMPLATE_STEPS_COLUMNS)
+      .order('position', { ascending: true }),
+    supabase
+      .from(TEMPLATE_ALTERNATES_TABLE)
+      .select(TEMPLATE_ALTERNATES_COLUMNS)
+      .order('position', { ascending: true }),
+  ])
+
+  if (templatesRes.error) {
+    throw new Error(`Failed to load workout templates: ${templatesRes.error.message}`)
+  }
+  if (slotsRes.error) {
+    throw new Error(`Failed to load template slots: ${slotsRes.error.message}`)
+  }
+  if (stepsRes.error) {
+    throw new Error(`Failed to load template slot steps: ${stepsRes.error.message}`)
+  }
+  if (alternatesRes.error) {
+    throw new Error(`Failed to load template alternates: ${alternatesRes.error.message}`)
+  }
+
+  const templates = parseRows(
+    WeightRoomWorkoutTemplateRowsSchema,
+    templatesRes.data,
+    TEMPLATES_TABLE
+  )
+  const slots = parseRows(WeightRoomTemplateSlotRowsSchema, slotsRes.data, TEMPLATE_SLOTS_TABLE)
+  const steps = parseRows(WeightRoomTemplateSlotStepRowsSchema, stepsRes.data, TEMPLATE_STEPS_TABLE)
+  const alternates = parseRows(
+    WeightRoomTemplateAlternateRowsSchema,
+    alternatesRes.data,
+    TEMPLATE_ALTERNATES_TABLE
+  )
+
+  return assembleTemplateShape(templates, slots, steps, alternates)
+}
+
+/**
+ * Validate one table's rows, or throw naming the table.
+ *
+ * @param schema Array schema for the table.
+ * @param data Raw PostgREST rows.
+ * @param table Table name, for the error message.
+ */
+function parseRows<T>(schema: z.ZodType<T[]>, data: unknown, table: string): T[] {
+  const raw = (data ?? []) as Array<Record<string, unknown>>
+  const parsed = schema.safeParse(raw)
+  if (!parsed.success) {
+    throw new Error(`${table} failed schema validation: ${parsed.error.message}`)
+  }
+  return parsed.data
 }
 
 /**
