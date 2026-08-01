@@ -14,6 +14,7 @@ import { StrengthVsBodyweightChart } from '@/components/training-facility/weight
 import { VariantBreakdown } from '@/components/training-facility/weight-room/VariantBreakdown'
 import { WeeklyVolumeChart } from '@/components/training-facility/weight-room/WeeklyVolumeChart'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
+import { buildWeightRoomDemoData } from '@/constants/weight-room-demo-fixture'
 import { isAdminRequest } from '@/lib/auth/admin-session'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
@@ -24,7 +25,10 @@ import {
 } from '@/lib/training-facility/exercise-filter'
 import { pacificDayKey } from '@/lib/training-facility/day-keys'
 import { buildMovementLoads } from '@/lib/training-facility/load-management'
-import { TRAINING_FACILITY_PREVIEW_PARAM } from '@/lib/training-facility/preview-param'
+import {
+  TRAINING_FACILITY_PREVIEW_PARAM,
+  isPreviewDemoActive,
+} from '@/lib/training-facility/preview-param'
 import {
   buildFocusLaneCells,
   computeFocusAdherence,
@@ -80,11 +84,26 @@ export default async function WeightRoomHistoryPage({
   // failed/empty cardio fetch just drops the relative-strength section.
   // `isAdmin` is resolved here rather than by the sub-nav so this page ships
   // no browser Supabase client — see WeightRoomSubNavProps.isAdmin (#345).
-  const [data, cardio, isAdmin] = await Promise.all([
+  const [realData, cardio, isAdmin] = await Promise.all([
     getWeightRoomDataServer().catch(() => null),
     getCardioDataServer().catch(() => null),
     isAdminRequest().catch(() => false),
   ])
+
+  // `?preview=demo` substitutes the sample dataset when there's nothing real
+  // to show — same opt-in the Gym and Weight Room scenes already honour
+  // (#162 / #171), extended here so the charts have something to draw (#359).
+  //
+  // It is what makes this page's rendering testable in CI: the e2e job has no
+  // Supabase credentials, so without a fixture every chart renders empty and a
+  // browser-level assertion about chart layout would pass by finding nothing.
+  // Gated on the real data being empty, so a populated deploy ignores the
+  // param entirely.
+  const realIsEmpty = realData === null || realData.sets.length === 0
+  const data = realIsEmpty && isPreviewDemoActive(params[TRAINING_FACILITY_PREVIEW_PARAM])
+    ? buildWeightRoomDemoData()
+    : realData
+
   const goals: readonly ExerciseGoal[] = data?.goals ?? []
   const sets = data?.sets ?? []
   const focuses = data?.monthly_focus ?? []
