@@ -313,6 +313,52 @@ describe('getWeightRoomData', () => {
   })
 })
 
+describe('getWeightRoomData — session membership (#374)', () => {
+  it('carries workout_id and position through to the assembled set', async () => {
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-07-15T18:05:00Z',
+        exercise: 'pushups',
+        reps: 20,
+        workout_id: '22222222-2222-4222-8222-222222222222',
+        position: 0,
+        updated_at: '2026-07-15T18:05:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.sets[0]).toMatchObject({
+      workout_id: '22222222-2222-4222-8222-222222222222',
+      position: 0,
+    })
+  })
+
+  it('omits both for a loose set rather than surfacing nulls', async () => {
+    // The overwhelming majority — every grease-the-groove set ever logged.
+    // Absent is the real answer, so consumers test for it rather than for null.
+    stubTable('weight_room_sets', [
+      {
+        id: '33333333-3333-4333-8333-333333333333',
+        logged_at: '2026-07-15T18:05:00Z',
+        exercise: 'pushups',
+        reps: 20,
+        workout_id: null,
+        position: null,
+        updated_at: '2026-07-15T18:05:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.sets[0]).not.toHaveProperty('workout_id')
+    expect(data?.sets[0]).not.toHaveProperty('position')
+  })
+})
+
 describe('getWeightRoomData — exercise catalog (#373)', () => {
   /** One catalog row, with the not-null columns PostgREST always returns. */
   function catalogRow(

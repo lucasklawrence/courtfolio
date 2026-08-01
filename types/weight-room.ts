@@ -49,6 +49,74 @@ export interface StrengthSet {
    * *slice* volume by variant in the History View, never to split it.
    */
   variant?: string
+  /**
+   * The bounded {@link WeightRoomWorkout} this set belongs to (#374), or absent
+   * for a set logged **loose** — a grease-the-groove set at a desk, and every
+   * set predating workouts.
+   *
+   * Absent is a real answer, not missing data: historical GTG sets were never
+   * workouts, and nothing backfills them. The API never infers this either — a
+   * set joins a session only when the caller passes it explicitly, so an
+   * afternoon pushup set can't silently become part of the morning's gym visit.
+   */
+  workout_id?: string
+  /**
+   * Order of this set *within its workout* — not within its exercise — so an
+   * interleaved superset, or a set squeezed in while waiting on a rack, renders
+   * in the order it actually happened. Absent for loose sets and wherever the
+   * writer didn't care. Gaps are fine; nothing renumbers.
+   */
+  position?: number
+}
+
+/**
+ * Where a {@link WeightRoomWorkout} happened (#374). Coarse on purpose — it
+ * exists to separate "at the gym" from "in the living room" when reading back
+ * a session, not to model venues.
+ */
+export type WorkoutLocation = 'gym' | 'home' | 'travel' | 'other'
+
+/**
+ * One bounded training session (#374) — mirrors a row of
+ * `public.weight_room_workouts`.
+ *
+ * A workout is an *event* (walk in, do five movements, walk out), which is a
+ * different unit from the calendar day every other Weight Room aggregation is
+ * built on. That difference is the point: duration, density, and per-session
+ * comparison are inexpressible when the day is the only bucket.
+ *
+ * Grease-the-groove sets deliberately have no workout. A null
+ * {@link StrengthSet.workout_id} means "logged loose", permanently.
+ */
+export interface WeightRoomWorkout {
+  /** UUID primary key, generated server-side. */
+  id: string
+  /**
+   * ISO 8601 timestamp the session began.
+   *
+   * Also decides which calendar day the workout belongs to: a session crossing
+   * midnight belongs **wholly to its start day**, resolved in Pacific via
+   * {@link import('@/lib/training-facility/day-keys').pacificDayKey}. Splitting
+   * one across two days would be wrong in every stat.
+   */
+  started_at: string
+  /**
+   * ISO 8601 timestamp the session finished, or absent while **in progress**.
+   *
+   * At most one workout may be in progress at a time (a partial unique index
+   * enforces it). One left open past
+   * {@link import('@/lib/training-facility/workout-sessions').STALE_WORKOUT_HOURS}
+   * is auto-ended when the next session starts — stamped at its last set's
+   * `logged_at`, which is the last real evidence of activity rather than a
+   * guess.
+   */
+  ended_at?: string
+  /** Free-text label, e.g. `Push Day`. Absent when unnamed. */
+  title?: string
+  /** Where it happened. Absent when unspecified. */
+  location?: WorkoutLocation
+  /** Free-text notes captured when ending the session. Absent when none. */
+  notes?: string
 }
 
 /**
