@@ -12,6 +12,8 @@ import {
   WeightRoomMonthlyFocusRowSchema,
   WeightRoomSetCreateSchema,
   WeightRoomSetRowSchema,
+  WeightRoomWorkoutCreateSchema,
+  WeightRoomWorkoutUpdateSchema,
   exerciseRowToWeightRoomExercise,
   setRowToStrengthSet,
 } from './weight-room'
@@ -198,6 +200,85 @@ describe('WeightRoomExerciseUpdateSchema (patch body, #373)', () => {
     expect(() =>
       WeightRoomExerciseUpdateSchema.parse({ slug: 'renamed' }),
     ).toThrow()
+  })
+})
+
+describe('WeightRoomWorkoutCreateSchema (write body, #374)', () => {
+  it('accepts an empty body — the common case is just tapping start', () => {
+    expect(() => WeightRoomWorkoutCreateSchema.parse({})).not.toThrow()
+  })
+
+  it('normalizes an empty title to undefined so the column is omitted', () => {
+    // On create, "" means "I didn't supply one" — the DB default of null is
+    // the right outcome, not an empty string the read side must special-case.
+    expect(WeightRoomWorkoutCreateSchema.parse({ title: '   ' }).title).toBeUndefined()
+  })
+
+  it('trims a supplied title', () => {
+    expect(WeightRoomWorkoutCreateSchema.parse({ title: '  Push Day  ' }).title).toBe('Push Day')
+  })
+
+  it('rejects a location outside the check constraint', () => {
+    expect(() => WeightRoomWorkoutCreateSchema.parse({ location: 'moon' })).toThrow()
+  })
+
+  it('rejects an over-long title', () => {
+    expect(() =>
+      WeightRoomWorkoutCreateSchema.parse({ title: 'x'.repeat(81) }),
+    ).toThrow()
+  })
+
+  it('rejects an unknown key', () => {
+    expect(() => WeightRoomWorkoutCreateSchema.parse({ duration: 60 })).toThrow()
+  })
+})
+
+describe('WeightRoomWorkoutUpdateSchema (patch body, #374)', () => {
+  it('rejects an empty patch', () => {
+    // The field transforms materialize every key, so this can only be caught
+    // by inspecting values — a keys-length check would wave `{}` straight
+    // through and issue an update that changes nothing but `updated_at`.
+    expect(() => WeightRoomWorkoutUpdateSchema.parse({})).toThrow()
+  })
+
+  it('distinguishes clearing a title from leaving it alone', () => {
+    // Clearing writes null; omitting must stay undefined so the route can
+    // strip it and leave the stored value intact.
+    expect(WeightRoomWorkoutUpdateSchema.parse({ title: '' }).title).toBeNull()
+    expect(WeightRoomWorkoutUpdateSchema.parse({ notes: 'x' }).title).toBeUndefined()
+  })
+
+  it('accepts ended_at: null to reopen a session', () => {
+    expect(WeightRoomWorkoutUpdateSchema.parse({ ended_at: null }).ended_at).toBeNull()
+  })
+
+  it('accepts an ISO ended_at to close one', () => {
+    expect(
+      WeightRoomWorkoutUpdateSchema.parse({ ended_at: '2026-07-15T19:00:00Z' }).ended_at,
+    ).toBe('2026-07-15T19:00:00Z')
+  })
+})
+
+describe('WeightRoomSetCreateSchema — session membership (#374)', () => {
+  const base = { exercise: 'pushups', reps: 20 }
+
+  it('accepts a workout_id and a 0-based position', () => {
+    const parsed = WeightRoomSetCreateSchema.parse({
+      ...base,
+      workout_id: '11111111-1111-4111-8111-111111111111',
+      position: 0,
+    })
+    expect(parsed.position).toBe(0)
+  })
+
+  it('still accepts a loose set with neither', () => {
+    const parsed = WeightRoomSetCreateSchema.parse(base)
+    expect(parsed).not.toHaveProperty('workout_id')
+  })
+
+  it('rejects a non-uuid workout_id and a negative position', () => {
+    expect(() => WeightRoomSetCreateSchema.parse({ ...base, workout_id: 'w1' })).toThrow()
+    expect(() => WeightRoomSetCreateSchema.parse({ ...base, position: -1 })).toThrow()
   })
 })
 
