@@ -70,13 +70,13 @@ describe('formatSlotPrescription', () => {
 
   it('combines ranges on both axes', () => {
     expect(
-      formatSlotPrescription(slot({ target_sets_max: 5, target_reps: 8, target_reps_max: 12 })),
+      formatSlotPrescription(slot({ target_sets_max: 5, target_reps: 8, target_reps_max: 12 }))
     ).toBe('4-5 × 8-12')
   })
 
   it('appends a prescribed load', () => {
     expect(formatSlotPrescription(slot({ target_reps: 5, target_weight_lbs: 185 }))).toBe(
-      '4 × 5 @ 185 lb',
+      '4 × 5 @ 185 lb'
     )
   })
 
@@ -92,9 +92,7 @@ describe('formatSlotPrescription', () => {
         { id: 'd', position: 3, target_weight_lbs: 20 },
       ],
     })
-    expect(formatSlotPrescription(rackRun)).toBe(
-      `2 × ${AMRAP_LABEL} · 35 → 30 → 25 → 20 lb`,
-    )
+    expect(formatSlotPrescription(rackRun)).toBe(`2 × ${AMRAP_LABEL} · 35 → 30 → 25 → 20 lb`)
   })
 })
 
@@ -104,14 +102,14 @@ describe('isSuperset', () => {
   })
 
   it('is false for a drop set — same movement, descending load', () => {
-    expect(
-      isSuperset(slot({ steps: [{ id: 'a', position: 0, target_weight_lbs: 35 }] })),
-    ).toBe(false)
+    expect(isSuperset(slot({ steps: [{ id: 'a', position: 0, target_weight_lbs: 35 }] }))).toBe(
+      false
+    )
   })
 
   it('is true once a step names its own movement', () => {
-    expect(
-      isSuperset(slot({ steps: [{ id: 'a', position: 0, exercise: 'dumbbell-row' }] })),
-    ).toBe(true)
+    expect(isSuperset(slot({ steps: [{ id: 'a', position: 0, exercise: 'dumbbell-row' }] }))).toBe(
+      true
+    )
   })
 })

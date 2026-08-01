@@ -504,7 +504,7 @@ export function assembleWorkoutTemplates(
   templates: readonly WeightRoomWorkoutTemplateRow[],
   slots: readonly WeightRoomTemplateSlotRow[],
   steps: readonly WeightRoomTemplateSlotStepRow[],
-  alternates: readonly WeightRoomTemplateAlternateRow[],
+  alternates: readonly WeightRoomTemplateAlternateRow[]
 ): WorkoutTemplate[] {
   const stepsBySlot = new Map<string, TemplateSlotStep[]>()
   for (const row of [...steps].sort((a, b) => a.position - b.position)) {
@@ -514,9 +514,7 @@ export function assembleWorkoutTemplates(
       position: row.position,
       ...(row.exercise != null ? { exercise: row.exercise } : {}),
       ...(row.target_reps != null ? { target_reps: row.target_reps } : {}),
-      ...(row.target_weight_lbs != null
-        ? { target_weight_lbs: row.target_weight_lbs }
-        : {}),
+      ...(row.target_weight_lbs != null ? { target_weight_lbs: row.target_weight_lbs } : {}),
       ...(row.notes != null && row.notes !== '' ? { notes: row.notes } : {}),
     })
     stepsBySlot.set(row.slot_id, list)
@@ -540,9 +538,7 @@ export function assembleWorkoutTemplates(
       ...(row.target_sets_max != null ? { target_sets_max: row.target_sets_max } : {}),
       ...(row.target_reps != null ? { target_reps: row.target_reps } : {}),
       ...(row.target_reps_max != null ? { target_reps_max: row.target_reps_max } : {}),
-      ...(row.target_weight_lbs != null
-        ? { target_weight_lbs: row.target_weight_lbs }
-        : {}),
+      ...(row.target_weight_lbs != null ? { target_weight_lbs: row.target_weight_lbs } : {}),
       ...(row.rest_seconds != null ? { rest_seconds: row.rest_seconds } : {}),
       ...(row.notes != null && row.notes !== '' ? { notes: row.notes } : {}),
       steps: stepsBySlot.get(row.id) ?? [],
@@ -553,7 +549,7 @@ export function assembleWorkoutTemplates(
 
   return [...templates]
     .sort((a, b) => a.position - b.position || a.name.localeCompare(b.name))
-    .map((row) => ({
+    .map(row => ({
       id: row.id,
       name: row.name,
       position: row.position,
@@ -604,7 +600,7 @@ export const WeightRoomTemplateUpdateSchema = z
   .object(templateWriteFields)
   .strict()
   .partial()
-  .refine((patch) => Object.values(patch).some((v) => v !== undefined), {
+  .refine(patch => Object.values(patch).some(v => v !== undefined), {
     message: 'At least one field is required.',
   })
 
@@ -708,7 +704,7 @@ export const WeightRoomTemplateSlotUpdateSchema = z
   .object(slotWriteFields)
   .strict()
   .partial()
-  .refine((patch) => Object.values(patch).some((v) => v !== undefined), {
+  .refine(patch => Object.values(patch).some(v => v !== undefined), {
     message: 'At least one field is required.',
   })
   .refine(setRangeIsOrdered, {

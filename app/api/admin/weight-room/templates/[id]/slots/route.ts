@@ -148,12 +148,7 @@ async function handlePOST(request: NextRequest, ctx: Context): Promise<NextRespo
     return NextResponse.json({ error: `Failed to add slot: ${error.message}` }, { status: 500 })
   }
 
-  const childFailure = await replaceSlotChildren(
-    supabase,
-    slot.id,
-    entry.steps,
-    entry.alternates
-  )
+  const childFailure = await replaceSlotChildren(supabase, slot.id, entry.steps, entry.alternates)
   if (childFailure !== null) {
     // The slot insert already committed in its own transaction. Reporting the
     // add as failed while leaving it behind means a retry adds a second slot
@@ -232,8 +227,8 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
     )
   }
 
-  const ownedById = new Map((owned ?? []).map((row) => [row.id, row]))
-  const strays = entry.order.filter((row) => !ownedById.has(row.id)).map((row) => row.id)
+  const ownedById = new Map((owned ?? []).map(row => [row.id, row]))
+  const strays = entry.order.filter(row => !ownedById.has(row.id)).map(row => row.id)
   if (strays.length > 0) {
     return NextResponse.json(
       { error: `These slots do not belong to this template: ${strays.join(', ')}` },
@@ -245,7 +240,7 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
   // One statement, so the DEFERRABLE unique constraint is checked at commit —
   // a swap that transiently duplicates a position passes through legally.
   const { error } = await supabase.from('weight_room_template_slots').upsert(
-    entry.order.map((row) => {
+    entry.order.map(row => {
       const existing = ownedById.get(row.id)
       return {
         id: row.id,
@@ -269,13 +264,7 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
 }
 
 /** `handlePOST` wrapped with one-event-per-request telemetry (#220). */
-export const POST = withTelemetry(
-  'POST /api/admin/weight-room/templates/[id]/slots',
-  handlePOST
-)
+export const POST = withTelemetry('POST /api/admin/weight-room/templates/[id]/slots', handlePOST)
 
 /** `handlePATCH` wrapped with one-event-per-request telemetry (#220). */
-export const PATCH = withTelemetry(
-  'PATCH /api/admin/weight-room/templates/[id]/slots',
-  handlePATCH
-)
+export const PATCH = withTelemetry('PATCH /api/admin/weight-room/templates/[id]/slots', handlePATCH)

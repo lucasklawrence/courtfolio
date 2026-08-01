@@ -51,7 +51,7 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
   const goals = data?.goals ?? []
   // Pickers offer live movements only; an archived one stays rendered wherever
   // it's already referenced, it just isn't selectable for something new.
-  const activeExercises = exercises.filter((exercise) => exercise.archived !== true)
+  const activeExercises = exercises.filter(exercise => exercise.archived !== true)
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -89,10 +89,10 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
             Workout templates
           </h2>
           <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
-            Named prescriptions — &ldquo;Chest Day 1&rdquo;, an ordered list of movements with
-            their sets and reps. A template is a <em>plan</em>: running one produces a workout
-            session, and editing it afterwards never changes what a past session says it
-            prescribed. Leave reps blank for a movement you take to failure.
+            Named prescriptions — &ldquo;Chest Day 1&rdquo;, an ordered list of movements with their
+            sets and reps. A template is a <em>plan</em>: running one produces a workout session,
+            and editing it afterwards never changes what a past session says it prescribed. Leave
+            reps blank for a movement you take to failure.
           </p>
           <div className="mt-6">
             <TemplateBuilder initialTemplates={templates} exercises={activeExercises} />

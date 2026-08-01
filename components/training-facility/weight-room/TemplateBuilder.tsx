@@ -62,12 +62,12 @@ export function TemplateBuilder({
   const [isPending, startTransition] = useTransition()
 
   const visible = useMemo(
-    () => initialTemplates.filter((t) => showArchived || t.archived !== true),
-    [initialTemplates, showArchived],
+    () => initialTemplates.filter(t => showArchived || t.archived !== true),
+    [initialTemplates, showArchived]
   )
   const archivedCount = useMemo(
-    () => initialTemplates.filter((t) => t.archived === true).length,
-    [initialTemplates],
+    () => initialTemplates.filter(t => t.archived === true).length,
+    [initialTemplates]
   )
 
   function refresh(): void {
@@ -106,7 +106,7 @@ export function TemplateBuilder({
           <input
             type="checkbox"
             checked={showArchived}
-            onChange={(e) => setShowArchived(e.target.checked)}
+            onChange={e => setShowArchived(e.target.checked)}
             className="h-4 w-4 accent-amber-300"
           />
           Show archived ({archivedCount})
@@ -119,7 +119,7 @@ export function TemplateBuilder({
             No templates yet — add one below, then add the movements it prescribes.
           </p>
         ) : (
-          visible.map((template) => (
+          visible.map(template => (
             <TemplateCard
               key={template.id}
               template={template}
@@ -137,7 +137,7 @@ export function TemplateBuilder({
         </h3>
         <AddTemplateForm
           disabled={isPending}
-          existingNames={initialTemplates.map((t) => t.name.toLowerCase())}
+          existingNames={initialTemplates.map(t => t.name.toLowerCase())}
           nextPosition={initialTemplates.length}
           onMutate={mutate}
         />
@@ -156,18 +156,13 @@ interface TemplateCardProps {
   onMutate: Mutate
 }
 
-function TemplateCard({
-  template,
-  exercises,
-  disabled,
-  onMutate,
-}: TemplateCardProps): JSX.Element {
+function TemplateCard({ template, exercises, disabled, onMutate }: TemplateCardProps): JSX.Element {
   const archived = template.archived === true
   const base = `/api/admin/weight-room/templates/${template.id}`
 
   async function move(slot: TemplateSlot, direction: -1 | 1): Promise<void> {
     const ordered = [...template.slots].sort((a, b) => a.position - b.position)
-    const index = ordered.findIndex((s) => s.id === slot.id)
+    const index = ordered.findIndex(s => s.id === slot.id)
     const target = index + direction
     if (index < 0 || target < 0 || target >= ordered.length) return
 
@@ -186,7 +181,7 @@ function TemplateCard({
           ],
         }),
       },
-      'Reorder failed',
+      'Reorder failed'
     )
   }
 
@@ -216,11 +211,7 @@ function TemplateCard({
         </summary>
 
         <div className="space-y-4 border-t border-white/10 p-4">
-          <TemplateMetaForm
-            template={template}
-            disabled={disabled}
-            onMutate={onMutate}
-          />
+          <TemplateMetaForm template={template} disabled={disabled} onMutate={onMutate} />
 
           <div>
             <h4 className="font-mono text-[11px] uppercase tracking-[0.22em] text-amber-300/70">
@@ -266,7 +257,7 @@ function TemplateCard({
                 onMutate(
                   base,
                   { method: 'PATCH', body: JSON.stringify({ archived: !archived }) },
-                  'Save failed',
+                  'Save failed'
                 )
               }
               className="rounded-full border border-white/20 bg-white/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/80 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
@@ -278,7 +269,7 @@ function TemplateCard({
               disabled={disabled}
               onClick={() => {
                 const ok = window.confirm(
-                  `Delete "${template.name}"? Its movements go with it. Sets you already logged against it are kept — they just stop being linked to a prescription. Archive instead if you may run it again.`,
+                  `Delete "${template.name}"? Its movements go with it. Sets you already logged against it are kept — they just stop being linked to a prescription. Archive instead if you may run it again.`
                 )
                 if (ok) void onMutate(base, { method: 'DELETE' }, 'Delete failed')
               }}
@@ -299,11 +290,7 @@ interface TemplateMetaFormProps {
   onMutate: Mutate
 }
 
-function TemplateMetaForm({
-  template,
-  disabled,
-  onMutate,
-}: TemplateMetaFormProps): JSX.Element {
+function TemplateMetaForm({ template, disabled, onMutate }: TemplateMetaFormProps): JSX.Element {
   const [name, setName] = useState(template.name)
   const [category, setCategory] = useState<TemplateCategory | ''>(template.category ?? '')
   const [color, setColor] = useState(template.color ?? DEFAULT_TEMPLATE_COLOR)
@@ -329,7 +316,7 @@ function TemplateMetaForm({
           category: category === '' ? null : category,
         }),
       },
-      'Save failed',
+      'Save failed'
     )
   }
 
@@ -342,7 +329,7 @@ function TemplateMetaForm({
           required
           maxLength={80}
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={e => setName(e.target.value)}
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
       </label>
@@ -350,13 +337,13 @@ function TemplateMetaForm({
         <span className="font-mono uppercase tracking-[0.18em]">category</span>
         <select
           value={category}
-          onChange={(e) => setCategory(e.target.value as TemplateCategory | '')}
+          onChange={e => setCategory(e.target.value as TemplateCategory | '')}
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
         >
           <option value="" className="bg-[#120d0a]">
             — none —
           </option>
-          {CATEGORIES.map((c) => (
+          {CATEGORIES.map(c => (
             <option key={c} value={c} className="bg-[#120d0a]">
               {c}
             </option>
@@ -369,7 +356,7 @@ function TemplateMetaForm({
           type="text"
           maxLength={2000}
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={e => setDescription(e.target.value)}
           placeholder="Target pace: 35 min"
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
@@ -380,7 +367,7 @@ function TemplateMetaForm({
           <input
             type="color"
             value={color}
-            onChange={(e) => setColor(e.target.value)}
+            onChange={e => setColor(e.target.value)}
             className="h-9 w-16 cursor-pointer rounded border border-white/15 bg-black/40"
           />
         </label>
@@ -417,8 +404,7 @@ function SlotRow({
   onMove,
   onMutate,
 }: SlotRowProps): JSX.Element {
-  const label =
-    exercises.find((e) => e.slug === slot.exercise)?.display_name ?? slot.exercise
+  const label = exercises.find(e => e.slug === slot.exercise)?.display_name ?? slot.exercise
   const sequenceLabel = slot.steps.length === 0 ? null : isSuperset(slot) ? 'superset' : 'drop set'
 
   return (
@@ -505,15 +491,13 @@ function SlotEditor({
   const [weight, setWeight] = useState(slot.target_weight_lbs?.toString() ?? '')
   const [rest, setRest] = useState(slot.rest_seconds?.toString() ?? '')
   const [notes, setNotes] = useState(slot.notes ?? '')
-  const [alternates, setAlternates] = useState<string[]>(
-    slot.alternates.map((a) => a.exercise),
-  )
+  const [alternates, setAlternates] = useState<string[]>(slot.alternates.map(a => a.exercise))
   const [steps, setSteps] = useState<StepDraft[]>(
-    slot.steps.map((s) => ({
+    slot.steps.map(s => ({
       exercise: s.exercise ?? '',
       target_reps: s.target_reps?.toString() ?? '',
       target_weight_lbs: s.target_weight_lbs?.toString() ?? '',
-    })),
+    }))
   )
 
   const slotUrl = `${templateBase}/slots/${slot.id}`
@@ -545,8 +529,8 @@ function SlotEditor({
           notes,
           alternates,
           steps: steps
-            .filter((s) => s.exercise !== '' || s.target_reps !== '' || s.target_weight_lbs !== '')
-            .map((s) => ({
+            .filter(s => s.exercise !== '' || s.target_reps !== '' || s.target_weight_lbs !== '')
+            .map(s => ({
               ...(s.exercise !== '' ? { exercise: s.exercise } : {}),
               ...(num(s.target_reps) !== null ? { target_reps: num(s.target_reps) } : {}),
               ...(num(s.target_weight_lbs) !== null
@@ -555,7 +539,7 @@ function SlotEditor({
             })),
         }),
       },
-      'Save failed',
+      'Save failed'
     )
   }
 
@@ -570,8 +554,8 @@ function SlotEditor({
         <NumberField label="rest (s)" value={rest} onChange={setRest} min={0} />
       </div>
       <p className="text-[11px] leading-5 text-white/40">
-        Leave reps blank for <strong>{AMRAP_LABEL}</strong>. Reps are totals, not per side.
-        Weight is per implement — a pair of 35s is 35.
+        Leave reps blank for <strong>{AMRAP_LABEL}</strong>. Reps are totals, not per side. Weight
+        is per implement — a pair of 35s is 35.
       </p>
 
       <label className="flex flex-col gap-1 text-xs text-white/70">
@@ -580,7 +564,7 @@ function SlotEditor({
           type="text"
           maxLength={500}
           value={notes}
-          onChange={(e) => setNotes(e.target.value)}
+          onChange={e => setNotes(e.target.value)}
           placeholder="Rack run — descending down the rack"
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
@@ -601,9 +585,9 @@ function SlotEditor({
               <span className="font-mono uppercase tracking-[0.14em]">movement</span>
               <select
                 value={step.exercise}
-                onChange={(e) =>
+                onChange={e =>
                   setSteps(
-                    steps.map((s, i) => (i === index ? { ...s, exercise: e.target.value } : s)),
+                    steps.map((s, i) => (i === index ? { ...s, exercise: e.target.value } : s))
                   )
                 }
                 className="rounded border border-white/15 bg-black/40 px-2 py-1 font-mono text-xs text-white focus:border-amber-300/60 focus:outline-none"
@@ -611,7 +595,7 @@ function SlotEditor({
                 <option value="" className="bg-[#120d0a]">
                   — same as slot —
                 </option>
-                {exercises.map((e) => (
+                {exercises.map(e => (
                   <option key={e.slug} value={e.slug} className="bg-[#120d0a]">
                     {e.display_name}
                   </option>
@@ -621,7 +605,7 @@ function SlotEditor({
             <NumberField
               label="reps"
               value={step.target_reps}
-              onChange={(v) =>
+              onChange={v =>
                 setSteps(steps.map((s, i) => (i === index ? { ...s, target_reps: v } : s)))
               }
               min={1}
@@ -630,10 +614,8 @@ function SlotEditor({
             <NumberField
               label="lb"
               value={step.target_weight_lbs}
-              onChange={(v) =>
-                setSteps(
-                  steps.map((s, i) => (i === index ? { ...s, target_weight_lbs: v } : s)),
-                )
+              onChange={v =>
+                setSteps(steps.map((s, i) => (i === index ? { ...s, target_weight_lbs: v } : s)))
               }
               min={0}
               compact
@@ -671,12 +653,12 @@ function SlotEditor({
           <div key={index} className="mb-2 flex items-center gap-2">
             <select
               value={alt}
-              onChange={(e) =>
+              onChange={e =>
                 setAlternates(alternates.map((a, i) => (i === index ? e.target.value : a)))
               }
               className="min-w-0 flex-1 rounded border border-white/15 bg-black/40 px-2 py-1 font-mono text-xs text-white focus:border-amber-300/60 focus:outline-none"
             >
-              {exercises.map((e) => (
+              {exercises.map(e => (
                 <option key={e.slug} value={e.slug} className="bg-[#120d0a]">
                   {e.display_name}
                 </option>
@@ -743,7 +725,7 @@ function NumberField({ label, value, onChange, min, compact }: NumberFieldProps)
         inputMode="numeric"
         min={min}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         className={`rounded border border-white/15 bg-black/40 px-2 py-1 text-right font-mono text-xs text-white focus:border-amber-300/60 focus:outline-none ${compact ? 'w-16' : ''}`}
       />
     </label>
@@ -783,7 +765,7 @@ function AddSlotForm({
           ...(reps.trim() !== '' ? { target_reps: Number(reps) } : {}),
         }),
       },
-      'Add failed',
+      'Add failed'
     )
     if (created) setReps('')
   }
@@ -797,10 +779,10 @@ function AddSlotForm({
         <span className="font-mono uppercase tracking-[0.14em]">add movement</span>
         <select
           value={exercise}
-          onChange={(e) => setExercise(e.target.value)}
+          onChange={e => setExercise(e.target.value)}
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-xs text-white focus:border-amber-300/60 focus:outline-none"
         >
-          {exercises.map((e) => (
+          {exercises.map(e => (
             <option key={e.slug} value={e.slug} className="bg-[#120d0a]">
               {e.display_name}
             </option>
@@ -853,7 +835,7 @@ function AddTemplateForm({
           ...(category !== '' ? { category } : {}),
         }),
       },
-      'Add failed',
+      'Add failed'
     )
     if (created) setName('')
   }
@@ -870,7 +852,7 @@ function AddTemplateForm({
           required
           maxLength={80}
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={e => setName(e.target.value)}
           placeholder="Chest Day 1"
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
@@ -884,13 +866,13 @@ function AddTemplateForm({
         <span className="font-mono uppercase tracking-[0.18em]">category</span>
         <select
           value={category}
-          onChange={(e) => setCategory(e.target.value as TemplateCategory | '')}
+          onChange={e => setCategory(e.target.value as TemplateCategory | '')}
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
         >
           <option value="" className="bg-[#120d0a]">
             — none —
           </option>
-          {CATEGORIES.map((c) => (
+          {CATEGORIES.map(c => (
             <option key={c} value={c} className="bg-[#120d0a]">
               {c}
             </option>
@@ -902,7 +884,7 @@ function AddTemplateForm({
         <input
           type="color"
           value={color}
-          onChange={(e) => setColor(e.target.value)}
+          onChange={e => setColor(e.target.value)}
           className="h-9 w-16 cursor-pointer rounded border border-white/15 bg-black/40"
         />
       </label>

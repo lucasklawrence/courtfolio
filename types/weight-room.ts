@@ -124,14 +124,7 @@ export interface WeightRoomWorkout {
  * filed, not what it prescribes. Nullable on purpose: a template that doesn't
  * fit a split shouldn't be forced into one.
  */
-export type TemplateCategory =
-  | 'push'
-  | 'pull'
-  | 'legs'
-  | 'upper'
-  | 'lower'
-  | 'full-body'
-  | 'other'
+export type TemplateCategory = 'push' | 'pull' | 'legs' | 'upper' | 'lower' | 'full-body' | 'other'
 
 /**
  * One step in a {@link TemplateSlot}'s within-set sequence (#375) — mirrors a

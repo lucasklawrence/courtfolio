@@ -31,7 +31,7 @@ const FK_VIOLATION = '23503'
  */
 async function findUnknownExercises(
   supabase: SupabaseClient,
-  slugs: readonly string[],
+  slugs: readonly string[]
 ): Promise<string[] | null> {
   const { data, error } = await supabase
     .from('weight_room_exercises')
@@ -39,8 +39,8 @@ async function findUnknownExercises(
     .in('slug', slugs as string[])
 
   if (error) return null
-  const known = new Set((data ?? []).map((row) => row.slug))
-  return slugs.filter((slug) => !known.has(slug))
+  const known = new Set((data ?? []).map(row => row.slug))
+  return slugs.filter(slug => !known.has(slug))
 }
 
 /** One step in a slot write body, post-validation. */
@@ -80,7 +80,7 @@ export async function replaceSlotChildren(
   supabase: SupabaseClient,
   slotId: string,
   steps: readonly SlotStepInput[] | undefined,
-  alternates: readonly string[] | undefined,
+  alternates: readonly string[] | undefined
 ): Promise<ChildWriteFailure | null> {
   const nowIso = new Date().toISOString()
 
@@ -91,7 +91,7 @@ export async function replaceSlotChildren(
   // is the realistic way that happens. Checking first turns the common failure
   // into a clean 409 with nothing destroyed.
   const referenced = [
-    ...(steps ?? []).map((step) => step.exercise).filter((s): s is string => s != null),
+    ...(steps ?? []).map(step => step.exercise).filter((s): s is string => s != null),
     ...(alternates ?? []),
   ]
   if (referenced.length > 0) {

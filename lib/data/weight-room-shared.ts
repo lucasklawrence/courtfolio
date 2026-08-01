@@ -150,7 +150,7 @@ const WeightRoomTemplateAlternateRowsSchema = z.array(WeightRoomTemplateAlternat
  * @throws when any query fails or any row-shape validation fails.
  */
 export async function assembleWorkoutTemplates(
-  supabase: SupabaseClient,
+  supabase: SupabaseClient
 ): Promise<WorkoutTemplate[]> {
   const [templatesRes, slotsRes, stepsRes, alternatesRes] = await Promise.all([
     supabase.from(TEMPLATES_TABLE).select(TEMPLATES_COLUMNS).order('position', { ascending: true }),
@@ -184,18 +184,14 @@ export async function assembleWorkoutTemplates(
   const templates = parseRows(
     WeightRoomWorkoutTemplateRowsSchema,
     templatesRes.data,
-    TEMPLATES_TABLE,
+    TEMPLATES_TABLE
   )
   const slots = parseRows(WeightRoomTemplateSlotRowsSchema, slotsRes.data, TEMPLATE_SLOTS_TABLE)
-  const steps = parseRows(
-    WeightRoomTemplateSlotStepRowsSchema,
-    stepsRes.data,
-    TEMPLATE_STEPS_TABLE,
-  )
+  const steps = parseRows(WeightRoomTemplateSlotStepRowsSchema, stepsRes.data, TEMPLATE_STEPS_TABLE)
   const alternates = parseRows(
     WeightRoomTemplateAlternateRowsSchema,
     alternatesRes.data,
-    TEMPLATE_ALTERNATES_TABLE,
+    TEMPLATE_ALTERNATES_TABLE
   )
 
   return assembleTemplateShape(templates, slots, steps, alternates)
@@ -208,11 +204,7 @@ export async function assembleWorkoutTemplates(
  * @param data Raw PostgREST rows.
  * @param table Table name, for the error message.
  */
-function parseRows<T>(
-  schema: z.ZodType<T[]>,
-  data: unknown,
-  table: string,
-): T[] {
+function parseRows<T>(schema: z.ZodType<T[]>, data: unknown, table: string): T[] {
   const raw = (data ?? []) as Array<Record<string, unknown>>
   const parsed = schema.safeParse(raw)
   if (!parsed.success) {

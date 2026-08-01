@@ -13,9 +13,13 @@ import type { TemplateSlot } from '@/types/weight-room'
  *
  * @param slot The slot to describe.
  */
-export function formatSetCount(slot: Pick<TemplateSlot, 'target_sets' | 'target_sets_max'>): string {
+export function formatSetCount(
+  slot: Pick<TemplateSlot, 'target_sets' | 'target_sets_max'>
+): string {
   const max = slot.target_sets_max
-  return max != null && max !== slot.target_sets ? `${slot.target_sets}-${max}` : `${slot.target_sets}`
+  return max != null && max !== slot.target_sets
+    ? `${slot.target_sets}-${max}`
+    : `${slot.target_sets}`
 }
 
 /**
@@ -29,7 +33,7 @@ export function formatSetCount(slot: Pick<TemplateSlot, 'target_sets' | 'target_
  * @param slot The slot to describe.
  */
 export function formatRepRange(
-  slot: Pick<TemplateSlot, 'target_reps' | 'target_reps_max'>,
+  slot: Pick<TemplateSlot, 'target_reps' | 'target_reps_max'>
 ): string | null {
   if (slot.target_reps == null) return null
   const max = slot.target_reps_max
@@ -69,7 +73,7 @@ export function formatSlotPrescription(slot: TemplateSlot): string {
   // A drop set's loads live on its steps, so surface them instead of the
   // slot's single (usually absent) weight.
   const stepLoads = slot.steps
-    .map((step) => step.target_weight_lbs)
+    .map(step => step.target_weight_lbs)
     .filter((w): w is number => w != null)
   if (stepLoads.length > 0) {
     line += ` · ${stepLoads.map(formatWeight).join(' → ')} lb`
@@ -98,5 +102,5 @@ function formatWeight(weight: number): string {
  * @param slot The slot to classify.
  */
 export function isSuperset(slot: Pick<TemplateSlot, 'steps'>): boolean {
-  return slot.steps.some((step) => step.exercise != null)
+  return slot.steps.some(step => step.exercise != null)
 }

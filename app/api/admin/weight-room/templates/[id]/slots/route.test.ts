@@ -106,7 +106,7 @@ describe('PATCH /api/admin/weight-room/templates/[id]/slots — reorder', () => 
 
   it('applies the requested positions, not the stored ones', async () => {
     await PATCH(reorderRequest(swap) as never, ctx('t1'))
-    const byId = Object.fromEntries((upserted ?? []).map((r) => [r.id, r.position]))
+    const byId = Object.fromEntries((upserted ?? []).map(r => [r.id, r.position]))
     expect(byId['11111111-1111-4111-8111-111111111111']).toBe(1)
     expect(byId['22222222-2222-4222-8222-222222222222']).toBe(0)
   })
@@ -116,7 +116,7 @@ describe('PATCH /api/admin/weight-room/templates/[id]/slots — reorder', () => 
       reorderRequest({
         order: [{ id: '33333333-3333-4333-8333-333333333333', position: 0 }],
       }) as never,
-      ctx('t1'),
+      ctx('t1')
     )
     expect(res.status).toBe(400)
     const body = await res.json()
