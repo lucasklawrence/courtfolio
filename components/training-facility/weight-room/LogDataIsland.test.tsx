@@ -1,5 +1,7 @@
+import { StrictMode } from 'react'
+
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import type { WeightRoomData } from '@/types/weight-room'
@@ -224,54 +226,79 @@ describe('LogDataIsland — write orchestration', () => {
 
   it('surfaces a failed write without wiping the loaded data', async () => {
     const user = userEvent.setup()
-    fetchMock.mockResolvedValue({ ok: false, json: async () => ({ error: 'nope' }) })
+    fetchMock.mockResolvedValue({
+      ok: false,
+      json: async () => ({ error: 'set rejected by the API' }),
+    })
     render(<LogDataIsland />)
     await screen.findByTestId('activity-rings')
 
     await user.click(await screen.findByTestId('quick-log-pullups-10'))
 
-    // The island keeps rendering; a write failure is not a data-loss event.
-    await waitFor(() => expect(fetchMock).toHaveBeenCalled())
+    // The API's own message has to reach the user — a write that fails
+    // silently is worse than one that fails loudly, because the admin walks
+    // away believing the set is logged.
+    const alert = await screen.findByRole('alert')
+    expect(alert).toHaveTextContent(/set rejected by the API/i)
+
+    // ...and the loaded data survives: a failed write is not a data-loss event.
     expect(screen.getByTestId('activity-rings')).toBeInTheDocument()
   })
 })
 
 describe('LogDataIsland — stale response guard', () => {
-  it('does not let a slow mount fetch clobber fresher post-write data', async () => {
-    // The request-id guard exists for exactly this interleaving: a mount
-    // fetch that resolves *after* a write-triggered refetch would otherwise
-    // paint pre-write data over post-write data, and the admin would watch
-    // their just-logged set vanish.
-    const user = userEvent.setup()
-
-    let resolveSlowMount: (v: WeightRoomData) => void = () => {}
-    const slowMount = new Promise<WeightRoomData>((r) => {
-      resolveSlowMount = r
+  it('ignores a stale read that lands after a newer one', async () => {
+    // The guard's real interleaving is React's double-invoked mount effect:
+    // effect runs (id 1), cleanup bumps to 2, effect runs again (id 3). Two
+    // reads are genuinely in flight, and the first is already stale by the
+    // time it resolves. Without the guard its late response paints over the
+    // current one.
+    //
+    // Reaching this through the UI isn't possible — the surface only renders
+    // once a read has resolved, and `busy` disables the log buttons while a
+    // write is in flight, so two overlapping refetches can't be triggered by
+    // clicking. StrictMode is where this actually happens.
+    let resolveStale: (v: WeightRoomData) => void = () => {}
+    const stalePending = new Promise<WeightRoomData>((r) => {
+      resolveStale = r
     })
 
-    // The set the refetch discovers, absent from the stale mount payload.
-    const afterWrite = fixture()
-    afterWrite.sets = [
-      ...afterWrite.sets,
+    // What the *current* read returns: the fixture plus a second set.
+    const fresh = fixture()
+    fresh.sets = [
+      ...fresh.sets,
       { id: 'set-2', logged_at: `${PAST_DAY}T20:00:00Z`, exercise: 'pullups', reps: 10 },
     ]
 
-    getWeightRoomDataMock.mockReturnValueOnce(slowMount)
-    getWeightRoomDataMock.mockResolvedValue(afterWrite)
+    getWeightRoomDataMock.mockReturnValueOnce(stalePending) // first (abandoned) mount
+    getWeightRoomDataMock.mockResolvedValue(fresh) // the mount that counts
 
-    render(<LogDataIsland />)
-    expect(screen.getByTestId('log-loading')).toBeInTheDocument()
+    render(
+      <StrictMode>
+        <LogDataIsland />
+      </StrictMode>,
+    )
 
-    // Resolve the mount fetch so the surface renders, then log — the write's
-    // refetch takes a newer request id.
-    resolveSlowMount(fixture())
     await selectDay(PAST_DAY)
-    await screen.findByTestId('set-row-set-1')
-
-    await user.click(await screen.findByTestId('quick-log-pullups-10'))
-    await waitFor(() => expect(getWeightRoomDataMock).toHaveBeenCalledTimes(2))
-
-    // The refetched set is present and stays present.
+    // The current read won: both sets are on screen.
     expect(await screen.findByTestId('set-row-set-2')).toBeInTheDocument()
+
+    // Now the abandoned read finally lands, carrying data without set-2.
+    //
+    // Flushed inside `act` rather than asserted behind `waitFor`: waitFor
+    // succeeds on its first check, so it would return *before* the stale
+    // response was ever processed and the test would pass no matter what the
+    // component did with it. Draining the microtask queue here means the
+    // stale `setData` has definitely run by the time we assert.
+    await act(async () => {
+      resolveStale(fixture())
+      await Promise.resolve()
+      await Promise.resolve()
+    })
+
+    // It must have been discarded. Without the request-id check, set-2
+    // disappears and the admin watches a set they just logged vanish.
+    expect(screen.getByTestId('set-row-set-2')).toBeInTheDocument()
+    expect(screen.getByTestId('set-row-set-1')).toBeInTheDocument()
   })
 })
