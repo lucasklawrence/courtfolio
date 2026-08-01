@@ -22,6 +22,8 @@ import type {
   StrengthSet,
   WeightRoomAchievement,
   WeightRoomExercise,
+  WeightRoomWorkout,
+  WorkoutLocation,
 } from '@/types/weight-room'
 
 /**
@@ -61,6 +63,17 @@ const positiveInt = (): z.ZodType<number> =>
   z
     .number()
     .refine((n) => Number.isInteger(n) && n > 0, 'must be a positive integer')
+
+/**
+ * Non-negative-integer Zod check, for `position` (#374) — set order within a
+ * workout, which is 0-based. Same inlined-`.refine` reasoning as
+ * {@link positiveInt}: the Turbopack dev bundler mis-transpiles
+ * `z.number().int()` when this module is pulled into a client bundle.
+ */
+const nonNegativeInt = (): z.ZodType<number> =>
+  z
+    .number()
+    .refine((n) => Number.isInteger(n) && n >= 0, 'must be a non-negative integer')
 
 /**
  * Write-only `exercise` field — non-empty string, lowercased on parse.
@@ -129,6 +142,10 @@ export const WeightRoomSetRowSchema = z
     // {@link variantWriteField}. Normalized to absent by the row
     // converter so {@link StrengthSet.variant} stays `string | undefined`.
     variant: z.string().nullable().optional(),
+    // Session membership (#374). Null is the overwhelming majority — every
+    // grease-the-groove set ever logged — and means "loose", not "missing".
+    workout_id: z.string().uuid().nullable().optional(),
+    position: nonNegativeInt().nullable().optional(),
   })
   .strict()
 
@@ -224,6 +241,11 @@ export const WeightRoomSetCreateSchema = z
     // empty / whitespace / null all normalize to `undefined` so the
     // route omits the column and the DB stores `null` (unspecified).
     variant: variantWriteField(),
+    // Session membership (#374). Explicit only — the route never infers it
+    // from whichever workout happens to be open, so a desk pushup set can't
+    // silently join the morning's gym session.
+    workout_id: z.string().uuid().optional(),
+    position: nonNegativeInt().optional(),
   })
   .strict()
 
@@ -249,8 +271,145 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     // collapse to absent so an unspecified set never surfaces a phantom
     // "" variant bucket in the History View breakdown.
     ...(row.variant != null && row.variant !== '' ? { variant: row.variant } : {}),
+    // Session membership (#374); same absent-not-null treatment.
+    ...(row.workout_id != null ? { workout_id: row.workout_id } : {}),
+    ...(row.position != null ? { position: row.position } : {}),
   }
 }
+
+/** Workout locations, as a Zod enum reused by the row + write schemas (#374). */
+const workoutLocation = (): z.ZodType<WorkoutLocation> =>
+  z.enum(['gym', 'home', 'travel', 'other'])
+
+/**
+ * Zod schema for one row of `public.weight_room_workouts` (#374). Mirrors the
+ * table in `supabase/migrations/20260802120000_weight_room_workouts.sql`.
+ *
+ * `ended_at` nullable is load-bearing rather than lenient: `null` *means* "in
+ * progress", so it can't be collapsed to absent the way a merely-unsupplied
+ * field would be — same reasoning the achievements schema documents for its
+ * pooled `exercise`.
+ */
+export const WeightRoomWorkoutRowSchema = z
+  .object({
+    id: z.string().uuid(),
+    started_at: z.string().min(1, 'started_at must be an ISO timestamp'),
+    ended_at: z.string().nullable().optional(),
+    title: z.string().nullable().optional(),
+    location: workoutLocation().nullable().optional(),
+    notes: z.string().nullable().optional(),
+  })
+  .strict()
+
+/** Validated `weight_room_workouts` row inferred from {@link WeightRoomWorkoutRowSchema}. */
+export type WeightRoomWorkoutRow = z.infer<typeof WeightRoomWorkoutRowSchema>
+
+/**
+ * Translate a validated `weight_room_workouts` row into the public
+ * {@link WeightRoomWorkout} shape. Null optionals are omitted so each stays
+ * `T | undefined`; an absent `ended_at` is what every read site tests for to
+ * mean "in progress".
+ */
+export function workoutRowToWeightRoomWorkout(row: WeightRoomWorkoutRow): WeightRoomWorkout {
+  return {
+    id: row.id,
+    started_at: row.started_at,
+    ...(row.ended_at != null ? { ended_at: row.ended_at } : {}),
+    ...(row.title != null && row.title !== '' ? { title: row.title } : {}),
+    ...(row.location != null ? { location: row.location } : {}),
+    ...(row.notes != null && row.notes !== '' ? { notes: row.notes } : {}),
+  }
+}
+
+/**
+ * Free-text write field shared by `title` and `notes` — trims, and normalizes
+ * empty / whitespace-only / `null` / absent all to `undefined` so the route
+ * omits the column and the DB keeps its `null` default rather than storing an
+ * empty string the read side would have to special-case. Mirrors
+ * {@link variantWriteField} minus the lowercasing (these are prose, not keys).
+ */
+const optionalTextField = (max: number) =>
+  z
+    .union([z.string(), z.null()])
+    .optional()
+    .transform((v) => {
+      if (v == null) return undefined
+      const trimmed = v.trim()
+      return trimmed === '' ? undefined : trimmed
+    })
+    .refine((v) => v === undefined || v.length <= max, `must be ${max} characters or fewer`)
+
+/**
+ * Free-text **patch** field — same trimming as {@link optionalTextField}, but
+ * empty / whitespace-only / `null` all normalize to **`null`**, not `undefined`.
+ *
+ * The distinction is the whole point of PATCH semantics. On create, "" means
+ * "I didn't supply one", so omitting the column and letting the DB default to
+ * null is right. On update, clearing the field in an editor and saving means
+ * "remove the title I set earlier" — collapsing that to `undefined` would make
+ * the write a silent no-op and the title would stubbornly persist. Only an
+ * *absent* key means "leave this alone".
+ */
+const clearableTextField = (max: number) =>
+  z
+    .union([z.string(), z.null()])
+    .optional()
+    .transform((v) => {
+      if (v === undefined) return undefined
+      if (v === null) return null
+      const trimmed = v.trim()
+      return trimmed === '' ? null : trimmed
+    })
+    .refine(
+      (v) => v == null || v.length <= max,
+      `must be ${max} characters or fewer`,
+    )
+
+/**
+ * Request-body schema for `POST /api/admin/weight-room/workouts` (#374) — start
+ * a session.
+ *
+ * Every field is optional: the common case is tapping "start" and getting a
+ * session stamped `now()`. `started_at` is accepted so a workout can be
+ * reconstructed after the fact, and `ended_at` alongside it so a whole finished
+ * session can be recorded in one call — which is how the `log-workout` skill
+ * (#378) will narrate a workout that already happened.
+ */
+export const WeightRoomWorkoutCreateSchema = z
+  .object({
+    started_at: z.string().min(1).optional(),
+    ended_at: z.string().min(1).optional(),
+    title: optionalTextField(80),
+    location: workoutLocation().optional(),
+    notes: optionalTextField(2000),
+  })
+  .strict()
+
+/** Validated body of `POST /api/admin/weight-room/workouts`. */
+export type WeightRoomWorkoutCreate = z.infer<typeof WeightRoomWorkoutCreateSchema>
+
+/**
+ * Request-body schema for `PATCH /api/admin/weight-room/workouts/[id]` (#374).
+ *
+ * `ended_at` accepts an explicit `null` to *reopen* a session — the one case
+ * where a null is a value rather than an omission, and the reason this can't be
+ * a `.partial()` of the create schema. Every field optional, at least one
+ * required; an empty patch is a client bug, not a no-op.
+ */
+export const WeightRoomWorkoutUpdateSchema = z
+  .object({
+    ended_at: z.union([z.string().min(1), z.null()]).optional(),
+    title: clearableTextField(80),
+    location: z.union([workoutLocation(), z.null()]).optional(),
+    notes: clearableTextField(2000),
+  })
+  .strict()
+  .refine((patch) => Object.values(patch).some((v) => v !== undefined), {
+    message: 'At least one field (ended_at, title, location, or notes) is required.',
+  })
+
+/** Validated body of `PATCH /api/admin/weight-room/workouts/[id]`. */
+export type WeightRoomWorkoutUpdate = z.infer<typeof WeightRoomWorkoutUpdateSchema>
 
 /**
  * Translate a validated `weight_room_goals` row into the public
