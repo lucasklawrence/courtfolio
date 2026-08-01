@@ -1,11 +1,23 @@
 import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import {
+  dayKeyToPacificNoon,
+  firstDayOfMonth,
+  inclusiveDaySpan,
+  lastDayOfMonth,
+  mondayOfDayKey,
+  monthIndexOfDayKey,
+  pacificDayKey,
+  safePacificDayKey,
+  shiftDayKey,
+} from './day-keys'
+import {
   type GoalTargetChange,
   goalTargetChanges,
   targetForDay,
   targetResolverFor,
 } from './goal-targets'
+import { type StreakCounts, streakFromDailyReps } from './hit-day-streaks'
 import {
   type FocusCampaignSummary,
   focusTargetHistory,
@@ -33,8 +45,18 @@ import {
 
 /** A single cell in the strength heatmap grid for one exercise. */
 export interface StrengthHeatmapCell {
-  /** Local-time date this cell represents. */
+  /**
+   * The day this cell represents, positioned at **noon Pacific** (#319) so a
+   * renderer calling `toLocaleDateString` can't display the adjacent day.
+   * Prefer {@link dayKey} for comparisons; this is for formatting.
+   */
   date: Date
+  /**
+   * `YYYY-MM-DD` Pacific key for this cell — the canonical identity, and what
+   * every window/boundary comparison should use. Saves callers re-deriving a
+   * key from {@link date} and getting a different timezone's answer.
+   */
+  dayKey: string
   /** Sum of reps logged for this exercise on {@link date}. `0` for empty days. */
   reps: number
   /** Number of distinct sets logged on {@link date}. */
@@ -149,10 +171,10 @@ export interface StrengthExerciseStats {
   focus?: FocusCampaignSummary
 }
 
-const DAY_MS = 86_400_000
-const WEEK_MS = 7 * DAY_MS
 /** Cap at ~2 years to limit DOM node count when a wide range is requested. */
 const MAX_COLS = 104
+/** Days in a calendar week — heatmap column height, and the week-key stride. */
+const DAYS_PER_WEEK = 7
 
 const MONTH_LABELS = [
   'Jan',
@@ -168,29 +190,6 @@ const MONTH_LABELS = [
   'Nov',
   'Dec',
 ] as const
-
-/** Get the Monday at or before a given local date (00:00 local). */
-function getMondayOf(d: Date): Date {
-  const m = new Date(d.getFullYear(), d.getMonth(), d.getDate())
-  const dow = m.getDay()
-  m.setDate(m.getDate() - (dow === 0 ? 6 : dow - 1))
-  return m
-}
-
-/** Get a `YYYY-MM-DD` local-date key from a Date. */
-function toDateKey(d: Date): string {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-}
-
-/**
- * Add `n` days to a `YYYY-MM-DD` key, returning a new key. Uses
- * local-noon as the base so DST transitions don't shift the date.
- */
-function addDays(dateKey: string, n: number): string {
-  const d = new Date(dateKey + 'T12:00:00')
-  d.setDate(d.getDate() + n)
-  return toDateKey(d)
-}
 
 /**
  * Bucket reps-as-percent-of-goal into one of four intensity levels for
@@ -237,30 +236,35 @@ export function buildStrengthHeatmap(
   dateFrom?: Date | null,
   dateTo?: Date | null
 ): StrengthHeatmapGrid {
-  const endMonday = getMondayOf(dateTo ?? new Date())
-  const endDate = new Date(endMonday.getTime() + 6 * DAY_MS)
+  // Column boundaries walk day keys, not milliseconds (#319): a DST week is
+  // 23 or 25 hours long, so `+ 7 * DAY_MS` drifts off the Monday twice a year.
+  //
+  // Both bounds go through `safePacificDayKey` because they arrive as props
+  // from user-derived state: `pacificDayKey` throws `RangeError` on an Invalid
+  // Date, which would take the whole page down rather than degrading. An
+  // unusable bound falls back to the same default as omitting it.
+  const endKey = safePacificDayKey(dateTo ?? new Date())
+  const endMondayKey = mondayOfDayKey(endKey === '' ? pacificDayKey(new Date()) : endKey)
 
-  let startMonday: Date
-  if (dateFrom) {
-    startMonday = getMondayOf(dateFrom)
-    const maxStart = new Date(endMonday.getTime() - MAX_COLS * WEEK_MS)
-    if (startMonday.getTime() < maxStart.getTime()) {
-      startMonday = maxStart
-    }
+  const startKey = dateFrom ? safePacificDayKey(dateFrom) : ''
+  let startMondayKey: string
+  if (startKey !== '') {
+    startMondayKey = mondayOfDayKey(startKey)
+    const maxStartKey = shiftDayKey(endMondayKey, -MAX_COLS * DAYS_PER_WEEK)
+    if (startMondayKey < maxStartKey) startMondayKey = maxStartKey
   } else {
-    startMonday = new Date(endMonday.getTime() - 52 * WEEK_MS)
+    startMondayKey = shiftDayKey(endMondayKey, -52 * DAYS_PER_WEEK)
   }
 
-  // Lookup: local-date key → { reps, setCount } for the matching exercise.
+  // Lookup: Pacific day key → { reps, setCount } for the matching exercise.
   // Read-modify-write the same shape regardless of hit/miss so the
   // accumulation reads symmetrically; the trailing `lookup.set` is a
   // no-op on a hit because we mutate the same object reference.
   const lookup = new Map<string, { reps: number; setCount: number }>()
   for (const s of sets) {
     if (s.exercise !== goal.exercise) continue
-    const d = new Date(s.logged_at)
-    if (!Number.isFinite(d.getTime())) continue
-    const key = toDateKey(d)
+    const key = safePacificDayKey(s.logged_at)
+    if (key === '') continue
     const entry = lookup.get(key) ?? { reps: 0, setCount: 0 }
     entry.reps += s.reps
     entry.setCount += 1
@@ -271,30 +275,36 @@ export function buildStrengthHeatmap(
   // a single time rather than per cell; the resolver also owns the
   // non-positive clamp that used to live here inline.
   const targetFor = targetResolverFor(goal)
-  const startMs = startMonday.getTime()
-  const totalCols = Math.floor((endDate.getTime() - startMs) / WEEK_MS) + 1
+  const totalCols =
+    Math.floor(
+      (inclusiveDaySpan(startMondayKey, shiftDayKey(endMondayKey, 6)) - 1) / DAYS_PER_WEEK
+    ) + 1
   const grid: StrengthHeatmapCell[][] = Array.from({ length: 7 }, () => [])
   const monthLabels: { col: number; label: string }[] = []
   let lastMonth = -1
 
   for (let col = 0; col < totalCols; col++) {
     for (let row = 0; row < 7; row++) {
-      const date = new Date(startMs + (col * 7 + row) * DAY_MS)
-      const key = toDateKey(date)
+      const key = shiftDayKey(startMondayKey, col * DAYS_PER_WEEK + row)
       const entry = lookup.get(key)
       const reps = entry?.reps ?? 0
       const dailyTarget = targetFor(key)
+      // Pacific noon, so a renderer calling `toLocaleDateString` shows the
+      // day the cell actually represents rather than the one before it.
+      const date = dayKeyToPacificNoon(key) ?? new Date(NaN)
       grid[row].push({
         date,
+        dayKey: key,
         reps,
         setCount: entry?.setCount ?? 0,
         pct: reps / dailyTarget,
         dailyTarget,
       })
 
-      if (date.getMonth() !== lastMonth) {
-        lastMonth = date.getMonth()
-        monthLabels.push({ col, label: MONTH_LABELS[date.getMonth()] })
+      const month = monthIndexOfDayKey(key)
+      if (month !== lastMonth) {
+        lastMonth = month
+        monthLabels.push({ col, label: MONTH_LABELS[month] })
       }
     }
   }
@@ -330,73 +340,15 @@ export function computeStrengthStreaks(
   sets: readonly StrengthSet[],
   goal: ExerciseGoal,
   now: Date = new Date()
-): { current: number; longest: number } {
+): StreakCounts {
   const dailyReps = new Map<string, number>()
   for (const s of sets) {
     if (s.exercise !== goal.exercise) continue
-    const d = new Date(s.logged_at)
-    if (!Number.isFinite(d.getTime())) continue
-    const key = toDateKey(d)
+    const key = safePacificDayKey(s.logged_at)
+    if (key === '') continue
     dailyReps.set(key, (dailyReps.get(key) ?? 0) + s.reps)
   }
-  return streakFromDailyReps(dailyReps, targetResolverFor(goal), now)
-}
-
-/**
- * Streak computation off an already-built `day-key → reps` map. Shared
- * between {@link computeStrengthStreaks} (which builds the map from
- * `sets`) and {@link computeStrengthStats} (which builds it inline as
- * part of its single-pass aggregation). Pulling this out is what lets
- * the stats path avoid a second traversal of `sets` per goal.
- *
- * @param dailyReps Reps summed per local-date key.
- * @param targetFor Resolves the target in effect on a given day key, from
- *   {@link targetResolverFor}. Taking a resolver rather than a scalar is
- *   what makes the hit-test effective-dated (#362); it already clamps
- *   non-positive targets to `1` so the predicate can't invert.
- * @param now Anchor for the current/yesterday rolling-day grace
- *   period.
- */
-function streakFromDailyReps(
-  dailyReps: ReadonlyMap<string, number>,
-  targetFor: (dayKey: string) => number,
-  now: Date
-): { current: number; longest: number } {
-  const hitDays: string[] = []
-  for (const [key, reps] of dailyReps) {
-    if (reps >= targetFor(key)) hitDays.push(key)
-  }
-  if (hitDays.length === 0) return { current: 0, longest: 0 }
-  hitDays.sort()
-
-  let longest = 1
-  let run = 1
-  for (let i = 1; i < hitDays.length; i++) {
-    if (addDays(hitDays[i - 1], 1) === hitDays[i]) {
-      run++
-      if (run > longest) longest = run
-    } else {
-      run = 1
-    }
-  }
-
-  const today = toDateKey(now)
-  const yesterday = addDays(today, -1)
-  const lastDay = hitDays[hitDays.length - 1]
-  if (lastDay !== today && lastDay !== yesterday) {
-    return { current: 0, longest }
-  }
-
-  let current = 1
-  for (let i = hitDays.length - 2; i >= 0; i--) {
-    if (addDays(hitDays[i], 1) === hitDays[i + 1]) {
-      current++
-    } else {
-      break
-    }
-  }
-
-  return { current, longest: Math.max(longest, current) }
+  return streakFromDailyReps(dailyReps, targetResolverFor(goal), pacificDayKey(now))
 }
 
 /**
@@ -435,16 +387,20 @@ export function computeStrengthStats(
   now: Date = new Date(),
   focuses: readonly MonthlyFocus[] = []
 ): StrengthExerciseStats[] {
-  const todayMonday = getMondayOf(now)
-  const thisWeekStart = toDateKey(todayMonday)
-  const thisWeekEnd = toDateKey(new Date(todayMonday.getTime() + 6 * DAY_MS))
-  const lastWeekStart = toDateKey(new Date(todayMonday.getTime() - 7 * DAY_MS))
-  const lastWeekEnd = toDateKey(new Date(todayMonday.getTime() - DAY_MS))
+  // Every boundary is a Pacific day key (#319), so the week and month a set
+  // falls into matches the day its heatmap cell lands on. Derived by calendar
+  // arithmetic rather than `Date` offsets — a DST week is 23 or 25 hours, and
+  // millisecond math drifts off the Monday twice a year.
+  const todayKey = pacificDayKey(now)
+  const thisWeekStart = mondayOfDayKey(todayKey)
+  const thisWeekEnd = shiftDayKey(thisWeekStart, 6)
+  const lastWeekStart = shiftDayKey(thisWeekStart, -7)
+  const lastWeekEnd = shiftDayKey(thisWeekStart, -1)
 
-  const thisMonthStart = toDateKey(new Date(now.getFullYear(), now.getMonth(), 1))
-  const thisMonthEnd = toDateKey(new Date(now.getFullYear(), now.getMonth() + 1, 0))
-  const lastMonthStart = toDateKey(new Date(now.getFullYear(), now.getMonth() - 1, 1))
-  const lastMonthEnd = toDateKey(new Date(now.getFullYear(), now.getMonth(), 0))
+  const thisMonthStart = firstDayOfMonth(todayKey)
+  const thisMonthEnd = lastDayOfMonth(todayKey)
+  const lastMonthEnd = shiftDayKey(thisMonthStart, -1)
+  const lastMonthStart = firstDayOfMonth(lastMonthEnd)
 
   return goals.map(goal => {
     // A focus anchor's real bar is its rotation's target, not the anchor's
@@ -466,9 +422,8 @@ export function computeStrengthStats(
 
     for (const s of sets) {
       if (s.exercise !== goal.exercise) continue
-      const d = new Date(s.logged_at)
-      if (!Number.isFinite(d.getTime())) continue
-      const key = toDateKey(d)
+      const key = safePacificDayKey(s.logged_at)
+      if (key === '') continue
 
       // All-time + active-day rollups.
       dailyReps.set(key, (dailyReps.get(key) ?? 0) + s.reps)
@@ -487,7 +442,7 @@ export function computeStrengthStats(
     }
 
     const avgSetsPerActiveDay = dailyReps.size === 0 ? 0 : validSetCount / dailyReps.size
-    const streak = streakFromDailyReps(dailyReps, targetResolverFor(scoringGoal), now)
+    const streak = streakFromDailyReps(dailyReps, targetResolverFor(scoringGoal), todayKey)
 
     return {
       exercise: goal.exercise,
@@ -495,7 +450,7 @@ export function computeStrengthStats(
       // Resolved through `scoringGoal` so the label and the streak agree. For
       // a permanent goal this is just today's target; for a focus it's the
       // rotation's, falling back to the anchor scalar when no window applies.
-      dailyTarget: targetForDay(scoringGoal, toDateKey(now)),
+      dailyTarget: targetForDay(scoringGoal, todayKey),
       currentStreak: streak.current,
       longestStreak: streak.longest,
       thisWeekReps,
@@ -541,16 +496,16 @@ export function buildWeeklyVolume(
   now: Date = new Date()
 ): WeeklyVolumePoint[] {
   const span = Math.max(1, Math.floor(weeks))
-  const currentMonday = getMondayOf(now)
-  const startMs = currentMonday.getTime() - (span - 1) * WEEK_MS
+  const currentMondayKey = mondayOfDayKey(pacificDayKey(now))
+  const startMondayKey = shiftDayKey(currentMondayKey, -(span - 1) * DAYS_PER_WEEK)
 
-  // weekKey (Monday YYYY-MM-DD) → reps + set tallies for this exercise.
+  // weekKey (Monday YYYY-MM-DD, Pacific) → reps + set tallies for this exercise.
   const lookup = new Map<string, { reps: number; setCount: number }>()
   for (const s of sets) {
     if (s.exercise !== goal.exercise) continue
-    const d = new Date(s.logged_at)
-    if (!Number.isFinite(d.getTime())) continue
-    const key = toDateKey(getMondayOf(d))
+    const dayKey = safePacificDayKey(s.logged_at)
+    if (dayKey === '') continue
+    const key = mondayOfDayKey(dayKey)
     const entry = lookup.get(key) ?? { reps: 0, setCount: 0 }
     entry.reps += s.reps
     entry.setCount += 1
@@ -559,15 +514,16 @@ export function buildWeeklyVolume(
 
   const points: WeeklyVolumePoint[] = []
   for (let i = 0; i < span; i++) {
-    // Snap each generated week back through getMondayOf so a DST hour
-    // shift in the raw ms arithmetic can't land the key on a Sunday.
-    const weekStart = getMondayOf(new Date(startMs + i * WEEK_MS))
-    const weekKey = toDateKey(weekStart)
+    // Calendar arithmetic, so a DST week can't land the key on a Sunday —
+    // the snap-back through `getMondayOf` this replaces existed only to undo
+    // that millisecond drift.
+    const weekKey = shiftDayKey(startMondayKey, i * DAYS_PER_WEEK)
+    const weekStart = dayKeyToPacificNoon(weekKey) ?? new Date(NaN)
     const entry = lookup.get(weekKey)
     points.push({
       weekStart,
       weekKey,
-      label: `${weekStart.getMonth() + 1}/${weekStart.getDate()}`,
+      label: `${monthIndexOfDayKey(weekKey) + 1}/${Number(weekKey.slice(8, 10))}`,
       reps: entry?.reps ?? 0,
       setCount: entry?.setCount ?? 0,
     })

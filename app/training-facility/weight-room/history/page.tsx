@@ -22,7 +22,8 @@ import {
   EXERCISE_FILTER_PARAM,
   parseExerciseSelection,
 } from '@/lib/training-facility/exercise-filter'
-import { buildMovementLoads, pacificDayKey } from '@/lib/training-facility/load-management'
+import { pacificDayKey } from '@/lib/training-facility/day-keys'
+import { buildMovementLoads } from '@/lib/training-facility/load-management'
 import { TRAINING_FACILITY_PREVIEW_PARAM } from '@/lib/training-facility/preview-param'
 import {
   buildFocusLaneCells,

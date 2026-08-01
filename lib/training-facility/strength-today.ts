@@ -1,5 +1,6 @@
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
+import { dayKeyToPacificNoonIso, formatDayKey, safePacificDayKey } from './day-keys'
 import { targetForDay } from './goal-targets'
 
 /**
@@ -7,34 +8,34 @@ import { targetForDay } from './goal-targets'
  * per-exercise totals, and ring-percent computation. Lives separate
  * from the React components so the math has unit-test coverage without
  * any DOM mounted, and so {@link computeRingPercent} can be reused by
- * the future History View (#81) when it shows "today" alongside the
- * heatmap.
+ * the History View (#81) when it shows "today" alongside the heatmap.
  *
- * All date math runs in the *caller's* local timezone. The Today View
- * is by definition "what happened on this calendar day" — the user
- * looking at a phone in Pacific time wants their local midnight
- * boundary, not UTC's.
+ * Date math runs in **Pacific**, via the shared toolkit in `day-keys.ts`
+ * (#319). This module previously bucketed in the *caller's* local zone on the
+ * reasoning that "today" should mean the viewer's calendar day — but the log
+ * is anchored to where the training happens, and viewer-local left the Today
+ * View's streaks able to disagree with the Trophy Room's (already Pacific) for
+ * the same day. One anchor also means a trip abroad can't silently re-bucket
+ * the history or break a streak.
  */
 
 /**
- * Local-date key (`YYYY-MM-DD`) for an ISO timestamp string or a Date.
+ * Pacific day key (`YYYY-MM-DD`) for an ISO timestamp string or a Date.
  * Strips off the time-of-day so two sets logged at 06:00 and 23:00 of
  * the same day collapse to the same key.
+ *
+ * Thin alias over {@link safePacificDayKey}, kept because this is the name
+ * the Today View surfaces import. New code should reach for `day-keys.ts`
+ * directly.
  *
  * @param input ISO 8601 timestamp string from
  *   {@link StrengthSet.logged_at}, or a Date already constructed by
  *   the caller.
- * @returns `YYYY-MM-DD` in the caller's local timezone, or `''` when
- *   `input` is unparseable (so callers can use `key === ''` as a skip
- *   condition without throwing).
+ * @returns `YYYY-MM-DD` Pacific, or `''` when `input` is unparseable (so
+ *   callers can use `key === ''` as a skip condition without throwing).
  */
 export function toLocalDateKey(input: string | Date): string {
-  const d = typeof input === 'string' ? new Date(input) : input
-  if (!Number.isFinite(d.getTime())) return ''
-  const yyyy = d.getFullYear().toString().padStart(4, '0')
-  const mm = (d.getMonth() + 1).toString().padStart(2, '0')
-  const dd = d.getDate().toString().padStart(2, '0')
-  return `${yyyy}-${mm}-${dd}`
+  return safePacificDayKey(input)
 }
 
 /**
@@ -187,47 +188,25 @@ export function computeRingPercent(
 }
 
 /**
- * Strict `YYYY-MM-DD` shape produced by {@link toLocalDateKey} and the
- * native `<input type="date">` value. Anchored so a stray timestamp
- * (`2026-05-25T08:00`) doesn't silently parse as a day key.
- */
-const DAY_KEY_REGEX = /^(\d{4})-(\d{2})-(\d{2})$/
-
-/**
- * Parse a `YYYY-MM-DD` day key into a Date at *local noon* of that day.
- * Component-wise rather than `new Date(dayKey)` — the Date constructor
- * treats a bare date string as UTC midnight, which lands on the
- * *previous* local day in negative-offset timezones.
- *
- * @returns The local-noon Date, or `null` when `dayKey` isn't a valid
- *   calendar day (bad shape, or component overflow like `2026-02-31`
- *   that would silently roll into March).
- */
-function parseDayKeyToLocalNoon(dayKey: string): Date | null {
-  const match = DAY_KEY_REGEX.exec(dayKey)
-  if (!match) return null
-  const [, yyyy, mm, dd] = match
-  const d = new Date(Number(yyyy), Number(mm) - 1, Number(dd), 12, 0, 0)
-  if (!Number.isFinite(d.getTime()) || toLocalDateKey(d) !== dayKey) return null
-  return d
-}
-
-/**
- * ISO timestamp for *local noon* of a `YYYY-MM-DD` day key. Used when
+ * ISO timestamp for **noon Pacific** of a `YYYY-MM-DD` day key. Used when
  * backdating a QuickLog set (#202): stamping the set at the middle of
- * the day keeps it inside the intended calendar day for any plausible
- * timezone the data is later viewed in, instead of straddling a
+ * the day keeps it inside the intended calendar day instead of straddling a
  * midnight boundary the way a 00:00 stamp would.
+ *
+ * Pacific noon rather than local noon (#319) so the write round-trips through
+ * the read path: the set is bucketed back out with {@link toLocalDateKey},
+ * which is now Pacific. Stamping local noon from a non-Pacific browser could
+ * land the set on the adjacent Pacific day — a backdated set appearing on the
+ * wrong square.
  *
  * @param dayKey `YYYY-MM-DD` key as produced by {@link toLocalDateKey}
  *   or an `<input type="date">` value.
- * @returns ISO 8601 UTC timestamp of the day's local noon, or `''` when
+ * @returns ISO 8601 UTC timestamp of the day's Pacific noon, or `''` when
  *   `dayKey` isn't a valid day key (so callers can fall back to the
  *   server-side `now()` default instead of throwing).
  */
 export function localNoonIsoForDay(dayKey: string): string {
-  const d = parseDayKeyToLocalNoon(dayKey)
-  return d ? d.toISOString() : ''
+  return dayKeyToPacificNoonIso(dayKey)
 }
 
 /**
@@ -242,11 +221,5 @@ export function localNoonIsoForDay(dayKey: string): string {
  *   unparseable.
  */
 export function formatDayLabel(dayKey: string): string {
-  const d = parseDayKeyToLocalNoon(dayKey)
-  if (!d) return ''
-  return d.toLocaleDateString(undefined, {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-  })
+  return formatDayKey(dayKey, { weekday: 'short', month: 'short', day: 'numeric' })
 }

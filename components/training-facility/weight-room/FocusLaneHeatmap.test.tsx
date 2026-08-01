@@ -117,6 +117,17 @@ describe('FocusLaneHeatmap', () => {
     expect(viewBox(bigger.container)[0]).toBeGreaterThan(viewBox(base.container)[0])
   })
 
+  it('does not shrink an explicit cellSize above the scale-up cap', () => {
+    // The cap bounds the derived scale-up, not the caller's floor — a
+    // `cellSize` of 40 must survive even though the cap is 30.
+    const cells = lane('2026-06-29', 36, SHRUGS)
+    const capped = render(<FocusLaneHeatmap cells={cells} label="Upper" />)
+    const explicit = render(<FocusLaneHeatmap cells={cells} label="Upper" cellSize={40} />)
+    // 6 columns at 40px + the 32px gutter, before any label overhang.
+    expect(viewBox(explicit.container)[0]).toBeGreaterThanOrEqual(6 * 40 + 32)
+    expect(viewBox(explicit.container)[0]).toBeGreaterThan(viewBox(capped.container)[0])
+  })
+
   // ---- #370: month labels must not collide or clip -----------------------
 
   it('does not render two month labels on top of each other', () => {

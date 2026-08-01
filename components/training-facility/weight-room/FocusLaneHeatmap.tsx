@@ -198,10 +198,14 @@ function describeSlot(slot: GridSlot): string {
  *
  * Spans already wider than the target keep `base`, so once enough history
  * accumulates the lane renders at exactly the size it does today.
+ *
+ * The cap bounds only the *derived* scale-up, never `base` itself — an
+ * explicit `cellSize` above the cap is a caller's deliberate choice, and
+ * the prop's contract is a floor.
  */
 function cellSizeForCols(cols: number, base: number): number {
   if (cols <= 0) return base
-  return Math.min(MAX_CELL_SIZE, Math.max(base, Math.floor(TARGET_GRID_WIDTH / cols)))
+  return Math.max(base, Math.min(MAX_CELL_SIZE, Math.floor(TARGET_GRID_WIDTH / cols)))
 }
 
 /** One positioned entry in the legend strip. */

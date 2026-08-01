@@ -399,10 +399,13 @@ describe('effective-dated targets (#362)', () => {
     grid: ReturnType<typeof buildStrengthHeatmap>,
     dateKey: string,
   ): { reps: number; pct: number; dailyTarget: number } | undefined {
+    // Match on the cell's own `dayKey`, not a key re-derived from `cell.date`
+    // (#319). That Date is a fixed 19:00Z instant, so reading its local
+    // components would name the following day on a runner east of UTC+5 — the
+    // exact hazard `StrengthHeatmapCell.dayKey` exists to remove.
     for (const row of grid.grid) {
       for (const cell of row) {
-        const key = `${cell.date.getFullYear()}-${String(cell.date.getMonth() + 1).padStart(2, '0')}-${String(cell.date.getDate()).padStart(2, '0')}`
-        if (key === dateKey) return cell
+        if (cell.dayKey === dateKey) return cell
       }
     }
     return undefined
@@ -644,5 +647,78 @@ describe('computeStrengthStats — focus dailyTarget label (#367 review)', () =>
   it('leaves a permanent goal labelled with its own current target', () => {
     const [stats] = computeStrengthStats([], [PUSHUPS], new Date('2026-07-20T12:00:00'), [])
     expect(stats.dailyTarget).toBe(100)
+  })
+})
+
+/**
+ * Pacific bucketing (#319). These are the cases the old server-local
+ * `toDateKey` got wrong: on Vercel "local" is UTC, so an evening Pacific set
+ * landed on the following calendar day. They assert against explicit `Z`
+ * timestamps so the result is identical on a Pacific dev machine and a UTC CI
+ * runner — the timezone-independence is the point.
+ */
+describe('Pacific day bucketing (#319)', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  /** A set at an explicit UTC instant, so the test doesn't depend on the runner's zone. */
+  function utcSet(iso: string, exercise: string, reps: number): StrengthSet {
+    return { id: `${exercise}-${iso}-${reps}`, logged_at: iso, exercise, reps }
+  }
+
+  it('buckets an evening Pacific set onto that Pacific day, not the next UTC one', () => {
+    // 2026-07-16T05:00:00Z is 10pm PDT on the 15th.
+    const sets = [utcSet('2026-07-16T05:00:00Z', 'pushups', 100)]
+    const grid = buildStrengthHeatmap(
+      sets,
+      PUSHUPS,
+      new Date('2026-07-13T19:00:00Z'),
+      new Date('2026-07-19T19:00:00Z'),
+    )
+    const cells = grid.grid.flat().filter((c) => c.reps > 0)
+    expect(cells).toHaveLength(1)
+    expect(cells[0].dayKey).toBe('2026-07-15')
+  })
+
+  it('keeps a split evening session on one day so it can reach the target', () => {
+    // Two halves of the same Pacific evening that straddle UTC midnight.
+    // Bucketed by UTC they are 50 + 50 on separate days — neither a hit.
+    const sets = [
+      utcSet('2026-07-16T02:00:00Z', 'pushups', 50), // 7pm PDT Jul 15
+      utcSet('2026-07-16T05:00:00Z', 'pushups', 50), // 10pm PDT Jul 15
+    ]
+    const streak = computeStrengthStreaks(sets, PUSHUPS, new Date('2026-07-16T19:00:00Z'))
+    expect(streak.longest).toBe(1)
+  })
+
+  it('rolls an evening set into the Pacific week, not the next one', () => {
+    // 2026-07-13T05:00:00Z is 10pm PDT Sunday Jul 12 — the *end* of the
+    // Jul 6 week. In UTC it is Monday Jul 13, opening the next week.
+    const sets = [utcSet('2026-07-13T05:00:00Z', 'pushups', 60)]
+    const points = buildWeeklyVolume(sets, PUSHUPS, 3, new Date('2026-07-15T19:00:00Z'))
+    const withReps = points.filter((p) => p.reps > 0)
+    expect(withReps).toHaveLength(1)
+    expect(withReps[0].weekKey).toBe('2026-07-06')
+  })
+
+  it('counts an evening set in the Pacific month it belongs to', () => {
+    // 2026-08-01T05:00:00Z is 10pm PDT on Jul 31.
+    const sets = [utcSet('2026-08-01T05:00:00Z', 'pushups', 120)]
+    const [stats] = computeStrengthStats(sets, [PUSHUPS], new Date('2026-08-15T19:00:00Z'))
+    expect(stats.lastMonthReps).toBe(120)
+    expect(stats.thisMonthReps).toBe(0)
+  })
+
+  it('exposes a Pacific dayKey on every cell', () => {
+    const grid = buildStrengthHeatmap(
+      [],
+      PUSHUPS,
+      new Date('2026-07-13T19:00:00Z'),
+      new Date('2026-07-19T19:00:00Z'),
+    )
+    // Row 0 is Monday, so the first cell of the first column is a Monday.
+    expect(grid.grid[0][0].dayKey).toBe('2026-07-13')
+    expect(grid.grid[6][0].dayKey).toBe('2026-07-19')
   })
 })
