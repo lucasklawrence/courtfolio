@@ -1,6 +1,7 @@
 import type { JSX } from 'react'
 
 import { type GoalTargetChange, goalTargetChanges } from '@/lib/training-facility/goal-targets'
+import { thinMonthLabels } from '@/lib/training-facility/heatmap-labels'
 import {
   buildStrengthHeatmap,
   intensityFromPct,
@@ -132,9 +133,12 @@ export function StrengthHeatmap({
       aria-label={label}
       style={{ fontFamily }}
     >
-      {/* Month labels along the top */}
+      {/* Month labels along the top, thinned so neighbours can't collide.
+          Over a full 52-week window months land ~4.3 columns apart and
+          nothing is dropped; a caller passing a narrow `dateFrom`/`dateTo`
+          is the case this protects (#370). */}
       <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT - 4})`}>
-        {monthLabels.map((m) => (
+        {thinMonthLabels(monthLabels, { cellSize, totalCols: cols }).map((m) => (
           <text
             key={`month-${m.col}-${m.label}`}
             x={m.col * cellSize}
