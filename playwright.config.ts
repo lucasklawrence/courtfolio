@@ -62,6 +62,14 @@ export default defineConfig({
       testMatch: /(?:svg-fragments|chart-overflow)\.spec\.ts/,
       use: {
         ...devices['iPhone 14'],
+        // `browserName` must be set explicitly, *after* the device spread.
+        // The device descriptor carries `defaultBrowserType: 'webkit'`, but
+        // that is only a default — the top-level `use.browserName: 'chromium'`
+        // is an explicit value and wins the merge. Without this line the
+        // project runs Chromium wearing an iPhone user-agent: the viewport
+        // coverage is real, the engine coverage is not, and nothing in the
+        // output says so.
+        browserName: 'webkit',
         baseURL: TRAINING_FACILITY_BASE_URL,
       },
     },

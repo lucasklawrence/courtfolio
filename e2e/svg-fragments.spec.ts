@@ -68,9 +68,7 @@ test.describe('SVG fragment references', () => {
             if (match) check(match[1], `<${el.tagName.toLowerCase()} ${attr}>`)
           }
           // `textPath`/`use`/`tref` carry the reference on href (or the legacy
-          // xlink:href). Only same-document fragments are checked — an
-          // external-file href is a different mechanism and resolves fine as
-          // long as the target needs no fragments of its own.
+          // xlink:href).
           const href =
             el.getAttribute('href') ?? el.getAttribute('xlink:href') ?? ''
           if (href.startsWith('#')) {
@@ -81,6 +79,55 @@ test.describe('SVG fragment references', () => {
       })
 
       expect(broken, `unresolved SVG fragment references on ${route}`).toEqual([])
+    })
+  }
+
+  for (const route of SVG_HEAVY_ROUTES) {
+    test(`no external <use> on ${route} depends on its own fragments`, async ({ page }) => {
+      // This is the #353 mechanism itself, and the in-document check above
+      // cannot see it: `<use href="/file.svg#id">` builds a *shadow* tree, so
+      // the referenced content never appears in `querySelectorAll` and any
+      // fragment it needs resolves against the host document instead of its
+      // own file. The reference looks fine from the page's side right up until
+      // an engine declines to resolve it.
+      //
+      // So the target file has to be fetched and inspected directly: if the
+      // referenced subtree contains `url(#…)` or a `#`-href of its own, that
+      // is the exact arrangement that dropped the ring text on iOS.
+      await bypassHomeIntro(page)
+      await page.goto(route)
+      await expect(page.locator('svg').first()).toBeAttached()
+
+      const externalUses = await page.evaluate(() =>
+        [...document.querySelectorAll('use')]
+          .map((el) => el.getAttribute('href') ?? el.getAttribute('xlink:href') ?? '')
+          .filter((href) => href !== '' && !href.startsWith('#')),
+      )
+
+      const offenders: string[] = []
+      for (const href of new Set(externalUses)) {
+        const [file, fragment] = href.split('#')
+        const res = await page.request.get(new URL(file, page.url()).toString())
+        expect(res.ok(), `<use> target ${file} should be fetchable`).toBe(true)
+        const svgText = await res.text()
+
+        // The referenced fragment's own markup. Scoped to the element with
+        // that id where one is named, so a file holding several symbols is
+        // judged on the part actually being used.
+        const scoped = fragment
+          ? (new RegExp(`id=["']${fragment}["'][\\s\\S]*`).exec(svgText)?.[0] ?? svgText)
+          : svgText
+
+        if (/url\(["']?#/.test(scoped) || /(?:xlink:)?href=["']#/.test(scoped)) {
+          offenders.push(href)
+        }
+      }
+
+      expect(
+        offenders,
+        'external <use> targets that rely on their own internal fragments — ' +
+          'these resolve against the host document and are dropped by WebKit (#353)',
+      ).toEqual([])
     })
   }
 

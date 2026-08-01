@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
+import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { ExerciseFilterChips } from '@/components/training-facility/weight-room/ExerciseFilterChips'
 import { FocusLaneHeatmap } from '@/components/training-facility/weight-room/FocusLaneHeatmap'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
@@ -100,9 +101,9 @@ export default async function WeightRoomHistoryPage({
   // Gated on the real data being empty, so a populated deploy ignores the
   // param entirely.
   const realIsEmpty = realData === null || realData.sets.length === 0
-  const data = realIsEmpty && isPreviewDemoActive(params[TRAINING_FACILITY_PREVIEW_PARAM])
-    ? buildWeightRoomDemoData()
-    : realData
+  const isPreviewMode =
+    realIsEmpty && isPreviewDemoActive(params[TRAINING_FACILITY_PREVIEW_PARAM])
+  const data = isPreviewMode ? buildWeightRoomDemoData() : realData
 
   const goals: readonly ExerciseGoal[] = data?.goals ?? []
   const sets = data?.sets ?? []
@@ -186,6 +187,16 @@ export default async function WeightRoomHistoryPage({
           </p>
           <WeightRoomSubNav active="history" className="mt-5" isAdmin={isAdmin} />
         </header>
+
+        {/* Sample data must never read as a real log. Same treatment the
+            Combine and cardio surfaces already use for their preview branch
+            (#160 / #162) — a visible chip plus an exit affordance, rather than
+            demo heatmaps and stats that look exactly like populated ones. */}
+        {isPreviewMode ? (
+          <div className="mt-6">
+            <PreviewModeBadge description="These heatmaps and stats are illustrative — not Lucas’s real training log." />
+          </div>
+        ) : null}
 
         {permanentGoals.length === 0 && focuses.length === 0 ? (
           <section

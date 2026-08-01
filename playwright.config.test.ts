@@ -70,4 +70,22 @@ describe('playwright config', () => {
     expect(mobile?.testMatch.test('svg-fragments.spec.ts')).toBe(true)
     expect(mobile?.testMatch.test('chart-overflow.spec.ts')).toBe(true)
   })
+
+  it('actually runs the mobile project on WebKit', () => {
+    // The subtle half of the same gap. A device descriptor carries
+    // `defaultBrowserType: 'webkit'`, but the top-level
+    // `use.browserName: 'chromium'` is an *explicit* value and wins the merge —
+    // so omitting `browserName` here silently runs Chromium in an iPhone
+    // user-agent. The suite still passes, the engine coverage just isn't there,
+    // and the user-agent string makes it look like it is.
+    const mobile = (config.projects ?? []).find((p) => p.name === 'mobile-webkit')
+    expect(mobile?.use?.browserName).toBe('webkit')
+  })
+
+  it('sizes the mobile project to a phone viewport', () => {
+    const mobile = (config.projects ?? []).find((p) => p.name === 'mobile-webkit')
+    // The other half of what #355/#356 needed: a real phone width, not just a
+    // different engine.
+    expect(mobile?.use?.viewport?.width).toBeLessThanOrEqual(430)
+  })
 })
