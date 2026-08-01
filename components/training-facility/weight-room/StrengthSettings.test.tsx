@@ -171,3 +171,68 @@ describe('StrengthSettings — scheduled target changes (#371)', () => {
   })
 })
 
+describe('StrengthSettings — scheduling guards (#371 review)', () => {
+  const PULLUPS: ExerciseGoal = { exercise: 'pullups', daily_target: 30, color: '#0EA5A1' }
+
+  async function scheduleFutureTarget(value: string) {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => ({}) })
+    vi.stubGlobal('fetch', fetchMock)
+    render(<StrengthSettings initialGoals={[PULLUPS]} />)
+
+    const targetInput = screen.getAllByRole('spinbutton')[0]
+    await userEvent.clear(targetInput)
+    await userEvent.type(targetInput, value)
+    fireEvent.change(screen.getByLabelText(/effective date for the pullups target/i), {
+      target: { value: '2099-09-01' },
+    })
+    await userEvent.click(screen.getByRole('button', { name: /^save$/i }))
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1))
+    return { fetchMock, targetInput }
+  }
+
+  it('snaps the target back to what is in effect after scheduling', async () => {
+    // Otherwise the row keeps showing the future number with Save enabled, and
+    // the next save posts it with no date — applying it today and defeating
+    // the schedule entirely.
+    const { targetInput } = await scheduleFutureTarget('50')
+    await waitFor(() => expect(targetInput).toHaveValue(30))
+    expect(screen.getByRole('button', { name: /^save$/i })).toBeDisabled()
+  })
+
+  it('does not re-post the scheduled target on a later save', async () => {
+    const { fetchMock } = await scheduleFutureTarget('50')
+    // Nudge the colour and save again — the payload must carry today's target.
+    // jsdom lowercases a color input's value, so select by type rather than
+    // by display value.
+    const colorInput = document.querySelectorAll('input[type="color"]')[0]
+    fireEvent.change(colorInput, { target: { value: '#123456' } })
+    await userEvent.click(screen.getByRole('button', { name: /^save$/i }))
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2))
+    const second = JSON.parse(fetchMock.mock.calls[1][1].body as string)
+    expect(second).toMatchObject({ daily_target: 30, color: '#123456' })
+    expect(second).not.toHaveProperty('effective_from')
+  })
+
+  it('enables Save for a date-only change, so a reversion can be queued', async () => {
+    // Target already equals today's value; only the date differs. The API
+    // records it because the value in effect on that future date is different.
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => ({}) })
+    vi.stubGlobal('fetch', fetchMock)
+    render(<StrengthSettings initialGoals={[PULLUPS]} />)
+
+    const save = screen.getByRole('button', { name: /^save$/i })
+    expect(save).toBeDisabled()
+    fireEvent.change(screen.getByLabelText(/effective date for the pullups target/i), {
+      target: { value: '2099-10-01' },
+    })
+    expect(save).toBeEnabled()
+
+    await userEvent.click(save)
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1))
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body as string)).toMatchObject({
+      daily_target: 30,
+      effective_from: '2099-10-01',
+    })
+  })
+})
+

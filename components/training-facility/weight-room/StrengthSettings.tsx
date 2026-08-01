@@ -163,14 +163,22 @@ function GoalRow({
   // Blank means "today", which is what the API assumes when `effective_from`
   // is omitted. A future date queues the change instead of applying it (#371).
   const [effectiveFrom, setEffectiveFrom] = useState<string>('')
-  const dirty = target !== goal.daily_target || color !== goal.color
 
   const today = pacificDayKey(new Date())
   const scheduled = scheduledGoalTargetChanges(goal, today)
 
+  // A chosen date is itself a change worth saving. Without this, queuing a
+  // *reversion* is impossible: with 50 already scheduled for September, going
+  // back to 30 in October means submitting a target equal to today's, which a
+  // value-only dirty check treats as a no-op — even though 30 genuinely differs
+  // from the 50 in effect on that date, and the API would record it.
+  const dirty =
+    target !== goal.daily_target || color !== goal.color || effectiveFrom !== ''
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault()
     if (!dirty) return
+    const scheduledForLater = effectiveFrom !== '' && effectiveFrom > today
     await onSave({
       exercise: goal.exercise,
       daily_target: target,
@@ -178,6 +186,12 @@ function GoalRow({
       ...(effectiveFrom === '' ? {} : { effective_from: effectiveFrom }),
     })
     setEffectiveFrom('')
+    // Scheduling deliberately leaves today's target alone, so the refreshed
+    // goal comes back unchanged and this input would keep showing the *future*
+    // number with Save still enabled. A later save — or an unrelated colour
+    // tweak — would then post it with no date and apply it immediately,
+    // silently defeating the schedule. Snap back to what's actually in effect.
+    if (scheduledForLater) setTarget(goal.daily_target)
   }
 
   return (
