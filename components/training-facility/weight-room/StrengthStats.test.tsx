@@ -248,3 +248,32 @@ describe('StrengthStats — upcoming rotations (#367 review)', () => {
     )
   })
 })
+
+describe('StrengthStats — catalog labels (#384)', () => {
+  it('renders the catalog display name instead of the slug', () => {
+    const { getByText, queryByText } = render(
+      <StrengthStats
+        stats={[{ ...PUSHUP_STATS, exercise: 'barbell-bench-press', displayName: 'Barbell Bench Press' }]}
+      />,
+    )
+    expect(getByText('Barbell Bench Press')).toBeInTheDocument()
+    expect(queryByText('barbell-bench-press')).toBeNull()
+  })
+
+  it('keys the card off the slug, not the label', () => {
+    // Identity stays the slug so test hooks, URLs, and React keys are stable
+    // across a rename in the catalog.
+    const { getByTestId } = render(
+      <StrengthStats
+        stats={[{ ...PUSHUP_STATS, exercise: 'barbell-bench-press', displayName: 'Barbell Bench Press' }]}
+      />,
+    )
+    expect(getByTestId('strength-stat-card-barbell-bench-press')).toBeInTheDocument()
+  })
+
+  it('falls back to the slug when the catalog has no label', () => {
+    const { getByText } = render(<StrengthStats stats={[PUSHUP_STATS]} />)
+    expect(getByText('pushups')).toBeInTheDocument()
+  })
+})
+

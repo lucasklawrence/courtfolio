@@ -17,6 +17,7 @@ import {
 import type {
   ExerciseGoal,
   GoalTargetPoint,
+  MonthlyFocus,
   WeightRoomAchievement,
   WeightRoomData,
   WeightRoomExercise,
@@ -121,33 +122,62 @@ function parseExerciseRows(
 }
 
 /**
- * Attach each goal's `load_multiplier` from the catalog (#373).
+ * Attach each goal's `load_multiplier` and `display_name` from the catalog
+ * (#373, #384).
  *
- * The column moved to `weight_room_exercises` so movements without a daily goal
- * could carry it, but the tonnage math in `achievements.ts`, `monthly-focus.ts`,
- * and `LogDataIsland` all read it off {@link ExerciseGoal} — joining it here
- * keeps every one of those call sites unchanged.
+ * `load_multiplier` moved to `weight_room_exercises` so movements without a
+ * daily goal could carry it, but the tonnage math in `achievements.ts`,
+ * `monthly-focus.ts`, and `LogDataIsland` all read it off {@link ExerciseGoal}
+ * — joining it here keeps every one of those call sites unchanged.
+ * `display_name` rides the same join for the same reason: the ~10 surfaces that
+ * render a goal's name would otherwise each need the roster threaded to them.
  *
  * A multiplier of 1 is omitted rather than attached: it's the documented
  * default at every read site, so leaving it off keeps the pre-#373 shape for
- * the movements where nothing changed.
+ * the movements where nothing changed. A `display_name` equal to the slug is
+ * omitted on the same principle.
  *
  * @param goals Converted goals, in read order.
  * @param exercises The full roster, used to build the lookup.
  */
-function attachLoadMultipliers(
+function attachCatalogFields(
   goals: readonly ExerciseGoal[],
   exercises: readonly WeightRoomExercise[],
 ): ExerciseGoal[] {
-  const multiplierBySlug = new Map(
-    exercises.map((exercise) => [exercise.slug, exercise.load_multiplier ?? 1]),
-  )
+  const bySlug = new Map(exercises.map((exercise) => [exercise.slug, exercise]))
   return goals.map((goal) => {
     // A goal with no catalog row is impossible — the FK guarantees one — but
     // defaulting rather than asserting keeps a partially-migrated project
     // rendering instead of throwing.
-    const multiplier = multiplierBySlug.get(goal.exercise) ?? 1
-    return multiplier === 1 ? goal : { ...goal, load_multiplier: multiplier }
+    const entry = bySlug.get(goal.exercise)
+    const multiplier = entry?.load_multiplier ?? 1
+    const label = entry?.display_name
+
+    const next: ExerciseGoal = { ...goal }
+    if (multiplier !== 1) next.load_multiplier = multiplier
+    if (label !== undefined && label !== goal.exercise) next.display_name = label
+    return next
+  })
+}
+
+/**
+ * Attach each focus's `display_name` from the catalog (#384), mirroring
+ * {@link attachCatalogFields}. The rotation cards, the upcoming strip, and the
+ * lane heatmap legend all render {@link MonthlyFocus.exercise} directly.
+ *
+ * @param focuses Converted focuses, in read order.
+ * @param exercises The full roster, used to build the lookup.
+ */
+function attachFocusDisplayNames(
+  focuses: readonly MonthlyFocus[],
+  exercises: readonly WeightRoomExercise[],
+): MonthlyFocus[] {
+  const labelBySlug = new Map(exercises.map((e) => [e.slug, e.display_name]))
+  return focuses.map((focus) => {
+    const label = labelBySlug.get(focus.exercise)
+    return label === undefined || label === focus.exercise
+      ? focus
+      : { ...focus, display_name: label }
   })
 }
 
@@ -365,8 +395,11 @@ export async function assembleWeightRoomData(
   return {
     imported_at: importedAt,
     sets: setsParsed.data.map(setRowToStrengthSet),
-    goals: attachLoadMultipliers(goals, exercises),
-    monthly_focus: focusParsed.data.map(focusRowToMonthlyFocus),
+    goals: attachCatalogFields(goals, exercises),
+    monthly_focus: attachFocusDisplayNames(
+      focusParsed.data.map(focusRowToMonthlyFocus),
+      exercises,
+    ),
     exercises,
   }
 }

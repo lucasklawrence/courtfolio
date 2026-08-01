@@ -188,3 +188,21 @@ describe('MonthlyFocusCard', () => {
     expect(screen.getByText(/\/ 5 sets today/)).toBeInTheDocument()
   })
 })
+
+describe('MonthlyFocusCard — catalog labels (#384)', () => {
+  it('renders the catalog label and keys off the slug', () => {
+    const focus = { ...FOCUS, exercise: 'farmers-carry', display_name: "Farmer's Carry" }
+    const { getByText, queryByText, getByTestId } = render(
+      <MonthlyFocusCard
+        focus={focus}
+        todayProgress={60}
+        adherence={ADHERENCE}
+        loadStats={WEIGHTED_LOAD}
+      />,
+    )
+    expect(getByText("Farmer's Carry")).toBeInTheDocument()
+    expect(queryByText('farmers-carry')).toBeNull()
+    expect(getByTestId('monthly-focus-farmers-carry')).toBeInTheDocument()
+  })
+})
+

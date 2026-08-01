@@ -9,6 +9,7 @@ import {
   type FocusLoadStats,
 } from '@/lib/training-facility/monthly-focus'
 import type { MonthlyFocus } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 // ---------------------------------------------------------------------------
 // Ring animation constants
@@ -127,7 +128,7 @@ export function PastFocusCard({ focus, adherence, loadStats }: PastFocusCardProp
           height={88}
           viewBox="0 0 88 88"
           role="img"
-          aria-label={`${Math.round(pct * 100)}% adherence for ${focus.exercise}`}
+          aria-label={`${Math.round(pct * 100)}% adherence for ${exerciseLabel(focus)}`}
         >
           {/* Background track */}
           <circle
@@ -181,7 +182,7 @@ export function PastFocusCard({ focus, adherence, loadStats }: PastFocusCardProp
             className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em]"
             style={{ color: focus.color }}
           >
-            {focus.exercise}
+            {exerciseLabel(focus)}
           </span>
         </div>
 

@@ -4,6 +4,7 @@ import type {
   ExerciseGoal,
   StrengthSet,
   WeightRoomAchievement,
+  WeightRoomExercise,
 } from '@/types/weight-room'
 
 import { targetResolverFor } from './goal-targets'
@@ -126,6 +127,12 @@ interface MovementMetrics {
 export interface ResolvedAchievement {
   /** The tier being resolved. */
   achievement: WeightRoomAchievement
+  /**
+   * Human label for {@link WeightRoomAchievement.exercise} (#384), from the
+   * catalog via the matching goal. Absent for pooled tiers (which own no
+   * single movement) and for movements with no goal.
+   */
+  displayName?: string
   /** Whether {@link best} has reached the tier's threshold. */
   earned: boolean
   /**
@@ -533,17 +540,37 @@ const STRIP_SIZE = 6
  * @param goals Configured exercises; supplies streak targets and group accents.
  * @param achievements The ladder from `weight_room_achievements`; may be empty
  *   (yields an empty view, which the page renders as its empty state).
+ * @param exercises The movement roster, for display labels (#384). Tiers are
+ *   deliberately not FK'd to goals — deleting a goal keeps its badges — so the
+ *   label has to come from the catalog, not from `goals`, or a movement with
+ *   tiers and no goal renders its raw slug.
  */
 export function buildTrophyRoomView(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   achievements: readonly WeightRoomAchievement[],
+  exercises: readonly WeightRoomExercise[] = [],
 ): TrophyRoomView {
-  const resolved = resolveAchievements(sets, goals, achievements)
   const colorByExercise = new Map(goals.map((g) => [g.exercise, g.color]))
+  // Catalog first, goal-joined label second (#384). Achievements outlive their
+  // goal, so a goals-only lookup would drop back to the slug for exactly the
+  // movements whose badges were deliberately preserved.
+  const labelByExercise = new Map<string, string>()
+  for (const g of goals) {
+    if (g.display_name !== undefined) labelByExercise.set(g.exercise, g.display_name)
+  }
+  for (const e of exercises) labelByExercise.set(e.slug, e.display_name)
   const multiplierByExercise = new Map(
     goals.map((g) => [g.exercise, Math.max(1, g.load_multiplier ?? 1)]),
   )
+
+  // Attached once here rather than inside `resolveAchievements` so the groups
+  // and both strips read the same label off the same objects.
+  const resolved = resolveAchievements(sets, goals, achievements).map((entry) => {
+    const slug = entry.achievement.exercise
+    const label = slug === null || slug === undefined ? undefined : labelByExercise.get(slug)
+    return label === undefined ? entry : { ...entry, displayName: label }
+  })
 
   const byExercise = new Map<string | null, ResolvedAchievement[]>()
   for (const entry of resolved) {
@@ -578,7 +605,7 @@ export function buildTrophyRoomView(
       })
       return {
         exercise: isPooled ? null : key,
-        label: isPooled ? POOLED_LABEL : key,
+        label: isPooled ? POOLED_LABEL : (labelByExercise.get(key) ?? key),
         color: isPooled ? null : (colorByExercise.get(key) ?? null),
         // The pooled ladder spans movements with different multipliers, so it
         // has no single one of its own — its tonnage already has each set's

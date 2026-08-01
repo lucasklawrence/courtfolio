@@ -3,6 +3,7 @@
 import { useState, type JSX } from 'react'
 
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import { slugLabel, type ExerciseLabels } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link SetList}. */
 export interface SetListProps {
@@ -22,6 +23,12 @@ export interface SetListProps {
    * usually disappear together).
    */
   goalsByExercise: Readonly<Record<string, ExerciseGoal | undefined>>
+  /**
+   * Catalog slug → label lookup (#384). Preferred over the goal's joined
+   * label, because a set outlives its goal by design — deleting a goal keeps
+   * the sets, and only the catalog still knows what the movement is called.
+   */
+  labels?: ExerciseLabels
   /**
    * Per-row delete handler. Omit to render the list read-only — non-
    * admin viewers don't see the trash icon. Resolves clear the
@@ -56,6 +63,7 @@ export interface SetListProps {
 export function SetList({
   setsToday,
   goalsByExercise,
+  labels,
   onDelete,
   busy = false,
   dayLabel = 'Today',
@@ -141,7 +149,7 @@ export function SetList({
                   className="text-[10px] font-semibold uppercase tracking-[0.18em]"
                   style={{ color }}
                 >
-                  {exercise}
+                  {slugLabel(exercise, goal, labels)}
                 </span>
                 <span className="text-sm font-semibold tabular-nums text-white">
                   {total}
@@ -177,7 +185,7 @@ export function SetList({
                 className="min-w-[80px] font-mono text-sm font-semibold uppercase tracking-[0.18em]"
                 style={{ color }}
               >
-                {s.exercise}
+                {slugLabel(s.exercise, goalsByExercise[s.exercise], labels)}
               </span>
               <span className="font-mono text-base font-semibold tabular-nums text-white">
                 {s.reps}
@@ -196,7 +204,7 @@ export function SetList({
               {onDelete ? (
                 <button
                   type="button"
-                  aria-label={`Delete set of ${s.reps} ${s.exercise}`}
+                  aria-label={`Delete set of ${s.reps} ${slugLabel(s.exercise, goalsByExercise[s.exercise], labels)}`}
                   disabled={busy || isPending}
                   onClick={() => void handleDelete(s)}
                   className="rounded-full border border-rose-300/25 bg-rose-300/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-rose-200 transition hover:bg-rose-300/15 disabled:cursor-not-allowed disabled:opacity-40"

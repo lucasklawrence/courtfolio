@@ -9,8 +9,14 @@ import {
 
 /** One selectable exercise, in render order. */
 export interface FilterableExercise {
-  /** Exercise name; the chip label and the URL token. */
+  /** Exercise slug; the URL token and the chip's identity. */
   exercise: string
+  /**
+   * Human label for the chip (#384). Absent falls back to {@link exercise}.
+   * The URL token always stays the slug, so a filtered link keeps working
+   * regardless of what the catalog calls the movement.
+   */
+  displayName?: string
   /** Hex accent from the goal, used to tint the chip when selected. */
   color: string
   /** Whether this is a "grease the groove" focus anchor rather than a permanent goal. */
@@ -78,7 +84,7 @@ export function ExerciseFilterChips({
         Show
       </span>
       <nav aria-labelledby="exercise-filter-label" className="flex flex-wrap gap-2">
-        {exercises.map(({ exercise, color, isFocus }) => {
+        {exercises.map(({ exercise, displayName, color, isFocus }) => {
           const isOn = selectedSet.has(exercise)
           return (
             <Link
@@ -87,7 +93,7 @@ export function ExerciseFilterChips({
               scroll={false}
               data-testid={`exercise-chip-${exercise}`}
               data-selected={isOn}
-              aria-label={`${isOn ? 'Hide' : 'Show'} ${exercise}`}
+              aria-label={`${isOn ? 'Hide' : 'Show'} ${displayName ?? exercise}`}
               className={`rounded-full border px-3 py-1 font-mono text-[11px] tracking-[0.12em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 ${
                 isOn
                   ? 'border-transparent text-[#0a0a0a]'
@@ -95,7 +101,7 @@ export function ExerciseFilterChips({
               }`}
               style={isOn ? { backgroundColor: color } : undefined}
             >
-              {exercise}
+              {displayName ?? exercise}
               {isFocus ? <span className="ml-1.5 opacity-70">GTG</span> : null}
             </Link>
           )

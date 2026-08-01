@@ -3,6 +3,7 @@ import type { JSX } from 'react'
 import { RoughBar } from '@/components/training-facility/shared/charts'
 import { buildWeeklyVolume } from '@/lib/training-facility/weight-room-history'
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Cream axis ink that reads on the Weight Room's dark card surface. */
 const AXIS_COLOR = 'rgba(247, 234, 217, 0.55)'
@@ -62,7 +63,7 @@ export function WeeklyVolumeChart({
       stroke={goal.color}
       axisColor={AXIS_COLOR}
       yLabel="reps"
-      ariaLabel={`${goal.exercise} weekly volume over the last ${points.length} weeks (weekly goal ${weeklyGoal} reps)`}
+      ariaLabel={`${exerciseLabel(goal)} weekly volume over the last ${points.length} weeks (weekly goal ${weeklyGoal} reps)`}
       emptyMessage="No sets logged yet"
     />
   )

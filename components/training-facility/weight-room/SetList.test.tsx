@@ -157,3 +157,76 @@ describe('SetList', () => {
     expect(total).not.toHaveTextContent('/')
   })
 })
+
+describe('SetList — catalog labels (#384)', () => {
+  const BENCH: ExerciseGoal = {
+    exercise: 'barbell-bench-press',
+    display_name: 'Barbell Bench Press',
+    daily_target: 30,
+    color: '#0EA5A1',
+  }
+
+  it('labels both the running total and each set row from the catalog', () => {
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{ 'barbell-bench-press': BENCH }}
+      />,
+    )
+    // Totals strip + the set row itself.
+    expect(screen.getAllByText('Barbell Bench Press').length).toBeGreaterThanOrEqual(2)
+    expect(screen.queryByText('barbell-bench-press')).toBeNull()
+    // Identity hook stays on the slug.
+    expect(screen.getByTestId('set-list-total-barbell-bench-press')).toBeInTheDocument()
+  })
+
+  it('still labels a set whose goal was deleted, from the catalog', () => {
+    // Sets outlive their goal by design (#373), so this is a live path — and
+    // the catalog still holds the label even though the goal is gone.
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{}}
+        labels={new Map([['barbell-bench-press', 'Barbell Bench Press']])}
+      />,
+    )
+    expect(screen.getAllByText('Barbell Bench Press').length).toBeGreaterThan(0)
+    expect(screen.queryByText('barbell-bench-press')).toBeNull()
+  })
+
+  it('prefers the catalog label over a stale one joined onto the goal', () => {
+    // The catalog is the owner; a goal's joined copy is a read-time convenience.
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{ 'barbell-bench-press': { ...BENCH, display_name: 'Stale Name' } }}
+        labels={new Map([['barbell-bench-press', 'Barbell Bench Press']])}
+      />,
+    )
+    expect(screen.getAllByText('Barbell Bench Press').length).toBeGreaterThan(0)
+    expect(screen.queryByText('Stale Name')).toBeNull()
+  })
+
+  it('falls back to the slug with neither catalog nor goal', () => {
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{}}
+      />,
+    )
+    expect(screen.getAllByText('barbell-bench-press').length).toBeGreaterThan(0)
+  })
+
+  it('names the delete control with the label', async () => {
+    const onDelete = vi.fn()
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{ 'barbell-bench-press': BENCH }}
+        onDelete={onDelete}
+      />,
+    )
+    expect(screen.getByLabelText('Delete set of 5 Barbell Bench Press')).toBeInTheDocument()
+  })
+})
+

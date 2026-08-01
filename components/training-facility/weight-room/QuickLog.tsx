@@ -3,6 +3,7 @@
 import { useEffect, useId, useState, type FormEvent, type JSX } from 'react'
 
 import type { ExerciseGoal } from '@/types/weight-room'
+import { exerciseLabel, slugLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link QuickLog}. */
 export interface QuickLogProps {
@@ -120,7 +121,9 @@ export function QuickLog({
       await onLog({ exercise, reps, ...(trimmed ? { variant: trimmed } : {}) })
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : `Couldn’t log ${reps} ${exercise}.`,
+        err instanceof Error
+          ? err.message
+          : `Couldn’t log ${reps} ${slugLabel(exercise, goals.find((g) => g.exercise === exercise))}.`,
       )
     } finally {
       setPendingExercise(null)
@@ -267,7 +270,7 @@ function QuickLogRow({
           className="font-mono text-sm font-semibold uppercase tracking-[0.18em]"
           style={{ color: goal.color }}
         >
-          {goal.exercise}
+          {exerciseLabel(goal)}
         </span>
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
           target {goal.daily_target}
@@ -308,7 +311,7 @@ function QuickLogRow({
           value={gripSelectValue}
           onChange={(e) => handleGripSelect(e.target.value)}
           disabled={disabled}
-          aria-label={`Grip for ${goal.exercise} (optional)`}
+          aria-label={`Grip for ${exerciseLabel(goal)} (optional)`}
           data-testid={`quick-log-${goal.exercise}-grip`}
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"
         >
@@ -328,7 +331,7 @@ function QuickLogRow({
             onChange={(e) => setVariant(e.target.value)}
             disabled={disabled}
             placeholder="type a grip"
-            aria-label={`Custom grip for ${goal.exercise}`}
+            aria-label={`Custom grip for ${exerciseLabel(goal)}`}
             data-testid={`quick-log-${goal.exercise}-variant`}
             className="w-32 rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white placeholder:text-white/30 focus:border-amber-300/60 focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"
           />
