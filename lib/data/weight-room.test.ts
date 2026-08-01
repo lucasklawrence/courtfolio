@@ -167,6 +167,7 @@ describe('getWeightRoomData', () => {
         { exercise: 'pullups', daily_target: 30, color: '#0EA5A1' },
       ],
       monthly_focus: [],
+      exercises: [],
     })
   })
 
@@ -308,6 +309,129 @@ describe('getWeightRoomData', () => {
     )
     await expect(getWeightRoomData()).rejects.toThrow(
       /weight_room_sets failed schema validation/,
+    )
+  })
+})
+
+describe('getWeightRoomData — exercise catalog (#373)', () => {
+  /** One catalog row, with the not-null columns PostgREST always returns. */
+  function catalogRow(
+    slug: string,
+    overrides: Record<string, unknown> = {},
+  ): Record<string, unknown> {
+    return {
+      slug,
+      display_name: slug,
+      equipment: 'bodyweight',
+      muscle_group: 'full-body',
+      load_multiplier: 1,
+      is_unilateral: false,
+      archived: false,
+      updated_at: '2026-07-31T08:00:00Z',
+      ...overrides,
+    }
+  }
+
+  /** A goal row as read after #373 — no `load_multiplier` column. */
+  function goalRow(exercise: string): Record<string, unknown> {
+    return {
+      exercise,
+      daily_target: 100,
+      color: '#EA580C',
+      updated_at: '2026-07-31T08:00:00Z',
+    }
+  }
+
+  it('joins load_multiplier from the catalog onto the goal', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('shrugs')])
+    stubTable('weight_room_exercises', [
+      catalogRow('shrugs', { equipment: 'dumbbell', load_multiplier: 2 }),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // The tonnage math in achievements.ts / monthly-focus.ts reads this off
+    // the goal, so the join is what keeps those call sites working unchanged.
+    expect(data?.goals[0]).toMatchObject({ exercise: 'shrugs', load_multiplier: 2 })
+  })
+
+  it('omits load_multiplier when the movement moves a single implement', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', [catalogRow('pushups', { load_multiplier: 1 })])
+
+    const data = await getWeightRoomData()
+
+    // Absent rather than `1` — every read site defaults it, and omitting keeps
+    // the pre-#373 shape for movements where nothing actually changed.
+    expect(data?.goals[0]).not.toHaveProperty('load_multiplier')
+  })
+
+  it('defaults to a single implement when a goal has no catalog row', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('orphaned')])
+    stubTable('weight_room_exercises', [])
+
+    // The FK makes this unreachable in practice; the point is that a
+    // partially-migrated project still renders instead of throwing.
+    const data = await getWeightRoomData()
+    expect(data?.goals[0]).not.toHaveProperty('load_multiplier')
+  })
+
+  it('surfaces the roster on the assembled shape, archived rows included', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', [
+      catalogRow('pushups', { display_name: 'Pushups', muscle_group: 'chest' }),
+      catalogRow('leg-press', {
+        display_name: 'Leg Press',
+        equipment: 'machine',
+        muscle_group: 'legs',
+        archived: true,
+      }),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // The live columns are all NOT NULL DEFAULT, so PostgREST always returns
+    // them and the converter carries them through — only a `null` (a fixture
+    // or a pre-default row) collapses to absent.
+    expect(data?.exercises).toEqual([
+      {
+        slug: 'pushups',
+        display_name: 'Pushups',
+        equipment: 'bodyweight',
+        muscle_group: 'chest',
+        load_multiplier: 1,
+        is_unilateral: false,
+        archived: false,
+      },
+      {
+        slug: 'leg-press',
+        display_name: 'Leg Press',
+        equipment: 'machine',
+        muscle_group: 'legs',
+        load_multiplier: 1,
+        is_unilateral: false,
+        archived: true,
+      },
+    ])
+  })
+
+  it('throws a descriptive error when the catalog query fails', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', null, { message: 'relation does not exist' })
+    await expect(getWeightRoomData()).rejects.toThrow(/relation does not exist/)
+  })
+
+  it('throws when a catalog row carries an equipment value outside the enum', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', [catalogRow('pushups', { equipment: 'trebuchet' })])
+    await expect(getWeightRoomData()).rejects.toThrow(
+      /weight_room_exercises failed schema validation/,
     )
   })
 })

@@ -3,19 +3,23 @@ import { z } from 'zod'
 
 import {
   WeightRoomAchievementRowSchema,
+  WeightRoomExerciseRowSchema,
   WeightRoomGoalRowSchema,
   WeightRoomGoalTargetRowSchema,
   WeightRoomMonthlyFocusRowSchema,
   WeightRoomSetRowSchema,
   achievementRowToAchievement,
+  exerciseRowToWeightRoomExercise,
   focusRowToMonthlyFocus,
   goalRowToExerciseGoal,
   setRowToStrengthSet,
 } from '@/lib/schemas/weight-room'
 import type {
+  ExerciseGoal,
   GoalTargetPoint,
   WeightRoomAchievement,
   WeightRoomData,
+  WeightRoomExercise,
 } from '@/types/weight-room'
 
 import { fetchAllRows } from './paged-read'
@@ -36,18 +40,106 @@ const GOALS_TABLE = 'weight_room_goals'
 const FOCUS_TABLE = 'weight_room_monthly_focus'
 /** Effective-dated daily-target history backing per-day goal resolution (#362). */
 const GOAL_TARGETS_TABLE = 'weight_room_goal_targets'
+/** Movement roster — FK target for sets, and the owner of `load_multiplier` (#373). */
+const EXERCISES_TABLE = 'weight_room_exercises'
 
 /** Whitelisted column lists for each table; `updated_at` rides along for `imported_at` computation. */
 const SETS_COLUMNS = 'id, logged_at, exercise, reps, weight_lbs, variant, updated_at'
-const GOALS_COLUMNS = 'exercise, daily_target, color, kind, load_multiplier, updated_at'
+// `load_multiplier` deliberately absent (#373) — it moved to the catalog and is
+// joined on below. The goals column still exists (dropping it while the
+// deployed build still selected it would break the live read) but is dead.
+const GOALS_COLUMNS = 'exercise, daily_target, color, kind, updated_at'
 const FOCUS_COLUMNS =
   'id, exercise, daily_target, target_kind, color, category, start_date, end_date, updated_at'
 const GOAL_TARGETS_COLUMNS = 'id, exercise, daily_target, effective_from, updated_at'
+const EXERCISES_COLUMNS =
+  'slug, display_name, equipment, muscle_group, load_multiplier, is_unilateral, archived, updated_at'
 
 const WeightRoomSetRowsSchema = z.array(WeightRoomSetRowSchema)
 const WeightRoomGoalRowsSchema = z.array(WeightRoomGoalRowSchema)
 const WeightRoomMonthlyFocusRowsSchema = z.array(WeightRoomMonthlyFocusRowSchema)
 const WeightRoomGoalTargetRowsSchema = z.array(WeightRoomGoalTargetRowSchema)
+const WeightRoomExerciseRowsSchema = z.array(WeightRoomExerciseRowSchema)
+
+/**
+ * Fetch the movement roster (#373) using the supplied client.
+ *
+ * Shared between the browser and server entries, and used directly by the
+ * Settings catalog editor. Ordered by slug so the editor renders a stable list
+ * without re-sorting. Includes archived rows — the editor needs to show them to
+ * un-archive them; pickers filter.
+ *
+ * Returns an empty array (not `null`) when the table is empty, matching
+ * {@link assembleWeightRoomAchievements}: an empty roster is a valid state that
+ * the editor renders as "add your first movement", not a "no data yet" branch.
+ *
+ * @param supabase Browser or server SSR client (both anon role; the table's RLS
+ *   allows anon SELECT).
+ * @throws when the Supabase query fails or row-shape validation fails.
+ */
+export async function assembleWeightRoomExercises(
+  supabase: SupabaseClient,
+): Promise<WeightRoomExercise[]> {
+  const res = await supabase
+    .from(EXERCISES_TABLE)
+    .select(EXERCISES_COLUMNS)
+    .order('slug', { ascending: true })
+
+  if (res.error) {
+    throw new Error(`Failed to load weight room exercises: ${res.error.message}`)
+  }
+
+  return parseExerciseRows((res.data ?? []) as unknown as Array<Record<string, unknown>>)
+}
+
+/**
+ * Validate raw catalog rows and convert them to {@link WeightRoomExercise}.
+ * Factored out so {@link assembleWeightRoomData} and
+ * {@link assembleWeightRoomExercises} can't drift on how the roster is parsed.
+ *
+ * @param raw Rows straight from PostgREST, still carrying `updated_at`.
+ * @throws when row-shape validation fails.
+ */
+function parseExerciseRows(
+  raw: Array<Record<string, unknown>>,
+): WeightRoomExercise[] {
+  const parsed = WeightRoomExerciseRowsSchema.safeParse(raw.map(stripUpdatedAt))
+  if (!parsed.success) {
+    throw new Error(`weight_room_exercises failed schema validation: ${parsed.error.message}`)
+  }
+  return parsed.data.map(exerciseRowToWeightRoomExercise)
+}
+
+/**
+ * Attach each goal's `load_multiplier` from the catalog (#373).
+ *
+ * The column moved to `weight_room_exercises` so movements without a daily goal
+ * could carry it, but the tonnage math in `achievements.ts`, `monthly-focus.ts`,
+ * and `LogDataIsland` all read it off {@link ExerciseGoal} — joining it here
+ * keeps every one of those call sites unchanged.
+ *
+ * A multiplier of 1 is omitted rather than attached: it's the documented
+ * default at every read site, so leaving it off keeps the pre-#373 shape for
+ * the movements where nothing changed.
+ *
+ * @param goals Converted goals, in read order.
+ * @param exercises The full roster, used to build the lookup.
+ */
+function attachLoadMultipliers(
+  goals: readonly ExerciseGoal[],
+  exercises: readonly WeightRoomExercise[],
+): ExerciseGoal[] {
+  const multiplierBySlug = new Map(
+    exercises.map((exercise) => [exercise.slug, exercise.load_multiplier ?? 1]),
+  )
+  return goals.map((goal) => {
+    // A goal with no catalog row is impossible — the FK guarantees one — but
+    // defaulting rather than asserting keeps a partially-migrated project
+    // rendering instead of throwing.
+    const multiplier = multiplierBySlug.get(goal.exercise) ?? 1
+    return multiplier === 1 ? goal : { ...goal, load_multiplier: multiplier }
+  })
+}
 
 /** Supabase table backing the Trophy Room achievement ladder (#336). */
 const ACHIEVEMENTS_TABLE = 'weight_room_achievements'
@@ -156,7 +248,7 @@ export async function assembleWeightRoomData(
   // relative order unstable between fetches. `updated_at` resolves ties
   // by insertion order (sets have no update path), and `id` backstops
   // same-transaction inserts whose `updated_at` also collides.
-  const [setsRaw, goalsRes, focusRes, goalTargetsRes] = await Promise.all([
+  const [setsRaw, goalsRes, focusRes, goalTargetsRes, exercisesRes] = await Promise.all([
     // Paged — the set log is the one table here that grows without bound, and
     // it crossed PostgREST's response cap in July 2026, silently dropping the
     // *newest* sets (this query sorts ascending). The multi-key order above is
@@ -182,6 +274,9 @@ export async function assembleWeightRoomData(
       .select(GOAL_TARGETS_COLUMNS)
       .order('exercise', { ascending: true })
       .order('effective_from', { ascending: true }),
+    // The roster (#373). Read here rather than in a second round trip because
+    // the goals below need its `load_multiplier` joined on regardless.
+    supabase.from(EXERCISES_TABLE).select(EXERCISES_COLUMNS).order('slug', { ascending: true }),
   ])
 
   if (goalsRes.error) {
@@ -193,15 +288,25 @@ export async function assembleWeightRoomData(
   if (goalTargetsRes.error) {
     throw new Error(`Failed to load weight room goal targets: ${goalTargetsRes.error.message}`)
   }
+  if (exercisesRes.error) {
+    throw new Error(`Failed to load weight room exercises: ${exercisesRes.error.message}`)
+  }
 
   const goalsRaw = (goalsRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const focusRaw = (focusRes.data ?? []) as unknown as Array<Record<string, unknown>>
   const goalTargetsRaw = (goalTargetsRes.data ?? []) as unknown as Array<Record<string, unknown>>
+  const exercisesRaw = (exercisesRes.data ?? []) as unknown as Array<Record<string, unknown>>
 
   // Compute imported_at before stripping `updated_at` — that column lives
   // on every row but isn't part of the row-shape schema (`.strict()`
   // would reject it).
-  const importedAt = computeImportedAt([setsRaw, goalsRaw, focusRaw, goalTargetsRaw])
+  const importedAt = computeImportedAt([
+    setsRaw,
+    goalsRaw,
+    focusRaw,
+    goalTargetsRaw,
+    exercisesRaw,
+  ])
 
   // A monthly focus can't exist without its `kind: 'focus'` goal anchor
   // (FK), so sets+goals empty still means "no data" — focus is implied
@@ -235,20 +340,24 @@ export async function assembleWeightRoomData(
   }
 
   const historyByExercise = groupTargetHistory(goalTargetsParsed.data)
+  const exercises = parseExerciseRows(exercisesRaw)
+
+  const goals = goalsParsed.data.map((row) => {
+    const goal = goalRowToExerciseGoal(row)
+    const history = historyByExercise.get(goal.exercise)
+    // Omit rather than attach `[]` so "no recorded history" is a single
+    // shape everywhere — `targetForDay` treats absent and empty the same,
+    // but keeping one of them off the wire makes fixtures and snapshots
+    // easier to read.
+    return history === undefined ? goal : { ...goal, target_history: history }
+  })
 
   return {
     imported_at: importedAt,
     sets: setsParsed.data.map(setRowToStrengthSet),
-    goals: goalsParsed.data.map((row) => {
-      const goal = goalRowToExerciseGoal(row)
-      const history = historyByExercise.get(goal.exercise)
-      // Omit rather than attach `[]` so "no recorded history" is a single
-      // shape everywhere — `targetForDay` treats absent and empty the same,
-      // but keeping one of them off the wire makes fixtures and snapshots
-      // easier to read.
-      return history === undefined ? goal : { ...goal, target_history: history }
-    }),
+    goals: attachLoadMultipliers(goals, exercises),
     monthly_focus: focusParsed.data.map(focusRowToMonthlyFocus),
+    exercises,
   }
 }
 

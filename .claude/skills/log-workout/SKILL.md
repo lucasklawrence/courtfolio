@@ -27,16 +27,23 @@ and out of scope here.
 
 ## Data model
 
-Two Supabase tables back the Weight Room (see
-`supabase/migrations/20260507120000_weight_room_tables.sql`):
+Three Supabase tables back the Weight Room (see
+`supabase/migrations/20260507120000_weight_room_tables.sql` and
+`20260731120000_weight_room_exercises_catalog.sql`):
 
-- **`weight_room_goals`** — `(exercise PK, daily_target, color, kind)`. One row
-  per exercise. Seeded with `pushups` (target 100) and `pullups` (target 30);
-  `kind` is `permanent` or `focus` (the monthly "grease the groove" anchor —
-  e.g. `shrugs`, seeded by #255). You don't write this table when logging sets.
+- **`weight_room_exercises`** — `(slug PK, display_name, equipment,
+  muscle_group, load_multiplier, is_unilateral, archived)`. **The movement
+  roster**, added by #373, and the FK target for every set. A movement must
+  exist here to be loggable — and that is *all* it needs. Gym lifts (bench,
+  squat, rows) live here with no daily goal at all.
+- **`weight_room_goals`** — `(exercise PK, daily_target, color, kind)`. An
+  **overlay** on the roster: only the grease-the-groove movements that also have
+  a daily ring. `exercise` FKs the catalog. `kind` is `permanent` or `focus`
+  (the monthly anchor — e.g. `shrugs`, #255). You don't write this table when
+  logging sets, and **a movement does not need a row here to be logged.**
 - **`weight_room_sets`** — `(id, logged_at, exercise, reps, weight_lbs)`. One row
-  per set. `exercise` is a FK to `weight_room_goals(exercise)` — inserting a set
-  for an exercise that isn't configured fails with a `23503` FK violation.
+  per set. `exercise` is a FK to `weight_room_exercises(slug)` — inserting a set
+  for a movement that isn't in the catalog fails with a `23503` FK violation.
   `weight_lbs` (added by #255, migration
   `20260628120100_weight_room_monthly_focus.sql`) is an **optional** load in
   pounds: set it for weighted movements (shrugs, carries), leave it **null** for
@@ -74,30 +81,36 @@ goal): if one set's reps exceed `daily_target`, confirm with the user before
 inserting. (The goals fetched for canonicalization below already give you each
 exercise's `daily_target`.)
 
-**Canonicalize the exercise name against the existing goals — don't trust the
-prose alone.** Writing directly via the MCP bypasses the admin API's Zod
+**Canonicalize the movement name against the catalog — don't trust the prose
+alone.** Writing directly via the MCP bypasses the admin API's Zod
 `exerciseWriteField` transform (`.toLowerCase()` in `lib/schemas/weight-room.ts`),
 and there is no DB-level case-folding, so a stray `Pushups` would insert as a
 *distinct* exercise and surface as a separate ring (the case-divergent-duplicate
-bug #181 fixed). To stay safe, first read the configured keys and match the
-parsed name case-insensitively to one of them:
+bug #181 fixed). To stay safe, first read the roster and match the parsed name
+case-insensitively against both the slug and the display name:
 
 ```sql
-select exercise from public.weight_room_goals order by exercise;
+select slug, display_name, daily_target
+from public.weight_room_exercises e
+left join public.weight_room_goals g on g.exercise = e.slug
+where not e.archived
+order by e.slug;
 ```
 
-Use the **exact stored key** for the insert (e.g. parsed `Pull-ups` → stored
-`pullups`). If nothing matches, treat it as a new exercise — see step 6; do not
-invent a near-duplicate key.
+Use the **exact stored slug** for the insert (e.g. parsed `Pull-ups` → stored
+`pullups`, `Barbell Bench Press` → `barbell-bench-press`). If nothing matches,
+treat it as a new movement — see step 6; do not invent a near-duplicate key.
 
-**The exercise roster is a moving target — read it live every time; never work
-from a remembered or hardcoded list.** Permanent rings get added over time (e.g.
-`squats`, a bodyweight lower-body goal), and the monthly focus rotates a
-different accessory in each month (`shrugs` in July). Because logging keys purely
-off the `exercise` column in `weight_room_goals`, the skill stays correct across
-new exercises and focus rotations with no change here — *provided* you
-canonicalize against the live table each run rather than assuming only
-pushups/pullups/shrugs exist.
+`daily_target` comes back **null for movements with no daily goal** — that's the
+normal state for every gym lift, not a problem. It's only used for the
+implausible-rep sanity check above, which simply doesn't apply when it's null.
+
+**Read the roster live every time; never work from a remembered or hardcoded
+list.** It grows (gym movements get added in settings, permanent rings like
+`squats` appear) and the monthly focus rotates a different accessory each month.
+Because logging keys purely off `weight_room_exercises.slug`, the skill stays
+correct across new movements and focus rotations with no change here — *provided*
+you canonicalize against the live table each run.
 
 ### 1b. Parse the load (optional)
 
@@ -199,41 +212,67 @@ returning id, exercise, reps, weight_lbs;
 -- <OFFSET> = the offset from step 2, e.g. -07:00 (PDT) or -08:00 (PST).
 -- top_set_lbs / tonnage_lbs come back null for bodyweight exercises (every
 -- weight_lbs is null), so they self-hide — only weighted lanes get numbers.
-select s.exercise, sum(s.reps) as total, g.daily_target,
+-- LEFT join the goals overlay: a gym lift has no goal row (#373), and an inner
+-- join would silently drop it from the readback entirely.
+select s.exercise, sum(s.reps) as total, g.daily_target, g.color,
        max(s.weight_lbs)          as top_set_lbs,
        sum(s.reps * s.weight_lbs) as tonnage_lbs
 from public.weight_room_sets s
-join public.weight_room_goals g on g.exercise = s.exercise
+left join public.weight_room_goals g on g.exercise = s.exercise
 where s.logged_at >= '2026-05-28T00:00:00<OFFSET>'
   and s.logged_at <  '2026-05-29T00:00:00<OFFSET>'
-group by s.exercise, g.daily_target
+group by s.exercise, g.daily_target, g.color
 order by s.exercise;
 ```
 
 Then report each exercise as `total / daily_target` (e.g. "Pushups: 60 / 100").
+When `daily_target` is null the movement has no daily ring — report the bare
+total ("Bench press: 5 sets, 25 reps") rather than inventing a denominator.
 For a **weighted** exercise, also surface its load from the readback — e.g.
 "Shrugs: 30 / 100 · 100 lb top set · 3,000 lb tonnage" — but only when
 `top_set_lbs`/`tonnage_lbs` are non-null (bodyweight lanes omit them).
 Match the site's voice — basketball-flavored, lightly celebratory. Use each
-exercise's configured `color` from `weight_room_goals` for its emoji lane,
-mapping the hex to the nearest emoji rather than hardcoding a fixed list — the
-two seeded exercises are pushups (`#EA580C` rim-orange, 🟠) and pullups
-(`#0EA5A1` teal, 🟢), but an exercise added via step 6 brings its own color, so
-read it from the row rather than assuming only these two exist.
+exercise's configured `color` from the readback for its emoji lane, mapping the
+hex to the nearest emoji rather than hardcoding a fixed list — the two seeded
+exercises are pushups (`#EA580C` rim-orange, 🟠) and pullups (`#0EA5A1` teal,
+🟢), but a movement with a goal added later brings its own color, so read it
+from the row rather than assuming only these two exist. `color` is null for a
+catalog-only movement (no daily goal) — use a neutral ⚪ lane for those.
 
-### 6. Unconfigured exercise (FK violation)
+### 6. Movement not in the catalog (FK violation)
 
-If the insert fails with Postgres code `23503`, the exercise has no row in
-`weight_room_goals`. Don't silently drop it — tell the user it's not configured
-and offer to add it (ask for a sensible `daily_target` and a hex `color`):
+If the insert fails with Postgres code `23503`, the movement has no row in
+`weight_room_exercises`. Don't silently drop it — tell the user it isn't in the
+catalog and offer to add it.
+
+**Add a catalog row, not a daily goal.** These are two different things as of
+#373, and conflating them is the trap: a `weight_room_goals` row creates a
+*daily ring* on the Today view with a target the movement has to hit every day.
+That's right for a grease-the-groove movement and wrong for every gym lift —
+a phantom "0 / 50 bench press" ring would show up on the dashboard forever.
+
+Ask for `equipment` and `muscle_group` (both are constrained — see the values in
+the migration), confirm the generated slug, then:
+
+```sql
+insert into public.weight_room_exercises
+  (slug, display_name, equipment, muscle_group, load_multiplier)
+values ('dumbbell-bench-press', 'Dumbbell Bench Press', 'dumbbell', 'chest', 2)
+on conflict (slug) do nothing;
+```
+
+`load_multiplier` is **2 for anything carried as a pair of dumbbells** and 1
+otherwise — `weight_lbs` is per implement, so this is what makes tonnage count
+both. Then retry the set insert.
+
+Only add a `weight_room_goals` row if the user explicitly wants a **daily
+target** for the movement, and ask for the target and hex color separately:
 
 ```sql
 insert into public.weight_room_goals (exercise, daily_target, color)
 values ('dips', 50, '#F59E0B')
 on conflict (exercise) do nothing;
 ```
-
-Then retry the set insert.
 
 ## Notes
 

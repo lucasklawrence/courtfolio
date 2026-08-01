@@ -15,10 +15,13 @@ import { z } from 'zod'
 import type {
   AchievementMeasure,
   AchievementScope,
+  ExerciseEquipment,
   ExerciseGoal,
+  ExerciseMuscleGroup,
   MonthlyFocus,
   StrengthSet,
   WeightRoomAchievement,
+  WeightRoomExercise,
 } from '@/types/weight-room'
 
 /**
@@ -136,6 +139,10 @@ export type WeightRoomSetRow = z.infer<typeof WeightRoomSetRowSchema>
  * Zod schema for one row of `public.weight_room_goals` as read from
  * Supabase. Preserves DB casing exactly — see {@link exerciseWriteField}
  * for why the lowercase transform is write-side only.
+ *
+ * No `load_multiplier` as of #373: it moved to `weight_room_exercises`, and the
+ * data layer joins it onto {@link ExerciseGoal} after conversion. The goals
+ * column is no longer selected (a follow-up drops it once this deploys).
  */
 export const WeightRoomGoalRowSchema = z
   .object({
@@ -147,10 +154,6 @@ export const WeightRoomGoalRowSchema = z
     // 'permanent', so live rows always carry it. Absent → treated as
     // 'permanent' by the row converter.
     kind: z.enum(['permanent', 'focus']).nullable().optional(),
-    // Optional + nullable so pre-load-ladder rows (and fixtures) without the
-    // column still validate; the DB column is NOT NULL DEFAULT 1, so live rows
-    // always carry it. Absent → treated as 1 by the row converter.
-    load_multiplier: positiveInt().nullable().optional(),
   })
   .strict()
 
@@ -253,6 +256,11 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
  * Translate a validated `weight_room_goals` row into the public
  * {@link ExerciseGoal} shape. Pass-through; same reasoning as
  * {@link setRowToStrengthSet}.
+ *
+ * `load_multiplier` is deliberately *not* set here — it lives on the catalog as
+ * of #373, and the data layer attaches it from `weight_room_exercises` after
+ * this conversion. A goal converted in isolation therefore has it absent, which
+ * every read site already treats as `1`.
  */
 export function goalRowToExerciseGoal(row: WeightRoomGoalRow): ExerciseGoal {
   return {
@@ -262,10 +270,137 @@ export function goalRowToExerciseGoal(row: WeightRoomGoalRow): ExerciseGoal {
     // Absent/null → omit so it defaults to 'permanent' at read sites
     // (pre-#255 goals and fixtures never carry kind).
     ...(row.kind != null ? { kind: row.kind } : {}),
-    // Same treatment: absent/null → omit so read sites default it to 1.
-    ...(row.load_multiplier != null ? { load_multiplier: row.load_multiplier } : {}),
   }
 }
+
+/** The eight equipment kinds, as a Zod enum reused by the row + write schemas. */
+const exerciseEquipment = (): z.ZodType<ExerciseEquipment> =>
+  z.enum([
+    'barbell',
+    'dumbbell',
+    'kettlebell',
+    'machine',
+    'cable',
+    'band',
+    'bodyweight',
+    'other',
+  ])
+
+/** The seven coarse muscle groups, as a Zod enum reused by the row + write schemas. */
+const exerciseMuscleGroup = (): z.ZodType<ExerciseMuscleGroup> =>
+  z.enum(['chest', 'back', 'shoulders', 'arms', 'legs', 'core', 'full-body'])
+
+/**
+ * Zod schema for one row of `public.weight_room_exercises` (#373) — the
+ * movement roster. Mirrors the table in
+ * `supabase/migrations/20260731120000_weight_room_exercises_catalog.sql`.
+ *
+ * `slug` preserves DB casing on read for the same reason every sibling row
+ * schema does (see {@link exerciseWriteField}); writes lowercase it.
+ * `load_multiplier` / `is_unilateral` / `archived` are `.nullable().optional()`
+ * so a fixture omitting them still validates, even though the live columns are
+ * all `NOT NULL DEFAULT`.
+ */
+export const WeightRoomExerciseRowSchema = z
+  .object({
+    slug: z.string().min(1),
+    display_name: z.string().min(1),
+    equipment: exerciseEquipment(),
+    muscle_group: exerciseMuscleGroup(),
+    load_multiplier: positiveInt().nullable().optional(),
+    is_unilateral: z.boolean().nullable().optional(),
+    archived: z.boolean().nullable().optional(),
+  })
+  .strict()
+
+/** Validated `weight_room_exercises` row inferred from {@link WeightRoomExerciseRowSchema}. */
+export type WeightRoomExerciseRow = z.infer<typeof WeightRoomExerciseRowSchema>
+
+/**
+ * Translate a validated `weight_room_exercises` row into the public
+ * {@link WeightRoomExercise} shape. Null/absent optionals are omitted so the
+ * consumed type stays `number | undefined` / `boolean | undefined` and read
+ * sites can apply their documented defaults (1 / false / false).
+ */
+export function exerciseRowToWeightRoomExercise(
+  row: WeightRoomExerciseRow,
+): WeightRoomExercise {
+  return {
+    slug: row.slug,
+    display_name: row.display_name,
+    equipment: row.equipment,
+    muscle_group: row.muscle_group,
+    ...(row.load_multiplier != null ? { load_multiplier: row.load_multiplier } : {}),
+    ...(row.is_unilateral != null ? { is_unilateral: row.is_unilateral } : {}),
+    ...(row.archived != null ? { archived: row.archived } : {}),
+  }
+}
+
+/**
+ * The catalog write fields, without any `.default()`.
+ *
+ * Kept default-free so {@link WeightRoomExerciseUpdateSchema} can be derived
+ * from it safely — Zod 4 applies `.default()` to a missing key even inside
+ * `.partial()`, so a PATCH built from a defaulted create schema would silently
+ * reset `load_multiplier` to 1 and un-archive a row on every edit. Same trap
+ * documented on {@link achievementWriteFields}.
+ */
+const exerciseWriteFields = {
+  display_name: z
+    .string()
+    .trim()
+    .min(1, 'display_name is required')
+    .max(60, 'display_name is too long'),
+  equipment: exerciseEquipment(),
+  muscle_group: exerciseMuscleGroup(),
+  load_multiplier: positiveInt(),
+  is_unilateral: z.boolean(),
+  archived: z.boolean(),
+}
+
+/**
+ * Request-body schema for `POST /api/admin/weight-room/exercises` (#373).
+ *
+ * `slug` is lowercased via {@link exerciseWriteField} so the roster can't grow
+ * case-divergent duplicates — a set logged against `Bench-Press` must FK to the
+ * same row as one logged against `bench-press`. `load_multiplier` defaults to
+ * 1 and the two booleans to `false`, matching the DB column defaults, so the
+ * common case (a plain barbell movement) needs neither.
+ */
+export const WeightRoomExerciseUpsertSchema = z
+  .object({
+    ...exerciseWriteFields,
+    slug: exerciseWriteField(),
+    load_multiplier: exerciseWriteFields.load_multiplier.default(1),
+    is_unilateral: exerciseWriteFields.is_unilateral.default(false),
+    archived: exerciseWriteFields.archived.default(false),
+  })
+  .strict()
+
+/** Validated body of `POST /api/admin/weight-room/exercises`. */
+export type WeightRoomExerciseUpsert = z.infer<typeof WeightRoomExerciseUpsertSchema>
+
+/**
+ * Request-body schema for `PATCH /api/admin/weight-room/exercises/[slug]`.
+ * Every field optional so the editor can flip `archived` alone, but the body
+ * must carry at least one field — an empty patch is a client bug, not a no-op.
+ *
+ * `slug` is absent by design: it's the primary key and the value stored on
+ * every logged set. The FK is `on update cascade` so the database *would*
+ * propagate a rename, but exposing it through the editor invites renaming a
+ * movement mid-history by accident; retiring one is what `archived` is for.
+ */
+export const WeightRoomExerciseUpdateSchema = z
+  .object(exerciseWriteFields)
+  .strict()
+  .partial()
+  .refine((patch) => Object.keys(patch).length > 0, {
+    message:
+      'At least one field (display_name, equipment, muscle_group, load_multiplier, is_unilateral, or archived) is required.',
+  })
+
+/** Validated body of `PATCH /api/admin/weight-room/exercises/[slug]`. */
+export type WeightRoomExerciseUpdate = z.infer<typeof WeightRoomExerciseUpdateSchema>
 
 /**
  * Zod schema for one row of `public.weight_room_monthly_focus` (#255).

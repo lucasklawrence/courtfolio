@@ -1,9 +1,14 @@
 import { getBrowserSupabaseClient } from '@/lib/supabase/browser'
-import type { WeightRoomAchievement, WeightRoomData } from '@/types/weight-room'
+import type {
+  WeightRoomAchievement,
+  WeightRoomData,
+  WeightRoomExercise,
+} from '@/types/weight-room'
 
 import {
   assembleWeightRoomAchievements,
   assembleWeightRoomData,
+  assembleWeightRoomExercises,
 } from './weight-room-shared'
 
 /**
@@ -39,4 +44,17 @@ export async function getWeightRoomData(): Promise<WeightRoomData | null> {
  */
 export async function getWeightRoomAchievements(): Promise<WeightRoomAchievement[]> {
   return assembleWeightRoomAchievements(getBrowserSupabaseClient())
+}
+
+/**
+ * Browser-side reader for the movement roster (#373). Wraps
+ * {@link assembleWeightRoomExercises} with the cached browser client.
+ *
+ * Returns an empty array (never `null`) when the roster is empty, and includes
+ * archived movements — callers that render a picker should filter them out.
+ *
+ * @throws See {@link assembleWeightRoomExercises}.
+ */
+export async function getWeightRoomExercises(): Promise<WeightRoomExercise[]> {
+  return assembleWeightRoomExercises(getBrowserSupabaseClient())
 }
