@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest'
 
-import type { StrengthSet } from '@/types/weight-room'
+import type {
+  ExerciseEquipment,
+  StrengthSet,
+  WeightRoomExercise,
+} from '@/types/weight-room'
 
 import { pacificDayKey } from './day-keys'
 import { buildMovementLoads } from './load-management'
@@ -228,5 +232,90 @@ describe('buildMovementLoads', () => {
     ]
     const load = byName(buildMovementLoads(sets, [], NOW)).pushups
     expect(load.acute7d).toBe(60) // the garbage row contributes nothing
+  })
+})
+
+describe('buildMovementLoads — catalog-driven metric (#384)', () => {
+  /** Minimal catalog row; only `slug` and `equipment` affect classification. */
+  function movement(slug: string, equipment: ExerciseEquipment): WeightRoomExercise {
+    return { slug, display_name: slug, equipment, muscle_group: 'full-body' }
+  }
+
+  it('scores a loaded movement by tonnage even when most sets recorded no load', () => {
+    // 1 of 3 sets carries a weight — under the 0.5 threshold, so the pre-#384
+    // heuristic called this rep-driven. The catalog says dumbbell, so the
+    // stress is tonnage and the unweighted sets are a data-entry gap.
+    const sets = [
+      set('2026-07-14', 'shrugs', 20, 60),
+      set('2026-07-14', 'shrugs', 20),
+      set('2026-07-13', 'shrugs', 20),
+    ]
+    const load = byName(
+      buildMovementLoads(sets, [], NOW, [movement('shrugs', 'dumbbell')]),
+    ).shrugs
+    expect(load.metric).toBe('load')
+    expect(load.unitLabel).toBe('lb')
+  })
+
+  it('keeps a loaded movement visible when nothing in the window carried load', () => {
+    // Trusting the catalog unconditionally would score this by a tonnage of
+    // zero, and zero-volume movements are dropped — the movement would
+    // silently disappear from the panel instead of showing its rep volume.
+    const sets = [set('2026-07-14', 'barbell-row', 30), set('2026-07-12', 'barbell-row', 30)]
+    const load = byName(
+      buildMovementLoads(sets, [], NOW, [movement('barbell-row', 'barbell')]),
+    )['barbell-row']
+    expect(load).toBeDefined()
+    expect(load.metric).toBe('reps')
+    expect(load.chronic28d).toBe(60)
+  })
+
+  it('keeps a bodyweight movement rep-driven', () => {
+    const sets = [set('2026-07-14', 'pushups', 100)]
+    const load = byName(
+      buildMovementLoads(sets, [], NOW, [movement('pushups', 'bodyweight')]),
+    ).pushups
+    expect(load.metric).toBe('reps')
+  })
+
+  it('still flips a bodyweight movement to load when it carries added weight', () => {
+    // Weighted pull-ups: catalog says bodyweight, but a dip belt makes the
+    // stress genuinely load-driven, so the threshold still gets a say.
+    const sets = [
+      set('2026-07-14', 'pullups', 5, 45),
+      set('2026-07-13', 'pullups', 5, 45),
+      set('2026-07-12', 'pullups', 5),
+    ]
+    const load = byName(
+      buildMovementLoads(sets, [], NOW, [movement('pullups', 'bodyweight')]),
+    ).pullups
+    expect(load.metric).toBe('load')
+  })
+
+  it("treats 'other' as unclassified, not as a loaded implement", () => {
+    // `ensureWeightRoomExercise` stamps 'other' on every movement provisioned
+    // by the goal form or the focus anchor, so it means "nobody has said yet".
+    // Reading it as loaded would score this mostly-bodyweight movement by
+    // tonnage off its single weighted set.
+    const sets = [
+      set('2026-07-14', 'newmove', 20, 25),
+      set('2026-07-13', 'newmove', 20),
+      set('2026-07-12', 'newmove', 20),
+    ]
+    const load = byName(
+      buildMovementLoads(sets, [], NOW, [movement('newmove', 'other')]),
+    ).newmove
+    expect(load.metric).toBe('reps')
+    expect(load.chronic28d).toBe(60)
+  })
+
+  it('falls back to the pre-#384 threshold for a movement absent from the catalog', () => {
+    const sets = [
+      set('2026-07-14', 'mystery', 10, 50),
+      set('2026-07-13', 'mystery', 10, 50),
+    ]
+    // No catalog at all — identical to omitting the argument entirely.
+    expect(byName(buildMovementLoads(sets, [], NOW, [])).mystery.metric).toBe('load')
+    expect(byName(buildMovementLoads(sets, [], NOW)).mystery.metric).toBe('load')
   })
 })
