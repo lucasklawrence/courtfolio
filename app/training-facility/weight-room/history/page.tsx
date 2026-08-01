@@ -29,6 +29,7 @@ import {
   buildFocusLaneCells,
   computeFocusAdherence,
   computeFocusLoadStats,
+  type FocusDayCell,
 } from '@/lib/training-facility/monthly-focus'
 import { computeStrengthStats } from '@/lib/training-facility/weight-room-history'
 import type { ExerciseGoal } from '@/types/weight-room'
@@ -335,28 +336,55 @@ export default async function WeightRoomHistoryPage({
                   Focus Lane History
                 </h2>
                 <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
-                  One stitched heatmap per body region, spanning the full rotation. Each day is
-                  colored by how close that day got to the active focus&rsquo;s daily target —
-                  so shrugs in July and a new exercise in August sit on the same timeline.
+                  A stitched heatmap for each body region that has a rotation on file. Each day
+                  is colored by how close it came to the active focus&rsquo;s daily target, and
+                  every rotation keeps its own color — so when the focus changes, the next
+                  exercise picks up on the same timeline. Faint cells are days between rotations.
                 </p>
-                {upperCells.length > 0 && (
-                  <div className="mt-4 rounded-[1.2rem] border border-white/10 bg-white/5 p-5">
-                    <div className="overflow-x-auto">
-                      <FocusLaneHeatmap cells={upperCells} label="Upper Focus Lane" />
-                    </div>
-                  </div>
-                )}
-                {lowerCells.length > 0 && (
-                  <div className="mt-4 rounded-[1.2rem] border border-white/10 bg-white/5 p-5">
-                    <div className="overflow-x-auto">
-                      <FocusLaneHeatmap cells={lowerCells} label="Lower Focus Lane" />
-                    </div>
-                  </div>
-                )}
+                <div className="mt-4 grid gap-4 md:grid-cols-2">
+                  {upperCells.length > 0 && (
+                    <FocusLaneCard cells={upperCells} title="Upper" />
+                  )}
+                  {lowerCells.length > 0 && (
+                    <FocusLaneCard cells={lowerCells} title="Lower" />
+                  )}
+                </div>
               </section>
             )}
           </>
         )}
+      </div>
+    </div>
+  )
+}
+
+/** Props for {@link FocusLaneCard}. */
+interface FocusLaneCardProps {
+  /** Ordered lane cells from `buildFocusLaneCells`, one body region's worth. */
+  cells: FocusDayCell[]
+  /** Body-region name shown as the card header, e.g. `"Upper"`. */
+  title: string
+}
+
+/**
+ * One body region's lane heatmap in its own card.
+ *
+ * Half-width from `md` up so a lane covering a few weeks sits in a
+ * container it can plausibly fill, rather than a full-width card it leaves
+ * ~87% empty (#370). The header is what tells the two lanes apart once
+ * both are configured — the region name previously lived only in the SVG's
+ * `aria-label`, invisible to sighted readers.
+ */
+function FocusLaneCard({ cells, title }: FocusLaneCardProps): JSX.Element {
+  return (
+    <div className="rounded-[1.2rem] border border-white/10 bg-white/5 p-5">
+      <h3 className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#e8d5be]/70">
+        {title}
+      </h3>
+      {/* Scrolls rather than squashing once the rotation history outgrows
+          the card — the same treatment the per-exercise heatmaps get. */}
+      <div className="mt-3 overflow-x-auto">
+        <FocusLaneHeatmap cells={cells} label={`${title} Focus Lane`} />
       </div>
     </div>
   )

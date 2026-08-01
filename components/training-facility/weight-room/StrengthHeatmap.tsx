@@ -2,6 +2,7 @@ import type { JSX } from 'react'
 
 import { formatDayKey } from '@/lib/training-facility/day-keys'
 import { type GoalTargetChange, goalTargetChanges } from '@/lib/training-facility/goal-targets'
+import { monthLabelOverhang, thinMonthLabels } from '@/lib/training-facility/heatmap-labels'
 import {
   buildStrengthHeatmap,
   intensityFromPct,
@@ -58,6 +59,8 @@ const DAY_LABEL_WIDTH = 32
 const MONTH_LABEL_HEIGHT = 18
 /** Pixel height reserved for the legend strip below the grid. */
 const LEGEND_HEIGHT = 22
+/** Font size the month labels are drawn at. */
+const MONTH_LABEL_FONT_SIZE = 11
 
 /**
  * Per-intensity opacity applied to the exercise's `goal.color`. Index
@@ -108,7 +111,20 @@ export function StrengthHeatmap({
   const cellInner = cellSize - cellGap
   const gridWidth = cols * cellSize
   const gridHeight = 7 * cellSize
-  const totalWidth = DAY_LABEL_WIDTH + gridWidth
+
+  // Month-label geometry (#370). Both halves matter even though a default
+  // 52-week window trips neither: months land ~4.3 columns apart so nothing
+  // is thinned, and the trailing label sits far from the right edge so
+  // nothing overhangs. A caller narrowing `dateFrom`/`dateTo` hits both.
+  const visibleMonths = thinMonthLabels(monthLabels, { cellSize, totalCols: cols })
+  const monthOverhang = monthLabelOverhang(
+    visibleMonths,
+    cellSize,
+    gridWidth,
+    MONTH_LABEL_FONT_SIZE,
+  )
+
+  const totalWidth = DAY_LABEL_WIDTH + gridWidth + monthOverhang
   const totalHeight = MONTH_LABEL_HEIGHT + gridHeight + LEGEND_HEIGHT
   const label = ariaLabel ?? `${goal.exercise} heatmap`
 
@@ -133,14 +149,14 @@ export function StrengthHeatmap({
       aria-label={label}
       style={{ fontFamily }}
     >
-      {/* Month labels along the top */}
+      {/* Month labels along the top, thinned so neighbours can't collide */}
       <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT - 4})`}>
-        {monthLabels.map((m) => (
+        {visibleMonths.map((m) => (
           <text
             key={`month-${m.col}-${m.label}`}
             x={m.col * cellSize}
             y={0}
-            fontSize={11}
+            fontSize={MONTH_LABEL_FONT_SIZE}
             fill={LABEL_FILL}
           >
             {m.label}

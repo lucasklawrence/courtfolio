@@ -1,5 +1,10 @@
 import type { JSX } from 'react'
 
+import {
+  estimateTextWidth,
+  monthLabelOverhang,
+  thinMonthLabels,
+} from '@/lib/training-facility/heatmap-labels'
 import { intensityFromPct } from '@/lib/training-facility/weight-room-history'
 import type { FocusDayCell } from '@/lib/training-facility/monthly-focus'
 import type { MonthlyFocus } from '@/types/weight-room'
@@ -24,6 +29,29 @@ const INTENSITY_OPACITY = [0, 0.28, 0.62, 1] as const
 const EMPTY_CELL_FILL = 'rgba(247, 234, 217, 0.07)'
 /** Soft cream label color for month and day-of-week labels. */
 const LABEL_FILL = 'rgba(247, 234, 217, 0.55)'
+/** Font size for the month labels along the top axis. */
+const MONTH_LABEL_FONT_SIZE = 11
+/** Font size for the day-of-week labels and the legend text. */
+const SMALL_LABEL_FONT_SIZE = 10
+/**
+ * Grid width, in pixels, that a short lane is scaled up toward by
+ * {@link cellSizeForCols}. Roughly a half-width card on desktop.
+ */
+const TARGET_GRID_WIDTH = 420
+/** Upper bound on the derived cell stride, so cells stay cells not tiles. */
+const MAX_CELL_SIZE = 30
+/** Legend swatch edge length, held at the base cell size regardless of stride. */
+const LEGEND_SWATCH = 12
+/** Vertical stride per legend row. */
+const LEGEND_ROW_HEIGHT = 16
+/** Gap between the grid's bottom edge and the legend's first baseline. */
+const LEGEND_TOP_PAD = 14
+/** Trailing space below the last legend row. */
+const LEGEND_BOTTOM_PAD = 8
+/** Gap between a legend swatch and its exercise name. */
+const LEGEND_TEXT_GAP = 4
+/** Gap between two legend columns. */
+const LEGEND_COL_GAP = 12
 const DAY_LABELS = ['Mon', '', 'Wed', '', 'Fri', '', ''] as const
 const MONTH_LABELS = [
   'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -158,6 +186,81 @@ function describeSlot(slot: GridSlot): string {
   return `${dateLabel}: ${cell.volume} ${unit} ${cell.focus.exercise} (${pctLabel})`
 }
 
+/**
+ * Pixel stride per column for a grid `cols` wide.
+ *
+ * Unlike the per-exercise heatmap — which always spans a trailing 52 weeks
+ * and so always fills its card — a lane spans only as much calendar as its
+ * rotation history covers. A freshly-started rotation is a handful of
+ * columns, which at the base stride renders as a postage stamp in a
+ * full-width card (#370). Short spans therefore scale up toward
+ * {@link TARGET_GRID_WIDTH}, capped at {@link MAX_CELL_SIZE}.
+ *
+ * Spans already wider than the target keep `base`, so once enough history
+ * accumulates the lane renders at exactly the size it does today.
+ *
+ * The cap bounds only the *derived* scale-up, never `base` itself — an
+ * explicit `cellSize` above the cap is a caller's deliberate choice, and
+ * the prop's contract is a floor.
+ */
+function cellSizeForCols(cols: number, base: number): number {
+  if (cols <= 0) return base
+  return Math.max(base, Math.min(MAX_CELL_SIZE, Math.floor(TARGET_GRID_WIDTH / cols)))
+}
+
+/** One positioned entry in the legend strip. */
+interface LegendEntry {
+  /** The rotation segment this swatch stands for. */
+  focus: MonthlyFocus
+  /** X offset within the legend group. */
+  x: number
+  /** Y offset within the legend group (baseline of the label). */
+  y: number
+}
+
+/** Legend geometry computed by {@link layoutLegend}. */
+interface LegendLayout {
+  /** Positioned entries, in first-appearance order. */
+  entries: LegendEntry[]
+  /** Total width consumed, so the SVG can widen to fit a long name. */
+  width: number
+  /** Total height consumed, including the pad above and below. */
+  height: number
+}
+
+/**
+ * Lay the rotation legend out in as many columns as `gridWidth` allows.
+ *
+ * Columns are uniform and sized to the **longest** exercise name, so a
+ * short name can't let its neighbour creep underneath. The previous fixed
+ * three-per-row split at `gridWidth / 3` put columns ~23px apart on a
+ * narrow lane, overlapping every label (#370); it only escaped notice
+ * because a single rotation renders a single swatch.
+ */
+function layoutLegend(focuses: readonly MonthlyFocus[], gridWidth: number): LegendLayout {
+  if (focuses.length === 0) return { entries: [], width: 0, height: 0 }
+
+  const widest = focuses.reduce(
+    (max, f) => Math.max(max, estimateTextWidth(f.exercise, SMALL_LABEL_FONT_SIZE)),
+    0,
+  )
+  const stride = LEGEND_SWATCH + LEGEND_TEXT_GAP + widest + LEGEND_COL_GAP
+  const perRow = Math.max(1, Math.floor(gridWidth / stride))
+
+  const entries = focuses.map((focus, i) => ({
+    focus,
+    x: (i % perRow) * stride,
+    y: Math.floor(i / perRow) * LEGEND_ROW_HEIGHT,
+  }))
+
+  const rows = Math.ceil(focuses.length / perRow)
+  return {
+    entries,
+    width: Math.min(focuses.length, perRow) * stride - LEGEND_COL_GAP,
+    height: LEGEND_TOP_PAD + (rows - 1) * LEGEND_ROW_HEIGHT + LEGEND_BOTTOM_PAD,
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
@@ -173,12 +276,17 @@ export interface FocusLaneHeatmapProps {
   cells: FocusDayCell[]
   /**
    * Accessible label for the SVG `role="img"` wrapper, e.g.
-   * `"Upper Focus Lane"`. Also shown as the lane header.
+   * `"Upper Focus Lane"`. Not rendered visibly — the surrounding card
+   * owns the visible header.
    */
   label: string
   /**
-   * Pixel stride per cell (including the trailing inter-cell gap).
+   * Minimum pixel stride per cell (including the trailing inter-cell gap).
    * Defaults to `14` — same default as {@link import('./StrengthHeatmap').StrengthHeatmap}.
+   *
+   * A floor, not a fixed size: a lane covering few enough weeks to render
+   * as a postage stamp is scaled up from here, capped at 30px. A lane wide
+   * enough already renders at exactly this stride.
    */
   cellSize?: number
   /** Pixel gap between cells. Defaults to `2`. */
@@ -208,16 +316,31 @@ export function FocusLaneHeatmap({
   if (cells.length === 0) return null
 
   const { grid, monthLabels, uniqueFocuses, cols } = buildLaneGrid(cells)
-  const cellInner = cellSize - cellGap
-  const gridWidth = cols * cellSize
-  const gridHeight = 7 * cellSize
 
-  // Legend height: one row at 22 px, plus 16 px per additional row (up to
-  // ⌈uniqueFocuses.length / 3⌉ rows at 3 items per row).
-  const legendRows = Math.max(1, Math.ceil(uniqueFocuses.length / 3))
-  const legendHeight = 22 + (legendRows - 1) * 16
-  const totalWidth = DAY_LABEL_WIDTH + gridWidth
-  const totalHeight = MONTH_LABEL_HEIGHT + gridHeight + legendHeight
+  // Derived, not the raw prop: a short rotation would otherwise render a
+  // ~116px chart inside a ~900px card (#370). An explicit `cellSize` is
+  // still the floor, so callers can only ever scale a lane up.
+  const stride = cellSizeForCols(cols, cellSize)
+  const cellInner = stride - cellGap
+  const gridWidth = cols * stride
+  const gridHeight = 7 * stride
+
+  const visibleMonths = thinMonthLabels(monthLabels, { cellSize: stride, totalCols: cols })
+  const monthOverhang = monthLabelOverhang(
+    visibleMonths,
+    stride,
+    gridWidth,
+    MONTH_LABEL_FONT_SIZE,
+  )
+
+  const legend = layoutLegend(uniqueFocuses, gridWidth)
+
+  // Widen for whichever of the two overhangs the content actually has: a
+  // trailing month label hanging past the final column, or a legend row
+  // longer than the grid it sits under.
+  const contentWidth = Math.max(gridWidth + monthOverhang, legend.width)
+  const totalWidth = DAY_LABEL_WIDTH + contentWidth
+  const totalHeight = MONTH_LABEL_HEIGHT + gridHeight + legend.height
 
   return (
     <svg
@@ -226,15 +349,20 @@ export function FocusLaneHeatmap({
       height={totalHeight}
       role="img"
       aria-label={label}
+      // Centered so a lane narrower than its card reads as a deliberately
+      // compact chart rather than one pinned to the top-left corner. When
+      // the lane is wider, the card's `overflow-x-auto` scrolls it and the
+      // auto margins collapse to zero.
+      style={{ display: 'block', marginInline: 'auto' }}
     >
-      {/* Month labels along the top */}
+      {/* Month labels along the top, thinned so neighbours can't collide */}
       <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT - 4})`}>
-        {monthLabels.map((m) => (
+        {visibleMonths.map((m) => (
           <text
             key={`month-${m.col}-${m.label}`}
-            x={m.col * cellSize}
+            x={m.col * stride}
             y={0}
-            fontSize={11}
+            fontSize={MONTH_LABEL_FONT_SIZE}
             fill={LABEL_FILL}
           >
             {m.label}
@@ -249,9 +377,9 @@ export function FocusLaneHeatmap({
             <text
               key={`day-${row}`}
               x={DAY_LABEL_WIDTH - 6}
-              y={row * cellSize + cellSize / 2 + 3}
+              y={row * stride + stride / 2 + 3}
               textAnchor="end"
-              fontSize={10}
+              fontSize={SMALL_LABEL_FONT_SIZE}
               fill={LABEL_FILL}
             >
               {dayLabel}
@@ -272,8 +400,8 @@ export function FocusLaneHeatmap({
             return (
               <rect
                 key={`cell-${colIdx}-${rowIdx}`}
-                x={colIdx * cellSize}
-                y={rowIdx * cellSize}
+                x={colIdx * stride}
+                y={rowIdx * stride}
                 width={cellInner}
                 height={cellInner}
                 rx={2}
@@ -289,30 +417,31 @@ export function FocusLaneHeatmap({
       </g>
 
       {/* Legend — one swatch + exercise label per rotation segment */}
-      <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT + gridHeight + 14})`}>
-        {uniqueFocuses.map((focus, i) => {
-          const col = i % 3
-          const row = Math.floor(i / 3)
-          const x = col * Math.floor(gridWidth / 3)
-          const y = row * 16
-          return (
-            <g key={focus.id} transform={`translate(${x}, ${y})`}>
-              <rect
-                x={0}
-                y={-9}
-                width={cellInner}
-                height={cellInner}
-                rx={2}
-                ry={2}
-                fill={focus.color}
-                fillOpacity={1}
-              />
-              <text x={cellSize + 2} y={0} fontSize={10} fill={LABEL_FILL}>
-                {focus.exercise}
-              </text>
-            </g>
-          )
-        })}
+      <g
+        transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT + gridHeight + LEGEND_TOP_PAD})`}
+      >
+        {legend.entries.map(({ focus, x, y }) => (
+          <g key={focus.id} transform={`translate(${x}, ${y})`}>
+            <rect
+              x={0}
+              y={-9}
+              width={LEGEND_SWATCH}
+              height={LEGEND_SWATCH}
+              rx={2}
+              ry={2}
+              fill={focus.color}
+              fillOpacity={1}
+            />
+            <text
+              x={LEGEND_SWATCH + LEGEND_TEXT_GAP}
+              y={0}
+              fontSize={SMALL_LABEL_FONT_SIZE}
+              fill={LABEL_FILL}
+            >
+              {focus.exercise}
+            </text>
+          </g>
+        ))}
       </g>
     </svg>
   )
