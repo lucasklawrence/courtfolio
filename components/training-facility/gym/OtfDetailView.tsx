@@ -476,7 +476,7 @@ export function OtfDetailView({
               </ChartCard>
               <ChartCard
                 title="Avg incline"
-                helper="Average treadmill incline — the grade behind the pace above, and the input to the adjustment below."
+                helper="Average treadmill incline — the grade behind each class's pace, and the input to the grade-adjusted figure."
               >
                 <OtfTrendChart
                   data={treadInclineTrend}
