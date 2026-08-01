@@ -102,8 +102,44 @@ order by e.slug;
 ```
 
 Use the **exact stored slug** for the insert (e.g. parsed `Pull-ups` → stored
-`pullups`, `Barbell Bench Press` → `barbell-bench-press`). If nothing matches,
-treat it as a new movement — see step 6; do not invent a near-duplicate key.
+`pullups`, `Barbell Bench Press` → `barbell-bench-press`).
+
+**Match in three widening passes — exact alone is too strict.** Catalog slugs
+carry an implement prefix (`dumbbell-lateral-raise`) but nobody says "dumbbell
+lateral raise" out loud; they say "lateral raises". An exact-only rule would
+treat that as an uncatalogued movement and offer to create a duplicate, which is
+the exact failure this canonicalization exists to prevent.
+
+Normalize both sides by **stripping every non-alphanumeric character** —
+lowercase, then remove spaces, hyphens and underscores entirely — and ignore a
+trailing `s`. Squashing rather than converting separators to spaces is what lets
+`pull-ups` (→ `pullups`) reach the stored `pullups`; a space-preserving
+normalization leaves `pull ups` matching nothing.
+
+Then try three widening passes and **stop at the first that yields exactly one
+row**:
+
+1. **Exact** on the normalized slug or display name. `pull-ups` → `pullups`.
+2. **Suffix** — exactly one row's normalized display name *ends with* the parsed
+   name. `lateral raises` → `dumbbell-lateral-raise` ✅. This is what makes the
+   implement prefix optional, and it is the primary August path.
+3. **Containment** — exactly one row contains it anywhere. Catches odd word
+   order.
+
+**Stopping at the first successful pass matters.** `lunges` matches exactly one
+row at pass 1 (`lunges`) but *two* at pass 2 (`lunges` and `dumbbell-lunge`).
+Running the passes in order resolves it silently and correctly; merging them
+would produce a pointless clarifying question for the most common lower-body
+input.
+
+**Uniqueness is the safety rail — never guess when a pass returns more than
+one.** `bench press` matches both `barbell-bench-press` and
+`dumbbell-bench-press`; `row` matches three. List the candidates and ask, rather
+than picking the alphabetically-first or the most-recently-logged. Guessing
+writes to the wrong movement's history, which is far worse than one question.
+
+If **zero** rows match after all three passes, treat it as a new movement — see
+step 6; do not invent a near-duplicate key.
 
 `daily_target` comes back **null for movements with no daily goal** — that's the
 normal state for every gym lift, not a problem. It's only used for the
@@ -280,15 +316,18 @@ where s.logged_at >= '2026-05-28T00:00:00<OFFSET>'
 group by s.exercise, g.daily_target, g.color
 order by s.exercise;
 
--- Per-variant slice, for exercises logged with one today. Skip reporting this
--- for any exercise where it returns a single null-variant row.
+-- Per-variant slice. Deliberately does NOT filter out null variants: an
+-- exercise with both tagged and untagged sets today (sets logged before this
+-- skill update, then a tagged one) would otherwise report slices that don't sum
+-- to its total. Nulls come back as their own row and get reported as "untagged".
+-- Skip reporting the breakdown entirely for any exercise whose only row here is
+-- a null variant — that's the ordinary untagged case, not a split.
 select s.exercise, s.variant, sum(s.reps) as reps
 from public.weight_room_sets s
 where s.logged_at >= '2026-05-28T00:00:00<OFFSET>'
   and s.logged_at <  '2026-05-29T00:00:00<OFFSET>'
-  and s.variant is not null
 group by s.exercise, s.variant
-order by s.exercise, s.variant;
+order by s.exercise, s.variant nulls last;
 ```
 
 Then report each exercise as `total / daily_target` (e.g. "Pushups: 60 / 100").
@@ -311,9 +350,14 @@ under it:
 
 > 🟣 Lateral raises: 150 / 150 · 50 forward · 50 sideways · 50 reverse
 
-A movement logged without variants reports exactly as before. Don't invent a
-`standard` bucket for the untagged remainder; if some sets are tagged and some
-aren't, name the untagged ones "untagged" so the arithmetic still adds up.
+A movement logged without variants reports exactly as before — its only row in
+the breakdown query is a null variant, so skip the slice line for it entirely.
+
+Don't invent a `standard` bucket for the untagged remainder. When some sets are
+tagged and some aren't, the null row is real data and gets reported as
+"untagged", so the slices always sum to the ring:
+
+> 🟣 Lateral raises: 150 / 150 · 50 forward · 50 sideways · 30 reverse · 20 untagged
 
 ### 6. Movement not in the catalog (FK violation)
 
