@@ -44,7 +44,12 @@ const GOAL_TARGETS_TABLE = 'weight_room_goal_targets'
 const EXERCISES_TABLE = 'weight_room_exercises'
 
 /** Whitelisted column lists for each table; `updated_at` rides along for `imported_at` computation. */
-const SETS_COLUMNS = 'id, logged_at, exercise, reps, weight_lbs, variant, updated_at'
+// `workout_id` / `position` (#374) ride along so a set knows which session it
+// belongs to. Every existing aggregation ignores both — an attached set counts
+// exactly as a loose one — but reading them is what lets #376/#377 group sets
+// into a workout without another round trip.
+const SETS_COLUMNS =
+  'id, logged_at, exercise, reps, weight_lbs, variant, workout_id, position, updated_at'
 // `load_multiplier` deliberately absent (#373) — it moved to the catalog and is
 // joined on below. The goals column still exists (dropping it while the
 // deployed build still selected it would break the live read) but is dead.
