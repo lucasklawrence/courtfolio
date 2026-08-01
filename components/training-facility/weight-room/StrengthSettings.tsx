@@ -58,8 +58,10 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
 
   async function deleteGoal(exercise: string): Promise<void> {
     setError(null)
+    // Sets FK into the movement catalog, not into goals (#373), so this drops
+    // the daily ring and its target history and leaves the training log alone.
     const ok = window.confirm(
-      `Delete "${exercise}"? This also removes every set logged for it.`,
+      `Remove the daily goal for "${exercise}"? Its logged sets are kept — this only stops the daily ring and clears its target history.`,
     )
     if (!ok) return
     const res = await fetch(

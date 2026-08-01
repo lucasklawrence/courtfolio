@@ -19,8 +19,14 @@ export interface StrengthSet {
   /** ISO 8601 timestamp the set was logged at (matches `logged_at` column). */
   logged_at: string
   /**
-   * Exercise name (`pushups`, `pullups`, …). Foreign-keyed to
-   * {@link ExerciseGoal.exercise}; deleting a goal cascades sets.
+   * Exercise slug (`pushups`, `barbell-bench-press`, …). Foreign-keyed to
+   * {@link WeightRoomExercise.slug} — the movement roster, *not* the daily-goal
+   * overlay (#373), so a gym lift with no daily target is still loggable.
+   *
+   * The FK is `on delete restrict`: a movement with logged sets can't be
+   * deleted, only {@link WeightRoomExercise.archived}. Before #373 it cascaded
+   * from `weight_room_goals`, so removing a daily goal destroyed that
+   * movement's entire history.
    */
   exercise: string
   /** Rep count for this single set. Always positive (DB CHECK enforces). */
@@ -43,6 +49,102 @@ export interface StrengthSet {
    * *slice* volume by variant in the History View, never to split it.
    */
   variant?: string
+}
+
+/**
+ * How a movement is loaded (#373). Drives the catalog's equipment filter and,
+ * once templates land, "what can I swap this for when the rack is taken".
+ *
+ * `'bodyweight'` is the explicit marker for movements that carry no external
+ * load — previously this was *inferred* from `weight_lbs IS NULL` plus a
+ * share-of-weighted-sets threshold in `load-management.ts`.
+ */
+export type ExerciseEquipment =
+  | 'barbell'
+  | 'dumbbell'
+  | 'kettlebell'
+  | 'machine'
+  | 'cable'
+  | 'band'
+  | 'bodyweight'
+  | 'other'
+
+/**
+ * Coarse body region a movement trains (#373). Deliberately seven buckets
+ * rather than a per-muscle taxonomy: enough to organize a catalog of ~30 lifts
+ * and a template builder, and it lines up with the existing upper/lower
+ * {@link FocusCategory} lanes. Splitting finer later is a check-constraint
+ * change, not a redesign.
+ */
+export type ExerciseMuscleGroup =
+  | 'chest'
+  | 'back'
+  | 'shoulders'
+  | 'arms'
+  | 'legs'
+  | 'core'
+  | 'full-body'
+
+/**
+ * One movement in the Weight Room roster (#373) — mirrors a row of
+ * `public.weight_room_exercises`.
+ *
+ * This is the FK target for every logged set, so a movement must exist here
+ * before it can be logged. It is deliberately *separate* from
+ * {@link ExerciseGoal}: the catalog says "this movement exists and here's how
+ * it's loaded", while a goal says "and I want N reps of it every day". Gym
+ * lifts have the former and not the latter — which is the whole point, since
+ * `weight_room_goals.daily_target` is `not null check (> 0)` and there is no
+ * honest daily rep target for a bench press.
+ */
+export interface WeightRoomExercise {
+  /**
+   * Primary key and the value stored in {@link StrengthSet.exercise}. Lowercase
+   * kebab-case (`barbell-bench-press`); lowercased on write by the API so
+   * `Pushups` and `pushups` can't diverge into two roster entries.
+   */
+  slug: string
+  /**
+   * Human-readable label (`Barbell Bench Press`). Exists because {@link slug}
+   * doubles as the primary key and reads badly in UI. Stored and editable as of
+   * #373; the Today / History / Trophy Room surfaces still render the slug
+   * until the label rollout follow-up.
+   */
+  display_name: string
+  /** How the movement is loaded. */
+  equipment: ExerciseEquipment
+  /** Coarse body region this movement trains. */
+  muscle_group: ExerciseMuscleGroup
+  /**
+   * How many loaded implements this movement moves per set. Absent is treated
+   * as `1`.
+   *
+   * {@link StrengthSet.weight_lbs} records the load on *one* implement, since
+   * that's how it's read off the equipment — a "60 lb dumbbell shrug" is 60 per
+   * hand, not 60 total. Movements carried two at a time (shrugs, dumbbell
+   * press) set this to `2`, so effective load is `weight_lbs × load_multiplier`.
+   * Barbell, machine, vest, dip belt, and bodyweight work all stay at `1`.
+   *
+   * Moved here from `weight_room_goals` in #373 — it describes how a movement
+   * is performed, so it has to be available for movements that have no daily
+   * goal at all.
+   */
+  load_multiplier?: number
+  /**
+   * Whether the movement trains one side at a time (single-arm dumbbell row).
+   *
+   * Orthogonal to {@link load_multiplier}, which counts implements moved
+   * *simultaneously*: a single-arm row is unilateral with multiplier 1, a
+   * two-dumbbell press is bilateral with multiplier 2. Absent is treated as
+   * `false`.
+   */
+  is_unilateral?: boolean
+  /**
+   * Soft-retire flag. Archived movements stay in the roster (their sets are
+   * FK'd to it and the FK is `on delete restrict`, so they can never be
+   * deleted) but drop out of pickers. Absent is treated as `false`.
+   */
+  archived?: boolean
 }
 
 /**
@@ -111,15 +213,11 @@ export interface ExerciseGoal {
    * How many loaded implements this movement moves per set. Absent is treated
    * as `1`.
    *
-   * {@link StrengthSet.weight_lbs} records the load on *one* implement, since
-   * that's how it's read off the equipment — a "60 lb dumbbell shrug" is 60 per
-   * hand, not 60 total. Shrugs are carried two at a time, so they set this to
-   * `2` and their effective load is `weight_lbs × 2`. Every single-implement
-   * movement (barbell, vest, dip belt, bodyweight) leaves it at `1`.
-   *
-   * Lives on the goal rather than the set because it describes how the movement
-   * is performed, not one logged instance — so setting it corrects the entire
-   * history at once.
+   * **Joined from {@link WeightRoomExercise.load_multiplier}**, which owns it as
+   * of #373 — the column moved to the catalog so movements without a daily goal
+   * could carry it too. The data layer attaches it here on read so the tonnage
+   * math in `achievements.ts` / `monthly-focus.ts` / `LogDataIsland` keeps
+   * reading it off the goal unchanged. Editing it means editing the catalog.
    */
   load_multiplier?: number
   /**
@@ -285,6 +383,18 @@ export interface WeightRoomData {
   sets: StrengthSet[]
   /** Every configured exercise goal, ordered by exercise name. */
   goals: ExerciseGoal[]
+  /**
+   * The full movement roster (#373), ordered by slug — including archived
+   * entries and movements with no daily goal, so callers can filter for
+   * themselves.
+   *
+   * Optional because it postdates the fixtures: the demo fixture and the
+   * component tests build a {@link WeightRoomData} without it, and every
+   * consumer that predates the catalog ignores it. The live assembler always
+   * populates it — it reads the table anyway to join
+   * {@link ExerciseGoal.load_multiplier}, so surfacing it costs nothing.
+   */
+  exercises?: WeightRoomExercise[]
   /**
    * "Grease the groove" monthly focuses (#255), ordered newest window
    * first. Empty when none are configured. Includes past, active, and

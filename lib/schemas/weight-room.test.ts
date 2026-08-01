@@ -3,12 +3,16 @@ import { describe, expect, it } from 'vitest'
 import {
   WeightRoomAchievementCreateSchema,
   WeightRoomAchievementUpdateSchema,
+  WeightRoomExerciseRowSchema,
+  WeightRoomExerciseUpdateSchema,
+  WeightRoomExerciseUpsertSchema,
   WeightRoomGoalRowSchema,
   WeightRoomGoalUpsertSchema,
   WeightRoomMonthlyFocusCreateSchema,
   WeightRoomMonthlyFocusRowSchema,
   WeightRoomSetCreateSchema,
   WeightRoomSetRowSchema,
+  exerciseRowToWeightRoomExercise,
   setRowToStrengthSet,
 } from './weight-room'
 
@@ -44,6 +48,156 @@ describe('WeightRoomGoalRowSchema (read)', () => {
 
   it('rejects a non-hex color', () => {
     expect(() => WeightRoomGoalRowSchema.parse({ ...base, color: 'orange' })).toThrow()
+  })
+
+  it('rejects load_multiplier, which moved to the exercise catalog (#373)', () => {
+    // `.strict()` turns the moved column into a loud failure rather than a
+    // silently-ignored key, which is what would let the two sides drift.
+    expect(() =>
+      WeightRoomGoalRowSchema.parse({ ...base, load_multiplier: 2 }),
+    ).toThrow()
+  })
+})
+
+describe('WeightRoomExerciseRowSchema (read, #373)', () => {
+  const base = {
+    slug: 'barbell-bench-press',
+    display_name: 'Barbell Bench Press',
+    equipment: 'barbell',
+    muscle_group: 'chest',
+  }
+
+  it('accepts a row carrying only the not-null columns', () => {
+    expect(WeightRoomExerciseRowSchema.parse(base)).toEqual(base)
+  })
+
+  it('preserves DB casing on read, matching every sibling row schema', () => {
+    const parsed = WeightRoomExerciseRowSchema.parse({ ...base, slug: 'Barbell-Bench-Press' })
+    expect(parsed.slug).toBe('Barbell-Bench-Press')
+  })
+
+  it('accepts null optionals (a fixture or a pre-default row)', () => {
+    expect(() =>
+      WeightRoomExerciseRowSchema.parse({
+        ...base,
+        load_multiplier: null,
+        is_unilateral: null,
+        archived: null,
+      }),
+    ).not.toThrow()
+  })
+
+  it('rejects an equipment or muscle_group outside the check constraint', () => {
+    expect(() =>
+      WeightRoomExerciseRowSchema.parse({ ...base, equipment: 'trebuchet' }),
+    ).toThrow()
+    expect(() =>
+      WeightRoomExerciseRowSchema.parse({ ...base, muscle_group: 'lats' }),
+    ).toThrow()
+  })
+
+  it('rejects a non-positive load_multiplier', () => {
+    expect(() =>
+      WeightRoomExerciseRowSchema.parse({ ...base, load_multiplier: 0 }),
+    ).toThrow()
+  })
+})
+
+describe('exerciseRowToWeightRoomExercise (row → public shape)', () => {
+  const base = {
+    slug: 'dips',
+    display_name: 'Dips',
+    equipment: 'bodyweight' as const,
+    muscle_group: 'chest' as const,
+  }
+
+  it('omits null optionals so read sites apply their documented defaults', () => {
+    const converted = exerciseRowToWeightRoomExercise({
+      ...base,
+      load_multiplier: null,
+      is_unilateral: null,
+      archived: null,
+    })
+    expect(converted).toEqual(base)
+  })
+
+  it('carries through the values that are actually set', () => {
+    const converted = exerciseRowToWeightRoomExercise({
+      ...base,
+      load_multiplier: 2,
+      is_unilateral: true,
+      archived: true,
+    })
+    expect(converted).toMatchObject({
+      load_multiplier: 2,
+      is_unilateral: true,
+      archived: true,
+    })
+  })
+})
+
+describe('WeightRoomExerciseUpsertSchema (write body, #373)', () => {
+  const base = {
+    slug: 'barbell-bench-press',
+    display_name: 'Barbell Bench Press',
+    equipment: 'barbell',
+    muscle_group: 'chest',
+  }
+
+  it('lowercases the slug so the roster cannot grow case-divergent duplicates', () => {
+    // Two rows for one movement would split its history across both — the
+    // same anti-duplicate reasoning as the goals upsert.
+    const parsed = WeightRoomExerciseUpsertSchema.parse({ ...base, slug: 'Barbell-Bench-Press' })
+    expect(parsed.slug).toBe('barbell-bench-press')
+  })
+
+  it('defaults load_multiplier to 1 and both flags to false', () => {
+    const parsed = WeightRoomExerciseUpsertSchema.parse(base)
+    expect(parsed).toMatchObject({
+      load_multiplier: 1,
+      is_unilateral: false,
+      archived: false,
+    })
+  })
+
+  it('trims the display name and rejects an empty one', () => {
+    expect(WeightRoomExerciseUpsertSchema.parse({ ...base, display_name: '  Dips  ' })
+      .display_name).toBe('Dips')
+    expect(() =>
+      WeightRoomExerciseUpsertSchema.parse({ ...base, display_name: '   ' }),
+    ).toThrow()
+  })
+
+  it('rejects an unknown key', () => {
+    expect(() =>
+      WeightRoomExerciseUpsertSchema.parse({ ...base, muscle: 'chest' }),
+    ).toThrow()
+  })
+})
+
+describe('WeightRoomExerciseUpdateSchema (patch body, #373)', () => {
+  it('accepts a single-field patch — archiving without restating the row', () => {
+    expect(WeightRoomExerciseUpdateSchema.parse({ archived: true })).toEqual({
+      archived: true,
+    })
+  })
+
+  it('injects no defaults for omitted keys', () => {
+    // Zod 4 applies `.default()` to a missing key even inside `.partial()`,
+    // so a patch schema derived from a defaulted create schema would reset
+    // load_multiplier to 1 and un-archive the row on every label edit.
+    const parsed = WeightRoomExerciseUpdateSchema.parse({ display_name: 'Dips' })
+    expect(Object.keys(parsed)).toEqual(['display_name'])
+  })
+
+  it('rejects an empty patch', () => {
+    expect(() => WeightRoomExerciseUpdateSchema.parse({})).toThrow()
+  })
+
+  it('rejects a slug change — the value is stored on every logged set', () => {
+    expect(() =>
+      WeightRoomExerciseUpdateSchema.parse({ slug: 'renamed' }),
+    ).toThrow()
   })
 })
 
