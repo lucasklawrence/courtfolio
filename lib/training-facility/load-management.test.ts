@@ -292,6 +292,23 @@ describe('buildMovementLoads — catalog-driven metric (#384)', () => {
     expect(load.metric).toBe('load')
   })
 
+  it("treats 'other' as unclassified, not as a loaded implement", () => {
+    // `ensureWeightRoomExercise` stamps 'other' on every movement provisioned
+    // by the goal form or the focus anchor, so it means "nobody has said yet".
+    // Reading it as loaded would score this mostly-bodyweight movement by
+    // tonnage off its single weighted set.
+    const sets = [
+      set('2026-07-14', 'newmove', 20, 25),
+      set('2026-07-13', 'newmove', 20),
+      set('2026-07-12', 'newmove', 20),
+    ]
+    const load = byName(
+      buildMovementLoads(sets, [], NOW, [movement('newmove', 'other')]),
+    ).newmove
+    expect(load.metric).toBe('reps')
+    expect(load.chronic28d).toBe(60)
+  })
+
   it('falls back to the pre-#384 threshold for a movement absent from the catalog', () => {
     const sets = [
       set('2026-07-14', 'mystery', 10, 50),

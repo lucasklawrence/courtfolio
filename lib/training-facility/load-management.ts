@@ -132,7 +132,12 @@ export interface MovementLoad {
  *   without loads would silently vanish from the panel instead of showing its
  *   rep volume.
  *
- * A movement absent from the catalog keeps the pre-#384 behavior exactly.
+ * `'other'` is treated as *unclassified*, not as a loaded implement. It's the
+ * fallback `ensureWeightRoomExercise` stamps on any movement provisioned by the
+ * goal form or the monthly-focus anchor, so it means "nobody has said yet" —
+ * reading it as loaded would score a mostly-bodyweight new movement by tonnage
+ * off a single weighted set. A movement absent from the catalog entirely gets
+ * the same treatment, so both keep the pre-#384 behavior exactly.
  *
  * @param equipment The movement's catalog equipment, or `undefined` when it has
  *   no catalog row.
@@ -146,8 +151,11 @@ function isLoadDriven(
   inWindowWeighted: number,
 ): boolean {
   const meetsThreshold = inWindowWeighted / inWindowSets >= LOADED_SET_FRACTION
-  if (equipment === undefined) return meetsThreshold
-  if (equipment === 'bodyweight') return meetsThreshold
+  // Unknown classification, or a bodyweight movement that may be carrying
+  // added load — the sets are the better evidence in both cases.
+  if (equipment === undefined || equipment === 'other' || equipment === 'bodyweight') {
+    return meetsThreshold
+  }
   return inWindowWeighted > 0
 }
 
