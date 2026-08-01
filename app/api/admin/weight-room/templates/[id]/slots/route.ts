@@ -155,6 +155,11 @@ async function handlePOST(request: NextRequest, ctx: Context): Promise<NextRespo
     entry.alternates
   )
   if (childFailure !== null) {
+    // The slot insert already committed in its own transaction. Reporting the
+    // add as failed while leaving it behind means a retry adds a second slot
+    // and the incomplete first one stays in the template — so undo it. The
+    // slot has no children worth keeping at this point by definition.
+    await supabase.from('weight_room_template_slots').delete().eq('id', slot.id)
     return NextResponse.json({ error: childFailure.message }, { status: childFailure.status })
   }
 
@@ -206,14 +211,15 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
 
   const supabase = createAdminSupabaseClient()
 
-  // Verify every id belongs to this template before upserting. An upsert on a
-  // non-existent id doesn't no-op — it attempts an INSERT, which fails on the
-  // NOT NULL `exercise` / `target_sets` columns and surfaces as an opaque 500.
-  // Checking first turns that into a clear 400, and stops a body from being
-  // used to drag a slot out of someone else's template.
+  // Read the required columns, not just the ids. `upsert` is
+  // `INSERT ... ON CONFLICT`, and Postgres validates NOT NULL on the candidate
+  // row *before* resolving the conflict — so a row carrying only
+  // `{id, position}` raises a not-null violation on `exercise` / `target_sets`
+  // and the update never happens. Carrying the stored values through makes the
+  // insert candidate valid; the DO UPDATE still only moves `position`.
   const { data: owned, error: ownedError } = await supabase
     .from('weight_room_template_slots')
-    .select('id')
+    .select('id, exercise, target_sets')
     .eq('template_id', templateId)
 
   if (ownedError) {
@@ -226,8 +232,8 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
     )
   }
 
-  const ownedIds = new Set((owned ?? []).map((row) => row.id))
-  const strays = entry.order.filter((row) => !ownedIds.has(row.id)).map((row) => row.id)
+  const ownedById = new Map((owned ?? []).map((row) => [row.id, row]))
+  const strays = entry.order.filter((row) => !ownedById.has(row.id)).map((row) => row.id)
   if (strays.length > 0) {
     return NextResponse.json(
       { error: `These slots do not belong to this template: ${strays.join(', ')}` },
@@ -239,12 +245,17 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
   // One statement, so the DEFERRABLE unique constraint is checked at commit —
   // a swap that transiently duplicates a position passes through legally.
   const { error } = await supabase.from('weight_room_template_slots').upsert(
-    entry.order.map((row) => ({
-      id: row.id,
-      template_id: templateId,
-      position: row.position,
-      updated_at: nowIso,
-    })),
+    entry.order.map((row) => {
+      const existing = ownedById.get(row.id)
+      return {
+        id: row.id,
+        template_id: templateId,
+        position: row.position,
+        exercise: existing?.exercise,
+        target_sets: existing?.target_sets,
+        updated_at: nowIso,
+      }
+    }),
     { onConflict: 'id' }
   )
 

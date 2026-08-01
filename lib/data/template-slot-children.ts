@@ -20,6 +20,29 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 /** Postgres FK violation — an exercise slug that isn't in the catalog. */
 const FK_VIOLATION = '23503'
 
+/**
+ * Which of `slugs` are missing from the movement catalog.
+ *
+ * @param supabase Service-role client.
+ * @param slugs Distinct slugs to check.
+ * @returns The missing slugs (empty when all exist), or `null` if the lookup
+ *   itself failed — which the caller must treat as "don't proceed", not as
+ *   "everything is fine".
+ */
+async function findUnknownExercises(
+  supabase: SupabaseClient,
+  slugs: readonly string[],
+): Promise<string[] | null> {
+  const { data, error } = await supabase
+    .from('weight_room_exercises')
+    .select('slug')
+    .in('slug', slugs as string[])
+
+  if (error) return null
+  const known = new Set((data ?? []).map((row) => row.slug))
+  return slugs.filter((slug) => !known.has(slug))
+}
+
 /** One step in a slot write body, post-validation. */
 export interface SlotStepInput {
   /** Absent/null inherits the slot's movement (drop set); set makes it a superset. */
@@ -60,6 +83,29 @@ export async function replaceSlotChildren(
   alternates: readonly string[] | undefined,
 ): Promise<ChildWriteFailure | null> {
   const nowIso = new Date().toISOString()
+
+  // Validate every slug BEFORE deleting anything. Each delete and insert is
+  // its own PostgREST transaction, so a delete that succeeds followed by an
+  // insert that fails leaves the slot's children permanently gone — and a
+  // stale builder submitting a movement that was archived out of the catalog
+  // is the realistic way that happens. Checking first turns the common failure
+  // into a clean 409 with nothing destroyed.
+  const referenced = [
+    ...(steps ?? []).map((step) => step.exercise).filter((s): s is string => s != null),
+    ...(alternates ?? []),
+  ]
+  if (referenced.length > 0) {
+    const unknown = await findUnknownExercises(supabase, [...new Set(referenced)])
+    if (unknown === null) {
+      return { message: 'Failed to verify exercises against the catalog.', status: 500 }
+    }
+    if (unknown.length > 0) {
+      return {
+        message: `Not in the movement catalog: ${unknown.join(', ')}.`,
+        status: 409,
+      }
+    }
+  }
 
   if (steps !== undefined) {
     const { error: clearError } = await supabase
