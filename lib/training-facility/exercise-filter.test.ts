@@ -61,7 +61,7 @@ describe('serializeExerciseSelection', () => {
     // Length equality would drop the param here and silently widen the view
     // back to everything.
     expect(serializeExerciseSelection(['pushups', 'pushups'], ['pushups', 'pullups'])).toBe(
-      'pushups,pushups',
+      'pushups,pushups'
     )
   })
 
@@ -86,11 +86,7 @@ describe('parse/serialize round trip', () => {
 
 describe('toggleExercise', () => {
   it('removes a selected exercise', () => {
-    expect(toggleExercise(AVAILABLE, 'squats', AVAILABLE)).toEqual([
-      'pushups',
-      'pullups',
-      'shrugs',
-    ])
+    expect(toggleExercise(AVAILABLE, 'squats', AVAILABLE)).toEqual(['pushups', 'pullups', 'shrugs'])
   })
 
   it('adds an unselected exercise back in available order', () => {

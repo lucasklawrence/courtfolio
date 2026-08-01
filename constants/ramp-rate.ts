@@ -110,7 +110,7 @@ export const FLAG_SEVERITY: Record<RampFlag, number> = {
  */
 export function classifyAcwr(
   acwr: number | null,
-  thresholds: RampRateThresholds = RAMP_RATE_THRESHOLDS,
+  thresholds: RampRateThresholds = RAMP_RATE_THRESHOLDS
 ): RampFlag {
   if (acwr == null || !Number.isFinite(acwr)) return 'green'
   if (acwr < thresholds.acwrDetrainMax) return 'yellow'
@@ -131,7 +131,7 @@ export function classifyAcwr(
  */
 export function classifyWowPct(
   wowPct: number | null,
-  thresholds: RampRateThresholds = RAMP_RATE_THRESHOLDS,
+  thresholds: RampRateThresholds = RAMP_RATE_THRESHOLDS
 ): RampFlag {
   if (wowPct == null || !Number.isFinite(wowPct)) return 'green'
   return wowPct > thresholds.wowYellowPct ? 'yellow' : 'green'
@@ -145,6 +145,6 @@ export function classifyWowPct(
 export function combineFlags(...flags: RampFlag[]): RampFlag {
   return flags.reduce<RampFlag>(
     (worst, f) => (FLAG_SEVERITY[f] > FLAG_SEVERITY[worst] ? f : worst),
-    'green',
+    'green'
   )
 }

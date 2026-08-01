@@ -6,10 +6,7 @@ import type { CardioData, CardioSession } from '@/types/cardio'
 import type { Benchmark } from '@/types/movement'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
-import {
-  useCardioPreview,
-  useCardioPreviewHref,
-} from '@/lib/training-facility/use-cardio-preview'
+import { useCardioPreview, useCardioPreviewHref } from '@/lib/training-facility/use-cardio-preview'
 import {
   DateFilter,
   endOfDay,
@@ -53,10 +50,7 @@ import { BodyweightOverlay } from '@/components/training-facility/shared/charts/
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import { defaultMargin } from '@/components/training-facility/shared/charts/types'
 import { TrainingLoadChart } from './TrainingLoadChart'
-import {
-  trainingLoadInRange,
-  type TrainingLoadPoint,
-} from '@/lib/training-facility/training-load'
+import { trainingLoadInRange, type TrainingLoadPoint } from '@/lib/training-facility/training-load'
 import { PersonalBests } from './PersonalBests'
 import { computePersonalBests } from '@/lib/training-facility/personal-bests'
 import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
@@ -116,7 +110,7 @@ export function TreadmillDetailView({
   // use site.
   const realData = useMemo<CardioData>(
     () => cardio ?? { imported_at: '', sessions: [], resting_hr_trend: [], vo2max_trend: [] },
-    [cardio],
+    [cardio]
   )
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('1M', EARLIEST_FALLBACK))
   const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
@@ -142,10 +136,10 @@ export function TreadmillDetailView({
   useEffect(() => {
     const node = cardSizerRef.current
     if (!node || typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
-        setChartWidth((prev) => (prev === next ? prev : next))
+        setChartWidth(prev => (prev === next ? prev : next))
       }
     })
     observer.observe(node)
@@ -155,10 +149,10 @@ export function TreadmillDetailView({
   useEffect(() => {
     const node = paceSizerRef.current
     if (!node || typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
-        setPaceWidth((prev) => (prev === next ? prev : next))
+        setPaceWidth(prev => (prev === next ? prev : next))
       }
     })
     observer.observe(node)
@@ -177,29 +171,27 @@ export function TreadmillDetailView({
 
   const runningSessions = useMemo<CardioSession[]>(
     () => (data ? filterRunningSessions(data.sessions, range) : []),
-    [data, range],
+    [data, range]
   )
   // Personal bests are computed once per dataset (full unfiltered) and
   // re-used across renders — only `data` invalidates them. The detail view
   // hands the active range + filtered sessions to <PersonalBests> so it can
   // detect "PB set in range" and render the "best in range" comparison line.
-  const bests = useMemo(
-    () => (data ? computePersonalBests(data) : null),
-    [data],
-  )
+  const bests = useMemo(() => (data ? computePersonalBests(data) : null), [data])
   const buckets = useMemo(() => aggregateHrZoneSeconds(runningSessions), [runningSessions])
   // Avg-HR bars aggregate to weekly/monthly means on wide windows so a
   // multi-year "All" view doesn't collapse into an unreadable picket fence of
   // per-session bars (granularity keyed off the visible span).
   const avgHrPoints = useMemo(
-    () => bucketAvgHr(perSessionAvgHr(runningSessions), avgHrGranularityForSpanDays(rangeSpanDays(range))),
-    [runningSessions, range],
+    () =>
+      bucketAvgHr(
+        perSessionAvgHr(runningSessions),
+        avgHrGranularityForSpanDays(rangeSpanDays(range))
+      ),
+    [runningSessions, range]
   )
   const paceTrend = useMemo(() => paceTrendPoints(runningSessions), [runningSessions])
-  const efficiencyTrend = useMemo(
-    () => cardiacEfficiencyPoints(runningSessions),
-    [runningSessions],
-  )
+  const efficiencyTrend = useMemo(() => cardiacEfficiencyPoints(runningSessions), [runningSessions])
   const paceVsHr = useMemo(() => paceAtHrPoints(runningSessions), [runningSessions])
 
   // Training load aggregates ALL cardio activities (stair, running, walking) —
@@ -209,7 +201,7 @@ export function TreadmillDetailView({
   // synthetic zero ramp.
   const trainingLoad = useMemo<TrainingLoadPoint[]>(
     () => (data ? trainingLoadInRange(data.sessions, range, { maxHr }) : []),
-    [data, range, maxHr],
+    [data, range, maxHr]
   )
 
   // Date extent for the pace chart and bodyweight overlay must match exactly
@@ -253,9 +245,9 @@ export function TreadmillDetailView({
             Pace, effort, and the engine that drives both
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Heart-rate zones, pace trend (overlaid with bodyweight per §4),
-            cardiac efficiency, and pace-at-HR — all scoped to the date range.
-            Lower-left on the scatter is the goal: fast at low effort.
+            Heart-rate zones, pace trend (overlaid with bodyweight per §4), cardiac efficiency, and
+            pace-at-HR — all scoped to the date range. Lower-left on the scatter is the goal: fast
+            at low effort.
           </p>
         </header>
 
@@ -275,11 +267,7 @@ export function TreadmillDetailView({
         ) : null}
 
         <div className="mt-8">
-          <DateFilter
-            earliestDate={earliestDate}
-            defaultPreset="1M"
-            onChange={setRange}
-          />
+          <DateFilter earliestDate={earliestDate} defaultPreset="1M" onChange={setRange} />
         </div>
 
         {loadError ? (
@@ -344,8 +332,8 @@ export function TreadmillDetailView({
                 >
                   <RoughLine<PaceTrendPoint>
                     data={paceTrend}
-                    x={(p) => p.date}
-                    y={(p) => p.paceSecondsPerMile}
+                    x={p => p.date}
+                    y={p => p.paceSecondsPerMile}
                     width={paceWidth}
                     height={PACE_CHART_HEIGHT}
                     margin={defaultMargin}
@@ -366,13 +354,13 @@ export function TreadmillDetailView({
               >
                 <RoughLine
                   data={efficiencyTrend}
-                  x={(p) => p.date}
-                  y={(p) => p.metersPerHeartbeat}
+                  x={p => p.date}
+                  y={p => p.metersPerHeartbeat}
                   width={chartWidth}
                   height={CHART_HEIGHT}
                   fontFamily={FONT_FAMILY}
                   yLabel="m / heartbeat"
-                  yTickFormat={(v) => v.toFixed(2)}
+                  yTickFormat={v => v.toFixed(2)}
                   ariaLabel="Cardiac efficiency over time"
                   emptyMessage="No efficiency data in range"
                 />
@@ -384,8 +372,8 @@ export function TreadmillDetailView({
               >
                 <RoughScatter
                   data={paceVsHr}
-                  x={(p) => p.avgHr}
-                  y={(p) => p.paceSecondsPerMile}
+                  x={p => p.avgHr}
+                  y={p => p.paceSecondsPerMile}
                   width={chartWidth}
                   height={CHART_HEIGHT}
                   fontFamily={FONT_FAMILY}
@@ -526,7 +514,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                   rowKey,
                   expansion,
                   interactive,
-                  'rounded-md bg-white/5 align-middle',
+                  'rounded-md bg-white/5 align-middle'
                 )
                 const isExpanded = expansion.expandedKey === rowKey
                 return (
@@ -535,8 +523,8 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                       <td className="rounded-l-md px-3 py-2 font-mono">
                         <Link
                           href={sessionDetailHref(s.date)}
-                          onClick={(e) => e.stopPropagation()}
-                          onKeyDown={(e) => e.stopPropagation()}
+                          onClick={e => e.stopPropagation()}
+                          onKeyDown={e => e.stopPropagation()}
                           className="rounded-sm text-[#f7ead9] underline decoration-white/20 underline-offset-4 transition hover:decoration-[#fff7ec] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
                         >
                           {formatRowDate(s.date)}
@@ -545,9 +533,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                       <td className="px-3 py-2 font-mono">
                         {formatDistanceMiles(s.distance_meters)}
                       </td>
-                      <td className="px-3 py-2 font-mono">
-                        {formatDuration(s.duration_seconds)}
-                      </td>
+                      <td className="px-3 py-2 font-mono">{formatDuration(s.duration_seconds)}</td>
                       <td className="px-3 py-2 font-mono">
                         {formatPaceCellFromSecPerKm(s.pace_seconds_per_km)}
                       </td>
@@ -608,8 +594,9 @@ function ErrorPanel({ message }: { message: string }): JSX.Element {
       <p className="mt-2 text-red-100/80">{message}</p>
       <p className="mt-4 text-xs text-red-100/60">
         Run <code className="rounded bg-black/40 px-1.5 py-0.5">npm run import-health</code> to
-        regenerate <code className="rounded bg-black/40 px-1.5 py-0.5">public/data/cardio.json</code>{' '}
-        from a fresh Apple Health export, then redeploy.
+        regenerate{' '}
+        <code className="rounded bg-black/40 px-1.5 py-0.5">public/data/cardio.json</code> from a
+        fresh Apple Health export, then redeploy.
       </p>
     </div>
   )

@@ -1,12 +1,7 @@
 import { isGymEnabled } from '@/lib/feature-flags'
 
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
-import {
-  RoughCircle,
-  RoughLineShape,
-  RoughPath,
-  RoughRect,
-} from './rough-shapes'
+import { RoughCircle, RoughLineShape, RoughPath, RoughRect } from './rough-shapes'
 import { SceneDoor } from './SceneDoor'
 
 /**
@@ -111,10 +106,50 @@ export function CombineHeaderSign() {
         seed={623}
       />
       {/* Pin nails */}
-      <RoughCircle cx={534} cy={104} r={3} fill={SCENE_PALETTE.ink} fillStyle="solid" stroke="none" strokeWidth={0} roughness={0.5} seed={624} />
-      <RoughCircle cx={1066} cy={104} r={3} fill={SCENE_PALETTE.ink} fillStyle="solid" stroke="none" strokeWidth={0} roughness={0.5} seed={625} />
-      <RoughCircle cx={534} cy={194} r={3} fill={SCENE_PALETTE.ink} fillStyle="solid" stroke="none" strokeWidth={0} roughness={0.5} seed={626} />
-      <RoughCircle cx={1066} cy={194} r={3} fill={SCENE_PALETTE.ink} fillStyle="solid" stroke="none" strokeWidth={0} roughness={0.5} seed={627} />
+      <RoughCircle
+        cx={534}
+        cy={104}
+        r={3}
+        fill={SCENE_PALETTE.ink}
+        fillStyle="solid"
+        stroke="none"
+        strokeWidth={0}
+        roughness={0.5}
+        seed={624}
+      />
+      <RoughCircle
+        cx={1066}
+        cy={104}
+        r={3}
+        fill={SCENE_PALETTE.ink}
+        fillStyle="solid"
+        stroke="none"
+        strokeWidth={0}
+        roughness={0.5}
+        seed={625}
+      />
+      <RoughCircle
+        cx={534}
+        cy={194}
+        r={3}
+        fill={SCENE_PALETTE.ink}
+        fillStyle="solid"
+        stroke="none"
+        strokeWidth={0}
+        roughness={0.5}
+        seed={626}
+      />
+      <RoughCircle
+        cx={1066}
+        cy={194}
+        r={3}
+        fill={SCENE_PALETTE.ink}
+        fillStyle="solid"
+        stroke="none"
+        strokeWidth={0}
+        roughness={0.5}
+        seed={627}
+      />
 
       <text
         x={800}
@@ -250,11 +285,7 @@ export function ResultsBoard() {
               fontWeight={700}
             >
               {line.value}
-              <tspan
-                fontSize={16}
-                fill={SCENE_PALETTE.inkSoft}
-                fillOpacity={0.7}
-              >
+              <tspan fontSize={16} fill={SCENE_PALETTE.inkSoft} fillOpacity={0.7}>
                 {' '}
                 {line.unit}
               </tspan>

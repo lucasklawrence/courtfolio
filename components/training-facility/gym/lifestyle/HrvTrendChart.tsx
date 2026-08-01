@@ -11,7 +11,7 @@ export function HrvTrendChart(props: LifestyleChartProps): JSX.Element {
     <BaseLifestyleTrendChart
       {...props}
       yLabel="HRV (ms)"
-      yTickFormat={(v) => String(Math.round(v))}
+      yTickFormat={v => String(Math.round(v))}
       emptyMessage="No HRV data in range"
       ariaLabel="HRV (SDNN) over time"
     />

@@ -106,9 +106,7 @@ describe('withTelemetry', () => {
   })
 
   it('schedules a post-response flush on success and on throw', async () => {
-    const ok = withTelemetry('GET /api/admin/check', async () =>
-      Response.json({}, { status: 200 })
-    )
+    const ok = withTelemetry('GET /api/admin/check', async () => Response.json({}, { status: 200 }))
     await ok()
     expect(afterMock).toHaveBeenCalledTimes(1)
     // The scheduled callback is the client's flush — draining the publish

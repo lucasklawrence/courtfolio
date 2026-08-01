@@ -33,7 +33,7 @@ describe('FacilityBackLink', () => {
     render(<FacilityBackLink />)
     expect(screen.getByRole('link', { name: /tracking/i })).toHaveAttribute(
       'href',
-      '/training-facility/tracking',
+      '/training-facility/tracking'
     )
   })
 
@@ -42,7 +42,7 @@ describe('FacilityBackLink', () => {
     render(<FacilityBackLink />)
     expect(screen.getByRole('link', { name: /tracking/i })).toHaveAttribute(
       'href',
-      '/training-facility/tracking',
+      '/training-facility/tracking'
     )
   })
 
@@ -51,7 +51,7 @@ describe('FacilityBackLink', () => {
     render(<FacilityBackLink />)
     expect(screen.getByRole('link', { name: /training facility/i })).toHaveAttribute(
       'href',
-      '/training-facility',
+      '/training-facility'
     )
   })
 

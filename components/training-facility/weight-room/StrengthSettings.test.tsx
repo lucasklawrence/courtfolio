@@ -54,7 +54,7 @@ describe('StrengthSettings', () => {
   it('shows the empty-state copy and the add form when no goals exist', () => {
     render(<StrengthSettings initialGoals={[]} />)
     expect(
-      screen.getByText(/no exercises yet — add one below to start logging sets\./i),
+      screen.getByText(/no exercises yet — add one below to start logging sets\./i)
     ).toBeInTheDocument()
     expect(screen.queryAllByRole('button', { name: /^save$/i })).toHaveLength(0)
     expect(screen.getByRole('button', { name: /^add$/i })).toBeInTheDocument()
@@ -128,7 +128,7 @@ describe('StrengthSettings — scheduled target changes (#371)', () => {
             target_history: [{ daily_target: 30, effective_from: '2026-01-01' }],
           },
         ]}
-      />,
+      />
     )
     expect(queryByTestId('goal-scheduled-pullups')).toBeNull()
   })
@@ -142,7 +142,7 @@ describe('StrengthSettings — scheduled target changes (#371)', () => {
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1))
     expect(fetchMock.mock.calls[0][0]).toBe(
-      '/api/admin/weight-room/goals/pullups/targets/2099-09-01',
+      '/api/admin/weight-room/goals/pullups/targets/2099-09-01'
     )
     expect(fetchMock.mock.calls[0][1]).toMatchObject({ method: 'DELETE' })
   })
@@ -153,7 +153,7 @@ describe('StrengthSettings — scheduled target changes (#371)', () => {
     render(
       <StrengthSettings
         initialGoals={[{ exercise: 'pullups', daily_target: 30, color: '#0EA5A1' }]}
-      />,
+      />
     )
 
     // The add-goal form has a target input too; the goal row's comes first.
@@ -235,4 +235,3 @@ describe('StrengthSettings — scheduling guards (#371 review)', () => {
     })
   })
 })
-

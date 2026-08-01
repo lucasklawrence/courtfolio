@@ -20,7 +20,6 @@ export type { FocusCategory }
  * this module runs inside a Vercel Server Component.
  */
 
-
 /**
  * Whether a focus window covers `dayKey` (inclusive on both ends).
  *
@@ -50,7 +49,7 @@ const FOCUS_CATEGORY_ORDER: readonly FocusCategory[] = ['upper', 'lower']
  */
 export function activeFocusesForDay(
   focuses: readonly MonthlyFocus[],
-  dayKey: string,
+  dayKey: string
 ): MonthlyFocus[] {
   const byCategory = new Map<FocusCategory, MonthlyFocus>()
   for (const focus of focuses) {
@@ -60,7 +59,7 @@ export function activeFocusesForDay(
       byCategory.set(focus.category, focus)
     }
   }
-  return FOCUS_CATEGORY_ORDER.flatMap((category) => {
+  return FOCUS_CATEGORY_ORDER.flatMap(category => {
     const focus = byCategory.get(category)
     return focus ? [focus] : []
   })
@@ -74,13 +73,10 @@ export function activeFocusesForDay(
  * @param dayKey `YYYY-MM-DD` key for the viewed day. An empty string
  *   yields an empty list (defensive against an unparseable clock).
  */
-export function upcomingFocuses(
-  focuses: readonly MonthlyFocus[],
-  dayKey: string,
-): MonthlyFocus[] {
+export function upcomingFocuses(focuses: readonly MonthlyFocus[], dayKey: string): MonthlyFocus[] {
   if (dayKey === '') return []
   return focuses
-    .filter((focus) => focus.start_date > dayKey)
+    .filter(focus => focus.start_date > dayKey)
     .sort((a, b) => (a.start_date < b.start_date ? -1 : a.start_date > b.start_date ? 1 : 0))
 }
 
@@ -147,7 +143,7 @@ export interface FocusAdherence {
 export function computeFocusAdherence(
   focus: MonthlyFocus,
   sets: readonly StrengthSet[],
-  now: Date = new Date(),
+  now: Date = new Date()
 ): FocusAdherence {
   const daysInWindow = inclusiveDaySpan(focus.start_date, focus.end_date)
   const today = pacificDayKey(now)
@@ -155,11 +151,7 @@ export function computeFocusAdherence(
   // Last elapsed day = min(today, end_date); nothing elapsed if today is
   // before the window opens.
   const lastElapsed =
-    today === '' || today < focus.start_date
-      ? ''
-      : today < focus.end_date
-        ? today
-        : focus.end_date
+    today === '' || today < focus.start_date ? '' : today < focus.end_date ? today : focus.end_date
 
   if (lastElapsed === '') {
     return { daysInWindow, daysElapsed: 0, daysHit: 0, currentStreak: 0, percent: 0 }
@@ -263,7 +255,7 @@ export interface FocusLoadStats {
 export function computeFocusLoadStats(
   focus: MonthlyFocus,
   sets: readonly StrengthSet[],
-  loadMultiplier = 1,
+  loadMultiplier = 1
 ): FocusLoadStats {
   const implements_ = Math.max(1, loadMultiplier)
   let topSetLbs: number | null = null
@@ -350,9 +342,9 @@ export function buildFocusLaneCells(
   focuses: readonly MonthlyFocus[],
   sets: readonly StrengthSet[],
   category: FocusCategory,
-  today: string,
+  today: string
 ): FocusDayCell[] {
-  const laneFocuses = focuses.filter((f) => f.category === category)
+  const laneFocuses = focuses.filter(f => f.category === category)
   if (laneFocuses.length === 0 || today === '') return []
 
   let earliestStart = laneFocuses[0].start_date
@@ -432,21 +424,18 @@ export function buildFocusLaneCells(
  */
 export function focusTargetHistory(
   focuses: readonly MonthlyFocus[],
-  exercise: string,
+  exercise: string
 ): { daily_target: number; effective_from: string }[] {
   return focuses
     .filter(
-      (focus) =>
-        focus.exercise === exercise &&
-        focus.daily_target > 0 &&
-        focus.target_kind !== 'sets',
+      focus => focus.exercise === exercise && focus.daily_target > 0 && focus.target_kind !== 'sets'
     )
-    .map((focus) => ({
+    .map(focus => ({
       daily_target: focus.daily_target,
       effective_from: focus.start_date,
     }))
     .sort((a, b) =>
-      a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0,
+      a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0
     )
 }
 
@@ -506,13 +495,11 @@ export function summarizeFocusCampaigns(
   focuses: readonly MonthlyFocus[],
   exercise: string,
   sets: readonly StrengthSet[],
-  now: Date = new Date(),
+  now: Date = new Date()
 ): FocusCampaignSummary | null {
   const windows = focuses
-    .filter((focus) => focus.exercise === exercise)
-    .sort((a, b) =>
-      a.start_date < b.start_date ? -1 : a.start_date > b.start_date ? 1 : 0,
-    )
+    .filter(focus => focus.exercise === exercise)
+    .sort((a, b) => (a.start_date < b.start_date ? -1 : a.start_date > b.start_date ? 1 : 0))
   if (windows.length === 0) return null
 
   const today = pacificDayKey(now)
@@ -536,13 +523,13 @@ export function summarizeFocusCampaigns(
     if (s.exercise !== exercise) continue
     const day = safePacificDayKey(s.logged_at)
     if (day === '') continue
-    if (windows.some((focus) => isFocusActiveOnDay(focus, day))) campaignReps += s.reps
+    if (windows.some(focus => isFocusActiveOnDay(focus, day))) campaignReps += s.reps
   }
 
   // "Upcoming" is every window still ahead of today — distinct from "ended",
   // which a bare `!isActive` would conflate, and which would render a
   // scheduled campaign as a finished one with `0/0` days hit.
-  const allUpcoming = today !== '' && windows.every((focus) => today < focus.start_date)
+  const allUpcoming = today !== '' && windows.every(focus => today < focus.start_date)
   const status: FocusCampaignSummary['status'] = isActive
     ? 'active'
     : allUpcoming

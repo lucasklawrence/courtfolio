@@ -55,9 +55,7 @@ describe('WeightRoomGoalRowSchema (read)', () => {
   it('rejects load_multiplier, which moved to the exercise catalog (#373)', () => {
     // `.strict()` turns the moved column into a loud failure rather than a
     // silently-ignored key, which is what would let the two sides drift.
-    expect(() =>
-      WeightRoomGoalRowSchema.parse({ ...base, load_multiplier: 2 }),
-    ).toThrow()
+    expect(() => WeightRoomGoalRowSchema.parse({ ...base, load_multiplier: 2 })).toThrow()
   })
 })
 
@@ -85,23 +83,17 @@ describe('WeightRoomExerciseRowSchema (read, #373)', () => {
         load_multiplier: null,
         is_unilateral: null,
         archived: null,
-      }),
+      })
     ).not.toThrow()
   })
 
   it('rejects an equipment or muscle_group outside the check constraint', () => {
-    expect(() =>
-      WeightRoomExerciseRowSchema.parse({ ...base, equipment: 'trebuchet' }),
-    ).toThrow()
-    expect(() =>
-      WeightRoomExerciseRowSchema.parse({ ...base, muscle_group: 'lats' }),
-    ).toThrow()
+    expect(() => WeightRoomExerciseRowSchema.parse({ ...base, equipment: 'trebuchet' })).toThrow()
+    expect(() => WeightRoomExerciseRowSchema.parse({ ...base, muscle_group: 'lats' })).toThrow()
   })
 
   it('rejects a non-positive load_multiplier', () => {
-    expect(() =>
-      WeightRoomExerciseRowSchema.parse({ ...base, load_multiplier: 0 }),
-    ).toThrow()
+    expect(() => WeightRoomExerciseRowSchema.parse({ ...base, load_multiplier: 0 })).toThrow()
   })
 })
 
@@ -163,17 +155,14 @@ describe('WeightRoomExerciseUpsertSchema (write body, #373)', () => {
   })
 
   it('trims the display name and rejects an empty one', () => {
-    expect(WeightRoomExerciseUpsertSchema.parse({ ...base, display_name: '  Dips  ' })
-      .display_name).toBe('Dips')
-    expect(() =>
-      WeightRoomExerciseUpsertSchema.parse({ ...base, display_name: '   ' }),
-    ).toThrow()
+    expect(
+      WeightRoomExerciseUpsertSchema.parse({ ...base, display_name: '  Dips  ' }).display_name
+    ).toBe('Dips')
+    expect(() => WeightRoomExerciseUpsertSchema.parse({ ...base, display_name: '   ' })).toThrow()
   })
 
   it('rejects an unknown key', () => {
-    expect(() =>
-      WeightRoomExerciseUpsertSchema.parse({ ...base, muscle: 'chest' }),
-    ).toThrow()
+    expect(() => WeightRoomExerciseUpsertSchema.parse({ ...base, muscle: 'chest' })).toThrow()
   })
 })
 
@@ -197,9 +186,7 @@ describe('WeightRoomExerciseUpdateSchema (patch body, #373)', () => {
   })
 
   it('rejects a slug change — the value is stored on every logged set', () => {
-    expect(() =>
-      WeightRoomExerciseUpdateSchema.parse({ slug: 'renamed' }),
-    ).toThrow()
+    expect(() => WeightRoomExerciseUpdateSchema.parse({ slug: 'renamed' })).toThrow()
   })
 })
 
@@ -223,9 +210,7 @@ describe('WeightRoomWorkoutCreateSchema (write body, #374)', () => {
   })
 
   it('rejects an over-long title', () => {
-    expect(() =>
-      WeightRoomWorkoutCreateSchema.parse({ title: 'x'.repeat(81) }),
-    ).toThrow()
+    expect(() => WeightRoomWorkoutCreateSchema.parse({ title: 'x'.repeat(81) })).toThrow()
   })
 
   it('rejects an unknown key', () => {
@@ -253,9 +238,9 @@ describe('WeightRoomWorkoutUpdateSchema (patch body, #374)', () => {
   })
 
   it('accepts an ISO ended_at to close one', () => {
-    expect(
-      WeightRoomWorkoutUpdateSchema.parse({ ended_at: '2026-07-15T19:00:00Z' }).ended_at,
-    ).toBe('2026-07-15T19:00:00Z')
+    expect(WeightRoomWorkoutUpdateSchema.parse({ ended_at: '2026-07-15T19:00:00Z' }).ended_at).toBe(
+      '2026-07-15T19:00:00Z'
+    )
   })
 })
 
@@ -307,7 +292,7 @@ describe('WeightRoomGoalUpsertSchema (write body)', () => {
         exercise: '   ',
         daily_target: 100,
         color: '#EA580C',
-      }),
+      })
     ).toThrow()
   })
 
@@ -318,7 +303,7 @@ describe('WeightRoomGoalUpsertSchema (write body)', () => {
         daily_target: 100,
         color: '#EA580C',
         surprise: 'no',
-      }),
+      })
     ).toThrow()
   })
 })
@@ -398,7 +383,7 @@ describe('WeightRoomSetCreateSchema (write body)', () => {
 
   it('rejects unknown fields via .strict()', () => {
     expect(() =>
-      WeightRoomSetCreateSchema.parse({ exercise: 'pushups', reps: 25, surprise: 'no' }),
+      WeightRoomSetCreateSchema.parse({ exercise: 'pushups', reps: 25, surprise: 'no' })
     ).toThrow()
   })
 })
@@ -475,9 +460,7 @@ describe('WeightRoomMonthlyFocusCreateSchema (write body)', () => {
   })
 
   it('rejects a category outside the upper/lower enum', () => {
-    expect(() =>
-      WeightRoomMonthlyFocusCreateSchema.parse({ ...base, category: 'core' }),
-    ).toThrow()
+    expect(() => WeightRoomMonthlyFocusCreateSchema.parse({ ...base, category: 'core' })).toThrow()
   })
 
   it('requires the category to be supplied', () => {
@@ -491,7 +474,7 @@ describe('WeightRoomMonthlyFocusCreateSchema (write body)', () => {
         ...base,
         start_date: '2026-07-31',
         end_date: '2026-07-01',
-      }),
+      })
     ).toThrow()
   })
 })
@@ -507,15 +490,17 @@ describe('WeightRoomAchievementCreateSchema', () => {
   })
 
   it('lowercases a supplied exercise', () => {
-    expect(WeightRoomAchievementCreateSchema.parse({ ...base, exercise: 'PushUps' })).toMatchObject({
-      exercise: 'pushups',
-    })
+    expect(WeightRoomAchievementCreateSchema.parse({ ...base, exercise: 'PushUps' })).toMatchObject(
+      {
+        exercise: 'pushups',
+      }
+    )
   })
 
   it('rejects a non-positive threshold and an unknown measure', () => {
     expect(() => WeightRoomAchievementCreateSchema.parse({ ...base, threshold: 0 })).toThrow()
     expect(() =>
-      WeightRoomAchievementCreateSchema.parse({ ...base, measure: 'calories' }),
+      WeightRoomAchievementCreateSchema.parse({ ...base, measure: 'calories' })
     ).toThrow()
   })
 })

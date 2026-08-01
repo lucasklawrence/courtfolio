@@ -221,7 +221,7 @@ export function todayDayKey(now: Date = new Date()): string {
 export function formatDayKey(
   key: string,
   options: Intl.DateTimeFormatOptions,
-  locale?: string,
+  locale?: string
 ): string {
   const d = dayKeyToPacificNoon(key)
   if (d === null) return ''

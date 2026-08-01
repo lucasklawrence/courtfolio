@@ -117,7 +117,7 @@ export interface StrengthExerciseStats {
   displayName?: string
   /** Hex color from the matching {@link ExerciseGoal.color}. */
   color: string
-   /**
+  /**
    * The daily target in effect today — what the panel labels the exercise
    * with. For a focus-anchored exercise this is the *rotation's* target, not
    * the anchor goal's scalar (#367): labelling a shrugs card "goal 500/day"

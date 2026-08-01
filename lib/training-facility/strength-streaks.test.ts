@@ -205,7 +205,7 @@ describe('computeStrengthStreaks with effective-dated targets (#362)', () => {
         s('pullups', '2026-08-01', 50),
         s('pullups', '2026-08-02', 50),
       ],
-      [PULLUPS_RAISED],
+      [PULLUPS_RAISED]
     )
     expect(result.pullups).toEqual({ current: 3, longest: 3 })
   })
@@ -215,7 +215,7 @@ describe('computeStrengthStreaks with effective-dated targets (#362)', () => {
     vi.setSystemTime(new Date('2026-07-16T12:00:00'))
     const result = computeStrengthStreaks(
       [s('pushups', '2026-07-15', 100), s('pushups', '2026-07-16', 100)],
-      [PUSHUPS],
+      [PUSHUPS]
     )
     expect(result.pushups).toEqual({ current: 2, longest: 2 })
   })

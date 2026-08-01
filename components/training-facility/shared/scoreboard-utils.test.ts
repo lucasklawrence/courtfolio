@@ -126,7 +126,7 @@ describe('classifyDelta', () => {
 describe('deriveCombineScoreboardCells', () => {
   it('returns four cells in PRD §9.1 order', () => {
     const cells = deriveCombineScoreboardCells([baseline, middle, latest])
-    expect(cells.map((c) => c.label)).toEqual(['WT', '5-10-5', 'VERT', '10Y'])
+    expect(cells.map(c => c.label)).toEqual(['WT', '5-10-5', 'VERT', '10Y'])
     expect(SCOREBOARD_METRIC_ORDER).toEqual([
       'bodyweight_lbs',
       'shuttle_5_10_5_s',
@@ -137,14 +137,14 @@ describe('deriveCombineScoreboardCells', () => {
 
   it('binds latest value, baseline, direction, precision, and unit per cell', () => {
     const cells = deriveCombineScoreboardCells([baseline, middle, latest])
-    const vert = cells.find((c) => c.label === 'VERT')!
+    const vert = cells.find(c => c.label === 'VERT')!
     expect(vert.value).toBe(22.0)
     expect(vert.baseline).toBe(19.5)
     expect(vert.direction).toBe('higher')
     expect(vert.precision).toBe(1)
     expect(vert.unit).toBe('"')
 
-    const shuttle = cells.find((c) => c.label === '5-10-5')!
+    const shuttle = cells.find(c => c.label === '5-10-5')!
     expect(shuttle.value).toBe(5.38)
     expect(shuttle.baseline).toBe(5.62)
     expect(shuttle.direction).toBe('lower')

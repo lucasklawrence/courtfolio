@@ -181,8 +181,8 @@ export type OtfMileageAwardCreate = z.infer<typeof OtfMileageAwardCreateSchema>
  * carry at least one field — an empty patch is a client bug, not a no-op.
  */
 export const OtfMileageAwardUpdateSchema = OtfMileageAwardCreateSchema.partial().refine(
-  (patch) => Object.keys(patch).length > 0,
-  { message: 'At least one field (label, miles, or color) is required.' },
+  patch => Object.keys(patch).length > 0,
+  { message: 'At least one field (label, miles, or color) is required.' }
 )
 
 /** Validated update payload inferred from {@link OtfMileageAwardUpdateSchema}. */

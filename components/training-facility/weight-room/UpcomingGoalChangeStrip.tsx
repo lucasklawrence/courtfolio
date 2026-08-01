@@ -40,8 +40,8 @@ export function UpcomingGoalChangeStrip({
   goals,
   todayKey,
 }: UpcomingGoalChangeStripProps): JSX.Element | null {
-  const entries = goals.flatMap((goal) =>
-    scheduledGoalTargetChanges(goal, todayKey).map((change) => ({ goal, change })),
+  const entries = goals.flatMap(goal =>
+    scheduledGoalTargetChanges(goal, todayKey).map(change => ({ goal, change }))
   )
   if (entries.length === 0) return null
 

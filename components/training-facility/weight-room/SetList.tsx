@@ -151,9 +151,7 @@ export function SetList({
                 >
                   {slugLabel(exercise, goal, labels)}
                 </span>
-                <span className="text-sm font-semibold tabular-nums text-white">
-                  {total}
-                </span>
+                <span className="text-sm font-semibold tabular-nums text-white">{total}</span>
                 {target ? (
                   <span className="text-[10px] uppercase tracking-[0.18em] text-white/50">
                     / {target}
@@ -165,7 +163,7 @@ export function SetList({
         </div>
       ) : null}
       <ul className="divide-y divide-white/5 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-        {ordered.map((s) => {
+        {ordered.map(s => {
           const goal = goalsByExercise[s.exercise]
           const color = goal?.color ?? '#fbbf24'
           const isPending = pendingId === s.id

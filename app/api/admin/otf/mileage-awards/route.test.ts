@@ -97,7 +97,7 @@ describe('POST /api/admin/otf/mileage-awards', () => {
     const res = await POST(makeRequest(validAward) as never)
     expect(res.status).toBe(201)
     expect(supabaseChain.insert).toHaveBeenCalledWith(
-      expect.objectContaining({ label: 'Ultra', miles: 31.1, color: '#EA580C' }),
+      expect.objectContaining({ label: 'Ultra', miles: 31.1, color: '#EA580C' })
     )
   })
 

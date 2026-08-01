@@ -162,7 +162,7 @@ describe('buildOtfMileageView', () => {
         ride('2026-06-15T12:00:00Z', 3, 0),
       ],
       AWARDS,
-      now,
+      now
     )
     expect(view.current.monthKey).toBe('2026-07')
     expect(view.current.miles).toBeCloseTo(15, 10)
@@ -181,7 +181,7 @@ describe('buildOtfMileageView', () => {
         ride('2026-06-10T12:00:00Z', 1, 0),
       ],
       AWARDS,
-      now,
+      now
     )
     expect(view.history.map(m => m.monthKey)).toEqual(['2026-06', '2026-05', '2026-04'])
     expect(view.history[1].earned.map(a => a.label)).toEqual(['Half Marathon'])

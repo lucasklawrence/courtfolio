@@ -65,7 +65,7 @@ export function LogDayPicker({
         type="date"
         value={selectedDay}
         max={todayKey}
-        onChange={(e) => {
+        onChange={e => {
           const next = e.target.value
           // Ignore anything that isn't a strict YYYY-MM-DD key (cleared
           // input, exotic 5+-digit years) and typed future dates — the
@@ -95,11 +95,7 @@ export function LogDayPicker({
       <p
         role="status"
         data-testid="log-day-indicator"
-        className={
-          isBackfilling
-            ? 'basis-full font-mono text-[12px] text-amber-200/90'
-            : 'sr-only'
-        }
+        className={isBackfilling ? 'basis-full font-mono text-[12px] text-amber-200/90' : 'sr-only'}
       >
         {isBackfilling
           ? `Viewing ${formatDayLabel(selectedDay)} — new sets will be logged to this day.`

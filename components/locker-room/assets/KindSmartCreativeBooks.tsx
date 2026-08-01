@@ -7,5 +7,11 @@ import { SvgUse } from '@/components/common/SvgUse'
  */
 
 export const KindSmartCreativeBooks: React.FC<React.SVGProps<SVGSVGElement>> = props => {
-  return <SvgUse href="/locker-room/KindSmartCreativeBooks.svg#KindSmartCreativeBooks" viewBox="0.00 0.00 1536.00 1024.00" {...props} />
+  return (
+    <SvgUse
+      href="/locker-room/KindSmartCreativeBooks.svg#KindSmartCreativeBooks"
+      viewBox="0.00 0.00 1536.00 1024.00"
+      {...props}
+    />
+  )
 }

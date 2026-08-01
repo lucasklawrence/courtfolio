@@ -57,7 +57,7 @@ describe('CombineTradingCard', () => {
           { date: '2026-03-15', vertical_in: 22, is_complete: false },
           { date: '2026-04-10', vertical_in: 23, is_complete: false },
         ]}
-      />,
+      />
     )
     expect(container.firstChild).toBeNull()
   })
@@ -69,7 +69,7 @@ describe('CombineTradingCard', () => {
           { date: '2026-01-15', vertical_in: 19 },
           { date: '2026-04-10', vertical_in: 23 },
         ]}
-      />,
+      />
     )
     const section = screen.getByRole('region', { name: /combine trading card/i })
     expect(section).toBeInTheDocument()

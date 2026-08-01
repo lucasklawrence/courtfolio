@@ -22,7 +22,7 @@ import { filterCardioSessionsByActivity } from './cardio-shared'
  */
 export function filterWalkingSessions(
   sessions: readonly CardioSession[],
-  range: DateRange,
+  range: DateRange
 ): CardioSession[] {
   return filterCardioSessionsByActivity(sessions, 'walking', range)
 }

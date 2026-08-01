@@ -87,13 +87,12 @@ describe('StairDetailView preview wiring (#162)', () => {
   it('shows the empty-state CTA when no stair sessions and no preview param', () => {
     render(<StairDetailView cardio={null} />)
 
-    expect(
-      screen.getByRole('link', { name: /preview with sample data/i }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /preview with sample data/i })).toBeInTheDocument()
     // CTA href is sourced from `usePathname()` so a route move follows along.
-    expect(
-      screen.getByRole('link', { name: /preview with sample data/i }),
-    ).toHaveAttribute('href', '/training-facility/gym/stair?preview=demo')
+    expect(screen.getByRole('link', { name: /preview with sample data/i })).toHaveAttribute(
+      'href',
+      '/training-facility/gym/stair?preview=demo'
+    )
     expect(screen.queryByText(/preview — sample data/i)).not.toBeInTheDocument()
   })
 
@@ -103,7 +102,7 @@ describe('StairDetailView preview wiring (#162)', () => {
 
     expect(screen.getByText(/preview — sample data/i)).toBeInTheDocument()
     expect(
-      screen.queryByRole('link', { name: /preview with sample data/i }),
+      screen.queryByRole('link', { name: /preview with sample data/i })
     ).not.toBeInTheDocument()
   })
 
@@ -113,9 +112,7 @@ describe('StairDetailView preview wiring (#162)', () => {
     // to render either way.
     render(<StairDetailView cardio={populatedRunningOnly} />)
 
-    expect(
-      screen.getByRole('link', { name: /preview with sample data/i }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /preview with sample data/i })).toBeInTheDocument()
   })
 
   it('hides both preview surfaces when real stair sessions exist (real data wins)', () => {
@@ -124,7 +121,7 @@ describe('StairDetailView preview wiring (#162)', () => {
 
     expect(screen.queryByText(/preview — sample data/i)).not.toBeInTheDocument()
     expect(
-      screen.queryByRole('link', { name: /preview with sample data/i }),
+      screen.queryByRole('link', { name: /preview with sample data/i })
     ).not.toBeInTheDocument()
   })
 
@@ -143,6 +140,6 @@ describe('StairDetailView preview wiring (#162)', () => {
     // inspect the chart children (they're mocked), so verify the
     // fixture has stair sessions to thread (regression: if the fixture
     // ever loses stair entries the demo would render empty).
-    expect(CARDIO_DEMO_DATA.sessions.some((s) => s.activity === 'stair')).toBe(true)
+    expect(CARDIO_DEMO_DATA.sessions.some(s => s.activity === 'stair')).toBe(true)
   })
 })

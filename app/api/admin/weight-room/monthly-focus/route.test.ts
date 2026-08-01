@@ -32,7 +32,7 @@ const supabaseChain = {
     return supabaseChain
   }),
   upsert: vi.fn(() =>
-    lastTable === 'weight_room_exercises' ? catalogUpsertResultMock() : upsertResultMock(),
+    lastTable === 'weight_room_exercises' ? catalogUpsertResultMock() : upsertResultMock()
   ),
   insert: vi.fn(() => supabaseChain),
   select: vi.fn(() => supabaseChain),
@@ -67,7 +67,7 @@ beforeEach(() => {
     return supabaseChain
   })
   supabaseChain.upsert.mockImplementation(() =>
-    lastTable === 'weight_room_exercises' ? catalogUpsertResultMock() : upsertResultMock(),
+    lastTable === 'weight_room_exercises' ? catalogUpsertResultMock() : upsertResultMock()
   )
   supabaseChain.insert.mockReturnValue(supabaseChain)
   supabaseChain.select.mockReturnValue(supabaseChain)
@@ -75,7 +75,10 @@ beforeEach(() => {
   // Happy-path defaults; individual tests override.
   upsertResultMock.mockResolvedValue({ error: null })
   catalogUpsertResultMock.mockResolvedValue({ error: null })
-  singleMock.mockResolvedValue({ data: { id: 'f1', ...validFocus, target_kind: 'reps' }, error: null })
+  singleMock.mockResolvedValue({
+    data: { id: 'f1', ...validFocus, target_kind: 'reps' },
+    error: null,
+  })
 })
 
 function makeRequest(body: unknown): Request {
@@ -105,7 +108,7 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
   it('returns 400 when end_date precedes start_date', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     const res = await POST(
-      makeRequest({ ...validFocus, start_date: '2026-07-31', end_date: '2026-07-01' }) as never,
+      makeRequest({ ...validFocus, start_date: '2026-07-31', end_date: '2026-07-01' }) as never
     )
     expect(res.status).toBe(400)
   })
@@ -145,7 +148,7 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
     // has to land first or a brand-new focus exercise 23503s.
     const tables = supabaseChain.from.mock.calls.map(([table]) => table)
     expect(tables.indexOf('weight_room_exercises')).toBeLessThan(
-      tables.indexOf('weight_room_goals'),
+      tables.indexOf('weight_room_goals')
     )
   })
 
@@ -176,7 +179,7 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
     // permanent goal isn't flipped.
     expect(supabaseChain.upsert).toHaveBeenCalledWith(
       expect.objectContaining({ exercise: 'shrugs', kind: 'focus', daily_target: 100 }),
-      { onConflict: 'exercise', ignoreDuplicates: true },
+      { onConflict: 'exercise', ignoreDuplicates: true }
     )
     // Focus insert defaults target_kind to 'reps' and carries the category lane.
     expect(supabaseChain.insert).toHaveBeenCalledWith(
@@ -186,7 +189,7 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
         category: 'upper',
         start_date: '2026-07-01',
         end_date: '2026-07-31',
-      }),
+      })
     )
   })
 
@@ -195,7 +198,7 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
     await POST(makeRequest({ ...validFocus, exercise: 'Shrugs' }) as never)
     expect(supabaseChain.upsert).toHaveBeenCalledWith(
       expect.objectContaining({ exercise: 'shrugs' }),
-      expect.anything(),
+      expect.anything()
     )
   })
 })

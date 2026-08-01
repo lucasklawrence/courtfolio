@@ -37,7 +37,7 @@ test.describe('training facility disabled', () => {
     // into a dead route is the binder equivalent of a door into a wall.
     await page.goto('/projects')
     await expect(page.getByRole('button', { name: /open training facility details/i })).toHaveCount(
-      0,
+      0
     )
   })
 

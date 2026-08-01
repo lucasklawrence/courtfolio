@@ -20,13 +20,13 @@ describe('RoughLine', () => {
     render(
       <RoughLine
         data={[] as Array<{ x: number; y: number }>}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={400}
         height={200}
         ariaLabel="line chart"
         emptyMessage="No data yet"
-      />,
+      />
     )
     // EmptyChart renders the message as a <text> element inside the SVG.
     expect(screen.getByText('No data yet')).toBeInTheDocument()
@@ -36,12 +36,12 @@ describe('RoughLine', () => {
     render(
       <RoughLine
         data={[] as Array<{ x: number; y: number }>}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={400}
         height={200}
         ariaLabel="line chart"
-      />,
+      />
     )
     expect(screen.getByText('No data')).toBeInTheDocument()
   })
@@ -53,12 +53,12 @@ describe('RoughLine', () => {
           { x: 0, y: 1 },
           { x: 1, y: 2 },
         ]}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={400}
         height={200}
         ariaLabel="vertical jump trend"
-      />,
+      />
     )
     expect(screen.getByRole('img', { name: 'vertical jump trend' })).toBeInTheDocument()
   })
@@ -69,13 +69,13 @@ describe('RoughLine', () => {
         <h2 id="chart-heading">Chart heading</h2>
         <RoughLine
           data={[{ x: 0, y: 1 }]}
-          x={(d) => d.x}
-          y={(d) => d.y}
+          x={d => d.x}
+          y={d => d.y}
           width={400}
           height={200}
           ariaLabelledBy="chart-heading"
         />
-      </>,
+      </>
     )
     // role=img plus aria-labelledby resolves the accessible name from the heading.
     expect(screen.getByRole('img', { name: 'Chart heading' })).toBeInTheDocument()
@@ -89,8 +89,8 @@ describe('RoughLine', () => {
           { x: 1, y: 2 },
           { x: 2, y: 3 },
         ]}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={400}
         height={200}
         overlay={[
@@ -98,7 +98,7 @@ describe('RoughLine', () => {
           { x: 2, y: 3 },
         ]}
         ariaLabel="trend with overlay"
-      />,
+      />
     )
     const overlayPath = container.querySelector('[data-testid="rough-line-overlay"]')
     expect(overlayPath).not.toBeNull()
@@ -118,8 +118,8 @@ describe('RoughLine', () => {
           { x: new Date(2026, 5, 3), y: 14 },
           { x: new Date(2026, 5, 5), y: 12 },
         ]}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={400}
         height={200}
         overlay={[
@@ -127,7 +127,7 @@ describe('RoughLine', () => {
           { x: new Date(2026, 5, 5), y: 15 },
         ]}
         ariaLabel="date trend with regression"
-      />,
+      />
     )
     const overlayPath = container.querySelector('[data-testid="rough-line-overlay"]')
     expect(overlayPath).not.toBeNull()
@@ -141,13 +141,13 @@ describe('RoughLine', () => {
           { x: 0, y: 1 },
           { x: 1, y: 2 },
         ]}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={400}
         height={200}
         overlay={[{ x: 0, y: 1 }]}
         ariaLabel="trend with degenerate overlay"
-      />,
+      />
     )
     expect(container.querySelector('[data-testid="rough-line-overlay"]')).toBeNull()
   })
@@ -163,12 +163,12 @@ describe('RoughLine', () => {
           { x: new Date(2024, 6, 1), y: 2 },
           { x: new Date(2025, 11, 1), y: 3 },
         ]}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={600}
         height={200}
         ariaLabel="multi-year trend"
-      />,
+      />
     )
     expect(screen.getAllByText(/20\d\d/).length).toBeGreaterThan(0)
   })
@@ -180,12 +180,12 @@ describe('RoughLine', () => {
           { x: new Date(2026, 0, 1), y: 1 },
           { x: new Date(2026, 1, 15), y: 2 },
         ]}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={400}
         height={200}
         ariaLabel="two-month trend"
-      />,
+      />
     )
     expect(screen.queryAllByText(/20\d\d/)).toHaveLength(0)
   })
@@ -208,13 +208,13 @@ describe('RoughBar', () => {
     render(
       <RoughBar
         data={[] as Array<{ k: string; v: number }>}
-        x={(d) => d.k}
-        y={(d) => d.v}
+        x={d => d.k}
+        y={d => d.v}
         width={400}
         height={200}
         ariaLabel="bar chart"
         emptyMessage="No bars yet"
-      />,
+      />
     )
     expect(screen.getByText('No bars yet')).toBeInTheDocument()
   })
@@ -226,12 +226,12 @@ describe('RoughBar', () => {
           { k: 'A', v: 10 },
           { k: 'B', v: 20 },
         ]}
-        x={(d) => d.k}
-        y={(d) => d.v}
+        x={d => d.k}
+        y={d => d.v}
         width={400}
         height={200}
         ariaLabel="HR zone distribution"
-      />,
+      />
     )
     expect(screen.getByRole('img', { name: 'HR zone distribution' })).toBeInTheDocument()
   })
@@ -252,15 +252,13 @@ describe('RoughSparkline', () => {
         width={140}
         height={32}
         ariaLabel="rower distance sparkline"
-      />,
+      />
     )
     expect(screen.getByRole('img', { name: 'rower distance sparkline' })).toBeInTheDocument()
   })
 
   it('renders a single point without throwing (draws just the dot)', () => {
-    render(
-      <RoughSparkline points={pts([2000])} width={140} height={32} ariaLabel="one point" />,
-    )
+    render(<RoughSparkline points={pts([2000])} width={140} height={32} ariaLabel="one point" />)
     expect(screen.getByRole('img', { name: 'one point' })).toBeInTheDocument()
   })
 })
@@ -270,13 +268,13 @@ describe('RoughScatter', () => {
     render(
       <RoughScatter
         data={[] as Array<{ x: number; y: number }>}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={400}
         height={200}
         ariaLabel="scatter chart"
         emptyMessage="No samples yet"
-      />,
+      />
     )
     expect(screen.getByText('No samples yet')).toBeInTheDocument()
   })
@@ -288,12 +286,12 @@ describe('RoughScatter', () => {
           { x: 142, y: 9.8 },
           { x: 158, y: 8.7 },
         ]}
-        x={(d) => d.x}
-        y={(d) => d.y}
+        x={d => d.x}
+        y={d => d.y}
         width={400}
         height={200}
         ariaLabel="pace vs heart rate"
-      />,
+      />
     )
     expect(screen.getByRole('img', { name: 'pace vs heart rate' })).toBeInTheDocument()
   })

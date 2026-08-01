@@ -68,13 +68,12 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
     // Sets FK into the movement catalog, not into goals (#373), so this drops
     // the daily ring and its target history and leaves the training log alone.
     const ok = window.confirm(
-      `Remove the daily goal for "${label}"? Its logged sets are kept — this only stops the daily ring and clears its target history.`,
+      `Remove the daily goal for "${label}"? Its logged sets are kept — this only stops the daily ring and clears its target history.`
     )
     if (!ok) return
-    const res = await fetch(
-      `/api/admin/weight-room/goals/${encodeURIComponent(exercise)}`,
-      { method: 'DELETE' },
-    )
+    const res = await fetch(`/api/admin/weight-room/goals/${encodeURIComponent(exercise)}`, {
+      method: 'DELETE',
+    })
     if (!res.ok) {
       const body = (await res.json().catch(() => ({}))) as { error?: string }
       setError(body.error ?? `Delete failed (${res.status})`)
@@ -87,7 +86,7 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
     setError(null)
     const res = await fetch(
       `/api/admin/weight-room/goals/${encodeURIComponent(exercise)}/targets/${encodeURIComponent(effectiveFrom)}`,
-      { method: 'DELETE' },
+      { method: 'DELETE' }
     )
     if (!res.ok) {
       const body = (await res.json().catch(() => ({}))) as { error?: string }
@@ -118,7 +117,7 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
           </p>
         ) : (
           <ul className="mt-3 space-y-3">
-            {initialGoals.map((goal) => (
+            {initialGoals.map(goal => (
               <GoalRow
                 key={goal.exercise}
                 goal={goal}
@@ -172,8 +171,7 @@ function GoalRow({
   // back to 30 in October means submitting a target equal to today's, which a
   // value-only dirty check treats as a no-op — even though 30 genuinely differs
   // from the 50 in effect on that date, and the API would record it.
-  const dirty =
-    target !== goal.daily_target || color !== goal.color || effectiveFrom !== ''
+  const dirty = target !== goal.daily_target || color !== goal.color || effectiveFrom !== ''
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault()
@@ -196,10 +194,7 @@ function GoalRow({
 
   return (
     <li className="rounded-[1.1rem] border border-white/10 bg-white/5 p-4">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-wrap items-center gap-3 sm:gap-4"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-wrap items-center gap-3 sm:gap-4">
         <span className="font-mono text-sm font-semibold uppercase tracking-[0.18em] text-white">
           {exerciseLabel(goal)}
         </span>
@@ -209,7 +204,7 @@ function GoalRow({
             type="number"
             min={1}
             value={target}
-            onChange={(e) => setTarget(Number(e.target.value))}
+            onChange={e => setTarget(Number(e.target.value))}
             className="w-20 rounded border border-white/15 bg-black/40 px-2 py-1 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
           />
         </label>
@@ -218,7 +213,7 @@ function GoalRow({
           <input
             type="color"
             value={color}
-            onChange={(e) => setColor(e.target.value)}
+            onChange={e => setColor(e.target.value)}
             className="h-8 w-12 cursor-pointer rounded border border-white/15 bg-black/40"
           />
         </label>
@@ -227,7 +222,7 @@ function GoalRow({
           <input
             type="date"
             value={effectiveFrom}
-            onChange={(e) => setEffectiveFrom(e.target.value)}
+            onChange={e => setEffectiveFrom(e.target.value)}
             aria-label={`Effective date for the ${exerciseLabel(goal)} target`}
             title="Leave blank to apply today. A past date backdates the change; a future date schedules it."
             className="rounded border border-white/15 bg-black/40 px-2 py-1 font-mono text-xs text-white focus:border-amber-300/60 focus:outline-none"
@@ -257,7 +252,7 @@ function GoalRow({
           data-testid={`goal-scheduled-${goal.exercise}`}
           className="mt-3 flex flex-col gap-2 border-t border-white/10 pt-3"
         >
-          {scheduled.map((change) => (
+          {scheduled.map(change => (
             <li
               key={change.effective_from}
               className="flex flex-wrap items-center gap-3 text-xs text-white/70"
@@ -268,9 +263,7 @@ function GoalRow({
               <span className="font-mono tabular-nums text-white">
                 {formatGoalTargetChange(change)}
               </span>
-              <span className="font-mono text-white/55">
-                on {formatGoalTargetDate(change)}
-              </span>
+              <span className="font-mono text-white/55">on {formatGoalTargetDate(change)}</span>
               <button
                 type="button"
                 disabled={disabled}
@@ -319,7 +312,7 @@ function AddGoalForm({ disabled, onAdd }: AddGoalFormProps): JSX.Element {
           type="text"
           required
           value={exercise}
-          onChange={(e) => setExercise(e.target.value)}
+          onChange={e => setExercise(e.target.value)}
           placeholder="dips"
           autoCapitalize="none"
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
@@ -331,7 +324,7 @@ function AddGoalForm({ disabled, onAdd }: AddGoalFormProps): JSX.Element {
           type="number"
           min={1}
           value={target}
-          onChange={(e) => setTarget(Number(e.target.value))}
+          onChange={e => setTarget(Number(e.target.value))}
           className="w-24 rounded border border-white/15 bg-black/40 px-2 py-1.5 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
       </label>
@@ -340,7 +333,7 @@ function AddGoalForm({ disabled, onAdd }: AddGoalFormProps): JSX.Element {
         <input
           type="color"
           value={color}
-          onChange={(e) => setColor(e.target.value)}
+          onChange={e => setColor(e.target.value)}
           className="h-9 w-16 cursor-pointer rounded border border-white/15 bg-black/40"
         />
       </label>

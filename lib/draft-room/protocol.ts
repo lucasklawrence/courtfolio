@@ -84,10 +84,7 @@ export interface ResultToEventsOptions {
  * would have produced: run-start → persona verdicts (and recorded persona
  * errors) → verify-start → per-gap rulings → gaps-verified → synthesis → done.
  */
-export function resultToEvents(
-  result: PanelResult,
-  opts: ResultToEventsOptions
-): LivePanelEvent[] {
+export function resultToEvents(result: PanelResult, opts: ResultToEventsOptions): LivePanelEvent[] {
   const events: LivePanelEvent[] = [
     {
       type: 'run-start',

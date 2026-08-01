@@ -69,8 +69,7 @@ test.describe('SVG fragment references', () => {
           }
           // `textPath`/`use`/`tref` carry the reference on href (or the legacy
           // xlink:href).
-          const href =
-            el.getAttribute('href') ?? el.getAttribute('xlink:href') ?? ''
+          const href = el.getAttribute('href') ?? el.getAttribute('xlink:href') ?? ''
           if (href.startsWith('#')) {
             check(href.slice(1), `<${el.tagName.toLowerCase()} href>`)
           }
@@ -100,8 +99,8 @@ test.describe('SVG fragment references', () => {
 
       const externalUses = await page.evaluate(() =>
         [...document.querySelectorAll('use')]
-          .map((el) => el.getAttribute('href') ?? el.getAttribute('xlink:href') ?? '')
-          .filter((href) => href !== '' && !href.startsWith('#')),
+          .map(el => el.getAttribute('href') ?? el.getAttribute('xlink:href') ?? '')
+          .filter(href => href !== '' && !href.startsWith('#'))
       )
 
       const offenders: string[] = []
@@ -126,7 +125,7 @@ test.describe('SVG fragment references', () => {
       expect(
         offenders,
         'external <use> targets that rely on their own internal fragments — ' +
-          'these resolve against the host document and are dropped by WebKit (#353)',
+          'these resolve against the host document and are dropped by WebKit (#353)'
       ).toEqual([])
     })
   }

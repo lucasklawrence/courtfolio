@@ -38,9 +38,7 @@ export const TRAINING_FACILITY_PREVIEW_VALUE = 'demo'
  *   `searchParams.preview` on the server or
  *   `searchParams.get('preview')` on the client.
  */
-export function isPreviewDemoActive(
-  raw: string | string[] | null | undefined,
-): boolean {
+export function isPreviewDemoActive(raw: string | string[] | null | undefined): boolean {
   if (raw === TRAINING_FACILITY_PREVIEW_VALUE) return true
   if (Array.isArray(raw) && raw.includes(TRAINING_FACILITY_PREVIEW_VALUE)) return true
   return false

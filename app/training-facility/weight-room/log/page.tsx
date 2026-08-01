@@ -48,9 +48,8 @@ export default async function WeightRoomLogPage(): Promise<JSX.Element> {
             Log a set
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Today’s sets, rings, and streaks — plus the form to add a new
-            one. The Today view is read-only for visitors; data entry
-            lives here.
+            Today’s sets, rings, and streaks — plus the form to add a new one. The Today view is
+            read-only for visitors; data entry lives here.
           </p>
           <WeightRoomSubNav active="log" className="mt-5" isAdmin />
         </header>

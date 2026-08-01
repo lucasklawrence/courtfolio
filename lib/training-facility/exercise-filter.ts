@@ -40,7 +40,7 @@ export const EXERCISE_FILTER_PARAM = 'exercises'
  */
 export function parseExerciseSelection(
   raw: string | string[] | null | undefined,
-  available: readonly string[],
+  available: readonly string[]
 ): string[] {
   const value = Array.isArray(raw) ? raw[0] : raw
   if (value === null || value === undefined) return [...available]
@@ -49,10 +49,10 @@ export function parseExerciseSelection(
   const requested = new Set(
     value
       .split(',')
-      .map((name) => name.trim().toLowerCase())
-      .filter((name) => name !== ''),
+      .map(name => name.trim().toLowerCase())
+      .filter(name => name !== '')
   )
-  return available.filter((name) => requested.has(name.toLowerCase()))
+  return available.filter(name => requested.has(name.toLowerCase()))
 }
 
 /**
@@ -67,14 +67,14 @@ export function parseExerciseSelection(
  */
 export function serializeExerciseSelection(
   selected: readonly string[],
-  available: readonly string[],
+  available: readonly string[]
 ): string | null {
   // Membership, not length. Comparing counts is only sound while `selected` is
   // a duplicate-free subset of `available` — true today (`exercise` is the
   // primary key on `weight_room_goals`), but this function is exported and
   // pure, so it shouldn't quietly depend on a caller's invariant.
   const chosen = new Set(selected)
-  if (available.every((name) => chosen.has(name))) return null
+  if (available.every(name => chosen.has(name))) return null
   return selected.join(',')
 }
 
@@ -88,10 +88,10 @@ export function serializeExerciseSelection(
 export function toggleExercise(
   selected: readonly string[],
   exercise: string,
-  available: readonly string[],
+  available: readonly string[]
 ): string[] {
   const next = new Set(selected)
   if (next.has(exercise)) next.delete(exercise)
   else next.add(exercise)
-  return available.filter((name) => next.has(name))
+  return available.filter(name => next.has(name))
 }

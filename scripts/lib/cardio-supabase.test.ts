@@ -30,9 +30,7 @@ interface FakeSupabase {
  * call shape. `deleteResult` is what the awaited `.lt(...)` resolves
  * to — `{ data, error, count }` per the real Supabase response.
  */
-function makeFakeSupabase(opts: {
-  deleteResult?: { error: unknown; count?: number | null }
-}): {
+function makeFakeSupabase(opts: { deleteResult?: { error: unknown; count?: number | null } }): {
   supabase: FakeSupabase
   deleteFactory: ReturnType<typeof vi.fn>
   ltMock: ReturnType<typeof vi.fn>
@@ -97,9 +95,9 @@ describe('pruneStaleRows', () => {
     const { supabase } = makeFakeSupabase({
       deleteResult: { error: { message: 'permission denied' }, count: null },
     })
-    await expect(
-      pruneStaleRows(supabase, 'cardio_sessions', IMPORTED_AT, true),
-    ).rejects.toThrow(/Failed to prune stale rows from cardio_sessions.*permission denied/)
+    await expect(pruneStaleRows(supabase, 'cardio_sessions', IMPORTED_AT, true)).rejects.toThrow(
+      /Failed to prune stale rows from cardio_sessions.*permission denied/
+    )
   })
 
   it('REGRESSION (#158): does not depend on PK string equality between source and DB', async () => {
@@ -193,12 +191,12 @@ describe('upsertHrSamples', () => {
       { date: SESSION_TS, activity: 'running', duration_seconds: 7200, hr_samples: samples },
     ])
     expect(total).toBe(1250)
-    const inserts = calls.filter((c) => c.kind === 'insert') as Array<{
+    const inserts = calls.filter(c => c.kind === 'insert') as Array<{
       kind: 'insert'
       table: string
       rowCount: number
     }>
-    expect(inserts.map((c) => c.rowCount)).toEqual([500, 500, 250])
+    expect(inserts.map(c => c.rowCount)).toEqual([500, 500, 250])
   })
 
   it('still issues a delete for sessions with no samples (clears stale rows)', async () => {
@@ -207,9 +205,7 @@ describe('upsertHrSamples', () => {
       { date: SESSION_TS, activity: 'stair', duration_seconds: 1500, hr_samples: null },
     ])
     expect(total).toBe(0)
-    expect(calls).toEqual([
-      { kind: 'delete', table: 'cardio_session_hr_samples', key: SESSION_TS },
-    ])
+    expect(calls).toEqual([{ kind: 'delete', table: 'cardio_session_hr_samples', key: SESSION_TS }])
   })
 
   it('processes each session independently in payload order', async () => {
@@ -224,7 +220,7 @@ describe('upsertHrSamples', () => {
       },
     ])
     expect(total).toBe(5)
-    expect(calls.map((c) => c.kind)).toEqual(['delete', 'insert', 'delete', 'insert'])
+    expect(calls.map(c => c.kind)).toEqual(['delete', 'insert', 'delete', 'insert'])
   })
 
   it('throws a descriptive error when the DELETE fails', async () => {
@@ -244,7 +240,7 @@ describe('upsertHrSamples', () => {
           duration_seconds: 1800,
           hr_samples: fakeSamples(1),
         },
-      ]),
+      ])
     ).rejects.toThrow(/Failed to clear cardio_session_hr_samples.*permission denied/)
   })
 
@@ -263,7 +259,7 @@ describe('upsertHrSamples', () => {
           duration_seconds: 1800,
           hr_samples: fakeSamples(1),
         },
-      ]),
+      ])
     ).rejects.toThrow(/Failed to insert cardio_session_hr_samples.*unique violation/)
   })
 })
@@ -293,7 +289,7 @@ function makeBodyMassFakeSupabase(manualDates: string[]): {
       },
       // manual-weigh-in lookup: from(bodyMass).select('date').eq('source','manual')
       select: () => ({
-        eq: () => Promise.resolve({ data: manualDates.map((d) => ({ date: d })), error: null }),
+        eq: () => Promise.resolve({ data: manualDates.map(d => ({ date: d })), error: null }),
       }),
       // prune chain: delete({count}).lt('updated_at', ts) then optional .eq('source', src)
       delete: () => {
@@ -332,15 +328,15 @@ describe('upsertCardioData body-mass source handling', () => {
         { date: '2026-07-03', value: 234.4 }, // apple_health-only — must be written
       ],
     })
-    const bmUpsert = upserts.find((u) => u.table === 'cardio_body_mass_trend')
+    const bmUpsert = upserts.find(u => u.table === 'cardio_body_mass_trend')
     // The manual day is dropped from the batch; only the apple_health-only day
     // is written, tagged source='apple_health'.
-    expect(bmUpsert?.rows.map((r) => r.date)).toEqual(['2026-07-03'])
-    expect(bmUpsert?.rows.every((r) => r.source === 'apple_health')).toBe(true)
+    expect(bmUpsert?.rows.map(r => r.date)).toEqual(['2026-07-03'])
+    expect(bmUpsert?.rows.every(r => r.source === 'apple_health')).toBe(true)
     expect(counts.body_mass_trend).toBe(1)
     // The prune must carry the source filter — this is what stops a full import
     // from deleting manually-logged days that aren't in the Apple Health export.
-    expect(prunes.find((p) => p.table === 'cardio_body_mass_trend')?.source).toBe('apple_health')
+    expect(prunes.find(p => p.table === 'cardio_body_mass_trend')?.source).toBe('apple_health')
   })
 
   it('writes every body-mass day when none are manual', async () => {
@@ -352,7 +348,7 @@ describe('upsertCardioData body-mass source handling', () => {
         { date: '2026-07-03', value: 234 },
       ],
     })
-    const bmUpsert = upserts.find((u) => u.table === 'cardio_body_mass_trend')
-    expect(bmUpsert?.rows.map((r) => r.date)).toEqual(['2026-07-02', '2026-07-03'])
+    const bmUpsert = upserts.find(u => u.table === 'cardio_body_mass_trend')
+    expect(bmUpsert?.rows.map(r => r.date)).toEqual(['2026-07-02', '2026-07-03'])
   })
 })

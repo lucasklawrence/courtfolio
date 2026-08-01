@@ -13,7 +13,7 @@ export function WalkingHrTrendChart(props: LifestyleChartProps): JSX.Element {
     <BaseLifestyleTrendChart
       {...props}
       yLabel="BPM"
-      yTickFormat={(v) => String(Math.round(v))}
+      yTickFormat={v => String(Math.round(v))}
       emptyMessage="No walking HR data in range"
       ariaLabel="Walking heart rate over time"
     />

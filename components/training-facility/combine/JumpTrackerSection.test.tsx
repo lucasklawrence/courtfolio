@@ -23,9 +23,7 @@ vi.mock('next/navigation', () => ({
 
 const getMovementBenchmarksMock = vi.fn()
 vi.mock('@/lib/data/movement', async () => {
-  const actual = await vi.importActual<typeof import('@/lib/data/movement')>(
-    '@/lib/data/movement',
-  )
+  const actual = await vi.importActual<typeof import('@/lib/data/movement')>('@/lib/data/movement')
   return {
     ...actual,
     getMovementBenchmarks: (...args: unknown[]) => getMovementBenchmarksMock(...args),
@@ -61,9 +59,7 @@ describe('JumpTrackerSection', () => {
     // Wait for the fetch to settle; the latest fixture row is 2026-05-01
     // with vertical 23" — the silhouette tracker renders a `MMM D · N"`
     // callout for that entry, which is unique to the populated branch.
-    await waitFor(() =>
-      expect(screen.getByText(/May 1 · 23/)).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText(/May 1 · 23/)).toBeInTheDocument())
     // Empty-state copy from either child must be gone — both children
     // are rendering fixture data now.
     expect(screen.queryByRole('status', { name: /no jump data/i })).not.toBeInTheDocument()
@@ -81,9 +77,7 @@ describe('JumpTrackerSection', () => {
     render(<JumpTrackerSection />)
 
     // Real entry's date-derived label: "Apr 15 · 22""
-    await waitFor(() =>
-      expect(screen.getByText(/Apr 15 · 22/)).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText(/Apr 15 · 22/)).toBeInTheDocument())
     // Fixture's latest row should NOT appear.
     expect(screen.queryByText(/May 1 · 23/)).not.toBeInTheDocument()
   })

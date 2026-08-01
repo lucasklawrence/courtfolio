@@ -38,12 +38,12 @@ test.describe('draft room live mode (stubbed stream)', () => {
     // All three persona cards fill in (stub paces events, so these appear
     // progressively; the assertions just wait for each).
     const verdicts = page.getByRole('region', { name: /panelist verdicts/i })
-    await expect(
-      verdicts.getByRole('heading', { name: 'Skeptical Hiring Manager' })
-    ).toBeVisible(streamed)
-    await expect(
-      verdicts.getByRole('heading', { name: 'Staff-Engineer Mentor' })
-    ).toBeVisible(streamed)
+    await expect(verdicts.getByRole('heading', { name: 'Skeptical Hiring Manager' })).toBeVisible(
+      streamed
+    )
+    await expect(verdicts.getByRole('heading', { name: 'Staff-Engineer Mentor' })).toBeVisible(
+      streamed
+    )
     await expect(verdicts.getByRole('heading', { name: 'Skeptical Peer' })).toBeVisible(streamed)
 
     // The fact-checker's per-gap rulings land on the finished cards.
@@ -51,9 +51,9 @@ test.describe('draft room live mode (stubbed stream)', () => {
 
     // The synthesis arrives last: map, overruled claims, verdict.
     await expect(page.getByRole('heading', { name: /where they split/i })).toBeVisible(streamed)
-    await expect(
-      page.getByRole('heading', { name: /overruled scouting claims/i })
-    ).toBeVisible(streamed)
+    await expect(page.getByRole('heading', { name: /overruled scouting claims/i })).toBeVisible(
+      streamed
+    )
     await expect(page.getByText(/front office verdict/i)).toBeVisible(streamed)
 
     // Terminal state: the button unlocks for another run.

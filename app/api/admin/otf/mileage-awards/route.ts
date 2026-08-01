@@ -57,7 +57,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
@@ -80,12 +80,12 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     if (error.code === UNIQUE_VIOLATION) {
       return NextResponse.json(
         { error: `A milestone labeled '${award.label}' already exists.` },
-        { status: 409 },
+        { status: 409 }
       )
     }
     return NextResponse.json(
       { error: `Failed to create mileage award: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
 

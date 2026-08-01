@@ -16,7 +16,7 @@ describe('StreakCounter', () => {
       <StreakCounter
         streak={{ current: 3, longest: 10 }}
         filteredStreak={{ current: 0, longest: 4 }}
-      />,
+      />
     )
     expect(screen.getByText(/in range/i)).toBeInTheDocument()
     expect(screen.getByText('4d')).toBeInTheDocument()
@@ -25,7 +25,7 @@ describe('StreakCounter', () => {
       <StreakCounter
         streak={{ current: 3, longest: 10 }}
         filteredStreak={{ current: 0, longest: 0 }}
-      />,
+      />
     )
     expect(screen.queryByText(/in range/i)).not.toBeInTheDocument()
   })

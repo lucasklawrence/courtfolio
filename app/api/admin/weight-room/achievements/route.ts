@@ -64,7 +64,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
@@ -91,12 +91,12 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
         {
           error: `A ${achievement.scope} tier at ${achievement.threshold} already exists for ${achievement.exercise ?? 'all movements'}.`,
         },
-        { status: 409 },
+        { status: 409 }
       )
     }
     return NextResponse.json(
       { error: `Failed to create achievement: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
 

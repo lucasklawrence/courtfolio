@@ -1,10 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { render } from '@testing-library/react'
 
-import {
-  ExerciseFilterChips,
-  type FilterableExercise,
-} from './ExerciseFilterChips'
+import { ExerciseFilterChips, type FilterableExercise } from './ExerciseFilterChips'
 
 /**
  * Tests for the History view's exercise filter chips (#367).
@@ -23,8 +20,8 @@ const EXERCISES: FilterableExercise[] = [
 const PATH = '/training-facility/weight-room/history'
 
 function renderChips(
-  selected: string[] = EXERCISES.map((e) => e.exercise),
-  carryParams?: Record<string, string>,
+  selected: string[] = EXERCISES.map(e => e.exercise),
+  carryParams?: Record<string, string>
 ) {
   return render(
     <ExerciseFilterChips
@@ -32,7 +29,7 @@ function renderChips(
       selected={selected}
       pathname={PATH}
       carryParams={carryParams}
-    />,
+    />
   )
 }
 
@@ -68,7 +65,7 @@ describe('ExerciseFilterChips', () => {
     const { getByTestId } = renderChips()
     expect(getByTestId('exercise-chip-pullups')).toHaveAttribute(
       'href',
-      `${PATH}?exercises=pushups%2Cshrugs`,
+      `${PATH}?exercises=pushups%2Cshrugs`
     )
   })
 
@@ -78,7 +75,7 @@ describe('ExerciseFilterChips', () => {
     const { getByTestId } = renderChips(['pushups'])
     expect(getByTestId('exercise-chip-shrugs')).toHaveAttribute(
       'href',
-      `${PATH}?exercises=pushups%2Cshrugs`,
+      `${PATH}?exercises=pushups%2Cshrugs`
     )
   })
 
@@ -118,13 +115,18 @@ describe('ExerciseFilterChips — catalog labels (#384)', () => {
   // Two movements, so toggling one produces a real filter param — with a
   // single movement "selected" collapses to "all", which needs no param.
   const LABELLED = [
-    { exercise: 'barbell-bench-press', displayName: 'Barbell Bench Press', color: '#EA580C', isFocus: false },
+    {
+      exercise: 'barbell-bench-press',
+      displayName: 'Barbell Bench Press',
+      color: '#EA580C',
+      isFocus: false,
+    },
     { exercise: 'barbell-row', displayName: 'Barbell Row', color: '#0EA5A1', isFocus: false },
   ]
 
   it('shows the display name but keeps the slug as the URL token', () => {
     const { getByTestId, getByText } = render(
-      <ExerciseFilterChips exercises={LABELLED} selected={[]} pathname={PATH} />,
+      <ExerciseFilterChips exercises={LABELLED} selected={[]} pathname={PATH} />
     )
     expect(getByText('Barbell Bench Press')).toBeInTheDocument()
     // The href must stay slug-based or a shared filtered link breaks.
@@ -135,9 +137,8 @@ describe('ExerciseFilterChips — catalog labels (#384)', () => {
 
   it('names the toggle by the label for screen readers', () => {
     const { getByLabelText } = render(
-      <ExerciseFilterChips exercises={LABELLED} selected={[]} pathname={PATH} />,
+      <ExerciseFilterChips exercises={LABELLED} selected={[]} pathname={PATH} />
     )
     expect(getByLabelText('Show Barbell Bench Press')).toBeInTheDocument()
   })
 })
-

@@ -31,14 +31,14 @@ test.describe('chart overflow behaviour', () => {
     const heatmaps = page.getByTestId('weight-room-heatmaps')
     await expect(heatmaps).toBeVisible()
 
-    const measured = await heatmaps.evaluate((section) => {
+    const measured = await heatmaps.evaluate(section => {
       const boxes = [...section.querySelectorAll<HTMLElement>('.overflow-x-auto')]
       return {
         viewport: window.innerWidth,
         count: boxes.length,
         // A chart "overflows" when its content is wider than the scroll
         // container — the precondition for `overflow-x-auto` to do anything.
-        overflowing: boxes.filter((el) => el.scrollWidth > el.clientWidth).length,
+        overflowing: boxes.filter(el => el.scrollWidth > el.clientWidth).length,
         widest: boxes.reduce((max, el) => Math.max(max, el.scrollWidth - el.clientWidth), 0),
       }
     })

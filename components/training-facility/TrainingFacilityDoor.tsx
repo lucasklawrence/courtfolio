@@ -122,7 +122,9 @@ export function TrainingFacilityDoor({
 
   const content = (
     <>
-      <div className={`rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] ${colors.placard}`}>
+      <div
+        className={`rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] ${colors.placard}`}
+      >
         {eyebrow}
       </div>
 
@@ -133,7 +135,9 @@ export function TrainingFacilityDoor({
         <p className="mt-3 text-sm leading-6 text-current/80">{description}</p>
       </div>
 
-      <div className={`mt-6 flex flex-1 items-end rounded-[999px_999px_1rem_1rem] border border-white/10 bg-gradient-to-b p-4 ${colors.glow}`}>
+      <div
+        className={`mt-6 flex flex-1 items-end rounded-[999px_999px_1rem_1rem] border border-white/10 bg-gradient-to-b p-4 ${colors.glow}`}
+      >
         <div className="flex h-full w-full items-end justify-center rounded-[999px_999px_0.8rem_0.8rem] border border-dashed border-white/15 bg-black/35 px-4 py-5 text-center text-sm font-semibold uppercase tracking-[0.24em] text-white/85 shadow-inner">
           {doorwayHint}
         </div>

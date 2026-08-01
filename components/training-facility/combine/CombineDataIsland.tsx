@@ -7,11 +7,7 @@ import { Scoreboard } from '@/components/training-facility/shared/Scoreboard'
 import { deriveCombineScoreboardCells } from '@/components/training-facility/shared/scoreboard-utils'
 import { COMBINE_DEMO_BENCHMARKS } from '@/constants/combine-demo-fixture'
 import { useAdminSession } from '@/lib/auth/use-admin-session'
-import {
-  deleteBenchmark,
-  getMovementBenchmarks,
-  updateBenchmark,
-} from '@/lib/data/movement'
+import { deleteBenchmark, getMovementBenchmarks, updateBenchmark } from '@/lib/data/movement'
 import type { Benchmark } from '@/types/movement'
 
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
@@ -69,7 +65,7 @@ export function CombineDataIsland(): JSX.Element {
   useEffect(() => {
     const id = ++requestIdRef.current
     getMovementBenchmarks()
-      .then((data) => {
+      .then(data => {
         if (id === requestIdRef.current) setEntries(data)
       })
       .catch(() => {
@@ -110,9 +106,7 @@ export function CombineDataIsland(): JSX.Element {
       // Native confirm() is intentional (PRD §7.11 spec wording, dev-only
       // single-user UI). If a richer modal lands later it should keep
       // this exact copy.
-      const ok = window.confirm(
-        `Delete benchmark from ${entry.date}? This cannot be undone.`,
-      )
+      const ok = window.confirm(`Delete benchmark from ${entry.date}? This cannot be undone.`)
       if (!ok) return
       try {
         await deleteBenchmark(entry.date)
@@ -123,12 +117,10 @@ export function CombineDataIsland(): JSX.Element {
       }
       // If the deleted row was being edited, drop edit mode so the form
       // doesn't try to PUT against a date that no longer exists.
-      setEditingEntry((current) =>
-        current && current.date === entry.date ? undefined : current,
-      )
+      setEditingEntry(current => (current && current.date === entry.date ? undefined : current))
       await refetch()
     },
-    [refetch],
+    [refetch]
   )
 
   const handleToggleComplete = useCallback(
@@ -143,7 +135,7 @@ export function CombineDataIsland(): JSX.Element {
       }
       await refetch()
     },
-    [refetch],
+    [refetch]
   )
 
   // Empty-state preview affordance (#160). When the real fetch settled

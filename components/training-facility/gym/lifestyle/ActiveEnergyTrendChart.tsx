@@ -13,7 +13,7 @@ export function ActiveEnergyTrendChart(props: LifestyleChartProps): JSX.Element 
     <BaseLifestyleTrendChart
       {...props}
       yLabel="kcal"
-      yTickFormat={(v) => String(Math.round(v))}
+      yTickFormat={v => String(Math.round(v))}
       emptyMessage="No active energy data in range"
       ariaLabel="Active energy burned per day over time"
     />

@@ -26,10 +26,10 @@ describe('LogoSvg', () => {
 
     const referenced = [
       ...[...svg.querySelectorAll('[filter]')].map(el =>
-        (el.getAttribute('filter') ?? '').replace(/^url\(#/, '').replace(/\)$/, ''),
+        (el.getAttribute('filter') ?? '').replace(/^url\(#/, '').replace(/\)$/, '')
       ),
       ...[...svg.querySelectorAll('textPath')].map(el =>
-        (el.getAttribute('href') ?? '').replace(/^#/, ''),
+        (el.getAttribute('href') ?? '').replace(/^#/, '')
       ),
     ].filter(Boolean)
 

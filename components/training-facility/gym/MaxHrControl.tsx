@@ -86,8 +86,8 @@ export function MaxHrControl({ onChange }: MaxHrControlProps): JSX.Element {
           max={MAX_MAX_HR}
           step={1}
           value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          onKeyDown={(e) => {
+          onChange={e => setDraft(e.target.value)}
+          onKeyDown={e => {
             if (e.key === 'Enter') {
               e.preventDefault()
               commit()
@@ -145,7 +145,10 @@ export function MaxHrControl({ onChange }: MaxHrControlProps): JSX.Element {
         {!isUserSet ? (
           <span className="text-[0.55rem] tracking-[0.12em] text-[#737373]">(default)</span>
         ) : null}
-        <span aria-hidden="true" className="text-[0.7rem] text-[#404040] group-hover:text-[#0a0a0a]">
+        <span
+          aria-hidden="true"
+          className="text-[0.7rem] text-[#404040] group-hover:text-[#0a0a0a]"
+        >
           ✎
         </span>
       </button>

@@ -166,9 +166,7 @@ describe('goalTargetChanges', () => {
   })
 
   it('emits one change per move, with the old and new targets', () => {
-    expect(goalTargetChanges(RAISED)).toEqual([
-      { from: 30, to: 50, effective_from: '2026-08-01' },
-    ])
+    expect(goalTargetChanges(RAISED)).toEqual([{ from: 30, to: 50, effective_from: '2026-08-01' }])
   })
 
   it('emits changes oldest-first regardless of input order', () => {
@@ -187,16 +185,14 @@ describe('goalTargetChanges', () => {
         { daily_target: 50, effective_from: '2026-07-01' },
       ],
     }
-    expect(goalTargetChanges(noop)).toEqual([
-      { from: 30, to: 50, effective_from: '2026-07-01' },
-    ])
+    expect(goalTargetChanges(noop)).toEqual([{ from: 30, to: 50, effective_from: '2026-07-01' }])
   })
 })
 
 describe('formatGoalTargetChange', () => {
   it('renders a compact arrow label without the date', () => {
     expect(formatGoalTargetChange({ from: 30, to: 50, effective_from: '2026-08-01' })).toBe(
-      '30 → 50',
+      '30 → 50'
     )
   })
 })
@@ -214,7 +210,7 @@ describe('formatGoalTargetDate', () => {
 
   it('falls back to the raw key when the date will not parse', () => {
     expect(formatGoalTargetDate({ from: 30, to: 50, effective_from: 'not-a-date' })).toBe(
-      'not-a-date',
+      'not-a-date'
     )
   })
 })
@@ -222,7 +218,7 @@ describe('formatGoalTargetDate', () => {
 describe('describeGoalTargetChange', () => {
   it('combines the arrow label and the effective date', () => {
     expect(describeGoalTargetChange({ from: 30, to: 50, effective_from: '2026-08-01' })).toBe(
-      '30 → 50 on Aug 1',
+      '30 → 50 on Aug 1'
     )
   })
 })
@@ -295,11 +291,11 @@ describe('scheduled goal target changes (#371)', () => {
         { daily_target: 60, effective_from: '2026-12-01' },
       ])
       const today = '2026-08-15'
-      const past = goalTargetChanges(g, today).map((c) => c.effective_from)
-      const future = scheduledGoalTargetChanges(g, today).map((c) => c.effective_from)
+      const past = goalTargetChanges(g, today).map(c => c.effective_from)
+      const future = scheduledGoalTargetChanges(g, today).map(c => c.effective_from)
       expect(past).toEqual(['2026-06-01'])
       expect(future).toEqual(['2026-09-01', '2026-12-01'])
-      expect(past.filter((d) => future.includes(d))).toEqual([])
+      expect(past.filter(d => future.includes(d))).toEqual([])
       expect(goalTargetChanges(g)).toHaveLength(past.length + future.length)
     })
 
@@ -315,17 +311,15 @@ describe('scheduled goal target changes (#371)', () => {
       expect(
         scheduledGoalTargetChanges(
           { exercise: 'pushups', daily_target: 100, color: '#EA580C' },
-          '2026-08-15',
-        ),
+          '2026-08-15'
+        )
       ).toEqual([])
     })
   })
 })
 
 describe('currentTarget (#371)', () => {
-  const g = (
-    history?: { daily_target: number; effective_from: string }[],
-  ): ExerciseGoal => ({
+  const g = (history?: { daily_target: number; effective_from: string }[]): ExerciseGoal => ({
     exercise: 'pullups',
     daily_target: 30,
     color: '#0EA5A1',
@@ -339,8 +333,8 @@ describe('currentTarget (#371)', () => {
           { daily_target: 30, effective_from: '2026-01-01' },
           { daily_target: 40, effective_from: '2026-06-01' },
         ]),
-        '2026-08-15',
-      ),
+        '2026-08-15'
+      )
     ).toBe(40)
   })
 
@@ -351,8 +345,8 @@ describe('currentTarget (#371)', () => {
           { daily_target: 30, effective_from: '2026-01-01' },
           { daily_target: 50, effective_from: '2026-09-01' },
         ]),
-        '2026-08-15',
-      ),
+        '2026-08-15'
+      )
     ).toBe(30)
   })
 
@@ -378,9 +372,6 @@ describe('currentTarget (#371)', () => {
   })
 
   it('falls back to the mirror for an unparseable day key', () => {
-    expect(
-      currentTarget(g([{ daily_target: 40, effective_from: '2026-06-01' }]), ''),
-    ).toBe(30)
+    expect(currentTarget(g([{ daily_target: 40, effective_from: '2026-06-01' }]), '')).toBe(30)
   })
 })
-

@@ -4,11 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import type { PanelResult } from '@/lib/panel/types'
 
-import {
-  FAILED_RUN_COOLDOWN_MS,
-  GLOBAL_RUNS_PER_DAY,
-  PER_IP_RUNS_PER_HOUR,
-} from './limits'
+import { FAILED_RUN_COOLDOWN_MS, GLOBAL_RUNS_PER_DAY, PER_IP_RUNS_PER_HOUR } from './limits'
 
 /**
  * Tests the panel_runs admission sequence and its fail-closed posture.
@@ -37,11 +33,23 @@ const calls: { method: string; args: unknown[] }[] = []
 
 function nextResponse(): QueryResponse {
   const next = responses.shift()
-  if (!next) throw new Error('Supabase mock: response queue exhausted — test queued too few responses')
+  if (!next)
+    throw new Error('Supabase mock: response queue exhausted — test queued too few responses')
   return next
 }
 
-const CHAIN_METHODS = ['select', 'update', 'insert', 'eq', 'neq', 'in', 'gte', 'lt', 'order', 'limit'] as const
+const CHAIN_METHODS = [
+  'select',
+  'update',
+  'insert',
+  'eq',
+  'neq',
+  'in',
+  'gte',
+  'lt',
+  'order',
+  'limit',
+] as const
 
 function makeBuilder(): Record<string, unknown> {
   const builder: Record<string, unknown> = {}
@@ -156,7 +164,11 @@ describe('admitLiveRun', () => {
     expect(calls.some(c => c.method === 'insert')).toBe(false)
     // The cooldown is anchored on when the failure happened and ignores
     // client aborts — a tab-close must never 429-lock the feature.
-    expect(calls.some(c => c.method === 'neq' && c.args[0] === 'error_type' && c.args[1] === 'AbortError')).toBe(true)
+    expect(
+      calls.some(
+        c => c.method === 'neq' && c.args[0] === 'error_type' && c.args[1] === 'AbortError'
+      )
+    ).toBe(true)
     expect(calls.some(c => c.method === 'gte' && c.args[0] === 'completed_at')).toBe(true)
   })
 
@@ -255,7 +267,9 @@ describe('admitLiveRun', () => {
     responses.push({ error: { message: 'read blip' } }) // per-IP count fails
     responses.push({ error: null }) // best-effort markRejected
 
-    await expect(admitLiveRun('courtfolio', 'hash')).rejects.toThrow(/window count failed: read blip/)
+    await expect(admitLiveRun('courtfolio', 'hash')).rejects.toThrow(
+      /window count failed: read blip/
+    )
     // The orphan would otherwise hold the single-flight lock for the sweep
     // window and consume budget for a run that never spent.
     expect(updatePayloads()).toContainEqual(expect.objectContaining({ status: 'rejected' }))
@@ -267,7 +281,9 @@ describe('admitLiveRun', () => {
     responses.push({ error: { message: 'read blip' } }) // per-IP count fails
     responses.push({ error: { message: 'also down' } }) // markRejected fails too
 
-    await expect(admitLiveRun('courtfolio', 'hash')).rejects.toThrow(/window count failed: read blip/)
+    await expect(admitLiveRun('courtfolio', 'hash')).rejects.toThrow(
+      /window count failed: read blip/
+    )
   })
 })
 

@@ -33,7 +33,7 @@ describe('StrengthStats', () => {
           PUSHUP_STATS,
           { ...PUSHUP_STATS, exercise: 'pullups', color: '#0EA5A1', allTimeReps: 0 },
         ]}
-      />,
+      />
     )
     expect(getByTestId('strength-stat-card-pushups')).toBeInTheDocument()
     expect(getByTestId('strength-stat-card-pullups')).toBeInTheDocument()
@@ -64,7 +64,7 @@ describe('StrengthStats', () => {
 
   it('falls back to em-dash when avg sets per active day is zero', () => {
     const { getByTestId } = render(
-      <StrengthStats stats={[{ ...PUSHUP_STATS, avgSetsPerActiveDay: 0 }]} />,
+      <StrengthStats stats={[{ ...PUSHUP_STATS, avgSetsPerActiveDay: 0 }]} />
     )
     const card = getByTestId('strength-stat-card-pushups')
     expect(card.textContent).toContain('—')
@@ -102,7 +102,7 @@ describe('StrengthStats — goal changes (#362)', () => {
             targetChanges: [{ from: 30, to: 50, effective_from: '2026-08-01' }],
           },
         ]}
-      />,
+      />
     )
     const footer = getByTestId('strength-stat-goal-changes-pullups')
     expect(footer).toHaveTextContent('30')
@@ -122,7 +122,7 @@ describe('StrengthStats — goal changes (#362)', () => {
             ],
           },
         ]}
-      />,
+      />
     )
     const items = getByTestId('strength-stat-goal-changes-pushups').querySelectorAll('li')
     expect(items).toHaveLength(2)
@@ -183,7 +183,7 @@ describe('StrengthStats — focus rotations (#367)', () => {
             focus: { ...CLOSED_FOCUS, status: 'active' as const, isActive: true },
           },
         ]}
-      />,
+      />
     )
     const card = getByTestId('strength-stat-card-shrugs')
     expect(card).toHaveTextContent('this week')
@@ -193,7 +193,7 @@ describe('StrengthStats — focus rotations (#367)', () => {
 
   it('notes the rotation count when an exercise has run more than once', () => {
     const { getByTestId } = render(
-      <StrengthStats stats={[{ ...SHRUGS_STATS, focus: { ...CLOSED_FOCUS, rotations: 2 } }]} />,
+      <StrengthStats stats={[{ ...SHRUGS_STATS, focus: { ...CLOSED_FOCUS, rotations: 2 } }]} />
     )
     expect(getByTestId('strength-stat-card-shrugs')).toHaveTextContent('2 rotations')
   })
@@ -228,7 +228,7 @@ describe('StrengthStats — upcoming rotations (#367 review)', () => {
             focus: UPCOMING_FOCUS,
           },
         ]}
-      />,
+      />
     )
     const card = getByTestId('strength-stat-card-calf-raises')
     // A bare `!isActive` check would swap in campaign cells here and show a
@@ -240,11 +240,11 @@ describe('StrengthStats — upcoming rotations (#367 review)', () => {
 
   it('labels the badge as upcoming rather than past', () => {
     const { getByTestId } = render(
-      <StrengthStats stats={[{ ...PUSHUP_STATS, focus: UPCOMING_FOCUS }]} />,
+      <StrengthStats stats={[{ ...PUSHUP_STATS, focus: UPCOMING_FOCUS }]} />
     )
     expect(getByTestId('strength-stat-focus-badge-pushups')).toHaveAttribute(
       'title',
-      'Upcoming grease-the-groove rotation',
+      'Upcoming grease-the-groove rotation'
     )
   })
 })
@@ -253,8 +253,10 @@ describe('StrengthStats — catalog labels (#384)', () => {
   it('renders the catalog display name instead of the slug', () => {
     const { getByText, queryByText } = render(
       <StrengthStats
-        stats={[{ ...PUSHUP_STATS, exercise: 'barbell-bench-press', displayName: 'Barbell Bench Press' }]}
-      />,
+        stats={[
+          { ...PUSHUP_STATS, exercise: 'barbell-bench-press', displayName: 'Barbell Bench Press' },
+        ]}
+      />
     )
     expect(getByText('Barbell Bench Press')).toBeInTheDocument()
     expect(queryByText('barbell-bench-press')).toBeNull()
@@ -265,8 +267,10 @@ describe('StrengthStats — catalog labels (#384)', () => {
     // across a rename in the catalog.
     const { getByTestId } = render(
       <StrengthStats
-        stats={[{ ...PUSHUP_STATS, exercise: 'barbell-bench-press', displayName: 'Barbell Bench Press' }]}
-      />,
+        stats={[
+          { ...PUSHUP_STATS, exercise: 'barbell-bench-press', displayName: 'Barbell Bench Press' },
+        ]}
+      />
     )
     expect(getByTestId('strength-stat-card-barbell-bench-press')).toBeInTheDocument()
   })
@@ -276,4 +280,3 @@ describe('StrengthStats — catalog labels (#384)', () => {
     expect(getByText('pushups')).toBeInTheDocument()
   })
 })
-

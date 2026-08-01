@@ -40,10 +40,10 @@ describe('UpcomingFocusStrip', () => {
     expect(screen.getByTestId('upcoming-focus-calf-raises')).toBeInTheDocument()
     // Window derived from [start_date, end_date] (locale-formatted, no year).
     expect(screen.getByTestId('upcoming-focus-shrugs-window').textContent).toMatch(
-      /Jul 1 .* Jul 31/,
+      /Jul 1 .* Jul 31/
     )
     expect(screen.getByTestId('upcoming-focus-calf-raises-window').textContent).toMatch(
-      /Aug 1 .* Aug 31/,
+      /Aug 1 .* Aug 31/
     )
   })
 

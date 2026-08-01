@@ -32,12 +32,9 @@ describe('SetList', () => {
   it('renders one row per logged set with rep count', () => {
     render(
       <SetList
-        setsToday={[
-          set({ id: 'a', reps: 10 }),
-          set({ id: 'b', reps: 15 }),
-        ]}
+        setsToday={[set({ id: 'a', reps: 10 }), set({ id: 'b', reps: 15 })]}
         goalsByExercise={{ pushups: PUSHUPS }}
-      />,
+      />
     )
     expect(screen.getByTestId('set-row-a')).toBeInTheDocument()
     expect(screen.getByTestId('set-row-b')).toBeInTheDocument()
@@ -54,7 +51,7 @@ describe('SetList', () => {
           set({ id: 'c', reps: 15, logged_at: '2026-05-07T17:00:00' }),
         ]}
         goalsByExercise={{ pushups: PUSHUPS }}
-      />,
+      />
     )
     const rows = screen.getAllByTestId(/set-row-/)
     expect(rows[0]).toHaveAttribute('data-testid', 'set-row-c')
@@ -70,11 +67,7 @@ describe('SetList', () => {
     const onDelete = vi.fn().mockResolvedValue(undefined)
     const target = set({ id: 'x', reps: 10 })
     render(
-      <SetList
-        setsToday={[target]}
-        goalsByExercise={{ pushups: PUSHUPS }}
-        onDelete={onDelete}
-      />,
+      <SetList setsToday={[target]} goalsByExercise={{ pushups: PUSHUPS }} onDelete={onDelete} />
     )
     await userEvent.click(screen.getByRole('button', { name: /delete set of 10 pushups/i }))
     expect(onDelete).toHaveBeenCalledTimes(1)
@@ -88,7 +81,7 @@ describe('SetList', () => {
         setsToday={[set({ id: 'x' })]}
         goalsByExercise={{ pushups: PUSHUPS }}
         onDelete={onDelete}
-      />,
+      />
     )
     await userEvent.click(screen.getByRole('button', { name: /delete/i }))
     expect(await screen.findByRole('alert')).toHaveTextContent(/boom/)
@@ -108,7 +101,7 @@ describe('SetList', () => {
           pushups: PUSHUPS,
           pullups: { exercise: 'pullups', daily_target: 30, color: '#0EA5A1' },
         }}
-      />,
+      />
     )
     const totals = screen.getByTestId('set-list-totals')
     expect(totals).toHaveTextContent('pushups')
@@ -121,35 +114,20 @@ describe('SetList', () => {
 
   it('headlines a custom dayLabel when viewing a backfill day', () => {
     render(
-      <SetList
-        setsToday={[set()]}
-        goalsByExercise={{ pushups: PUSHUPS }}
-        dayLabel="Mon, May 25"
-      />,
+      <SetList setsToday={[set()]} goalsByExercise={{ pushups: PUSHUPS }} dayLabel="Mon, May 25" />
     )
-    expect(
-      screen.getByRole('heading', { name: 'Mon, May 25' }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('region', { name: /sets logged on Mon, May 25/i }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Mon, May 25' })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: /sets logged on Mon, May 25/i })).toBeInTheDocument()
   })
 
   it('adapts the empty-state copy to the backfill day', () => {
-    render(
-      <SetList setsToday={[]} goalsByExercise={{}} dayLabel="Mon, May 25" />,
-    )
-    expect(
-      screen.getByText(/no sets logged on Mon, May 25/i),
-    ).toBeInTheDocument()
+    render(<SetList setsToday={[]} goalsByExercise={{}} dayLabel="Mon, May 25" />)
+    expect(screen.getByText(/no sets logged on Mon, May 25/i)).toBeInTheDocument()
   })
 
   it('omits the goal denominator when the exercise has no configured goal', () => {
     render(
-      <SetList
-        setsToday={[set({ id: 'a', exercise: 'dips', reps: 12 })]}
-        goalsByExercise={{}}
-      />,
+      <SetList setsToday={[set({ id: 'a', exercise: 'dips', reps: 12 })]} goalsByExercise={{}} />
     )
     const total = screen.getByTestId('set-list-total-dips')
     expect(total).toHaveTextContent('dips')
@@ -171,7 +149,7 @@ describe('SetList — catalog labels (#384)', () => {
       <SetList
         setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
         goalsByExercise={{ 'barbell-bench-press': BENCH }}
-      />,
+      />
     )
     // Totals strip + the set row itself.
     expect(screen.getAllByText('Barbell Bench Press').length).toBeGreaterThanOrEqual(2)
@@ -188,7 +166,7 @@ describe('SetList — catalog labels (#384)', () => {
         setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
         goalsByExercise={{}}
         labels={new Map([['barbell-bench-press', 'Barbell Bench Press']])}
-      />,
+      />
     )
     expect(screen.getAllByText('Barbell Bench Press').length).toBeGreaterThan(0)
     expect(screen.queryByText('barbell-bench-press')).toBeNull()
@@ -201,7 +179,7 @@ describe('SetList — catalog labels (#384)', () => {
         setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
         goalsByExercise={{ 'barbell-bench-press': { ...BENCH, display_name: 'Stale Name' } }}
         labels={new Map([['barbell-bench-press', 'Barbell Bench Press']])}
-      />,
+      />
     )
     expect(screen.getAllByText('Barbell Bench Press').length).toBeGreaterThan(0)
     expect(screen.queryByText('Stale Name')).toBeNull()
@@ -212,7 +190,7 @@ describe('SetList — catalog labels (#384)', () => {
       <SetList
         setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
         goalsByExercise={{}}
-      />,
+      />
     )
     expect(screen.getAllByText('barbell-bench-press').length).toBeGreaterThan(0)
   })
@@ -224,9 +202,8 @@ describe('SetList — catalog labels (#384)', () => {
         setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
         goalsByExercise={{ 'barbell-bench-press': BENCH }}
         onDelete={onDelete}
-      />,
+      />
     )
     expect(screen.getByLabelText('Delete set of 5 Barbell Bench Press')).toBeInTheDocument()
   })
 })
-

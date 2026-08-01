@@ -68,9 +68,8 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
             Goals &amp; exercises
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Daily targets and display colors for the activity rings and
-            heatmap. Add new exercises here — the rings populate live as
-            soon as you log a set.
+            Daily targets and display colors for the activity rings and heatmap. Add new exercises
+            here — the rings populate live as soon as you log a set.
           </p>
           <WeightRoomSubNav active="settings" className="mt-5" isAdmin />
         </header>
@@ -84,15 +83,14 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
             Movement catalog
           </h2>
           <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
-            Every movement you can log a set against. A daily goal above is an{' '}
-            <em>overlay</em> on this list — a gym lift only needs a row here, no
-            ring and no target. Movements with logged sets can&rsquo;t be deleted,
-            only archived.
+            Every movement you can log a set against. A daily goal above is an <em>overlay</em> on
+            this list — a gym lift only needs a row here, no ring and no target. Movements with
+            logged sets can&rsquo;t be deleted, only archived.
           </p>
           <div className="mt-6">
             <ExerciseCatalogSettings
               initialExercises={exercises}
-              goalSlugs={goals.map((goal) => goal.exercise)}
+              goalSlugs={goals.map(goal => goal.exercise)}
             />
           </div>
         </section>
@@ -113,7 +111,10 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
             re-resolves from the whole set log on the next visit.
           </p>
           <div className="mt-6">
-            <AchievementSettings initialAchievements={achievements} exercises={goals.map(g => g.exercise)} />
+            <AchievementSettings
+              initialAchievements={achievements}
+              exercises={goals.map(g => g.exercise)}
+            />
           </div>
         </section>
       </div>

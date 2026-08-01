@@ -1,18 +1,8 @@
 'use client'
 
 import { useEffect, useState, type CSSProperties, type JSX } from 'react'
-import {
-  animate,
-  m,
-  useMotionValue,
-  useMotionValueEvent,
-  useReducedMotion,
-} from 'framer-motion'
-import {
-  classifyDelta,
-  type DeltaStatus,
-  type ScoreboardCell,
-} from './scoreboard-utils'
+import { animate, m, useMotionValue, useMotionValueEvent, useReducedMotion } from 'framer-motion'
+import { classifyDelta, type DeltaStatus, type ScoreboardCell } from './scoreboard-utils'
 
 export {
   SCOREBOARD_METRIC_ORDER,
@@ -118,11 +108,7 @@ interface ScoreboardCellViewProps {
   reduceMotion: boolean
 }
 
-function ScoreboardCellView({
-  cell,
-  index,
-  reduceMotion,
-}: ScoreboardCellViewProps): JSX.Element {
+function ScoreboardCellView({ cell, index, reduceMotion }: ScoreboardCellViewProps): JSX.Element {
   const digits = formatDigits(cell.value, cell.precision)
   const showUnit = typeof cell.value === 'number'
   const status = classifyDelta(cell.value, cell.baseline, cell.direction)
@@ -132,13 +118,9 @@ function ScoreboardCellView({
   // misleading "Δ −0.00s" green badge for sub-precision noise like
   // 5.381 vs 5.384 with `precision=2`.
   const delta =
-    cell.value !== undefined && cell.baseline !== undefined
-      ? cell.value - cell.baseline
-      : undefined
-  const displayedDelta =
-    delta !== undefined ? roundToPrecision(delta, cell.precision) : undefined
-  const showDelta =
-    displayedDelta !== undefined && displayedDelta !== 0 && status !== null
+    cell.value !== undefined && cell.baseline !== undefined ? cell.value - cell.baseline : undefined
+  const displayedDelta = delta !== undefined ? roundToPrecision(delta, cell.precision) : undefined
+  const showDelta = displayedDelta !== undefined && displayedDelta !== 0 && status !== null
   const cellDelay = reduceMotion ? 0 : index * CELL_STAGGER_S
 
   return (
@@ -192,12 +174,7 @@ const DIGIT_STYLE: CSSProperties = {
  * static metadata, and shrinking it keeps `231.4 lbs` from wrapping
  * inside narrow mobile cells.
  */
-function SplitFlapDigits({
-  digits,
-  unit,
-  delay,
-  reduceMotion,
-}: SplitFlapDigitsProps): JSX.Element {
+function SplitFlapDigits({ digits, unit, delay, reduceMotion }: SplitFlapDigitsProps): JSX.Element {
   const chars = Array.from(digits)
   // Trim leading whitespace from the unit before rendering: " lbs"
   // included a leading space so it appeared as "231.4 lbs" when
@@ -267,10 +244,10 @@ function DeltaLine({
 }: DeltaLineProps): JSX.Element {
   const motionValue = useMotionValue(reduceMotion ? delta : 0)
   const [text, setText] = useState(() =>
-    formatDeltaValue(reduceMotion ? delta : 0, precision, unit),
+    formatDeltaValue(reduceMotion ? delta : 0, precision, unit)
   )
 
-  useMotionValueEvent(motionValue, 'change', (v) => {
+  useMotionValueEvent(motionValue, 'change', v => {
     setText(formatDeltaValue(v, precision, unit))
   })
 

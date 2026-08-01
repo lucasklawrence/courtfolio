@@ -1,11 +1,5 @@
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
-import {
-  RoughCircle,
-  RoughEllipse,
-  RoughLineShape,
-  RoughPath,
-  RoughRect,
-} from './rough-shapes'
+import { RoughCircle, RoughEllipse, RoughLineShape, RoughPath, RoughRect } from './rough-shapes'
 
 /**
  * White sweat towel draped over the treadmill side rail. Tilted so it folds
@@ -288,15 +282,7 @@ export function Basketball({
  * @param props.y - Floor y the sneakers rest on.
  * @param props.seed - Stable rough-stroke seed offset.
  */
-export function Sneakers({
-  x,
-  y,
-  seed,
-}: {
-  x: number
-  y: number
-  seed: number
-}) {
+export function Sneakers({ x, y, seed }: { x: number; y: number; seed: number }) {
   return (
     <g aria-hidden="true">
       {/* Cast shadow */}
@@ -408,21 +394,53 @@ export function Sneakers({
  * @param props.y - Anchor y (floor contact).
  * @param props.seed - Stable rough-stroke seed offset.
  */
-export function ChalkPuff({
-  x,
-  y,
-  seed,
-}: {
-  x: number
-  y: number
-  seed: number
-}) {
+export function ChalkPuff({ x, y, seed }: { x: number; y: number; seed: number }) {
   return (
     <g aria-hidden="true" opacity={0.8}>
-      <RoughCircle cx={x} cy={y} r={10} fill={SCENE_PALETTE.creamBright} fillStyle="solid" stroke={SCENE_PALETTE.cream} strokeWidth={0.8} roughness={1.6} seed={seed} />
-      <RoughCircle cx={x + 12} cy={y - 6} r={8} fill={SCENE_PALETTE.creamBright} fillStyle="solid" stroke={SCENE_PALETTE.cream} strokeWidth={0.8} roughness={1.6} seed={seed + 1} />
-      <RoughCircle cx={x - 10} cy={y - 5} r={7} fill={SCENE_PALETTE.creamBright} fillStyle="solid" stroke={SCENE_PALETTE.cream} strokeWidth={0.8} roughness={1.6} seed={seed + 2} />
-      <RoughCircle cx={x + 4} cy={y + 4} r={6} fill={SCENE_PALETTE.creamBright} fillStyle="solid" stroke={SCENE_PALETTE.cream} strokeWidth={0.8} roughness={1.6} seed={seed + 3} />
+      <RoughCircle
+        cx={x}
+        cy={y}
+        r={10}
+        fill={SCENE_PALETTE.creamBright}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.cream}
+        strokeWidth={0.8}
+        roughness={1.6}
+        seed={seed}
+      />
+      <RoughCircle
+        cx={x + 12}
+        cy={y - 6}
+        r={8}
+        fill={SCENE_PALETTE.creamBright}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.cream}
+        strokeWidth={0.8}
+        roughness={1.6}
+        seed={seed + 1}
+      />
+      <RoughCircle
+        cx={x - 10}
+        cy={y - 5}
+        r={7}
+        fill={SCENE_PALETTE.creamBright}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.cream}
+        strokeWidth={0.8}
+        roughness={1.6}
+        seed={seed + 2}
+      />
+      <RoughCircle
+        cx={x + 4}
+        cy={y + 4}
+        r={6}
+        fill={SCENE_PALETTE.creamBright}
+        fillStyle="solid"
+        stroke={SCENE_PALETTE.cream}
+        strokeWidth={0.8}
+        roughness={1.6}
+        seed={seed + 3}
+      />
     </g>
   )
 }

@@ -17,12 +17,7 @@
  * row never wins a PB.
  */
 
-import type {
-  CardioActivity,
-  CardioData,
-  CardioSession,
-  CardioTimePoint,
-} from '@/types/cardio'
+import type { CardioActivity, CardioData, CardioSession, CardioTimePoint } from '@/types/cardio'
 import type { DateRange } from '@/components/training-facility/shared/DateFilter'
 
 /** A single personal-best record — a value plus the date it was achieved. */
@@ -91,7 +86,7 @@ export function computePersonalBests(data: CardioData): PersonalBests {
 export function bestSession(
   sessions: readonly CardioSession[],
   field: SessionMetricField,
-  mode: Mode,
+  mode: Mode
 ): PersonalBestRecord | undefined {
   let best: PersonalBestRecord | undefined
   for (const s of sessions) {
@@ -112,10 +107,7 @@ export function bestSession(
  * Returns `false` for missing PBs (so the badge logic can branch on the
  * tile's value type without an extra null check).
  */
-export function pbInRange(
-  record: PersonalBestRecord | undefined,
-  range: DateRange,
-): boolean {
+export function pbInRange(record: PersonalBestRecord | undefined, range: DateRange): boolean {
   if (!record) return false
   const ts = parseRecordDate(record.date).getTime()
   if (!Number.isFinite(ts)) return false
@@ -136,7 +128,7 @@ export function pbInRange(
 export function bestTrendInRange(
   points: readonly CardioTimePoint[],
   range: DateRange,
-  mode: Mode,
+  mode: Mode
 ): PersonalBestRecord | undefined {
   const fromMs = range.start.getTime()
   const toMs = range.end.getTime()
@@ -159,7 +151,7 @@ export function bestTrendInRange(
 function bestPerActivity(
   sessions: readonly CardioSession[],
   field: SessionMetricField,
-  mode: Mode,
+  mode: Mode
 ): Partial<Record<CardioActivity, PersonalBestRecord>> {
   const out: Partial<Record<CardioActivity, PersonalBestRecord>> = {}
   for (const s of sessions) {
@@ -179,7 +171,7 @@ function bestPerActivity(
  */
 function bestTrendPoint(
   points: readonly CardioTimePoint[],
-  mode: Mode,
+  mode: Mode
 ): PersonalBestRecord | undefined {
   let best: PersonalBestRecord | undefined
   for (const p of points) {

@@ -114,13 +114,7 @@ export function Silhouette({
   return (
     <g fill={color} opacity={opacity}>
       {/* Legs (rendered first so torso overlaps them at the hip) */}
-      <rect
-        x={leftLegCx - legW / 2}
-        y={hipY}
-        width={legW}
-        height={floorY - hipY}
-        rx={legW * 0.3}
-      />
+      <rect x={leftLegCx - legW / 2} y={hipY} width={legW} height={floorY - hipY} rx={legW * 0.3} />
       <rect
         x={rightLegCx - legW / 2}
         y={hipY}

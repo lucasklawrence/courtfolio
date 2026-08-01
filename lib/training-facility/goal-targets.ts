@@ -48,7 +48,7 @@ export interface GoalTargetChange {
  */
 function sortedByEffectiveFrom(history: readonly GoalTargetPoint[]): GoalTargetPoint[] {
   return [...history].sort((a, b) =>
-    a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0,
+    a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0
   )
 }
 
@@ -204,7 +204,7 @@ export function currentTarget(goal: ExerciseGoal, todayKey: string): number {
   if (history === undefined || history.length === 0 || todayKey === '') {
     return clampTarget(goal.daily_target)
   }
-  const anyInEffect = history.some((point) => point.effective_from <= todayKey)
+  const anyInEffect = history.some(point => point.effective_from <= todayKey)
   return anyInEffect ? targetForDay(goal, todayKey) : clampTarget(goal.daily_target)
 }
 
@@ -227,7 +227,7 @@ export function currentTarget(goal: ExerciseGoal, todayKey: string): number {
  */
 export function scheduledGoalTargetChanges(
   goal: ExerciseGoal,
-  todayKey: string,
+  todayKey: string
 ): GoalTargetChange[] {
   const history = goal.target_history
   if (history === undefined || history.length === 0) return []

@@ -25,10 +25,10 @@ describe('isTrainingFacilityEnabled', () => {
 
   it.each(['false', 'TRUE', '1', 'yes', 'on'])(
     'returns false for any non-"true" string (%s) — defensive against truthy-coercion bugs',
-    (value) => {
+    value => {
       vi.stubEnv('NEXT_PUBLIC_ENABLE_TRAINING_FACILITY', value)
       expect(isTrainingFacilityEnabled()).toBe(false)
-    },
+    }
   )
 })
 
@@ -45,10 +45,10 @@ describe('isGymEnabled', () => {
 
   it.each(['false', 'TRUE', '1', 'yes', 'on'])(
     'returns false for any non-"true" string (%s) — defensive against truthy-coercion bugs',
-    (value) => {
+    value => {
       vi.stubEnv('NEXT_PUBLIC_ENABLE_TF_GYM', value)
       expect(isGymEnabled()).toBe(false)
-    },
+    }
   )
 })
 
@@ -65,10 +65,10 @@ describe('isWeightRoomEnabled', () => {
 
   it.each(['false', 'TRUE', '1', 'yes', 'on'])(
     'returns false for any non-"true" string (%s) — defensive against truthy-coercion bugs',
-    (value) => {
+    value => {
       vi.stubEnv('NEXT_PUBLIC_ENABLE_TF_WEIGHT_ROOM', value)
       expect(isWeightRoomEnabled()).toBe(false)
-    },
+    }
   )
 })
 
@@ -115,9 +115,9 @@ describe('isPanelLiveEnabled', () => {
 
   it.each(['false', 'TRUE', '1', 'yes', 'on'])(
     'returns false for any non-"true" string (%s) — defensive against truthy-coercion bugs',
-    (value) => {
+    value => {
       vi.stubEnv('NEXT_PUBLIC_ENABLE_PANEL_LIVE', value)
       expect(isPanelLiveEnabled()).toBe(false)
-    },
+    }
   )
 })

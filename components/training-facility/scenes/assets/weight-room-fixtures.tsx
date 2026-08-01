@@ -57,7 +57,7 @@ const TRACK_OPACITY = 0.2
  */
 function fitRingDimensions(
   availableRadius: number,
-  ringCount: number,
+  ringCount: number
 ): { stroke: number; gap: number } {
   if (ringCount <= 0) return { stroke: RING_STROKE, gap: RING_GAP }
   const requiredStroke = Math.floor(availableRadius / (ringCount * 1.6))
@@ -82,9 +82,7 @@ function fitRingDimensions(
  * to today's totals + current streaks in this component; no upstream
  * derivation needed.
  */
-export function WallActivityRings({
-  data,
-}: WallActivityRingsProps = {}): JSX.Element {
+export function WallActivityRings({ data }: WallActivityRingsProps = {}): JSX.Element {
   // "Today" needs to be evaluated in the *viewer's* timezone, not the
   // server's (Vercel functions run in UTC). Deferring `now` to a
   // post-mount `useEffect` keeps SSR and the first client render
@@ -104,7 +102,7 @@ export function WallActivityRings({
   const totals = totalsByExercise(setsToday)
   const streaks = now ? computeStrengthStreaks(sets, goals, now) : {}
 
-  const rings = goals.map((goal) => ({
+  const rings = goals.map(goal => ({
     exercise: goal.exercise,
     // Slug stays the identity (test ids, keys); the label is what's drawn.
     label: exerciseLabel(goal),
@@ -116,18 +114,13 @@ export function WallActivityRings({
 
   const primary = rings[0]
   const primaryPercent =
-    primary && primary.target > 0
-      ? Math.min(1, primary.total / primary.target)
-      : 0
+    primary && primary.target > 0 ? Math.min(1, primary.total / primary.target) : 0
 
   // Auto-fit stroke/gap so every configured goal renders a ring. The old
   // fixed geometry dropped any ring past the third (a permanent squats
   // goal vanished the moment the shrugs focus lane pushed the count to
   // four); this mirrors the Log View's auto-fit.
-  const { stroke: ringStroke, gap: ringGap } = fitRingDimensions(
-    OUTER_RADIUS,
-    rings.length,
-  )
+  const { stroke: ringStroke, gap: ringGap } = fitRingDimensions(OUTER_RADIUS, rings.length)
 
   // Tally band — the per-exercise labels stack below the rings inside the
   // board's lower margin. Spacing + font shrink with the goal count so a
@@ -136,8 +129,7 @@ export function WallActivityRings({
   const ringsBottom = RING_CY + OUTER_RADIUS + ringStroke / 2
   const tallyTop = ringsBottom + 6
   const tallyBandHeight = Math.max(0, FRAME_Y + FRAME_H - 12 - tallyTop)
-  const tallySpacing =
-    rings.length > 0 ? Math.min(22, tallyBandHeight / rings.length) : 22
+  const tallySpacing = rings.length > 0 ? Math.min(22, tallyBandHeight / rings.length) : 22
   const tallyFontSize = Math.max(10, Math.min(16, Math.round(tallySpacing * 0.72)))
 
   return (
@@ -188,13 +180,9 @@ export function WallActivityRings({
             // Clamp to a positive radius so the innermost ring still
             // renders for pathological goal counts; `fitRingDimensions`
             // already shrank stroke/gap to keep this in range.
-            const radius = Math.max(
-              ringStroke / 2,
-              OUTER_RADIUS - i * (ringStroke + ringGap),
-            )
+            const radius = Math.max(ringStroke / 2, OUTER_RADIUS - i * (ringStroke + ringGap))
             const circumference = 2 * Math.PI * radius
-            const rawPercent =
-              ring.target > 0 ? ring.total / ring.target : 0
+            const rawPercent = ring.target > 0 ? ring.total / ring.target : 0
             const clamped = Math.min(1, Math.max(0, rawPercent))
             const dashOffset = circumference * (1 - clamped)
             return (

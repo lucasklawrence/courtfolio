@@ -114,10 +114,7 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
       )
     }
     if (inverted) {
-      return NextResponse.json(
-        { error: 'ended_at cannot be before started_at.' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'ended_at cannot be before started_at.' }, { status: 400 })
     }
   }
 

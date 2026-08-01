@@ -124,7 +124,7 @@ export function sessionRowToCardioSession(row: CardioSessionRow): CardioSession 
     4: row.zone4_seconds,
     5: row.zone5_seconds,
   }
-  if ((Object.values(zones) as Array<number | undefined>).some((v) => v !== undefined)) {
+  if ((Object.values(zones) as Array<number | undefined>).some(v => v !== undefined)) {
     session.hr_seconds_in_zone = {
       1: zones[1] ?? 0,
       2: zones[2] ?? 0,
@@ -232,10 +232,7 @@ export function hrSampleRowToHrSample(row: CardioSessionHrSampleRow): HrSample {
  *   the `cardio_sessions.started_at` row this sample belongs to so the
  *   FK resolves; the import script writes sessions before samples.
  */
-export function hrSampleToRow(
-  sample: HrSample,
-  sessionStartedAt: string,
-): Record<string, unknown> {
+export function hrSampleToRow(sample: HrSample, sessionStartedAt: string): Record<string, unknown> {
   return {
     session_started_at: sessionStartedAt,
     sample_at: sample.ts,

@@ -33,16 +33,14 @@ const BODY_MASS: CardioTimePoint[] = [
 
 describe('StrengthVsBodyweightChart legend', () => {
   it('names both series, keyed to the exercise', () => {
-    render(
-      <StrengthVsBodyweightChart sets={weeklySets()} goal={GOAL} bodyMass={BODY_MASS} />,
-    )
+    render(<StrengthVsBodyweightChart sets={weeklySets()} goal={GOAL} bodyMass={BODY_MASS} />)
     expect(screen.getByText('pullups / week')).toBeInTheDocument()
     expect(screen.getByText('Bodyweight (lb)')).toBeInTheDocument()
   })
 
   it('draws the exercise swatch in the goal colour and dashes only bodyweight', () => {
     const { container } = render(
-      <StrengthVsBodyweightChart sets={weeklySets()} goal={GOAL} bodyMass={BODY_MASS} />,
+      <StrengthVsBodyweightChart sets={weeklySets()} goal={GOAL} bodyMass={BODY_MASS} />
     )
     const swatches = [...container.querySelectorAll('li svg line')]
     expect(swatches).toHaveLength(2)

@@ -24,11 +24,11 @@ describe('TrainingFacilityShell doors', () => {
     render(<TrainingFacilityShell />)
     expect(screen.getByRole('link', { name: /the gym/i })).toHaveAttribute(
       'href',
-      '/training-facility/gym',
+      '/training-facility/gym'
     )
     expect(screen.getByRole('link', { name: /weight room/i })).toHaveAttribute(
       'href',
-      '/training-facility/weight-room',
+      '/training-facility/weight-room'
     )
   })
 
@@ -52,7 +52,7 @@ describe('TrainingFacilityShell doors', () => {
     // the Combine is reachable.
     expect(screen.getByRole('link', { name: /the combine/i })).toHaveAttribute(
       'href',
-      '/training-facility/combine',
+      '/training-facility/combine'
     )
   })
 

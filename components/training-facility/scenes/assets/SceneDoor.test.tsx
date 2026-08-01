@@ -25,7 +25,7 @@ describe('SceneDoor', () => {
           seedBase={210}
           {...extraProps}
         />
-      </svg>,
+      </svg>
     )
   }
 

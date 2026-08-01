@@ -57,7 +57,7 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
   if (!DAY_KEY_PATTERN.test(effectiveFrom)) {
     return NextResponse.json(
       { error: 'effective_from must be a YYYY-MM-DD date.' },
-      { status: 400 },
+      { status: 400 }
     )
   }
 
@@ -68,10 +68,9 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
   if (effectiveFrom <= today) {
     return NextResponse.json(
       {
-        error:
-          `The ${effectiveFrom} target is already in effect — past targets are history and can't be removed. Only a change scheduled for a future date can be cancelled.`,
+        error: `The ${effectiveFrom} target is already in effect — past targets are history and can't be removed. Only a change scheduled for a future date can be cancelled.`,
       },
-      { status: 409 },
+      { status: 409 }
     )
   }
 
@@ -87,13 +86,13 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
   if (error) {
     return NextResponse.json(
       { error: `Failed to cancel scheduled target: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
   if (data === null) {
     return NextResponse.json(
       { error: `No scheduled target for '${trimmedExercise}' on ${effectiveFrom}.` },
-      { status: 404 },
+      { status: 404 }
     )
   }
 
@@ -106,5 +105,5 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
 /** `handleDELETE` wrapped with one-event-per-request telemetry (#220). */
 export const DELETE = withTelemetry(
   'DELETE /api/admin/weight-room/goals/[exercise]/targets/[effective_from]',
-  handleDELETE,
+  handleDELETE
 )

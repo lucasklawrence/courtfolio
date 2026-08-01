@@ -1,16 +1,11 @@
 import { describe, it, expect } from 'vitest'
-import {
-  bestSession,
-  bestTrendInRange,
-  computePersonalBests,
-  pbInRange,
-} from './personal-bests'
+import { bestSession, bestTrendInRange, computePersonalBests, pbInRange } from './personal-bests'
 import type { CardioData, CardioSession, CardioTimePoint } from '@/types/cardio'
 
 const session = (
   date: string,
   activity: CardioSession['activity'],
-  extras: Partial<CardioSession> = {},
+  extras: Partial<CardioSession> = {}
 ): CardioSession => ({
   date,
   activity,
@@ -225,8 +220,8 @@ describe('pbInRange', () => {
     expect(
       pbInRange(
         { value: 330, date: '2026-02-15' },
-        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
-      ),
+        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999')
+      )
     ).toBe(true)
   })
 
@@ -234,23 +229,23 @@ describe('pbInRange', () => {
     expect(
       pbInRange(
         { value: 330, date: '2026-01-10' },
-        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
-      ),
+        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999')
+      )
     ).toBe(false)
   })
 
   it('returns false for an undefined PB', () => {
-    expect(
-      pbInRange(undefined, range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999')),
-    ).toBe(false)
+    expect(pbInRange(undefined, range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'))).toBe(
+      false
+    )
   })
 
   it('returns false for an unparseable PB date', () => {
     expect(
       pbInRange(
         { value: 330, date: 'not-a-date' },
-        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
-      ),
+        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999')
+      )
     ).toBe(false)
   })
 
@@ -259,8 +254,8 @@ describe('pbInRange', () => {
     expect(
       pbInRange(
         { value: 60, date: '2026-02-01' },
-        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
-      ),
+        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999')
+      )
     ).toBe(true)
   })
 })
@@ -275,31 +270,19 @@ describe('bestTrendInRange', () => {
 
   it('returns the lowest in-range point in min mode', () => {
     expect(
-      bestTrendInRange(
-        trend,
-        range('2026-02-01T00:00:00', '2026-03-31T23:59:59.999'),
-        'min',
-      ),
+      bestTrendInRange(trend, range('2026-02-01T00:00:00', '2026-03-31T23:59:59.999'), 'min')
     ).toEqual({ value: 60, date: '2026-02-15' })
   })
 
   it('returns the highest in-range point in max mode', () => {
     expect(
-      bestTrendInRange(
-        trend,
-        range('2026-01-01T00:00:00', '2026-03-31T23:59:59.999'),
-        'max',
-      ),
+      bestTrendInRange(trend, range('2026-01-01T00:00:00', '2026-03-31T23:59:59.999'), 'max')
     ).toEqual({ value: 64, date: '2026-01-15' })
   })
 
   it('returns undefined when no point falls inside the range', () => {
     expect(
-      bestTrendInRange(
-        trend,
-        range('2026-05-01T00:00:00', '2026-05-31T23:59:59.999'),
-        'min',
-      ),
+      bestTrendInRange(trend, range('2026-05-01T00:00:00', '2026-05-31T23:59:59.999'), 'min')
     ).toBeUndefined()
   })
 
@@ -311,11 +294,7 @@ describe('bestTrendInRange', () => {
       { date: '2026-02-15', value: 60 },
     ]
     expect(
-      bestTrendInRange(
-        messy,
-        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
-        'min',
-      ),
+      bestTrendInRange(messy, range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'), 'min')
     ).toEqual({ value: 60, date: '2026-02-15' })
   })
 
@@ -325,21 +304,13 @@ describe('bestTrendInRange', () => {
       { date: '2026-02-15', value: 60 },
     ]
     expect(
-      bestTrendInRange(
-        messy,
-        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
-        'min',
-      ),
+      bestTrendInRange(messy, range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'), 'min')
     ).toEqual({ value: 60, date: '2026-02-15' })
   })
 
   it('returns undefined for an empty trend list', () => {
     expect(
-      bestTrendInRange(
-        [],
-        range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'),
-        'min',
-      ),
+      bestTrendInRange([], range('2026-02-01T00:00:00', '2026-02-28T23:59:59.999'), 'min')
     ).toBeUndefined()
   })
 })

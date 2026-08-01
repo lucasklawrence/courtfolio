@@ -14,13 +14,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
 
-import {
-  MAX_HR_STORAGE_KEY,
-  MAX_MAX_HR,
-  MIN_MAX_HR,
-  parseMaxHr,
-  useMaxHr,
-} from './useMaxHr'
+import { MAX_HR_STORAGE_KEY, MAX_MAX_HR, MIN_MAX_HR, parseMaxHr, useMaxHr } from './useMaxHr'
 
 beforeEach(() => {
   localStorage.clear()

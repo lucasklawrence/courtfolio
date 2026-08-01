@@ -12,9 +12,7 @@ import { WeightRoomSubNav } from './WeightRoomSubNav'
  */
 describe('WeightRoomSubNav — non-admin viewer', () => {
   it('renders only the public Today + History + Trophies pills', () => {
-    const { getByRole, queryByRole } = render(
-      <WeightRoomSubNav active="today" isAdmin={false} />,
-    )
+    const { getByRole, queryByRole } = render(<WeightRoomSubNav active="today" isAdmin={false} />)
     expect(getByRole('link', { name: 'Today' })).toBeInTheDocument()
     expect(getByRole('link', { name: 'History' })).toBeInTheDocument()
     expect(getByRole('link', { name: 'Trophies' })).toBeInTheDocument()
@@ -50,7 +48,7 @@ describe('WeightRoomSubNav — non-admin viewer', () => {
 
   it('passes through className to the outer nav', () => {
     const { getByTestId } = render(
-      <WeightRoomSubNav active="today" className="mt-4" isAdmin={false} />,
+      <WeightRoomSubNav active="today" className="mt-4" isAdmin={false} />
     )
     expect(getByTestId('weight-room-sub-nav').className).toContain('mt-4')
   })

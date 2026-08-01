@@ -92,7 +92,7 @@ const WeightRoomExerciseRowsSchema = z.array(WeightRoomExerciseRowSchema)
  * @throws when the Supabase query fails or row-shape validation fails.
  */
 export async function assembleWeightRoomExercises(
-  supabase: SupabaseClient,
+  supabase: SupabaseClient
 ): Promise<WeightRoomExercise[]> {
   const res = await supabase
     .from(EXERCISES_TABLE)
@@ -114,9 +114,7 @@ export async function assembleWeightRoomExercises(
  * @param raw Rows straight from PostgREST, still carrying `updated_at`.
  * @throws when row-shape validation fails.
  */
-function parseExerciseRows(
-  raw: Array<Record<string, unknown>>,
-): WeightRoomExercise[] {
+function parseExerciseRows(raw: Array<Record<string, unknown>>): WeightRoomExercise[] {
   const parsed = WeightRoomExerciseRowsSchema.safeParse(raw.map(stripUpdatedAt))
   if (!parsed.success) {
     throw new Error(`weight_room_exercises failed schema validation: ${parsed.error.message}`)
@@ -145,10 +143,10 @@ function parseExerciseRows(
  */
 function attachCatalogFields(
   goals: readonly ExerciseGoal[],
-  exercises: readonly WeightRoomExercise[],
+  exercises: readonly WeightRoomExercise[]
 ): ExerciseGoal[] {
-  const bySlug = new Map(exercises.map((exercise) => [exercise.slug, exercise]))
-  return goals.map((goal) => {
+  const bySlug = new Map(exercises.map(exercise => [exercise.slug, exercise]))
+  return goals.map(goal => {
     // A goal with no catalog row is impossible — the FK guarantees one — but
     // defaulting rather than asserting keeps a partially-migrated project
     // rendering instead of throwing.
@@ -173,10 +171,10 @@ function attachCatalogFields(
  */
 function attachFocusDisplayNames(
   focuses: readonly MonthlyFocus[],
-  exercises: readonly WeightRoomExercise[],
+  exercises: readonly WeightRoomExercise[]
 ): MonthlyFocus[] {
-  const labelBySlug = new Map(exercises.map((e) => [e.slug, e.display_name]))
-  return focuses.map((focus) => {
+  const labelBySlug = new Map(exercises.map(e => [e.slug, e.display_name]))
+  return focuses.map(focus => {
     const label = labelBySlug.get(focus.exercise)
     return label === undefined || label === focus.exercise
       ? focus
@@ -213,7 +211,7 @@ const WeightRoomAchievementRowsSchema = z.array(WeightRoomAchievementRowSchema)
  *   the page.
  */
 export async function assembleWeightRoomAchievements(
-  supabase: SupabaseClient,
+  supabase: SupabaseClient
 ): Promise<WeightRoomAchievement[]> {
   // `nullsFirst` puts the pooled "all movements" tiers at the head of the
   // ladder, which is also where the Trophy Room renders them.
@@ -231,9 +229,7 @@ export async function assembleWeightRoomAchievements(
   const raw = (res.data ?? []) as unknown as Array<Record<string, unknown>>
   const parsed = WeightRoomAchievementRowsSchema.safeParse(raw.map(stripNullBadgeFields))
   if (!parsed.success) {
-    throw new Error(
-      `weight_room_achievements failed schema validation: ${parsed.error.message}`,
-    )
+    throw new Error(`weight_room_achievements failed schema validation: ${parsed.error.message}`)
   }
 
   return parsed.data.map(achievementRowToAchievement)
@@ -284,7 +280,7 @@ function stripNullBadgeFields(row: Record<string, unknown>): Record<string, unkn
  *   usually downgrade this to an empty render.
  */
 export async function assembleWeightRoomData(
-  supabase: SupabaseClient,
+  supabase: SupabaseClient
 ): Promise<WeightRoomData | null> {
   // Secondary sort keys make ties deterministic (#229): backdated sets
   // all stamp local noon of their day, so `logged_at` alone left their
@@ -304,7 +300,7 @@ export async function assembleWeightRoomData(
           .order('logged_at', { ascending: true })
           .order('updated_at', { ascending: true })
           .order('id', { ascending: true }),
-      'weight room sets',
+      'weight room sets'
     ),
     supabase.from(GOALS_TABLE).select(GOALS_COLUMNS).order('exercise', { ascending: true }),
     // Newest window first so the "Upcoming"/roadmap UI can slice from
@@ -343,13 +339,7 @@ export async function assembleWeightRoomData(
   // Compute imported_at before stripping `updated_at` — that column lives
   // on every row but isn't part of the row-shape schema (`.strict()`
   // would reject it).
-  const importedAt = computeImportedAt([
-    setsRaw,
-    goalsRaw,
-    focusRaw,
-    goalTargetsRaw,
-    exercisesRaw,
-  ])
+  const importedAt = computeImportedAt([setsRaw, goalsRaw, focusRaw, goalTargetsRaw, exercisesRaw])
 
   // A monthly focus can't exist without its `kind: 'focus'` goal anchor
   // (FK), so sets+goals empty still means "no data" — focus is implied
@@ -370,15 +360,15 @@ export async function assembleWeightRoomData(
   const focusParsed = WeightRoomMonthlyFocusRowsSchema.safeParse(focusRaw.map(stripUpdatedAt))
   if (!focusParsed.success) {
     throw new Error(
-      `weight_room_monthly_focus failed schema validation: ${focusParsed.error.message}`,
+      `weight_room_monthly_focus failed schema validation: ${focusParsed.error.message}`
     )
   }
   const goalTargetsParsed = WeightRoomGoalTargetRowsSchema.safeParse(
-    goalTargetsRaw.map(stripUpdatedAt),
+    goalTargetsRaw.map(stripUpdatedAt)
   )
   if (!goalTargetsParsed.success) {
     throw new Error(
-      `weight_room_goal_targets failed schema validation: ${goalTargetsParsed.error.message}`,
+      `weight_room_goal_targets failed schema validation: ${goalTargetsParsed.error.message}`
     )
   }
 
@@ -389,7 +379,7 @@ export async function assembleWeightRoomData(
   // the assembly straddles Pacific midnight.
   const todayKey = pacificDayKey(new Date())
 
-  const goals = goalsParsed.data.map((row) => {
+  const goals = goalsParsed.data.map(row => {
     const goal = goalRowToExerciseGoal(row)
     const history = historyByExercise.get(goal.exercise)
     // Omit rather than attach `[]` so "no recorded history" is a single
@@ -420,10 +410,7 @@ export async function assembleWeightRoomData(
     imported_at: importedAt,
     sets: setsParsed.data.map(setRowToStrengthSet),
     goals: attachCatalogFields(goals, exercises),
-    monthly_focus: attachFocusDisplayNames(
-      focusParsed.data.map(focusRowToMonthlyFocus),
-      exercises,
-    ),
+    monthly_focus: attachFocusDisplayNames(focusParsed.data.map(focusRowToMonthlyFocus), exercises),
     exercises,
   }
 }
@@ -439,7 +426,7 @@ export async function assembleWeightRoomData(
  * @param rows Validated target rows, in any order.
  */
 function groupTargetHistory(
-  rows: readonly { exercise: string; daily_target: number; effective_from: string }[],
+  rows: readonly { exercise: string; daily_target: number; effective_from: string }[]
 ): Map<string, GoalTargetPoint[]> {
   const byExercise = new Map<string, GoalTargetPoint[]>()
   for (const row of rows) {
@@ -458,7 +445,7 @@ function groupTargetHistory(
   // a future query change can't hand the resolver unordered history.
   for (const history of byExercise.values()) {
     history.sort((a, b) =>
-      a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0,
+      a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0
     )
   }
   return byExercise

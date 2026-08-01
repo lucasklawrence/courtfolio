@@ -20,8 +20,9 @@ test.describe('resume download route', () => {
   test('the contact-page resume link routes through /resume', async ({ page }) => {
     await page.goto('/contact')
 
-    await expect(
-      page.getByRole('link', { name: /view full resume \(pdf\)/i }),
-    ).toHaveAttribute('href', '/resume')
+    await expect(page.getByRole('link', { name: /view full resume \(pdf\)/i })).toHaveAttribute(
+      'href',
+      '/resume'
+    )
   })
 })

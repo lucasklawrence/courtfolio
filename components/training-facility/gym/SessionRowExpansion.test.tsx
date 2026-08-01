@@ -119,7 +119,7 @@ describe('row interaction (click + keyboard)', () => {
     return (
       <table>
         <tbody>
-          {rows.map((r) => {
+          {rows.map(r => {
             const props = getRowExpansionProps(r.key, state, r.hasZones, '')
             return (
               <tr key={r.key} data-testid={r.key} {...props}>
@@ -182,7 +182,7 @@ describe('ExpandedHrZoneRow', () => {
         <tbody>
           <ExpandedHrZoneRow session={session()} colSpan={5} fontFamily="sans-serif" />
         </tbody>
-      </table>,
+      </table>
     )
     // HrZoneBars renders as an SVG with role="img" and an explicit aria-label
     // — the strongest signal that the chart hydrated for this single session.
@@ -197,7 +197,7 @@ describe('ExpandedHrZoneRow', () => {
         <tbody>
           <ExpandedHrZoneRow session={empty} colSpan={5} />
         </tbody>
-      </table>,
+      </table>
     )
     // Empty-state: HrZoneBars renders an `EmptyChart` with the default message.
     expect(screen.getByText(/no hr-zone data/i)).toBeInTheDocument()
@@ -209,10 +209,9 @@ describe('ExpandedHrZoneRow', () => {
         <tbody>
           <ExpandedHrZoneRow session={session()} colSpan={8} />
         </tbody>
-      </table>,
+      </table>
     )
     const cell = screen.getByTestId('session-row-expansion').querySelector('td')
     expect(cell).toHaveAttribute('colspan', '8')
   })
 })
-

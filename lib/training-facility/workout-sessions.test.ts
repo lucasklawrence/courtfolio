@@ -24,9 +24,7 @@ describe('workoutDayKey', () => {
   it('keeps a session that crosses midnight on its start day', () => {
     // Starts 23:30 PDT on the 15th; whatever time it ends, it is the 15th's
     // workout. Splitting it across two days would be wrong in every rollup.
-    expect(
-      workoutDayKey({ started_at: '2026-07-16T06:30:00Z' }),
-    ).toBe('2026-07-15')
+    expect(workoutDayKey({ started_at: '2026-07-16T06:30:00Z' })).toBe('2026-07-15')
   })
 
   it('tracks the winter offset', () => {
@@ -123,7 +121,7 @@ describe('workoutDurationMinutes', () => {
       workoutDurationMinutes({
         started_at: '2026-07-15T18:00:00Z',
         ended_at: '2026-07-15T18:52:00Z',
-      }),
+      })
     ).toBe(52)
   })
 
@@ -133,7 +131,7 @@ describe('workoutDurationMinutes', () => {
 
   it('returns null rather than NaN on an unparseable timestamp', () => {
     expect(
-      workoutDurationMinutes({ started_at: 'nope', ended_at: '2026-07-15T18:52:00Z' }),
+      workoutDurationMinutes({ started_at: 'nope', ended_at: '2026-07-15T18:52:00Z' })
     ).toBeNull()
   })
 })

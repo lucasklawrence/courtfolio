@@ -49,9 +49,8 @@ export function TrainingFacilityShell() {
             Pick a door.
           </h1>
           <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-[#e8d5be] sm:text-lg">
-            The Gym carries the cardio side of the project. The Combine holds the
-            movement benchmark work. The Weight Room logs the daily grease-the-groove
-            pushup and pullup work.
+            The Gym carries the cardio side of the project. The Combine holds the movement benchmark
+            work. The Weight Room logs the daily grease-the-groove pushup and pullup work.
           </p>
         </div>
 

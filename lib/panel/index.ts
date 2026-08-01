@@ -58,7 +58,14 @@ export async function runPanel(
             ', '
           )}. Synthesize from the verdicts above only; do not invent the missing perspectives.`
       : ''
-  const body = await synthesize(thesis, stripped, refutedNote(verifiedGaps), config, opts, absenceNote)
+  const body = await synthesize(
+    thesis,
+    stripped,
+    refutedNote(verifiedGaps),
+    config,
+    opts,
+    absenceNote
+  )
 
   return {
     thesis,

@@ -56,12 +56,7 @@ export interface HrZoneComparisonProps {
  * Consequently there is no loading state: the server resolves both datasets
  * before this renders.
  */
-export function HrZoneComparison({
-  cardio,
-  otf,
-  loadError,
-}: HrZoneComparisonProps): JSX.Element {
-
+export function HrZoneComparison({ cardio, otf, loadError }: HrZoneComparisonProps): JSX.Element {
   // Drop excluded/anomalous OTF sessions (#268) so a malfunction or a manual
   // exclusion (bogus peak_hr / zone minutes) can't skew the shared max HR, the
   // OTF time-in-zone totals, or the avg-peak/avg-HR markers. This view reads
@@ -71,7 +66,7 @@ export function HrZoneComparison({
 
   const comparison = useMemo(
     () => buildHrZoneComparison(cardioSessions, otfSessions),
-    [cardioSessions, otfSessions],
+    [cardioSessions, otfSessions]
   )
 
   // Personal markers: average OTF peak / average HR placed against the bands.
@@ -145,7 +140,10 @@ export function HrZoneComparison({
               </div>
             )}
 
-            <RecommendationNote source={comparison.maxHrSource} observedPeak={comparison.observedPeak} />
+            <RecommendationNote
+              source={comparison.maxHrSource}
+              observedPeak={comparison.observedPeak}
+            />
           </>
         )}
       </div>
@@ -392,7 +390,6 @@ function ZoneShareStrip({ system }: { system: SystemZoneComparison }): JSX.Eleme
     </span>
   )
 }
-
 
 function EmptyState(): JSX.Element {
   return (

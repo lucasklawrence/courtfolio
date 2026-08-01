@@ -95,8 +95,8 @@ export default function ScoreboardDemoPage(): JSX.Element {
             Scoreboard
           </h1>
           <p style={{ fontSize: 14, color: '#a3a3a3', maxWidth: '60ch' }}>
-            Issue #63 — split-flap summary header for the Combine page. Reload the page to
-            replay the cell-by-cell flip animation and the delta count-up.
+            Issue #63 — split-flap summary header for the Combine page. Reload the page to replay
+            the cell-by-cell flip animation and the delta count-up.
           </p>
         </header>
 

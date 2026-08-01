@@ -38,104 +38,102 @@ const palette = {
  */
 export default async function OpengraphImage(): Promise<ImageResponse> {
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        backgroundColor: palette.inkBlack,
+        color: palette.courtLineCream,
+        fontFamily: 'system-ui, sans-serif',
+        position: 'relative',
+      }}
+    >
+      {/* Rim-orange accent stripe down the left edge — court out-of-bounds line. */}
       <div
         style={{
-          width: '100%',
+          width: 24,
           height: '100%',
+          backgroundColor: palette.rimOrange,
+        }}
+      />
+
+      {/* Faint hardwood-tan court-line arc bottom-right — gives the card a half-court feel. */}
+      <div
+        style={{
+          position: 'absolute',
+          right: -180,
+          bottom: -180,
+          width: 520,
+          height: 520,
+          borderRadius: '50%',
+          border: `4px solid ${palette.hardwoodTan}`,
+          opacity: 0.35,
           display: 'flex',
-          backgroundColor: palette.inkBlack,
-          color: palette.courtLineCream,
-          fontFamily: 'system-ui, sans-serif',
-          position: 'relative',
+        }}
+      />
+
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          padding: '72px 80px',
+          flex: 1,
+          zIndex: 1,
         }}
       >
-        {/* Rim-orange accent stripe down the left edge — court out-of-bounds line. */}
-        <div
-          style={{
-            width: 24,
-            height: '100%',
-            backgroundColor: palette.rimOrange,
-          }}
-        />
-
-        {/* Faint hardwood-tan court-line arc bottom-right — gives the card a half-court feel. */}
-        <div
-          style={{
-            position: 'absolute',
-            right: -180,
-            bottom: -180,
-            width: 520,
-            height: 520,
-            borderRadius: '50%',
-            border: `4px solid ${palette.hardwoodTan}`,
-            opacity: 0.35,
-            display: 'flex',
-          }}
-        />
-
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: '72px 80px',
-            flex: 1,
-            zIndex: 1,
+            fontSize: 22,
+            letterSpacing: '0.24em',
+            textTransform: 'uppercase',
+            color: palette.rimOrange,
+            fontFamily: 'ui-monospace, monospace',
           }}
         >
+          Court Vision
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div
             style={{
+              fontSize: 96,
+              fontWeight: 800,
+              lineHeight: 1,
+              letterSpacing: '-0.02em',
               display: 'flex',
-              fontSize: 22,
-              letterSpacing: '0.24em',
-              textTransform: 'uppercase',
-              color: palette.rimOrange,
-              fontFamily: 'ui-monospace, monospace',
             }}
           >
-            Court Vision
+            Lucas Lawrence
           </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <div
-              style={{
-                fontSize: 96,
-                fontWeight: 800,
-                lineHeight: 1,
-                letterSpacing: '-0.02em',
-                display: 'flex',
-              }}
-            >
-              Lucas Lawrence
-            </div>
-            <div
-              style={{
-                fontSize: 40,
-                color: palette.inkSoft,
-                fontWeight: 500,
-                lineHeight: 1.2,
-                display: 'flex',
-              }}
-            >
-              Software Engineer at Snap · Patent Holder
-            </div>
-          </div>
-
           <div
             style={{
-              display: 'flex',
-              fontSize: 24,
-              fontFamily: 'ui-monospace, monospace',
+              fontSize: 40,
               color: palette.inkSoft,
-              letterSpacing: '0.04em',
+              fontWeight: 500,
+              lineHeight: 1.2,
+              display: 'flex',
             }}
           >
-            lucasklawrence.com
+            Software Engineer at Snap · Patent Holder
           </div>
         </div>
+
+        <div
+          style={{
+            display: 'flex',
+            fontSize: 24,
+            fontFamily: 'ui-monospace, monospace',
+            color: palette.inkSoft,
+            letterSpacing: '0.04em',
+          }}
+        >
+          lucasklawrence.com
+        </div>
       </div>
-    ),
+    </div>,
     { ...size }
   )
 }

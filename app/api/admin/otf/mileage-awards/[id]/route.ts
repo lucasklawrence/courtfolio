@@ -70,7 +70,7 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
@@ -96,12 +96,12 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
     if (error.code === UNIQUE_VIOLATION) {
       return NextResponse.json(
         { error: `A milestone labeled '${patch.label}' already exists.` },
-        { status: 409 },
+        { status: 409 }
       )
     }
     return NextResponse.json(
       { error: `Failed to update mileage award: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
   if (!data) {
@@ -146,7 +146,7 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
   if (error) {
     return NextResponse.json(
       { error: `Failed to delete mileage award: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
   if (!data) {

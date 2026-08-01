@@ -85,7 +85,7 @@ afterEach(() => {
 function stubTable(
   table: string,
   data: Array<Record<string, unknown>> | null,
-  error: unknown = null,
+  error: unknown = null
 ): void {
   const query = fromMock(table)
   query.result = { data, error }
@@ -121,35 +121,29 @@ describe('getWeightRoomData', () => {
   })
 
   it('assembles the WeightRoomData shape', async () => {
-    stubTable(
-      'weight_room_sets',
-      [
-        {
-          id: '11111111-1111-4111-8111-111111111111',
-          logged_at: '2026-05-07T08:00:00Z',
-          exercise: 'pushups',
-          reps: 25,
-          updated_at: '2026-05-07T08:00:01Z',
-        },
-      ],
-    )
-    stubTable(
-      'weight_room_goals',
-      [
-        {
-          exercise: 'pushups',
-          daily_target: 100,
-          color: '#EA580C',
-          updated_at: '2026-05-07T08:00:00Z',
-        },
-        {
-          exercise: 'pullups',
-          daily_target: 30,
-          color: '#0EA5A1',
-          updated_at: '2026-05-07T08:00:00Z',
-        },
-      ],
-    )
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-05-07T08:00:00Z',
+        exercise: 'pushups',
+        reps: 25,
+        updated_at: '2026-05-07T08:00:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [
+      {
+        exercise: 'pushups',
+        daily_target: 100,
+        color: '#EA580C',
+        updated_at: '2026-05-07T08:00:00Z',
+      },
+      {
+        exercise: 'pullups',
+        daily_target: 30,
+        color: '#0EA5A1',
+        updated_at: '2026-05-07T08:00:00Z',
+      },
+    ])
 
     const data = await getWeightRoomData()
     expect(data).toEqual({
@@ -243,29 +237,23 @@ describe('getWeightRoomData', () => {
   })
 
   it('imported_at takes the latest updated_at across both tables', async () => {
-    stubTable(
-      'weight_room_sets',
-      [
-        {
-          id: '11111111-1111-4111-8111-111111111111',
-          logged_at: '2026-05-07T08:00:00Z',
-          exercise: 'pushups',
-          reps: 25,
-          updated_at: '2026-05-07T08:00:01Z',
-        },
-      ],
-    )
-    stubTable(
-      'weight_room_goals',
-      [
-        {
-          exercise: 'pushups',
-          daily_target: 100,
-          color: '#EA580C',
-          updated_at: '2026-05-07T09:30:00Z',
-        },
-      ],
-    )
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-05-07T08:00:00Z',
+        exercise: 'pushups',
+        reps: 25,
+        updated_at: '2026-05-07T08:00:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [
+      {
+        exercise: 'pushups',
+        daily_target: 100,
+        color: '#EA580C',
+        updated_at: '2026-05-07T09:30:00Z',
+      },
+    ])
 
     const data = await getWeightRoomData()
     expect(data?.imported_at).toBe('2026-05-07T09:30:00Z')
@@ -284,32 +272,24 @@ describe('getWeightRoomData', () => {
   })
 
   it('throws when a row fails schema validation (e.g. negative reps)', async () => {
-    stubTable(
-      'weight_room_sets',
-      [
-        {
-          id: '11111111-1111-4111-8111-111111111111',
-          logged_at: '2026-05-07T08:00:00Z',
-          exercise: 'pushups',
-          reps: -5, // CHECK constraint blocks at DB level, but defense-in-depth at the schema too.
-          updated_at: '2026-05-07T08:00:00Z',
-        },
-      ],
-    )
-    stubTable(
-      'weight_room_goals',
-      [
-        {
-          exercise: 'pushups',
-          daily_target: 100,
-          color: '#EA580C',
-          updated_at: '2026-05-07T08:00:00Z',
-        },
-      ],
-    )
-    await expect(getWeightRoomData()).rejects.toThrow(
-      /weight_room_sets failed schema validation/,
-    )
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-05-07T08:00:00Z',
+        exercise: 'pushups',
+        reps: -5, // CHECK constraint blocks at DB level, but defense-in-depth at the schema too.
+        updated_at: '2026-05-07T08:00:00Z',
+      },
+    ])
+    stubTable('weight_room_goals', [
+      {
+        exercise: 'pushups',
+        daily_target: 100,
+        color: '#EA580C',
+        updated_at: '2026-05-07T08:00:00Z',
+      },
+    ])
+    await expect(getWeightRoomData()).rejects.toThrow(/weight_room_sets failed schema validation/)
   })
 })
 
@@ -363,7 +343,7 @@ describe('getWeightRoomData — exercise catalog (#373)', () => {
   /** One catalog row, with the not-null columns PostgREST always returns. */
   function catalogRow(
     slug: string,
-    overrides: Record<string, unknown> = {},
+    overrides: Record<string, unknown> = {}
   ): Record<string, unknown> {
     return {
       slug,
@@ -538,7 +518,7 @@ describe('getWeightRoomData — exercise catalog (#373)', () => {
     stubTable('weight_room_goals', [goalRow('pushups')])
     stubTable('weight_room_exercises', [catalogRow('pushups', { equipment: 'trebuchet' })])
     await expect(getWeightRoomData()).rejects.toThrow(
-      /weight_room_exercises failed schema validation/,
+      /weight_room_exercises failed schema validation/
     )
   })
 })
@@ -602,7 +582,7 @@ describe('getWeightRoomData — paged sets read (#336)', () => {
     stubTable('weight_room_goals', [GOAL])
 
     await expect(getWeightRoomData()).rejects.toThrow(
-      /Failed to load weight room sets: connection reset/,
+      /Failed to load weight room sets: connection reset/
     )
   })
 })
@@ -688,4 +668,3 @@ describe('getWeightRoomData — scheduled goal changes (#371)', () => {
     expect(data?.goals[0]).not.toHaveProperty('target_history')
   })
 })
-
