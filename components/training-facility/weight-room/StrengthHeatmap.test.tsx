@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { render } from '@testing-library/react'
 
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
@@ -135,6 +135,19 @@ describe('StrengthHeatmap', () => {
 })
 
 describe('StrengthHeatmap — goal-change markers (#362)', () => {
+  // Pinned because markers are now filtered to changes that have actually
+  // taken effect (#371). Without a fixed clock these assertions flip based on
+  // whether the wall clock has passed the fixture's Aug 1 change — which is
+  // how this suite started failing on Jul 31 in Pacific.
+  beforeEach(() => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 7, 15))
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
   afterEach(() => {
     vi.useRealTimers()
   })

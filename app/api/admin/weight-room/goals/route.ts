@@ -24,7 +24,7 @@ import { ensureWeightRoomExercise } from '@/lib/data/ensure-weight-room-exercise
 import { WeightRoomGoalUpsertSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
-import { targetForDay } from '@/lib/training-facility/goal-targets'
+import { currentTarget } from '@/lib/training-facility/goal-targets'
 import { pacificDayKey } from '@/lib/training-facility/day-keys'
 import type { GoalTargetPoint } from '@/types/weight-room'
 
@@ -98,10 +98,16 @@ function mergeHistory(
  * A `daily_target` change appends a `weight_room_goal_targets` row rather
  * than overwriting history (#362). `effective_from` in the body declares the
  * day the new target takes effect and may be **backdated** ("the 50 goal
- * actually started Aug 1"); omitted, it defaults to today. Future dates are
- * rejected — the mirror column below records the target in effect *now*, and
- * a future-dated change would leave it stale from the moment that date
- * arrived with nothing to re-sync it.
+ * actually started Aug 1") or **scheduled** ("pull-ups goes to 50 on Sept 1",
+ * #371); omitted, it defaults to today.
+ *
+ * A future date used to be rejected, because the mirror column is written here
+ * and nothing would re-sync it when the date arrived. The read path now
+ * resolves the current target from history on every read, so the change simply
+ * becomes current on its day — see `ExerciseGoal.daily_target`. The mirror is
+ * still written below, but only as a best-effort cache: `targetForDay` excludes
+ * entries dated after today, so scheduling a change deliberately leaves the
+ * mirror on the *old* value until it activates.
  *
  * Write order is deliberate: history first, mirror second. If the history
  * write fails, nothing has changed and the request is cleanly retryable; if
@@ -111,8 +117,7 @@ function mergeHistory(
  *
  * Status codes:
  * - 200 — upserted (response echoes the merged row)
- * - 400 — payload failed Zod validation, wasn't valid JSON, or
- *   `effective_from` is in the future
+ * - 400 — payload failed Zod validation or wasn't valid JSON
  * - 401 — not signed in
  * - 403 — signed in but email not on the allowlist
  * - 500 — unexpected Supabase error
@@ -149,15 +154,6 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const { effective_from: requestedEffectiveFrom, ...goalFields } = goal
   const today = pacificDayKey(new Date())
   const effectiveFrom = requestedEffectiveFrom ?? today
-  if (effectiveFrom > today) {
-    return NextResponse.json(
-      {
-        error:
-          'effective_from cannot be in the future — a target change takes effect on or before today.',
-      },
-      { status: 400 }
-    )
-  }
 
   const supabase = createAdminSupabaseClient()
   const nowIso = new Date().toISOString()
@@ -280,7 +276,10 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   // the current target is unchanged and writing the payload value would
   // wrongly advance it. Merged in memory so this costs no extra round trip.
   const mergedHistory = mergeHistory(history, historyRows)
-  const currentDailyTarget = targetForDay({ ...goalFields, target_history: mergedHistory }, today)
+  // `currentTarget` keeps the mirror on the value actually in effect even when
+  // the merged history is entirely future-dated — `targetForDay` would fall
+  // back to the earliest (scheduled) entry and advance it early (#371).
+  const currentDailyTarget = currentTarget({ ...goalFields, target_history: mergedHistory }, today)
 
   // Stamp `updated_at` explicitly so the upsert advances the row's audit
   // timestamp on edits — without this, the existing-row branch keeps

@@ -2,6 +2,7 @@ import type { JSX } from 'react'
 
 import { formatDayKey } from '@/lib/training-facility/day-keys'
 import { type GoalTargetChange, goalTargetChanges } from '@/lib/training-facility/goal-targets'
+import { pacificDayKey } from '@/lib/training-facility/day-keys'
 import { monthLabelOverhang, thinMonthLabels } from '@/lib/training-facility/heatmap-labels'
 import {
   buildStrengthHeatmap,
@@ -133,7 +134,11 @@ export function StrengthHeatmap({
   // holds the effective date. Changes outside the visible window resolve to
   // `null` and are filtered out rather than clamped to an edge, which would
   // plant a marker on a week the change didn't happen in.
-  const visibleChanges = goalTargetChanges(goal)
+  // Past changes only (#371). The rendered window ends on the *Sunday* of the
+  // current week, so a change scheduled for later this week would otherwise
+  // resolve to the final column and draw a marker on days that haven't
+  // happened.
+  const visibleChanges = goalTargetChanges(goal, pacificDayKey(new Date()))
     .map(change => ({ change, col: columnForDayKey(heatmap, change.effective_from) }))
     .filter((entry): entry is { change: GoalTargetChange; col: number } => entry.col !== null)
 

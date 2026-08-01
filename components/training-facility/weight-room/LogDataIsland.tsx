@@ -27,6 +27,7 @@ import { QuickLog } from './QuickLog'
 import { SetList } from './SetList'
 import { StreakBadge } from './StreakBadge'
 import { UpcomingFocusStrip } from './UpcomingFocusStrip'
+import { UpcomingGoalChangeStrip } from './UpcomingGoalChangeStrip'
 import {
   buildExerciseLabels,
   exerciseLabel,
@@ -202,6 +203,9 @@ export function LogDataIsland(): JSX.Element {
       <LogDayPicker selectedDay={selectedDay} todayKey={todayKey} onSelectDay={setSelectedDay} />
 
       <UpcomingFocusStrip focuses={upcoming} />
+      {/* Scheduled daily-target changes (#371) — announced beside the queued
+          focus rotations, since both answer "what changes next". */}
+      <UpcomingGoalChangeStrip goals={visibleGoals} todayKey={todayKey} />
 
       <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-start">
         <div className="flex w-full max-w-[264px] flex-col items-center gap-4">

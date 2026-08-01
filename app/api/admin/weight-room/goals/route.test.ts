@@ -286,7 +286,8 @@ describe('POST /api/admin/weight-room/goals', () => {
       ])
     })
 
-    it('rejects a future effective_from', async () => {
+    it('accepts a future effective_from and appends the scheduled row (#371)', async () => {
+      pullupsAt30()
       const res = await POST(
         makeRequest({
           exercise: 'pullups',
@@ -295,10 +296,28 @@ describe('POST /api/admin/weight-room/goals', () => {
           effective_from: '2026-09-01',
         }) as never
       )
-      expect(res.status).toBe(400)
-      const body = await res.json()
-      expect(body.error).toMatch(/future/i)
-      expect(callFor('historyUpsert')).toBeUndefined()
+      expect(res.status).toBe(200)
+      expect(callFor('historyUpsert')?.payload).toEqual([
+        expect.objectContaining({ daily_target: 50, effective_from: '2026-09-01' }),
+      ])
+    })
+
+    it('leaves the mirror on the current target while a change is scheduled', async () => {
+      // The whole reason the future date used to 400: the mirror must NOT
+      // jump to the scheduled value, or every mirror consumer reports a
+      // target that is not yet in effect. `targetForDay` excludes future
+      // entries, so the upserted row keeps today's 30.
+      pullupsAt30()
+      const res = await POST(
+        makeRequest({
+          exercise: 'pullups',
+          daily_target: 50,
+          color: '#0EA5A1',
+          effective_from: '2026-09-01',
+        }) as never
+      )
+      expect(res.status).toBe(200)
+      expect(callFor('upsertGoal')?.payload).toEqual(expect.objectContaining({ daily_target: 30 }))
     })
 
     it('does not append history for a colour-only edit', async () => {
