@@ -90,6 +90,14 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+# Argument validation before anything that can fail for other reasons, so a
+# contradictory invocation reports itself rather than surfacing as whatever
+# git happens to complain about first.
+if ($Isolate -and $Link) {
+  Write-Error '-Isolate and -Link are contradictory: one forces a real install, the other forces the shared junction. Pass at most one.'
+  exit 1
+}
+
 # In a worktree, --git-common-dir points at the MAIN checkout's .git, while
 # --git-dir points at .git/worktrees/<name>. Equal values mean we're in the
 # main checkout, where node_modules is real and this script has no business
@@ -142,6 +150,13 @@ $committedDepChange = [bool]$changedDepFiles
 # CLAUDE.md's documented recovery ("re-run the bootstrap if you need to change
 # dependencies in a worktree that's already linked") a silent no-op: the re-run
 # saw no committed change and happily re-confirmed the junction.
+#
+# Any touch of package.json counts, including one that changes no dependency at
+# all -- a version bump, an edited script. That is a deliberate false positive
+# and matches how the committed check has always behaved: the cost of guessing
+# wrong is a slower-but-correct isolated install, whereas parsing the diff to
+# decide would be both fiddly and wrong the first time someone writes their
+# dependencies in a shape the parser didn't expect.
 $dirtyDepFiles = git status --porcelain -- package.json package-lock.json
 if ($LASTEXITCODE -ne 0) {
   Write-Error 'git status on package.json failed - cannot determine whether this worktree has uncommitted dependency edits.'
@@ -150,11 +165,6 @@ if ($LASTEXITCODE -ne 0) {
 $uncommittedDepChange = [bool]$dirtyDepFiles
 
 $depsChanged = $committedDepChange -or $uncommittedDepChange
-
-if ($Isolate -and $Link) {
-  Write-Error '-Isolate and -Link are contradictory: one forces a real install, the other forces the shared junction. Pass at most one.'
-  exit 1
-}
 
 if (($depsChanged -or $Isolate) -and -not $Link) {
   # Name the trigger: three different conditions land here, and "why is this
