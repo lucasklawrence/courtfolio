@@ -106,7 +106,7 @@ export function BodyweightOverlay({
   axisLabel = 'Bodyweight (lbs)',
   toggleLabel = 'Bodyweight',
   yTickCount = 4,
-  yTickFormat = (v) => `${Math.round(v)}`,
+  yTickFormat = v => `${Math.round(v)}`,
   className,
   ariaLabel = 'Bodyweight overlay',
   children,
@@ -136,11 +136,12 @@ export function BodyweightOverlay({
   const fromMs = dateExtent[0].getTime()
   const toMs = dateExtent[1].getTime()
   const points: BodyweightPoint[] = benchmarks
-    .filter((b): b is Benchmark & { bodyweight_lbs: number } =>
-      typeof b.bodyweight_lbs === 'number' && b.is_complete !== false,
+    .filter(
+      (b): b is Benchmark & { bodyweight_lbs: number } =>
+        typeof b.bodyweight_lbs === 'number' && b.is_complete !== false
     )
-    .map((b) => ({ date: new Date(b.date), bw: b.bodyweight_lbs }))
-    .filter((p) => {
+    .map(b => ({ date: new Date(b.date), bw: b.bodyweight_lbs }))
+    .filter(p => {
       const t = p.date.getTime()
       return t >= fromMs && t <= toMs
     })
@@ -279,7 +280,7 @@ function BodyweightLayer({
 }: BodyweightLayerProps): JSX.Element {
   const xScale = scaleTime().domain(dateExtent).range([0, innerW])
 
-  const bwValues = points.map((p) => p.bw)
+  const bwValues = points.map(p => p.bw)
   const [yMin, yMax] = extent(bwValues)
   const yPad = (yMax - yMin) * 0.15 || 1
   const yScale = scaleLinear()
@@ -287,12 +288,12 @@ function BodyweightLayer({
     .nice()
     .range([innerH, 0])
 
-  const yTicks: AxisTick[] = yScale.ticks(yTickCount).map((tick) => ({
+  const yTicks: AxisTick[] = yScale.ticks(yTickCount).map(tick => ({
     value: yTickFormat(tick),
     offset: yScale(tick),
   }))
 
-  const linePoints: [number, number][] = points.map((p) => [xScale(p.date), yScale(p.bw)])
+  const linePoints: [number, number][] = points.map(p => [xScale(p.date), yScale(p.bw)])
 
   // Fresh generator (not the shared singleton) — see the BodyweightOverlay
   // hydration comment above. Cost is one allocation per render; output is
@@ -352,15 +353,17 @@ function BodyweightLayer({
             roughness: roughness * 0.6,
             seed: seed + 300 + i,
           })
-          return gen.toPaths(dot).map((p, j) => (
-            <path
-              key={`bw-dot-${i}-${j}`}
-              d={p.d}
-              stroke={p.stroke}
-              strokeWidth={p.strokeWidth}
-              fill={p.fill ?? 'none'}
-            />
-          ))
+          return gen
+            .toPaths(dot)
+            .map((p, j) => (
+              <path
+                key={`bw-dot-${i}-${j}`}
+                d={p.d}
+                stroke={p.stroke}
+                strokeWidth={p.strokeWidth}
+                fill={p.fill ?? 'none'}
+              />
+            ))
         })}
       </g>
     </svg>

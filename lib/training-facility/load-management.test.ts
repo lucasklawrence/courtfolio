@@ -1,10 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import type {
-  ExerciseEquipment,
-  StrengthSet,
-  WeightRoomExercise,
-} from '@/types/weight-room'
+import type { ExerciseEquipment, StrengthSet, WeightRoomExercise } from '@/types/weight-room'
 
 import { pacificDayKey } from './day-keys'
 import { buildMovementLoads } from './load-management'
@@ -218,7 +214,7 @@ describe('buildMovementLoads', () => {
     const loads = buildMovementLoads(
       [set('2026-07-14', 'pushups', 100), set('2026-07-14', 'squats', 100)],
       goals,
-      NOW,
+      NOW
     )
     const map = byName(loads)
     expect(map.pushups.color).toBe('#123456')
@@ -250,9 +246,7 @@ describe('buildMovementLoads — catalog-driven metric (#384)', () => {
       set('2026-07-14', 'shrugs', 20),
       set('2026-07-13', 'shrugs', 20),
     ]
-    const load = byName(
-      buildMovementLoads(sets, [], NOW, [movement('shrugs', 'dumbbell')]),
-    ).shrugs
+    const load = byName(buildMovementLoads(sets, [], NOW, [movement('shrugs', 'dumbbell')])).shrugs
     expect(load.metric).toBe('load')
     expect(load.unitLabel).toBe('lb')
   })
@@ -262,9 +256,9 @@ describe('buildMovementLoads — catalog-driven metric (#384)', () => {
     // zero, and zero-volume movements are dropped — the movement would
     // silently disappear from the panel instead of showing its rep volume.
     const sets = [set('2026-07-14', 'barbell-row', 30), set('2026-07-12', 'barbell-row', 30)]
-    const load = byName(
-      buildMovementLoads(sets, [], NOW, [movement('barbell-row', 'barbell')]),
-    )['barbell-row']
+    const load = byName(buildMovementLoads(sets, [], NOW, [movement('barbell-row', 'barbell')]))[
+      'barbell-row'
+    ]
     expect(load).toBeDefined()
     expect(load.metric).toBe('reps')
     expect(load.chronic28d).toBe(60)
@@ -273,7 +267,7 @@ describe('buildMovementLoads — catalog-driven metric (#384)', () => {
   it('keeps a bodyweight movement rep-driven', () => {
     const sets = [set('2026-07-14', 'pushups', 100)]
     const load = byName(
-      buildMovementLoads(sets, [], NOW, [movement('pushups', 'bodyweight')]),
+      buildMovementLoads(sets, [], NOW, [movement('pushups', 'bodyweight')])
     ).pushups
     expect(load.metric).toBe('reps')
   })
@@ -287,7 +281,7 @@ describe('buildMovementLoads — catalog-driven metric (#384)', () => {
       set('2026-07-12', 'pullups', 5),
     ]
     const load = byName(
-      buildMovementLoads(sets, [], NOW, [movement('pullups', 'bodyweight')]),
+      buildMovementLoads(sets, [], NOW, [movement('pullups', 'bodyweight')])
     ).pullups
     expect(load.metric).toBe('load')
   })
@@ -302,18 +296,13 @@ describe('buildMovementLoads — catalog-driven metric (#384)', () => {
       set('2026-07-13', 'newmove', 20),
       set('2026-07-12', 'newmove', 20),
     ]
-    const load = byName(
-      buildMovementLoads(sets, [], NOW, [movement('newmove', 'other')]),
-    ).newmove
+    const load = byName(buildMovementLoads(sets, [], NOW, [movement('newmove', 'other')])).newmove
     expect(load.metric).toBe('reps')
     expect(load.chronic28d).toBe(60)
   })
 
   it('falls back to the pre-#384 threshold for a movement absent from the catalog', () => {
-    const sets = [
-      set('2026-07-14', 'mystery', 10, 50),
-      set('2026-07-13', 'mystery', 10, 50),
-    ]
+    const sets = [set('2026-07-14', 'mystery', 10, 50), set('2026-07-13', 'mystery', 10, 50)]
     // No catalog at all — identical to omitting the argument entirely.
     expect(byName(buildMovementLoads(sets, [], NOW, [])).mystery.metric).toBe('load')
     expect(byName(buildMovementLoads(sets, [], NOW)).mystery.metric).toBe('load')

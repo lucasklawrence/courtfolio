@@ -2,10 +2,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { canPerformAdminWrites, createAdminSupabaseClient } from './admin'
 
-const createClientMock =
-  vi.fn<(url: string, key: string, options?: unknown) => unknown>(() => ({
-    from: vi.fn(),
-  }))
+const createClientMock = vi.fn<(url: string, key: string, options?: unknown) => unknown>(() => ({
+  from: vi.fn(),
+}))
 
 vi.mock('@supabase/supabase-js', () => ({
   createClient: (url: string, key: string, options?: unknown) =>
@@ -37,16 +36,12 @@ describe('createAdminSupabaseClient', () => {
     vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', 'https://abc.supabase.co')
     vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY', 'srv_key')
     createAdminSupabaseClient()
-    expect(createClientMock).toHaveBeenCalledWith(
-      'https://abc.supabase.co',
-      'srv_key',
-      {
-        auth: {
-          persistSession: false,
-          autoRefreshToken: false,
-        },
+    expect(createClientMock).toHaveBeenCalledWith('https://abc.supabase.co', 'srv_key', {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
       },
-    )
+    })
   })
 })
 

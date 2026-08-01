@@ -1,9 +1,5 @@
 import { getBrowserSupabaseClient } from '@/lib/supabase/browser'
-import type {
-  Benchmark,
-  BenchmarkDate,
-  BenchmarkUpdate,
-} from '@/types/movement'
+import type { Benchmark, BenchmarkDate, BenchmarkUpdate } from '@/types/movement'
 
 import { assembleMovementBenchmarks } from './movement-shared'
 
@@ -64,7 +60,7 @@ export async function logBenchmark(entry: Benchmark): Promise<void> {
  */
 export async function updateBenchmark(
   date: BenchmarkDate,
-  updates: BenchmarkUpdate,
+  updates: BenchmarkUpdate
 ): Promise<void> {
   const res = await fetch(`${WRITE_ROUTE}/${encodeURIComponent(date)}`, {
     method: 'PUT',
@@ -105,7 +101,7 @@ async function writeError(res: Response, action: string): Promise<Error> {
   const apiMessage = parseErrorMessage(detail)
   if (apiMessage) return new Error(apiMessage)
   return new Error(
-    `Failed to ${action} benchmark: ${res.status} ${res.statusText}${detail ? ` — ${detail}` : ''}`,
+    `Failed to ${action} benchmark: ${res.status} ${res.statusText}${detail ? ` — ${detail}` : ''}`
   )
 }
 

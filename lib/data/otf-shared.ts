@@ -72,7 +72,7 @@ const OtfMileageAwardRowsSchema = z.array(OtfMileageAwardRowSchema)
  *   view downgrades this to an empty ladder so a read blip can't blank the page.
  */
 export async function assembleOtfMileageAwards(
-  supabase: SupabaseClient,
+  supabase: SupabaseClient
 ): Promise<OtfMileageAward[]> {
   const res = await supabase
     .from(MILEAGE_AWARDS_TABLE)

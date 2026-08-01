@@ -63,7 +63,7 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
   if (error) {
     return NextResponse.json(
       { error: `Failed to delete monthly focus: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
   if (!data) {
@@ -75,5 +75,5 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
 /** `handleDELETE` wrapped with one-event-per-request telemetry (#220). */
 export const DELETE = withTelemetry(
   'DELETE /api/admin/weight-room/monthly-focus/[id]',
-  handleDELETE,
+  handleDELETE
 )

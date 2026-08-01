@@ -37,7 +37,7 @@ describe('DoorToGym', () => {
     render(
       <svg>
         <DoorToGym />
-      </svg>,
+      </svg>
     )
     const link = screen.getByRole('link', {
       name: 'Walk through the back door into The Gym',
@@ -50,7 +50,7 @@ describe('DoorToGym', () => {
     render(
       <svg>
         <DoorToGym />
-      </svg>,
+      </svg>
     )
     expect(screen.getByText('→ the gym')).toBeInTheDocument()
     expect(screen.getByText('back door')).toBeInTheDocument()
@@ -61,7 +61,7 @@ describe('DoorToGym', () => {
     const { container } = render(
       <svg>
         <DoorToGym />
-      </svg>,
+      </svg>
     )
     expect(screen.queryByRole('link')).not.toBeInTheDocument()
     expect(container.querySelector('svg')?.children).toHaveLength(0)

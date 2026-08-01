@@ -65,7 +65,7 @@ export function ExerciseFilterChips({
   pathname,
   carryParams = {},
 }: ExerciseFilterChipsProps): JSX.Element {
-  const available = exercises.map((e) => e.exercise)
+  const available = exercises.map(e => e.exercise)
   const selectedSet = new Set(selected)
   const allSelected = selected.length === available.length
 
@@ -132,7 +132,7 @@ export function ExerciseFilterChips({
 function buildHref(
   encoded: string | null,
   pathname: string,
-  carryParams: Readonly<Record<string, string>>,
+  carryParams: Readonly<Record<string, string>>
 ): string {
   const params = new URLSearchParams(carryParams)
   if (encoded !== null) params.set(EXERCISE_FILTER_PARAM, encoded)

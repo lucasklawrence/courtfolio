@@ -32,7 +32,7 @@ let sessionBuilder: SessionBuilder
 let samplesBuilder: SamplesBuilder
 
 const fromMock = vi.fn((table: string) =>
-  table === 'cardio_sessions' ? sessionBuilder : samplesBuilder,
+  table === 'cardio_sessions' ? sessionBuilder : samplesBuilder
 )
 
 vi.mock('@/lib/supabase/server', () => ({

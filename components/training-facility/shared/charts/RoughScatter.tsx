@@ -86,12 +86,12 @@ export function RoughScatter<T>({
 
   const gen = getGenerator()
 
-  const xTicks: AxisTick[] = xScale.ticks(xTickCount).map((tick) => ({
+  const xTicks: AxisTick[] = xScale.ticks(xTickCount).map(tick => ({
     value: xTickFormat ? xTickFormat(tick) : String(tick),
     offset: xScale(tick),
   }))
 
-  const yTicks: AxisTick[] = yScale.ticks(yTickCount).map((tick) => ({
+  const yTicks: AxisTick[] = yScale.ticks(yTickCount).map(tick => ({
     value: yTickFormat ? yTickFormat(tick) : String(tick),
     offset: yScale(tick),
   }))

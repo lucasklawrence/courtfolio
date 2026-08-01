@@ -66,7 +66,7 @@ function setOn(
   monthIndex: number,
   day: number,
   reps: number,
-  weight_lbs?: number,
+  weight_lbs?: number
 ): StrengthSet {
   return {
     id: `${exercise}-${year}-${monthIndex}-${day}-${reps}-${weight_lbs ?? 'bw'}`,
@@ -161,14 +161,14 @@ describe('activeFocusesForDay', () => {
 describe('upcomingFocuses', () => {
   it('returns focuses starting after the day, soonest first', () => {
     const result = upcomingFocuses([AUGUST_CALVES, JULY_SHRUGS], '2026-06-15')
-    expect(result.map((f) => f.exercise)).toEqual(['shrugs', 'calf-raises'])
+    expect(result.map(f => f.exercise)).toEqual(['shrugs', 'calf-raises'])
   })
 
   it('excludes active and past focuses', () => {
     // On a July day, July is active (not upcoming) and only August remains.
-    expect(upcomingFocuses([JULY_SHRUGS, AUGUST_CALVES], '2026-07-10').map((f) => f.exercise)).toEqual(
-      ['calf-raises'],
-    )
+    expect(
+      upcomingFocuses([JULY_SHRUGS, AUGUST_CALVES], '2026-07-10').map(f => f.exercise)
+    ).toEqual(['calf-raises'])
   })
 
   it('returns empty for an empty day key', () => {
@@ -332,8 +332,18 @@ describe('buildFocusLaneCells', () => {
     ]
     const cells = buildFocusLaneCells([JULY_SHRUGS], sets, 'upper', '2026-07-03')
 
-    expect(cells[0]).toMatchObject({ dayKey: '2026-07-01', focus: JULY_SHRUGS, volume: 100, pct: 1 })
-    expect(cells[1]).toMatchObject({ dayKey: '2026-07-02', focus: JULY_SHRUGS, volume: 50, pct: 0.5 })
+    expect(cells[0]).toMatchObject({
+      dayKey: '2026-07-01',
+      focus: JULY_SHRUGS,
+      volume: 100,
+      pct: 1,
+    })
+    expect(cells[1]).toMatchObject({
+      dayKey: '2026-07-02',
+      focus: JULY_SHRUGS,
+      volume: 50,
+      pct: 0.5,
+    })
     // Jul 3: no sets logged — volume 0, pct 0
     expect(cells[2]).toMatchObject({ dayKey: '2026-07-03', focus: JULY_SHRUGS, volume: 0, pct: 0 })
   })
@@ -364,20 +374,20 @@ describe('buildFocusLaneCells', () => {
       end_date: '2026-06-28',
     }
     const cells = buildFocusLaneCells([earlyFocus, JULY_SHRUGS], [], 'upper', '2026-07-02')
-    const gapCells = cells.filter((c) => c.focus === null)
+    const gapCells = cells.filter(c => c.focus === null)
     expect(gapCells).toHaveLength(2)
     expect(gapCells[0].dayKey).toBe('2026-06-29')
     expect(gapCells[1].dayKey).toBe('2026-06-30')
     // Cells outside the gap should have their focus
-    const julyCells = cells.filter((c) => c.focus?.id === JULY_SHRUGS.id)
-    expect(julyCells.map((c) => c.dayKey)).toEqual(['2026-07-01', '2026-07-02'])
+    const julyCells = cells.filter(c => c.focus?.id === JULY_SHRUGS.id)
+    expect(julyCells.map(c => c.dayKey)).toEqual(['2026-07-01', '2026-07-02'])
   })
 
   it('ignores sets for other exercises and other lanes', () => {
     const sets: StrengthSet[] = [
-      setOn('shrugs', 2026, 6, 1, 80),        // correct
-      setOn('pushups', 2026, 6, 1, 50),        // wrong exercise
-      setOn('nordic-curls', 2026, 6, 1, 40),   // lower-lane exercise, not this lane
+      setOn('shrugs', 2026, 6, 1, 80), // correct
+      setOn('pushups', 2026, 6, 1, 50), // wrong exercise
+      setOn('nordic-curls', 2026, 6, 1, 40), // lower-lane exercise, not this lane
     ]
     // Both focuses present; asking for upper isolates shrugs
     const cells = buildFocusLaneCells([JULY_SHRUGS, JULY_NORDICS], sets, 'upper', '2026-07-01')
@@ -388,7 +398,7 @@ describe('buildFocusLaneCells', () => {
 
   it('lower lane returns only lower-category focus data', () => {
     const sets: StrengthSet[] = [
-      setOn('shrugs', 2026, 6, 1, 100),      // upper — ignored
+      setOn('shrugs', 2026, 6, 1, 100), // upper — ignored
       setOn('nordic-curls', 2026, 6, 1, 20), // lower — counted
     ]
     const cells = buildFocusLaneCells([JULY_SHRUGS, JULY_NORDICS], sets, 'lower', '2026-07-01')
@@ -445,8 +455,9 @@ describe('summarizeFocusCampaigns', () => {
   ]
 
   it('returns null for an exercise with no rotations', () => {
-    expect(summarizeFocusCampaigns([JULY_SHRUGS], 'pushups', [], new Date('2026-08-15T19:00:00Z')))
-      .toBeNull()
+    expect(
+      summarizeFocusCampaigns([JULY_SHRUGS], 'pushups', [], new Date('2026-08-15T19:00:00Z'))
+    ).toBeNull()
   })
 
   it('reports a closed rotation as inactive with its window fully elapsed', () => {
@@ -454,7 +465,7 @@ describe('summarizeFocusCampaigns', () => {
       [JULY_SHRUGS],
       'shrugs',
       JULY_SETS,
-      new Date('2026-08-15T19:00:00Z'),
+      new Date('2026-08-15T19:00:00Z')
     )
     expect(summary?.isActive).toBe(false)
     expect(summary?.rotations).toBe(1)
@@ -468,7 +479,7 @@ describe('summarizeFocusCampaigns', () => {
       [JULY_SHRUGS],
       'shrugs',
       JULY_SETS,
-      new Date('2026-07-10T19:00:00Z'),
+      new Date('2026-07-10T19:00:00Z')
     )
     expect(summary?.isActive).toBe(true)
     expect(summary?.daysElapsed).toBe(10)
@@ -489,7 +500,7 @@ describe('summarizeFocusCampaigns', () => {
       [JULY_SHRUGS, octoberShrugs],
       'shrugs',
       sets,
-      new Date('2026-11-15T19:00:00Z'),
+      new Date('2026-11-15T19:00:00Z')
     )
     expect(summary?.rotations).toBe(2)
     expect(summary?.daysElapsed).toBe(62)
@@ -508,7 +519,7 @@ describe('summarizeFocusCampaigns', () => {
       [JULY_SHRUGS],
       'shrugs',
       sets,
-      new Date('2026-09-01T19:00:00Z'),
+      new Date('2026-09-01T19:00:00Z')
     )
     expect(summary?.campaignReps).toBe(140)
   })
@@ -544,7 +555,7 @@ describe('summarizeFocusCampaigns — status (#367 review)', () => {
       [JULY_SHRUGS],
       'shrugs',
       [],
-      new Date('2026-06-01T19:00:00Z'),
+      new Date('2026-06-01T19:00:00Z')
     )
     expect(summary?.status).toBe('upcoming')
     expect(summary?.isActive).toBe(false)
@@ -556,7 +567,7 @@ describe('summarizeFocusCampaigns — status (#367 review)', () => {
       [JULY_SHRUGS],
       'shrugs',
       [],
-      new Date('2026-07-10T19:00:00Z'),
+      new Date('2026-07-10T19:00:00Z')
     )
     expect(summary?.status).toBe('active')
   })
@@ -566,7 +577,7 @@ describe('summarizeFocusCampaigns — status (#367 review)', () => {
       [JULY_SHRUGS],
       'shrugs',
       [],
-      new Date('2026-08-10T19:00:00Z'),
+      new Date('2026-08-10T19:00:00Z')
     )
     expect(summary?.status).toBe('ended')
   })
@@ -584,7 +595,7 @@ describe('summarizeFocusCampaigns — status (#367 review)', () => {
       [JULY_SHRUGS, october],
       'shrugs',
       [],
-      new Date('2026-08-10T19:00:00Z'),
+      new Date('2026-08-10T19:00:00Z')
     )
     expect(summary?.status).toBe('ended')
   })

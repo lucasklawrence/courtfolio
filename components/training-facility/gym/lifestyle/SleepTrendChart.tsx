@@ -14,7 +14,7 @@ export function SleepTrendChart(props: LifestyleChartProps): JSX.Element {
     <BaseLifestyleTrendChart
       {...props}
       yLabel="Hours"
-      yTickFormat={(v) => v.toFixed(1)}
+      yTickFormat={v => v.toFixed(1)}
       emptyMessage="No sleep data in range"
       ariaLabel="Asleep hours per night over time"
     />

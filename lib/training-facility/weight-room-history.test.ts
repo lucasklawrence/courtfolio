@@ -397,7 +397,7 @@ describe('effective-dated targets (#362)', () => {
   /** Find the heatmap cell for a given local date key. */
   function cellFor(
     grid: ReturnType<typeof buildStrengthHeatmap>,
-    dateKey: string,
+    dateKey: string
   ): { reps: number; pct: number; dailyTarget: number } | undefined {
     // Match on the cell's own `dayKey`, not a key re-derived from `cell.date`
     // (#319). That Date is a fixed 19:00Z instant, so reading its local
@@ -419,7 +419,7 @@ describe('effective-dated targets (#362)', () => {
       sets,
       PULLUPS_RAISED,
       new Date('2026-07-01T12:00:00'),
-      new Date('2026-08-31T12:00:00'),
+      new Date('2026-08-31T12:00:00')
     )
     const cell = cellFor(grid, '2026-07-15')
     expect(cell?.reps).toBe(30)
@@ -434,7 +434,7 @@ describe('effective-dated targets (#362)', () => {
       sets,
       PULLUPS_RAISED,
       new Date('2026-07-01T12:00:00'),
-      new Date('2026-08-31T12:00:00'),
+      new Date('2026-08-31T12:00:00')
     )
     const cell = cellFor(grid, '2026-08-15')
     expect(cell?.dailyTarget).toBe(50)
@@ -497,9 +497,7 @@ describe('effective-dated targets (#362)', () => {
     const sets = [set('2026-07-15', 'pullups', 30)]
     const [stats] = computeStrengthStats(sets, [PULLUPS_RAISED], new Date('2026-08-15T12:00:00'))
     expect(stats.dailyTarget).toBe(50)
-    expect(stats.targetChanges).toEqual([
-      { from: 30, to: 50, effective_from: '2026-08-01' },
-    ])
+    expect(stats.targetChanges).toEqual([{ from: 30, to: 50, effective_from: '2026-08-01' }])
   })
 
   it('leaves a goal with no history scored exactly as before', () => {
@@ -545,12 +543,9 @@ describe('computeStrengthStats with focus rotations (#367)', () => {
     // 100 reps clears the window's 100 target but not the anchor's 500. With
     // the anchor scalar it would read as a miss.
     const sets = [set('2026-07-15', 'shrugs', 100)]
-    const [stats] = computeStrengthStats(
-      sets,
-      [SHRUGS_ANCHOR],
-      new Date('2026-07-16T12:00:00'),
-      [JULY_SHRUGS],
-    )
+    const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-07-16T12:00:00'), [
+      JULY_SHRUGS,
+    ])
     expect(stats.longestStreak).toBe(1)
   })
 
@@ -564,12 +559,9 @@ describe('computeStrengthStats with focus rotations (#367)', () => {
 
   it('attaches a campaign summary marked inactive once the window closes', () => {
     const sets = [set('2026-07-15', 'shrugs', 100)]
-    const [stats] = computeStrengthStats(
-      sets,
-      [SHRUGS_ANCHOR],
-      new Date('2026-08-15T12:00:00'),
-      [JULY_SHRUGS],
-    )
+    const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-08-15T12:00:00'), [
+      JULY_SHRUGS,
+    ])
     expect(stats.focus?.isActive).toBe(false)
     expect(stats.focus?.rotations).toBe(1)
     expect(stats.focus?.campaignReps).toBe(100)
@@ -580,19 +572,16 @@ describe('computeStrengthStats with focus rotations (#367)', () => {
       [set('2026-07-15', 'shrugs', 100)],
       [SHRUGS_ANCHOR],
       new Date('2026-07-20T12:00:00'),
-      [JULY_SHRUGS],
+      [JULY_SHRUGS]
     )
     expect(stats.focus?.isActive).toBe(true)
   })
 
   it('leaves permanent goals untouched when focuses are supplied', () => {
     const sets = [set('2026-04-15', 'pushups', 100), set('2026-04-16', 'pushups', 100)]
-    const [stats] = computeStrengthStats(
-      sets,
-      [PUSHUPS],
-      new Date('2026-04-16T12:00:00'),
-      [JULY_SHRUGS],
-    )
+    const [stats] = computeStrengthStats(sets, [PUSHUPS], new Date('2026-04-16T12:00:00'), [
+      JULY_SHRUGS,
+    ])
     expect(stats.focus).toBeUndefined()
     expect(stats.currentStreak).toBe(2)
   })
@@ -628,19 +617,14 @@ describe('computeStrengthStats — focus dailyTarget label (#367 review)', () =>
       [set('2026-07-15', 'shrugs', 100)],
       [SHRUGS_ANCHOR],
       new Date('2026-07-20T12:00:00'),
-      [JULY_SHRUGS],
+      [JULY_SHRUGS]
     )
     expect(stats.dailyTarget).toBe(100)
     expect(stats.longestStreak).toBe(1)
   })
 
   it('keeps the anchor scalar when no rotation applies', () => {
-    const [stats] = computeStrengthStats(
-      [],
-      [SHRUGS_ANCHOR],
-      new Date('2026-07-20T12:00:00'),
-      [],
-    )
+    const [stats] = computeStrengthStats([], [SHRUGS_ANCHOR], new Date('2026-07-20T12:00:00'), [])
     expect(stats.dailyTarget).toBe(500)
   })
 
@@ -674,9 +658,9 @@ describe('Pacific day bucketing (#319)', () => {
       sets,
       PUSHUPS,
       new Date('2026-07-13T19:00:00Z'),
-      new Date('2026-07-19T19:00:00Z'),
+      new Date('2026-07-19T19:00:00Z')
     )
-    const cells = grid.grid.flat().filter((c) => c.reps > 0)
+    const cells = grid.grid.flat().filter(c => c.reps > 0)
     expect(cells).toHaveLength(1)
     expect(cells[0].dayKey).toBe('2026-07-15')
   })
@@ -697,7 +681,7 @@ describe('Pacific day bucketing (#319)', () => {
     // Jul 6 week. In UTC it is Monday Jul 13, opening the next week.
     const sets = [utcSet('2026-07-13T05:00:00Z', 'pushups', 60)]
     const points = buildWeeklyVolume(sets, PUSHUPS, 3, new Date('2026-07-15T19:00:00Z'))
-    const withReps = points.filter((p) => p.reps > 0)
+    const withReps = points.filter(p => p.reps > 0)
     expect(withReps).toHaveLength(1)
     expect(withReps[0].weekKey).toBe('2026-07-06')
   })
@@ -715,7 +699,7 @@ describe('Pacific day bucketing (#319)', () => {
       [],
       PUSHUPS,
       new Date('2026-07-13T19:00:00Z'),
-      new Date('2026-07-19T19:00:00Z'),
+      new Date('2026-07-19T19:00:00Z')
     )
     // Row 0 is Monday, so the first cell of the first column is a Monday.
     expect(grid.grid[0][0].dayKey).toBe('2026-07-13')

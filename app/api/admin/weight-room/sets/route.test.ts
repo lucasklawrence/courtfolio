@@ -121,7 +121,7 @@ describe('POST /api/admin/weight-room/sets', () => {
     expect(body).toEqual(insertedRow)
     // logged_at was defaulted in the insert call.
     expect(supabaseChain.insert).toHaveBeenCalledWith(
-      expect.objectContaining({ exercise: 'pushups', reps: 25, logged_at: expect.any(String) }),
+      expect.objectContaining({ exercise: 'pushups', reps: 25, logged_at: expect.any(String) })
     )
   })
 
@@ -129,11 +129,11 @@ describe('POST /api/admin/weight-room/sets', () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     insertMock.mockResolvedValueOnce({ data: { id: 'x' }, error: null })
     const res = await POST(
-      makeRequest({ exercise: 'pullups', reps: 5, variant: '  Wide  ' }) as never,
+      makeRequest({ exercise: 'pullups', reps: 5, variant: '  Wide  ' }) as never
     )
     expect(res.status).toBe(201)
     expect(supabaseChain.insert).toHaveBeenCalledWith(
-      expect.objectContaining({ exercise: 'pullups', reps: 5, variant: 'wide' }),
+      expect.objectContaining({ exercise: 'pullups', reps: 5, variant: 'wide' })
     )
   })
 
@@ -145,7 +145,7 @@ describe('POST /api/admin/weight-room/sets', () => {
     // An untagged set must not send `variant` so the DB keeps its null
     // default — not an empty-string bucket.
     expect(supabaseChain.insert).toHaveBeenCalledWith(
-      expect.not.objectContaining({ variant: expect.anything() }),
+      expect.not.objectContaining({ variant: expect.anything() })
     )
   })
 })

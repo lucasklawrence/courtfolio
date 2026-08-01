@@ -55,8 +55,18 @@ const LEGEND_TEXT_GAP = 4
 const LEGEND_COL_GAP = 12
 const DAY_LABELS = ['Mon', '', 'Wed', '', 'Fri', '', ''] as const
 const MONTH_LABELS = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ] as const
 const DAY_MS = 86_400_000
 
@@ -122,10 +132,15 @@ interface LaneGrid {
  * slots at the start or end with `null`.
  */
 function buildLaneGrid(cells: readonly FocusDayCell[]): LaneGrid {
-  const empty: LaneGrid = { grid: Array.from({ length: 7 }, () => []), monthLabels: [], uniqueFocuses: [], cols: 0 }
+  const empty: LaneGrid = {
+    grid: Array.from({ length: 7 }, () => []),
+    monthLabels: [],
+    uniqueFocuses: [],
+    cols: 0,
+  }
   if (cells.length === 0) return empty
 
-  const cellByDay = new Map(cells.map((c) => [c.dayKey, c]))
+  const cellByDay = new Map(cells.map(c => [c.dayKey, c]))
 
   // Find Monday on/before the first cell.
   const startMonday = getMondayOf(cells[0].dayKey)
@@ -134,7 +149,14 @@ function buildLaneGrid(cells: readonly FocusDayCell[]): LaneGrid {
   const lastDate = new Date(cells[cells.length - 1].dayKey + 'T12:00:00')
   const lastDow = lastDate.getDay() // 0 = Sun
   const daysToSunday = lastDow === 0 ? 0 : 7 - lastDow
-  const endDate = new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate() + daysToSunday, 12, 0, 0)
+  const endDate = new Date(
+    lastDate.getFullYear(),
+    lastDate.getMonth(),
+    lastDate.getDate() + daysToSunday,
+    12,
+    0,
+    0
+  )
 
   const startMs = startMonday.getTime()
   const totalCols = Math.round((endDate.getTime() - startMs) / (7 * DAY_MS)) + 1
@@ -175,7 +197,11 @@ function buildLaneGrid(cells: readonly FocusDayCell[]): LaneGrid {
  */
 function describeSlot(slot: GridSlot): string {
   const date = new Date(slot.dayKey + 'T12:00:00')
-  const dateLabel = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  const dateLabel = date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
 
   if (slot.cell === null) return dateLabel
   const { cell } = slot
@@ -243,7 +269,7 @@ function layoutLegend(focuses: readonly MonthlyFocus[], gridWidth: number): Lege
 
   const widest = focuses.reduce(
     (max, f) => Math.max(max, estimateTextWidth(f.exercise, SMALL_LABEL_FONT_SIZE)),
-    0,
+    0
   )
   const stride = LEGEND_SWATCH + LEGEND_TEXT_GAP + widest + LEGEND_COL_GAP
   const perRow = Math.max(1, Math.floor(gridWidth / stride))
@@ -327,12 +353,7 @@ export function FocusLaneHeatmap({
   const gridHeight = 7 * stride
 
   const visibleMonths = thinMonthLabels(monthLabels, { cellSize: stride, totalCols: cols })
-  const monthOverhang = monthLabelOverhang(
-    visibleMonths,
-    stride,
-    gridWidth,
-    MONTH_LABEL_FONT_SIZE,
-  )
+  const monthOverhang = monthLabelOverhang(visibleMonths, stride, gridWidth, MONTH_LABEL_FONT_SIZE)
 
   const legend = layoutLegend(uniqueFocuses, gridWidth)
 
@@ -358,7 +379,7 @@ export function FocusLaneHeatmap({
     >
       {/* Month labels along the top, thinned so neighbours can't collide */}
       <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT - 4})`}>
-        {visibleMonths.map((m) => (
+        {visibleMonths.map(m => (
           <text
             key={`month-${m.col}-${m.label}`}
             x={m.col * stride}
@@ -385,7 +406,7 @@ export function FocusLaneHeatmap({
             >
               {dayLabel}
             </text>
-          ) : null,
+          ) : null
         )}
       </g>
 
@@ -413,7 +434,7 @@ export function FocusLaneHeatmap({
                 <title>{describeSlot(slot)}</title>
               </rect>
             )
-          }),
+          })
         )}
       </g>
 

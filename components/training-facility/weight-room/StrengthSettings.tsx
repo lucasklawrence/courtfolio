@@ -62,13 +62,12 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
     // Sets FK into the movement catalog, not into goals (#373), so this drops
     // the daily ring and its target history and leaves the training log alone.
     const ok = window.confirm(
-      `Remove the daily goal for "${label}"? Its logged sets are kept — this only stops the daily ring and clears its target history.`,
+      `Remove the daily goal for "${label}"? Its logged sets are kept — this only stops the daily ring and clears its target history.`
     )
     if (!ok) return
-    const res = await fetch(
-      `/api/admin/weight-room/goals/${encodeURIComponent(exercise)}`,
-      { method: 'DELETE' },
-    )
+    const res = await fetch(`/api/admin/weight-room/goals/${encodeURIComponent(exercise)}`, {
+      method: 'DELETE',
+    })
     if (!res.ok) {
       const body = (await res.json().catch(() => ({}))) as { error?: string }
       setError(body.error ?? `Delete failed (${res.status})`)
@@ -98,7 +97,7 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
           </p>
         ) : (
           <ul className="mt-3 space-y-3">
-            {initialGoals.map((goal) => (
+            {initialGoals.map(goal => (
               <GoalRow
                 key={goal.exercise}
                 goal={goal}
@@ -141,10 +140,7 @@ function GoalRow({ goal, disabled, onSave, onDelete }: GoalRowProps): JSX.Elemen
 
   return (
     <li className="rounded-[1.1rem] border border-white/10 bg-white/5 p-4">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-wrap items-center gap-3 sm:gap-4"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-wrap items-center gap-3 sm:gap-4">
         <span className="font-mono text-sm font-semibold uppercase tracking-[0.18em] text-white">
           {exerciseLabel(goal)}
         </span>
@@ -154,7 +150,7 @@ function GoalRow({ goal, disabled, onSave, onDelete }: GoalRowProps): JSX.Elemen
             type="number"
             min={1}
             value={target}
-            onChange={(e) => setTarget(Number(e.target.value))}
+            onChange={e => setTarget(Number(e.target.value))}
             className="w-20 rounded border border-white/15 bg-black/40 px-2 py-1 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
           />
         </label>
@@ -163,7 +159,7 @@ function GoalRow({ goal, disabled, onSave, onDelete }: GoalRowProps): JSX.Elemen
           <input
             type="color"
             value={color}
-            onChange={(e) => setColor(e.target.value)}
+            onChange={e => setColor(e.target.value)}
             className="h-8 w-12 cursor-pointer rounded border border-white/15 bg-black/40"
           />
         </label>
@@ -220,7 +216,7 @@ function AddGoalForm({ disabled, onAdd }: AddGoalFormProps): JSX.Element {
           type="text"
           required
           value={exercise}
-          onChange={(e) => setExercise(e.target.value)}
+          onChange={e => setExercise(e.target.value)}
           placeholder="dips"
           autoCapitalize="none"
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
@@ -232,7 +228,7 @@ function AddGoalForm({ disabled, onAdd }: AddGoalFormProps): JSX.Element {
           type="number"
           min={1}
           value={target}
-          onChange={(e) => setTarget(Number(e.target.value))}
+          onChange={e => setTarget(Number(e.target.value))}
           className="w-24 rounded border border-white/15 bg-black/40 px-2 py-1.5 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
       </label>
@@ -241,7 +237,7 @@ function AddGoalForm({ disabled, onAdd }: AddGoalFormProps): JSX.Element {
         <input
           type="color"
           value={color}
-          onChange={(e) => setColor(e.target.value)}
+          onChange={e => setColor(e.target.value)}
           className="h-9 w-16 cursor-pointer rounded border border-white/15 bg-black/40"
         />
       </label>

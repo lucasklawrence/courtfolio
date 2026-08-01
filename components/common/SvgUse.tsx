@@ -9,7 +9,10 @@ const getUseSize = (viewBox?: string) => {
     return { width: '100%', height: '100%' }
   }
 
-  const parts = viewBox.trim().split(/[\s,]+/).map(Number)
+  const parts = viewBox
+    .trim()
+    .split(/[\s,]+/)
+    .map(Number)
   if (parts.length !== 4 || parts.some(Number.isNaN)) {
     return { width: '100%', height: '100%' }
   }

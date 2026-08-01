@@ -19,17 +19,11 @@ import { z } from 'zod'
 
 import { validateApiKey } from '@/lib/api/validate-api-key'
 import { ADMIN_WRITES_UNAVAILABLE } from '@/lib/auth/require-admin'
-import {
-  CARDIO_METRIC_TABLES,
-  type CardioMetric,
-} from '@/lib/schemas/cardio-sync'
+import { CARDIO_METRIC_TABLES, type CardioMetric } from '@/lib/schemas/cardio-sync'
 import { canPerformAdminWrites, createAdminSupabaseClient } from '@/lib/supabase/admin'
 
 /** The accepted metric keys, derived from the canonical table map. */
-const CARDIO_METRICS = Object.keys(CARDIO_METRIC_TABLES) as [
-  CardioMetric,
-  ...CardioMetric[],
-]
+const CARDIO_METRICS = Object.keys(CARDIO_METRIC_TABLES) as [CardioMetric, ...CardioMetric[]]
 
 /**
  * Metrics whose DB CHECK is `value > 0` (a 0 reading is implausible). The
@@ -49,7 +43,7 @@ const CardioTrendUpsertSchema = z
     /** Numeric value (units depend on metric); 0 only valid for volume metrics. */
     value: z.number().nonnegative(),
   })
-  .refine((data) => !POSITIVE_METRICS.has(data.metric) || data.value > 0, {
+  .refine(data => !POSITIVE_METRICS.has(data.metric) || data.value > 0, {
     message: 'value must be greater than 0 for this metric',
     path: ['value'],
   })
@@ -121,10 +115,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const { error, data } = await supabase.from(table).upsert(row).select()
 
   if (error) {
-    return NextResponse.json(
-      { error: `Database error: ${error.message}` },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: `Database error: ${error.message}` }, { status: 500 })
   }
 
   return NextResponse.json(

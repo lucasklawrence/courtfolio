@@ -43,7 +43,7 @@ describe('CombineHistoryTable — rendering', () => {
   it('sorts rows newest-first by date', () => {
     render(<CombineHistoryTable entries={ENTRIES} />)
     const rows = screen.getAllByRole('row').slice(1) // skip header row
-    const dates = rows.map((r) => r.getAttribute('data-testid'))
+    const dates = rows.map(r => r.getAttribute('data-testid'))
     expect(dates).toEqual([
       'history-row-2026-04-15',
       'history-row-2026-04-08',
@@ -74,38 +74,24 @@ describe('CombineHistoryTable — rendering', () => {
 describe('CombineHistoryTable — actions', () => {
   it('hides the Actions column when showActions is false (default)', () => {
     render(<CombineHistoryTable entries={ENTRIES} />)
-    expect(
-      screen.queryByRole('button', { name: /edit benchmark from/i }),
-    ).not.toBeInTheDocument()
-    expect(
-      screen.queryByRole('columnheader', { name: /actions/i }),
-    ).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /edit benchmark from/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('columnheader', { name: /actions/i })).not.toBeInTheDocument()
   })
 
   it('renders Edit / Mark-incomplete / Delete buttons per row when showActions is true', () => {
     render(<CombineHistoryTable entries={ENTRIES} showActions />)
-    expect(
-      screen.getAllByRole('button', { name: /edit benchmark from/i }),
-    ).toHaveLength(3)
-    expect(
-      screen.getAllByRole('button', { name: /delete benchmark from/i }),
-    ).toHaveLength(3)
+    expect(screen.getAllByRole('button', { name: /edit benchmark from/i })).toHaveLength(3)
+    expect(screen.getAllByRole('button', { name: /delete benchmark from/i })).toHaveLength(3)
     // Mark-incomplete vs Mark-complete depends on the row's flag.
-    expect(
-      screen.getAllByRole('button', { name: /as incomplete$/i }),
-    ).toHaveLength(2)
-    expect(
-      screen.getAllByRole('button', { name: /as complete$/i }),
-    ).toHaveLength(1)
+    expect(screen.getAllByRole('button', { name: /as incomplete$/i })).toHaveLength(2)
+    expect(screen.getAllByRole('button', { name: /as complete$/i })).toHaveLength(1)
   })
 
   it('calls onEdit with the row entry when Edit is clicked', async () => {
     const onEdit = vi.fn()
     const user = userEvent.setup()
     render(<CombineHistoryTable entries={ENTRIES} showActions onEdit={onEdit} />)
-    await user.click(
-      screen.getByRole('button', { name: /edit benchmark from 2026-04-15/i }),
-    )
+    await user.click(screen.getByRole('button', { name: /edit benchmark from 2026-04-15/i }))
     expect(onEdit).toHaveBeenCalledTimes(1)
     expect(onEdit).toHaveBeenCalledWith(ENTRIES[1])
   })
@@ -113,12 +99,8 @@ describe('CombineHistoryTable — actions', () => {
   it('calls onDelete with the row entry when Delete is clicked', async () => {
     const onDelete = vi.fn()
     const user = userEvent.setup()
-    render(
-      <CombineHistoryTable entries={ENTRIES} showActions onDelete={onDelete} />,
-    )
-    await user.click(
-      screen.getByRole('button', { name: /delete benchmark from 2026-04-08/i }),
-    )
+    render(<CombineHistoryTable entries={ENTRIES} showActions onDelete={onDelete} />)
+    await user.click(screen.getByRole('button', { name: /delete benchmark from 2026-04-08/i }))
     expect(onDelete).toHaveBeenCalledTimes(1)
     expect(onDelete).toHaveBeenCalledWith(ENTRIES[2])
   })
@@ -126,24 +108,18 @@ describe('CombineHistoryTable — actions', () => {
   it('calls onToggleComplete with the row entry, regardless of current flag', async () => {
     const onToggle = vi.fn()
     const user = userEvent.setup()
-    render(
-      <CombineHistoryTable
-        entries={ENTRIES}
-        showActions
-        onToggleComplete={onToggle}
-      />,
-    )
+    render(<CombineHistoryTable entries={ENTRIES} showActions onToggleComplete={onToggle} />)
     await user.click(
       screen.getByRole('button', {
         name: /mark benchmark from 2026-04-08 as complete/i,
-      }),
+      })
     )
     expect(onToggle).toHaveBeenCalledWith(ENTRIES[2])
 
     await user.click(
       screen.getByRole('button', {
         name: /mark benchmark from 2026-04-15 as incomplete/i,
-      }),
+      })
     )
     expect(onToggle).toHaveBeenCalledWith(ENTRIES[1])
   })

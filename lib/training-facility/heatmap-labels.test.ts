@@ -90,9 +90,9 @@ describe('thinMonthLabels', () => {
       { col: 5, label: 'Feb' },
     ]
     expect(thinMonthLabels(labels, { cellSize: CELL, totalCols: 10, minGapPx: 0 })).toEqual(labels)
-    expect(
-      thinMonthLabels(labels, { cellSize: CELL, totalCols: 10, minGapPx: 200 }),
-    ).toHaveLength(1)
+    expect(thinMonthLabels(labels, { cellSize: CELL, totalCols: 10, minGapPx: 200 })).toHaveLength(
+      1
+    )
   })
 
   it('never emits two labels closer than the minimum gap', () => {
@@ -104,7 +104,7 @@ describe('thinMonthLabels', () => {
     const kept = thinMonthLabels(labels, { cellSize: CELL, totalCols: 8 })
     for (let i = 1; i < kept.length; i++) {
       expect((kept[i].col - kept[i - 1].col) * CELL).toBeGreaterThanOrEqual(
-        DEFAULT_MIN_MONTH_LABEL_GAP,
+        DEFAULT_MIN_MONTH_LABEL_GAP
       )
     }
   })
@@ -117,7 +117,7 @@ describe('thinMonthLabels', () => {
       { col: 9, label: 'Sep' },
     ]
     const kept = thinMonthLabels(labels, { cellSize: CELL, totalCols: 12 })
-    const cols = kept.map((k) => k.col)
+    const cols = kept.map(k => k.col)
     expect([...cols].sort((a, b) => a - b)).toEqual(cols)
   })
 })

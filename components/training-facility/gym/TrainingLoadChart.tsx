@@ -1,10 +1,6 @@
 import type { JSX } from 'react'
 import { scaleLinear, scaleTime } from 'd3-scale'
-import {
-  Axis,
-  EmptyChart,
-  type AxisTick,
-} from '@/components/training-facility/shared/charts/axes'
+import { Axis, EmptyChart, type AxisTick } from '@/components/training-facility/shared/charts/axes'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import {
   drawableToPaths,
@@ -75,7 +71,7 @@ export function TrainingLoadChart({
     )
   }
 
-  const dates = points.map((p) => p.date.getTime())
+  const dates = points.map(p => p.date.getTime())
   const [tMin, tMax] = extent(dates)
   const xScale = scaleTime()
     .domain([new Date(tMin), new Date(tMax)])
@@ -84,7 +80,7 @@ export function TrainingLoadChart({
   // y-domain spans both ATL / CTL (≥ 0) and TSB (can be negative). Pick the
   // tightest envelope across all three series, then pad ~10% so the lines
   // don't kiss the chart frame.
-  const allValues = points.flatMap((p) => [p.atl, p.ctl, p.tsb])
+  const allValues = points.flatMap(p => [p.atl, p.ctl, p.tsb])
   const [vMin, vMax] = extent(allValues)
   const yPad = Math.max(1, (vMax - vMin) * 0.1)
   const yScale = scaleLinear()
@@ -92,11 +88,11 @@ export function TrainingLoadChart({
     .nice()
     .range([innerH, 0])
 
-  const xTicks: AxisTick[] = xScale.ticks(5).map((tick) => ({
+  const xTicks: AxisTick[] = xScale.ticks(5).map(tick => ({
     value: tick.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
     offset: xScale(tick),
   }))
-  const yTicks: AxisTick[] = yScale.ticks(5).map((tick) => ({
+  const yTicks: AxisTick[] = yScale.ticks(5).map(tick => ({
     value: String(Math.round(tick)),
     offset: yScale(tick),
   }))
@@ -104,16 +100,16 @@ export function TrainingLoadChart({
   const gen = getGenerator()
 
   const atlPath = gen.linearPath(
-    points.map((p) => [xScale(p.date), yScale(p.atl)]),
-    { stroke: COLORS.atl, strokeWidth: 2, roughness, seed: seed + 1 },
+    points.map(p => [xScale(p.date), yScale(p.atl)]),
+    { stroke: COLORS.atl, strokeWidth: 2, roughness, seed: seed + 1 }
   )
   const ctlPath = gen.linearPath(
-    points.map((p) => [xScale(p.date), yScale(p.ctl)]),
-    { stroke: COLORS.ctl, strokeWidth: 2, roughness, seed: seed + 2 },
+    points.map(p => [xScale(p.date), yScale(p.ctl)]),
+    { stroke: COLORS.ctl, strokeWidth: 2, roughness, seed: seed + 2 }
   )
   const tsbPath = gen.linearPath(
-    points.map((p) => [xScale(p.date), yScale(p.tsb)]),
-    { stroke: COLORS.tsb, strokeWidth: 1.8, roughness, seed: seed + 3 },
+    points.map(p => [xScale(p.date), yScale(p.tsb)]),
+    { stroke: COLORS.tsb, strokeWidth: 1.8, roughness, seed: seed + 3 }
   )
 
   // Zone bands: clip each TSB threshold to the visible y-domain. yScale flips
@@ -240,11 +236,25 @@ export function TrainingLoadChart({
         <g transform={`translate(${innerW - 110}, 8)`} fontFamily={fontFamily} fontSize={11}>
           <rect x={0} y={0} width={108} height={56} fill="rgba(255,255,255,0.78)" rx={4} />
           <line x1={6} y1={14} x2={22} y2={14} stroke={COLORS.atl} strokeWidth={2} />
-          <text x={28} y={17} fill={chartPalette.inkBlack}>ATL · acute (7d)</text>
+          <text x={28} y={17} fill={chartPalette.inkBlack}>
+            ATL · acute (7d)
+          </text>
           <line x1={6} y1={30} x2={22} y2={30} stroke={COLORS.ctl} strokeWidth={2} />
-          <text x={28} y={33} fill={chartPalette.inkBlack}>CTL · chronic (28d)</text>
-          <line x1={6} y1={46} x2={22} y2={46} stroke={COLORS.tsb} strokeWidth={1.8} strokeDasharray="4 3" />
-          <text x={28} y={49} fill={chartPalette.inkBlack}>TSB · CTL − ATL</text>
+          <text x={28} y={33} fill={chartPalette.inkBlack}>
+            CTL · chronic (28d)
+          </text>
+          <line
+            x1={6}
+            y1={46}
+            x2={22}
+            y2={46}
+            stroke={COLORS.tsb}
+            strokeWidth={1.8}
+            strokeDasharray="4 3"
+          />
+          <text x={28} y={49} fill={chartPalette.inkBlack}>
+            TSB · CTL − ATL
+          </text>
         </g>
       </g>
     </svg>

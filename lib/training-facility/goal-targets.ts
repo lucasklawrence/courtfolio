@@ -48,7 +48,7 @@ export interface GoalTargetChange {
  */
 function sortedByEffectiveFrom(history: readonly GoalTargetPoint[]): GoalTargetPoint[] {
   return [...history].sort((a, b) =>
-    a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0,
+    a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0
   )
 }
 

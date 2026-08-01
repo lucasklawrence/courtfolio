@@ -5,7 +5,7 @@ import { buildExerciseLabels, exerciseLabel, slugLabel } from './exercise-labels
 describe('exerciseLabel (#384)', () => {
   it('prefers the catalog label', () => {
     expect(
-      exerciseLabel({ exercise: 'barbell-bench-press', display_name: 'Barbell Bench Press' }),
+      exerciseLabel({ exercise: 'barbell-bench-press', display_name: 'Barbell Bench Press' })
     ).toBe('Barbell Bench Press')
   })
 
@@ -17,7 +17,7 @@ describe('exerciseLabel (#384)', () => {
   it('keeps a label the slug could never produce', () => {
     // The reason this reads the catalog rather than detokenizing the slug.
     expect(exerciseLabel({ exercise: 'farmers-carry', display_name: "Farmer's Carry" })).toBe(
-      "Farmer's Carry",
+      "Farmer's Carry"
     )
   })
 
@@ -31,9 +31,9 @@ describe('exerciseLabel (#384)', () => {
 
 describe('slugLabel (#384)', () => {
   it('reads the label off the matching record', () => {
-    expect(
-      slugLabel('barbell-row', { exercise: 'barbell-row', display_name: 'Barbell Row' }),
-    ).toBe('Barbell Row')
+    expect(slugLabel('barbell-row', { exercise: 'barbell-row', display_name: 'Barbell Row' })).toBe(
+      'Barbell Row'
+    )
   })
 
   it('falls back to the slug with no record', () => {
@@ -68,10 +68,7 @@ describe('buildExerciseLabels (#384)', () => {
 
   it('resolves a movement whose goal was deleted', () => {
     // The case codex caught: sets and achievement tiers outlive their goal.
-    const labels = buildExerciseLabels([
-      { slug: 'barbell-row', display_name: 'Barbell Row' },
-    ])
+    const labels = buildExerciseLabels([{ slug: 'barbell-row', display_name: 'Barbell Row' }])
     expect(slugLabel('barbell-row', undefined, labels)).toBe('Barbell Row')
   })
 })
-

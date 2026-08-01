@@ -1,9 +1,5 @@
 import { getBrowserSupabaseClient } from '@/lib/supabase/browser'
-import type {
-  WeightRoomAchievement,
-  WeightRoomData,
-  WeightRoomExercise,
-} from '@/types/weight-room'
+import type { WeightRoomAchievement, WeightRoomData, WeightRoomExercise } from '@/types/weight-room'
 
 import {
   assembleWeightRoomAchievements,

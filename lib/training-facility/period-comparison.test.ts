@@ -19,13 +19,9 @@ function calendarDayCount(range: DateRange): number {
   const startUtcMid = Date.UTC(
     range.start.getFullYear(),
     range.start.getMonth(),
-    range.start.getDate(),
+    range.start.getDate()
   )
-  const endUtcMid = Date.UTC(
-    range.end.getFullYear(),
-    range.end.getMonth(),
-    range.end.getDate(),
-  )
+  const endUtcMid = Date.UTC(range.end.getFullYear(), range.end.getMonth(), range.end.getDate())
   return Math.round((endUtcMid - startUtcMid) / MS_PER_DAY) + 1
 }
 

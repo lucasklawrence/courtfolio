@@ -70,13 +70,7 @@ function streamLabel(state: LivePanelRunState): string {
 }
 
 /** The run controls block rendered under the header. */
-function RunControls({
-  state,
-  onRun,
-}: {
-  state: LivePanelRunState
-  onRun: () => void
-}) {
+function RunControls({ state, onRun }: { state: LivePanelRunState; onRun: () => void }) {
   const running = state.status === 'connecting' || state.status === 'streaming'
   return (
     <div className="mt-2 flex flex-col gap-3 rounded-2xl border border-orange-500/30 bg-neutral-900 p-5">
@@ -85,8 +79,8 @@ function RunControls({
       </span>
       <p className="max-w-2xl text-sm leading-relaxed text-neutral-300">
         Trigger a real run: three models from three vendors judge the thesis independently, a
-        fact-checker re-checks every claim, and a meta-judge weighs the split — streamed here as
-        it happens (~45s). Rate-limited and budget-capped; recent runs are shared.
+        fact-checker re-checks every claim, and a meta-judge weighs the split — streamed here as it
+        happens (~45s). Rate-limited and budget-capped; recent runs are shared.
       </p>
       <div className="flex flex-wrap items-center gap-3">
         <button

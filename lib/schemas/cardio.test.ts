@@ -75,9 +75,7 @@ describe('CardioSessionRowSchema', () => {
 
 describe('CardioTrendRowSchema', () => {
   it('accepts a YYYY-MM-DD date and numeric value', () => {
-    expect(
-      CardioTrendRowSchema.safeParse({ date: '2026-04-26', value: 57 }).success,
-    ).toBe(true)
+    expect(CardioTrendRowSchema.safeParse({ date: '2026-04-26', value: 57 }).success).toBe(true)
   })
 
   it('rejects an ISO timestamp in the date field', () => {
@@ -85,7 +83,7 @@ describe('CardioTrendRowSchema', () => {
       CardioTrendRowSchema.safeParse({
         date: '2026-04-26T08:00:00Z',
         value: 57,
-      }).success,
+      }).success
     ).toBe(false)
   })
 })

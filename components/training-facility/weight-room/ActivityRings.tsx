@@ -50,10 +50,7 @@ const TRACK_OPACITY = 0.18
  * dropping the inner ones to `null`. The 1.6 fudge factor empirically
  * balances ring thickness vs. inner margin across 1..15 ring counts.
  */
-function fitRingDimensions(
-  size: number,
-  ringCount: number,
-): { stroke: number; gap: number } {
+function fitRingDimensions(size: number, ringCount: number): { stroke: number; gap: number } {
   if (ringCount <= 0) return { stroke: RING_STROKE, gap: RING_GAP }
   const requiredStroke = Math.floor(size / 2 / (ringCount * 1.6))
   const stroke = Math.max(MIN_RING_STROKE, Math.min(RING_STROKE, requiredStroke))
@@ -123,10 +120,7 @@ export function ActivityRings({
         height={size}
         role="img"
         aria-label={`Activity rings: ${rings
-          .map(
-            (r) =>
-              `${exerciseLabel(r.goal)} ${r.totalReps} of ${r.goal.daily_target}`,
-          )
+          .map(r => `${exerciseLabel(r.goal)} ${r.totalReps} of ${r.goal.daily_target}`)
           .join(', ')}`}
         className="block w-full h-auto -rotate-90"
       >

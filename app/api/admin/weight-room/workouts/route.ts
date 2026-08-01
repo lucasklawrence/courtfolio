@@ -168,10 +168,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
       )
     }
     if (inverted) {
-      return NextResponse.json(
-        { error: 'ended_at cannot be before started_at.' },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: 'ended_at cannot be before started_at.' }, { status: 400 })
     }
   }
 

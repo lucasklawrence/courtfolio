@@ -76,13 +76,9 @@ function calendarDayCount(range: DateRange): number {
   const startUtcMid = Date.UTC(
     range.start.getFullYear(),
     range.start.getMonth(),
-    range.start.getDate(),
+    range.start.getDate()
   )
-  const endUtcMid = Date.UTC(
-    range.end.getFullYear(),
-    range.end.getMonth(),
-    range.end.getDate(),
-  )
+  const endUtcMid = Date.UTC(range.end.getFullYear(), range.end.getMonth(), range.end.getDate())
   return Math.round((endUtcMid - startUtcMid) / MS_PER_DAY) + 1
 }
 
@@ -113,13 +109,13 @@ export function computePreviousRange(range: DateRange): DateRange {
   const previousEndAnchor = new Date(
     range.start.getFullYear(),
     range.start.getMonth(),
-    range.start.getDate() - 1,
+    range.start.getDate() - 1
   )
   const dayCount = calendarDayCount(range)
   const previousStartAnchor = new Date(
     previousEndAnchor.getFullYear(),
     previousEndAnchor.getMonth(),
-    previousEndAnchor.getDate() - (dayCount - 1),
+    previousEndAnchor.getDate() - (dayCount - 1)
   )
   return {
     start: startOfDay(previousStartAnchor),
@@ -140,10 +136,7 @@ export function computePreviousRange(range: DateRange): DateRange {
  * @param current - Metric value for the current period.
  * @param previous - Metric value for the previous period.
  */
-export function computeDelta(
-  current: number | null,
-  previous: number | null,
-): PeriodDelta | null {
+export function computeDelta(current: number | null, previous: number | null): PeriodDelta | null {
   if (current === null || previous === null) return null
   const absolute = current - previous
   const direction: DeltaDirection = absolute > 0 ? 'up' : absolute < 0 ? 'down' : 'same'

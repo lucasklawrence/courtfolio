@@ -26,21 +26,18 @@ describe('filterWalkingSessions', () => {
     ]
     const out = filterWalkingSessions(
       sessions,
-      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999'),
+      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999')
     )
-    expect(out.map((s) => s.date)).toEqual(['2026-04-01', '2026-04-10'])
+    expect(out.map(s => s.date)).toEqual(['2026-04-01', '2026-04-10'])
   })
 
   it('drops sessions whose date is unparseable', () => {
-    const sessions: CardioSession[] = [
-      walk('garbage'),
-      walk('2026-04-05'),
-    ]
+    const sessions: CardioSession[] = [walk('garbage'), walk('2026-04-05')]
     const out = filterWalkingSessions(
       sessions,
-      range('2026-04-01T00:00:00', '2026-04-30T23:59:59.999'),
+      range('2026-04-01T00:00:00', '2026-04-30T23:59:59.999')
     )
-    expect(out.map((s) => s.date)).toEqual(['2026-04-05'])
+    expect(out.map(s => s.date)).toEqual(['2026-04-05'])
   })
 
   it('returns an empty array when no walking sessions exist', () => {
@@ -50,7 +47,7 @@ describe('filterWalkingSessions', () => {
     ]
     const out = filterWalkingSessions(
       sessions,
-      range('2026-04-01T00:00:00', '2026-04-30T23:59:59.999'),
+      range('2026-04-01T00:00:00', '2026-04-30T23:59:59.999')
     )
     expect(out).toEqual([])
   })

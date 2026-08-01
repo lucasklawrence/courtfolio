@@ -12,6 +12,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx}\"",
+    "prepare": "husky",
     "optimize:svg": "svgo -rf public/locker-room && svgo -rf public/training-facility && svgo -rf public/contact && svgo -rf public/common",
     "import-health": "node scripts/import-health.mjs",
     "cardio:backfill": "node scripts/backfill-cardio.mjs",
@@ -61,7 +63,9 @@
     "cross-env": "^10.1.0",
     "eslint": "10.8.0",
     "eslint-config-next": "16.2.12",
+    "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "lint-staged": "^15.5.2",
     "postcss": "^8.5.23",
     "prettier": "^3.9.6",
     "svgo": "^4.0.2",
@@ -69,6 +73,9 @@
     "tsx": "^4.23.1",
     "typescript": "^6",
     "vitest": "^4.1.5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "prettier --write"
   },
   "overrides": {
     "tar": "^7.5.3",

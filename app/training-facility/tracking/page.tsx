@@ -47,8 +47,8 @@ export default function TrainingFacilityTrackingPage(): JSX.Element {
             Everything I train, logged
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Every set and every class goes into one Postgres database, and these pages read it
-            back. No fitness app in the loop &mdash; the ingest, the schema, the charts and the
+            Every set and every class goes into one Postgres database, and these pages read it back.
+            No fitness app in the loop &mdash; the ingest, the schema, the charts and the
             achievement logic are all mine, which means I get to ask questions an app would never
             answer.
           </p>

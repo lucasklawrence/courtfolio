@@ -164,9 +164,7 @@ describe('goalTargetChanges', () => {
   })
 
   it('emits one change per move, with the old and new targets', () => {
-    expect(goalTargetChanges(RAISED)).toEqual([
-      { from: 30, to: 50, effective_from: '2026-08-01' },
-    ])
+    expect(goalTargetChanges(RAISED)).toEqual([{ from: 30, to: 50, effective_from: '2026-08-01' }])
   })
 
   it('emits changes oldest-first regardless of input order', () => {
@@ -185,16 +183,14 @@ describe('goalTargetChanges', () => {
         { daily_target: 50, effective_from: '2026-07-01' },
       ],
     }
-    expect(goalTargetChanges(noop)).toEqual([
-      { from: 30, to: 50, effective_from: '2026-07-01' },
-    ])
+    expect(goalTargetChanges(noop)).toEqual([{ from: 30, to: 50, effective_from: '2026-07-01' }])
   })
 })
 
 describe('formatGoalTargetChange', () => {
   it('renders a compact arrow label without the date', () => {
     expect(formatGoalTargetChange({ from: 30, to: 50, effective_from: '2026-08-01' })).toBe(
-      '30 → 50',
+      '30 → 50'
     )
   })
 })
@@ -212,7 +208,7 @@ describe('formatGoalTargetDate', () => {
 
   it('falls back to the raw key when the date will not parse', () => {
     expect(formatGoalTargetDate({ from: 30, to: 50, effective_from: 'not-a-date' })).toBe(
-      'not-a-date',
+      'not-a-date'
     )
   })
 })
@@ -220,7 +216,7 @@ describe('formatGoalTargetDate', () => {
 describe('describeGoalTargetChange', () => {
   it('combines the arrow label and the effective date', () => {
     expect(describeGoalTargetChange({ from: 30, to: 50, effective_from: '2026-08-01' })).toBe(
-      '30 → 50 on Aug 1',
+      '30 → 50 on Aug 1'
     )
   })
 })

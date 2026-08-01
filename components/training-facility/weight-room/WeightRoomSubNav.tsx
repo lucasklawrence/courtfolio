@@ -7,12 +7,7 @@ import Link from 'next/link'
  * corresponds to one of the routes under
  * `/training-facility/weight-room/*`.
  */
-export type WeightRoomSubNavSection =
-  | 'today'
-  | 'history'
-  | 'achievements'
-  | 'settings'
-  | 'log'
+export type WeightRoomSubNavSection = 'today' | 'history' | 'achievements' | 'settings' | 'log'
 
 /** Props for {@link WeightRoomSubNav}. */
 export interface WeightRoomSubNavProps {
@@ -71,7 +66,12 @@ const ITEMS: readonly SubNavItem[] = [
     href: '/training-facility/weight-room/achievements',
   },
   { section: 'log', label: 'Log', href: '/training-facility/weight-room/log', adminOnly: true },
-  { section: 'settings', label: 'Settings', href: '/training-facility/weight-room/settings', adminOnly: true },
+  {
+    section: 'settings',
+    label: 'Settings',
+    href: '/training-facility/weight-room/settings',
+    adminOnly: true,
+  },
 ]
 
 /**
@@ -103,14 +103,14 @@ export function WeightRoomSubNav({
   className = '',
   isAdmin,
 }: WeightRoomSubNavProps): JSX.Element {
-  const visibleItems = ITEMS.filter((item) => !item.adminOnly || isAdmin)
+  const visibleItems = ITEMS.filter(item => !item.adminOnly || isAdmin)
   return (
     <nav
       aria-label="Weight Room sections"
       data-testid="weight-room-sub-nav"
       className={`flex flex-wrap gap-2 ${className}`}
     >
-      {visibleItems.map((item) => {
+      {visibleItems.map(item => {
         const isActive = item.section === active
         const pillClassName = isActive
           ? 'rounded-full border border-amber-200/35 bg-amber-200/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-amber-100'

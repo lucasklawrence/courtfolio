@@ -36,10 +36,7 @@ export interface StreakCounts {
  *   Pass `''` (an unparseable clock) to get `current: 0` with `longest` still
  *   computed, rather than a spurious streak.
  */
-export function streakFromHitDays(
-  hitDays: readonly string[],
-  todayKey: string,
-): StreakCounts {
+export function streakFromHitDays(hitDays: readonly string[], todayKey: string): StreakCounts {
   if (hitDays.length === 0) return { current: 0, longest: 0 }
 
   const days = [...hitDays].sort()
@@ -84,7 +81,7 @@ export function streakFromHitDays(
 export function streakFromDailyReps(
   dailyReps: ReadonlyMap<string, number>,
   targetFor: (dayKey: string) => number,
-  todayKey: string,
+  todayKey: string
 ): StreakCounts {
   const hitDays: string[] = []
   for (const [key, reps] of dailyReps) {

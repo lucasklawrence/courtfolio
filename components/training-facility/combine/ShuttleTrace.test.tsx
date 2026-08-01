@@ -50,7 +50,7 @@ describe('pickShuttleRuns', () => {
       { date: '2026-03-15', shuttle_5_10_5_s: 5.7 },
     ]
     const runs = pickShuttleRuns(entries)
-    expect(runs.map((r) => r.date)).toEqual(['2026-01-15', '2026-03-15', '2026-04-10'])
+    expect(runs.map(r => r.date)).toEqual(['2026-01-15', '2026-03-15', '2026-04-10'])
   })
 })
 
@@ -94,10 +94,18 @@ describe('buildTrailPath', () => {
     const tokens = path.split(' ')
     // center → right → left → center
     expect(tokens).toHaveLength(4)
-    expect(tokens[0]).toBe(`${SHUTTLE_GEOMETRY.center.x.toFixed(2)},${SHUTTLE_GEOMETRY.center.y.toFixed(2)}`)
-    expect(tokens[1]).toBe(`${SHUTTLE_GEOMETRY.right.x.toFixed(2)},${SHUTTLE_GEOMETRY.right.y.toFixed(2)}`)
-    expect(tokens[2]).toBe(`${SHUTTLE_GEOMETRY.left.x.toFixed(2)},${SHUTTLE_GEOMETRY.left.y.toFixed(2)}`)
-    expect(tokens[3]).toBe(`${SHUTTLE_GEOMETRY.center.x.toFixed(2)},${SHUTTLE_GEOMETRY.center.y.toFixed(2)}`)
+    expect(tokens[0]).toBe(
+      `${SHUTTLE_GEOMETRY.center.x.toFixed(2)},${SHUTTLE_GEOMETRY.center.y.toFixed(2)}`
+    )
+    expect(tokens[1]).toBe(
+      `${SHUTTLE_GEOMETRY.right.x.toFixed(2)},${SHUTTLE_GEOMETRY.right.y.toFixed(2)}`
+    )
+    expect(tokens[2]).toBe(
+      `${SHUTTLE_GEOMETRY.left.x.toFixed(2)},${SHUTTLE_GEOMETRY.left.y.toFixed(2)}`
+    )
+    expect(tokens[3]).toBe(
+      `${SHUTTLE_GEOMETRY.center.x.toFixed(2)},${SHUTTLE_GEOMETRY.center.y.toFixed(2)}`
+    )
   })
 
   it('appends the live dot position when the runner is mid-leg', () => {
@@ -124,7 +132,7 @@ describe('ShuttleTrace', () => {
           { date: '2026-03-15', vertical_in: 22 },
           { date: '2026-04-10', bodyweight_lbs: 230 },
         ]}
-      />,
+      />
     )
     expect(container.firstChild).toBeNull()
   })
@@ -136,30 +144,18 @@ describe('ShuttleTrace', () => {
           { date: '2026-01-15', shuttle_5_10_5_s: 6.1 },
           { date: '2026-04-10', shuttle_5_10_5_s: 5.42 },
         ]}
-      />,
+      />
     )
-    expect(
-      screen.getByRole('region', { name: /shuttle trace on the court/i }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('img', { name: /half-court diagram/i }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: /shuttle trace on the court/i })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: /half-court diagram/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /replay/i })).toBeInTheDocument()
-    expect(
-      screen.getByRole('switch', { name: /jan 2026 — 6\.10s shuttle/i }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('switch', { name: /apr 2026 — 5\.42s shuttle/i }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('switch', { name: /jan 2026 — 6\.10s shuttle/i })).toBeInTheDocument()
+    expect(screen.getByRole('switch', { name: /apr 2026 — 5\.42s shuttle/i })).toBeInTheDocument()
   })
 
   it('chips start checked and toggle off when clicked', async () => {
     const user = userEvent.setup()
-    render(
-      <ShuttleTrace
-        entries={[{ date: '2026-04-10', shuttle_5_10_5_s: 5.42 }]}
-      />,
-    )
+    render(<ShuttleTrace entries={[{ date: '2026-04-10', shuttle_5_10_5_s: 5.42 }]} />)
     const chip = screen.getByRole('switch', { name: /apr 2026/i })
     expect(chip).toHaveAttribute('aria-checked', 'true')
     await user.click(chip)
@@ -174,7 +170,7 @@ describe('ShuttleTrace', () => {
           { date: '2026-02-15', shuttle_5_10_5_s: 5.9 },
           { date: '2026-04-10', shuttle_5_10_5_s: 5.42 },
         ]}
-      />,
+      />
     )
     expect(screen.getAllByRole('switch')).toHaveLength(3)
   })
@@ -183,11 +179,7 @@ describe('ShuttleTrace', () => {
     // Smoke test: the rAF loop is hard to assert in jsdom, so we just
     // confirm the button is wired and doesn't toss the toggle state.
     const user = userEvent.setup()
-    render(
-      <ShuttleTrace
-        entries={[{ date: '2026-04-10', shuttle_5_10_5_s: 5.42 }]}
-      />,
-    )
+    render(<ShuttleTrace entries={[{ date: '2026-04-10', shuttle_5_10_5_s: 5.42 }]} />)
     const chip = screen.getByRole('switch', { name: /apr 2026/i })
     expect(chip).toHaveAttribute('aria-checked', 'true')
     await user.click(screen.getByRole('button', { name: /replay/i }))
@@ -211,12 +203,12 @@ describe('ShuttleTrace', () => {
           { date: '2026-03-15', shuttle_5_10_5_s: 5.7 },
         ]}
       />,
-      { wrapper: StrictMode },
+      { wrapper: StrictMode }
     )
     await user.click(screen.getByRole('switch', { name: /mar 2026/i }))
     expect(screen.getByRole('switch', { name: /mar 2026/i })).toHaveAttribute(
       'aria-checked',
-      'false',
+      'false'
     )
     rerender(
       <ShuttleTrace
@@ -225,20 +217,20 @@ describe('ShuttleTrace', () => {
           { date: '2026-03-15', shuttle_5_10_5_s: 5.7 },
           { date: '2026-04-10', shuttle_5_10_5_s: 5.42 },
         ]}
-      />,
+      />
     )
     // March stays off; February stays on; April defaults on.
     expect(screen.getByRole('switch', { name: /feb 2026/i })).toHaveAttribute(
       'aria-checked',
-      'true',
+      'true'
     )
     expect(screen.getByRole('switch', { name: /mar 2026/i })).toHaveAttribute(
       'aria-checked',
-      'false',
+      'false'
     )
     expect(screen.getByRole('switch', { name: /apr 2026/i })).toHaveAttribute(
       'aria-checked',
-      'true',
+      'true'
     )
   })
 })

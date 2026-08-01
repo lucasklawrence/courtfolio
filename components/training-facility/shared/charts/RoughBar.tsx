@@ -70,12 +70,12 @@ export function RoughBar<T>({
 
   const gen = getGenerator()
 
-  const xTicks: AxisTick[] = categories.map((c) => ({
+  const xTicks: AxisTick[] = categories.map(c => ({
     value: c,
     offset: (xScale(c) ?? 0) + xScale.bandwidth() / 2,
   }))
 
-  const yTicks: AxisTick[] = yScale.ticks(yTickCount).map((tick) => ({
+  const yTicks: AxisTick[] = yScale.ticks(yTickCount).map(tick => ({
     value: yTickFormat ? yTickFormat(tick) : String(tick),
     offset: yScale(tick),
   }))

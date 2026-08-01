@@ -51,16 +51,14 @@ const UNSPECIFIED_LABEL = 'unspecified'
  * page's Server Component alongside the heatmap and volume chart.
  */
 export function VariantBreakdown({ sets, goal }: VariantBreakdownProps): JSX.Element | null {
-  const exerciseSets = sets.filter((s) => s.exercise === goal.exercise)
+  const exerciseSets = sets.filter(s => s.exercise === goal.exercise)
   const slices = variantBreakdown(exerciseSets)
-  const namedCount = slices.filter((s) => s.variant !== null).length
+  const namedCount = slices.filter(s => s.variant !== null).length
 
   // Nothing to break down until at least one grip has been tagged.
   if (namedCount === 0) return null
 
-  const summary = slices
-    .map((s) => `${sliceLabel(s)} ${Math.round(s.share * 100)}%`)
-    .join(', ')
+  const summary = slices.map(s => `${sliceLabel(s)} ${Math.round(s.share * 100)}%`).join(', ')
 
   return (
     <section
@@ -105,9 +103,7 @@ export function VariantBreakdown({ sets, goal }: VariantBreakdownProps): JSX.Ele
                 opacity: slice.variant === null ? 1 : opacityForRank(i),
               }}
             />
-            <span className="uppercase tracking-[0.16em] text-[#f7ead9]">
-              {sliceLabel(slice)}
-            </span>
+            <span className="uppercase tracking-[0.16em] text-[#f7ead9]">{sliceLabel(slice)}</span>
             <span className="tabular-nums text-[#e8d5be]/60">
               {slice.reps} · {Math.round(slice.share * 100)}%
             </span>

@@ -17,13 +17,13 @@ import config from './playwright.config'
 /** Every `*.spec.ts` under `e2e/`, which is what Playwright's `testDir` collects. */
 function specFiles(): string[] {
   return readdirSync(join(process.cwd(), 'e2e'))
-    .filter((name) => name.endsWith('.spec.ts'))
+    .filter(name => name.endsWith('.spec.ts'))
     .sort()
 }
 
 /** The projects declared in the Playwright config, narrowed to what this test needs. */
 function projects(): { name: string; testMatch: RegExp }[] {
-  return (config.projects ?? []).map((p) => ({
+  return (config.projects ?? []).map(p => ({
     name: String(p.name),
     testMatch: p.testMatch as RegExp,
   }))
@@ -43,12 +43,10 @@ describe('playwright config', () => {
 
   it('runs every e2e spec in at least one project', () => {
     const all = projects()
-    const orphans = specFiles().filter(
-      (file) => !all.some((project) => project.testMatch.test(file)),
-    )
+    const orphans = specFiles().filter(file => !all.some(project => project.testMatch.test(file)))
     expect(
       orphans,
-      `spec files matched by no project's testMatch — they would never run:\n  ${orphans.join('\n  ')}`,
+      `spec files matched by no project's testMatch — they would never run:\n  ${orphans.join('\n  ')}`
     ).toEqual([])
   })
 
@@ -57,15 +55,15 @@ describe('playwright config', () => {
     // renamed or deleted quietly stops testing anything.
     const files = specFiles()
     const empty = projects()
-      .filter((project) => !files.some((file) => project.testMatch.test(file)))
-      .map((project) => project.name)
+      .filter(project => !files.some(file => project.testMatch.test(file)))
+      .map(project => project.name)
     expect(empty, 'projects matching zero specs').toEqual([])
   })
 
   it('covers the rendering specs in the mobile project', () => {
     // The point of #359: these two exist to be run at phone width in WebKit.
     // If they drop out of `mobile-webkit`, the coverage gap silently reopens.
-    const mobile = projects().find((p) => p.name === 'mobile-webkit')
+    const mobile = projects().find(p => p.name === 'mobile-webkit')
     expect(mobile).toBeDefined()
     expect(mobile?.testMatch.test('svg-fragments.spec.ts')).toBe(true)
     expect(mobile?.testMatch.test('chart-overflow.spec.ts')).toBe(true)
@@ -78,12 +76,12 @@ describe('playwright config', () => {
     // so omitting `browserName` here silently runs Chromium in an iPhone
     // user-agent. The suite still passes, the engine coverage just isn't there,
     // and the user-agent string makes it look like it is.
-    const mobile = (config.projects ?? []).find((p) => p.name === 'mobile-webkit')
+    const mobile = (config.projects ?? []).find(p => p.name === 'mobile-webkit')
     expect(mobile?.use?.browserName).toBe('webkit')
   })
 
   it('sizes the mobile project to a phone viewport', () => {
-    const mobile = (config.projects ?? []).find((p) => p.name === 'mobile-webkit')
+    const mobile = (config.projects ?? []).find(p => p.name === 'mobile-webkit')
     // The other half of what #355/#356 needed: a real phone width, not just a
     // different engine.
     expect(mobile?.use?.viewport?.width).toBeLessThanOrEqual(430)

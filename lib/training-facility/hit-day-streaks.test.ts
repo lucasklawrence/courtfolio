@@ -38,13 +38,7 @@ describe('streakFromHitDays', () => {
 
   it('breaks the run on a gap, keeping the longest', () => {
     // 3 days, gap, 2 days ending today.
-    const days = [
-      '2026-07-06',
-      '2026-07-07',
-      '2026-07-08',
-      '2026-07-14',
-      '2026-07-15',
-    ]
+    const days = ['2026-07-06', '2026-07-07', '2026-07-08', '2026-07-14', '2026-07-15']
     expect(streakFromHitDays(days, '2026-07-15')).toEqual({ current: 2, longest: 3 })
   })
 

@@ -28,7 +28,10 @@ describe('diffMigrations', () => {
   it('reports in-sync when both sides carry the same names', () => {
     // Deliberately different orders: the filename stamp and the applied version
     // are unrelated, so only set membership can be compared.
-    const result = diffMigrations(['cardio_tables', 'otf_sessions'], ['otf_sessions', 'cardio_tables'])
+    const result = diffMigrations(
+      ['cardio_tables', 'otf_sessions'],
+      ['otf_sessions', 'cardio_tables']
+    )
     expect(result).toEqual({ pending: [], untracked: [], inSync: true })
   })
 
@@ -42,7 +45,10 @@ describe('diffMigrations', () => {
 
   it('flags an applied migration with no file, which the repo cannot rebuild', () => {
     // The movement_benchmarks shape.
-    const result = diffMigrations(['cardio_tables'], ['create_movement_benchmarks', 'cardio_tables'])
+    const result = diffMigrations(
+      ['cardio_tables'],
+      ['create_movement_benchmarks', 'cardio_tables']
+    )
     expect(result.untracked).toEqual(['create_movement_benchmarks'])
     expect(result.pending).toEqual([])
     expect(result.inSync).toBe(false)

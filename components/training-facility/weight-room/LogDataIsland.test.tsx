@@ -150,9 +150,9 @@ describe('LogDataIsland — load states', () => {
   it('shows the loading state until the first fetch settles', async () => {
     let resolve: (v: WeightRoomData) => void = () => {}
     getWeightRoomDataMock.mockReturnValue(
-      new Promise<WeightRoomData>((r) => {
+      new Promise<WeightRoomData>(r => {
         resolve = r
-      }),
+      })
     )
     render(<LogDataIsland />)
     expect(screen.getByTestId('log-loading')).toBeInTheDocument()
@@ -259,7 +259,7 @@ describe('LogDataIsland — stale response guard', () => {
     // write is in flight, so two overlapping refetches can't be triggered by
     // clicking. StrictMode is where this actually happens.
     let resolveStale: (v: WeightRoomData) => void = () => {}
-    const stalePending = new Promise<WeightRoomData>((r) => {
+    const stalePending = new Promise<WeightRoomData>(r => {
       resolveStale = r
     })
 
@@ -276,7 +276,7 @@ describe('LogDataIsland — stale response guard', () => {
     render(
       <StrictMode>
         <LogDataIsland />
-      </StrictMode>,
+      </StrictMode>
     )
 
     await selectDay(PAST_DAY)

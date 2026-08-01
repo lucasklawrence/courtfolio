@@ -138,7 +138,7 @@ export function AchievementSettings({
     if (!ok) return
     const res = await fetch(
       `/api/admin/weight-room/achievements/${encodeURIComponent(achievement.id)}`,
-      { method: 'DELETE' },
+      { method: 'DELETE' }
     )
     if (!res.ok) {
       const payload = (await res.json().catch(() => ({}))) as { error?: string }
@@ -169,7 +169,7 @@ export function AchievementSettings({
           </p>
         ) : (
           <ul className="mt-3 space-y-3">
-            {initialAchievements.map((achievement) => (
+            {initialAchievements.map(achievement => (
               <AchievementRow
                 key={achievement.id}
                 achievement={achievement}
@@ -239,7 +239,8 @@ function AchievementRow({
     e.preventDefault()
     const trimmedLabel = label.trim()
     const trimmedIcon = icon.trim()
-    if (!dirty || trimmedLabel.length === 0 || !Number.isInteger(threshold) || threshold <= 0) return
+    if (!dirty || trimmedLabel.length === 0 || !Number.isInteger(threshold) || threshold <= 0)
+      return
 
     // Diff against the row as loaded — see {@link AchievementPatch} for why
     // sending unchanged fields is not harmless.
@@ -269,7 +270,7 @@ function AchievementRow({
           <input
             type="text"
             value={label}
-            onChange={(e) => setLabel(e.target.value)}
+            onChange={e => setLabel(e.target.value)}
             className={`${FIELD_CLASS} w-40`}
           />
         </Field>
@@ -288,7 +289,7 @@ function AchievementRow({
             min={1}
             step={1}
             value={threshold}
-            onChange={(e) => setThreshold(Number(e.target.value))}
+            onChange={e => setThreshold(Number(e.target.value))}
             className={`${FIELD_CLASS} w-24 text-right`}
           />
         </Field>
@@ -298,7 +299,7 @@ function AchievementRow({
             value={icon}
             maxLength={8}
             placeholder="💯"
-            onChange={(e) => setIcon(e.target.value)}
+            onChange={e => setIcon(e.target.value)}
             className={`${FIELD_CLASS} w-16 text-center`}
           />
         </Field>
@@ -306,7 +307,7 @@ function AchievementRow({
           <input
             type="color"
             value={color}
-            onChange={(e) => setColor(e.target.value)}
+            onChange={e => setColor(e.target.value)}
             className="h-8 w-12 cursor-pointer rounded border border-white/15 bg-black/40"
           />
         </Field>
@@ -383,7 +384,7 @@ function AddAchievementForm({
           type="text"
           required
           value={label}
-          onChange={(e) => setLabel(e.target.value)}
+          onChange={e => setLabel(e.target.value)}
           placeholder="Century Club"
           className={`${FIELD_CLASS} w-40`}
         />
@@ -403,7 +404,7 @@ function AddAchievementForm({
           min={1}
           step={1}
           value={threshold}
-          onChange={(e) => setThreshold(Number(e.target.value))}
+          onChange={e => setThreshold(Number(e.target.value))}
           className={`${FIELD_CLASS} w-24 text-right`}
         />
       </Field>
@@ -413,7 +414,7 @@ function AddAchievementForm({
           value={icon}
           maxLength={8}
           placeholder="💯"
-          onChange={(e) => setIcon(e.target.value)}
+          onChange={e => setIcon(e.target.value)}
           className={`${FIELD_CLASS} w-16 text-center`}
         />
       </Field>
@@ -421,7 +422,7 @@ function AddAchievementForm({
         <input
           type="color"
           value={color}
-          onChange={(e) => setColor(e.target.value)}
+          onChange={e => setColor(e.target.value)}
           className="h-9 w-16 cursor-pointer rounded border border-white/15 bg-black/40"
         />
       </Field>
@@ -459,11 +460,11 @@ function ExerciseSelect({
   return (
     <select
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={e => onChange(e.target.value)}
       className={`${FIELD_CLASS} w-36`}
     >
       <option value={POOLED_OPTION}>{POOLED_LABEL}</option>
-      {options.map((name) => (
+      {options.map(name => (
         <option key={name} value={name}>
           {name}
         </option>
@@ -493,10 +494,10 @@ function MeasureSelect({
   return (
     <select
       value={value}
-      onChange={(e) => onChange(e.target.value as AchievementMeasure)}
+      onChange={e => onChange(e.target.value as AchievementMeasure)}
       className={`${FIELD_CLASS} w-32`}
     >
-      {MEASURES.map((m) => (
+      {MEASURES.map(m => (
         <option key={m.value} value={m.value}>
           {m.label}
         </option>
@@ -516,10 +517,10 @@ function ScopeSelect({
   return (
     <select
       value={value}
-      onChange={(e) => onChange(e.target.value as AchievementScope)}
+      onChange={e => onChange(e.target.value as AchievementScope)}
       className={`${FIELD_CLASS} w-32`}
     >
-      {SCOPES.map((scope) => (
+      {SCOPES.map(scope => (
         <option key={scope} value={scope}>
           {SCOPE_LABELS[scope]}
         </option>

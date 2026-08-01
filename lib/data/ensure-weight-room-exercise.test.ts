@@ -62,8 +62,6 @@ describe('ensureWeightRoomExercise', () => {
   it('reports a failure as a message rather than throwing', async () => {
     const { client } = stubClient({ message: 'permission denied' })
 
-    await expect(ensureWeightRoomExercise(client, 'dips')).resolves.toMatch(
-      /permission denied/,
-    )
+    await expect(ensureWeightRoomExercise(client, 'dips')).resolves.toMatch(/permission denied/)
   })
 })

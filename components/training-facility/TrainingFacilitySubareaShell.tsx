@@ -1,4 +1,3 @@
-
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 
@@ -83,10 +82,9 @@ export function TrainingFacilitySubareaShell({
                   Why this route exists now
                 </div>
                 <p className="mt-4 text-sm leading-7 text-white/75">
-                  Issue #60 wires the Training Facility structure end to end. That
-                  means the top-level shell, the home-court entrance, and these two
-                  destination routes are all real before the richer room art and data
-                  views land in later phases.
+                  Issue #60 wires the Training Facility structure end to end. That means the
+                  top-level shell, the home-court entrance, and these two destination routes are all
+                  real before the richer room art and data views land in later phases.
                 </p>
               </div>
 

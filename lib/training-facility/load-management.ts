@@ -153,7 +153,7 @@ export interface MovementLoad {
 function isLoadDriven(
   equipment: ExerciseEquipment | undefined,
   inWindowSets: number,
-  inWindowWeighted: number,
+  inWindowWeighted: number
 ): boolean {
   const meetsThreshold = inWindowWeighted / inWindowSets >= LOADED_SET_FRACTION
   // Unknown classification, or a bodyweight movement that may be carrying
@@ -191,7 +191,7 @@ export function buildMovementLoads(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[] = [],
   now: Date = new Date(),
-  exercises: readonly WeightRoomExercise[] = [],
+  exercises: readonly WeightRoomExercise[] = []
 ): MovementLoad[] {
   const todayKey = pacificDayKey(now)
   const colorByExercise = new Map(goals.map(g => [g.exercise, g.color]))
@@ -246,11 +246,7 @@ export function buildMovementLoads(
     // the panel only shows what's actively being ramped.
     if (inWindowSets === 0) continue
 
-    const loaded = isLoadDriven(
-      equipmentByExercise.get(movement),
-      inWindowSets,
-      inWindowWeighted,
-    )
+    const loaded = isLoadDriven(equipmentByExercise.get(movement), inWindowSets, inWindowWeighted)
     const volByOffset = loaded ? loadByOffset : repByOffset
 
     let chronic28d = 0
@@ -306,7 +302,7 @@ export function buildMovementLoads(
   }
 
   loads.sort(
-    (a, b) => FLAG_SEVERITY[b.flag] - FLAG_SEVERITY[a.flag] || a.movement.localeCompare(b.movement),
+    (a, b) => FLAG_SEVERITY[b.flag] - FLAG_SEVERITY[a.flag] || a.movement.localeCompare(b.movement)
   )
   return loads
 }

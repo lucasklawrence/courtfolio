@@ -48,7 +48,7 @@ export function parseSessionDate(raw: string): Date {
 export function filterCardioSessionsByActivity(
   sessions: readonly CardioSession[],
   activity: CardioActivity,
-  range: DateRange,
+  range: DateRange
 ): CardioSession[] {
   const fromMs = range.start.getTime()
   const toMs = range.end.getTime()
@@ -61,7 +61,7 @@ export function filterCardioSessionsByActivity(
     out.push({ session: s, ts })
   }
   out.sort((a, b) => a.ts - b.ts)
-  return out.map((entry) => entry.session)
+  return out.map(entry => entry.session)
 }
 
 /** One row in the HR-zone distribution chart. */
@@ -199,7 +199,7 @@ function weekStart(d: Date): Date {
  */
 export function bucketAvgHr(
   points: readonly SessionAvgHrPoint[],
-  granularity: AvgHrGranularity,
+  granularity: AvgHrGranularity
 ): SessionAvgHrPoint[] {
   if (granularity === 'session' || points.length === 0) return [...points]
 
@@ -208,7 +208,8 @@ export function bucketAvgHr(
   for (const p of points) {
     const d = parseSessionDate(p.date)
     if (!Number.isFinite(d.getTime())) continue
-    const anchor = granularity === 'month' ? new Date(d.getFullYear(), d.getMonth(), 1) : weekStart(d)
+    const anchor =
+      granularity === 'month' ? new Date(d.getFullYear(), d.getMonth(), 1) : weekStart(d)
     const key = `${anchor.getFullYear()}-${anchor.getMonth()}-${anchor.getDate()}`
     let g = groups.get(key)
     if (!g) {
@@ -220,7 +221,7 @@ export function bucketAvgHr(
     g.count += 1
   }
 
-  return order.map((key) => {
+  return order.map(key => {
     const g = groups.get(key)!
     const label =
       granularity === 'month'

@@ -87,8 +87,18 @@ export function formatShuttleChipLabel(date: string): string {
  * spinning up `Intl.DateTimeFormat` for a chip-sized label.
  */
 const MONTH_ABBR = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ] as const
 
 /** ViewBox width — 50 ft wide half-court at 10 viewBox units per foot. */
@@ -172,7 +182,7 @@ export const SHUTTLE_GEOMETRY: ShuttleGeometry = {
  */
 export function computeShuttlePosition(
   t: number,
-  geom: ShuttleGeometry = SHUTTLE_GEOMETRY,
+  geom: ShuttleGeometry = SHUTTLE_GEOMETRY
 ): { x: number; y: number } {
   if (t <= 0) return { ...geom.center }
   if (t >= 1) return { ...geom.center }
@@ -184,7 +194,7 @@ export function computeShuttlePosition(
 function lerpPoint(
   a: { x: number; y: number },
   b: { x: number; y: number },
-  t: number,
+  t: number
 ): { x: number; y: number } {
   return { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t }
 }
@@ -201,10 +211,7 @@ function lerpPoint(
  * @param t - Progress along the run, 0 = start, 1 = finish (clamped).
  * @param geom - Cone geometry. Defaults to {@link SHUTTLE_GEOMETRY}.
  */
-export function buildTrailPath(
-  t: number,
-  geom: ShuttleGeometry = SHUTTLE_GEOMETRY,
-): string {
+export function buildTrailPath(t: number, geom: ShuttleGeometry = SHUTTLE_GEOMETRY): string {
   const points: Array<{ x: number; y: number }> = [geom.center]
   if (t >= 0.25) points.push(geom.right)
   if (t >= 0.75) points.push(geom.left)
@@ -217,7 +224,7 @@ export function buildTrailPath(
     const last = points[points.length - 1]
     if (dot.x !== last.x || dot.y !== last.y) points.push(dot)
   }
-  return points.map((p) => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ')
+  return points.map(p => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ')
 }
 
 /**
@@ -252,16 +259,13 @@ export function ShuttleTrace({ entries }: ShuttleTraceProps): JSX.Element | null
   // `runs` and drops from `enabled` even if its date lingers in the
   // disabled set.
   const [userDisabled, setUserDisabled] = useState<ReadonlySet<string>>(() => new Set())
-  const enabled = useMemo<ReadonlySet<string>>(
-    () => {
-      const set = new Set<string>()
-      for (const run of runs) {
-        if (!userDisabled.has(run.date)) set.add(run.date)
-      }
-      return set
-    },
-    [runs, userDisabled],
-  )
+  const enabled = useMemo<ReadonlySet<string>>(() => {
+    const set = new Set<string>()
+    for (const run of runs) {
+      if (!userDisabled.has(run.date)) set.add(run.date)
+    }
+    return set
+  }, [runs, userDisabled])
 
   const [replayKey, setReplayKey] = useState(0)
   const reducedMotion = useReducedMotion()
@@ -282,15 +286,15 @@ export function ShuttleTrace({ entries }: ShuttleTraceProps): JSX.Element | null
       <ShuttleControls
         runs={runs}
         enabled={enabled}
-        onToggle={(date) =>
-          setUserDisabled((prev) => {
+        onToggle={date =>
+          setUserDisabled(prev => {
             const next = new Set(prev)
             if (next.has(date)) next.delete(date)
             else next.add(date)
             return next
           })
         }
-        onReplay={() => setReplayKey((k) => k + 1)}
+        onReplay={() => setReplayKey(k => k + 1)}
       />
     </section>
   )
@@ -314,22 +318,18 @@ function ShuttleCourtSvg({
   // toggling off this month's run promotes March to the highlighted role
   // and the scene still has a hero trace to draw the eye.
   const latestEnabledDate = runs
-    .filter((r) => enabled.has(r.date))
+    .filter(r => enabled.has(r.date))
     .reduce<string | undefined>(
       (acc, r) => (acc === undefined || r.date > acc ? r.date : acc),
-      undefined,
+      undefined
     )
 
   // Animation envelope is sized to the slowest *enabled* run — so
   // toggling off a slow ghost trail also shortens how long the rAF loop
   // burns frames.
   const enabledMaxSeconds = useMemo(
-    () =>
-      runs.reduce(
-        (acc, r) => (enabled.has(r.date) ? Math.max(acc, r.seconds) : acc),
-        0,
-      ),
-    [runs, enabled],
+    () => runs.reduce((acc, r) => (enabled.has(r.date) ? Math.max(acc, r.seconds) : acc), 0),
+    [runs, enabled]
   )
   const elapsed = useShuttleElapsed({
     maxSeconds: enabledMaxSeconds,
@@ -372,7 +372,7 @@ function ShuttleCourtSvg({
       <CourtMarkings />
       <ConeMarkers />
 
-      {runs.map((run) => {
+      {runs.map(run => {
         if (!enabled.has(run.date)) return null
         const isLatest = run.date === latestEnabledDate
         const progress = reducedMotion ? 1 : Math.min(1, Math.max(0, elapsed / run.seconds))
@@ -492,7 +492,7 @@ function ConeMarkers(): JSX.Element {
         { x: CONE_LEFT_X, label: 'L' },
         { x: CONE_CENTER_X, label: 'M' },
         { x: CONE_RIGHT_X, label: 'R' },
-      ].map((cone) => (
+      ].map(cone => (
         <g key={cone.label}>
           {/* Cone shadow */}
           <RoughCircle
@@ -609,7 +609,11 @@ interface UseShuttleElapsedArgs {
  * a second forever after the last trace lands. Replaying restarts the
  * clock by resetting on `replayKey` change.
  */
-function useShuttleElapsed({ maxSeconds, replayKey, reducedMotion }: UseShuttleElapsedArgs): number {
+function useShuttleElapsed({
+  maxSeconds,
+  replayKey,
+  reducedMotion,
+}: UseShuttleElapsedArgs): number {
   const [elapsed, setElapsed] = useState(0)
 
   // Drives the elapsed-time clock via requestAnimationFrame. The synchronous
@@ -654,12 +658,7 @@ interface ShuttleControlsProps {
   onReplay: () => void
 }
 
-function ShuttleControls({
-  runs,
-  enabled,
-  onToggle,
-  onReplay,
-}: ShuttleControlsProps): JSX.Element {
+function ShuttleControls({ runs, enabled, onToggle, onReplay }: ShuttleControlsProps): JSX.Element {
   return (
     <div className="flex w-full max-w-2xl flex-wrap items-center justify-center gap-3 text-sm">
       <button
@@ -671,7 +670,7 @@ function ShuttleControls({
         Replay
       </button>
       <div className="flex flex-wrap items-center justify-center gap-2">
-        {runs.map((run) => {
+        {runs.map(run => {
           const active = enabled.has(run.date)
           return (
             <ShuttleToggleChip

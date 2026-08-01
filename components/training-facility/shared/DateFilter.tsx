@@ -88,7 +88,7 @@ export function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
     const earliestStart = startOfDay(earliest)
     return { start: earliestStart > end ? startOfDay(today) : earliestStart, end }
   }
-  const months = PRESETS.find((p) => p.id === preset)!.months!
+  const months = PRESETS.find(p => p.id === preset)!.months!
   return { start: startOfDay(subtractMonths(today, months)), end }
 }
 
@@ -158,9 +158,7 @@ export const DateFilter: React.FC<DateFilterProps> = ({
   className = '',
 }) => {
   const [activePreset, setActivePreset] = useState<PresetId | null>(defaultPreset)
-  const [range, setRange] = useState<DateRange>(() =>
-    rangeForPreset(defaultPreset, earliestDate),
-  )
+  const [range, setRange] = useState<DateRange>(() => rangeForPreset(defaultPreset, earliestDate))
 
   const selectPreset = useCallback(
     (preset: PresetId) => {
@@ -169,7 +167,7 @@ export const DateFilter: React.FC<DateFilterProps> = ({
       setRange(next)
       onChange(next)
     },
-    [earliestDate, onChange],
+    [earliestDate, onChange]
   )
 
   const updateBound = useCallback(
@@ -193,7 +191,7 @@ export const DateFilter: React.FC<DateFilterProps> = ({
       setRange(next)
       onChange(next)
     },
-    [range, onChange],
+    [range, onChange]
   )
 
   // Roving tabindex + arrow / Home / End nav for the radiogroup.
@@ -223,11 +221,10 @@ export const DateFilter: React.FC<DateFilterProps> = ({
       e.preventDefault()
       selectPreset(PRESETS[nextIndex].id)
       const sibling = e.currentTarget.parentElement?.children[nextIndex] as
-        | HTMLButtonElement
-        | undefined
+        HTMLButtonElement | undefined
       sibling?.focus()
     },
-    [selectPreset],
+    [selectPreset]
   )
 
   // Re-anchor an active preset when the tab becomes visible again, so a
@@ -267,10 +264,7 @@ export const DateFilter: React.FC<DateFilterProps> = ({
           const active = activePreset === p.id
           // Roving tabindex: the active radio (or the first, when in
           // custom mode and nothing is checked) is the only Tab stop.
-          const tabbable =
-            activePreset === null
-              ? i === 0
-              : active
+          const tabbable = activePreset === null ? i === 0 : active
           return (
             <button
               key={p.id}
@@ -279,7 +273,7 @@ export const DateFilter: React.FC<DateFilterProps> = ({
               aria-checked={active}
               tabIndex={tabbable ? 0 : -1}
               onClick={() => selectPreset(p.id)}
-              onKeyDown={(e) => handleKeyDown(e, i)}
+              onKeyDown={e => handleKeyDown(e, i)}
               className={`cursor-pointer rounded-full px-3 py-1 font-mono text-xs uppercase tracking-wider transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 ${
                 active ? 'bg-orange-600 text-white' : 'text-neutral-300 hover:bg-neutral-800/70'
               }`}
@@ -294,7 +288,7 @@ export const DateFilter: React.FC<DateFilterProps> = ({
           type="date"
           value={toInputValue(range.start)}
           max={toInputValue(range.end)}
-          onChange={(e) => {
+          onChange={e => {
             const parsed = parseInputValue(e.target.value)
             if (parsed) updateBound('start', parsed)
           }}
@@ -311,7 +305,7 @@ export const DateFilter: React.FC<DateFilterProps> = ({
           type="date"
           value={toInputValue(range.end)}
           min={toInputValue(range.start)}
-          onChange={(e) => {
+          onChange={e => {
             const parsed = parseInputValue(e.target.value)
             if (parsed) updateBound('end', parsed)
           }}

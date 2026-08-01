@@ -21,7 +21,7 @@ function findCell(grid: HeatmapGrid['grid'], year: number, month: number, day: n
 
 function session(
   dateStr: string,
-  activity: CardioSession['activity'] = 'stair',
+  activity: CardioSession['activity'] = 'stair'
 ): Pick<CardioSession, 'date' | 'activity'> {
   return { date: `${dateStr}T08:00:00`, activity }
 }
@@ -90,7 +90,7 @@ describe('buildHeatmapGrid', () => {
     vi.setSystemTime(new Date(2026, 3, 15))
     const { monthLabels } = buildHeatmapGrid([])
     expect(monthLabels.length).toBeGreaterThan(0)
-    expect(monthLabels.find((l) => l.label === 'Apr')).toBeDefined()
+    expect(monthLabels.find(l => l.label === 'Apr')).toBeDefined()
   })
 
   it('does not duplicate friendly types when the same activity repeats', () => {

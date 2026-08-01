@@ -177,13 +177,7 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
 }
 
 /** `handlePATCH` wrapped with one-event-per-request telemetry (#220). */
-export const PATCH = withTelemetry(
-  'PATCH /api/admin/weight-room/exercises/[slug]',
-  handlePATCH
-)
+export const PATCH = withTelemetry('PATCH /api/admin/weight-room/exercises/[slug]', handlePATCH)
 
 /** `handleDELETE` wrapped with one-event-per-request telemetry (#220). */
-export const DELETE = withTelemetry(
-  'DELETE /api/admin/weight-room/exercises/[slug]',
-  handleDELETE
-)
+export const DELETE = withTelemetry('DELETE /api/admin/weight-room/exercises/[slug]', handleDELETE)

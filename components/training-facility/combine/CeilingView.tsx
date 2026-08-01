@@ -174,11 +174,7 @@ export function CeilingView({
           stroke={chartPalette.rimOrange}
           strokeWidth={1.4}
           strokeLinecap="round"
-          animate={
-            reachedRim && !reduceMotion
-              ? { opacity: [0.7, 1, 0.7] }
-              : undefined
-          }
+          animate={reachedRim && !reduceMotion ? { opacity: [0.7, 1, 0.7] } : undefined}
           transition={
             reachedRim && !reduceMotion
               ? { duration: 1.3, repeat: Infinity, ease: 'easeInOut' }
@@ -216,8 +212,8 @@ export function CeilingView({
         />
 
         {/* Prior-month tick marks across the bar — faint horizontal lines */}
-        {jumps.slice(0, -1).map((j) => {
-          const y = inchesToY((jumpTouchInches(j.verticalIn, standingReachIn) ?? 0))
+        {jumps.slice(0, -1).map(j => {
+          const y = inchesToY(jumpTouchInches(j.verticalIn, standingReachIn) ?? 0)
           return (
             <line
               key={`prior-${j.date}`}
@@ -295,14 +291,10 @@ export function CeilingView({
               strokeWidth={0.4}
               initial={reduceMotion ? false : { scale: 0.4, opacity: 0.9 }}
               animate={
-                reduceMotion
-                  ? { opacity: 0.6 }
-                  : { scale: [0.4, 1.4, 0.4], opacity: [0.9, 0, 0.9] }
+                reduceMotion ? { opacity: 0.6 } : { scale: [0.4, 1.4, 0.4], opacity: [0.9, 0, 0.9] }
               }
               transition={
-                reduceMotion
-                  ? undefined
-                  : { duration: 1.6, repeat: Infinity, ease: 'easeOut' }
+                reduceMotion ? undefined : { duration: 1.6, repeat: Infinity, ease: 'easeOut' }
               }
               style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
             />

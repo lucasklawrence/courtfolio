@@ -36,8 +36,7 @@ const projects: TradeCardProps[] = [
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Postgres RLS'],
     impact: 'One Postgres database replacing three fitness apps',
     year: 2026,
-    moment:
-      'Badges are never stored — the whole wall recomputes from the log on every visit',
+    moment: 'Badges are never stored — the whole wall recomputes from the log on every visit',
     // Flagged experimental rather than featured: the data surfaces are solid,
     // but the illustrated room scenes are still being designed.
     experimental: true,
@@ -154,7 +153,7 @@ export const ProjectGallery = () => {
   // Read at render rather than module scope: the flags are inlined at build
   // time, but keeping the call here means a test can stub the env per case.
   const visibleProjects = projects.filter(
-    project => project.slug !== FLAGGED_PROJECT.slug || FLAGGED_PROJECT.isLive(),
+    project => project.slug !== FLAGGED_PROJECT.slug || FLAGGED_PROJECT.isLive()
   )
 
   // Slug of the project whose detail overlay is open, or null when none is.

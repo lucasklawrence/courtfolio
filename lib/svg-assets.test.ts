@@ -42,9 +42,9 @@ const MIN_BYTES = 200
  * `training-facility/equipment/` folder as well as the flat ones). */
 function svgFilesIn(dir: string): string[] {
   return readdirSync(dir, { recursive: true })
-    .map((entry) => entry.toString())
-    .filter((rel) => rel.endsWith('.svg'))
-    .map((rel) => join(dir, rel))
+    .map(entry => entry.toString())
+    .filter(rel => rel.endsWith('.svg'))
+    .map(rel => join(dir, rel))
 }
 
 const files = SYMBOL_SVG_DIRS.flatMap(svgFilesIn)
@@ -56,7 +56,7 @@ describe('symbol SVG assets survive optimization (#201)', () => {
     expect(files.length).toBeGreaterThanOrEqual(37)
   })
 
-  it.each(files)('%s keeps its <symbol id="<filename>"> above the size floor', (file) => {
+  it.each(files)('%s keeps its <symbol id="<filename>"> above the size floor', file => {
     // Size floor catches a fully-gutted or path-stripped file...
     expect(statSync(file).size).toBeGreaterThan(MIN_BYTES)
 
@@ -76,9 +76,8 @@ describe('symbol SVG assets survive optimization (#201)', () => {
     // coordinate system the <use> scales into. Stripping it (e.g. a future
     // `removeViewBox` plugin) wouldn't change the id or much of the size, but
     // would render every consumer mis-scaled/clipped.
-    expect(
-      symbolTag,
-      `${file} symbol must keep its viewBox — <use> scaling depends on it`
-    ).toMatch(/\bviewBox="/)
+    expect(symbolTag, `${file} symbol must keep its viewBox — <use> scaling depends on it`).toMatch(
+      /\bviewBox="/
+    )
   })
 })

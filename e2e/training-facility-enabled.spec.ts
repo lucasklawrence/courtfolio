@@ -23,11 +23,11 @@ test.describe('training facility — gym and weight room published', () => {
     await expect(page.getByRole('heading', { name: /everything i train, logged/i })).toBeVisible()
     await expect(page.getByRole('link', { name: /trophy room/i })).toHaveAttribute(
       'href',
-      '/training-facility/weight-room/achievements',
+      '/training-facility/weight-room/achievements'
     )
     await expect(page.getByRole('link', { name: /orangetheory/i })).toHaveAttribute(
       'href',
-      '/training-facility/gym/otf',
+      '/training-facility/gym/otf'
     )
   })
 
@@ -69,6 +69,8 @@ test.describe('training facility — gym and weight room published', () => {
 
   test('the projects binder offers the tracking card', async ({ page }) => {
     await page.goto('/projects')
-    await expect(page.getByRole('button', { name: /open training facility details/i })).toBeVisible()
+    await expect(
+      page.getByRole('button', { name: /open training facility details/i })
+    ).toBeVisible()
   })
 })

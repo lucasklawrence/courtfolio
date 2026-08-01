@@ -122,7 +122,7 @@ export function StrengthHeatmap({
     visibleMonths,
     cellSize,
     gridWidth,
-    MONTH_LABEL_FONT_SIZE,
+    MONTH_LABEL_FONT_SIZE
   )
 
   const totalWidth = DAY_LABEL_WIDTH + gridWidth + monthOverhang
@@ -134,7 +134,7 @@ export function StrengthHeatmap({
   // `null` and are filtered out rather than clamped to an edge, which would
   // plant a marker on a week the change didn't happen in.
   const visibleChanges = goalTargetChanges(goal)
-    .map((change) => ({ change, col: columnForDayKey(heatmap, change.effective_from) }))
+    .map(change => ({ change, col: columnForDayKey(heatmap, change.effective_from) }))
     .filter((entry): entry is { change: GoalTargetChange; col: number } => entry.col !== null)
 
   return (
@@ -152,7 +152,7 @@ export function StrengthHeatmap({
     >
       {/* Month labels along the top, thinned so neighbours can't collide */}
       <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT - 4})`}>
-        {visibleMonths.map((m) => (
+        {visibleMonths.map(m => (
           <text
             key={`month-${m.col}-${m.label}`}
             x={m.col * cellSize}
@@ -179,7 +179,7 @@ export function StrengthHeatmap({
             >
               {dayLabel}
             </text>
-          ) : null,
+          ) : null
         )}
       </g>
 
@@ -204,7 +204,7 @@ export function StrengthHeatmap({
                 <title>{describeCell(cell, goal)}</title>
               </rect>
             )
-          }),
+          })
         )}
       </g>
 
@@ -271,7 +271,7 @@ function describeCell(cell: StrengthHeatmapCell, goal: ExerciseGoal): string {
   const dateLabel = formatDayKey(
     cell.dayKey,
     { month: 'short', day: 'numeric', year: 'numeric' },
-    'en-US',
+    'en-US'
   )
   if (cell.reps === 0) return dateLabel
   const setNoun = cell.setCount === 1 ? 'set' : 'sets'

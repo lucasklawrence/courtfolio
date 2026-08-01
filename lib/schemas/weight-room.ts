@@ -60,9 +60,7 @@ const optionalWeightLbs = () => z.number().nonnegative().nullable().optional()
  * exist. The runtime behavior matches `.int().positive()` precisely.
  */
 const positiveInt = (): z.ZodType<number> =>
-  z
-    .number()
-    .refine((n) => Number.isInteger(n) && n > 0, 'must be a positive integer')
+  z.number().refine(n => Number.isInteger(n) && n > 0, 'must be a positive integer')
 
 /**
  * Non-negative-integer Zod check, for `position` (#374) — set order within a
@@ -71,9 +69,7 @@ const positiveInt = (): z.ZodType<number> =>
  * `z.number().int()` when this module is pulled into a client bundle.
  */
 const nonNegativeInt = (): z.ZodType<number> =>
-  z
-    .number()
-    .refine((n) => Number.isInteger(n) && n >= 0, 'must be a non-negative integer')
+  z.number().refine(n => Number.isInteger(n) && n >= 0, 'must be a non-negative integer')
 
 /**
  * Write-only `exercise` field — non-empty string, lowercased on parse.
@@ -95,7 +91,7 @@ const exerciseWriteField = () =>
     .string()
     .trim()
     .min(1, 'exercise must be non-empty')
-    .transform((s) => s.toLowerCase())
+    .transform(s => s.toLowerCase())
 
 /**
  * Write-only `variant` field (#254) — the optional grip / width / tempo
@@ -114,7 +110,7 @@ const variantWriteField = () =>
   z
     .union([z.string(), z.null()])
     .optional()
-    .transform((v) => {
+    .transform(v => {
       if (v == null) return undefined
       const normalized = v.trim().toLowerCase()
       return normalized === '' ? undefined : normalized
@@ -216,10 +212,7 @@ export const WeightRoomGoalUpsertSchema = z
     exercise: exerciseWriteField(),
     daily_target: positiveInt(),
     color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #EA580C'),
-    effective_from: z
-      .string()
-      .regex(DATE_REGEX, 'effective_from must be YYYY-MM-DD')
-      .optional(),
+    effective_from: z.string().regex(DATE_REGEX, 'effective_from must be YYYY-MM-DD').optional(),
   })
   .strict()
 
@@ -278,8 +271,7 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
 }
 
 /** Workout locations, as a Zod enum reused by the row + write schemas (#374). */
-const workoutLocation = (): z.ZodType<WorkoutLocation> =>
-  z.enum(['gym', 'home', 'travel', 'other'])
+const workoutLocation = (): z.ZodType<WorkoutLocation> => z.enum(['gym', 'home', 'travel', 'other'])
 
 /**
  * Zod schema for one row of `public.weight_room_workouts` (#374). Mirrors the
@@ -332,12 +324,12 @@ const optionalTextField = (max: number) =>
   z
     .union([z.string(), z.null()])
     .optional()
-    .transform((v) => {
+    .transform(v => {
       if (v == null) return undefined
       const trimmed = v.trim()
       return trimmed === '' ? undefined : trimmed
     })
-    .refine((v) => v === undefined || v.length <= max, `must be ${max} characters or fewer`)
+    .refine(v => v === undefined || v.length <= max, `must be ${max} characters or fewer`)
 
 /**
  * Free-text **patch** field — same trimming as {@link optionalTextField}, but
@@ -354,16 +346,13 @@ const clearableTextField = (max: number) =>
   z
     .union([z.string(), z.null()])
     .optional()
-    .transform((v) => {
+    .transform(v => {
       if (v === undefined) return undefined
       if (v === null) return null
       const trimmed = v.trim()
       return trimmed === '' ? null : trimmed
     })
-    .refine(
-      (v) => v == null || v.length <= max,
-      `must be ${max} characters or fewer`,
-    )
+    .refine(v => v == null || v.length <= max, `must be ${max} characters or fewer`)
 
 /**
  * Request-body schema for `POST /api/admin/weight-room/workouts` (#374) — start
@@ -404,7 +393,7 @@ export const WeightRoomWorkoutUpdateSchema = z
     notes: clearableTextField(2000),
   })
   .strict()
-  .refine((patch) => Object.values(patch).some((v) => v !== undefined), {
+  .refine(patch => Object.values(patch).some(v => v !== undefined), {
     message: 'At least one field (ended_at, title, location, or notes) is required.',
   })
 
@@ -434,16 +423,7 @@ export function goalRowToExerciseGoal(row: WeightRoomGoalRow): ExerciseGoal {
 
 /** The eight equipment kinds, as a Zod enum reused by the row + write schemas. */
 const exerciseEquipment = (): z.ZodType<ExerciseEquipment> =>
-  z.enum([
-    'barbell',
-    'dumbbell',
-    'kettlebell',
-    'machine',
-    'cable',
-    'band',
-    'bodyweight',
-    'other',
-  ])
+  z.enum(['barbell', 'dumbbell', 'kettlebell', 'machine', 'cable', 'band', 'bodyweight', 'other'])
 
 /** The seven coarse muscle groups, as a Zod enum reused by the row + write schemas. */
 const exerciseMuscleGroup = (): z.ZodType<ExerciseMuscleGroup> =>
@@ -481,9 +461,7 @@ export type WeightRoomExerciseRow = z.infer<typeof WeightRoomExerciseRowSchema>
  * consumed type stays `number | undefined` / `boolean | undefined` and read
  * sites can apply their documented defaults (1 / false / false).
  */
-export function exerciseRowToWeightRoomExercise(
-  row: WeightRoomExerciseRow,
-): WeightRoomExercise {
+export function exerciseRowToWeightRoomExercise(row: WeightRoomExerciseRow): WeightRoomExercise {
   return {
     slug: row.slug,
     display_name: row.display_name,
@@ -553,7 +531,7 @@ export const WeightRoomExerciseUpdateSchema = z
   .object(exerciseWriteFields)
   .strict()
   .partial()
-  .refine((patch) => Object.keys(patch).length > 0, {
+  .refine(patch => Object.keys(patch).length > 0, {
     message:
       'At least one field (display_name, equipment, muscle_group, load_multiplier, is_unilateral, or archived) is required.',
   })
@@ -602,7 +580,7 @@ export const WeightRoomMonthlyFocusCreateSchema = z
     end_date: z.string().regex(DATE_REGEX, 'end_date must be YYYY-MM-DD'),
   })
   .strict()
-  .refine((v) => v.end_date >= v.start_date, {
+  .refine(v => v.end_date >= v.start_date, {
     message: 'end_date must be on or after start_date',
     path: ['end_date'],
   })
@@ -633,8 +611,7 @@ const achievementScope = (): z.ZodType<AchievementScope> =>
   z.enum(['day', 'week', 'month', 'streak', 'lifetime', 'set'])
 
 /** The three achievement measures, as a Zod enum reused by the row + write schemas. */
-const achievementMeasure = (): z.ZodType<AchievementMeasure> =>
-  z.enum(['reps', 'tonnage', 'load'])
+const achievementMeasure = (): z.ZodType<AchievementMeasure> => z.enum(['reps', 'tonnage', 'load'])
 
 /**
  * Zod schema for one row of `public.weight_room_achievements` (#336) on read.
@@ -672,9 +649,7 @@ export type WeightRoomAchievementRow = z.infer<typeof WeightRoomAchievementRowSc
  * (`null` is meaningful); `color` / `icon` are omitted when absent so the
  * optional fields stay `string | undefined`.
  */
-export function achievementRowToAchievement(
-  row: WeightRoomAchievementRow,
-): WeightRoomAchievement {
+export function achievementRowToAchievement(row: WeightRoomAchievementRow): WeightRoomAchievement {
   const achievement: WeightRoomAchievement = {
     id: row.id,
     label: row.label,
@@ -757,7 +732,7 @@ export const WeightRoomAchievementUpdateSchema = z
   .object(achievementWriteFields)
   .strict()
   .partial()
-  .refine((patch) => Object.keys(patch).length > 0, {
+  .refine(patch => Object.keys(patch).length > 0, {
     message:
       'At least one field (label, exercise, scope, measure, threshold, color, or icon) is required.',
   })

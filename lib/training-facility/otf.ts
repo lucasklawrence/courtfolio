@@ -38,10 +38,31 @@ export interface OtfZoneConfig {
  * see {@link bpmRangeForOtfZone} to resolve them to bpm for a chosen maxHR.
  */
 export const OTF_ZONES: readonly OtfZoneConfig[] = [
-  { key: 'gray', shortLabel: 'Gray', label: 'Very light', color: '#9ca3af', minPct: 0.5, maxPct: 0.6 },
+  {
+    key: 'gray',
+    shortLabel: 'Gray',
+    label: 'Very light',
+    color: '#9ca3af',
+    minPct: 0.5,
+    maxPct: 0.6,
+  },
   { key: 'blue', shortLabel: 'Blue', label: 'Light', color: '#3b82f6', minPct: 0.61, maxPct: 0.7 },
-  { key: 'green', shortLabel: 'Green', label: 'Base', color: '#22c55e', minPct: 0.71, maxPct: 0.83 },
-  { key: 'orange', shortLabel: 'Orange', label: 'Challenging', color: '#f97316', minPct: 0.84, maxPct: 0.91 },
+  {
+    key: 'green',
+    shortLabel: 'Green',
+    label: 'Base',
+    color: '#22c55e',
+    minPct: 0.71,
+    maxPct: 0.83,
+  },
+  {
+    key: 'orange',
+    shortLabel: 'Orange',
+    label: 'Challenging',
+    color: '#f97316',
+    minPct: 0.84,
+    maxPct: 0.91,
+  },
   { key: 'red', shortLabel: 'Red', label: 'All out', color: '#dc2626', minPct: 0.92, maxPct: 1.0 },
 ]
 

@@ -23,7 +23,7 @@ vi.mock('framer-motion', async () => {
             const { animate: _a, transition: _t, initial: _i, ...rest } = props
             return react.createElement(tag, rest, children)
           },
-      },
+      }
     ),
   }
 })
@@ -43,7 +43,7 @@ function tier(
   exercise: string | null,
   scope: WeightRoomAchievement['scope'],
   threshold: number,
-  label: string,
+  label: string
 ): WeightRoomAchievement {
   return { id, label, exercise, scope, threshold }
 }
@@ -61,7 +61,7 @@ const SETS: StrengthSet[] = [set('2026-07-14', 'pushups', 150), set('2026-07-14'
 
 function renderRoom(
   sets: StrengthSet[] = SETS,
-  ladder: WeightRoomAchievement[] = LADDER,
+  ladder: WeightRoomAchievement[] = LADDER
 ): ReturnType<typeof render> {
   return render(<TrophyRoom view={buildTrophyRoomView(sets, GOALS, ladder)} />)
 }
@@ -91,19 +91,21 @@ describe('TrophyRoom', () => {
 
   it('dates an earned badge with the day it was first earned', () => {
     renderRoom()
-    expect(within(screen.getByTestId('trophy-badge-a')).getByText(/Raised Jul 14, 2026/)).toBeInTheDocument()
+    expect(
+      within(screen.getByTestId('trophy-badge-a')).getByText(/Raised Jul 14, 2026/)
+    ).toBeInTheDocument()
   })
 
   it('shows how far an unearned badge has to go, in its own units', () => {
     renderRoom()
     // 150 of a 250-rep day.
     expect(
-      within(screen.getByTestId('trophy-badge-b')).getByText(/best 150 · 100 reps to go/),
+      within(screen.getByTestId('trophy-badge-b')).getByText(/best 150 · 100 reps to go/)
     ).toBeInTheDocument()
     // A streak threshold counts days, not reps. The single logged day hits the
     // pushups goal, so the pooled streak stands at 1 of 30.
     expect(
-      within(screen.getByTestId('trophy-badge-e')).getByText(/best 1 · 29 days to go/),
+      within(screen.getByTestId('trophy-badge-e')).getByText(/best 1 · 29 days to go/)
     ).toBeInTheDocument()
   })
 
@@ -144,7 +146,7 @@ describe('TrophyRoom', () => {
     // pushups day-250 is at 60%, the pooled 30-day streak at 1/30 (~3%), and
     // pushups lifetime-10000 at 210/10000 (~2%).
     const cards = within(chase).getAllByTestId(/^trophy-chase-/)
-    expect(cards.map((c) => c.getAttribute('data-testid'))).toEqual([
+    expect(cards.map(c => c.getAttribute('data-testid'))).toEqual([
       'trophy-chase-b',
       'trophy-chase-e',
       'trophy-chase-c',
@@ -154,9 +156,11 @@ describe('TrophyRoom', () => {
 
   it('omits both strips when nothing is earned and nothing is in progress', () => {
     renderRoom([], LADDER)
-    expect(screen.queryByRole('region', { name: 'Recently raised banners' })).not.toBeInTheDocument()
     expect(
-      screen.queryByRole('region', { name: 'Achievements in progress' }),
+      screen.queryByRole('region', { name: 'Recently raised banners' })
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('region', { name: 'Achievements in progress' })
     ).not.toBeInTheDocument()
     // The full wall still renders — that's the point of an unearned ladder.
     expect(screen.getByRole('region', { name: 'Full achievement ladder' })).toBeInTheDocument()
@@ -213,7 +217,7 @@ describe('TrophyRoom — repeatable badges', () => {
     const recent = screen.getByRole('region', { name: 'Recently raised banners' })
     const titles = within(recent)
       .getAllByText(/Century Club|Half Century/)
-      .map((n) => n.textContent)
+      .map(n => n.textContent)
     expect(titles[0]).toBe('Century Club ×2')
     expect(titles[1]).toBe('Half Century')
   })

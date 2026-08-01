@@ -96,7 +96,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   // body mass) so those days can be skipped below and never overwritten.
   const manualBodyMassDates = new Set<string>()
   const hasBodyMass = batch.data.some(
-    (entry) => entry.body_mass_lbs !== null && entry.body_mass_lbs !== undefined
+    entry => entry.body_mass_lbs !== null && entry.body_mass_lbs !== undefined
   )
   if (hasBodyMass) {
     const { data: manualRows, error: manualErr } = await supabase

@@ -57,9 +57,9 @@ export default async function OtfMileageSettingsPage(): Promise<JSX.Element> {
             Mileage milestones
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Distance thresholds that light up a badge as each month&apos;s OTF
-            miles (treadmill + rower) add up. Edit a tier&apos;s distance and the
-            badges re-light instantly — nothing is stored per month.
+            Distance thresholds that light up a badge as each month&apos;s OTF miles (treadmill +
+            rower) add up. Edit a tier&apos;s distance and the badges re-light instantly — nothing
+            is stored per month.
           </p>
         </header>
 

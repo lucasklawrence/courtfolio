@@ -228,7 +228,7 @@ describe('formatDayKey', () => {
     const label = formatDayKey(
       '2026-07-11',
       { month: 'short', day: 'numeric', timeZone: 'Asia/Tokyo' },
-      'en-US',
+      'en-US'
     )
     expect(label).toBe('Jul 11')
   })
@@ -236,7 +236,7 @@ describe('formatDayKey', () => {
   it('formats a weekday label', () => {
     // 2026-05-25 is a Monday.
     expect(
-      formatDayKey('2026-05-25', { weekday: 'short', month: 'short', day: 'numeric' }, 'en-US'),
+      formatDayKey('2026-05-25', { weekday: 'short', month: 'short', day: 'numeric' }, 'en-US')
     ).toBe('Mon, May 25')
   })
 

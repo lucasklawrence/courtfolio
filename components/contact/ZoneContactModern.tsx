@@ -6,10 +6,7 @@ import { SafeSvgHtml } from '@/components/common/SafeSvgHtml'
 export function ZoneContactModern() {
   return (
     <SafeSvgHtml>
-      <SpringUp
-        delay={0.2}
-        className="text-gray-900 text-xs leading-snug font-sans p-2"
-      >
+      <SpringUp delay={0.2} className="text-gray-900 text-xs leading-snug font-sans p-2">
         <div className="flex gap-6">
           {/* Main left side */}
           <div className="flex-1 space-y-3">

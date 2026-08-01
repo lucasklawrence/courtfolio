@@ -91,13 +91,7 @@ type SpringUpDivProps = BaseDivProps & { delay?: number; y?: number }
  */
 export function FadeIn({ delay, duration, transition, ...rest }: FadeInDivProps) {
   const props = useFadeInProps({ delay, duration })
-  return (
-    <m.div
-      {...props}
-      transition={{ ...props.transition, ...transition }}
-      {...rest}
-    />
-  )
+  return <m.div {...props} transition={{ ...props.transition, ...transition }} {...rest} />
 }
 
 /**
@@ -113,13 +107,7 @@ export function FadeIn({ delay, duration, transition, ...rest }: FadeInDivProps)
  */
 export function FadeUp({ delay, duration, y, transition, ...rest }: FadeUpDivProps) {
   const props = useFadeUpProps({ delay, duration, y })
-  return (
-    <m.div
-      {...props}
-      transition={{ ...props.transition, ...transition }}
-      {...rest}
-    />
-  )
+  return <m.div {...props} transition={{ ...props.transition, ...transition }} {...rest} />
 }
 
 /**
@@ -134,13 +122,7 @@ export function FadeUp({ delay, duration, y, transition, ...rest }: FadeUpDivPro
  */
 export function SpringUp({ delay, y, transition, ...rest }: SpringUpDivProps) {
   const props = useSpringUpProps({ delay, y })
-  return (
-    <m.div
-      {...props}
-      transition={{ ...props.transition, ...transition }}
-      {...rest}
-    />
-  )
+  return <m.div {...props} transition={{ ...props.transition, ...transition }} {...rest} />
 }
 
 /** Props for the orchestrating parent returned by {@link useStaggerContainerProps}. */

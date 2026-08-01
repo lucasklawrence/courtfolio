@@ -71,13 +71,9 @@ export function LoginForm(): JSX.Element {
       </button>
       <div role="status" className="min-h-[1.25rem] font-mono text-[11px] tracking-wide">
         {status.kind === 'sent' && (
-          <span className="text-emerald-400">
-            Check {status.email} for the magic link.
-          </span>
+          <span className="text-emerald-400">Check {status.email} for the magic link.</span>
         )}
-        {status.kind === 'error' && (
-          <span className="text-rose-400">{status.message}</span>
-        )}
+        {status.kind === 'error' && <span className="text-rose-400">{status.message}</span>}
       </div>
     </form>
   )

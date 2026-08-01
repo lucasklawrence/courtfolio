@@ -77,7 +77,7 @@ export function estimateTextWidth(text: string, fontSize: number): number {
  */
 export function thinMonthLabels(
   labels: readonly HeatmapMonthLabel[],
-  { cellSize, totalCols, minGapPx = DEFAULT_MIN_MONTH_LABEL_GAP }: ThinMonthLabelsOptions,
+  { cellSize, totalCols, minGapPx = DEFAULT_MIN_MONTH_LABEL_GAP }: ThinMonthLabelsOptions
 ): HeatmapMonthLabel[] {
   if (labels.length === 0) return []
 
@@ -101,7 +101,7 @@ export function thinMonthLabels(
     if (entry.span > prev.span) kept[kept.length - 1] = entry
   }
 
-  return kept.map((k) => k.label)
+  return kept.map(k => k.label)
 }
 
 /**
@@ -121,7 +121,7 @@ export function monthLabelOverhang(
   labels: readonly HeatmapMonthLabel[],
   cellSize: number,
   gridWidth: number,
-  fontSize: number,
+  fontSize: number
 ): number {
   const last = labels[labels.length - 1]
   if (last === undefined) return 0
