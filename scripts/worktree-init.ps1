@@ -51,6 +51,22 @@
   you know the dependency delta is irrelevant to what you're running and don't
   want to wait for `npm ci`. Understand what it shares before using it.
 
+.PARAMETER Isolate
+  Force a real, isolated `node_modules` even when nothing has changed yet.
+
+  For the case the automatic detection cannot see: you are *about* to add a
+  dependency. Both checks look at what already exists -- committed diff and
+  working tree -- so on a branch where neither has happened, the script
+  junctions, and the `npm install` that follows writes THROUGH the junction
+  into the main checkout's install. Passing `-Isolate` up front skips that
+  whole trap.
+
+  If you only realise afterwards, re-running the script now works too: an
+  uncommitted `package.json` edit is detected and triggers isolation (#404).
+
+  Contradicts `-Link`; passing both is an error rather than a silent
+  precedence rule.
+
 .EXAMPLE
   powershell -File scripts/worktree-init.ps1
 
@@ -68,10 +84,19 @@
 [CmdletBinding()]
 param(
   [switch]$Force,
-  [switch]$Link
+  [switch]$Link,
+  [switch]$Isolate
 )
 
 $ErrorActionPreference = 'Stop'
+
+# Argument validation before anything that can fail for other reasons, so a
+# contradictory invocation reports itself rather than surfacing as whatever
+# git happens to complain about first.
+if ($Isolate -and $Link) {
+  Write-Error '-Isolate and -Link are contradictory: one forces a real install, the other forces the shared junction. Pass at most one.'
+  exit 1
+}
 
 # In a worktree, --git-common-dir points at the MAIN checkout's .git, while
 # --git-dir points at .git/worktrees/<name>. Equal values mean we're in the
@@ -116,19 +141,69 @@ if ($LASTEXITCODE -ne 0) {
   Write-Error 'git diff against origin/main failed - cannot determine whether this branch changes dependencies.'
   exit 1
 }
-$depsChanged = [bool]$changedDepFiles
+$committedDepChange = [bool]$changedDepFiles
 
-if ($depsChanged -and -not $Link) {
-  Write-Host 'node_modules  branch changes dependencies - installing in isolation'
+# Uncommitted dependency edits count too (#404). The committed check above only
+# sees `origin/main...HEAD`, so it is blind for the whole window between
+# editing package.json and committing it -- which is exactly when the risk is
+# live, because that is when you reach for `npm install`. It also made
+# CLAUDE.md's documented recovery ("re-run the bootstrap if you need to change
+# dependencies in a worktree that's already linked") a silent no-op: the re-run
+# saw no committed change and happily re-confirmed the junction.
+#
+# Any touch of package.json counts, including one that changes no dependency at
+# all -- a version bump, an edited script. That is a deliberate false positive
+# and matches how the committed check has always behaved: the cost of guessing
+# wrong is a slower-but-correct isolated install, whereas parsing the diff to
+# decide would be both fiddly and wrong the first time someone writes their
+# dependencies in a shape the parser didn't expect.
+$dirtyDepFiles = git status --porcelain -- package.json package-lock.json
+if ($LASTEXITCODE -ne 0) {
+  Write-Error 'git status on package.json failed - cannot determine whether this worktree has uncommitted dependency edits.'
+  exit 1
+}
+$uncommittedDepChange = [bool]$dirtyDepFiles
+
+$depsChanged = $committedDepChange -or $uncommittedDepChange
+
+if (($depsChanged -or $Isolate) -and -not $Link) {
+  # Name the trigger: three different conditions land here, and "why is this
+  # taking two minutes" is the first question when it fires unexpectedly.
+  $reason =
+    if ($Isolate) { '-Isolate requested' }
+    elseif ($committedDepChange) { 'branch changes dependencies' }
+    else { 'uncommitted dependency edits' }
+  Write-Host "node_modules  $reason - installing in isolation"
   $existing = if (Test-Path $dstModules) { Get-Item $dstModules -Force } else { $null }
   if ($existing -and $existing.LinkType -eq 'Junction') {
     # Never Remove-Item -Recurse a junction: it deletes the TARGET.
     cmd /c rmdir "$dstModules" | Out-Null
   }
-  # `ci` not `install`: honours the lockfile the branch is actually changing.
-  npm ci --prefix "$worktreeRoot"
+  # `ci` or `install`, depending on whether the lockfile can be trusted (#404).
+  #
+  # `npm ci` honours the lockfile exactly, which is right for a *committed*
+  # dependency change: the branch carries a coherent package.json + lock pair.
+  # But `ci` refuses outright when the two disagree, and mid-authoring they
+  # always do -- you have just added a dependency to package.json and the lock
+  # has not caught up. Running `ci` there fails with "package.json and
+  # package-lock.json are not in sync", leaving the worktree with no
+  # node_modules at all, which is a worse place than it started.
+  #
+  # So an uncommitted edit gets `install`, which updates the lock and is the
+  # command you actually wanted. It is safe here specifically because the
+  # junction has already been removed above -- that is the whole hazard this
+  # branch exists to avoid.
+  if ($uncommittedDepChange) {
+    Write-Host 'node_modules  uncommitted package.json - using `npm install` so the lockfile updates'
+    npm install --prefix "$worktreeRoot"
+    $installCmd = 'npm install'
+  }
+  else {
+    npm ci --prefix "$worktreeRoot"
+    $installCmd = 'npm ci'
+  }
   if ($LASTEXITCODE -ne 0) {
-    Write-Error 'npm ci failed - the worktree has no usable node_modules.'
+    Write-Error "$installCmd failed - the worktree has no usable node_modules."
     exit 1
   }
 }

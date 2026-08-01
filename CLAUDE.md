@@ -20,7 +20,13 @@ Supabase script fails on missing env. See `scripts/README.md`.
 it writes through the link into the main checkout's install and every other
 worktree sharing it. The bootstrap avoids this by giving dependency-changing
 branches a real isolated `npm ci` instead of a junction; if you need to change
-dependencies in a worktree that's already linked, re-run the bootstrap.
+dependencies in a worktree that's already linked, re-run the bootstrap — it
+detects the uncommitted `package.json` edit and reinstalls in isolation.
+
+If you know up front that you're adding a dependency, pass **`-Isolate`** on the
+first run and skip the junction entirely. The automatic detection can only see
+changes that already exist, so on a branch where you haven't made the edit yet
+there is nothing for it to find.
 
 Prefer `git worktree add` + `EnterWorktree({ path })` over
 `EnterWorktree({ name })`: the latter has crashed here mid-create, leaving an

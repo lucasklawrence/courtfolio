@@ -22,9 +22,34 @@ When the branch changes `package.json` or `package-lock.json` it does a real `np
 
 `-Link` forces the junction anyway, for when you know the dependency delta is irrelevant to what you're running. Know what it shares before reaching for it.
 
-Safe to re-run: an existing junction, an existing real install, and an existing `.env.local` are all left alone (`-Force` overwrites the env file). So a re-run is a no-op on a normal branch, but **does** repeat `npm ci` on a dependency branch — slow, and the only way to stay correct about a lockfile that may have moved.
+### Adding a dependency: `-Isolate`
 
-Refuses to run in the main checkout, where `node_modules` is real. Exits `0` when ready, `1` if run from the wrong place, the main checkout has no install to link, or `npm ci` fails.
+The check above reads the *committed* diff, so it can only see a dependency change that already exists. On a branch where you're **about to** add one, there's nothing to detect yet — you get a junction, and the `npm install` you run next writes through it into the main checkout. That's the trap, and it's easy to walk into because nothing looks wrong until something else breaks.
+
+Two ways out, depending on when you notice:
+
+```
+powershell -File scripts/worktree-init.ps1 -Isolate   # before: skip the junction entirely
+powershell -File scripts/worktree-init.ps1            # after:  re-run, it detects the edit
+```
+
+`-Isolate` forces a real install up front. And because the working tree is now checked too, simply **re-running the bootstrap** after editing `package.json` repairs a worktree that was already junctioned — it unlinks and installs for real. That's what `CLAUDE.md`'s "re-run the bootstrap" instruction has always promised; before this it did nothing.
+
+`-Isolate` and `-Link` contradict each other, so passing both is an error rather than a silent precedence rule.
+
+Which install command runs depends on whether the lockfile can be trusted:
+
+| situation | command | why |
+|---|---|---|
+| committed dependency change | `npm ci` | branch carries a coherent `package.json` + lock |
+| uncommitted `package.json` edit | `npm install` | lock hasn't caught up; `ci` **refuses** outright |
+| `-Isolate`, clean tree | `npm ci` | nothing has changed yet — install the lock, then add your package |
+
+That middle row is the whole reason the distinction exists. `npm ci` fails with *"can only install packages when your package.json and package-lock.json are in sync"* — so on the exact state this feature is for, a plain `ci` would leave the worktree with **no** `node_modules`, which is worse than where it started.
+
+Safe to re-run: an existing junction, an existing real install, and an existing `.env.local` are all left alone (`-Force` overwrites the env file). So a re-run is a no-op on a normal branch, but **does** repeat the install on a dependency branch — slow, and the only way to stay correct about a lockfile that may have moved.
+
+Refuses to run in the main checkout, where `node_modules` is real. Exits `0` when ready, `1` if run from the wrong place, the main checkout has no install to link, `-Isolate` and `-Link` are combined, or the install fails.
 
 Without this, the first thing a new worktree shows you is a wall of red tests — which is how a worktree convention dies. See `CLAUDE.md` § Work in a worktree.
 
