@@ -18,6 +18,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { requireAdmin } from '@/lib/auth/require-admin'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
+import { pacificDayKey } from '@/lib/training-facility/day-keys'
 
 interface Context {
   params: Promise<{ exercise: string }>
@@ -34,6 +35,7 @@ interface Context {
  * - 401 — not signed in
  * - 403 — not on the allowlist
  * - 404 — no goal exists for `exercise`
+ * - 409 — an active or upcoming monthly focus still depends on this goal (#384)
  * - 500 — unexpected Supabase error
  *
  * @param _request Unused — DELETE has no body. Required by Next.js
@@ -59,6 +61,39 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
   }
 
   const supabase = createAdminSupabaseClient()
+
+  // A live or queued monthly focus depends on this goal for its ring (#384).
+  // Before #373 the FK cascaded from here, so deleting the goal took the focus
+  // rows with it — which erased the record that, say, July was shrugs month.
+  // The focus now survives (deliberately: #363's rotation history needs it),
+  // but it would render without its ring, so refuse rather than half-break it.
+  // Past windows are not a blocker: a finished focus is history, and history is
+  // exactly what should outlive the goal.
+  const today = pacificDayKey(new Date())
+  const { data: blockingFocus, error: focusError } = await supabase
+    .from('weight_room_monthly_focus')
+    .select('start_date, end_date')
+    .eq('exercise', trimmed)
+    .gte('end_date', today)
+    .order('start_date', { ascending: true })
+    .limit(1)
+    .maybeSingle()
+
+  if (focusError) {
+    return NextResponse.json(
+      { error: `Failed to check monthly focus: ${focusError.message}` },
+      { status: 500 }
+    )
+  }
+  if (blockingFocus) {
+    return NextResponse.json(
+      {
+        error: `'${trimmed}' has a monthly focus running through ${blockingFocus.end_date}. Remove or end that focus first — deleting the goal now would leave the focus without its daily ring.`,
+      },
+      { status: 409 }
+    )
+  }
+
   const { data, error } = await supabase
     .from('weight_room_goals')
     .delete()

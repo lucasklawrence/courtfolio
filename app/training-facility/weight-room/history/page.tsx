@@ -140,7 +140,10 @@ export default async function WeightRoomHistoryPage({
     const value = Array.isArray(raw) ? raw[0] : raw
     if (typeof value === 'string' && value !== '') carryParams[key] = value
   }
-  const loads = buildMovementLoads(sets, goals)
+  // The catalog classifies each movement as load- or rep-driven from its
+  // equipment (#384); without it the panel falls back to guessing from the
+  // share of weighted sets.
+  const loads = buildMovementLoads(sets, goals, undefined, data?.exercises ?? [])
   const bodyMass = cardio?.body_mass_trend ?? []
 
   // The relative-strength overlay is featured for pull-ups specifically —

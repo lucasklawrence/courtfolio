@@ -5,7 +5,12 @@ import {
   FLAG_SEVERITY,
   type RampFlag,
 } from '@/constants/ramp-rate'
-import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import type {
+  ExerciseEquipment,
+  ExerciseGoal,
+  StrengthSet,
+  WeightRoomExercise,
+} from '@/types/weight-room'
 
 import { pacificDayKey, shiftDayKey } from './day-keys'
 
@@ -41,6 +46,11 @@ const CHRONIC_DAYS = 28
  * like pull-ups stays rep-based even if it has the occasional weighted
  * set. Decided over the chronic window (not all history) so a movement
  * that recently switched loading regime is scored on its current scale.
+ *
+ * Since #384 this is the *fallback*: a movement in the exercise catalog is
+ * classified from its `equipment` instead — see {@link isLoadDriven}. The
+ * threshold still decides movements the catalog doesn't know, and still
+ * decides bodyweight movements that carry added load.
  */
 const LOADED_SET_FRACTION = 0.5
 
@@ -105,6 +115,43 @@ export interface MovementLoad {
 }
 
 /**
+ * Decide whether a movement's ramp is driven by **load volume** (tonnage) or
+ * **rep volume**.
+ *
+ * Catalog-first as of #384: `equipment` states how a movement is loaded, which
+ * is a fact rather than the inference the share-of-weighted-sets threshold was
+ * making. Two deliberate exceptions keep it honest:
+ *
+ * - **A bodyweight movement that carries added load still falls back to the
+ *   threshold.** Weighted pull-ups and dip-belt dips are `equipment:
+ *   'bodyweight'` but their stress genuinely is load-driven once the belt goes
+ *   on, and the catalog can't know that from the movement alone.
+ * - **A loaded movement with nothing weighted in the window falls back to
+ *   reps.** Trusting the catalog there would score it by a tonnage of zero,
+ *   and the caller drops zero-volume movements — so a barbell movement logged
+ *   without loads would silently vanish from the panel instead of showing its
+ *   rep volume.
+ *
+ * A movement absent from the catalog keeps the pre-#384 behavior exactly.
+ *
+ * @param equipment The movement's catalog equipment, or `undefined` when it has
+ *   no catalog row.
+ * @param inWindowSets Sets inside the chronic window. Never `0` — the caller
+ *   skips dormant movements before calling.
+ * @param inWindowWeighted How many of those carried a positive `weight_lbs`.
+ */
+function isLoadDriven(
+  equipment: ExerciseEquipment | undefined,
+  inWindowSets: number,
+  inWindowWeighted: number,
+): boolean {
+  const meetsThreshold = inWindowWeighted / inWindowSets >= LOADED_SET_FRACTION
+  if (equipment === undefined) return meetsThreshold
+  if (equipment === 'bodyweight') return meetsThreshold
+  return inWindowWeighted > 0
+}
+
+/**
  * Build one {@link MovementLoad} per actively-ramped movement from raw
  * set rows. A movement is included only when it has volume in the
  * trailing 28-day chronic window — dormant movements (last trained months
@@ -122,14 +169,20 @@ export interface MovementLoad {
  *   color lookup.
  * @param now override for the "today" anchor of every window. Defaults to
  *   `new Date()`; tests pass a fixed instant for determinism.
+ * @param exercises the movement catalog (#384), used to classify each movement
+ *   as load- or rep-driven from its `equipment` rather than guessing from the
+ *   share of weighted sets. Omitted or missing a movement falls back to the
+ *   pre-#384 threshold — see {@link isLoadDriven}.
  */
 export function buildMovementLoads(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[] = [],
   now: Date = new Date(),
+  exercises: readonly WeightRoomExercise[] = [],
 ): MovementLoad[] {
   const todayKey = pacificDayKey(now)
   const colorByExercise = new Map(goals.map(g => [g.exercise, g.color]))
+  const equipmentByExercise = new Map(exercises.map(e => [e.slug, e.equipment]))
 
   // Precompute the trailing chronic-window day keys once — they're shared
   // by every movement. Index 0 is today; index CHRONIC_DAYS-1 is the
@@ -179,7 +232,11 @@ export function buildMovementLoads(
     // the panel only shows what's actively being ramped.
     if (inWindowSets === 0) continue
 
-    const loaded = inWindowWeighted / inWindowSets >= LOADED_SET_FRACTION
+    const loaded = isLoadDriven(
+      equipmentByExercise.get(movement),
+      inWindowSets,
+      inWindowWeighted,
+    )
     const volByOffset = loaded ? loadByOffset : repByOffset
 
     let chronic28d = 0
