@@ -145,6 +145,17 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const now = new Date()
   const startedAt = entry.started_at ?? now.toISOString()
 
+  // The schema only checks `started_at` is a non-empty string, so a supplied
+  // one still has to be a real instant. Without this, a body carrying garbage
+  // and no `ended_at` skips the window check below entirely and the value
+  // reaches Postgres as a 500.
+  if (entry.started_at !== undefined && !Number.isFinite(new Date(entry.started_at).getTime())) {
+    return NextResponse.json(
+      { error: 'started_at must be a valid ISO 8601 timestamp.' },
+      { status: 400 }
+    )
+  }
+
   // Checked here as well as by the table's CHECK so the caller gets a 400 with
   // an explanation rather than a 500 wrapping a constraint name. Compared as
   // instants, not strings — see {@link endsBeforeStart}.

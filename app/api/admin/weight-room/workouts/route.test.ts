@@ -166,6 +166,16 @@ describe('POST /api/admin/weight-room/workouts', () => {
     expect(res.status).toBe(201)
   })
 
+  it('rejects an unparseable started_at even with no ended_at to compare against', async () => {
+    // The window check below only runs when ended_at is supplied, so without
+    // this guard a garbage started_at would reach Postgres as a 500.
+    const res = await POST(postRequest({ started_at: 'tuesday' }) as never)
+    expect(res.status).toBe(400)
+    const body = await res.json()
+    expect(body.error).toMatch(/started_at must be a valid ISO/i)
+    expect(inserts).toHaveLength(0)
+  })
+
   it('rejects an unparseable ended_at with a 400 rather than passing it to Postgres', async () => {
     const res = await POST(
       postRequest({ started_at: '2026-08-01T10:00:00Z', ended_at: 'yesterday' }) as never,
