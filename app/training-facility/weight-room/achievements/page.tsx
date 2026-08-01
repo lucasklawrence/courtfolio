@@ -39,7 +39,12 @@ export default async function WeightRoomAchievementsPage(): Promise<JSX.Element>
     isAdminRequest().catch(() => false),
   ])
 
-  const view = buildTrophyRoomView(data?.sets ?? [], data?.goals ?? [], achievements)
+  const view = buildTrophyRoomView(
+    data?.sets ?? [],
+    data?.goals ?? [],
+    achievements,
+    data?.exercises ?? [],
+  )
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">

@@ -180,8 +180,34 @@ describe('SetList — catalog labels (#384)', () => {
     expect(screen.getByTestId('set-list-total-barbell-bench-press')).toBeInTheDocument()
   })
 
-  it('falls back to the slug for a set whose goal was deleted', () => {
-    // Sets outlive their goal by design (#373), so this is a live path.
+  it('still labels a set whose goal was deleted, from the catalog', () => {
+    // Sets outlive their goal by design (#373), so this is a live path — and
+    // the catalog still holds the label even though the goal is gone.
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{}}
+        labels={new Map([['barbell-bench-press', 'Barbell Bench Press']])}
+      />,
+    )
+    expect(screen.getAllByText('Barbell Bench Press').length).toBeGreaterThan(0)
+    expect(screen.queryByText('barbell-bench-press')).toBeNull()
+  })
+
+  it('prefers the catalog label over a stale one joined onto the goal', () => {
+    // The catalog is the owner; a goal's joined copy is a read-time convenience.
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{ 'barbell-bench-press': { ...BENCH, display_name: 'Stale Name' } }}
+        labels={new Map([['barbell-bench-press', 'Barbell Bench Press']])}
+      />,
+    )
+    expect(screen.getAllByText('Barbell Bench Press').length).toBeGreaterThan(0)
+    expect(screen.queryByText('Stale Name')).toBeNull()
+  })
+
+  it('falls back to the slug with neither catalog nor goal', () => {
     render(
       <SetList
         setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}

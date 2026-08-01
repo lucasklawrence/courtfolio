@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { exerciseLabel, slugLabel } from './exercise-labels'
+import { buildExerciseLabels, exerciseLabel, slugLabel } from './exercise-labels'
 
 describe('exerciseLabel (#384)', () => {
   it('prefers the catalog label', () => {
@@ -43,3 +43,35 @@ describe('slugLabel (#384)', () => {
     expect(slugLabel('barbell-row', { exercise: 'barbell-row' })).toBe('barbell-row')
   })
 })
+
+describe('buildExerciseLabels (#384)', () => {
+  it('maps slugs to catalog labels', () => {
+    const labels = buildExerciseLabels([
+      { slug: 'farmers-carry', display_name: "Farmer's Carry" },
+      { slug: 'pushups', display_name: 'Pushups' },
+    ])
+    expect(labels.get('farmers-carry')).toBe("Farmer's Carry")
+    expect(labels.size).toBe(2)
+  })
+
+  it('is empty when the roster is absent, so callers fall back to slugs', () => {
+    expect(buildExerciseLabels(undefined).size).toBe(0)
+    expect(slugLabel('pushups', undefined, buildExerciseLabels(undefined))).toBe('pushups')
+  })
+
+  it('lets the catalog win over a goal-joined label', () => {
+    // The catalog owns the name; the goal's copy is a read-time convenience,
+    // and it's the catalog that survives the goal being deleted.
+    const labels = buildExerciseLabels([{ slug: 'dips', display_name: 'Dips' }])
+    expect(slugLabel('dips', { exercise: 'dips', display_name: 'Stale' }, labels)).toBe('Dips')
+  })
+
+  it('resolves a movement whose goal was deleted', () => {
+    // The case codex caught: sets and achievement tiers outlive their goal.
+    const labels = buildExerciseLabels([
+      { slug: 'barbell-row', display_name: 'Barbell Row' },
+    ])
+    expect(slugLabel('barbell-row', undefined, labels)).toBe('Barbell Row')
+  })
+})
+

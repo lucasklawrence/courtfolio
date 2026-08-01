@@ -32,7 +32,11 @@ import { QuickLog } from './QuickLog'
 import { SetList } from './SetList'
 import { StreakBadge } from './StreakBadge'
 import { UpcomingFocusStrip } from './UpcomingFocusStrip'
-import { exerciseLabel, slugLabel } from '@/lib/training-facility/exercise-labels'
+import {
+  buildExerciseLabels,
+  exerciseLabel,
+  slugLabel,
+} from '@/lib/training-facility/exercise-labels'
 
 /**
  * Admin Log View data island (#197). Owns the strength dataset that
@@ -180,6 +184,7 @@ export function LogDataIsland(): JSX.Element {
   const streaks = computeStrengthStreaks(surfaceData.sets, visibleGoals)
   // SetList color/label lookup spans *all* goals (incl. inactive focuses)
   // so a backfilled out-of-window set still resolves its exercise.
+  const exerciseLabels = buildExerciseLabels(surfaceData.exercises)
   const goalsByExercise = Object.fromEntries(
     surfaceData.goals.map((g) => [g.exercise, forSelectedDay(g)]),
   )
@@ -281,8 +286,14 @@ export function LogDataIsland(): JSX.Element {
           <SetList
             setsToday={setsForDay}
             goalsByExercise={goalsByExercise}
+            labels={exerciseLabels}
             onDelete={(s) =>
-              deleteSet(s, setBusy, refetch, slugLabel(s.exercise, goalsByExercise[s.exercise]))
+              deleteSet(
+                s,
+                setBusy,
+                refetch,
+                slugLabel(s.exercise, goalsByExercise[s.exercise], exerciseLabels),
+              )
             }
             busy={busy}
             dayLabel={isBackfilling ? formatDayLabel(selectedDay) || selectedDay : 'Today'}

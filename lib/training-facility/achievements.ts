@@ -4,6 +4,7 @@ import type {
   ExerciseGoal,
   StrengthSet,
   WeightRoomAchievement,
+  WeightRoomExercise,
 } from '@/types/weight-room'
 
 import { targetResolverFor } from './goal-targets'
@@ -539,17 +540,26 @@ const STRIP_SIZE = 6
  * @param goals Configured exercises; supplies streak targets and group accents.
  * @param achievements The ladder from `weight_room_achievements`; may be empty
  *   (yields an empty view, which the page renders as its empty state).
+ * @param exercises The movement roster, for display labels (#384). Tiers are
+ *   deliberately not FK'd to goals — deleting a goal keeps its badges — so the
+ *   label has to come from the catalog, not from `goals`, or a movement with
+ *   tiers and no goal renders its raw slug.
  */
 export function buildTrophyRoomView(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   achievements: readonly WeightRoomAchievement[],
+  exercises: readonly WeightRoomExercise[] = [],
 ): TrophyRoomView {
   const colorByExercise = new Map(goals.map((g) => [g.exercise, g.color]))
-  // Catalog labels ride in on the goals (#384). A movement with tiers but no
-  // goal falls back to its slug — the catalog-only case is what #377's pooled
-  // decision has to settle before it can be reached anyway.
-  const labelByExercise = new Map(goals.map((g) => [g.exercise, g.display_name]))
+  // Catalog first, goal-joined label second (#384). Achievements outlive their
+  // goal, so a goals-only lookup would drop back to the slug for exactly the
+  // movements whose badges were deliberately preserved.
+  const labelByExercise = new Map<string, string>()
+  for (const g of goals) {
+    if (g.display_name !== undefined) labelByExercise.set(g.exercise, g.display_name)
+  }
+  for (const e of exercises) labelByExercise.set(e.slug, e.display_name)
   const multiplierByExercise = new Map(
     goals.map((g) => [g.exercise, Math.max(1, g.load_multiplier ?? 1)]),
   )

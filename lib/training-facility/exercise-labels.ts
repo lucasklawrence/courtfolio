@@ -35,15 +35,42 @@ export function exerciseLabel(named: ExerciseNamed): string {
   return named.display_name ?? named.exercise
 }
 
+/** Slug → catalog label, for surfaces that iterate slugs rather than goals. */
+export type ExerciseLabels = ReadonlyMap<string, string>
+
 /**
- * Label for a bare slug, given the catalog-joined record for it if one exists.
+ * Build a slug → label lookup straight from the roster.
  *
- * For surfaces that iterate raw slugs — a day's sets, the filter chips — rather
- * than goal objects.
+ * Needed wherever a movement can outlive its daily goal, which is a supported
+ * state rather than an edge case: deleting a goal deliberately keeps its logged
+ * sets (#373) and its achievement tiers, and the catalog row survives both. A
+ * lookup built from `goals` alone would drop back to the slug for exactly those
+ * movements — which is the bug codex caught on this PR.
+ *
+ * @param exercises `WeightRoomData.exercises`; absent yields an empty map, and
+ *   every caller then falls back to the slug.
+ */
+export function buildExerciseLabels(
+  exercises: readonly { slug: string; display_name: string }[] | undefined,
+): ExerciseLabels {
+  return new Map((exercises ?? []).map((e) => [e.slug, e.display_name]))
+}
+
+/**
+ * Label for a bare slug.
+ *
+ * Prefers the catalog, then a goal/focus that carries the joined label, then
+ * the slug itself. The catalog wins because it's the surface that still has a
+ * row when the goal is gone.
  *
  * @param slug The movement slug to label.
  * @param named The goal/focus for that slug, if the caller has one.
+ * @param labels Catalog lookup from {@link buildExerciseLabels}, if available.
  */
-export function slugLabel(slug: string, named?: ExerciseNamed): string {
-  return named?.display_name ?? slug
+export function slugLabel(
+  slug: string,
+  named?: ExerciseNamed,
+  labels?: ExerciseLabels,
+): string {
+  return labels?.get(slug) ?? named?.display_name ?? slug
 }

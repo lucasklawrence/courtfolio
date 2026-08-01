@@ -556,6 +556,22 @@ describe('buildTrophyRoomView', () => {
     set('2026-07-15', 'pushups', 120),
   ]
 
+  it('labels groups from the catalog, including movements whose goal is gone', () => {
+    // Tiers are deliberately not FK'd to goals — deleting a goal keeps its
+    // badges — so a goals-only lookup would render the raw slug here (#384).
+    const catalog = [
+      { slug: 'pushups', display_name: 'Pushups', equipment: 'bodyweight' as const, muscle_group: 'chest' as const },
+      { slug: 'pullups', display_name: 'Pullups', equipment: 'bodyweight' as const, muscle_group: 'back' as const },
+    ]
+    const view = buildTrophyRoomView(SETS, [], LADDER, catalog)
+    expect(view.groups.map((g) => g.label)).toEqual([POOLED_LABEL, 'Pullups', 'Pushups'])
+  })
+
+  it('falls back to the slug with no catalog', () => {
+    const view = buildTrophyRoomView(SETS, [], LADDER)
+    expect(view.groups.map((g) => g.label)).toEqual([POOLED_LABEL, 'pullups', 'pushups'])
+  })
+
   it('puts the pooled ladder first, then exercises alphabetically', () => {
     const view = buildTrophyRoomView(SETS, GOALS, LADDER)
     expect(view.groups.map((g) => g.label)).toEqual([POOLED_LABEL, 'pullups', 'pushups'])
