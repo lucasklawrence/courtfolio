@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# Formats staged .ts/.tsx through prettier before the commit is written (#398).
+#
+# The shebang is load-bearing on Windows: without it git cannot exec the file
+# and fails with a misleading "cannot spawn .husky/pre-commit: No such file or
+# directory" even though the file is plainly there. The executable bit is
+# recorded in git's index (`git update-index --chmod=+x`) so it survives for
+# anyone who clones, regardless of their `core.fileMode`.
+#
+# This is convenience, not the guarantee — it can be skipped with
+# `--no-verify`, it doesn't exist until someone runs `npm install`, and it
+# never runs for a commit made through the GitHub web UI. `npm run
+# format:check` in the Lint workflow is what actually enforces the rule.
+npx lint-staged
