@@ -103,16 +103,56 @@ export function LiveWorkoutPanel({
       .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
   }, [sets, workout])
 
-  /** The template this session is running, if it named one we still have. */
+  /**
+   * The template this session is running.
+   *
+   * By id. Matching on `title` resolves to the wrong template whenever two
+   * share a name — nothing constrains them to be unique — and loses the
+   * prescription entirely if one is renamed mid-session. The title fallback
+   * exists only for sessions started before `template_id` existed.
+   */
   const template = useMemo(() => {
-    if (!workout?.title) return null
+    if (!workout) return null
+    if (workout.template_id !== undefined) {
+      return templates.find(t => t.id === workout.template_id) ?? null
+    }
+    if (!workout.title) return null
     return templates.find(t => t.name === workout.title) ?? null
   }, [templates, workout])
 
   const progress = useMemo(() => buildSlotProgress(template, workoutSets), [template, workoutSets])
+
+  /**
+   * The most recent set of each movement across all history, for the first-set
+   * prefill. Most seeded slots prescribe sets but not reps, so without this the
+   * documented history fallback in `nextSetDefaults` is unreachable and every
+   * such slot opens with blank inputs.
+   */
+  const lastByExercise = useMemo(() => {
+    const map = new Map<string, StrengthSet>()
+    for (const set of sets) {
+      const seen = map.get(set.exercise)
+      if (seen === undefined || set.logged_at > seen.logged_at) map.set(set.exercise, set)
+    }
+    return map
+  }, [sets])
   const extras = useMemo(() => extraSets(workoutSets), [workoutSets])
 
-  async function post(url: string, init: RequestInit, fallback: string): Promise<boolean> {
+  /**
+   * Issue a write and hold the controls disabled until any follow-up settles.
+   *
+   * `after` runs *inside* the busy window on purpose. Clearing `busy` when the
+   * response lands but before the parent refetch completes re-enables the
+   * buttons while `workoutSets` still holds the pre-write list — a second tap
+   * in that gap computes the same `nextSetPosition`, and two sets end up
+   * sharing an index with an ambiguous performed order.
+   */
+  async function post(
+    url: string,
+    init: RequestInit,
+    fallback: string,
+    after?: () => void | Promise<void>
+  ): Promise<boolean> {
     setError(null)
     setBusy(true)
     try {
@@ -125,6 +165,7 @@ export function LiveWorkoutPanel({
         setError(body.error ?? `${fallback} (${res.status})`)
         return false
       }
+      await after?.()
       return true
     } catch {
       setError(`${fallback} — the request didn't reach the server. Try again.`)
@@ -142,15 +183,16 @@ export function LiveWorkoutPanel({
         method: 'POST',
         body: JSON.stringify({
           location: 'gym',
-          ...(chosen ? { title: chosen.name } : {}),
+          ...(chosen ? { template_id: chosen.id, title: chosen.name } : {}),
         }),
       },
-      'Could not start the workout'
+      'Could not start the workout',
+      async () => {
+        setWorkout(await fetchOpen())
+        await onChanged()
+      }
     )
-    if (ok) {
-      setWorkout(await fetchOpen())
-      await onChanged()
-    }
+    if (!ok) return
   }
 
   async function endWorkout(): Promise<void> {
@@ -158,12 +200,13 @@ export function LiveWorkoutPanel({
     const ok = await post(
       `/api/admin/weight-room/workouts/${workout.id}`,
       { method: 'PATCH', body: JSON.stringify({ ended_at: new Date().toISOString() }) },
-      'Could not end the workout'
+      'Could not end the workout',
+      async () => {
+        setWorkout(null)
+        await onChanged()
+      }
     )
-    if (ok) {
-      setWorkout(null)
-      await onChanged()
-    }
+    if (!ok) return
   }
 
   async function logSet(
@@ -171,9 +214,9 @@ export function LiveWorkoutPanel({
     reps: number,
     weightLbs: number | null,
     slotId: string | null
-  ): Promise<void> {
-    if (!workout) return
-    const ok = await post(
+  ): Promise<boolean> {
+    if (!workout) return false
+    return post(
       '/api/admin/weight-room/sets',
       {
         method: 'POST',
@@ -186,18 +229,19 @@ export function LiveWorkoutPanel({
           ...(slotId != null ? { template_slot_id: slotId } : {}),
         }),
       },
-      'Could not log the set'
+      'Could not log the set',
+      onChanged
     )
-    if (ok) await onChanged()
   }
 
   async function deleteSet(id: string): Promise<void> {
     const ok = await post(
       `/api/admin/weight-room/sets/${id}`,
       { method: 'DELETE' },
-      'Could not remove the set'
+      'Could not remove the set',
+      onChanged
     )
-    if (ok) await onChanged()
+    if (!ok) return
   }
 
   if (workout === undefined) {
@@ -286,6 +330,7 @@ export function LiveWorkoutPanel({
               entry={entry}
               exercises={exercises}
               labels={labels}
+              lastElsewhere={lastByExercise.get(entry.performedExercise) ?? null}
               disabled={disabled || busy}
               onLog={logSet}
               onDeleteSet={deleteSet}
@@ -355,13 +400,18 @@ interface SlotCardProps {
   exercises: readonly WeightRoomExercise[]
   /** Slug → display-name lookup, built from the roster by the parent. */
   labels: ReturnType<typeof buildExerciseLabels>
+  /**
+   * The most recent set of this movement from any earlier session, for the
+   * first-set prefill when the slot prescribes no reps.
+   */
+  lastElsewhere: StrengthSet | null
   disabled: boolean
   onLog: (
     exercise: string,
     reps: number,
     weightLbs: number | null,
     slotId: string | null
-  ) => Promise<void>
+  ) => Promise<boolean>
   onDeleteSet: (id: string) => Promise<void>
 }
 
@@ -369,12 +419,13 @@ function SlotCard({
   entry,
   exercises,
   labels,
+  lastElsewhere,
   disabled,
   onLog,
   onDeleteSet,
 }: SlotCardProps): JSX.Element {
   const { slot, sets, logged, performedExercise, isSubstituted, isComplete } = entry
-  const defaults = nextSetDefaults(slot, sets)
+  const defaults = nextSetDefaults(slot, sets, lastElsewhere)
   const [reps, setReps] = useState<string>(defaults.reps?.toString() ?? '')
   const [weight, setWeight] = useState<string>(defaults.weight_lbs?.toString() ?? '')
   const [swapOpen, setSwapOpen] = useState(false)
@@ -519,7 +570,8 @@ function SlotCard({
 interface AddMovementProps {
   exercises: readonly WeightRoomExercise[]
   disabled: boolean
-  onLog: (exercise: string, reps: number, weightLbs: number | null) => Promise<void>
+  /** Resolves `true` only when the write was confirmed by the server. */
+  onLog: (exercise: string, reps: number, weightLbs: number | null) => Promise<boolean>
 }
 
 function AddMovement({ exercises, disabled, onLog }: AddMovementProps): JSX.Element {
@@ -587,11 +639,16 @@ function AddMovement({ exercises, disabled, onLog }: AddMovementProps): JSX.Elem
           const repsValue = Number(reps)
           if (!Number.isFinite(repsValue) || repsValue < 1) return
           const weightValue = weight.trim() === '' ? null : Number(weight)
+          // Only clear on a confirmed write. Clearing regardless makes the
+          // advertised retryable failure useless — you'd have to remember the
+          // reps you just typed and enter them again.
           void onLog(
             exercise,
             repsValue,
             weightValue != null && Number.isFinite(weightValue) ? weightValue : null
-          ).then(() => setReps(''))
+          ).then(logged => {
+            if (logged) setReps('')
+          })
         }}
         className="self-end rounded-full border border-amber-200/40 bg-amber-200/15 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-amber-100 transition hover:bg-amber-200/25 disabled:cursor-not-allowed disabled:opacity-40"
       >

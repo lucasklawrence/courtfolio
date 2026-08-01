@@ -26,7 +26,7 @@ import {
 } from '@/lib/training-facility/workout-sessions'
 
 /** Columns returned by both handlers, matching `WeightRoomWorkoutRowSchema`. */
-const WORKOUT_COLUMNS = 'id, started_at, ended_at, title, location, notes'
+const WORKOUT_COLUMNS = 'id, started_at, ended_at, template_id, title, location, notes'
 
 /** How many sessions `GET` returns without `?open=true`. */
 const DEFAULT_LIMIT = 50
@@ -184,6 +184,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const insertRow = {
     started_at: startedAt,
     ...(entry.ended_at != null ? { ended_at: entry.ended_at } : {}),
+    ...(entry.template_id != null ? { template_id: entry.template_id } : {}),
     ...(entry.title != null ? { title: entry.title } : {}),
     ...(entry.location != null ? { location: entry.location } : {}),
     ...(entry.notes != null ? { notes: entry.notes } : {}),

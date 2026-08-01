@@ -335,6 +335,7 @@ export const WeightRoomWorkoutRowSchema = z
     id: z.string().uuid(),
     started_at: z.string().min(1, 'started_at must be an ISO timestamp'),
     ended_at: z.string().nullable().optional(),
+    template_id: z.string().uuid().nullable().optional(),
     title: z.string().nullable().optional(),
     location: workoutLocation().nullable().optional(),
     notes: z.string().nullable().optional(),
@@ -355,6 +356,7 @@ export function workoutRowToWeightRoomWorkout(row: WeightRoomWorkoutRow): Weight
     id: row.id,
     started_at: row.started_at,
     ...(row.ended_at != null ? { ended_at: row.ended_at } : {}),
+    ...(row.template_id != null ? { template_id: row.template_id } : {}),
     ...(row.title != null && row.title !== '' ? { title: row.title } : {}),
     ...(row.location != null ? { location: row.location } : {}),
     ...(row.notes != null && row.notes !== '' ? { notes: row.notes } : {}),
@@ -416,6 +418,9 @@ export const WeightRoomWorkoutCreateSchema = z
   .object({
     started_at: z.string().min(1).optional(),
     ended_at: z.string().min(1).optional(),
+    // Which template this session runs (#376), by id — never by title, which
+    // is free text and not unique across templates.
+    template_id: z.string().uuid().optional(),
     title: optionalTextField(80),
     location: workoutLocation().optional(),
     notes: optionalTextField(2000),

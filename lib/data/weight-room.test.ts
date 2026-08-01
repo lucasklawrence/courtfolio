@@ -293,6 +293,56 @@ describe('getWeightRoomData', () => {
   })
 })
 
+describe('getWeightRoomData — slot attribution (#376)', () => {
+  it('carries template_slot_id through to the assembled set', async () => {
+    // The column has to be in SETS_COLUMNS, not just in the row schema.
+    // Without it every refetch silently strips the link, so a set logged
+    // against a slot immediately reappears as extra work and the slot's
+    // counter never leaves zero — the feature looks broken on the first set.
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-08-01T18:05:00Z',
+        exercise: 'barbell-bench-press',
+        reps: 5,
+        weight_lbs: 185,
+        workout_id: '22222222-2222-4222-8222-222222222222',
+        position: 0,
+        template_slot_id: '33333333-3333-4333-8333-333333333333',
+        updated_at: '2026-08-01T18:05:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.sets[0]).toMatchObject({
+      template_slot_id: '33333333-3333-4333-8333-333333333333',
+      weight_lbs: 185,
+    })
+  })
+
+  it('omits it for extra work rather than surfacing a null', async () => {
+    stubTable('weight_room_sets', [
+      {
+        id: '44444444-4444-4444-8444-444444444444',
+        logged_at: '2026-08-01T18:05:00Z',
+        exercise: 'pec-deck',
+        reps: 12,
+        workout_id: '22222222-2222-4222-8222-222222222222',
+        position: 1,
+        template_slot_id: null,
+        updated_at: '2026-08-01T18:05:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.sets[0]).not.toHaveProperty('template_slot_id')
+  })
+})
+
 describe('getWeightRoomData — session membership (#374)', () => {
   it('carries workout_id and position through to the assembled set', async () => {
     stubTable('weight_room_sets', [
