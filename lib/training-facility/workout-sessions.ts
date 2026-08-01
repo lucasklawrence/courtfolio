@@ -93,6 +93,28 @@ export function autoEndTimestamp(
 }
 
 /**
+ * Whether `endedAt` lands strictly before `startedAt`, compared as **instants**.
+ *
+ * String comparison is wrong here even though both sides are ISO 8601: the
+ * format only sorts lexicographically when every value shares one UTC offset,
+ * and this codebase mixes them — `dayKeyToPacificNoonIso` emits `-07:00`/`-08:00`
+ * offsets while `new Date().toISOString()` emits `Z`. `2026-08-01T05:00:00-07:00`
+ * is two hours *after* `2026-08-01T10:00:00Z` and sorts before it.
+ *
+ * @param startedAt ISO timestamp the session began.
+ * @param endedAt ISO timestamp the session ended.
+ * @returns `true` when the end precedes the start, `false` when it doesn't, and
+ *   `null` when either value isn't a parseable timestamp — which the caller
+ *   should reject rather than forward to Postgres as a 500.
+ */
+export function endsBeforeStart(startedAt: string, endedAt: string): boolean | null {
+  const started = new Date(startedAt).getTime()
+  const ended = new Date(endedAt).getTime()
+  if (!Number.isFinite(started) || !Number.isFinite(ended)) return null
+  return ended < started
+}
+
+/**
  * Elapsed minutes of a session, or `null` while it's still in progress.
  *
  * Rounded to the nearest minute — the consuming surfaces (#377) display whole

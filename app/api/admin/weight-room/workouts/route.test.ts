@@ -33,6 +33,8 @@ let results: Results
 /** Every write the route issued, for assertion. */
 let updates: Record<string, unknown>[]
 let inserts: Record<string, unknown>[]
+/** `.is(column, value)` filters applied to an update chain. */
+let updateFilters: [string, unknown][]
 
 function freshResults(): Results {
   return {
@@ -63,8 +65,11 @@ function makeChain(table: string) {
       return chain
     }),
     limit: vi.fn(() => chain),
-    is: vi.fn(() => {
-      isOpenProbe = true
+    is: vi.fn((column: string, value: unknown) => {
+      // On an update chain this is the conditional-close guard; anywhere else
+      // it's the open-session probe.
+      if (isUpdate) updateFilters.push([column, value])
+      else isOpenProbe = true
       return chain
     }),
     insert: vi.fn((row: Record<string, unknown>) => {
@@ -108,6 +113,7 @@ beforeEach(() => {
   results = freshResults()
   updates = []
   inserts = []
+  updateFilters = []
   vi.useRealTimers()
 })
 
@@ -146,6 +152,27 @@ describe('POST /api/admin/weight-room/workouts', () => {
   it('rejects an unknown field via .strict()', async () => {
     const res = await POST(postRequest({ sneaky: 1 }) as never)
     expect(res.status).toBe(400)
+  })
+
+  it('accepts a window whose end sorts before its start but is later in time', async () => {
+    // 05:00-07:00 is 12:00Z — two hours after 10:00Z. A string comparison
+    // would reject this valid session.
+    const res = await POST(
+      postRequest({
+        started_at: '2026-08-01T10:00:00Z',
+        ended_at: '2026-08-01T05:00:00-07:00',
+      }) as never,
+    )
+    expect(res.status).toBe(201)
+  })
+
+  it('rejects an unparseable ended_at with a 400 rather than passing it to Postgres', async () => {
+    const res = await POST(
+      postRequest({ started_at: '2026-08-01T10:00:00Z', ended_at: 'yesterday' }) as never,
+    )
+    expect(res.status).toBe(400)
+    const body = await res.json()
+    expect(body.error).toMatch(/valid ISO/i)
   })
 
   it('rejects ended_at before started_at with a 400, not a constraint 500', async () => {
@@ -188,6 +215,18 @@ describe('POST /api/admin/weight-room/workouts', () => {
     // invent two days of session that never happened.
     expect(updates[0].ended_at).toBe(lastSetAt)
     expect(inserts).toHaveLength(1)
+  })
+
+  it('closes a stale session only while it is still open', async () => {
+    // Without the `ended_at is null` filter, a request that explicitly ended
+    // this session between the probe and the update would have its chosen
+    // ended_at silently overwritten by the auto-end timestamp.
+    const startedAt = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString()
+    results.openWorkout = { data: { id: 'w-stale', started_at: startedAt }, error: null }
+
+    await POST(postRequest({}) as never)
+
+    expect(updateFilters).toContainEqual(['ended_at', null])
   })
 
   it('never ends a stale session before it started', async () => {

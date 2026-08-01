@@ -16,6 +16,7 @@ import { requireAdmin } from '@/lib/auth/require-admin'
 import { WeightRoomWorkoutUpdateSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
+import { endsBeforeStart } from '@/lib/training-facility/workout-sessions'
 
 interface Context {
   params: Promise<{ id: string }>
@@ -102,7 +103,17 @@ async function handlePATCH(request: NextRequest, ctx: Context): Promise<NextResp
     if (!existing) {
       return NextResponse.json({ error: `No workout for '${workoutId}'.` }, { status: 404 })
     }
-    if (patch.ended_at < existing.started_at) {
+    // Instants, not strings: ISO 8601 only sorts lexicographically when every
+    // value shares one UTC offset, and this codebase mixes `Z` with Pacific
+    // offsets. See {@link endsBeforeStart}.
+    const inverted = endsBeforeStart(existing.started_at, patch.ended_at)
+    if (inverted === null) {
+      return NextResponse.json(
+        { error: 'ended_at must be a valid ISO 8601 timestamp.' },
+        { status: 400 }
+      )
+    }
+    if (inverted) {
       return NextResponse.json(
         { error: 'ended_at cannot be before started_at.' },
         { status: 400 }

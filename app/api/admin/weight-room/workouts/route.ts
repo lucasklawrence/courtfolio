@@ -19,7 +19,11 @@ import { requireAdmin } from '@/lib/auth/require-admin'
 import { WeightRoomWorkoutCreateSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
-import { autoEndTimestamp, isStaleOpenWorkout } from '@/lib/training-facility/workout-sessions'
+import {
+  autoEndTimestamp,
+  endsBeforeStart,
+  isStaleOpenWorkout,
+} from '@/lib/training-facility/workout-sessions'
 
 /** Columns returned by both handlers, matching `WeightRoomWorkoutRowSchema`. */
 const WORKOUT_COLUMNS = 'id, started_at, ended_at, title, location, notes'
@@ -142,12 +146,22 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const startedAt = entry.started_at ?? now.toISOString()
 
   // Checked here as well as by the table's CHECK so the caller gets a 400 with
-  // an explanation rather than a 500 wrapping a constraint name.
-  if (entry.ended_at !== undefined && entry.ended_at < startedAt) {
-    return NextResponse.json(
-      { error: 'ended_at cannot be before started_at.' },
-      { status: 400 }
-    )
+  // an explanation rather than a 500 wrapping a constraint name. Compared as
+  // instants, not strings — see {@link endsBeforeStart}.
+  if (entry.ended_at !== undefined) {
+    const inverted = endsBeforeStart(startedAt, entry.ended_at)
+    if (inverted === null) {
+      return NextResponse.json(
+        { error: 'started_at and ended_at must be valid ISO 8601 timestamps.' },
+        { status: 400 }
+      )
+    }
+    if (inverted) {
+      return NextResponse.json(
+        { error: 'ended_at cannot be before started_at.' },
+        { status: 400 }
+      )
+    }
   }
 
   const supabase = createAdminSupabaseClient()
@@ -244,6 +258,11 @@ async function resolveOpenWorkout(
     )
   }
 
+  // `.is('ended_at', null)` makes the close conditional: if another request
+  // ended this session between the probe above and now, the update matches
+  // nothing and that request's chosen `ended_at` stands, rather than being
+  // silently overwritten with the auto-end timestamp. Matching zero rows is
+  // success here — either way the slot is free.
   const { error: closeError } = await supabase
     .from('weight_room_workouts')
     .update({
@@ -251,6 +270,7 @@ async function resolveOpenWorkout(
       updated_at: now.toISOString(),
     })
     .eq('id', open.id)
+    .is('ended_at', null)
 
   if (closeError) {
     return NextResponse.json(

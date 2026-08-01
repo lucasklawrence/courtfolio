@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import {
   STALE_WORKOUT_HOURS,
   autoEndTimestamp,
+  endsBeforeStart,
   isStaleOpenWorkout,
   workoutDayKey,
   workoutDurationMinutes,
@@ -83,6 +84,36 @@ describe('autoEndTimestamp', () => {
 
   it('falls back to started_at when the set timestamp is unparseable', () => {
     expect(autoEndTimestamp(started, 'not-a-date')).toBe(started)
+  })
+})
+
+describe('endsBeforeStart', () => {
+  it('compares instants, not strings, across mixed UTC offsets', () => {
+    // 05:00-07:00 is 12:00Z — two hours *after* 10:00Z — but sorts before it
+    // as a string. This repo mixes offsets: dayKeyToPacificNoonIso emits
+    // -07:00/-08:00 while toISOString() emits Z, so this is reachable.
+    expect(endsBeforeStart('2026-08-01T10:00:00Z', '2026-08-01T05:00:00-07:00')).toBe(false)
+  })
+
+  it('catches a genuinely inverted window that sorts as fine', () => {
+    // 20:00Z is before 14:00-07:00 (= 21:00Z), so a naive string compare
+    // would wave this through.
+    expect(endsBeforeStart('2026-08-01T14:00:00-07:00', '2026-08-01T20:00:00Z')).toBe(true)
+  })
+
+  it('is false for an ordinary well-formed window', () => {
+    expect(endsBeforeStart('2026-08-01T18:00:00Z', '2026-08-01T19:00:00Z')).toBe(false)
+  })
+
+  it('treats identical instants as not inverted', () => {
+    // The table's CHECK is `ended_at >= started_at`, so a zero-length session
+    // is legal — that's what an auto-closed session with no sets becomes.
+    expect(endsBeforeStart('2026-08-01T18:00:00Z', '2026-08-01T11:00:00-07:00')).toBe(false)
+  })
+
+  it('returns null for an unparseable timestamp so the caller can 400', () => {
+    expect(endsBeforeStart('2026-08-01T18:00:00Z', 'not-a-date')).toBeNull()
+    expect(endsBeforeStart('garbage', '2026-08-01T18:00:00Z')).toBeNull()
   })
 })
 
