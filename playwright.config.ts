@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test'
+import { defineConfig, devices } from '@playwright/test'
 
 /** Base URL for the default route smoke-test project. */
 const DEFAULT_BASE_URL = 'http://127.0.0.1:3007'
@@ -34,15 +34,42 @@ export default defineConfig({
     {
       name: 'default-routes',
       testMatch:
-        /(?:home|rooms|project-detail|resume|draft-room-disabled|training-facility-disabled)\.spec\.ts/,
+        /(?:home|rooms|project-detail|resume|draft-room-disabled|training-facility-disabled|svg-fragments)\.spec\.ts/,
       use: {
         baseURL: DEFAULT_BASE_URL,
       },
     },
     {
       name: 'training-facility-enabled',
-      testMatch: /(?:training-facility-enabled|draft-room-enabled|draft-room-live)\.spec\.ts/,
+      testMatch:
+        /(?:training-facility-enabled|draft-room-enabled|draft-room-live|chart-overflow)\.spec\.ts/,
       use: {
+        baseURL: TRAINING_FACILITY_BASE_URL,
+      },
+    },
+    {
+      // The engine + viewport gap that let #353 and #355/#356 ship (#359).
+      // `iPhone 14` is a WebKit device profile, so one project closes both:
+      // WebKit catches engine-level SVG behaviour Chromium papers over, and
+      // 390px is the only width where a chart meant to scroll actually does.
+      //
+      // Deliberately *not* the whole suite under a third browser — the two
+      // existing projects already run every route, and a naive cross-product
+      // triples e2e wall-clock (CI runs `workers: 1`) to re-assert things that
+      // don't vary by engine. This runs only the two specs whose assertions
+      // are about rendering.
+      name: 'mobile-webkit',
+      testMatch: /(?:svg-fragments|chart-overflow)\.spec\.ts/,
+      use: {
+        ...devices['iPhone 14'],
+        // `browserName` must be set explicitly, *after* the device spread.
+        // The device descriptor carries `defaultBrowserType: 'webkit'`, but
+        // that is only a default — the top-level `use.browserName: 'chromium'`
+        // is an explicit value and wins the merge. Without this line the
+        // project runs Chromium wearing an iPhone user-agent: the viewport
+        // coverage is real, the engine coverage is not, and nothing in the
+        // output says so.
+        browserName: 'webkit',
         baseURL: TRAINING_FACILITY_BASE_URL,
       },
     },

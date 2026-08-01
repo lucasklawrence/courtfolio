@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
+import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { ExerciseFilterChips } from '@/components/training-facility/weight-room/ExerciseFilterChips'
 import { FocusLaneHeatmap } from '@/components/training-facility/weight-room/FocusLaneHeatmap'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
@@ -14,6 +15,7 @@ import { StrengthVsBodyweightChart } from '@/components/training-facility/weight
 import { VariantBreakdown } from '@/components/training-facility/weight-room/VariantBreakdown'
 import { WeeklyVolumeChart } from '@/components/training-facility/weight-room/WeeklyVolumeChart'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
+import { buildWeightRoomDemoData } from '@/constants/weight-room-demo-fixture'
 import { isAdminRequest } from '@/lib/auth/admin-session'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
@@ -24,7 +26,10 @@ import {
 } from '@/lib/training-facility/exercise-filter'
 import { pacificDayKey } from '@/lib/training-facility/day-keys'
 import { buildMovementLoads } from '@/lib/training-facility/load-management'
-import { TRAINING_FACILITY_PREVIEW_PARAM } from '@/lib/training-facility/preview-param'
+import {
+  TRAINING_FACILITY_PREVIEW_PARAM,
+  isPreviewDemoActive,
+} from '@/lib/training-facility/preview-param'
 import {
   buildFocusLaneCells,
   computeFocusAdherence,
@@ -80,11 +85,26 @@ export default async function WeightRoomHistoryPage({
   // failed/empty cardio fetch just drops the relative-strength section.
   // `isAdmin` is resolved here rather than by the sub-nav so this page ships
   // no browser Supabase client — see WeightRoomSubNavProps.isAdmin (#345).
-  const [data, cardio, isAdmin] = await Promise.all([
+  const [realData, cardio, isAdmin] = await Promise.all([
     getWeightRoomDataServer().catch(() => null),
     getCardioDataServer().catch(() => null),
     isAdminRequest().catch(() => false),
   ])
+
+  // `?preview=demo` substitutes the sample dataset when there's nothing real
+  // to show — same opt-in the Gym and Weight Room scenes already honour
+  // (#162 / #171), extended here so the charts have something to draw (#359).
+  //
+  // It is what makes this page's rendering testable in CI: the e2e job has no
+  // Supabase credentials, so without a fixture every chart renders empty and a
+  // browser-level assertion about chart layout would pass by finding nothing.
+  // Gated on the real data being empty, so a populated deploy ignores the
+  // param entirely.
+  const realIsEmpty = realData === null || realData.sets.length === 0
+  const isPreviewMode =
+    realIsEmpty && isPreviewDemoActive(params[TRAINING_FACILITY_PREVIEW_PARAM])
+  const data = isPreviewMode ? buildWeightRoomDemoData() : realData
+
   const goals: readonly ExerciseGoal[] = data?.goals ?? []
   const sets = data?.sets ?? []
   const focuses = data?.monthly_focus ?? []
@@ -167,6 +187,16 @@ export default async function WeightRoomHistoryPage({
           </p>
           <WeightRoomSubNav active="history" className="mt-5" isAdmin={isAdmin} />
         </header>
+
+        {/* Sample data must never read as a real log. Same treatment the
+            Combine and cardio surfaces already use for their preview branch
+            (#160 / #162) — a visible chip plus an exit affordance, rather than
+            demo heatmaps and stats that look exactly like populated ones. */}
+        {isPreviewMode ? (
+          <div className="mt-6">
+            <PreviewModeBadge description="These heatmaps and stats are illustrative — not Lucas’s real training log." />
+          </div>
+        ) : null}
 
         {permanentGoals.length === 0 && focuses.length === 0 ? (
           <section
