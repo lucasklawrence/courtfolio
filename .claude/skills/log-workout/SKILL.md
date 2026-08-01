@@ -1,6 +1,6 @@
 ---
 name: log-workout
-description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x20 squats" (bodyweight), "3x10 shrugs at 100lb" (weighted), "shrugs 15 db - 25 reps" (dumbbell, load-first), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets and any per-set load, writes them to Supabase, and reports today's totals against the daily goals.
+description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, lateral raises, lunges, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x20 squats" (bodyweight), "3x10 shrugs at 100lb" (weighted), "shrugs 15 db - 25 reps" (dumbbell, load-first), "3x10 lateral raises forward" / "wide pullups 3x5" / "10 diamond pushups" (movement variant), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets plus any per-set load and variant, writes them to Supabase, and reports today's totals against the daily goals.
 ---
 
 # Log Workout
@@ -49,6 +49,10 @@ Three Supabase tables back the Weight Room (see
   pounds: set it for weighted movements (shrugs, carries), leave it **null** for
   bodyweight (pushups, pullups). It never affects the rep-based daily ring — it
   feeds the load stats (top set, avg load, tonnage).
+  `variant` (#254) is an **optional** free-text movement slice — the grip on a
+  pullup, the plane on a lateral raise. Also never affects the ring: every
+  variant of an exercise sums into that exercise's single target, and the column
+  exists only to break the volume down in the History View.
 
 **Supabase project ref:** `ryxbnvhxxkrmsrmocume` (from
 `NEXT_PUBLIC_SUPABASE_URL`). Use the Supabase MCP `execute_sql` tool with this
@@ -98,8 +102,44 @@ order by e.slug;
 ```
 
 Use the **exact stored slug** for the insert (e.g. parsed `Pull-ups` → stored
-`pullups`, `Barbell Bench Press` → `barbell-bench-press`). If nothing matches,
-treat it as a new movement — see step 6; do not invent a near-duplicate key.
+`pullups`, `Barbell Bench Press` → `barbell-bench-press`).
+
+**Match in three widening passes — exact alone is too strict.** Catalog slugs
+carry an implement prefix (`dumbbell-lateral-raise`) but nobody says "dumbbell
+lateral raise" out loud; they say "lateral raises". An exact-only rule would
+treat that as an uncatalogued movement and offer to create a duplicate, which is
+the exact failure this canonicalization exists to prevent.
+
+Normalize both sides by **stripping every non-alphanumeric character** —
+lowercase, then remove spaces, hyphens and underscores entirely — and ignore a
+trailing `s`. Squashing rather than converting separators to spaces is what lets
+`pull-ups` (→ `pullups`) reach the stored `pullups`; a space-preserving
+normalization leaves `pull ups` matching nothing.
+
+Then try three widening passes and **stop at the first that yields exactly one
+row**:
+
+1. **Exact** on the normalized slug or display name. `pull-ups` → `pullups`.
+2. **Suffix** — exactly one row's normalized display name *ends with* the parsed
+   name. `lateral raises` → `dumbbell-lateral-raise` ✅. This is what makes the
+   implement prefix optional, and it is the primary August path.
+3. **Containment** — exactly one row contains it anywhere. Catches odd word
+   order.
+
+**Stopping at the first successful pass matters.** `lunges` matches exactly one
+row at pass 1 (`lunges`) but *two* at pass 2 (`lunges` and `dumbbell-lunge`).
+Running the passes in order resolves it silently and correctly; merging them
+would produce a pointless clarifying question for the most common lower-body
+input.
+
+**Uniqueness is the safety rail — never guess when a pass returns more than
+one.** `bench press` matches both `barbell-bench-press` and
+`dumbbell-bench-press`; `row` matches three. List the candidates and ask, rather
+than picking the alphabetically-first or the most-recently-logged. Guessing
+writes to the wrong movement's history, which is far worse than one question.
+
+If **zero** rows match after all three passes, treat it as a new movement — see
+step 6; do not invent a near-duplicate key.
 
 `daily_target` comes back **null for movements with no daily goal** — that's the
 normal state for every gym lift, not a problem. It's only used for the
@@ -151,6 +191,53 @@ a number that was clearly meant to be reps — passes cleanly and silently
 corrupts the tonnage / top-set stats. If a load looks implausible for the
 movement, confirm before inserting.
 
+### 1c. Parse the variant (optional)
+
+Many movements are logged in distinct flavours — the grip on a pullup, the plane
+on a lateral raise. That goes in `weight_room_sets.variant`, a free-text column
+(#254). It is **purely a slice**: every variant of an exercise sums into that
+exercise's single daily ring. Tagging one never splits the ring or the target,
+it only lets the History View break the volume down.
+
+Accepted forms — the variant is whatever movement-descriptor sits next to the
+exercise and isn't a number, a unit, or a set/rep token:
+
+- "3x10 lateral raises **forward**" → each set `variant = 'forward'`
+- "lateral raises **reverse** - 3x10" → `variant = 'reverse'`
+- "**wide** pullups 3x5" → `variant = 'wide'`
+- "10 **diamond** pushups" → `variant = 'diamond'`
+- no descriptor → **omit** `variant` (null = unspecified; the set still counts)
+
+**Lowercase and trim it.** Writing through the MCP bypasses the admin API's
+`variantWriteField` transform (`lib/schemas/weight-room.ts`), and the History
+View buckets by exact string — so `Wide` and `wide` would render as two separate
+grips. Same anti-duplicate reasoning as the exercise name.
+
+**Canonicalize against what's already been logged for that exercise** rather
+than inventing a near-duplicate (`sideways` vs `side`, `reverse` vs `rev`):
+
+```sql
+select distinct variant
+from public.weight_room_sets
+where exercise = 'dumbbell-lateral-raise' and variant is not null
+order by variant;
+```
+
+If the parsed descriptor matches an existing one case-insensitively, use the
+stored spelling. If it's genuinely new, that's fine — just say so in the reply
+("logged as a new variant: `sideways`") so a typo surfaces immediately instead
+of quietly becoming a fourth bucket.
+
+**A variant can differ per set within one message** — unlike load, which applies
+to every set. "lateral raises 3x10: forward, sideways, reverse" is three rows
+with three different variants. Read them positionally in that case; if the
+mapping is ambiguous, ask rather than guessing.
+
+**Don't confuse a variant with an exercise.** If the descriptor names something
+that is its own catalog movement (`incline`, when `barbell-incline-press`
+exists), prefer the movement over tagging a variant on a different one. Check
+the roster from step 1 before deciding.
+
 ### 2. Get local time
 
 Get the current local time **with UTC offset** — needed both to stamp
@@ -198,22 +285,27 @@ in PDT, `-08:00` in PST). Substitute the real offset from step 2; never paste
 `-07:00` verbatim, or the window shifts an hour and a near-midnight set lands on
 the wrong calendar day for ~5 months of the year. Example for `2026-05-28`:
 
-Include `weight_lbs` in the insert; pass the parsed load for weighted sets and
-`null` for bodyweight ones (a single statement can mix both):
+Include `weight_lbs` and `variant` in the insert; pass the parsed values, and
+`null` for whichever doesn't apply (a single statement can mix all
+combinations):
 
 ```sql
-insert into public.weight_room_sets (logged_at, exercise, reps, weight_lbs)
+insert into public.weight_room_sets (logged_at, exercise, reps, weight_lbs, variant)
 values
-  (now(), 'shrugs', 10, 100),
-  (now(), 'shrugs', 10, 100),
-  (now(), 'pushups', 10, null)   -- bodyweight → null
-returning id, exercise, reps, weight_lbs;
+  (now(), 'shrugs', 10, 100, null),                          -- weighted, no variant
+  (now(), 'dumbbell-lateral-raise', 10, 15, 'forward'),       -- weighted + variant
+  (now(), 'dumbbell-lateral-raise', 10, 15, 'reverse'),       -- same movement, different slice
+  (now(), 'pushups', 10, null, 'diamond'),                    -- bodyweight + variant
+  (now(), 'pushups', 10, null, null)                          -- plain bodyweight
+returning id, exercise, reps, weight_lbs, variant;
 
 -- <OFFSET> = the offset from step 2, e.g. -07:00 (PDT) or -08:00 (PST).
 -- top_set_lbs / tonnage_lbs come back null for bodyweight exercises (every
 -- weight_lbs is null), so they self-hide — only weighted lanes get numbers.
 -- LEFT join the goals overlay: a gym lift has no goal row (#373), and an inner
 -- join would silently drop it from the readback entirely.
+-- Grouped by exercise only: variants are a slice, not a separate ring, so the
+-- total must stay whole. The per-variant breakdown is the second query.
 select s.exercise, sum(s.reps) as total, g.daily_target, g.color,
        max(s.weight_lbs)          as top_set_lbs,
        sum(s.reps * s.weight_lbs) as tonnage_lbs
@@ -223,6 +315,19 @@ where s.logged_at >= '2026-05-28T00:00:00<OFFSET>'
   and s.logged_at <  '2026-05-29T00:00:00<OFFSET>'
 group by s.exercise, g.daily_target, g.color
 order by s.exercise;
+
+-- Per-variant slice. Deliberately does NOT filter out null variants: an
+-- exercise with both tagged and untagged sets today (sets logged before this
+-- skill update, then a tagged one) would otherwise report slices that don't sum
+-- to its total. Nulls come back as their own row and get reported as "untagged".
+-- Skip reporting the breakdown entirely for any exercise whose only row here is
+-- a null variant — that's the ordinary untagged case, not a split.
+select s.exercise, s.variant, sum(s.reps) as reps
+from public.weight_room_sets s
+where s.logged_at >= '2026-05-28T00:00:00<OFFSET>'
+  and s.logged_at <  '2026-05-29T00:00:00<OFFSET>'
+group by s.exercise, s.variant
+order by s.exercise, s.variant nulls last;
 ```
 
 Then report each exercise as `total / daily_target` (e.g. "Pushups: 60 / 100").
@@ -238,6 +343,21 @@ exercises are pushups (`#EA580C` rim-orange, 🟠) and pullups (`#0EA5A1` teal,
 🟢), but a movement with a goal added later brings its own color, so read it
 from the row rather than assuming only these two exist. `color` is null for a
 catalog-only movement (no daily goal) — use a neutral ⚪ lane for those.
+
+**Surface the variant split when there is one**, appended to that exercise's
+line rather than as separate lines — the ring is one number and the slices sit
+under it:
+
+> 🟣 Lateral raises: 150 / 150 · 50 forward · 50 sideways · 50 reverse
+
+A movement logged without variants reports exactly as before — its only row in
+the breakdown query is a null variant, so skip the slice line for it entirely.
+
+Don't invent a `standard` bucket for the untagged remainder. When some sets are
+tagged and some aren't, the null row is real data and gets reported as
+"untagged", so the slices always sum to the ring:
+
+> 🟣 Lateral raises: 150 / 150 · 50 forward · 50 sideways · 30 reverse · 20 untagged
 
 ### 6. Movement not in the catalog (FK violation)
 
