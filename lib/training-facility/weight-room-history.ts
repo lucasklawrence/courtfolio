@@ -466,7 +466,9 @@ export function computeStrengthStats(
       lastMonthReps,
       avgSetsPerActiveDay,
       allTimeReps,
-      targetChanges: goalTargetChanges(goal),
+      // Past changes only — a scheduled one hasn't happened, and listing it
+      // in the change log reads as history (#371).
+      targetChanges: goalTargetChanges(goal, todayKey),
       ...(focusSummary !== null ? { focus: focusSummary } : {}),
     }
   })

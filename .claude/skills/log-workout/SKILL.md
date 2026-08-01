@@ -94,9 +94,20 @@ bug #181 fixed). To stay safe, first read the roster and match the parsed name
 case-insensitively against both the slug and the display name:
 
 ```sql
-select slug, display_name, daily_target
+select e.slug, e.display_name, gt.daily_target
 from public.weight_room_exercises e
-left join public.weight_room_goals g on g.exercise = e.slug
+left join lateral (
+  -- The daily target **in effect today**, not the mirror column. A change can
+  -- be scheduled for a future date (#371); `weight_room_goals.daily_target` is
+  -- written at edit time and nothing re-syncs it when that date arrives, so
+  -- reading it directly reports a stale goal from the activation day onward.
+  select t.daily_target
+  from public.weight_room_goal_targets t
+  where t.exercise = e.slug
+    and t.effective_from <= (now() at time zone 'America/Los_Angeles')::date
+  order by t.effective_from desc
+  limit 1
+) gt on true
 where not e.archived
 order by e.slug;
 ```
@@ -306,14 +317,31 @@ returning id, exercise, reps, weight_lbs, variant;
 -- join would silently drop it from the readback entirely.
 -- Grouped by exercise only: variants are a slice, not a separate ring, so the
 -- total must stay whole. The per-variant breakdown is the second query.
-select s.exercise, sum(s.reps) as total, g.daily_target, g.color,
+-- `daily_target` resolves through the effective-dated history, not the
+-- `weight_room_goals` mirror (#371). The mirror is written at edit time, so a
+-- change scheduled for a future date would leave it stale from the activation
+-- day on and this readback would report progress against the wrong denominator.
+-- The lateral picks the newest entry effective on or before today (Pacific,
+-- matching the app's day bucketing), falling back to the mirror for a goal that
+-- predates the history table.
+select s.exercise, sum(s.reps) as total,
+       max(coalesce(gt.daily_target, g.daily_target)) as daily_target,
+       max(g.color) as color,
        max(s.weight_lbs)          as top_set_lbs,
        sum(s.reps * s.weight_lbs) as tonnage_lbs
 from public.weight_room_sets s
 left join public.weight_room_goals g on g.exercise = s.exercise
+left join lateral (
+  select t.daily_target
+  from public.weight_room_goal_targets t
+  where t.exercise = s.exercise
+    and t.effective_from <= (now() at time zone 'America/Los_Angeles')::date
+  order by t.effective_from desc
+  limit 1
+) gt on true
 where s.logged_at >= '2026-05-28T00:00:00<OFFSET>'
   and s.logged_at <  '2026-05-29T00:00:00<OFFSET>'
-group by s.exercise, g.daily_target, g.color
+group by s.exercise
 order by s.exercise;
 
 -- Per-variant slice. Deliberately does NOT filter out null variants: an

@@ -156,8 +156,13 @@ export function targetResolverFor(goal: ExerciseGoal): (dayKey: string) => numbe
  * no-op edit doesn't draw a "30 → 30" marker.
  *
  * @param goal The goal whose history to summarize.
+ * @param todayKey When given, changes dated *after* it are excluded — they
+ *   haven't happened yet (#371). Callers that render history (the heatmap's
+ *   boundary markers, the stats card's change log) must pass it, or a change
+ *   scheduled for next month is drawn as though it already took effect.
+ *   Omitted, every change is returned.
  */
-export function goalTargetChanges(goal: ExerciseGoal): GoalTargetChange[] {
+export function goalTargetChanges(goal: ExerciseGoal, todayKey?: string): GoalTargetChange[] {
   const history = goal.target_history
   if (history === undefined || history.length < 2) return []
 
@@ -167,7 +172,76 @@ export function goalTargetChanges(goal: ExerciseGoal): GoalTargetChange[] {
     const from = sorted[i - 1].daily_target
     const to = sorted[i].daily_target
     if (from === to) continue
+    if (todayKey !== undefined && sorted[i].effective_from > todayKey) continue
     changes.push({ from, to, effective_from: sorted[i].effective_from })
+  }
+  return changes
+}
+
+/**
+ * The target in effect **today**, for the read path's `daily_target` (#371).
+ *
+ * Not simply {@link targetForDay} with today's key. That helper's
+ * before-the-earliest-entry fallback returns the *oldest* recorded target,
+ * which is right when scoring a historical day but wrong here: a goal whose
+ * entire history is future-dated would resolve today against a target that
+ * hasn't taken effect, activating a scheduled change early — the precise
+ * failure scheduling is supposed to avoid.
+ *
+ * That state is real, not hypothetical. Production carried two goals in this
+ * shape (their only history row stamped a day ahead of Pacific), and it was
+ * invisible only because those rows happened to match the mirror.
+ *
+ * So: resolve through history when at least one entry is actually in effect,
+ * and otherwise keep {@link ExerciseGoal.daily_target} — the mirror, which is
+ * what every consumer read before #371.
+ *
+ * @param goal The goal to resolve.
+ * @param todayKey Today's `YYYY-MM-DD` key in the caller's convention.
+ */
+export function currentTarget(goal: ExerciseGoal, todayKey: string): number {
+  const history = goal.target_history
+  if (history === undefined || history.length === 0 || todayKey === '') {
+    return clampTarget(goal.daily_target)
+  }
+  const anyInEffect = history.some((point) => point.effective_from <= todayKey)
+  return anyInEffect ? targetForDay(goal, todayKey) : clampTarget(goal.daily_target)
+}
+
+/**
+ * Target changes queued for a future date, soonest first (#371).
+ *
+ * The complement of {@link goalTargetChanges}: that returns what has already
+ * taken effect, this returns what is coming. Deliberately two functions rather
+ * than one flag, because the surfaces differ — history is a chart annotation,
+ * a schedule is a "heads up, this moves on Sept 1" hint — and because #368's
+ * review caught the cost of collapsing scheduled and finished states into one
+ * boolean.
+ *
+ * `from` is the target in effect the day before the change, so the first entry
+ * reads as a genuine "30 → 50" even though nothing has happened yet.
+ *
+ * @param goal The goal whose history to read.
+ * @param todayKey Today's key in the caller's convention; entries dated on or
+ *   before it are already in effect and excluded.
+ */
+export function scheduledGoalTargetChanges(
+  goal: ExerciseGoal,
+  todayKey: string,
+): GoalTargetChange[] {
+  const history = goal.target_history
+  if (history === undefined || history.length === 0) return []
+
+  const sorted = sortedByEffectiveFrom(history)
+  const changes: GoalTargetChange[] = []
+  for (let i = 0; i < sorted.length; i++) {
+    const entry = sorted[i]
+    if (entry.effective_from <= todayKey) continue
+    // The value this change replaces: the previous entry when there is one,
+    // otherwise the goal's currently-resolved target.
+    const from = i > 0 ? sorted[i - 1].daily_target : targetForDay(goal, todayKey)
+    if (from === entry.daily_target) continue
+    changes.push({ from, to: entry.daily_target, effective_from: entry.effective_from })
   }
   return changes
 }

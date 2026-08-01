@@ -268,11 +268,22 @@ export interface ExerciseGoal {
    * Target reps per day for the "grease the groove" goal. Activity
    * rings fill toward this number; the heatmap colors by % of target.
    *
-   * This is the *current* target — a denormalized mirror of the newest
-   * {@link target_history} entry, kept for cheap reads. Historical rollups
-   * must NOT divide by it; they resolve the target in effect on each day via
+   * This is the *current* target — the newest {@link target_history} entry
+   * whose `effective_from` is on or before today. Historical rollups must NOT
+   * divide by it; they resolve the target in effect on each day via
    * {@link import('@/lib/training-facility/goal-targets').targetForDay}, or a
    * goal change would retroactively re-score days already completed (#362).
+   *
+   * **This deliberately disagrees with `weight_room_goals.daily_target` while a
+   * change is scheduled.** The column is a mirror written at edit time; the data
+   * layer overwrites it on read with the value resolved for today (#371). Queue
+   * "50 effective Sept 1" and the column says 50 immediately while this field
+   * stays 30 until Sept 1, at which point it flips with nothing having run.
+   *
+   * That is the point, not a bug: without it a scheduled change would half-apply
+   * — the heatmap and streaks (which resolve per day) would move on Sept 1 while
+   * the rings and QuickLog (which read this) stayed on the old number forever.
+   * Do not "fix" this by passing the column through.
    */
   daily_target: number
   /**

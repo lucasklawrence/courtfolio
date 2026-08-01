@@ -4,7 +4,13 @@ import { useRouter } from 'next/navigation'
 import { useState, useTransition, type FormEvent, type JSX } from 'react'
 
 import type { ExerciseGoal } from '@/types/weight-room'
+import { pacificDayKey } from '@/lib/training-facility/day-keys'
 import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
+import {
+  formatGoalTargetChange,
+  formatGoalTargetDate,
+  scheduledGoalTargetChanges,
+} from '@/lib/training-facility/goal-targets'
 
 /** Props for {@link StrengthSettings}. */
 export interface StrengthSettingsProps {
@@ -77,6 +83,20 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
     refresh()
   }
 
+  async function cancelScheduled(exercise: string, effectiveFrom: string): Promise<void> {
+    setError(null)
+    const res = await fetch(
+      `/api/admin/weight-room/goals/${encodeURIComponent(exercise)}/targets/${encodeURIComponent(effectiveFrom)}`,
+      { method: 'DELETE' },
+    )
+    if (!res.ok) {
+      const body = (await res.json().catch(() => ({}))) as { error?: string }
+      setError(body.error ?? `Cancel failed (${res.status})`)
+      return
+    }
+    refresh()
+  }
+
   return (
     <div className="space-y-8">
       {error ? (
@@ -105,6 +125,7 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
                 disabled={isPending}
                 onSave={postGoal}
                 onDelete={deleteGoal}
+                onCancelScheduled={cancelScheduled}
               />
             ))}
           </ul>
@@ -126,17 +147,37 @@ interface GoalRowProps {
   disabled: boolean
   onSave: (goal: ExerciseGoal) => Promise<void>
   onDelete: (exercise: string, label: string) => Promise<void>
+  /** Cancel a queued change, addressed by its `effective_from` (#371). */
+  onCancelScheduled: (exercise: string, effectiveFrom: string) => Promise<void>
 }
 
-function GoalRow({ goal, disabled, onSave, onDelete }: GoalRowProps): JSX.Element {
+function GoalRow({
+  goal,
+  disabled,
+  onSave,
+  onDelete,
+  onCancelScheduled,
+}: GoalRowProps): JSX.Element {
   const [target, setTarget] = useState<number>(goal.daily_target)
   const [color, setColor] = useState<string>(goal.color)
+  // Blank means "today", which is what the API assumes when `effective_from`
+  // is omitted. A future date queues the change instead of applying it (#371).
+  const [effectiveFrom, setEffectiveFrom] = useState<string>('')
   const dirty = target !== goal.daily_target || color !== goal.color
+
+  const today = pacificDayKey(new Date())
+  const scheduled = scheduledGoalTargetChanges(goal, today)
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault()
     if (!dirty) return
-    await onSave({ exercise: goal.exercise, daily_target: target, color })
+    await onSave({
+      exercise: goal.exercise,
+      daily_target: target,
+      color,
+      ...(effectiveFrom === '' ? {} : { effective_from: effectiveFrom }),
+    })
+    setEffectiveFrom('')
   }
 
   return (
@@ -167,6 +208,17 @@ function GoalRow({ goal, disabled, onSave, onDelete }: GoalRowProps): JSX.Elemen
             className="h-8 w-12 cursor-pointer rounded border border-white/15 bg-black/40"
           />
         </label>
+        <label className="flex items-center gap-2 text-xs text-white/70">
+          <span className="font-mono uppercase tracking-[0.18em]">from</span>
+          <input
+            type="date"
+            value={effectiveFrom}
+            onChange={(e) => setEffectiveFrom(e.target.value)}
+            aria-label={`Effective date for the ${exerciseLabel(goal)} target`}
+            title="Leave blank to apply today. A past date backdates the change; a future date schedules it."
+            className="rounded border border-white/15 bg-black/40 px-2 py-1 font-mono text-xs text-white focus:border-amber-300/60 focus:outline-none"
+          />
+        </label>
         <div className="ml-auto flex gap-2">
           <button
             type="submit"
@@ -185,6 +237,39 @@ function GoalRow({ goal, disabled, onSave, onDelete }: GoalRowProps): JSX.Elemen
           </button>
         </div>
       </form>
+
+      {scheduled.length > 0 ? (
+        <ul
+          data-testid={`goal-scheduled-${goal.exercise}`}
+          className="mt-3 flex flex-col gap-2 border-t border-white/10 pt-3"
+        >
+          {scheduled.map((change) => (
+            <li
+              key={change.effective_from}
+              className="flex flex-wrap items-center gap-3 text-xs text-white/70"
+            >
+              <span className="font-mono uppercase tracking-[0.18em] text-amber-200/80">
+                scheduled
+              </span>
+              <span className="font-mono tabular-nums text-white">
+                {formatGoalTargetChange(change)}
+              </span>
+              <span className="font-mono text-white/55">
+                on {formatGoalTargetDate(change)}
+              </span>
+              <button
+                type="button"
+                disabled={disabled}
+                onClick={() => onCancelScheduled(goal.exercise, change.effective_from)}
+                aria-label={`Cancel the scheduled ${exerciseLabel(goal)} change to ${change.to} on ${formatGoalTargetDate(change)}`}
+                className="ml-auto rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-white/70 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Cancel
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </li>
   )
 }

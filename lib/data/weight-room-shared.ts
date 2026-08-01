@@ -23,6 +23,9 @@ import type {
   WeightRoomExercise,
 } from '@/types/weight-room'
 
+import { pacificDayKey } from '@/lib/training-facility/day-keys'
+import { currentTarget } from '@/lib/training-facility/goal-targets'
+
 import { fetchAllRows } from './paged-read'
 
 /**
@@ -382,6 +385,10 @@ export async function assembleWeightRoomData(
   const historyByExercise = groupTargetHistory(goalTargetsParsed.data)
   const exercises = parseExerciseRows(exercisesRaw)
 
+  // Resolved once for the whole read so every goal agrees on "today" even if
+  // the assembly straddles Pacific midnight.
+  const todayKey = pacificDayKey(new Date())
+
   const goals = goalsParsed.data.map((row) => {
     const goal = goalRowToExerciseGoal(row)
     const history = historyByExercise.get(goal.exercise)
@@ -389,7 +396,24 @@ export async function assembleWeightRoomData(
     // shape everywhere — `targetForDay` treats absent and empty the same,
     // but keeping one of them off the wire makes fixtures and snapshots
     // easier to read.
-    return history === undefined ? goal : { ...goal, target_history: history }
+    const withHistory = history === undefined ? goal : { ...goal, target_history: history }
+
+    // Resolve the current target on *read* rather than trusting the column
+    // (#371). `weight_room_goals.daily_target` is a mirror written at edit
+    // time, so a change scheduled for a future date would never activate —
+    // nothing runs on that date to re-sync it. Resolving here means the
+    // change simply becomes current when its day arrives, with no cron, no
+    // re-save, and no deploy, and every consumer that reads the mirror is
+    // correct for free.
+    //
+    // `currentTarget` ignores entries dated after `todayKey`, so a scheduled
+    // row is invisible until it activates, and keeps the column whenever no
+    // entry is in effect yet — including the goal whose whole history is
+    // future-dated, where `targetForDay` alone would activate it early.
+    const resolved = currentTarget(withHistory, todayKey)
+    return resolved === withHistory.daily_target
+      ? withHistory
+      : { ...withHistory, daily_target: resolved }
   })
 
   return {

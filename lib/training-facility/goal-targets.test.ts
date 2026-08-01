@@ -6,7 +6,9 @@ import {
   describeGoalTargetChange,
   formatGoalTargetChange,
   formatGoalTargetDate,
+  currentTarget,
   goalTargetChanges,
+  scheduledGoalTargetChanges,
   targetForDay,
   targetResolverFor,
 } from './goal-targets'
@@ -224,3 +226,161 @@ describe('describeGoalTargetChange', () => {
     )
   })
 })
+
+describe('scheduled goal target changes (#371)', () => {
+  const goal = (history: { daily_target: number; effective_from: string }[]): ExerciseGoal => ({
+    exercise: 'pullups',
+    daily_target: 30,
+    color: '#0EA5A1',
+    target_history: history,
+  })
+
+  describe('goalTargetChanges with todayKey', () => {
+    it('excludes a change that has not taken effect yet', () => {
+      // Rendering it would draw a heatmap marker on a week that hasn't
+      // happened, implying data that doesn't exist.
+      const g = goal([
+        { daily_target: 30, effective_from: '2026-01-01' },
+        { daily_target: 50, effective_from: '2026-09-01' },
+      ])
+      expect(goalTargetChanges(g, '2026-08-15')).toEqual([])
+    })
+
+    it('includes it once the date arrives', () => {
+      const g = goal([
+        { daily_target: 30, effective_from: '2026-01-01' },
+        { daily_target: 50, effective_from: '2026-09-01' },
+      ])
+      expect(goalTargetChanges(g, '2026-09-01')).toEqual([
+        { from: 30, to: 50, effective_from: '2026-09-01' },
+      ])
+    })
+
+    it('returns every change when no todayKey is given', () => {
+      const g = goal([
+        { daily_target: 30, effective_from: '2026-01-01' },
+        { daily_target: 50, effective_from: '2026-09-01' },
+      ])
+      expect(goalTargetChanges(g)).toHaveLength(1)
+    })
+  })
+
+  describe('scheduledGoalTargetChanges', () => {
+    it('reports a queued change against the target it replaces', () => {
+      const g = goal([
+        { daily_target: 30, effective_from: '2026-01-01' },
+        { daily_target: 50, effective_from: '2026-09-01' },
+      ])
+      expect(scheduledGoalTargetChanges(g, '2026-08-15')).toEqual([
+        { from: 30, to: 50, effective_from: '2026-09-01' },
+      ])
+    })
+
+    it('is empty once the change is in effect', () => {
+      const g = goal([
+        { daily_target: 30, effective_from: '2026-01-01' },
+        { daily_target: 50, effective_from: '2026-09-01' },
+      ])
+      expect(scheduledGoalTargetChanges(g, '2026-09-01')).toEqual([])
+    })
+
+    it('is the exact complement of goalTargetChanges', () => {
+      // Past and scheduled partition the changes — nothing is in both, and
+      // nothing is lost. This is the three-way discipline #368's review
+      // asked for, expressed as a property.
+      const g = goal([
+        { daily_target: 30, effective_from: '2026-01-01' },
+        { daily_target: 40, effective_from: '2026-06-01' },
+        { daily_target: 50, effective_from: '2026-09-01' },
+        { daily_target: 60, effective_from: '2026-12-01' },
+      ])
+      const today = '2026-08-15'
+      const past = goalTargetChanges(g, today).map((c) => c.effective_from)
+      const future = scheduledGoalTargetChanges(g, today).map((c) => c.effective_from)
+      expect(past).toEqual(['2026-06-01'])
+      expect(future).toEqual(['2026-09-01', '2026-12-01'])
+      expect(past.filter((d) => future.includes(d))).toEqual([])
+      expect(goalTargetChanges(g)).toHaveLength(past.length + future.length)
+    })
+
+    it('skips a scheduled entry that does not actually move the target', () => {
+      const g = goal([
+        { daily_target: 30, effective_from: '2026-01-01' },
+        { daily_target: 30, effective_from: '2026-09-01' },
+      ])
+      expect(scheduledGoalTargetChanges(g, '2026-08-15')).toEqual([])
+    })
+
+    it('is empty with no history', () => {
+      expect(
+        scheduledGoalTargetChanges(
+          { exercise: 'pushups', daily_target: 100, color: '#EA580C' },
+          '2026-08-15',
+        ),
+      ).toEqual([])
+    })
+  })
+})
+
+describe('currentTarget (#371)', () => {
+  const g = (
+    history?: { daily_target: number; effective_from: string }[],
+  ): ExerciseGoal => ({
+    exercise: 'pullups',
+    daily_target: 30,
+    color: '#0EA5A1',
+    ...(history === undefined ? {} : { target_history: history }),
+  })
+
+  it('resolves through history when an entry is in effect', () => {
+    expect(
+      currentTarget(
+        g([
+          { daily_target: 30, effective_from: '2026-01-01' },
+          { daily_target: 40, effective_from: '2026-06-01' },
+        ]),
+        '2026-08-15',
+      ),
+    ).toBe(40)
+  })
+
+  it('ignores an entry scheduled for the future', () => {
+    expect(
+      currentTarget(
+        g([
+          { daily_target: 30, effective_from: '2026-01-01' },
+          { daily_target: 50, effective_from: '2026-09-01' },
+        ]),
+        '2026-08-15',
+      ),
+    ).toBe(30)
+  })
+
+  it('keeps the mirror when the whole history is future-dated', () => {
+    // The production shape that caught this: a goal created late on Jul 31
+    // Pacific whose only history row is stamped Aug 1. `targetForDay` alone
+    // would return 150 today via its before-earliest fallback, activating a
+    // scheduled target a day early.
+    const goal: ExerciseGoal = {
+      exercise: 'dumbbell-lateral-raise',
+      daily_target: 150,
+      color: '#EA580C',
+      target_history: [{ daily_target: 999, effective_from: '2026-08-01' }],
+    }
+    expect(currentTarget(goal, '2026-07-31')).toBe(150)
+    // ...and it takes effect on its own day, with nothing having run.
+    expect(currentTarget(goal, '2026-08-01')).toBe(999)
+  })
+
+  it('falls back to the mirror with no history at all', () => {
+    expect(currentTarget(g(), '2026-08-15')).toBe(30)
+    expect(currentTarget(g([]), '2026-08-15')).toBe(30)
+  })
+
+  it('falls back to the mirror for an unparseable day key', () => {
+    expect(
+      currentTarget(g([{ daily_target: 40, effective_from: '2026-06-01' }]), ''),
+    ).toBe(30)
+  })
+})
+

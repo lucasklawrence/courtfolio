@@ -606,3 +606,86 @@ describe('getWeightRoomData — paged sets read (#336)', () => {
     )
   })
 })
+
+describe('getWeightRoomData — scheduled goal changes (#371)', () => {
+  /** A goal row whose mirror column says `mirror`. */
+  function goalRowWith(exercise: string, mirror: number): Record<string, unknown> {
+    return {
+      exercise,
+      daily_target: mirror,
+      color: '#0EA5A1',
+      updated_at: '2026-08-01T08:00:00Z',
+    }
+  }
+
+  let seq = 0
+  function targetRow(exercise: string, target: number, from: string): Record<string, unknown> {
+    seq += 1
+    return {
+      // The row schema validates this as a UUID.
+      id: `aaaaaaaa-aaaa-4aaa-8aaa-${String(seq).padStart(12, '0')}`,
+      exercise,
+      daily_target: target,
+      effective_from: from,
+      updated_at: '2026-08-01T08:00:00Z',
+    }
+  }
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('keeps the old target while a change is scheduled', async () => {
+    vi.useFakeTimers()
+    // Mid-August Pacific — before the Sept 1 activation.
+    vi.setSystemTime(new Date('2026-08-15T12:00:00-07:00'))
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRowWith('pullups', 30)])
+    stubTable('weight_room_goal_targets', [
+      targetRow('pullups', 30, '2026-01-01'),
+      targetRow('pullups', 50, '2026-09-01'),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // The rings, QuickLog and the stats label all read this field.
+    expect(data?.goals[0].daily_target).toBe(30)
+    // ...while the scheduled row is still carried, so the UI can advertise it.
+    expect(data?.goals[0].target_history).toEqual([
+      { daily_target: 30, effective_from: '2026-01-01' },
+      { daily_target: 50, effective_from: '2026-09-01' },
+    ])
+  })
+
+  it('activates the change on its date with nothing having run', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-09-01T09:00:00-07:00'))
+    stubTable('weight_room_sets', [])
+    // The mirror column is deliberately stale here — it still says 30, exactly
+    // as the DB would after the edit. Resolution on read is what fixes it.
+    stubTable('weight_room_goals', [goalRowWith('pullups', 30)])
+    stubTable('weight_room_goal_targets', [
+      targetRow('pullups', 30, '2026-01-01'),
+      targetRow('pullups', 50, '2026-09-01'),
+    ])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.goals[0].daily_target).toBe(50)
+  })
+
+  it('passes the column through when there is no history', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-08-15T12:00:00-07:00'))
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRowWith('pushups', 100)])
+    stubTable('weight_room_goal_targets', [])
+
+    const data = await getWeightRoomData()
+
+    // Pre-#362 goals degrade to the old semantics rather than breaking.
+    expect(data?.goals[0].daily_target).toBe(100)
+    expect(data?.goals[0]).not.toHaveProperty('target_history')
+  })
+})
+
