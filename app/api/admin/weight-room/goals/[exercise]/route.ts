@@ -1,12 +1,16 @@
 /**
  * Admin-only item endpoint for Weight Room goal deletion (#79). Sibling
  * of the collection POST — same admin gate, same service-role client.
- * Used by the Settings UI's "remove exercise" affordance.
+ * Used by the Settings UI's "remove daily goal" affordance.
  *
- * Deletes are FK-cascaded: removing a goal also drops every set logged
- * for that exercise (per the migration's `on delete cascade`). The
- * Settings UI surfaces a confirmation prompt before calling DELETE so
- * the cascade isn't silent.
+ * As of #373 this removes the *daily ring only*. Sets FK into
+ * `weight_room_exercises` (the roster), not into this table, so the movement
+ * and its entire logged history survive — deleting a goal now means "stop
+ * ringing this movement", not "erase it". Before #373 the FK cascaded from
+ * here and this endpoint destroyed every set for the exercise.
+ *
+ * The one thing still cascaded is `weight_room_goal_targets`, which is
+ * daily-target history and therefore goal-scoped by definition.
  */
 
 import { NextResponse, type NextRequest } from 'next/server'
@@ -20,7 +24,8 @@ interface Context {
 }
 
 /**
- * Delete a goal (and, via FK cascade, every set for that exercise).
+ * Delete a goal — the daily ring and its target history. Logged sets are
+ * untouched (#373); the movement stays in `weight_room_exercises`.
  *
  * Status codes:
  * - 200 — deleted (response body echoes the removed row)

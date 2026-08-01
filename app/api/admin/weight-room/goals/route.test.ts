@@ -21,7 +21,14 @@ vi.mock('@/lib/auth/require-admin', () => ({
  * naming each step lets a test program exactly the one it cares about and
  * leave the rest on sensible defaults.
  */
-type QueryKind = 'existingGoal' | 'insertGoal' | 'upsertGoal' | 'historyRead' | 'historyUpsert'
+type QueryKind =
+  | 'existingGoal'
+  | 'insertGoal'
+  | 'upsertGoal'
+  | 'historyRead'
+  | 'historyUpsert'
+  /** Catalog provisioning for a brand-new goal's movement (#373). */
+  | 'catalogUpsert'
 
 /** A Supabase-shaped result. */
 interface QueryResult {
@@ -40,6 +47,7 @@ const DEFAULTS: Record<QueryKind, QueryResult> = {
   upsertGoal: { data: null, error: null },
   historyRead: { data: [], error: null },
   historyUpsert: { data: null, error: null },
+  catalogUpsert: { data: null, error: null },
 }
 
 /**
@@ -75,7 +83,12 @@ function makeChain(table: string) {
       return chain
     }),
     upsert: vi.fn((payload: unknown, options?: unknown) => {
-      kind = table === 'weight_room_goals' ? 'upsertGoal' : 'historyUpsert'
+      kind =
+        table === 'weight_room_goals'
+          ? 'upsertGoal'
+          : table === 'weight_room_exercises'
+            ? 'catalogUpsert'
+            : 'historyUpsert'
       record.kind = kind
       record.payload = payload
       record.options = options

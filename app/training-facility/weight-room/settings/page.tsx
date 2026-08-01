@@ -5,12 +5,14 @@ import { notFound } from 'next/navigation'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { AchievementSettings } from '@/components/training-facility/weight-room/AchievementSettings'
+import { ExerciseCatalogSettings } from '@/components/training-facility/weight-room/ExerciseCatalogSettings'
 import { StrengthSettings } from '@/components/training-facility/weight-room/StrengthSettings'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
 import {
   getWeightRoomAchievementsServer,
   getWeightRoomDataServer,
+  getWeightRoomExercisesServer,
 } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 
@@ -38,9 +40,10 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
   // UI handles `goals: []` gracefully (renders the add-exercise form
   // without an existing-goal table). The achievement ladder read (#336)
   // degrades independently — a failed fetch just empties that editor.
-  const [data, achievements] = await Promise.all([
+  const [data, achievements, exercises] = await Promise.all([
     getWeightRoomDataServer().catch(() => null),
     getWeightRoomAchievementsServer().catch(() => []),
+    getWeightRoomExercisesServer().catch(() => []),
   ])
   const goals = data?.goals ?? []
 
@@ -74,6 +77,24 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
 
         <section className="mt-10">
           <StrengthSettings initialGoals={goals} />
+        </section>
+
+        <section className="mt-14 border-t border-white/10 pt-10">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+            Movement catalog
+          </h2>
+          <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+            Every movement you can log a set against. A daily goal above is an{' '}
+            <em>overlay</em> on this list — a gym lift only needs a row here, no
+            ring and no target. Movements with logged sets can&rsquo;t be deleted,
+            only archived.
+          </p>
+          <div className="mt-6">
+            <ExerciseCatalogSettings
+              initialExercises={exercises}
+              goalSlugs={goals.map((goal) => goal.exercise)}
+            />
+          </div>
         </section>
 
         <section className="mt-14 border-t border-white/10 pt-10">

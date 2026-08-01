@@ -27,8 +27,8 @@ import { withTelemetry } from '@/lib/telemetry/with-telemetry'
  * - 400 — payload failed Zod validation or wasn't valid JSON
  * - 401 — not signed in
  * - 403 — signed in but email not on the allowlist
- * - 409 — `exercise` doesn't exist in `weight_room_goals` (FK violation;
- *   add it via the settings UI first)
+ * - 409 — `exercise` isn't in the `weight_room_exercises` roster (FK
+ *   violation; add it via the settings catalog first)
  * - 500 — unexpected Supabase error
  *
  * @param request Incoming JSON request whose body matches
@@ -79,11 +79,13 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     .single()
 
   if (error) {
-    // Postgres FK violation — exercise isn't in weight_room_goals.
+    // Postgres FK violation — exercise isn't in the weight_room_exercises
+    // roster (#373). Note the movement does NOT need a daily goal to be
+    // loggable any more; it only needs a catalog row.
     if (error.code === '23503') {
       return NextResponse.json(
         {
-          error: `Exercise '${entry.exercise}' is not configured. Add it via the settings UI before logging sets.`,
+          error: `Exercise '${entry.exercise}' is not in the movement catalog. Add it in settings before logging sets.`,
         },
         { status: 409 }
       )

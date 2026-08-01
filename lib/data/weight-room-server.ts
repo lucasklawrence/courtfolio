@@ -1,11 +1,16 @@
 import 'server-only'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
-import type { WeightRoomAchievement, WeightRoomData } from '@/types/weight-room'
+import type {
+  WeightRoomAchievement,
+  WeightRoomData,
+  WeightRoomExercise,
+} from '@/types/weight-room'
 
 import {
   assembleWeightRoomAchievements,
   assembleWeightRoomData,
+  assembleWeightRoomExercises,
 } from './weight-room-shared'
 
 /**
@@ -47,4 +52,20 @@ export async function getWeightRoomDataServer(): Promise<WeightRoomData | null> 
 export async function getWeightRoomAchievementsServer(): Promise<WeightRoomAchievement[]> {
   const supabase = await createServerSupabaseClient()
   return assembleWeightRoomAchievements(supabase)
+}
+
+/**
+ * Server-side reader for the movement roster (#373) — used by the Settings
+ * page's catalog editor. Wraps {@link assembleWeightRoomExercises} with the
+ * per-request SSR client.
+ *
+ * Returns an empty array (never `null`) when the roster is empty, and includes
+ * archived movements so the editor can un-archive them.
+ *
+ * @throws See {@link assembleWeightRoomExercises}. The Settings page downgrades
+ *   this to an empty roster rather than failing the page.
+ */
+export async function getWeightRoomExercisesServer(): Promise<WeightRoomExercise[]> {
+  const supabase = await createServerSupabaseClient()
+  return assembleWeightRoomExercises(supabase)
 }
