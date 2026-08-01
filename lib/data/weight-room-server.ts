@@ -1,12 +1,18 @@
 import 'server-only'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
-import type { WeightRoomAchievement, WeightRoomData, WeightRoomExercise } from '@/types/weight-room'
+import type {
+  WeightRoomAchievement,
+  WeightRoomData,
+  WeightRoomExercise,
+  WorkoutTemplate,
+} from '@/types/weight-room'
 
 import {
   assembleWeightRoomAchievements,
   assembleWeightRoomData,
   assembleWeightRoomExercises,
+  assembleWorkoutTemplates,
 } from './weight-room-shared'
 
 /**
@@ -64,4 +70,20 @@ export async function getWeightRoomAchievementsServer(): Promise<WeightRoomAchie
 export async function getWeightRoomExercisesServer(): Promise<WeightRoomExercise[]> {
   const supabase = await createServerSupabaseClient()
   return assembleWeightRoomExercises(supabase)
+}
+
+/**
+ * Server-side reader for workout templates (#375) with their slots, steps, and
+ * alternates attached — used by the Settings builder and, later, the recording
+ * surface's template picker.
+ *
+ * Returns an empty array (never `null`) when none are configured, and includes
+ * archived templates so the builder can un-archive them.
+ *
+ * @throws See {@link assembleWorkoutTemplates}. Call sites downgrade this to an
+ *   empty list rather than failing the page.
+ */
+export async function getWorkoutTemplatesServer(): Promise<WorkoutTemplate[]> {
+  const supabase = await createServerSupabaseClient()
+  return assembleWorkoutTemplates(supabase)
 }
