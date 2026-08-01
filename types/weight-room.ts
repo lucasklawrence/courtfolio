@@ -120,6 +120,172 @@ export interface WeightRoomWorkout {
 }
 
 /**
+ * Broad split a {@link WorkoutTemplate} belongs to (#375) — how the plan is
+ * filed, not what it prescribes. Nullable on purpose: a template that doesn't
+ * fit a split shouldn't be forced into one.
+ */
+export type TemplateCategory =
+  | 'push'
+  | 'pull'
+  | 'legs'
+  | 'upper'
+  | 'lower'
+  | 'full-body'
+  | 'other'
+
+/**
+ * One step in a {@link TemplateSlot}'s within-set sequence (#375) — mirrors a
+ * row of `public.weight_room_template_slot_steps`.
+ *
+ * {@link exercise} is what distinguishes the two structures this models:
+ *
+ * - **absent** — the slot's own movement at a different load or rep count, i.e.
+ *   a **drop set**. A "rack run" down the dumbbells is four steps at 35 / 30 /
+ *   25 / 20.
+ * - **set** — a *different* movement performed back-to-back, i.e. a
+ *   **superset**.
+ *
+ * The two are the same shape and genuinely different training intents; UI
+ * should label them distinctly rather than calling both "steps".
+ */
+export interface TemplateSlotStep {
+  /** UUID primary key, generated server-side. */
+  id: string
+  /** Order within the set, lowest first. */
+  position: number
+  /**
+   * Catalog slug for this step's movement, or absent to inherit the slot's —
+   * see the interface docs; this field is what makes a sequence a superset
+   * rather than a drop set.
+   */
+  exercise?: string
+  /** Reps for this step. Absent inherits {@link TemplateSlot.target_reps}. */
+  target_reps?: number
+  /**
+   * Load on **one implement** for this step, in pounds — same convention as
+   * {@link StrengthSet.weight_lbs}, so a 35 lb rack-run step is 35 per hand.
+   */
+  target_weight_lbs?: number
+  /** Free-text cue for this step. Absent when none. */
+  notes?: string
+}
+
+/**
+ * One pre-declared swap for a {@link TemplateSlot} (#375) — mirrors a row of
+ * `public.weight_room_template_alternates`.
+ *
+ * Exists so the common "the rack is taken" substitution is one tap while
+ * recording (#376) rather than a search through the whole catalog. Declaring
+ * alternates never *restricts* substitution — anything in the catalog stays
+ * reachable; this is only the shortcut.
+ */
+export interface TemplateAlternate {
+  /** UUID primary key, generated server-side. */
+  id: string
+  /** Catalog slug of the substitute movement. */
+  exercise: string
+  /**
+   * Preference order, lowest first — the first alternate is the one to reach
+   * for. Only `(slot_id, exercise)` is unique, so positions may repeat.
+   */
+  position: number
+}
+
+/**
+ * One prescribed movement inside a {@link WorkoutTemplate} (#375) — mirrors a
+ * row of `public.weight_room_template_slots`.
+ *
+ * **Reps are totals, never per-side.** `3 × 34` lunges means 34 reps in a set
+ * however they're split between legs — matching {@link StrengthSet.reps} and
+ * the daily goals, so the recording surface never converts between a
+ * prescription and a logged set. {@link WeightRoomExercise.is_unilateral} flags
+ * the movements where that distinction matters.
+ */
+export interface TemplateSlot {
+  /** UUID primary key, generated server-side. */
+  id: string
+  /** Order within the template, lowest first. */
+  position: number
+  /** Catalog slug of the prescribed movement. */
+  exercise: string
+  /** How many sets to perform; the floor when {@link target_sets_max} is set. */
+  target_sets: number
+  /**
+   * Top of a set range — "4–5 sets" is `target_sets: 4, target_sets_max: 5`.
+   * Absent means {@link target_sets} is exact. Adherence should treat anything
+   * inside the range as hitting the prescription, not exceeding it.
+   */
+  target_sets_max?: number
+  /**
+   * Reps per set, or absent for **AMRAP / to failure** — a real prescription
+   * for dips and pullups, so it's deliberately not forced to a number. Absent
+   * also covers "sets prescribed, reps unspecified", which is how most
+   * transcribed templates arrive.
+   */
+  target_reps?: number
+  /**
+   * Top of a rep range (`8–12` is `target_reps: 8, target_reps_max: 12`).
+   * Never set without {@link target_reps}.
+   */
+  target_reps_max?: number
+  /**
+   * Prescribed load on **one implement**, in pounds — matching
+   * {@link StrengthSet.weight_lbs}. Effective load is this ×
+   * {@link WeightRoomExercise.load_multiplier}, so a two-dumbbell prescription
+   * stores the per-hand number. Absent for bodyweight or "whatever's loaded".
+   */
+  target_weight_lbs?: number
+  /** Prescribed rest between sets, in seconds. Absent when unspecified. */
+  rest_seconds?: number
+  /** Free-text cue — "pause at the bottom", "seated, alternating". */
+  notes?: string
+  /**
+   * Within-set sequence, ordered. **Empty for an ordinary straight set**, which
+   * is the overwhelming majority — see {@link TemplateSlotStep} for what a
+   * populated one means.
+   */
+  steps: TemplateSlotStep[]
+  /**
+   * Pre-declared swaps, in preference order. Empty when none — recording can
+   * still substitute anything in the catalog.
+   */
+  alternates: TemplateAlternate[]
+}
+
+/**
+ * A named, ordered workout prescription (#375) — mirrors a row of
+ * `public.weight_room_workout_templates` with its slots attached.
+ *
+ * A template is a **plan, not a record**. Running one produces a
+ * {@link WeightRoomWorkout}; editing the template afterwards never changes what
+ * a past session says it prescribed, which is why recording links each set to
+ * the slot it was performed for rather than recomputing adherence against the
+ * live template.
+ */
+export interface WorkoutTemplate {
+  /** UUID primary key, generated server-side. */
+  id: string
+  /** Display name, e.g. `Chest Day 1`. */
+  name: string
+  /** Longer free-text description — "Target pace: 35 min". Absent when none. */
+  description?: string
+  /** Hex color for the template's chip, matching the goal/focus convention. */
+  color?: string
+  /** Broad split. Absent when the template doesn't fit one. */
+  category?: TemplateCategory
+  /** Display order among templates, lowest first. */
+  position: number
+  /**
+   * Soft-retire flag. An archived template drops out of the "start a workout"
+   * picker but stays readable, so a past session that ran it still resolves.
+   * Absent is treated as `false`.
+   */
+  archived?: boolean
+  /** Prescribed movements, ordered by {@link TemplateSlot.position}. */
+  slots: TemplateSlot[]
+}
+
+/**
  * How a movement is loaded (#373). Drives the catalog's equipment filter and,
  * once templates land, "what can I swap this for when the rack is taken".
  *

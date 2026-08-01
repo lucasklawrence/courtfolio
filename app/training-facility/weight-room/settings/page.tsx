@@ -9,10 +9,12 @@ import { ExerciseCatalogSettings } from '@/components/training-facility/weight-r
 import { StrengthSettings } from '@/components/training-facility/weight-room/StrengthSettings'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
+import { TemplateBuilder } from '@/components/training-facility/weight-room/TemplateBuilder'
 import {
   getWeightRoomAchievementsServer,
   getWeightRoomDataServer,
   getWeightRoomExercisesServer,
+  getWorkoutTemplatesServer,
 } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 
@@ -40,12 +42,16 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
   // UI handles `goals: []` gracefully (renders the add-exercise form
   // without an existing-goal table). The achievement ladder read (#336)
   // degrades independently — a failed fetch just empties that editor.
-  const [data, achievements, exercises] = await Promise.all([
+  const [data, achievements, exercises, templates] = await Promise.all([
     getWeightRoomDataServer().catch(() => null),
     getWeightRoomAchievementsServer().catch(() => []),
     getWeightRoomExercisesServer().catch(() => []),
+    getWorkoutTemplatesServer().catch(() => []),
   ])
   const goals = data?.goals ?? []
+  // Pickers offer live movements only; an archived one stays rendered wherever
+  // it's already referenced, it just isn't selectable for something new.
+  const activeExercises = exercises.filter((exercise) => exercise.archived !== true)
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -76,6 +82,21 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
 
         <section className="mt-10">
           <StrengthSettings initialGoals={goals} />
+        </section>
+
+        <section className="mt-14 border-t border-white/10 pt-10">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+            Workout templates
+          </h2>
+          <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+            Named prescriptions — &ldquo;Chest Day 1&rdquo;, an ordered list of movements with
+            their sets and reps. A template is a <em>plan</em>: running one produces a workout
+            session, and editing it afterwards never changes what a past session says it
+            prescribed. Leave reps blank for a movement you take to failure.
+          </p>
+          <div className="mt-6">
+            <TemplateBuilder initialTemplates={templates} exercises={activeExercises} />
+          </div>
         </section>
 
         <section className="mt-14 border-t border-white/10 pt-10">

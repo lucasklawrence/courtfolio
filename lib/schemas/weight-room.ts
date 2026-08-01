@@ -20,10 +20,15 @@ import type {
   ExerciseMuscleGroup,
   MonthlyFocus,
   StrengthSet,
+  TemplateAlternate,
+  TemplateCategory,
+  TemplateSlot,
+  TemplateSlotStep,
   WeightRoomAchievement,
   WeightRoomExercise,
   WeightRoomWorkout,
   WorkoutLocation,
+  WorkoutTemplate,
 } from '@/types/weight-room'
 
 /**
@@ -399,6 +404,343 @@ export const WeightRoomWorkoutUpdateSchema = z
 
 /** Validated body of `PATCH /api/admin/weight-room/workouts/[id]`. */
 export type WeightRoomWorkoutUpdate = z.infer<typeof WeightRoomWorkoutUpdateSchema>
+
+/** The seven template categories, as a Zod enum reused by the row + write schemas (#375). */
+const templateCategory = (): z.ZodType<TemplateCategory> =>
+  z.enum(['push', 'pull', 'legs', 'upper', 'lower', 'full-body', 'other'])
+
+/**
+ * Zod schema for one row of `public.weight_room_workout_templates` (#375).
+ * Mirrors `supabase/migrations/20260803120000_weight_room_workout_templates.sql`.
+ */
+export const WeightRoomWorkoutTemplateRowSchema = z
+  .object({
+    id: z.string().uuid(),
+    name: z.string().min(1),
+    description: z.string().nullable().optional(),
+    color: z.string().nullable().optional(),
+    category: templateCategory().nullable().optional(),
+    position: nonNegativeInt(),
+    archived: z.boolean().nullable().optional(),
+  })
+  .strict()
+
+/** Validated `weight_room_workout_templates` row. */
+export type WeightRoomWorkoutTemplateRow = z.infer<typeof WeightRoomWorkoutTemplateRowSchema>
+
+/**
+ * Zod schema for one row of `public.weight_room_template_slots` (#375).
+ *
+ * `target_reps` absent is meaningful — AMRAP, or "sets prescribed, reps not" —
+ * so it is never defaulted to a number.
+ */
+export const WeightRoomTemplateSlotRowSchema = z
+  .object({
+    id: z.string().uuid(),
+    template_id: z.string().uuid(),
+    position: nonNegativeInt(),
+    exercise: z.string().min(1),
+    target_sets: positiveInt(),
+    target_sets_max: positiveInt().nullable().optional(),
+    target_reps: positiveInt().nullable().optional(),
+    target_reps_max: positiveInt().nullable().optional(),
+    target_weight_lbs: z.number().nonnegative().nullable().optional(),
+    rest_seconds: nonNegativeInt().nullable().optional(),
+    notes: z.string().nullable().optional(),
+  })
+  .strict()
+
+/** Validated `weight_room_template_slots` row. */
+export type WeightRoomTemplateSlotRow = z.infer<typeof WeightRoomTemplateSlotRowSchema>
+
+/**
+ * Zod schema for one row of `public.weight_room_template_slot_steps` (#375).
+ * `exercise` nullable is the drop-set / superset distinction — see
+ * {@link import('@/types/weight-room').TemplateSlotStep}.
+ */
+export const WeightRoomTemplateSlotStepRowSchema = z
+  .object({
+    id: z.string().uuid(),
+    slot_id: z.string().uuid(),
+    position: nonNegativeInt(),
+    exercise: z.string().min(1).nullable().optional(),
+    target_reps: positiveInt().nullable().optional(),
+    target_weight_lbs: z.number().nonnegative().nullable().optional(),
+    notes: z.string().nullable().optional(),
+  })
+  .strict()
+
+/** Validated `weight_room_template_slot_steps` row. */
+export type WeightRoomTemplateSlotStepRow = z.infer<typeof WeightRoomTemplateSlotStepRowSchema>
+
+/** Zod schema for one row of `public.weight_room_template_alternates` (#375). */
+export const WeightRoomTemplateAlternateRowSchema = z
+  .object({
+    id: z.string().uuid(),
+    slot_id: z.string().uuid(),
+    position: nonNegativeInt(),
+    exercise: z.string().min(1),
+  })
+  .strict()
+
+/** Validated `weight_room_template_alternates` row. */
+export type WeightRoomTemplateAlternateRow = z.infer<typeof WeightRoomTemplateAlternateRowSchema>
+
+/**
+ * Assemble validated template / slot / step / alternate rows into the nested
+ * {@link WorkoutTemplate} shape, ordered by `position` at every level.
+ *
+ * Done here rather than with a PostgREST embedded select so the four row
+ * schemas stay flat and independently `.strict()` — an embed returns a nested
+ * object that no single row schema can validate, which is how a column added
+ * to one of these tables would slip past validation unnoticed.
+ *
+ * @param templates Template rows.
+ * @param slots Slot rows across all templates.
+ * @param steps Step rows across all slots.
+ * @param alternates Alternate rows across all slots.
+ */
+export function assembleWorkoutTemplates(
+  templates: readonly WeightRoomWorkoutTemplateRow[],
+  slots: readonly WeightRoomTemplateSlotRow[],
+  steps: readonly WeightRoomTemplateSlotStepRow[],
+  alternates: readonly WeightRoomTemplateAlternateRow[],
+): WorkoutTemplate[] {
+  const stepsBySlot = new Map<string, TemplateSlotStep[]>()
+  for (const row of [...steps].sort((a, b) => a.position - b.position)) {
+    const list = stepsBySlot.get(row.slot_id) ?? []
+    list.push({
+      id: row.id,
+      position: row.position,
+      ...(row.exercise != null ? { exercise: row.exercise } : {}),
+      ...(row.target_reps != null ? { target_reps: row.target_reps } : {}),
+      ...(row.target_weight_lbs != null
+        ? { target_weight_lbs: row.target_weight_lbs }
+        : {}),
+      ...(row.notes != null && row.notes !== '' ? { notes: row.notes } : {}),
+    })
+    stepsBySlot.set(row.slot_id, list)
+  }
+
+  const alternatesBySlot = new Map<string, TemplateAlternate[]>()
+  for (const row of [...alternates].sort((a, b) => a.position - b.position)) {
+    const list = alternatesBySlot.get(row.slot_id) ?? []
+    list.push({ id: row.id, exercise: row.exercise, position: row.position })
+    alternatesBySlot.set(row.slot_id, list)
+  }
+
+  const slotsByTemplate = new Map<string, TemplateSlot[]>()
+  for (const row of [...slots].sort((a, b) => a.position - b.position)) {
+    const list = slotsByTemplate.get(row.template_id) ?? []
+    list.push({
+      id: row.id,
+      position: row.position,
+      exercise: row.exercise,
+      target_sets: row.target_sets,
+      ...(row.target_sets_max != null ? { target_sets_max: row.target_sets_max } : {}),
+      ...(row.target_reps != null ? { target_reps: row.target_reps } : {}),
+      ...(row.target_reps_max != null ? { target_reps_max: row.target_reps_max } : {}),
+      ...(row.target_weight_lbs != null
+        ? { target_weight_lbs: row.target_weight_lbs }
+        : {}),
+      ...(row.rest_seconds != null ? { rest_seconds: row.rest_seconds } : {}),
+      ...(row.notes != null && row.notes !== '' ? { notes: row.notes } : {}),
+      steps: stepsBySlot.get(row.id) ?? [],
+      alternates: alternatesBySlot.get(row.id) ?? [],
+    })
+    slotsByTemplate.set(row.template_id, list)
+  }
+
+  return [...templates]
+    .sort((a, b) => a.position - b.position || a.name.localeCompare(b.name))
+    .map((row) => ({
+      id: row.id,
+      name: row.name,
+      position: row.position,
+      ...(row.description != null && row.description !== ''
+        ? { description: row.description }
+        : {}),
+      ...(row.color != null ? { color: row.color } : {}),
+      ...(row.category != null ? { category: row.category } : {}),
+      ...(row.archived != null ? { archived: row.archived } : {}),
+      slots: slotsByTemplate.get(row.id) ?? [],
+    }))
+}
+
+/**
+ * The template write fields, without any `.default()` — see
+ * {@link achievementWriteFields} for why deriving a PATCH schema from a
+ * defaulted create schema silently resets omitted keys.
+ */
+const templateWriteFields = {
+  name: z.string().trim().min(1, 'name is required').max(80, 'name is too long'),
+  description: clearableTextField(2000),
+  color: z.string().regex(HEX_COLOR_REGEX, 'color must be a hex string like #DC2626').nullable(),
+  category: templateCategory().nullable(),
+  position: nonNegativeInt(),
+  archived: z.boolean(),
+}
+
+/** Request-body schema for `POST /api/admin/weight-room/templates` (#375). */
+export const WeightRoomTemplateCreateSchema = z
+  .object({
+    ...templateWriteFields,
+    description: templateWriteFields.description,
+    color: templateWriteFields.color.optional(),
+    category: templateWriteFields.category.optional(),
+    position: templateWriteFields.position.default(0),
+    archived: templateWriteFields.archived.default(false),
+  })
+  .strict()
+
+/** Validated body of `POST /api/admin/weight-room/templates`. */
+export type WeightRoomTemplateCreate = z.infer<typeof WeightRoomTemplateCreateSchema>
+
+/**
+ * Request-body schema for `PATCH /api/admin/weight-room/templates/[id]` (#375).
+ * Every field optional, at least one required.
+ */
+export const WeightRoomTemplateUpdateSchema = z
+  .object(templateWriteFields)
+  .strict()
+  .partial()
+  .refine((patch) => Object.values(patch).some((v) => v !== undefined), {
+    message: 'At least one field is required.',
+  })
+
+/** Validated body of `PATCH /api/admin/weight-room/templates/[id]`. */
+export type WeightRoomTemplateUpdate = z.infer<typeof WeightRoomTemplateUpdateSchema>
+
+/**
+ * One step in a slot write body. Steps carry no external references, so a slot
+ * write replaces them wholesale rather than editing them individually — unlike
+ * slots themselves, whose ids #376 links logged sets to.
+ */
+const slotStepWriteSchema = z
+  .object({
+    exercise: exerciseWriteField().nullable().optional(),
+    target_reps: positiveInt().optional(),
+    target_weight_lbs: z.number().nonnegative().optional(),
+    notes: clearableTextField(200),
+  })
+  .strict()
+
+/** The slot write fields, default-free for the same reason as the template ones. */
+const slotWriteFields = {
+  exercise: exerciseWriteField(),
+  target_sets: positiveInt(),
+  target_sets_max: positiveInt().nullable(),
+  target_reps: positiveInt().nullable(),
+  target_reps_max: positiveInt().nullable(),
+  target_weight_lbs: z.number().nonnegative().nullable(),
+  rest_seconds: nonNegativeInt().nullable(),
+  notes: clearableTextField(500),
+  /** Full replacement of this slot's within-set sequence. */
+  steps: z.array(slotStepWriteSchema).max(20),
+  /** Full replacement of this slot's pre-declared swaps, in array order. */
+  alternates: z.array(exerciseWriteField()).max(20),
+}
+
+/**
+ * Shape the two range refinements inspect. Both schemas below are `.partial()`
+ * or optional-heavy, so every field may be absent.
+ */
+interface SlotRangeFields {
+  target_sets?: number | null
+  target_sets_max?: number | null
+  target_reps?: number | null
+  target_reps_max?: number | null
+}
+
+/**
+ * A set range's top must not sit below its floor.
+ *
+ * On a partial patch `target_sets` may be absent while `target_sets_max` is
+ * supplied; that can't be validated in isolation, so it passes here and the
+ * table's CHECK backstops it against the stored floor.
+ */
+function setRangeIsOrdered(v: SlotRangeFields): boolean {
+  return v.target_sets_max == null || v.target_sets == null || v.target_sets_max >= v.target_sets
+}
+
+/**
+ * A rep-range top is meaningless without a floor to range from, and must not
+ * sit below it. Unlike sets, `target_reps` absent *with* a max supplied is
+ * always wrong — absent reps means AMRAP, which has no range.
+ */
+function repRangeIsOrdered(v: SlotRangeFields): boolean {
+  return v.target_reps_max == null || (v.target_reps != null && v.target_reps_max >= v.target_reps)
+}
+
+/** Request-body schema for `POST /api/admin/weight-room/templates/[id]/slots` (#375). */
+export const WeightRoomTemplateSlotCreateSchema = z
+  .object({
+    ...slotWriteFields,
+    target_sets_max: slotWriteFields.target_sets_max.optional(),
+    target_reps: slotWriteFields.target_reps.optional(),
+    target_reps_max: slotWriteFields.target_reps_max.optional(),
+    target_weight_lbs: slotWriteFields.target_weight_lbs.optional(),
+    rest_seconds: slotWriteFields.rest_seconds.optional(),
+    steps: slotWriteFields.steps.default([]),
+    alternates: slotWriteFields.alternates.default([]),
+  })
+  .strict()
+  .refine(setRangeIsOrdered, {
+    message: 'target_sets_max must be at least target_sets',
+    path: ['target_sets_max'],
+  })
+  .refine(repRangeIsOrdered, {
+    message: 'target_reps_max requires target_reps and must be at least it',
+    path: ['target_reps_max'],
+  })
+
+/** Validated body of the slot-create route. */
+export type WeightRoomTemplateSlotCreate = z.infer<typeof WeightRoomTemplateSlotCreateSchema>
+
+/**
+ * Request-body schema for
+ * `PATCH /api/admin/weight-room/templates/[id]/slots/[slotId]` (#375).
+ *
+ * Omitting `steps` or `alternates` leaves them untouched; supplying either
+ * replaces that slot's list wholesale.
+ */
+export const WeightRoomTemplateSlotUpdateSchema = z
+  .object(slotWriteFields)
+  .strict()
+  .partial()
+  .refine((patch) => Object.values(patch).some((v) => v !== undefined), {
+    message: 'At least one field is required.',
+  })
+  .refine(setRangeIsOrdered, {
+    message: 'target_sets_max must be at least target_sets',
+    path: ['target_sets_max'],
+  })
+  .refine(repRangeIsOrdered, {
+    message: 'target_reps_max requires target_reps and must be at least it',
+    path: ['target_reps_max'],
+  })
+
+/** Validated body of the slot-update route. */
+export type WeightRoomTemplateSlotUpdate = z.infer<typeof WeightRoomTemplateSlotUpdateSchema>
+
+/**
+ * Request-body schema for reordering a template's slots — an array of
+ * `{ id, position }` applied in one upsert.
+ *
+ * The table's `(template_id, position)` unique constraint is DEFERRABLE, so a
+ * swap that transiently duplicates a position is legal until commit. An
+ * immediate constraint would reject the first half of every swap.
+ */
+export const WeightRoomTemplateSlotReorderSchema = z
+  .object({
+    order: z
+      .array(z.object({ id: z.string().uuid(), position: nonNegativeInt() }).strict())
+      .min(1, 'order must list at least one slot'),
+  })
+  .strict()
+
+/** Validated body of the slot-reorder route. */
+export type WeightRoomTemplateSlotReorder = z.infer<typeof WeightRoomTemplateSlotReorderSchema>
 
 /**
  * Translate a validated `weight_room_goals` row into the public
