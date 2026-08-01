@@ -21,6 +21,7 @@ import {
   filterOtfSessionsInRange,
   formatMmss,
   formatOtfDate,
+  gradeAdjustedPaceSeconds,
   mmssToSeconds,
   otfBlockTrend,
   otfClassTypes,
@@ -250,6 +251,19 @@ export function OtfDetailView({
     () => otfBlockTrend(activeSessions, 'treadmill', t => t.avg_incline),
     [activeSessions]
   )
+  // Grade-adjusted pace (#335) — raw pace folded through the Minetti cost
+  // curve so a steep class stops reading as a slow one. Derived here rather
+  // than stored, so it re-derives if the model is ever revised. A class with
+  // a pace but no incline falls through as its own raw pace (factor 1)
+  // rather than dropping out of the series.
+  const treadGradeAdjustedPaceTrend = useMemo(
+    () =>
+      otfBlockTrend(activeSessions, 'treadmill', t => {
+        const seconds = mmssToSeconds(t.avg_pace)
+        return seconds === null ? null : gradeAdjustedPaceSeconds(seconds, t.avg_incline)
+      }),
+    [activeSessions]
+  )
   const rowerWattsTrend = useMemo(
     () => otfBlockTrend(activeSessions, 'rower', r => r.avg_watt),
     [activeSessions]
@@ -270,8 +284,20 @@ export function OtfDetailView({
       { key: 'time', label: 'Time', trend: treadTimeTrend, format: formatMmss },
       { key: 'pace', label: 'Avg pace', trend: treadPaceTrend, format: v => `${formatMmss(v)}/mi` },
       { key: 'incline', label: 'Avg incline', trend: treadInclineTrend, format: v => `${v.toFixed(1)}%` },
+      {
+        key: 'gap',
+        label: 'Grade-adj pace',
+        trend: treadGradeAdjustedPaceTrend,
+        format: v => `${formatMmss(v)}/mi`,
+      },
     ],
-    [treadDistanceTrend, treadTimeTrend, treadPaceTrend, treadInclineTrend]
+    [
+      treadDistanceTrend,
+      treadTimeTrend,
+      treadPaceTrend,
+      treadInclineTrend,
+      treadGradeAdjustedPaceTrend,
+    ]
   )
   const rowerRows = useMemo<OtfSparklineRow[]>(
     () => [
@@ -450,7 +476,7 @@ export function OtfDetailView({
               </ChartCard>
               <ChartCard
                 title="Avg incline"
-                helper="Average treadmill incline — context for pace (a slow mile may be a steep one)."
+                helper="Average treadmill incline — the grade behind each class's pace, and the input to the grade-adjusted figure."
               >
                 <OtfTrendChart
                   data={treadInclineTrend}
@@ -459,6 +485,19 @@ export function OtfDetailView({
                   yTickFormat={v => v.toFixed(1)}
                   ariaLabel="Treadmill average incline over time"
                   emptyMessage="No treadmill incline in range"
+                />
+              </ChartCard>
+              <ChartCard
+                title="Grade-adjusted pace"
+                helper="Pace normalized for incline (Minetti 2002) — the flat pace that would have cost the same energy, so steep classes compare against level ones. Estimated from each class's average incline, not a per-minute stream."
+              >
+                <OtfTrendChart
+                  data={treadGradeAdjustedPaceTrend}
+                  width={chartWidth}
+                  yLabel="min/mi"
+                  yTickFormat={formatMmss}
+                  ariaLabel="Treadmill grade-adjusted pace over time"
+                  emptyMessage="No treadmill pace in range"
                 />
               </ChartCard>
             </div>

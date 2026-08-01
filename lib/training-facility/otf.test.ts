@@ -19,6 +19,9 @@ import {
   filterOtfSessionsInRange,
   formatMmss,
   formatOtfDate,
+  gradeAdjustedPace,
+  gradeAdjustedPaceSeconds,
+  gradeAdjustmentFactor,
   mmssToSeconds,
   otfBlockTrend,
   otfClassTypeLabel,
@@ -479,5 +482,136 @@ describe('otfRollingAverage (#267)', () => {
 
   it('returns an empty array for an empty trend', () => {
     expect(otfRollingAverage([], 3)).toEqual([])
+  })
+})
+
+describe('grade-adjusted pace (#335)', () => {
+  describe('gradeAdjustmentFactor', () => {
+    it('is exactly 1 on the flat', () => {
+      expect(gradeAdjustmentFactor(0)).toBe(1)
+    })
+
+    it('matches the reference factors from the issue', () => {
+      // Minetti C(i)/C(0) at the grades the issue tabulated.
+      expect(gradeAdjustmentFactor(2)).toBeCloseTo(1.113, 3)
+      expect(gradeAdjustmentFactor(5)).toBeCloseTo(1.301, 3)
+      expect(gradeAdjustmentFactor(8.5)).toBeCloseTo(1.546, 3)
+      expect(gradeAdjustmentFactor(15)).toBeCloseTo(2.06, 2)
+    })
+
+    it('rises monotonically across the range our data occupies', () => {
+      const grades = [0, 1, 2, 3, 4, 5, 6, 8.5, 10, 15]
+      const factors = grades.map(gradeAdjustmentFactor)
+      for (let i = 1; i < factors.length; i++) {
+        expect(factors[i]).toBeGreaterThan(factors[i - 1])
+      }
+    })
+
+    it('diverges from the linear ACSM approximation as grade climbs', () => {
+      // ACSM's `1 + 4.5g` is the sanity check, not the model: it tracks
+      // Minetti closely when shallow and runs 10-19% low by 8.5-15%.
+      const acsm = (pct: number): number => 1 + 4.5 * (pct / 100)
+      expect(gradeAdjustmentFactor(1) / acsm(1)).toBeCloseTo(1, 1)
+      expect(acsm(8.5) / gradeAdjustmentFactor(8.5)).toBeLessThan(0.91)
+      expect(acsm(15) / gradeAdjustmentFactor(15)).toBeLessThan(0.83)
+    })
+
+    it('handles decline, bottoming out below flat rather than at it', () => {
+      // Shallow braking is cheaper than lifting, so a decline factor is < 1,
+      // falls to a minimum, then climbs again as the descent gets steep.
+      expect(gradeAdjustmentFactor(-5)).toBeLessThan(1)
+      expect(gradeAdjustmentFactor(-15)).toBeLessThan(gradeAdjustmentFactor(-5))
+      expect(gradeAdjustmentFactor(-45)).toBeGreaterThan(gradeAdjustmentFactor(-15))
+    })
+
+    it('puts the decline minimum near -18%, not the -10% the issue quoted', () => {
+      // The issue asserted "minimum cost sits near -10%", but the polynomial
+      // it specifies still reads 0.598 there and keeps falling to ~0.495
+      // around -18%. Immaterial in practice (no session has a negative
+      // avg_incline) — pinned so the discrepancy stays documented.
+      expect(gradeAdjustmentFactor(-10)).toBeCloseTo(0.598, 3)
+      expect(gradeAdjustmentFactor(-18)).toBeCloseTo(0.495, 3)
+      expect(gradeAdjustmentFactor(-18)).toBeLessThan(gradeAdjustmentFactor(-10))
+    })
+
+    it('clamps beyond the fitted range instead of following the polynomial', () => {
+      // No real class reaches ±45%; a value past it is a parse error, and
+      // the quintic diverges fast outside the fit.
+      expect(gradeAdjustmentFactor(900)).toBe(gradeAdjustmentFactor(45))
+      expect(gradeAdjustmentFactor(-900)).toBe(gradeAdjustmentFactor(-45))
+    })
+
+    it('treats non-finite input as flat', () => {
+      expect(gradeAdjustmentFactor(Number.NaN)).toBe(1)
+      expect(gradeAdjustmentFactor(Number.POSITIVE_INFINITY)).toBe(1)
+    })
+  })
+
+  describe('gradeAdjustedPace', () => {
+    it('reproduces the measured sessions from the issue', () => {
+      // The 06-27 / 05-19 / 07-10 rows of the issue's table.
+      expect(gradeAdjustedPace('15:23', 8.5)).toBe('9:57')
+      expect(gradeAdjustedPace('12:45', 5.4)).toBe('9:36')
+      expect(gradeAdjustedPace('10:10', 2.0)).toBe('9:08')
+      expect(gradeAdjustedPace('13:57', 5.5)).toBe('10:27')
+      expect(gradeAdjustedPace('13:02', 4.0)).toBe('10:32')
+    })
+
+    it('leaves a flat class untouched', () => {
+      expect(gradeAdjustedPace('10:00', 0)).toBe('10:00')
+    })
+
+    it('separates two sessions that share a raw pace at different grades', () => {
+      // Both 13:02 raw (04-17 at 2.8%, 07-08 at 4.0%). The issue's prose says
+      // they separate by 39s, but its own table puts 4.0% at 10:32 — which
+      // this matches — and 2.8% lands at 11:13, so the real gap is 41s.
+      // Trusting the table over the sentence.
+      expect(gradeAdjustedPace('13:02', 2.8)).toBe('11:13')
+      expect(gradeAdjustedPace('13:02', 4.0)).toBe('10:32')
+
+      const shallow = mmssToSeconds(gradeAdjustedPace('13:02', 2.8) ?? '')
+      const steep = mmssToSeconds(gradeAdjustedPace('13:02', 4.0) ?? '')
+      expect((shallow as number) - (steep as number)).toBe(41)
+    })
+
+    it('inverts the ranking of a steep class against a flatter, faster one', () => {
+      // 06-27 (15:23 @ 8.5%) is slower than 07-08 (13:02 @ 4.0%) raw, and
+      // faster once adjusted — the reordering the whole feature exists for.
+      const steepRaw = mmssToSeconds('15:23') as number
+      const flatterRaw = mmssToSeconds('13:02') as number
+      expect(steepRaw).toBeGreaterThan(flatterRaw)
+
+      const steepGap = mmssToSeconds(gradeAdjustedPace('15:23', 8.5) ?? '') as number
+      const flatterGap = mmssToSeconds(gradeAdjustedPace('13:02', 4.0) ?? '') as number
+      expect(steepGap).toBeLessThan(flatterGap)
+    })
+
+    it('treats a missing incline as flat rather than dropping the session', () => {
+      expect(gradeAdjustedPace('12:00', undefined)).toBe('12:00')
+      expect(gradeAdjustedPace('12:00', null)).toBe('12:00')
+    })
+
+    it('returns null for missing or malformed pace', () => {
+      expect(gradeAdjustedPace(undefined, 5)).toBeNull()
+      expect(gradeAdjustedPace(null, 5)).toBeNull()
+      expect(gradeAdjustedPace('', 5)).toBeNull()
+      expect(gradeAdjustedPace('nonsense', 5)).toBeNull()
+    })
+  })
+
+  describe('gradeAdjustedPaceSeconds', () => {
+    it('agrees with the formatted helper', () => {
+      const seconds = gradeAdjustedPaceSeconds(mmssToSeconds('15:23') as number, 8.5)
+      expect(formatMmss(seconds)).toBe(gradeAdjustedPace('15:23', 8.5))
+    })
+
+    it('is always faster than raw pace on an incline', () => {
+      const raw = mmssToSeconds('12:00') as number
+      expect(gradeAdjustedPaceSeconds(raw, 4)).toBeLessThan(raw)
+    })
+
+    it('returns raw pace unchanged on the flat', () => {
+      expect(gradeAdjustedPaceSeconds(600, 0)).toBe(600)
+    })
   })
 })
