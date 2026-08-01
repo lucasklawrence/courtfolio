@@ -147,6 +147,7 @@ export const WeightRoomSetRowSchema = z
     // grease-the-groove set ever logged — and means "loose", not "missing".
     workout_id: z.string().uuid().nullable().optional(),
     position: nonNegativeInt().nullable().optional(),
+    template_slot_id: z.string().uuid().nullable().optional(),
   })
   .strict()
 
@@ -239,16 +240,57 @@ export const WeightRoomSetCreateSchema = z
     // empty / whitespace / null all normalize to `undefined` so the
     // route omits the column and the DB stores `null` (unspecified).
     variant: variantWriteField(),
+    // External load in pounds, per implement (#376). This was missing until
+    // now, which meant weighted sets could not be logged through the app at
+    // all — every one on the site got there via the log-workout skill writing
+    // raw SQL and bypassing this schema entirely.
+    weight_lbs: z.number().nonnegative().optional(),
     // Session membership (#374). Explicit only — the route never infers it
     // from whichever workout happens to be open, so a desk pushup set can't
     // silently join the morning's gym session.
     workout_id: z.string().uuid().optional(),
     position: nonNegativeInt().optional(),
+    // The template slot this set was performed for (#376). A set whose
+    // `exercise` differs from its slot's is a substitution, recorded by that
+    // difference rather than by a flag.
+    template_slot_id: z.string().uuid().optional(),
   })
   .strict()
 
 /** Validated body of `POST /api/admin/weight-room/sets`. */
 export type WeightRoomSetCreate = z.infer<typeof WeightRoomSetCreateSchema>
+
+/**
+ * Request-body schema for `PATCH /api/admin/weight-room/sets/[id]` (#376).
+ *
+ * Correcting a mistyped set previously meant deleting it and re-entering —
+ * which loses its `logged_at` and, inside a workout, its place in the order.
+ * Every field optional, at least one required.
+ *
+ * `weight_lbs` and `variant` accept an explicit `null` to *clear* them: a set
+ * logged as weighted by mistake has to be able to become a bodyweight set
+ * again, which an omitted key can't express under PATCH semantics.
+ */
+export const WeightRoomSetUpdateSchema = z
+  .object({
+    exercise: exerciseWriteField(),
+    reps: positiveInt(),
+    logged_at: z.string().min(1),
+    weight_lbs: z.number().nonnegative().nullable(),
+    variant: z.union([z.string(), z.null()]).transform(v => {
+      if (v === null) return null
+      const trimmed = v.trim().toLowerCase()
+      return trimmed === '' ? null : trimmed
+    }),
+  })
+  .strict()
+  .partial()
+  .refine(patch => Object.values(patch).some(v => v !== undefined), {
+    message: 'At least one field (exercise, reps, logged_at, weight_lbs, or variant) is required.',
+  })
+
+/** Validated body of `PATCH /api/admin/weight-room/sets/[id]`. */
+export type WeightRoomSetUpdate = z.infer<typeof WeightRoomSetUpdateSchema>
 
 /**
  * Translate a validated `weight_room_sets` row into the public
@@ -272,6 +314,7 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     // Session membership (#374); same absent-not-null treatment.
     ...(row.workout_id != null ? { workout_id: row.workout_id } : {}),
     ...(row.position != null ? { position: row.position } : {}),
+    ...(row.template_slot_id != null ? { template_slot_id: row.template_slot_id } : {}),
   }
 }
 

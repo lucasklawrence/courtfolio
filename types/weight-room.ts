@@ -67,6 +67,20 @@ export interface StrengthSet {
    * writer didn't care. Gaps are fine; nothing renumbers.
    */
   position?: number
+  /**
+   * The template slot this set was performed **for** (#376), or absent.
+   *
+   * Absent means two different things depending on {@link workout_id}: inside a
+   * workout it's **extra work** the template never prescribed; outside one it's
+   * an ordinary loose set.
+   *
+   * When present, comparing this set's {@link exercise} to the slot's *is* the
+   * substitution record — a dumbbell-bench set against a barbell-bench slot
+   * says the rack was taken, with no separate table and no flag. Nulled if the
+   * template is later deleted, so the session degrades to untemplated rather
+   * than the record being rewritten.
+   */
+  template_slot_id?: string
 }
 
 /**
