@@ -83,6 +83,10 @@ export function ExerciseCatalogSettings({
 }: ExerciseCatalogSettingsProps): JSX.Element {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
+  // Slug the current error belongs to, so a row-scoped failure (the 409 you get
+  // trying to delete a movement with history) renders *in that row* rather than
+  // in a banner that's scrolled off the top of a 37-movement list.
+  const [errorSlug, setErrorSlug] = useState<string | null>(null)
   const [query, setQuery] = useState('')
   const [showArchived, setShowArchived] = useState(false)
   const [isPending, startTransition] = useTransition()
@@ -114,6 +118,11 @@ export function ExerciseCatalogSettings({
     })
   }
 
+  function clearError(): void {
+    setError(null)
+    setErrorSlug(null)
+  }
+
   /** Read `{ error }` off a failed response, falling back to the status code. */
   async function messageFor(res: Response, fallback: string): Promise<string> {
     const body = (await res.json().catch(() => ({}))) as { error?: string }
@@ -121,7 +130,7 @@ export function ExerciseCatalogSettings({
   }
 
   async function createExercise(slug: string, draft: ExerciseDraft): Promise<boolean> {
-    setError(null)
+    clearError()
     const res = await fetch('/api/admin/weight-room/exercises', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -139,7 +148,7 @@ export function ExerciseCatalogSettings({
     slug: string,
     patch: Partial<ExerciseDraft> & { archived?: boolean },
   ): Promise<void> {
-    setError(null)
+    clearError()
     const res = await fetch(`/api/admin/weight-room/exercises/${encodeURIComponent(slug)}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -147,13 +156,14 @@ export function ExerciseCatalogSettings({
     })
     if (!res.ok) {
       setError(await messageFor(res, 'Save failed'))
+      setErrorSlug(slug)
       return
     }
     refresh()
   }
 
   async function deleteExercise(slug: string): Promise<void> {
-    setError(null)
+    clearError()
     const ok = window.confirm(
       `Delete "${slug}" from the catalog? This only works if it has no logged sets, no daily goal, and no monthly focus — otherwise archive it instead.`,
     )
@@ -163,8 +173,10 @@ export function ExerciseCatalogSettings({
     })
     if (!res.ok) {
       // 409 is the expected answer for anything with history — surface the
-      // route's remedy copy rather than treating it as a failure.
+      // route's remedy copy on the row itself, since the Archive button it
+      // points at is right there and a top-of-page banner would be off screen.
       setError(await messageFor(res, 'Delete failed'))
+      setErrorSlug(slug)
       return
     }
     refresh()
@@ -172,7 +184,7 @@ export function ExerciseCatalogSettings({
 
   return (
     <div className="space-y-6">
-      {error ? (
+      {error !== null && errorSlug === null ? (
         <p
           role="alert"
           className="rounded border border-rose-400/30 bg-rose-950/40 px-3 py-2 font-mono text-[12px] text-rose-200"
@@ -221,6 +233,7 @@ export function ExerciseCatalogSettings({
                 exercise={exercise}
                 hasGoal={goalSet.has(exercise.slug)}
                 disabled={isPending}
+                error={errorSlug === exercise.slug ? error : null}
                 onPatch={patchExercise}
                 onDelete={deleteExercise}
               />
@@ -236,7 +249,11 @@ export function ExerciseCatalogSettings({
         <h3 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
           Add movement
         </h3>
-        <AddExerciseForm disabled={isPending} onAdd={createExercise} />
+        <AddExerciseForm
+          disabled={isPending}
+          existingSlugs={initialExercises.map((exercise) => exercise.slug)}
+          onAdd={createExercise}
+        />
       </section>
     </div>
   )
@@ -246,6 +263,8 @@ interface ExerciseRowProps {
   exercise: WeightRoomExercise
   hasGoal: boolean
   disabled: boolean
+  /** Failure from this row's last save/archive/delete, or null. */
+  error: string | null
   onPatch: (
     slug: string,
     patch: Partial<ExerciseDraft> & { archived?: boolean },
@@ -257,6 +276,7 @@ function ExerciseRow({
   exercise,
   hasGoal,
   disabled,
+  error,
   onPatch,
   onDelete,
 }: ExerciseRowProps): JSX.Element {
@@ -286,7 +306,7 @@ function ExerciseRow({
     <li
       className={`rounded-[1.1rem] border border-white/10 bg-white/5 ${archived ? 'opacity-50' : ''}`}
     >
-      <details>
+      <details open={error !== null}>
         <summary className="cursor-pointer list-none px-4 py-3">
           <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <span className="text-sm font-semibold text-white">{exercise.display_name}</span>
@@ -305,6 +325,15 @@ function ExerciseRow({
         </summary>
 
         <form onSubmit={handleSubmit} className="grid gap-3 border-t border-white/10 p-4">
+          {error !== null ? (
+            <p
+              role="alert"
+              className="rounded border border-rose-400/30 bg-rose-950/40 px-3 py-2 text-[12px] leading-5 text-rose-200"
+            >
+              {error}
+            </p>
+          ) : null}
+
           <label className="flex flex-col gap-1 text-xs text-white/70">
             <span className="font-mono uppercase tracking-[0.18em]">display name</span>
             <input
@@ -436,6 +465,14 @@ function Chip({
 
 interface AddExerciseFormProps {
   disabled: boolean
+  /**
+   * Slugs already in the roster. The collection POST is an **upsert** on
+   * `slug`, so submitting a name that slugifies to an existing movement would
+   * silently overwrite that movement's metadata — resetting its
+   * `load_multiplier` and un-archiving it — rather than reporting a conflict.
+   * The form blocks that case instead of relying on the user to notice.
+   */
+  existingSlugs: readonly string[]
   onAdd: (slug: string, draft: ExerciseDraft) => Promise<boolean>
 }
 
@@ -453,7 +490,11 @@ function slugify(displayName: string): string {
     .replace(/^-+|-+$/g, '')
 }
 
-function AddExerciseForm({ disabled, onAdd }: AddExerciseFormProps): JSX.Element {
+function AddExerciseForm({
+  disabled,
+  existingSlugs,
+  onAdd,
+}: AddExerciseFormProps): JSX.Element {
   const [displayName, setDisplayName] = useState('')
   const [equipment, setEquipment] = useState<ExerciseEquipment>('barbell')
   const [muscleGroup, setMuscleGroup] = useState<ExerciseMuscleGroup>('chest')
@@ -461,10 +502,11 @@ function AddExerciseForm({ disabled, onAdd }: AddExerciseFormProps): JSX.Element
   const [isUnilateral, setIsUnilateral] = useState(false)
 
   const slug = slugify(displayName)
+  const taken = slug.length > 0 && existingSlugs.includes(slug)
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault()
-    if (slug.length === 0) return
+    if (slug.length === 0 || taken) return
     const created = await onAdd(slug, {
       display_name: displayName.trim(),
       equipment,
@@ -494,8 +536,15 @@ function AddExerciseForm({ disabled, onAdd }: AddExerciseFormProps): JSX.Element
           placeholder="Barbell Bench Press"
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
-        <span className="font-mono text-[11px] text-white/40">
-          {slug.length > 0 ? `slug: ${slug}` : 'slug generated from the name'}
+        <span
+          className={`font-mono text-[11px] ${taken ? 'text-rose-300' : 'text-white/40'}`}
+          {...(taken ? { role: 'alert' as const } : {})}
+        >
+          {slug.length === 0
+            ? 'slug generated from the name'
+            : taken
+              ? `"${slug}" is already in the catalog — edit that row instead of re-adding it.`
+              : `slug: ${slug}`}
         </span>
       </label>
 
@@ -553,7 +602,7 @@ function AddExerciseForm({ disabled, onAdd }: AddExerciseFormProps): JSX.Element
         </label>
         <button
           type="submit"
-          disabled={disabled || slug.length === 0}
+          disabled={disabled || slug.length === 0 || taken}
           className="ml-auto rounded-full border border-amber-200/30 bg-amber-200/10 px-5 py-2 font-mono text-[11px] uppercase tracking-[0.22em] text-amber-100 transition hover:bg-amber-200/20 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Add
