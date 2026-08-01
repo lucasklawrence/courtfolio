@@ -20,6 +20,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { ZodError } from 'zod'
 
 import { requireAdmin } from '@/lib/auth/require-admin'
+import { ensureWeightRoomExercise } from '@/lib/data/ensure-weight-room-exercise'
 import { WeightRoomGoalUpsertSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
@@ -202,6 +203,16 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   // The history table is FK'd to weight_room_goals, so a brand-new goal's row
   // has to exist before its seed entry can be written.
   if (existing === null) {
+    // ...and as of #373 the goal itself FKs the movement catalog, so the roster
+    // entry has to exist before the goal. Adding a daily target for a movement
+    // that isn't in the catalog yet is the normal case for this form — it was
+    // the *only* way to register an exercise before the catalog existed — so
+    // provision it rather than making the admin visit two editors.
+    const catalogError = await ensureWeightRoomExercise(supabase, goalFields.exercise)
+    if (catalogError !== null) {
+      return NextResponse.json({ error: catalogError }, { status: 500 })
+    }
+
     const { error: insertError } = await supabase
       .from('weight_room_goals')
       .insert({ ...goalFields, updated_at: nowIso })
