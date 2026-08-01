@@ -22,10 +22,16 @@
 
 import type { ExerciseGoal, StrengthSet, WeightRoomData } from '@/types/weight-room'
 
-/** Default goals seeded by the migration; the demo mirrors them. */
+/**
+ * Default goals seeded by the migration; the demo mirrors them.
+ *
+ * `display_name` is set here for the same reason the live read joins it (#384):
+ * preview mode substitutes this fixture wholesale, so without it the demo would
+ * be the one surface still rendering raw slugs.
+ */
 const DEMO_GOALS: ExerciseGoal[] = [
-  { exercise: 'pushups', daily_target: 100, color: '#EA580C' },
-  { exercise: 'pullups', daily_target: 30, color: '#0EA5A1' },
+  { exercise: 'pushups', display_name: 'Pushups', daily_target: 100, color: '#EA580C' },
+  { exercise: 'pullups', display_name: 'Pullups', daily_target: 30, color: '#0EA5A1' },
 ]
 
 /**

@@ -25,6 +25,7 @@ import {
   parseExerciseSelection,
 } from '@/lib/training-facility/exercise-filter'
 import { pacificDayKey } from '@/lib/training-facility/day-keys'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 import { buildMovementLoads } from '@/lib/training-facility/load-management'
 import {
   TRAINING_FACILITY_PREVIEW_PARAM,
@@ -272,6 +273,7 @@ export default async function WeightRoomHistoryPage({
             <ExerciseFilterChips
               exercises={goals.map(goal => ({
                 exercise: goal.exercise,
+                displayName: goal.display_name,
                 color: goal.color,
                 isFocus: goal.kind === 'focus',
               }))}
@@ -296,7 +298,7 @@ export default async function WeightRoomHistoryPage({
                         className="font-mono text-sm font-bold uppercase tracking-[0.2em]"
                         style={{ color: goal.color }}
                       >
-                        {goal.exercise}
+                        {exerciseLabel(goal)}
                       </h2>
                       <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
                         goal {goal.daily_target}/day

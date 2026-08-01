@@ -183,6 +183,20 @@ export interface ExerciseGoal {
   /** Exercise name; primary key on `weight_room_goals`. */
   exercise: string
   /**
+   * Human-readable label for {@link exercise} — `Barbell Bench Press` for
+   * `barbell-bench-press`.
+   *
+   * **Joined from {@link WeightRoomExercise.display_name}** by the data layer
+   * on read, the same way {@link load_multiplier} is, so the surfaces that
+   * render a goal don't have to carry the catalog alongside it.
+   *
+   * Absent means "no catalog row" — every render site falls back to
+   * {@link exercise}, which is the pre-#384 behavior. Not derivable from the
+   * slug: the catalog holds `Farmer's Carry` for `farmers-carry`, and an
+   * apostrophe is not something slug-detokenizing produces.
+   */
+  display_name?: string
+  /**
    * Target reps per day for the "grease the groove" goal. Activity
    * rings fill toward this number; the heatmap colors by % of target.
    *
@@ -259,6 +273,12 @@ export interface MonthlyFocus {
    * `kind: 'focus'` {@link ExerciseGoal.exercise} that anchors logging.
    */
   exercise: string
+  /**
+   * Human-readable label for {@link exercise}, joined from
+   * {@link WeightRoomExercise.display_name} on read — see
+   * {@link ExerciseGoal.display_name}. Absent falls back to the slug.
+   */
+  display_name?: string
   /**
    * Target for the daily ring during the focus window. Interpreted per
    * {@link MonthlyFocus.target_kind}: reps/day or distinct sets/day.

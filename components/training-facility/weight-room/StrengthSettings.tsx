@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState, useTransition, type FormEvent, type JSX } from 'react'
 
 import type { ExerciseGoal } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link StrengthSettings}. */
 export interface StrengthSettingsProps {
@@ -56,12 +57,12 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
     refresh()
   }
 
-  async function deleteGoal(exercise: string): Promise<void> {
+  async function deleteGoal(exercise: string, label: string = exercise): Promise<void> {
     setError(null)
     // Sets FK into the movement catalog, not into goals (#373), so this drops
     // the daily ring and its target history and leaves the training log alone.
     const ok = window.confirm(
-      `Remove the daily goal for "${exercise}"? Its logged sets are kept — this only stops the daily ring and clears its target history.`,
+      `Remove the daily goal for "${label}"? Its logged sets are kept — this only stops the daily ring and clears its target history.`,
     )
     if (!ok) return
     const res = await fetch(
@@ -124,7 +125,7 @@ interface GoalRowProps {
   goal: ExerciseGoal
   disabled: boolean
   onSave: (goal: ExerciseGoal) => Promise<void>
-  onDelete: (exercise: string) => Promise<void>
+  onDelete: (exercise: string, label: string) => Promise<void>
 }
 
 function GoalRow({ goal, disabled, onSave, onDelete }: GoalRowProps): JSX.Element {
@@ -145,7 +146,7 @@ function GoalRow({ goal, disabled, onSave, onDelete }: GoalRowProps): JSX.Elemen
         className="flex flex-wrap items-center gap-3 sm:gap-4"
       >
         <span className="font-mono text-sm font-semibold uppercase tracking-[0.18em] text-white">
-          {goal.exercise}
+          {exerciseLabel(goal)}
         </span>
         <label className="flex items-center gap-2 text-xs text-white/70">
           <span className="font-mono uppercase tracking-[0.18em]">target</span>
@@ -177,7 +178,7 @@ function GoalRow({ goal, disabled, onSave, onDelete }: GoalRowProps): JSX.Elemen
           <button
             type="button"
             disabled={disabled}
-            onClick={() => onDelete(goal.exercise)}
+            onClick={() => onDelete(goal.exercise, exerciseLabel(goal))}
             className="rounded-full border border-rose-300/25 bg-rose-300/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-rose-200 transition hover:bg-rose-300/15 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Delete

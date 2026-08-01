@@ -6,6 +6,7 @@ import {
   type FocusLoadStats,
 } from '@/lib/training-facility/monthly-focus'
 import type { MonthlyFocus } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link MonthlyFocusCard}. */
 export interface MonthlyFocusCardProps {
@@ -67,7 +68,7 @@ export function MonthlyFocusCard({
           className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em]"
           style={{ color: focus.color }}
         >
-          {focus.exercise}
+          {exerciseLabel(focus)}
         </span>
       </div>
 

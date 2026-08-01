@@ -7,6 +7,7 @@ import { buildWeeklyVolume } from '@/lib/training-facility/weight-room-history'
 import type { CardioTimePoint } from '@/types/cardio'
 import type { Benchmark } from '@/types/movement'
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Cream axis ink that reads on the Weight Room's dark card surface. */
 const AXIS_COLOR = 'rgba(247, 234, 217, 0.6)'
@@ -95,8 +96,8 @@ export function StrengthVsBodyweightChart({
         width={width}
         height={height}
         axisColor={AXIS_COLOR}
-        emptyMessage={`Not enough completed weeks of ${goal.exercise} yet`}
-        ariaLabel={`${goal.exercise} weekly volume — not enough completed weeks yet`}
+        emptyMessage={`Not enough completed weeks of ${exerciseLabel(goal)} yet`}
+        ariaLabel={`${exerciseLabel(goal)} weekly volume — not enough completed weeks yet`}
       />
     )
   }
@@ -119,7 +120,7 @@ export function StrengthVsBodyweightChart({
         height={height}
         stroke={BODYWEIGHT_STROKE}
         axisColor={AXIS_COLOR}
-        ariaLabel={`Morning bodyweight in pounds overlaid on weekly ${goal.exercise} volume`}
+        ariaLabel={`Morning bodyweight in pounds overlaid on weekly ${exerciseLabel(goal)} volume`}
       >
         <RoughLine
           data={points}
@@ -129,11 +130,11 @@ export function StrengthVsBodyweightChart({
           height={height}
           stroke={goal.color}
           axisColor={AXIS_COLOR}
-          yLabel={`${goal.exercise}/wk`}
-          ariaLabel={`Weekly ${goal.exercise} volume over ${points.length} weeks`}
+          yLabel={`${exerciseLabel(goal)}/wk`}
+          ariaLabel={`Weekly ${exerciseLabel(goal)} volume over ${points.length} weeks`}
         />
       </BodyweightOverlay>
-      <ChartLegend exercise={goal.exercise} exerciseColor={goal.color} />
+      <ChartLegend exercise={exerciseLabel(goal)} exerciseColor={goal.color} />
     </div>
   )
 }

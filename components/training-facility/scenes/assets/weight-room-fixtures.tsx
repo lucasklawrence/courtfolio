@@ -12,6 +12,7 @@ import type { WeightRoomData } from '@/types/weight-room'
 
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
 import { RoughRect } from './rough-shapes'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link WallActivityRings}. */
 export interface WallActivityRingsProps {
@@ -105,6 +106,8 @@ export function WallActivityRings({
 
   const rings = goals.map((goal) => ({
     exercise: goal.exercise,
+    // Slug stays the identity (test ids, keys); the label is what's drawn.
+    label: exerciseLabel(goal),
     color: goal.color,
     target: goal.daily_target,
     total: totals.get(goal.exercise) ?? 0,
@@ -288,7 +291,7 @@ export function WallActivityRings({
             fontFamily={HANDWRITING_FONT}
             fontSize={tallyFontSize}
           >
-            {ring.exercise} {ring.total}/{ring.target}
+            {ring.label} {ring.total}/{ring.target}
             {ring.streak > 0 ? `  ·  🔥${ring.streak}d` : ''}
           </text>
         ))

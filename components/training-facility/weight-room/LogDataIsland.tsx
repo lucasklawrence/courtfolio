@@ -32,6 +32,7 @@ import { QuickLog } from './QuickLog'
 import { SetList } from './SetList'
 import { StreakBadge } from './StreakBadge'
 import { UpcomingFocusStrip } from './UpcomingFocusStrip'
+import { exerciseLabel, slugLabel } from '@/lib/training-facility/exercise-labels'
 
 /**
  * Admin Log View data island (#197). Owns the strength dataset that
@@ -218,7 +219,7 @@ export function LogDataIsland(): JSX.Element {
             {visibleGoals.map((goal) => (
               <StreakBadge
                 key={goal.exercise}
-                exercise={goal.exercise}
+                exercise={exerciseLabel(goal)}
                 streak={streaks[goal.exercise] ?? { current: 0, longest: 0 }}
                 accentColor={goal.color}
               />
@@ -280,7 +281,9 @@ export function LogDataIsland(): JSX.Element {
           <SetList
             setsToday={setsForDay}
             goalsByExercise={goalsByExercise}
-            onDelete={(s) => deleteSet(s, setBusy, refetch)}
+            onDelete={(s) =>
+              deleteSet(s, setBusy, refetch, slugLabel(s.exercise, goalsByExercise[s.exercise]))
+            }
             busy={busy}
             dayLabel={isBackfilling ? formatDayLabel(selectedDay) || selectedDay : 'Today'}
           />
@@ -340,8 +343,9 @@ async function deleteSet(
   set: StrengthSet,
   setBusy: (v: boolean) => void,
   refetch: () => Promise<void>,
+  label: string = set.exercise,
 ): Promise<void> {
-  const ok = window.confirm(`Delete this set of ${set.reps} ${set.exercise}?`)
+  const ok = window.confirm(`Delete this set of ${set.reps} ${label}?`)
   if (!ok) return
   setBusy(true)
   try {

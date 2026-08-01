@@ -62,7 +62,7 @@ function MovementLoadCard({ load }: MovementLoadCardProps): JSX.Element {
     <article
       data-testid={`load-card-${load.movement}`}
       data-flag={load.flag}
-      aria-label={`${load.movement}: ${flagMeta.label}`}
+      aria-label={`${load.displayName ?? load.movement}: ${flagMeta.label}`}
       className="rounded-[1.2rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
     >
       <header className="flex items-baseline justify-between gap-3">
@@ -70,7 +70,7 @@ function MovementLoadCard({ load }: MovementLoadCardProps): JSX.Element {
           className="font-mono text-sm font-bold uppercase tracking-[0.2em]"
           style={{ color: load.color }}
         >
-          {load.movement}
+          {load.displayName ?? load.movement}
         </h3>
         <span className="flex items-center gap-1.5">
           <span
@@ -113,7 +113,7 @@ function MovementLoadCard({ load }: MovementLoadCardProps): JSX.Element {
             width={SPARK_WIDTH}
             height={SPARK_HEIGHT}
             stroke={load.color}
-            ariaLabel={`${load.movement} 28-day ${load.metric === 'load' ? 'load' : 'rep'} volume trend`}
+            ariaLabel={`${load.displayName ?? load.movement} 28-day ${load.metric === 'load' ? 'load' : 'rep'} volume trend`}
           />
         </div>
       </div>

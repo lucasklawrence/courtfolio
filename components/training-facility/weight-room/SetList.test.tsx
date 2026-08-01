@@ -157,3 +157,50 @@ describe('SetList', () => {
     expect(total).not.toHaveTextContent('/')
   })
 })
+
+describe('SetList — catalog labels (#384)', () => {
+  const BENCH: ExerciseGoal = {
+    exercise: 'barbell-bench-press',
+    display_name: 'Barbell Bench Press',
+    daily_target: 30,
+    color: '#0EA5A1',
+  }
+
+  it('labels both the running total and each set row from the catalog', () => {
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{ 'barbell-bench-press': BENCH }}
+      />,
+    )
+    // Totals strip + the set row itself.
+    expect(screen.getAllByText('Barbell Bench Press').length).toBeGreaterThanOrEqual(2)
+    expect(screen.queryByText('barbell-bench-press')).toBeNull()
+    // Identity hook stays on the slug.
+    expect(screen.getByTestId('set-list-total-barbell-bench-press')).toBeInTheDocument()
+  })
+
+  it('falls back to the slug for a set whose goal was deleted', () => {
+    // Sets outlive their goal by design (#373), so this is a live path.
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{}}
+      />,
+    )
+    expect(screen.getAllByText('barbell-bench-press').length).toBeGreaterThan(0)
+  })
+
+  it('names the delete control with the label', async () => {
+    const onDelete = vi.fn()
+    render(
+      <SetList
+        setsToday={[set({ id: 'a', exercise: 'barbell-bench-press', reps: 5 })]}
+        goalsByExercise={{ 'barbell-bench-press': BENCH }}
+        onDelete={onDelete}
+      />,
+    )
+    expect(screen.getByLabelText('Delete set of 5 Barbell Bench Press')).toBeInTheDocument()
+  })
+})
+

@@ -74,6 +74,11 @@ export interface DailyVolumePoint {
 export interface MovementLoad {
   /** Exercise name, verbatim from the set rows (e.g. `pullups`). */
   movement: string
+  /**
+   * Human label for {@link movement}, from the catalog's `display_name`
+   * (#384). Absent falls back to the slug at the render site.
+   */
+  displayName?: string
   /** Hex display color from the matching {@link ExerciseGoal}, or a default. */
   color: string
   /** Which volume the ramp math is computed on. */
@@ -191,6 +196,7 @@ export function buildMovementLoads(
   const todayKey = pacificDayKey(now)
   const colorByExercise = new Map(goals.map(g => [g.exercise, g.color]))
   const equipmentByExercise = new Map(exercises.map(e => [e.slug, e.equipment]))
+  const labelByExercise = new Map(exercises.map(e => [e.slug, e.display_name]))
 
   // Precompute the trailing chronic-window day keys once — they're shared
   // by every movement. Index 0 is today; index CHRONIC_DAYS-1 is the
@@ -282,6 +288,7 @@ export function buildMovementLoads(
 
     loads.push({
       movement,
+      displayName: labelByExercise.get(movement),
       color: colorByExercise.get(movement) ?? DEFAULT_MOVEMENT_COLOR,
       metric: loaded ? 'load' : 'reps',
       unitLabel: loaded ? 'lb' : 'reps',

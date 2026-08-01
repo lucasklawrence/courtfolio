@@ -368,6 +368,67 @@ describe('getWeightRoomData — exercise catalog (#373)', () => {
     expect(data?.goals[0]).not.toHaveProperty('load_multiplier')
   })
 
+  it('joins display_name from the catalog onto the goal', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('barbell-bench-press')])
+    stubTable('weight_room_exercises', [
+      catalogRow('barbell-bench-press', { display_name: 'Barbell Bench Press' }),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // The ~10 surfaces that render a goal's name read it off the goal (#384),
+    // so the join is what keeps them from each needing the roster threaded in.
+    expect(data?.goals[0]).toMatchObject({
+      exercise: 'barbell-bench-press',
+      display_name: 'Barbell Bench Press',
+    })
+  })
+
+  it('omits display_name when the catalog label is just the slug', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', [catalogRow('pushups', { display_name: 'pushups' })])
+
+    const data = await getWeightRoomData()
+
+    // Same principle as load_multiplier: every render site falls back to the
+    // slug, so an identical label is noise on the wire.
+    expect(data?.goals[0]).not.toHaveProperty('display_name')
+  })
+
+  it('joins display_name onto a monthly focus too', async () => {
+    stubTable('weight_room_sets', [])
+    // The focus's anchor goal — a focus can't exist without one (FK), and the
+    // assembler's null contract treats sets+goals empty as "no data at all".
+    stubTable('weight_room_goals', [goalRow('farmers-carry')])
+    stubTable('weight_room_monthly_focus', [
+      {
+        id: '44444444-4444-4444-8444-444444444444',
+        exercise: 'farmers-carry',
+        daily_target: 50,
+        target_kind: 'reps',
+        color: '#C9A268',
+        category: 'upper',
+        start_date: '2026-07-01',
+        end_date: '2026-07-31',
+        updated_at: '2026-07-31T08:00:00Z',
+      },
+    ])
+    stubTable('weight_room_exercises', [
+      catalogRow('farmers-carry', { display_name: "Farmer's Carry" }),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // Not derivable from the slug — an apostrophe is exactly the case that
+    // rules out detokenizing the slug at render time.
+    expect(data?.monthly_focus[0]).toMatchObject({
+      exercise: 'farmers-carry',
+      display_name: "Farmer's Carry",
+    })
+  })
+
   it('defaults to a single implement when a goal has no catalog row', async () => {
     stubTable('weight_room_sets', [])
     stubTable('weight_room_goals', [goalRow('orphaned')])

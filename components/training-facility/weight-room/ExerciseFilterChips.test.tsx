@@ -113,3 +113,31 @@ describe('ExerciseFilterChips', () => {
     expect(getByRole('navigation', { name: /show/i })).toBeInTheDocument()
   })
 })
+
+describe('ExerciseFilterChips — catalog labels (#384)', () => {
+  // Two movements, so toggling one produces a real filter param — with a
+  // single movement "selected" collapses to "all", which needs no param.
+  const LABELLED = [
+    { exercise: 'barbell-bench-press', displayName: 'Barbell Bench Press', color: '#EA580C', isFocus: false },
+    { exercise: 'barbell-row', displayName: 'Barbell Row', color: '#0EA5A1', isFocus: false },
+  ]
+
+  it('shows the display name but keeps the slug as the URL token', () => {
+    const { getByTestId, getByText } = render(
+      <ExerciseFilterChips exercises={LABELLED} selected={[]} pathname={PATH} />,
+    )
+    expect(getByText('Barbell Bench Press')).toBeInTheDocument()
+    // The href must stay slug-based or a shared filtered link breaks.
+    const chip = getByTestId('exercise-chip-barbell-bench-press')
+    expect(chip.getAttribute('href')).toContain('barbell-bench-press')
+    expect(chip.getAttribute('href')).not.toContain('Barbell')
+  })
+
+  it('names the toggle by the label for screen readers', () => {
+    const { getByLabelText } = render(
+      <ExerciseFilterChips exercises={LABELLED} selected={[]} pathname={PATH} />,
+    )
+    expect(getByLabelText('Show Barbell Bench Press')).toBeInTheDocument()
+  })
+})
+

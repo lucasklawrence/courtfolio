@@ -8,6 +8,7 @@ import {
 import { intensityFromPct } from '@/lib/training-facility/weight-room-history'
 import type { FocusDayCell } from '@/lib/training-facility/monthly-focus'
 import type { MonthlyFocus } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 // ---------------------------------------------------------------------------
 // Layout constants — match StrengthHeatmap.tsx so the two components sit in
@@ -179,11 +180,11 @@ function describeSlot(slot: GridSlot): string {
   if (slot.cell === null) return dateLabel
   const { cell } = slot
   if (cell.focus === null) return `${dateLabel} (no focus)`
-  if (cell.volume === 0) return `${dateLabel}: ${cell.focus.exercise} — none logged`
+  if (cell.volume === 0) return `${dateLabel}: ${exerciseLabel(cell.focus)} — none logged`
 
   const unit = cell.focus.target_kind === 'sets' ? 'sets' : 'reps'
   const pctLabel = `${Math.round(cell.pct * 100)}% of daily goal`
-  return `${dateLabel}: ${cell.volume} ${unit} ${cell.focus.exercise} (${pctLabel})`
+  return `${dateLabel}: ${cell.volume} ${unit} ${exerciseLabel(cell.focus)} (${pctLabel})`
 }
 
 /**
@@ -438,7 +439,7 @@ export function FocusLaneHeatmap({
               fontSize={SMALL_LABEL_FONT_SIZE}
               fill={LABEL_FILL}
             >
-              {focus.exercise}
+              {exerciseLabel(focus)}
             </text>
           </g>
         ))}

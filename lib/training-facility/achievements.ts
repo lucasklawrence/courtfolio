@@ -126,6 +126,12 @@ interface MovementMetrics {
 export interface ResolvedAchievement {
   /** The tier being resolved. */
   achievement: WeightRoomAchievement
+  /**
+   * Human label for {@link WeightRoomAchievement.exercise} (#384), from the
+   * catalog via the matching goal. Absent for pooled tiers (which own no
+   * single movement) and for movements with no goal.
+   */
+  displayName?: string
   /** Whether {@link best} has reached the tier's threshold. */
   earned: boolean
   /**
@@ -539,11 +545,22 @@ export function buildTrophyRoomView(
   goals: readonly ExerciseGoal[],
   achievements: readonly WeightRoomAchievement[],
 ): TrophyRoomView {
-  const resolved = resolveAchievements(sets, goals, achievements)
   const colorByExercise = new Map(goals.map((g) => [g.exercise, g.color]))
+  // Catalog labels ride in on the goals (#384). A movement with tiers but no
+  // goal falls back to its slug — the catalog-only case is what #377's pooled
+  // decision has to settle before it can be reached anyway.
+  const labelByExercise = new Map(goals.map((g) => [g.exercise, g.display_name]))
   const multiplierByExercise = new Map(
     goals.map((g) => [g.exercise, Math.max(1, g.load_multiplier ?? 1)]),
   )
+
+  // Attached once here rather than inside `resolveAchievements` so the groups
+  // and both strips read the same label off the same objects.
+  const resolved = resolveAchievements(sets, goals, achievements).map((entry) => {
+    const slug = entry.achievement.exercise
+    const label = slug === null || slug === undefined ? undefined : labelByExercise.get(slug)
+    return label === undefined ? entry : { ...entry, displayName: label }
+  })
 
   const byExercise = new Map<string | null, ResolvedAchievement[]>()
   for (const entry of resolved) {
@@ -578,7 +595,7 @@ export function buildTrophyRoomView(
       })
       return {
         exercise: isPooled ? null : key,
-        label: isPooled ? POOLED_LABEL : key,
+        label: isPooled ? POOLED_LABEL : (labelByExercise.get(key) ?? key),
         color: isPooled ? null : (colorByExercise.get(key) ?? null),
         // The pooled ladder spans movements with different multipliers, so it
         // has no single one of its own — its tonnage already has each set's

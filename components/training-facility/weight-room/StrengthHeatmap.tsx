@@ -12,6 +12,7 @@ import {
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
 import { GoalChangeMarker } from './GoalChangeMarker'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link StrengthHeatmap}. */
 export interface StrengthHeatmapProps {
@@ -126,7 +127,7 @@ export function StrengthHeatmap({
 
   const totalWidth = DAY_LABEL_WIDTH + gridWidth + monthOverhang
   const totalHeight = MONTH_LABEL_HEIGHT + gridHeight + LEGEND_HEIGHT
-  const label = ariaLabel ?? `${goal.exercise} heatmap`
+  const label = ariaLabel ?? `${exerciseLabel(goal)} heatmap`
 
   // Boundary markers for target changes (#362), dropped to whichever column
   // holds the effective date. Changes outside the visible window resolve to
@@ -275,7 +276,7 @@ function describeCell(cell: StrengthHeatmapCell, goal: ExerciseGoal): string {
   if (cell.reps === 0) return dateLabel
   const setNoun = cell.setCount === 1 ? 'set' : 'sets'
   const pctLabel = `${Math.round(cell.pct * 100)}%`
-  return `${dateLabel}: ${cell.reps} reps (${cell.setCount} ${setNoun}, ${pctLabel} of ${cell.dailyTarget} ${goal.exercise} goal)`
+  return `${dateLabel}: ${cell.reps} reps (${cell.setCount} ${setNoun}, ${pctLabel} of ${cell.dailyTarget} ${exerciseLabel(goal)} goal)`
 }
 
 /**

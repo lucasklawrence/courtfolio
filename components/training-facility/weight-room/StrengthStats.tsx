@@ -89,7 +89,7 @@ export function ExerciseStatCard({ stat }: ExerciseStatCardProps): JSX.Element {
           className="flex items-baseline gap-2 font-mono text-sm font-bold uppercase tracking-[0.2em]"
           style={{ color: stat.color }}
         >
-          {stat.exercise}
+          {stat.displayName ?? stat.exercise}
           {stat.focus ? (
             <span
               data-testid={`strength-stat-focus-badge-${stat.exercise}`}

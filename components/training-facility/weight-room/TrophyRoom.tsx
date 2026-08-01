@@ -375,7 +375,7 @@ function ChaseCard({ entry }: { entry: ResolvedAchievement }): JSX.Element {
   const color = achievement.color ?? DEFAULT_ACCENT
   const pct = Math.round(progress * 100)
   const unit = achievementUnit(achievement)
-  const scopeOwner = achievement.exercise ?? 'all movements'
+  const scopeOwner = entry.displayName ?? achievement.exercise ?? 'all movements'
 
   return (
     <div

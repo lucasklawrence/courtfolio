@@ -2,6 +2,7 @@ import type { JSX } from 'react'
 
 import { variantBreakdown, type VariantSlice } from '@/lib/training-facility/strength-today'
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link VariantBreakdown}. */
 export interface VariantBreakdownProps {
@@ -64,7 +65,7 @@ export function VariantBreakdown({ sets, goal }: VariantBreakdownProps): JSX.Ele
   return (
     <section
       data-testid={`variant-breakdown-${goal.exercise}`}
-      aria-label={`${goal.exercise} variant breakdown`}
+      aria-label={`${exerciseLabel(goal)} variant breakdown`}
       className="mt-5 border-t border-white/10 pt-4"
     >
       <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
@@ -73,7 +74,7 @@ export function VariantBreakdown({ sets, goal }: VariantBreakdownProps): JSX.Ele
 
       <div
         role="img"
-        aria-label={`${goal.exercise} by variant: ${summary}`}
+        aria-label={`${exerciseLabel(goal)} by variant: ${summary}`}
         className="flex h-3 w-full overflow-hidden rounded-full bg-black/30"
       >
         {slices.map((slice, i) => (

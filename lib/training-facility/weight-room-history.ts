@@ -109,6 +109,12 @@ export interface WeeklyVolumePoint {
 export interface StrengthExerciseStats {
   /** Exercise name (matches {@link ExerciseGoal.exercise}). */
   exercise: string
+  /**
+   * Human label for {@link exercise}, carried through from the goal's
+   * catalog-joined {@link ExerciseGoal.display_name} (#384). Absent falls back
+   * to the slug at the render site.
+   */
+  displayName?: string
   /** Hex color from the matching {@link ExerciseGoal.color}. */
   color: string
    /**
@@ -446,6 +452,7 @@ export function computeStrengthStats(
 
     return {
       exercise: goal.exercise,
+      displayName: goal.display_name,
       color: goal.color,
       // Resolved through `scoringGoal` so the label and the streak agree. For
       // a permanent goal this is just today's target; for a focus it's the

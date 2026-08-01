@@ -1,6 +1,7 @@
 import type { JSX } from 'react'
 
 import type { ExerciseGoal } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Per-exercise progress slice consumed by {@link ActivityRings}. */
 export interface RingProgress {
@@ -124,7 +125,7 @@ export function ActivityRings({
         aria-label={`Activity rings: ${rings
           .map(
             (r) =>
-              `${r.goal.exercise} ${r.totalReps} of ${r.goal.daily_target}`,
+              `${exerciseLabel(r.goal)} ${r.totalReps} of ${r.goal.daily_target}`,
           )
           .join(', ')}`}
         className="block w-full h-auto -rotate-90"
@@ -182,7 +183,7 @@ export function ActivityRings({
           flipping the text. */}
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
         <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-white/55">
-          {primary.goal.exercise}
+          {exerciseLabel(primary.goal)}
         </span>
         <span className="mt-1 font-mono text-3xl font-semibold tabular-nums text-white sm:text-4xl">
           {primary.totalReps}
