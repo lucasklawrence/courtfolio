@@ -239,7 +239,11 @@ export function scheduledGoalTargetChanges(
     if (entry.effective_from <= todayKey) continue
     // The value this change replaces: the previous entry when there is one,
     // otherwise the goal's currently-resolved target.
-    const from = i > 0 ? sorted[i - 1].daily_target : targetForDay(goal, todayKey)
+    // `currentTarget`, not `targetForDay`: with an entirely future-dated
+    // history the latter returns the earliest entry — i.e. the scheduled
+    // value itself — so `from === to` and the change is dropped as a no-op,
+    // making it invisible in both the Settings list and the Today strip.
+    const from = i > 0 ? sorted[i - 1].daily_target : currentTarget(goal, todayKey)
     if (from === entry.daily_target) continue
     changes.push({ from, to: entry.daily_target, effective_from: entry.effective_from })
   }

@@ -48,7 +48,9 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
     })
   }
 
-  async function postGoal(goal: ExerciseGoal): Promise<void> {
+  /** @returns whether the write actually landed, so the row can keep the
+   *  admin's input on failure instead of clearing it. */
+  async function postGoal(goal: ExerciseGoal): Promise<boolean> {
     setError(null)
     const res = await fetch('/api/admin/weight-room/goals', {
       method: 'POST',
@@ -58,9 +60,10 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
     if (!res.ok) {
       const body = (await res.json().catch(() => ({}))) as { error?: string }
       setError(body.error ?? `Save failed (${res.status})`)
-      return
+      return false
     }
     refresh()
+    return true
   }
 
   async function deleteGoal(exercise: string, label: string = exercise): Promise<void> {
@@ -144,7 +147,7 @@ export function StrengthSettings({ initialGoals }: StrengthSettingsProps): JSX.E
 interface GoalRowProps {
   goal: ExerciseGoal
   disabled: boolean
-  onSave: (goal: ExerciseGoal) => Promise<void>
+  onSave: (goal: ExerciseGoal) => Promise<boolean>
   onDelete: (exercise: string, label: string) => Promise<void>
   /** Cancel a queued change, addressed by its `effective_from` (#371). */
   onCancelScheduled: (exercise: string, effectiveFrom: string) => Promise<void>
@@ -177,12 +180,16 @@ function GoalRow({
     e.preventDefault()
     if (!dirty) return
     const scheduledForLater = effectiveFrom !== '' && effectiveFrom > today
-    await onSave({
+    const saved = await onSave({
       exercise: goal.exercise,
       daily_target: target,
       color,
       ...(effectiveFrom === '' ? {} : { effective_from: effectiveFrom }),
     })
+    // `postGoal` reports failure rather than throwing, so without this the row
+    // would clear the date and snap the target back as though the write landed
+    // — discarding the admin's input and hiding that nothing was recorded.
+    if (!saved) return
     setEffectiveFrom('')
     // Scheduling deliberately leaves today's target alone, so the refreshed
     // goal comes back unchanged and this input would keep showing the *future*
@@ -283,7 +290,7 @@ function GoalRow({
 
 interface AddGoalFormProps {
   disabled: boolean
-  onAdd: (goal: ExerciseGoal) => Promise<void>
+  onAdd: (goal: ExerciseGoal) => Promise<boolean>
 }
 
 function AddGoalForm({ disabled, onAdd }: AddGoalFormProps): JSX.Element {

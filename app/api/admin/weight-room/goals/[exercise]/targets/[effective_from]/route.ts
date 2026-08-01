@@ -28,6 +28,22 @@ interface Context {
 const DAY_KEY_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 
 /**
+ * Whether `key` is a real calendar day, not merely `YYYY-MM-DD`-shaped.
+ *
+ * The regex alone accepts `2026-02-30` and `2026-99-99`. Those would sail past
+ * the future-date comparison (string ordering doesn't care that the date is
+ * impossible), hit the database, and come back as a 404 — contradicting the
+ * documented 400 for a malformed day key. Round-tripping through `Date` and
+ * comparing the rendered value back rejects them without a query.
+ */
+function isRealDayKey(key: string): boolean {
+  if (!DAY_KEY_PATTERN.test(key)) return false
+  // Parsed as UTC so the comparison can't be shifted by the host's zone.
+  const parsed = new Date(`${key}T00:00:00Z`)
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === key
+}
+
+/**
  * Cancel a scheduled target change.
  *
  * Status codes:
@@ -54,7 +70,7 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
   if (trimmedExercise.length === 0) {
     return NextResponse.json({ error: 'exercise must be non-empty.' }, { status: 400 })
   }
-  if (!DAY_KEY_PATTERN.test(effectiveFrom)) {
+  if (!isRealDayKey(effectiveFrom)) {
     return NextResponse.json(
       { error: 'effective_from must be a YYYY-MM-DD date.' },
       { status: 400 }

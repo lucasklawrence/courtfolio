@@ -261,11 +261,13 @@ export interface ExerciseGoal {
    * {@link import('@/lib/training-facility/goal-targets').targetForDay}, or a
    * goal change would retroactively re-score days already completed (#362).
    *
-   * **This deliberately disagrees with `weight_room_goals.daily_target` while a
-   * change is scheduled.** The column is a mirror written at edit time; the data
-   * layer overwrites it on read with the value resolved for today (#371). Queue
-   * "50 effective Sept 1" and the column says 50 immediately while this field
-   * stays 30 until Sept 1, at which point it flips with nothing having run.
+   * **The column and this field can disagree — by design (#371).** The column is
+   * a mirror written at edit time, and the write path deliberately keeps it on
+   * the value in effect *now*: queue "50 effective Sept 1" and both the column
+   * and this field stay 30. What the column can't do is *become* 50 on Sept 1,
+   * because nothing runs that day. This field does, because the data layer
+   * resolves it from history on every read — so the two diverge from the
+   * activation date onward until the next save happens to refresh the mirror.
    *
    * That is the point, not a bug: without it a scheduled change would half-apply
    * — the heatmap and streaks (which resolve per day) would move on Sept 1 while

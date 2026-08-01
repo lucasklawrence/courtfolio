@@ -307,6 +307,22 @@ describe('scheduled goal target changes (#371)', () => {
       expect(scheduledGoalTargetChanges(g, '2026-08-15')).toEqual([])
     })
 
+    it('still reports a change when the whole history is future-dated', () => {
+      // The production shape again. Resolving `from` with `targetForDay` would
+      // return the scheduled value itself, making `from === to` and dropping
+      // the change — so it would vanish from Settings and the Today strip
+      // precisely for the goals that need announcing.
+      const goal: ExerciseGoal = {
+        exercise: 'dumbbell-lateral-raise',
+        daily_target: 150,
+        color: '#EA580C',
+        target_history: [{ daily_target: 200, effective_from: '2026-08-01' }],
+      }
+      expect(scheduledGoalTargetChanges(goal, '2026-07-31')).toEqual([
+        { from: 150, to: 200, effective_from: '2026-08-01' },
+      ])
+    })
+
     it('is empty with no history', () => {
       expect(
         scheduledGoalTargetChanges(

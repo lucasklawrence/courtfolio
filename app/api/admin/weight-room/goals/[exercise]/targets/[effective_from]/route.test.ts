@@ -91,6 +91,23 @@ describe('DELETE goal target', () => {
     expect(supabaseChain.delete).not.toHaveBeenCalled()
   })
 
+  it('rejects an impossible calendar date, not just a malformed string', async () => {
+    // `YYYY-MM-DD`-shaped but not a real day. Without a calendar check these
+    // sail past the future comparison and 404 after a query, contradicting the
+    // documented 400.
+    for (const bad of ['2026-02-30', '2026-99-99', '2026-13-01']) {
+      const res = await DELETE({} as never, ctx('pullups', bad) as never)
+      expect(res.status).toBe(400)
+    }
+    expect(supabaseChain.delete).not.toHaveBeenCalled()
+  })
+
+  it('still accepts a real leap day', async () => {
+    // 2028 is a leap year — the check must not over-reject.
+    const res = await DELETE({} as never, ctx('pullups', '2028-02-29') as never)
+    expect(res.status).toBe(200)
+  })
+
   it('rejects an empty exercise segment', async () => {
     const res = await DELETE({} as never, ctx('   ', '2026-09-01') as never)
     expect(res.status).toBe(400)

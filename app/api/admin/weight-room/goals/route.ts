@@ -24,7 +24,7 @@ import { ensureWeightRoomExercise } from '@/lib/data/ensure-weight-room-exercise
 import { WeightRoomGoalUpsertSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
-import { targetForDay } from '@/lib/training-facility/goal-targets'
+import { currentTarget } from '@/lib/training-facility/goal-targets'
 import { pacificDayKey } from '@/lib/training-facility/day-keys'
 import type { GoalTargetPoint } from '@/types/weight-room'
 
@@ -276,7 +276,10 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   // the current target is unchanged and writing the payload value would
   // wrongly advance it. Merged in memory so this costs no extra round trip.
   const mergedHistory = mergeHistory(history, historyRows)
-  const currentDailyTarget = targetForDay({ ...goalFields, target_history: mergedHistory }, today)
+  // `currentTarget` keeps the mirror on the value actually in effect even when
+  // the merged history is entirely future-dated — `targetForDay` would fall
+  // back to the earliest (scheduled) entry and advance it early (#371).
+  const currentDailyTarget = currentTarget({ ...goalFields, target_history: mergedHistory }, today)
 
   // Stamp `updated_at` explicitly so the upsert advances the row's audit
   // timestamp on edits — without this, the existing-row branch keeps

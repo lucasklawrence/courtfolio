@@ -94,13 +94,17 @@ bug #181 fixed). To stay safe, first read the roster and match the parsed name
 case-insensitively against both the slug and the display name:
 
 ```sql
-select e.slug, e.display_name, gt.daily_target
+select e.slug, e.display_name, coalesce(gt.daily_target, g.daily_target) as daily_target
 from public.weight_room_exercises e
+left join public.weight_room_goals g on g.exercise = e.slug
 left join lateral (
-  -- The daily target **in effect today**, not the mirror column. A change can
+  -- Prefer the target **in effect today** over the mirror column. A change can
   -- be scheduled for a future date (#371); `weight_room_goals.daily_target` is
   -- written at edit time and nothing re-syncs it when that date arrives, so
-  -- reading it directly reports a stale goal from the activation day onward.
+  -- reading it alone reports a stale goal from the activation day onward. The
+  -- mirror stays as the fallback for a goal that predates the history table —
+  -- without it, such a movement returns null and reads as "no daily goal",
+  -- which also silently skips the rep sanity check above.
   select t.daily_target
   from public.weight_room_goal_targets t
   where t.exercise = e.slug

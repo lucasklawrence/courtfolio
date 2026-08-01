@@ -235,3 +235,30 @@ describe('StrengthSettings — scheduling guards (#371 review)', () => {
     })
   })
 })
+
+describe('StrengthSettings — failed saves keep the form intact (#371 review)', () => {
+  const PULLUPS: ExerciseGoal = { exercise: 'pullups', daily_target: 30, color: '#0EA5A1' }
+
+  it('does not clear the date or reset the target when the save fails', async () => {
+    // `postGoal` reports failure rather than throwing, so an unconditional
+    // reset would discard the admin's input and imply the write landed.
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 500,
+      json: async () => ({ error: 'nope' }),
+    })
+    vi.stubGlobal('fetch', fetchMock)
+    render(<StrengthSettings initialGoals={[PULLUPS]} />)
+
+    const targetInput = screen.getAllByRole('spinbutton')[0]
+    await userEvent.clear(targetInput)
+    await userEvent.type(targetInput, '50')
+    const dateInput = screen.getByLabelText(/effective date for the pullups target/i)
+    fireEvent.change(dateInput, { target: { value: '2099-09-01' } })
+    await userEvent.click(screen.getByRole('button', { name: /^save$/i }))
+
+    await waitFor(() => expect(screen.getByText(/nope/i)).toBeInTheDocument())
+    expect(targetInput).toHaveValue(50)
+    expect(dateInput).toHaveValue('2099-09-01')
+  })
+})
