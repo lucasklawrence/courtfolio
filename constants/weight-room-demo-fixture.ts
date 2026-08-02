@@ -383,6 +383,24 @@ function buildDemoWorkout(
  *
  * @param now Optional override; defaults to system time. Tests pin it.
  */
+/**
+ * Sessions imported from Apple Health (#413), as the preview renders them.
+ *
+ * Included because they are the *majority* case once a real import runs — 507
+ * of them against a handful of recorded sessions — so a preview showing only
+ * fully-recorded workouts would misrepresent what the page actually looks like.
+ * They carry duration and HR and nothing else, which is exactly what Health
+ * knows.
+ *
+ * `[daysAgo, durationMinutes, avgHr, maxHr]`.
+ */
+const DEMO_IMPORTED: Array<[number, number, number, number]> = [
+  [16, 47, 112, 148],
+  [23, 54, 105, 127],
+  [30, 41, 98, 121],
+  [37, 62, 118, 156],
+]
+
 export function buildWorkoutDemoData(now: Date = new Date()): WorkoutDemoData {
   // Anchored to 6pm on each day rather than to `now`, so the fixture reads as
   // evening gym sessions regardless of when the page is loaded.
@@ -395,8 +413,24 @@ export function buildWorkoutDemoData(now: Date = new Date()): WorkoutDemoData {
   const previous = buildDemoWorkout('demo-workout-1', evening(9), 58, DEMO_PREVIOUS_SETS)
   const latest = buildDemoWorkout('demo-workout-2', evening(2), 52, DEMO_LATEST_SETS)
 
+  const imported: WeightRoomWorkout[] = DEMO_IMPORTED.map(
+    ([daysAgo, durationMinutes, avgHr, maxHr], index) => {
+      const startedAt = evening(daysAgo)
+      return {
+        id: `demo-imported-${index}`,
+        started_at: startedAt.toISOString(),
+        ended_at: new Date(startedAt.getTime() + durationMinutes * 60_000).toISOString(),
+        // No template, no title, no sets — and deliberately no location, since
+        // Health does not record one.
+        source: 'apple_health',
+        avg_hr: avgHr,
+        max_hr: maxHr,
+      }
+    }
+  )
+
   return {
-    workouts: [latest.workout, previous.workout],
+    workouts: [latest.workout, previous.workout, ...imported],
     sets: [...previous.sets, ...latest.sets],
     templates: [DEMO_TEMPLATE],
     exercises: DEMO_EXERCISES,

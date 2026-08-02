@@ -208,7 +208,7 @@ const WORKOUTS_TABLE = 'weight_room_workouts'
 
 /** Whitelisted columns for `weight_room_workouts`, in sync with {@link WeightRoomWorkoutRowSchema}. */
 const WORKOUTS_COLUMNS =
-  'id, started_at, ended_at, template_id, prescription, title, location, notes, updated_at'
+  'id, started_at, ended_at, template_id, prescription, source, avg_hr, max_hr, title, location, notes, updated_at'
 
 const WeightRoomWorkoutRowsSchema = z.array(WeightRoomWorkoutRowSchema)
 

@@ -82,10 +82,18 @@ export function WorkoutSummaryPanel({
   // breakdown saying no sets were logged at all. A session ended without
   // logging anything is reachable, so the two must not contradict each other.
   const allBodyweight = summary.totalSets > 0 && summary.weightedSets === 0
+  // An Apple Health import knows a session happened and how long it ran, not
+  // what was done in it (#413). Its zeros are unknowns, and this is the normal
+  // state for one — not a session someone abandoned.
+  const isImportedSkeleton = summary.workout.source === 'apple_health' && summary.totalSets === 0
 
   return (
     <div data-testid="workout-summary" className="flex flex-col gap-5">
-      <HeadlineStats summary={summary} allBodyweight={allBodyweight} />
+      <HeadlineStats
+        summary={summary}
+        allBodyweight={allBodyweight}
+        isImportedSkeleton={isImportedSkeleton}
+      />
 
       {personalBests.length > 0 ? <PersonalBestStrip bests={personalBests} /> : null}
 
@@ -109,7 +117,9 @@ export function WorkoutSummaryPanel({
         <ExtraWorkCard sets={adherence.extra} exerciseLabels={exerciseLabels} />
       ) : null}
 
-      <BreakdownCard exercises={summary.exercises} allBodyweight={allBodyweight} />
+      {isImportedSkeleton ? null : (
+        <BreakdownCard exercises={summary.exercises} allBodyweight={allBodyweight} />
+      )}
     </div>
   )
 }
@@ -117,10 +127,15 @@ export function WorkoutSummaryPanel({
 interface HeadlineStatsProps {
   summary: WorkoutSummary
   allBodyweight: boolean
+  isImportedSkeleton: boolean
 }
 
 /** The four headline numbers, plus the honest caveats about what they exclude. */
-function HeadlineStats({ summary, allBodyweight }: HeadlineStatsProps): JSX.Element {
+function HeadlineStats({
+  summary,
+  allBodyweight,
+  isImportedSkeleton,
+}: HeadlineStatsProps): JSX.Element {
   const { density } = summary
   return (
     <section
@@ -129,11 +144,29 @@ function HeadlineStats({ summary, allBodyweight }: HeadlineStatsProps): JSX.Elem
       className="rounded-[1.2rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
     >
       <dl className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-4">
-        <Stat label="Sets" value={summary.totalSets.toLocaleString('en-US')} />
-        <Stat label="Reps" value={summary.totalReps.toLocaleString('en-US')} />
+        {/* An imported session's sets, reps and tonnage are all genuinely
+            unknown. Printing three zeros would read as "you did nothing",
+            which is the opposite of what the record says happened — so it
+            shows what Health actually measured instead. */}
         <Stat
-          label="Tonnage"
-          value={allBodyweight ? '—' : lbs(summary.tonnage)}
+          label="Sets"
+          value={isImportedSkeleton ? '—' : summary.totalSets.toLocaleString('en-US')}
+        />
+        <Stat
+          label="Reps"
+          value={isImportedSkeleton ? '—' : summary.totalReps.toLocaleString('en-US')}
+        />
+        <Stat
+          label={isImportedSkeleton ? 'Avg HR' : 'Tonnage'}
+          value={
+            isImportedSkeleton
+              ? summary.workout.avg_hr === undefined
+                ? '—'
+                : `${Math.round(summary.workout.avg_hr)} bpm`
+              : allBodyweight
+                ? '—'
+                : lbs(summary.tonnage)
+          }
           testId="workout-tonnage"
         />
         <Stat
@@ -143,7 +176,19 @@ function HeadlineStats({ summary, allBodyweight }: HeadlineStatsProps): JSX.Elem
         />
       </dl>
 
-      {density !== null ? (
+      {isImportedSkeleton ? (
+        <p data-testid="workout-imported-note" className="mt-4 text-xs text-[#0a0a0a]/70">
+          <span className="font-mono uppercase tracking-[0.16em]">From Apple Health</span> ·{' '}
+          {summary.workout.max_hr === undefined
+            ? 'This session was imported from a Health export.'
+            : `Peaked at ${Math.round(summary.workout.max_hr)} bpm.`}{' '}
+          Health records that a workout happened and how long it ran, not what was done in it — so
+          there are no sets or reps to show. Sessions recorded in the app from here on carry the
+          full breakdown.
+        </p>
+      ) : null}
+
+      {!isImportedSkeleton && density !== null ? (
         <p data-testid="workout-density" className="mt-4 text-xs text-[#0a0a0a]/70">
           <span className="font-mono uppercase tracking-[0.16em]">Density</span> ·{' '}
           {density.setsPerMinute >= 0.1
@@ -167,7 +212,7 @@ function HeadlineStats({ summary, allBodyweight }: HeadlineStatsProps): JSX.Elem
         <p data-testid="workout-bodyweight-note" className="mt-3 text-xs text-[#0a0a0a]/70">
           Bodyweight session — no external load, so there&rsquo;s no tonnage to report.
         </p>
-      ) : summary.bodyweightSets > 0 ? (
+      ) : !isImportedSkeleton && summary.bodyweightSets > 0 ? (
         <p data-testid="workout-bodyweight-note" className="mt-3 text-xs text-[#0a0a0a]/70">
           {summary.bodyweightSets} of {summary.totalSets} sets were bodyweight. They count toward
           reps but not tonnage.

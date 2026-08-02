@@ -7,6 +7,19 @@ import type { WorkoutHistoryEntry } from '@/lib/training-facility/workout-stats'
 /** Route the workout history lives at; also the base for every filter chip. */
 export const WORKOUTS_ROUTE = '/training-facility/weight-room/workouts'
 
+/** URL param naming the provenance filter (#413). */
+export const SOURCE_FILTER_PARAM = 'source'
+
+/**
+ * Provenance filter selection (#413).
+ *
+ * `'recorded'` — sessions logged set by set through the app. `'imported'` —
+ * sessions from an Apple Health export, which know only that lifting happened
+ * and for how long. `null` — both, in true chronological order, which is the
+ * default because the whole point of importing is to see the two eras together.
+ */
+export type WorkoutSourceFilter = 'recorded' | 'imported'
+
 /** One entry in the filter rail. */
 export interface TemplateFilterOption {
   /** Template id, or `null` for the "all workouts" chip. */
@@ -27,6 +40,12 @@ export interface WorkoutHistoryListProps {
   filters: readonly TemplateFilterOption[]
   /** Currently selected template id, or `null` for all. */
   selectedTemplateId: string | null
+  /** Currently selected provenance filter, or `null` for both (#413). */
+  selectedSource?: WorkoutSourceFilter | null
+  /** How many sessions were recorded in-app; drives the Recorded chip's count. */
+  recordedCount?: number
+  /** How many were imported from Apple Health; drives the Imported chip's count. */
+  importedCount?: number
   /** Whether any session exists at all, so a filtered-to-nothing view reads differently from a fresh log. */
   hasAnyWorkouts: boolean
   /**
@@ -56,13 +75,27 @@ export function WorkoutHistoryList({
   selectedTemplateId,
   hasAnyWorkouts,
   isPreviewMode = false,
+  selectedSource = null,
+  recordedCount = 0,
+  importedCount = 0,
 }: WorkoutHistoryListProps): JSX.Element {
   return (
     <div className="flex flex-col gap-5">
+      {importedCount > 0 ? (
+        <SourceFilterRail
+          selectedSource={selectedSource}
+          selectedTemplateId={selectedTemplateId}
+          recordedCount={recordedCount}
+          importedCount={importedCount}
+          isPreviewMode={isPreviewMode}
+        />
+      ) : null}
+
       {filters.length > 1 ? (
         <TemplateFilterRail
           filters={filters}
           selectedTemplateId={selectedTemplateId}
+          selectedSource={selectedSource}
           isPreviewMode={isPreviewMode}
         />
       ) : null}
@@ -73,7 +106,7 @@ export function WorkoutHistoryList({
           className="rounded-[1.2rem] border border-white/10 bg-white/5 p-6 text-center text-sm text-[#e8d5be]/70"
         >
           {hasAnyWorkouts
-            ? 'No sessions recorded for that template yet.'
+            ? 'No sessions match that filter yet.'
             : 'No workouts recorded yet. Start one from the Log page and it will show up here.'}
         </p>
       ) : (
@@ -92,21 +125,97 @@ export function WorkoutHistoryList({
 interface TemplateFilterRailProps {
   filters: readonly TemplateFilterOption[]
   selectedTemplateId: string | null
+  selectedSource: WorkoutSourceFilter | null
   isPreviewMode: boolean
 }
 
-/** Build a chip href, keeping `preview=demo` alongside `template=<id>`. */
-function chipHref(templateId: string | null, isPreviewMode: boolean): string {
+/**
+ * Build a chip href carrying every active filter, not just the one being set.
+ *
+ * The two rails are independent axes, so choosing a template must not silently
+ * clear a provenance filter (or vice versa) — and `preview=demo` has to survive
+ * both, since the fixture only stands in when the real read is empty and
+ * dropping it ends the demo mid-tour.
+ */
+function chipHref(
+  templateId: string | null,
+  source: WorkoutSourceFilter | null,
+  isPreviewMode: boolean
+): string {
   const params = new URLSearchParams()
   if (templateId !== null) params.set('template', templateId)
+  if (source !== null) params.set(SOURCE_FILTER_PARAM, source)
   if (isPreviewMode) params.set('preview', 'demo')
   const query = params.toString()
   return query === '' ? WORKOUTS_ROUTE : `${WORKOUTS_ROUTE}?${query}`
 }
 
+/** Shared chip styling, so the two rails can't drift apart visually. */
+function chipClass(isActive: boolean): string {
+  return isActive
+    ? 'inline-flex items-center gap-1.5 rounded-full bg-[#f5f1e6] px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#0a0a0a]'
+    : 'inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#e8d5be]/75 transition hover:border-white/35 hover:text-[#f7ead9]'
+}
+
+interface SourceFilterRailProps {
+  selectedSource: WorkoutSourceFilter | null
+  selectedTemplateId: string | null
+  recordedCount: number
+  importedCount: number
+  isPreviewMode: boolean
+}
+
+/**
+ * Provenance rail (#413) — All / Recorded / Imported.
+ *
+ * Rendered only once imported sessions exist, so a log with nothing imported
+ * never grows a filter for a distinction that doesn't apply to it. It matters
+ * because the two populations are wildly different sizes: hundreds of imported
+ * skeletons would otherwise bury the handful of sessions with real set data.
+ */
+function SourceFilterRail({
+  selectedSource,
+  selectedTemplateId,
+  recordedCount,
+  importedCount,
+  isPreviewMode,
+}: SourceFilterRailProps): JSX.Element {
+  const options: Array<{ value: WorkoutSourceFilter | null; label: string; count: number }> = [
+    { value: null, label: 'All', count: recordedCount + importedCount },
+    { value: 'recorded', label: 'Recorded', count: recordedCount },
+    { value: 'imported', label: 'Apple Health', count: importedCount },
+  ]
+
+  return (
+    <nav aria-label="Filter by source" data-testid="workout-source-filter">
+      <ul className="flex flex-wrap gap-2">
+        {options.map(option => {
+          const isActive = option.value === selectedSource
+          return (
+            <li key={option.value ?? 'all'}>
+              <Link
+                href={chipHref(selectedTemplateId, option.value, isPreviewMode)}
+                aria-current={isActive ? 'page' : undefined}
+                data-testid={`workout-source-${option.value ?? 'all'}`}
+                className={chipClass(isActive)}
+              >
+                {option.label}
+                <span className={isActive ? 'text-[#0a0a0a]/50' : 'text-[#e8d5be]/45'}>
+                  {option.count}
+                </span>
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+    </nav>
+  )
+}
+
 function TemplateFilterRail({
   filters,
   selectedTemplateId,
+  selectedSource,
   isPreviewMode,
 }: TemplateFilterRailProps): JSX.Element {
   return (
@@ -117,14 +226,10 @@ function TemplateFilterRail({
           return (
             <li key={option.id ?? 'all'}>
               <Link
-                href={chipHref(option.id, isPreviewMode)}
+                href={chipHref(option.id, selectedSource, isPreviewMode)}
                 aria-current={isActive ? 'page' : undefined}
                 data-testid={`workout-filter-${option.id ?? 'all'}`}
-                className={
-                  isActive
-                    ? 'inline-flex items-center gap-1.5 rounded-full bg-[#f5f1e6] px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#0a0a0a]'
-                    : 'inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#e8d5be]/75 transition hover:border-white/35 hover:text-[#f7ead9]'
-                }
+                className={chipClass(isActive)}
               >
                 {option.color !== null ? (
                   <span
@@ -174,7 +279,12 @@ function formatStart(startedAt: string): string {
 
 function WorkoutHistoryRow({ entry, isPreviewMode }: WorkoutHistoryRowProps): JSX.Element {
   const { summary, workout } = entry
-  const heading = entry.templateName ?? workout.title ?? 'Freestyle session'
+  const isImported = workout.source === 'apple_health'
+  // An imported session has no title and no template, so "Freestyle session" —
+  // which means "I chose not to follow a plan" — would be a claim about intent
+  // that nothing supports. It says what it is instead.
+  const heading =
+    entry.templateName ?? workout.title ?? (isImported ? 'Strength training' : 'Freestyle session')
   const topLift = summary.exercises.find(e => e.topSet !== null)
 
   return (
@@ -193,19 +303,39 @@ function WorkoutHistoryRow({ entry, isPreviewMode }: WorkoutHistoryRowProps): JS
             />
           ) : null}
           {heading}
+          {isImported ? (
+            <span
+              data-testid="workout-imported-badge"
+              className="rounded bg-black/10 px-1.5 py-0.5 font-mono text-[0.55rem] uppercase tracking-[0.1em] text-[#0a0a0a]/65"
+            >
+              Apple Health
+            </span>
+          ) : null}
         </h3>
         <p className="text-xs text-[#0a0a0a]/60">{formatStart(workout.started_at)}</p>
       </header>
 
       <p className="mt-2.5 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm tabular-nums">
-        <span>
-          <span className="font-bold">{summary.totalSets}</span>
-          <span className="text-[#0a0a0a]/55"> sets</span>
-        </span>
-        <span>
-          <span className="font-bold">{summary.totalReps.toLocaleString('en-US')}</span>
-          <span className="text-[#0a0a0a]/55"> reps</span>
-        </span>
+        {/* An imported session's zeros are unknowns, not measurements, so the
+            set/rep counts are simply not shown for one with nothing logged. */}
+        {isImported && summary.totalSets === 0 ? null : (
+          <>
+            <span>
+              <span className="font-bold">{summary.totalSets}</span>
+              <span className="text-[#0a0a0a]/55"> sets</span>
+            </span>
+            <span>
+              <span className="font-bold">{summary.totalReps.toLocaleString('en-US')}</span>
+              <span className="text-[#0a0a0a]/55"> reps</span>
+            </span>
+          </>
+        )}
+        {workout.avg_hr !== undefined ? (
+          <span>
+            <span className="font-bold">{Math.round(workout.avg_hr)}</span>
+            <span className="text-[#0a0a0a]/55"> avg bpm</span>
+          </span>
+        ) : null}
         {summary.tonnage > 0 ? (
           <span>
             <span className="font-bold">{Math.round(summary.tonnage).toLocaleString('en-US')}</span>

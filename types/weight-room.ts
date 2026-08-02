@@ -91,6 +91,16 @@ export interface StrengthSet {
 export type WorkoutLocation = 'gym' | 'home' | 'travel' | 'other'
 
 /**
+ * How a {@link WeightRoomWorkout} got into the database (#413).
+ *
+ * Not cosmetic — it decides what the session can honestly claim. A `'manual'`
+ * session was recorded set by set, so its tonnage and adherence are
+ * measurements. An `'apple_health'` one knows only that lifting happened and
+ * for how long, so the same fields are *unknown* rather than zero.
+ */
+export type WorkoutSource = 'manual' | 'apple_health'
+
+/**
  * One bounded training session (#374) — mirrors a row of
  * `public.weight_room_workouts`.
  *
@@ -156,6 +166,30 @@ export interface WeightRoomWorkout {
    * captured one.
    */
   prescription?: WorkoutPrescription
+  /**
+   * Where this session came from (#413). Absent is treated as `'manual'`.
+   *
+   * `'manual'` — recorded through the live recording surface, and carries its
+   * own sets. `'apple_health'` — imported from a Health export, which records
+   * that a workout happened but not what was done in it.
+   *
+   * **An imported session usually has no sets at all, and that is the expected
+   * steady state**, not a gap waiting to be filled: only a small subset has a
+   * corresponding iCloud note (#400). Surfaces must say "sets not recorded"
+   * rather than reusing the empty state written for a session someone
+   * abandoned, and must not report a tonnage of zero as though it were measured.
+   */
+  source?: WorkoutSource
+  /**
+   * Mean heart rate over the session, BPM. Present only for imported sessions —
+   * the app captures no HR while recording.
+   *
+   * For an imported session this and the duration are the only intensity signal
+   * that exists, which is why they're worth carrying at all.
+   */
+  avg_hr?: number
+  /** Peak heart rate over the session, BPM. Same provenance as {@link avg_hr}. */
+  max_hr?: number
   /**
    * Free-text label, e.g. `Push Day`. Absent when unnamed. Human-facing only —
    * see {@link template_id} for the link.

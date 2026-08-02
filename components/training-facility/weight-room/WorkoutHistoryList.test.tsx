@@ -4,7 +4,11 @@ import { render, screen } from '@testing-library/react'
 import { buildWorkoutHistory } from '@/lib/training-facility/workout-stats'
 import type { StrengthSet, WeightRoomWorkout, WorkoutTemplate } from '@/types/weight-room'
 
-import { WorkoutHistoryList, type TemplateFilterOption } from './WorkoutHistoryList'
+import {
+  WorkoutHistoryList,
+  type TemplateFilterOption,
+  type WorkoutHistoryListProps,
+} from './WorkoutHistoryList'
 
 /**
  * Rendering coverage for the workout history (#377).
@@ -64,8 +68,10 @@ describe('WorkoutHistoryList', () => {
     render(
       <WorkoutHistoryList entries={[]} filters={FILTERS} selectedTemplateId="t1" hasAnyWorkouts />
     )
+    // Copy is filter-agnostic since #413 added the provenance axis — it can no
+    // longer name templates specifically, because either filter can empty the list.
     expect(screen.getByTestId('workout-history-empty')).toHaveTextContent(
-      /No sessions recorded for that template/i
+      /No sessions match that filter/i
     )
   })
 
@@ -182,5 +188,103 @@ describe('WorkoutHistoryList', () => {
       <WorkoutHistoryList entries={entries} filters={[]} selectedTemplateId={null} hasAnyWorkouts />
     )
     expect(screen.getByTestId('workout-row-w2')).toHaveTextContent(/never ended/i)
+  })
+})
+
+describe('WorkoutHistoryList — imported sessions (#413)', () => {
+  const IMPORTED: WeightRoomWorkout = {
+    id: 'wh1',
+    started_at: '2019-03-04T18:00:00Z',
+    ended_at: '2019-03-04T18:47:00Z',
+    source: 'apple_health',
+    avg_hr: 112,
+    max_hr: 148,
+  }
+
+  function renderImported(overrides: Partial<WorkoutHistoryListProps> = {}) {
+    const entries = buildWorkoutHistory([IMPORTED], [], [], [])
+    render(
+      <WorkoutHistoryList
+        entries={entries}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        importedCount={1}
+        recordedCount={0}
+        {...overrides}
+      />
+    )
+  }
+
+  it('badges an imported row so it is never mistaken for a recorded one', () => {
+    renderImported()
+    expect(screen.getByTestId('workout-imported-badge')).toHaveTextContent('Apple Health')
+  })
+
+  it('shows HR instead of zeroed sets and reps', () => {
+    renderImported()
+    const row = screen.getByTestId('workout-row-wh1')
+    // Three zeros would read as "you did nothing", which is the opposite of
+    // what the record says happened.
+    expect(row).not.toHaveTextContent(/0 sets/)
+    expect(row).toHaveTextContent(/112\s*avg bpm/)
+    expect(row).toHaveTextContent(/47\s*min/)
+  })
+
+  it('titles it by what it is, not as a freestyle session', () => {
+    // "Freestyle session" claims an intent — that a plan was declined — which
+    // nothing about an import supports.
+    expect(buildWorkoutHistory([IMPORTED], [], [], [])[0].workout.source).toBe('apple_health')
+    renderImported()
+    expect(screen.getByTestId('workout-row-wh1')).toHaveTextContent('Strength training')
+  })
+
+  it('offers the provenance rail only once something is imported', () => {
+    renderImported({ importedCount: 0 })
+    expect(screen.queryByTestId('workout-source-filter')).toBeNull()
+  })
+
+  it('keeps both filter axes in every chip href, so one never clears the other', () => {
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={FILTERS}
+        selectedTemplateId="t1"
+        hasAnyWorkouts
+        selectedSource="imported"
+        recordedCount={2}
+        importedCount={507}
+      />
+    )
+    // Switching template must preserve the source filter...
+    expect(screen.getByTestId('workout-filter-t1')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?template=t1&source=imported'
+    )
+    // ...and switching source must preserve the template.
+    expect(screen.getByTestId('workout-source-recorded')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?template=t1&source=recorded'
+    )
+    expect(screen.getByTestId('workout-source-all')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?template=t1'
+    )
+  })
+
+  it('counts each population on its chip', () => {
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        recordedCount={2}
+        importedCount={507}
+      />
+    )
+    expect(screen.getByTestId('workout-source-all')).toHaveTextContent('509')
+    expect(screen.getByTestId('workout-source-imported')).toHaveTextContent('507')
+    expect(screen.getByTestId('workout-source-recorded')).toHaveTextContent('2')
   })
 })
