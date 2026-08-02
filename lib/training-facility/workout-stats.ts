@@ -522,7 +522,16 @@ export function compareToPrevious(
 /** Which record a set broke. */
 export type PersonalBestKind = 'load' | 'reps'
 
-/** An all-time best set by a session. */
+/**
+ * A record set during a session — best for that movement **as of that session**.
+ *
+ * Not a claim that the mark still stands: the baseline is everything logged
+ * before the session began (see {@link findPersonalBests}), so a later session
+ * may since have beaten it. That's the honest unit for a per-session summary —
+ * "this workout was a breakthrough" stays true forever, whereas "this is your
+ * all-time best" silently becomes false the next time you out-lift it. Render
+ * sites must phrase it accordingly.
+ */
 export interface WorkoutPersonalBest {
   /** Catalog slug of the movement. */
   exercise: string
@@ -544,7 +553,8 @@ export interface WorkoutPersonalBest {
 }
 
 /**
- * All-time bests set during a session.
+ * Records set during a session — bests as of that session, not marks that are
+ * guaranteed to still stand. See {@link WorkoutPersonalBest}.
  *
  * "All-time" is measured against every set of that movement logged **strictly
  * before this session started** — including loose grease-the-groove sets, which

@@ -46,7 +46,7 @@ export interface WorkoutSummaryPanelProps {
   adherence: WorkoutAdherence | null
   /** Comparison to the previous run of the same template, or `null` when there isn't one. */
   comparison: WorkoutComparison | null
-  /** All-time bests set during the session; empty when none. */
+  /** Records set during the session — bests as of that session; empty when none. */
   personalBests: readonly WorkoutPersonalBest[]
   /** Name of the template the session ran, or `null`. */
   templateName: string | null
@@ -132,7 +132,7 @@ function HeadlineStats({ summary, allBodyweight }: HeadlineStatsProps): JSX.Elem
           testId="workout-tonnage"
         />
         <Stat
-          label={summary.durationMinutes === null ? 'Duration' : 'Duration'}
+          label="Duration"
           value={summary.durationMinutes === null ? '—' : minutes(summary.durationMinutes)}
           testId="workout-duration"
         />
@@ -193,16 +193,25 @@ interface PersonalBestStripProps {
   bests: readonly WorkoutPersonalBest[]
 }
 
-/** All-time bests set in this session — the number that actually drives progression. */
+/**
+ * Records set in this session — the number that actually drives progression.
+ *
+ * Phrased as a record set *here* rather than as an all-time best, because that
+ * is what it is: the baseline is everything logged before this session, so a
+ * later session may since have beaten it. Reading a September summary that
+ * insists a lift is your "all-time best" after you have already passed it would
+ * be a plain falsehood, and the fact worth surfacing — that this session was a
+ * breakthrough — stays true forever.
+ */
 function PersonalBestStrip({ bests }: PersonalBestStripProps): JSX.Element {
   return (
     <section
-      aria-label="Personal bests"
+      aria-label="Records set in this session"
       data-testid="workout-personal-bests"
       className="rounded-[1.2rem] border border-[#facc15]/40 bg-[#facc15]/10 px-5 py-4"
     >
       <h3 className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-[#facc15]">
-        All-time best{bests.length === 1 ? '' : 's'}
+        Record{bests.length === 1 ? '' : 's'} set here
       </h3>
       <ul className="mt-2 flex flex-col gap-1.5 text-sm text-[#f7ead9]">
         {bests.map(best => (

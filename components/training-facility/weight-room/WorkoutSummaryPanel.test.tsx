@@ -209,7 +209,7 @@ describe('WorkoutSummaryPanel', () => {
     )
   })
 
-  it('flags an all-time best set', () => {
+  it('flags a record set during the session', () => {
     const sets = [set({ id: 's1', reps: 5, weight_lbs: 225 })]
     const summary = buildWorkoutSummary(WORKOUT, sets, CATALOG)
     render(
