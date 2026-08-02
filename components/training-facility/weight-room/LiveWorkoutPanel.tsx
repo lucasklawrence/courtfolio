@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState, type JSX } from 'react'
+import { useRouter } from 'next/navigation'
 
 import { buildExerciseLabels, slugLabel } from '@/lib/training-facility/exercise-labels'
 import {
@@ -58,6 +59,7 @@ export function LiveWorkoutPanel({
   disabled,
   onChanged,
 }: LiveWorkoutPanelProps): JSX.Element {
+  const router = useRouter()
   const [workout, setWorkout] = useState<WeightRoomWorkout | null | undefined>(undefined)
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
@@ -197,6 +199,9 @@ export function LiveWorkoutPanel({
 
   async function endWorkout(): Promise<void> {
     if (!workout) return
+    // Captured before the state clears — the summary route needs the id, and
+    // `workout` is null by the time the navigation runs.
+    const endedId = workout.id
     const ok = await post(
       `/api/admin/weight-room/workouts/${workout.id}`,
       { method: 'PATCH', body: JSON.stringify({ ended_at: new Date().toISOString() }) },
@@ -207,6 +212,11 @@ export function LiveWorkoutPanel({
       }
     )
     if (!ok) return
+    // Ending a session lands on its summary (#377). Navigating only after a
+    // confirmed write means a failed end leaves you on the panel with the
+    // session still open and the error visible, rather than on a summary page
+    // for a workout that is still running.
+    router.push(`/training-facility/weight-room/workouts/${endedId}`)
   }
 
   async function logSet(

@@ -2,7 +2,11 @@ import type { JSX } from 'react'
 
 import { RoughSparkline } from '@/components/training-facility/shared/charts/RoughSparkline'
 import { RAMP_FLAGS } from '@/constants/ramp-rate'
-import type { MovementLoad } from '@/lib/training-facility/load-management'
+import {
+  MIN_TRAINING_DAYS_IN_WINDOW,
+  type InfrequentMovement,
+  type MovementLoad,
+} from '@/lib/training-facility/load-management'
 
 /** Sparkline box size, in px. Fixed so every card's trend reads at the same scale. */
 const SPARK_WIDTH = 220
@@ -16,6 +20,12 @@ export interface LoadManagementPanelProps {
    * Empty array renders the empty-state message.
    */
   loads: readonly MovementLoad[]
+  /**
+   * Movements trained too rarely for a ramp signal to mean anything (#377),
+   * listed under the cards so "not shown" is never read as "nothing to worry
+   * about". Defaults to empty.
+   */
+  infrequent?: readonly InfrequentMovement[]
 }
 
 /**
@@ -29,8 +39,11 @@ export interface LoadManagementPanelProps {
  * formats and lays out. Cream cards on the dark Weight Room surface,
  * matching {@link import('./StrengthStats').StrengthStats}.
  */
-export function LoadManagementPanel({ loads }: LoadManagementPanelProps): JSX.Element {
-  if (loads.length === 0) {
+export function LoadManagementPanel({
+  loads,
+  infrequent = [],
+}: LoadManagementPanelProps): JSX.Element {
+  if (loads.length === 0 && infrequent.length === 0) {
     return (
       <p
         data-testid="load-management-empty"
@@ -42,11 +55,52 @@ export function LoadManagementPanel({ loads }: LoadManagementPanelProps): JSX.El
   }
 
   return (
-    <section aria-label="Load management" className="grid gap-4 md:grid-cols-2">
-      {loads.map(load => (
-        <MovementLoadCard key={load.movement} load={load} />
-      ))}
-    </section>
+    <div className="flex flex-col gap-4">
+      {loads.length > 0 ? (
+        <section aria-label="Load management" className="grid gap-4 md:grid-cols-2">
+          {loads.map(load => (
+            <MovementLoadCard key={load.movement} load={load} />
+          ))}
+        </section>
+      ) : (
+        <p
+          data-testid="load-management-empty"
+          className="rounded-[1.2rem] border border-white/10 bg-white/5 p-6 text-center text-sm text-[#e8d5be]/70"
+        >
+          No movement was trained often enough in the last 28 days to ramp.
+        </p>
+      )}
+
+      {infrequent.length > 0 ? <InfrequentNote movements={infrequent} /> : null}
+    </div>
+  )
+}
+
+interface InfrequentNoteProps {
+  movements: readonly InfrequentMovement[]
+}
+
+/**
+ * Footnote listing movements the frequency gate held back (#377).
+ *
+ * Names them rather than showing a bare count: "12 movements not shown" invites
+ * the reader to assume the missing one is fine, and the whole point of the panel
+ * is that you can't tell without looking.
+ */
+function InfrequentNote({ movements }: InfrequentNoteProps): JSX.Element {
+  return (
+    <p
+      data-testid="load-management-infrequent"
+      className="rounded-[1.2rem] border border-white/10 bg-white/5 px-5 py-4 text-xs leading-relaxed text-[#e8d5be]/70"
+    >
+      <span className="font-mono uppercase tracking-[0.18em] text-[#e8d5be]/90">
+        Not ramped ({movements.length})
+      </span>
+      <br />
+      Trained on fewer than {MIN_TRAINING_DAYS_IN_WINDOW} of the last 28 days, so neither ACWR nor
+      week-over-week says anything meaningful yet:{' '}
+      {movements.map(m => `${m.displayName ?? m.movement} (${m.trainingDays}d)`).join(', ')}.
+    </p>
   )
 }
 

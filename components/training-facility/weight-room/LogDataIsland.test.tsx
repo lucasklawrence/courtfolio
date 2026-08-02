@@ -25,7 +25,17 @@ import { LogDataIsland } from './LogDataIsland'
  * `getWeightRoomData` is stubbed at the data layer, matching
  * `CombineDataIsland.test.tsx`; the write paths go through global `fetch`, so
  * that is stubbed too.
+ *
+ * `next/navigation` is mocked because the live panel navigates to the ended
+ * session's summary (#377), and `useRouter` throws under jsdom without a
+ * mounted app router — same treatment as `StrengthSettings.test.tsx`.
  */
+
+const pushMock = vi.fn()
+
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: pushMock, refresh: vi.fn() }),
+}))
 
 const getWeightRoomDataMock = vi.fn<() => Promise<WeightRoomData | null>>()
 

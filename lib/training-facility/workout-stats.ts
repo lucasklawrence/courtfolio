@@ -1,0 +1,686 @@
+import type {
+  StrengthSet,
+  WeightRoomExercise,
+  WeightRoomWorkout,
+  WorkoutTemplate,
+} from '@/types/weight-room'
+
+import { buildSlotProgress, extraSets, type SlotProgress } from './live-workout'
+import { isStaleOpenWorkout, workoutDurationMinutes } from './workout-sessions'
+
+/**
+ * Per-workout statistics (#377) — the payoff of the #372 arc.
+ *
+ * Every other Weight Room aggregation takes the **calendar day** as its unit:
+ * `weight-room-history.ts` counts streaks and weekly volume, `strength-today.ts`
+ * sums a day against a ring, `load-management.ts` ramps a movement over trailing
+ * windows. All correct for grease-the-groove, and all the wrong altitude for
+ * "how did tonight's push day go, and was it better than last time".
+ *
+ * This module answers at the **session** altitude. It is pure and isomorphic —
+ * no Supabase client, no React, and no clock except where a caller passes one —
+ * so the arithmetic that's easy to get quietly wrong (what counts as tonnage,
+ * what counts as adherence when a movement was substituted) is unit-testable
+ * rather than only observable by standing in a gym.
+ */
+
+/**
+ * Reps above which an Epley estimate stops being worth showing as a number.
+ *
+ * Epley is a linear fit calibrated on low-rep sets; past roughly a dozen reps it
+ * drifts high enough that a "estimated 315 lb max" off a set of 20 is noise
+ * dressed as a measurement. Estimates are still computed above this — they're
+ * just marked {@link ExerciseBreakdown.oneRepMaxIsReliable} `false` so the UI can
+ * de-emphasize rather than silently mislead.
+ */
+export const E1RM_MAX_RELIABLE_REPS = 12
+
+/**
+ * Estimated one-rep max from a single set, via Epley: `w × (1 + r/30)`.
+ *
+ * A single rep returns the load itself rather than Epley's `w × 1.033`. Lifting
+ * a weight once *is* a one-rep max of that weight; inflating a true single by
+ * 3% would make the estimate beat the measurement, which is indefensible.
+ *
+ * @param effectiveLoad Total pounds actually moved on the set — per-implement
+ *   `weight_lbs` already multiplied by the movement's `load_multiplier`.
+ * @param reps Reps completed at that load.
+ * @returns The estimate in pounds, or `null` for a bodyweight or nonsensical set
+ *   (non-positive load or reps), which has no meaningful one-rep max.
+ */
+export function epleyOneRepMax(effectiveLoad: number, reps: number): number | null {
+  if (!Number.isFinite(effectiveLoad) || !Number.isFinite(reps)) return null
+  if (effectiveLoad <= 0 || reps <= 0) return null
+  if (reps === 1) return effectiveLoad
+  return effectiveLoad * (1 + reps / 30)
+}
+
+/**
+ * Build a `slug → load_multiplier` lookup from the catalog, clamped to at least
+ * `1`.
+ *
+ * Catalog-sourced rather than goal-sourced (#373): the multiplier moved to
+ * `weight_room_exercises` precisely so movements with no daily goal — which is
+ * every gym lift — still carry it. Reading it off goals here would silently
+ * halve tonnage for two-dumbbell gym work.
+ *
+ * @param exercises The movement roster; may be empty or omit a movement, in
+ *   which case that movement falls back to a single implement. Understating a
+ *   pair is recoverable; inventing load that was never lifted is not.
+ */
+export function loadMultipliersBySlug(
+  exercises: readonly WeightRoomExercise[] = []
+): Map<string, number> {
+  return new Map(exercises.map(e => [e.slug, Math.max(1, e.load_multiplier ?? 1)]))
+}
+
+/**
+ * Pounds actually moved on one set — per-implement `weight_lbs` times the
+ * movement's implement count.
+ *
+ * @returns `0` for a bodyweight set. Deliberately `0` rather than `null`: it
+ *   sums into tonnage without a branch at every call site, and a bodyweight set
+ *   genuinely contributes no *external* load.
+ */
+export function effectiveSetLoad(
+  set: Pick<StrengthSet, 'exercise' | 'weight_lbs'>,
+  multipliers: ReadonlyMap<string, number>
+): number {
+  const perImplement = set.weight_lbs
+  if (typeof perImplement !== 'number' || !Number.isFinite(perImplement) || perImplement <= 0) {
+    return 0
+  }
+  return perImplement * (multipliers.get(set.exercise) ?? 1)
+}
+
+/** One notable set, as surfaced in a breakdown row. */
+export interface WorkoutSetHighlight {
+  /** {@link StrengthSet.id} of the set. */
+  setId: string
+  /** Reps completed. */
+  reps: number
+  /** Load on one implement, or `null` for a bodyweight set. */
+  weightLbs: number | null
+  /** Pounds actually moved — `weightLbs × load_multiplier`; `0` for bodyweight. */
+  effectiveLoad: number
+  /** ISO timestamp the set was logged. */
+  loggedAt: string
+}
+
+/** One movement's contribution to a session. */
+export interface ExerciseBreakdown {
+  /** Catalog slug, verbatim from the set rows. */
+  exercise: string
+  /** Catalog `display_name`, or absent when the movement has no catalog row. */
+  displayName?: string
+  /** Sets of this movement in the session. */
+  sets: number
+  /** Total reps across those sets. */
+  reps: number
+  /** `Σ reps × effective load` for this movement. `0` when every set was bodyweight. */
+  tonnage: number
+  /**
+   * Heaviest set by effective load, ties broken toward more reps. `null` when
+   * the movement was performed entirely bodyweight — which is the common case
+   * here, not an edge case.
+   */
+  topSet: WorkoutSetHighlight | null
+  /**
+   * Most reps in a single set. Never `null` — every set has reps, so this is the
+   * headline for bodyweight movements the way {@link topSet} is for loaded ones.
+   */
+  bestRepSet: WorkoutSetHighlight
+  /** Epley estimate off {@link topSet}, or `null` when the movement was bodyweight. */
+  estimatedOneRepMax: number | null
+  /**
+   * Whether {@link estimatedOneRepMax} came from a set at or below
+   * {@link E1RM_MAX_RELIABLE_REPS}. `false` means "shown, but treat it as a
+   * gesture" — see the constant. Always `false` when there's no estimate.
+   */
+  oneRepMaxIsReliable: boolean
+  /** Whether every set of this movement carried no external load. */
+  isBodyweight: boolean
+}
+
+/** Rate at which work was done, once a session has a duration. */
+export interface WorkoutDensity {
+  /** Pounds moved per minute. `0` for an all-bodyweight session. */
+  tonnagePerMinute: number
+  /** Sets per minute. */
+  setsPerMinute: number
+  /** Reps per minute. */
+  repsPerMinute: number
+}
+
+/** Everything computable about one session from its own sets. */
+export interface WorkoutSummary {
+  /** The session being summarized. */
+  workout: WeightRoomWorkout
+  /** Sets belonging to it, oldest first. */
+  sets: StrengthSet[]
+  /**
+   * Elapsed minutes, or `null` while in progress or abandoned — see
+   * {@link isInProgress} / {@link isAbandoned} for which.
+   */
+  durationMinutes: number | null
+  /** Whether the session has no `ended_at` yet. */
+  isInProgress: boolean
+  /**
+   * Whether the session was left open long enough to be considered abandoned
+   * rather than still running. An abandoned session has no honest duration, so
+   * the UI shows sets and reps and says the duration is unknown rather than
+   * printing hours that weren't spent training.
+   */
+  isAbandoned: boolean
+  /** Total sets logged. */
+  totalSets: number
+  /** Total reps across every set. */
+  totalReps: number
+  /** `Σ reps × effective load` across the session. */
+  tonnage: number
+  /** How many sets carried external load. */
+  weightedSets: number
+  /**
+   * How many sets carried none. Surfaced so the UI can *state* that bodyweight
+   * work is excluded from tonnage rather than leaving a smaller-than-expected
+   * number unexplained.
+   */
+  bodyweightSets: number
+  /** Work rate, or `null` without a duration to divide by. */
+  density: WorkoutDensity | null
+  /** Per-movement breakdown, heaviest tonnage first, then most reps. */
+  exercises: ExerciseBreakdown[]
+}
+
+/**
+ * Summarize one session from its own sets.
+ *
+ * @param workout The session.
+ * @param sets Sets belonging to it. Callers filter by `workout_id`; anything
+ *   passed here is counted, so a loose set slipped in would be double-counted
+ *   against the day it also belongs to.
+ * @param exercises The movement catalog, for `load_multiplier` and display
+ *   labels. Omitting it treats every movement as single-implement.
+ * @param now Evaluation instant for the abandoned check; defaults to system
+ *   time. Tests pin it.
+ */
+export function buildWorkoutSummary(
+  workout: WeightRoomWorkout,
+  sets: readonly StrengthSet[],
+  exercises: readonly WeightRoomExercise[] = [],
+  now: Date = new Date()
+): WorkoutSummary {
+  const multipliers = loadMultipliersBySlug(exercises)
+  const labels = new Map(exercises.map(e => [e.slug, e.display_name]))
+
+  const ordered = [...sets].sort((a, b) =>
+    a.logged_at < b.logged_at ? -1 : a.logged_at > b.logged_at ? 1 : 0
+  )
+
+  const isInProgress = workout.ended_at === undefined
+  const isAbandoned = isInProgress && isStaleOpenWorkout(workout.started_at, now)
+  const durationMinutes = workoutDurationMinutes(workout)
+
+  let totalReps = 0
+  let tonnage = 0
+  let weightedSets = 0
+
+  const byExercise = new Map<string, StrengthSet[]>()
+  for (const set of ordered) {
+    const load = effectiveSetLoad(set, multipliers)
+    totalReps += set.reps
+    tonnage += set.reps * load
+    if (load > 0) weightedSets += 1
+    const list = byExercise.get(set.exercise)
+    if (list) list.push(set)
+    else byExercise.set(set.exercise, [set])
+  }
+
+  const breakdown: ExerciseBreakdown[] = []
+  for (const [exercise, exSets] of byExercise) {
+    let reps = 0
+    let exTonnage = 0
+    let top: WorkoutSetHighlight | null = null
+    let bestReps: WorkoutSetHighlight | null = null
+
+    for (const set of exSets) {
+      const effectiveLoad = effectiveSetLoad(set, multipliers)
+      reps += set.reps
+      exTonnage += set.reps * effectiveLoad
+      const highlight: WorkoutSetHighlight = {
+        setId: set.id,
+        reps: set.reps,
+        weightLbs: set.weight_lbs ?? null,
+        effectiveLoad,
+        loggedAt: set.logged_at,
+      }
+      // Heaviest wins; at equal load the one with more reps is the better set.
+      if (
+        effectiveLoad > 0 &&
+        (top === null ||
+          effectiveLoad > top.effectiveLoad ||
+          (effectiveLoad === top.effectiveLoad && set.reps > top.reps))
+      ) {
+        top = highlight
+      }
+      if (bestReps === null || set.reps > bestReps.reps) bestReps = highlight
+    }
+
+    const estimate = top === null ? null : epleyOneRepMax(top.effectiveLoad, top.reps)
+    breakdown.push({
+      exercise,
+      ...(labels.has(exercise) ? { displayName: labels.get(exercise) } : {}),
+      sets: exSets.length,
+      reps,
+      tonnage: exTonnage,
+      topSet: top,
+      // Safe: `byExercise` only ever holds non-empty arrays, so the loop above
+      // always assigned at least one highlight.
+      bestRepSet: bestReps as WorkoutSetHighlight,
+      estimatedOneRepMax: estimate,
+      oneRepMaxIsReliable: estimate !== null && top !== null && top.reps <= E1RM_MAX_RELIABLE_REPS,
+      isBodyweight: top === null,
+    })
+  }
+
+  breakdown.sort(
+    (a, b) => b.tonnage - a.tonnage || b.reps - a.reps || a.exercise.localeCompare(b.exercise)
+  )
+
+  const density =
+    durationMinutes !== null && durationMinutes > 0
+      ? {
+          tonnagePerMinute: tonnage / durationMinutes,
+          setsPerMinute: ordered.length / durationMinutes,
+          repsPerMinute: totalReps / durationMinutes,
+        }
+      : null
+
+  return {
+    workout,
+    sets: ordered,
+    durationMinutes,
+    isInProgress,
+    isAbandoned,
+    totalSets: ordered.length,
+    totalReps,
+    tonnage,
+    weightedSets,
+    bodyweightSets: ordered.length - weightedSets,
+    density,
+    exercises: breakdown,
+  }
+}
+
+/** How one prescribed slot actually went. */
+export interface SlotAdherence extends SlotProgress {
+  /**
+   * Sets still owed against {@link TemplateSlot.target_sets}; `0` once the
+   * prescription is met. A set range is satisfied at its floor, so `4` of "4–5"
+   * owes nothing.
+   */
+  shortfall: number
+  /** Sets logged beyond the prescription's ceiling; `0` when inside it. */
+  surplus: number
+}
+
+/** Prescribed-vs-actual for a whole session. */
+export interface WorkoutAdherence {
+  /** One entry per template slot, in prescription order. Empty for a freestyle session. */
+  slots: SlotAdherence[]
+  /** Sets logged against no slot — the accessory work added on the day. */
+  extra: StrengthSet[]
+  /** How many sets the template prescribed in total. */
+  prescribedSets: number
+  /** How many of those were performed, capped per slot so surplus can't mask a shortfall elsewhere. */
+  completedSets: number
+  /** Slots that met their prescription. */
+  completedSlots: number
+  /**
+   * Slots performed with a movement other than the one prescribed. Counted
+   * separately because a substitution is a **normal outcome**, not a miss — the
+   * rack was taken — and it counts toward completion.
+   */
+  substitutedSlots: number
+  /**
+   * Share of prescribed sets performed, `0`–`1`. `1` for a freestyle session:
+   * nothing was prescribed, so nothing was missed.
+   *
+   * Prescribed sets is the honest denominator — a session that swapped every
+   * movement but did every set is 100%, and one that did 3 of 5 on one slot is
+   * not rescued by an extra set somewhere else.
+   */
+  completion: number
+}
+
+/**
+ * Line a session's sets up against the template it was running.
+ *
+ * Built on {@link buildSlotProgress} (#376) so the live panel and the summary
+ * can never disagree about what counts as a substitution: a set carrying a slot
+ * whose exercise differs from the slot's own *is* the substitution record.
+ *
+ * @param template The template the session ran, or `null` for a freestyle
+ *   session — which yields no slots, so every set is extra work.
+ * @param workoutSets Sets belonging to the session.
+ */
+export function buildWorkoutAdherence(
+  template: WorkoutTemplate | null,
+  workoutSets: readonly StrengthSet[]
+): WorkoutAdherence {
+  const progress = buildSlotProgress(template, workoutSets)
+
+  let prescribedSets = 0
+  let completedSets = 0
+  let completedSlots = 0
+  let substitutedSlots = 0
+
+  const slots: SlotAdherence[] = progress.map(entry => {
+    const floor = entry.slot.target_sets
+    const ceiling = entry.slot.target_sets_max ?? floor
+    prescribedSets += floor
+    // Cap the credit at the floor: doing 8 sets of one movement doesn't pay
+    // down the two you skipped on another.
+    completedSets += Math.min(entry.logged, floor)
+    if (entry.isComplete) completedSlots += 1
+    if (entry.isSubstituted) substitutedSlots += 1
+    return {
+      ...entry,
+      shortfall: Math.max(0, floor - entry.logged),
+      surplus: Math.max(0, entry.logged - ceiling),
+    }
+  })
+
+  return {
+    slots,
+    extra: extraSets(workoutSets),
+    prescribedSets,
+    completedSets,
+    completedSlots,
+    substitutedSlots,
+    completion: prescribedSets === 0 ? 1 : Math.min(1, completedSets / prescribedSets),
+  }
+}
+
+/** Change in one movement between two runs of the same template. */
+export interface ExerciseDelta {
+  /** Catalog slug. */
+  exercise: string
+  /** Catalog `display_name`, when known. */
+  displayName?: string
+  /** This session's tonnage minus the previous session's. */
+  tonnageDelta: number
+  /** This session's reps minus the previous session's. */
+  repsDelta: number
+  /**
+   * Change in heaviest effective load, or `null` when either session performed
+   * the movement bodyweight — there's no load delta between "none" and "none",
+   * and reporting `0` would read as "no progress" rather than "not applicable".
+   */
+  topSetLoadDelta: number | null
+  /** Whether the movement appears in this session but not the previous one. */
+  isNew: boolean
+}
+
+/** This session measured against the last run of the same template. */
+export interface WorkoutComparison {
+  /** The session compared against. */
+  previous: WorkoutSummary
+  /** Tonnage change. */
+  tonnageDelta: number
+  /** Rep change. */
+  repsDelta: number
+  /** Set-count change. */
+  setsDelta: number
+  /** Duration change in minutes, or `null` when either session lacks a duration. */
+  durationDelta: number | null
+  /** Per-movement changes, biggest tonnage gain first. Movements dropped since last time are omitted. */
+  exercises: ExerciseDelta[]
+}
+
+/**
+ * The most recent completed run of the same template before this one.
+ *
+ * Matched on {@link WeightRoomWorkout.template_id}, never on `title` — names
+ * aren't unique and the title is free text, so matching on it compares against
+ * the wrong session (#376). A freestyle session has no template and therefore no
+ * previous run.
+ *
+ * @param workout The session to find a predecessor for.
+ * @param candidates Other sessions; order doesn't matter.
+ * @returns The nearest earlier session running the same template, or `null`.
+ */
+export function findPreviousRun(
+  workout: WeightRoomWorkout,
+  candidates: readonly WeightRoomWorkout[]
+): WeightRoomWorkout | null {
+  if (workout.template_id === undefined) return null
+  const startedAt = new Date(workout.started_at).getTime()
+  if (!Number.isFinite(startedAt)) return null
+
+  let best: WeightRoomWorkout | null = null
+  let bestStart = -Infinity
+  for (const candidate of candidates) {
+    if (candidate.id === workout.id) continue
+    if (candidate.template_id !== workout.template_id) continue
+    const candidateStart = new Date(candidate.started_at).getTime()
+    // Compared as instants, not strings: this codebase mixes `Z` and Pacific
+    // offsets, so ISO strings don't sort chronologically (see `endsBeforeStart`).
+    if (!Number.isFinite(candidateStart) || candidateStart >= startedAt) continue
+    if (candidateStart > bestStart) {
+      best = candidate
+      bestStart = candidateStart
+    }
+  }
+  return best
+}
+
+/**
+ * Compare a session to the previous run of the same template.
+ *
+ * @param current This session's summary.
+ * @param previous The previous run's summary, or `null` when there isn't one —
+ *   a template's first outing, which the UI renders as "no previous run to
+ *   compare against" rather than as zero deltas.
+ */
+export function compareToPrevious(
+  current: WorkoutSummary,
+  previous: WorkoutSummary | null
+): WorkoutComparison | null {
+  if (previous === null) return null
+
+  const previousByExercise = new Map(previous.exercises.map(e => [e.exercise, e]))
+  const exercises: ExerciseDelta[] = current.exercises.map(entry => {
+    const before = previousByExercise.get(entry.exercise)
+    const currentLoad = entry.topSet?.effectiveLoad ?? null
+    const previousLoad = before?.topSet?.effectiveLoad ?? null
+    return {
+      exercise: entry.exercise,
+      ...(entry.displayName !== undefined ? { displayName: entry.displayName } : {}),
+      tonnageDelta: entry.tonnage - (before?.tonnage ?? 0),
+      repsDelta: entry.reps - (before?.reps ?? 0),
+      topSetLoadDelta:
+        currentLoad === null || previousLoad === null ? null : currentLoad - previousLoad,
+      isNew: before === undefined,
+    }
+  })
+  exercises.sort((a, b) => b.tonnageDelta - a.tonnageDelta || a.exercise.localeCompare(b.exercise))
+
+  return {
+    previous,
+    tonnageDelta: current.tonnage - previous.tonnage,
+    repsDelta: current.totalReps - previous.totalReps,
+    setsDelta: current.totalSets - previous.totalSets,
+    durationDelta:
+      current.durationMinutes === null || previous.durationMinutes === null
+        ? null
+        : current.durationMinutes - previous.durationMinutes,
+    exercises,
+  }
+}
+
+/** Which record a set broke. */
+export type PersonalBestKind = 'load' | 'reps'
+
+/** An all-time best set by a session. */
+export interface WorkoutPersonalBest {
+  /** Catalog slug of the movement. */
+  exercise: string
+  /** Catalog `display_name`, when known. */
+  displayName?: string
+  /**
+   * `'load'` — heaviest effective load ever for the movement. `'reps'` — most
+   * reps in one set, reported only for movements performed bodyweight, where
+   * load can't be the record.
+   */
+  kind: PersonalBestKind
+  /** The record-setting set. */
+  set: WorkoutSetHighlight
+  /**
+   * The mark it beat, or `null` when this is the movement's first-ever set —
+   * which is a first, not a personal *best*, and the UI should say so.
+   */
+  previousBest: number | null
+}
+
+/**
+ * All-time bests set during a session.
+ *
+ * "All-time" is measured against every set of that movement logged **strictly
+ * before this session started** — including loose grease-the-groove sets, which
+ * are real reps against the same movement and would make a "best ever" claim
+ * false if ignored. Sets from within the session itself are the candidates, not
+ * the baseline.
+ *
+ * A movement is judged on load when this session loaded it, and on reps only
+ * when it was performed entirely bodyweight. Reporting a rep PR alongside a load
+ * PR for the same loaded movement would flag a light high-rep back-off set as an
+ * achievement.
+ *
+ * @param summary The session's summary.
+ * @param priorSets Every set logged before this session — the baseline. Sets at
+ *   or after the session's start are ignored, so the caller may pass the whole
+ *   log without pre-filtering.
+ * @param exercises The catalog, for `load_multiplier` on the baseline sets and
+ *   for display labels.
+ */
+export function findPersonalBests(
+  summary: WorkoutSummary,
+  priorSets: readonly StrengthSet[],
+  exercises: readonly WeightRoomExercise[] = []
+): WorkoutPersonalBest[] {
+  const multipliers = loadMultipliersBySlug(exercises)
+  const labels = new Map(exercises.map(e => [e.slug, e.display_name]))
+  const startedAt = new Date(summary.workout.started_at).getTime()
+  const sessionSetIds = new Set(summary.sets.map(s => s.id))
+
+  // Best load and best reps per movement across everything that predates the
+  // session. Sets from the session itself are excluded by id as well as by
+  // timestamp: a caller passing the full log would otherwise have the session's
+  // own sets set the record they're being tested against.
+  const bestLoad = new Map<string, number>()
+  const bestReps = new Map<string, number>()
+  for (const set of priorSets) {
+    if (sessionSetIds.has(set.id)) continue
+    const loggedAt = new Date(set.logged_at).getTime()
+    if (!Number.isFinite(loggedAt) || !Number.isFinite(startedAt) || loggedAt >= startedAt) continue
+    const load = effectiveSetLoad(set, multipliers)
+    if (load > (bestLoad.get(set.exercise) ?? 0)) bestLoad.set(set.exercise, load)
+    if (set.reps > (bestReps.get(set.exercise) ?? 0)) bestReps.set(set.exercise, set.reps)
+  }
+
+  const bests: WorkoutPersonalBest[] = []
+  for (const entry of summary.exercises) {
+    const label = labels.get(entry.exercise)
+    const withLabel = label === undefined ? {} : { displayName: label }
+
+    if (!entry.isBodyweight && entry.topSet !== null) {
+      const previous = bestLoad.get(entry.exercise) ?? 0
+      if (entry.topSet.effectiveLoad > previous) {
+        bests.push({
+          exercise: entry.exercise,
+          ...withLabel,
+          kind: 'load',
+          set: entry.topSet,
+          previousBest: previous > 0 ? previous : null,
+        })
+      }
+      continue
+    }
+
+    const previousReps = bestReps.get(entry.exercise) ?? 0
+    if (entry.bestRepSet.reps > previousReps) {
+      bests.push({
+        exercise: entry.exercise,
+        ...withLabel,
+        kind: 'reps',
+        set: entry.bestRepSet,
+        previousBest: previousReps > 0 ? previousReps : null,
+      })
+    }
+  }
+
+  return bests
+}
+
+/** One row of the workout history list. */
+export interface WorkoutHistoryEntry {
+  /** The session. */
+  workout: WeightRoomWorkout
+  /** Its summary — the list shows duration, sets, reps, and tonnage per row. */
+  summary: WorkoutSummary
+  /** Name of the template it ran, or `null` for a freestyle session or a deleted template. */
+  templateName: string | null
+  /** Hex chip color from the template, when it has one. */
+  templateColor: string | null
+}
+
+/**
+ * Build the reverse-chronological workout history.
+ *
+ * @param workouts Every session.
+ * @param sets Every logged set; grouped by `workout_id` here so callers make one
+ *   read rather than one per session. Loose sets are ignored.
+ * @param templates Templates, for names and chip colors.
+ * @param exercises The catalog, for multipliers and labels.
+ * @param now Evaluation instant for the abandoned check; defaults to system time.
+ */
+export function buildWorkoutHistory(
+  workouts: readonly WeightRoomWorkout[],
+  sets: readonly StrengthSet[],
+  templates: readonly WorkoutTemplate[] = [],
+  exercises: readonly WeightRoomExercise[] = [],
+  now: Date = new Date()
+): WorkoutHistoryEntry[] {
+  const templateById = new Map(templates.map(t => [t.id, t]))
+  const setsByWorkout = new Map<string, StrengthSet[]>()
+  for (const set of sets) {
+    if (set.workout_id === undefined) continue
+    const list = setsByWorkout.get(set.workout_id)
+    if (list) list.push(set)
+    else setsByWorkout.set(set.workout_id, [set])
+  }
+
+  return [...workouts]
+    .sort((a, b) => {
+      // Newest first, compared as instants for the mixed-offset reason above.
+      const at = new Date(a.started_at).getTime()
+      const bt = new Date(b.started_at).getTime()
+      const aValid = Number.isFinite(at)
+      const bValid = Number.isFinite(bt)
+      // An unparseable timestamp sorts last rather than to the top, where a NaN
+      // comparison would otherwise leave it.
+      if (!aValid || !bValid) return aValid ? -1 : bValid ? 1 : 0
+      return bt - at
+    })
+    .map(workout => {
+      const template =
+        workout.template_id === undefined ? undefined : templateById.get(workout.template_id)
+      return {
+        workout,
+        summary: buildWorkoutSummary(workout, setsByWorkout.get(workout.id) ?? [], exercises, now),
+        templateName: template?.name ?? null,
+        templateColor: template?.color ?? null,
+      }
+    })
+}

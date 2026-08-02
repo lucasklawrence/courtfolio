@@ -780,3 +780,88 @@ describe('streak scope with effective-dated targets (#362)', () => {
     expect(result.best).toBe(3)
   })
 })
+
+describe('pooled ladder counts gym work (#377)', () => {
+  /** A gym lift: in the catalog, carried two at a time, and deliberately without a goal. */
+  const GYM_CATALOG = [
+    {
+      slug: 'dumbbell-bench-press',
+      display_name: 'Dumbbell Bench Press',
+      equipment: 'dumbbell' as const,
+      muscle_group: 'chest' as const,
+      load_multiplier: 2,
+    },
+  ]
+
+  const gymSet: StrengthSet = {
+    id: 'g1',
+    logged_at: '2026-08-01T18:00:00-07:00',
+    exercise: 'dumbbell-bench-press',
+    reps: 10,
+    weight_lbs: 70,
+    workout_id: 'w1',
+  }
+
+  const pooledTonnageTier: WeightRoomAchievement = {
+    id: 'a1',
+    label: 'Weight moved',
+    exercise: null,
+    scope: 'day',
+    measure: 'tonnage',
+    threshold: 1000,
+  }
+
+  it('reads load_multiplier off the catalog for a movement with no goal', () => {
+    // 10 × 70 lb per hand × 2 hands = 1400, which clears the tier. A
+    // goals-only lookup would score it 700 and leave the badge dark.
+    const [resolved] = resolveAchievements([gymSet], [], [pooledTonnageTier], GYM_CATALOG)
+    expect(resolved.best).toBe(1400)
+    expect(resolved.earned).toBe(true)
+  })
+
+  it('halves that tonnage without the catalog, showing the multiplier is load-bearing', () => {
+    const [resolved] = resolveAchievements([gymSet], [], [pooledTonnageTier], [])
+    expect(resolved.best).toBe(700)
+    expect(resolved.earned).toBe(false)
+  })
+
+  it('pools a gym set into the all-movements ladder alongside grease-the-groove work', () => {
+    const gtgSet: StrengthSet = {
+      id: 'p1',
+      logged_at: '2026-08-01T09:00:00-07:00',
+      exercise: 'pushups',
+      reps: 40,
+    }
+    const pooledReps: WeightRoomAchievement = {
+      id: 'a2',
+      label: 'Reps in a day',
+      exercise: null,
+      scope: 'day',
+      measure: 'reps',
+      threshold: 50,
+    }
+    const [resolved] = resolveAchievements([gtgSet, gymSet], [], [pooledReps], GYM_CATALOG)
+    // 40 pushups + 10 bench reps — "all movements" means all movements.
+    expect(resolved.best).toBe(50)
+    expect(resolved.earned).toBe(true)
+  })
+
+  it('cannot manufacture a pooled streak day, because a gym lift has no daily target', () => {
+    const streakTier: WeightRoomAchievement = {
+      id: 'a3',
+      label: 'Week of work',
+      exercise: null,
+      scope: 'streak',
+      threshold: 1,
+    }
+    // Seven consecutive days of nothing but gym work.
+    const week = Array.from({ length: 7 }, (_, i) => ({
+      ...gymSet,
+      id: `g${i}`,
+      logged_at: `2026-08-0${i + 1}T18:00:00-07:00`,
+    }))
+    const [resolved] = resolveAchievements(week, [], [streakTier], GYM_CATALOG)
+    expect(resolved.earned).toBe(false)
+    expect(resolved.best).toBe(0)
+  })
+})

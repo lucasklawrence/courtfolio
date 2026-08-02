@@ -3,7 +3,11 @@ import { describe, it, expect } from 'vitest'
 import type { ExerciseEquipment, StrengthSet, WeightRoomExercise } from '@/types/weight-room'
 
 import { pacificDayKey } from './day-keys'
-import { buildMovementLoads } from './load-management'
+import {
+  MIN_TRAINING_DAYS_IN_WINDOW,
+  buildMovementLoadView,
+  buildMovementLoads,
+} from './load-management'
 
 /**
  * Minimal {@link StrengthSet} stamped at noon Pacific on `dayKey` (noon so
@@ -306,5 +310,81 @@ describe('buildMovementLoads — catalog-driven metric (#384)', () => {
     // No catalog at all — identical to omitting the argument entirely.
     expect(byName(buildMovementLoads(sets, [], NOW, [])).mystery.metric).toBe('load')
     expect(byName(buildMovementLoads(sets, [], NOW)).mystery.metric).toBe('load')
+  })
+})
+
+describe('buildMovementLoadView — frequency gate (#377)', () => {
+  /** Sets on `count` consecutive days ending 2026-07-14 (the day before NOW). */
+  function onDays(exercise: string, count: number, weight?: number): StrengthSet[] {
+    const sets: StrengthSet[] = []
+    for (let i = 0; i < count; i++) {
+      const day = new Date(Date.UTC(2026, 6, 14 - i))
+      sets.push(set(day.toISOString().slice(0, 10), exercise, 10, weight))
+    }
+    return sets
+  }
+
+  it('cards a movement trained on at least the minimum number of days', () => {
+    const view = buildMovementLoadView(onDays('pushups', MIN_TRAINING_DAYS_IN_WINDOW), [], NOW)
+    expect(view.loads.map(l => l.movement)).toEqual(['pushups'])
+    expect(view.infrequent).toEqual([])
+  })
+
+  it('holds back a once-a-week gym lift, with its day count', () => {
+    // Four sessions in the 28-day window — a normal, healthy schedule for a
+    // barbell lift, and exactly where ACWR stops meaning anything.
+    const sets = [
+      set('2026-07-14', 'barbell-bench-press', 5, 185),
+      set('2026-07-07', 'barbell-bench-press', 5, 185),
+      set('2026-06-30', 'barbell-bench-press', 5, 180),
+      set('2026-06-23', 'barbell-bench-press', 5, 180),
+    ]
+    const view = buildMovementLoadView(sets, [], NOW)
+    expect(view.loads).toEqual([])
+    expect(view.infrequent).toEqual([{ movement: 'barbell-bench-press', trainingDays: 4 }])
+  })
+
+  it('counts distinct days, not sets — five sets in one session is one day', () => {
+    const sameDay = Array.from({ length: 5 }, (_, i) => ({
+      ...set('2026-07-14', 'barbell-bench-press', 5, 185),
+      id: `same-${i}`,
+    }))
+    const view = buildMovementLoadView(sameDay, [], NOW)
+    expect(view.loads).toEqual([])
+    expect(view.infrequent[0].trainingDays).toBe(1)
+  })
+
+  it('carries the catalog display name onto a held-back movement', () => {
+    const view = buildMovementLoadView(
+      [set('2026-07-14', 'barbell-bench-press', 5, 185)],
+      [],
+      NOW,
+      [
+        {
+          slug: 'barbell-bench-press',
+          display_name: 'Barbell Bench Press',
+          equipment: 'barbell',
+          muscle_group: 'chest',
+        },
+      ]
+    )
+    expect(view.infrequent[0].displayName).toBe('Barbell Bench Press')
+  })
+
+  it('keeps a gym lift that becomes near-daily — the gate is frequency, not a GTG/gym split', () => {
+    const view = buildMovementLoadView(
+      onDays('barbell-bench-press', MIN_TRAINING_DAYS_IN_WINDOW, 185),
+      [],
+      NOW
+    )
+    expect(view.loads.map(l => l.movement)).toEqual(['barbell-bench-press'])
+    expect(view.infrequent).toEqual([])
+  })
+
+  it('drops a dormant movement entirely rather than listing it as infrequent', () => {
+    // Outside the 28-day window — not "trained too rarely", just not trained.
+    const view = buildMovementLoadView([set('2026-01-01', 'pushups', 20)], [], NOW)
+    expect(view.loads).toEqual([])
+    expect(view.infrequent).toEqual([])
   })
 })

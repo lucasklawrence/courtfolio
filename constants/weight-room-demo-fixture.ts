@@ -20,7 +20,14 @@
  * lands on `StrengthSet` / `ExerciseGoal`, TypeScript will surface it.
  */
 
-import type { ExerciseGoal, StrengthSet, WeightRoomData } from '@/types/weight-room'
+import type {
+  ExerciseGoal,
+  StrengthSet,
+  WeightRoomData,
+  WeightRoomExercise,
+  WeightRoomWorkout,
+  WorkoutTemplate,
+} from '@/types/weight-room'
 
 /**
  * Default goals seeded by the migration; the demo mirrors them.
@@ -153,5 +160,240 @@ export function buildWeightRoomDemoData(now: Date = new Date()): WeightRoomData 
     // its month, so the demo leaves it empty rather than faking an
     // always-active campaign.
     monthly_focus: [],
+  }
+}
+
+/**
+ * Sample data for the workout surfaces' empty-state preview (#377), surfaced at
+ * `/training-facility/weight-room/workouts?preview=demo` when no session has
+ * been recorded.
+ *
+ * Deliberately a *fixture* rather than seeded database rows: the workout
+ * surfaces would otherwise be reviewable only by fabricating training that never
+ * happened. The same `?preview=demo` contract as the Today and History views
+ * applies — it activates only when the real read is empty, so it can never
+ * overlay or misrepresent a real log.
+ *
+ * Shaped to exercise every branch of the summary at once, which is also what
+ * makes it useful as a design reference: a substituted slot, a slot finished
+ * short, extra work off-template, a bodyweight movement contributing reps but no
+ * tonnage, a two-dumbbell movement whose `load_multiplier` doubles it, and two
+ * runs of one template so the comparison block has something to compare.
+ */
+export interface WorkoutDemoData {
+  /** Two sessions, newest first. */
+  workouts: WeightRoomWorkout[]
+  /** Every set belonging to them, oldest first. */
+  sets: StrengthSet[]
+  /** The one template both sessions ran. */
+  templates: WorkoutTemplate[]
+  /** Catalog rows for the movements used, carrying `load_multiplier`. */
+  exercises: WeightRoomExercise[]
+}
+
+/** Stable ids so a preview link keeps working across renders. */
+const DEMO_TEMPLATE_ID = 'demo-template-chest'
+const DEMO_SLOT_IDS = {
+  bench: 'demo-slot-bench',
+  incline: 'demo-slot-incline',
+  fly: 'demo-slot-fly',
+  dips: 'demo-slot-dips',
+} as const
+
+/** Catalog rows behind the demo template. Multipliers are what make the dumbbell tonnage honest. */
+const DEMO_EXERCISES: WeightRoomExercise[] = [
+  {
+    slug: 'barbell-bench-press',
+    display_name: 'Barbell Bench Press',
+    equipment: 'barbell',
+    muscle_group: 'chest',
+  },
+  {
+    slug: 'dumbbell-bench-press',
+    display_name: 'Dumbbell Bench Press',
+    equipment: 'dumbbell',
+    muscle_group: 'chest',
+    load_multiplier: 2,
+  },
+  {
+    slug: 'incline-dumbbell-press',
+    display_name: 'Incline Dumbbell Press',
+    equipment: 'dumbbell',
+    muscle_group: 'chest',
+    load_multiplier: 2,
+  },
+  {
+    slug: 'cable-fly',
+    display_name: 'Cable Fly',
+    equipment: 'cable',
+    muscle_group: 'chest',
+  },
+  { slug: 'dips', display_name: 'Dips', equipment: 'bodyweight', muscle_group: 'chest' },
+  { slug: 'pushups', display_name: 'Pushups', equipment: 'bodyweight', muscle_group: 'chest' },
+]
+
+/** The demo template — four slots, one of which declares the swap the newer session takes. */
+const DEMO_TEMPLATE: WorkoutTemplate = {
+  id: DEMO_TEMPLATE_ID,
+  name: 'Chest Day 1',
+  color: '#EA580C',
+  category: 'push',
+  position: 0,
+  slots: [
+    {
+      id: DEMO_SLOT_IDS.bench,
+      position: 0,
+      exercise: 'barbell-bench-press',
+      target_sets: 4,
+      target_reps: 8,
+      target_weight_lbs: 155,
+      steps: [],
+      alternates: [{ id: 'demo-alt-1', exercise: 'dumbbell-bench-press', position: 0 }],
+    },
+    {
+      id: DEMO_SLOT_IDS.incline,
+      position: 1,
+      exercise: 'incline-dumbbell-press',
+      target_sets: 4,
+      target_reps: 10,
+      target_weight_lbs: 50,
+      steps: [],
+      alternates: [],
+    },
+    {
+      id: DEMO_SLOT_IDS.fly,
+      position: 2,
+      exercise: 'cable-fly',
+      target_sets: 3,
+      target_reps: 12,
+      target_weight_lbs: 30,
+      steps: [],
+      alternates: [],
+    },
+    {
+      id: DEMO_SLOT_IDS.dips,
+      position: 3,
+      exercise: 'dips',
+      target_sets: 3,
+      steps: [],
+      alternates: [],
+    },
+  ],
+}
+
+/**
+ * One demo set, before it's stamped with a timestamp.
+ *
+ * `slot` absent marks extra work — a set inside the session that no slot
+ * prescribed, which is exactly how the real recording surface records it.
+ */
+interface DemoSetPlan {
+  exercise: string
+  reps: number
+  weight?: number
+  slot?: string
+}
+
+/** The older session: everything prescribed, done as prescribed. */
+const DEMO_PREVIOUS_SETS: DemoSetPlan[] = [
+  { exercise: 'barbell-bench-press', reps: 8, weight: 155, slot: DEMO_SLOT_IDS.bench },
+  { exercise: 'barbell-bench-press', reps: 8, weight: 155, slot: DEMO_SLOT_IDS.bench },
+  { exercise: 'barbell-bench-press', reps: 8, weight: 155, slot: DEMO_SLOT_IDS.bench },
+  { exercise: 'barbell-bench-press', reps: 7, weight: 155, slot: DEMO_SLOT_IDS.bench },
+  { exercise: 'incline-dumbbell-press', reps: 10, weight: 50, slot: DEMO_SLOT_IDS.incline },
+  { exercise: 'incline-dumbbell-press', reps: 10, weight: 50, slot: DEMO_SLOT_IDS.incline },
+  { exercise: 'incline-dumbbell-press', reps: 9, weight: 50, slot: DEMO_SLOT_IDS.incline },
+  { exercise: 'incline-dumbbell-press', reps: 8, weight: 50, slot: DEMO_SLOT_IDS.incline },
+  { exercise: 'cable-fly', reps: 12, weight: 30, slot: DEMO_SLOT_IDS.fly },
+  { exercise: 'cable-fly', reps: 12, weight: 30, slot: DEMO_SLOT_IDS.fly },
+  { exercise: 'cable-fly', reps: 11, weight: 30, slot: DEMO_SLOT_IDS.fly },
+  { exercise: 'dips', reps: 12, slot: DEMO_SLOT_IDS.dips },
+  { exercise: 'dips', reps: 10, slot: DEMO_SLOT_IDS.dips },
+  { exercise: 'dips', reps: 9, slot: DEMO_SLOT_IDS.dips },
+]
+
+/**
+ * The newer session: the rack was taken, so the bench slot ran on dumbbells and
+ * came up a set short, the incline went up 5 lb a hand (a load PR), and a few
+ * pushup sets went in off-template.
+ */
+const DEMO_LATEST_SETS: DemoSetPlan[] = [
+  { exercise: 'dumbbell-bench-press', reps: 8, weight: 65, slot: DEMO_SLOT_IDS.bench },
+  { exercise: 'dumbbell-bench-press', reps: 8, weight: 65, slot: DEMO_SLOT_IDS.bench },
+  { exercise: 'dumbbell-bench-press', reps: 7, weight: 65, slot: DEMO_SLOT_IDS.bench },
+  { exercise: 'incline-dumbbell-press', reps: 10, weight: 55, slot: DEMO_SLOT_IDS.incline },
+  { exercise: 'incline-dumbbell-press', reps: 10, weight: 55, slot: DEMO_SLOT_IDS.incline },
+  { exercise: 'incline-dumbbell-press', reps: 9, weight: 55, slot: DEMO_SLOT_IDS.incline },
+  { exercise: 'incline-dumbbell-press', reps: 8, weight: 55, slot: DEMO_SLOT_IDS.incline },
+  { exercise: 'cable-fly', reps: 12, weight: 30, slot: DEMO_SLOT_IDS.fly },
+  { exercise: 'cable-fly', reps: 12, weight: 30, slot: DEMO_SLOT_IDS.fly },
+  { exercise: 'cable-fly', reps: 12, weight: 30, slot: DEMO_SLOT_IDS.fly },
+  { exercise: 'dips', reps: 14, slot: DEMO_SLOT_IDS.dips },
+  { exercise: 'dips', reps: 11, slot: DEMO_SLOT_IDS.dips },
+  { exercise: 'dips', reps: 10, slot: DEMO_SLOT_IDS.dips },
+  { exercise: 'pushups', reps: 25 },
+  { exercise: 'pushups', reps: 25 },
+]
+
+/**
+ * Fan a session's plan out into {@link StrengthSet} rows, one every three
+ * minutes from the session's start so the ordering and density read like a real
+ * gym visit rather than fourteen sets at the same instant.
+ */
+function buildDemoWorkout(
+  workoutId: string,
+  startedAt: Date,
+  durationMinutes: number,
+  plan: readonly DemoSetPlan[]
+): { workout: WeightRoomWorkout; sets: StrengthSet[] } {
+  const sets = plan.map((entry, index) => {
+    const loggedAt = new Date(startedAt.getTime() + (index + 1) * 3 * 60_000)
+    return {
+      id: `${workoutId}-set-${index}`,
+      logged_at: loggedAt.toISOString(),
+      exercise: entry.exercise,
+      reps: entry.reps,
+      ...(entry.weight === undefined ? {} : { weight_lbs: entry.weight }),
+      workout_id: workoutId,
+      position: index,
+      ...(entry.slot === undefined ? {} : { template_slot_id: entry.slot }),
+    } satisfies StrengthSet
+  })
+
+  return {
+    workout: {
+      id: workoutId,
+      started_at: startedAt.toISOString(),
+      ended_at: new Date(startedAt.getTime() + durationMinutes * 60_000).toISOString(),
+      template_id: DEMO_TEMPLATE_ID,
+      title: DEMO_TEMPLATE.name,
+      location: 'gym',
+    },
+    sets,
+  }
+}
+
+/**
+ * Build today-relative demo workout data.
+ *
+ * @param now Optional override; defaults to system time. Tests pin it.
+ */
+export function buildWorkoutDemoData(now: Date = new Date()): WorkoutDemoData {
+  // Anchored to 6pm on each day rather than to `now`, so the fixture reads as
+  // evening gym sessions regardless of when the page is loaded.
+  const evening = (daysAgo: number): Date => {
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0, 0)
+    d.setDate(d.getDate() - daysAgo)
+    return d
+  }
+
+  const previous = buildDemoWorkout('demo-workout-1', evening(9), 58, DEMO_PREVIOUS_SETS)
+  const latest = buildDemoWorkout('demo-workout-2', evening(2), 52, DEMO_LATEST_SETS)
+
+  return {
+    workouts: [latest.workout, previous.workout],
+    sets: [...previous.sets, ...latest.sets],
+    templates: [DEMO_TEMPLATE],
+    exercises: DEMO_EXERCISES,
   }
 }
