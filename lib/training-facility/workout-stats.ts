@@ -32,6 +32,12 @@ import { compareInstants, isStaleOpenWorkout, workoutDurationMinutes } from './w
  * dressed as a measurement. Estimates are still computed above this — they're
  * just marked {@link ExerciseBreakdown.oneRepMaxIsReliable} `false` so the UI can
  * de-emphasize rather than silently mislead.
+ *
+ * This matters more for the per-exercise e1RM trend (#412) than it does here: a
+ * single unreliable estimate in one session's breakdown is easy to discount, but
+ * plotted as a point on a progression line it reads as a measurement like any
+ * other. Whatever draws that chart should treat this as the cutoff for a solid
+ * point rather than re-deriving its own.
  */
 export const E1RM_MAX_RELIABLE_REPS = 12
 
