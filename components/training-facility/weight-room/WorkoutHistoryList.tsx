@@ -31,8 +31,13 @@ export interface WorkoutHistoryListProps {
   hasAnyWorkouts: boolean
   /**
    * Whether these rows came from the demo fixture. Carries `?preview=demo`
-   * through to each summary link — without it a demo row would click through to
-   * a 404, since the id it names exists in no database.
+   * through **every** internal link — summary rows and filter chips alike.
+   *
+   * The fixture only stands in when the real read is empty, so any link that
+   * drops the param navigates straight back to the empty state: a demo row would
+   * 404 (its id exists in no database) and a filter chip would land on "no
+   * workouts recorded yet". The preview has to stay navigable to be worth
+   * anything.
    */
   isPreviewMode?: boolean
 }
@@ -55,7 +60,11 @@ export function WorkoutHistoryList({
   return (
     <div className="flex flex-col gap-5">
       {filters.length > 1 ? (
-        <TemplateFilterRail filters={filters} selectedTemplateId={selectedTemplateId} />
+        <TemplateFilterRail
+          filters={filters}
+          selectedTemplateId={selectedTemplateId}
+          isPreviewMode={isPreviewMode}
+        />
       ) : null}
 
       {entries.length === 0 ? (
@@ -83,9 +92,23 @@ export function WorkoutHistoryList({
 interface TemplateFilterRailProps {
   filters: readonly TemplateFilterOption[]
   selectedTemplateId: string | null
+  isPreviewMode: boolean
 }
 
-function TemplateFilterRail({ filters, selectedTemplateId }: TemplateFilterRailProps): JSX.Element {
+/** Build a chip href, keeping `preview=demo` alongside `template=<id>`. */
+function chipHref(templateId: string | null, isPreviewMode: boolean): string {
+  const params = new URLSearchParams()
+  if (templateId !== null) params.set('template', templateId)
+  if (isPreviewMode) params.set('preview', 'demo')
+  const query = params.toString()
+  return query === '' ? WORKOUTS_ROUTE : `${WORKOUTS_ROUTE}?${query}`
+}
+
+function TemplateFilterRail({
+  filters,
+  selectedTemplateId,
+  isPreviewMode,
+}: TemplateFilterRailProps): JSX.Element {
   return (
     <nav aria-label="Filter by template" data-testid="workout-template-filter">
       <ul className="flex flex-wrap gap-2">
@@ -94,9 +117,7 @@ function TemplateFilterRail({ filters, selectedTemplateId }: TemplateFilterRailP
           return (
             <li key={option.id ?? 'all'}>
               <Link
-                href={
-                  option.id === null ? WORKOUTS_ROUTE : `${WORKOUTS_ROUTE}?template=${option.id}`
-                }
+                href={chipHref(option.id, isPreviewMode)}
                 aria-current={isActive ? 'page' : undefined}
                 data-testid={`workout-filter-${option.id ?? 'all'}`}
                 className={

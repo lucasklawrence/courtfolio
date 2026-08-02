@@ -112,6 +112,30 @@ export function endsBeforeStart(startedAt: string, endedAt: string): boolean | n
 }
 
 /**
+ * `Array.prototype.sort` comparator putting two ISO timestamps in chronological
+ * order, compared as **instants**.
+ *
+ * Exists because sorting these as strings is wrong for the reason
+ * {@link endsBeforeStart} documents — this codebase mixes `Z` and Pacific
+ * offsets, so ISO order and chronological order are not the same order. Every
+ * place that sorts sets or sessions by time should use this rather than `<`.
+ *
+ * Unparseable timestamps sort **last** and compare equal to each other, so a
+ * `NaN` can't scramble the rest of the list the way a raw subtraction would.
+ *
+ * @param a ISO timestamp.
+ * @param b ISO timestamp.
+ */
+export function compareInstants(a: string, b: string): number {
+  const at = new Date(a).getTime()
+  const bt = new Date(b).getTime()
+  const aValid = Number.isFinite(at)
+  const bValid = Number.isFinite(bt)
+  if (!aValid || !bValid) return aValid ? -1 : bValid ? 1 : 0
+  return at - bt
+}
+
+/**
  * Elapsed minutes of a session, or `null` while it's still in progress.
  *
  * Rounded to the nearest minute — the consuming surfaces (#377) display whole

@@ -111,6 +111,15 @@ describe('WorkoutSummaryPanel', () => {
     )
   })
 
+  it('does not call an empty session a bodyweight session', () => {
+    // Reachable: end a workout without logging anything. `weightedSets === 0`
+    // is true here too, so the caveat would contradict the breakdown's "no sets
+    // logged into this session" directly below it.
+    renderPanel([], null)
+    expect(screen.queryByTestId('workout-bodyweight-note')).toBeNull()
+    expect(screen.getByTestId('workout-breakdown-empty')).toBeInTheDocument()
+  })
+
   it('labels a swapped slot as a substitution and still counts it complete', () => {
     renderPanel(
       Array.from({ length: 4 }, (_, i) =>

@@ -77,7 +77,11 @@ export function WorkoutSummaryPanel({
   templateName,
   exerciseLabels,
 }: WorkoutSummaryPanelProps): JSX.Element {
-  const allBodyweight = summary.weightedSets === 0
+  // `totalSets > 0` guard: an empty session also has zero weighted sets, and
+  // without it the panel announces "Bodyweight session" directly above the
+  // breakdown saying no sets were logged at all. A session ended without
+  // logging anything is reachable, so the two must not contradict each other.
+  const allBodyweight = summary.totalSets > 0 && summary.weightedSets === 0
 
   return (
     <div data-testid="workout-summary" className="flex flex-col gap-5">

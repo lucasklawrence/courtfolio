@@ -136,7 +136,12 @@ export default async function WeightRoomWorkoutSummaryPage({
         <header className="mt-12">
           <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
             Weight Room ·{' '}
-            <Link href={WORKOUTS_ROUTE} className="underline-offset-4 hover:underline">
+            {/* Keeps the preview alive on the way back — without the param the
+                list read is empty again and the demo vanishes mid-tour. */}
+            <Link
+              href={isPreviewMode ? `${WORKOUTS_ROUTE}?preview=demo` : WORKOUTS_ROUTE}
+              className="underline-offset-4 hover:underline"
+            >
               Workouts
             </Link>
           </p>

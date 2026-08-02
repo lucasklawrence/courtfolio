@@ -6,7 +6,7 @@ import type {
 } from '@/types/weight-room'
 
 import { buildSlotProgress, extraSets, type SlotProgress } from './live-workout'
-import { isStaleOpenWorkout, workoutDurationMinutes } from './workout-sessions'
+import { compareInstants, isStaleOpenWorkout, workoutDurationMinutes } from './workout-sessions'
 
 /**
  * Per-workout statistics (#377) — the payoff of the #372 arc.
@@ -213,9 +213,10 @@ export function buildWorkoutSummary(
   const multipliers = loadMultipliersBySlug(exercises)
   const labels = new Map(exercises.map(e => [e.slug, e.display_name]))
 
-  const ordered = [...sets].sort((a, b) =>
-    a.logged_at < b.logged_at ? -1 : a.logged_at > b.logged_at ? 1 : 0
-  )
+  // Instants, not strings — see `compareInstants`. Sorting these lexicographically
+  // scrambles a session whose sets carry mixed `Z` and Pacific offsets, and
+  // `WorkoutSummary.sets` promises oldest-first.
+  const ordered = [...sets].sort((a, b) => compareInstants(a.logged_at, b.logged_at))
 
   const isInProgress = workout.ended_at === undefined
   const isAbandoned = isInProgress && isStaleOpenWorkout(workout.started_at, now)
@@ -673,13 +674,15 @@ export function buildWorkoutHistory(
 
   return [...workouts]
     .sort((a, b) => {
-      // Newest first, compared as instants for the mixed-offset reason above.
+      // Newest first, compared as instants for the mixed-offset reason
+      // `compareInstants` documents. Not expressed as a reversal of that
+      // helper: reversing it — by swapping the arguments or negating the
+      // result — also reverses its unparseable-sorts-last rule, which would put
+      // a broken timestamp at the top of the history.
       const at = new Date(a.started_at).getTime()
       const bt = new Date(b.started_at).getTime()
       const aValid = Number.isFinite(at)
       const bValid = Number.isFinite(bt)
-      // An unparseable timestamp sorts last rather than to the top, where a NaN
-      // comparison would otherwise leave it.
       if (!aValid || !bValid) return aValid ? -1 : bValid ? 1 : 0
       return bt - at
     })

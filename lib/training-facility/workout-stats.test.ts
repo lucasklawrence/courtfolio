@@ -232,6 +232,21 @@ describe('buildWorkoutSummary', () => {
     expect(summary.exercises[0].bestRepSet.reps).toBe(10)
   })
 
+  it('orders sets by instant, so mixed UTC and Pacific offsets do not scramble them', () => {
+    // 05:00-07:00 is 12:00Z — two hours AFTER 10:00Z, but sorts before it as a
+    // string. A lexicographic sort puts these in the wrong order, and
+    // `WorkoutSummary.sets` promises oldest-first.
+    const summary = buildWorkoutSummary(
+      workout(),
+      [
+        set({ id: 'later', logged_at: '2026-08-01T05:00:00-07:00' }),
+        set({ id: 'earlier', logged_at: '2026-08-01T10:00:00Z' }),
+      ],
+      CATALOG
+    )
+    expect(summary.sets.map(s => s.id)).toEqual(['earlier', 'later'])
+  })
+
   it('handles a session with no sets at all', () => {
     const summary = buildWorkoutSummary(workout(), [], CATALOG)
     expect(summary.totalSets).toBe(0)

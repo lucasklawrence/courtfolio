@@ -102,6 +102,38 @@ describe('WorkoutHistoryList', () => {
     )
   })
 
+  it('keeps preview mode alive through the filter chips', () => {
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={FILTERS}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        isPreviewMode
+      />
+    )
+    // Dropping the param navigates back to an empty real read, which ends the
+    // demo tour one click in.
+    expect(screen.getByTestId('workout-filter-t1')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?template=t1&preview=demo'
+    )
+    expect(screen.getByTestId('workout-filter-all')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?preview=demo'
+    )
+  })
+
+  it('leaves chip hrefs clean outside preview mode', () => {
+    render(
+      <WorkoutHistoryList entries={[]} filters={FILTERS} selectedTemplateId={null} hasAnyWorkouts />
+    )
+    expect(screen.getByTestId('workout-filter-all')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts'
+    )
+  })
+
   it('marks the active filter chip for assistive tech', () => {
     render(
       <WorkoutHistoryList entries={[]} filters={FILTERS} selectedTemplateId="t1" hasAnyWorkouts />
