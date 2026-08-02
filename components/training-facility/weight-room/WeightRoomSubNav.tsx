@@ -7,7 +7,8 @@ import Link from 'next/link'
  * corresponds to one of the routes under
  * `/training-facility/weight-room/*`.
  */
-export type WeightRoomSubNavSection = 'today' | 'history' | 'achievements' | 'settings' | 'log'
+export type WeightRoomSubNavSection =
+  'today' | 'history' | 'workouts' | 'achievements' | 'settings' | 'log'
 
 /** Props for {@link WeightRoomSubNav}. */
 export interface WeightRoomSubNavProps {
@@ -60,6 +61,7 @@ interface SubNavItem {
 const ITEMS: readonly SubNavItem[] = [
   { section: 'today', label: 'Today', href: '/training-facility/weight-room' },
   { section: 'history', label: 'History', href: '/training-facility/weight-room/history' },
+  { section: 'workouts', label: 'Workouts', href: '/training-facility/weight-room/workouts' },
   {
     section: 'achievements',
     label: 'Trophies',
@@ -95,8 +97,9 @@ const ITEMS: readonly SubNavItem[] = [
  * announces section identity to screen readers; sighted users see the
  * same intent via the amber tint.
  *
- * Mobile-first: pills wrap rather than scroll horizontally — three /
- * four short labels fit on a 390 px viewport without truncation.
+ * Mobile-first: pills wrap rather than scroll horizontally, so the row grows to
+ * a second line on a 390 px viewport instead of truncating. That matters more
+ * since #377 added Workouts — an admin now sees six pills.
  */
 export function WeightRoomSubNav({
   active,

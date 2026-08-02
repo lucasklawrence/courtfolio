@@ -14,9 +14,14 @@ import {
   WeightRoomSetRowSchema,
   WeightRoomWorkoutCreateSchema,
   WeightRoomWorkoutUpdateSchema,
+  WorkoutPrescriptionSchema,
   exerciseRowToWeightRoomExercise,
+  prescriptionToTemplate,
   setRowToStrengthSet,
+  templateToPrescription,
 } from './weight-room'
+
+import type { WorkoutTemplate } from '@/types/weight-room'
 
 /**
  * Schema-level coverage for the Weight Room Zod contract (#79).
@@ -540,5 +545,117 @@ describe('WeightRoomAchievementUpdateSchema', () => {
 
   it('rejects an empty patch', () => {
     expect(() => WeightRoomAchievementUpdateSchema.parse({})).toThrow()
+  })
+})
+
+describe('workout prescription snapshots (#377)', () => {
+  const template: WorkoutTemplate = {
+    id: '11111111-1111-4111-8111-111111111111',
+    name: 'Chest Day 1',
+    position: 0,
+    slots: [
+      {
+        id: '22222222-2222-4222-8222-222222222222',
+        position: 1,
+        exercise: 'incline-dumbbell-press',
+        target_sets: 4,
+        target_reps: 10,
+        steps: [],
+        alternates: [],
+      },
+      {
+        id: '33333333-3333-4333-8333-333333333333',
+        position: 0,
+        exercise: 'barbell-bench-press',
+        target_sets: 4,
+        target_sets_max: 5,
+        target_reps: 8,
+        target_reps_max: 10,
+        target_weight_lbs: 155,
+        notes: 'pause at the bottom',
+        steps: [{ id: '44444444-4444-4444-8444-444444444444', position: 0, target_reps: 5 }],
+        alternates: [
+          {
+            id: '55555555-5555-4555-8555-555555555555',
+            exercise: 'dumbbell-bench-press',
+            position: 0,
+          },
+        ],
+      },
+    ],
+  }
+
+  it('captures every prescribing field', () => {
+    const snapshot = templateToPrescription(template)
+    const bench = snapshot.slots.find(s => s.exercise === 'barbell-bench-press')
+    expect(bench).toEqual({
+      id: '33333333-3333-4333-8333-333333333333',
+      position: 0,
+      exercise: 'barbell-bench-press',
+      target_sets: 4,
+      target_sets_max: 5,
+      target_reps: 8,
+      target_reps_max: 10,
+      target_weight_lbs: 155,
+      notes: 'pause at the bottom',
+    })
+  })
+
+  it('orders slots by position rather than trusting load order', () => {
+    expect(templateToPrescription(template).slots.map(s => s.position)).toEqual([0, 1])
+  })
+
+  it('keeps slot ids, which are the join key for template_slot_id', () => {
+    const snapshot = templateToPrescription(template)
+    expect(snapshot.slots.map(s => s.id).sort()).toEqual(template.slots.map(s => s.id).sort())
+  })
+
+  it('validates as jsonb the read path will accept', () => {
+    const snapshot = templateToPrescription(template)
+    // Round-trip through JSON: this is stored in a jsonb column, so anything
+    // that doesn't survive serialization is a bug that only shows up in prod.
+    expect(WorkoutPrescriptionSchema.safeParse(JSON.parse(JSON.stringify(snapshot))).success).toBe(
+      true
+    )
+  })
+
+  it('rejects an unknown field, so a new TemplateSlot column cannot slip in unvalidated', () => {
+    const snapshot = templateToPrescription(template)
+    const tampered = {
+      ...snapshot,
+      slots: [{ ...snapshot.slots[0], rest_seconds: 90 }],
+    }
+    expect(WorkoutPrescriptionSchema.safeParse(tampered).success).toBe(false)
+  })
+
+  it('round-trips into a template the adherence math can score', () => {
+    const rehydrated = prescriptionToTemplate(templateToPrescription(template))
+    expect(rehydrated.name).toBe('Chest Day 1')
+    expect(rehydrated.slots).toHaveLength(2)
+    // Never captured, so they come back empty rather than stale.
+    expect(rehydrated.slots.every(s => s.steps.length === 0)).toBe(true)
+    expect(rehydrated.slots.every(s => s.alternates.length === 0)).toBe(true)
+  })
+
+  it('is unaffected by a later edit to the source template — the whole point', () => {
+    const snapshot = templateToPrescription(template)
+    // The template is edited afterwards: the bench slot becomes 6 sets of a
+    // different movement, and the template is renamed.
+    const edited: WorkoutTemplate = {
+      ...template,
+      name: 'Chest Day 1 (v2)',
+      slots: template.slots.map(s =>
+        s.exercise === 'barbell-bench-press'
+          ? { ...s, exercise: 'dumbbell-bench-press', target_sets: 6 }
+          : s
+      ),
+    }
+    const rehydrated = prescriptionToTemplate(snapshot)
+    const bench = rehydrated.slots.find(s => s.id === '33333333-3333-4333-8333-333333333333')
+    expect(bench?.exercise).toBe('barbell-bench-press')
+    expect(bench?.target_sets).toBe(4)
+    expect(rehydrated.name).toBe('Chest Day 1')
+    // And the edit is real — this isn't passing because nothing changed.
+    expect(edited.slots.find(s => s.id === bench?.id)?.target_sets).toBe(6)
   })
 })

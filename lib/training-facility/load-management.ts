@@ -54,6 +54,31 @@ const CHRONIC_DAYS = 28
  */
 const LOADED_SET_FRACTION = 0.5
 
+/**
+ * Distinct days a movement must have been trained inside the chronic window
+ * before it earns a ramp card (#377).
+ *
+ * Six of 28 days is roughly one-and-a-half sessions a week. Below that, both
+ * signals this panel computes are meaningless rather than merely noisy:
+ *
+ * - **ACWR** divides a 7-day acute load by a 4-week average. For a movement
+ *   trained once a week, the acute window holds either one session or zero, so
+ *   the ratio oscillates between ~4.0 and 0.0 on a normal, healthy schedule.
+ * - **Week-over-week** compares two 7-day windows that each contain a single
+ *   session, so an ordinary "I lifted Tuesday instead of Monday" reads as a
+ *   ±100% swing.
+ *
+ * This is what keeps the panel usable once gym lifts exist: ~25 once-a-week
+ * movements would otherwise each get a card, burying the near-daily
+ * grease-the-groove movements the panel was built to watch.
+ *
+ * Deliberately a **frequency** rule rather than a GTG-vs-gym split. The panel
+ * covers whatever is being trained often enough to ramp, so a gym lift that
+ * becomes near-daily earns its card automatically, and a GTG movement that
+ * lapses to once a week correctly drops out.
+ */
+export const MIN_TRAINING_DAYS_IN_WINDOW = 6
+
 /** Movement color when no matching {@link ExerciseGoal} supplies one. Rim-orange. */
 const DEFAULT_MOVEMENT_COLOR = '#EA580C'
 
@@ -115,6 +140,16 @@ export interface MovementLoad {
   wowFlag: RampFlag
   /** Flag from the ACWR signal alone. */
   acwrFlag: RampFlag
+  /**
+   * Distinct calendar days this movement was trained inside the chronic
+   * window — how *often* it's loaded, as opposed to how much.
+   *
+   * Five sets in one session is one day of stimulus. Both ramp signals above
+   * assume a movement recurs within a 7-day window, so this is what decides
+   * whether they mean anything: see {@link MIN_TRAINING_DAYS_IN_WINDOW} and
+   * {@link buildMovementLoadView}.
+   */
+  trainingDays: number
   /** Trailing {@link CHRONIC_DAYS}-day daily volume, oldest → newest. */
   sparkline: DailyVolumePoint[]
 }
@@ -165,12 +200,42 @@ function isLoadDriven(
 }
 
 /**
- * Build one {@link MovementLoad} per actively-ramped movement from raw
- * set rows. A movement is included only when it has volume in the
- * trailing 28-day chronic window — dormant movements (last trained months
- * ago) are dropped so the panel stays focused on what's currently loading
- * tissue. Movements are returned worst-flag-first, then alphabetically,
- * so anything elevated sorts to the top.
+ * A movement dropped from the panel for being trained too rarely to ramp (#377).
+ *
+ * Surfaced rather than silently filtered: a movement vanishing with no
+ * explanation reads as a bug, and "not shown" must never be mistaken for
+ * "nothing to worry about".
+ */
+export interface InfrequentMovement {
+  /** Exercise slug, verbatim from the set rows. */
+  movement: string
+  /** Human label from the catalog's `display_name`; absent falls back to the slug. */
+  displayName?: string
+  /** Distinct days it was trained inside the chronic window. Below {@link MIN_TRAINING_DAYS_IN_WINDOW}. */
+  trainingDays: number
+}
+
+/** The Load Management panel's full display model — what's shown, and what was held back. */
+export interface MovementLoadView {
+  /** Ramp cards, worst-flag-first then alphabetical. */
+  loads: MovementLoad[]
+  /** Movements withheld by the frequency gate, alphabetical. */
+  infrequent: InfrequentMovement[]
+}
+
+/**
+ * Build the Load Management panel's display model from raw set rows.
+ *
+ * A movement earns a card only when it has volume in the trailing 28-day
+ * chronic window — dormant movements (last trained months ago) are dropped so
+ * the panel stays focused on what's currently loading tissue — **and** was
+ * trained on at least {@link MIN_TRAINING_DAYS_IN_WINDOW} distinct days inside
+ * it, below which neither ramp signal means anything. Movements failing only the
+ * second test are returned in {@link MovementLoadView.infrequent} so the panel
+ * can say so out loud.
+ *
+ * Cards are returned worst-flag-first, then alphabetically, so anything
+ * elevated sorts to the top.
  *
  * The movement list is derived from the *data*, not a hardcoded set of
  * exercises, so new movements appear automatically. `goals` only supplies
@@ -227,6 +292,10 @@ export function buildMovementLoads(
     let inWindowSets = 0
     let inWindowWeighted = 0
     let earliestKey: string | null = null
+    // Distinct training days, not set count — five sets in one session is one
+    // day of stimulus, and the frequency gate is about how often tissue is
+    // loaded, not how much was done when it was.
+    const inWindowDays = new Set<number>()
 
     for (const s of exSets) {
       const d = new Date(s.logged_at)
@@ -239,6 +308,7 @@ export function buildMovementLoads(
       repByOffset[offset] += s.reps
       loadByOffset[offset] += s.reps * weight
       inWindowSets += 1
+      inWindowDays.add(offset)
       if (weight > 0) inWindowWeighted += 1
     }
 
@@ -297,6 +367,7 @@ export function buildMovementLoads(
       flag: combineFlags(wowFlag, acwrFlag),
       wowFlag,
       acwrFlag,
+      trainingDays: inWindowDays.size,
       sparkline,
     })
   }
@@ -305,4 +376,42 @@ export function buildMovementLoads(
     (a, b) => FLAG_SEVERITY[b.flag] - FLAG_SEVERITY[a.flag] || a.movement.localeCompare(b.movement)
   )
   return loads
+}
+
+/**
+ * Split {@link buildMovementLoads}' output into what the panel shows and what it
+ * holds back (#377).
+ *
+ * The gate lives here rather than inside the ramp math on purpose: computing a
+ * movement's ramp and deciding whether that ramp is worth showing are different
+ * questions, and only the second one is about the panel. `buildMovementLoads`
+ * therefore still reports every actively-trained movement, and a future caller
+ * that wants the unfiltered set (an export, a per-movement page) has it.
+ *
+ * @see buildMovementLoads for the parameters.
+ */
+export function buildMovementLoadView(
+  sets: readonly StrengthSet[],
+  goals: readonly ExerciseGoal[] = [],
+  now: Date = new Date(),
+  exercises: readonly WeightRoomExercise[] = []
+): MovementLoadView {
+  const all = buildMovementLoads(sets, goals, now, exercises)
+  const loads: MovementLoad[] = []
+  const infrequent: InfrequentMovement[] = []
+
+  for (const load of all) {
+    if (load.trainingDays >= MIN_TRAINING_DAYS_IN_WINDOW) {
+      loads.push(load)
+      continue
+    }
+    infrequent.push({
+      movement: load.movement,
+      ...(load.displayName === undefined ? {} : { displayName: load.displayName }),
+      trainingDays: load.trainingDays,
+    })
+  }
+
+  infrequent.sort((a, b) => a.movement.localeCompare(b.movement))
+  return { loads, infrequent }
 }

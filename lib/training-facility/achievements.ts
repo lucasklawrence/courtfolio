@@ -37,6 +37,31 @@ import { mondayOfDayKey, safePacificDayKey, shiftDayKey } from './day-keys'
  * logged at 10pm Pacific would otherwise land on the following day, splitting
  * daily totals and breaking streaks that are actually intact. Same anchor as
  * `load-management.ts` (#319).
+ *
+ * ## The pooled ladder counts *everything* (#377)
+ *
+ * A tier with `exercise: null` spans every movement in the log — including gym
+ * lifts logged inside a {@link WeightRoomWorkout}, not just the grease-the-groove
+ * movements the ladder was originally calibrated against. "All movements" means
+ * all movements; a bench session genuinely moves the weight it moves, and a
+ * pooled ladder that quietly ignored the majority of the training would get more
+ * wrong every month.
+ *
+ * The consequence is deliberate and was accepted rather than discovered: the
+ * pooled **tonnage** tiers were tuned when the log was bodyweight work plus
+ * shrugs, so the first heavy sessions clear the day and week tiers quickly.
+ * Retuning those thresholds is a data question, not a code one — they're rows in
+ * `weight_room_achievements`, editable from the Settings page, and worth
+ * revisiting once there are a few months of gym sessions to calibrate against.
+ *
+ * Two things are structurally unaffected, and neither is an accident:
+ *
+ * - **Streaks.** A pooled streak day requires some exercise to clear its own
+ *   `daily_target`. Gym lifts have no goal — there is no honest daily rep target
+ *   for a bench press — so a gym session can't manufacture a streak day.
+ * - **Rep tiers.** A gym session is a couple hundred reps against
+ *   grease-the-groove days that already run past 600, so the rep ladder barely
+ *   moves.
  */
 
 /** Render order for scopes — volume ladders first, then the "how" scopes. */
@@ -252,18 +277,25 @@ function emptyMetrics(): MovementMetrics {
  *   the current target here would un-light earned streak badges the moment a
  *   goal was raised — the exact retroactive rewrite this module's "earned
  *   state is never stored" design otherwise avoids.
+ * @param exercises The movement catalog, which owns `load_multiplier` as of
+ *   #373. Required for correct tonnage now that gym sets count (#377): a gym
+ *   lift has no goal at all, so a goals-only lookup would score every
+ *   two-dumbbell movement at half the weight actually moved.
  */
 function buildMetrics(
   sets: readonly StrengthSet[],
-  goals: readonly ExerciseGoal[]
+  goals: readonly ExerciseGoal[],
+  exercises: readonly WeightRoomExercise[] = []
 ): Map<string | null, MovementMetrics> {
-  // Implements moved per set, per exercise. An exercise with no configured
-  // goal — or one predating the column — falls back to a single implement,
-  // which is the only safe default: it can understate a pair, but it can
-  // never invent load that isn't there.
+  // Implements moved per set, per exercise. Catalog first, then the goal's
+  // joined copy, then a single implement — the only safe default, since it can
+  // understate a pair but can never invent load that isn't there.
   const multiplierByExercise = new Map(
     goals.map(g => [g.exercise, Math.max(1, g.load_multiplier ?? 1)])
   )
+  for (const e of exercises) {
+    multiplierByExercise.set(e.slug, Math.max(1, e.load_multiplier ?? 1))
+  }
   // Keyed by exercise name, with `null` — a perfectly good `Map` key — standing
   // for the pooled "all movements" ladder. Deliberately not a string sentinel:
   // any non-empty string is a valid exercise name, so a sentinel could collide
@@ -495,14 +527,17 @@ function resolveMetric(
  *   `'streak'` day must clear) and the accent color used by
  *   {@link buildTrophyRoomView}.
  * @param achievements The ladder from `weight_room_achievements`; may be empty.
+ * @param exercises The movement catalog, supplying `load_multiplier` for
+ *   movements with no daily goal — see {@link buildMetrics}.
  * @returns One {@link ResolvedAchievement} per tier, in the order supplied.
  */
 export function resolveAchievements(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
-  achievements: readonly WeightRoomAchievement[]
+  achievements: readonly WeightRoomAchievement[],
+  exercises: readonly WeightRoomExercise[] = []
 ): ResolvedAchievement[] {
-  const metrics = buildMetrics(sets, goals)
+  const metrics = buildMetrics(sets, goals, exercises)
 
   return achievements.map(achievement => {
     const outcome = resolveMetric(metrics.get(achievement.exercise) ?? emptyMetrics(), achievement)
@@ -563,10 +598,13 @@ export function buildTrophyRoomView(
   const multiplierByExercise = new Map(
     goals.map(g => [g.exercise, Math.max(1, g.load_multiplier ?? 1)])
   )
+  for (const e of exercises) {
+    multiplierByExercise.set(e.slug, Math.max(1, e.load_multiplier ?? 1))
+  }
 
   // Attached once here rather than inside `resolveAchievements` so the groups
   // and both strips read the same label off the same objects.
-  const resolved = resolveAchievements(sets, goals, achievements).map(entry => {
+  const resolved = resolveAchievements(sets, goals, achievements, exercises).map(entry => {
     const slug = entry.achievement.exercise
     const label = slug === null || slug === undefined ? undefined : labelByExercise.get(slug)
     return label === undefined ? entry : { ...entry, displayName: label }

@@ -28,6 +28,7 @@ import type {
   WeightRoomExercise,
   WeightRoomWorkout,
   WorkoutLocation,
+  WorkoutPrescription,
   WorkoutTemplate,
 } from '@/types/weight-room'
 
@@ -322,6 +323,98 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
 const workoutLocation = (): z.ZodType<WorkoutLocation> => z.enum(['gym', 'home', 'travel', 'other'])
 
 /**
+ * Zod schema for one slot inside a frozen {@link WorkoutPrescriptionSchema}
+ * (#377).
+ *
+ * `.strict()` like every other row schema here, and for the same reason: this
+ * is stored jsonb, so nothing but the database validates it. A field quietly
+ * added to `TemplateSlot` and written into a snapshot without being added here
+ * would fail loudly on the next read rather than being silently dropped.
+ */
+export const PrescribedSlotSchema = z
+  .object({
+    id: z.string().uuid(),
+    position: z.number().int().nonnegative(),
+    exercise: z.string().min(1),
+    target_sets: z.number().int().positive(),
+    target_sets_max: z.number().int().positive().optional(),
+    target_reps: z.number().int().positive().optional(),
+    target_reps_max: z.number().int().positive().optional(),
+    target_weight_lbs: z.number().positive().optional(),
+    notes: z.string().optional(),
+  })
+  .strict()
+
+/**
+ * Zod schema for `weight_room_workouts.prescription` (#377) — a session's
+ * frozen copy of what its template prescribed at start.
+ *
+ * See {@link WeightRoomWorkout.prescription} for why the snapshot exists.
+ */
+export const WorkoutPrescriptionSchema = z
+  .object({
+    template_id: z.string().uuid(),
+    name: z.string().min(1),
+    slots: z.array(PrescribedSlotSchema),
+  })
+  .strict()
+
+/**
+ * Freeze a live template into the snapshot stored on a starting session (#377).
+ *
+ * Slots are sorted by `position` here rather than trusted from the caller, so
+ * the snapshot's order is the prescription's order regardless of how the
+ * template was loaded. `steps` and `alternates` are dropped — see
+ * {@link PrescribedSlot}.
+ *
+ * @param template The template the session is starting against.
+ */
+export function templateToPrescription(template: WorkoutTemplate): WorkoutPrescription {
+  return {
+    template_id: template.id,
+    name: template.name,
+    slots: [...template.slots]
+      .sort((a, b) => a.position - b.position)
+      .map(slot => ({
+        id: slot.id,
+        position: slot.position,
+        exercise: slot.exercise,
+        target_sets: slot.target_sets,
+        ...(slot.target_sets_max !== undefined ? { target_sets_max: slot.target_sets_max } : {}),
+        ...(slot.target_reps !== undefined ? { target_reps: slot.target_reps } : {}),
+        ...(slot.target_reps_max !== undefined ? { target_reps_max: slot.target_reps_max } : {}),
+        ...(slot.target_weight_lbs !== undefined
+          ? { target_weight_lbs: slot.target_weight_lbs }
+          : {}),
+        ...(slot.notes !== undefined ? { notes: slot.notes } : {}),
+      })),
+  }
+}
+
+/**
+ * Rehydrate a frozen prescription into the {@link WorkoutTemplate} shape the
+ * adherence math already consumes (#377).
+ *
+ * Returning a full template rather than widening `buildWorkoutAdherence` to a
+ * narrower structural type keeps **one** scoring path for live sessions and
+ * historical ones — two would be free to drift, which is exactly the class of
+ * bug this snapshot exists to prevent.
+ *
+ * `steps` and `alternates` come back empty because they were never captured;
+ * neither participates in adherence.
+ *
+ * @param prescription The snapshot from `weight_room_workouts.prescription`.
+ */
+export function prescriptionToTemplate(prescription: WorkoutPrescription): WorkoutTemplate {
+  return {
+    id: prescription.template_id,
+    name: prescription.name,
+    position: 0,
+    slots: prescription.slots.map(slot => ({ ...slot, steps: [], alternates: [] })),
+  }
+}
+
+/**
  * Zod schema for one row of `public.weight_room_workouts` (#374). Mirrors the
  * table in `supabase/migrations/20260802120000_weight_room_workouts.sql`.
  *
@@ -336,6 +429,7 @@ export const WeightRoomWorkoutRowSchema = z
     started_at: z.string().min(1, 'started_at must be an ISO timestamp'),
     ended_at: z.string().nullable().optional(),
     template_id: z.string().uuid().nullable().optional(),
+    prescription: WorkoutPrescriptionSchema.nullable().optional(),
     title: z.string().nullable().optional(),
     location: workoutLocation().nullable().optional(),
     notes: z.string().nullable().optional(),
@@ -357,6 +451,7 @@ export function workoutRowToWeightRoomWorkout(row: WeightRoomWorkoutRow): Weight
     started_at: row.started_at,
     ...(row.ended_at != null ? { ended_at: row.ended_at } : {}),
     ...(row.template_id != null ? { template_id: row.template_id } : {}),
+    ...(row.prescription != null ? { prescription: row.prescription } : {}),
     ...(row.title != null && row.title !== '' ? { title: row.title } : {}),
     ...(row.location != null ? { location: row.location } : {}),
     ...(row.notes != null && row.notes !== '' ? { notes: row.notes } : {}),

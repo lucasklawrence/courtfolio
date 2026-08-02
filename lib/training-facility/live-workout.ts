@@ -1,5 +1,7 @@
 import type { StrengthSet, TemplateSlot, WorkoutTemplate } from '@/types/weight-room'
 
+import { compareInstants } from './workout-sessions'
+
 /**
  * Pure logic for the live recording surface (#376) — how a template's
  * prescription lines up against what's actually been logged into the open
@@ -62,8 +64,12 @@ export function buildSlotProgress(
   return [...template.slots]
     .sort((a, b) => a.position - b.position)
     .map(slot => {
+      // Instants, not strings: the newest set decides `performedExercise`, and
+      // this codebase mixes `Z` and Pacific offsets, so a lexicographic sort can
+      // hand the wrong set to `.at(-1)` and report the wrong movement as the one
+      // currently being performed. See `compareInstants`.
       const sets = (bySlot.get(slot.id) ?? []).sort((a, b) =>
-        a.logged_at < b.logged_at ? -1 : a.logged_at > b.logged_at ? 1 : 0
+        compareInstants(a.logged_at, b.logged_at)
       )
       // The newest set decides what's being performed: swapping mid-slot means
       // the most recent choice is the current one, and earlier sets keep the

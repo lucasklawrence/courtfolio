@@ -26,7 +26,7 @@ import {
 } from '@/lib/training-facility/exercise-filter'
 import { pacificDayKey } from '@/lib/training-facility/day-keys'
 import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
-import { buildMovementLoads } from '@/lib/training-facility/load-management'
+import { buildMovementLoadView } from '@/lib/training-facility/load-management'
 import {
   TRAINING_FACILITY_PREVIEW_PARAM,
   isPreviewDemoActive,
@@ -143,7 +143,10 @@ export default async function WeightRoomHistoryPage({
   // The catalog classifies each movement as load- or rep-driven from its
   // equipment (#384); without it the panel falls back to guessing from the
   // share of weighted sets.
-  const loads = buildMovementLoads(sets, goals, undefined, data?.exercises ?? [])
+  // Movements trained on fewer than a few days a fortnight are held back rather
+  // than carded (#377) — see MIN_TRAINING_DAYS_IN_WINDOW for why a once-a-week
+  // gym lift's ACWR is noise.
+  const { loads, infrequent } = buildMovementLoadView(sets, goals, undefined, data?.exercises ?? [])
   const bodyMass = cardio?.body_mass_trend ?? []
 
   // The relative-strength overlay is featured for pull-ups specifically —
@@ -234,7 +237,7 @@ export default async function WeightRoomHistoryPage({
                 over 1.3 flags for a closer look.
               </p>
               <div className="mt-4">
-                <LoadManagementPanel loads={loads} />
+                <LoadManagementPanel loads={loads} infrequent={infrequent} />
               </div>
             </section>
 

@@ -13,11 +13,14 @@
  */
 
 import { NextResponse, type NextRequest } from 'next/server'
+import type { SupabaseClient } from '@supabase/supabase-js'
 import { ZodError } from 'zod'
 
 import { requireAdmin } from '@/lib/auth/require-admin'
-import { WeightRoomWorkoutCreateSchema } from '@/lib/schemas/weight-room'
+import { assembleWorkoutTemplates } from '@/lib/data/weight-room-shared'
+import { WeightRoomWorkoutCreateSchema, templateToPrescription } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
+import type { WorkoutPrescription } from '@/types/weight-room'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
 import {
   autoEndTimestamp,
@@ -26,7 +29,38 @@ import {
 } from '@/lib/training-facility/workout-sessions'
 
 /** Columns returned by both handlers, matching `WeightRoomWorkoutRowSchema`. */
-const WORKOUT_COLUMNS = 'id, started_at, ended_at, template_id, title, location, notes'
+const WORKOUT_COLUMNS =
+  'id, started_at, ended_at, template_id, prescription, title, location, notes'
+
+/**
+ * Freeze a template's current prescription for a session that's starting (#377).
+ *
+ * Resolved from the database rather than taken from the request body: the
+ * snapshot is a record of what was actually prescribed, and a client-supplied
+ * one would be a record of what the client said. Reuses the shared assembler so
+ * the snapshot can't drift from what the template editor writes.
+ *
+ * @param supabase Service-role client.
+ * @param templateId The template the session is running.
+ * @returns The snapshot, or `null` when the template no longer exists — a
+ *   missing template is not worth failing a workout start over. The session
+ *   still records its `template_id`, and the read path falls back to the live
+ *   template exactly as it does for sessions predating the column.
+ */
+async function snapshotPrescription(
+  supabase: SupabaseClient,
+  templateId: string
+): Promise<WorkoutPrescription | null> {
+  try {
+    const templates = await assembleWorkoutTemplates(supabase)
+    const template = templates.find(t => t.id === templateId)
+    return template === undefined ? null : templateToPrescription(template)
+  } catch {
+    // A snapshot is a nice-to-have at start time; a read failure here must not
+    // block someone from beginning a workout in a gym.
+    return null
+  }
+}
 
 /** How many sessions `GET` returns without `?open=true`. */
 const DEFAULT_LIMIT = 50
@@ -181,10 +215,20 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     if (conflict !== null) return conflict
   }
 
+  // Freeze what the template prescribes *now* (#377). Scoring a finished
+  // session against the live template would let a later edit rewrite what it
+  // says it prescribed — raise a slot's target_sets and a completed session
+  // becomes retroactively incomplete. Resolved server-side rather than accepted
+  // from the client so the snapshot is the real prescription, not whatever the
+  // caller claims it was.
+  const prescription =
+    entry.template_id == null ? null : await snapshotPrescription(supabase, entry.template_id)
+
   const insertRow = {
     started_at: startedAt,
     ...(entry.ended_at != null ? { ended_at: entry.ended_at } : {}),
     ...(entry.template_id != null ? { template_id: entry.template_id } : {}),
+    ...(prescription !== null ? { prescription } : {}),
     ...(entry.title != null ? { title: entry.title } : {}),
     ...(entry.location != null ? { location: entry.location } : {}),
     ...(entry.notes != null ? { notes: entry.notes } : {}),

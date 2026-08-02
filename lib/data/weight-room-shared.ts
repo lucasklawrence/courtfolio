@@ -13,11 +13,13 @@ import {
   WeightRoomGoalTargetRowSchema,
   WeightRoomMonthlyFocusRowSchema,
   WeightRoomSetRowSchema,
+  WeightRoomWorkoutRowSchema,
   achievementRowToAchievement,
   exerciseRowToWeightRoomExercise,
   focusRowToMonthlyFocus,
   goalRowToExerciseGoal,
   setRowToStrengthSet,
+  workoutRowToWeightRoomWorkout,
 } from '@/lib/schemas/weight-room'
 import type {
   ExerciseGoal,
@@ -26,6 +28,7 @@ import type {
   WeightRoomAchievement,
   WeightRoomData,
   WeightRoomExercise,
+  WeightRoomWorkout,
   WorkoutTemplate,
 } from '@/types/weight-room'
 
@@ -198,6 +201,49 @@ export async function assembleWorkoutTemplates(
   )
 
   return assembleTemplateShape(templates, slots, steps, alternates)
+}
+
+/** Bounded training sessions (#374) — the unit every #377 statistic is computed over. */
+const WORKOUTS_TABLE = 'weight_room_workouts'
+
+/** Whitelisted columns for `weight_room_workouts`, in sync with {@link WeightRoomWorkoutRowSchema}. */
+const WORKOUTS_COLUMNS =
+  'id, started_at, ended_at, template_id, prescription, title, location, notes, updated_at'
+
+const WeightRoomWorkoutRowsSchema = z.array(WeightRoomWorkoutRowSchema)
+
+/**
+ * Fetch every recorded workout (#374), newest first.
+ *
+ * Paged like the set read: sessions accumulate indefinitely and PostgREST caps
+ * a single response, so a hard limit here would silently truncate the oldest
+ * history once the log outgrew one page.
+ *
+ * Returns an empty array (never `null`) when nothing has been recorded, matching
+ * {@link assembleWorkoutTemplates} — no workouts yet is a state the history page
+ * renders, not a "no data" branch.
+ *
+ * @param supabase Browser or server SSR client (both anon role; RLS allows anon
+ *   SELECT).
+ * @throws when the query fails or row-shape validation fails.
+ */
+export async function assembleWeightRoomWorkouts(
+  supabase: SupabaseClient
+): Promise<WeightRoomWorkout[]> {
+  const rows = await fetchAllRows(
+    () =>
+      supabase
+        .from(WORKOUTS_TABLE)
+        .select(WORKOUTS_COLUMNS)
+        .order('started_at', { ascending: false })
+        // `started_at` alone isn't a total order — two sessions can share an
+        // instant — and an ambiguous sort repeats or skips rows across page
+        // boundaries. Same tie-breaker reasoning as the set read (#229).
+        .order('id', { ascending: false }),
+    WORKOUTS_TABLE
+  )
+  const parsed = parseRows(WeightRoomWorkoutRowsSchema, rows.map(stripUpdatedAt), WORKOUTS_TABLE)
+  return parsed.map(workoutRowToWeightRoomWorkout)
 }
 
 /**

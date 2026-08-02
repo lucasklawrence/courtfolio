@@ -178,3 +178,36 @@ describe('nextSetPosition', () => {
     expect(nextSetPosition([set({ position: 4 }), set({})])).toBe(5)
   })
 })
+
+describe('buildSlotProgress — mixed timestamp offsets (#377)', () => {
+  it('picks the newest set by instant, so the current movement is right', () => {
+    // 05:00-07:00 is 12:00Z, two hours AFTER 10:00Z, but sorts before it as a
+    // string. Lexicographically the barbell set looks newest, so the slot would
+    // report itself un-substituted while the dumbbell set is the real latest.
+    const [progress] = buildSlotProgress(
+      {
+        id: 't1',
+        name: 'Chest Day 1',
+        position: 0,
+        slots: [slot({ id: 'slot-bench' })],
+      },
+      [
+        set({
+          id: 'barbell',
+          logged_at: '2026-08-01T10:00:00Z',
+          exercise: 'barbell-bench-press',
+          template_slot_id: 'slot-bench',
+        }),
+        set({
+          id: 'dumbbell',
+          logged_at: '2026-08-01T05:00:00-07:00',
+          exercise: 'dumbbell-bench-press',
+          template_slot_id: 'slot-bench',
+        }),
+      ]
+    )
+    expect(progress.sets.map(s => s.id)).toEqual(['barbell', 'dumbbell'])
+    expect(progress.performedExercise).toBe('dumbbell-bench-press')
+    expect(progress.isSubstituted).toBe(true)
+  })
+})

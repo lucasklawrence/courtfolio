@@ -5,6 +5,7 @@ import type {
   WeightRoomAchievement,
   WeightRoomData,
   WeightRoomExercise,
+  WeightRoomWorkout,
   WorkoutTemplate,
 } from '@/types/weight-room'
 
@@ -12,6 +13,7 @@ import {
   assembleWeightRoomAchievements,
   assembleWeightRoomData,
   assembleWeightRoomExercises,
+  assembleWeightRoomWorkouts,
   assembleWorkoutTemplates,
 } from './weight-room-shared'
 
@@ -86,4 +88,19 @@ export async function getWeightRoomExercisesServer(): Promise<WeightRoomExercise
 export async function getWorkoutTemplatesServer(): Promise<WorkoutTemplate[]> {
   const supabase = await createServerSupabaseClient()
   return assembleWorkoutTemplates(supabase)
+}
+
+/**
+ * Server-side reader for recorded workouts (#374), newest first — used by the
+ * workout history list and the per-workout summary (#377). Wraps
+ * {@link assembleWeightRoomWorkouts} with the per-request SSR client.
+ *
+ * Returns an empty array (never `null`) when nothing has been recorded.
+ *
+ * @throws See {@link assembleWeightRoomWorkouts}. Call sites downgrade this to
+ *   an empty list rather than failing the page.
+ */
+export async function getWeightRoomWorkoutsServer(): Promise<WeightRoomWorkout[]> {
+  const supabase = await createServerSupabaseClient()
+  return assembleWeightRoomWorkouts(supabase)
 }
