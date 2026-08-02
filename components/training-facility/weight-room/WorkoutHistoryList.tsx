@@ -1,6 +1,7 @@
 import type { JSX } from 'react'
 import Link from 'next/link'
 
+import { formatDayKey, safePacificDayKey, todayDayKey } from '@/lib/training-facility/day-keys'
 import type { WorkoutHistoryEntry } from '@/lib/training-facility/workout-stats'
 
 /** Route the workout history lives at; also the base for every filter chip. */
@@ -129,12 +130,20 @@ interface WorkoutHistoryRowProps {
   isPreviewMode: boolean
 }
 
-/** Format a session's start as `Fri, Aug 1` — the year only when it isn't this one. */
+/**
+ * Format a session's start as `Fri, Aug 1` — the year only when it isn't this one.
+ *
+ * Resolved through the Pacific day key rather than formatted off the raw
+ * instant. This renders in a Server Component and Vercel runs in UTC, so a
+ * session starting Friday 10pm Pacific would otherwise be labelled Saturday —
+ * disagreeing with `workoutDayKey`, which deliberately assigns that whole
+ * session to Friday.
+ */
 function formatStart(startedAt: string): string {
-  const date = new Date(startedAt)
-  if (!Number.isFinite(date.getTime())) return 'Unknown date'
-  const sameYear = date.getFullYear() === new Date().getFullYear()
-  return date.toLocaleDateString(undefined, {
+  const dayKey = safePacificDayKey(startedAt)
+  if (dayKey === '') return 'Unknown date'
+  const sameYear = dayKey.slice(0, 4) === todayDayKey().slice(0, 4)
+  return formatDayKey(dayKey, {
     weekday: 'short',
     month: 'short',
     day: 'numeric',

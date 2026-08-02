@@ -122,6 +122,22 @@ describe('WorkoutHistoryList', () => {
     expect(screen.queryByTestId('workout-template-filter')).toBeNull()
   })
 
+  it('dates a late-evening session to its Pacific day, not the UTC one', () => {
+    // 2026-07-31T22:00 Pacific is 2026-08-01T05:00Z. Formatted off the raw
+    // instant on a UTC server this reads "Sat, Aug 1", contradicting the Friday
+    // that `workoutDayKey` assigns the whole session to.
+    const entries = buildWorkoutHistory(
+      [{ id: 'w3', started_at: '2026-08-01T05:00:00Z' }],
+      [],
+      [],
+      []
+    )
+    render(
+      <WorkoutHistoryList entries={entries} filters={[]} selectedTemplateId={null} hasAnyWorkouts />
+    )
+    expect(screen.getByTestId('workout-row-w3')).toHaveTextContent('Fri, Jul 31')
+  })
+
   it('labels a never-ended session rather than showing a blank duration', () => {
     const entries = buildWorkoutHistory(
       [{ id: 'w2', started_at: '2026-08-01T18:00:00Z' }],

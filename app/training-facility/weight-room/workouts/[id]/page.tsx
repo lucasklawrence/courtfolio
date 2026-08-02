@@ -16,6 +16,7 @@ import {
 } from '@/lib/data/weight-room-server'
 import { buildWorkoutDemoData } from '@/constants/weight-room-demo-fixture'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
+import { formatDayKey, safePacificDayKey } from '@/lib/training-facility/day-keys'
 import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
 import {
   buildWorkoutAdherence,
@@ -97,15 +98,19 @@ export default async function WeightRoomWorkoutSummaryPage({
   const exerciseLabels: Record<string, string> = {}
   for (const exercise of exercises) exerciseLabels[exercise.slug] = exercise.display_name
 
-  const started = new Date(workout.started_at)
-  const startedLabel = Number.isFinite(started.getTime())
-    ? started.toLocaleDateString(undefined, {
-        weekday: 'long',
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-      })
-    : 'Unknown date'
+  // Formatted off the Pacific day key, not the raw instant: this renders on a
+  // UTC server, where a 10pm-Pacific session would otherwise be dated to the
+  // following day and contradict the day `workoutDayKey` assigns it to.
+  const startedKey = safePacificDayKey(workout.started_at)
+  const startedLabel =
+    startedKey === ''
+      ? 'Unknown date'
+      : formatDayKey(startedKey, {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric',
+        })
   const heading = template?.name ?? workout.title ?? 'Freestyle session'
 
   return (

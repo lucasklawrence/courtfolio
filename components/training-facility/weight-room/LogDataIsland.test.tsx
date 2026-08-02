@@ -104,6 +104,9 @@ let fetchMock: ReturnType<typeof vi.fn>
 beforeEach(() => {
   getWeightRoomDataMock.mockReset()
   getWeightRoomDataMock.mockResolvedValue(fixture())
+  // Module-scoped and the config doesn't enable `clearMocks`, so without this a
+  // navigation assertion could pass on a call from an earlier test.
+  pushMock.mockReset()
   fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => ({}) })
   vi.stubGlobal('fetch', fetchMock)
 })

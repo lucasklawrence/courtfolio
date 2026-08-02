@@ -1,5 +1,6 @@
 import type { JSX } from 'react'
 
+import { formatDayKey, safePacificDayKey } from '@/lib/training-facility/day-keys'
 import type {
   ExerciseBreakdown,
   SlotAdherence,
@@ -241,10 +242,14 @@ interface ComparisonCardProps {
 
 /** Deltas against the previous run of the same template. */
 function ComparisonCard({ comparison, templateName }: ComparisonCardProps): JSX.Element {
-  const previousDate = new Date(comparison.previous.workout.started_at)
-  const previousLabel = Number.isFinite(previousDate.getTime())
-    ? previousDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
-    : 'the previous run'
+  // Pacific day key, not the raw instant — see `formatStart` in
+  // WorkoutHistoryList: a UTC server dates a 10pm-Pacific session to the next
+  // day, and the two surfaces must name the same day for the same workout.
+  const previousKey = safePacificDayKey(comparison.previous.workout.started_at)
+  const previousLabel =
+    previousKey === ''
+      ? 'the previous run'
+      : formatDayKey(previousKey, { month: 'short', day: 'numeric' })
   const allBodyweight = comparison.previous.weightedSets === 0 && comparison.tonnageDelta === 0
 
   return (
