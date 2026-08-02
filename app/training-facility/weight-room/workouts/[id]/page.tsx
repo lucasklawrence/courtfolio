@@ -9,6 +9,7 @@ import { WORKOUTS_ROUTE } from '@/components/training-facility/weight-room/Worko
 import { WorkoutSummaryPanel } from '@/components/training-facility/weight-room/WorkoutSummaryPanel'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { isAdminRequest } from '@/lib/auth/admin-session'
+import { prescriptionToTemplate } from '@/lib/schemas/weight-room'
 import {
   getWeightRoomDataServer,
   getWeightRoomWorkoutsServer,
@@ -73,10 +74,16 @@ export default async function WeightRoomWorkoutSummaryPage({
 
   const workoutSets = allSets.filter(set => set.workout_id === workout.id)
 
+  // The frozen prescription wins (#377): scoring against the live template
+  // would let a later edit rewrite what this session says it prescribed. The
+  // live lookup is the fallback for sessions recorded before snapshots existed,
+  // and for one whose template was already gone at start.
   const template =
-    workout.template_id === undefined
-      ? null
-      : (templates.find(t => t.id === workout.template_id) ?? null)
+    workout.prescription !== undefined
+      ? prescriptionToTemplate(workout.prescription)
+      : workout.template_id === undefined
+        ? null
+        : (templates.find(t => t.id === workout.template_id) ?? null)
 
   const summary = buildWorkoutSummary(workout, workoutSets, exercises)
   // Adherence only means something against a prescription. A freestyle session

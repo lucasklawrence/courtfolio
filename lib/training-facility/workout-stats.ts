@@ -689,7 +689,13 @@ export function buildWorkoutHistory(
       return {
         workout,
         summary: buildWorkoutSummary(workout, setsByWorkout.get(workout.id) ?? [], exercises, now),
-        templateName: template?.name ?? null,
+        // The name as it read when the session ran (#377), so renaming a
+        // template doesn't retitle history — and so a session whose template was
+        // since deleted still says what it was. Falls back to the live template
+        // for sessions recorded before snapshots existed.
+        templateName: workout.prescription?.name ?? template?.name ?? null,
+        // Color is presentation, not record: it lives only on the live template,
+        // and recoloring a template legitimately recolors its whole history.
         templateColor: template?.color ?? null,
       }
     })

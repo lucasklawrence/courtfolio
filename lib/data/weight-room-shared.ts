@@ -207,7 +207,8 @@ export async function assembleWorkoutTemplates(
 const WORKOUTS_TABLE = 'weight_room_workouts'
 
 /** Whitelisted columns for `weight_room_workouts`, in sync with {@link WeightRoomWorkoutRowSchema}. */
-const WORKOUTS_COLUMNS = 'id, started_at, ended_at, template_id, title, location, notes, updated_at'
+const WORKOUTS_COLUMNS =
+  'id, started_at, ended_at, template_id, prescription, title, location, notes, updated_at'
 
 const WeightRoomWorkoutRowsSchema = z.array(WeightRoomWorkoutRowSchema)
 

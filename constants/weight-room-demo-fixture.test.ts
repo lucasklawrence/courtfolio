@@ -90,6 +90,14 @@ describe('buildWorkoutDemoData', () => {
     expect(bests.length).toBeGreaterThan(0)
   })
 
+  it('carries a frozen prescription, so the preview exercises the snapshot path', () => {
+    for (const workout of demo.workouts) {
+      expect(workout.prescription).toBeDefined()
+      expect(workout.prescription?.name).toBe('Chest Day 1')
+      expect(workout.prescription?.slots).toHaveLength(demo.templates[0].slots.length)
+    }
+  })
+
   it('keeps ids stable across builds so a preview link survives a re-render', () => {
     const again = buildWorkoutDemoData(NOW)
     expect(again.workouts.map(w => w.id)).toEqual(demo.workouts.map(w => w.id))

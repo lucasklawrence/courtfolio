@@ -135,6 +135,28 @@ export interface WeightRoomWorkout {
    */
   template_id?: string
   /**
+   * Frozen copy of what {@link template_id} prescribed **at the moment this
+   * session started** (#377), or absent for a freestyle session.
+   *
+   * This is what makes {@link WorkoutTemplate}'s "a plan, not a record"
+   * invariant actually hold. {@link template_id} and
+   * {@link StrengthSet.template_slot_id} together survive *renaming* and
+   * *reordering* a template, but not *editing* one: raise a slot's
+   * `target_sets` from 4 to 5 and every finished session that hit 4 is
+   * retroactively incomplete; change a slot's `exercise` and honest sets are
+   * retroactively relabelled substitutions. Scoring against this snapshot
+   * instead means a template edit changes future sessions and nothing else.
+   *
+   * Written once at start and never updated — a session's prescription is
+   * history, not configuration.
+   *
+   * Absent also covers sessions recorded before the column existed; the read
+   * path falls back to the live template for those, which is the old
+   * (rewritable) behavior and the best available for a session that never
+   * captured one.
+   */
+  prescription?: WorkoutPrescription
+  /**
    * Free-text label, e.g. `Push Day`. Absent when unnamed. Human-facing only —
    * see {@link template_id} for the link.
    */
@@ -143,6 +165,54 @@ export interface WeightRoomWorkout {
   location?: WorkoutLocation
   /** Free-text notes captured when ending the session. Absent when none. */
   notes?: string
+}
+
+/**
+ * One slot inside a {@link WorkoutPrescription} (#377) — the prescribing fields
+ * of a {@link TemplateSlot}, copied at the moment a session started.
+ *
+ * Structurally a subset of {@link TemplateSlot}, so a live template is
+ * assignable wherever a snapshot is expected. `steps` and `alternates` are
+ * deliberately **not** captured: alternates only ever offered shortcuts while
+ * recording (nothing to score afterwards), and within-set sequences aren't
+ * scored at all until #407 — capturing either now would freeze a shape that
+ * issue is about to change.
+ */
+export interface PrescribedSlot {
+  /** {@link TemplateSlot.id} — still the join key for `template_slot_id`. */
+  id: string
+  /** Order within the template at snapshot time, lowest first. */
+  position: number
+  /** Catalog slug prescribed at snapshot time. */
+  exercise: string
+  /** Sets prescribed; the floor when {@link target_sets_max} is set. */
+  target_sets: number
+  /** Top of a set range. Absent means {@link target_sets} was exact. */
+  target_sets_max?: number
+  /** Reps per set, or absent for AMRAP / unspecified. */
+  target_reps?: number
+  /** Top of a rep range. Never set without {@link target_reps}. */
+  target_reps_max?: number
+  /** Prescribed load on one implement, in pounds. */
+  target_weight_lbs?: number
+  /** Free-text cue as it read at snapshot time. */
+  notes?: string
+}
+
+/**
+ * A session's frozen prescription (#377) — mirrors
+ * `weight_room_workouts.prescription`.
+ *
+ * See {@link WeightRoomWorkout.prescription} for why this exists rather than
+ * re-reading the template.
+ */
+export interface WorkoutPrescription {
+  /** The {@link WorkoutTemplate.id} this was copied from. */
+  template_id: string
+  /** The template's name at snapshot time, so a rename doesn't retitle history. */
+  name: string
+  /** Slots as prescribed at snapshot time, ordered by {@link PrescribedSlot.position}. */
+  slots: PrescribedSlot[]
 }
 
 /**

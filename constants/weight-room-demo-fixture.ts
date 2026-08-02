@@ -20,6 +20,7 @@
  * lands on `StrengthSet` / `ExerciseGoal`, TypeScript will surface it.
  */
 
+import { templateToPrescription } from '@/lib/schemas/weight-room'
 import type {
   ExerciseGoal,
   StrengthSet,
@@ -366,6 +367,10 @@ function buildDemoWorkout(
       started_at: startedAt.toISOString(),
       ended_at: new Date(startedAt.getTime() + durationMinutes * 60_000).toISOString(),
       template_id: DEMO_TEMPLATE_ID,
+      // Carried so the preview exercises the snapshot read path (#377) rather
+      // than the pre-snapshot fallback — the demo should render what a real
+      // session renders.
+      prescription: templateToPrescription(DEMO_TEMPLATE),
       title: DEMO_TEMPLATE.name,
       location: 'gym',
     },
