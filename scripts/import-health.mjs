@@ -33,7 +33,10 @@ import {
   loadEnv,
   upsertCardioData,
 } from './lib/cardio-supabase.mjs'
-import { upsertStrengthSessions } from './lib/weight-room-supabase.mjs'
+import {
+  findOrphanedStrengthSessions,
+  upsertStrengthSessions,
+} from './lib/weight-room-supabase.mjs'
 
 const PYTHON_SCRIPT = path.join('scripts', 'preprocess-health.py')
 const DEFAULT_OUTPUT_PATH = path.join('public', 'data', 'cardio.json')
@@ -126,6 +129,24 @@ async function main() {
   const strength = await upsertStrengthSessions(supabase, data.strength_sessions ?? [])
   if (strength.upserted > 0) {
     console.log(`✓ Upserted ${strength.upserted} strength session(s) to weight_room_workouts.`)
+  }
+
+  // Reported, never pruned. A session deleted or time-corrected in Health leaves
+  // a stale row that nothing else would point out — but these rows can carry
+  // sets transcribed from iCloud notes (#400), so deleting one silently orphans
+  // that work. Name them and let a human decide.
+  const orphans = await findOrphanedStrengthSessions(supabase, data.strength_sessions ?? [])
+  if (orphans.length > 0) {
+    console.log(
+      `\n⚠ ${orphans.length} imported session(s) are in Supabase but not in this export.\n` +
+        '  Likely deleted or time-corrected in Apple Health since the last import.\n' +
+        '  Not removed automatically — they may have sets attached from iCloud notes.\n' +
+        orphans
+          .slice(0, 10)
+          .map(s => `    ${s}`)
+          .join('\n') +
+        (orphans.length > 10 ? `\n    … and ${orphans.length - 10} more` : '')
+    )
   }
 }
 

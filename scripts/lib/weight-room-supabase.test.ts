@@ -1,7 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
-import { APPLE_HEALTH_SOURCE, upsertStrengthSessions } from './weight-room-supabase.mjs'
+import {
+  APPLE_HEALTH_SOURCE,
+  findOrphanedStrengthSessions,
+  upsertStrengthSessions,
+} from './weight-room-supabase.mjs'
 
 /**
  * Coverage for the Apple Health strength import (#413).
@@ -141,5 +145,62 @@ describe('upsertStrengthSessions', () => {
     await expect(
       upsertStrengthSessions(client, [session('2019-03-04T18:00:00-07:00')])
     ).rejects.toThrow(/strength sessions.*permission denied/i)
+  })
+})
+
+/** Stub whose `.select().eq()` resolves to the given stored rows. */
+function readClient(rows: Array<{ started_at: string }>) {
+  return {
+    from() {
+      return {
+        select() {
+          return { eq: () => Promise.resolve({ data: rows, error: null }) }
+        },
+      }
+    },
+  } as unknown as SupabaseClient
+}
+
+describe('findOrphanedStrengthSessions', () => {
+  it('names a stored session the export no longer carries', async () => {
+    const stored = [
+      { started_at: '2019-03-04T18:00:00+00:00' },
+      { started_at: '2019-03-05T18:00:00+00:00' },
+    ]
+    const orphans = await findOrphanedStrengthSessions(readClient(stored), [
+      session('2019-03-04T18:00:00Z'),
+    ])
+    expect(orphans).toEqual(['2019-03-05T18:00:00+00:00'])
+  })
+
+  it('compares instants, not strings — Postgres renders a timestamptz its own way', async () => {
+    // Same moment, three encodings. A string compare would report all of these
+    // as orphans on every single import.
+    const stored = [
+      { started_at: '2019-03-04T18:00:00+00:00' },
+      { started_at: '2019-03-04T11:00:00-07:00' },
+    ]
+    const orphans = await findOrphanedStrengthSessions(readClient(stored), [
+      session('2019-03-04T18:00:00Z'),
+    ])
+    expect(orphans).toEqual([])
+  })
+
+  it('reports nothing when the export and the database agree', async () => {
+    const orphans = await findOrphanedStrengthSessions(
+      readClient([{ started_at: '2019-03-04T18:00:00+00:00' }]),
+      [session('2019-03-04T18:00:00Z')]
+    )
+    expect(orphans).toEqual([])
+  })
+
+  it('treats an empty payload as no evidence, not as everything being stale', async () => {
+    // An export carrying no strength sessions must never be read as "delete the
+    // 507 you already have".
+    const stored = [{ started_at: '2019-03-04T18:00:00+00:00' }]
+    expect(await findOrphanedStrengthSessions(readClient(stored), [])).toEqual([])
+    expect(
+      await findOrphanedStrengthSessions(readClient(stored), undefined as unknown as never[])
+    ).toEqual([])
   })
 })

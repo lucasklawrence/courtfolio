@@ -19,6 +19,7 @@ import {
   findPersonalBests,
   findPreviousRun,
   loadMultipliersBySlug,
+  workoutDisplayTitle,
 } from './workout-stats'
 
 /**
@@ -570,5 +571,29 @@ describe('buildWorkoutHistory', () => {
     const broken = workout({ id: 'bad', started_at: 'not-a-date' })
     const history = buildWorkoutHistory([broken, w2], [], [], CATALOG)
     expect(history.map(e => e.workout.id)).toEqual(['w2', 'bad'])
+  })
+})
+
+describe('workoutDisplayTitle (#413)', () => {
+  it('prefers the template name', () => {
+    expect(workoutDisplayTitle({}, 'Chest Day 1')).toBe('Chest Day 1')
+  })
+
+  it('falls back to a free-text title', () => {
+    expect(workoutDisplayTitle({ title: 'Push Day' }, null)).toBe('Push Day')
+  })
+
+  it('calls an untitled manual session freestyle', () => {
+    expect(workoutDisplayTitle({}, null)).toBe('Freestyle session')
+  })
+
+  it('does not call an imported session freestyle', () => {
+    // "Freestyle" asserts a plan was available and declined. An import had no
+    // template to decline — the app wasn't involved.
+    expect(workoutDisplayTitle({ source: 'apple_health' }, null)).toBe('Strength training')
+  })
+
+  it('still honours a template on an imported session, once #400 links one', () => {
+    expect(workoutDisplayTitle({ source: 'apple_health' }, 'Chest Day 1')).toBe('Chest Day 1')
   })
 })

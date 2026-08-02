@@ -2,7 +2,10 @@ import type { JSX } from 'react'
 import Link from 'next/link'
 
 import { formatDayKey, safePacificDayKey, todayDayKey } from '@/lib/training-facility/day-keys'
-import type { WorkoutHistoryEntry } from '@/lib/training-facility/workout-stats'
+import {
+  workoutDisplayTitle,
+  type WorkoutHistoryEntry,
+} from '@/lib/training-facility/workout-stats'
 
 /** Route the workout history lives at; also the base for every filter chip. */
 export const WORKOUTS_ROUTE = '/training-facility/weight-room/workouts'
@@ -280,11 +283,7 @@ function formatStart(startedAt: string): string {
 function WorkoutHistoryRow({ entry, isPreviewMode }: WorkoutHistoryRowProps): JSX.Element {
   const { summary, workout } = entry
   const isImported = workout.source === 'apple_health'
-  // An imported session has no title and no template, so "Freestyle session" —
-  // which means "I chose not to follow a plan" — would be a claim about intent
-  // that nothing supports. It says what it is instead.
-  const heading =
-    entry.templateName ?? workout.title ?? (isImported ? 'Strength training' : 'Freestyle session')
+  const heading = workoutDisplayTitle(workout, entry.templateName)
   const topLift = summary.exercises.find(e => e.topSet !== null)
 
   return (
