@@ -387,15 +387,18 @@ export function buildWorkoutAdherence(
     const floor = entry.slot.target_sets
     const ceiling = entry.slot.target_sets_max ?? floor
     prescribedSets += floor
-    // Cap the credit at the floor: doing 8 sets of one movement doesn't pay
+    // `completedSets`, not `logged`: for a stepped slot those differ (#407) —
+    // two passes down a rack run are eight rows but two prescribed sets, and
+    // crediting rows would score a half-finished drop set as over-delivery.
+    // Capped at the floor besides: doing 8 sets of one movement doesn't pay
     // down the two you skipped on another.
-    completedSets += Math.min(entry.logged, floor)
+    completedSets += Math.min(entry.completedSets, floor)
     if (entry.isComplete) completedSlots += 1
     if (entry.isSubstituted) substitutedSlots += 1
     return {
       ...entry,
-      shortfall: Math.max(0, floor - entry.logged),
-      surplus: Math.max(0, entry.logged - ceiling),
+      shortfall: Math.max(0, floor - entry.completedSets),
+      surplus: Math.max(0, entry.completedSets - ceiling),
     }
   })
 

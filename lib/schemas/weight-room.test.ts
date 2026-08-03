@@ -659,3 +659,37 @@ describe('workout prescription snapshots (#377)', () => {
     expect(edited.slots.find(s => s.id === bench?.id)?.target_sets).toBe(6)
   })
 })
+
+describe('WeightRoomSetCreateSchema — within-set steps (#407)', () => {
+  const base = { exercise: 'dumbbell-curl', reps: 8 }
+  const SLOT = '11111111-1111-4111-8111-111111111111'
+  const STEP = '22222222-2222-4222-8222-222222222222'
+
+  it('accepts a step alongside its slot', () => {
+    const parsed = WeightRoomSetCreateSchema.safeParse({
+      ...base,
+      template_slot_id: SLOT,
+      template_slot_step_id: STEP,
+    })
+    expect(parsed.success).toBe(true)
+  })
+
+  it('rejects a step with no slot — a step belongs to a slot', () => {
+    const parsed = WeightRoomSetCreateSchema.safeParse({
+      ...base,
+      template_slot_step_id: STEP,
+    })
+    expect(parsed.success).toBe(false)
+  })
+
+  it('still accepts an ordinary straight set with neither', () => {
+    expect(WeightRoomSetCreateSchema.safeParse(base).success).toBe(true)
+  })
+
+  it('still rejects an unknown key — strictness survives the refine', () => {
+    // `.strict()` must be applied to the object, not chained onto the effects
+    // wrapper `.refine()` returns, or every fail-closed guarantee in this file
+    // quietly stops applying to this schema.
+    expect(WeightRoomSetCreateSchema.safeParse({ ...base, bogus_field: 1 }).success).toBe(false)
+  })
+})

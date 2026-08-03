@@ -9,6 +9,7 @@ import {
   extraSets,
   nextSetDefaults,
   nextSetPosition,
+  stepExercise,
   type SlotProgress,
 } from '@/lib/training-facility/live-workout'
 import { formatSlotPrescription } from '@/lib/training-facility/template-format'
@@ -223,7 +224,8 @@ export function LiveWorkoutPanel({
     exercise: string,
     reps: number,
     weightLbs: number | null,
-    slotId: string | null
+    slotId: string | null,
+    stepId: string | null = null
   ): Promise<boolean> {
     if (!workout) return false
     return post(
@@ -237,6 +239,9 @@ export function LiveWorkoutPanel({
           position: nextSetPosition(workoutSets),
           ...(weightLbs != null ? { weight_lbs: weightLbs } : {}),
           ...(slotId != null ? { template_slot_id: slotId } : {}),
+          // Only ever alongside a slot — the schema rejects a step without one,
+          // since a step belongs to a slot (#407).
+          ...(slotId != null && stepId != null ? { template_slot_step_id: stepId } : {}),
         }),
       },
       'Could not log the set',
@@ -420,7 +425,8 @@ interface SlotCardProps {
     exercise: string,
     reps: number,
     weightLbs: number | null,
-    slotId: string | null
+    slotId: string | null,
+    stepId?: string | null
   ) => Promise<boolean>
   onDeleteSet: (id: string) => Promise<void>
 }
@@ -434,12 +440,19 @@ function SlotCard({
   onLog,
   onDeleteSet,
 }: SlotCardProps): JSX.Element {
-  const { slot, sets, logged, performedExercise, isSubstituted, isComplete } = entry
-  const defaults = nextSetDefaults(slot, sets, lastElsewhere)
+  const { slot, sets, performedExercise, isSubstituted, isComplete, isStepped, steps, nextStep } =
+    entry
+  // For a stepped slot the counter must show passes, not rungs: two drop sets
+  // are eight rows (#407).
+  const shown = entry.completedSets
+  // A superset's step names its own movement; a drop set's inherits the slot's.
+  const stepMovement = stepExercise(slot, nextStep)
+  const stepIndex = nextStep === null ? -1 : steps.findIndex(st => st.id === nextStep.id)
+  const defaults = nextSetDefaults(slot, sets, lastElsewhere, nextStep)
   const [reps, setReps] = useState<string>(defaults.reps?.toString() ?? '')
   const [weight, setWeight] = useState<string>(defaults.weight_lbs?.toString() ?? '')
   const [swapOpen, setSwapOpen] = useState(false)
-  const [exercise, setExercise] = useState(performedExercise)
+  const [exercise, setExercise] = useState(isStepped ? stepMovement : performedExercise)
 
   // The alternates first, then everything else — the whole point of declaring
   // them is that the common swap is one tap rather than a search.
@@ -456,10 +469,11 @@ function SlotCard({
     if (!Number.isFinite(repsValue) || repsValue < 1) return
     const weightValue = weight.trim() === '' ? null : Number(weight)
     await onLog(
-      exercise,
+      isStepped ? stepMovement : exercise,
       repsValue,
       weightValue != null && Number.isFinite(weightValue) ? weightValue : null,
-      slot.id
+      slot.id,
+      nextStep?.id ?? null
     )
   }
 
@@ -479,7 +493,7 @@ function SlotCard({
           </span>
         ) : null}
         <span className="ml-auto font-mono text-[11px] text-white/50">
-          {logged} / {slot.target_sets}
+          {shown} / {slot.target_sets}
           {slot.target_sets_max != null && slot.target_sets_max !== slot.target_sets
             ? `-${slot.target_sets_max}`
             : ''}
@@ -489,6 +503,19 @@ function SlotCard({
         {formatSlotPrescription(slot)}
         {slot.notes ? ` · ${slot.notes}` : ''}
       </p>
+
+      {isStepped && nextStep !== null ? (
+        <p
+          data-testid={`slot-step-${slot.id}`}
+          className="mt-2 rounded border border-sky-300/25 bg-sky-300/5 px-2 py-1 font-mono text-[11px] text-sky-100"
+        >
+          Step {stepIndex + 1} of {steps.length}
+          {nextStep.exercise != null ? ` · ${slugLabel(nextStep.exercise, undefined, labels)}` : ''}
+          {nextStep.target_weight_lbs != null ? ` · ${nextStep.target_weight_lbs} lb` : ''}
+          {nextStep.target_reps != null ? ` × ${nextStep.target_reps}` : ''}
+          {nextStep.notes ? ` · ${nextStep.notes}` : ''}
+        </p>
+      ) : null}
 
       {sets.length > 0 ? (
         <ul className="mt-2 flex flex-wrap gap-1.5">

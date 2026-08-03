@@ -149,6 +149,7 @@ export const WeightRoomSetRowSchema = z
     workout_id: z.string().uuid().nullable().optional(),
     position: nonNegativeInt().nullable().optional(),
     template_slot_id: z.string().uuid().nullable().optional(),
+    template_slot_step_id: z.string().uuid().nullable().optional(),
   })
   .strict()
 
@@ -255,8 +256,21 @@ export const WeightRoomSetCreateSchema = z
     // `exercise` differs from its slot's is a substitution, recorded by that
     // difference rather than by a flag.
     template_slot_id: z.string().uuid().optional(),
+    // The within-set step (#407) — one rung of a drop set, one movement of a
+    // superset. Only meaningful alongside `template_slot_id`; see the refine
+    // below, which rejects a step with no slot rather than storing a set that
+    // claims to belong to a sequence in no slot.
+    template_slot_step_id: z.string().uuid().optional(),
   })
+  // `.strict()` before `.refine()`, not after: refine returns an effects
+  // wrapper, and chaining strict onto that is at best ambiguous — the
+  // unknown-key rejection this file relies on everywhere must be applied to the
+  // object itself.
   .strict()
+  .refine(body => body.template_slot_step_id === undefined || body.template_slot_id !== undefined, {
+    message: 'template_slot_step_id requires template_slot_id — a step belongs to a slot.',
+    path: ['template_slot_step_id'],
+  })
 
 /** Validated body of `POST /api/admin/weight-room/sets`. */
 export type WeightRoomSetCreate = z.infer<typeof WeightRoomSetCreateSchema>
@@ -316,6 +330,9 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     ...(row.workout_id != null ? { workout_id: row.workout_id } : {}),
     ...(row.position != null ? { position: row.position } : {}),
     ...(row.template_slot_id != null ? { template_slot_id: row.template_slot_id } : {}),
+    ...(row.template_slot_step_id != null
+      ? { template_slot_step_id: row.template_slot_step_id }
+      : {}),
   }
 }
 

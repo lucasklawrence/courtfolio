@@ -704,3 +704,54 @@ describe('paginateWorkouts (#416)', () => {
     expect(result.totalPages).toBe(Math.ceil(507 / WORKOUT_PAGE_SIZE))
   })
 })
+
+describe('buildWorkoutAdherence — stepped slots (#407)', () => {
+  const RACK_STEPS = [
+    { id: 'st-35', position: 0, target_weight_lbs: 35 },
+    { id: 'st-30', position: 1, target_weight_lbs: 30 },
+    { id: 'st-25', position: 2, target_weight_lbs: 25 },
+    { id: 'st-20', position: 3, target_weight_lbs: 20 },
+  ]
+  const RACK = slot({
+    id: 'slot-rack',
+    exercise: 'dumbbell-curl',
+    target_sets: 2,
+    steps: RACK_STEPS,
+  })
+
+  function pass(round: number): StrengthSet[] {
+    return RACK_STEPS.map((st, i) =>
+      set({
+        id: `r${round}-${i}`,
+        exercise: 'dumbbell-curl',
+        weight_lbs: st.target_weight_lbs,
+        template_slot_id: 'slot-rack',
+        template_slot_step_id: st.id,
+      })
+    )
+  }
+
+  it('scores two passes as 2 of 2 prescribed sets, not 8', () => {
+    const adherence = buildWorkoutAdherence(template([RACK]), [...pass(1), ...pass(2)])
+    expect(adherence.prescribedSets).toBe(2)
+    expect(adherence.completedSets).toBe(2)
+    expect(adherence.completion).toBe(1)
+    expect(adherence.slots[0].surplus).toBe(0)
+  })
+
+  it('reports a shortfall in passes, not in rungs', () => {
+    const adherence = buildWorkoutAdherence(template([RACK]), pass(1))
+    expect(adherence.completedSets).toBe(1)
+    expect(adherence.slots[0].shortfall).toBe(1)
+    expect(adherence.completion).toBe(0.5)
+  })
+
+  it('does not credit a half-finished drop set as over-delivery', () => {
+    // Before #407 this scored 3 rows against 2 target_sets — 150% complete for
+    // a drop set that was never finished.
+    const adherence = buildWorkoutAdherence(template([RACK]), pass(1).slice(0, 3))
+    expect(adherence.completedSets).toBe(0)
+    expect(adherence.slots[0].surplus).toBe(0)
+    expect(adherence.slots[0].shortfall).toBe(2)
+  })
+})
