@@ -3,7 +3,6 @@ import Link from 'next/link'
 
 import { formatDayKey, safePacificDayKey, todayDayKey } from '@/lib/training-facility/day-keys'
 import {
-  WORKOUT_PAGE_SIZE,
   workoutDisplayTitle,
   type WorkoutHistoryEntry,
   type WorkoutYearOption,
@@ -64,6 +63,8 @@ export interface WorkoutHistoryListProps {
   totalPages?: number
   /** Entries across every page, for the "showing N of M" line. */
   totalEntries?: number
+  /** 1-based index of the first row on this page, from `paginateWorkouts`. */
+  startIndex?: number
   /** Whether any session exists at all, so a filtered-to-nothing view reads differently from a fresh log. */
   hasAnyWorkouts: boolean
   /**
@@ -101,6 +102,7 @@ export function WorkoutHistoryList({
   page = 1,
   totalPages = 1,
   totalEntries = 0,
+  startIndex = 1,
 }: WorkoutHistoryListProps): JSX.Element {
   const filterState: FilterState = {
     selectedTemplateId,
@@ -148,6 +150,7 @@ export function WorkoutHistoryList({
               totalPages={totalPages}
               totalEntries={totalEntries}
               shown={entries.length}
+              startIndex={startIndex}
               filterState={filterState}
             />
           ) : null}
@@ -472,6 +475,8 @@ interface PaginationProps {
   totalPages: number
   totalEntries: number
   shown: number
+  /** 1-based index of the first row shown, supplied by `paginateWorkouts`. */
+  startIndex: number
   filterState: FilterState
 }
 
@@ -490,9 +495,9 @@ function Pagination({
   totalPages,
   totalEntries,
   shown,
+  startIndex,
   filterState,
 }: PaginationProps): JSX.Element {
-  const first = (page - 1) * WORKOUT_PAGE_SIZE + 1
   return (
     <nav
       aria-label="Pagination"
@@ -500,7 +505,7 @@ function Pagination({
       className="flex flex-wrap items-center justify-between gap-3 pt-1"
     >
       <p className="text-xs text-[#e8d5be]/60">
-        Showing {first}–{first + shown - 1} of {totalEntries}
+        Showing {startIndex}–{startIndex + shown - 1} of {totalEntries}
       </p>
       <div className="flex items-center gap-2">
         {page > 1 ? (

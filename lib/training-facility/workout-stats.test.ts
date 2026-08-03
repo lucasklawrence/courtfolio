@@ -669,6 +669,19 @@ describe('paginateWorkouts (#416)', () => {
     expect(paginateWorkouts(entries, 0, 50).page).toBe(1)
   })
 
+  it('reports the offset so the caption cannot disagree with the rows', () => {
+    // Derived here rather than at the render site, which would have to assume
+    // the default page size even when a caller passed a different one.
+    expect(paginateWorkouts(entries, 1, 50).startIndex).toBe(1)
+    expect(paginateWorkouts(entries, 2, 50).startIndex).toBe(51)
+    expect(paginateWorkouts(entries, 3, 50).startIndex).toBe(101)
+    expect(paginateWorkouts(entries, 2, 25).startIndex).toBe(26)
+  })
+
+  it('reports a zero offset when there is nothing to show', () => {
+    expect(paginateWorkouts([], 1, 50).startIndex).toBe(0)
+  })
+
   it('reports one page for an empty list, so the UI has something to render', () => {
     const result = paginateWorkouts([], 1, 50)
     expect(result.totalPages).toBe(1)

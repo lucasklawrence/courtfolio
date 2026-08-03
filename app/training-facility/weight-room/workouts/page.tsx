@@ -201,6 +201,7 @@ export default async function WeightRoomWorkoutsPage({
             page={pageResult.page}
             totalPages={pageResult.totalPages}
             totalEntries={pageResult.totalEntries}
+            startIndex={pageResult.startIndex}
           />
         </div>
       </div>

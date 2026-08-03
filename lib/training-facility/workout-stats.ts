@@ -792,6 +792,16 @@ export interface WorkoutPage {
   totalPages: number
   /** Entries across every page. */
   totalEntries: number
+  /**
+   * 1-based index of the first entry on this page, for a "showing 51–100 of
+   * 507" line. `0` when there are no entries at all.
+   *
+   * Reported here rather than derived at the render site from
+   * {@link WORKOUT_PAGE_SIZE}: this function takes a page size, so a caller
+   * passing a custom one would silently get a caption that disagreed with the
+   * rows beneath it.
+   */
+  startIndex: number
 }
 
 /**
@@ -817,10 +827,12 @@ export function paginateWorkouts(
     ? Math.min(totalPages, Math.max(1, Math.floor(requestedPage)))
     : 1
   const start = (page - 1) * size
+  const sliced = entries.slice(start, start + size)
   return {
-    entries: entries.slice(start, start + size),
+    entries: sliced,
     page,
     totalPages,
     totalEntries: entries.length,
+    startIndex: sliced.length === 0 ? 0 : start + 1,
   }
 }
