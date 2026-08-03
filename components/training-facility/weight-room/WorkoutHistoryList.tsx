@@ -5,6 +5,7 @@ import { formatDayKey, safePacificDayKey, todayDayKey } from '@/lib/training-fac
 import {
   workoutDisplayTitle,
   type WorkoutHistoryEntry,
+  type WorkoutYearOption,
 } from '@/lib/training-facility/workout-stats'
 
 /** Route the workout history lives at; also the base for every filter chip. */
@@ -12,6 +13,9 @@ export const WORKOUTS_ROUTE = '/training-facility/weight-room/workouts'
 
 /** URL param naming the provenance filter (#413). */
 export const SOURCE_FILTER_PARAM = 'source'
+
+/** URL param naming the year filter (#416). Value is a year, or `all`. */
+export const YEAR_FILTER_PARAM = 'year'
 
 /**
  * Provenance filter selection (#413).
@@ -49,6 +53,18 @@ export interface WorkoutHistoryListProps {
   recordedCount?: number
   /** How many were imported from Apple Health; drives the Imported chip's count. */
   importedCount?: number
+  /** Years that have sessions, newest first (#416). Empty hides the year rail. */
+  years?: readonly WorkoutYearOption[]
+  /** Selected year, or `null` for all years. */
+  selectedYear?: number | null
+  /** Current 1-based page. */
+  page?: number
+  /** Total pages for the current filter set. */
+  totalPages?: number
+  /** Entries across every page, for the "showing N of M" line. */
+  totalEntries?: number
+  /** 1-based index of the first row on this page, from `paginateWorkouts`. */
+  startIndex?: number
   /** Whether any session exists at all, so a filtered-to-nothing view reads differently from a fresh log. */
   hasAnyWorkouts: boolean
   /**
@@ -81,26 +97,33 @@ export function WorkoutHistoryList({
   selectedSource = null,
   recordedCount = 0,
   importedCount = 0,
+  years = [],
+  selectedYear = null,
+  page = 1,
+  totalPages = 1,
+  totalEntries = 0,
+  startIndex = 1,
 }: WorkoutHistoryListProps): JSX.Element {
+  const filterState: FilterState = {
+    selectedTemplateId,
+    selectedSource,
+    selectedYear,
+    isPreviewMode,
+  }
   return (
     <div className="flex flex-col gap-5">
+      {years.length > 1 ? <YearFilterRail years={years} filterState={filterState} /> : null}
+
       {importedCount > 0 ? (
         <SourceFilterRail
-          selectedSource={selectedSource}
-          selectedTemplateId={selectedTemplateId}
+          filterState={filterState}
           recordedCount={recordedCount}
           importedCount={importedCount}
-          isPreviewMode={isPreviewMode}
         />
       ) : null}
 
       {filters.length > 1 ? (
-        <TemplateFilterRail
-          filters={filters}
-          selectedTemplateId={selectedTemplateId}
-          selectedSource={selectedSource}
-          isPreviewMode={isPreviewMode}
-        />
+        <TemplateFilterRail filters={filters} filterState={filterState} />
       ) : null}
 
       {entries.length === 0 ? (
@@ -113,13 +136,25 @@ export function WorkoutHistoryList({
             : 'No workouts recorded yet. Start one from the Log page and it will show up here.'}
         </p>
       ) : (
-        <ul data-testid="workout-history" className="flex flex-col gap-3">
-          {entries.map(entry => (
-            <li key={entry.workout.id}>
-              <WorkoutHistoryRow entry={entry} isPreviewMode={isPreviewMode} />
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul data-testid="workout-history" className="flex flex-col gap-3">
+            {entries.map(entry => (
+              <li key={entry.workout.id}>
+                <WorkoutHistoryRow entry={entry} isPreviewMode={isPreviewMode} />
+              </li>
+            ))}
+          </ul>
+          {totalPages > 1 ? (
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              totalEntries={totalEntries}
+              shown={entries.length}
+              startIndex={startIndex}
+              filterState={filterState}
+            />
+          ) : null}
+        </>
       )}
     </div>
   )
@@ -127,30 +162,48 @@ export function WorkoutHistoryList({
 
 interface TemplateFilterRailProps {
   filters: readonly TemplateFilterOption[]
+  filterState: FilterState
+}
+
+/**
+ * The filters currently applied, as the URL expresses them.
+ *
+ * Passed around whole so a chip can rebuild the URL with **one** axis changed
+ * and the rest preserved. Choosing a template must not silently clear the year,
+ * and neither may drop `preview=demo` — the fixture only stands in when the real
+ * read is empty, so losing that param ends the demo mid-tour.
+ */
+interface FilterState {
   selectedTemplateId: string | null
   selectedSource: WorkoutSourceFilter | null
+  /** `null` means *all years*, which is an explicit `year=all`, not an absent param. */
+  selectedYear: number | null
   isPreviewMode: boolean
 }
 
 /**
- * Build a chip href carrying every active filter, not just the one being set.
+ * Build a href for a chip that changes one filter and keeps the others.
  *
- * The two rails are independent axes, so choosing a template must not silently
- * clear a provenance filter (or vice versa) — and `preview=demo` has to survive
- * both, since the fixture only stands in when the real read is empty and
- * dropping it ends the demo mid-tour.
+ * `year` is always emitted, because absent means "newest year" rather than
+ * "every year" (#416) — leaving it off would silently snap an all-years view
+ * back to the default the moment any other chip was clicked.
+ *
+ * `page` is omitted when it is 1, and **reset on every filter change**: page 4
+ * of one filter set has nothing to do with page 4 of another, and carrying it
+ * over lands the reader on a clamped page with no explanation.
  */
 function chipHref(
-  templateId: string | null,
-  source: WorkoutSourceFilter | null,
-  isPreviewMode: boolean
+  state: FilterState,
+  override: Partial<FilterState & { page: number }> = {}
 ): string {
+  const next = { ...state, ...override }
   const params = new URLSearchParams()
-  if (templateId !== null) params.set('template', templateId)
-  if (source !== null) params.set(SOURCE_FILTER_PARAM, source)
-  if (isPreviewMode) params.set('preview', 'demo')
-  const query = params.toString()
-  return query === '' ? WORKOUTS_ROUTE : `${WORKOUTS_ROUTE}?${query}`
+  if (next.selectedTemplateId !== null) params.set('template', next.selectedTemplateId)
+  if (next.selectedSource !== null) params.set(SOURCE_FILTER_PARAM, next.selectedSource)
+  params.set(YEAR_FILTER_PARAM, next.selectedYear === null ? 'all' : String(next.selectedYear))
+  if (override.page !== undefined && override.page > 1) params.set('page', String(override.page))
+  if (next.isPreviewMode) params.set('preview', 'demo')
+  return `${WORKOUTS_ROUTE}?${params.toString()}`
 }
 
 /** Shared chip styling, so the two rails can't drift apart visually. */
@@ -161,11 +214,9 @@ function chipClass(isActive: boolean): string {
 }
 
 interface SourceFilterRailProps {
-  selectedSource: WorkoutSourceFilter | null
-  selectedTemplateId: string | null
+  filterState: FilterState
   recordedCount: number
   importedCount: number
-  isPreviewMode: boolean
 }
 
 /**
@@ -177,12 +228,11 @@ interface SourceFilterRailProps {
  * skeletons would otherwise bury the handful of sessions with real set data.
  */
 function SourceFilterRail({
-  selectedSource,
-  selectedTemplateId,
+  filterState,
   recordedCount,
   importedCount,
-  isPreviewMode,
 }: SourceFilterRailProps): JSX.Element {
+  const selectedSource = filterState.selectedSource
   const options: Array<{ value: WorkoutSourceFilter | null; label: string; count: number }> = [
     { value: null, label: 'All', count: recordedCount + importedCount },
     { value: 'recorded', label: 'Recorded', count: recordedCount },
@@ -197,7 +247,7 @@ function SourceFilterRail({
           return (
             <li key={option.value ?? 'all'}>
               <Link
-                href={chipHref(selectedTemplateId, option.value, isPreviewMode)}
+                href={chipHref(filterState, { selectedSource: option.value })}
                 aria-current={isActive ? 'page' : undefined}
                 data-testid={`workout-source-${option.value ?? 'all'}`}
                 className={chipClass(isActive)}
@@ -215,12 +265,8 @@ function SourceFilterRail({
   )
 }
 
-function TemplateFilterRail({
-  filters,
-  selectedTemplateId,
-  selectedSource,
-  isPreviewMode,
-}: TemplateFilterRailProps): JSX.Element {
+function TemplateFilterRail({ filters, filterState }: TemplateFilterRailProps): JSX.Element {
+  const selectedTemplateId = filterState.selectedTemplateId
   return (
     <nav aria-label="Filter by template" data-testid="workout-template-filter">
       <ul className="flex flex-wrap gap-2">
@@ -229,7 +275,7 @@ function TemplateFilterRail({
           return (
             <li key={option.id ?? 'all'}>
               <Link
-                href={chipHref(option.id, selectedSource, isPreviewMode)}
+                href={chipHref(filterState, { selectedTemplateId: option.id })}
                 aria-current={isActive ? 'page' : undefined}
                 data-testid={`workout-filter-${option.id ?? 'all'}`}
                 className={chipClass(isActive)}
@@ -360,5 +406,130 @@ function WorkoutHistoryRow({ entry, isPreviewMode }: WorkoutHistoryRowProps): JS
         </p>
       ) : null}
     </Link>
+  )
+}
+
+interface YearFilterRailProps {
+  years: readonly WorkoutYearOption[]
+  filterState: FilterState
+}
+
+/**
+ * Year rail (#416) — the filter that keeps this page bounded.
+ *
+ * The default view is the newest year rather than everything: after the Apple
+ * Health import (#413) the unfiltered list was 507 rows and 1.4 MB, on the
+ * landing view of a sub-nav pill.
+ *
+ * Years with no sessions are absent rather than rendered empty, so the rail
+ * shows the shape of the training history — including its gaps — instead of a
+ * uniform run of years that implies continuity that wasn't there.
+ */
+function YearFilterRail({ years, filterState }: YearFilterRailProps): JSX.Element {
+  const total = years.reduce((n, y) => n + y.count, 0)
+  return (
+    <nav aria-label="Filter by year" data-testid="workout-year-filter">
+      <ul className="flex flex-wrap gap-2">
+        {years.map(option => {
+          const isActive = option.year === filterState.selectedYear
+          return (
+            <li key={option.year}>
+              <Link
+                href={chipHref(filterState, { selectedYear: option.year })}
+                aria-current={isActive ? 'page' : undefined}
+                data-testid={`workout-year-${option.year}`}
+                className={chipClass(isActive)}
+              >
+                {option.year}
+                <span className={isActive ? 'text-[#0a0a0a]/50' : 'text-[#e8d5be]/45'}>
+                  {option.count}
+                </span>
+              </Link>
+            </li>
+          )
+        })}
+        <li>
+          <Link
+            href={chipHref(filterState, { selectedYear: null })}
+            aria-current={filterState.selectedYear === null ? 'page' : undefined}
+            data-testid="workout-year-all"
+            className={chipClass(filterState.selectedYear === null)}
+          >
+            All years
+            <span
+              className={
+                filterState.selectedYear === null ? 'text-[#0a0a0a]/50' : 'text-[#e8d5be]/45'
+              }
+            >
+              {total}
+            </span>
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  )
+}
+
+interface PaginationProps {
+  page: number
+  totalPages: number
+  totalEntries: number
+  shown: number
+  /** 1-based index of the first row shown, supplied by `paginateWorkouts`. */
+  startIndex: number
+  filterState: FilterState
+}
+
+/**
+ * Prev / next pagination for the current filter set (#416).
+ *
+ * Applies to any filter, not only "All years": 2022 alone is 152 sessions, so a
+ * year filter on its own still ships a heavy page.
+ *
+ * Renders links rather than buttons so the page stays a Server Component and
+ * each page is a real, shareable URL — the same reason the filters are URL
+ * params (#377).
+ */
+function Pagination({
+  page,
+  totalPages,
+  totalEntries,
+  shown,
+  startIndex,
+  filterState,
+}: PaginationProps): JSX.Element {
+  return (
+    <nav
+      aria-label="Pagination"
+      data-testid="workout-pagination"
+      className="flex flex-wrap items-center justify-between gap-3 pt-1"
+    >
+      <p className="text-xs text-[#e8d5be]/60">
+        Showing {startIndex}–{startIndex + shown - 1} of {totalEntries}
+      </p>
+      <div className="flex items-center gap-2">
+        {page > 1 ? (
+          <Link
+            href={chipHref(filterState, { page: page - 1 })}
+            data-testid="workout-page-prev"
+            className={chipClass(false)}
+          >
+            ← Newer
+          </Link>
+        ) : null}
+        <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#e8d5be]/50">
+          {page} / {totalPages}
+        </span>
+        {page < totalPages ? (
+          <Link
+            href={chipHref(filterState, { page: page + 1 })}
+            data-testid="workout-page-next"
+            className={chipClass(false)}
+          >
+            Older →
+          </Link>
+        ) : null}
+      </div>
+    </nav>
   )
 }

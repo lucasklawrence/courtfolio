@@ -21,7 +21,12 @@ import {
 } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
-import { buildWorkoutHistory } from '@/lib/training-facility/workout-stats'
+import {
+  buildWorkoutHistory,
+  paginateWorkouts,
+  workoutYear,
+  workoutYearOptions,
+} from '@/lib/training-facility/workout-stats'
 
 /** Search-params shape Next.js passes to a server-rendered page. */
 interface PageProps {
@@ -108,14 +113,34 @@ export default async function WeightRoomWorkoutsPage({
   // link naming a deleted template should degrade to the full history.
   const selectedTemplateId =
     requestedTemplate !== null && counts.has(requestedTemplate) ? requestedTemplate : null
-  const entries = history.filter(entry => {
+  // Year is the third filter axis, and the one that keeps the page bounded
+  // (#416). Before it, the default view rendered every session ever recorded —
+  // 507 rows and 1.4 MB after the Health import landed.
+  const years = workoutYearOptions(history)
+  const requestedYear = firstParam(params.year)
+  // Default to the newest year with sessions rather than to everything. An
+  // unrecognised value also lands here, so a stale link degrades to a small,
+  // useful page instead of the heaviest one.
+  const selectedYear: number | null =
+    requestedYear === 'all'
+      ? null
+      : (years.find(y => String(y.year) === requestedYear)?.year ?? years[0]?.year ?? null)
+
+  const filtered = history.filter(entry => {
     if (selectedTemplateId !== null && entry.workout.template_id !== selectedTemplateId) {
       return false
     }
+    if (selectedYear !== null && workoutYear(entry) !== selectedYear) return false
     if (selectedSource === null) return true
     const isImported = entry.workout.source === 'apple_health'
     return selectedSource === 'imported' ? isImported : !isImported
   })
+
+  // Paginate whatever the filters left, not just the all-years view: 2022 alone
+  // is 152 sessions, so a year filter on its own still ships a heavy page.
+  const requestedPage = Number(firstParam(params.page) ?? '1')
+  const pageResult = paginateWorkouts(filtered, requestedPage)
+  const entries = pageResult.entries
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -171,6 +196,12 @@ export default async function WeightRoomWorkoutsPage({
             selectedSource={selectedSource}
             recordedCount={recordedCount}
             importedCount={importedCount}
+            years={years}
+            selectedYear={selectedYear}
+            page={pageResult.page}
+            totalPages={pageResult.totalPages}
+            totalEntries={pageResult.totalEntries}
+            startIndex={pageResult.startIndex}
           />
         </div>
       </div>

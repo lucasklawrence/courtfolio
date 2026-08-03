@@ -13,6 +13,10 @@ import {
 /**
  * Rendering coverage for the workout history (#377).
  *
+ * Every chip href carries `year` since #416 — absent means "newest year", the
+ * default, so omitting it would snap an all-years view back to the newest one
+ * the moment any other chip was clicked.
+ *
  * Chiefly the two states that read wrong if conflated — "you haven't recorded
  * anything yet" versus "this filter matched nothing" — and the preview link
  * suffix, without which a demo row clicks through to a 404.
@@ -122,11 +126,11 @@ describe('WorkoutHistoryList', () => {
     // demo tour one click in.
     expect(screen.getByTestId('workout-filter-t1')).toHaveAttribute(
       'href',
-      '/training-facility/weight-room/workouts?template=t1&preview=demo'
+      '/training-facility/weight-room/workouts?template=t1&year=all&preview=demo'
     )
     expect(screen.getByTestId('workout-filter-all')).toHaveAttribute(
       'href',
-      '/training-facility/weight-room/workouts?preview=demo'
+      '/training-facility/weight-room/workouts?year=all&preview=demo'
     )
   })
 
@@ -136,7 +140,7 @@ describe('WorkoutHistoryList', () => {
     )
     expect(screen.getByTestId('workout-filter-all')).toHaveAttribute(
       'href',
-      '/training-facility/weight-room/workouts'
+      '/training-facility/weight-room/workouts?year=all'
     )
   })
 
@@ -259,16 +263,16 @@ describe('WorkoutHistoryList — imported sessions (#413)', () => {
     // Switching template must preserve the source filter...
     expect(screen.getByTestId('workout-filter-t1')).toHaveAttribute(
       'href',
-      '/training-facility/weight-room/workouts?template=t1&source=imported'
+      '/training-facility/weight-room/workouts?template=t1&source=imported&year=all'
     )
     // ...and switching source must preserve the template.
     expect(screen.getByTestId('workout-source-recorded')).toHaveAttribute(
       'href',
-      '/training-facility/weight-room/workouts?template=t1&source=recorded'
+      '/training-facility/weight-room/workouts?template=t1&source=recorded&year=all'
     )
     expect(screen.getByTestId('workout-source-all')).toHaveAttribute(
       'href',
-      '/training-facility/weight-room/workouts?template=t1'
+      '/training-facility/weight-room/workouts?template=t1&year=all'
     )
   })
 
@@ -286,5 +290,164 @@ describe('WorkoutHistoryList — imported sessions (#413)', () => {
     expect(screen.getByTestId('workout-source-all')).toHaveTextContent('509')
     expect(screen.getByTestId('workout-source-imported')).toHaveTextContent('507')
     expect(screen.getByTestId('workout-source-recorded')).toHaveTextContent('2')
+  })
+})
+
+describe('WorkoutHistoryList — year rail and pagination (#416)', () => {
+  const YEARS = [
+    { year: 2026, count: 22 },
+    { year: 2024, count: 65 },
+    { year: 2022, count: 152 },
+  ]
+
+  it('renders a chip per year plus All years, with counts', () => {
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        years={YEARS}
+        selectedYear={2026}
+      />
+    )
+    expect(screen.getByTestId('workout-year-2026')).toHaveTextContent('22')
+    expect(screen.getByTestId('workout-year-2022')).toHaveTextContent('152')
+    // Total across every year, so All is honest about what it costs.
+    expect(screen.getByTestId('workout-year-all')).toHaveTextContent('239')
+    expect(screen.getByTestId('workout-year-2026')).toHaveAttribute('aria-current', 'page')
+  })
+
+  it('hides the rail when there is only one year to choose from', () => {
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        years={[{ year: 2026, count: 22 }]}
+        selectedYear={2026}
+      />
+    )
+    expect(screen.queryByTestId('workout-year-filter')).toBeNull()
+  })
+
+  it('keeps the other filters when switching year', () => {
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={FILTERS}
+        selectedTemplateId="t1"
+        hasAnyWorkouts
+        years={YEARS}
+        selectedYear={2026}
+        selectedSource="imported"
+        importedCount={5}
+      />
+    )
+    expect(screen.getByTestId('workout-year-2022')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?template=t1&source=imported&year=2022'
+    )
+    expect(screen.getByTestId('workout-year-all')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?template=t1&source=imported&year=all'
+    )
+  })
+
+  it('shows no pagination when everything fits on one page', () => {
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        page={1}
+        totalPages={1}
+      />
+    )
+    expect(screen.queryByTestId('workout-pagination')).toBeNull()
+  })
+
+  it('paginates with real, shareable URLs that preserve the filters', () => {
+    const entries = buildWorkoutHistory([WORKOUT], SETS, [TEMPLATE])
+    render(
+      <WorkoutHistoryList
+        entries={entries}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        years={YEARS}
+        selectedYear={2022}
+        page={2}
+        totalPages={4}
+        totalEntries={152}
+      />
+    )
+    expect(screen.getByTestId('workout-page-prev')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?year=2022'
+    )
+    expect(screen.getByTestId('workout-page-next')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?year=2022&page=3'
+    )
+    expect(screen.getByTestId('workout-pagination')).toHaveTextContent('2 / 4')
+  })
+
+  it('omits the prev link on the first page and next on the last', () => {
+    const entries = buildWorkoutHistory([WORKOUT], SETS, [TEMPLATE])
+    const first = render(
+      <WorkoutHistoryList
+        entries={entries}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        page={1}
+        totalPages={2}
+        totalEntries={60}
+      />
+    )
+    expect(first.queryByTestId('workout-page-prev')).toBeNull()
+    expect(first.getByTestId('workout-page-next')).toBeInTheDocument()
+    first.unmount()
+
+    const last = render(
+      <WorkoutHistoryList
+        entries={entries}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        page={2}
+        totalPages={2}
+        totalEntries={60}
+      />
+    )
+    expect(last.getByTestId('workout-page-prev')).toBeInTheDocument()
+    expect(last.queryByTestId('workout-page-next')).toBeNull()
+  })
+
+  it('resets to page 1 when a filter changes', () => {
+    // Page 4 of one filter set has nothing to do with page 4 of another.
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={FILTERS}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        years={YEARS}
+        selectedYear={2022}
+        page={4}
+        totalPages={4}
+      />
+    )
+    expect(screen.getByTestId('workout-year-2024')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?year=2024'
+    )
+    expect(screen.getByTestId('workout-filter-t1')).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/workouts?template=t1&year=2022'
+    )
   })
 })

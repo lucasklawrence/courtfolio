@@ -6,6 +6,7 @@ import type {
 } from '@/types/weight-room'
 
 import { buildSlotProgress, extraSets, type SlotProgress } from './live-workout'
+import { safePacificDayKey } from './day-keys'
 import { compareInstants, isStaleOpenWorkout, workoutDurationMinutes } from './workout-sessions'
 
 /**
@@ -733,4 +734,105 @@ export function buildWorkoutHistory(
         templateColor: template?.color ?? null,
       }
     })
+}
+
+/** How many history rows one page of the workout list carries (#416). */
+export const WORKOUT_PAGE_SIZE = 50
+
+/** One year's worth of recorded sessions, for the history's year rail (#416). */
+export interface WorkoutYearOption {
+  /** Calendar year, Pacific. */
+  year: number
+  /** Sessions started in it. */
+  count: number
+}
+
+/**
+ * Group history entries by their Pacific calendar year, newest year first.
+ *
+ * Years with no sessions are simply absent rather than filled in with zeroes —
+ * the gaps are the interesting part. A log running 2018, 2021–2024, 2026 says
+ * something true about the training behind it, and inventing empty 2019 and
+ * 2020 chips would bury that under uniformity.
+ *
+ * @param entries History entries, in any order.
+ */
+export function workoutYearOptions(entries: readonly WorkoutHistoryEntry[]): WorkoutYearOption[] {
+  const counts = new Map<number, number>()
+  for (const entry of entries) {
+    const dayKey = safePacificDayKey(entry.workout.started_at)
+    if (dayKey === '') continue
+    const year = Number(dayKey.slice(0, 4))
+    if (!Number.isFinite(year)) continue
+    counts.set(year, (counts.get(year) ?? 0) + 1)
+  }
+  return [...counts.entries()]
+    .map(([year, count]) => ({ year, count }))
+    .sort((a, b) => b.year - a.year)
+}
+
+/**
+ * Which Pacific calendar year an entry belongs to, or `null` when its timestamp
+ * can't be parsed.
+ */
+export function workoutYear(entry: WorkoutHistoryEntry): number | null {
+  const dayKey = safePacificDayKey(entry.workout.started_at)
+  if (dayKey === '') return null
+  const year = Number(dayKey.slice(0, 4))
+  return Number.isFinite(year) ? year : null
+}
+
+/** One page of history, plus what the caller needs to render pagination. */
+export interface WorkoutPage {
+  /** Entries on this page. */
+  entries: WorkoutHistoryEntry[]
+  /** 1-based page number, clamped into range. */
+  page: number
+  /** Total pages; at least `1` even when there are no entries. */
+  totalPages: number
+  /** Entries across every page. */
+  totalEntries: number
+  /**
+   * 1-based index of the first entry on this page, for a "showing 51–100 of
+   * 507" line. `0` when there are no entries at all.
+   *
+   * Reported here rather than derived at the render site from
+   * {@link WORKOUT_PAGE_SIZE}: this function takes a page size, so a caller
+   * passing a custom one would silently get a caption that disagreed with the
+   * rows beneath it.
+   */
+  startIndex: number
+}
+
+/**
+ * Slice history into a page.
+ *
+ * Clamps rather than erroring: `?page=999` on a two-page list lands on page 2,
+ * and `?page=-3` lands on page 1. A stale or hand-edited link should show
+ * something rather than an error, and there's no correct "not found" for a page
+ * number that merely ran off the end of a list that shrinks as filters change.
+ *
+ * @param entries Already-filtered entries, newest first.
+ * @param requestedPage 1-based page, from the URL. Non-numeric falls back to 1.
+ * @param pageSize Rows per page; defaults to {@link WORKOUT_PAGE_SIZE}.
+ */
+export function paginateWorkouts(
+  entries: readonly WorkoutHistoryEntry[],
+  requestedPage: number,
+  pageSize: number = WORKOUT_PAGE_SIZE
+): WorkoutPage {
+  const size = Math.max(1, Math.floor(pageSize))
+  const totalPages = Math.max(1, Math.ceil(entries.length / size))
+  const page = Number.isFinite(requestedPage)
+    ? Math.min(totalPages, Math.max(1, Math.floor(requestedPage)))
+    : 1
+  const start = (page - 1) * size
+  const sliced = entries.slice(start, start + size)
+  return {
+    entries: sliced,
+    page,
+    totalPages,
+    totalEntries: entries.length,
+    startIndex: sliced.length === 0 ? 0 : start + 1,
+  }
 }
