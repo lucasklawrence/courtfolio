@@ -245,6 +245,34 @@ export interface PrescribedSlot {
   target_weight_lbs?: number
   /** Free-text cue as it read at snapshot time. */
   notes?: string
+  /**
+   * The within-set sequence as it read at snapshot time (#407). Absent for an
+   * ordinary straight slot.
+   *
+   * Captured because steps *score*: a stepped slot's completion is counted in
+   * passes down the sequence, so a snapshot without them would treat a rack run
+   * as a straight set and call three of four rungs complete.
+   */
+  steps?: PrescribedSlotStep[]
+}
+
+/**
+ * One step of a {@link PrescribedSlot}'s frozen sequence (#407) — the
+ * prescribing fields of a {@link TemplateSlotStep}, copied at session start.
+ */
+export interface PrescribedSlotStep {
+  /** {@link TemplateSlotStep.id} — the join key for `template_slot_step_id`. */
+  id: string
+  /** Order within the set at snapshot time, lowest first. */
+  position: number
+  /** Catalog slug for this step, or absent to inherit the slot's. */
+  exercise?: string
+  /** Reps prescribed for this step. */
+  target_reps?: number
+  /** Load on one implement for this step, in pounds. */
+  target_weight_lbs?: number
+  /** Free-text cue as it read at snapshot time. */
+  notes?: string
 }
 
 /**

@@ -81,6 +81,12 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     ...(entry.workout_id != null ? { workout_id: entry.workout_id } : {}),
     ...(entry.position != null ? { position: entry.position } : {}),
     ...(entry.template_slot_id != null ? { template_slot_id: entry.template_slot_id } : {}),
+    // The within-set step (#407). Without this the column never gets written,
+    // every mini-set reloads without a step, and a rack run can never complete
+    // a pass — the schema accepting the field is not enough on its own.
+    ...(entry.template_slot_step_id != null
+      ? { template_slot_step_id: entry.template_slot_step_id }
+      : {}),
   }
   const { data, error } = await supabase
     .from('weight_room_sets')
@@ -96,6 +102,12 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     // since the exercise one is the far more common case and reads as the
     // sensible default.
     if (error.code === '23503') {
+      if (error.message.includes('template_slot_step_id')) {
+        return NextResponse.json(
+          { error: `Template slot step '${entry.template_slot_step_id}' does not exist.` },
+          { status: 400 }
+        )
+      }
       if (error.message.includes('template_slot_id')) {
         return NextResponse.json(
           { error: `Template slot '${entry.template_slot_id}' does not exist.` },

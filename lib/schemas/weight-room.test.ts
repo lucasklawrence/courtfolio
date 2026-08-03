@@ -585,6 +585,20 @@ describe('workout prescription snapshots (#377)', () => {
     ],
   }
 
+  it('captures the within-set sequence, because steps score (#407)', () => {
+    // Dropped by #411 on the reasoning that nothing scored steps yet. #407 made
+    // them score — a stepped slot's completion is counted in passes — so a
+    // snapshot without them treats a rack run as a straight set and reports
+    // three of four rungs as fully complete.
+    const snapshot = templateToPrescription(template)
+    const bench = snapshot.slots.find(s => s.exercise === 'barbell-bench-press')
+    expect(bench?.steps).toEqual([
+      { id: '44444444-4444-4444-8444-444444444444', position: 0, target_reps: 5 },
+    ])
+    const incline = snapshot.slots.find(s => s.exercise === 'incline-dumbbell-press')
+    expect(incline?.steps).toBeUndefined()
+  })
+
   it('captures every prescribing field', () => {
     const snapshot = templateToPrescription(template)
     const bench = snapshot.slots.find(s => s.exercise === 'barbell-bench-press')
@@ -598,6 +612,7 @@ describe('workout prescription snapshots (#377)', () => {
       target_reps_max: 10,
       target_weight_lbs: 155,
       notes: 'pause at the bottom',
+      steps: [{ id: '44444444-4444-4444-8444-444444444444', position: 0, target_reps: 5 }],
     })
   })
 
@@ -632,8 +647,10 @@ describe('workout prescription snapshots (#377)', () => {
     const rehydrated = prescriptionToTemplate(templateToPrescription(template))
     expect(rehydrated.name).toBe('Chest Day 1')
     expect(rehydrated.slots).toHaveLength(2)
-    // Never captured, so they come back empty rather than stale.
-    expect(rehydrated.slots.every(s => s.steps.length === 0)).toBe(true)
+    // Steps come back from the snapshot (#407) — they participate in adherence.
+    const bench = rehydrated.slots.find(s => s.exercise === 'barbell-bench-press')
+    expect(bench?.steps).toHaveLength(1)
+    // Alternates still don't: they only offered shortcuts while recording.
     expect(rehydrated.slots.every(s => s.alternates.length === 0)).toBe(true)
   })
 

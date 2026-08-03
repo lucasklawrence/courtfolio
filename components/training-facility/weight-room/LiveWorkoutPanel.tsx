@@ -449,10 +449,34 @@ function SlotCard({
   const stepMovement = stepExercise(slot, nextStep)
   const stepIndex = nextStep === null ? -1 : steps.findIndex(st => st.id === nextStep.id)
   const defaults = nextSetDefaults(slot, sets, lastElsewhere, nextStep)
-  const [reps, setReps] = useState<string>(defaults.reps?.toString() ?? '')
-  const [weight, setWeight] = useState<string>(defaults.weight_lbs?.toString() ?? '')
   const [swapOpen, setSwapOpen] = useState(false)
-  const [exercise, setExercise] = useState(isStepped ? stepMovement : performedExercise)
+
+  // Edits are held against the step they were typed for, and *derived* during
+  // render rather than synced in an effect (#407).
+  //
+  // `useState` initialisers run once, and this card stays mounted as the
+  // sequence advances — so a rack run kept showing and submitting 35 lb after
+  // the banner moved to the 30 lb rung, silently recording the wrong load on
+  // every mini-set after the first. Keying the draft to the active step makes a
+  // step change fall back to that step's own prescription automatically.
+  const activeStepId = nextStep?.id ?? null
+  const [draft, setDraft] = useState<{
+    stepId: string | null
+    reps: string
+    weight: string
+  } | null>(null)
+  const isDraftCurrent = draft !== null && draft.stepId === activeStepId
+  const reps = isDraftCurrent ? draft.reps : (defaults.reps?.toString() ?? '')
+  const weight = isDraftCurrent ? draft.weight : (defaults.weight_lbs?.toString() ?? '')
+  const setReps = (value: string): void => setDraft({ stepId: activeStepId, reps: value, weight })
+  const setWeight = (value: string): void => setDraft({ stepId: activeStepId, reps, weight: value })
+
+  // An explicit swap, or `null` for "whatever the prescription says". Held
+  // separately so it survives the sequence advancing, and so a stepped slot can
+  // still be substituted — the step's movement is a default, not a lock.
+  const [swappedTo, setSwappedTo] = useState<string | null>(null)
+  const exercise = swappedTo ?? (isStepped ? stepMovement : performedExercise)
+  const setExercise = (value: string): void => setSwappedTo(value)
 
   // The alternates first, then everything else — the whole point of declaring
   // them is that the common swap is one tap rather than a search.
@@ -469,7 +493,10 @@ function SlotCard({
     if (!Number.isFinite(repsValue) || repsValue < 1) return
     const weightValue = weight.trim() === '' ? null : Number(weight)
     await onLog(
-      isStepped ? stepMovement : exercise,
+      // A swap wins over the step's prescribed movement — otherwise the Swap
+      // control appears to work on a stepped slot and silently logs the
+      // prescription instead.
+      exercise,
       repsValue,
       weightValue != null && Number.isFinite(weightValue) ? weightValue : null,
       slot.id,

@@ -125,6 +125,53 @@ describe('POST /api/admin/weight-room/sets', () => {
     )
   })
 
+  it('forwards the within-set step into the insert (#407)', async () => {
+    // The schema accepting the field is not enough: this whitelist is what
+    // actually writes it. Without it every mini-set reloads with no step, a
+    // rack run never completes a pass, and the panel offers the first rung
+    // forever — the feature is inert end to end.
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    insertMock.mockResolvedValueOnce({ data: { id: 'x' }, error: null })
+    const res = await POST(
+      makeRequest({
+        exercise: 'dumbbell-curl',
+        reps: 8,
+        weight_lbs: 30,
+        template_slot_id: '22222222-2222-4222-8222-222222222222',
+        template_slot_step_id: '33333333-3333-4333-8333-333333333333',
+      }) as never
+    )
+    expect(res.status).toBe(201)
+    expect(supabaseChain.insert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        template_slot_id: '22222222-2222-4222-8222-222222222222',
+        template_slot_step_id: '33333333-3333-4333-8333-333333333333',
+      })
+    )
+  })
+
+  it('omits the step column for an ordinary straight set (#407)', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    insertMock.mockResolvedValueOnce({ data: { id: 'x' }, error: null })
+    await POST(makeRequest({ exercise: 'pushups', reps: 25 }) as never)
+    expect(supabaseChain.insert).toHaveBeenCalledWith(
+      expect.not.objectContaining({ template_slot_step_id: expect.anything() })
+    )
+  })
+
+  it('rejects a step with no slot — a step belongs to a slot (#407)', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    const res = await POST(
+      makeRequest({
+        exercise: 'dumbbell-curl',
+        reps: 8,
+        template_slot_step_id: '33333333-3333-4333-8333-333333333333',
+      }) as never
+    )
+    expect(res.status).toBe(400)
+    expect(supabaseChain.insert).not.toHaveBeenCalled()
+  })
+
   it('threads a lowercased/trimmed variant into the insert (#254)', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     insertMock.mockResolvedValueOnce({ data: { id: 'x' }, error: null })
