@@ -238,3 +238,77 @@ describe('WorkoutSummaryPanel', () => {
     expect(screen.getByTestId('workout-pb-barbell-bench-press')).toHaveTextContent(/past 185 lb/i)
   })
 })
+
+describe('WorkoutSummaryPanel — imported sessions (#413)', () => {
+  const IMPORTED: WeightRoomWorkout = {
+    id: 'wh1',
+    started_at: '2019-03-04T18:00:00Z',
+    ended_at: '2019-03-04T18:47:00Z',
+    source: 'apple_health',
+    avg_hr: 112,
+    max_hr: 148,
+  }
+
+  function renderImported(sets: StrengthSet[] = []) {
+    const summary = buildWorkoutSummary(IMPORTED, sets, CATALOG)
+    render(
+      <WorkoutSummaryPanel
+        summary={summary}
+        adherence={null}
+        comparison={null}
+        personalBests={[]}
+        templateName={null}
+        exerciseLabels={LABELS}
+      />
+    )
+  }
+
+  it('reports unknowns as unknown, never as zero', () => {
+    renderImported()
+    // "0 sets, 0 reps, 0 lb" would say the session was empty. It wasn't — Health
+    // just doesn't record what was done.
+    const headline = screen.getByTestId('workout-headline')
+    expect(headline).not.toHaveTextContent(/\b0\b/)
+    expect(screen.getByTestId('workout-duration')).toHaveTextContent('47m')
+  })
+
+  it('surfaces HR, the only intensity signal it has', () => {
+    renderImported()
+    expect(screen.getByTestId('workout-tonnage')).toHaveTextContent('112 bpm')
+    expect(screen.getByTestId('workout-imported-note')).toHaveTextContent(/148 bpm/)
+  })
+
+  it('explains why there is no breakdown rather than showing an empty one', () => {
+    renderImported()
+    expect(screen.getByTestId('workout-imported-note')).toHaveTextContent(
+      /not what was done in it/i
+    )
+    // The "No sets logged into this session" copy is for a session someone
+    // abandoned — a wrong and slightly accusatory thing to say about an import.
+    expect(screen.queryByTestId('workout-breakdown-empty')).toBeNull()
+    expect(screen.queryByTestId('workout-breakdown')).toBeNull()
+  })
+
+  it('does not claim a bodyweight session', () => {
+    renderImported()
+    expect(screen.queryByTestId('workout-bodyweight-note')).toBeNull()
+  })
+
+  it('falls back to the full breakdown once an imported session gains sets', () => {
+    // #400 will attach sets to a subset of these from iCloud notes; when that
+    // happens the session stops being a skeleton and reads like any other.
+    renderImported([
+      {
+        id: 'imported-set',
+        logged_at: '2019-03-04T18:10:00Z',
+        exercise: 'barbell-bench-press',
+        reps: 8,
+        weight_lbs: 155,
+        workout_id: 'wh1',
+      },
+    ])
+    expect(screen.queryByTestId('workout-imported-note')).toBeNull()
+    expect(screen.getByTestId('workout-breakdown')).toBeInTheDocument()
+    expect(screen.getByTestId('workout-tonnage')).toHaveTextContent('1,240 lb')
+  })
+})

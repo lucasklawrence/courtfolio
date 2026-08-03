@@ -429,6 +429,9 @@ export const WeightRoomWorkoutRowSchema = z
     started_at: z.string().min(1, 'started_at must be an ISO timestamp'),
     ended_at: z.string().nullable().optional(),
     template_id: z.string().uuid().nullable().optional(),
+    source: z.enum(['manual', 'apple_health']).nullable().optional(),
+    avg_hr: z.number().nullable().optional(),
+    max_hr: z.number().nullable().optional(),
     prescription: WorkoutPrescriptionSchema.nullable().optional(),
     title: z.string().nullable().optional(),
     location: workoutLocation().nullable().optional(),
@@ -451,6 +454,11 @@ export function workoutRowToWeightRoomWorkout(row: WeightRoomWorkoutRow): Weight
     started_at: row.started_at,
     ...(row.ended_at != null ? { ended_at: row.ended_at } : {}),
     ...(row.template_id != null ? { template_id: row.template_id } : {}),
+    // `'manual'` is the column default and the absent-field meaning, so it's
+    // omitted rather than carried — every read site treats absent as manual.
+    ...(row.source != null && row.source !== 'manual' ? { source: row.source } : {}),
+    ...(row.avg_hr != null ? { avg_hr: row.avg_hr } : {}),
+    ...(row.max_hr != null ? { max_hr: row.max_hr } : {}),
     ...(row.prescription != null ? { prescription: row.prescription } : {}),
     ...(row.title != null && row.title !== '' ? { title: row.title } : {}),
     ...(row.location != null ? { location: row.location } : {}),

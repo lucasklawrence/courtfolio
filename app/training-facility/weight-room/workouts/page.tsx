@@ -9,6 +9,7 @@ import {
   WorkoutHistoryList,
   WORKOUTS_ROUTE,
   type TemplateFilterOption,
+  type WorkoutSourceFilter,
 } from '@/components/training-facility/weight-room/WorkoutHistoryList'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { isAdminRequest } from '@/lib/auth/admin-session'
@@ -93,15 +94,28 @@ export default async function WeightRoomWorkoutsPage({
       .sort((a, b) => a.name.localeCompare(b.name)),
   ]
 
+  // Provenance is a second, independent filter axis (#413). Hundreds of
+  // imported skeletons would otherwise bury the handful of sessions that carry
+  // real set data.
+  const recordedCount = history.filter(e => e.workout.source !== 'apple_health').length
+  const importedCount = history.length - recordedCount
+  const requestedSource = firstParam(params.source)
+  const selectedSource: WorkoutSourceFilter | null =
+    requestedSource === 'recorded' || requestedSource === 'imported' ? requestedSource : null
+
   const requestedTemplate = firstParam(params.template)
   // An unknown id falls back to "all" rather than to an empty list — a stale
   // link naming a deleted template should degrade to the full history.
   const selectedTemplateId =
     requestedTemplate !== null && counts.has(requestedTemplate) ? requestedTemplate : null
-  const entries =
-    selectedTemplateId === null
-      ? history
-      : history.filter(entry => entry.workout.template_id === selectedTemplateId)
+  const entries = history.filter(entry => {
+    if (selectedTemplateId !== null && entry.workout.template_id !== selectedTemplateId) {
+      return false
+    }
+    if (selectedSource === null) return true
+    const isImported = entry.workout.source === 'apple_health'
+    return selectedSource === 'imported' ? isImported : !isImported
+  })
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -154,6 +168,9 @@ export default async function WeightRoomWorkoutsPage({
             selectedTemplateId={selectedTemplateId}
             hasAnyWorkouts={history.length > 0}
             isPreviewMode={isPreviewMode}
+            selectedSource={selectedSource}
+            recordedCount={recordedCount}
+            importedCount={importedCount}
           />
         </div>
       </div>

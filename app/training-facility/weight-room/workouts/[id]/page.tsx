@@ -25,6 +25,7 @@ import {
   compareToPrevious,
   findPersonalBests,
   findPreviousRun,
+  workoutDisplayTitle,
 } from '@/lib/training-facility/workout-stats'
 
 /** Route params for the per-workout summary. */
@@ -118,7 +119,9 @@ export default async function WeightRoomWorkoutSummaryPage({
           day: 'numeric',
           year: 'numeric',
         })
-  const heading = template?.name ?? workout.title ?? 'Freestyle session'
+  // Shared with the history row so the same session can't be titled two
+  // different things on two screens (#413).
+  const heading = workoutDisplayTitle(workout, template?.name ?? null)
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">

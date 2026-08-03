@@ -640,6 +640,31 @@ export function findPersonalBests(
   return bests
 }
 
+/**
+ * What to call a session in a heading (#413).
+ *
+ * Shared by the history row and the summary page so the two can never disagree
+ * about the same workout — they did, briefly, and the disagreement was exactly
+ * the sort that matters: the list called an imported session "Strength
+ * training" while its own detail page called it "Freestyle session".
+ *
+ * "Freestyle session" asserts an *intent* — that a plan was available and
+ * declined. That's true of a workout someone started without picking a
+ * template, and false of one imported from Apple Health, which had no template
+ * to decline because the app wasn't involved.
+ *
+ * @param workout The session being titled.
+ * @param templateName Name of the template it ran, or `null`.
+ */
+export function workoutDisplayTitle(
+  workout: Pick<WeightRoomWorkout, 'source' | 'title'>,
+  templateName: string | null
+): string {
+  if (templateName !== null) return templateName
+  if (workout.title !== undefined) return workout.title
+  return workout.source === 'apple_health' ? 'Strength training' : 'Freestyle session'
+}
+
 /** One row of the workout history list. */
 export interface WorkoutHistoryEntry {
   /** The session. */

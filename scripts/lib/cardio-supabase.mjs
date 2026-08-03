@@ -43,7 +43,7 @@ export function createServiceRoleClient() {
   }
   if (!serviceRoleKey) {
     throw new Error(
-      'SUPABASE_SERVICE_ROLE_KEY is not set. Grab it from Supabase dashboard → Project Settings → API and add to .env.local.',
+      'SUPABASE_SERVICE_ROLE_KEY is not set. Grab it from Supabase dashboard → Project Settings → API and add to .env.local.'
     )
   }
   return createClient(url, serviceRoleKey, {
@@ -116,10 +116,40 @@ const CardioTimePointSchema = z
   })
   .strict()
 
+/**
+ * One Apple Health strength workout (#413), as emitted by
+ * `preprocess-health.py`'s `to_strength_session`.
+ *
+ * Lives in this payload because it comes out of the same preprocessor run, but
+ * it is written to `weight_room_workouts` rather than to `cardio_sessions` —
+ * see `upsertStrengthSessions` in `weight-room-supabase.mjs`. There are no
+ * distance, pace or zone fields because none of them mean anything for lifting,
+ * and no sets because Health does not record what was done in the session.
+ */
+const StrengthSessionSchema = z
+  .object({
+    /** ISO timestamp the session began. Doubles as its idempotency key. */
+    started_at: z.string().min(1),
+    /** ISO timestamp it finished. */
+    ended_at: z.string().min(1),
+    /** Elapsed seconds, straight from Health's own `duration`. */
+    duration_seconds: z.number().nonnegative(),
+    /** Mean BPM over the session, or null when no samples overlapped it. */
+    avg_hr: z.number().nonnegative().nullable().optional(),
+    /** Peak BPM over the session, or null when no samples overlapped it. */
+    max_hr: z.number().nonnegative().nullable().optional(),
+  })
+  .strict()
+
 export const CardioDataSchema = z
   .object({
     imported_at: z.string().min(1),
     sessions: z.array(CardioSessionSchema),
+    // #413 — strength workouts ride along in the same preprocessor output but
+    // are written to `weight_room_workouts`, not to any cardio table. Optional
+    // for the same reason the lifestyle trends are: a JSON produced before this
+    // key existed must still validate.
+    strength_sessions: z.array(StrengthSessionSchema).optional(),
     resting_hr_trend: z.array(CardioTimePointSchema),
     vo2max_trend: z.array(CardioTimePointSchema),
     // #75 slice C-data — six lifestyle-metric trends ported from
@@ -242,13 +272,13 @@ export async function upsertCardioData(supabase, data) {
   // value rather than three near-equal ones.
   const importedAt = new Date().toISOString()
 
-  const sessionRows = parsed.sessions.map((s) => sessionToRow(s, importedAt))
-  const restingRows = parsed.resting_hr_trend.map((point) => ({
+  const sessionRows = parsed.sessions.map(s => sessionToRow(s, importedAt))
+  const restingRows = parsed.resting_hr_trend.map(point => ({
     date: point.date,
     value: point.value,
     updated_at: importedAt,
   }))
-  const vo2Rows = parsed.vo2max_trend.map((point) => ({
+  const vo2Rows = parsed.vo2max_trend.map(point => ({
     date: point.date,
     value: point.value,
     updated_at: importedAt,
@@ -258,7 +288,7 @@ export async function upsertCardioData(supabase, data) {
   const lifestyleRows = LIFESTYLE_TREND_TABLES.map(([field, table]) => ({
     field,
     table,
-    rows: (parsed[field] ?? []).map((point) => ({
+    rows: (parsed[field] ?? []).map(point => ({
       date: point.date,
       value: point.value,
       updated_at: importedAt,
@@ -282,13 +312,11 @@ export async function upsertCardioData(supabase, data) {
     if (manualErr) {
       throw new Error(`Failed to read manual body-mass dates: ${manualErr.message}`)
     }
-    manualBodyMassDates = new Set(
-      (manualRows ?? []).map((r) => String(r.date).slice(0, 10)),
-    )
+    manualBodyMassDates = new Set((manualRows ?? []).map(r => String(r.date).slice(0, 10)))
   }
   const bodyMassRows = bodyMassPayload
-    .filter((point) => !manualBodyMassDates.has(point.date))
-    .map((point) => ({
+    .filter(point => !manualBodyMassDates.has(point.date))
+    .map(point => ({
       date: point.date,
       value: point.value,
       source: 'apple_health',
@@ -317,9 +345,7 @@ export async function upsertCardioData(supabase, data) {
     }
   }
   if (vo2Rows.length > 0) {
-    const { error } = await supabase
-      .from('cardio_vo2max')
-      .upsert(vo2Rows, { onConflict: 'date' })
+    const { error } = await supabase.from('cardio_vo2max').upsert(vo2Rows, { onConflict: 'date' })
     if (error) {
       throw new Error(`Failed to upsert cardio_vo2max: ${error.message}`)
     }
@@ -344,20 +370,15 @@ export async function upsertCardioData(supabase, data) {
     supabase,
     'cardio_sessions',
     importedAt,
-    sessionRows.length > 0,
+    sessionRows.length > 0
   )
   const restingPruned = await pruneStaleRows(
     supabase,
     'cardio_resting_hr',
     importedAt,
-    restingRows.length > 0,
+    restingRows.length > 0
   )
-  const vo2Pruned = await pruneStaleRows(
-    supabase,
-    'cardio_vo2max',
-    importedAt,
-    vo2Rows.length > 0,
-  )
+  const vo2Pruned = await pruneStaleRows(supabase, 'cardio_vo2max', importedAt, vo2Rows.length > 0)
   let lifestylePruned = 0
   const lifestyleCounts = {}
   for (const { field, table, rows } of lifestyleRows) {
@@ -371,7 +392,7 @@ export async function upsertCardioData(supabase, data) {
     'cardio_body_mass_trend',
     importedAt,
     bodyMassRows.length > 0,
-    'apple_health',
+    'apple_health'
   )
 
   return {
@@ -383,8 +404,7 @@ export async function upsertCardioData(supabase, data) {
     // Count of Apple Health body-mass rows written (manual days are excluded
     // from the batch, so this can be < the payload's body_mass_trend length).
     body_mass_trend: bodyMassRows.length,
-    pruned:
-      sessionsPruned + restingPruned + vo2Pruned + lifestylePruned + bodyMassPruned,
+    pruned: sessionsPruned + restingPruned + vo2Pruned + lifestylePruned + bodyMassPruned,
   }
 }
 
@@ -428,26 +448,24 @@ export async function upsertHrSamples(supabase, sessions) {
       .eq('session_started_at', session.date)
     if (deleteErr) {
       throw new Error(
-        `Failed to clear cardio_session_hr_samples for session ${session.date}: ${deleteErr.message}`,
+        `Failed to clear cardio_session_hr_samples for session ${session.date}: ${deleteErr.message}`
       )
     }
 
     const samples = session.hr_samples ?? []
     if (samples.length === 0) continue
 
-    const rows = samples.map((s) => ({
+    const rows = samples.map(s => ({
       session_started_at: session.date,
       sample_at: s.ts,
       bpm: s.bpm,
     }))
     for (let i = 0; i < rows.length; i += HR_SAMPLES_INSERT_BATCH) {
       const batch = rows.slice(i, i + HR_SAMPLES_INSERT_BATCH)
-      const { error: insertErr } = await supabase
-        .from('cardio_session_hr_samples')
-        .insert(batch)
+      const { error: insertErr } = await supabase.from('cardio_session_hr_samples').insert(batch)
       if (insertErr) {
         throw new Error(
-          `Failed to insert cardio_session_hr_samples for session ${session.date}: ${insertErr.message}`,
+          `Failed to insert cardio_session_hr_samples for session ${session.date}: ${insertErr.message}`
         )
       }
       totalInserted += batch.length

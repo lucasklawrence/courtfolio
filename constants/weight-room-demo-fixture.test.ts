@@ -25,8 +25,11 @@ describe('buildWorkoutDemoData', () => {
   const history = buildWorkoutHistory(demo.workouts, demo.sets, demo.templates, demo.exercises, NOW)
   const [latest, previous] = history
 
-  it('produces two completed sessions, newest first', () => {
-    expect(history).toHaveLength(2)
+  it('produces completed sessions, newest first', () => {
+    // Two fully recorded, plus the imported ones (#413) — the mix the page
+    // actually renders once a Health import has run.
+    expect(history.length).toBeGreaterThanOrEqual(2)
+    expect(history.filter(e => e.workout.source === 'apple_health').length).toBeGreaterThan(0)
     expect(latest.summary.isInProgress).toBe(false)
     expect(latest.summary.durationMinutes).toBeGreaterThan(0)
     expect(new Date(latest.workout.started_at).getTime()).toBeGreaterThan(
@@ -90,11 +93,31 @@ describe('buildWorkoutDemoData', () => {
     expect(bests.length).toBeGreaterThan(0)
   })
 
-  it('carries a frozen prescription, so the preview exercises the snapshot path', () => {
-    for (const workout of demo.workouts) {
+  it('carries a frozen prescription on every session that ran a template', () => {
+    // Imported sessions ran no template, so they carry none — see the
+    // Apple Health assertions below.
+    const templated = demo.workouts.filter(w => w.template_id !== undefined)
+    expect(templated).toHaveLength(2)
+    for (const workout of templated) {
       expect(workout.prescription).toBeDefined()
       expect(workout.prescription?.name).toBe('Chest Day 1')
       expect(workout.prescription?.slots).toHaveLength(demo.templates[0].slots.length)
+    }
+  })
+
+  it('includes Apple Health sessions, because they are the majority case (#413)', () => {
+    const imported = demo.workouts.filter(w => w.source === 'apple_health')
+    expect(imported.length).toBeGreaterThan(0)
+    for (const workout of imported) {
+      // What Health knows.
+      expect(workout.ended_at).toBeDefined()
+      expect(workout.avg_hr).toBeGreaterThan(0)
+      expect(workout.max_hr).toBeGreaterThan(0)
+      // What it doesn't.
+      expect(workout.template_id).toBeUndefined()
+      expect(workout.prescription).toBeUndefined()
+      expect(workout.location).toBeUndefined()
+      expect(demo.sets.some(s => s.workout_id === workout.id)).toBe(false)
     }
   })
 
