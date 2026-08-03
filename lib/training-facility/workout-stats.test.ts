@@ -19,7 +19,10 @@ import {
   findPersonalBests,
   findPreviousRun,
   loadMultipliersBySlug,
+  WORKOUT_PAGE_SIZE,
+  paginateWorkouts,
   workoutDisplayTitle,
+  workoutYearOptions,
 } from './workout-stats'
 
 /**
@@ -595,5 +598,96 @@ describe('workoutDisplayTitle (#413)', () => {
 
   it('still honours a template on an imported session, once #400 links one', () => {
     expect(workoutDisplayTitle({ source: 'apple_health' }, 'Chest Day 1')).toBe('Chest Day 1')
+  })
+})
+
+describe('workoutYearOptions (#416)', () => {
+  function at(id: string, iso: string) {
+    return buildWorkoutHistory([{ id, started_at: iso }], [], [], [])[0]
+  }
+
+  it('counts sessions per Pacific year, newest first', () => {
+    const entries = [
+      at('a', '2022-05-01T18:00:00Z'),
+      at('b', '2022-06-01T18:00:00Z'),
+      at('c', '2024-01-01T18:00:00Z'),
+    ]
+    expect(workoutYearOptions(entries)).toEqual([
+      { year: 2024, count: 1 },
+      { year: 2022, count: 2 },
+    ])
+  })
+
+  it('omits years with no sessions rather than filling them in', () => {
+    // The gaps are the interesting part — 2019/2020/2025 are absent from the
+    // real log and shouldn't be rendered as empty chips.
+    const entries = [at('a', '2018-05-01T18:00:00Z'), at('b', '2021-05-01T18:00:00Z')]
+    expect(workoutYearOptions(entries).map(y => y.year)).toEqual([2021, 2018])
+  })
+
+  it('buckets by Pacific year, not UTC', () => {
+    // 2021-12-31T20:00 Pacific is 2022-01-01T04:00Z — UTC would file it as 2022.
+    expect(workoutYearOptions([at('a', '2022-01-01T04:00:00Z')])).toEqual([
+      { year: 2021, count: 1 },
+    ])
+  })
+
+  it('ignores an unparseable timestamp instead of inventing a year', () => {
+    expect(workoutYearOptions([at('bad', 'not-a-date')])).toEqual([])
+  })
+})
+
+describe('paginateWorkouts (#416)', () => {
+  const entries = Array.from(
+    { length: 120 },
+    (_, i) =>
+      buildWorkoutHistory([{ id: `w${i}`, started_at: '2024-01-01T18:00:00Z' }], [], [], [])[0]
+  )
+
+  it('slices to the page size and reports the totals', () => {
+    const result = paginateWorkouts(entries, 1, 50)
+    expect(result.entries).toHaveLength(50)
+    expect(result.page).toBe(1)
+    expect(result.totalPages).toBe(3)
+    expect(result.totalEntries).toBe(120)
+  })
+
+  it('returns the remainder on the last page', () => {
+    expect(paginateWorkouts(entries, 3, 50).entries).toHaveLength(20)
+  })
+
+  it('clamps a page past the end rather than erroring', () => {
+    // A filter change can shrink the list under a bookmarked ?page=99.
+    const result = paginateWorkouts(entries, 99, 50)
+    expect(result.page).toBe(3)
+    expect(result.entries).toHaveLength(20)
+  })
+
+  it('clamps a nonsense page to the first', () => {
+    expect(paginateWorkouts(entries, -3, 50).page).toBe(1)
+    expect(paginateWorkouts(entries, Number.NaN, 50).page).toBe(1)
+    expect(paginateWorkouts(entries, 0, 50).page).toBe(1)
+  })
+
+  it('reports one page for an empty list, so the UI has something to render', () => {
+    const result = paginateWorkouts([], 1, 50)
+    expect(result.totalPages).toBe(1)
+    expect(result.entries).toEqual([])
+    expect(result.totalEntries).toBe(0)
+  })
+
+  it('never divides by a zero page size', () => {
+    expect(paginateWorkouts(entries, 1, 0).entries).toHaveLength(1)
+  })
+
+  it('bounds the real production case — 507 sessions', () => {
+    const many = Array.from(
+      { length: 507 },
+      (_, i) =>
+        buildWorkoutHistory([{ id: `p${i}`, started_at: '2022-01-01T18:00:00Z' }], [], [], [])[0]
+    )
+    const result = paginateWorkouts(many, 1)
+    expect(result.entries).toHaveLength(WORKOUT_PAGE_SIZE)
+    expect(result.totalPages).toBe(Math.ceil(507 / WORKOUT_PAGE_SIZE))
   })
 })
