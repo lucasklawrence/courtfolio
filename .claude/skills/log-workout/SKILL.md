@@ -290,6 +290,13 @@ where w.ended_at is null
 limit 1;
 ```
 
+**Backdated sets never attach.** Steps 3 and 9 both treat the session window as
+load-bearing, so a set whose resolved `logged_at` precedes `started_at` must not
+join the open workout — the summary and density figures would count yesterday's
+pushups as part of tonight's session. "20 pushups yesterday" while a workout is
+open logs **loose**, and says so. Compare the resolved timestamp from step 3
+against `started_at` before attaching, not just "is a workout open".
+
 Three outcomes:
 
 - **No open workout** → write loose sets exactly as before. This is the common
@@ -304,6 +311,11 @@ Three outcomes:
   `STALE_WORKOUT_HOURS` in `lib/training-facility/workout-sessions.ts`; the app
   auto-ends a stale session when the next one starts, so the two paths agree on
   what "stale" means.
+
+**Carry the answer into the insert.** The decision made here — attach, or don't
+— is what step 5 uses. "A workout is open" is *not* the condition; "attachment
+was resolved to this workout" is. If the user says log loose and leaves the
+stale session open, the insert must omit `workout_id` and `position` entirely.
 
 **Ambiguity is asked about, not guessed.** "Log 3x10 bench" while a Chest Day
 session is open and its bench slot already reads complete is genuinely unclear —
@@ -382,11 +394,22 @@ the highest already used — take the **max, not the count**, because a deleted
 set would otherwise free an index and drop a new set into the middle of the
 history. That's `nextSetPosition` in `lib/training-facility/live-workout.ts`;
 this mirrors it in SQL so a row written here is indistinguishable from one the
-recording UI writes:
+recording UI writes.
+
+Joining `open` makes the insert a no-op if the session closed between step 1d
+and here — **check the returned row count**, and fall back to a loose insert
+rather than assuming it landed:
 
 ```sql
--- <WORKOUT_ID> = the open workout's id from step 1d.
-with base as (
+-- <WORKOUT_ID> = the workout attachment resolved to in step 1d.
+-- `open` re-checks the session is still in progress at insert time: the read in
+-- step 1d and this write are separate round trips, and attaching to a session
+-- that has since been ended is worse than logging loose.
+with open as (
+  select id from public.weight_room_workouts
+  where id = '<WORKOUT_ID>' and ended_at is null
+),
+base as (
   select coalesce(max(position), -1) + 1 as start_position
   from public.weight_room_sets
   where workout_id = '<WORKOUT_ID>'
@@ -395,7 +418,7 @@ insert into public.weight_room_sets
   (logged_at, exercise, reps, weight_lbs, variant, workout_id, position)
 select now(), v.exercise, v.reps, v.weight_lbs, v.variant,
        '<WORKOUT_ID>', base.start_position + v.ord
-from base,
+from base, open,
   (values
     (0, 'barbell-bench-press', 5, 185, null),
     (1, 'barbell-bench-press', 5, 185, null),
@@ -544,10 +567,20 @@ a session doesn't need a template at all — "start a gym workout" is a complete
 instruction, so don't force a match that isn't there.
 
 ```sql
+-- With a resolved template:
 insert into public.weight_room_workouts (started_at, title, location, template_id)
-values (now(), 'Push Day', 'gym', '<TEMPLATE_ID_OR_NULL>')
+values (now(), 'Chest Day 1', 'gym', '<TEMPLATE_ID>')
+returning id, started_at, title, template_id;
+
+-- Untemplated — bare NULL, not a quoted placeholder:
+insert into public.weight_room_workouts (started_at, title, location, template_id)
+values (now(), null, 'gym', null)
 returning id, started_at, title, template_id;
 ```
+
+Two statements rather than one with a placeholder, because `template_id` is
+`uuid null`: pasting `'<TEMPLATE_ID_OR_NULL>'` for an untemplated session sends
+the *string* into a uuid column and the insert fails on a type error.
 
 **Don't try to write `prescription`.** The API freezes a snapshot of the
 template into that column when a session starts from the UI, and reproducing
@@ -563,13 +596,22 @@ the last real evidence of activity, and exactly what `autoEndTimestamp` does:
 
 ```sql
 update public.weight_room_workouts w
-set ended_at = coalesce(
-      (select max(s.logged_at) from public.weight_room_sets s where s.workout_id = w.id),
+set ended_at = greatest(
+      coalesce(
+        (select max(s.logged_at) from public.weight_room_sets s where s.workout_id = w.id),
+        w.started_at
+      ),
       w.started_at
     ),
     updated_at = now()
 where w.id = '<STALE_WORKOUT_ID>' and w.ended_at is null;
 ```
+
+The `greatest(..., w.started_at)` is not belt-and-braces. A backdated set can
+carry a `logged_at` *earlier* than the session start, and `ended_at < started_at`
+violates `weight_room_workouts_window_check` — the update rolls back, the stale
+workout stays open, and it goes on blocking every new session. `autoEndTimestamp`
+clamps for exactly this reason; this mirrors it.
 
 ### 8. End a workout
 
