@@ -585,6 +585,20 @@ describe('workout prescription snapshots (#377)', () => {
     ],
   }
 
+  it('captures the within-set sequence, because steps score (#407)', () => {
+    // Dropped by #411 on the reasoning that nothing scored steps yet. #407 made
+    // them score — a stepped slot's completion is counted in passes — so a
+    // snapshot without them treats a rack run as a straight set and reports
+    // three of four rungs as fully complete.
+    const snapshot = templateToPrescription(template)
+    const bench = snapshot.slots.find(s => s.exercise === 'barbell-bench-press')
+    expect(bench?.steps).toEqual([
+      { id: '44444444-4444-4444-8444-444444444444', position: 0, target_reps: 5 },
+    ])
+    const incline = snapshot.slots.find(s => s.exercise === 'incline-dumbbell-press')
+    expect(incline?.steps).toBeUndefined()
+  })
+
   it('captures every prescribing field', () => {
     const snapshot = templateToPrescription(template)
     const bench = snapshot.slots.find(s => s.exercise === 'barbell-bench-press')
@@ -598,6 +612,7 @@ describe('workout prescription snapshots (#377)', () => {
       target_reps_max: 10,
       target_weight_lbs: 155,
       notes: 'pause at the bottom',
+      steps: [{ id: '44444444-4444-4444-8444-444444444444', position: 0, target_reps: 5 }],
     })
   })
 
@@ -632,8 +647,10 @@ describe('workout prescription snapshots (#377)', () => {
     const rehydrated = prescriptionToTemplate(templateToPrescription(template))
     expect(rehydrated.name).toBe('Chest Day 1')
     expect(rehydrated.slots).toHaveLength(2)
-    // Never captured, so they come back empty rather than stale.
-    expect(rehydrated.slots.every(s => s.steps.length === 0)).toBe(true)
+    // Steps come back from the snapshot (#407) — they participate in adherence.
+    const bench = rehydrated.slots.find(s => s.exercise === 'barbell-bench-press')
+    expect(bench?.steps).toHaveLength(1)
+    // Alternates still don't: they only offered shortcuts while recording.
     expect(rehydrated.slots.every(s => s.alternates.length === 0)).toBe(true)
   })
 
@@ -657,5 +674,39 @@ describe('workout prescription snapshots (#377)', () => {
     expect(rehydrated.name).toBe('Chest Day 1')
     // And the edit is real — this isn't passing because nothing changed.
     expect(edited.slots.find(s => s.id === bench?.id)?.target_sets).toBe(6)
+  })
+})
+
+describe('WeightRoomSetCreateSchema — within-set steps (#407)', () => {
+  const base = { exercise: 'dumbbell-curl', reps: 8 }
+  const SLOT = '11111111-1111-4111-8111-111111111111'
+  const STEP = '22222222-2222-4222-8222-222222222222'
+
+  it('accepts a step alongside its slot', () => {
+    const parsed = WeightRoomSetCreateSchema.safeParse({
+      ...base,
+      template_slot_id: SLOT,
+      template_slot_step_id: STEP,
+    })
+    expect(parsed.success).toBe(true)
+  })
+
+  it('rejects a step with no slot — a step belongs to a slot', () => {
+    const parsed = WeightRoomSetCreateSchema.safeParse({
+      ...base,
+      template_slot_step_id: STEP,
+    })
+    expect(parsed.success).toBe(false)
+  })
+
+  it('still accepts an ordinary straight set with neither', () => {
+    expect(WeightRoomSetCreateSchema.safeParse(base).success).toBe(true)
+  })
+
+  it('still rejects an unknown key — strictness survives the refine', () => {
+    // `.strict()` must be applied to the object, not chained onto the effects
+    // wrapper `.refine()` returns, or every fail-closed guarantee in this file
+    // quietly stops applying to this schema.
+    expect(WeightRoomSetCreateSchema.safeParse({ ...base, bogus_field: 1 }).success).toBe(false)
   })
 })

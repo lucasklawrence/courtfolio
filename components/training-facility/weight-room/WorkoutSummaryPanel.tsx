@@ -435,7 +435,7 @@ function SlotRow({ slot, exerciseLabels }: SlotRowProps): JSX.Element {
       </div>
       <p className="shrink-0 text-sm tabular-nums">
         <span className={slot.isComplete ? 'font-bold' : 'font-bold text-[#b45309]'}>
-          {slot.logged}
+          {slot.completedSets}
         </span>
         <span className="text-[#0a0a0a]/50"> / {slot.slot.target_sets} sets</span>
       </p>

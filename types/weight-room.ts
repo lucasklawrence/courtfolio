@@ -81,6 +81,20 @@ export interface StrengthSet {
    * than the record being rewritten.
    */
   template_slot_id?: string
+  /**
+   * The within-set step this set was performed for (#407) — one rung of a drop
+   * set, or one movement of a superset. Absent for an ordinary straight set,
+   * which is the overwhelming majority.
+   *
+   * Only meaningful alongside {@link template_slot_id}: a step belongs to a
+   * slot, so a set carrying a step without a slot is malformed.
+   *
+   * This is what lets a pass down a rack run count as **one** prescribed set
+   * rather than four. Without it the row-per-mini-set data is still correct —
+   * four rows at four descending loads — but nothing can tell that those four
+   * rows are one set of the prescription, so the slot reads `8 / 2`.
+   */
+  template_slot_step_id?: string
 }
 
 /**
@@ -228,6 +242,34 @@ export interface PrescribedSlot {
   /** Top of a rep range. Never set without {@link target_reps}. */
   target_reps_max?: number
   /** Prescribed load on one implement, in pounds. */
+  target_weight_lbs?: number
+  /** Free-text cue as it read at snapshot time. */
+  notes?: string
+  /**
+   * The within-set sequence as it read at snapshot time (#407). Absent for an
+   * ordinary straight slot.
+   *
+   * Captured because steps *score*: a stepped slot's completion is counted in
+   * passes down the sequence, so a snapshot without them would treat a rack run
+   * as a straight set and call three of four rungs complete.
+   */
+  steps?: PrescribedSlotStep[]
+}
+
+/**
+ * One step of a {@link PrescribedSlot}'s frozen sequence (#407) — the
+ * prescribing fields of a {@link TemplateSlotStep}, copied at session start.
+ */
+export interface PrescribedSlotStep {
+  /** {@link TemplateSlotStep.id} — the join key for `template_slot_step_id`. */
+  id: string
+  /** Order within the set at snapshot time, lowest first. */
+  position: number
+  /** Catalog slug for this step, or absent to inherit the slot's. */
+  exercise?: string
+  /** Reps prescribed for this step. */
+  target_reps?: number
+  /** Load on one implement for this step, in pounds. */
   target_weight_lbs?: number
   /** Free-text cue as it read at snapshot time. */
   notes?: string

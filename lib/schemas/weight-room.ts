@@ -149,6 +149,7 @@ export const WeightRoomSetRowSchema = z
     workout_id: z.string().uuid().nullable().optional(),
     position: nonNegativeInt().nullable().optional(),
     template_slot_id: z.string().uuid().nullable().optional(),
+    template_slot_step_id: z.string().uuid().nullable().optional(),
   })
   .strict()
 
@@ -255,8 +256,21 @@ export const WeightRoomSetCreateSchema = z
     // `exercise` differs from its slot's is a substitution, recorded by that
     // difference rather than by a flag.
     template_slot_id: z.string().uuid().optional(),
+    // The within-set step (#407) — one rung of a drop set, one movement of a
+    // superset. Only meaningful alongside `template_slot_id`; see the refine
+    // below, which rejects a step with no slot rather than storing a set that
+    // claims to belong to a sequence in no slot.
+    template_slot_step_id: z.string().uuid().optional(),
   })
+  // `.strict()` before `.refine()`, not after: refine returns an effects
+  // wrapper, and chaining strict onto that is at best ambiguous — the
+  // unknown-key rejection this file relies on everywhere must be applied to the
+  // object itself.
   .strict()
+  .refine(body => body.template_slot_step_id === undefined || body.template_slot_id !== undefined, {
+    message: 'template_slot_step_id requires template_slot_id — a step belongs to a slot.',
+    path: ['template_slot_step_id'],
+  })
 
 /** Validated body of `POST /api/admin/weight-room/sets`. */
 export type WeightRoomSetCreate = z.infer<typeof WeightRoomSetCreateSchema>
@@ -316,6 +330,9 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     ...(row.workout_id != null ? { workout_id: row.workout_id } : {}),
     ...(row.position != null ? { position: row.position } : {}),
     ...(row.template_slot_id != null ? { template_slot_id: row.template_slot_id } : {}),
+    ...(row.template_slot_step_id != null
+      ? { template_slot_step_id: row.template_slot_step_id }
+      : {}),
   }
 }
 
@@ -331,6 +348,24 @@ const workoutLocation = (): z.ZodType<WorkoutLocation> => z.enum(['gym', 'home',
  * added to `TemplateSlot` and written into a snapshot without being added here
  * would fail loudly on the next read rather than being silently dropped.
  */
+/**
+ * One step of a frozen slot's within-set sequence (#407).
+ *
+ * Captured as of #407, which made steps score: a stepped slot's completion is
+ * counted in passes, so a snapshot without them would score a rack run as a
+ * straight set and report three of four rungs as fully complete.
+ */
+export const PrescribedSlotStepSchema = z
+  .object({
+    id: z.string().uuid(),
+    position: z.number().int().nonnegative(),
+    exercise: z.string().min(1).optional(),
+    target_reps: z.number().int().positive().optional(),
+    target_weight_lbs: z.number().positive().optional(),
+    notes: z.string().optional(),
+  })
+  .strict()
+
 export const PrescribedSlotSchema = z
   .object({
     id: z.string().uuid(),
@@ -342,6 +377,7 @@ export const PrescribedSlotSchema = z
     target_reps_max: z.number().int().positive().optional(),
     target_weight_lbs: z.number().positive().optional(),
     notes: z.string().optional(),
+    steps: z.array(PrescribedSlotStepSchema).optional(),
   })
   .strict()
 
@@ -387,6 +423,25 @@ export function templateToPrescription(template: WorkoutTemplate): WorkoutPrescr
           ? { target_weight_lbs: slot.target_weight_lbs }
           : {}),
         ...(slot.notes !== undefined ? { notes: slot.notes } : {}),
+        // Steps are captured as of #407. Adherence for a stepped slot is
+        // counted in passes, so a snapshot that dropped them would score a
+        // finished rack run against the wrong denominator forever.
+        ...(slot.steps.length > 0
+          ? {
+              steps: [...slot.steps]
+                .sort((a, b) => a.position - b.position)
+                .map(step => ({
+                  id: step.id,
+                  position: step.position,
+                  ...(step.exercise !== undefined ? { exercise: step.exercise } : {}),
+                  ...(step.target_reps !== undefined ? { target_reps: step.target_reps } : {}),
+                  ...(step.target_weight_lbs !== undefined
+                    ? { target_weight_lbs: step.target_weight_lbs }
+                    : {}),
+                  ...(step.notes !== undefined ? { notes: step.notes } : {}),
+                })),
+            }
+          : {}),
       })),
   }
 }
@@ -400,8 +455,10 @@ export function templateToPrescription(template: WorkoutTemplate): WorkoutPrescr
  * historical ones — two would be free to drift, which is exactly the class of
  * bug this snapshot exists to prevent.
  *
- * `steps` and `alternates` come back empty because they were never captured;
- * neither participates in adherence.
+ * `steps` come back from the snapshot (#407) because they *do* participate in
+ * adherence — a stepped slot's completion is counted in passes. `alternates`
+ * stay empty: they only offered shortcuts while recording and nothing scores
+ * them afterwards.
  *
  * @param prescription The snapshot from `weight_room_workouts.prescription`.
  */
@@ -410,7 +467,15 @@ export function prescriptionToTemplate(prescription: WorkoutPrescription): Worko
     id: prescription.template_id,
     name: prescription.name,
     position: 0,
-    slots: prescription.slots.map(slot => ({ ...slot, steps: [], alternates: [] })),
+    slots: prescription.slots.map(slot => ({
+      ...slot,
+      // Restored from the snapshot since #407 — a stepped slot scored as a
+      // straight one reports mini-sets as sets.
+      steps: slot.steps ?? [],
+      // Alternates are still not captured: they only ever offered shortcuts
+      // while recording, and nothing scores them afterwards.
+      alternates: [],
+    })),
   }
 }
 
