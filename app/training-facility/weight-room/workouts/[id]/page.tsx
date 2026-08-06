@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
+import { exerciseTrendHref } from '@/components/training-facility/weight-room/ExerciseProgressionPanel'
 import { WORKOUTS_ROUTE } from '@/components/training-facility/weight-room/WorkoutHistoryList'
 import { WorkoutSummaryPanel } from '@/components/training-facility/weight-room/WorkoutSummaryPanel'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
@@ -177,6 +178,10 @@ export default async function WeightRoomWorkoutSummaryPage({
             personalBests={personalBests}
             templateName={template?.name ?? null}
             exerciseLabels={exerciseLabels}
+            // Each movement in the breakdown links to its own trend (#412). The
+            // preview flag rides along so a demo tour lands on the demo trend
+            // rather than on a 404 for a movement that only exists in fixtures.
+            exerciseHref={slug => exerciseTrendHref(slug, isPreviewMode)}
           />
         </div>
       </div>

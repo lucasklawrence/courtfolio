@@ -6,6 +6,7 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { ExerciseFilterChips } from '@/components/training-facility/weight-room/ExerciseFilterChips'
+import { exerciseTrendHref } from '@/components/training-facility/weight-room/ExerciseProgressionPanel'
 import { FocusLaneHeatmap } from '@/components/training-facility/weight-room/FocusLaneHeatmap'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
 import { PastFocusCard } from '@/components/training-facility/weight-room/PastFocusCard'
@@ -357,7 +358,14 @@ export default async function WeightRoomHistoryPage({
                 </h2>
                 <div className="mt-4 grid gap-4 md:grid-cols-2">
                   {visibleStats.map(stat => (
-                    <ExerciseStatCard key={stat.exercise} stat={stat} />
+                    // Each card's heading opens that movement's own trend
+                    // (#412), carrying the preview flag so a demo tour stays in
+                    // the demo.
+                    <ExerciseStatCard
+                      key={stat.exercise}
+                      stat={stat}
+                      href={exerciseTrendHref(stat.exercise, isPreviewMode)}
+                    />
                   ))}
                 </div>
               </section>

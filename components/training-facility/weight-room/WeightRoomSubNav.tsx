@@ -6,9 +6,15 @@ import Link from 'next/link'
  * which pill in the sub-nav renders in the active style. Each value
  * corresponds to one of the routes under
  * `/training-facility/weight-room/*`.
+ *
+ * `'exercises'` (#412) deliberately has no pill: the per-exercise trend is a
+ * leaf about one movement, reached from both History and a workout summary, so
+ * neither parent is the honest answer to "which section is this". It renders
+ * with no pill marked `aria-current` rather than pointing at a page the viewer
+ * isn't on.
  */
 export type WeightRoomSubNavSection =
-  'today' | 'history' | 'workouts' | 'achievements' | 'settings' | 'log'
+  'today' | 'history' | 'workouts' | 'exercises' | 'achievements' | 'settings' | 'log'
 
 /** Props for {@link WeightRoomSubNav}. */
 export interface WeightRoomSubNavProps {

@@ -1,4 +1,5 @@
 import type { JSX } from 'react'
+import Link from 'next/link'
 
 import { formatDayKey, safePacificDayKey } from '@/lib/training-facility/day-keys'
 import type {
@@ -9,15 +10,8 @@ import type {
   WorkoutPersonalBest,
   WorkoutSummary,
 } from '@/lib/training-facility/workout-stats'
+import { describeSet, formatLbs } from '@/lib/training-facility/strength-format'
 import type { StrengthSet } from '@/types/weight-room'
-
-/**
- * Format a number of pounds for display — whole pounds, thousands separated.
- * Tonnage runs to five figures, where a decimal is noise.
- */
-function lbs(value: number): string {
-  return `${Math.round(value).toLocaleString('en-US')} lb`
-}
 
 /** Format a signed delta, so `+400 lb` and `−120 lb` both read at a glance. */
 function signed(value: number, unit: string): string {
@@ -34,11 +28,6 @@ function minutes(value: number): string {
   return `${Math.floor(whole / 60)}h ${whole % 60}m`
 }
 
-/** Render a set as `8 × 60 lb` or `12 reps` when bodyweight. */
-function describeSet(reps: number, effectiveLoad: number): string {
-  return effectiveLoad > 0 ? `${reps} × ${lbs(effectiveLoad)}` : `${reps} reps`
-}
-
 /** Props for {@link WorkoutSummaryPanel}. */
 export interface WorkoutSummaryPanelProps {
   /** The session's computed statistics. */
@@ -53,6 +42,14 @@ export interface WorkoutSummaryPanelProps {
   templateName: string | null
   /** Label for each slot's prescribed movement, by catalog slug. */
   exerciseLabels: Readonly<Record<string, string>>
+  /**
+   * Link builder for a movement's per-exercise trend (#412), by catalog slug.
+   *
+   * Optional, and omitted the component renders movement names as plain text —
+   * so a caller that has no route to offer (a test, or a surface where the trend
+   * isn't reachable) doesn't have to invent one.
+   */
+  exerciseHref?: (slug: string) => string
 }
 
 /**
@@ -76,6 +73,7 @@ export function WorkoutSummaryPanel({
   personalBests,
   templateName,
   exerciseLabels,
+  exerciseHref,
 }: WorkoutSummaryPanelProps): JSX.Element {
   // `totalSets > 0` guard: an empty session also has zero weighted sets, and
   // without it the panel announces "Bodyweight session" directly above the
@@ -118,7 +116,11 @@ export function WorkoutSummaryPanel({
       ) : null}
 
       {isImportedSkeleton ? null : (
-        <BreakdownCard exercises={summary.exercises} allBodyweight={allBodyweight} />
+        <BreakdownCard
+          exercises={summary.exercises}
+          allBodyweight={allBodyweight}
+          {...(exerciseHref === undefined ? {} : { exerciseHref })}
+        />
       )}
     </div>
   )
@@ -165,7 +167,7 @@ function HeadlineStats({
                 : `${Math.round(summary.workout.avg_hr)} bpm`
               : allBodyweight
                 ? '—'
-                : lbs(summary.tonnage)
+                : formatLbs(summary.tonnage)
           }
           testId="workout-tonnage"
         />
@@ -196,7 +198,7 @@ function HeadlineStats({
             : `${(density.setsPerMinute * 60).toFixed(1)} sets/hr`}
           {allBodyweight
             ? ` · ${density.repsPerMinute.toFixed(1)} reps/min`
-            : ` · ${lbs(density.tonnagePerMinute)}/min`}
+            : ` · ${formatLbs(density.tonnagePerMinute)}/min`}
         </p>
       ) : null}
 
@@ -274,7 +276,7 @@ function PersonalBestStrip({ bests }: PersonalBestStripProps): JSX.Element {
               {best.previousBest === null
                 ? ' — first time logged'
                 : best.kind === 'load'
-                  ? ` — past ${lbs(best.previousBest)}`
+                  ? ` — past ${formatLbs(best.previousBest)}`
                   : ` — past ${best.previousBest} reps`}
             </span>
           </li>
@@ -484,10 +486,16 @@ function ExtraWorkCard({ sets, exerciseLabels }: ExtraWorkCardProps): JSX.Elemen
 interface BreakdownCardProps {
   exercises: readonly ExerciseBreakdown[]
   allBodyweight: boolean
+  /** See {@link WorkoutSummaryPanelProps.exerciseHref}. */
+  exerciseHref?: (slug: string) => string
 }
 
 /** Per-movement breakdown: sets, reps, tonnage, top set, estimated 1RM. */
-function BreakdownCard({ exercises, allBodyweight }: BreakdownCardProps): JSX.Element {
+function BreakdownCard({
+  exercises,
+  allBodyweight,
+  exerciseHref,
+}: BreakdownCardProps): JSX.Element {
   if (exercises.length === 0) {
     return (
       <p
@@ -538,13 +546,22 @@ function BreakdownCard({ exercises, allBodyweight }: BreakdownCardProps): JSX.El
               className="border-b border-black/5 last:border-0"
             >
               <th scope="row" className="px-5 py-2.5 text-left font-semibold">
-                {entry.displayName ?? entry.exercise}
+                {exerciseHref === undefined ? (
+                  (entry.displayName ?? entry.exercise)
+                ) : (
+                  <Link
+                    href={exerciseHref(entry.exercise)}
+                    className="underline decoration-black/25 underline-offset-4 hover:decoration-black/60"
+                  >
+                    {entry.displayName ?? entry.exercise}
+                  </Link>
+                )}
               </th>
               <td className="px-3 py-2.5 text-right tabular-nums">{entry.sets}</td>
               <td className="px-3 py-2.5 text-right tabular-nums">{entry.reps}</td>
               {allBodyweight ? null : (
                 <td className="px-3 py-2.5 text-right tabular-nums">
-                  {entry.isBodyweight ? '—' : lbs(entry.tonnage)}
+                  {entry.isBodyweight ? '—' : formatLbs(entry.tonnage)}
                 </td>
               )}
               <td className="px-5 py-2.5 text-right tabular-nums">
@@ -560,7 +577,7 @@ function BreakdownCard({ exercises, allBodyweight }: BreakdownCardProps): JSX.El
                         : 'Epley estimate from a high-rep set — treat as a gesture, not a measurement'
                     }
                   >
-                    ~{lbs(entry.estimatedOneRepMax)} est. 1RM
+                    ~{formatLbs(entry.estimatedOneRepMax)} est. 1RM
                     {entry.oneRepMaxIsReliable ? '' : ' ?'}
                   </span>
                 ) : null}

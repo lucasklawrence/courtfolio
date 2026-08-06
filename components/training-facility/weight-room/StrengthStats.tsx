@@ -1,4 +1,5 @@
 import type { JSX } from 'react'
+import Link from 'next/link'
 
 import { describeGoalTargetChange } from '@/lib/training-facility/goal-targets'
 import type { StrengthExerciseStats } from '@/lib/training-facility/weight-room-history'
@@ -61,6 +62,12 @@ const FOCUS_STATUS_LABEL: Record<'active' | 'upcoming' | 'ended', string> = {
 export interface ExerciseStatCardProps {
   /** The pre-computed rollup for one exercise. */
   stat: StrengthExerciseStats
+  /**
+   * Link to this movement's per-exercise trend (#412). Omitted, the card's
+   * heading stays plain text — which is what {@link StrengthStats} renders,
+   * since it has no route to hand down.
+   */
+  href?: string
 }
 
 /**
@@ -69,7 +76,7 @@ export interface ExerciseStatCardProps {
  * cards — can render cards individually instead of handing the whole array to
  * {@link StrengthStats}.
  */
-export function ExerciseStatCard({ stat }: ExerciseStatCardProps): JSX.Element {
+export function ExerciseStatCard({ stat, href }: ExerciseStatCardProps): JSX.Element {
   const isStreaking = stat.currentStreak > 0
   // A rotation that has *ended* reports 0 reps this week and this month —
   // true, but a useless reading of a campaign that closed in July. Swap those
@@ -89,7 +96,16 @@ export function ExerciseStatCard({ stat }: ExerciseStatCardProps): JSX.Element {
           className="flex items-baseline gap-2 font-mono text-sm font-bold uppercase tracking-[0.2em]"
           style={{ color: stat.color }}
         >
-          {stat.displayName ?? stat.exercise}
+          {href === undefined ? (
+            (stat.displayName ?? stat.exercise)
+          ) : (
+            <Link
+              href={href}
+              className="underline decoration-current/30 underline-offset-4 hover:decoration-current"
+            >
+              {stat.displayName ?? stat.exercise}
+            </Link>
+          )}
           {stat.focus ? (
             <span
               data-testid={`strength-stat-focus-badge-${stat.exercise}`}
