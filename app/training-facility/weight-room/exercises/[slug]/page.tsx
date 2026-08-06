@@ -9,7 +9,11 @@ import { ExerciseProgressionPanel } from '@/components/training-facility/weight-
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { buildWeightRoomDemoData, buildWorkoutDemoData } from '@/constants/weight-room-demo-fixture'
 import { isAdminRequest } from '@/lib/auth/admin-session'
-import { getWeightRoomDataServer, getWeightRoomWorkoutsServer } from '@/lib/data/weight-room-server'
+import {
+  getWeightRoomDataServer,
+  getWeightRoomExercisesServer,
+  getWeightRoomWorkoutsServer,
+} from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 import {
   buildExerciseProgression,
@@ -48,10 +52,15 @@ export default async function WeightRoomExercisePage({
 }: PageProps): Promise<JSX.Element> {
   if (!isWeightRoomEnabled()) notFound()
 
-  const [{ slug }, query, data, realWorkouts, isAdmin] = await Promise.all([
+  const [{ slug }, query, data, realExercises, realWorkouts, isAdmin] = await Promise.all([
     params,
     searchParams,
     getWeightRoomDataServer().catch(() => null),
+    // The roster is read on its own rather than taken off `data.exercises`:
+    // `assembleWeightRoomData` answers `null` when the sets and goals tables are
+    // both empty, which would drop the catalog with them and 404 a movement that
+    // is on the roster and simply hasn't been trained yet.
+    getWeightRoomExercisesServer().catch(() => []),
     getWeightRoomWorkoutsServer().catch(() => []),
     isAdminRequest().catch(() => false),
   ])
@@ -78,11 +87,11 @@ export default async function WeightRoomExercisePage({
   const sets = isPreviewMode
     ? [...(grooveDemo?.sets ?? []), ...(workoutDemo?.sets ?? [])]
     : realSets
-  const exercises = workoutDemo?.exercises ?? data?.exercises ?? []
+  const exercises = workoutDemo?.exercises ?? realExercises
   const goals = grooveDemo?.goals ?? data?.goals ?? []
   const workouts = workoutDemo?.workouts ?? realWorkouts
 
-  const progression = buildExerciseProgression(exercise, sets, exercises)
+  const progression = buildExerciseProgression(exercise, sets, exercises, workouts)
   const catalogRow = exercises.find(e => e.slug === exercise)
   const goal = goals.find(g => g.exercise === exercise)
   if (progression === null && catalogRow === undefined) notFound()

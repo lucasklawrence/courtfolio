@@ -188,6 +188,53 @@ describe('buildExerciseProgression', () => {
     expect(progression?.mostRepsSet.reps).toBe(8)
   })
 
+  it("keeps a session's sets on the session's own day when it runs past midnight", () => {
+    const session = workout({
+      id: 'late-night',
+      source: 'manual',
+      started_at: '2026-08-01T22:30:00-07:00',
+    })
+    const progression = buildExerciseProgression(
+      'pullups',
+      [
+        set({ id: 'before', exercise: 'pullups', reps: 8, workout_id: 'late-night' }),
+        // 12:20am Pacific on 8/2 — the same session, an hour later.
+        set({
+          id: 'after',
+          exercise: 'pullups',
+          reps: 6,
+          workout_id: 'late-night',
+          logged_at: '2026-08-02T00:20:00-07:00',
+        }),
+      ],
+      CATALOG,
+      [session]
+    )
+
+    expect(progression?.points).toHaveLength(1)
+    expect(progression?.points[0].dayKey).toBe('2026-08-01')
+    expect(progression?.points[0].reps).toBe(14)
+  })
+
+  it('dates a set by its own timestamp when its session is unknown', () => {
+    const progression = buildExerciseProgression(
+      'pullups',
+      [
+        set({
+          id: 'orphan',
+          exercise: 'pullups',
+          reps: 6,
+          workout_id: 'missing',
+          logged_at: '2026-08-02T00:20:00-07:00',
+        }),
+      ],
+      CATALOG,
+      []
+    )
+
+    expect(progression?.points[0].dayKey).toBe('2026-08-02')
+  })
+
   it('counts loose sets and session sets alike', () => {
     const progression = buildExerciseProgression(
       'pullups',
@@ -248,6 +295,33 @@ describe('buildSetDetailCoverage', () => {
 
     expect(coverage.sessionsBefore).toBe(1)
     expect(coverage.earliestSessionDayKey).toBe('2018-01-08')
+  })
+
+  it('excludes manually recorded sessions, which were never imports', () => {
+    // The render site names Apple Health as the reason the detail is missing, so
+    // a manual session abandoned before any set was logged must not pad the
+    // number behind that sentence.
+    const coverage = buildSetDetailCoverage(
+      '2026-08-01',
+      [...sessions, workout({ id: 'w4', source: 'manual', started_at: '2026-07-01T18:00:00Z' })],
+      []
+    )
+
+    expect(coverage.sessionsBefore).toBe(2)
+  })
+
+  it('excludes a session started on the first training day itself', () => {
+    const coverage = buildSetDetailCoverage('2018-01-08', sessions, [])
+
+    expect(coverage.sessionsBefore).toBe(0)
+    expect(coverage.earliestSessionDayKey).toBeNull()
+  })
+
+  it('ignores a session whose start timestamp has no day to belong to', () => {
+    const coverage = buildSetDetailCoverage('2026-08-01', [workout({ started_at: 'nope' })], [])
+
+    expect(coverage.sessionsBefore).toBe(0)
+    expect(coverage.earliestSessionDayKey).toBeNull()
   })
 
   it('reports nothing when the movement has no first day', () => {

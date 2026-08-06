@@ -1,6 +1,7 @@
 import type { StrengthSet, WeightRoomExercise, WeightRoomWorkout } from '@/types/weight-room'
 
 import { dayKeyToPacificNoon, safePacificDayKey } from './day-keys'
+import { workoutDayKey } from './workout-sessions'
 import {
   E1RM_MAX_RELIABLE_REPS,
   effectiveSetLoad,
@@ -152,6 +153,9 @@ function reliableOneRepMax(load: number, reps: number): number | null {
  * @param exercises The catalog, for `load_multiplier`. Omitting it treats every
  *   movement as single-implement, which understates a two-dumbbell movement by
  *   half.
+ * @param workouts Recorded sessions, so a session's sets stay on the session's
+ *   own day. Omitting it dates every set by its own timestamp, which splits a
+ *   session that ran past Pacific midnight across two points.
  * @returns The progression, or `null` when the movement has no plottable sets —
  *   a real state (a catalog row added before its first session), and one the
  *   caller renders as an empty view rather than as a broken chart.
@@ -159,9 +163,20 @@ function reliableOneRepMax(load: number, reps: number): number | null {
 export function buildExerciseProgression(
   exercise: string,
   sets: readonly StrengthSet[],
-  exercises: readonly WeightRoomExercise[] = []
+  exercises: readonly WeightRoomExercise[] = [],
+  workouts: readonly WeightRoomWorkout[] = []
 ): ExerciseProgression | null {
   const multipliers = loadMultipliersBySlug(exercises)
+
+  // A session owns its calendar day, and its 12:20am sets belong to the evening
+  // that started them — the same rule `workoutDayKey` applies everywhere else.
+  // Without it a late gym session lands as two training days with half the work
+  // in each.
+  const sessionDay = new Map<string, string>()
+  for (const workout of workouts) {
+    const dayKey = workoutDayKey(workout)
+    if (dayKey !== null) sessionDay.set(workout.id, dayKey)
+  }
 
   // Bucket by Pacific day key rather than by raw timestamp: this renders on a
   // UTC server, where a 10pm-Pacific set belongs to the following calendar day
@@ -169,7 +184,9 @@ export function buildExerciseProgression(
   const byDay = new Map<string, StrengthSet[]>()
   for (const set of sets) {
     if (set.exercise !== exercise) continue
-    const dayKey = safePacificDayKey(set.logged_at)
+    const dayKey =
+      (set.workout_id === undefined ? undefined : sessionDay.get(set.workout_id)) ??
+      safePacificDayKey(set.logged_at)
     // An unparseable timestamp has no day to belong to. Dropped rather than
     // bucketed under the epoch, which would drag the x-axis back to 1970.
     if (dayKey === '') continue
@@ -277,19 +294,28 @@ export function buildExerciseProgression(
  * suspiciously short x-axis to be misread.
  */
 export interface SetDetailCoverage {
-  /** Sessions that predate the movement's first set and carry no set detail. */
+  /**
+   * **Imported** sessions that predate the movement's first set and carry no set
+   * detail.
+   *
+   * Imports only, because the render site names Apple Health as the reason the
+   * detail is missing. A manually recorded session that was abandoned before any
+   * set was logged is also detail-free, but it isn't an import — counting it
+   * would put a number behind a sentence that doesn't describe it.
+   */
   sessionsBefore: number
   /** Pacific day key of the earliest such session, or `null` when there are none. */
   earliestSessionDayKey: string | null
 }
 
 /**
- * Count the recorded sessions that predate a movement's first logged set and
+ * Count the **imported** sessions that predate a movement's first logged set and
  * have no sets of their own.
  *
  * @param firstDayKey The movement's first training day, Pacific. `null` yields
  *   an empty coverage report rather than counting the whole history as "before".
- * @param workouts Every recorded session.
+ * @param workouts Every recorded session. Only `apple_health` ones are counted —
+ *   see {@link SetDetailCoverage.sessionsBefore}.
  * @param sets Every logged set — used only to tell which sessions carry detail.
  *   A session with sets isn't part of the gap even if it predates this movement;
  *   it recorded what happened, just not this movement.
@@ -309,6 +335,7 @@ export function buildSetDetailCoverage(
   let sessionsBefore = 0
   let earliest: string | null = null
   for (const workout of workouts) {
+    if (workout.source !== 'apple_health') continue
     if (workoutsWithSets.has(workout.id)) continue
     const dayKey = safePacificDayKey(workout.started_at)
     // Day keys compare as strings — `2018-01-08` < `2026-05-25` lexicographically

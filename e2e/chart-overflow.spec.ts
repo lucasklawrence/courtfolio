@@ -87,16 +87,19 @@ test.describe('chart overflow behaviour', () => {
     await page.goto('/training-facility/weight-room/exercises/pullups?preview=demo')
     await expect(page.getByTestId('exercise-progression-pullups')).toBeVisible()
 
-    const measured = await page.evaluate(() => {
-      const boxes = [...document.querySelectorAll<HTMLElement>('.overflow-x-auto')]
-      return {
-        viewport: window.innerWidth,
-        count: boxes.length,
-        overflowing: boxes.filter(el => el.scrollWidth > el.clientWidth).length,
-        docScrollWidth: document.documentElement.scrollWidth,
-        docClientWidth: document.documentElement.clientWidth,
-      }
-    })
+    // Scoped to the panel: an unrelated scroller elsewhere on the page would
+    // otherwise satisfy the overflow assertion while the trend charts sat
+    // squashed inside their cards.
+    const panel = page.getByTestId('exercise-progression-pullups')
+    const measured = await panel.evaluate(root => ({
+      viewport: window.innerWidth,
+      count: root.querySelectorAll('.overflow-x-auto').length,
+      overflowing: [...root.querySelectorAll<HTMLElement>('.overflow-x-auto')].filter(
+        el => el.scrollWidth > el.clientWidth
+      ).length,
+      docScrollWidth: document.documentElement.scrollWidth,
+      docClientWidth: document.documentElement.clientWidth,
+    }))
 
     expect(measured.count).toBeGreaterThan(0)
     if (measured.viewport < LG_BREAKPOINT) {

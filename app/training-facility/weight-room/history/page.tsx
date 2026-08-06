@@ -26,6 +26,7 @@ import {
   parseExerciseSelection,
 } from '@/lib/training-facility/exercise-filter'
 import { pacificDayKey } from '@/lib/training-facility/day-keys'
+import { trendableExercises } from '@/lib/training-facility/exercise-progression'
 import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 import { buildMovementLoadView } from '@/lib/training-facility/load-management'
 import {
@@ -123,6 +124,9 @@ export default async function WeightRoomHistoryPage({
   // totals for no benefit. Passing `focuses` scores their days against the
   // rotation's target rather than the anchor's scalar.
   const stats = computeStrengthStats(sets, goals, new Date(), focuses)
+  // Which movements have something to trend (#412) — a goal with no logged sets
+  // still renders a stat card, and linking it would land on an empty view.
+  const trendable = new Set(trendableExercises(sets))
 
   // Filtering happens here, on the server (#367). The route is dynamic
   // already — `isAdminRequest()` reads cookies — so resolving the selection
@@ -360,11 +364,16 @@ export default async function WeightRoomHistoryPage({
                   {visibleStats.map(stat => (
                     // Each card's heading opens that movement's own trend
                     // (#412), carrying the preview flag so a demo tour stays in
-                    // the demo.
+                    // the demo. Only movements with logged sets get the link:
+                    // `computeStrengthStats` cards every configured goal, and a
+                    // focus anchor that's never been trained has nothing to
+                    // trend.
                     <ExerciseStatCard
                       key={stat.exercise}
                       stat={stat}
-                      href={exerciseTrendHref(stat.exercise, isPreviewMode)}
+                      {...(trendable.has(stat.exercise)
+                        ? { href: exerciseTrendHref(stat.exercise, isPreviewMode) }
+                        : {})}
                     />
                   ))}
                 </div>
