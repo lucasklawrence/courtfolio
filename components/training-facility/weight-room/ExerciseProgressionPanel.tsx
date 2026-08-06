@@ -92,6 +92,11 @@ export function ExerciseProgressionPanel({
   // this log — that's the same span as the reps panel, so the two align.
   const loadedDays = points.filter(p => p.topSet !== null)
   const estimateDays = points.filter(p => p.estimatedOneRepMax !== null)
+  // One training day is a real state — every movement starts there — and it is
+  // not a trend. Rendering the cards anyway stacks two tall empty plots above a
+  // records row and a table that both have plenty to say, so the panels are
+  // dropped entirely and one line explains the absence.
+  const hasTrend = points.length >= MIN_TREND_POINTS
 
   return (
     <div
@@ -100,7 +105,18 @@ export function ExerciseProgressionPanel({
     >
       <RecordsRow progression={progression} />
 
-      {isBodyweight ? null : (
+      {hasTrend ? null : (
+        <p
+          data-testid="exercise-single-day-note"
+          className="rounded-[1.2rem] border border-white/10 bg-white/[0.04] px-5 py-4 text-sm leading-6 text-[#e8d5be]/75"
+        >
+          {points.length === 1
+            ? 'One training day so far. A trend needs two — the day below is the whole record.'
+            : 'Not enough training days yet to draw a trend.'}
+        </p>
+      )}
+
+      {isBodyweight || !hasTrend ? null : (
         <ChartCard
           title="Top set"
           subtitle={
@@ -129,26 +145,28 @@ export function ExerciseProgressionPanel({
         </ChartCard>
       )}
 
-      <ChartCard
-        title="Best set"
-        subtitle={
-          isBodyweight
-            ? 'Most reps in a single set each training day'
-            : 'Most reps in a single set each training day — the other half of the same work'
-        }
-      >
-        <TrendChart
-          data={points}
-          y={p => p.bestRepSet.reps}
-          stroke={isBodyweight ? accentColor : chartPalette.hardwoodTan}
-          width={width}
-          height={height}
-          yLabel="reps"
-          yTickFormat={value => String(Math.round(value))}
-          ariaLabel={`${displayName} best set in reps across ${points.length} training days`}
-          emptyMessage={`Not enough ${displayName} training days yet`}
-        />
-      </ChartCard>
+      {!hasTrend ? null : (
+        <ChartCard
+          title="Best set"
+          subtitle={
+            isBodyweight
+              ? 'Most reps in a single set each training day'
+              : 'Most reps in a single set each training day — the other half of the same work'
+          }
+        >
+          <TrendChart
+            data={points}
+            y={p => p.bestRepSet.reps}
+            stroke={isBodyweight ? accentColor : chartPalette.hardwoodTan}
+            width={width}
+            height={height}
+            yLabel="reps"
+            yTickFormat={value => String(Math.round(value))}
+            ariaLabel={`${displayName} best set in reps across ${points.length} training days`}
+            emptyMessage={`Not enough ${displayName} training days yet`}
+          />
+        </ChartCard>
+      )}
 
       <CoverageNote progression={progression} displayName={displayName} coverage={coverage} />
       <RecentDaysTable progression={progression} displayName={displayName} />

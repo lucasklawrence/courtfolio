@@ -182,6 +182,24 @@ describe('ExerciseProgressionPanel', () => {
     expect(note).not.toHaveTextContent('earlier sessions')
   })
 
+  it('drops both panels for a single training day rather than stacking empty plots', () => {
+    const oneDay = progressionFor(
+      daily('shrugs', [{ day: '2026-08-05', reps: 20, weight: 30 }]),
+      'shrugs'
+    )
+
+    render(
+      <ExerciseProgressionPanel progression={oneDay} displayName="Shrugs" coverage={NO_COVERAGE} />
+    )
+
+    expect(screen.queryByRole('heading', { name: 'Top set' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Best set' })).not.toBeInTheDocument()
+    expect(screen.getByTestId('exercise-single-day-note')).toHaveTextContent('One training day')
+    // The record and the day itself still carry the movement.
+    expect(screen.getByTestId('exercise-records')).toBeInTheDocument()
+    expect(screen.getByTestId('exercise-day-2026-08-05')).toBeInTheDocument()
+  })
+
   it('lists recent training days newest first', () => {
     render(
       <ExerciseProgressionPanel
