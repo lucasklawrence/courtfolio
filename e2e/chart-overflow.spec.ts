@@ -73,4 +73,38 @@ test.describe('chart overflow behaviour', () => {
     // One pixel of slack for sub-pixel layout rounding.
     expect(doc.scrollWidth).toBeLessThanOrEqual(doc.clientWidth + 1)
   })
+
+  test('the per-exercise trend keeps its charts inside the page', async ({ page }) => {
+    // The trend panels (#412) are fixed-width SVGs — 760px, wider than a phone —
+    // so they carry the same two obligations: scroll inside their own card, and
+    // never widen the document.
+    //
+    // Pull-ups specifically, because it's the one movement that resolves in both
+    // environments: CI has no Supabase credentials and falls through to the
+    // fixture, while a local run has real credentials — which *suppresses* the
+    // fixture — and has to find real pull-up sets instead. A demo-only movement
+    // renders the empty state locally and the assertion never runs.
+    await page.goto('/training-facility/weight-room/exercises/pullups?preview=demo')
+    await expect(page.getByTestId('exercise-progression-pullups')).toBeVisible()
+
+    // Scoped to the panel: an unrelated scroller elsewhere on the page would
+    // otherwise satisfy the overflow assertion while the trend charts sat
+    // squashed inside their cards.
+    const panel = page.getByTestId('exercise-progression-pullups')
+    const measured = await panel.evaluate(root => ({
+      viewport: window.innerWidth,
+      count: root.querySelectorAll('.overflow-x-auto').length,
+      overflowing: [...root.querySelectorAll<HTMLElement>('.overflow-x-auto')].filter(
+        el => el.scrollWidth > el.clientWidth
+      ).length,
+      docScrollWidth: document.documentElement.scrollWidth,
+      docClientWidth: document.documentElement.clientWidth,
+    }))
+
+    expect(measured.count).toBeGreaterThan(0)
+    if (measured.viewport < LG_BREAKPOINT) {
+      expect(measured.overflowing).toBeGreaterThan(0)
+    }
+    expect(measured.docScrollWidth).toBeLessThanOrEqual(measured.docClientWidth + 1)
+  })
 })
