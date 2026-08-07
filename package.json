@@ -65,7 +65,7 @@
     "eslint-config-next": "16.2.12",
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
-    "lint-staged": "^15.5.2",
+    "lint-staged": "^17.2.0",
     "postcss": "^8.5.23",
     "prettier": "^3.9.6",
     "svgo": "^4.0.2",
