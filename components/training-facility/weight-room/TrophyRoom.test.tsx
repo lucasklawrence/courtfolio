@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 
-import { buildTrophyRoomView } from '@/lib/training-facility/achievements'
+import { buildAchievementBoard } from '@/lib/training-facility/achievements'
 import type { ExerciseGoal, StrengthSet, WeightRoomAchievement } from '@/types/weight-room'
 
 import { TrophyRoom } from './TrophyRoom'
@@ -63,7 +63,7 @@ function renderRoom(
   sets: StrengthSet[] = SETS,
   ladder: WeightRoomAchievement[] = LADDER
 ): ReturnType<typeof render> {
-  return render(<TrophyRoom view={buildTrophyRoomView(sets, GOALS, ladder)} />)
+  return render(<TrophyRoom view={buildAchievementBoard(sets, GOALS, ladder)} />)
 }
 
 describe('TrophyRoom', () => {

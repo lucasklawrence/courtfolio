@@ -9,7 +9,7 @@ import {
   sectionLabel,
   type AchievementGroup,
   type ResolvedAchievement,
-  type TrophyRoomView,
+  type AchievementBoard,
 } from '@/lib/training-facility/achievements'
 
 /**
@@ -43,11 +43,11 @@ function tint(color: string): string {
 export interface TrophyRoomProps {
   /**
    * The pre-resolved display model from
-   * {@link import('@/lib/training-facility/achievements').buildTrophyRoomView}.
+   * {@link import('@/lib/training-facility/achievements').buildAchievementBoard}.
    * Computed by the page (a Server Component) so the badge math never ships to
    * the browser — the wall is a static render of a pure function's output.
    */
-  view: TrophyRoomView
+  view: AchievementBoard
 }
 
 /**

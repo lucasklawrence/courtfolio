@@ -213,7 +213,9 @@ describe('buildMovementLoads', () => {
     expect(sum).toBe(load.chronic28d)
   })
 
-  it('uses the matching goal color, falling back to a default', () => {
+  it('reports the matching goal color, and null when there is no goal', () => {
+    // Null rather than a fallback hex (#427): the color is user data, so what
+    // to draw in its absence is the render site's call, not this module's.
     const goals = [{ exercise: 'pushups', daily_target: 100, color: '#123456' }]
     const loads = buildMovementLoads(
       [set('2026-07-14', 'pushups', 100), set('2026-07-14', 'squats', 100)],
@@ -222,7 +224,7 @@ describe('buildMovementLoads', () => {
     )
     const map = byName(loads)
     expect(map.pushups.color).toBe('#123456')
-    expect(map.squats.color).toBe('#EA580C') // default
+    expect(map.squats.color).toBeNull()
   })
 
   it('ignores sets with an unparseable timestamp', () => {

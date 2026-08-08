@@ -11,7 +11,7 @@ import {
   POOLED_LABEL,
   achievementIcon,
   achievementUnit,
-  buildTrophyRoomView,
+  buildAchievementBoard,
   describeAchievement,
   formatEarnedOn,
   resolveAchievements,
@@ -547,7 +547,7 @@ describe('resolveAchievements — edge cases', () => {
   })
 })
 
-describe('buildTrophyRoomView', () => {
+describe('buildAchievementBoard', () => {
   const LADDER: WeightRoomAchievement[] = [
     tier('pushups', 'day', 100),
     tier('pushups', 'day', 200),
@@ -578,23 +578,23 @@ describe('buildTrophyRoomView', () => {
         muscle_group: 'back' as const,
       },
     ]
-    const view = buildTrophyRoomView(SETS, [], LADDER, catalog)
+    const view = buildAchievementBoard(SETS, [], LADDER, catalog)
     expect(view.groups.map(g => g.label)).toEqual([POOLED_LABEL, 'Pullups', 'Pushups'])
   })
 
   it('falls back to the slug with no catalog', () => {
-    const view = buildTrophyRoomView(SETS, [], LADDER)
+    const view = buildAchievementBoard(SETS, [], LADDER)
     expect(view.groups.map(g => g.label)).toEqual([POOLED_LABEL, 'pullups', 'pushups'])
   })
 
   it('puts the pooled ladder first, then exercises alphabetically', () => {
-    const view = buildTrophyRoomView(SETS, GOALS, LADDER)
+    const view = buildAchievementBoard(SETS, GOALS, LADDER)
     expect(view.groups.map(g => g.label)).toEqual([POOLED_LABEL, 'pullups', 'pushups'])
     expect(view.groups[0].exercise).toBeNull()
   })
 
   it('tallies earned counts overall and per group', () => {
-    const view = buildTrophyRoomView(SETS, GOALS, LADDER)
+    const view = buildAchievementBoard(SETS, GOALS, LADDER)
     // Earned: pushups day-100, pushups lifetime-1000 (270 total? no — 270 < 1000),
     // pullups day-50, pooled day-300 (210 on the 14th — not earned).
     expect(view.totalCount).toBe(5)
@@ -604,38 +604,38 @@ describe('buildTrophyRoomView', () => {
   })
 
   it('carries the exercise goal color onto its group', () => {
-    const view = buildTrophyRoomView(SETS, GOALS, LADDER)
+    const view = buildAchievementBoard(SETS, GOALS, LADDER)
     expect(view.groups.find(g => g.exercise === 'pushups')?.color).toBe('#EA580C')
     expect(view.groups[0].color).toBeNull()
   })
 
   it('orders tiers within a group by scope then ascending threshold', () => {
-    const view = buildTrophyRoomView(SETS, GOALS, LADDER)
+    const view = buildAchievementBoard(SETS, GOALS, LADDER)
     const pushups = view.groups.find(g => g.exercise === 'pushups')
     expect(pushups?.achievements.map(a => a.achievement.threshold)).toEqual([100, 200, 1000])
   })
 
   it('ranks nextUp by progress and excludes untouched tiers', () => {
-    const view = buildTrophyRoomView(SETS, GOALS, LADDER)
+    const view = buildAchievementBoard(SETS, GOALS, LADDER)
     // pushups day-200 (150/200 = .75) beats pooled day-300 (210/300 = .7),
     // which beats pushups lifetime-1000 (270/1000 = .27).
     expect(view.nextUp.map(e => e.achievement.threshold)).toEqual([200, 300, 1000])
   })
 
   it('excludes zero-progress tiers from nextUp', () => {
-    const view = buildTrophyRoomView([], GOALS, LADDER)
+    const view = buildAchievementBoard([], GOALS, LADDER)
     expect(view.nextUp).toEqual([])
     expect(view.earnedCount).toBe(0)
   })
 
   it('lists recently earned badges newest first', () => {
     const sets = [set('2026-07-01', 'pullups', 60), set('2026-07-20', 'pushups', 150)]
-    const view = buildTrophyRoomView(sets, GOALS, LADDER)
+    const view = buildAchievementBoard(sets, GOALS, LADDER)
     expect(view.recent.map(e => e.firstEarnedOn)).toEqual(['2026-07-20', '2026-07-01'])
   })
 
   it('returns an empty view for an empty ladder', () => {
-    const view = buildTrophyRoomView(SETS, GOALS, [])
+    const view = buildAchievementBoard(SETS, GOALS, [])
     expect(view).toEqual({ groups: [], earnedCount: 0, totalCount: 0, recent: [], nextUp: [] })
   })
 })
@@ -693,6 +693,19 @@ describe('achievementIcon', () => {
 
   it('falls back to a scope default', () => {
     expect(achievementIcon(tier('pushups', 'streak', 7))).toBe('🔥')
+  })
+
+  it('lets a caller override the scope defaults', () => {
+    // A consumer wanting clinical iconography passes its own map (#427).
+    expect(achievementIcon(tier('pushups', 'streak', 7), { streak: '▲' })).toBe('▲')
+  })
+
+  it('still prefers the tier’s own icon over an override', () => {
+    expect(achievementIcon(tier('pushups', 'day', 100, { icon: '🚀' }), { day: '▲' })).toBe('🚀')
+  })
+
+  it('renders nothing when neither the tier nor the fallbacks supply a glyph', () => {
+    expect(achievementIcon(tier('pushups', 'streak', 7), {})).toBe('')
   })
 })
 

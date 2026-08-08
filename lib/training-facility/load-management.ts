@@ -79,9 +79,6 @@ const LOADED_SET_FRACTION = 0.5
  */
 export const MIN_TRAINING_DAYS_IN_WINDOW = 6
 
-/** Movement color when no matching {@link ExerciseGoal} supplies one. Rim-orange. */
-const DEFAULT_MOVEMENT_COLOR = '#EA580C'
-
 /** One point in a movement's trailing daily-volume sparkline. */
 export interface DailyVolumePoint {
   /** `YYYY-MM-DD` Pacific calendar day. */
@@ -104,8 +101,16 @@ export interface MovementLoad {
    * (#384). Absent falls back to the slug at the render site.
    */
   displayName?: string
-  /** Hex display color from the matching {@link ExerciseGoal}, or a default. */
-  color: string
+  /**
+   * Hex display color from the matching {@link ExerciseGoal}, or `null` when
+   * the movement has no configured goal to take one from.
+   *
+   * `null` rather than a fallback hex (#427): the color is *user data* — an
+   * accent someone picked per movement — so what to draw when there isn't one
+   * is a rendering decision, not a domain one. The panel supplies its own
+   * default; a different consumer of this module supplies theirs.
+   */
+  color: string | null
   /** Which volume the ramp math is computed on. */
   metric: 'reps' | 'load'
   /** Unit suffix for display — `reps` or `lb`. */
@@ -355,7 +360,7 @@ export function buildMovementLoads(
     loads.push({
       movement,
       displayName: labelByExercise.get(movement),
-      color: colorByExercise.get(movement) ?? DEFAULT_MOVEMENT_COLOR,
+      color: colorByExercise.get(movement) ?? null,
       metric: loaded ? 'load' : 'reps',
       unitLabel: loaded ? 'lb' : 'reps',
       acute7d,
