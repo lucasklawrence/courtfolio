@@ -11,11 +11,7 @@
  * cards with delta arrows.
  */
 
-import {
-  endOfDay,
-  startOfDay,
-  type DateRange,
-} from '@/lib/training-facility/date-range'
+import { endOfDay, startOfDay, type DateRange } from '@/lib/training-facility/date-range'
 
 /**
  * Minimum sessions in the previous period required before a delta is
