@@ -1,16 +1,15 @@
 import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import {
-  dayKeyToPacificNoon,
+  PACIFIC_CLOCK,
   firstDayOfMonth,
   inclusiveDaySpan,
   lastDayOfMonth,
   mondayOfDayKey,
   monthIndexOfDayKey,
-  pacificDayKey,
-  safePacificDayKey,
   shiftDayKey,
-} from './day-keys'
+  type DayClock,
+} from './clock'
 import {
   type GoalTargetChange,
   goalTargetChanges,
@@ -240,7 +239,8 @@ export function buildStrengthHeatmap(
   sets: readonly StrengthSet[],
   goal: ExerciseGoal,
   dateFrom?: Date | null,
-  dateTo?: Date | null
+  dateTo?: Date | null,
+  clock: DayClock = PACIFIC_CLOCK
 ): StrengthHeatmapGrid {
   // Column boundaries walk day keys, not milliseconds (#319): a DST week is
   // 23 or 25 hours long, so `+ 7 * DAY_MS` drifts off the Monday twice a year.
@@ -249,10 +249,10 @@ export function buildStrengthHeatmap(
   // from user-derived state: `pacificDayKey` throws `RangeError` on an Invalid
   // Date, which would take the whole page down rather than degrading. An
   // unusable bound falls back to the same default as omitting it.
-  const endKey = safePacificDayKey(dateTo ?? new Date())
-  const endMondayKey = mondayOfDayKey(endKey === '' ? pacificDayKey(new Date()) : endKey)
+  const endKey = clock.safeDayKey(dateTo ?? new Date())
+  const endMondayKey = mondayOfDayKey(endKey === '' ? clock.dayKey(new Date()) : endKey)
 
-  const startKey = dateFrom ? safePacificDayKey(dateFrom) : ''
+  const startKey = dateFrom ? clock.safeDayKey(dateFrom) : ''
   let startMondayKey: string
   if (startKey !== '') {
     startMondayKey = mondayOfDayKey(startKey)
@@ -269,7 +269,7 @@ export function buildStrengthHeatmap(
   const lookup = new Map<string, { reps: number; setCount: number }>()
   for (const s of sets) {
     if (s.exercise !== goal.exercise) continue
-    const key = safePacificDayKey(s.logged_at)
+    const key = clock.safeDayKey(s.logged_at)
     if (key === '') continue
     const entry = lookup.get(key) ?? { reps: 0, setCount: 0 }
     entry.reps += s.reps
@@ -297,7 +297,7 @@ export function buildStrengthHeatmap(
       const dailyTarget = targetFor(key)
       // Pacific noon, so a renderer calling `toLocaleDateString` shows the
       // day the cell actually represents rather than the one before it.
-      const date = dayKeyToPacificNoon(key) ?? new Date(NaN)
+      const date = clock.toNoon(key) ?? new Date(NaN)
       grid[row].push({
         date,
         dayKey: key,
@@ -345,16 +345,17 @@ export function buildStrengthHeatmap(
 export function computeStrengthStreaks(
   sets: readonly StrengthSet[],
   goal: ExerciseGoal,
-  now: Date = new Date()
+  now: Date = new Date(),
+  clock: DayClock = PACIFIC_CLOCK
 ): StreakCounts {
   const dailyReps = new Map<string, number>()
   for (const s of sets) {
     if (s.exercise !== goal.exercise) continue
-    const key = safePacificDayKey(s.logged_at)
+    const key = clock.safeDayKey(s.logged_at)
     if (key === '') continue
     dailyReps.set(key, (dailyReps.get(key) ?? 0) + s.reps)
   }
-  return streakFromDailyReps(dailyReps, targetResolverFor(goal), pacificDayKey(now))
+  return streakFromDailyReps(dailyReps, targetResolverFor(goal), clock.dayKey(now))
 }
 
 /**
@@ -391,13 +392,14 @@ export function computeStrengthStats(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   now: Date = new Date(),
-  focuses: readonly MonthlyFocus[] = []
+  focuses: readonly MonthlyFocus[] = [],
+  clock: DayClock = PACIFIC_CLOCK
 ): StrengthExerciseStats[] {
   // Every boundary is a Pacific day key (#319), so the week and month a set
   // falls into matches the day its heatmap cell lands on. Derived by calendar
   // arithmetic rather than `Date` offsets — a DST week is 23 or 25 hours, and
   // millisecond math drifts off the Monday twice a year.
-  const todayKey = pacificDayKey(now)
+  const todayKey = clock.dayKey(now)
   const thisWeekStart = mondayOfDayKey(todayKey)
   const thisWeekEnd = shiftDayKey(thisWeekStart, 6)
   const lastWeekStart = shiftDayKey(thisWeekStart, -7)
@@ -416,7 +418,7 @@ export function computeStrengthStats(
     const windowHistory = focusTargetHistory(focuses, goal.exercise)
     const scoringGoal: ExerciseGoal =
       windowHistory.length > 0 ? { ...goal, target_history: windowHistory } : goal
-    const focusSummary = summarizeFocusCampaigns(focuses, goal.exercise, sets, now)
+    const focusSummary = summarizeFocusCampaigns(focuses, goal.exercise, sets, now, clock)
 
     const dailyReps = new Map<string, number>()
     let allTimeReps = 0
@@ -428,7 +430,7 @@ export function computeStrengthStats(
 
     for (const s of sets) {
       if (s.exercise !== goal.exercise) continue
-      const key = safePacificDayKey(s.logged_at)
+      const key = clock.safeDayKey(s.logged_at)
       if (key === '') continue
 
       // All-time + active-day rollups.
@@ -502,17 +504,18 @@ export function buildWeeklyVolume(
   sets: readonly StrengthSet[],
   goal: ExerciseGoal,
   weeks = 12,
-  now: Date = new Date()
+  now: Date = new Date(),
+  clock: DayClock = PACIFIC_CLOCK
 ): WeeklyVolumePoint[] {
   const span = Math.max(1, Math.floor(weeks))
-  const currentMondayKey = mondayOfDayKey(pacificDayKey(now))
+  const currentMondayKey = mondayOfDayKey(clock.dayKey(now))
   const startMondayKey = shiftDayKey(currentMondayKey, -(span - 1) * DAYS_PER_WEEK)
 
   // weekKey (Monday YYYY-MM-DD, Pacific) → reps + set tallies for this exercise.
   const lookup = new Map<string, { reps: number; setCount: number }>()
   for (const s of sets) {
     if (s.exercise !== goal.exercise) continue
-    const dayKey = safePacificDayKey(s.logged_at)
+    const dayKey = clock.safeDayKey(s.logged_at)
     if (dayKey === '') continue
     const key = mondayOfDayKey(dayKey)
     const entry = lookup.get(key) ?? { reps: 0, setCount: 0 }
@@ -527,7 +530,7 @@ export function buildWeeklyVolume(
     // the snap-back through `getMondayOf` this replaces existed only to undo
     // that millisecond drift.
     const weekKey = shiftDayKey(startMondayKey, i * DAYS_PER_WEEK)
-    const weekStart = dayKeyToPacificNoon(weekKey) ?? new Date(NaN)
+    const weekStart = clock.toNoon(weekKey) ?? new Date(NaN)
     const entry = lookup.get(weekKey)
     points.push({
       weekStart,

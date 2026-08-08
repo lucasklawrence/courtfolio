@@ -1,6 +1,6 @@
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
-import { dayKeyToPacificNoonIso, formatDayKey, safePacificDayKey } from './day-keys'
+import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { targetForDay } from './goal-targets'
 
 /**
@@ -24,18 +24,19 @@ import { targetForDay } from './goal-targets'
  * Strips off the time-of-day so two sets logged at 06:00 and 23:00 of
  * the same day collapse to the same key.
  *
- * Thin alias over {@link safePacificDayKey}, kept because this is the name
- * the Today View surfaces import. New code should reach for `day-keys.ts`
+ * Thin alias over {@link DayClock.safeDayKey}, kept because this is the name
+ * the Today View surfaces import. New code should reach for `clock.ts`
  * directly.
  *
  * @param input ISO 8601 timestamp string from
  *   {@link StrengthSet.logged_at}, or a Date already constructed by
  *   the caller.
- * @returns `YYYY-MM-DD` Pacific, or `''` when `input` is unparseable (so
- *   callers can use `key === ''` as a skip condition without throwing).
+ * @param clock Zone the day is measured in; defaults to Pacific (#429).
+ * @returns `YYYY-MM-DD`, or `''` when `input` is unparseable (so callers can
+ *   use `key === ''` as a skip condition without throwing).
  */
-export function toLocalDateKey(input: string | Date): string {
-  return safePacificDayKey(input)
+export function toLocalDateKey(input: string | Date, clock: DayClock = PACIFIC_CLOCK): string {
+  return clock.safeDayKey(input)
 }
 
 /**
@@ -47,10 +48,16 @@ export function toLocalDateKey(input: string | Date): string {
  * @param dayKey `YYYY-MM-DD` key as produced by {@link toLocalDateKey}.
  *   Pass an empty string to get an empty array back (defensive — keeps
  *   callers from having to special-case unparseable "now" inputs).
+ * @param clock Zone the day is measured in; defaults to Pacific (#429). Must
+ *   match the clock `dayKey` was produced with, or nothing matches.
  */
-export function filterSetsForDay(sets: readonly StrengthSet[], dayKey: string): StrengthSet[] {
+export function filterSetsForDay(
+  sets: readonly StrengthSet[],
+  dayKey: string,
+  clock: DayClock = PACIFIC_CLOCK
+): StrengthSet[] {
   if (dayKey === '') return []
-  return sets.filter(s => toLocalDateKey(s.logged_at) === dayKey)
+  return sets.filter(s => toLocalDateKey(s.logged_at, clock) === dayKey)
 }
 
 /**
@@ -192,12 +199,13 @@ export function computeRingPercent(totalReps: number, goal: ExerciseGoal, dayKey
  *
  * @param dayKey `YYYY-MM-DD` key as produced by {@link toLocalDateKey}
  *   or an `<input type="date">` value.
- * @returns ISO 8601 UTC timestamp of the day's Pacific noon, or `''` when
- *   `dayKey` isn't a valid day key (so callers can fall back to the
- *   server-side `now()` default instead of throwing).
+ * @param clock Zone noon is measured in; defaults to Pacific (#429).
+ * @returns ISO 8601 UTC timestamp of the day's noon, or `''` when `dayKey`
+ *   isn't a valid day key (so callers can fall back to the server-side `now()`
+ *   default instead of throwing).
  */
-export function localNoonIsoForDay(dayKey: string): string {
-  return dayKeyToPacificNoonIso(dayKey)
+export function localNoonIsoForDay(dayKey: string, clock: DayClock = PACIFIC_CLOCK): string {
+  return clock.toNoonIso(dayKey)
 }
 
 /**
@@ -208,9 +216,10 @@ export function localNoonIsoForDay(dayKey: string): string {
  * backfills more than a few days old are rare.
  *
  * @param dayKey `YYYY-MM-DD` key as produced by {@link toLocalDateKey}.
+ * @param clock Zone the label names the day in; defaults to Pacific (#429).
  * @returns Locale-formatted weekday + date, or `''` when `dayKey` is
  *   unparseable.
  */
-export function formatDayLabel(dayKey: string): string {
-  return formatDayKey(dayKey, { weekday: 'short', month: 'short', day: 'numeric' })
+export function formatDayLabel(dayKey: string, clock: DayClock = PACIFIC_CLOCK): string {
+  return clock.format(dayKey, { weekday: 'short', month: 'short', day: 'numeric' })
 }

@@ -1,5 +1,5 @@
 import type { FocusCategory, MonthlyFocus, StrengthSet } from '@/types/weight-room'
-import { inclusiveDaySpan, pacificDayKey, safePacificDayKey, shiftDayKey } from './day-keys'
+import { PACIFIC_CLOCK, inclusiveDaySpan, shiftDayKey, type DayClock } from './clock'
 
 export type { FocusCategory }
 
@@ -143,10 +143,11 @@ export interface FocusAdherence {
 export function computeFocusAdherence(
   focus: MonthlyFocus,
   sets: readonly StrengthSet[],
-  now: Date = new Date()
+  now: Date = new Date(),
+  clock: DayClock = PACIFIC_CLOCK
 ): FocusAdherence {
   const daysInWindow = inclusiveDaySpan(focus.start_date, focus.end_date)
-  const today = pacificDayKey(now)
+  const today = clock.dayKey(now)
 
   // Last elapsed day = min(today, end_date); nothing elapsed if today is
   // before the window opens.
@@ -163,7 +164,7 @@ export function computeFocusAdherence(
   const volumeByDay = new Map<string, number>()
   for (const s of sets) {
     if (s.exercise !== focus.exercise) continue
-    const day = safePacificDayKey(s.logged_at)
+    const day = clock.safeDayKey(s.logged_at)
     if (day === '' || day < focus.start_date || day > lastElapsed) continue
     const increment = focus.target_kind === 'sets' ? 1 : s.reps
     volumeByDay.set(day, (volumeByDay.get(day) ?? 0) + increment)
@@ -255,7 +256,8 @@ export interface FocusLoadStats {
 export function computeFocusLoadStats(
   focus: MonthlyFocus,
   sets: readonly StrengthSet[],
-  loadMultiplier = 1
+  loadMultiplier = 1,
+  clock: DayClock = PACIFIC_CLOCK
 ): FocusLoadStats {
   const implements_ = Math.max(1, loadMultiplier)
   let topSetLbs: number | null = null
@@ -265,7 +267,7 @@ export function computeFocusLoadStats(
 
   for (const s of sets) {
     if (s.exercise !== focus.exercise) continue
-    const day = safePacificDayKey(s.logged_at)
+    const day = clock.safeDayKey(s.logged_at)
     if (day === '' || day < focus.start_date || day > focus.end_date) continue
     if (s.weight_lbs == null) continue
     weightedSets++
@@ -335,14 +337,21 @@ export interface FocusDayCell {
  *   `category` internally.
  * @param sets All logged sets, usually `WeightRoomData.sets`.
  * @param category Body-region lane to build — `'upper'` or `'lower'`.
- * @param today Local `YYYY-MM-DD` key for the viewed day. An empty string
- *   or a key before the earliest focus window returns an empty array.
+ * @param today `YYYY-MM-DD` key for the viewed day. An empty string or a key
+ *   before the earliest focus window returns an empty array. **Must have been
+ *   produced by `clock`** — it bounds the cell range while the sets inside are
+ *   bucketed with `clock`, so a key from a different zone silently shifts the
+ *   last cell relative to the volume that fills it. Callers holding a clock
+ *   should pass `clock.today()`.
+ * @param clock Zone each day's volume is bucketed in; defaults to Pacific
+ *   (#429). See the constraint on `today`.
  */
 export function buildFocusLaneCells(
   focuses: readonly MonthlyFocus[],
   sets: readonly StrengthSet[],
   category: FocusCategory,
-  today: string
+  today: string,
+  clock: DayClock = PACIFIC_CLOCK
 ): FocusDayCell[] {
   const laneFocuses = focuses.filter(f => f.category === category)
   if (laneFocuses.length === 0 || today === '') return []
@@ -358,7 +367,7 @@ export function buildFocusLaneCells(
   const repsByKey = new Map<string, number>()
   const setCountByKey = new Map<string, number>()
   for (const s of sets) {
-    const day = safePacificDayKey(s.logged_at)
+    const day = clock.safeDayKey(s.logged_at)
     if (day === '') continue
     const k = `${s.exercise}|${day}`
     repsByKey.set(k, (repsByKey.get(k) ?? 0) + s.reps)
@@ -495,20 +504,21 @@ export function summarizeFocusCampaigns(
   focuses: readonly MonthlyFocus[],
   exercise: string,
   sets: readonly StrengthSet[],
-  now: Date = new Date()
+  now: Date = new Date(),
+  clock: DayClock = PACIFIC_CLOCK
 ): FocusCampaignSummary | null {
   const windows = focuses
     .filter(focus => focus.exercise === exercise)
     .sort((a, b) => (a.start_date < b.start_date ? -1 : a.start_date > b.start_date ? 1 : 0))
   if (windows.length === 0) return null
 
-  const today = pacificDayKey(now)
+  const today = clock.dayKey(now)
   let daysHit = 0
   let daysElapsed = 0
   let isActive = false
 
   for (const focus of windows) {
-    const adherence = computeFocusAdherence(focus, sets, now)
+    const adherence = computeFocusAdherence(focus, sets, now, clock)
     daysHit += adherence.daysHit
     daysElapsed += adherence.daysElapsed
     if (isFocusActiveOnDay(focus, today)) isActive = true
@@ -521,7 +531,7 @@ export function summarizeFocusCampaigns(
   let campaignReps = 0
   for (const s of sets) {
     if (s.exercise !== exercise) continue
-    const day = safePacificDayKey(s.logged_at)
+    const day = clock.safeDayKey(s.logged_at)
     if (day === '') continue
     if (windows.some(focus => isFocusActiveOnDay(focus, day))) campaignReps += s.reps
   }

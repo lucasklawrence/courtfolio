@@ -105,6 +105,49 @@ const eslintConfig = [
       ],
     },
   },
+  {
+    // The strength modules must reach the calendar through a `DayClock`, not
+    // through the Pacific-bound shim (#429).
+    //
+    // `day-keys.ts` still exists and is still correct for the surfaces that are
+    // legitimately Pacific-only — the data layer, the admin routes, the
+    // components. But these modules are the ones heading for a shared package,
+    // where hardcoding one home timezone is the bug. Importing the shim here
+    // would re-hardwire Pacific in a way no test in this repo could see, since
+    // this repo *is* Pacific.
+    //
+    // Scoped to the shipping set rather than all of `lib/**`, so the shim stays
+    // freely available everywhere it's still the right answer.
+    files: [
+      'lib/training-facility/achievements.ts',
+      'lib/training-facility/exercise-progression.ts',
+      'lib/training-facility/load-management.ts',
+      'lib/training-facility/monthly-focus.ts',
+      'lib/training-facility/strength-streaks.ts',
+      'lib/training-facility/strength-today.ts',
+      'lib/training-facility/weight-room-history.ts',
+      'lib/training-facility/workout-sessions.ts',
+      'lib/training-facility/workout-stats.ts',
+    ],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['**/day-keys', '@/lib/training-facility/day-keys'],
+              message:
+                'Import from ./clock and take a DayClock parameter instead. day-keys.ts is the Pacific-bound shim; these modules ship in a package where the zone is the caller’s choice.',
+            },
+            {
+              group: ['@/components/*', '@/components/**'],
+              message: 'The domain layer must not import from components.',
+            },
+          ],
+        },
+      ],
+    },
+  },
 ]
 
 export default eslintConfig
