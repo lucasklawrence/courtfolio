@@ -19,21 +19,23 @@ import {
  * runs across sessions, and — in this log — mostly *outside* them. Every set on
  * record today is loose grease-the-groove logging with no `workout_id`, so a
  * per-session trend would plot nothing at all. The unit here is therefore the
- * **Pacific training day**: it holds loose sets and session sets alike, and a
- * session recorded through #376 lands in its own day without special-casing.
+ * **training day**: it holds loose sets and session sets alike, and a session
+ * recorded through #376 lands in its own day without special-casing. Which
+ * calendar day that is comes from the caller's {@link DayClock} — Pacific for
+ * this site, the client's own zone for a consumer serving other people (#429).
  *
- * Pure and isomorphic, like its sibling — no Supabase client, no React, no
- * clock. The arithmetic that misleads when it's wrong (what counts as the top
- * set, which estimates are worth plotting) is unit-testable rather than only
- * observable by squinting at a chart.
+ * Pure and isomorphic, like its sibling — no Supabase client, no React, and no
+ * wall clock beyond the zone it's handed. The arithmetic that misleads when
+ * it's wrong (what counts as the top set, which estimates are worth plotting)
+ * is unit-testable rather than only observable by squinting at a chart.
  */
 
 /** One training day's worth of a single movement. */
 export interface ExerciseDayPoint {
-  /** Pacific day key, `YYYY-MM-DD`. */
+  /** Calendar day key in the caller's clock zone, `YYYY-MM-DD`. */
   dayKey: string
   /**
-   * Pacific noon of {@link dayKey}, as the chart's x value. Noon rather than
+   * Noon on {@link dayKey} in the clock's zone, as the chart's x value. Noon rather than
    * midnight so a DST boundary can't shunt a point onto the adjacent day.
    */
   date: Date
@@ -306,7 +308,7 @@ export interface SetDetailCoverage {
    * would put a number behind a sentence that doesn't describe it.
    */
   sessionsBefore: number
-  /** Pacific day key of the earliest such session, or `null` when there are none. */
+  /** Day key of the earliest such session, or `null` when there are none. */
   earliestSessionDayKey: string | null
 }
 
@@ -314,7 +316,7 @@ export interface SetDetailCoverage {
  * Count the **imported** sessions that predate a movement's first logged set and
  * have no sets of their own.
  *
- * @param firstDayKey The movement's first training day, Pacific. `null` yields
+ * @param firstDayKey The movement's first training day, in `clock's` zone. `null` yields
  *   an empty coverage report rather than counting the whole history as "before".
  * @param workouts Every recorded session. Only `apple_health` ones are counted —
  *   see {@link SetDetailCoverage.sessionsBefore}.

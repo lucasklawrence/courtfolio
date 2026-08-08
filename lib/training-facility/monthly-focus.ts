@@ -337,8 +337,14 @@ export interface FocusDayCell {
  *   `category` internally.
  * @param sets All logged sets, usually `WeightRoomData.sets`.
  * @param category Body-region lane to build — `'upper'` or `'lower'`.
- * @param today Local `YYYY-MM-DD` key for the viewed day. An empty string
- *   or a key before the earliest focus window returns an empty array.
+ * @param today `YYYY-MM-DD` key for the viewed day. An empty string or a key
+ *   before the earliest focus window returns an empty array. **Must have been
+ *   produced by `clock`** — it bounds the cell range while the sets inside are
+ *   bucketed with `clock`, so a key from a different zone silently shifts the
+ *   last cell relative to the volume that fills it. Callers holding a clock
+ *   should pass `clock.today()`.
+ * @param clock Zone each day's volume is bucketed in; defaults to Pacific
+ *   (#429). See the constraint on `today`.
  */
 export function buildFocusLaneCells(
   focuses: readonly MonthlyFocus[],

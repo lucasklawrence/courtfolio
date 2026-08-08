@@ -396,7 +396,10 @@ export function buildMovementLoads(
  * therefore still reports every actively-trained movement, and a future caller
  * that wants the unfiltered set (an export, a per-movement page) has it.
  *
- * @see buildMovementLoads for the parameters.
+ * @see buildMovementLoads for `sets`, `goals`, `now`, and `exercises`.
+ * @param clock Zone every window boundary is measured in; defaults to Pacific
+ *   (#429). Forwarded to {@link buildMovementLoads}, so the day a set counts
+ *   toward — and therefore the acute/chronic split — follows it.
  */
 export function buildMovementLoadView(
   sets: readonly StrengthSet[],
