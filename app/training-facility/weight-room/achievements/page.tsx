@@ -11,7 +11,7 @@ import {
   getWeightRoomDataServer,
 } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
-import { buildTrophyRoomView } from '@/lib/training-facility/achievements'
+import { buildAchievementBoard } from '@/lib/training-facility/achievements'
 
 /**
  * Weight Room Trophy Room (#336) — the "grease the groove" achievement wall.
@@ -39,7 +39,7 @@ export default async function WeightRoomAchievementsPage(): Promise<JSX.Element>
     isAdminRequest().catch(() => false),
   ])
 
-  const view = buildTrophyRoomView(
+  const view = buildAchievementBoard(
     data?.sets ?? [],
     data?.goals ?? [],
     achievements,

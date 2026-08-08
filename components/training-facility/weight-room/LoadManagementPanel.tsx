@@ -12,6 +12,16 @@ import {
 const SPARK_WIDTH = 220
 const SPARK_HEIGHT = 44
 
+/**
+ * Accent for a movement with no configured goal, and therefore no color of its
+ * own — rim-orange, the Court Vision default (#427).
+ *
+ * Lives here rather than in `load-management.ts` because it answers a rendering
+ * question. The domain reports `color: null`; what to draw instead belongs to
+ * whoever is drawing.
+ */
+const DEFAULT_MOVEMENT_COLOR = '#EA580C'
+
 /** Props for {@link LoadManagementPanel}. */
 export interface LoadManagementPanelProps {
   /**
@@ -111,6 +121,10 @@ interface MovementLoadCardProps {
 function MovementLoadCard({ load }: MovementLoadCardProps): JSX.Element {
   const flagMeta = RAMP_FLAGS[load.flag]
   const volumeLabel = load.metric === 'load' ? '7d load volume' : '7d rep volume'
+  // A gym lift with no daily goal carries no color of its own (#427). The
+  // domain reports that absence; picking what to draw instead is this panel's
+  // call, and rim-orange is the Court Vision accent it has always used.
+  const accent = load.color ?? DEFAULT_MOVEMENT_COLOR
 
   return (
     <article
@@ -122,7 +136,7 @@ function MovementLoadCard({ load }: MovementLoadCardProps): JSX.Element {
       <header className="flex items-baseline justify-between gap-3">
         <h3
           className="font-mono text-sm font-bold uppercase tracking-[0.2em]"
-          style={{ color: load.color }}
+          style={{ color: accent }}
         >
           {load.displayName ?? load.movement}
         </h3>
@@ -166,7 +180,7 @@ function MovementLoadCard({ load }: MovementLoadCardProps): JSX.Element {
             points={load.sparkline.map((p, i) => ({ x: i, y: p.volume }))}
             width={SPARK_WIDTH}
             height={SPARK_HEIGHT}
-            stroke={load.color}
+            stroke={accent}
             ariaLabel={`${load.displayName ?? load.movement} 28-day ${load.metric === 'load' ? 'load' : 'rep'} volume trend`}
           />
         </div>

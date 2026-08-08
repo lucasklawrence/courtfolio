@@ -87,8 +87,15 @@ export const SCOPE_LABELS: Readonly<Record<AchievementScope, string>> = {
   set: 'Single set',
 }
 
-/** Fallback emoji per scope when a tier carries no configured `icon`. */
-const SCOPE_ICONS: Readonly<Record<AchievementScope, string>> = {
+/**
+ * Fallback emoji per scope when a tier carries no configured `icon`.
+ *
+ * Exported and overridable (#427) rather than evicted like the movement color
+ * was: these glyphs are generic — a flame for a streak, a medal for a month —
+ * so a different consumer may well keep them. One that wants clinical iconography
+ * passes its own map to {@link achievementIcon}, or `{}` for none at all.
+ */
+export const DEFAULT_SCOPE_ICONS: Readonly<Record<AchievementScope, string>> = {
   day: '💯',
   week: '📅',
   month: '🏅',
@@ -220,7 +227,7 @@ export interface AchievementGroup {
 }
 
 /** The Trophy Room's full display model. */
-export interface TrophyRoomView {
+export interface AchievementBoard {
   /** Pooled ladder first (if configured), then one group per exercise, alphabetical. */
   groups: AchievementGroup[]
   /** Total earned across every group. */
@@ -525,7 +532,7 @@ function resolveMetric(
  * @param sets All logged sets, usually `WeightRoomData.sets`.
  * @param goals Configured exercises; supplies each `daily_target` (the bar a
  *   `'streak'` day must clear) and the accent color used by
- *   {@link buildTrophyRoomView}.
+ *   {@link buildAchievementBoard}.
  * @param achievements The ladder from `weight_room_achievements`; may be empty.
  * @param exercises The movement catalog, supplying `load_multiplier` for
  *   movements with no daily goal — see {@link buildMetrics}.
@@ -580,12 +587,12 @@ const STRIP_SIZE = 6
  *   label has to come from the catalog, not from `goals`, or a movement with
  *   tiers and no goal renders its raw slug.
  */
-export function buildTrophyRoomView(
+export function buildAchievementBoard(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   achievements: readonly WeightRoomAchievement[],
   exercises: readonly WeightRoomExercise[] = []
-): TrophyRoomView {
+): AchievementBoard {
   const colorByExercise = new Map(goals.map(g => [g.exercise, g.color]))
   // Catalog first, goal-joined label second (#384). Achievements outlive their
   // goal, so a goals-only lookup would drop back to the slug for exactly the
@@ -721,9 +728,20 @@ export function achievementUnit(achievement: WeightRoomAchievement): string {
   return achievement.measure === 'tonnage' || achievement.measure === 'load' ? 'lb' : 'reps'
 }
 
-/** The emoji shown on a badge face — the tier's own `icon`, else a scope default. */
-export function achievementIcon(achievement: WeightRoomAchievement): string {
-  return achievement.icon ?? SCOPE_ICONS[achievement.scope]
+/**
+ * The glyph shown on a badge face — the tier's own `icon`, else a scope default.
+ *
+ * @param achievement The tier being rendered.
+ * @param fallbacks Scope → glyph map used when the tier configures no `icon` of
+ *   its own. Defaults to {@link DEFAULT_SCOPE_ICONS}; pass a partial map to
+ *   override some scopes, or `{}` to render nothing where a tier is silent.
+ * @returns The glyph, or `''` when neither the tier nor `fallbacks` supplies one.
+ */
+export function achievementIcon(
+  achievement: WeightRoomAchievement,
+  fallbacks: Readonly<Partial<Record<AchievementScope, string>>> = DEFAULT_SCOPE_ICONS
+): string {
+  return achievement.icon ?? fallbacks[achievement.scope] ?? ''
 }
 
 /**
