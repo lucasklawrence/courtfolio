@@ -9,7 +9,7 @@
  */
 
 import type { CardioSession } from '@/types/cardio'
-import type { DateRange } from '@/components/training-facility/shared/DateFilter'
+import type { DateRange } from '@/lib/training-facility/date-range'
 import { filterCardioSessionsByActivity } from './cardio-shared'
 
 /**

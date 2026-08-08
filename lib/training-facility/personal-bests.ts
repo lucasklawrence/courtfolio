@@ -18,7 +18,7 @@
  */
 
 import type { CardioActivity, CardioData, CardioSession, CardioTimePoint } from '@/types/cardio'
-import type { DateRange } from '@/components/training-facility/shared/DateFilter'
+import type { DateRange } from '@/lib/training-facility/date-range'
 
 /** A single personal-best record — a value plus the date it was achieved. */
 export interface PersonalBestRecord {
