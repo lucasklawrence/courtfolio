@@ -25,7 +25,12 @@
  * start and end days regardless of the time portion of `entry`. The
  * invariant `start <= end` is always maintained.
  */
-export type DateRange = { start: Date; end: Date }
+export type DateRange = {
+  /** Inclusive lower bound, local start-of-day (00:00:00.000). */
+  start: Date
+  /** Inclusive upper bound, local end-of-day (23:59:59.999). Never before {@link start}. */
+  end: Date
+}
 
 /**
  * The lookback presets, in display order. `months: null` marks the open-ended
@@ -116,13 +121,29 @@ export function toInputValue(d: Date): string {
  * midnight. Returns `null` for empty input or unparseable values so the
  * caller can no-op rather than storing `Invalid Date`.
  *
+ * **A date that doesn't exist is unparseable, not a nearby date.** `new Date()`
+ * silently rolls `2024-02-31` forward to March 2 rather than rejecting it, so
+ * the parsed value is round-tripped against the input before being accepted.
+ * The browser's own date picker can't produce such a string, but this is an
+ * exported helper and its contract says `null` for malformed input — it should
+ * not quietly answer with a different day than it was asked about.
+ *
  * @param s - Raw `<input type="date">` value, expected as `YYYY-MM-DD`.
- *   Empty or malformed strings return `null`.
+ *   Empty, malformed, or non-existent calendar dates return `null`.
  */
 export function parseInputValue(s: string): Date | null {
   if (!s) return null
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s)
+  if (!match) return null
+  const [, year, month, day] = match
   const d = new Date(`${s}T00:00:00`)
-  return Number.isNaN(d.getTime()) ? null : d
+  if (Number.isNaN(d.getTime())) return null
+  // Rolled forward (Feb 31 → Mar 2) means the requested day never existed.
+  return d.getFullYear() === Number(year) &&
+    d.getMonth() === Number(month) - 1 &&
+    d.getDate() === Number(day)
+    ? d
+    : null
 }
 
 /**
