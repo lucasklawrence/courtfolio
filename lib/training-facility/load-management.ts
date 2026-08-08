@@ -12,7 +12,7 @@ import type {
   WeightRoomExercise,
 } from '@/types/weight-room'
 
-import { pacificDayKey, shiftDayKey } from './day-keys'
+import { PACIFIC_CLOCK, shiftDayKey, type DayClock } from './clock'
 
 /**
  * Ramp-rate aggregation for the Weight Room Load Management panel (#316).
@@ -256,14 +256,17 @@ export interface MovementLoadView {
  *   as load- or rep-driven from its `equipment` rather than guessing from the
  *   share of weighted sets. Omitted or missing a movement falls back to the
  *   pre-#384 threshold — see {@link isLoadDriven}.
+ * @param clock zone every window boundary is measured in; defaults to Pacific
+ *   (#429).
  */
 export function buildMovementLoads(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[] = [],
   now: Date = new Date(),
-  exercises: readonly WeightRoomExercise[] = []
+  exercises: readonly WeightRoomExercise[] = [],
+  clock: DayClock = PACIFIC_CLOCK
 ): MovementLoad[] {
-  const todayKey = pacificDayKey(now)
+  const todayKey = clock.dayKey(now)
   const colorByExercise = new Map(goals.map(g => [g.exercise, g.color]))
   const equipmentByExercise = new Map(exercises.map(e => [e.slug, e.equipment]))
   const labelByExercise = new Map(exercises.map(e => [e.slug, e.display_name]))
@@ -305,7 +308,7 @@ export function buildMovementLoads(
     for (const s of exSets) {
       const d = new Date(s.logged_at)
       if (!Number.isFinite(d.getTime())) continue
-      const key = pacificDayKey(d)
+      const key = clock.dayKey(d)
       if (earliestKey === null || key < earliestKey) earliestKey = key
       const offset = offsetByKey.get(key)
       if (offset === undefined) continue // outside the trailing chronic window
@@ -399,9 +402,10 @@ export function buildMovementLoadView(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[] = [],
   now: Date = new Date(),
-  exercises: readonly WeightRoomExercise[] = []
+  exercises: readonly WeightRoomExercise[] = [],
+  clock: DayClock = PACIFIC_CLOCK
 ): MovementLoadView {
-  const all = buildMovementLoads(sets, goals, now, exercises)
+  const all = buildMovementLoads(sets, goals, now, exercises, clock)
   const loads: MovementLoad[] = []
   const infrequent: InfrequentMovement[] = []
 

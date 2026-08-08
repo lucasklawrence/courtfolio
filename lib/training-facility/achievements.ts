@@ -8,7 +8,7 @@ import type {
 } from '@/types/weight-room'
 
 import { targetResolverFor } from './goal-targets'
-import { mondayOfDayKey, safePacificDayKey, shiftDayKey } from './day-keys'
+import { PACIFIC_CLOCK, mondayOfDayKey, shiftDayKey, type DayClock } from './clock'
 
 /**
  * Pure resolver for the Weight Room Trophy Room (#336) — "grease the groove"
@@ -292,7 +292,8 @@ function emptyMetrics(): MovementMetrics {
 function buildMetrics(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
-  exercises: readonly WeightRoomExercise[] = []
+  exercises: readonly WeightRoomExercise[] = [],
+  clock: DayClock = PACIFIC_CLOCK
 ): Map<string | null, MovementMetrics> {
   // Implements moved per set, per exercise. Catalog first, then the goal's
   // joined copy, then a single implement — the only safe default, since it can
@@ -323,7 +324,7 @@ function buildMetrics(
   // Sets arrive oldest-first from the data layer, but sort defensively: the
   // `'set'` and `'lifetime'` earn dates both depend on chronological order.
   const ordered = [...sets]
-    .map(s => ({ set: s, day: safePacificDayKey(s.logged_at) }))
+    .map(s => ({ set: s, day: clock.safeDayKey(s.logged_at) }))
     .filter(entry => entry.day !== '')
     .sort((a, b) => (a.day < b.day ? -1 : a.day > b.day ? 1 : 0))
 
@@ -536,15 +537,18 @@ function resolveMetric(
  * @param achievements The ladder from `weight_room_achievements`; may be empty.
  * @param exercises The movement catalog, supplying `load_multiplier` for
  *   movements with no daily goal — see {@link buildMetrics}.
+ * @param clock Zone every day, week and month bucket is measured in; defaults
+ *   to Pacific (#429).
  * @returns One {@link ResolvedAchievement} per tier, in the order supplied.
  */
 export function resolveAchievements(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   achievements: readonly WeightRoomAchievement[],
-  exercises: readonly WeightRoomExercise[] = []
+  exercises: readonly WeightRoomExercise[] = [],
+  clock: DayClock = PACIFIC_CLOCK
 ): ResolvedAchievement[] {
-  const metrics = buildMetrics(sets, goals, exercises)
+  const metrics = buildMetrics(sets, goals, exercises, clock)
 
   return achievements.map(achievement => {
     const outcome = resolveMetric(metrics.get(achievement.exercise) ?? emptyMetrics(), achievement)
@@ -586,12 +590,14 @@ const STRIP_SIZE = 6
  *   deliberately not FK'd to goals — deleting a goal keeps its badges — so the
  *   label has to come from the catalog, not from `goals`, or a movement with
  *   tiers and no goal renders its raw slug.
+ * @param clock Zone every bucket is measured in; defaults to Pacific (#429).
  */
 export function buildAchievementBoard(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   achievements: readonly WeightRoomAchievement[],
-  exercises: readonly WeightRoomExercise[] = []
+  exercises: readonly WeightRoomExercise[] = [],
+  clock: DayClock = PACIFIC_CLOCK
 ): AchievementBoard {
   const colorByExercise = new Map(goals.map(g => [g.exercise, g.color]))
   // Catalog first, goal-joined label second (#384). Achievements outlive their
@@ -611,7 +617,7 @@ export function buildAchievementBoard(
 
   // Attached once here rather than inside `resolveAchievements` so the groups
   // and both strips read the same label off the same objects.
-  const resolved = resolveAchievements(sets, goals, achievements, exercises).map(entry => {
+  const resolved = resolveAchievements(sets, goals, achievements, exercises, clock).map(entry => {
     const slug = entry.achievement.exercise
     const label = slug === null || slug === undefined ? undefined : labelByExercise.get(slug)
     return label === undefined ? entry : { ...entry, displayName: label }

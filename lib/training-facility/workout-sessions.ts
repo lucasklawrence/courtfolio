@@ -1,6 +1,6 @@
 import type { WeightRoomWorkout } from '@/types/weight-room'
 
-import { pacificDayKey } from './day-keys'
+import { PACIFIC_CLOCK, type DayClock } from './clock'
 
 /**
  * Pure helpers for bounded workout sessions (#374).
@@ -33,17 +33,21 @@ const STALE_WORKOUT_MS = STALE_WORKOUT_HOURS * 60 * 60 * 1000
  * splitting one workout across two days would be wrong in every rollup that
  * consumes it.
  *
- * Pacific rather than the server's zone for the reason #319 unified on — Vercel
+ * A fixed zone rather than the server's for the reason #319 unified on — Vercel
  * runs the server in UTC, so local-time bucketing would silently shift every
  * boundary between SSR and the browser.
  *
  * @param workout The session to place.
+ * @param clock Zone the day is measured in; defaults to Pacific (#429).
  * @returns The day key, or `null` when `started_at` isn't a parseable timestamp.
  */
-export function workoutDayKey(workout: Pick<WeightRoomWorkout, 'started_at'>): string | null {
+export function workoutDayKey(
+  workout: Pick<WeightRoomWorkout, 'started_at'>,
+  clock: DayClock = PACIFIC_CLOCK
+): string | null {
   const started = new Date(workout.started_at)
   if (!Number.isFinite(started.getTime())) return null
-  return pacificDayKey(started)
+  return clock.dayKey(started)
 }
 
 /**

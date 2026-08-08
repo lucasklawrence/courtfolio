@@ -6,7 +6,7 @@ import type {
 } from '@/types/weight-room'
 
 import { buildSlotProgress, extraSets, type SlotProgress } from './live-workout'
-import { safePacificDayKey } from './day-keys'
+import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { compareInstants, isStaleOpenWorkout, workoutDurationMinutes } from './workout-sessions'
 
 /**
@@ -759,11 +759,15 @@ export interface WorkoutYearOption {
  * 2020 chips would bury that under uniformity.
  *
  * @param entries History entries, in any order.
+ * @param clock Zone the year boundary is measured in; defaults to Pacific (#429).
  */
-export function workoutYearOptions(entries: readonly WorkoutHistoryEntry[]): WorkoutYearOption[] {
+export function workoutYearOptions(
+  entries: readonly WorkoutHistoryEntry[],
+  clock: DayClock = PACIFIC_CLOCK
+): WorkoutYearOption[] {
   const counts = new Map<number, number>()
   for (const entry of entries) {
-    const dayKey = safePacificDayKey(entry.workout.started_at)
+    const dayKey = clock.safeDayKey(entry.workout.started_at)
     if (dayKey === '') continue
     const year = Number(dayKey.slice(0, 4))
     if (!Number.isFinite(year)) continue
@@ -775,11 +779,17 @@ export function workoutYearOptions(entries: readonly WorkoutHistoryEntry[]): Wor
 }
 
 /**
- * Which Pacific calendar year an entry belongs to, or `null` when its timestamp
- * can't be parsed.
+ * Which calendar year an entry belongs to, or `null` when its timestamp can't be
+ * parsed.
+ *
+ * @param entry The history entry to place.
+ * @param clock Zone the year boundary is measured in; defaults to Pacific (#429).
  */
-export function workoutYear(entry: WorkoutHistoryEntry): number | null {
-  const dayKey = safePacificDayKey(entry.workout.started_at)
+export function workoutYear(
+  entry: WorkoutHistoryEntry,
+  clock: DayClock = PACIFIC_CLOCK
+): number | null {
+  const dayKey = clock.safeDayKey(entry.workout.started_at)
   if (dayKey === '') return null
   const year = Number(dayKey.slice(0, 4))
   return Number.isFinite(year) ? year : null

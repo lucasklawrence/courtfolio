@@ -1,6 +1,6 @@
 import type { StrengthSet, WeightRoomExercise, WeightRoomWorkout } from '@/types/weight-room'
 
-import { dayKeyToPacificNoon, safePacificDayKey } from './day-keys'
+import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { workoutDayKey } from './workout-sessions'
 import {
   E1RM_MAX_RELIABLE_REPS,
@@ -155,7 +155,8 @@ function reliableOneRepMax(load: number, reps: number): number | null {
  *   half.
  * @param workouts Recorded sessions, so a session's sets stay on the session's
  *   own day. Omitting it dates every set by its own timestamp, which splits a
- *   session that ran past Pacific midnight across two points.
+ *   session that ran past midnight across two points.
+ * @param clock Zone every day bucket is measured in; defaults to Pacific (#429).
  * @returns The progression, or `null` when the movement has no plottable sets —
  *   a real state (a catalog row added before its first session), and one the
  *   caller renders as an empty view rather than as a broken chart.
@@ -164,7 +165,8 @@ export function buildExerciseProgression(
   exercise: string,
   sets: readonly StrengthSet[],
   exercises: readonly WeightRoomExercise[] = [],
-  workouts: readonly WeightRoomWorkout[] = []
+  workouts: readonly WeightRoomWorkout[] = [],
+  clock: DayClock = PACIFIC_CLOCK
 ): ExerciseProgression | null {
   const multipliers = loadMultipliersBySlug(exercises)
 
@@ -174,19 +176,19 @@ export function buildExerciseProgression(
   // in each.
   const sessionDay = new Map<string, string>()
   for (const workout of workouts) {
-    const dayKey = workoutDayKey(workout)
+    const dayKey = workoutDayKey(workout, clock)
     if (dayKey !== null) sessionDay.set(workout.id, dayKey)
   }
 
-  // Bucket by Pacific day key rather than by raw timestamp: this renders on a
-  // UTC server, where a 10pm-Pacific set belongs to the following calendar day
-  // and would split one evening's work across two points.
+  // Bucket by day key rather than by raw timestamp: this renders on a UTC
+  // server, where a 10pm set belongs to the following calendar day and would
+  // split one evening's work across two points.
   const byDay = new Map<string, StrengthSet[]>()
   for (const set of sets) {
     if (set.exercise !== exercise) continue
     const dayKey =
       (set.workout_id === undefined ? undefined : sessionDay.get(set.workout_id)) ??
-      safePacificDayKey(set.logged_at)
+      clock.safeDayKey(set.logged_at)
     // An unparseable timestamp has no day to belong to. Dropped rather than
     // bucketed under the epoch, which would drag the x-axis back to 1970.
     if (dayKey === '') continue
@@ -209,7 +211,7 @@ export function buildExerciseProgression(
   // `YYYY-MM-DD` sorts chronologically as a string, which is the whole point of
   // the day-key format — no Date round-trip needed to order the x-axis.
   for (const dayKey of [...byDay.keys()].sort()) {
-    const date = dayKeyToPacificNoon(dayKey)
+    const date = clock.toNoon(dayKey)
     if (date === null) continue
     const daySets = byDay.get(dayKey) ?? []
 
@@ -319,11 +321,13 @@ export interface SetDetailCoverage {
  * @param sets Every logged set — used only to tell which sessions carry detail.
  *   A session with sets isn't part of the gap even if it predates this movement;
  *   it recorded what happened, just not this movement.
+ * @param clock Zone each session's day is measured in; defaults to Pacific (#429).
  */
 export function buildSetDetailCoverage(
   firstDayKey: string | null,
   workouts: readonly WeightRoomWorkout[],
-  sets: readonly StrengthSet[]
+  sets: readonly StrengthSet[],
+  clock: DayClock = PACIFIC_CLOCK
 ): SetDetailCoverage {
   if (firstDayKey === null) return { sessionsBefore: 0, earliestSessionDayKey: null }
 
@@ -337,7 +341,7 @@ export function buildSetDetailCoverage(
   for (const workout of workouts) {
     if (workout.source !== 'apple_health') continue
     if (workoutsWithSets.has(workout.id)) continue
-    const dayKey = safePacificDayKey(workout.started_at)
+    const dayKey = clock.safeDayKey(workout.started_at)
     // Day keys compare as strings — `2018-01-08` < `2026-05-25` lexicographically
     // and chronologically alike.
     if (dayKey === '' || dayKey >= firstDayKey) continue
@@ -355,13 +359,17 @@ export function buildSetDetailCoverage(
  * nothing to trend, so it never gets a link that lands on an empty page.
  *
  * @param sets Every logged set.
+ * @param clock Zone each day is measured in; defaults to Pacific (#429).
  * @returns Slugs, newest training day first, then alphabetically among movements
  *   last trained the same day.
  */
-export function trendableExercises(sets: readonly StrengthSet[]): string[] {
+export function trendableExercises(
+  sets: readonly StrengthSet[],
+  clock: DayClock = PACIFIC_CLOCK
+): string[] {
   const lastDay = new Map<string, string>()
   for (const set of sets) {
-    const dayKey = safePacificDayKey(set.logged_at)
+    const dayKey = clock.safeDayKey(set.logged_at)
     if (dayKey === '') continue
     const seen = lastDay.get(set.exercise)
     if (seen === undefined || dayKey > seen) lastDay.set(set.exercise, dayKey)

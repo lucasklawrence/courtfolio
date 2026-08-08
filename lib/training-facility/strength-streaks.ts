@@ -1,6 +1,6 @@
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
-import { pacificDayKey, safePacificDayKey } from './day-keys'
+import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { targetResolverFor } from './goal-targets'
 import { type StreakCounts, streakFromDailyReps } from './hit-day-streaks'
 
@@ -44,11 +44,13 @@ export type StrengthStreakResult = StreakCounts
  *   to `new Date()`. Pass an explicit value from the viewer's clock
  *   when calling from a server-rendered surface so server-side UTC
  *   doesn't disagree with the visitor's local timezone (#197).
+ * @param clock Zone the day buckets are measured in; defaults to Pacific (#429).
  */
 export function computeStrengthStreaks(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
-  now: Date = new Date()
+  now: Date = new Date(),
+  clock: DayClock = PACIFIC_CLOCK
 ): Record<string, StrengthStreakResult> {
   const result: Record<string, StrengthStreakResult> = {}
 
@@ -57,7 +59,7 @@ export function computeStrengthStreaks(
   // sorts keys explicitly so the input order doesn't matter.
   const repsByExerciseAndDay = new Map<string, Map<string, number>>()
   for (const s of sets) {
-    const day = safePacificDayKey(s.logged_at)
+    const day = clock.safeDayKey(s.logged_at)
     if (day === '') continue
     let dayMap = repsByExerciseAndDay.get(s.exercise)
     if (!dayMap) {
@@ -67,7 +69,7 @@ export function computeStrengthStreaks(
     dayMap.set(day, (dayMap.get(day) ?? 0) + s.reps)
   }
 
-  const todayKey = pacificDayKey(now)
+  const todayKey = clock.dayKey(now)
 
   for (const goal of goals) {
     if (goal.daily_target <= 0) {
