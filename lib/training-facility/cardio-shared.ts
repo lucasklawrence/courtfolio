@@ -14,7 +14,7 @@
 
 import type { CardioActivity, CardioSession, HrZone } from '@/types/cardio'
 import { HR_ZONES, type HrZoneConfig } from '@/constants/hr-zones'
-import type { DateRange } from '@/components/training-facility/shared/DateFilter'
+import type { DateRange } from '@/lib/training-facility/date-range'
 
 /**
  * Parse a session-date string as a local-time `Date`.

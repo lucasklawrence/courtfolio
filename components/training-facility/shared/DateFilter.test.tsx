@@ -117,6 +117,26 @@ describe('toInputValue / parseInputValue', () => {
     expect(parsed?.getMonth()).toBe(3)
     expect(parsed?.getDate()).toBe(15)
   })
+
+  it('rejects a calendar date that does not exist rather than rolling it forward', () => {
+    // `new Date('2024-02-31T00:00:00')` answers March 2. Returning a different
+    // day than the caller asked about is worse than returning nothing.
+    expect(parseInputValue('2024-02-31')).toBeNull()
+    expect(parseInputValue('2023-02-29')).toBeNull()
+    expect(parseInputValue('2026-13-01')).toBeNull()
+    expect(parseInputValue('2026-04-31')).toBeNull()
+  })
+
+  it('accepts a real leap day', () => {
+    const parsed = parseInputValue('2024-02-29')
+    expect(parsed?.getMonth()).toBe(1)
+    expect(parsed?.getDate()).toBe(29)
+  })
+
+  it('rejects a shape the date input could never emit', () => {
+    expect(parseInputValue('2026-4-5')).toBeNull()
+    expect(parseInputValue('04/05/2026')).toBeNull()
+  })
 })
 
 describe('rangeForPreset', () => {

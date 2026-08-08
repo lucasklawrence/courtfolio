@@ -76,6 +76,35 @@ const eslintConfig = [
       'react-hooks/preserve-manual-memoization': 'error',
     },
   },
+  {
+    // The domain layer must not import from the component layer (#425).
+    //
+    // Nine modules here used to import `startOfDay` and the `DateRange` type
+    // from `DateFilter.tsx` — a `'use client'` React component — because that
+    // is where the helpers happened to be defined. It typechecked and it
+    // worked, and it also meant the domain layer's import graph contained a
+    // React component. The helpers now live in `lib/training-facility/
+    // date-range.ts`; this rule is what stops the next convenient definition
+    // from recreating the inversion.
+    //
+    // Scoped to `lib/**` only: components importing from `lib/` is the correct
+    // direction and stays unrestricted.
+    files: ['lib/**/*.ts', 'lib/**/*.tsx'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@/components/*', '@/components/**'],
+              message:
+                'The domain layer must not import from components. Move the shared value into lib/ (see lib/training-facility/date-range.ts) and have the component import it instead.',
+            },
+          ],
+        },
+      ],
+    },
+  },
 ]
 
 export default eslintConfig

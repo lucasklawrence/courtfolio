@@ -28,7 +28,7 @@
 
 import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
 import type { CardioActivity, CardioSession } from '@/types/cardio'
-import type { DateRange } from '@/components/training-facility/shared/DateFilter'
+import type { DateRange } from '@/lib/training-facility/date-range'
 
 /**
  * Default max heart rate (BPM) used when no per-athlete value is supplied.

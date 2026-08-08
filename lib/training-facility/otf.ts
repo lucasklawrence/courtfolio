@@ -1,4 +1,4 @@
-import { isInRange, type DateRange } from '@/components/training-facility/shared/DateFilter'
+import { isInRange, type DateRange } from '@/lib/training-facility/date-range'
 import type { OtfSession, OtfZoneMinutes } from '@/types/otf'
 
 /**

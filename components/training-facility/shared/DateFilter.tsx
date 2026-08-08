@@ -3,25 +3,37 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import React from 'react'
 
+import {
+  EARLIEST_DEFAULT,
+  PRESETS,
+  endOfDay,
+  parseInputValue,
+  rangeForPreset,
+  startOfDay,
+  toInputValue,
+  type DateRange,
+  type PresetId,
+} from '@/lib/training-facility/date-range'
+
 /**
- * Inclusive date range emitted by `DateFilter`. `start` is normalized to
- * local start-of-day (00:00:00.000); `end` to local end-of-day
- * (23:59:59.999). With these bounds, a timestamp comparison
- * `entry >= range.start && entry <= range.end` cleanly includes both the
- * start and end days regardless of the time portion of `entry`. The
- * invariant `start <= end` is always maintained.
+ * Re-exported for the surfaces that have always imported the range vocabulary
+ * from this component (#425). The definitions now live in
+ * `lib/training-facility/date-range.ts` — a domain module that reaches for a
+ * React component to get `startOfDay` had the dependency arrow backwards.
  */
-export type DateRange = { start: Date; end: Date }
-
-const PRESETS = [
-  { id: '1M', label: '1M', months: 1 },
-  { id: '3M', label: '3M', months: 3 },
-  { id: '6M', label: '6M', months: 6 },
-  { id: '1Y', label: '1Y', months: 12 },
-  { id: 'ALL', label: 'All', months: null },
-] as const
-
-export type PresetId = (typeof PRESETS)[number]['id']
+export {
+  EARLIEST_DEFAULT,
+  PRESETS,
+  endOfDay,
+  isInRange,
+  parseInputValue,
+  rangeForPreset,
+  startOfDay,
+  subtractMonths,
+  toInputValue,
+  type DateRange,
+  type PresetId,
+} from '@/lib/training-facility/date-range'
 
 type DateFilterProps = {
   /** Lower bound when the `All` preset is active. Defaults to 2000-01-01. */
@@ -33,96 +45,6 @@ type DateFilterProps = {
   /** Optional Tailwind classes appended to the root element. */
   className?: string
 }
-
-/** Local start-of-day (00:00:00.000) for `d`. */
-export function startOfDay(d: Date): Date {
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0)
-}
-
-/** Local end-of-day (23:59:59.999) for `d`. */
-export function endOfDay(d: Date): Date {
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59, 999)
-}
-
-/**
- * Subtract `months` from `d`, clamping the day to the last valid day of
- * the target month when the source day doesn't exist there. Avoids JS's
- * silent rollover (e.g., March 31 → setMonth(-1) producing March 3
- * instead of February 28/29).
- *
- * @param d - Source date.
- * @param months - Number of calendar months to subtract. Negative values
- *   are not handled — callers want a backward-looking lookback only.
- */
-export function subtractMonths(d: Date, months: number): Date {
-  const targetMonthIndex = d.getMonth() - months
-  const result = new Date(d.getFullYear(), targetMonthIndex, d.getDate())
-  // The Date constructor normalizes negative/overflowing month indices,
-  // but if the target month is shorter than the source day it rolls
-  // forward (e.g., Feb 31 → Mar 3). Detect that and snap back to the
-  // last day of the target month.
-  const expectedMonth = ((targetMonthIndex % 12) + 12) % 12
-  if (result.getMonth() !== expectedMonth) {
-    result.setDate(0)
-  }
-  return result
-}
-
-/**
- * Compute a `DateRange` for one of the preset buttons. Bounds are
- * day-normalized (start: 00:00, end: 23:59:59.999) so the resulting
- * range is independent of the click time.
- *
- * @param preset - Which preset to compute (`1M` / `3M` / `6M` / `1Y` / `ALL`).
- * @param earliest - Lower bound used by the `ALL` preset; ignored otherwise.
- *   Clamped to today if it sits in the future, so the `start <= end`
- *   invariant is preserved against a misconfigured prop.
- */
-export function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
-  const today = new Date()
-  const end = endOfDay(today)
-  if (preset === 'ALL') {
-    // Clamp `start` to today if `earliest` is in the future, so the
-    // documented `start <= end` invariant survives a future-dated
-    // `earliestDate` prop (e.g., a placeholder set before any data lands).
-    const earliestStart = startOfDay(earliest)
-    return { start: earliestStart > end ? startOfDay(today) : earliestStart, end }
-  }
-  const months = PRESETS.find(p => p.id === preset)!.months!
-  return { start: startOfDay(subtractMonths(today, months)), end }
-}
-
-/** Format a `Date` as `YYYY-MM-DD` for `<input type="date">`. */
-export function toInputValue(d: Date): string {
-  const y = d.getFullYear()
-  const m = String(d.getMonth() + 1).padStart(2, '0')
-  const day = String(d.getDate()).padStart(2, '0')
-  return `${y}-${m}-${day}`
-}
-
-/**
- * Parse a `YYYY-MM-DD` string from `<input type="date">` as local
- * midnight. Returns `null` for empty input or unparseable values so the
- * caller can no-op rather than storing `Invalid Date`.
- *
- * @param s - Raw `<input type="date">` value, expected as `YYYY-MM-DD`.
- *   Empty or malformed strings return `null`.
- */
-export function parseInputValue(s: string): Date | null {
-  if (!s) return null
-  const d = new Date(`${s}T00:00:00`)
-  return Number.isNaN(d.getTime()) ? null : d
-}
-
-/**
- * Convenience predicate for consumers that want a one-liner filter.
- * Inclusive on both ends.
- */
-export function isInRange(date: Date, range: DateRange): boolean {
-  return date >= range.start && date <= range.end
-}
-
-const EARLIEST_DEFAULT = new Date(2000, 0, 1)
 
 /**
  * `DateFilter` — shared range picker for the Training Facility (Gym detail

@@ -12,7 +12,7 @@
  */
 
 import type { CardioSession } from '@/types/cardio'
-import type { DateRange } from '@/components/training-facility/shared/DateFilter'
+import type { DateRange } from '@/lib/training-facility/date-range'
 import { filterCardioSessionsByActivity, parseSessionDate } from './cardio-shared'
 
 /** One mile in meters — used for pace and distance conversions. */

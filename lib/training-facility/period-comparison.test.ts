@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { DateRange } from '@/components/training-facility/shared/DateFilter'
+import type { DateRange } from '@/lib/training-facility/date-range'
 import {
   MIN_PREVIOUS_SESSIONS_FOR_DELTA,
   computeDelta,

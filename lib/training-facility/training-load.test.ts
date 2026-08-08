@@ -10,7 +10,7 @@ import {
   trainingLoadInRange,
 } from './training-load'
 import type { CardioSession } from '@/types/cardio'
-import type { DateRange } from '@/components/training-facility/shared/DateFilter'
+import type { DateRange } from '@/lib/training-facility/date-range'
 
 const session = (date: string, extras: Partial<CardioSession> = {}): CardioSession => ({
   date,
