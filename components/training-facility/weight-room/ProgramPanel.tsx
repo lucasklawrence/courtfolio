@@ -41,7 +41,12 @@ export function ProgramPanel({ summary }: ProgramPanelProps): JSX.Element {
             title="How often the next session was the next template in the rotation"
           />
         )}
-        <Stat label="Median session" value={medianOfMedians(templates)} detail="across templates" />
+        <Stat
+          label="Median session"
+          value={medianOfMedians(templates)}
+          detail="as the watch measured it"
+          title="From Apple Health session windows. Sessions whose only timing came from when the note was written are excluded — that window runs short."
+        />
       </dl>
 
       {rotation.length === 0 ? null : <RotationStrip rotation={rotation} />}

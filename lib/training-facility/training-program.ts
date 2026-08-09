@@ -42,14 +42,18 @@ export interface TemplateSummary {
   /** Last day it was run, `YYYY-MM-DD`. */
   lastDayKey: string
   /**
-   * Median session length in minutes, or `null` when no session of this
-   * template has both a start and an end.
+   * Median session length in minutes, from **observed** windows only, or
+   * `null` when no session of this template has one.
    *
    * Median rather than mean: a session left running on the watch skews an
    * average badly, and one forgotten stop should not redefine how long a
    * Back Day takes.
+   *
+   * `icloud_notes` sessions are excluded — see {@link isMeasuredWindow}.
    */
   medianMinutes: number | null
+  /** How many sessions contributed a measured duration to {@link medianMinutes}. */
+  timedSessions: number
 }
 
 /** How faithfully the sessions followed the rotation. */
@@ -91,6 +95,28 @@ export interface ProgramSummary {
   /** First and last templated day, `YYYY-MM-DD`; both `null` when there are none. */
   firstDayKey: string | null
   lastDayKey: string | null
+}
+
+/**
+ * Whether a session's window was observed rather than inferred.
+ *
+ * An `apple_health` session's start and end come off the watch, and a `manual`
+ * one is stamped as the session is recorded — both are measurements of the
+ * workout itself.
+ *
+ * An `icloud_notes` session's window is neither: it is when the *note* was
+ * created and last edited, which is a proxy that systematically runs short.
+ * The notes were typed during training, starting a minute or two in and
+ * stopping before the last set — on 2024-04-16 the note spanned
+ * 21:40:38-22:07:12 inside a workout of 21:39:00-22:10:42. Averaging those in
+ * would quietly drag every template's median down toward how long it takes to
+ * write a note.
+ *
+ * @param workout The session.
+ * @returns True when its duration means what a duration should mean.
+ */
+export function isMeasuredWindow(workout: Pick<WeightRoomWorkout, 'source'>): boolean {
+  return workout.source !== 'icloud_notes'
 }
 
 /**
@@ -263,6 +289,7 @@ export function buildProgramSummary(
     const id = entries[0].workout.template_id as string
     const days = entries.map(entry => entry.dayKey).sort()
     const minutes = entries
+      .filter(entry => isMeasuredWindow(entry.workout))
       .map(entry => workoutDurationMinutes(entry.workout))
       .filter((value): value is number => value !== null && value > 0)
 
@@ -273,6 +300,7 @@ export function buildProgramSummary(
       firstDayKey: days[0],
       lastDayKey: days[days.length - 1],
       medianMinutes: median(minutes),
+      timedSessions: minutes.length,
     })
   }
 

@@ -163,6 +163,32 @@ describe('buildProgramSummary', () => {
     expect(summary?.templates[0].medianMinutes).toBe(44)
   })
 
+  it('ignores a duration derived from when the note was written', () => {
+    // An icloud_notes window is when the *note* was created and last edited,
+    // which runs short of the session it describes. Averaging it in drags the
+    // median toward how long it takes to write a note.
+    const measured = session('Back Day 1', '2023-01-02', 44)
+    const noteDerived = {
+      ...session('Back Day 1', '2023-01-09', 20),
+      source: 'icloud_notes',
+    } as WeightRoomWorkout
+
+    const summary = buildProgramSummary([measured, noteDerived], TEMPLATES)
+    expect(summary?.templates[0].medianMinutes).toBe(44)
+    expect(summary?.templates[0].timedSessions).toBe(1)
+    // The session still counts as a session — only its clock is discounted.
+    expect(summary?.templates[0].sessions).toBe(2)
+  })
+
+  it('keeps a manually recorded duration, which is measured too', () => {
+    const manual = {
+      ...session('Back Day 1', '2023-01-02', 50),
+      source: 'manual',
+    } as WeightRoomWorkout
+    const summary = buildProgramSummary([manual], TEMPLATES)
+    expect(summary?.templates[0].medianMinutes).toBe(50)
+  })
+
   it('leaves the duration absent when no session was ever timed', () => {
     const summary = buildProgramSummary(
       [session('Back Day 1', '2023-01-02'), session('Back Day 1', '2023-01-09')],
