@@ -11,7 +11,9 @@ import { describe, expect, it } from 'vitest'
 
 import {
   isPerformedSet,
+  isSessionNote,
   mintImportKey,
+  templateNameForNote,
   parseLabelledBlock,
   TWENTY_ONES_REPS_PER_ARM,
   normalizeName,
@@ -236,6 +238,46 @@ describe('parseNote', () => {
       unmapped: [],
       timed: [],
     })
+  })
+})
+
+describe('isSessionNote', () => {
+  it('rejects the Strength Cycle programme document', () => {
+    // All six templates in one note, revised 2022-2025. Imported as a session
+    // it became one 30-minute workout of 163 sets and 1,523 reps.
+    expect(isSessionNote('Strength Cycle')).toBe(false)
+    expect(isSessionNote('  strength cycle  ')).toBe(false)
+  })
+
+  it('accepts real session notes', () => {
+    expect(isSessionNote('Back Day 1')).toBe(true)
+    expect(isSessionNote('Pull ups')).toBe(true)
+  })
+})
+
+describe('templateNameForNote', () => {
+  it('resolves the six seeded templates from their note titles', () => {
+    expect(templateNameForNote('Back Day 1')).toBe('Back Day 1')
+    expect(templateNameForNote('Chest Day 2')).toBe('Chest Day 2')
+    expect(templateNameForNote('Legs Day 2')).toBe('Legs Day 2')
+  })
+
+  it('folds the Leg Day 2 spelling onto Legs Day 2', () => {
+    // Three sessions in early 2023 drop the plural.
+    expect(templateNameForNote('Leg Day 2')).toBe('Legs Day 2')
+  })
+
+  it('is case-insensitive about the title', () => {
+    expect(templateNameForNote('chest day 1')).toBe('Chest Day 1')
+  })
+
+  it('leaves genuinely untemplated notes unlinked', () => {
+    // Standalone pull-up, leg-press and plyo days were never in the rotation;
+    // forcing them onto the nearest template would invent adherence.
+    expect(templateNameForNote('Pull ups')).toBeNull()
+    expect(templateNameForNote('Workout')).toBeNull()
+    expect(templateNameForNote('Leg press')).toBeNull()
+    expect(templateNameForNote('Nov 25')).toBeNull()
   })
 })
 

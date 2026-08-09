@@ -134,6 +134,122 @@ export async function upsertNoteSets(supabase, rows) {
 }
 
 /**
+ * Delete rows imported from a note that is no longer treated as a session.
+ *
+ * Skipping a note only keeps it out of the *next* upsert. Nothing here prunes
+ * absent keys — deliberately, since an imported session can acquire
+ * hand-authored data — so a note reclassified as a programme document would
+ * otherwise leave its rows behind forever, still corrupting the totals that
+ * reclassifying it was meant to fix.
+ *
+ * Scoped to the importer's own rows: only sets whose `import_key` names the
+ * note, and only `icloud_notes` sessions left with nothing in them afterwards.
+ * A Health session that happened to overlap is never removed — it existed
+ * before this import and is not ours to delete.
+ *
+ * @param {import('@supabase/supabase-js').SupabaseClient} supabase Service-role client.
+ * @param {Iterable<string>} titles Note titles to purge, lowercase-insensitive
+ *   only in as much as the keys were minted from the original casing.
+ * @returns {Promise<{sets: number, sessions: number}>} What was removed.
+ * @throws when a delete fails, naming the title.
+ */
+export async function pruneNoteImports(supabase, titles) {
+  let sets = 0
+  const touched = new Set()
+
+  for (const title of titles) {
+    const { data, error } = await supabase
+      .from(SETS_TABLE)
+      .delete()
+      .like('import_key', `icloud:${title}:%`)
+      .select('workout_id')
+    if (error) {
+      throw new Error(`Failed to prune imported sets for "${title}": ${error.message}`)
+    }
+    sets += data?.length ?? 0
+    for (const row of data ?? []) {
+      if (row.workout_id) touched.add(row.workout_id)
+    }
+  }
+
+  let sessions = 0
+  for (const workoutId of touched) {
+    // Only if nothing else survives on it — a session shared with other notes
+    // or with app-logged sets stays.
+    const { count, error: countError } = await supabase
+      .from(SETS_TABLE)
+      .select('id', { count: 'exact', head: true })
+      .eq('workout_id', workoutId)
+    if (countError) {
+      throw new Error(`Failed to check workout ${workoutId}: ${countError.message}`)
+    }
+    if ((count ?? 0) > 0) continue
+
+    const { data, error } = await supabase
+      .from(WORKOUTS_TABLE)
+      .delete()
+      .eq('id', workoutId)
+      .eq('source', ICLOUD_NOTES_SOURCE)
+      .select('id')
+    if (error) {
+      throw new Error(`Failed to prune workout ${workoutId}: ${error.message}`)
+    }
+    sessions += data?.length ?? 0
+  }
+
+  return { sets, sessions }
+}
+
+/**
+ * Read the workout templates by name.
+ *
+ * The six seeded templates (#375) carry exactly the names the notes title
+ * themselves with, which is what makes linking a session to its template a name
+ * match rather than an inference.
+ *
+ * @param {import('@supabase/supabase-js').SupabaseClient} supabase Service-role client.
+ * @returns {Promise<Map<string, string>>} Template id keyed by name.
+ * @throws when the read fails.
+ */
+export async function fetchTemplateIdsByName(supabase) {
+  const { data, error } = await supabase.from('weight_room_workout_templates').select('id, name')
+  if (error) {
+    throw new Error(`Failed to read workout templates: ${error.message}`)
+  }
+  return new Map((data ?? []).map(row => [row.name, row.id]))
+}
+
+/**
+ * Record which template each imported session ran (#436).
+ *
+ * Only fills a template in where the session has none. A session that already
+ * names its template was either recorded live against it or corrected by hand,
+ * and neither is this importer's to overwrite — the same "never clobber what
+ * the app recorded" rule the set upsert follows.
+ *
+ * @param {import('@supabase/supabase-js').SupabaseClient} supabase Service-role client.
+ * @param {Map<string, string>} links Template id keyed by workout id.
+ * @returns {Promise<{linked: number}>} How many sessions were updated.
+ * @throws when an update fails, naming the workout.
+ */
+export async function linkSessionTemplates(supabase, links) {
+  let linked = 0
+  for (const [workoutId, templateId] of links) {
+    const { data, error } = await supabase
+      .from(WORKOUTS_TABLE)
+      .update({ template_id: templateId })
+      .eq('id', workoutId)
+      .is('template_id', null)
+      .select('id')
+    if (error) {
+      throw new Error(`Failed to link template for workout ${workoutId}: ${error.message}`)
+    }
+    linked += data?.length ?? 0
+  }
+  return { linked }
+}
+
+/**
  * Read the movement catalog's load multipliers.
  *
  * Taken live rather than hardcoded so a `Weight (total)` column is halved by
