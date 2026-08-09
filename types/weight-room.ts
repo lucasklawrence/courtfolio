@@ -107,6 +107,16 @@ export interface StrengthSet {
    * whether the earlier era is imported rather than assuming it.
    */
   source?: SetSource
+  /**
+   * How long an isometric set was held, in seconds (#400).
+   *
+   * Absent for the overwhelming majority — every set counted in repetitions.
+   * Present alongside `reps: 1` for a hold: a 45-second plank is one repetition
+   * lasting 45 seconds, which keeps rep rollups working without special-casing
+   * the movement. Surfaces that can render a hold should prefer this over
+   * printing "1 rep".
+   */
+  duration_seconds?: number
 }
 
 /**

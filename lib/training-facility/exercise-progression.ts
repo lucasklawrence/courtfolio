@@ -231,6 +231,7 @@ export function buildExerciseProgression(
         weightLbs: set.weight_lbs ?? null,
         effectiveLoad,
         loggedAt: set.logged_at,
+        ...(set.duration_seconds === undefined ? {} : { durationSeconds: set.duration_seconds }),
       }
 
       reps += set.reps

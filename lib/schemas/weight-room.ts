@@ -154,6 +154,8 @@ export const WeightRoomSetRowSchema = z
     // allows — this schema validates the whole set array in one pass, so a
     // single unlisted value fails the entire read.
     source: z.enum(['manual', 'icloud_notes']).nullable().optional(),
+    // Seconds a hold lasted (#400); null for every set counted in reps.
+    duration_seconds: nonNegativeInt().nullable().optional(),
   })
   .strict()
 
@@ -341,6 +343,7 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     // omitted rather than carried — the same convention the workout converter
     // follows for its own source.
     ...(row.source != null && row.source !== 'manual' ? { source: row.source } : {}),
+    ...(row.duration_seconds != null ? { duration_seconds: row.duration_seconds } : {}),
   }
 }
 

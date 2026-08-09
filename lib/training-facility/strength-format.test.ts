@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { describeSet, formatLbs } from './strength-format'
+import { describeSet, describeSetOrHold, formatHold, formatLbs } from './strength-format'
 
 /**
  * Coverage for load formatting (#427).
@@ -55,5 +55,46 @@ describe('describeSet', () => {
 
   it('ignores options for a bodyweight set, which has no load to label', () => {
     expect(describeSet(12, 0, { unit: 'kg' })).toBe('12 reps')
+  })
+})
+
+describe('formatHold', () => {
+  it('reads seconds as seconds under a minute', () => {
+    expect(formatHold(45)).toBe('45s')
+    expect(formatHold(59)).toBe('59s')
+  })
+
+  it('switches to minutes:seconds past a minute', () => {
+    // `135s` has to be divided in the head; `2:15` does not.
+    expect(formatHold(60)).toBe('1:00')
+    expect(formatHold(135)).toBe('2:15')
+    expect(formatHold(90)).toBe('1:30')
+  })
+
+  it('rounds rather than claiming precision the source never had', () => {
+    expect(formatHold(44.6)).toBe('45s')
+  })
+})
+
+describe('describeSetOrHold', () => {
+  it('describes a hold by its duration, not as one rep', () => {
+    // A plank is stored as `reps: 1, duration_seconds: 45` so rep rollups keep
+    // working — but "1 rep" is a useless thing to show someone.
+    expect(describeSetOrHold({ reps: 1, effectiveLoad: 0, durationSeconds: 45 })).toBe('45s')
+  })
+
+  it('appends the load when the hold was weighted', () => {
+    expect(describeSetOrHold({ reps: 1, effectiveLoad: 25, durationSeconds: 60 })).toBe(
+      '1:00 × 25 lb'
+    )
+  })
+
+  it('falls back to the rep description when there is no duration', () => {
+    expect(describeSetOrHold({ reps: 8, effectiveLoad: 60 })).toBe('8 × 60 lb')
+    expect(describeSetOrHold({ reps: 12, effectiveLoad: 0, durationSeconds: null })).toBe('12 reps')
+  })
+
+  it('ignores a nonsensical duration rather than rendering it', () => {
+    expect(describeSetOrHold({ reps: 12, effectiveLoad: 0, durationSeconds: 0 })).toBe('12 reps')
   })
 })

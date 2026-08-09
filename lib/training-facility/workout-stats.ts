@@ -112,6 +112,14 @@ export interface WorkoutSetHighlight {
   effectiveLoad: number
   /** ISO timestamp the set was logged. */
   loggedAt: string
+  /**
+   * Seconds the set was held, for an isometric movement (#400).
+   *
+   * Absent for everything counted in repetitions. When present, `reps` is 1 and
+   * this is what the set actually was — render sites should prefer
+   * `describeSetOrHold`, which says `45s` where `describeSet` would say `1 rep`.
+   */
+  durationSeconds?: number
 }
 
 /** One movement's contribution to a session. */
@@ -261,6 +269,7 @@ export function buildWorkoutSummary(
         weightLbs: set.weight_lbs ?? null,
         effectiveLoad,
         loggedAt: set.logged_at,
+        ...(set.duration_seconds === undefined ? {} : { durationSeconds: set.duration_seconds }),
       }
       // Heaviest wins; at equal load the one with more reps is the better set.
       if (

@@ -339,6 +339,7 @@ async function main() {
           reps: set.reps,
           weight_lbs: set.weight_lbs,
           ...(set.variant === undefined ? {} : { variant: set.variant }),
+          ...(set.duration_seconds === undefined ? {} : { duration_seconds: set.duration_seconds }),
           // Grease-the-groove volume is that day's, not the session's — see
           // #400. Leaving `workout_id` null is what keeps it off the workout.
           workout_id: set.disposition === 'workout' ? workoutId : null,

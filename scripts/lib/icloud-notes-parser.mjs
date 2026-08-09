@@ -398,12 +398,32 @@ export function isPerformedSet(row) {
 }
 
 /**
- * Third-column headers that do not count reps.
+ * Movements performed as a held position rather than for repetitions.
  *
- * A plank's `Time (seconds)` column holds 45, and storing that as `reps` would
- * record forty-five plank repetitions. `weight_room_sets` has no duration
- * column, so those rows are reported and skipped rather than mistranslated.
- * `Steps` is kept: a walking-lunge step *is* a rep of the movement.
+ * The measure is time whatever column it arrived in, which matters because this
+ * log wrote planks three ways across the years: a `Time (seconds)` table
+ * column, a bare list of numbers under `Planks`, and `45 seconds` spelled out
+ * per set. Keying off the *movement* rather than the column catches all three —
+ * the freeform shapes carry no header to inspect, and they are how 12 sets
+ * claiming "50 reps" of plank got in.
+ */
+const ISOMETRIC_HOLDS = Object.freeze(new Set(['plank']))
+
+/**
+ * Whether a movement is held rather than repeated.
+ *
+ * @param {string} slug Catalog slug.
+ * @returns {boolean} True when its numbers are seconds.
+ */
+export function isIsometricHold(slug) {
+  return ISOMETRIC_HOLDS.has(slug)
+}
+
+/**
+ * Third-column headers that measure time rather than repetitions.
+ *
+ * A plank's `Time (seconds)` column holds 45; storing that as `reps` records
+ * forty-five plank repetitions.
  */
 const TIME_MEASURE = /^time\b/i
 
@@ -411,10 +431,29 @@ const TIME_MEASURE = /^time\b/i
  * Whether a table's measure column counts something `reps` can hold.
  *
  * @param {string|null|undefined} header The third column header, verbatim.
- * @returns {boolean} False for duration columns.
+ * @returns {boolean} False for duration columns. `Steps` is true — a
+ *   walking-lunge step *is* a rep of the movement.
  */
 export function isRepMeasure(header) {
   return !TIME_MEASURE.test(String(header ?? '').trim())
+}
+
+/**
+ * Read a duration out of a hand-written cell.
+ *
+ * Tolerates the units the notes spell out (`45 seconds`, `40 sec`) as well as a
+ * bare number, since both shapes appear for the same movement.
+ *
+ * @param {unknown} raw The cell.
+ * @returns {number|null} Seconds, or null when the cell holds no number.
+ */
+export function parseDuration(raw) {
+  if (typeof raw === 'number') return Number.isFinite(raw) && raw > 0 ? raw : null
+  if (typeof raw !== 'string') return null
+  const match = raw.trim().match(/^(\d{1,4})\b/)
+  if (!match) return null
+  const seconds = Number(match[1])
+  return Number.isFinite(seconds) && seconds > 0 ? seconds : null
 }
 
 /**
@@ -520,20 +559,29 @@ export function parseNote(note, loadMultipliers = {}) {
       unmapped.push(exercise.name)
       continue
     }
-    // A duration column has no rep count to record — see isRepMeasure.
-    if (!isRepMeasure(exercise.measure_header)) {
+    // A hold is measured in seconds however it was written — see
+    // isIsometricHold. A duration column on any other movement is a shape this
+    // parser has no rule for, so it is reported rather than guessed at.
+    const held = isIsometricHold(slug)
+    if (!held && !isRepMeasure(exercise.measure_header)) {
       timed.push(exercise.name)
       continue
     }
 
     const variant = variantFor(exercise.name, slug)
-    const performed = (exercise.sets ?? []).filter(isPerformedSet)
+    const performed = (exercise.sets ?? []).filter(row =>
+      held ? parseDuration(row.reps) !== null : isPerformedSet(row)
+    )
     performed.forEach(row => {
       const index = nextIndex(slug)
+      const duration = held ? parseDuration(row.reps) : null
       sets.push({
         exercise: slug,
         ...(variant === null ? {} : { variant }),
-        reps: parseReps(row.reps),
+        // One repetition of the hold, lasting `duration_seconds` — see the
+        // #400 duration migration for why `reps` stays populated.
+        reps: held ? 1 : parseReps(row.reps),
+        ...(duration === null ? {} : { duration_seconds: duration }),
         weight_lbs: perImplementWeight(
           row.weight,
           exercise.weight_header,
@@ -564,12 +612,16 @@ export function parseNote(note, loadMultipliers = {}) {
       .map(value => (typeof value === 'string' ? Number(value) : value))
       .filter(value => typeof value === 'number' && Number.isFinite(value) && value > 0)
 
+    // A bare list under `Planks` is seconds per hold, not reps — the shape that
+    // slipped past the column check and landed "50 reps" of plank.
+    const heldList = isIsometricHold(slug)
     reps.forEach(count => {
       const index = nextIndex(`gtg:${slug}`)
       sets.push({
         exercise: slug,
         ...(listVariant === null ? {} : { variant: listVariant }),
-        reps: count,
+        reps: heldList ? 1 : count,
+        ...(heldList ? { duration_seconds: count } : {}),
         weight_lbs: null,
         disposition: 'gtg',
         position: null,

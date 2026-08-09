@@ -2,7 +2,7 @@ import type { JSX, ReactNode } from 'react'
 
 import { formatDayKey } from '@/lib/training-facility/day-keys'
 import type { EraComparison, TrainingEra } from '@/lib/training-facility/era-comparison'
-import { describeSet, formatLbs } from '@/lib/training-facility/strength-format'
+import { describeSetOrHold, formatLbs } from '@/lib/training-facility/strength-format'
 
 /** Date style for an era's endpoints — month and year is the right altitude for a multi-year span. */
 const ERA_DATE: Intl.DateTimeFormatOptions = { month: 'short', year: 'numeric' }
@@ -108,11 +108,7 @@ function EraColumn({ era, label, isCurrent = false }: EraColumnProps): JSX.Eleme
       <dl className="mt-4 flex flex-col gap-2.5">
         <Measure
           label="Heaviest set"
-          value={
-            era.heaviestSet === null
-              ? null
-              : describeSet(era.heaviestSet.reps, era.heaviestSet.effectiveLoad)
-          }
+          value={era.heaviestSet === null ? null : describeSetOrHold(era.heaviestSet)}
         />
         <Measure
           label="Typical top set"

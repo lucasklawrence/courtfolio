@@ -56,3 +56,42 @@ export function describeSet(
 ): string {
   return effectiveLoad > 0 ? `${reps} × ${formatLbs(effectiveLoad, options)}` : `${reps} reps`
 }
+
+/**
+ * Format a held set's duration — `45s`, `1:30` past a minute.
+ *
+ * Seconds alone stop reading as a duration somewhere around the two-minute
+ * mark: `135s` has to be divided in the head, where `2:15` does not.
+ *
+ * @param seconds How long the set was held. Rounded — a hold is timed by
+ *   glancing at a clock, and a decimal claims precision the source never had.
+ */
+export function formatHold(seconds: number): string {
+  const whole = Math.max(0, Math.round(seconds))
+  if (whole < 60) return `${whole}s`
+  const minutes = Math.floor(whole / 60)
+  return `${minutes}:${String(whole % 60).padStart(2, '0')}`
+}
+
+/**
+ * Render a set, preferring its duration when it was a hold (#400).
+ *
+ * A plank is stored as one repetition lasting N seconds, so
+ * {@link describeSet} would print `1 rep` — technically true and useless. Any
+ * set carrying a duration is described by it instead, with the load appended
+ * when the hold was weighted.
+ *
+ * @param set The set's reps, effective load, and duration if it had one.
+ * @param options Unit label and locale, forwarded to {@link formatLbs}.
+ */
+export function describeSetOrHold(
+  set: { reps: number; effectiveLoad: number; durationSeconds?: number | null },
+  options: LoadFormatOptions = {}
+): string {
+  const { reps, effectiveLoad, durationSeconds } = set
+  if (durationSeconds === undefined || durationSeconds === null || durationSeconds <= 0) {
+    return describeSet(reps, effectiveLoad, options)
+  }
+  const hold = formatHold(durationSeconds)
+  return effectiveLoad > 0 ? `${hold} × ${formatLbs(effectiveLoad, options)}` : hold
+}

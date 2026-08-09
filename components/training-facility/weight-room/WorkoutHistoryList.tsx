@@ -2,7 +2,7 @@ import type { JSX } from 'react'
 import Link from 'next/link'
 
 import { formatDayKey, safePacificDayKey, todayDayKey } from '@/lib/training-facility/day-keys'
-import { describeSet } from '@/lib/training-facility/strength-format'
+import { describeSetOrHold } from '@/lib/training-facility/strength-format'
 import {
   workoutDisplayTitle,
   type WorkoutHistoryEntry,
@@ -402,8 +402,7 @@ function WorkoutHistoryRow({ entry, isPreviewMode }: WorkoutHistoryRowProps): JS
 
       {topLift?.topSet != null ? (
         <p className="mt-1.5 text-xs text-[#0a0a0a]/60">
-          Top set · {topLift.displayName ?? topLift.exercise}{' '}
-          {describeSet(topLift.topSet.reps, topLift.topSet.effectiveLoad)}
+          Top set · {topLift.displayName ?? topLift.exercise} {describeSetOrHold(topLift.topSet)}
         </p>
       ) : null}
     </Link>
