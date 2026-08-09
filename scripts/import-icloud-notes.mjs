@@ -53,6 +53,7 @@ import {
   fetchSessionsInRange,
   fetchTemplateIdsByName,
   linkSessionTemplates,
+  pruneNoteImports,
   upsertNoteSession,
   upsertNoteSets,
 } from './lib/icloud-notes-supabase.mjs'
@@ -432,6 +433,15 @@ async function main() {
     console.log('')
     console.log('--dry-run: nothing written.')
     return
+  }
+
+  // Anything previously imported from a note now classed as a programme
+  // document has to be removed, not merely left out of this payload — see
+  // pruneNoteImports.
+  const pruned = await pruneNoteImports(supabase, skipped)
+  if (pruned.sets > 0 || pruned.sessions > 0) {
+    console.log('')
+    console.log(`Pruned ${pruned.sets} sets and ${pruned.sessions} sessions from skipped notes.`)
   }
 
   // Sessions first: a note that matched nothing needs its own row before its

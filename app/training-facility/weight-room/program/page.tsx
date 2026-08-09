@@ -31,13 +31,24 @@ import { buildProgramSummary } from '@/lib/training-facility/training-program'
 export default async function WeightRoomProgramPage(): Promise<JSX.Element> {
   if (!isWeightRoomEnabled()) notFound()
 
-  const [workouts, templates, isAdmin] = await Promise.all([
-    getWeightRoomWorkoutsServer().catch(() => []),
-    getWorkoutTemplatesServer().catch(() => []),
+  // Falling back to an empty read matches every other Weight Room page, but
+  // this one's empty state makes a *claim* — that training isn't run against a
+  // programme — and a failed read must not be allowed to assert it. Settled
+  // results keep the difference between "nothing to show" and "couldn't look".
+  const [workoutsRead, templatesRead, isAdmin] = await Promise.all([
+    getWeightRoomWorkoutsServer().then(
+      value => ({ ok: true as const, value }),
+      () => ({ ok: false as const, value: [] })
+    ),
+    getWorkoutTemplatesServer().then(
+      value => ({ ok: true as const, value }),
+      () => ({ ok: false as const, value: [] })
+    ),
     isAdminRequest().catch(() => false),
   ])
 
-  const summary = buildProgramSummary(workouts, templates)
+  const readFailed = !workoutsRead.ok || !templatesRead.ok
+  const summary = buildProgramSummary(workoutsRead.value, templatesRead.value)
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -68,7 +79,15 @@ export default async function WeightRoomProgramPage(): Promise<JSX.Element> {
         </header>
 
         <div className="mt-8 pb-16">
-          {summary === null ? (
+          {readFailed && summary === null ? (
+            <p
+              data-testid="program-unavailable"
+              className="rounded-[1.2rem] border border-white/10 bg-white/5 p-6 text-center text-sm text-[#e8d5be]/70"
+            >
+              Couldn&rsquo;t load the training log just now, so there&rsquo;s nothing to describe
+              yet. Try again in a moment.
+            </p>
+          ) : summary === null ? (
             <p
               data-testid="program-empty"
               className="rounded-[1.2rem] border border-white/10 bg-white/5 p-6 text-center text-sm text-[#e8d5be]/70"
