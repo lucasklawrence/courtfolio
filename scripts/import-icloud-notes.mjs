@@ -277,7 +277,7 @@ async function main() {
       : fallbackWindow(note.day, timeZone)
 
     const match = matchNoteToSession(window, sessions, timeZone)
-    let workoutId = match?.id ?? null
+    const workoutId = match?.id ?? null
 
     if (match?.method === 'overlap') report.overlap += 1
     else if (match?.method === 'same-day') report.sameDay += 1
