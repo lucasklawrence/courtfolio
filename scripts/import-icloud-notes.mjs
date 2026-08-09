@@ -41,6 +41,7 @@ import path from 'node:path'
 import { createServiceRoleClient, loadEnv } from './lib/cardio-supabase.mjs'
 import { matchNoteToSession, noteWindow, parseNotesCsvStamp } from './lib/icloud-notes-match.mjs'
 import { parseNote, parseNoteDate } from './lib/icloud-notes-parser.mjs'
+import { parseExport } from './lib/icloud-notes-text.mjs'
 import {
   fetchExerciseSlugs,
   fetchLoadMultipliers,
@@ -70,6 +71,7 @@ function parseArgs(argv) {
       .join('=')
   return {
     extractDir: get('extract-dir') ?? DEFAULT_EXTRACT_DIR,
+    fromText: get('from-text') ?? null,
     manifest: get('manifest') ?? null,
     timeZone: get('tz') ?? DEFAULT_TIME_ZONE,
     dryRun: argv.includes('--dry-run'),
@@ -220,14 +222,19 @@ function fallbackWindow(day, timeZone) {
 }
 
 async function main() {
-  const { extractDir, manifest, timeZone, dryRun } = parseArgs(process.argv.slice(2))
+  const { extractDir, fromText, manifest, timeZone, dryRun } = parseArgs(process.argv.slice(2))
 
   loadEnv()
   const supabase = createServiceRoleClient()
 
-  const notes = await loadNotes(extractDir)
+  // Two front ends onto the same pipeline: `--from-text` reads the Shortcuts
+  // export directly (one cell per line, blank lines meaning empty cells), while
+  // the extract directory holds notes already transcribed to JSON.
+  const notes = fromText
+    ? parseExport(await readFile(fromText, 'utf8'))
+    : await loadNotes(extractDir)
   if (notes.length === 0) {
-    console.error(`No notes found in "${extractDir}". Nothing to import.`)
+    console.error(`No notes found in "${fromText ?? extractDir}". Nothing to import.`)
     process.exit(1)
   }
 
@@ -270,6 +277,7 @@ async function main() {
 
   const rows = []
   const unmappedMovements = new Map()
+  const timedMovements = new Map()
   const unknownSlugs = new Map()
   const report = {
     overlap: 0,
@@ -310,9 +318,12 @@ async function main() {
       })
     }
 
-    const { sets, unmapped } = parseNote({ ...note, date: note.day }, multipliers)
+    const { sets, unmapped, timed } = parseNote({ ...note, date: note.day }, multipliers)
     for (const name of unmapped) {
       unmappedMovements.set(name, (unmappedMovements.get(name) ?? 0) + 1)
+    }
+    for (const name of timed ?? []) {
+      timedMovements.set(name, (timedMovements.get(name) ?? 0) + 1)
     }
 
     for (const set of sets) {
@@ -327,6 +338,7 @@ async function main() {
           exercise: set.exercise,
           reps: set.reps,
           weight_lbs: set.weight_lbs,
+          ...(set.variant === undefined ? {} : { variant: set.variant }),
           // Grease-the-groove volume is that day's, not the session's — see
           // #400. Leaving `workout_id` null is what keeps it off the workout.
           workout_id: set.disposition === 'workout' ? workoutId : null,
@@ -360,6 +372,11 @@ async function main() {
     for (const [name, count] of [...unmappedMovements].sort((a, b) => b[1] - a[1])) {
       console.log(`  ${String(count).padStart(4)}x  ${name}`)
     }
+  }
+  if (timedMovements.size > 0) {
+    console.log('')
+    console.log('Duration-measured movements skipped (weight_room_sets has no duration column):')
+    for (const [name, count] of timedMovements) console.log(`  ${count}x  ${name}`)
   }
   if (unknownSlugs.size > 0) {
     console.log('')

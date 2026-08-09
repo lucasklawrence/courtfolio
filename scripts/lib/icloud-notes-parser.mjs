@@ -95,10 +95,101 @@ const RAW_MOVEMENT_ALIASES = {
   // --- core ---
   Planks: 'plank',
   'Knee Tucks': 'knee-tucks',
+  'Hanging Knee tuck': 'knee-tucks',
   'Hanging leg raises': 'hanging-leg-raise',
+  'Leg raises': 'hanging-leg-raise',
   'Heavy Russian Twists': 'russian-twist',
   'Russian Twists': 'russian-twist',
   'Decline Weighted Crunches': 'decline-crunch',
+  'Decline crunches': 'decline-crunch',
+
+  // --- wordings only the older notes use ---
+  'Standing curls': 'dumbbell-curl',
+  'Cable curl': 'rope-curl',
+  'DB curls': 'dumbbell-curl',
+  'DB curl': 'dumbbell-curl',
+  'Dumbell shrug': 'shrugs',
+  Deadlift: 'barbell-deadlift',
+  'Side lateral raise': 'dumbbell-lateral-raise',
+  'Front lateral raise': 'dumbbell-lateral-raise',
+  'Lateral shoulder raise': 'dumbbell-lateral-raise',
+  'Lateral DB raises': 'dumbbell-lateral-raise',
+  'Lateral raises side': 'dumbbell-lateral-raise',
+  'Lateral raises front': 'dumbbell-lateral-raise',
+  'Rope tricep push down': 'cable-tricep-pushdown',
+  'Rope tricep press down': 'cable-tricep-pushdown',
+  'Tricep push down': 'cable-tricep-pushdown',
+  'Tricep press down': 'cable-tricep-pushdown',
+  'Seated Tricep push down': 'cable-tricep-pushdown',
+  'Light sled push': 'sled-push',
+  'Sled push': 'sled-push',
+  'Seated Alt Shoulder DB': 'dumbbell-shoulder-press',
+  'Seated Alt Shoulder Press DB': 'dumbbell-shoulder-press',
+  'Standing shoulder DB press': 'dumbbell-shoulder-press',
+  'Body weight squat': 'squats',
+  'Balance board squat': 'squats',
+  'Medicine ball squat': 'squats',
+  'Back row machine': 'seated-cable-row',
+  'Seated row': 'seated-cable-row',
+  'Lat pull down': 'lat-pulldown',
+  'Lat pull-down': 'lat-pulldown',
+  'Pec fly machine': 'pec-deck',
+  'Rear delt machine': 'cable-face-pull',
+  'Preacher curl machine': 'preacher-curl',
+  'Machine preacher curl': 'preacher-curl',
+  'Seated calf raise machine': 'seated-calf-raise',
+  'Standing calf raise': 'calf-raise',
+  'Glute press': 'barbell-hip-thrust',
+  'Glute leg press': 'leg-press',
+  Bench: 'barbell-bench-press',
+  'Incline barbell bench press': 'barbell-incline-press',
+  // Typos preserved from the source rather than corrected there.
+  'Incline barbell ress': 'barbell-incline-press',
+  'Incline Barbell press': 'barbell-incline-press',
+  'Ez curl': 'ez-bar-curl',
+  'Ez curl standing': 'ez-bar-curl',
+  'Walking lunges': 'walking-lunges',
+
+  // Plyo box work. The height is the load and rides on the set's variant, so
+  // every height resolves to one movement — see the #400 catalog migration.
+  '18 inch plyo': 'box-jump',
+  '24 inch plyo': 'box-jump',
+  '30 inch plyo': 'box-jump',
+  '12 inch plyo': 'box-jump',
+  'One leg 12 inch plyo': 'box-jump',
+  'One leg plyo 12 inch': 'box-jump',
+  Plyo: 'box-jump',
+
+  'Assisted pull ups': 'assisted-pullups',
+  Assisted: 'assisted-pullups',
+
+  // Typos preserved from the source.
+  'Inclined DB press': 'dumbbell-incline-press',
+  'Db lateral raise': 'dumbbell-lateral-raise',
+  'Side lateral': 'dumbbell-lateral-raise',
+  'Front layer raise': 'dumbbell-lateral-raise',
+}
+
+/**
+ * Box height stated in a plyo movement's name, e.g. `24 inch plyo`.
+ *
+ * Kept as the set's variant rather than as three near-duplicate slugs: a box
+ * jump is one movement, and the height is what changes between sets — the same
+ * role grip and tempo play for other movements.
+ */
+const PLYO_HEIGHT = /(\d+)\s*inch/i
+
+/**
+ * The variant a movement's wording implies, if any.
+ *
+ * @param {string} name Movement name as written in the note.
+ * @param {string} slug The slug it resolved to.
+ * @returns {string|null} A lowercase variant, or null when the name adds nothing.
+ */
+export function variantFor(name, slug) {
+  if (slug !== 'box-jump') return null
+  const height = String(name ?? '').match(PLYO_HEIGHT)
+  return height ? `${height[1]} inch` : null
 }
 
 /**
@@ -239,6 +330,12 @@ export function perImplementWeight(raw, header, slug, loadMultiplier) {
   if (text === '') return null
   if (/^bw$/i.test(text)) return null
 
+  // Assistance, not load. `BW - 40` and `BW assisted` describe a dip made
+  // *easier* by 40 lb of counterweight; reading the number as added weight
+  // would record the opposite of what happened.
+  if (/assist/i.test(text)) return null
+  if (/^bw\s*-\s*\d/i.test(text)) return null
+
   // Tolerate "135 lb", "37.5lbs", "22.5 DB" — the notes are handwritten.
   const match = text.match(/-?\d+(?:\.\d+)?/)
   if (!match) return null
@@ -260,6 +357,31 @@ export function perImplementWeight(raw, header, slug, loadMultiplier) {
 }
 
 /**
+ * Read a rep count out of a hand-written measure cell.
+ *
+ * The cell is not always a bare number. Unilateral work is annotated in place —
+ * `10 Each leg`, `8each leg`, `10 each leg` — and taking `Number()` of those
+ * yields `NaN`, which would silently drop every set of walking lunges, one-leg
+ * RDLs and step-ups from the import. The leading integer is the count; the
+ * annotation says it was per side, which the catalog already records as
+ * `is_unilateral`.
+ *
+ * A cell with no leading number (`Each leg` alone, `Hanging Knee tuck`) is not
+ * a count and yields null.
+ *
+ * @param {unknown} raw The measure cell.
+ * @returns {number|null} The rep count, or null when the cell records none.
+ */
+export function parseReps(raw) {
+  if (typeof raw === 'number') return Number.isFinite(raw) && raw > 0 ? raw : null
+  if (typeof raw !== 'string') return null
+  const match = raw.trim().match(/^(\d{1,3})\b/)
+  if (!match) return null
+  const reps = Number(match[1])
+  return Number.isFinite(reps) && reps > 0 ? reps : null
+}
+
+/**
  * Whether a transcribed table row records a set that actually happened.
  *
  * The templates carry more rows than were ever used — a `Pull ups 4 sets` table
@@ -272,8 +394,27 @@ export function perImplementWeight(raw, header, slug, loadMultiplier) {
  */
 export function isPerformedSet(row) {
   if (!row || typeof row !== 'object') return false
-  const reps = typeof row.reps === 'string' ? Number(row.reps) : row.reps
-  return typeof reps === 'number' && Number.isFinite(reps) && reps > 0
+  return parseReps(row.reps) !== null
+}
+
+/**
+ * Third-column headers that do not count reps.
+ *
+ * A plank's `Time (seconds)` column holds 45, and storing that as `reps` would
+ * record forty-five plank repetitions. `weight_room_sets` has no duration
+ * column, so those rows are reported and skipped rather than mistranslated.
+ * `Steps` is kept: a walking-lunge step *is* a rep of the movement.
+ */
+const TIME_MEASURE = /^time\b/i
+
+/**
+ * Whether a table's measure column counts something `reps` can hold.
+ *
+ * @param {string|null|undefined} header The third column header, verbatim.
+ * @returns {boolean} False for duration columns.
+ */
+export function isRepMeasure(header) {
+  return !TIME_MEASURE.test(String(header ?? '').trim())
 }
 
 /**
@@ -358,7 +499,20 @@ export function mintImportKey({ title, date, slug, index }) {
 export function parseNote(note, loadMultipliers = {}) {
   const sets = []
   const unmapped = []
+  const timed = []
   let position = 0
+
+  // Import-key indexes run per movement across the *whole* note, not per block.
+  // One note can log the same movement twice — `Shrugs / 35 DB / 20 / 20` then
+  // `40 DB / 12 / 12` is two blocks of shrugs — and restarting the count in the
+  // second block mints keys the first block already used, which the unique
+  // index rejects and the import fails on.
+  const seen = new Map()
+  const nextIndex = key => {
+    const index = seen.get(key) ?? 0
+    seen.set(key, index + 1)
+    return index
+  }
 
   for (const exercise of note.exercises ?? []) {
     const slug = resolveTableMovement(exercise.name)
@@ -366,12 +520,20 @@ export function parseNote(note, loadMultipliers = {}) {
       unmapped.push(exercise.name)
       continue
     }
+    // A duration column has no rep count to record — see isRepMeasure.
+    if (!isRepMeasure(exercise.measure_header)) {
+      timed.push(exercise.name)
+      continue
+    }
 
+    const variant = variantFor(exercise.name, slug)
     const performed = (exercise.sets ?? []).filter(isPerformedSet)
-    performed.forEach((row, index) => {
+    performed.forEach(row => {
+      const index = nextIndex(slug)
       sets.push({
         exercise: slug,
-        reps: Number(row.reps),
+        ...(variant === null ? {} : { variant }),
+        reps: parseReps(row.reps),
         weight_lbs: perImplementWeight(
           row.weight,
           exercise.weight_header,
@@ -397,13 +559,16 @@ export function parseNote(note, loadMultipliers = {}) {
       continue
     }
 
+    const listVariant = variantFor(list.movement, slug)
     const reps = (list.reps ?? [])
       .map(value => (typeof value === 'string' ? Number(value) : value))
       .filter(value => typeof value === 'number' && Number.isFinite(value) && value > 0)
 
-    reps.forEach((count, index) => {
+    reps.forEach(count => {
+      const index = nextIndex(`gtg:${slug}`)
       sets.push({
         exercise: slug,
+        ...(listVariant === null ? {} : { variant: listVariant }),
         reps: count,
         weight_lbs: null,
         disposition: 'gtg',
@@ -420,5 +585,5 @@ export function parseNote(note, loadMultipliers = {}) {
     })
   }
 
-  return { sets, unmapped }
+  return { sets, unmapped, timed }
 }

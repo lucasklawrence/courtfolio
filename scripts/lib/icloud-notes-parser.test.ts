@@ -232,6 +232,7 @@ describe('parseNote', () => {
     expect(parseNote({ title: 'Back Day 1', date: '2024-04-16' })).toEqual({
       sets: [],
       unmapped: [],
+      timed: [],
     })
   })
 })
