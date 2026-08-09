@@ -169,6 +169,7 @@ export default async function WeightRoomExercisePage({
                   comparison={eraComparison}
                   displayName={displayName}
                   earlierEraImported={eraIsImported(eraComparison.then, exercise, sets)}
+                  currentEraImported={eraIsImported(eraComparison.now, exercise, sets)}
                 />
               )}
               <ExerciseProgressionPanel

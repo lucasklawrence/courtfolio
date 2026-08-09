@@ -22,6 +22,15 @@ export interface ThenVsNowPanelProps {
    * that never happened would put a false provenance on real training.
    */
   earlierEraImported: boolean
+  /**
+   * Whether the *later* era is also imported.
+   *
+   * A movement trained only during the archive still has eras — the archive
+   * contains its own layoffs, and a movement like dumbbell curl splits at a
+   * 254-day one. Both sides are then imported, and saying "the earlier one
+   * comes from Apple Notes" would imply the later one doesn't.
+   */
+  currentEraImported: boolean
 }
 
 /**
@@ -43,9 +52,17 @@ export function ThenVsNowPanel({
   comparison,
   displayName,
   earlierEraImported,
+  currentEraImported,
 }: ThenVsNowPanelProps): JSX.Element {
   const { then, now, gapDays } = comparison
   const gapYears = gapDays / 365
+
+  const provenance =
+    earlierEraImported && currentEraImported
+      ? 'Both stretches come from training logged in Apple Notes and imported into this log.'
+      : earlierEraImported
+        ? 'The earlier one comes from training logged in Apple Notes and imported into this log.'
+        : 'The earlier one is training this log already carried.'
 
   return (
     <section
@@ -61,9 +78,7 @@ export function ThenVsNowPanel({
           {gapYears >= 1
             ? `${gapYears.toFixed(1)} years separate these two stretches of ${displayName.toLowerCase()}.`
             : `${gapDays} days separate these two stretches of ${displayName.toLowerCase()}.`}{' '}
-          {earlierEraImported
-            ? 'The earlier one comes from training logged in Apple Notes and imported into this log.'
-            : 'The earlier one is training this log already carried.'}
+          {provenance}
         </p>
       </header>
 
