@@ -16,7 +16,7 @@ import {
   getWeightRoomWorkoutsServer,
 } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
-import { buildEraComparison } from '@/lib/training-facility/era-comparison'
+import { buildEraComparison, eraIsImported } from '@/lib/training-facility/era-comparison'
 import {
   buildExerciseProgression,
   buildSetDetailCoverage,
@@ -165,7 +165,11 @@ export default async function WeightRoomExercisePage({
           ) : (
             <div className="flex flex-col gap-8">
               {eraComparison === null ? null : (
-                <ThenVsNowPanel comparison={eraComparison} displayName={displayName} />
+                <ThenVsNowPanel
+                  comparison={eraComparison}
+                  displayName={displayName}
+                  earlierEraImported={eraIsImported(eraComparison.then, exercise, sets)}
+                />
               )}
               <ExerciseProgressionPanel
                 progression={progression}

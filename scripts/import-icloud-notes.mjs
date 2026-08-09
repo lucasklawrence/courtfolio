@@ -284,6 +284,13 @@ async function main() {
     const match = matchNoteToSession(window, sessions, timeZone)
     const workoutId = match?.id ?? null
 
+    // Identity for a note that needs its own session. Keyed by title *and*
+    // start instant, not by day: two unmatched notes can fall on one local date
+    // — which is precisely the situation that defeats overlap matching in the
+    // first place — and a day-keyed map would hand the second note's id to the
+    // first note's sets, silently merging two distinct workouts into one.
+    const noteKey = `${note.title}|${window.start.toISOString()}`
+
     if (match?.method === 'overlap') report.overlap += 1
     else if (match?.method === 'same-day') report.sameDay += 1
     else {
@@ -292,7 +299,7 @@ async function main() {
         startedAt: window.start.toISOString(),
         endedAt: window.end.toISOString(),
         title: note.title,
-        day: note.day,
+        noteKey,
       })
     }
 
@@ -307,7 +314,7 @@ async function main() {
         continue
       }
       rows.push({
-        pendingSessionFor: set.disposition === 'workout' && !workoutId ? note.day : null,
+        pendingSessionFor: set.disposition === 'workout' && !workoutId ? noteKey : null,
         row: {
           logged_at: window.start.toISOString(),
           exercise: set.exercise,
@@ -359,15 +366,15 @@ async function main() {
   }
 
   // Sessions first: a note that matched nothing needs its own row before its
-  // sets can point at one.
-  const sessionIdByDay = new Map()
+  // sets can point at one. Keyed per note rather than per day — see `noteKey`.
+  const sessionIdByNote = new Map()
   for (const session of createdSessions) {
     const id = await upsertNoteSession(supabase, session)
-    sessionIdByDay.set(session.day, id)
+    sessionIdByNote.set(session.noteKey, id)
   }
 
   const prepared = rows.map(({ pendingSessionFor, row }) =>
-    pendingSessionFor ? { ...row, workout_id: sessionIdByDay.get(pendingSessionFor) ?? null } : row
+    pendingSessionFor ? { ...row, workout_id: sessionIdByNote.get(pendingSessionFor) ?? null } : row
   )
 
   const { upserted } = await upsertNoteSets(supabase, prepared)

@@ -150,6 +150,10 @@ export const WeightRoomSetRowSchema = z
     position: nonNegativeInt().nullable().optional(),
     template_slot_id: z.string().uuid().nullable().optional(),
     template_slot_step_id: z.string().uuid().nullable().optional(),
+    // Provenance (#400). Must list every value the column's check constraint
+    // allows — this schema validates the whole set array in one pass, so a
+    // single unlisted value fails the entire read.
+    source: z.enum(['manual', 'icloud_notes']).nullable().optional(),
   })
   .strict()
 
@@ -333,6 +337,10 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     ...(row.template_slot_step_id != null
       ? { template_slot_step_id: row.template_slot_step_id }
       : {}),
+    // `'manual'` is the column default and the absent-field meaning, so it is
+    // omitted rather than carried — the same convention the workout converter
+    // follows for its own source.
+    ...(row.source != null && row.source !== 'manual' ? { source: row.source } : {}),
   }
 }
 
@@ -494,7 +502,13 @@ export const WeightRoomWorkoutRowSchema = z
     started_at: z.string().min(1, 'started_at must be an ISO timestamp'),
     ended_at: z.string().nullable().optional(),
     template_id: z.string().uuid().nullable().optional(),
-    source: z.enum(['manual', 'apple_health']).nullable().optional(),
+    // Must list every value the column's check constraint allows. This schema
+    // validates the whole workout array in one pass, so one unlisted source
+    // fails the entire read — and the read sites catch that as `[]`, so a full
+    // session history renders as "no workouts recorded yet" with nothing
+    // logged. That is exactly what #400's first import did before
+    // `icloud_notes` was added here.
+    source: z.enum(['manual', 'apple_health', 'icloud_notes']).nullable().optional(),
     avg_hr: z.number().nullable().optional(),
     max_hr: z.number().nullable().optional(),
     prescription: WorkoutPrescriptionSchema.nullable().optional(),

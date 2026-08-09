@@ -1,3 +1,6 @@
+import type { StrengthSet } from '@/types/weight-room'
+
+import { PACIFIC_CLOCK, type DayClock } from './clock'
 import type { ExerciseProgression } from './exercise-progression'
 import type { WorkoutSetHighlight } from './workout-stats'
 
@@ -228,4 +231,37 @@ export function buildEraComparison(
     typicalTopSetDelta: delta(then.typicalTopSet, now.typicalTopSet),
     surpassedHeaviest: heaviestDelta === null ? null : heaviestDelta > 0,
   }
+}
+
+/**
+ * Whether an era's training was transcribed from the Apple Notes archive (#400).
+ *
+ * Asked rather than assumed. A long gap is not evidence of an import — a
+ * movement can simply have been left alone for a year — so a panel that claimed
+ * "the earlier one comes from Apple Notes" on every qualifying gap would state a
+ * provenance it never checked.
+ *
+ * @param era The era to test, from {@link buildEraComparison}.
+ * @param exercise Catalog slug the era belongs to; sets of other movements in
+ *   the same window are irrelevant and must not vote.
+ * @param sets Every logged set — filtered here, so callers pass the same array
+ *   they gave `buildExerciseProgression`.
+ * @param clock Zone each set's day is measured in; defaults to Pacific (#429).
+ * @returns True when at least one imported set of this movement falls inside
+ *   the era's span.
+ */
+export function eraIsImported(
+  era: TrainingEra,
+  exercise: string,
+  sets: readonly StrengthSet[],
+  clock: DayClock = PACIFIC_CLOCK
+): boolean {
+  return sets.some(set => {
+    if (set.exercise !== exercise) return false
+    if (set.source !== 'icloud_notes') return false
+    const dayKey = clock.safeDayKey(set.logged_at)
+    // Day keys compare as strings — `2024-01-10` <= `2024-04-16` lexicographically
+    // and chronologically alike.
+    return dayKey !== '' && dayKey >= era.startDayKey && dayKey <= era.endDayKey
+  })
 }

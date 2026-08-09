@@ -1,4 +1,4 @@
-import type { JSX } from 'react'
+import type { JSX, ReactNode } from 'react'
 
 import { formatDayKey } from '@/lib/training-facility/day-keys'
 import type { EraComparison, TrainingEra } from '@/lib/training-facility/era-comparison'
@@ -13,6 +13,15 @@ export interface ThenVsNowPanelProps {
   comparison: EraComparison
   /** Human-readable movement name, resolved by the caller with `slugLabel` (#384). */
   displayName: string
+  /**
+   * Whether the earlier era was transcribed from the Apple Notes archive,
+   * as answered by `eraIsImported`.
+   *
+   * Required rather than assumed: this panel renders for *any* long gap, and a
+   * movement can simply have been left alone for a year. Claiming an import
+   * that never happened would put a false provenance on real training.
+   */
+  earlierEraImported: boolean
 }
 
 /**
@@ -30,7 +39,11 @@ export interface ThenVsNowPanelProps {
  *
  * A Server Component — no state, no effects.
  */
-export function ThenVsNowPanel({ comparison, displayName }: ThenVsNowPanelProps): JSX.Element {
+export function ThenVsNowPanel({
+  comparison,
+  displayName,
+  earlierEraImported,
+}: ThenVsNowPanelProps): JSX.Element {
   const { then, now, gapDays } = comparison
   const gapYears = gapDays / 365
 
@@ -48,7 +61,9 @@ export function ThenVsNowPanel({ comparison, displayName }: ThenVsNowPanelProps)
           {gapYears >= 1
             ? `${gapYears.toFixed(1)} years separate these two stretches of ${displayName.toLowerCase()}.`
             : `${gapDays} days separate these two stretches of ${displayName.toLowerCase()}.`}{' '}
-          The earlier one comes from training logged in Apple Notes and imported into this log.
+          {earlierEraImported
+            ? 'The earlier one comes from training logged in Apple Notes and imported into this log.'
+            : 'The earlier one is training this log already carried.'}
         </p>
       </header>
 
@@ -156,56 +171,99 @@ interface VerdictProps {
   displayName: string
 }
 
+/** The verdict's shared shell, so every branch gets the same box and test id. */
+function Sentence({ children }: { children: ReactNode }): JSX.Element {
+  return (
+    <p
+      data-testid="then-vs-now-verdict"
+      className="mt-4 rounded-[1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#e8d5be]/80"
+    >
+      {children}
+    </p>
+  )
+}
+
 /**
  * One line saying whether the current era has passed the old one.
  *
- * Only rendered when there is a like-for-like comparison to make. A movement
- * that was bodyweight in either era gets a rep-volume sentence instead, because
- * "not yet surpassed" would be a verdict on training that was never measured in
- * pounds.
+ * Four branches, because three of them would otherwise print something false:
+ * a movement bodyweight in *both* eras has no load to compare and gets reps
+ * instead; one loaded on a single side is not comparable by weight at all, and
+ * saying "neither stretch was loaded" is contradicted by the adjacent column;
+ * and a dead heat is neither "passed" nor "still above", both of which would
+ * render as "by 0 lb".
  */
 function Verdict({ comparison, displayName }: VerdictProps): JSX.Element | null {
   const { heaviestDelta, surpassedHeaviest, then, now } = comparison
+  const movement = displayName.toLowerCase()
+  const repsDelta = now.reps - then.reps
+
+  // Every branch below ends its sentence on the bold value, with a `{' '}`
+  // ahead of it. Not a style preference: JSX drops the space between a closing
+  // tag and following text when that text wraps to the next source line, and
+  // prettier rewrites an explicit `{' '}` back into exactly that shape — so
+  // "passed the" reflows into "passedthe" on the next format run. Keeping the
+  // emphasis last means nothing ever follows it to lose a space against.
+  const reps = `${Math.abs(repsDelta).toLocaleString('en-US')} ${repsDelta > 0 ? 'more' : 'fewer'} reps`
 
   if (surpassedHeaviest === null || heaviestDelta === null) {
-    // Bodyweight on at least one side — compare the thing that does exist.
-    const repsDelta = now.reps - then.reps
+    const bothBodyweight = then.heaviestSet === null && now.heaviestSet === null
+
+    if (!bothBodyweight) {
+      const loadedSide = now.heaviestSet !== null ? 'the current stretch' : 'the earlier stretch'
+      if (repsDelta === 0) {
+        return (
+          <Sentence>
+            Only {loadedSide} carried external load, so the two aren&rsquo;t comparable by weight —
+            and both carry the same {movement} rep volume.
+          </Sentence>
+        )
+      }
+      return (
+        <Sentence>
+          Only {loadedSide} carried external load, so the two aren&rsquo;t comparable by weight. In{' '}
+          {movement} reps, this stretch carries{' '}
+          <strong className="font-black text-[#fff7ec]">{reps}</strong>.
+        </Sentence>
+      )
+    }
+
     if (repsDelta === 0) return null
     return (
-      <p
-        data-testid="then-vs-now-verdict"
-        className="mt-4 rounded-[1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#e8d5be]/80"
-      >
-        This stretch carries{' '}
+      <Sentence>
+        Neither stretch was loaded, so the comparison is in reps: this stretch carries{' '}
+        <strong className="font-black text-[#fff7ec]">{reps}</strong> of {movement}.
+      </Sentence>
+    )
+  }
+
+  if (heaviestDelta === 0) {
+    return (
+      <Sentence>
+        Both stretches top out at the same {movement} —{' '}
         <strong className="font-black text-[#fff7ec]">
-          {Math.abs(repsDelta).toLocaleString('en-US')} {repsDelta > 0 ? 'more' : 'fewer'} reps
-        </strong>{' '}
-        of {displayName.toLowerCase()} than the archive — measured in reps, since neither stretch
-        was loaded.
-      </p>
+          {formatLbs(now.heaviestSet?.effectiveLoad ?? 0)}
+        </strong>
+        .
+      </Sentence>
     )
   }
 
   const magnitude = formatLbs(Math.abs(heaviestDelta))
 
   return (
-    <p
-      data-testid="then-vs-now-verdict"
-      className="mt-4 rounded-[1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#e8d5be]/80"
-    >
+    <Sentence>
       {surpassedHeaviest ? (
         <>
-          Current training has <strong className="font-black text-[#fff7ec]">passed</strong> the
-          archive&rsquo;s heaviest {displayName.toLowerCase()} by{' '}
+          Current training has passed the earlier stretch&rsquo;s heaviest {movement} by{' '}
           <strong className="font-black text-[#fff7ec]">{magnitude}</strong>.
         </>
       ) : (
         <>
-          The archive&rsquo;s heaviest {displayName.toLowerCase()} is still{' '}
-          <strong className="font-black text-[#fff7ec]">{magnitude}</strong> above anything in the
-          current stretch.
+          The earlier stretch&rsquo;s heaviest {movement} still leads the current one by{' '}
+          <strong className="font-black text-[#fff7ec]">{magnitude}</strong>.
         </>
       )}
-    </p>
+    </Sentence>
   )
 }

@@ -7,7 +7,15 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { buildEraComparison, DEFAULT_MIN_GAP_DAYS, daysBetween, median } from './era-comparison'
+import type { StrengthSet } from '@/types/weight-room'
+
+import {
+  buildEraComparison,
+  DEFAULT_MIN_GAP_DAYS,
+  daysBetween,
+  eraIsImported,
+  median,
+} from './era-comparison'
 import type { ExerciseDayPoint, ExerciseProgression } from './exercise-progression'
 import type { WorkoutSetHighlight } from './workout-stats'
 
@@ -195,5 +203,82 @@ describe('buildEraComparison', () => {
     expect(comparison?.heaviestDelta).toBeNull()
     expect(comparison?.surpassedHeaviest).toBeNull()
     expect(comparison?.now.heaviestSet?.effectiveLoad).toBe(135)
+  })
+
+  it('reports a dead heat as neither surpassed nor behind', () => {
+    // heaviestDelta of 0 renders as "by 0 lb" under either phrasing, so the
+    // render site needs to be able to tell a tie from a gain.
+    const tied = progression([
+      day('2024-01-10', 135),
+      day('2024-04-16', 135),
+      day('2026-05-20', 135),
+    ])
+    const comparison = buildEraComparison(tied)
+    expect(comparison?.heaviestDelta).toBe(0)
+    expect(comparison?.surpassedHeaviest).toBe(false)
+  })
+})
+
+describe('eraIsImported', () => {
+  /** A logged set of `exercise` on `dayKey`, optionally from the notes archive. */
+  function set(dayKey: string, exercise: string, source?: 'icloud_notes'): StrengthSet {
+    return {
+      id: `${exercise}-${dayKey}`,
+      // Midday Pacific, so the UTC instant still buckets onto `dayKey`.
+      logged_at: `${dayKey}T20:00:00Z`,
+      exercise,
+      reps: 8,
+      ...(source === undefined ? {} : { source }),
+    }
+  }
+
+  const era = {
+    startDayKey: '2024-01-10',
+    endDayKey: '2024-04-16',
+    trainingDays: 2,
+    sets: 2,
+    reps: 16,
+    tonnage: 0,
+    heaviestSet: null,
+    bestOneRepMax: null,
+    typicalTopSet: null,
+  }
+
+  it('is true when an imported set of this movement falls in the era', () => {
+    expect(
+      eraIsImported(era, 'barbell-bench-press', [
+        set('2024-02-14', 'barbell-bench-press', 'icloud_notes'),
+      ])
+    ).toBe(true)
+  })
+
+  it('is false when the era holds only manually logged sets', () => {
+    // A long gap is not evidence of an import — a movement can simply have been
+    // left alone for a year.
+    expect(
+      eraIsImported(era, 'barbell-bench-press', [set('2024-02-14', 'barbell-bench-press')])
+    ).toBe(false)
+  })
+
+  it('ignores imported sets of a different movement in the same window', () => {
+    expect(
+      eraIsImported(era, 'barbell-bench-press', [set('2024-02-14', 'lat-pulldown', 'icloud_notes')])
+    ).toBe(false)
+  })
+
+  it('ignores imported sets outside the era span', () => {
+    expect(
+      eraIsImported(era, 'barbell-bench-press', [
+        set('2026-05-20', 'barbell-bench-press', 'icloud_notes'),
+      ])
+    ).toBe(false)
+  })
+
+  it('counts a set on the era boundary itself', () => {
+    expect(
+      eraIsImported(era, 'barbell-bench-press', [
+        set('2024-04-16', 'barbell-bench-press', 'icloud_notes'),
+      ])
+    ).toBe(true)
   })
 })
