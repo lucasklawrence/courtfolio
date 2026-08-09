@@ -12,6 +12,8 @@ import { describe, expect, it } from 'vitest'
 import {
   isPerformedSet,
   mintImportKey,
+  parseLabelledBlock,
+  TWENTY_ONES_REPS_PER_ARM,
   normalizeName,
   parseNote,
   parseNoteDate,
@@ -234,6 +236,106 @@ describe('parseNote', () => {
       unmapped: [],
       timed: [],
     })
+  })
+})
+
+describe('parseLabelledBlock', () => {
+  it('turns a rack run into one to-failure set per drop', () => {
+    // `25, 20, 10` is three drops down the rack, each taken to failure with
+    // the rep count never written down.
+    const sets = parseLabelledBlock({
+      movement: 'Rack Run',
+      planned: '35,30,25,20',
+      sets: [{ set: 1, value: '25, 20, 10' }],
+    })
+    expect(sets).toEqual([
+      { exercise: 'dumbbell-curl', reps: 1, weight_lbs: 25, variant: 'rack run', to_failure: true },
+      { exercise: 'dumbbell-curl', reps: 1, weight_lbs: 20, variant: 'rack run', to_failure: true },
+      { exercise: 'dumbbell-curl', reps: 1, weight_lbs: 10, variant: 'rack run', to_failure: true },
+    ])
+  })
+
+  it('records an empty Set N: as one unloaded to-failure set', () => {
+    // The set was declared and labelled, so it happened — it just recorded
+    // nothing. Dropping it would lose that the movement was performed at all.
+    const sets = parseLabelledBlock({
+      movement: 'Rack Run',
+      planned: '35,30,25,20',
+      sets: [{ set: 1, value: '' }],
+    })
+    expect(sets).toEqual([
+      {
+        exercise: 'dumbbell-curl',
+        reps: 1,
+        weight_lbs: null,
+        variant: 'rack run',
+        to_failure: true,
+      },
+    ])
+  })
+
+  it('never takes loads from the planned rack in the heading', () => {
+    // `35,30,25,20` is what was intended; the body is what was done, and they
+    // routinely disagree.
+    const sets = parseLabelledBlock({
+      movement: 'Rack Run',
+      planned: '35,30,25,20',
+      sets: [{ set: 1, value: '25, 20, 10' }],
+    })
+    expect(sets.map(s => s.weight_lbs)).toEqual([25, 20, 10])
+  })
+
+  it('stores 21s at 14 reps — the per-arm count, not the 21 total', () => {
+    // 7 one arm, 7 the other, 7 both: 21 curls but 14 per arm. Every other
+    // dumbbell set stores reps per arm and doubles for tonnage, so 21 here
+    // would bill 42 arm-reps for work that was 28.
+    const sets = parseLabelledBlock({
+      movement: '21s',
+      sets: [{ set: 1, value: '22.5 DB' }],
+    })
+    expect(sets).toEqual([
+      { exercise: 'dumbbell-curl', reps: 14, weight_lbs: 22.5, variant: '21s' },
+    ])
+    expect(TWENTY_ONES_REPS_PER_ARM).toBe(14)
+  })
+
+  it('keeps a 21s set whose load was never written', () => {
+    // `Set 1: DB` names the implement without a weight.
+    const sets = parseLabelledBlock({ movement: '21s', sets: [{ set: 1, value: 'DB' }] })
+    expect(sets).toEqual([
+      { exercise: 'dumbbell-curl', reps: 14, weight_lbs: null, variant: '21s' },
+    ])
+  })
+
+  it('does not mark 21s as to-failure — its rep count is known', () => {
+    const sets = parseLabelledBlock({ movement: '21s', sets: [{ set: 1, value: '20 DB' }] })
+    expect(sets[0].to_failure).toBeUndefined()
+  })
+})
+
+describe('parseNote — labelled blocks', () => {
+  it('imports rack runs alongside the note’s tables, with unique keys', () => {
+    const { sets } = parseNote({
+      title: 'Back Day 1',
+      date: '2024-03-15',
+      exercises: [
+        {
+          name: 'EZ curl standing',
+          weight_header: 'Weight',
+          measure_header: 'Reps',
+          sets: [{ set: 1, weight: 70, reps: 12 }],
+        },
+      ],
+      labelled_blocks: [
+        { movement: 'Rack Run', planned: '35,30,25,20', sets: [{ set: 1, value: '25, 20' }] },
+      ],
+    })
+
+    const rack = sets.filter(s => s.variant === 'rack run')
+    expect(rack).toHaveLength(2)
+    expect(rack.every(s => s.to_failure === true)).toBe(true)
+    // Keys index per movement across the whole note, so two drops never collide.
+    expect(new Set(sets.map(s => s.import_key)).size).toBe(sets.length)
   })
 })
 

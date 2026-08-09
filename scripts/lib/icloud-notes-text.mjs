@@ -87,6 +87,26 @@ const LOAD_LINE =
 const MAX_SET_ROWS = 40
 
 /**
+ * A block written as `Set N:` labels rather than a table (#435).
+ *
+ * Two movements in this log are recorded this way, both because a plain
+ * `Set | Weight | Reps` grid cannot express them:
+ *
+ *     Rack Run 35,30,25,20 2 sets     21s 2 sets
+ *     Set 1: 25, 20, 10               Set 1: 22.5 DB
+ *     Set 2:                          Set 2:  22.5 DB
+ *
+ * The heading names the movement and declares how many sets; each `Set N:` line
+ * carries what that set was, which for a rack run is the loads it ran down and
+ * for 21s is the single load it used. Reps appear in neither, and for a rack run
+ * they never existed — each drop went to failure.
+ */
+const LABELLED_BLOCK = /^(rack run|21s)\b(.*)$/i
+
+/** One `Set N:` line and whatever followed the colon. */
+const SET_LINE = /^set\s*(\d+)\s*:?\s*(.*)$/i
+
+/**
  * Split the Shortcuts output into individual notes.
  *
  * @param {string} text Whole exported file.
@@ -200,13 +220,18 @@ function readRows(lines, start) {
  * @returns {{exercises: Array<{name: string, declared: string|null,
  *   weight_header: string, measure_header: string, note: string|null,
  *   sets: Array<{set: number, weight: string, reps: string}>}>,
- *   rep_lists: Array<{movement: string, reps: number[]}>, loose_text: string[]}}
+ *   rep_lists: Array<{movement: string, reps: number[]}>, loose_text: string[],
+ *   labelled_blocks: Array<{movement: string, declared: string|null,
+ *     planned: string, sets: Array<{set: number, value: string}>}>}}
+ *   `labelled_blocks` holds the `Set N:` shapes — rack runs and 21s — whose
+ *   values are loads rather than reps; see {@link LABELLED_BLOCK}.
  */
 export function parseNoteBody(body) {
   const lines = String(body ?? '').split(/\r?\n/)
   const exercises = []
   const repLists = []
   const looseText = []
+  const labelledBlocks = []
 
   /** Lines already consumed by a table, so the rep-list pass skips them. */
   const consumed = new Set()
@@ -228,7 +253,57 @@ export function parseNoteBody(body) {
     i = next - 1
   }
 
-  // Second pass: headings followed by bare numbers (grease-the-groove volume)
+  // Second pass: `Set N:` blocks, which are not tables and would otherwise fall
+  // through to the loose-text pile — see LABELLED_BLOCK.
+  for (let i = 0; i < lines.length; i += 1) {
+    if (consumed.has(i)) continue
+    const block = (lines[i] ?? '').trim().match(LABELLED_BLOCK)
+    if (!block) continue
+
+    const [, movement, rest] = block
+    const declared = rest.match(/(\d+\s*sets?)/i)?.[1] ?? null
+    // Everything before the set count is the planned rack (`35,30,25,20`) —
+    // what was *intended*, which the body below routinely disagrees with.
+    const planned = rest
+      .replace(/\d+\s*sets?\b/i, '')
+      .trim()
+      .replace(/^[,\s]+|[,\s]+$/g, '')
+
+    const setLines = []
+    let j = i + 1
+    // Scan to the next movement, tolerating the blank lines between labels.
+    while (j < lines.length) {
+      const line = (lines[j] ?? '').trim()
+      if (line === '') {
+        j += 1
+        continue
+      }
+      const setLine = line.match(SET_LINE)
+      if (!setLine) break
+      // A label's value sits either after the colon or on the following line.
+      let value = setLine[2].trim()
+      let consumedThrough = j
+      if (value === '') {
+        let k = j + 1
+        while (k < lines.length && (lines[k] ?? '').trim() === '') k += 1
+        const following = (lines[k] ?? '').trim()
+        if (following !== '' && !SET_LINE.test(following) && /[\d.]/.test(following)) {
+          value = following
+          consumedThrough = k
+        }
+      }
+      setLines.push({ set: Number(setLine[1]), value })
+      j = consumedThrough + 1
+    }
+
+    if (setLines.length === 0) continue
+    for (let k = i; k < j; k += 1) consumed.add(k)
+
+    labelledBlocks.push({ movement: movement.trim(), declared, planned, sets: setLines })
+    i = j - 1
+  }
+
+  // Third pass: headings followed by bare numbers (grease-the-groove volume)
   // or `weight - reps` pairs (the older freeform shorthand).
   //
   // `lastHeading` carries the most recent line that actually named a movement,
@@ -312,7 +387,12 @@ export function parseNoteBody(body) {
     i = j - 1
   }
 
-  return { exercises, rep_lists: repLists, loose_text: looseText }
+  return {
+    exercises,
+    rep_lists: repLists,
+    loose_text: looseText,
+    labelled_blocks: labelledBlocks,
+  }
 }
 
 /**

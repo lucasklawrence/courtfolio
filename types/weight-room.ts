@@ -117,6 +117,17 @@ export interface StrengthSet {
    * printing "1 rep".
    */
   duration_seconds?: number
+  /**
+   * Whether the set went to failure with its rep count unrecorded (#435).
+   *
+   * A rack run's drops are the case this exists for: the notes record the loads
+   * run down the rack and never the reps, because each drop simply went until
+   * it couldn't. Such a set stores `reps: 1` — meaning *one set happened*, not
+   * one repetition — so rep rollups understate it by a known amount rather than
+   * counting a number nobody wrote down. Render sites should say "to failure"
+   * instead of the literal count.
+   */
+  to_failure?: boolean
 }
 
 /**

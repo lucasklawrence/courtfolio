@@ -199,6 +199,63 @@ describe('parseNoteBody — rep lists and freeform', () => {
   })
 })
 
+describe('parseNoteBody — labelled Set N: blocks', () => {
+  it('reads a rack run with its loads, keeping the planned rack separate', () => {
+    // Verbatim from Back Day 1, 2024-03-15. The heading states the intended
+    // rack; the body records what was actually run, and they disagree.
+    const { labelled_blocks, loose_text } = parseNoteBody(
+      ['Rack Run 35,30,25,20 2 sets', '', 'Set 1: 25, 20, 10', '', 'Set 2:', ''].join('\n')
+    )
+    expect(labelled_blocks).toHaveLength(1)
+    expect(labelled_blocks[0]).toMatchObject({
+      movement: 'Rack Run',
+      declared: '2 sets',
+      planned: '35,30,25,20',
+    })
+    expect(labelled_blocks[0].sets).toEqual([
+      { set: 1, value: '25, 20, 10' },
+      { set: 2, value: '' },
+    ])
+    // It no longer falls through to the loose-text pile.
+    expect(loose_text.join(' ')).not.toContain('Rack Run')
+  })
+
+  it('reads loads written on the line after the label', () => {
+    // The 2023-01-08 shape: `Set 1:` with its loads underneath.
+    const { labelled_blocks } = parseNoteBody(
+      ['Rack Run 35,30,25,20 2 sets', '', 'Set 1:', '30, 15', 'Set 2:', '30, 27.5, 22.5'].join('\n')
+    )
+    expect(labelled_blocks[0].sets).toEqual([
+      { set: 1, value: '30, 15' },
+      { set: 2, value: '30, 27.5, 22.5' },
+    ])
+  })
+
+  it('does not swallow the next movement as a set value', () => {
+    const { labelled_blocks, rep_lists } = parseNoteBody(
+      ['Rack Run 35,30,25,20 2 sets', '', 'Set 1:', '', 'Set 2:', '', 'Push ups:', '12', '10'].join(
+        '\n'
+      )
+    )
+    expect(labelled_blocks[0].sets).toEqual([
+      { set: 1, value: '' },
+      { set: 2, value: '' },
+    ])
+    expect(rep_lists).toEqual([{ movement: 'Push ups:', reps: [12, 10] }])
+  })
+
+  it('reads a 21s block and its per-set load', () => {
+    const { labelled_blocks } = parseNoteBody(
+      ['21s 2 sets', '', 'Set 1: 22.5 DB', 'Set 2:  20 DB'].join('\n')
+    )
+    expect(labelled_blocks[0]).toMatchObject({ movement: '21s', declared: '2 sets' })
+    expect(labelled_blocks[0].sets).toEqual([
+      { set: 1, value: '22.5 DB' },
+      { set: 2, value: '20 DB' },
+    ])
+  })
+})
+
 describe('parseExport', () => {
   it('produces one entry per note, shaped for the movement parser', () => {
     const parsed = parseExport(INLINE_SEPARATOR)

@@ -171,6 +171,22 @@ const RAW_MOVEMENT_ALIASES = {
 }
 
 /**
+ * Reps in one 21s set, counted the way every other two-dumbbell set is (#435).
+ *
+ * The protocol is 7 reps with one arm while the other holds mid-curl, 7 with
+ * the other, then 7 with both — 21 curls in total, but **14 per arm**. Every
+ * other dumbbell movement in this log stores reps *per arm* and lets the
+ * catalog's `load_multiplier` of 2 account for the second one, so a straight
+ * set of 10 curls is `reps = 10` and tonnage comes out as `10 × weight × 2`.
+ *
+ * Storing 21 here would put all 21 through that same doubling and bill 42
+ * arm-reps for work that was 28. 14 keeps the arithmetic honest and consistent;
+ * the `21s` variant preserves that it was the protocol rather than a straight
+ * set of 14.
+ */
+export const TWENTY_ONES_REPS_PER_ARM = 14
+
+/**
  * Box height stated in a plyo movement's name, e.g. `24 inch plyo`.
  *
  * Kept as the set's variant rather than as three near-duplicate slugs: a box
@@ -508,6 +524,76 @@ export function mintImportKey({ title, date, slug, index }) {
 }
 
 /**
+ * Turn a `Set N:` block — a rack run or a set of 21s — into sets (#435).
+ *
+ * Both are dumbbell curls that a `Set | Weight | Reps` table cannot express,
+ * and both record loads where a table would record reps.
+ *
+ * **Rack run.** A drop set: curl the 35s to failure, drop to the 30s, again,
+ * down the rack. `Set 1: 25, 20, 10` is three drops at three loads, and the rep
+ * count was never written because each drop simply went until it couldn't.
+ * Every drop is therefore a set marked `to_failure` — see the #435 migration
+ * for why that stores `reps = 1` rather than null.
+ *
+ * A `Set N:` with nothing after it is the same movement performed with nothing
+ * recorded at all. It still happened — the heading declared it and the label is
+ * there — so it imports as one unloaded to-failure set rather than vanishing.
+ * That is the two shapes the source actually has: one with loads, one without.
+ *
+ * **21s.** One set at one load, for {@link TWENTY_ONES_REPS_PER_ARM} reps.
+ *
+ * @param {{movement: string, planned?: string,
+ *   sets: Array<{set: number, value: string}>}} block A parsed labelled block.
+ * @param {Record<string, number>} [loadMultipliers] Live catalog multipliers.
+ * @returns {Array<{exercise: string, reps: number, weight_lbs: number|null,
+ *   variant: string, to_failure?: boolean}>} Sets in the order they were run.
+ */
+export function parseLabelledBlock(block, loadMultipliers = {}) {
+  const isRackRun = /^rack run/i.test(block.movement)
+  const slug = 'dumbbell-curl'
+  const variant = isRackRun ? 'rack run' : '21s'
+  const out = []
+
+  for (const entry of block.sets ?? []) {
+    // Loads are comma-separated: `25, 20, 10` is three drops, `22.5 DB` is one.
+    const loads = entry.value
+      .split(',')
+      .map(part => part.trim())
+      .filter(part => part !== '')
+
+    if (!isRackRun) {
+      // 21s: a value of bare `DB` names the implement without a load, which is
+      // a set that happened at a weight nobody wrote down.
+      const weight = perImplementWeight(loads[0], 'Weight', slug, loadMultipliers[slug])
+      out.push({
+        exercise: slug,
+        reps: TWENTY_ONES_REPS_PER_ARM,
+        weight_lbs: weight,
+        variant,
+      })
+      continue
+    }
+
+    if (loads.length === 0) {
+      out.push({ exercise: slug, reps: 1, weight_lbs: null, variant, to_failure: true })
+      continue
+    }
+
+    for (const load of loads) {
+      out.push({
+        exercise: slug,
+        reps: 1,
+        weight_lbs: perImplementWeight(load, 'Weight', slug, loadMultipliers[slug]),
+        variant,
+        to_failure: true,
+      })
+    }
+  }
+
+  return out
+}
+
+/**
  * Turn one transcribed note into the sets it records.
  *
  * Splits into two piles, which is the distinction #400 flags as easiest to get
@@ -523,17 +609,24 @@ export function mintImportKey({ title, date, slug, index }) {
  * @param {string} note.title Note title.
  * @param {string} note.date Note date as `YYYY-MM-DD`.
  * @param {Array<{name: string, weight_header?: string|null,
+ *   measure_header?: string|null,
  *   sets?: Array<{set?: number, weight?: unknown, reps?: unknown}>}>} [note.exercises]
- *   Table-backed exercises.
+ *   Table-backed exercises. `measure_header` distinguishes a rep column from a
+ *   duration one — see {@link isRepMeasure}.
  * @param {Array<{movement: string, reps?: unknown[]}>} [note.rep_lists]
  *   Bare rep lists.
+ * @param {Array<{movement: string, planned?: string,
+ *   sets: Array<{set: number, value: string}>}>} [note.labelled_blocks]
+ *   `Set N:` blocks — rack runs and 21s (#435); see {@link parseLabelledBlock}.
  * @param {Record<string, number>} [loadMultipliers] Live catalog multipliers
  *   keyed by slug. Falls back to {@link TWO_IMPLEMENT_SLUGS} when absent.
  * @returns {{sets: Array<{exercise: string, reps: number, weight_lbs: number|null,
+ *   variant?: string, duration_seconds?: number, to_failure?: boolean,
  *   disposition: 'workout'|'gtg', position: number|null, import_key: string}>,
- *   unmapped: string[]}} Parsed sets in note order, plus every movement name
- *   that resolved to nothing — reported so it gets a real catalog row rather
- *   than a near-duplicate slug.
+ *   unmapped: string[], timed: string[]}} Parsed sets in note order; every
+ *   movement name that resolved to nothing — reported so it gets a real catalog
+ *   row rather than a near-duplicate slug; and every duration-measured movement
+ *   skipped for want of a rep count.
  */
 export function parseNote(note, loadMultipliers = {}) {
   const sets = []
@@ -598,6 +691,23 @@ export function parseNote(note, loadMultipliers = {}) {
         }),
       })
     })
+  }
+
+  for (const block of note.labelled_blocks ?? []) {
+    const parsed = parseLabelledBlock(block, loadMultipliers)
+    for (const set of parsed) {
+      sets.push({
+        ...set,
+        disposition: 'workout',
+        position: position++,
+        import_key: mintImportKey({
+          title: note.title,
+          date: note.date,
+          slug: set.exercise,
+          index: nextIndex(set.exercise),
+        }),
+      })
+    }
   }
 
   for (const list of note.rep_lists ?? []) {

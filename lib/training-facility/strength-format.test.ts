@@ -97,4 +97,20 @@ describe('describeSetOrHold', () => {
   it('ignores a nonsensical duration rather than rendering it', () => {
     expect(describeSetOrHold({ reps: 12, effectiveLoad: 0, durationSeconds: 0 })).toBe('12 reps')
   })
+
+  it('says what a to-failure set was, not its placeholder rep count', () => {
+    // A rack-run drop stores `reps: 1` meaning "one set" (#435). Printing
+    // "1 rep" would claim a count that was never recorded.
+    expect(describeSetOrHold({ reps: 1, effectiveLoad: 50, toFailure: true })).toBe(
+      '50 lb to failure'
+    )
+  })
+
+  it('describes an unloaded to-failure set without inventing a load', () => {
+    expect(describeSetOrHold({ reps: 1, effectiveLoad: 0, toFailure: true })).toBe('to failure')
+  })
+
+  it('leaves ordinary sets alone when the flag is absent or false', () => {
+    expect(describeSetOrHold({ reps: 8, effectiveLoad: 60, toFailure: false })).toBe('8 × 60 lb')
+  })
 })

@@ -232,6 +232,7 @@ export function buildExerciseProgression(
         effectiveLoad,
         loggedAt: set.logged_at,
         ...(set.duration_seconds === undefined ? {} : { durationSeconds: set.duration_seconds }),
+        ...(set.to_failure === true ? { toFailure: true } : {}),
       }
 
       reps += set.reps

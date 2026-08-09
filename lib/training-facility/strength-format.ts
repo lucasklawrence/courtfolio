@@ -85,10 +85,22 @@ export function formatHold(seconds: number): string {
  * @param options Unit label and locale, forwarded to {@link formatLbs}.
  */
 export function describeSetOrHold(
-  set: { reps: number; effectiveLoad: number; durationSeconds?: number | null },
+  set: {
+    reps: number
+    effectiveLoad: number
+    durationSeconds?: number | null
+    toFailure?: boolean | null
+  },
   options: LoadFormatOptions = {}
 ): string {
-  const { reps, effectiveLoad, durationSeconds } = set
+  const { reps, effectiveLoad, durationSeconds, toFailure } = set
+
+  // A to-failure set stores `reps: 1` meaning "one set", so the rep count is
+  // not a number worth printing — say what actually happened instead (#435).
+  if (toFailure === true) {
+    return effectiveLoad > 0 ? `${formatLbs(effectiveLoad, options)} to failure` : 'to failure'
+  }
+
   if (durationSeconds === undefined || durationSeconds === null || durationSeconds <= 0) {
     return describeSet(reps, effectiveLoad, options)
   }

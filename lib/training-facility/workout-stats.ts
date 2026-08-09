@@ -120,6 +120,13 @@ export interface WorkoutSetHighlight {
    * `describeSetOrHold`, which says `45s` where `describeSet` would say `1 rep`.
    */
   durationSeconds?: number
+  /**
+   * Whether the set went to failure with its rep count unrecorded (#435).
+   *
+   * When true, `reps` is 1 and means "one set", not one repetition — render
+   * sites should prefer `describeSetOrHold`, which says "to failure".
+   */
+  toFailure?: boolean
 }
 
 /** One movement's contribution to a session. */
@@ -270,6 +277,7 @@ export function buildWorkoutSummary(
         effectiveLoad,
         loggedAt: set.logged_at,
         ...(set.duration_seconds === undefined ? {} : { durationSeconds: set.duration_seconds }),
+        ...(set.to_failure === true ? { toFailure: true } : {}),
       }
       // Heaviest wins; at equal load the one with more reps is the better set.
       if (

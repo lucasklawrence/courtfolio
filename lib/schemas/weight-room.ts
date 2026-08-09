@@ -156,6 +156,8 @@ export const WeightRoomSetRowSchema = z
     source: z.enum(['manual', 'icloud_notes']).nullable().optional(),
     // Seconds a hold lasted (#400); null for every set counted in reps.
     duration_seconds: nonNegativeInt().nullable().optional(),
+    // Set taken to failure with its rep count unrecorded (#435).
+    to_failure: z.boolean().nullable().optional(),
   })
   .strict()
 
@@ -344,6 +346,9 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     // follows for its own source.
     ...(row.source != null && row.source !== 'manual' ? { source: row.source } : {}),
     ...(row.duration_seconds != null ? { duration_seconds: row.duration_seconds } : {}),
+    // `false` is the column default and the absent-field meaning, so only a
+    // true flag is carried — same convention as `source`.
+    ...(row.to_failure === true ? { to_failure: true } : {}),
   }
 }
 
