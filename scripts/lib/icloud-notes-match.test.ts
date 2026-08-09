@@ -13,6 +13,7 @@ import {
   localDayKey,
   localToInstant,
   matchNoteToSession,
+  noteWindow,
   overlapMs,
   parseNotesCsvStamp,
   zoneOffsetMs,
@@ -76,6 +77,54 @@ describe('localToInstant / parseNotesCsvStamp', () => {
     const instant = parseNotesCsvStamp('04-16-2024 21:40:38', LA)!
     expect(instant.toISOString().slice(0, 10)).toBe('2024-04-17')
     expect(localDayKey(instant, LA)).toBe('2024-04-16')
+  })
+})
+
+describe('noteWindow', () => {
+  it('keeps a normal create-to-edit span, which is the session itself', () => {
+    const created = parseNotesCsvStamp('04-16-2024 21:40:38', LA)!
+    const modified = parseNotesCsvStamp('04-16-2024 22:07:12', LA)!
+    const window = noteWindow(created, modified)
+    expect(window.end).toEqual(modified)
+    expect(window.clamped).toBe(false)
+  })
+
+  it('discards an edit made years after the session', () => {
+    // Real row in this export: a Legs Day 1 created 2024-02-06 was last edited
+    // 2026-02-12. Matched on that span it would overlap every workout in
+    // between and win on whichever was longest.
+    const created = parseNotesCsvStamp('02-06-2024 19:00:00', LA)!
+    const modified = parseNotesCsvStamp('02-12-2026 09:00:00', LA)!
+    const window = noteWindow(created, modified)
+    expect(window.clamped).toBe(true)
+    expect(window.start).toEqual(created)
+    expect(window.end.getTime() - created.getTime()).toBe(30 * 60_000)
+  })
+
+  it('discards an edit two days later, which is not one sitting either', () => {
+    const created = parseNotesCsvStamp('10-02-2023 18:00:00', LA)!
+    const modified = parseNotesCsvStamp('10-04-2023 18:00:00', LA)!
+    expect(noteWindow(created, modified).clamped).toBe(true)
+  })
+
+  it('treats a backwards span as unusable rather than matching nothing silently', () => {
+    const created = parseNotesCsvStamp('04-16-2024 22:00:00', LA)!
+    const modified = parseNotesCsvStamp('04-16-2024 21:00:00', LA)!
+    expect(noteWindow(created, modified).clamped).toBe(true)
+  })
+
+  it('a clamped window still finds its session by the same-day rule', () => {
+    // The point of clamping is to decline a wrong overlap, not to drop the note.
+    const created = parseNotesCsvStamp('02-06-2024 19:00:00', LA)!
+    const modified = parseNotesCsvStamp('02-12-2026 09:00:00', LA)!
+    const window = noteWindow(created, modified)
+    const sessions = [
+      { id: 'right', started_at: '2024-02-07T02:30:00Z', ended_at: '2024-02-07T03:20:00Z' },
+      // A much longer session two years later: the unclamped window would have
+      // preferred this one outright.
+      { id: 'wrong', started_at: '2026-02-12T17:00:00Z', ended_at: '2026-02-12T19:00:00Z' },
+    ]
+    expect(matchNoteToSession(window, sessions, LA)?.id).toBe('right')
   })
 })
 

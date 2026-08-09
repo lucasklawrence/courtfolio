@@ -106,6 +106,51 @@ export function parseNotesCsvStamp(stamp, timeZone) {
 }
 
 /**
+ * How long a note's create→edit span may be before it stops describing a session.
+ *
+ * A lifting session is under two hours; six leaves room for a note finished off
+ * over dinner without admitting anything that is obviously not one sitting.
+ */
+export const MAX_SESSION_HOURS = 6
+
+/**
+ * The window a note was actually written across, guarded against a late edit.
+ *
+ * Create→edit is normally the session itself, because these notes were typed
+ * one row at a time while training. But a note revisited later stretches that
+ * span arbitrarily: in this dataset a `Legs Day 1` created 2024-02-06 was last
+ * edited **2026-02-12**, a two-year window. Handed to
+ * {@link matchNoteToSession} it would overlap every workout in between and win
+ * on whichever happened to be longest — a confidently wrong attribution, which
+ * is precisely the failure this module exists to prevent.
+ *
+ * So an implausibly long span collapses to a short window at the note's
+ * creation, which is when the training actually happened. That usually finds no
+ * overlap and falls through to the same-day rule, which is the honest answer:
+ * the edit tells us nothing about the session.
+ *
+ * @param {Date} created When the note was created.
+ * @param {Date} modified When it was last edited.
+ * @param {number} [maxHours] Span above which the edit is treated as unrelated;
+ *   defaults to {@link MAX_SESSION_HOURS}.
+ * @returns {{start: Date, end: Date, clamped: boolean}} The window to match on,
+ *   and whether the late edit was discarded — reported so the import can say so
+ *   rather than silently narrowing.
+ */
+export function noteWindow(created, modified, maxHours = MAX_SESSION_HOURS) {
+  const start = created.getTime()
+  const end = modified.getTime()
+  const spanHours = (end - start) / 3_600_000
+
+  // `end < start` should not happen, but a clock change or a hand-edited
+  // manifest would produce it, and a negative window silently matches nothing.
+  if (!Number.isFinite(spanHours) || spanHours < 0 || spanHours > maxHours) {
+    return { start: created, end: new Date(start + 30 * 60_000), clamped: true }
+  }
+  return { start: created, end: modified, clamped: false }
+}
+
+/**
  * Pick the stored workout a transcribed note documents.
  *
  * Overlap first, ranked by how much of it there is. A note whose window misses

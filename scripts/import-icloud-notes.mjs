@@ -39,7 +39,7 @@ import { readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 
 import { createServiceRoleClient, loadEnv } from './lib/cardio-supabase.mjs'
-import { matchNoteToSession, parseNotesCsvStamp } from './lib/icloud-notes-match.mjs'
+import { matchNoteToSession, noteWindow, parseNotesCsvStamp } from './lib/icloud-notes-match.mjs'
 import { parseNote, parseNoteDate } from './lib/icloud-notes-parser.mjs'
 import {
   fetchExerciseSlugs,
@@ -271,15 +271,22 @@ async function main() {
   const rows = []
   const unmappedMovements = new Map()
   const unknownSlugs = new Map()
-  const report = { overlap: 0, sameDay: 0, ownSession: 0, missingManifest: 0 }
+  const report = {
+    overlap: 0,
+    sameDay: 0,
+    ownSession: 0,
+    missingManifest: 0,
+    clampedWindow: 0,
+  }
   const createdSessions = []
 
   for (const note of dated) {
     const entry = manifestIndex.get(`${note.title}|${note.day}`)
     if (!entry) report.missingManifest += 1
     const window = entry
-      ? { start: entry.created, end: entry.modified }
+      ? noteWindow(entry.created, entry.modified)
       : fallbackWindow(note.day, timeZone)
+    if (window.clamped) report.clampedWindow += 1
 
     const match = matchNoteToSession(window, sessions, timeZone)
     const workoutId = match?.id ?? null
@@ -342,6 +349,7 @@ async function main() {
   console.log(`  matched by same day   ${report.sameDay}`)
   console.log(`  own icloud session    ${report.ownSession}`)
   console.log(`  no manifest row       ${report.missingManifest}`)
+  console.log(`  late edit discarded   ${report.clampedWindow}`)
   console.log(`Sets parsed             ${rows.length}`)
   console.log(`  workout               ${workoutSets}`)
   console.log(`  grease-the-groove     ${gtgSets}`)
