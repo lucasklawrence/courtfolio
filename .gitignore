@@ -66,4 +66,10 @@ screenshots/*
 # before each deploy.
 public/data/cardio.json
 
+# Workout sets transcribed from personal Apple Notes, consumed by
+# `npm run import-icloud-notes` (#400). Same reasoning as the Health export:
+# it is personal training data, and the repo holds the importer, not the
+# training history. Regenerate from the notes rather than committing it.
+.notes-extract/
+
 .vercel

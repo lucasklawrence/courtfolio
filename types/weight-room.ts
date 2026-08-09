@@ -95,7 +95,38 @@ export interface StrengthSet {
    * rows are one set of the prescription, so the slot reads `8 / 2`.
    */
   template_slot_step_id?: string
+  /**
+   * Where this set came from (#400). Absent means `'manual'` — logged through
+   * the app or the `log-workout` skill — which is the column default and what
+   * every set predating the import is.
+   *
+   * `'icloud_notes'` marks a set transcribed from a historical Apple Notes
+   * session log. Surfaces that recompute over all-time history (achievements,
+   * streaks, personal bests) can scope on this rather than silently re-scoring
+   * years of backfilled training, and the then-vs-now panel uses it to say
+   * whether the earlier era is imported rather than assuming it.
+   */
+  source?: SetSource
+  /**
+   * How long an isometric set was held, in seconds (#400).
+   *
+   * Absent for the overwhelming majority — every set counted in repetitions.
+   * Present alongside `reps: 1` for a hold: a 45-second plank is one repetition
+   * lasting 45 seconds, which keeps rep rollups working without special-casing
+   * the movement. Surfaces that can render a hold should prefer this over
+   * printing "1 rep".
+   */
+  duration_seconds?: number
 }
+
+/**
+ * How a {@link StrengthSet} got into the database (#400).
+ *
+ * Narrower than {@link WorkoutSource} on purpose: the Apple Health export
+ * records that a workout happened but never what was done in it, so no set can
+ * originate there.
+ */
+export type SetSource = 'manual' | 'icloud_notes'
 
 /**
  * Where a {@link WeightRoomWorkout} happened (#374). Coarse on purpose — it
@@ -105,14 +136,23 @@ export interface StrengthSet {
 export type WorkoutLocation = 'gym' | 'home' | 'travel' | 'other'
 
 /**
- * How a {@link WeightRoomWorkout} got into the database (#413).
+ * How a {@link WeightRoomWorkout} got into the database (#413, #400).
  *
  * Not cosmetic — it decides what the session can honestly claim. A `'manual'`
  * session was recorded set by set, so its tonnage and adherence are
  * measurements. An `'apple_health'` one knows only that lifting happened and
- * for how long, so the same fields are *unknown* rather than zero.
+ * for how long, so the same fields are *unknown* rather than zero. An
+ * `'icloud_notes'` one was transcribed from a historical Apple Notes session log
+ * (#400) that had no Health workout to attach to; it carries real sets but no
+ * duration or heart rate.
+ *
+ * **Every value the database can hold must appear here and in
+ * `WeightRoomWorkoutRowSchema`.** `assembleWeightRoomWorkouts` validates the
+ * whole array in one pass, so a single row with an unlisted source fails the
+ * entire read — and the callers catch that as `[]`, which renders as "no
+ * workouts recorded yet" over a full history rather than as an error.
  */
-export type WorkoutSource = 'manual' | 'apple_health'
+export type WorkoutSource = 'manual' | 'apple_health' | 'icloud_notes'
 
 /**
  * One bounded training session (#374) — mirrors a row of

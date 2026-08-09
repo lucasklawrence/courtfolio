@@ -7,7 +7,7 @@ import type {
   ExerciseProgression,
   SetDetailCoverage,
 } from '@/lib/training-facility/exercise-progression'
-import { describeSet, formatLbs } from '@/lib/training-facility/strength-format'
+import { describeSetOrHold, formatHold, formatLbs } from '@/lib/training-facility/strength-format'
 import { E1RM_MAX_RELIABLE_REPS } from '@/lib/training-facility/workout-stats'
 
 /** Route base for the per-exercise trend (#412). */
@@ -97,6 +97,11 @@ export function ExerciseProgressionPanel({
   // records row and a table that both have plenty to say, so the panels are
   // dropped entirely and one line explains the absence.
   const hasTrend = points.length >= MIN_TREND_POINTS
+  // An isometric movement is timed, not counted (#400). Every set is one
+  // repetition, so the reps series is a flat line at 1 — true, and useless.
+  // Whether it's a hold is read off the data rather than from a movement list,
+  // so a future timed movement needs no change here.
+  const isHold = points.every(point => point.bestRepSet.durationSeconds !== undefined)
 
   return (
     <div
@@ -145,7 +150,21 @@ export function ExerciseProgressionPanel({
         </ChartCard>
       )}
 
-      {!hasTrend ? null : (
+      {!hasTrend ? null : isHold ? (
+        <ChartCard title="Longest hold" subtitle="Longest single hold each training day">
+          <TrendChart
+            data={points}
+            y={p => p.bestRepSet.durationSeconds ?? 0}
+            stroke={accentColor}
+            width={width}
+            height={height}
+            yLabel="seconds"
+            yTickFormat={value => String(Math.round(value))}
+            ariaLabel={`${displayName} longest hold in seconds across ${points.length} training days`}
+            emptyMessage={`Not enough ${displayName} training days yet`}
+          />
+        </ChartCard>
+      ) : (
         <ChartCard
           title="Best set"
           subtitle={
@@ -271,6 +290,13 @@ interface RecordsRowProps {
 /** All-time marks: heaviest set, most reps, best estimate, days trained. */
 function RecordsRow({ progression }: RecordsRowProps): JSX.Element {
   const { heaviestSet, mostRepsSet, bestOneRepMax, points, totalSets, totalReps } = progression
+  // Longest hold across every day, or null when the movement isn't timed.
+  const longestHold = points.reduce<number | null>((longest, point) => {
+    const held = point.bestRepSet.durationSeconds
+    if (held === undefined) return longest
+    return longest === null || held > longest ? held : longest
+  }, null)
+
   return (
     <dl
       data-testid="exercise-records"
@@ -278,12 +304,14 @@ function RecordsRow({ progression }: RecordsRowProps): JSX.Element {
       aria-label="All-time marks"
     >
       {heaviestSet === null ? null : (
-        <RecordCell
-          label="Heaviest set"
-          value={describeSet(heaviestSet.reps, heaviestSet.effectiveLoad)}
-        />
+        <RecordCell label="Heaviest set" value={describeSetOrHold(heaviestSet)} />
       )}
-      <RecordCell label="Most reps" value={`${mostRepsSet.reps} reps`} />
+      {/* A hold's "most reps" is always 1. Its record is how long it lasted. */}
+      {longestHold === null ? (
+        <RecordCell label="Most reps" value={`${mostRepsSet.reps} reps`} />
+      ) : (
+        <RecordCell label="Longest hold" value={formatHold(longestHold)} />
+      )}
       {bestOneRepMax === null ? null : (
         <RecordCell
           label="Best est. 1RM"
@@ -294,7 +322,11 @@ function RecordsRow({ progression }: RecordsRowProps): JSX.Element {
       <RecordCell
         label="Training days"
         value={String(points.length)}
-        detail={`${totalSets.toLocaleString('en-US')} sets · ${totalReps.toLocaleString('en-US')} reps`}
+        detail={
+          longestHold === null
+            ? `${totalSets.toLocaleString('en-US')} sets · ${totalReps.toLocaleString('en-US')} reps`
+            : `${totalSets.toLocaleString('en-US')} holds`
+        }
       />
     </dl>
   )
@@ -474,8 +506,8 @@ function RecentDaysTable({ progression, displayName }: RecentDaysTableProps): JS
               <td className="px-3 py-2.5 text-right tabular-nums">{point.reps}</td>
               <td className="px-5 py-2.5 text-right tabular-nums">
                 {point.topSet === null
-                  ? `${point.bestRepSet.reps} reps`
-                  : describeSet(point.topSet.reps, point.topSet.effectiveLoad)}
+                  ? describeSetOrHold(point.bestRepSet)
+                  : describeSetOrHold(point.topSet)}
                 {point.estimatedOneRepMax === null ? null : (
                   <span className="block text-[0.7rem] text-[#0a0a0a]/55">
                     ~{formatLbs(point.estimatedOneRepMax)} est. 1RM

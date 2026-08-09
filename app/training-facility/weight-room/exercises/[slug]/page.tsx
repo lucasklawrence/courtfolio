@@ -6,6 +6,7 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { ExerciseProgressionPanel } from '@/components/training-facility/weight-room/ExerciseProgressionPanel'
+import { ThenVsNowPanel } from '@/components/training-facility/weight-room/ThenVsNowPanel'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { buildWeightRoomDemoData, buildWorkoutDemoData } from '@/constants/weight-room-demo-fixture'
 import { isAdminRequest } from '@/lib/auth/admin-session'
@@ -15,6 +16,7 @@ import {
   getWeightRoomWorkoutsServer,
 } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
+import { buildEraComparison, eraIsImported } from '@/lib/training-facility/era-comparison'
 import {
   buildExerciseProgression,
   buildSetDetailCoverage,
@@ -100,6 +102,10 @@ export default async function WeightRoomExercisePage({
   // grease-the-groove movements carry no catalog row of their own.
   const displayName = slugLabel(exercise, goal, buildExerciseLabels(exercises))
   const coverage = buildSetDetailCoverage(progression?.points[0]?.dayKey ?? null, workouts, sets)
+  // Null for a movement trained continuously, which is most of them — the panel
+  // only appears where the imported archive actually gives something to compare
+  // the current stretch against (#400).
+  const eraComparison = progression === null ? null : buildEraComparison(progression)
   // The movement's own color where it has a daily goal, so the trend matches the
   // ring and heatmap it's already drawn in elsewhere. Gym lifts have no goal and
   // fall back to the panel's default.
@@ -157,12 +163,21 @@ export default async function WeightRoomExercisePage({
               its first recorded set.
             </p>
           ) : (
-            <ExerciseProgressionPanel
-              progression={progression}
-              displayName={displayName}
-              coverage={coverage}
-              {...(goalColor === undefined ? {} : { accentColor: goalColor })}
-            />
+            <div className="flex flex-col gap-8">
+              {eraComparison === null ? null : (
+                <ThenVsNowPanel
+                  comparison={eraComparison}
+                  displayName={displayName}
+                  earlierEraImported={eraIsImported(eraComparison.then, exercise, sets)}
+                />
+              )}
+              <ExerciseProgressionPanel
+                progression={progression}
+                displayName={displayName}
+                coverage={coverage}
+                {...(goalColor === undefined ? {} : { accentColor: goalColor })}
+              />
+            </div>
           )}
         </div>
       </div>

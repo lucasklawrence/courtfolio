@@ -18,6 +18,7 @@
     "import-health": "node scripts/import-health.mjs",
     "cardio:backfill": "node scripts/backfill-cardio.mjs",
     "import-otbeat": "node scripts/import-otbeat.mjs",
+    "import-icloud-notes": "node scripts/import-icloud-notes.mjs",
     "migrations:check": "node scripts/check-migration-drift.mjs",
     "staging:sync": "node scripts/sync-staging.mjs",
     "e2e:dev": "cross-env TELEMETRY_DISABLED=1 NEXT_DIST_DIR=.next-e2e-default NEXT_PUBLIC_ENABLE_TRAINING_FACILITY=false NEXT_PUBLIC_ENABLE_TF_GYM=false NEXT_PUBLIC_ENABLE_TF_WEIGHT_ROOM=false NEXT_PUBLIC_ENABLE_DRAFT_ROOM=false next dev --turbopack --hostname 127.0.0.1 --port 3007",

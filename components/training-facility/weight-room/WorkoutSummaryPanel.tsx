@@ -10,7 +10,7 @@ import type {
   WorkoutPersonalBest,
   WorkoutSummary,
 } from '@/lib/training-facility/workout-stats'
-import { describeSet, formatLbs } from '@/lib/training-facility/strength-format'
+import { describeSetOrHold, formatLbs } from '@/lib/training-facility/strength-format'
 import type { StrengthSet } from '@/types/weight-room'
 
 /** Format a signed delta, so `+400 lb` and `−120 lb` both read at a glance. */
@@ -269,9 +269,7 @@ function PersonalBestStrip({ bests }: PersonalBestStripProps): JSX.Element {
         {bests.map(best => (
           <li key={`${best.exercise}-${best.kind}`} data-testid={`workout-pb-${best.exercise}`}>
             <span className="font-semibold">{best.displayName ?? best.exercise}</span>{' '}
-            {best.kind === 'load'
-              ? describeSet(best.set.reps, best.set.effectiveLoad)
-              : `${best.set.reps} reps`}
+            {best.kind === 'load' ? describeSetOrHold(best.set) : `${best.set.reps} reps`}
             <span className="text-[#e8d5be]/60">
               {best.previousBest === null
                 ? ' — first time logged'
@@ -567,7 +565,7 @@ function BreakdownCard({
               <td className="px-5 py-2.5 text-right tabular-nums">
                 {entry.topSet === null
                   ? `${entry.bestRepSet.reps} reps`
-                  : describeSet(entry.topSet.reps, entry.topSet.effectiveLoad)}
+                  : describeSetOrHold(entry.topSet)}
                 {entry.estimatedOneRepMax !== null ? (
                   <span
                     className="block text-[0.7rem] text-[#0a0a0a]/55"
