@@ -180,8 +180,8 @@ function Verdict({ comparison, displayName }: VerdictProps): JSX.Element | null 
         <strong className="font-black text-[#fff7ec]">
           {Math.abs(repsDelta).toLocaleString('en-US')} {repsDelta > 0 ? 'more' : 'fewer'} reps
         </strong>{' '}
-        of {displayName.toLowerCase()} than the archive — measured in reps, since neither stretch was
-        loaded.
+        of {displayName.toLowerCase()} than the archive — measured in reps, since neither stretch
+        was loaded.
       </p>
     )
   }
@@ -195,8 +195,8 @@ function Verdict({ comparison, displayName }: VerdictProps): JSX.Element | null 
     >
       {surpassedHeaviest ? (
         <>
-          Current training has <strong className="font-black text-[#fff7ec]">passed</strong>{' '}
-          the archive&rsquo;s heaviest {displayName.toLowerCase()} by{' '}
+          Current training has <strong className="font-black text-[#fff7ec]">passed</strong> the
+          archive&rsquo;s heaviest {displayName.toLowerCase()} by{' '}
           <strong className="font-black text-[#fff7ec]">{magnitude}</strong>.
         </>
       ) : (

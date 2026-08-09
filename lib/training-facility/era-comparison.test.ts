@@ -7,12 +7,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import {
-  buildEraComparison,
-  DEFAULT_MIN_GAP_DAYS,
-  daysBetween,
-  median,
-} from './era-comparison'
+import { buildEraComparison, DEFAULT_MIN_GAP_DAYS, daysBetween, median } from './era-comparison'
 import type { ExerciseDayPoint, ExerciseProgression } from './exercise-progression'
 import type { WorkoutSetHighlight } from './workout-stats'
 

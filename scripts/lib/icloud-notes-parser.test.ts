@@ -195,9 +195,7 @@ describe('parseNote', () => {
 
   it('numbers workout sets consecutively across movements', () => {
     const { sets } = parseNote(note)
-    const positions = sets
-      .filter(set => set.disposition === 'workout')
-      .map(set => set.position)
+    const positions = sets.filter(set => set.disposition === 'workout').map(set => set.position)
     expect(positions).toEqual([0, 1, 2])
   })
 

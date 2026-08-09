@@ -145,9 +145,7 @@ export function matchNoteToSession(noteWindow, sessions, timeZone) {
 
   const dayKey = instant => localDayKey(instant, timeZone)
   const noteDay = dayKey(noteWindow.start)
-  const sameDay = sessions.filter(
-    session => dayKey(new Date(session.started_at)) === noteDay
-  )
+  const sameDay = sessions.filter(session => dayKey(new Date(session.started_at)) === noteDay)
   if (sameDay.length === 1) {
     return { id: sameDay[0].id, method: 'same-day', overlapMs: 0 }
   }

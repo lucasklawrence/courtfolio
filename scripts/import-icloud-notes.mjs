@@ -62,7 +62,12 @@ const DEFAULT_TIME_ZONE = 'America/Los_Angeles'
  * @returns {{extractDir: string, manifest: string|null, timeZone: string, dryRun: boolean}}
  */
 function parseArgs(argv) {
-  const get = name => argv.find(arg => arg.startsWith(`--${name}=`))?.split('=').slice(1).join('=')
+  const get = name =>
+    argv
+      .find(arg => arg.startsWith(`--${name}=`))
+      ?.split('=')
+      .slice(1)
+      .join('=')
   return {
     extractDir: get('extract-dir') ?? DEFAULT_EXTRACT_DIR,
     manifest: get('manifest') ?? null,
