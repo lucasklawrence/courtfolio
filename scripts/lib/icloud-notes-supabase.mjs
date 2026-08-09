@@ -134,6 +134,55 @@ export async function upsertNoteSets(supabase, rows) {
 }
 
 /**
+ * Read the workout templates by name.
+ *
+ * The six seeded templates (#375) carry exactly the names the notes title
+ * themselves with, which is what makes linking a session to its template a name
+ * match rather than an inference.
+ *
+ * @param {import('@supabase/supabase-js').SupabaseClient} supabase Service-role client.
+ * @returns {Promise<Map<string, string>>} Template id keyed by name.
+ * @throws when the read fails.
+ */
+export async function fetchTemplateIdsByName(supabase) {
+  const { data, error } = await supabase.from('weight_room_workout_templates').select('id, name')
+  if (error) {
+    throw new Error(`Failed to read workout templates: ${error.message}`)
+  }
+  return new Map((data ?? []).map(row => [row.name, row.id]))
+}
+
+/**
+ * Record which template each imported session ran (#436).
+ *
+ * Only fills a template in where the session has none. A session that already
+ * names its template was either recorded live against it or corrected by hand,
+ * and neither is this importer's to overwrite — the same "never clobber what
+ * the app recorded" rule the set upsert follows.
+ *
+ * @param {import('@supabase/supabase-js').SupabaseClient} supabase Service-role client.
+ * @param {Map<string, string>} links Template id keyed by workout id.
+ * @returns {Promise<{linked: number}>} How many sessions were updated.
+ * @throws when an update fails, naming the workout.
+ */
+export async function linkSessionTemplates(supabase, links) {
+  let linked = 0
+  for (const [workoutId, templateId] of links) {
+    const { data, error } = await supabase
+      .from(WORKOUTS_TABLE)
+      .update({ template_id: templateId })
+      .eq('id', workoutId)
+      .is('template_id', null)
+      .select('id')
+    if (error) {
+      throw new Error(`Failed to link template for workout ${workoutId}: ${error.message}`)
+    }
+    linked += data?.length ?? 0
+  }
+  return { linked }
+}
+
+/**
  * Read the movement catalog's load multipliers.
  *
  * Taken live rather than hardcoded so a `Weight (total)` column is halved by

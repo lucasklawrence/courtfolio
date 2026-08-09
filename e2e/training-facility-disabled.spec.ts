@@ -19,6 +19,7 @@ const gatedRoutes = [
   '/training-facility/weight-room',
   '/training-facility/weight-room/achievements',
   '/training-facility/weight-room/history',
+  '/training-facility/weight-room/program',
   '/training-facility/weight-room/exercises/pullups',
 ]
 

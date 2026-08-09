@@ -14,7 +14,7 @@ import Link from 'next/link'
  * isn't on.
  */
 export type WeightRoomSubNavSection =
-  'today' | 'history' | 'workouts' | 'exercises' | 'achievements' | 'settings' | 'log'
+  'today' | 'history' | 'workouts' | 'program' | 'exercises' | 'achievements' | 'settings' | 'log'
 
 /** Props for {@link WeightRoomSubNav}. */
 export interface WeightRoomSubNavProps {
@@ -68,6 +68,7 @@ const ITEMS: readonly SubNavItem[] = [
   { section: 'today', label: 'Today', href: '/training-facility/weight-room' },
   { section: 'history', label: 'History', href: '/training-facility/weight-room/history' },
   { section: 'workouts', label: 'Workouts', href: '/training-facility/weight-room/workouts' },
+  { section: 'program', label: 'Program', href: '/training-facility/weight-room/program' },
   {
     section: 'achievements',
     label: 'Trophies',

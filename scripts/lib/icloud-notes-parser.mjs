@@ -171,6 +171,69 @@ const RAW_MOVEMENT_ALIASES = {
 }
 
 /**
+ * Notes that describe training without being a record of a session (#436).
+ *
+ * `Strength Cycle` is the program itself — all six templates in one note, with
+ * example numbers, a `Workout pace` line per template, and app feature notes at
+ * the bottom. Imported as a session it became a single 30-minute workout of
+ * 163 sets and 1,523 reps across 32 movements, which is not a thing that
+ * happened: it distorted that day's totals, the all-time biggest session, and
+ * every density figure at once.
+ *
+ * Its metadata says the same thing — created 2022-04-29 and last modified
+ * 2025-03-09, a document revised for three years rather than a log written
+ * during a workout. The sets in it are also not the author's.
+ *
+ * Matched on title, so both copies of the note are covered.
+ */
+export const NON_SESSION_NOTES = Object.freeze(new Set(['strength cycle']))
+
+/**
+ * Whether a note records a session at all.
+ *
+ * @param {string} title Note title.
+ * @returns {boolean} False for reference documents — see {@link NON_SESSION_NOTES}.
+ */
+export function isSessionNote(title) {
+  return !NON_SESSION_NOTES.has(
+    String(title ?? '')
+      .trim()
+      .toLowerCase()
+  )
+}
+
+/**
+ * Note titles to the workout template they ran (#436).
+ *
+ * The six templates are seeded in `weight_room_workout_templates` under exactly
+ * the names the notes use, so this only has to cover the spellings that drift:
+ * `Leg Day 2` for `Legs Day 2` across three sessions in early 2023.
+ *
+ * Titles absent here are genuinely untemplated — standalone pull-up, leg-press
+ * and plyo days that were never part of the rotation — and stay unlinked rather
+ * than being forced onto the nearest template.
+ */
+const TEMPLATE_TITLE_ALIASES = Object.freeze({
+  'leg day 2': 'Legs Day 2',
+})
+
+/**
+ * Resolve the template a note's title names.
+ *
+ * @param {string} title Note title, as written.
+ * @returns {string|null} The canonical template name, or null when the note is
+ *   not one of the six — which most standalone notes are not.
+ */
+export function templateNameForNote(title) {
+  const trimmed = String(title ?? '').trim()
+  const canonical = TEMPLATE_TITLE_ALIASES[trimmed.toLowerCase()]
+  if (canonical) return canonical
+  return /^(chest|back|legs) day [12]$/i.test(trimmed)
+    ? trimmed.replace(/\b\w/g, char => char.toUpperCase()).replace(/Day/i, 'Day')
+    : null
+}
+
+/**
  * Reps in one 21s set, counted the way every other two-dumbbell set is (#435).
  *
  * The protocol is 7 reps with one arm while the other holds mid-curl, 7 with

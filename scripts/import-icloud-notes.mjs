@@ -40,12 +40,19 @@ import path from 'node:path'
 
 import { createServiceRoleClient, loadEnv } from './lib/cardio-supabase.mjs'
 import { matchNoteToSession, noteWindow, parseNotesCsvStamp } from './lib/icloud-notes-match.mjs'
-import { parseNote, parseNoteDate } from './lib/icloud-notes-parser.mjs'
+import {
+  isSessionNote,
+  parseNote,
+  parseNoteDate,
+  templateNameForNote,
+} from './lib/icloud-notes-parser.mjs'
 import { parseExport } from './lib/icloud-notes-text.mjs'
 import {
   fetchExerciseSlugs,
   fetchLoadMultipliers,
   fetchSessionsInRange,
+  fetchTemplateIdsByName,
+  linkSessionTemplates,
   upsertNoteSession,
   upsertNoteSets,
 } from './lib/icloud-notes-supabase.mjs'
@@ -248,16 +255,23 @@ async function main() {
     )
   }
 
-  const [multipliers, catalogSlugs] = await Promise.all([
+  const [multipliers, catalogSlugs, templateIdByName] = await Promise.all([
     fetchLoadMultipliers(supabase),
     fetchExerciseSlugs(supabase),
+    fetchTemplateIdsByName(supabase),
   ])
 
   // Resolve each note's day first so the session read can be scoped to the
   // range the notes actually cover.
   const dated = []
   const undatable = []
+  const skipped = []
   for (const note of notes) {
+    // A programme document is not a session — see NON_SESSION_NOTES.
+    if (!isSessionNote(note.title)) {
+      skipped.push(note.title)
+      continue
+    }
     const day = parseNoteDate(note.date)
     if (!day) {
       undatable.push(note)
@@ -276,6 +290,7 @@ async function main() {
   )
 
   const rows = []
+  const templateLinks = new Map()
   const unmappedMovements = new Map()
   const timedMovements = new Map()
   const unknownSlugs = new Map()
@@ -283,6 +298,7 @@ async function main() {
     overlap: 0,
     sameDay: 0,
     ownSession: 0,
+    noSession: 0,
     missingManifest: 0,
     clampedWindow: 0,
   }
@@ -306,9 +322,27 @@ async function main() {
     // first note's sets, silently merging two distinct workouts into one.
     const noteKey = `${note.title}|${window.start.toISOString()}`
 
+    // Which of the six templates this note ran, where it ran one. Keyed by the
+    // session it landed on — or by `noteKey` when the session doesn't exist yet
+    // and gets created below.
+    const templateName = templateNameForNote(note.title)
+    const templateId = templateName ? (templateIdByName.get(templateName) ?? null) : null
+    if (templateId !== null) templateLinks.set(workoutId ?? noteKey, templateId)
+
+    const { sets, unmapped, timed } = parseNote({ ...note, date: note.day }, multipliers)
+
+    // Parsed before the session decision, because whether a note deserves its
+    // own session depends on whether it produced any. A note whose content is
+    // all grease-the-groove rep lists — most `Pull ups` and `Squat` notes — has
+    // no session work at all, and one that isn't about training (`Jared`, a
+    // list of names; `Lucas - 0792`, a locker number) has nothing whatsoever.
+    // Minting a session for those leaves the session log full of empty
+    // workouts that were never performed.
+    const hasWorkoutSets = sets.some(set => set.disposition === 'workout')
+
     if (match?.method === 'overlap') report.overlap += 1
     else if (match?.method === 'same-day') report.sameDay += 1
-    else {
+    else if (hasWorkoutSets) {
       report.ownSession += 1
       createdSessions.push({
         startedAt: window.start.toISOString(),
@@ -316,9 +350,10 @@ async function main() {
         title: note.title,
         noteKey,
       })
+    } else {
+      report.noSession += 1
     }
 
-    const { sets, unmapped, timed } = parseNote({ ...note, date: note.day }, multipliers)
     for (const name of unmapped) {
       unmappedMovements.set(name, (unmappedMovements.get(name) ?? 0) + 1)
     }
@@ -362,10 +397,13 @@ async function main() {
   console.log(`Notes read              ${notes.length}`)
   console.log(`  dated                 ${dated.length}`)
   console.log(`  undatable (skipped)   ${undatable.length}`)
+  console.log(`  not a session         ${skipped.length}`)
+  console.log(`Templates linked        ${templateLinks.size}`)
   console.log(`Attribution`)
   console.log(`  matched by overlap    ${report.overlap}`)
   console.log(`  matched by same day   ${report.sameDay}`)
   console.log(`  own icloud session    ${report.ownSession}`)
+  console.log(`  loose volume only     ${report.noSession}`)
   console.log(`  no manifest row       ${report.missingManifest}`)
   console.log(`  late edit discarded   ${report.clampedWindow}`)
   console.log(`Sets parsed             ${rows.length}`)
@@ -409,8 +447,19 @@ async function main() {
   )
 
   const { upserted } = await upsertNoteSets(supabase, prepared)
+
+  // Templates last: a note that needed its own session only has an id now.
+  const resolvedLinks = new Map()
+  for (const [key, templateId] of templateLinks) {
+    const workoutId = sessionIdByNote.get(key) ?? key
+    if (typeof workoutId === 'string' && workoutId.includes('|')) continue
+    resolvedLinks.set(workoutId, templateId)
+  }
+  const { linked } = await linkSessionTemplates(supabase, resolvedLinks)
+
   console.log('')
   console.log(`Wrote ${createdSessions.length} sessions and ${upserted} sets.`)
+  console.log(`Linked ${linked} sessions to their template.`)
 }
 
 main().catch(error => {
