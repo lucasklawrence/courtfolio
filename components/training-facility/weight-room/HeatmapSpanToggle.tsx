@@ -1,11 +1,14 @@
 import type { JSX } from 'react'
 import Link from 'next/link'
 
+import { buildFilterHref } from '@/lib/training-facility/filter-href'
 import {
   DEFAULT_HEATMAP_SPAN,
   HEATMAP_SPAN_PARAM,
   type HeatmapSpan,
 } from '@/lib/training-facility/heatmap-span'
+
+import { CHIP_BASE_CLASS, CHIP_INACTIVE_CLASS } from './chip-class'
 
 /** Props for {@link HeatmapSpanToggle}. */
 export interface HeatmapSpanToggleProps {
@@ -55,15 +58,13 @@ export function HeatmapSpanToggle({
           return (
             <Link
               key={value}
-              href={buildHref(value, pathname, carryParams)}
+              href={hrefFor(value, pathname, carryParams)}
               scroll={false}
               data-testid={`heatmap-span-${value}`}
               data-selected={isOn}
               aria-current={isOn ? 'true' : undefined}
-              className={`rounded-full border px-3 py-1 font-mono text-[11px] tracking-[0.12em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 ${
-                isOn
-                  ? 'border-amber-300/50 bg-amber-300/15 text-amber-100'
-                  : 'border-white/20 text-white/45 hover:text-white/70'
+              className={`${CHIP_BASE_CLASS} ${
+                isOn ? 'border-amber-300/50 bg-amber-300/15 text-amber-100' : CHIP_INACTIVE_CLASS
               }`}
             >
               {label}
@@ -78,25 +79,18 @@ export function HeatmapSpanToggle({
 /**
  * Compose the href that switches to `span`.
  *
- * An absolute `pathname` rather than a bare `?query`: Next's `<Link>` does not
- * resolve a query-only relative href against the current route, so the chips
- * beside this render one too.
- *
  * @param span The range this link switches to.
  * @param pathname Route to link to.
  * @param carryParams Unrelated params to preserve.
- * @returns A route-relative URL; the default range is spelled as the *absence*
- *   of the param, so the canonical view keeps a clean URL and a link shared
- *   without one lands where a reader starts.
  */
-function buildHref(
+function hrefFor(
   span: HeatmapSpan,
   pathname: string,
   carryParams: Readonly<Record<string, string>>
 ): string {
-  const params = new URLSearchParams(carryParams)
-  if (span === DEFAULT_HEATMAP_SPAN) params.delete(HEATMAP_SPAN_PARAM)
-  else params.set(HEATMAP_SPAN_PARAM, span)
-  const query = params.toString()
-  return query === '' ? pathname : `${pathname}?${query}`
+  return buildFilterHref(pathname, {
+    ...carryParams,
+    // `null` removes it: the default range is spelled as the param's absence.
+    [HEATMAP_SPAN_PARAM]: span === DEFAULT_HEATMAP_SPAN ? null : span,
+  })
 }

@@ -121,6 +121,7 @@ const eslintConfig = [
     files: [
       'lib/training-facility/achievements.ts',
       'lib/training-facility/exercise-progression.ts',
+      'lib/training-facility/heatmap-span.ts',
       'lib/training-facility/load-management.ts',
       'lib/training-facility/monthly-focus.ts',
       'lib/training-facility/strength-streaks.ts',

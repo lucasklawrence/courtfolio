@@ -16,6 +16,7 @@ import {
   targetForDay,
   targetResolverFor,
 } from './goal-targets'
+import type { HeatmapMonthLabel } from './heatmap-labels'
 import { type StreakCounts, streakFromDailyReps } from './hit-day-streaks'
 import {
   type FocusCampaignSummary,
@@ -82,7 +83,7 @@ export interface StrengthHeatmapGrid {
   /** 7-row × N-column grid; row 0 is Monday, row 6 is Sunday. */
   grid: StrengthHeatmapCell[][]
   /** First-of-month markers for the column header labels. */
-  monthLabels: { col: number; label: string }[]
+  monthLabels: HeatmapMonthLabel[]
 }
 
 /**
@@ -296,8 +297,15 @@ export function buildStrengthHeatmap(
       (inclusiveDaySpan(startMondayKey, shiftDayKey(endMondayKey, 6)) - 1) / DAYS_PER_WEEK
     ) + 1
   const grid: StrengthHeatmapCell[][] = Array.from({ length: 7 }, () => [])
-  const monthLabels: { col: number; label: string }[] = []
+  const monthLabels: HeatmapMonthLabel[] = []
   let lastMonth = -1
+  let lastYear = ''
+
+  // Bare month names repeat, so they only identify a column while the grid
+  // stays inside one span of twelve (#438). Past that, each year's first
+  // rendered marker carries the year and is pinned against thinning — without
+  // it an all-time grid is four indistinguishable Jan-Dec runs.
+  const multiYear = startMondayKey.slice(0, 4) !== shiftDayKey(endMondayKey, 6).slice(0, 4)
 
   for (let col = 0; col < totalCols; col++) {
     for (let row = 0; row < 7; row++) {
@@ -320,7 +328,14 @@ export function buildStrengthHeatmap(
       const month = monthIndexOfDayKey(key)
       if (month !== lastMonth) {
         lastMonth = month
-        monthLabels.push({ col, label: MONTH_LABELS[month] })
+        const year = key.slice(0, 4)
+        const startsYear = multiYear && year !== lastYear
+        lastYear = year
+        monthLabels.push(
+          startsYear
+            ? { col, label: `${MONTH_LABELS[month]} '${year.slice(2)}`, pinned: true }
+            : { col, label: MONTH_LABELS[month] }
+        )
       }
     }
   }

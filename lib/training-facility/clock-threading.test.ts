@@ -29,6 +29,7 @@ import {
   localNoonIsoForDay,
   toLocalDateKey,
 } from './strength-today'
+import { firstLoggedDate, heatmapWindow } from './heatmap-span'
 import {
   buildStrengthHeatmap,
   buildWeeklyVolume,
@@ -86,6 +87,11 @@ const SPLIT_LATE = '2026-07-14T12:00:00Z'
 const WEEK_STRADDLE = '2026-07-12T12:00:00Z'
 /** Pacific Dec 31 2026 · Kiritimati Jan 1 2027. */
 const YEAR_STRADDLE = '2026-12-31T12:00:00Z'
+/**
+ * Pacific Mar 3 2022 · Kiritimati Mar 4 2022 — and old enough to be outside
+ * the heatmaps' default trailing-year window (#438).
+ */
+const ARCHIVE_STRADDLE = '2022-03-04T05:00:00Z'
 /** "Now", late enough that every fixture day has elapsed in both zones. */
 const NOW = new Date('2026-07-16T20:00:00Z')
 
@@ -196,6 +202,23 @@ describe('every zone-consuming entry point honors its clock', () => {
         .filter(cell => cell.reps > 0)
         .map(cell => `${cell.dayKey}:${cell.reps}`)
     )
+  })
+
+  it('heatmapWindow', () => {
+    // The all-time start is a day bucket like any other (#438): read in the
+    // wrong zone it lands a day early, and the grid's first column with it.
+    //
+    // Needs a set older than the default window, or `heatmapWindow` correctly
+    // returns the component default for both zones and the comparison is
+    // vacuous — the archive is the whole point of the branch under test.
+    const archived = [...SETS, set({ id: 'archive', logged_at: ARCHIVE_STRADDLE, reps: 20 })]
+    dependsOnZone(
+      clock => heatmapWindow('all', archived, clock, NOW).dateFrom?.toISOString() ?? null
+    )
+  })
+
+  it('firstLoggedDate', () => {
+    dependsOnZone(clock => firstLoggedDate(SETS, clock)?.toISOString() ?? null)
   })
 
   it('computeStrengthStats', () => {

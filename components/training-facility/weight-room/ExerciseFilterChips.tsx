@@ -6,6 +6,9 @@ import {
   serializeExerciseSelection,
   toggleExercise,
 } from '@/lib/training-facility/exercise-filter'
+import { buildFilterHref } from '@/lib/training-facility/filter-href'
+
+import { CHIP_BASE_CLASS, CHIP_INACTIVE_CLASS } from './chip-class'
 
 /** One selectable exercise, in render order. */
 export interface FilterableExercise {
@@ -94,10 +97,8 @@ export function ExerciseFilterChips({
               data-testid={`exercise-chip-${exercise}`}
               data-selected={isOn}
               aria-label={`${isOn ? 'Hide' : 'Show'} ${displayName ?? exercise}`}
-              className={`rounded-full border px-3 py-1 font-mono text-[11px] tracking-[0.12em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300 ${
-                isOn
-                  ? 'border-transparent text-[#0a0a0a]'
-                  : 'border-white/20 text-white/45 hover:text-white/70'
+              className={`${CHIP_BASE_CLASS} ${
+                isOn ? 'border-transparent text-[#0a0a0a]' : CHIP_INACTIVE_CLASS
               }`}
               style={isOn ? { backgroundColor: color } : undefined}
             >
@@ -134,8 +135,5 @@ function buildHref(
   pathname: string,
   carryParams: Readonly<Record<string, string>>
 ): string {
-  const params = new URLSearchParams(carryParams)
-  if (encoded !== null) params.set(EXERCISE_FILTER_PARAM, encoded)
-  const query = params.toString()
-  return query === '' ? pathname : `${pathname}?${query}`
+  return buildFilterHref(pathname, { ...carryParams, [EXERCISE_FILTER_PARAM]: encoded })
 }

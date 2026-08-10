@@ -59,6 +59,16 @@ test.describe('heatmap range toggle', () => {
     await expect(toggle.getByTestId('heatmap-span-year')).not.toHaveAttribute('href', /span=/)
   })
 
+  test('the range control survives an empty exercise filter', async ({ page }) => {
+    // It used to live inside the heatmap section, so deselecting everything
+    // took away the only way back out of the all-time view.
+    await page.goto(`${HISTORY}?preview=demo&exercises=&span=all`)
+
+    await expect(page.getByTestId('weight-room-heatmaps')).toHaveCount(0)
+    await expect(page.getByTestId('heatmap-span-toggle')).toBeVisible()
+    await expect(page.getByTestId('heatmap-span-year')).toHaveAttribute('href', /exercises=/)
+  })
+
   test('the exercise chips carry the range back', async ({ page }) => {
     await page.goto(`${HISTORY}?preview=demo&span=all`)
 

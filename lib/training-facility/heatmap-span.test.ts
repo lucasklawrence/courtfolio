@@ -1,11 +1,14 @@
 /**
- * Tests for the History view's heatmap span (#438).
+ * Tests for the History view's heatmap range (#438).
  *
  * The heatmaps drew a trailing year, which was the whole log until #400
  * backfilled 2022-2024 — after which the archive was invisible on the only
- * calendar surface in the room. These pin the two things that would break the
- * all-time view quietly: a bad param taking the page down, and a start date
- * landing a day early because of a midnight boundary.
+ * calendar surface in the room.
+ *
+ * The cases that matter are the ones where the window and the cell size have to
+ * agree. Deciding them separately is what produced an "All time" view that was
+ * *narrower* than the default on a short log, so most of this file is about
+ * that pairing rather than about either number alone.
  */
 import { describe, expect, it } from 'vitest'
 
@@ -14,10 +17,12 @@ import type { StrengthSet } from '@/types/weight-room'
 import {
   DEFAULT_HEATMAP_SPAN,
   firstLoggedDate,
-  heatmapCellMetrics,
-  heatmapWindowStart,
+  heatmapWindow,
   parseHeatmapSpan,
 } from './heatmap-span'
+
+/** Fixed "today" for every window case, so column counts are stable. */
+const NOW = new Date('2026-08-09T20:00:00Z')
 
 /** A set logged at a given Pacific-local day. */
 function loggedOn(dayKey: string, hourUtc = 20): StrengthSet {
@@ -30,7 +35,7 @@ function loggedOn(dayKey: string, hourUtc = 20): StrengthSet {
 }
 
 describe('parseHeatmapSpan', () => {
-  it('reads the all-time span', () => {
+  it('reads the all-time range', () => {
     expect(parseHeatmapSpan('all')).toBe('all')
   })
 
@@ -52,7 +57,6 @@ describe('parseHeatmapSpan', () => {
 describe('firstLoggedDate', () => {
   it('finds the earliest training day', () => {
     const date = firstLoggedDate([loggedOn('2026-08-09'), loggedOn('2022-03-03')])
-    expect(date).not.toBeNull()
     expect(date?.toISOString().slice(0, 10)).toBe('2022-03-03')
   })
 
@@ -68,38 +72,65 @@ describe('firstLoggedDate', () => {
   })
 })
 
-describe('heatmapWindowStart', () => {
-  it('leaves the component on its own default for the trailing year', () => {
-    expect(heatmapWindowStart('year', [loggedOn('2022-03-03')])).toBeNull()
+describe('heatmapWindow', () => {
+  it('leaves the trailing year on the component defaults', () => {
+    expect(heatmapWindow('year', [loggedOn('2022-03-03')], undefined, NOW)).toEqual({
+      dateFrom: null,
+      cellSize: 14,
+      cellGap: 2,
+    })
   })
 
   it('starts at the first logged day for all-time', () => {
-    const start = heatmapWindowStart('all', [loggedOn('2024-04-16'), loggedOn('2022-03-03')])
-    expect(start?.toISOString().slice(0, 10)).toBe('2022-03-03')
+    const { dateFrom } = heatmapWindow(
+      'all',
+      [loggedOn('2024-04-16'), loggedOn('2022-03-03')],
+      undefined,
+      NOW
+    )
+    expect(dateFrom?.toISOString().slice(0, 10)).toBe('2022-03-03')
   })
 
-  it('is null for an all-time view of an empty log', () => {
-    // Nothing to widen to; the component's default is the honest fallback.
-    expect(heatmapWindowStart('all', [])).toBeNull()
-  })
-})
-
-describe('heatmapCellMetrics', () => {
-  it('tightens the cell for the all-time view', () => {
-    // ~210 columns at the default stride is nearly 3,000px, wide enough that
-    // the shape of the history is lost to panning.
-    expect(heatmapCellMetrics('all').cellSize).toBeLessThan(heatmapCellMetrics('year').cellSize)
+  it('tightens the cell in proportion to the widened grid', () => {
+    const { cellSize, cellGap } = heatmapWindow('all', [loggedOn('2022-03-03')], undefined, NOW)
+    expect(cellSize).toBeLessThan(14)
+    expect(cellGap).toBe(1)
   })
 
-  it('keeps the whole log within a couple of screens of panning', () => {
-    // Nothing legible fits the ~900px content column outright, so the budget is
-    // how far you have to pan: two screens, not the three and a half the
-    // default stride would cost.
-    const { cellSize } = heatmapCellMetrics('all')
-    expect(232 * cellSize).toBeLessThan(2 * 900)
+  it('keeps four years of columns within a couple of screens of panning', () => {
+    // Not a fit — the content column is ~900px and four years cannot fit it at
+    // any legible size. The budget is how far you have to pan.
+    const { dateFrom, cellSize } = heatmapWindow('all', [loggedOn('2022-08-23')], undefined, NOW)
+    const cols = Math.ceil((NOW.getTime() - (dateFrom?.getTime() ?? 0)) / (7 * 86_400_000))
+    expect(cols * cellSize).toBeLessThan(2 * 900)
   })
 
-  it('leaves the trailing year at the established size', () => {
-    expect(heatmapCellMetrics('year')).toEqual({ cellSize: 14, cellGap: 2 })
+  it('never renders all-time smaller than the default it replaces', () => {
+    // The bug this pairing exists to prevent: the start came from the data
+    // while the cell size came from the span *name*, so a log shorter than the
+    // default window produced a two-column sliver of 6px cells — narrower and
+    // less legible than the view it replaced, showing no extra data.
+    const shortLog = [loggedOn('2026-07-20'), loggedOn('2026-08-05')]
+    expect(heatmapWindow('all', shortLog, undefined, NOW)).toEqual({
+      dateFrom: null,
+      cellSize: 14,
+      cellGap: 2,
+    })
+  })
+
+  it('falls back to the component default for an all-time view of an empty log', () => {
+    expect(heatmapWindow('all', [], undefined, NOW)).toEqual({
+      dateFrom: null,
+      cellSize: 14,
+      cellGap: 2,
+    })
+  })
+
+  it('holds the cell above the floor even for an absurdly old first set', () => {
+    // A corrupt `logged_at` shouldn't shrink the grid to invisibility; the
+    // column cap in buildStrengthHeatmap handles the width, this handles the
+    // cell.
+    const { cellSize } = heatmapWindow('all', [loggedOn('1970-01-05')], undefined, NOW)
+    expect(cellSize).toBeGreaterThanOrEqual(6)
   })
 })

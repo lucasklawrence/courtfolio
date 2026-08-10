@@ -63,40 +63,96 @@ export function firstLoggedDate(
   return earliest === '' ? null : clock.toNoon(earliest)
 }
 
+/** Columns in the heatmaps' established trailing-year window. */
+const DEFAULT_COLS = 52
+
+/** Cell stride the heatmaps have always drawn at, and the widest this returns. */
+const DEFAULT_CELL = { cellSize: 14, cellGap: 2 } as const
+
 /**
- * Where a heatmap should start drawing.
+ * Pixel width the all-time grid aims for.
+ *
+ * Not a fit — the content column is ~900px, and fitting four years inside it
+ * would need a 4px stride. It's a panning budget: ~1,400px is a screen and a
+ * half, where the default stride over the same span would be three and a half.
+ */
+const ALL_TIME_TARGET_WIDTH = 1400
+
+/** Floor on the stride, below which a cell stops reading as its own square. */
+const MIN_CELL_SIZE = 6
+
+/** How a heatmap should draw one span. */
+export interface HeatmapWindow {
+  /**
+   * Inclusive start to hand the heatmap, or `null` to leave it on its own
+   * trailing-year default.
+   */
+  dateFrom: Date | null
+  /** Pixel stride per column, including the gap. */
+  cellSize: number
+  /** Pixel gap between cells. */
+  cellGap: number
+}
+
+/**
+ * Resolve the window *and* the cell size a heatmap should draw a span at.
+ *
+ * One function rather than two, because the two answers have to agree. When
+ * they were decided separately — the start derived from the data, the stride
+ * from the span *name* — a log shorter than a year rendered "All time" as a
+ * two-column sliver of 6px cells: narrower and less legible than the default
+ * while showing no more data, and narrow enough that
+ * {@link import('@/components/training-facility/weight-room/StrengthHeatmap').StrengthHeatmap}
+ * clipped its own legend off the right edge of the SVG.
+ *
+ * So all-time is defined as a *superset* of the trailing year: it never starts
+ * later than the default window would, and the stride shrinks only in
+ * proportion to how much wider the resulting grid actually is.
  *
  * @param span The chosen span.
  * @param sets Every logged set, for the all-time start.
  * @param clock Zone each day is measured in; defaults to Pacific (#429).
- * @returns The window start, or `null` to leave the component on its own
- *   trailing-year default. Null is also the answer for an all-time view of an
- *   empty log — there is no history to widen to.
+ * @param now Clock reading for "today"; injectable for tests.
  */
-export function heatmapWindowStart(
+export function heatmapWindow(
   span: HeatmapSpan,
   sets: readonly StrengthSet[],
-  clock: DayClock = PACIFIC_CLOCK
-): Date | null {
-  return span === 'all' ? firstLoggedDate(sets, clock) : null
+  clock: DayClock = PACIFIC_CLOCK,
+  now: Date = new Date()
+): HeatmapWindow {
+  if (span !== 'all') return { dateFrom: null, ...DEFAULT_CELL }
+
+  const first = firstLoggedDate(sets, clock)
+  if (first === null) return { dateFrom: null, ...DEFAULT_CELL }
+
+  // A log that doesn't reach back past the default window has no archive to
+  // reveal. Returning `null` hands the component its own trailing year, so
+  // "All time" degrades to the same picture rather than to a worse one.
+  const cols = columnsSince(first, clock, now)
+  if (cols <= DEFAULT_COLS) return { dateFrom: null, ...DEFAULT_CELL }
+
+  const cellSize = Math.max(
+    MIN_CELL_SIZE,
+    Math.min(DEFAULT_CELL.cellSize, Math.floor(ALL_TIME_TARGET_WIDTH / cols))
+  )
+  // A 1px gap below the default stride: 2px of a 6px cell is a third of it,
+  // and the squares stop reading as squares.
+  return { dateFrom: first, cellSize, cellGap: cellSize >= 10 ? 2 : 1 }
 }
 
 /**
- * Cell stride for a span, in pixels.
+ * Whole weeks from `start` through today, which is what the grid draws as
+ * columns.
  *
- * The log runs to ~232 columns, which at the default 14px stride is over
- * 3,000px per heatmap. The card scrolls horizontally, so that renders — but the
- * point of an all-time view is the *shape*: where the gaps are, where the
- * density is, and shape read through a quarter-width window is no shape at all.
- *
- * Nothing legible fits the ~900px content column outright — that would need a
- * 4px stride — so this is a panning budget, not a fit. 6px puts the whole log
- * in about one and a half screens with cells still individually visible, where
- * 8px needs two and the default needs three and a half.
- *
- * @param span The chosen span.
- * @returns `{ cellSize, cellGap }` to hand the heatmap.
+ * Day keys rather than milliseconds (#319): a DST week is 23 or 25 hours long,
+ * so dividing an elapsed-ms span by a week drifts twice a year.
  */
-export function heatmapCellMetrics(span: HeatmapSpan): { cellSize: number; cellGap: number } {
-  return span === 'all' ? { cellSize: 6, cellGap: 1 } : { cellSize: 14, cellGap: 2 }
+function columnsSince(start: Date, clock: DayClock, now: Date): number {
+  const startKey = clock.safeDayKey(start)
+  const endKey = clock.safeDayKey(now)
+  if (startKey === '' || endKey === '') return DEFAULT_COLS
+  const days = Math.round(
+    (Date.parse(`${endKey}T12:00:00Z`) - Date.parse(`${startKey}T12:00:00Z`)) / 86_400_000
+  )
+  return Math.max(1, Math.ceil((days + 1) / 7))
 }
