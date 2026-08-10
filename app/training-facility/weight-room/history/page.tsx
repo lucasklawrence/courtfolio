@@ -71,6 +71,9 @@ import type { ExerciseGoal } from '@/types/weight-room'
 /** Route the filter chips link back to. */
 const HISTORY_PATH = '/training-facility/weight-room/history'
 
+/** Route for the whole-log era comparison (#437). */
+const ERAS_ROUTE = '/training-facility/weight-room/eras'
+
 /**
  * Query params the filter chips must preserve when toggling — the
  * Training-Facility preview flag and the heatmap range (#438). An allowlist
@@ -310,6 +313,17 @@ export default async function WeightRoomHistoryPage({
                 </div>
               </section>
             )}
+
+            {/* The whole-log era view (#437) — the counterpart to the
+                per-movement then-vs-now panels, for the 42 archive movements
+                that have no current-era side to be compared against. */}
+            <Link
+              href={isPreviewMode ? `${ERAS_ROUTE}?preview=demo` : ERAS_ROUTE}
+              data-testid="eras-link"
+              className="mt-8 inline-block font-mono text-[10px] uppercase tracking-[0.2em] text-amber-300/80 underline underline-offset-4 hover:text-amber-200"
+            >
+              Two eras · then vs now across the whole log →
+            </Link>
 
             <ExerciseFilterChips
               exercises={goals.map(goal => ({
