@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { formatDayKey, safePacificDayKey, todayDayKey } from '@/lib/training-facility/day-keys'
 import { describeSetOrHold } from '@/lib/training-facility/strength-format'
+import type { WorkoutSourceFilter } from '@/lib/training-facility/workout-facets'
 import {
   workoutDisplayTitle,
   type WorkoutHistoryEntry,
@@ -21,12 +22,12 @@ export const YEAR_FILTER_PARAM = 'year'
 /**
  * Provenance filter selection (#413).
  *
- * `'recorded'` — sessions logged set by set through the app. `'imported'` —
- * sessions from an Apple Health export, which know only that lifting happened
- * and for how long. `null` — both, in true chronological order, which is the
- * default because the whole point of importing is to see the two eras together.
+ * Re-exported from the faceting module so the rail and the counts that feed it
+ * can't disagree about the vocabulary. `null` means both, in true chronological
+ * order, which is the default because the whole point of importing is to see
+ * the two eras together.
  */
-export type WorkoutSourceFilter = 'recorded' | 'imported'
+export type { WorkoutSourceFilter }
 
 /** One entry in the filter rail. */
 export interface TemplateFilterOption {
@@ -50,10 +51,20 @@ export interface WorkoutHistoryListProps {
   selectedTemplateId: string | null
   /** Currently selected provenance filter, or `null` for both (#413). */
   selectedSource?: WorkoutSourceFilter | null
-  /** How many sessions were recorded in-app; drives the Recorded chip's count. */
+  /**
+   * Sessions the Recorded chip would show — faceted by the year and template
+   * currently selected (#445), so the number is what clicking it returns.
+   */
   recordedCount?: number
-  /** How many were imported from Apple Health; drives the Imported chip's count. */
+  /** Sessions the Apple Health chip would show, faceted the same way (#445). */
   importedCount?: number
+  /**
+   * Whether the log contains *any* imported session, ignoring current filters.
+   * Decides whether the provenance rail exists at all — a distinction that
+   * doesn't apply to this log shouldn't grow a filter, but one that does must
+   * stay reachable even from a year where it happens to match nothing.
+   */
+  hasImported?: boolean
   /** Years that have sessions, newest first (#416). Empty hides the year rail. */
   years?: readonly WorkoutYearOption[]
   /** Selected year, or `null` for all years. */
@@ -98,6 +109,7 @@ export function WorkoutHistoryList({
   selectedSource = null,
   recordedCount = 0,
   importedCount = 0,
+  hasImported = false,
   years = [],
   selectedYear = null,
   page = 1,
@@ -115,7 +127,11 @@ export function WorkoutHistoryList({
     <div className="flex flex-col gap-5">
       {years.length > 1 ? <YearFilterRail years={years} filterState={filterState} /> : null}
 
-      {importedCount > 0 ? (
+      {/* Gated on the whole log, not on the faceted counts (#445): those go to
+          zero for a year with nothing imported, and hiding the rail there would
+          strand anyone who arrived with `?source=imported` — no chip left to
+          undo the filter that emptied the page. */}
+      {hasImported ? (
         <SourceFilterRail
           filterState={filterState}
           recordedCount={recordedCount}
@@ -234,11 +250,20 @@ function SourceFilterRail({
   importedCount,
 }: SourceFilterRailProps): JSX.Element {
   const selectedSource = filterState.selectedSource
-  const options: Array<{ value: WorkoutSourceFilter | null; label: string; count: number }> = [
+  const allOptions: Array<{ value: WorkoutSourceFilter | null; label: string; count: number }> = [
     { value: null, label: 'All', count: recordedCount + importedCount },
     { value: 'recorded', label: 'Recorded', count: recordedCount },
     { value: 'imported', label: 'Apple Health', count: importedCount },
   ]
+  const options = allOptions.filter(
+    // A chip that matches nothing under the current year is dropped rather than
+    // shown at 0 (#445). Not cosmetic: the year axis falls back when the
+    // requested year has nothing for the chosen source, so a "Recorded 0" chip
+    // clicked from 2026 would land on 2024's five sessions — the count broken
+    // in the opposite direction from the bug this all started as. "All" and the
+    // current selection always stay, so the rail can never become a dead end.
+    option => option.count > 0 || option.value === null || option.value === selectedSource
+  )
 
   return (
     <nav aria-label="Filter by source" data-testid="workout-source-filter">

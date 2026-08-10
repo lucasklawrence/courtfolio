@@ -22,9 +22,14 @@ import {
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
 import {
+  facetCount,
+  filterWorkouts,
+  isImported,
+  type WorkoutFilterState,
+} from '@/lib/training-facility/workout-facets'
+import {
   buildWorkoutHistory,
   paginateWorkouts,
-  workoutYear,
   workoutYearOptions,
 } from '@/lib/training-facility/workout-stats'
 
@@ -78,63 +83,98 @@ export default async function WeightRoomWorkoutsPage({
 
   const history = buildWorkoutHistory(sourceWorkouts, sourceSets, sourceTemplates, sourceExercises)
 
-  // Chips are built from what has actually been *run*, not from the template
-  // roster: a template nobody has recorded a session against would otherwise
-  // render a chip that filters to an empty list.
-  const counts = new Map<string, number>()
+  // Templates that have actually been *run*, not the roster: a template nobody
+  // has recorded a session against would otherwise render a chip that filters
+  // to an empty list.
+  const everRun = new Set<string>()
   for (const entry of history) {
     const id = entry.workout.template_id
-    if (id !== undefined) counts.set(id, (counts.get(id) ?? 0) + 1)
+    if (id !== undefined) everRun.add(id)
   }
-  const templateById = new Map(sourceTemplates.map(t => [t.id, t]))
-  const filters: TemplateFilterOption[] = [
-    { id: null, name: 'All', color: null, count: history.length },
-    ...[...counts.entries()]
-      .map(([id, count]) => ({
-        id,
-        name: templateById.get(id)?.name ?? 'Unknown template',
-        color: templateById.get(id)?.color ?? null,
-        count,
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name)),
-  ]
 
-  // Provenance is a second, independent filter axis (#413). Hundreds of
-  // imported skeletons would otherwise bury the handful of sessions that carry
-  // real set data.
-  const recordedCount = history.filter(e => e.workout.source !== 'apple_health').length
-  const importedCount = history.length - recordedCount
   const requestedSource = firstParam(params.source)
   const selectedSource: WorkoutSourceFilter | null =
     requestedSource === 'recorded' || requestedSource === 'imported' ? requestedSource : null
 
   const requestedTemplate = firstParam(params.template)
   // An unknown id falls back to "all" rather than to an empty list — a stale
-  // link naming a deleted template should degrade to the full history.
+  // link naming a deleted template should degrade to the full history. A
+  // template that exists but has nothing under the *current* year stays
+  // selected on purpose: its chip renders at 0 below, so the reader can see why
+  // the list is empty and click out of it.
   const selectedTemplateId =
-    requestedTemplate !== null && counts.has(requestedTemplate) ? requestedTemplate : null
+    requestedTemplate !== null && everRun.has(requestedTemplate) ? requestedTemplate : null
+
   // Year is the third filter axis, and the one that keeps the page bounded
   // (#416). Before it, the default view rendered every session ever recorded —
   // 507 rows and 1.4 MB after the Health import landed.
+  //
+  // Resolved *after* the other two axes, because its counts and its default
+  // both depend on them (#445): the year rail under a template filter should
+  // offer the years that template actually ran, and default to one of them.
+  const otherAxes: WorkoutFilterState = {
+    templateId: selectedTemplateId,
+    source: selectedSource,
+    year: null,
+  }
   const years = workoutYearOptions(history)
+    .map(option => ({
+      year: option.year,
+      count: facetCount(history, otherAxes, { year: option.year }),
+    }))
+    .filter(option => option.count > 0)
+
   const requestedYear = firstParam(params.year)
-  // Default to the newest year with sessions rather than to everything. An
-  // unrecognised value also lands here, so a stale link degrades to a small,
-  // useful page instead of the heaviest one.
+  // Default to the newest year that has anything under the other filters,
+  // rather than the newest year overall — which, with a template selected,
+  // routinely isn't a year that template ran. An unrecognised value lands here
+  // too, so a stale link degrades to a small, useful page rather than the
+  // heaviest one.
   const selectedYear: number | null =
     requestedYear === 'all'
       ? null
       : (years.find(y => String(y.year) === requestedYear)?.year ?? years[0]?.year ?? null)
 
-  const filtered = history.filter(entry => {
-    if (selectedTemplateId !== null && entry.workout.template_id !== selectedTemplateId) {
-      return false
-    }
-    if (selectedYear !== null && workoutYear(entry) !== selectedYear) return false
-    if (selectedSource === null) return true
-    const isImported = entry.workout.source === 'apple_health'
-    return selectedSource === 'imported' ? isImported : !isImported
-  })
+  // Every chip's count is measured against the history filtered by the *other*
+  // two axes (#445) — the exact state its own link navigates to. Tallying over
+  // the whole log instead is what put "Apple Health 507" above a list of 22,
+  // since the year axis is always active by default.
+  const filterState: WorkoutFilterState = {
+    templateId: selectedTemplateId,
+    year: selectedYear,
+    source: selectedSource,
+  }
+  const filtered = filterWorkouts(history, filterState)
+
+  const templateById = new Map(sourceTemplates.map(t => [t.id, t]))
+  const filters: TemplateFilterOption[] = [
+    {
+      id: null,
+      name: 'All',
+      color: null,
+      count: facetCount(history, filterState, { templateId: null }),
+    },
+    ...[...everRun]
+      .map(id => ({
+        id,
+        name: templateById.get(id)?.name ?? 'Unknown template',
+        color: templateById.get(id)?.color ?? null,
+        count: facetCount(history, filterState, { templateId: id }),
+      }))
+      // Unreachable chips are dropped rather than shown at 0 — a chip is an
+      // offer, and one that leads nowhere is noise. The selected template is
+      // the exception: it has to stay visible to be undoable.
+      .filter(option => option.count > 0 || option.id === selectedTemplateId)
+      .sort((a, b) => a.name.localeCompare(b.name)),
+  ]
+
+  // Provenance is a second, independent filter axis (#413). Hundreds of
+  // imported skeletons would otherwise bury the handful of sessions that carry
+  // real set data.
+  const recordedCount = facetCount(history, filterState, { source: 'recorded' })
+  const importedCount = facetCount(history, filterState, { source: 'imported' })
+  // Whether the rail exists at all is a question about the log, not the view.
+  const hasImported = history.some(isImported)
 
   // Paginate whatever the filters left, not just the all-years view: 2022 alone
   // is 152 sessions, so a year filter on its own still ships a heavy page.
@@ -196,6 +236,7 @@ export default async function WeightRoomWorkoutsPage({
             selectedSource={selectedSource}
             recordedCount={recordedCount}
             importedCount={importedCount}
+            hasImported={hasImported}
             years={years}
             selectedYear={selectedYear}
             page={pageResult.page}
