@@ -105,7 +105,10 @@ export default async function WeightRoomErasPage({
             it there was. The kind of work changed more than the amount did, so nothing here
             averages one era against the other.
           </p>
-          <WeightRoomSubNav active="history" className="mt-5" isAdmin={isAdmin} />
+          {/* `eras` has no pill of its own — a leaf about the log rather than a
+              section of the room. Naming it anyway means no pill is marked
+              current, which beats highlighting History on a page that isn't it. */}
+          <WeightRoomSubNav active="eras" className="mt-5" isAdmin={isAdmin} />
         </header>
 
         {isPreviewMode ? (
@@ -120,9 +123,15 @@ export default async function WeightRoomErasPage({
               data-testid="era-empty"
               className="rounded-[1.2rem] border border-white/10 bg-white/5 p-6 text-center text-sm text-[#e8d5be]/70"
             >
-              This view needs two stretches of training separated by a long layoff. The log is one
-              continuous run so far — there is no “then” to compare against, and drawing a boundary
-              anyway would invent the comparison.
+              {/* `buildLogEras` answers null for two different reasons, and they
+                  must not share copy. "One continuous run" is a claim about the
+                  training log; saying it when the read came back empty would
+                  assert a fact nothing here actually established. */}
+              {sets.length === 0
+                ? 'No sets to read right now — either nothing is logged yet, or the log could not be loaded. Either way there is nothing to compare.'
+                : isPreviewMode
+                  ? 'The sample data covers a couple of recent weeks, so there is no layoff in it to split on. This view needs two stretches of training separated by a long break.'
+                  : 'This view needs two stretches of training separated by a long layoff. The log is one continuous run so far — there is no “then” to compare against, and drawing a boundary anyway would invent the comparison.'}
             </p>
           ) : (
             <>

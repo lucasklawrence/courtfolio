@@ -48,7 +48,19 @@ function eras(overrides: Partial<LogEras> = {}): LogEras {
       movements: 6,
     }),
     gapDays: 767,
-    months: [],
+    // Two trained months either side of a 24-month layoff. The panel counts the
+    // gap off these rather than dividing `gapDays` by an average month, so a
+    // fixture without them has no layoff to describe.
+    months: [
+      { monthKey: '2024-03', trainingDays: 6, era: 'then' as const },
+      { monthKey: '2024-04', trainingDays: 4, era: 'then' as const },
+      ...Array.from({ length: 24 }, (_, i) => ({
+        monthKey: `gap-${String(i).padStart(2, '0')}`,
+        trainingDays: 0,
+        era: 'gap' as const,
+      })),
+      { monthKey: '2026-05', trainingDays: 5, era: 'now' as const },
+    ],
     roster: { thenOnly: ['barbell-bench-press'], shared: ['pullups'], nowOnly: [] },
     ...overrides,
   }
@@ -69,9 +81,13 @@ describe('EraContrastPanel', () => {
     expect(screen.getByTestId('era-now')).toHaveTextContent('14%')
   })
 
-  it('describes the layoff in months', () => {
+  it('counts the layoff off the drawn months, not off an average month length', () => {
+    // 767 days ÷ 30.44 rounds to 25, while the calendar shows 24 empty months.
+    // Both used to render on the same screen; the drawn count is the one the
+    // reader can check against the chart.
     render(<EraContrastPanel eras={eras()} exerciseLabels={LABELS} />)
-    expect(screen.getByTestId('era-contrast')).toHaveTextContent('25 months')
+    expect(screen.getByTestId('era-contrast')).toHaveTextContent('24 months')
+    expect(screen.getByTestId('era-contrast')).not.toHaveTextContent('25 months')
   })
 
   it('names the movements in each bucket rather than only counting them', () => {

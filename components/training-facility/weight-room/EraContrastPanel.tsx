@@ -34,9 +34,9 @@ export function EraContrastPanel({ eras, exerciseLabels }: EraContrastPanelProps
         Then and now
       </h2>
       <p className="mt-1.5 text-sm leading-6 text-[#e8d5be]/75">
-        Two stretches of training with {formatGap(eras.gapDays)} between them. Read them side by
-        side rather than as a difference — they aren’t the same kind of training, so subtracting one
-        from the other would produce a number about nothing.
+        Two stretches of training with {formatGap(eras)} between them. Read them side by side rather
+        than as a difference — they aren’t the same kind of training, so subtracting one from the
+        other would produce a number about nothing.
       </p>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -174,9 +174,17 @@ function RosterRow({ testId, term, slugs, labels, empty }: RosterRowProps): JSX.
   )
 }
 
-/** A layoff in months where that reads better than days. */
-function formatGap(days: number): string {
-  if (days < 60) return `${days} days`
-  const months = Math.round(days / 30.44)
+/**
+ * A layoff in months where that reads better than days.
+ *
+ * Counted from the months the cadence chart actually draws as empty, not by
+ * dividing `gapDays` by an average month. The two disagree — 767 days rounds to
+ * 25 while the calendar shows 24 — and both were on screen at once, which is a
+ * poor look for a page whose whole argument is that it won't state a number it
+ * can't support.
+ */
+function formatGap(eras: LogEras): string {
+  if (eras.gapDays < 60) return `${eras.gapDays} days`
+  const months = eras.months.filter(month => month.era === 'gap').length
   return `${months} months`
 }

@@ -51,18 +51,42 @@ test.describe('two eras view', () => {
     expect(href).toContain(ERAS)
   })
 
-  test('does not widen the document', async ({ page }) => {
-    // The cadence chart spans five years of months and is meant to scroll
-    // inside its own card.
+  test('keeps the cadence chart inside its own scroller', async ({ page }) => {
+    // Measured on the card's scroll container, not the document: this page's
+    // root carries `overflow-hidden`, so `documentElement.scrollWidth` can
+    // never exceed its client width and a document-level assertion here passes
+    // no matter how badly the chart overflows.
     await page.goto(`${ERAS}?preview=demo`)
-    await expect(
-      page.getByTestId('era-contrast').or(page.getByTestId('era-empty')).first()
-    ).toBeVisible({ timeout: RENDER_TIMEOUT })
+    const cadence = page.getByTestId('era-cadence')
+    if ((await cadence.count()) === 0) {
+      // No layoff in this environment's data, so no chart to measure.
+      test.skip()
+      return
+    }
+    await expect(cadence).toBeVisible({ timeout: RENDER_TIMEOUT })
 
-    const doc = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      clientWidth: document.documentElement.clientWidth,
-    }))
-    expect(doc.scrollWidth).toBeLessThanOrEqual(doc.clientWidth + 1)
+    const measured = await cadence.evaluate(section => {
+      const scroller = section.querySelector<HTMLElement>('.overflow-x-auto')
+      const svg = section.querySelector('svg')
+      return {
+        viewport: window.innerWidth,
+        hasScroller: scroller !== null,
+        scrollWidth: scroller?.scrollWidth ?? 0,
+        clientWidth: scroller?.clientWidth ?? 0,
+        svgWidth: Number(svg?.getAttribute('width') ?? 0),
+        sectionRight: section.getBoundingClientRect().right,
+      }
+    })
+
+    // The chart is a fixed-width SVG; the card is what scrolls it.
+    expect(measured.hasScroller).toBe(true)
+    expect(measured.svgWidth).toBeGreaterThan(0)
+    // The card itself never escapes the viewport, whatever the SVG measures.
+    expect(measured.sectionRight).toBeLessThanOrEqual(measured.viewport + 1)
+    if (measured.svgWidth > measured.clientWidth) {
+      // Wider than its container means the scroller has something to scroll —
+      // the precondition for `overflow-x-auto` to do anything.
+      expect(measured.scrollWidth).toBeGreaterThan(measured.clientWidth)
+    }
   })
 })

@@ -38,12 +38,14 @@ describe('EraCadenceChart', () => {
     expect(withGap).toBeGreaterThan(noGap.querySelectorAll('path').length)
   })
 
-  it('names the layoff beneath the chart', () => {
+  it('names the layoff beneath the chart, in prose rather than sort keys', () => {
     render(<EraCadenceChart months={MONTHS} />)
     const note = screen.getByTestId('era-gap-note')
-    expect(note).toHaveTextContent('2024-05')
-    expect(note).toHaveTextContent('2024-07')
+    expect(note).toHaveTextContent('May 2024')
+    expect(note).toHaveTextContent('July 2024')
     expect(note).toHaveTextContent('3 months')
+    // The raw `YYYY-MM` keys are sort keys, not something a reader should see.
+    expect(note).not.toHaveTextContent('2024-05')
   })
 
   it('omits the note when the log has no layoff', () => {

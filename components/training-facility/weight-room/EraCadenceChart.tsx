@@ -1,6 +1,7 @@
 import type { JSX } from 'react'
 
 import { RoughBar, chartPalette } from '@/components/training-facility/shared/charts'
+import { formatDayKey } from '@/lib/training-facility/day-keys'
 import type { EraMonth } from '@/lib/training-facility/log-eras'
 
 /** Cream axis ink that reads on the Weight Room's dark page surface. */
@@ -25,12 +26,14 @@ export interface EraCadenceChartProps {
  * training reads as "none" rather than vanishing — and a long flat stretch is
  * suggestive rather than precise.
  */
-function gapBounds(months: readonly EraMonth[]): { from: string; to: string } | null {
+function gapBounds(
+  months: readonly EraMonth[]
+): { from: string; to: string; months: number } | null {
   const gaps = months.filter(month => month.era === 'gap')
   const first = gaps[0]
   const last = gaps[gaps.length - 1]
   if (first === undefined || last === undefined) return null
-  return { from: first.monthKey, to: last.monthKey }
+  return { from: first.monthKey, to: last.monthKey, months: gaps.length }
 }
 
 /**
@@ -79,8 +82,16 @@ export function EraCadenceChart({ months, height = 220 }: EraCadenceChartProps):
           // Only January carries a label, plus the first month so the axis
           // opens with a date. Naming all ~54 months renders them as one
           // illegible smear.
+          //
+          // The first tick keeps its month: the log starts in March, and a bare
+          // "2022" anchored on the March band dates the era's start to January
+          // and shifts every reading in that first year.
           xTickLabel={(monthKey, index) =>
-            index === 0 || monthKey.endsWith('-01') ? monthKey.slice(0, 4) : null
+            index === 0
+              ? formatMonthKey(monthKey, { month: 'short', year: 'numeric' })
+              : monthKey.endsWith('-01')
+                ? monthKey.slice(0, 4)
+                : null
           }
           yLabel="days"
           yTickFormat={value => String(Math.round(value))}
@@ -91,15 +102,25 @@ export function EraCadenceChart({ months, height = 220 }: EraCadenceChartProps):
 
       {gap === null ? null : (
         <p data-testid="era-gap-note" className="mt-3 text-xs leading-5 text-[#e8d5be]/60">
-          Nothing logged from {gap.from} through {gap.to} — {monthCount(months)} months of the span
-          with no training recorded.
+          Nothing logged from {formatMonthKey(gap.from)} through {formatMonthKey(gap.to)} —{' '}
+          {gap.months} months of the span with no training recorded.
         </p>
       )}
     </section>
   )
 }
 
-/** How many months of the span carry no training at all. */
-function monthCount(months: readonly EraMonth[]): number {
-  return months.filter(month => month.era === 'gap').length
+/**
+ * A `YYYY-MM` key as prose.
+ *
+ * Month keys are sort keys, not dates a reader should see: printing `2024-05`
+ * in a sentence next to "Mar 2022 – Apr 2024" reads as unfinished. Resolved
+ * through the Pacific day formatter on the first of the month, like every other
+ * date on the page.
+ */
+function formatMonthKey(
+  monthKey: string,
+  options: Intl.DateTimeFormatOptions = { month: 'long', year: 'numeric' }
+): string {
+  return formatDayKey(`${monthKey}-01`, options)
 }
