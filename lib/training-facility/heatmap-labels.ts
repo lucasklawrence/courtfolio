@@ -15,8 +15,15 @@
 export interface HeatmapMonthLabel {
   /** Zero-based grid column the label is drawn above. */
   col: number
-  /** Short month name, e.g. `"Jul"`. */
+  /** Short month name, e.g. `"Jul"` — or `"Jan '23"` where a year begins. */
   label: string
+  /**
+   * Never thin this label away (#438). Set on the markers that carry a year on
+   * a multi-year grid: bare month names repeat every twelve columns-worth, so
+   * an all-time grid whose year markers got thinned is four indistinguishable
+   * Jan–Dec runs, and the range exists precisely to tell 2022 from 2025.
+   */
+  pinned?: boolean
 }
 
 /** Options for {@link thinMonthLabels}. */
@@ -72,6 +79,11 @@ export function estimateTextWidth(text: string, fontSize: number): number {
  * rotation `Jul`, not `Jun`. Keeping the earlier marker unconditionally
  * would name the whole chart after its first three days.
  *
+ * A {@link HeatmapMonthLabel.pinned} marker is exempt: it wins every collision
+ * and is never dropped, because on a multi-year grid it is the only thing
+ * carrying a year. Pinned markers are twelve months apart, so they cannot
+ * collide with each other.
+ *
  * @param labels Month markers in ascending column order.
  * @returns The subset to render, in the same order.
  */
@@ -95,9 +107,17 @@ export function thinMonthLabels(
       continue
     }
 
-    // Colliding: swap in the wider month, or drop this one. A replacement
-    // only ever moves the label right, and `prev` already cleared the entry
-    // before it, so the swap cannot re-collide further left.
+    // Colliding. A pinned marker displaces whatever it lands on, and nothing
+    // displaces a pinned marker — otherwise the year vanishes from the axis.
+    if (prev.label.pinned === true) continue
+    if (entry.label.pinned === true) {
+      kept[kept.length - 1] = entry
+      continue
+    }
+
+    // Otherwise the wider month wins. A replacement only ever moves the label
+    // right, and `prev` already cleared the entry before it, so the swap cannot
+    // re-collide further left.
     if (entry.span > prev.span) kept[kept.length - 1] = entry
   }
 

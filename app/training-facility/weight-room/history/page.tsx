@@ -10,6 +10,8 @@ import { exerciseTrendHref } from '@/components/training-facility/weight-room/Ex
 import { FocusLaneHeatmap } from '@/components/training-facility/weight-room/FocusLaneHeatmap'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
 import { PastFocusCard } from '@/components/training-facility/weight-room/PastFocusCard'
+import { HeatmapSpanToggle } from '@/components/training-facility/weight-room/HeatmapSpanToggle'
+import { ScrollToEnd } from '@/components/training-facility/weight-room/ScrollToEnd'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
 import { ExerciseStatCard } from '@/components/training-facility/weight-room/StrengthStats'
 import { StrengthVsBodyweightChart } from '@/components/training-facility/weight-room/StrengthVsBodyweightChart'
@@ -21,6 +23,12 @@ import { isAdminRequest } from '@/lib/auth/admin-session'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
+import {
+  DEFAULT_HEATMAP_SPAN,
+  HEATMAP_SPAN_PARAM,
+  heatmapWindow,
+  parseHeatmapSpan,
+} from '@/lib/training-facility/heatmap-span'
 import {
   EXERCISE_FILTER_PARAM,
   parseExerciseSelection,
@@ -64,10 +72,14 @@ import type { ExerciseGoal } from '@/types/weight-room'
 const HISTORY_PATH = '/training-facility/weight-room/history'
 
 /**
- * Query params the filter chips must preserve when toggling. Only the
- * Training-Facility preview flag today — an allowlist rather than a
- * pass-through so a chip href can't be turned into an open redirect vector by
- * an arbitrary param riding along.
+ * Query params the filter chips must preserve when toggling — the
+ * Training-Facility preview flag and the heatmap range (#438). An allowlist
+ * rather than a pass-through, so a chip href can't be turned into an open
+ * redirect vector by an arbitrary param riding along.
+ *
+ * The range is *not* carried from here: it's re-emitted from the parsed value
+ * below, so a junk `?span=` normalizes away on first render instead of sticking
+ * to every subsequent href.
  */
 const CARRIED_PARAMS = [TRAINING_FACILITY_PREVIEW_PARAM] as const
 
@@ -139,12 +151,34 @@ export default async function WeightRoomHistoryPage({
   const visibleGoals = permanentGoals.filter(g => selectedSet.has(g.exercise))
   const visibleStats = stats.filter(s => selectedSet.has(s.exercise))
 
+  // How much history the heatmaps draw (#438). The trailing year stays the
+  // default — it answers "how am I doing lately", which is what the page is
+  // mostly for — but it renders the 2022-2024 archive as nothing at all, so
+  // all-time is reachable rather than absent.
+  const heatmapSpan = parseHeatmapSpan(params[HEATMAP_SPAN_PARAM])
+  const heatmap = heatmapWindow(heatmapSpan, sets)
+
   const carryParams: Record<string, string> = {}
   for (const key of CARRIED_PARAMS) {
     const raw = params[key]
     const value = Array.isArray(raw) ? raw[0] : raw
     if (typeof value === 'string' && value !== '') carryParams[key] = value
   }
+  // Re-emitted from the parsed value, not copied from the URL, so `?span=junk`
+  // renders the default view *and* disappears from every href it feeds.
+  if (heatmapSpan !== DEFAULT_HEATMAP_SPAN) carryParams[HEATMAP_SPAN_PARAM] = heatmapSpan
+
+  // The range toggle additionally carries the exercise filter, which the chips'
+  // own allowlist can't include — a chip href has to *rewrite* that param, not
+  // preserve it. Copied raw rather than through the loop above because
+  // `?exercises=` (present, empty) means "nothing selected" and is distinct
+  // from absent (#367); dropping the empty string would reset the filter to
+  // everything on a range switch.
+  const spanCarryParams: Record<string, string> = { ...carryParams }
+  const rawExercises = params[EXERCISE_FILTER_PARAM]
+  const exercisesParam = Array.isArray(rawExercises) ? rawExercises[0] : rawExercises
+  if (typeof exercisesParam === 'string') spanCarryParams[EXERCISE_FILTER_PARAM] = exercisesParam
+
   // The catalog classifies each movement as load- or rep-driven from its
   // equipment (#384); without it the panel falls back to guessing from the
   // share of weighted sets.
@@ -289,11 +323,22 @@ export default async function WeightRoomHistoryPage({
               carryParams={carryParams}
             />
 
+            {/* Outside the heatmap section on purpose: nested inside it, emptying
+                the exercise filter took the range control away with the charts,
+                stranding a reader in the all-time view with no way back. */}
+            <div className="mt-6">
+              <HeatmapSpanToggle
+                span={heatmapSpan}
+                pathname={HISTORY_PATH}
+                carryParams={spanCarryParams}
+              />
+            </div>
+
             {visibleGoals.length > 0 ? (
               <section
                 aria-label="Per-exercise heatmaps"
                 data-testid="weight-room-heatmaps"
-                className="mt-10 space-y-8"
+                className="mt-6 space-y-8"
               >
                 {visibleGoals.map(goal => (
                   <article
@@ -311,9 +356,19 @@ export default async function WeightRoomHistoryPage({
                         goal {goal.daily_target}/day
                       </span>
                     </header>
-                    <div className="overflow-x-auto">
-                      <StrengthHeatmap sets={sets} goal={goal} />
-                    </div>
+                    <ScrollToEnd
+                      className="overflow-x-auto"
+                      enabled={heatmap.dateFrom !== null}
+                      label={`${exerciseLabel(goal)} heatmap, scrollable`}
+                    >
+                      <StrengthHeatmap
+                        sets={sets}
+                        goal={goal}
+                        dateFrom={heatmap.dateFrom}
+                        cellSize={heatmap.cellSize}
+                        cellGap={heatmap.cellGap}
+                      />
+                    </ScrollToEnd>
                     <div className="mt-5 border-t border-white/10 pt-4">
                       <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
                         Weekly volume · last 12 weeks

@@ -110,10 +110,56 @@ describe('buildStrengthHeatmap', () => {
     const { grid: clamped } = buildStrengthHeatmap(
       [],
       PUSHUPS,
-      new Date(2018, 0, 1),
+      new Date(1970, 0, 1),
       new Date(2026, 3, 15)
     )
-    expect(clamped[0].length).toBeLessThanOrEqual(105)
+    expect(clamped[0].length).toBeLessThanOrEqual(419)
+  })
+
+  it('dates a multi-year axis, and pins the years against thinning (#438)', () => {
+    // Bare month names repeat, so on a four-year grid they identify nothing.
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    const { monthLabels } = buildStrengthHeatmap(
+      [],
+      PUSHUPS,
+      new Date(2022, 7, 23),
+      new Date(2026, 3, 15)
+    )
+    const years = monthLabels.filter(m => m.pinned === true)
+    expect(years.map(m => m.label)).toEqual(["Aug '22", "Jan '23", "Jan '24", "Jan '25", "Jan '26"])
+  })
+
+  it('leaves a single-year axis on bare month names', () => {
+    // The trailing-year default reads fine without years, and adding them
+    // there would be noise on every existing chart.
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    const { monthLabels } = buildStrengthHeatmap(
+      [],
+      PUSHUPS,
+      new Date(2026, 0, 5),
+      new Date(2026, 3, 15)
+    )
+    expect(monthLabels.every(m => m.pinned !== true)).toBe(true)
+    expect(monthLabels.map(m => m.label)).not.toContain("Jan '26")
+  })
+
+  it('draws the whole log for an all-time range, archive included (#438)', () => {
+    // The cap used to be ~2 years, so an all-time window starting at the 2022
+    // archive was silently redrawn as starting in 2024 — and a clamped grid is
+    // indistinguishable from a complete one, so the truncation read as "there
+    // was no training back then".
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    const { grid } = buildStrengthHeatmap(
+      [set('2022-08-23', 'pushups', 50)],
+      PUSHUPS,
+      new Date(2022, 7, 23),
+      new Date(2026, 3, 15)
+    )
+    expect(grid[0][0].dayKey <= '2022-08-23').toBe(true)
+    expect(grid.flat().reduce((acc, c) => acc + c.reps, 0)).toBe(50)
   })
 
   it('skips sets with unparseable timestamps', () => {

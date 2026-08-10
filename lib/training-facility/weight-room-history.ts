@@ -16,6 +16,7 @@ import {
   targetForDay,
   targetResolverFor,
 } from './goal-targets'
+import type { HeatmapMonthLabel } from './heatmap-labels'
 import { type StreakCounts, streakFromDailyReps } from './hit-day-streaks'
 import {
   type FocusCampaignSummary,
@@ -82,7 +83,7 @@ export interface StrengthHeatmapGrid {
   /** 7-row × N-column grid; row 0 is Monday, row 6 is Sunday. */
   grid: StrengthHeatmapCell[][]
   /** First-of-month markers for the column header labels. */
-  monthLabels: { col: number; label: string }[]
+  monthLabels: HeatmapMonthLabel[]
 }
 
 /**
@@ -176,8 +177,18 @@ export interface StrengthExerciseStats {
   focus?: FocusCampaignSummary
 }
 
-/** Cap at ~2 years to limit DOM node count when a wide range is requested. */
-const MAX_COLS = 104
+/**
+ * Cap on rendered columns, to bound DOM node count when a wide range is
+ * requested.
+ *
+ * This was ~2 years, which silently truncated the all-time view (#438): the
+ * log starts in 2022 and a 104-column clamp redrew it as starting in 2024,
+ * hiding the archive it was widened to show — and hiding it *convincingly*,
+ * since a clamped grid looks like a complete one. ~8 years is well past the
+ * log's span, so the cap now only fires on a hand-typed or corrupt bound
+ * rather than on real data.
+ */
+const MAX_COLS = 418
 /** Days in a calendar week — heatmap column height, and the week-key stride. */
 const DAYS_PER_WEEK = 7
 
@@ -214,7 +225,7 @@ export function intensityFromPct(pct: number): 0 | 1 | 2 | 3 {
  * is Monday so a year reads top-down as Mon→Sun. The grid spans the
  * supplied range when both `dateFrom` and `dateTo` are provided;
  * otherwise it falls back to the trailing 52 weeks ending at the
- * current week. Capped at ~2 years to keep the DOM small.
+ * current week. Capped at {@link MAX_COLS} weeks to keep the DOM small.
  *
  * Each cell carries the day's rep total, set count, and `pct = reps /
  * dailyTarget` so the renderer can pick a color via
@@ -231,8 +242,8 @@ export function intensityFromPct(pct: number): 0 | 1 | 2 | 3 {
  * @param goal the {@link ExerciseGoal} for the target exercise; supplies
  *   the per-day `daily_target` denominator for `pct` via its
  *   `target_history` (falling back to `daily_target` when absent).
- * @param dateFrom optional inclusive start of the range; clamped to ~2
- *   years before `dateTo` if longer.
+ * @param dateFrom optional inclusive start of the range; clamped to
+ *   {@link MAX_COLS} weeks before `dateTo` if longer.
  * @param dateTo optional inclusive end; defaults to today.
  */
 export function buildStrengthHeatmap(
@@ -286,8 +297,15 @@ export function buildStrengthHeatmap(
       (inclusiveDaySpan(startMondayKey, shiftDayKey(endMondayKey, 6)) - 1) / DAYS_PER_WEEK
     ) + 1
   const grid: StrengthHeatmapCell[][] = Array.from({ length: 7 }, () => [])
-  const monthLabels: { col: number; label: string }[] = []
+  const monthLabels: HeatmapMonthLabel[] = []
   let lastMonth = -1
+  let lastYear = ''
+
+  // Bare month names repeat, so they only identify a column while the grid
+  // stays inside one span of twelve (#438). Past that, each year's first
+  // rendered marker carries the year and is pinned against thinning — without
+  // it an all-time grid is four indistinguishable Jan-Dec runs.
+  const multiYear = startMondayKey.slice(0, 4) !== shiftDayKey(endMondayKey, 6).slice(0, 4)
 
   for (let col = 0; col < totalCols; col++) {
     for (let row = 0; row < 7; row++) {
@@ -310,7 +328,14 @@ export function buildStrengthHeatmap(
       const month = monthIndexOfDayKey(key)
       if (month !== lastMonth) {
         lastMonth = month
-        monthLabels.push({ col, label: MONTH_LABELS[month] })
+        const year = key.slice(0, 4)
+        const startsYear = multiYear && year !== lastYear
+        lastYear = year
+        monthLabels.push(
+          startsYear
+            ? { col, label: `${MONTH_LABELS[month]} '${year.slice(2)}`, pinned: true }
+            : { col, label: MONTH_LABELS[month] }
+        )
       }
     }
   }

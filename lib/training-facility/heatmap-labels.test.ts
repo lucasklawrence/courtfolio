@@ -109,6 +109,39 @@ describe('thinMonthLabels', () => {
     }
   })
 
+  it('never thins away a pinned label, even against a wider month', () => {
+    // A pinned marker is the only thing carrying a year on a multi-year grid
+    // (#438), so losing it to the ordinary wider-month rule leaves four
+    // indistinguishable Jan-Dec runs.
+    const labels: HeatmapMonthLabel[] = [
+      { col: 0, label: 'Dec' },
+      { col: 1, label: "Jan '23", pinned: true },
+      { col: 2, label: 'Feb' },
+      { col: 20, label: 'Mar' },
+    ]
+    const kept = thinMonthLabels(labels, { cellSize: 6, totalCols: 40 })
+    expect(kept.map(k => k.label)).toContain("Jan '23")
+  })
+
+  it('lets a pinned label displace the neighbour it collides with', () => {
+    const labels: HeatmapMonthLabel[] = [
+      { col: 0, label: 'Dec' },
+      { col: 1, label: "Jan '23", pinned: true },
+    ]
+    const kept = thinMonthLabels(labels, { cellSize: 6, totalCols: 40 })
+    expect(kept).toEqual([{ col: 1, label: "Jan '23", pinned: true }])
+  })
+
+  it('does not let an unpinned label displace a pinned one', () => {
+    const labels: HeatmapMonthLabel[] = [
+      { col: 0, label: "Jan '23", pinned: true },
+      // Wider month, which would normally win the collision.
+      { col: 1, label: 'Feb' },
+    ]
+    const kept = thinMonthLabels(labels, { cellSize: 6, totalCols: 40 })
+    expect(kept).toEqual([{ col: 0, label: "Jan '23", pinned: true }])
+  })
+
   it('preserves ascending column order', () => {
     const labels: HeatmapMonthLabel[] = [
       { col: 0, label: 'Jun' },

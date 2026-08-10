@@ -74,6 +74,36 @@ test.describe('chart overflow behaviour', () => {
     expect(doc.scrollWidth).toBeLessThanOrEqual(doc.clientWidth + 1)
   })
 
+  test('the all-time range never renders smaller than the default (#438)', async ({ page }) => {
+    // Two full renders of the slowest route on the site, one of them all-time.
+    test.slow()
+    // The bug: the window start came from the data while the cell size came
+    // from the span *name*, so on a log shorter than a year "All time" drew a
+    // two-column sliver of 6px cells — narrower and less legible than the view
+    // it replaced, and narrow enough to clip the legend out of the SVG.
+    //
+    // Width, not equality, and not height: all-time is deliberately *shorter*
+    // (seven rows of 6px beats seven of 14px) while being much wider. Width is
+    // the axis the range actually widens, and "never narrower" is the one claim
+    // that holds in both environments — CI renders the ~9-day demo fixture,
+    // where all-time correctly collapses to the default, while a credentialed
+    // local run renders four real years.
+    const widthOf = async (url: string): Promise<number> => {
+      await page.goto(url)
+      await expect(page.getByTestId('weight-room-heatmaps')).toBeVisible()
+      return page
+        .getByRole('img', { name: 'Pushups heatmap' })
+        .evaluate(svg => Number(svg.getAttribute('width')))
+    }
+
+    const base = '/training-facility/weight-room/history?preview=demo'
+    const year = await widthOf(base)
+    const all = await widthOf(`${base}&span=all`)
+
+    expect(year).toBeGreaterThan(0)
+    expect(all).toBeGreaterThanOrEqual(year)
+  })
+
   test('the per-exercise trend keeps its charts inside the page', async ({ page }) => {
     // The trend panels (#412) are fixed-width SVGs — 760px, wider than a phone —
     // so they carry the same two obligations: scroll inside their own card, and
@@ -84,6 +114,11 @@ test.describe('chart overflow behaviour', () => {
     // fixture, while a local run has real credentials — which *suppresses* the
     // fixture — and has to find real pull-up sets instead. A demo-only movement
     // renders the empty state locally and the assertion never runs.
+    //
+    // Slow for the same reason: on real data this route's render was already
+    // near the default budget, and the all-time cases added alongside it (#438)
+    // compete for the same dev server.
+    test.slow()
     await page.goto('/training-facility/weight-room/exercises/pullups?preview=demo')
     await expect(page.getByTestId('exercise-progression-pullups')).toBeVisible()
 
