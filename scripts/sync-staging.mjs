@@ -114,9 +114,18 @@ export const TABLES = [
   { name: 'weight_room_template_slots', conflict: 'id' },
   { name: 'weight_room_template_slot_steps', conflict: 'id' },
   { name: 'weight_room_template_alternates', conflict: 'id' },
-  { name: 'weight_room_workouts', conflict: 'id' },
+  // `replace`, not an id upsert. Staging already held sessions with different
+  // uuids than production's, so conflicting on `id` never matched and the
+  // insert tripped the natural key instead — 23505 on `(source, started_at)`.
+  // Conflicting on that natural key would resolve the collision but keep
+  // *staging's* ids, and `weight_room_sets.workout_id` carries production's, so
+  // every set would then fail its foreign key. Replace is the only mode that
+  // gets production's ids across, which is what the child table needs.
+  { name: 'weight_room_workouts', mode: 'replace', key: 'id' },
   { name: 'weight_room_goals', conflict: 'exercise' },
-  { name: 'weight_room_goal_targets', conflict: 'id' },
+  // Same collision, on `(exercise, effective_from)`. Nothing references this
+  // table, so replace costs nothing.
+  { name: 'weight_room_goal_targets', mode: 'replace', key: 'id' },
   { name: 'weight_room_achievements', mode: 'replace', key: 'id' },
   { name: 'weight_room_monthly_focus', mode: 'replace', key: 'id' },
   // Real logged data, not migration-seeded: its uuids originate in production
