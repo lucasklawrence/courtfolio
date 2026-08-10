@@ -258,6 +258,7 @@ describe('WorkoutHistoryList — imported sessions (#413)', () => {
         selectedSource="imported"
         recordedCount={2}
         importedCount={507}
+        hasImported
       />
     )
     // Switching template must preserve the source filter...
@@ -285,11 +286,63 @@ describe('WorkoutHistoryList — imported sessions (#413)', () => {
         hasAnyWorkouts
         recordedCount={2}
         importedCount={507}
+        hasImported
       />
     )
     expect(screen.getByTestId('workout-source-all')).toHaveTextContent('509')
     expect(screen.getByTestId('workout-source-imported')).toHaveTextContent('507')
     expect(screen.getByTestId('workout-source-recorded')).toHaveTextContent('2')
+  })
+
+  it('drops a source chip that matches nothing under the current filters (#445)', () => {
+    // The counts are faceted by the selected year, so a year with no recorded
+    // sessions gets no Recorded chip — rather than one advertising 0 that, when
+    // clicked, falls back to a year that has some.
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        recordedCount={0}
+        importedCount={22}
+        hasImported
+      />
+    )
+    expect(screen.queryByTestId('workout-source-recorded')).toBeNull()
+    expect(screen.getByTestId('workout-source-imported')).toHaveTextContent('22')
+  })
+
+  it('keeps the selected source chip even at zero, so the filter is undoable', () => {
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        selectedSource="recorded"
+        recordedCount={0}
+        importedCount={22}
+        hasImported
+      />
+    )
+    expect(screen.getByTestId('workout-source-recorded')).toHaveTextContent('0')
+    expect(screen.getByTestId('workout-source-all')).toBeInTheDocument()
+  })
+
+  it('hides the rail entirely when the log has nothing imported', () => {
+    // The distinction doesn't apply to this log, so it shouldn't grow a filter.
+    render(
+      <WorkoutHistoryList
+        entries={[]}
+        filters={[]}
+        selectedTemplateId={null}
+        hasAnyWorkouts
+        recordedCount={9}
+        importedCount={0}
+      />
+    )
+    expect(screen.queryByTestId('workout-source-filter')).toBeNull()
   })
 })
 
