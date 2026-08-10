@@ -43,6 +43,25 @@ export function isImported(entry: WorkoutHistoryEntry): boolean {
 }
 
 /**
+ * Resolve the provenance filter from a raw URL param.
+ *
+ * Ignored entirely when the log holds no imports: the rail doesn't render for a
+ * log the distinction doesn't apply to, so honouring `?source=imported` there
+ * would filter the page to nothing with no chip left to undo it. With one
+ * population, neither value means anything anyway.
+ *
+ * @param raw The param value; anything unrecognized resolves to `null`.
+ * @param hasImported Whether the log contains any imported session at all.
+ */
+export function resolveSourceFilter(
+  raw: string | null,
+  hasImported: boolean
+): WorkoutSourceFilter | null {
+  if (!hasImported) return null
+  return raw === 'recorded' || raw === 'imported' ? raw : null
+}
+
+/**
  * Whether an entry survives every axis of `state`.
  *
  * @param entry The session to test.

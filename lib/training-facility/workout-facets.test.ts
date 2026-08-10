@@ -10,7 +10,12 @@ import { describe, expect, it } from 'vitest'
 
 import type { WorkoutHistoryEntry } from './workout-stats'
 
-import { facetCount, filterWorkouts, matchesWorkoutFilters } from './workout-facets'
+import {
+  facetCount,
+  filterWorkouts,
+  matchesWorkoutFilters,
+  resolveSourceFilter,
+} from './workout-facets'
 
 /** A history entry with just the fields the facets read. */
 function entry(
@@ -59,6 +64,25 @@ describe('matchesWorkoutFilters', () => {
 
   it('treats a missing template as matching no template filter', () => {
     expect(matchesWorkoutFilters(HISTORY[3], { ...ALL, templateId: 'chest-1' })).toBe(false)
+  })
+})
+
+describe('resolveSourceFilter', () => {
+  it('reads the two valid selections', () => {
+    expect(resolveSourceFilter('recorded', true)).toBe('recorded')
+    expect(resolveSourceFilter('imported', true)).toBe('imported')
+  })
+
+  it('falls back for an absent or hand-typed value', () => {
+    expect(resolveSourceFilter(null, true)).toBeNull()
+    expect(resolveSourceFilter('everything', true)).toBeNull()
+  })
+
+  it('ignores the param entirely on a log with no imports', () => {
+    // The rail doesn't render for such a log, so honouring `?source=imported`
+    // would filter the page to nothing with no chip left to undo it.
+    expect(resolveSourceFilter('imported', false)).toBeNull()
+    expect(resolveSourceFilter('recorded', false)).toBeNull()
   })
 })
 

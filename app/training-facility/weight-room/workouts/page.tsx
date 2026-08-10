@@ -9,7 +9,6 @@ import {
   WorkoutHistoryList,
   WORKOUTS_ROUTE,
   type TemplateFilterOption,
-  type WorkoutSourceFilter,
 } from '@/components/training-facility/weight-room/WorkoutHistoryList'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { isAdminRequest } from '@/lib/auth/admin-session'
@@ -25,6 +24,7 @@ import {
   facetCount,
   filterWorkouts,
   isImported,
+  resolveSourceFilter,
   type WorkoutFilterState,
 } from '@/lib/training-facility/workout-facets'
 import {
@@ -92,16 +92,24 @@ export default async function WeightRoomWorkoutsPage({
     if (id !== undefined) everRun.add(id)
   }
 
-  const requestedSource = firstParam(params.source)
-  const selectedSource: WorkoutSourceFilter | null =
-    requestedSource === 'recorded' || requestedSource === 'imported' ? requestedSource : null
+  // Whether the provenance rail exists at all is a question about the log, not
+  // the current view — and it has to be answered before the param is read, or
+  // `?source=imported` on a log with no imports empties the page while the rail
+  // that would undo it isn't rendered.
+  const hasImported = history.some(isImported)
+  const selectedSource = resolveSourceFilter(firstParam(params.source), hasImported)
 
   const requestedTemplate = firstParam(params.template)
-  // An unknown id falls back to "all" rather than to an empty list — a stale
-  // link naming a deleted template should degrade to the full history. A
-  // template that exists but has nothing under the *current* year stays
-  // selected on purpose: its chip renders at 0 below, so the reader can see why
-  // the list is empty and click out of it.
+  // Validated against what was *run*, not against the current roster. An id no
+  // session ever used falls back to "all" rather than to an empty list, so a
+  // stale link degrades to the full history.
+  //
+  // A template deleted from the roster but still referenced by old sessions
+  // deliberately stays selectable, labelled "Unknown template" further down:
+  // those sessions are real and filtering to them is a true answer, where
+  // dropping the filter would silently discard it. A template that exists but
+  // has nothing under the *current* year also stays selected — its chip renders
+  // at 0, so the reader can see why the list is empty and click out of it.
   const selectedTemplateId =
     requestedTemplate !== null && everRun.has(requestedTemplate) ? requestedTemplate : null
 
@@ -173,8 +181,6 @@ export default async function WeightRoomWorkoutsPage({
   // real set data.
   const recordedCount = facetCount(history, filterState, { source: 'recorded' })
   const importedCount = facetCount(history, filterState, { source: 'imported' })
-  // Whether the rail exists at all is a question about the log, not the view.
-  const hasImported = history.some(isImported)
 
   // Paginate whatever the filters left, not just the all-years view: 2022 alone
   // is 152 sessions, so a year filter on its own still ships a heavy page.
