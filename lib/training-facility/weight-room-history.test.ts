@@ -30,6 +30,23 @@ const PUSHUPS: ExerciseGoal = {
   color: '#EA580C',
 }
 
+/**
+ * Window bounds for the month-label cases, as explicit midday UTC instants.
+ *
+ * `new Date(2026, 0, 5)` is a *local* midnight, and the grid starts on the
+ * Monday of whatever Pacific day that lands on. Under the runner's zone that
+ * Monday can fall into the previous calendar year — which is exactly what
+ * "spans more than one year" tests for, so the single-year case passed in
+ * Pacific and failed on CI's UTC. Midday UTC is the same Pacific day either
+ * way, and each bound sits far enough inside its year that no week straddles
+ * the boundary.
+ */
+const ARCHIVE_START = new Date('2022-08-23T20:00:00Z')
+/** Mid-week and mid-month, so its Monday cannot slip into the previous year. */
+const SAME_YEAR_START = new Date('2026-02-04T20:00:00Z')
+/** Shared end bound; also the fake "now" for these cases. */
+const WINDOW_END = new Date('2026-04-15T20:00:00Z')
+
 describe('intensityFromPct', () => {
   it('buckets 0% as level 0', () => {
     expect(intensityFromPct(0)).toBe(0)
@@ -119,13 +136,8 @@ describe('buildStrengthHeatmap', () => {
   it('dates a multi-year axis, and pins the years against thinning (#438)', () => {
     // Bare month names repeat, so on a four-year grid they identify nothing.
     vi.useFakeTimers()
-    vi.setSystemTime(new Date(2026, 3, 15))
-    const { monthLabels } = buildStrengthHeatmap(
-      [],
-      PUSHUPS,
-      new Date(2022, 7, 23),
-      new Date(2026, 3, 15)
-    )
+    vi.setSystemTime(WINDOW_END)
+    const { monthLabels } = buildStrengthHeatmap([], PUSHUPS, ARCHIVE_START, WINDOW_END)
     const years = monthLabels.filter(m => m.pinned === true)
     expect(years.map(m => m.label)).toEqual(["Aug '22", "Jan '23", "Jan '24", "Jan '25", "Jan '26"])
   })
@@ -134,13 +146,8 @@ describe('buildStrengthHeatmap', () => {
     // The trailing-year default reads fine without years, and adding them
     // there would be noise on every existing chart.
     vi.useFakeTimers()
-    vi.setSystemTime(new Date(2026, 3, 15))
-    const { monthLabels } = buildStrengthHeatmap(
-      [],
-      PUSHUPS,
-      new Date(2026, 0, 5),
-      new Date(2026, 3, 15)
-    )
+    vi.setSystemTime(WINDOW_END)
+    const { monthLabels } = buildStrengthHeatmap([], PUSHUPS, SAME_YEAR_START, WINDOW_END)
     expect(monthLabels.every(m => m.pinned !== true)).toBe(true)
     expect(monthLabels.map(m => m.label)).not.toContain("Jan '26")
   })
