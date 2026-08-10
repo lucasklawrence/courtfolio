@@ -31,6 +31,17 @@ export interface ThenVsNowPanelProps {
    * comes from Apple Notes" would imply the later one doesn't.
    */
   currentEraImported: boolean
+  /**
+   * Whether the later era is what the log is currently doing, as answered by
+   * `isCurrentEra`.
+   *
+   * False for most movements here: barbell, machine and sled work stopped in
+   * 2024, so their later era is two years old. Splitting the archive against
+   * itself is still worth showing, but calling the later half "Now" — and
+   * saying "current training has passed" about it — would be a claim about the
+   * present that the log contradicts.
+   */
+  laterEraIsCurrent: boolean
 }
 
 /**
@@ -53,13 +64,15 @@ export function ThenVsNowPanel({
   displayName,
   earlierEraImported,
   currentEraImported,
+  laterEraIsCurrent,
 }: ThenVsNowPanelProps): JSX.Element {
   const { then, now, gapDays } = comparison
   const gapYears = gapDays / 365
+  const movement = displayName.toLowerCase()
 
   const provenance =
     earlierEraImported && currentEraImported
-      ? 'Both stretches come from training logged in Apple Notes and imported into this log.'
+      ? 'Both come from training logged in Apple Notes and imported into this log.'
       : earlierEraImported
         ? 'The earlier one comes from training logged in Apple Notes and imported into this log.'
         : 'The earlier one is training this log already carried.'
@@ -68,26 +81,44 @@ export function ThenVsNowPanel({
     <section
       data-testid="then-vs-now"
       className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-5 sm:p-6"
-      aria-label={`${displayName}: then versus now`}
+      aria-label={`${displayName}: ${laterEraIsCurrent ? 'then versus now' : 'two stretches compared'}`}
     >
       <header>
         <h2 className="font-mono text-[11px] uppercase tracking-[0.28em] text-amber-300/80">
-          Then vs now
+          {laterEraIsCurrent ? 'Then vs now' : 'Two stretches'}
         </h2>
         <p className="mt-2 text-sm leading-6 text-[#e8d5be]/75">
           {gapYears >= 1
-            ? `${gapYears.toFixed(1)} years separate these two stretches of ${displayName.toLowerCase()}.`
-            : `${gapDays} days separate these two stretches of ${displayName.toLowerCase()}.`}{' '}
+            ? `${gapYears.toFixed(1)} years separate these two stretches of ${movement}.`
+            : `${gapDays} days separate these two stretches of ${movement}.`}{' '}
           {provenance}
+          {laterEraIsCurrent ? null : (
+            <>
+              {' '}
+              Last trained{' '}
+              <strong className="font-black text-[#fff7ec]">
+                {formatDayKey(now.endDayKey, ERA_DATE)}
+              </strong>
+              .
+            </>
+          )}
         </p>
       </header>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        <EraColumn era={then} label="Then" />
-        <EraColumn era={now} label="Now" isCurrent />
+        <EraColumn era={then} label={laterEraIsCurrent ? 'Then' : 'Earlier'} />
+        <EraColumn
+          era={now}
+          label={laterEraIsCurrent ? 'Now' : 'Later'}
+          isCurrent={laterEraIsCurrent}
+        />
       </div>
 
-      <Verdict comparison={comparison} displayName={displayName} />
+      <Verdict
+        comparison={comparison}
+        displayName={displayName}
+        laterEraIsCurrent={laterEraIsCurrent}
+      />
     </section>
   )
 }
@@ -180,6 +211,8 @@ interface VerdictProps {
   comparison: EraComparison
   /** Movement name, for the sentence. */
   displayName: string
+  /** Whether the later era is the present — see {@link ThenVsNowPanelProps}. */
+  laterEraIsCurrent: boolean
 }
 
 /** The verdict's shared shell, so every branch gets the same box and test id. */
@@ -204,7 +237,7 @@ function Sentence({ children }: { children: ReactNode }): JSX.Element {
  * and a dead heat is neither "passed" nor "still above", both of which would
  * render as "by 0 lb".
  */
-function Verdict({ comparison, displayName }: VerdictProps): JSX.Element | null {
+function Verdict({ comparison, displayName, laterEraIsCurrent }: VerdictProps): JSX.Element | null {
   const { heaviestDelta, surpassedHeaviest, then, now } = comparison
   const movement = displayName.toLowerCase()
   const repsDelta = now.reps - then.reps
@@ -221,7 +254,12 @@ function Verdict({ comparison, displayName }: VerdictProps): JSX.Element | null 
     const bothBodyweight = then.heaviestSet === null && now.heaviestSet === null
 
     if (!bothBodyweight) {
-      const loadedSide = now.heaviestSet !== null ? 'the current stretch' : 'the earlier stretch'
+      const loadedSide =
+        now.heaviestSet !== null
+          ? laterEraIsCurrent
+            ? 'the current stretch'
+            : 'the later stretch'
+          : 'the earlier stretch'
       if (repsDelta === 0) {
         return (
           <Sentence>
@@ -262,16 +300,22 @@ function Verdict({ comparison, displayName }: VerdictProps): JSX.Element | null 
 
   const magnitude = formatLbs(Math.abs(heaviestDelta))
 
+  // "Current training" is only true when the later era *is* current. For a
+  // movement last trained in 2024 the same sentence describes two archive
+  // stretches as if one were the present.
+  const later = laterEraIsCurrent ? 'Current training' : 'The later stretch'
+  const earlierLeads = laterEraIsCurrent ? 'the current one' : 'the later one'
+
   return (
     <Sentence>
       {surpassedHeaviest ? (
         <>
-          Current training has passed the earlier stretch&rsquo;s heaviest {movement} by{' '}
+          {later} has passed the earlier stretch&rsquo;s heaviest {movement} by{' '}
           <strong className="font-black text-[#fff7ec]">{magnitude}</strong>.
         </>
       ) : (
         <>
-          The earlier stretch&rsquo;s heaviest {movement} still leads the current one by{' '}
+          The earlier stretch&rsquo;s heaviest {movement} still leads {earlierLeads} by{' '}
           <strong className="font-black text-[#fff7ec]">{magnitude}</strong>.
         </>
       )}

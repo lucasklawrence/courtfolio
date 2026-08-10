@@ -16,7 +16,12 @@ import {
   getWeightRoomWorkoutsServer,
 } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
-import { buildEraComparison, eraIsImported } from '@/lib/training-facility/era-comparison'
+import {
+  buildEraComparison,
+  eraIsImported,
+  isCurrentEra,
+  latestLoggedDay,
+} from '@/lib/training-facility/era-comparison'
 import {
   buildExerciseProgression,
   buildSetDetailCoverage,
@@ -106,6 +111,10 @@ export default async function WeightRoomExercisePage({
   // only appears where the imported archive actually gives something to compare
   // the current stretch against (#400).
   const eraComparison = progression === null ? null : buildEraComparison(progression)
+  // Currency is judged against the whole log's most recent training day, not
+  // this movement's own — otherwise every movement would look current relative
+  // to itself, which is exactly the claim #441 is about.
+  const latestDay = latestLoggedDay(sets)
   // The movement's own color where it has a daily goal, so the trend matches the
   // ring and heatmap it's already drawn in elsewhere. Gym lifts have no goal and
   // fall back to the panel's default.
@@ -170,6 +179,7 @@ export default async function WeightRoomExercisePage({
                   displayName={displayName}
                   earlierEraImported={eraIsImported(eraComparison.then, exercise, sets)}
                   currentEraImported={eraIsImported(eraComparison.now, exercise, sets)}
+                  laterEraIsCurrent={isCurrentEra(eraComparison.now, latestDay)}
                 />
               )}
               <ExerciseProgressionPanel

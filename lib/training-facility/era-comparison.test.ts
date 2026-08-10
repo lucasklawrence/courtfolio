@@ -11,10 +11,14 @@ import type { StrengthSet } from '@/types/weight-room'
 
 import {
   buildEraComparison,
+  DEFAULT_CURRENT_WITHIN_DAYS,
   DEFAULT_MIN_GAP_DAYS,
   daysBetween,
   eraIsImported,
+  isCurrentEra,
+  latestLoggedDay,
   median,
+  type TrainingEra,
 } from './era-comparison'
 import type { ExerciseDayPoint, ExerciseProgression } from './exercise-progression'
 import type { WorkoutSetHighlight } from './workout-stats'
@@ -216,6 +220,74 @@ describe('buildEraComparison', () => {
     const comparison = buildEraComparison(tied)
     expect(comparison?.heaviestDelta).toBe(0)
     expect(comparison?.surpassedHeaviest).toBe(false)
+  })
+})
+
+describe('latestLoggedDay', () => {
+  /** A set on a given day, at midday Pacific so the UTC instant stays on it. */
+  function loggedOn(dayKey: string): StrengthSet {
+    return { id: dayKey, logged_at: `${dayKey}T20:00:00Z`, exercise: 'pullups', reps: 5 }
+  }
+
+  it('finds the most recent day across every movement', () => {
+    expect(
+      latestLoggedDay([loggedOn('2024-04-16'), loggedOn('2026-08-09'), loggedOn('2023-01-08')])
+    ).toBe('2026-08-09')
+  })
+
+  it('is empty for an empty log', () => {
+    expect(latestLoggedDay([])).toBe('')
+  })
+})
+
+describe('isCurrentEra', () => {
+  /** An era ending on the given day; the rest is irrelevant here. */
+  function eraEnding(endDayKey: string): TrainingEra {
+    return {
+      startDayKey: '2023-01-01',
+      endDayKey,
+      trainingDays: 1,
+      sets: 1,
+      reps: 1,
+      tonnage: 0,
+      heaviestSet: null,
+      bestOneRepMax: null,
+      typicalTopSet: null,
+    }
+  }
+
+  it('is true when the era reaches the end of the log', () => {
+    expect(isCurrentEra(eraEnding('2026-08-09'), '2026-08-09')).toBe(true)
+  })
+
+  it('is true for a movement trained recently but not last', () => {
+    // Trained three weeks before the newest entry anywhere — still current.
+    expect(isCurrentEra(eraEnding('2026-07-19'), '2026-08-09')).toBe(true)
+  })
+
+  it('is false for a movement that stopped two years ago', () => {
+    // The real case: barbell and machine work ended in 2024 while the log
+    // continued, so calling its later era "Now" is a false claim.
+    expect(isCurrentEra(eraEnding('2024-04-16'), '2026-08-09')).toBe(false)
+  })
+
+  it('draws the line at the same silence that separates two eras', () => {
+    expect(isCurrentEra(eraEnding('2026-02-10'), '2026-08-09', 180)).toBe(true)
+    expect(isCurrentEra(eraEnding('2026-02-08'), '2026-08-09', 180)).toBe(false)
+    expect(DEFAULT_CURRENT_WITHIN_DAYS).toBe(DEFAULT_MIN_GAP_DAYS)
+  })
+
+  it('refuses to claim currency with nothing to measure against', () => {
+    expect(isCurrentEra(eraEnding('2026-08-09'), '')).toBe(false)
+  })
+
+  it('does not go stale as the log grows — it moves with it', () => {
+    // The whole point of measuring against the log rather than the wall clock:
+    // pick a movement back up and its era becomes current again, with no
+    // hardcoded date to revisit.
+    const era = eraEnding('2026-08-09')
+    expect(isCurrentEra(era, '2026-08-09')).toBe(true)
+    expect(isCurrentEra(era, '2027-06-01')).toBe(false)
   })
 })
 
