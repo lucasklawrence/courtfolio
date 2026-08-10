@@ -1,7 +1,8 @@
-import type { StrengthSet } from '@/types/weight-room'
+import type { StrengthSet, WeightRoomWorkout } from '@/types/weight-room'
 
 import { PACIFIC_CLOCK, type DayClock } from './clock'
 import type { ExerciseProgression } from './exercise-progression'
+import { workoutDayKey } from './workout-sessions'
 import type { WorkoutSetHighlight } from './workout-stats'
 
 /**
@@ -266,6 +267,10 @@ export function buildEraComparison(
  * @param withinDays How recent counts; defaults to
  *   {@link DEFAULT_CURRENT_WITHIN_DAYS}.
  * @returns True when the era reaches close enough to the end of the log.
+ *   Exclusive at the boundary, matching {@link buildEraComparison}, which
+ *   treats a gap of exactly `minGapDays` as era-separating. A silence long
+ *   enough to divide two eras cannot also be the present, or the shared
+ *   threshold would mean two different things one day apart.
  */
 export function isCurrentEra(
   era: TrainingEra,
@@ -275,7 +280,7 @@ export function isCurrentEra(
   if (latestLoggedDayKey === '') return false
   const behind = daysBetween(era.endDayKey, latestLoggedDayKey)
   if (!Number.isFinite(behind)) return false
-  return behind <= withinDays
+  return behind < withinDays
 }
 
 /**
@@ -285,17 +290,35 @@ export function isCurrentEra(
  * mean recent *relative to the training*, not to whenever someone loads the
  * page, or a site left alone for a year would declare its own history stale.
  *
+ * Uses the same day-mapping as `buildExerciseProgression`: a set belonging to a
+ * session takes the session's day, so a workout running past midnight stays on
+ * the evening that started it. Reading raw `logged_at` here instead would
+ * measure currency on a different calendar than the eras were built on, and
+ * shift the cutoff by a day for exactly the movement sitting on the boundary.
+ *
  * @param sets Every logged set.
+ * @param workouts Recorded sessions, for that mapping. Omitting them dates
+ *   every set by its own timestamp, which is right only when no session
+ *   crossed midnight.
  * @param clock Zone each day is measured in; defaults to Pacific (#429).
  * @returns `YYYY-MM-DD`, or `''` when nothing is logged.
  */
 export function latestLoggedDay(
   sets: readonly StrengthSet[],
+  workouts: readonly WeightRoomWorkout[] = [],
   clock: DayClock = PACIFIC_CLOCK
 ): string {
+  const sessionDay = new Map<string, string>()
+  for (const workout of workouts) {
+    const dayKey = workoutDayKey(workout, clock)
+    if (dayKey !== null) sessionDay.set(workout.id, dayKey)
+  }
+
   let latest = ''
   for (const set of sets) {
-    const dayKey = clock.safeDayKey(set.logged_at)
+    const dayKey =
+      (set.workout_id === undefined ? undefined : sessionDay.get(set.workout_id)) ??
+      clock.safeDayKey(set.logged_at)
     if (dayKey !== '' && dayKey > latest) latest = dayKey
   }
   return latest

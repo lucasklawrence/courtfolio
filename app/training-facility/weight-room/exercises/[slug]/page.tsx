@@ -114,7 +114,7 @@ export default async function WeightRoomExercisePage({
   // Currency is judged against the whole log's most recent training day, not
   // this movement's own — otherwise every movement would look current relative
   // to itself, which is exactly the claim #441 is about.
-  const latestDay = latestLoggedDay(sets)
+  const latestDay = latestLoggedDay(sets, workouts)
   // The movement's own color where it has a daily goal, so the trend matches the
   // ring and heatmap it's already drawn in elsewhere. Gym lifts have no goal and
   // fall back to the panel's default.

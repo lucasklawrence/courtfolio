@@ -7,7 +7,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import type { StrengthSet } from '@/types/weight-room'
+import type { StrengthSet, WeightRoomWorkout } from '@/types/weight-room'
 
 import {
   buildEraComparison,
@@ -238,6 +238,29 @@ describe('latestLoggedDay', () => {
   it('is empty for an empty log', () => {
     expect(latestLoggedDay([])).toBe('')
   })
+
+  it('keeps a past-midnight set on the session that started it', () => {
+    // `buildExerciseProgression` dates a session's sets by the session's own
+    // day. Reading raw `logged_at` here would measure currency on a different
+    // calendar than the eras were built on and shift the cutoff by a day.
+    const workout = {
+      id: 'late-night',
+      started_at: '2026-08-10T04:30:00Z', // 2026-08-09 21:30 Pacific
+      ended_at: '2026-08-10T06:10:00Z',
+    } as WeightRoomWorkout
+    const pastMidnight: StrengthSet = {
+      id: 's',
+      // 2026-08-10 00:05 Pacific — the next calendar day by its own stamp.
+      logged_at: '2026-08-10T07:05:00Z',
+      exercise: 'pullups',
+      reps: 5,
+      workout_id: 'late-night',
+    }
+
+    expect(latestLoggedDay([pastMidnight], [workout])).toBe('2026-08-09')
+    // Without the session, the set dates itself and lands a day later.
+    expect(latestLoggedDay([pastMidnight])).toBe('2026-08-10')
+  })
 })
 
 describe('isCurrentEra', () => {
@@ -272,9 +295,24 @@ describe('isCurrentEra', () => {
   })
 
   it('draws the line at the same silence that separates two eras', () => {
-    expect(isCurrentEra(eraEnding('2026-02-10'), '2026-08-09', 180)).toBe(true)
-    expect(isCurrentEra(eraEnding('2026-02-08'), '2026-08-09', 180)).toBe(false)
+    // Exclusive at the boundary, matching buildEraComparison: a gap of exactly
+    // 180 days already divides two eras, so it cannot also be the present —
+    // otherwise the shared threshold would mean two things one day apart.
+    expect(daysBetween('2026-02-10', '2026-08-09')).toBe(180)
+    expect(isCurrentEra(eraEnding('2026-02-10'), '2026-08-09', 180)).toBe(false)
+    expect(isCurrentEra(eraEnding('2026-02-11'), '2026-08-09', 180)).toBe(true)
     expect(DEFAULT_CURRENT_WITHIN_DAYS).toBe(DEFAULT_MIN_GAP_DAYS)
+  })
+
+  it('agrees with the era split at the exact threshold', () => {
+    // The invariant stated in the doc comment, pinned end to end: a silence
+    // that splits eras never leaves the later one called current.
+    const endedAt = '2026-02-10'
+    const latest = '2026-08-09'
+    const gap = daysBetween(endedAt, latest)
+    const splitsEras = gap >= DEFAULT_MIN_GAP_DAYS
+    expect(splitsEras).toBe(true)
+    expect(isCurrentEra(eraEnding(endedAt), latest)).toBe(false)
   })
 
   it('refuses to claim currency with nothing to measure against', () => {
