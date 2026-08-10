@@ -35,6 +35,32 @@ export function templateSlug(name: string): string {
 }
 
 /**
+ * The URL segment that unambiguously addresses one template.
+ *
+ * Prefers the readable slug, but only when it actually resolves *back* to this
+ * template. Names are editable and explicitly not unique, so two failure modes
+ * are real rather than theoretical: two templates sharing a name would both
+ * slugify the same way and {@link resolveTemplate} would hand every link to
+ * whichever has the lower position, and a name with no alphanumerics at all
+ * slugifies to the empty string, producing a href that matches no route.
+ *
+ * Either case falls back to the id, which {@link resolveTemplate} also accepts.
+ * Ugly beats wrong.
+ *
+ * @param template The template to address; only `id` and `name` are read.
+ * @param all Every template in scope, to detect a shared slug.
+ */
+export function templateSegment(
+  template: { id: string; name: string },
+  all: readonly { id: string; name: string }[]
+): string {
+  const slug = templateSlug(template.name)
+  if (slug === '') return template.id
+  const shared = all.some(other => other.id !== template.id && templateSlug(other.name) === slug)
+  return shared ? template.id : slug
+}
+
+/**
  * Find the template a URL segment names.
  *
  * Matches the derived slug first, then falls back to the raw id — template
@@ -106,10 +132,22 @@ export interface TemplateHistory {
   runs: TemplateRunPoint[]
   /**
    * Runs carrying a trustworthy duration, oldest first. A subset of
-   * {@link runs}: an `icloud_notes` session's start and end are the *note's*
-   * create and edit times, so its "duration" measures typing, not training.
+   * {@link runs}, narrowed for two distinct reasons — see
+   * {@link noteTimedRuns} and {@link untimedRuns}, which are reported
+   * separately so a caller can say *why* rather than guess.
    */
   durations: TemplateRunPoint[]
+  /**
+   * Runs left out of {@link durations} because their window isn't a
+   * measurement: an `icloud_notes` session's start and end are the *note's*
+   * create and edit times, so its "duration" measures typing, not training.
+   */
+  noteTimedRuns: number
+  /**
+   * Runs left out of {@link durations} because they carry no duration at all —
+   * a session still in progress, or one abandoned without an end.
+   */
+  untimedRuns: number
   /** Movements that ran, most total tonnage first. */
   movements: TemplateMovement[]
   /** Movements the template prescribes that have never been logged under it. */
@@ -136,6 +174,8 @@ export function buildTemplateHistory(
   const runs: TemplateRunPoint[] = []
   const durations: TemplateRunPoint[] = []
   const byMovement = new Map<string, TemplateMovement>()
+  let noteTimedRuns = 0
+  let untimedRuns = 0
 
   const mine = history.filter(entry => entry.workout.template_id === template.id)
   for (const entry of mine) {
@@ -154,7 +194,11 @@ export function buildTemplateHistory(
       durationMinutes: entry.summary.durationMinutes,
     }
     runs.push(point)
-    if (point.durationMinutes !== null && isMeasuredWindow(entry.workout)) durations.push(point)
+    // Order matters for the tally: an unmeasured window is the more specific
+    // reason, so a note-timed session is counted there rather than twice.
+    if (!isMeasuredWindow(entry.workout)) noteTimedRuns += 1
+    else if (point.durationMinutes === null) untimedRuns += 1
+    else durations.push(point)
 
     for (const breakdown of entry.summary.exercises) {
       const existing = byMovement.get(breakdown.exercise) ?? {
@@ -190,6 +234,8 @@ export function buildTemplateHistory(
     template,
     runs,
     durations,
+    noteTimedRuns,
+    untimedRuns,
     movements,
     neverRun,
     firstDayKey: runs[0]?.dayKey ?? '',

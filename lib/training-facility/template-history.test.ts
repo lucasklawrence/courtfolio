@@ -15,6 +15,7 @@ import {
   buildTemplateHistory,
   resolveTemplate,
   templateRunIds,
+  templateSegment,
   templateSlug,
 } from './template-history'
 import type { WorkoutHistoryEntry } from './workout-stats'
@@ -96,6 +97,47 @@ describe('resolveTemplate', () => {
     expect(resolveTemplate('chest-day-1', collide)?.id).toBe('t-early')
     // The loser is still reachable by id.
     expect(resolveTemplate('t-late', collide)?.id).toBe('t-late')
+  })
+})
+
+describe('templateSegment', () => {
+  const all = [
+    { id: 't-a', name: 'Chest Day 1' },
+    { id: 't-b', name: 'Legs Day 2' },
+  ]
+
+  it('prefers the readable slug', () => {
+    expect(templateSegment(all[0], all)).toBe('chest-day-1')
+  })
+
+  it('falls back to the id when two templates share a slug', () => {
+    // Names are explicitly not unique. Linking by slug would send both chips to
+    // whichever template resolves first.
+    const collide = [
+      { id: 't-a', name: 'Chest Day 1' },
+      { id: 't-b', name: 'chest day 1' },
+    ]
+    expect(templateSegment(collide[0], collide)).toBe('t-a')
+    expect(templateSegment(collide[1], collide)).toBe('t-b')
+  })
+
+  it('falls back to the id when the name has no slug-able characters', () => {
+    // `'!!!'` slugifies to `''`, which builds a href matching no route at all.
+    const odd = [{ id: 't-odd', name: '!!!' }]
+    expect(templateSegment(odd[0], odd)).toBe('t-odd')
+  })
+
+  it('round-trips through resolveTemplate in every case', () => {
+    const templates = [
+      template('t-a', 'Chest Day 1', [], 1),
+      template('t-b', 'chest day 1', [], 2),
+      template('t-c', '!!!', [], 3),
+      template('t-d', 'Legs Day 2', [], 4),
+    ]
+    for (const one of templates) {
+      const segment = templateSegment(one, templates)
+      expect(resolveTemplate(segment, templates)?.id).toBe(one.id)
+    }
   })
 })
 
@@ -188,6 +230,34 @@ describe('buildTemplateHistory', () => {
     ])
     expect(history.runs).toHaveLength(1)
     expect(history.durations).toHaveLength(0)
+  })
+
+  it('reports the two exclusion reasons separately', () => {
+    // A caller that says "N runs left out" has to be able to say *why* — the
+    // note-timed and the never-ended cases reach the same subtraction.
+    const history = buildTemplateHistory(CHEST, [
+      run('w-notes', 't-chest', '2024-01-05T18:00:00Z', [], {
+        source: 'icloud_notes',
+        minutes: 27,
+      }),
+      run('w-open', 't-chest', '2024-01-12T18:00:00Z', [], { minutes: null }),
+      run('w-good', 't-chest', '2024-01-19T18:00:00Z', [], { minutes: 52 }),
+    ])
+    expect(history.noteTimedRuns).toBe(1)
+    expect(history.untimedRuns).toBe(1)
+    expect(history.durations.map(r => r.workoutId)).toEqual(['w-good'])
+    // The two reasons account for the whole shortfall, with no double-count.
+    expect(history.noteTimedRuns + history.untimedRuns).toBe(
+      history.runs.length - history.durations.length
+    )
+  })
+
+  it('counts a note-timed run once, even when it also has no duration', () => {
+    const history = buildTemplateHistory(CHEST, [
+      run('w', 't-chest', '2024-01-05T18:00:00Z', [], { source: 'icloud_notes', minutes: null }),
+    ])
+    expect(history.noteTimedRuns).toBe(1)
+    expect(history.untimedRuns).toBe(0)
   })
 
   it('buckets a run on its Pacific day, not its UTC one', () => {

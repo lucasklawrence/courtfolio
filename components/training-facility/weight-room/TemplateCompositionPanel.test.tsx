@@ -42,6 +42,8 @@ function history(overrides: Partial<TemplateHistory> = {}): TemplateHistory {
       durationMinutes: 45,
     })),
     durations: [],
+    noteTimedRuns: 0,
+    untimedRuns: 0,
     movements: [],
     neverRun: [],
     firstDayKey: '2024-01-01',

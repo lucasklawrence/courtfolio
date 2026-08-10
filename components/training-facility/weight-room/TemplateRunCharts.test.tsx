@@ -31,11 +31,20 @@ function run(day: number, minutes: number | null = 45): TemplateRunPoint {
   }
 }
 
-function history(runs: TemplateRunPoint[], durations = runs): TemplateHistory {
+function history(
+  runs: TemplateRunPoint[],
+  durations = runs,
+  excluded: { noteTimedRuns?: number; untimedRuns?: number } = {}
+): TemplateHistory {
+  const missing = runs.length - durations.length
   return {
     template: TEMPLATE,
     runs,
     durations,
+    // Default the whole shortfall to the note-timed cause, which is what the
+    // real log looks like; a case that cares states both explicitly.
+    noteTimedRuns: excluded.noteTimedRuns ?? missing - (excluded.untimedRuns ?? 0),
+    untimedRuns: excluded.untimedRuns ?? 0,
     movements: [],
     neverRun: [],
     firstDayKey: runs[0]?.dayKey ?? '',
@@ -76,6 +85,33 @@ describe('TemplateRunCharts', () => {
     render(<TemplateRunCharts history={history(runs, [run(1), run(8)])} />)
     expect(screen.getByRole('img', { name: /duration per session/i })).toBeInTheDocument()
     expect(screen.getByTestId('template-run-charts')).toHaveTextContent('1 of 3 runs are left out')
+  })
+
+  it('names each reason a run is missing, not just the note-timed one', () => {
+    // Two distinct causes reach the same subtraction. Blaming both on note
+    // timestamps would be a plausible-sounding lie about the untimed run.
+    const runs = [run(1), run(8), run(15), run(22)]
+    render(
+      <TemplateRunCharts
+        history={history(runs, [run(1), run(8)], { noteTimedRuns: 1, untimedRuns: 1 })}
+      />
+    )
+    const charts = screen.getByTestId('template-run-charts')
+    expect(charts).toHaveTextContent('2 of 4 runs are left out')
+    expect(charts).toHaveTextContent('when a note was written')
+    expect(charts).toHaveTextContent('1 recorded no end time')
+  })
+
+  it('says only the untimed reason when no run is note-timed', () => {
+    const runs = [run(1), run(8), run(15)]
+    render(
+      <TemplateRunCharts
+        history={history(runs, [run(1), run(8)], { noteTimedRuns: 0, untimedRuns: 1 })}
+      />
+    )
+    const charts = screen.getByTestId('template-run-charts')
+    expect(charts).toHaveTextContent('1 recorded no end time')
+    expect(charts).not.toHaveTextContent('when a note was written')
   })
 
   it('drops the duration chart when too few runs recorded a real one', () => {

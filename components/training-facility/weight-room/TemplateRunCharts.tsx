@@ -108,14 +108,39 @@ export function TemplateRunCharts({ history, accentColor }: TemplateRunChartsPro
           />
           {durations.length < runs.length ? (
             <p className="mt-3 text-xs leading-5 text-[#e8d5be]/60">
-              {runs.length - durations.length} of {runs.length} runs are left out: their start and
-              end times come from when a note was written, not from the session itself.
+              {runs.length - durations.length} of {runs.length} runs are left out:{' '}
+              {describeExclusions(history.noteTimedRuns, history.untimedRuns)}.
             </p>
           ) : null}
         </ChartCard>
       ) : null}
     </div>
   )
+}
+
+/**
+ * Say why runs are missing from the duration series, naming each reason that
+ * applies.
+ *
+ * Two distinct causes reach the same subtraction — a window that measures
+ * note-taking rather than training, and a session that recorded no end at all.
+ * Attributing both to the first would be a plausible-sounding lie about the
+ * second, which is the failure mode this whole page is trying to avoid.
+ *
+ * @param noteTimed Runs whose start and end come from a note's timestamps.
+ * @param untimed Runs carrying no duration at all.
+ */
+function describeExclusions(noteTimed: number, untimed: number): string {
+  const reasons: string[] = []
+  if (noteTimed > 0) {
+    reasons.push(
+      `${noteTimed} took ${noteTimed === 1 ? 'its' : 'their'} start and end from when a note was written, not from the session`
+    )
+  }
+  if (untimed > 0) {
+    reasons.push(`${untimed} recorded no end time`)
+  }
+  return reasons.length === 0 ? 'no duration was recorded' : reasons.join('; ')
 }
 
 /** Props for {@link ChartCard}. */

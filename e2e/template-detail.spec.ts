@@ -48,12 +48,20 @@ test.describe('per-template view', () => {
       return
     }
 
-    await page.getByTestId(ids[0]).click()
+    // Re-entered by URL rather than by clicking the chip, then followed by
+    // `goto` rather than by clicking the link. Both are soft navigations, and
+    // chaining two of the heaviest renders in the app through them exceeded the
+    // budget under parallel workers — while proving nothing the href and a
+    // direct load don't.
+    const templateId = ids[0].replace('workout-filter-', '')
+    await page.goto(`${WORKOUTS}?preview=demo&year=all&template=${templateId}`)
+
     const link = page.getByTestId('template-trends-link')
     await expect(link).toBeVisible({ timeout: RENDER_TIMEOUT })
+    const href = await link.getAttribute('href')
+    expect(href).toContain(`${TEMPLATES}/`)
 
-    await link.click()
-    await expect(page).toHaveURL(new RegExp(`${TEMPLATES}/`), { timeout: RENDER_TIMEOUT })
+    await page.goto(href as string)
     await expect(page.getByTestId('template-composition')).toBeVisible({
       timeout: RENDER_TIMEOUT,
     })
