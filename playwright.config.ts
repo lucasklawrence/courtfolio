@@ -42,7 +42,7 @@ export default defineConfig({
     {
       name: 'training-facility-enabled',
       testMatch:
-        /(?:training-facility-enabled|draft-room-enabled|draft-room-live|chart-overflow)\.spec\.ts/,
+        /(?:training-facility-enabled|draft-room-enabled|draft-room-live|chart-overflow|heatmap-span)\.spec\.ts/,
       use: {
         baseURL: TRAINING_FACILITY_BASE_URL,
       },

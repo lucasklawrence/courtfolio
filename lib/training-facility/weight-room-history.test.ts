@@ -110,10 +110,27 @@ describe('buildStrengthHeatmap', () => {
     const { grid: clamped } = buildStrengthHeatmap(
       [],
       PUSHUPS,
-      new Date(2018, 0, 1),
+      new Date(1970, 0, 1),
       new Date(2026, 3, 15)
     )
-    expect(clamped[0].length).toBeLessThanOrEqual(105)
+    expect(clamped[0].length).toBeLessThanOrEqual(419)
+  })
+
+  it('draws the whole log for an all-time range, archive included (#438)', () => {
+    // The cap used to be ~2 years, so an all-time window starting at the 2022
+    // archive was silently redrawn as starting in 2024 — and a clamped grid is
+    // indistinguishable from a complete one, so the truncation read as "there
+    // was no training back then".
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    const { grid } = buildStrengthHeatmap(
+      [set('2022-08-23', 'pushups', 50)],
+      PUSHUPS,
+      new Date(2022, 7, 23),
+      new Date(2026, 3, 15)
+    )
+    expect(grid[0][0].dayKey <= '2022-08-23').toBe(true)
+    expect(grid.flat().reduce((acc, c) => acc + c.reps, 0)).toBe(50)
   })
 
   it('skips sets with unparseable timestamps', () => {

@@ -10,6 +10,7 @@ import { exerciseTrendHref } from '@/components/training-facility/weight-room/Ex
 import { FocusLaneHeatmap } from '@/components/training-facility/weight-room/FocusLaneHeatmap'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
 import { PastFocusCard } from '@/components/training-facility/weight-room/PastFocusCard'
+import { HeatmapSpanToggle } from '@/components/training-facility/weight-room/HeatmapSpanToggle'
 import { StrengthHeatmap } from '@/components/training-facility/weight-room/StrengthHeatmap'
 import { ExerciseStatCard } from '@/components/training-facility/weight-room/StrengthStats'
 import { StrengthVsBodyweightChart } from '@/components/training-facility/weight-room/StrengthVsBodyweightChart'
@@ -21,6 +22,12 @@ import { isAdminRequest } from '@/lib/auth/admin-session'
 import { getCardioDataServer } from '@/lib/data/cardio-server'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
+import {
+  HEATMAP_SPAN_PARAM,
+  heatmapCellMetrics,
+  heatmapWindowStart,
+  parseHeatmapSpan,
+} from '@/lib/training-facility/heatmap-span'
 import {
   EXERCISE_FILTER_PARAM,
   parseExerciseSelection,
@@ -69,7 +76,7 @@ const HISTORY_PATH = '/training-facility/weight-room/history'
  * pass-through so a chip href can't be turned into an open redirect vector by
  * an arbitrary param riding along.
  */
-const CARRIED_PARAMS = [TRAINING_FACILITY_PREVIEW_PARAM] as const
+const CARRIED_PARAMS = [TRAINING_FACILITY_PREVIEW_PARAM, HEATMAP_SPAN_PARAM] as const
 
 export default async function WeightRoomHistoryPage({
   searchParams,
@@ -139,12 +146,31 @@ export default async function WeightRoomHistoryPage({
   const visibleGoals = permanentGoals.filter(g => selectedSet.has(g.exercise))
   const visibleStats = stats.filter(s => selectedSet.has(s.exercise))
 
+  // How much history the heatmaps draw (#438). The trailing year stays the
+  // default — it answers "how am I doing lately", which is what the page is
+  // mostly for — but it renders the 2022-2024 archive as nothing at all, so
+  // all-time is reachable rather than absent.
+  const heatmapSpan = parseHeatmapSpan(params[HEATMAP_SPAN_PARAM])
+  const heatmapFrom = heatmapWindowStart(heatmapSpan, sets)
+  const heatmapCells = heatmapCellMetrics(heatmapSpan)
+
   const carryParams: Record<string, string> = {}
   for (const key of CARRIED_PARAMS) {
     const raw = params[key]
     const value = Array.isArray(raw) ? raw[0] : raw
     if (typeof value === 'string' && value !== '') carryParams[key] = value
   }
+
+  // The span toggle additionally carries the exercise filter, which the chips'
+  // own allowlist can't include — a chip href has to *rewrite* that param, not
+  // preserve it. Copied raw rather than through the loop above because
+  // `?exercises=` (present, empty) means "nothing selected" and is distinct
+  // from absent (#367); dropping the empty string would reset the filter to
+  // everything on a span switch.
+  const spanCarryParams: Record<string, string> = { ...carryParams }
+  const rawExercises = params[EXERCISE_FILTER_PARAM]
+  const exercisesParam = Array.isArray(rawExercises) ? rawExercises[0] : rawExercises
+  if (typeof exercisesParam === 'string') spanCarryParams[EXERCISE_FILTER_PARAM] = exercisesParam
   // The catalog classifies each movement as load- or rep-driven from its
   // equipment (#384); without it the panel falls back to guessing from the
   // share of weighted sets.
@@ -295,6 +321,11 @@ export default async function WeightRoomHistoryPage({
                 data-testid="weight-room-heatmaps"
                 className="mt-10 space-y-8"
               >
+                <HeatmapSpanToggle
+                  span={heatmapSpan}
+                  pathname={HISTORY_PATH}
+                  carryParams={spanCarryParams}
+                />
                 {visibleGoals.map(goal => (
                   <article
                     key={goal.exercise}
@@ -312,7 +343,13 @@ export default async function WeightRoomHistoryPage({
                       </span>
                     </header>
                     <div className="overflow-x-auto">
-                      <StrengthHeatmap sets={sets} goal={goal} />
+                      <StrengthHeatmap
+                        sets={sets}
+                        goal={goal}
+                        dateFrom={heatmapFrom}
+                        cellSize={heatmapCells.cellSize}
+                        cellGap={heatmapCells.cellGap}
+                      />
                     </div>
                     <div className="mt-5 border-t border-white/10 pt-4">
                       <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">

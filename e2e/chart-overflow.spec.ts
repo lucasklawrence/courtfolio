@@ -74,6 +74,24 @@ test.describe('chart overflow behaviour', () => {
     expect(doc.scrollWidth).toBeLessThanOrEqual(doc.clientWidth + 1)
   })
 
+  test('the all-time heatmap range does not widen the document either', async ({ page }) => {
+    // `?span=all` (#438) is the widest thing this page can draw — on real data
+    // a ~1,400px grid inside a ~900px column. It's *meant* to scroll inside its
+    // card; the document must still not move.
+    //
+    // The demo fixture spans a couple of weeks, so this can't assert the grid
+    // actually overflows — but the invariant it does check is the one that
+    // breaks if the toggle's markup ever escapes the scroll container.
+    await page.goto('/training-facility/weight-room/history?preview=demo&span=all')
+    await expect(page.getByTestId('weight-room-heatmaps')).toBeVisible()
+
+    const doc = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    }))
+    expect(doc.scrollWidth).toBeLessThanOrEqual(doc.clientWidth + 1)
+  })
+
   test('the per-exercise trend keeps its charts inside the page', async ({ page }) => {
     // The trend panels (#412) are fixed-width SVGs — 760px, wider than a phone —
     // so they carry the same two obligations: scroll inside their own card, and

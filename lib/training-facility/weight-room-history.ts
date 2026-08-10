@@ -176,8 +176,18 @@ export interface StrengthExerciseStats {
   focus?: FocusCampaignSummary
 }
 
-/** Cap at ~2 years to limit DOM node count when a wide range is requested. */
-const MAX_COLS = 104
+/**
+ * Cap on rendered columns, to bound DOM node count when a wide range is
+ * requested.
+ *
+ * This was ~2 years, which silently truncated the all-time view (#438): the
+ * log starts in 2022 and a 104-column clamp redrew it as starting in 2024,
+ * hiding the archive it was widened to show — and hiding it *convincingly*,
+ * since a clamped grid looks like a complete one. ~8 years is well past the
+ * log's span, so the cap now only fires on a hand-typed or corrupt bound
+ * rather than on real data.
+ */
+const MAX_COLS = 418
 /** Days in a calendar week — heatmap column height, and the week-key stride. */
 const DAYS_PER_WEEK = 7
 
@@ -214,7 +224,7 @@ export function intensityFromPct(pct: number): 0 | 1 | 2 | 3 {
  * is Monday so a year reads top-down as Mon→Sun. The grid spans the
  * supplied range when both `dateFrom` and `dateTo` are provided;
  * otherwise it falls back to the trailing 52 weeks ending at the
- * current week. Capped at ~2 years to keep the DOM small.
+ * current week. Capped at {@link MAX_COLS} weeks to keep the DOM small.
  *
  * Each cell carries the day's rep total, set count, and `pct = reps /
  * dailyTarget` so the renderer can pick a color via
@@ -231,8 +241,8 @@ export function intensityFromPct(pct: number): 0 | 1 | 2 | 3 {
  * @param goal the {@link ExerciseGoal} for the target exercise; supplies
  *   the per-day `daily_target` denominator for `pct` via its
  *   `target_history` (falling back to `daily_target` when absent).
- * @param dateFrom optional inclusive start of the range; clamped to ~2
- *   years before `dateTo` if longer.
+ * @param dateFrom optional inclusive start of the range; clamped to
+ *   {@link MAX_COLS} weeks before `dateTo` if longer.
  * @param dateTo optional inclusive end; defaults to today.
  */
 export function buildStrengthHeatmap(
