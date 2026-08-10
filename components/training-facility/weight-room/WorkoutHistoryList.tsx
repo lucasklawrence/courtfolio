@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { formatDayKey, safePacificDayKey, todayDayKey } from '@/lib/training-facility/day-keys'
 import { describeSetOrHold } from '@/lib/training-facility/strength-format'
+import { templateSlug } from '@/lib/training-facility/template-history'
 import type { WorkoutSourceFilter } from '@/lib/training-facility/workout-facets'
 import {
   workoutDisplayTitle,
@@ -18,6 +19,21 @@ export const SOURCE_FILTER_PARAM = 'source'
 
 /** URL param naming the year filter (#416). Value is a year, or `all`. */
 export const YEAR_FILTER_PARAM = 'year'
+
+/** Route base for the per-template view (#446). */
+export const TEMPLATES_ROUTE = '/training-facility/weight-room/templates'
+
+/**
+ * Link to one workout's trends over time.
+ *
+ * @param name Template name; slugified to match the route's own resolution.
+ * @param isPreviewMode Carry `?preview=demo` through, so a preview tour doesn't
+ *   dead-end on a page whose own read is empty.
+ */
+export function templateTrendHref(name: string, isPreviewMode = false): string {
+  const path = `${TEMPLATES_ROUTE}/${encodeURIComponent(templateSlug(name))}`
+  return isPreviewMode ? `${path}?preview=demo` : path
+}
 
 /**
  * Provenance filter selection (#413).
@@ -293,6 +309,7 @@ function SourceFilterRail({
 
 function TemplateFilterRail({ filters, filterState }: TemplateFilterRailProps): JSX.Element {
   const selectedTemplateId = filterState.selectedTemplateId
+  const selected = filters.find(option => option.id === selectedTemplateId)
   return (
     <nav aria-label="Filter by template" data-testid="workout-template-filter">
       <ul className="flex flex-wrap gap-2">
@@ -322,6 +339,18 @@ function TemplateFilterRail({ filters, filterState }: TemplateFilterRailProps): 
           )
         })}
       </ul>
+      {/* A separate link rather than repurposing the chip: the chip's job is to
+          filter this list, and a reader who wants the trends is asking a
+          different question (#446). */}
+      {selected !== undefined && selected.id !== null ? (
+        <Link
+          href={templateTrendHref(selected.name, filterState.isPreviewMode)}
+          data-testid="template-trends-link"
+          className="mt-2 inline-block font-mono text-[10px] uppercase tracking-[0.2em] text-amber-300/80 underline underline-offset-4 hover:text-amber-200"
+        >
+          {selected.name} over time →
+        </Link>
+      ) : null}
     </nav>
   )
 }
