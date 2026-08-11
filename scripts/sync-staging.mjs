@@ -38,6 +38,8 @@
  *                                                 secret key
  */
 
+import { pathToFileURL } from 'node:url'
+
 const PROD_URL = process.env.PROD_SUPABASE_URL?.replace(/\/$/, '')
 const PROD_KEY = process.env.PROD_SUPABASE_ANON_KEY
 const STAGING_URL = process.env.STAGING_SUPABASE_URL?.replace(/\/$/, '')
@@ -84,7 +86,7 @@ const WRITE_BATCH = 500
  * the anon read would return nothing, and live-panel run history has no bearing
  * on what a preview deploy renders.
  */
-const TABLES = [
+export const TABLES = [
   { name: 'movement_benchmarks', conflict: 'date' },
   { name: 'cardio_sessions', conflict: 'started_at' },
   { name: 'cardio_session_hr_samples', conflict: 'session_started_at,sample_at' },
@@ -98,7 +100,51 @@ const TABLES = [
   { name: 'cardio_active_energy_trend', conflict: 'date' },
   { name: 'otf_sessions', conflict: 'started_at' },
   { name: 'otf_mileage_awards', conflict: 'label' },
+  // Weight Room, in foreign-key order. Everything below references
+  // `weight_room_exercises`, so the roster has to land first; slots reference
+  // templates, workouts reference templates, and sets reference all of them.
+  //
+  // The order is load-bearing, not cosmetic. Before #400 nearly every set was
+  // loose — `workout_id` null — so sets could be written with no session in
+  // staging and nothing complained. The import attached sets to sessions, and
+  // the next sync failed outright on the foreign key. Adding a table here
+  // means placing it after everything it points at.
+  // `slug` is the primary key — a natural one that means the same thing in
+  // both projects, so an upsert matches.
+  { name: 'weight_room_exercises', conflict: 'slug' },
+  // The template graph is `replace` for the reason the doc above describes and
+  // this table demonstrates: both projects ran
+  // `20260803120200_seed_workout_templates.sql` independently, so the same six
+  // templates carry different `gen_random_uuid()` ids in each. Upserting on
+  // `id` matched nothing and — because template names carry no unique
+  // constraint — quietly *inserted a second copy of every one*, which is
+  // exactly what the first run of this fix did to staging: 12 templates under 6
+  // distinct names, and 80 slots against production's 40.
+  //
+  // Replace also carries production's ids across, which the children need:
+  // `weight_room_sets.template_slot_id` and `.template_slot_step_id` reference
+  // them. Deleting a template cascades to its slots, steps and alternates, so
+  // the four have to stay in this order.
+  { name: 'weight_room_workout_templates', mode: 'replace', key: 'id' },
+  { name: 'weight_room_template_slots', mode: 'replace', key: 'id' },
+  { name: 'weight_room_template_slot_steps', mode: 'replace', key: 'id' },
+  { name: 'weight_room_template_alternates', mode: 'replace', key: 'id' },
+  // After the templates, not before: `weight_room_workouts.template_id` is
+  // `on delete set null`, so replacing templates while workouts already exist
+  // would blank every session's template.
+  //
+  // `replace`, not an id upsert. Staging already held sessions with different
+  // uuids than production's, so conflicting on `id` never matched and the
+  // insert tripped the natural key instead — 23505 on `(source, started_at)`.
+  // Conflicting on that natural key would resolve the collision but keep
+  // *staging's* ids, and `weight_room_sets.workout_id` carries production's, so
+  // every set would then fail its foreign key. Replace is the only mode that
+  // gets production's ids across, which is what the child table needs.
+  { name: 'weight_room_workouts', mode: 'replace', key: 'id' },
   { name: 'weight_room_goals', conflict: 'exercise' },
+  // Same collision, on `(exercise, effective_from)`. Nothing references this
+  // table, so replace costs nothing.
+  { name: 'weight_room_goal_targets', mode: 'replace', key: 'id' },
   { name: 'weight_room_achievements', mode: 'replace', key: 'id' },
   { name: 'weight_room_monthly_focus', mode: 'replace', key: 'id' },
   // Real logged data, not migration-seeded: its uuids originate in production
@@ -196,7 +242,7 @@ function project(row, allowed) {
 
 async function copyTable({ name, conflict, mode, key }, allowed) {
   const dropped = new Set()
-  const noteDropped = (page) => {
+  const noteDropped = page => {
     for (const row of page) {
       for (const k of Object.keys(row)) if (!allowed.includes(k)) dropped.add(k)
     }
@@ -215,7 +261,7 @@ async function copyTable({ name, conflict, mode, key }, allowed) {
       const page = await readPage(name, offset)
       if (page.length === 0) break
       noteDropped(page)
-      rows.push(...page.map((r) => project(r, allowed)))
+      rows.push(...page.map(r => project(r, allowed)))
       if (page.length < READ_PAGE) break
     }
     await clearTable(name, key)
@@ -234,7 +280,7 @@ async function copyTable({ name, conflict, mode, key }, allowed) {
     const page = await readPage(name, offset)
     if (page.length === 0) break
     noteDropped(page)
-    const rows = page.map((r) => project(r, allowed))
+    const rows = page.map(r => project(r, allowed))
     for (let i = 0; i < rows.length; i += WRITE_BATCH) {
       await writeBatch(name, conflict, rows.slice(i, i + WRITE_BATCH))
     }
@@ -281,7 +327,8 @@ async function main() {
     try {
       const { copied, dropped, mode } = await copyTable(table, allowed)
       total += copied
-      const note = dropped.length > 0 ? `  (dropped ahead-of-staging columns: ${dropped.join(', ')})` : ''
+      const note =
+        dropped.length > 0 ? `  (dropped ahead-of-staging columns: ${dropped.join(', ')})` : ''
       const how = mode === 'replace' ? ' [replaced]' : ''
       console.log(`${copied === 0 ? '·' : '✓'} ${table.name}: ${copied}${how}${note}`)
     } catch (err) {
@@ -290,11 +337,17 @@ async function main() {
     }
   }
 
-  console.log(`\n${failed === 0 ? '✓' : '!'} staging sync: ${total} rows across ${TABLES.length - failed}/${TABLES.length} tables.`)
+  console.log(
+    `\n${failed === 0 ? '✓' : '!'} staging sync: ${total} rows across ${TABLES.length - failed}/${TABLES.length} tables.`
+  )
   if (failed > 0) process.exitCode = 1
 }
 
-main().catch((err) => {
-  console.error(err.message ?? err)
-  process.exitCode = 2
-})
+// Only when run as a script. Guarded so the table manifest can be imported and
+// asserted on without kicking off a sync as a side effect of `import`.
+if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch(err => {
+    console.error(err.message ?? err)
+    process.exitCode = 2
+  })
+}
