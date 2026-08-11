@@ -15,6 +15,14 @@ export interface RoughBarProps<T> extends ChartCommonProps {
   /** Inner padding between bars (0–1). */
   padding?: number
   xLabel?: string
+  /**
+   * Relabel or drop a category tick. Returning `null` omits that tick's label
+   * while the bar still renders — the escape hatch for a band scale with more
+   * categories than the axis can legibly name, e.g. five years of months where
+   * only January should be written (#437). Defaults to labelling every
+   * category, which is right for the dozen-bar charts this started with.
+   */
+  xTickLabel?: (category: string, index: number) => string | null
   yLabel?: string
   yTickCount?: number
   yTickFormat?: (value: number) => string
@@ -36,6 +44,7 @@ export function RoughBar<T>({
   fontFamily = 'inherit',
   axisColor = chartPalette.inkBlack,
   xLabel,
+  xTickLabel,
   yLabel,
   yTickCount = 5,
   yTickFormat,
@@ -70,10 +79,11 @@ export function RoughBar<T>({
 
   const gen = getGenerator()
 
-  const xTicks: AxisTick[] = categories.map(c => ({
-    value: c,
-    offset: (xScale(c) ?? 0) + xScale.bandwidth() / 2,
-  }))
+  const xTicks: AxisTick[] = categories.flatMap((c, i) => {
+    const label = xTickLabel === undefined ? c : xTickLabel(c, i)
+    if (label === null) return []
+    return [{ value: label, offset: (xScale(c) ?? 0) + xScale.bandwidth() / 2 }]
+  })
 
   const yTicks: AxisTick[] = yScale.ticks(yTickCount).map(tick => ({
     value: yTickFormat ? yTickFormat(tick) : String(tick),

@@ -14,7 +14,15 @@ import Link from 'next/link'
  * isn't on.
  */
 export type WeightRoomSubNavSection =
-  'today' | 'history' | 'workouts' | 'program' | 'exercises' | 'achievements' | 'settings' | 'log'
+  | 'today'
+  | 'history'
+  | 'workouts'
+  | 'program'
+  | 'exercises'
+  | 'eras'
+  | 'achievements'
+  | 'settings'
+  | 'log'
 
 /** Props for {@link WeightRoomSubNav}. */
 export interface WeightRoomSubNavProps {

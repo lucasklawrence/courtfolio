@@ -71,6 +71,9 @@ import type { ExerciseGoal } from '@/types/weight-room'
 /** Route the filter chips link back to. */
 const HISTORY_PATH = '/training-facility/weight-room/history'
 
+/** Route for the whole-log era comparison (#437). */
+const ERAS_ROUTE = '/training-facility/weight-room/eras'
+
 /**
  * Query params the filter chips must preserve when toggling — the
  * Training-Facility preview flag and the heatmap range (#438). An allowlist
@@ -242,6 +245,29 @@ export default async function WeightRoomHistoryPage({
             <PreviewModeBadge description="These heatmaps and stats are illustrative — not Lucas’s real training log." />
           </div>
         ) : null}
+
+        {/* The whole-log era view (#437) — the counterpart to the per-movement
+            then-vs-now panels, for the 42 archive movements with no current-era
+            side to compare against.
+
+            Outside the has-goals branch on purpose: deleting a goal keeps its
+            logged sets (#373), so a log with years of history and no configured
+            goals is a supported state — and the eras page renders fine from
+            sets alone. Nested in that branch, it was the only entry point and
+            it disappeared exactly when it was most useful.
+
+            Wrapped rather than `inline-block`: this is a flex item, and a flex
+            item's `inline-block` computes to `block` and then stretches, so the
+            anchor's hit target silently spanned the full row. */}
+        <div className="mt-8">
+          <Link
+            href={isPreviewMode ? `${ERAS_ROUTE}?preview=demo` : ERAS_ROUTE}
+            data-testid="eras-link"
+            className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-300/80 underline underline-offset-4 hover:text-amber-200"
+          >
+            Two eras · then vs now across the whole log →
+          </Link>
+        </div>
 
         {permanentGoals.length === 0 && focuses.length === 0 ? (
           <section

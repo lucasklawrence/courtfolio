@@ -42,7 +42,7 @@ export default defineConfig({
     {
       name: 'training-facility-enabled',
       testMatch:
-        /(?:training-facility-enabled|draft-room-enabled|draft-room-live|chart-overflow|heatmap-span|workout-filters|template-detail)\.spec\.ts/,
+        /(?:training-facility-enabled|draft-room-enabled|draft-room-live|chart-overflow|heatmap-span|workout-filters|template-detail|eras)\.spec\.ts/,
       use: {
         baseURL: TRAINING_FACILITY_BASE_URL,
       },
@@ -59,7 +59,7 @@ export default defineConfig({
       // don't vary by engine. This runs only the two specs whose assertions
       // are about rendering.
       name: 'mobile-webkit',
-      testMatch: /(?:svg-fragments|chart-overflow)\.spec\.ts/,
+      testMatch: /(?:svg-fragments|chart-overflow|eras)\.spec\.ts/,
       use: {
         ...devices['iPhone 14'],
         // `browserName` must be set explicitly, *after* the device spread.
