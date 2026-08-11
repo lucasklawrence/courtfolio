@@ -109,11 +109,30 @@ export const TABLES = [
   // staging and nothing complained. The import attached sets to sessions, and
   // the next sync failed outright on the foreign key. Adding a table here
   // means placing it after everything it points at.
+  // `slug` is the primary key — a natural one that means the same thing in
+  // both projects, so an upsert matches.
   { name: 'weight_room_exercises', conflict: 'slug' },
-  { name: 'weight_room_workout_templates', conflict: 'id' },
-  { name: 'weight_room_template_slots', conflict: 'id' },
-  { name: 'weight_room_template_slot_steps', conflict: 'id' },
-  { name: 'weight_room_template_alternates', conflict: 'id' },
+  // The template graph is `replace` for the reason the doc above describes and
+  // this table demonstrates: both projects ran
+  // `20260803120200_seed_workout_templates.sql` independently, so the same six
+  // templates carry different `gen_random_uuid()` ids in each. Upserting on
+  // `id` matched nothing and — because template names carry no unique
+  // constraint — quietly *inserted a second copy of every one*, which is
+  // exactly what the first run of this fix did to staging: 12 templates under 6
+  // distinct names, and 80 slots against production's 40.
+  //
+  // Replace also carries production's ids across, which the children need:
+  // `weight_room_sets.template_slot_id` and `.template_slot_step_id` reference
+  // them. Deleting a template cascades to its slots, steps and alternates, so
+  // the four have to stay in this order.
+  { name: 'weight_room_workout_templates', mode: 'replace', key: 'id' },
+  { name: 'weight_room_template_slots', mode: 'replace', key: 'id' },
+  { name: 'weight_room_template_slot_steps', mode: 'replace', key: 'id' },
+  { name: 'weight_room_template_alternates', mode: 'replace', key: 'id' },
+  // After the templates, not before: `weight_room_workouts.template_id` is
+  // `on delete set null`, so replacing templates while workouts already exist
+  // would blank every session's template.
+  //
   // `replace`, not an id upsert. Staging already held sessions with different
   // uuids than production's, so conflicting on `id` never matched and the
   // insert tripped the natural key instead — 23505 on `(source, started_at)`.

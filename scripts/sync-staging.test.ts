@@ -71,6 +71,36 @@ describe('staging sync manifest', () => {
     }
   })
 
+  it('replaces the tables whose ids are seeded independently in each project', () => {
+    // These carry `gen_random_uuid()` primary keys assigned by a migration that
+    // both projects ran separately, so the same logical row has a different id
+    // in each. An `id` upsert matches nothing; with no unique constraint on the
+    // business key it then *inserts a duplicate* rather than failing loudly —
+    // which is how staging ended up with 12 workout templates under 6 names.
+    // Replace is also the only mode that carries production's ids across, which
+    // `weight_room_sets` needs to resolve its slot and workout references.
+    for (const name of [
+      'weight_room_workout_templates',
+      'weight_room_template_slots',
+      'weight_room_template_slot_steps',
+      'weight_room_template_alternates',
+      'weight_room_workouts',
+      'weight_room_goal_targets',
+    ]) {
+      const table = TABLES.find(t => t.name === name)
+      expect(table, `${name} is missing from the manifest`).toBeDefined()
+      expect(table?.mode, `${name} must be replaced, not upserted on id`).toBe('replace')
+    }
+  })
+
+  it('syncs templates before the workouts that point at them', () => {
+    // `weight_room_workouts.template_id` is `on delete set null`, so replacing
+    // templates after the workouts land would blank every session's template.
+    expect(names.indexOf('weight_room_workout_templates')).toBeLessThan(
+      names.indexOf('weight_room_workouts')
+    )
+  })
+
   it('gives every table a conflict target or an explicit replace key', () => {
     for (const table of TABLES) {
       const hasKey =
