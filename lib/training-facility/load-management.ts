@@ -13,6 +13,7 @@ import type {
 } from '@/types/weight-room'
 
 import { PACIFIC_CLOCK, shiftDayKey, type DayClock } from './clock'
+import { countedReps } from './set-reps'
 
 /**
  * Ramp-rate aggregation for the Weight Room Load Management panel (#316).
@@ -313,8 +314,8 @@ export function buildMovementLoads(
       const offset = offsetByKey.get(key)
       if (offset === undefined) continue // outside the trailing chronic window
       const weight = typeof s.weight_lbs === 'number' && s.weight_lbs > 0 ? s.weight_lbs : 0
-      repByOffset[offset] += s.reps
-      loadByOffset[offset] += s.reps * weight
+      repByOffset[offset] += countedReps(s)
+      loadByOffset[offset] += countedReps(s) * weight
       inWindowSets += 1
       inWindowDays.add(offset)
       if (weight > 0) inWindowWeighted += 1

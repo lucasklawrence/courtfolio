@@ -4,6 +4,7 @@ import { useState, type JSX } from 'react'
 
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 import { slugLabel, type ExerciseLabels } from '@/lib/training-facility/exercise-labels'
+import { countedReps, repsLabel } from '@/lib/training-facility/set-reps'
 
 /** Props for {@link SetList}. */
 export interface SetListProps {
@@ -109,7 +110,7 @@ export function SetList({
   // displays newest-first via `ordered`.
   const totals = new Map<string, number>()
   for (const s of setsToday) {
-    totals.set(s.exercise, (totals.get(s.exercise) ?? 0) + s.reps)
+    totals.set(s.exercise, (totals.get(s.exercise) ?? 0) + countedReps(s))
   }
 
   return (
@@ -186,7 +187,7 @@ export function SetList({
                 {slugLabel(s.exercise, goalsByExercise[s.exercise], labels)}
               </span>
               <span className="font-mono text-base font-semibold tabular-nums text-white">
-                {s.reps}
+                {repsLabel(s)}
               </span>
               {s.variant ? (
                 <span
@@ -202,7 +203,7 @@ export function SetList({
               {onDelete ? (
                 <button
                   type="button"
-                  aria-label={`Delete set of ${s.reps} ${slugLabel(s.exercise, goalsByExercise[s.exercise], labels)}`}
+                  aria-label={`Delete set of ${repsLabel(s)} ${slugLabel(s.exercise, goalsByExercise[s.exercise], labels)}`}
                   disabled={busy || isPending}
                   onClick={() => void handleDelete(s)}
                   className="rounded-full border border-rose-300/25 bg-rose-300/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-rose-200 transition hover:bg-rose-300/15 disabled:cursor-not-allowed disabled:opacity-40"

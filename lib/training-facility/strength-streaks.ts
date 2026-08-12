@@ -3,6 +3,7 @@ import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { targetResolverFor } from './goal-targets'
 import { type StreakCounts, streakFromDailyReps } from './hit-day-streaks'
+import { countedReps } from './set-reps'
 
 /**
  * Per-exercise streak result, mirrored on
@@ -66,7 +67,7 @@ export function computeStrengthStreaks(
       dayMap = new Map()
       repsByExerciseAndDay.set(s.exercise, dayMap)
     }
-    dayMap.set(day, (dayMap.get(day) ?? 0) + s.reps)
+    dayMap.set(day, (dayMap.get(day) ?? 0) + countedReps(s))
   }
 
   const todayKey = clock.dayKey(now)

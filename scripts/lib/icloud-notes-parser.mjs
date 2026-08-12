@@ -595,8 +595,10 @@ export function mintImportKey({ title, date, slug, index }) {
  * **Rack run.** A drop set: curl the 35s to failure, drop to the 30s, again,
  * down the rack. `Set 1: 25, 20, 10` is three drops at three loads, and the rep
  * count was never written because each drop simply went until it couldn't.
- * Every drop is therefore a set marked `to_failure` — see the #435 migration
- * for why that stores `reps = 1` rather than null.
+ * Every drop is therefore a set marked `to_failure` with `reps: null` — the
+ * count was never measured, and #440 made the column nullable so it no longer
+ * has to be invented. Drops of one pass share a `set_group`, so the pass counts
+ * as the single set it was rather than as one set per drop.
  *
  * A `Set N:` with nothing after it is the same movement performed with nothing
  * recorded at all. It still happened — the heading declared it and the label is
@@ -608,10 +610,13 @@ export function mintImportKey({ title, date, slug, index }) {
  * @param {{movement: string, planned?: string,
  *   sets: Array<{set: number, value: string}>}} block A parsed labelled block.
  * @param {Record<string, number>} [loadMultipliers] Live catalog multipliers.
- * @returns {Array<{exercise: string, reps: number, weight_lbs: number|null,
- *   variant: string, to_failure?: boolean}>} Sets in the order they were run.
+ * @param {number} [groupBase] Offset added to each `Set N:` number so groups
+ *   stay distinct across two labelled blocks in one note.
+ * @returns {Array<{exercise: string, reps: number|null, weight_lbs: number|null,
+ *   variant: string, to_failure?: boolean, set_group?: number}>} Sets in the
+ *   order they were run.
  */
-export function parseLabelledBlock(block, loadMultipliers = {}) {
+export function parseLabelledBlock(block, loadMultipliers = {}, groupBase = 0) {
   const isRackRun = /^rack run/i.test(block.movement)
   const slug = 'dumbbell-curl'
   const variant = isRackRun ? 'rack run' : '21s'
@@ -637,18 +642,36 @@ export function parseLabelledBlock(block, loadMultipliers = {}) {
       continue
     }
 
+    // One group per pass down the rack, so the drops below collapse back into
+    // the single set they were (#440).
+    //
+    // Offset by the block's own base rather than using `entry.set` directly:
+    // a note carrying two Rack Run blocks would otherwise give both a
+    // `Set 1:`, and the two passes would collide into one group and count as
+    // a single set. No note in the archive does this today, which is exactly
+    // why it would go unnoticed.
+    const setGroup = groupBase + entry.set
+
     if (loads.length === 0) {
-      out.push({ exercise: slug, reps: 1, weight_lbs: null, variant, to_failure: true })
+      out.push({
+        exercise: slug,
+        reps: null,
+        weight_lbs: null,
+        variant,
+        to_failure: true,
+        set_group: setGroup,
+      })
       continue
     }
 
     for (const load of loads) {
       out.push({
         exercise: slug,
-        reps: 1,
+        reps: null,
         weight_lbs: perImplementWeight(load, 'Weight', slug, loadMultipliers[slug]),
         variant,
         to_failure: true,
+        set_group: setGroup,
       })
     }
   }
@@ -683,8 +706,9 @@ export function parseLabelledBlock(block, loadMultipliers = {}) {
  *   `Set N:` blocks — rack runs and 21s (#435); see {@link parseLabelledBlock}.
  * @param {Record<string, number>} [loadMultipliers] Live catalog multipliers
  *   keyed by slug. Falls back to {@link TWO_IMPLEMENT_SLUGS} when absent.
- * @returns {{sets: Array<{exercise: string, reps: number, weight_lbs: number|null,
+ * @returns {{sets: Array<{exercise: string, reps: number|null, weight_lbs: number|null,
  *   variant?: string, duration_seconds?: number, to_failure?: boolean,
+ *   set_group?: number,
  *   disposition: 'workout'|'gtg', position: number|null, import_key: string}>,
  *   unmapped: string[], timed: string[]}} Parsed sets in note order; every
  *   movement name that resolved to nothing — reported so it gets a real catalog
@@ -756,8 +780,12 @@ export function parseNote(note, loadMultipliers = {}) {
     })
   }
 
+  // Each labelled block gets a group range of its own, so two Rack Run
+  // blocks in one note cannot both claim group 1 (#440).
+  let groupBase = 0
   for (const block of note.labelled_blocks ?? []) {
-    const parsed = parseLabelledBlock(block, loadMultipliers)
+    const parsed = parseLabelledBlock(block, loadMultipliers, groupBase)
+    groupBase += (block.sets ?? []).length + 1
     for (const set of parsed) {
       sets.push({
         ...set,

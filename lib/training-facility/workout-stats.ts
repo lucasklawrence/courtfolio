@@ -6,6 +6,7 @@ import type {
 } from '@/types/weight-room'
 
 import { buildSlotProgress, extraSets, type SlotProgress } from './live-workout'
+import { countedReps } from './set-reps'
 import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { compareInstants, isStaleOpenWorkout, workoutDurationMinutes } from './workout-sessions'
 
@@ -100,12 +101,36 @@ export function effectiveSetLoad(
   return perImplement * (multipliers.get(set.exercise) ?? 1)
 }
 
+/**
+ * How many working sets a list of rows describes (#440).
+ *
+ * Most rows are a set each. The exception is a row carrying a `set_group`: the
+ * drops of one pass down a rack are several rows describing a single set, so
+ * they collapse to one. Grouping is keyed on `(exercise, set_group)` because a
+ * group number is only unique within the movement that recorded it.
+ *
+ * @param sets Rows from one session.
+ * @returns Sets actually performed, which is at most `sets.length`.
+ */
+export function countWorkingSets(sets: readonly StrengthSet[]): number {
+  let ungrouped = 0
+  const groups = new Set<string>()
+  for (const set of sets) {
+    if (set.set_group === undefined) ungrouped += 1
+    else groups.add(`${set.exercise}|${set.set_group}`)
+  }
+  return ungrouped + groups.size
+}
+
 /** One notable set, as surfaced in a breakdown row. */
 export interface WorkoutSetHighlight {
   /** {@link StrengthSet.id} of the set. */
   setId: string
-  /** Reps completed. */
-  reps: number
+  /**
+   * Reps completed, or `null` when the count was never recorded (#440) — a
+   * rack-run drop taken to failure, where the note captured only the load.
+   */
+  reps: number | null
   /** Load on one implement, or `null` for a bodyweight set. */
   weightLbs: number | null
   /** Pounds actually moved — `weightLbs × load_multiplier`; `0` for bodyweight. */
@@ -194,13 +219,16 @@ export interface WorkoutSummary {
    * printing hours that weren't spent training.
    */
   isAbandoned: boolean
-  /** Total sets logged. */
+  /**
+   * Working sets logged. Rows sharing a `set_group` — the drops of one pass
+   * down a rack — count once, so this is at most the row count (#440).
+   */
   totalSets: number
   /** Total reps across every set. */
   totalReps: number
   /** `Σ reps × effective load` across the session. */
   tonnage: number
-  /** How many sets carried external load. */
+  /** How many working sets carried external load. */
   weightedSets: number
   /**
    * How many sets carried none. Surfaced so the UI can *state* that bodyweight
@@ -246,18 +274,29 @@ export function buildWorkoutSummary(
 
   let totalReps = 0
   let tonnage = 0
-  let weightedSets = 0
+  // Collected rather than counted: a weighted set has to be measured in the
+  // same unit as the total, or subtracting the two to get bodyweight sets
+  // mixes rows with groups and can go negative (#440).
+  const weightedRows: StrengthSet[] = []
+
+  // Rows, collapsed into the sets they describe — a two-pass rack run is five
+  // rows and two sets (#440).
+  const workingSets = countWorkingSets(ordered)
 
   const byExercise = new Map<string, StrengthSet[]>()
   for (const set of ordered) {
     const load = effectiveSetLoad(set, multipliers)
-    totalReps += set.reps
-    tonnage += set.reps * load
-    if (load > 0) weightedSets += 1
+    // An unrecorded count adds nothing rather than inventing one (#440).
+    totalReps += countedReps(set)
+    tonnage += countedReps(set) * load
+    if (load > 0) weightedRows.push(set)
     const list = byExercise.get(set.exercise)
     if (list) list.push(set)
     else byExercise.set(set.exercise, [set])
   }
+
+  const weightedSets = countWorkingSets(weightedRows)
+  const bodyweightWorkingSets = Math.max(0, workingSets - weightedSets)
 
   const breakdown: ExerciseBreakdown[] = []
   for (const [exercise, exSets] of byExercise) {
@@ -268,8 +307,8 @@ export function buildWorkoutSummary(
 
     for (const set of exSets) {
       const effectiveLoad = effectiveSetLoad(set, multipliers)
-      reps += set.reps
-      exTonnage += set.reps * effectiveLoad
+      reps += countedReps(set)
+      exTonnage += countedReps(set) * effectiveLoad
       const highlight: WorkoutSetHighlight = {
         setId: set.id,
         reps: set.reps,
@@ -280,22 +319,26 @@ export function buildWorkoutSummary(
         ...(set.to_failure === true ? { toFailure: true } : {}),
       }
       // Heaviest wins; at equal load the one with more reps is the better set.
+      // An unrecorded count can't win a reps tiebreak or a most-reps contest —
+      // `countedReps` makes it lose rather than throw (#440).
       if (
         effectiveLoad > 0 &&
         (top === null ||
           effectiveLoad > top.effectiveLoad ||
-          (effectiveLoad === top.effectiveLoad && set.reps > top.reps))
+          (effectiveLoad === top.effectiveLoad && countedReps(set) > countedReps(top.reps)))
       ) {
         top = highlight
       }
-      if (bestReps === null || set.reps > bestReps.reps) bestReps = highlight
+      if (bestReps === null || countedReps(set) > countedReps(bestReps.reps)) bestReps = highlight
     }
 
-    const estimate = top === null ? null : epleyOneRepMax(top.effectiveLoad, top.reps)
+    // No recorded count, no Epley estimate — the formula needs reps (#440).
+    const estimate =
+      top === null || top.reps === null ? null : epleyOneRepMax(top.effectiveLoad, top.reps)
     breakdown.push({
       exercise,
       ...(labels.has(exercise) ? { displayName: labels.get(exercise) } : {}),
-      sets: exSets.length,
+      sets: countWorkingSets(exSets),
       reps,
       tonnage: exTonnage,
       topSet: top,
@@ -303,7 +346,8 @@ export function buildWorkoutSummary(
       // always assigned at least one highlight.
       bestRepSet: bestReps as WorkoutSetHighlight,
       estimatedOneRepMax: estimate,
-      oneRepMaxIsReliable: estimate !== null && top !== null && top.reps <= E1RM_MAX_RELIABLE_REPS,
+      oneRepMaxIsReliable:
+        estimate !== null && top !== null && countedReps(top.reps) <= E1RM_MAX_RELIABLE_REPS,
       isBodyweight: top === null,
     })
   }
@@ -316,7 +360,7 @@ export function buildWorkoutSummary(
     durationMinutes !== null && durationMinutes > 0
       ? {
           tonnagePerMinute: tonnage / durationMinutes,
-          setsPerMinute: ordered.length / durationMinutes,
+          setsPerMinute: workingSets / durationMinutes,
           repsPerMinute: totalReps / durationMinutes,
         }
       : null
@@ -327,11 +371,11 @@ export function buildWorkoutSummary(
     durationMinutes,
     isInProgress,
     isAbandoned,
-    totalSets: ordered.length,
+    totalSets: workingSets,
     totalReps,
     tonnage,
     weightedSets,
-    bodyweightSets: ordered.length - weightedSets,
+    bodyweightSets: bodyweightWorkingSets,
     density,
     exercises: breakdown,
   }
@@ -624,7 +668,9 @@ export function findPersonalBests(
     if (!Number.isFinite(loggedAt) || !Number.isFinite(startedAt) || loggedAt >= startedAt) continue
     const load = effectiveSetLoad(set, multipliers)
     if (load > (bestLoad.get(set.exercise) ?? 0)) bestLoad.set(set.exercise, load)
-    if (set.reps > (bestReps.get(set.exercise) ?? 0)) bestReps.set(set.exercise, set.reps)
+    // A set with no recorded count can't hold a reps record.
+    const reps = countedReps(set)
+    if (reps > (bestReps.get(set.exercise) ?? 0)) bestReps.set(set.exercise, reps)
   }
 
   const bests: WorkoutPersonalBest[] = []
@@ -647,7 +693,8 @@ export function findPersonalBests(
     }
 
     const previousReps = bestReps.get(entry.exercise) ?? 0
-    if (entry.bestRepSet.reps > previousReps) {
+    // A set with no recorded count cannot take a most-reps record.
+    if (countedReps(entry.bestRepSet.reps) > previousReps) {
       bests.push({
         exercise: entry.exercise,
         ...withLabel,

@@ -13,6 +13,7 @@ import {
   buildWorkoutAdherence,
   buildWorkoutHistory,
   buildWorkoutSummary,
+  countWorkingSets,
   compareToPrevious,
   effectiveSetLoad,
   epleyOneRepMax,
@@ -126,6 +127,115 @@ describe('effectiveSetLoad', () => {
   it('falls back to one implement for a movement missing from the catalog', () => {
     // Understating a pair is recoverable; inventing load is not.
     expect(effectiveSetLoad({ exercise: 'unknown-lift', weight_lbs: 100 }, multipliers)).toBe(100)
+  })
+})
+
+describe('countWorkingSets', () => {
+  it('counts an ordinary row as one set', () => {
+    expect(countWorkingSets([set({ id: 'a' }), set({ id: 'b' })])).toBe(2)
+  })
+
+  it('collapses the drops of one rack pass into a single set (#440)', () => {
+    // `Set 1: 30, 15` and `Set 2: 30, 27.5, 22.5` — five rows, two sets.
+    const drops = [
+      set({ id: 'd1', exercise: 'dumbbell-curl', reps: null, set_group: 1 }),
+      set({ id: 'd2', exercise: 'dumbbell-curl', reps: null, set_group: 1 }),
+      set({ id: 'd3', exercise: 'dumbbell-curl', reps: null, set_group: 2 }),
+      set({ id: 'd4', exercise: 'dumbbell-curl', reps: null, set_group: 2 }),
+      set({ id: 'd5', exercise: 'dumbbell-curl', reps: null, set_group: 2 }),
+    ]
+    expect(countWorkingSets(drops)).toBe(2)
+  })
+
+  it('keeps groups from different movements apart', () => {
+    // A group number is only unique within the movement that recorded it, so
+    // keying on the number alone would merge two unrelated sets into one.
+    const sets = [
+      set({ id: 'a', exercise: 'dumbbell-curl', set_group: 1 }),
+      set({ id: 'b', exercise: 'ez-bar-curl', set_group: 1 }),
+    ]
+    expect(countWorkingSets(sets)).toBe(2)
+  })
+
+  it('mixes grouped and ungrouped rows in one session', () => {
+    const sets = [
+      set({ id: 'bench-1' }),
+      set({ id: 'bench-2' }),
+      set({ id: 'd1', exercise: 'dumbbell-curl', reps: null, set_group: 1 }),
+      set({ id: 'd2', exercise: 'dumbbell-curl', reps: null, set_group: 1 }),
+    ]
+    expect(countWorkingSets(sets)).toBe(3)
+  })
+
+  it('treats group 0 as a real group, not as absent', () => {
+    // A falsy check here would count each drop separately again.
+    const sets = [
+      set({ id: 'd1', exercise: 'dumbbell-curl', set_group: 0 }),
+      set({ id: 'd2', exercise: 'dumbbell-curl', set_group: 0 }),
+    ]
+    expect(countWorkingSets(sets)).toBe(1)
+  })
+})
+
+describe('buildWorkoutSummary — rack runs (#440)', () => {
+  it('reports a two-pass rack run as two sets, not five rows', () => {
+    const drops = [
+      set({ id: 'd1', exercise: 'dumbbell-curl', reps: null, weight_lbs: 30, set_group: 1 }),
+      set({ id: 'd2', exercise: 'dumbbell-curl', reps: null, weight_lbs: 15, set_group: 1 }),
+      set({ id: 'd3', exercise: 'dumbbell-curl', reps: null, weight_lbs: 30, set_group: 2 }),
+      set({ id: 'd4', exercise: 'dumbbell-curl', reps: null, weight_lbs: 27.5, set_group: 2 }),
+      set({ id: 'd5', exercise: 'dumbbell-curl', reps: null, weight_lbs: 22.5, set_group: 2 }),
+    ]
+    const summary = buildWorkoutSummary(workout(), drops)
+    expect(summary.totalSets).toBe(2)
+    expect(summary.exercises[0].sets).toBe(2)
+  })
+
+  it('adds no reps for drops whose count was never recorded', () => {
+    const drops = [
+      set({ id: 'd1', exercise: 'dumbbell-curl', reps: null, weight_lbs: 30, set_group: 1 }),
+      set({ id: 'd2', exercise: 'dumbbell-curl', reps: null, weight_lbs: 15, set_group: 1 }),
+    ]
+    const summary = buildWorkoutSummary(workout(), drops)
+    expect(summary.totalReps).toBe(0)
+    // And no tonnage invented from a placeholder rep count: 1 x 30 + 1 x 15
+    // would have been 45.
+    expect(summary.tonnage).toBe(0)
+  })
+
+  it('keeps weighted and bodyweight counts in the same unit as the total', () => {
+    // The trap: `weightedSets` was counted per row while `totalSets` became a
+    // per-group count, so subtracting them mixed units and under-reported
+    // bodyweight sets — far enough, with enough drops, to clamp to zero and
+    // hide the explainer entirely (#440).
+    const sets = [
+      set({ id: 'bw1', exercise: 'pushups', reps: 20 }),
+      set({ id: 'bw2', exercise: 'pushups', reps: 20 }),
+      set({ id: 'bw3', exercise: 'pushups', reps: 20 }),
+      set({ id: 'bw4', exercise: 'pushups', reps: 20 }),
+      set({ id: 'd1', exercise: 'dumbbell-curl', reps: null, weight_lbs: 30, set_group: 1 }),
+      set({ id: 'd2', exercise: 'dumbbell-curl', reps: null, weight_lbs: 25, set_group: 1 }),
+      set({ id: 'd3', exercise: 'dumbbell-curl', reps: null, weight_lbs: 20, set_group: 1 }),
+    ]
+    const summary = buildWorkoutSummary(workout(), sets)
+
+    // Four bodyweight sets plus one rack pass.
+    expect(summary.totalSets).toBe(5)
+    expect(summary.weightedSets).toBe(1)
+    expect(summary.bodyweightSets).toBe(4)
+    // The three parts have to reconcile, whatever the row count was.
+    expect(summary.weightedSets + summary.bodyweightSets).toBe(summary.totalSets)
+  })
+
+  it('still counts a counted set alongside them', () => {
+    const sets = [
+      set({ id: 'bench', reps: 8, weight_lbs: 135 }),
+      set({ id: 'd1', exercise: 'dumbbell-curl', reps: null, weight_lbs: 30, set_group: 1 }),
+    ]
+    const summary = buildWorkoutSummary(workout(), sets)
+    expect(summary.totalReps).toBe(8)
+    expect(summary.tonnage).toBe(8 * 135)
+    expect(summary.totalSets).toBe(2)
   })
 })
 

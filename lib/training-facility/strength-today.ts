@@ -2,6 +2,7 @@ import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 
 import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { targetForDay } from './goal-targets'
+import { countedReps } from './set-reps'
 
 /**
  * Pure helpers for the Weight Room Today View (#80) — date bucketing,
@@ -68,7 +69,7 @@ export function filterSetsForDay(
  */
 export function sumReps(sets: readonly StrengthSet[]): number {
   let total = 0
-  for (const s of sets) total += s.reps
+  for (const s of sets) total += countedReps(s)
   return total
 }
 
@@ -82,7 +83,7 @@ export function sumReps(sets: readonly StrengthSet[]): number {
 export function totalsByExercise(setsForDay: readonly StrengthSet[]): Map<string, number> {
   const totals = new Map<string, number>()
   for (const s of setsForDay) {
-    totals.set(s.exercise, (totals.get(s.exercise) ?? 0) + s.reps)
+    totals.set(s.exercise, (totals.get(s.exercise) ?? 0) + countedReps(s))
   }
   return totals
 }
@@ -133,10 +134,10 @@ export function variantBreakdown(sets: readonly StrengthSet[]): VariantSlice[] {
   for (const s of sets) {
     const key = s.variant ?? null
     const bucket = buckets.get(key) ?? { reps: 0, sets: 0 }
-    bucket.reps += s.reps
+    bucket.reps += countedReps(s)
     bucket.sets += 1
     buckets.set(key, bucket)
-    totalReps += s.reps
+    totalReps += countedReps(s)
   }
 
   const slices: VariantSlice[] = []

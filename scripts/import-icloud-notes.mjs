@@ -381,6 +381,10 @@ async function main() {
           // the key gets NULL rather than the column default — which a
           // `not null` column rejects, failing the whole batch.
           to_failure: set.to_failure === true,
+          // Same reasoning as `to_failure`: always sent so a batch mixing
+          // grouped and ungrouped sets doesn't leave the key out of the INSERT
+          // for one of them. Null is the ordinary case — a set on its own.
+          set_group: set.set_group ?? null,
           // Grease-the-groove volume is that day's, not the session's — see
           // #400. Leaving `workout_id` null is what keeps it off the workout.
           workout_id: set.disposition === 'workout' ? workoutId : null,

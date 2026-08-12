@@ -29,8 +29,23 @@ export interface StrengthSet {
    * movement's entire history.
    */
   exercise: string
-  /** Rep count for this single set. Always positive (DB CHECK enforces). */
-  reps: number
+  /**
+   * Repetitions in this set, or `null` when the count was never recorded (#440).
+   *
+   * Positive when present (DB CHECK enforces). `null` is a different statement
+   * from zero: zero is a set with no reps, `null` is a set whose reps nobody
+   * wrote down — a rack-run drop taken to failure, where the note captures the
+   * load and nothing else. Treat it as *unknown*, not as none: sum it as `0`
+   * via {@link import('@/lib/training-facility/set-reps').countedReps}, but
+   * never render it as `0 reps`.
+   */
+  reps: number | null
+  /**
+   * Rows sharing a `(workout_id, exercise, set_group)` are one working set —
+   * the drops of a rack run, say (#440). `undefined` means the row is a set on
+   * its own, which is every ordinary set.
+   */
+  set_group?: number
   /**
    * Optional external load in pounds for this set — e.g. weighted
    * shrugs in a monthly focus (#255). Absent for bodyweight movements

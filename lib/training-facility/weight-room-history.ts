@@ -18,6 +18,7 @@ import {
 } from './goal-targets'
 import type { HeatmapMonthLabel } from './heatmap-labels'
 import { type StreakCounts, streakFromDailyReps } from './hit-day-streaks'
+import { countedReps } from './set-reps'
 import {
   type FocusCampaignSummary,
   focusTargetHistory,
@@ -283,7 +284,7 @@ export function buildStrengthHeatmap(
     const key = clock.safeDayKey(s.logged_at)
     if (key === '') continue
     const entry = lookup.get(key) ?? { reps: 0, setCount: 0 }
-    entry.reps += s.reps
+    entry.reps += countedReps(s)
     entry.setCount += 1
     lookup.set(key, entry)
   }
@@ -378,7 +379,7 @@ export function computeStrengthStreaks(
     if (s.exercise !== goal.exercise) continue
     const key = clock.safeDayKey(s.logged_at)
     if (key === '') continue
-    dailyReps.set(key, (dailyReps.get(key) ?? 0) + s.reps)
+    dailyReps.set(key, (dailyReps.get(key) ?? 0) + countedReps(s))
   }
   return streakFromDailyReps(dailyReps, targetResolverFor(goal), clock.dayKey(now))
 }
@@ -459,19 +460,19 @@ export function computeStrengthStats(
       if (key === '') continue
 
       // All-time + active-day rollups.
-      dailyReps.set(key, (dailyReps.get(key) ?? 0) + s.reps)
-      allTimeReps += s.reps
+      dailyReps.set(key, (dailyReps.get(key) ?? 0) + countedReps(s))
+      allTimeReps += countedReps(s)
       validSetCount += 1
 
       // Period buckets — string-compare against pre-computed boundary
       // keys. Each set falls into at most one week bucket and at most
       // one month bucket, but a day can be in both (e.g. Mon Apr 1 is
       // both "thisWeek" and "thisMonth"), so check independently.
-      if (key >= thisWeekStart && key <= thisWeekEnd) thisWeekReps += s.reps
-      else if (key >= lastWeekStart && key <= lastWeekEnd) lastWeekReps += s.reps
+      if (key >= thisWeekStart && key <= thisWeekEnd) thisWeekReps += countedReps(s)
+      else if (key >= lastWeekStart && key <= lastWeekEnd) lastWeekReps += countedReps(s)
 
-      if (key >= thisMonthStart && key <= thisMonthEnd) thisMonthReps += s.reps
-      else if (key >= lastMonthStart && key <= lastMonthEnd) lastMonthReps += s.reps
+      if (key >= thisMonthStart && key <= thisMonthEnd) thisMonthReps += countedReps(s)
+      else if (key >= lastMonthStart && key <= lastMonthEnd) lastMonthReps += countedReps(s)
     }
 
     const avgSetsPerActiveDay = dailyReps.size === 0 ? 0 : validSetCount / dailyReps.size
@@ -544,7 +545,7 @@ export function buildWeeklyVolume(
     if (dayKey === '') continue
     const key = mondayOfDayKey(dayKey)
     const entry = lookup.get(key) ?? { reps: 0, setCount: 0 }
-    entry.reps += s.reps
+    entry.reps += countedReps(s)
     entry.setCount += 1
     lookup.set(key, entry)
   }

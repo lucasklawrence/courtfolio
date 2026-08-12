@@ -136,7 +136,12 @@ export const WeightRoomSetRowSchema = z
     id: z.string().uuid(),
     logged_at: z.string().min(1, 'logged_at must be an ISO timestamp'),
     exercise: z.string().min(1),
-    reps: positiveInt(),
+    // Nullable since #440: a rack-run drop states its load and never a rep
+    // count, because each drop simply went to failure. Null means *unrecorded*,
+    // which is a different claim from zero. This schema validates the whole set
+    // array in one pass, so leaving it non-nullable would fail every read the
+    // moment one such row exists (#400 shipped exactly that bug).
+    reps: positiveInt().nullable(),
     weight_lbs: optionalWeightLbs(),
     // Optional + nullable so pre-#254 rows (and fixtures) without the
     // column still validate; PostgREST emits `null` for unspecified
@@ -158,6 +163,9 @@ export const WeightRoomSetRowSchema = z
     duration_seconds: nonNegativeInt().nullable().optional(),
     // Set taken to failure with its rep count unrecorded (#435).
     to_failure: z.boolean().nullable().optional(),
+    // Rows sharing (workout_id, exercise, set_group) are one working set — the
+    // drops of a rack run (#440). Null means the row is a set on its own.
+    set_group: nonNegativeInt().nullable().optional(),
   })
   .strict()
 
@@ -349,6 +357,10 @@ export function setRowToStrengthSet(row: WeightRoomSetRow): StrengthSet {
     // `false` is the column default and the absent-field meaning, so only a
     // true flag is carried — same convention as `source`.
     ...(row.to_failure === true ? { to_failure: true } : {}),
+    // Carried straight through, unlike the absent-not-null fields above: a
+    // group of 0 is meaningful (the first pass of a rack run), so it must not
+    // be collapsed away by a falsy check (#440).
+    ...(row.set_group != null ? { set_group: row.set_group } : {}),
   }
 }
 

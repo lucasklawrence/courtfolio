@@ -13,6 +13,8 @@
  * caller that knows its audience passes them; nobody else has to care.
  */
 
+import { repsLabel } from './set-reps'
+
 /** How a load should be rendered. */
 export interface LoadFormatOptions {
   /**
@@ -44,17 +46,20 @@ export function formatLbs(value: number, options: LoadFormatOptions = {}): strin
 /**
  * Render a set as `8 × 60 lb`, or `12 reps` when it carried no external load.
  *
- * @param reps Reps completed.
+ * @param reps Reps completed, or `null` when the count was never recorded
+ *   (#440) — rendered as a dash, never as `0`.
  * @param effectiveLoad Load actually moved — per-implement weight already
  *   multiplied by the movement's `load_multiplier`. `0` means bodyweight.
  * @param options Unit label and locale, forwarded to {@link formatLbs}.
  */
 export function describeSet(
-  reps: number,
+  reps: number | null,
   effectiveLoad: number,
   options: LoadFormatOptions = {}
 ): string {
-  return effectiveLoad > 0 ? `${reps} × ${formatLbs(effectiveLoad, options)}` : `${reps} reps`
+  const label = repsLabel(reps)
+  if (effectiveLoad > 0) return `${label} × ${formatLbs(effectiveLoad, options)}`
+  return reps === null ? label : `${label} reps`
 }
 
 /**
@@ -86,7 +91,7 @@ export function formatHold(seconds: number): string {
  */
 export function describeSetOrHold(
   set: {
-    reps: number
+    reps: number | null
     effectiveLoad: number
     durationSeconds?: number | null
     toFailure?: boolean | null
@@ -95,8 +100,9 @@ export function describeSetOrHold(
 ): string {
   const { reps, effectiveLoad, durationSeconds, toFailure } = set
 
-  // A to-failure set stores `reps: 1` meaning "one set", so the rep count is
-  // not a number worth printing — say what actually happened instead (#435).
+  // A to-failure set has no rep count worth printing — it stored a placeholder
+  // `1` before #440 and stores `null` now, and neither is a number that
+  // happened. Say what actually did instead (#435).
   if (toFailure === true) {
     return effectiveLoad > 0 ? `${formatLbs(effectiveLoad, options)} to failure` : 'to failure'
   }

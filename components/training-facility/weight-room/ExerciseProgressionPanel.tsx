@@ -7,6 +7,7 @@ import type {
   ExerciseProgression,
   SetDetailCoverage,
 } from '@/lib/training-facility/exercise-progression'
+import { countedReps, hasRecordedReps, repsLabel } from '@/lib/training-facility/set-reps'
 import { describeSetOrHold, formatHold, formatLbs } from '@/lib/training-facility/strength-format'
 import { E1RM_MAX_RELIABLE_REPS } from '@/lib/training-facility/workout-stats'
 
@@ -175,7 +176,10 @@ export function ExerciseProgressionPanel({
         >
           <TrendChart
             data={points}
-            y={p => p.bestRepSet.reps}
+            // A day whose best set has no recorded count plots as zero rather
+            // than breaking the axis; the chart is about reps, and unknown is
+            // not a rep count (#440).
+            y={p => countedReps(p.bestRepSet.reps)}
             stroke={isBodyweight ? accentColor : chartPalette.hardwoodTan}
             width={width}
             height={height}
@@ -308,7 +312,12 @@ function RecordsRow({ progression }: RecordsRowProps): JSX.Element {
       )}
       {/* A hold's "most reps" is always 1. Its record is how long it lasted. */}
       {longestHold === null ? (
-        <RecordCell label="Most reps" value={`${mostRepsSet.reps} reps`} />
+        <RecordCell
+          label="Most reps"
+          // A movement whose only sets went to failure has no rep record to
+          // state; `repsLabel` gives a dash rather than the string "null".
+          value={hasRecordedReps(mostRepsSet) ? `${mostRepsSet.reps} reps` : repsLabel(mostRepsSet)}
+        />
       ) : (
         <RecordCell label="Longest hold" value={formatHold(longestHold)} />
       )}

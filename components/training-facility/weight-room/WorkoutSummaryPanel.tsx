@@ -10,6 +10,7 @@ import type {
   WorkoutPersonalBest,
   WorkoutSummary,
 } from '@/lib/training-facility/workout-stats'
+import { countedReps, hasRecordedReps } from '@/lib/training-facility/set-reps'
 import { describeSetOrHold, formatLbs } from '@/lib/training-facility/strength-format'
 import type { StrengthSet } from '@/types/weight-room'
 
@@ -472,7 +473,11 @@ function ExtraWorkCard({ sets, exerciseLabels }: ExtraWorkCardProps): JSX.Elemen
             <span className="font-semibold">{exerciseLabels[exercise] ?? exercise}</span>{' '}
             <span className="text-[#e8d5be]/70">
               {exSets.length} set{exSets.length === 1 ? '' : 's'} ·{' '}
-              {exSets.reduce((total, s) => total + s.reps, 0)} reps
+              {/* Summing unrecorded counts as zero is right; *printing* the
+                  zero would assert a set of no reps (#440). */}
+              {exSets.some(hasRecordedReps)
+                ? `${exSets.reduce((total, s) => total + countedReps(s), 0)} reps`
+                : 'reps not recorded'}
             </span>
           </li>
         ))}
@@ -563,8 +568,11 @@ function BreakdownCard({
                 </td>
               )}
               <td className="px-5 py-2.5 text-right tabular-nums">
+                {/* An all-bodyweight movement has no top set, so the best rep
+                    set stands in — and its count may itself be unrecorded, which
+                    must read as a dash rather than the string "null" (#440). */}
                 {entry.topSet === null
-                  ? `${entry.bestRepSet.reps} reps`
+                  ? describeSetOrHold(entry.bestRepSet)
                   : describeSetOrHold(entry.topSet)}
                 {entry.estimatedOneRepMax !== null ? (
                   <span
