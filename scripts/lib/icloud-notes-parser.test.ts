@@ -318,6 +318,28 @@ describe('parseLabelledBlock', () => {
     expect(new Set(sets.map(s => s.set_group)).size).toBe(2)
   })
 
+  it('keeps groups distinct across two rack blocks in one note', () => {
+    // No note in the archive carries two Rack Run blocks, which is exactly why
+    // a collision here would go unnoticed: both would claim `Set 1:`, share a
+    // group, and two passes would collapse into one set (#440).
+    const { sets } = parseNote({
+      title: 'Back Day 1',
+      date: '2024-04-16',
+      labelled_blocks: [
+        { movement: 'Rack Run', planned: '35,30,25,20', sets: [{ set: 1, value: '30, 25' }] },
+        { movement: 'Rack Run', planned: '35,30,25,20', sets: [{ set: 1, value: '20, 15' }] },
+      ],
+    })
+
+    const groups = sets.map(s => s.set_group)
+    // Four drops, two passes — and the two passes must not share a group.
+    expect(sets).toHaveLength(4)
+    expect(new Set(groups).size).toBe(2)
+    expect(groups[0]).toBe(groups[1])
+    expect(groups[2]).toBe(groups[3])
+    expect(groups[0]).not.toBe(groups[2])
+  })
+
   it('never claims a rep count for a rack drop', () => {
     const sets = parseLabelledBlock({
       movement: 'Rack Run',
