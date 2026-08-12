@@ -203,6 +203,30 @@ describe('buildWorkoutSummary — rack runs (#440)', () => {
     expect(summary.tonnage).toBe(0)
   })
 
+  it('keeps weighted and bodyweight counts in the same unit as the total', () => {
+    // The trap: `weightedSets` was counted per row while `totalSets` became a
+    // per-group count, so subtracting them mixed units and under-reported
+    // bodyweight sets — far enough, with enough drops, to clamp to zero and
+    // hide the explainer entirely (#440).
+    const sets = [
+      set({ id: 'bw1', exercise: 'pushups', reps: 20 }),
+      set({ id: 'bw2', exercise: 'pushups', reps: 20 }),
+      set({ id: 'bw3', exercise: 'pushups', reps: 20 }),
+      set({ id: 'bw4', exercise: 'pushups', reps: 20 }),
+      set({ id: 'd1', exercise: 'dumbbell-curl', reps: null, weight_lbs: 30, set_group: 1 }),
+      set({ id: 'd2', exercise: 'dumbbell-curl', reps: null, weight_lbs: 25, set_group: 1 }),
+      set({ id: 'd3', exercise: 'dumbbell-curl', reps: null, weight_lbs: 20, set_group: 1 }),
+    ]
+    const summary = buildWorkoutSummary(workout(), sets)
+
+    // Four bodyweight sets plus one rack pass.
+    expect(summary.totalSets).toBe(5)
+    expect(summary.weightedSets).toBe(1)
+    expect(summary.bodyweightSets).toBe(4)
+    // The three parts have to reconcile, whatever the row count was.
+    expect(summary.weightedSets + summary.bodyweightSets).toBe(summary.totalSets)
+  })
+
   it('still counts a counted set alongside them', () => {
     const sets = [
       set({ id: 'bench', reps: 8, weight_lbs: 135 }),

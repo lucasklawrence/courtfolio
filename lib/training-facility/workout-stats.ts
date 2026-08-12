@@ -219,13 +219,16 @@ export interface WorkoutSummary {
    * printing hours that weren't spent training.
    */
   isAbandoned: boolean
-  /** Total sets logged. */
+  /**
+   * Working sets logged. Rows sharing a `set_group` — the drops of one pass
+   * down a rack — count once, so this is at most the row count (#440).
+   */
   totalSets: number
   /** Total reps across every set. */
   totalReps: number
   /** `Σ reps × effective load` across the session. */
   tonnage: number
-  /** How many sets carried external load. */
+  /** How many working sets carried external load. */
   weightedSets: number
   /**
    * How many sets carried none. Surfaced so the UI can *state* that bodyweight
@@ -271,7 +274,10 @@ export function buildWorkoutSummary(
 
   let totalReps = 0
   let tonnage = 0
-  let weightedSets = 0
+  // Collected rather than counted: a weighted set has to be measured in the
+  // same unit as the total, or subtracting the two to get bodyweight sets
+  // mixes rows with groups and can go negative (#440).
+  const weightedRows: StrengthSet[] = []
 
   // Rows, collapsed into the sets they describe — a two-pass rack run is five
   // rows and two sets (#440).
@@ -283,11 +289,14 @@ export function buildWorkoutSummary(
     // An unrecorded count adds nothing rather than inventing one (#440).
     totalReps += countedReps(set)
     tonnage += countedReps(set) * load
-    if (load > 0) weightedSets += 1
+    if (load > 0) weightedRows.push(set)
     const list = byExercise.get(set.exercise)
     if (list) list.push(set)
     else byExercise.set(set.exercise, [set])
   }
+
+  const weightedSets = countWorkingSets(weightedRows)
+  const bodyweightWorkingSets = Math.max(0, workingSets - weightedSets)
 
   const breakdown: ExerciseBreakdown[] = []
   for (const [exercise, exSets] of byExercise) {
@@ -366,7 +375,7 @@ export function buildWorkoutSummary(
     totalReps,
     tonnage,
     weightedSets,
-    bodyweightSets: Math.max(0, workingSets - weightedSets),
+    bodyweightSets: bodyweightWorkingSets,
     density,
     exercises: breakdown,
   }

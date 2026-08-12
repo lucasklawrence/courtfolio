@@ -2,6 +2,7 @@ import type { StrengthSet, WeightRoomExercise, WeightRoomWorkout } from '@/types
 
 import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { countedReps } from './set-reps'
+import { countWorkingSets } from './workout-stats'
 import { workoutDayKey } from './workout-sessions'
 import {
   E1RM_MAX_RELIABLE_REPS,
@@ -268,13 +269,15 @@ export function buildExerciseProgression(
       }
     }
 
-    totalSets += daySets.length
+    // Collapsed, so this page agrees with the workout page about how many
+    // sets a session was (#440).
+    totalSets += countWorkingSets(daySets)
     totalReps += reps
 
     points.push({
       dayKey,
       date,
-      sets: daySets.length,
+      sets: countWorkingSets(daySets),
       reps,
       tonnage,
       topSet: dayTop,

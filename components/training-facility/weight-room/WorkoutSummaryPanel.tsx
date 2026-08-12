@@ -564,8 +564,11 @@ function BreakdownCard({
                 </td>
               )}
               <td className="px-5 py-2.5 text-right tabular-nums">
+                {/* An all-bodyweight movement has no top set, so the best rep
+                    set stands in — and its count may itself be unrecorded, which
+                    must read as a dash rather than the string "null" (#440). */}
                 {entry.topSet === null
-                  ? `${entry.bestRepSet.reps} reps`
+                  ? describeSetOrHold(entry.bestRepSet)
                   : describeSetOrHold(entry.topSet)}
                 {entry.estimatedOneRepMax !== null ? (
                   <span

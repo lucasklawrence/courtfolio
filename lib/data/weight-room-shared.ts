@@ -66,8 +66,18 @@ const EXERCISES_TABLE = 'weight_room_exercises'
  * exactly as a loose one — but reading them is what lets #376/#377 group sets
  * into a workout without another round trip.
  */
-const SETS_COLUMNS =
-  'id, logged_at, exercise, reps, weight_lbs, variant, workout_id, position, template_slot_id, template_slot_step_id, source, duration_seconds, to_failure, updated_at'
+/**
+ * Columns selected for `weight_room_sets`.
+ *
+ * Exported so a test can assert it stays in step with
+ * {@link WeightRoomSetRowSchema}. Adding a field to the schema without adding
+ * it here compiles, type-checks and passes every unit test that builds a
+ * `StrengthSet` by hand — and then silently strips the column at runtime.
+ * That has now happened twice: `template_slot_id` (#376) and `set_group`
+ * (#440).
+ */
+export const SETS_COLUMNS =
+  'id, logged_at, exercise, reps, weight_lbs, variant, workout_id, position, template_slot_id, template_slot_step_id, source, duration_seconds, to_failure, set_group, updated_at'
 // `load_multiplier` deliberately absent (#373) — it moved to the catalog and is
 // joined on below. The goals column still exists (dropping it while the
 // deployed build still selected it would break the live read) but is dead.
