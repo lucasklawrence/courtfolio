@@ -150,10 +150,134 @@ describe('parseIcsEvents', () => {
   })
 
   it('returns empty for a calendar with no events', () => {
-    expect(parseIcsEvents(ics())).toEqual({ events: [], skipped: [] })
+    expect(parseIcsEvents(ics())).toEqual({ events: [], skipped: [], warnings: [] })
   })
 
   it('throws on a document that is not ICS at all', () => {
     expect(() => parseIcsEvents('not an ics file')).toThrow(/Failed to parse ICS/)
+  })
+
+  it('tolerates a UTF-8 BOM', () => {
+    // PowerShell's Out-File and `>` default to UTF-8 *with* BOM on this
+    // platform, so any re-save of the iCloud export produces one. Left in, it
+    // aborts the entire import with an error naming neither the BOM nor the file.
+    const { events } = parseIcsEvents('﻿' + ics(vevent()))
+    expect(events).toHaveLength(1)
+  })
+
+  it('reads every VCALENDAR of a multi-root document', () => {
+    // ICAL.parse returns `root.length == 1 ? root[0] : root`, so several
+    // top-level VCALENDARs come back as a bare array. That is how concatenated
+    // exports look, and how CalDAV multiget responses are assembled for Phase B.
+    const doc = ics(vevent({ uid: 'a' })) + '\r\n' + ics(vevent({ uid: 'b' }))
+    const { events } = parseIcsEvents(doc)
+    expect(events.map(e => e.externalEventId).sort()).toEqual(['a', 'b'])
+  })
+
+  describe('ambiguous timezones', () => {
+    // ical.js ships no timezone database and silently falls back to the *host*
+    // zone, so without this the same file yields different instants on a
+    // Pacific laptop and the UTC runner Phase B will use — shifting every
+    // booking by seven hours so nothing matches.
+    it('reads a floating DTSTART as studio wall-clock, not host-local', () => {
+      const floating = [
+        'BEGIN:VEVENT',
+        'UID:floating-1',
+        'DTSTART:20260808T093000',
+        'SUMMARY:Orange 60 Min 3G',
+        'END:VEVENT',
+      ]
+      const { events, warnings } = parseIcsEvents(ics(floating))
+      expect(events[0].startsAt).toBe('2026-08-08T16:30:00.000Z')
+      expect(warnings[0].reason).toMatch(/no resolvable timezone/)
+    })
+
+    it('reads a TZID with no VTIMEZONE as studio wall-clock', () => {
+      const unresolved = [
+        'BEGIN:VEVENT',
+        'UID:unresolved-1',
+        'DTSTART;TZID=Antarctica/Troll:20260808T093000',
+        'SUMMARY:Orange 60 Min 3G',
+        'END:VEVENT',
+      ]
+      const { events, warnings } = parseIcsEvents(ics(unresolved))
+      expect(events[0].startsAt).toBe('2026-08-08T16:30:00.000Z')
+      expect(warnings).toHaveLength(1)
+    })
+
+    it('leaves a resolvable zone alone and warns about nothing', () => {
+      const { warnings } = parseIcsEvents(ics(vevent()))
+      expect(warnings).toEqual([])
+    })
+
+    it('honours an explicit timeZone override', () => {
+      const floating = [
+        'BEGIN:VEVENT',
+        'UID:floating-2',
+        'DTSTART:20260808T093000',
+        'SUMMARY:Orange 60 Min 3G',
+        'END:VEVENT',
+      ]
+      const { events } = parseIcsEvents(ics(floating), { timeZone: 'UTC' })
+      expect(events[0].startsAt).toBe('2026-08-08T09:30:00.000Z')
+    })
+  })
+
+  it('drops a cancelled booking instead of letting it compete for the match', () => {
+    // Cancel a 2G and rebook the slot as a 3G: left in, the cancelled row can
+    // win the exact-time tie and stamp the session with the template that was
+    // never actually attended.
+    const cancelled = [
+      'BEGIN:VEVENT',
+      'UID:cancelled-1',
+      'DTSTART;TZID=America/Los_Angeles:20260808T093000',
+      'SUMMARY:Orange 60 Min 2G',
+      'STATUS:CANCELLED',
+      'END:VEVENT',
+    ]
+    const { events, skipped } = parseIcsEvents(ics(cancelled, vevent({ uid: 'attended' })))
+    expect(events.map(e => e.externalEventId)).toEqual(['attended'])
+    expect(skipped[0]).toMatchObject({ uid: 'cancelled-1', reason: 'STATUS:CANCELLED' })
+  })
+
+  it('keeps a detached recurrence instance distinct from its master', () => {
+    // A detached instance carries its master's UID. Keyed on UID alone the two
+    // collide, and since external_event_id is UNIQUE one could never be stored.
+    const master = [
+      'BEGIN:VEVENT',
+      'UID:series-1',
+      'DTSTART;TZID=America/Los_Angeles:20260803T184500',
+      'SUMMARY:Orange 60 Min 2G',
+      'END:VEVENT',
+    ]
+    const instance = [
+      'BEGIN:VEVENT',
+      'UID:series-1',
+      'RECURRENCE-ID;TZID=America/Los_Angeles:20260810T184500',
+      'DTSTART;TZID=America/Los_Angeles:20260810T184500',
+      'SUMMARY:Orange 60 Min 3G',
+      'END:VEVENT',
+    ]
+    const { events } = parseIcsEvents(ics(master, instance))
+    const ids = events.map(e => e.externalEventId)
+    expect(new Set(ids).size).toBe(2)
+    expect(ids[0]).toBe('series-1')
+    expect(ids[1]).toMatch(/^series-1#/)
+  })
+
+  it('warns that a recurring series was only read as its first occurrence', () => {
+    // Expansion isn't implemented; under-collecting in silence would leave
+    // later weeks looking like ordinary drop-ins.
+    const recurring = [
+      'BEGIN:VEVENT',
+      'UID:weekly-1',
+      'DTSTART;TZID=America/Los_Angeles:20260803T184500',
+      'RRULE:FREQ=WEEKLY;COUNT=4',
+      'SUMMARY:Orange 60 Min 2G',
+      'END:VEVENT',
+    ]
+    const { events, warnings } = parseIcsEvents(ics(recurring))
+    expect(events).toHaveLength(1)
+    expect(warnings[0].reason).toMatch(/only the first occurrence/)
   })
 })

@@ -24,7 +24,12 @@
  */
 
 import { createServiceRoleClient, loadEnv } from './cardio-supabase.mjs'
-import { isOtfBookingTitle, normalizeStudio, parseBookingTitle, studioMatchKey } from './otf-booking-parser.mjs'
+import {
+  isOtfBookingTitle,
+  normalizeStudio,
+  parseBookingTitle,
+  studiosMatch,
+} from './otf-booking-parser.mjs'
 
 export { createServiceRoleClient, loadEnv }
 
@@ -70,7 +75,10 @@ export const DEFAULT_SILENCE_WINDOW_DAYS = 14
  * @param {ReturnType<createServiceRoleClient>} supabase Service-role client.
  * @param {string} table Table name.
  * @param {string} columns PostgREST select list.
- * @param {string} orderBy Column to order by; must be stable across requests.
+ * @param {string} orderBy Column to order by. Must be **unique**, not merely
+ *   sorted: `.range()` issues one query per page, and Postgres may order a
+ *   tied group differently between them, so a row on a page boundary can come
+ *   back twice while a sibling is never returned at all.
  * @returns {Promise<Array<Record<string, unknown>>>} Every row, ascending.
  * @throws {Error} on any Supabase read failure.
  */
@@ -114,8 +122,35 @@ export function eventToBookingRow(event) {
     studio: normalizeStudio(event.locationRaw),
     program,
     duration_min: durationMin,
-    format,
+    format: composeClassFormat(program, format),
+    // Refreshed on every upsert, unlike `ingested_at` which records only the
+    // first sighting. This is the feed's liveness signal — see
+    // {@link findBookingFeedSilence}, which cannot use `starts_at` because
+    // already-stored *future* bookings would keep a dead feed looking healthy.
+    last_seen_at: new Date().toISOString(),
   }
+}
+
+/**
+ * Combine the parsed program variant and template into the stored class format.
+ *
+ * `parseBookingTitle('Orange HYROX 60 Min 2G')` splits into
+ * `program: 'HYROX'` and `format: '2G'`. Storing the bare `'2G'` would render
+ * the HYROX class identically to an ordinary 2G and make one filter chip cover
+ * both — template mixing under a single label, which is the exact defect #453
+ * exists to remove. `'HYROX 2G'` is also the value the migration comment,
+ * `types/otf.ts`, and `lib/training-facility/otf.ts` all document.
+ *
+ * The `program` column keeps the part separately for anyone who wants to group
+ * across variants; this is the display/grouping key.
+ *
+ * @param {string|null} program Parsed program variant, or null.
+ * @param {string|null} format Parsed template, or null.
+ * @returns {string|null} Combined format, or null when the title didn't parse.
+ */
+export function composeClassFormat(program, format) {
+  if (format == null) return null
+  return program ? `${program} ${format}` : format
 }
 
 /**
@@ -189,16 +224,20 @@ export async function upsertOtfBookings(supabase, events) {
  * @returns {{ id: string, starts_at: string, studio: string|null, format: string|null }|null} Best match, or null.
  */
 export function findMatchingBooking(session, bookings, toleranceMs) {
-  const sessionKey = studioMatchKey(session.studio)
-  if (sessionKey === null) return null
+  if (session.studio == null) return null
   const at = new Date(session.started_at).getTime()
 
   let best = null
   let bestDelta = Infinity
   for (const booking of bookings) {
-    if (studioMatchKey(booking.studio) !== sessionKey) continue
+    if (!studiosMatch(session.studio, booking.studio)) continue
     const delta = Math.abs(new Date(booking.starts_at).getTime() - at)
     if (delta > toleranceMs) continue
+    // Strict `<` keeps the first of an exact tie, which would otherwise be
+    // decided by PostgREST's physical row order. Ties are far less reachable
+    // now that cancelled events are dropped at the reader, but when one does
+    // happen this at least makes the outcome depend on the read's ordering
+    // rather than on nothing at all.
     if (delta < bestDelta) {
       best = booking
       bestDelta = delta
@@ -214,17 +253,23 @@ export function findMatchingBooking(session, bookings, toleranceMs) {
  * - **Never** touches a row whose `class_format_source` is `'manual'`. A
  *   hand-entered label for a drop-in outranks anything this pass could infer.
  * - Sets `booking_id` only where it is currently null.
- * - Sets `class_format` / `class_format_source` only where `class_format` is
- *   currently null, and only when the matched booking actually parsed a format.
- *   A booking whose title didn't parse still links (`booking_id`) but leaves the
- *   format null rather than writing a placeholder.
+ * - Keeps `class_format` in sync with the matched booking whenever the booking
+ *   owns it (`class_format_source` is `'booking'`, or the format is still
+ *   null) — including *correcting* a value that has since changed. A booking
+ *   whose title didn't parse still links (`booking_id`) but leaves the format
+ *   null rather than writing a placeholder.
  * - Targeted per-row `update` of just those columns — never a full-row upsert,
  *   which would `DO UPDATE SET` every column and undo the guarantee above.
  *
- * The second bullet's "only where null" makes re-running idempotent, and the
- * third gives the pass a self-heal: a booking stored before its title could be
- * parsed picks up its format on a later run once the grammar handles it,
- * without a migration. Append-only writes alone cannot self-heal — that is what
+ * Re-syncing rather than writing once matters because `upsertOtfBookings`
+ * refreshes `otf_bookings.format` from the calendar on every run: a write-once
+ * guard would let the booking and the session disagree permanently after a
+ * title is corrected in place. Writes are still skipped when the value already
+ * matches, so re-running remains a no-op.
+ *
+ * That also gives the pass a self-heal: a booking stored before its title could
+ * be parsed picks up its format on a later run once the grammar handles it,
+ * with no migration. Append-only writes alone cannot self-heal — that is what
  * left three sessions with a null `class_type` for 20 days (#334).
  *
  * @param {ReturnType<createServiceRoleClient>} supabase Service-role client.
@@ -238,11 +283,15 @@ export function findMatchingBooking(session, bookings, toleranceMs) {
 export async function reconcileOtfBookings(supabase, opts = {}) {
   const toleranceMs = (opts.toleranceMinutes ?? DEFAULT_MATCH_TOLERANCE_MIN) * 60_000
 
+  // Ordered on the unique keys, not on time: `starts_at` is not unique (two
+  // studios can run a class at the same instant) and would make paging drop
+  // rows. `otf_sessions.started_at` is the table's primary key, so it already
+  // qualifies.
   const bookings = await readAll(
     supabase,
     'otf_bookings',
     'id, starts_at, studio, format',
-    'starts_at'
+    'external_event_id'
   )
   const sessions = await readAll(
     supabase,
@@ -278,7 +327,17 @@ export async function reconcileOtfBookings(supabase, opts = {}) {
     /** @type {Record<string, unknown>} */
     const patch = {}
     if (session.booking_id == null) patch.booking_id = booking.id
-    if (session.class_format == null && booking.format != null) {
+
+    // Re-sync, not write-once. `upsertOtfBookings` deliberately refreshes
+    // `otf_bookings.format` from the calendar on every run, so a write-once
+    // guard here would let the two tables disagree forever: correct a title in
+    // place (same UID) from 3G to 2G and the session would keep rendering '3G'
+    // with a tooltip claiming the booking says so. Manual rows never reach this
+    // point — they `continue` above — and the equality check keeps re-runs
+    // idempotent.
+    const bookingOwnsFormat =
+      session.class_format == null || session.class_format_source === 'booking'
+    if (bookingOwnsFormat && booking.format != null && session.class_format !== booking.format) {
       patch.class_format = booking.format
       patch.class_format_source = 'booking'
     }
@@ -343,11 +402,19 @@ export async function findSessionsMissingClassFormat(supabase) {
  * pull keeps working, so sessions keep arriving and quietly stop getting a
  * `class_format`.
  *
+ * **Liveness is measured on `last_seen_at`, not `starts_at`.** Counting by class
+ * time would include future bookings a healthy earlier run already stored, so
+ * the gate would report green for as long as the calendar reaches ahead — which
+ * is precisely the window it exists to cover, since a password reset typically
+ * follows a successful pull. `last_seen_at` is rewritten by every upsert (unlike
+ * `ingested_at`, which records only the first sighting), so it answers "did the
+ * feed produce anything recently" rather than "do we hold any future classes".
+ *
  * @param {ReturnType<createServiceRoleClient>} supabase Service-role client.
  * @param {{ windowDays?: number, now?: Date }} [opts] Window override; `now` is
  *   injectable so tests don't depend on the wall clock.
  * @returns {Promise<{ silent: boolean, sessionCount: number, bookingCount: number, since: string }>}
- *   `silent` is true only when sessions exist and bookings do not.
+ *   `silent` is true only when sessions arrived and no booking was seen.
  * @throws {Error} on any Supabase read failure.
  */
 export async function findBookingFeedSilence(supabase, opts = {}) {
@@ -366,7 +433,7 @@ export async function findBookingFeedSilence(supabase, opts = {}) {
   const { count: bookingCount, error: bookingErr } = await supabase
     .from('otf_bookings')
     .select('id', { count: 'exact', head: true })
-    .gte('starts_at', since)
+    .gte('last_seen_at', since)
   if (bookingErr) {
     throw new Error(`Failed to count recent otf_bookings: ${bookingErr.message}`)
   }

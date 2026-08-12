@@ -60,13 +60,20 @@ async function main() {
   const supabase = createServiceRoleClient()
 
   const source = createIcsFileSource(icsPath)
-  const { events, skipped } = await source.read()
+  const { events, skipped, warnings } = await source.read()
   console.log(`Read ${events.length} event(s) from ${source.describe}.`)
 
-  // Structurally unusable events (no UID, no DTSTART) can't be stored or
-  // matched. Name them rather than letting the count quietly disagree.
+  // Unusable (no UID, no DTSTART) or deliberately ignored (STATUS:CANCELLED).
+  // Name them rather than letting the count quietly disagree — every silent
+  // loss here looks identical to a calendar with no matching classes.
   for (const s of skipped) {
     console.warn(`  ! skipped event (${s.reason}): ${s.titleRaw ?? '(no title)'}`)
+  }
+
+  // Converted, but with a caveat: an assumed timezone, or a recurring series
+  // whose later occurrences were not expanded.
+  for (const w of warnings) {
+    console.warn(`  ~ ${w.reason}: ${w.titleRaw ?? '(no title)'}`)
   }
 
   const { written, notOtf, unparsedTitles } = await upsertOtfBookings(supabase, events)

@@ -13,6 +13,7 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  composeClassFormat,
   eventToBookingRow,
   findBookingFeedSilence,
   findMatchingBooking,
@@ -106,9 +107,27 @@ function event(over: Partial<Record<string, unknown>> = {}) {
   } as never
 }
 
+describe('composeClassFormat', () => {
+  it('prefixes the program variant so HYROX 2G is distinguishable from 2G', () => {
+    // Storing a bare '2G' would render the HYROX class identically to an
+    // ordinary 2G and put both under one filter chip — template mixing under a
+    // single label, which is the defect #453 exists to remove.
+    expect(composeClassFormat('HYROX', '2G')).toBe('HYROX 2G')
+  })
+
+  it('leaves a plain template alone', () => {
+    expect(composeClassFormat(null, '3G')).toBe('3G')
+  })
+
+  it('stays null when the title never parsed', () => {
+    expect(composeClassFormat('HYROX', null)).toBeNull()
+    expect(composeClassFormat(null, null)).toBeNull()
+  })
+})
+
 describe('eventToBookingRow', () => {
   it('maps and parses a well-formed event', () => {
-    expect(eventToBookingRow(event())).toEqual({
+    expect(eventToBookingRow(event())).toMatchObject({
       external_event_id: 'evt-1',
       starts_at: '2026-08-08T16:30:00.000Z',
       ends_at: '2026-08-08T17:30:00.000Z',
@@ -119,6 +138,19 @@ describe('eventToBookingRow', () => {
       duration_min: 60,
       format: '3G',
     })
+  })
+
+  it('folds the program into the stored format', () => {
+    expect(eventToBookingRow(event({ titleRaw: 'Orange HYROX 60 Min 2G' }))).toMatchObject({
+      program: 'HYROX',
+      format: 'HYROX 2G',
+    })
+  })
+
+  it('stamps last_seen_at so the feed has a liveness signal', () => {
+    // ingested_at records only the first sighting, so it cannot answer "is the
+    // feed still producing?" — see findBookingFeedSilence.
+    expect(typeof eventToBookingRow(event()).last_seen_at).toBe('string')
   })
 
   it('keeps title_raw when the grammar fails, leaving parsed columns null', () => {
@@ -302,6 +334,42 @@ describe('reconcileOtfBookings', () => {
     expect(tables.otf_sessions[0]).toMatchObject({ booking_id: 'b1', class_format: null })
   })
 
+  it('re-syncs a booking-sourced format when the calendar title is corrected', async () => {
+    // upsertOtfBookings deliberately refreshes otf_bookings.format every run,
+    // so a write-once guard here would let the two tables disagree forever:
+    // the chip would keep showing '3G' with a tooltip claiming the booking
+    // says so, long after the booking said '2G'.
+    const { client, tables } = fakeClient({
+      otf_bookings: [
+        { id: 'b1', starts_at: '2026-08-08T16:30:00.000Z', studio: 'Marina Del Rey', format: '2G' },
+      ],
+      otf_sessions: [
+        {
+          started_at: '2026-08-08T16:30:00.000Z',
+          studio: 'Marina Del Rey, CA',
+          booking_id: 'b1',
+          class_format: '3G',
+          class_format_source: 'booking',
+          excluded: false,
+        },
+      ],
+    })
+    const result = await reconcileOtfBookings(client)
+    expect(result.formatted).toBe(1)
+    expect(tables.otf_sessions[0].class_format).toBe('2G')
+  })
+
+  it('does not re-sync over a manual label even when a booking matches', async () => {
+    const { client, tables, updates } = seedMatched({
+      booking_id: 'b1',
+      class_format: 'Tread 50',
+      class_format_source: 'manual',
+    })
+    await reconcileOtfBookings(client)
+    expect(updates).toHaveLength(0)
+    expect(tables.otf_sessions[0].class_format).toBe('Tread 50')
+  })
+
   it('self-heals a linked session once its booking acquires a format', async () => {
     // Append-only writes alone cannot self-heal — that is what left three
     // sessions with a null class_type for 20 days (#334).
@@ -370,12 +438,31 @@ describe('findBookingFeedSilence', () => {
     expect(result).toMatchObject({ silent: true, sessionCount: 1, bookingCount: 0 })
   })
 
-  it('stays quiet when bookings are arriving', async () => {
+  it('stays quiet when bookings are still being seen', async () => {
     const { client } = fakeClient({
       otf_sessions: [{ started_at: '2026-08-11T01:45:00.000Z' }],
-      otf_bookings: [{ id: 'b1', starts_at: '2026-08-11T01:45:00.000Z' }],
+      otf_bookings: [{ id: 'b1', last_seen_at: '2026-08-11T08:00:00.000Z' }],
     })
     expect((await findBookingFeedSilence(client, { now })).silent).toBe(false)
+  })
+
+  it('still fires when the only bookings are future ones stored before the feed died', async () => {
+    // The motivating case: a password reset revokes the app-specific password
+    // the day after a healthy pull banked the next month of classes. Counting
+    // by class time, those future rows keep the gate green through exactly the
+    // window it exists to cover.
+    const { client } = fakeClient({
+      otf_sessions: [{ started_at: '2026-08-11T01:45:00.000Z' }],
+      otf_bookings: [
+        {
+          id: 'b1',
+          starts_at: '2026-09-01T16:30:00.000Z',
+          last_seen_at: '2026-06-01T08:00:00.000Z',
+        },
+      ],
+    })
+    const result = await findBookingFeedSilence(client, { now })
+    expect(result).toMatchObject({ silent: true, bookingCount: 0 })
   })
 
   it('stays quiet when there were simply no classes', async () => {

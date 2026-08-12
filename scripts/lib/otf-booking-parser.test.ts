@@ -14,6 +14,7 @@ import {
   normalizeStudio,
   parseBookingTitle,
   studioMatchKey,
+  studiosMatch,
 } from './otf-booking-parser.mjs'
 
 describe('parseBookingTitle', () => {
@@ -141,5 +142,45 @@ describe('studioMatchKey', () => {
 
   it('returns null when there is no studio', () => {
     expect(studioMatchKey(null)).toBeNull()
+  })
+})
+
+describe('studiosMatch', () => {
+  const SESSION = 'Marina Del Rey, CA' // how the OTbeat email writes it
+
+  it('matches the bare studio name the calendar usually carries', () => {
+    expect(studiosMatch(SESSION, 'Marina Del Rey')).toBe(true)
+  })
+
+  // iCloud stores whatever LOCATION was picked in Maps. An equality test would
+  // reject these and report every session as an unmatched drop-in, which is
+  // indistinguishable from a calendar with no classes in it.
+  it.each([
+    ['a full postal address', '4718 Admiralty Way, Marina del Rey, CA 90292, United States'],
+    ['a venue name', 'Orangetheory Fitness Marina Del Rey'],
+    ['a venue name with address', 'Orangetheory Fitness — Marina Del Rey, CA'],
+  ])('matches %s', (_label, location) => {
+    expect(studiosMatch(SESSION, location)).toBe(true)
+  })
+
+  it('does not match a different studio', () => {
+    expect(studiosMatch(SESSION, 'Mar Vista')).toBe(false)
+    expect(studiosMatch('Mar Vista, CA', 'Marina Del Rey')).toBe(false)
+  })
+
+  // Containment has to respect word boundaries: conflating two studios is a
+  // worse outcome than failing to match one.
+  it('does not match on a partial word', () => {
+    expect(studiosMatch('Mar Vista, CA', 'Marina Vista Fitness')).toBe(false)
+  })
+
+  it('is false when either side is missing', () => {
+    expect(studiosMatch(null, 'Marina Del Rey')).toBe(false)
+    expect(studiosMatch(SESSION, null)).toBe(false)
+  })
+
+  it('treats a studio name containing regex metacharacters literally', () => {
+    expect(studiosMatch('St. Louis (Central), MO', 'Orangetheory St. Louis (Central)')).toBe(true)
+    expect(studiosMatch('St. Louis (Central), MO', 'Orangetheory StXLouis (Central)')).toBe(false)
   })
 })

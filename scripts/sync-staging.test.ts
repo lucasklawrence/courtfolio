@@ -20,6 +20,10 @@ import { TABLES } from './sync-staging.mjs'
 
 /** child table → tables it holds foreign keys into. */
 const FOREIGN_KEYS: Readonly<Record<string, readonly string[]>> = {
+  // otf_sessions.booking_id → otf_bookings.id (#453). Same shape as the #400
+  // failure: the manifest happens to be ordered correctly today, but without an
+  // entry here nothing stops a later reorder from breaking the sync silently.
+  otf_sessions: ['otf_bookings'],
   weight_room_goals: ['weight_room_exercises'],
   weight_room_goal_targets: ['weight_room_goals'],
   weight_room_monthly_focus: ['weight_room_exercises'],

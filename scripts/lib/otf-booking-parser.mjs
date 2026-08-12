@@ -32,6 +32,14 @@
  * `format` is `.+` — greedy to end of string — because it is the one field with
  * no known vocabulary. "2G", "3G", "Tread 50", and whatever OTF ships next all
  * land here whole.
+ *
+ * The cost of that greed: a title carrying a suffix ("Orange 60 Min 2G with
+ * Coach Sam") yields `format: '2G with Coach Sam'`, which becomes its own
+ * filter chip and stops grouping with other 2Gs. No trimming rule is applied,
+ * because every candidate separator is also legal *inside* a template — a rule
+ * that split on " - " or " with " would be guessing at a title space no
+ * observed booking exhibits, and mangling "Tread 50" is worse than carrying a
+ * suffix. Revisit if a real title ever shows one.
  */
 const TITLE_RE = /^Orange\s+(?:([A-Za-z][A-Za-z0-9]*)\s+)?(\d+)\s+Min\s+(.+)$/
 
@@ -130,4 +138,36 @@ export function normalizeStudio(raw) {
 export function studioMatchKey(raw) {
   const normalized = normalizeStudio(raw)
   return normalized === null ? null : normalized.toLowerCase()
+}
+
+/**
+ * Whether a session's studio and a booking's location refer to the same studio.
+ *
+ * Exact key equality is too strict for the booking side. The OTbeat email
+ * always writes a clean "Marina Del Rey, CA", but a calendar LOCATION is
+ * whatever was picked when the event was created — frequently a full postal
+ * address ("4718 Admiralty Way, Marina del Rey, CA 90292, United States") or a
+ * venue name ("Orangetheory Fitness Marina Del Rey"). {@link normalizeStudio}
+ * only strips a *trailing* state, so neither shape reduces to the bare name and
+ * an equality test would reject every candidate — producing "linked 0, N
+ * unmatched", which reads exactly like a calendar containing no classes.
+ *
+ * So the session's name (the reliably clean side) is looked for *within* the
+ * booking's location, on word boundaries. Boundaries matter: a bare substring
+ * test would let "Mar Vista" match inside a hypothetical "Marina Vista", and
+ * conflating two studios is worse than failing to match.
+ *
+ * @param {string|null|undefined} sessionStudio Studio as the OTbeat email wrote it.
+ * @param {string|null|undefined} bookingStudio Location as the calendar wrote it.
+ * @returns {boolean} True when both name the same studio. False if either is absent.
+ */
+export function studiosMatch(sessionStudio, bookingStudio) {
+  const sessionKey = studioMatchKey(sessionStudio)
+  const bookingKey = studioMatchKey(bookingStudio)
+  if (sessionKey === null || bookingKey === null) return false
+  if (sessionKey === bookingKey) return true
+  // Word-boundary containment, with the needle escaped — studio names are
+  // free text and a stray '.' or '(' would otherwise be a regex metacharacter.
+  const escaped = sessionKey.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return new RegExp(`(?:^|\\W)${escaped}(?:\\W|$)`).test(bookingKey)
 }
