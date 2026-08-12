@@ -595,8 +595,10 @@ export function mintImportKey({ title, date, slug, index }) {
  * **Rack run.** A drop set: curl the 35s to failure, drop to the 30s, again,
  * down the rack. `Set 1: 25, 20, 10` is three drops at three loads, and the rep
  * count was never written because each drop simply went until it couldn't.
- * Every drop is therefore a set marked `to_failure` — see the #435 migration
- * for why that stores `reps = 1` rather than null.
+ * Every drop is therefore a set marked `to_failure` with `reps: null` — the
+ * count was never measured, and #440 made the column nullable so it no longer
+ * has to be invented. Drops of one pass share a `set_group`, so the pass counts
+ * as the single set it was rather than as one set per drop.
  *
  * A `Set N:` with nothing after it is the same movement performed with nothing
  * recorded at all. It still happened — the heading declared it and the label is
@@ -608,8 +610,9 @@ export function mintImportKey({ title, date, slug, index }) {
  * @param {{movement: string, planned?: string,
  *   sets: Array<{set: number, value: string}>}} block A parsed labelled block.
  * @param {Record<string, number>} [loadMultipliers] Live catalog multipliers.
- * @returns {Array<{exercise: string, reps: number, weight_lbs: number|null,
- *   variant: string, to_failure?: boolean}>} Sets in the order they were run.
+ * @returns {Array<{exercise: string, reps: number|null, weight_lbs: number|null,
+ *   variant: string, to_failure?: boolean, set_group?: number}>} Sets in the
+ *   order they were run.
  */
 export function parseLabelledBlock(block, loadMultipliers = {}) {
   const isRackRun = /^rack run/i.test(block.movement)
@@ -637,18 +640,31 @@ export function parseLabelledBlock(block, loadMultipliers = {}) {
       continue
     }
 
+    // One group per pass down the rack, so the drops below collapse back into
+    // the single set they were (#440). Keyed off the note's own `Set N:`
+    // number, which is exactly what that label meant.
+    const setGroup = entry.set
+
     if (loads.length === 0) {
-      out.push({ exercise: slug, reps: 1, weight_lbs: null, variant, to_failure: true })
+      out.push({
+        exercise: slug,
+        reps: null,
+        weight_lbs: null,
+        variant,
+        to_failure: true,
+        set_group: setGroup,
+      })
       continue
     }
 
     for (const load of loads) {
       out.push({
         exercise: slug,
-        reps: 1,
+        reps: null,
         weight_lbs: perImplementWeight(load, 'Weight', slug, loadMultipliers[slug]),
         variant,
         to_failure: true,
+        set_group: setGroup,
       })
     }
   }

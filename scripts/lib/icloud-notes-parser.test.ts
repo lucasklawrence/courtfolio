@@ -282,19 +282,49 @@ describe('templateNameForNote', () => {
 })
 
 describe('parseLabelledBlock', () => {
-  it('turns a rack run into one to-failure set per drop', () => {
-    // `25, 20, 10` is three drops down the rack, each taken to failure with
-    // the rep count never written down.
+  /** One rack-run drop: a load, taken to failure, with no rep count recorded. */
+  const drop = (weightLbs: number | null, setGroup: number) => ({
+    exercise: 'dumbbell-curl',
+    reps: null,
+    weight_lbs: weightLbs,
+    variant: 'rack run',
+    to_failure: true,
+    set_group: setGroup,
+  })
+
+  it('turns a rack run into one grouped to-failure drop per load', () => {
+    // `25, 20, 10` is three drops down the rack, each taken to failure with the
+    // rep count never written down — so `reps` is null rather than an invented
+    // 1 (#440), and the three share a group so the pass counts as one set.
     const sets = parseLabelledBlock({
       movement: 'Rack Run',
       planned: '35,30,25,20',
       sets: [{ set: 1, value: '25, 20, 10' }],
     })
-    expect(sets).toEqual([
-      { exercise: 'dumbbell-curl', reps: 1, weight_lbs: 25, variant: 'rack run', to_failure: true },
-      { exercise: 'dumbbell-curl', reps: 1, weight_lbs: 20, variant: 'rack run', to_failure: true },
-      { exercise: 'dumbbell-curl', reps: 1, weight_lbs: 10, variant: 'rack run', to_failure: true },
-    ])
+    expect(sets).toEqual([drop(25, 1), drop(20, 1), drop(10, 1)])
+  })
+
+  it('gives each pass down the rack its own group', () => {
+    // Two passes on one day: five rows, but two working sets.
+    const sets = parseLabelledBlock({
+      movement: 'Rack Run',
+      planned: '35,30,25,20',
+      sets: [
+        { set: 1, value: '30, 15' },
+        { set: 2, value: '30, 27.5, 22.5' },
+      ],
+    })
+    expect(sets.map(s => s.set_group)).toEqual([1, 1, 2, 2, 2])
+    expect(new Set(sets.map(s => s.set_group)).size).toBe(2)
+  })
+
+  it('never claims a rep count for a rack drop', () => {
+    const sets = parseLabelledBlock({
+      movement: 'Rack Run',
+      planned: '35,30,25,20',
+      sets: [{ set: 1, value: '25, 20' }],
+    })
+    expect(sets.every(s => s.reps === null)).toBe(true)
   })
 
   it('records an empty Set N: as one unloaded to-failure set', () => {
@@ -308,10 +338,11 @@ describe('parseLabelledBlock', () => {
     expect(sets).toEqual([
       {
         exercise: 'dumbbell-curl',
-        reps: 1,
+        reps: null,
         weight_lbs: null,
         variant: 'rack run',
         to_failure: true,
+        set_group: 1,
       },
     ])
   })
