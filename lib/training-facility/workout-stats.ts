@@ -6,6 +6,7 @@ import type {
 } from '@/types/weight-room'
 
 import { buildSlotProgress, extraSets, type SlotProgress } from './live-workout'
+import { countedReps } from './set-reps'
 import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { compareInstants, isStaleOpenWorkout, workoutDurationMinutes } from './workout-sessions'
 
@@ -104,8 +105,11 @@ export function effectiveSetLoad(
 export interface WorkoutSetHighlight {
   /** {@link StrengthSet.id} of the set. */
   setId: string
-  /** Reps completed. */
-  reps: number
+  /**
+   * Reps completed, or `null` when the count was never recorded (#440) — a
+   * rack-run drop taken to failure, where the note captured only the load.
+   */
+  reps: number | null
   /** Load on one implement, or `null` for a bodyweight set. */
   weightLbs: number | null
   /** Pounds actually moved — `weightLbs × load_multiplier`; `0` for bodyweight. */
@@ -251,8 +255,9 @@ export function buildWorkoutSummary(
   const byExercise = new Map<string, StrengthSet[]>()
   for (const set of ordered) {
     const load = effectiveSetLoad(set, multipliers)
-    totalReps += set.reps
-    tonnage += set.reps * load
+    // An unrecorded count adds nothing rather than inventing one (#440).
+    totalReps += countedReps(set)
+    tonnage += countedReps(set) * load
     if (load > 0) weightedSets += 1
     const list = byExercise.get(set.exercise)
     if (list) list.push(set)
@@ -268,8 +273,8 @@ export function buildWorkoutSummary(
 
     for (const set of exSets) {
       const effectiveLoad = effectiveSetLoad(set, multipliers)
-      reps += set.reps
-      exTonnage += set.reps * effectiveLoad
+      reps += countedReps(set)
+      exTonnage += countedReps(set) * effectiveLoad
       const highlight: WorkoutSetHighlight = {
         setId: set.id,
         reps: set.reps,
@@ -280,18 +285,22 @@ export function buildWorkoutSummary(
         ...(set.to_failure === true ? { toFailure: true } : {}),
       }
       // Heaviest wins; at equal load the one with more reps is the better set.
+      // An unrecorded count can't win a reps tiebreak or a most-reps contest —
+      // `countedReps` makes it lose rather than throw (#440).
       if (
         effectiveLoad > 0 &&
         (top === null ||
           effectiveLoad > top.effectiveLoad ||
-          (effectiveLoad === top.effectiveLoad && set.reps > top.reps))
+          (effectiveLoad === top.effectiveLoad && countedReps(set) > countedReps(top.reps)))
       ) {
         top = highlight
       }
-      if (bestReps === null || set.reps > bestReps.reps) bestReps = highlight
+      if (bestReps === null || countedReps(set) > countedReps(bestReps.reps)) bestReps = highlight
     }
 
-    const estimate = top === null ? null : epleyOneRepMax(top.effectiveLoad, top.reps)
+    // No recorded count, no Epley estimate — the formula needs reps (#440).
+    const estimate =
+      top === null || top.reps === null ? null : epleyOneRepMax(top.effectiveLoad, top.reps)
     breakdown.push({
       exercise,
       ...(labels.has(exercise) ? { displayName: labels.get(exercise) } : {}),
@@ -303,7 +312,8 @@ export function buildWorkoutSummary(
       // always assigned at least one highlight.
       bestRepSet: bestReps as WorkoutSetHighlight,
       estimatedOneRepMax: estimate,
-      oneRepMaxIsReliable: estimate !== null && top !== null && top.reps <= E1RM_MAX_RELIABLE_REPS,
+      oneRepMaxIsReliable:
+        estimate !== null && top !== null && countedReps(top.reps) <= E1RM_MAX_RELIABLE_REPS,
       isBodyweight: top === null,
     })
   }
@@ -624,7 +634,9 @@ export function findPersonalBests(
     if (!Number.isFinite(loggedAt) || !Number.isFinite(startedAt) || loggedAt >= startedAt) continue
     const load = effectiveSetLoad(set, multipliers)
     if (load > (bestLoad.get(set.exercise) ?? 0)) bestLoad.set(set.exercise, load)
-    if (set.reps > (bestReps.get(set.exercise) ?? 0)) bestReps.set(set.exercise, set.reps)
+    // A set with no recorded count can't hold a reps record.
+    const reps = countedReps(set)
+    if (reps > (bestReps.get(set.exercise) ?? 0)) bestReps.set(set.exercise, reps)
   }
 
   const bests: WorkoutPersonalBest[] = []
@@ -647,7 +659,8 @@ export function findPersonalBests(
     }
 
     const previousReps = bestReps.get(entry.exercise) ?? 0
-    if (entry.bestRepSet.reps > previousReps) {
+    // A set with no recorded count cannot take a most-reps record.
+    if (countedReps(entry.bestRepSet.reps) > previousReps) {
       bests.push({
         exercise: entry.exercise,
         ...withLabel,

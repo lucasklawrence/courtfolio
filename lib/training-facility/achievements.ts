@@ -8,6 +8,7 @@ import type {
 } from '@/types/weight-room'
 
 import { targetResolverFor } from './goal-targets'
+import { countedReps } from './set-reps'
 import { PACIFIC_CLOCK, mondayOfDayKey, shiftDayKey, type DayClock } from './clock'
 
 /**
@@ -334,12 +335,15 @@ function buildMetrics(
     // Effective load: what's actually being moved, not what's stamped on one
     // dumbbell. Bodyweight sets carry no `weight_lbs` and contribute 0.
     const load = (set.weight_lbs ?? 0) * (multiplierByExercise.get(set.exercise) ?? 1)
-    const tonnage = set.reps * load
-    const observation = { day, reps: set.reps, load, tonnage }
+    // An unrecorded count contributes nothing to a rep or tonnage ladder,
+    // and cannot itself set a biggest-single-set record (#440).
+    const reps = countedReps(set)
+    const tonnage = reps * load
+    const observation = { day, reps, load, tonnage }
     for (const m of [forExercise(set.exercise), pooled]) {
-      bump(m.byDay, day, set.reps)
-      bump(m.byWeek, week, set.reps)
-      bump(m.byMonth, month, set.reps)
+      bump(m.byDay, day, reps)
+      bump(m.byWeek, week, reps)
+      bump(m.byMonth, month, reps)
       bump(m.tonnageByDay, day, tonnage)
       bump(m.tonnageByWeek, week, tonnage)
       bump(m.tonnageByMonth, month, tonnage)

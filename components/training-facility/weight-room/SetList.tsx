@@ -4,6 +4,7 @@ import { useState, type JSX } from 'react'
 
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
 import { slugLabel, type ExerciseLabels } from '@/lib/training-facility/exercise-labels'
+import { countedReps } from '@/lib/training-facility/set-reps'
 
 /** Props for {@link SetList}. */
 export interface SetListProps {
@@ -109,7 +110,7 @@ export function SetList({
   // displays newest-first via `ordered`.
   const totals = new Map<string, number>()
   for (const s of setsToday) {
-    totals.set(s.exercise, (totals.get(s.exercise) ?? 0) + s.reps)
+    totals.set(s.exercise, (totals.get(s.exercise) ?? 0) + countedReps(s))
   }
 
   return (

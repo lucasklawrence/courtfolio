@@ -18,6 +18,7 @@ import type { StrengthSet, WeightRoomExercise } from '@/types/weight-room'
 
 import { PACIFIC_CLOCK, type DayClock } from './clock'
 import { DEFAULT_MIN_GAP_DAYS, daysBetween } from './era-comparison'
+import { countedReps } from './set-reps'
 import { effectiveSetLoad, loadMultipliersBySlug } from './workout-stats'
 
 /** One stretch of training, described on its own terms. */
@@ -160,7 +161,7 @@ function describeEra(
   for (const dayKey of dayKeys) {
     for (const set of byDay.get(dayKey) ?? []) {
       setCount += 1
-      reps += set.reps
+      reps += countedReps(set)
       movements.add(set.exercise)
       // "Loaded" means the set carried external weight at all — a weighted
       // pushup counts, because it is loaded work. The multiplier scales

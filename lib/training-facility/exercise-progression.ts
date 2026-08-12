@@ -1,6 +1,7 @@
 import type { StrengthSet, WeightRoomExercise, WeightRoomWorkout } from '@/types/weight-room'
 
 import { PACIFIC_CLOCK, type DayClock } from './clock'
+import { countedReps } from './set-reps'
 import { workoutDayKey } from './workout-sessions'
 import {
   E1RM_MAX_RELIABLE_REPS,
@@ -117,7 +118,12 @@ function heavier(
   if (candidate.effectiveLoad <= 0) return best
   if (best === null) return candidate
   if (candidate.effectiveLoad > best.effectiveLoad) return candidate
-  if (candidate.effectiveLoad === best.effectiveLoad && candidate.reps > best.reps) return candidate
+  if (
+    candidate.effectiveLoad === best.effectiveLoad &&
+    countedReps(candidate.reps) > countedReps(best.reps)
+  ) {
+    return candidate
+  }
   return best
 }
 
@@ -127,8 +133,14 @@ function repsier(
   candidate: WorkoutSetHighlight
 ): WorkoutSetHighlight {
   if (best === null) return candidate
-  if (candidate.reps > best.reps) return candidate
-  if (candidate.reps === best.reps && candidate.effectiveLoad > best.effectiveLoad) return candidate
+  // An unrecorded count cannot win a most-reps contest (#440).
+  if (countedReps(candidate.reps) > countedReps(best.reps)) return candidate
+  if (
+    countedReps(candidate.reps) === countedReps(best.reps) &&
+    candidate.effectiveLoad > best.effectiveLoad
+  ) {
+    return candidate
+  }
   return best
 }
 
@@ -235,11 +247,12 @@ export function buildExerciseProgression(
         ...(set.to_failure === true ? { toFailure: true } : {}),
       }
 
-      reps += set.reps
-      tonnage += set.reps * effectiveLoad
+      // An unrecorded count adds nothing, and cannot be judged high-rep (#440).
+      reps += countedReps(set)
+      tonnage += countedReps(set) * effectiveLoad
       if (effectiveLoad > 0) {
         loadedSets += 1
-        if (set.reps > E1RM_MAX_RELIABLE_REPS) highRepLoadedSets += 1
+        if (countedReps(set) > E1RM_MAX_RELIABLE_REPS) highRepLoadedSets += 1
       }
 
       dayTop = heavier(dayTop, highlight)
@@ -247,7 +260,8 @@ export function buildExerciseProgression(
       heaviestSet = heavier(heaviestSet, highlight)
       mostRepsSet = repsier(mostRepsSet, highlight)
 
-      const estimate = reliableOneRepMax(effectiveLoad, set.reps)
+      // No count, no Epley estimate — the formula needs a rep number.
+      const estimate = set.reps === null ? null : reliableOneRepMax(effectiveLoad, set.reps)
       if (estimate !== null) {
         if (dayEstimate === null || estimate > dayEstimate) dayEstimate = estimate
         if (bestOneRepMax === null || estimate > bestOneRepMax) bestOneRepMax = estimate

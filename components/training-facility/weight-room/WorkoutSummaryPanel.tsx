@@ -10,6 +10,7 @@ import type {
   WorkoutPersonalBest,
   WorkoutSummary,
 } from '@/lib/training-facility/workout-stats'
+import { countedReps } from '@/lib/training-facility/set-reps'
 import { describeSetOrHold, formatLbs } from '@/lib/training-facility/strength-format'
 import type { StrengthSet } from '@/types/weight-room'
 
@@ -472,7 +473,7 @@ function ExtraWorkCard({ sets, exerciseLabels }: ExtraWorkCardProps): JSX.Elemen
             <span className="font-semibold">{exerciseLabels[exercise] ?? exercise}</span>{' '}
             <span className="text-[#e8d5be]/70">
               {exSets.length} set{exSets.length === 1 ? '' : 's'} ·{' '}
-              {exSets.reduce((total, s) => total + s.reps, 0)} reps
+              {exSets.reduce((total, s) => total + countedReps(s), 0)} reps
             </span>
           </li>
         ))}

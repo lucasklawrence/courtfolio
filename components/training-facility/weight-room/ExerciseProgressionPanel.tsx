@@ -7,6 +7,7 @@ import type {
   ExerciseProgression,
   SetDetailCoverage,
 } from '@/lib/training-facility/exercise-progression'
+import { countedReps } from '@/lib/training-facility/set-reps'
 import { describeSetOrHold, formatHold, formatLbs } from '@/lib/training-facility/strength-format'
 import { E1RM_MAX_RELIABLE_REPS } from '@/lib/training-facility/workout-stats'
 
@@ -175,7 +176,10 @@ export function ExerciseProgressionPanel({
         >
           <TrendChart
             data={points}
-            y={p => p.bestRepSet.reps}
+            // A day whose best set has no recorded count plots as zero rather
+            // than breaking the axis; the chart is about reps, and unknown is
+            // not a rep count (#440).
+            y={p => countedReps(p.bestRepSet.reps)}
             stroke={isBodyweight ? accentColor : chartPalette.hardwoodTan}
             width={width}
             height={height}

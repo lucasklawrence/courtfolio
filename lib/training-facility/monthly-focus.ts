@@ -1,5 +1,6 @@
 import type { FocusCategory, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 import { PACIFIC_CLOCK, inclusiveDaySpan, shiftDayKey, type DayClock } from './clock'
+import { countedReps } from './set-reps'
 
 export type { FocusCategory }
 
@@ -166,7 +167,7 @@ export function computeFocusAdherence(
     if (s.exercise !== focus.exercise) continue
     const day = clock.safeDayKey(s.logged_at)
     if (day === '' || day < focus.start_date || day > lastElapsed) continue
-    const increment = focus.target_kind === 'sets' ? 1 : s.reps
+    const increment = focus.target_kind === 'sets' ? 1 : countedReps(s)
     volumeByDay.set(day, (volumeByDay.get(day) ?? 0) + increment)
   }
 
@@ -272,7 +273,7 @@ export function computeFocusLoadStats(
     if (s.weight_lbs == null) continue
     weightedSets++
     loadSum += s.weight_lbs
-    tonnageLbs += s.reps * s.weight_lbs * implements_
+    tonnageLbs += countedReps(s) * s.weight_lbs * implements_
     if (topSetLbs === null || s.weight_lbs > topSetLbs) topSetLbs = s.weight_lbs
   }
 
@@ -370,7 +371,7 @@ export function buildFocusLaneCells(
     const day = clock.safeDayKey(s.logged_at)
     if (day === '') continue
     const k = `${s.exercise}|${day}`
-    repsByKey.set(k, (repsByKey.get(k) ?? 0) + s.reps)
+    repsByKey.set(k, (repsByKey.get(k) ?? 0) + countedReps(s))
     setCountByKey.set(k, (setCountByKey.get(k) ?? 0) + 1)
   }
 
@@ -533,7 +534,7 @@ export function summarizeFocusCampaigns(
     if (s.exercise !== exercise) continue
     const day = clock.safeDayKey(s.logged_at)
     if (day === '') continue
-    if (windows.some(focus => isFocusActiveOnDay(focus, day))) campaignReps += s.reps
+    if (windows.some(focus => isFocusActiveOnDay(focus, day))) campaignReps += countedReps(s)
   }
 
   // "Upcoming" is every window still ahead of today — distinct from "ended",

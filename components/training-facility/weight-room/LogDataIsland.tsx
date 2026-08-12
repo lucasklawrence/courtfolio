@@ -10,6 +10,7 @@ import {
   upcomingFocuses,
 } from '@/lib/training-facility/monthly-focus'
 import { targetForDay } from '@/lib/training-facility/goal-targets'
+import { countedReps } from '@/lib/training-facility/set-reps'
 import { computeStrengthStreaks } from '@/lib/training-facility/strength-streaks'
 import {
   filterSetsForDay,
@@ -402,7 +403,9 @@ async function deleteSet(
 function computeLastRepsByExercise(sets: readonly StrengthSet[]): Record<string, number> {
   const out: Record<string, number> = {}
   for (const s of sets) {
-    out[s.exercise] = s.reps
+    // Seeds the rep stepper, so a set with no recorded count is skipped rather
+    // than seeding it with zero (#440).
+    if (s.reps !== null) out[s.exercise] = s.reps
   }
   return out
 }
@@ -456,7 +459,7 @@ function buildFocusCardProps(
   const todayProgress =
     focus.target_kind === 'sets'
       ? focusSetsToday.length
-      : focusSetsToday.reduce((n, s) => n + s.reps, 0)
+      : focusSetsToday.reduce((n, s) => n + countedReps(s), 0)
   return {
     focus,
     todayProgress,
