@@ -119,8 +119,8 @@ export function excludeInvalidOtfSessions(sessions: readonly OtfSession[]): OtfS
  *
  * KEEP IN SYNC WITH the label constants in
  * `scripts/lib/otbeat-class-type.mjs` (guarded by a drift test in
- * `otf.test.ts`). Manual `class_type_override` values that aren't in this list
- * (e.g. "2G", "Strength 50") sort after these, alphabetically, in
+ * `otf.test.ts`). Resolved `class_format` values that aren't in this list
+ * (e.g. "2G", "HYROX 2G") sort after these, alphabetically, in
  * {@link otfClassTypes}.
  */
 export const OTF_CLASS_TYPE_ORDER: readonly string[] = [
@@ -139,14 +139,14 @@ export const OTF_CLASS_TYPE_ORDER: readonly string[] = [
  * non-`null` selection, with nothing in the log or the counts to say it had
  * been. Sorts last in {@link otfClassTypes}.
  *
- * The leading NUL is deliberate: `class_type_override` is unrestricted free text
- * a human types into Supabase, so a *readable* sentinel like `'Untyped'` could
- * collide with a real override — the option list would carry two identical
- * entries (duplicate React keys) and the overridden session would vanish when
- * its own chip was selected, since the filter would read the selection as the
- * sentinel. No parsed or hand-entered value contains a NUL, so this cannot
- * collide. Never stored in the database; render it via
- * {@link otfClassTypeLabel}, never directly.
+ * The leading NUL is deliberate: `class_format` is unrestricted free text —
+ * whatever OTF puts in a booking title, or whatever a human types for a drop-in
+ * — so a *readable* sentinel like `'Untyped'` could collide with a real format.
+ * The option list would carry two identical entries (duplicate React keys) and
+ * the labeled session would vanish when its own chip was selected, since the
+ * filter would read the selection as the sentinel. No parsed or hand-entered
+ * value contains a NUL, so this cannot collide. Never stored in the database;
+ * render it via {@link otfClassTypeLabel}, never directly.
  */
 export const OTF_CLASS_TYPE_UNTYPED = '\u0000otf-untyped'
 
@@ -160,14 +160,20 @@ export function otfClassTypeLabel(classType: string): string {
 }
 
 /**
- * The class type the view should treat a session as: the manual
- * `class_type_override` when set, otherwise the auto-inferred `class_type`
- * (#271). Blank/whitespace strings count as unset. `undefined` when the session
- * has neither (e.g. a near-zero malfunction with no inferred type).
+ * The class type the view should treat a session as: the resolved
+ * `class_format` when set, otherwise the auto-inferred `class_type` (#271).
+ * Blank/whitespace strings count as unset. `undefined` when the session has
+ * neither — a near-zero malfunction, or a drop-in whose template was never
+ * recovered.
+ *
+ * `class_format` wins because it is the real OTF template read from the booking
+ * calendar (#453); `class_type` only names which machines were worked and
+ * cannot tell a 2G from a 3G. The fallback stays because most history predates
+ * the booking feed, and a coarse label beats none.
  */
 export function effectiveOtfClassType(session: OtfSession): string | undefined {
-  const override = session.class_type_override?.trim()
-  if (override) return override
+  const format = session.class_format?.trim()
+  if (format) return format
   const auto = session.class_type?.trim()
   return auto ? auto : undefined
 }

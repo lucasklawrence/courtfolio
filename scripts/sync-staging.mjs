@@ -15,7 +15,7 @@
  *
  * Semantics, and their limits:
  * - **Upsert**, resolving on each table's key, so edits made in production
- *   propagate — a corrected weight, a manual `class_type_override`, an
+ *   propagate — a corrected weight, a hand-entered `class_format`, an
  *   `excluded` flag flipped by hand.
  * - Rows that exist **only** in staging are left alone, so hand-made test data
  *   survives a refresh.
@@ -98,6 +98,10 @@ export const TABLES = [
   { name: 'cardio_step_count_trend', conflict: 'date' },
   { name: 'cardio_sleep_trend', conflict: 'date' },
   { name: 'cardio_active_energy_trend', conflict: 'date' },
+  // Must precede otf_sessions: `otf_sessions.booking_id` is a foreign key into
+  // this table, so copying sessions first would fail on a booking staging
+  // doesn't have yet (#453).
+  { name: 'otf_bookings', conflict: 'external_event_id' },
   { name: 'otf_sessions', conflict: 'started_at' },
   { name: 'otf_mileage_awards', conflict: 'label' },
   // Weight Room, in foreign-key order. Everything below references

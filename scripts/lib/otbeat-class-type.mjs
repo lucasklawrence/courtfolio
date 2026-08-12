@@ -11,10 +11,10 @@
  *
  * Two-column design in `otf_sessions` (mirrors the #268 excluded pattern):
  * - `class_type` — this auto-inferred coarse label, written at ingest.
- * - `class_type_override` — a nullable manual column set in Supabase to the
- *   *real* format name ("2G", "Strength 50", …) when known. The effective type
- *   the view uses is `override ?? class_type` (see `effectiveOtfClassType` in
- *   `lib/training-facility/otf.ts`).
+ * - `class_format` — the *real* template ("2G", "3G", "HYROX 2G", …), resolved
+ *   from the booking calendar by the #453 reconcile pass or entered by hand for
+ *   a drop-in. The effective type the view uses is `class_format ?? class_type`
+ *   (see `effectiveOtfClassType` in `lib/training-facility/otf.ts`).
  *
  * Because {@link import('./otbeat-supabase.mjs').upsertOtfSessions} is
  * append-only (`ignoreDuplicates` → ON CONFLICT DO NOTHING), `class_type` is
@@ -85,7 +85,7 @@ const MIN_STRENGTH_CALORIES = 100
  *    time (a row-heavy class), otherwise {@link OTF_CLASS_TYPE_BOTH}.
  *
  * Deliberately coarse: it names which machines were worked, not OTF's official
- * 2G/3G/Strength template — use `class_type_override` for that. Kept
+ * 2G/3G/Strength template — use `class_format` for that. Kept
  * false-positive-resistant so a normal class never lands on `null`.
  *
  * @param {OtfClassTypeSignals} signals Normalized session signals.

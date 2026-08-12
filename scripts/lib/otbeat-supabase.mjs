@@ -110,15 +110,15 @@ export function toStartedAt(date, time, timeZone) {
  * `excluded` / `excluded_reason` are set from {@link classifyOtfAnomaly} so a
  * malfunction session (near-zero output, no machine block — #268) is flagged
  * at first insert. `class_type` is the coarse machine-signature label from
- * {@link classifyOtfClassType} (#271); `class_type_override` is left unset so a
- * manual Supabase edit owns it.
+ * {@link classifyOtfClassType} (#271); `class_format` is left unset so the
+ * booking reconcile pass (#453) or a manual Supabase edit owns it.
  *
  * `excluded` / `excluded_reason` are written only on a row's *first* insert,
  * since {@link upsertOtfSessions} inserts-if-absent. `class_type` is the one
  * exception: that same append-only property left three rows permanently null
  * when an old importer raced the #271 backfill, so the upsert also backfills a
  * *null* `class_type` on an existing row. A non-null label — and
- * `class_type_override` in every case — is never touched by a re-pull.
+ * `class_format` in every case — is never touched by a re-pull.
  *
  * @param {import('./otbeat-parser.mjs').OtbeatRecord} rec Parsed session.
  * @param {string} [timeZone] Studio timezone for `started_at`.
@@ -228,7 +228,8 @@ async function readAllOtfSessionKeys(supabase) {
  * Deliberately narrow, to preserve the guarantee #268/#271 rely on:
  * - Only `class_type`, and only when the stored value is null — a row that
  *   already has a label is never rewritten, so a corrected label survives.
- * - Never `class_type_override`, `excluded`, or `excluded_reason`. A targeted
+ * - Never `class_format`, `class_format_source`, `excluded`, or
+ *   `excluded_reason`. A targeted
  *   per-row `update` of the single column, *not* a full-row upsert: supabase-js
  *   `upsert` with `ignoreDuplicates: false` would `DO UPDATE SET` every column
  *   and clobber a manual override.

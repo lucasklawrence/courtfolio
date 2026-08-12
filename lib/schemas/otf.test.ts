@@ -62,13 +62,26 @@ describe('OtfSessionRowSchema', () => {
     expect(parsed.success).toBe(true)
   })
 
-  it('accepts class_type + class_type_override (#271)', () => {
+  it('accepts class_type + class_format + class_format_source (#453)', () => {
     const parsed = OtfSessionRowSchema.safeParse({
       started_at: '2026-06-27T16:30:00+00:00',
       class_type: 'Tread + Row',
-      class_type_override: '2G',
+      class_format: '2G',
+      class_format_source: 'booking',
     })
     expect(parsed.success).toBe(true)
+  })
+
+  it('rejects a class_format_source outside the closed set', () => {
+    // Unlike class_format, provenance is our own vocabulary — a value outside
+    // it is a bug, and letting it through would break the coverage monitor's
+    // grouping silently.
+    const parsed = OtfSessionRowSchema.safeParse({
+      started_at: '2026-06-27T16:30:00+00:00',
+      class_format: '2G',
+      class_format_source: 'guessed',
+    })
+    expect(parsed.success).toBe(false)
   })
 })
 
@@ -120,19 +133,22 @@ describe('otfRowToSession', () => {
     expect(session).not.toHaveProperty('excluded_reason')
   })
 
-  it('passes class_type + class_type_override through (#271)', () => {
+  it('passes class_type + class_format + class_format_source through (#453)', () => {
     const session = otfRowToSession({
       started_at: '2026-06-27T16:30:00+00:00',
       class_type: 'Tread + Row',
-      class_type_override: '2G',
+      class_format: '2G',
+      class_format_source: 'booking',
     })
     expect(session.class_type).toBe('Tread + Row')
-    expect(session.class_type_override).toBe('2G')
+    expect(session.class_format).toBe('2G')
+    expect(session.class_format_source).toBe('booking')
   })
 
-  it('omits class_type / class_type_override when absent', () => {
+  it('omits class_type / class_format when absent', () => {
     const session = otfRowToSession({ started_at: '2026-06-27T16:30:00+00:00' })
     expect(session).not.toHaveProperty('class_type')
-    expect(session).not.toHaveProperty('class_type_override')
+    expect(session).not.toHaveProperty('class_format')
+    expect(session).not.toHaveProperty('class_format_source')
   })
 })

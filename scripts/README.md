@@ -233,6 +233,36 @@ Table: `supabase/migrations/20260628120000_otf_sessions.sql`. Like the `cardio_*
 
 The run **exits non-zero** if any counted (non-`excluded`) session lacks a `class_type`. Such a row matches no filter chip in the OTF view, so it silently vanishes from the log and every aggregate — three sessions sat that way for 20 days before anyone noticed (#334). The importer also backfills a *null* `class_type` on rows already present, so a future ingest/migration race repairs itself on the next pull; anything the lookback window can't reach is what the exit code is for.
 
+## `import-otf-bookings`
+
+`node scripts/import-otf-bookings.mjs <path-to.ics>` — or `OTF_ICS_PATH=<path> npm run import-otf-bookings`
+
+Reads OTF class bookings from a calendar into `otf_bookings`, then matches them to `otf_sessions` to resolve `class_format`.
+
+**Why it exists:** the OTbeat email carries no class-template token whatsoever — nothing says "2G", "3G", or "Tread 50" anywhere in the body. `class_type` is inferred from which machine blocks the class logged and therefore cannot tell a 2G from a 3G, so everything grouped by it silently mixes templates. The template lives only in the booking calendar, in event titles like `Orange 60 Min 3G`.
+
+Inference was tried and doesn't work: a day-of-week rule mislabels 2026-07-22 (a Wednesday 3G), and block-time inference fails independently because that same 3G logged only 03:40 of rower time. The template has to be read, never guessed.
+
+### Phase A scope
+
+The calendar source is a local `.ics` file, so this is a manual run against an export. Phase B (#453) adds a CalDAV source against `caldav.icloud.com` behind the same `CalendarSource` interface and moves the two steps into `otbeat-ingest.yml`.
+
+### Required env vars
+
+`NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` — same pair as `import-otbeat`.
+
+### What it will and won't do
+
+- **Never drops a booking.** A title that doesn't match the grammar is stored with `title_raw` intact and null parsed columns, and logged. A guessed format would be worse than none.
+- **Never overwrites a manual label.** A session whose `class_format_source` is `'manual'` is skipped entirely.
+- **Idempotent.** Bookings upsert on the calendar event UID; the reconcile writes only columns that are currently null, so a second run is a no-op.
+- **Self-heals.** A session linked to a booking whose title couldn't be parsed picks up the format on a later run once the grammar handles it — append-only writes alone can't do that, which is what left three sessions broken for 20 days (#334).
+- **Leaves drop-ins null.** Roughly 9% of sessions are booked outside the app flow and have no calendar event (2026-08-06 at Mar Vista is one). Those are reported, never failed on, and stay null unless labeled by hand.
+
+### Data-quality gate
+
+Unlike `import-otbeat`, this run does **not** exit non-zero for sessions missing a `class_format` — legitimate drop-ins would keep it permanently red, which just trains everyone to ignore it. `findBookingFeedSilence` (sessions arriving with zero bookings in the same window — the revoked-app-password signature) is built and unit-tested but deliberately unwired until Phase B gives it a producer that makes it meaningful.
+
 ## `migrations:check`
 
 `npm run migrations:check`
@@ -270,7 +300,7 @@ Rows stream directly between the two PostgREST endpoints — a full refresh is ~
 
 Semantics:
 
-- **Upsert** on each table's key, so production edits propagate (a corrected weight, a manual `class_type_override`, a hand-flipped `excluded`).
+- **Upsert** on each table's key, so production edits propagate (a corrected weight, a hand-entered `class_format`, a hand-flipped `excluded`).
 - Rows existing **only** in staging survive, so hand-made test data isn't clobbered.
 - **Deletions do not propagate.** Accepted deliberately — a delete-aware sync needs a prune pass or a truncate-and-reload, and truncating would destroy the staging-only rows the previous point protects. Rebuild the project if that matters.
 

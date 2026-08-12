@@ -86,19 +86,22 @@ describe('class-type helpers (#271)', () => {
   })
 
   describe('effectiveOtfClassType', () => {
-    it('prefers a manual override over the inferred class_type', () => {
+    it('prefers the resolved class_format over the inferred class_type', () => {
+      // class_type only names which machines were worked; class_format is OTF's
+      // real template, so it wins whenever it exists.
       expect(
-        effectiveOtfClassType(mk('a', { class_type: 'Tread + Row', class_type_override: '2G' }))
+        effectiveOtfClassType(mk('a', { class_type: 'Tread + Row', class_format: '2G' }))
       ).toBe('2G')
     })
 
-    it('falls back to class_type when there is no override', () => {
+    it('falls back to class_type when there is no class_format', () => {
+      // Most history predates the booking feed, and a coarse label beats none.
       expect(effectiveOtfClassType(mk('a', { class_type: 'Tread-focused' }))).toBe('Tread-focused')
     })
 
-    it('treats a blank override as unset', () => {
+    it('treats a blank class_format as unset', () => {
       expect(
-        effectiveOtfClassType(mk('a', { class_type: 'Row-focused', class_type_override: '  ' }))
+        effectiveOtfClassType(mk('a', { class_type: 'Row-focused', class_format: '  ' }))
       ).toBe('Row-focused')
     })
 
@@ -114,7 +117,7 @@ describe('class-type helpers (#271)', () => {
         mk('b', { class_type: 'Tread + Row' }),
         mk('c', { class_type: 'Tread + Row' }), // duplicate collapses
         mk('d', { class_type: 'Tread-focused' }),
-        mk('e', { class_type: 'Tread + Row', class_type_override: 'Strength 50' }), // manual extra
+        mk('e', { class_type: 'Tread + Row', class_format: 'Strength 50' }), // resolved extra
         mk('f'), // no type → the untyped sentinel, last
       ]
       expect(otfClassTypes(sessions)).toEqual([
@@ -194,7 +197,7 @@ describe('class-type helpers (#271)', () => {
     const sessions = [
       mk('a', { class_type: 'Tread + Row' }),
       mk('b', { class_type: 'Row-focused' }),
-      mk('c', { class_type: 'Tread + Row', class_type_override: '2G' }), // effective = '2G'
+      mk('c', { class_type: 'Tread + Row', class_format: '2G' }), // effective = '2G'
     ]
 
     it('keeps only sessions whose effective type matches', () => {
@@ -203,7 +206,7 @@ describe('class-type helpers (#271)', () => {
       ])
     })
 
-    it('matches on the override, not the inferred label', () => {
+    it('matches on the resolved class_format, not the inferred label', () => {
       expect(filterOtfSessionsByClassType(sessions, '2G').map(s => s.started_at)).toEqual(['c'])
     })
 
@@ -232,14 +235,15 @@ describe('class-type helpers (#271)', () => {
       expect(reached).toEqual(new Set(['a', 'b', 'c', 'd']))
     })
 
-    // codex #334: `class_type_override` is unrestricted free text, so a readable
-    // sentinel could be typed in as a real override — the option list would carry
-    // two identical entries (duplicate React keys) and the overridden session
-    // would vanish under its own chip. The non-printable sentinel can't collide.
-    it('keeps a human-readable override distinct from the untyped sentinel', () => {
+    // codex #334: `class_format` is unrestricted free text — whatever OTF puts
+    // in a booking title, or whatever a human types for a drop-in — so a
+    // readable sentinel could arrive as a real format. The option list would
+    // carry two identical entries (duplicate React keys) and the labeled
+    // session would vanish under its own chip. A non-printable one can't collide.
+    it('keeps a human-readable class_format distinct from the untyped sentinel', () => {
       const withCollider = [
         mk('a', { class_type: 'Tread + Row' }),
-        mk('b', { class_type_override: 'No class type' }), // the sentinel's *label*
+        mk('b', { class_format: 'No class type' }), // the sentinel's *label*
         mk('c'), // genuinely untyped
       ]
       const options = otfClassTypes(withCollider)

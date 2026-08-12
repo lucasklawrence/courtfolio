@@ -158,17 +158,54 @@ describe('OtfDetailView', () => {
     expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'false')
   })
 
-  it('marks a manual class-type override in the log (#271)', () => {
+  it('marks a booking-resolved class format in the log (#453)', () => {
     renderView({
       otf: {
         imported_at: '2026-06-30T07:53:00+00:00',
-        sessions: [{ ...VALID_SESSION, class_type: 'Tread + Row', class_type_override: '2G' }],
+        sessions: [
+          {
+            ...VALID_SESSION,
+            class_type: 'Tread + Row',
+            class_format: '2G',
+            class_format_source: 'booking' as const,
+          },
+        ],
       },
     })
-    // Override wins over the inferred label and is flagged as manual on hover.
-    const chip = screen.getByText('2G')
-    expect(chip).toHaveAttribute('title', 'Manual override')
+    // The real template wins over the inferred label, and the title says where
+    // it came from — the inference can't tell a 2G from a 3G.
+    expect(screen.getByText('2G')).toHaveAttribute('title', 'From the booking calendar')
     expect(screen.queryByText('Tread + Row')).not.toBeInTheDocument()
+  })
+
+  it('distinguishes a hand-labeled drop-in from a booking match (#453)', () => {
+    renderView({
+      otf: {
+        imported_at: '2026-06-30T07:53:00+00:00',
+        sessions: [
+          {
+            ...VALID_SESSION,
+            class_type: 'Tread-focused',
+            class_format: 'Tread 50',
+            class_format_source: 'manual' as const,
+          },
+        ],
+      },
+    })
+    expect(screen.getByText('Tread 50')).toHaveAttribute('title', 'Manually labeled')
+  })
+
+  it('falls back to the inferred label with no provenance marker (#271)', () => {
+    renderView({
+      otf: {
+        imported_at: '2026-06-30T07:53:00+00:00',
+        sessions: [{ ...VALID_SESSION, class_type: 'Tread + Row' }],
+      },
+    })
+    expect(screen.getByText('Tread + Row')).toHaveAttribute(
+      'title',
+      'Inferred from machine signature'
+    )
   })
 
   it('shows the empty state when there are no sessions', () => {
