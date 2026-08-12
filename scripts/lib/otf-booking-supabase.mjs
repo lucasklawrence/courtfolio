@@ -41,9 +41,12 @@ const READ_PAGE_SIZE = 500
  *
  * Observed booking times match the OTbeat report exactly in every case checked
  * (2026-08-05 calendar 18:45 / email 6:45 PM; 2026-08-08 calendar 09:30 / email
- * 9:30 AM), so this is slack rather than a necessity. Kept well under the
- * ~75-minute gap between consecutive class slots so the window can never span
- * two different bookings at one studio.
+ * 9:30 AM), so this is slack against clock skew rather than a necessity.
+ *
+ * The window can still overlap two bookings at one studio if classes are
+ * scheduled closer together than 30 minutes; {@link findMatchingBooking}
+ * resolves that by taking the nearest in time, so widening this degrades
+ * gracefully instead of matching arbitrarily.
  */
 export const DEFAULT_MATCH_TOLERANCE_MIN = 15
 
@@ -172,6 +175,13 @@ export async function upsertOtfBookings(supabase, events) {
  *
  * A session with no studio matches nothing — guessing across locations is
  * exactly the kind of plausible-but-wrong labelling #453 exists to eliminate.
+ *
+ * Known and accepted: nothing stops two sessions from claiming the same
+ * booking, since candidates aren't consumed as they're matched. That needs two
+ * sessions within the tolerance window at one studio, i.e. two classes under
+ * half an hour apart at the same location — not a schedule OTF runs. Guarding
+ * it would cost more complexity than the case is worth; revisit if a session
+ * ever turns up sharing a `booking_id`.
  *
  * @param {{ started_at: string, studio: string|null }} session Session row.
  * @param {Array<{ id: string, starts_at: string, studio: string|null, format: string|null }>} bookings Candidate bookings.
