@@ -369,22 +369,37 @@ export async function reconcileOtfBookings(supabase, opts = {}) {
  * the gate that *does* mean something — the same way a real problem went
  * unnoticed for 20 days (#334). Print these; never exit non-zero for them.
  *
+ * Paged, unlike the sibling `findUntypedOtfSessions` in `otbeat-supabase.mjs`.
+ * That one can leave itself unranged because it *gates*: PostgREST's `max_rows`
+ * cap can only shorten a non-empty result, never turn offenders into an empty
+ * one, so its pass/fail signal survives truncation and only the printed list
+ * suffers. This function has no pass/fail signal — the list is the entire
+ * output — so a silent truncation would under-report the coverage gap, which is
+ * exactly the quiet failure the module is written to avoid. `started_at` is the
+ * table's primary key, so it is a stable key to page on.
+ *
  * @param {ReturnType<createServiceRoleClient>} supabase Service-role client.
  * @returns {Promise<Array<{ started_at: string, studio: string|null }>>}
  *   Offending rows, oldest first.
  * @throws {Error} on any Supabase read failure.
  */
 export async function findSessionsMissingClassFormat(supabase) {
-  const { data, error } = await supabase
-    .from('otf_sessions')
-    .select('started_at, studio')
-    .eq('excluded', false)
-    .is('class_format', null)
-    .order('started_at', { ascending: true })
-  if (error) {
-    throw new Error(`Failed to check otf_sessions class_format coverage: ${error.message}`)
+  const all = []
+  for (let from = 0; ; from += READ_PAGE_SIZE) {
+    const { data, error } = await supabase
+      .from('otf_sessions')
+      .select('started_at, studio')
+      .eq('excluded', false)
+      .is('class_format', null)
+      .order('started_at', { ascending: true })
+      .range(from, from + READ_PAGE_SIZE - 1)
+    if (error) {
+      throw new Error(`Failed to check otf_sessions class_format coverage: ${error.message}`)
+    }
+    const page = data ?? []
+    all.push(...page)
+    if (page.length < READ_PAGE_SIZE) return all
   }
-  return data ?? []
 }
 
 /**

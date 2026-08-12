@@ -13,8 +13,10 @@
  * - `class_type` — this auto-inferred coarse label, written at ingest.
  * - `class_format` — the *real* template ("2G", "3G", "HYROX 2G", …), resolved
  *   from the booking calendar by the #453 reconcile pass or entered by hand for
- *   a drop-in. The effective type the view uses is `class_format ?? class_type`
- *   (see `effectiveOtfClassType` in `lib/training-facility/otf.ts`).
+ *   a drop-in. The effective type the view uses is the trimmed, non-empty
+ *   `class_format`, falling back to `class_type` — a whitespace-only value
+ *   counts as unset, which a plain `??` would not convey (see
+ *   `effectiveOtfClassType` in `lib/training-facility/otf.ts`).
  *
  * Because {@link import('./otbeat-supabase.mjs').upsertOtfSessions} is
  * append-only (`ignoreDuplicates` → ON CONFLICT DO NOTHING), `class_type` is
