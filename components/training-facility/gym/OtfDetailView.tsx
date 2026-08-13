@@ -977,21 +977,30 @@ function rowerRows(r: OtfRower | undefined): Array<[string, string]> | null {
 }
 
 /**
- * The session's effective class type (#271) as a small chip, or an em dash when
- * none. A trailing dot marks a manual `class_type_override`; the `title`
- * distinguishes an override from the auto-inferred label on hover.
+ * The session's effective class type as a small chip, or an em dash when none.
+ *
+ * The trailing dot means "this is OTF's real template, not our inference" —
+ * true of a `class_format` from either source (#453). The `title` says which:
+ * a booking-calendar match, a hand-entered label for a drop-in, or the coarse
+ * machine-signature guess (#271) that can't tell a 2G from a 3G.
  */
 function ClassTypeCell({ session }: { session: OtfSession }): JSX.Element {
   const type = effectiveOtfClassType(session)
   if (!type) return <span className="text-white/35">—</span>
-  const isOverride = !!session.class_type_override?.trim()
+  const source = session.class_format?.trim() ? session.class_format_source : undefined
+  const title =
+    source === 'booking'
+      ? 'From the booking calendar'
+      : source === 'manual'
+        ? 'Manually labeled'
+        : 'Inferred from machine signature'
   return (
     <span
-      title={isOverride ? 'Manual override' : 'Inferred from machine signature'}
+      title={title}
       className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[0.65rem] font-medium text-white/75"
     >
       {type}
-      {isOverride && (
+      {source && (
         <span aria-hidden="true" className="text-[#f9a870]">
           •
         </span>

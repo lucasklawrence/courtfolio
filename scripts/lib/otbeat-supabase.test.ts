@@ -136,7 +136,7 @@ describe('recordToRow', () => {
     expect(row.excluded_reason).toBeNull()
   })
 
-  it('infers class_type from the machine signature and never writes class_type_override (#271)', () => {
+  it('infers class_type from the machine signature and never writes class_format (#453)', () => {
     // Both blocks, tread 11:24 (684s) > rower 7:58 (478s) → 'Tread + Row'.
     const row = recordToRow(
       {
@@ -149,9 +149,11 @@ describe('recordToRow', () => {
       TZ
     )
     expect(row.class_type).toBe('Tread + Row')
-    // The override column is manual-only; the append-only importer must never
-    // set it (else a re-pull would clobber a human edit).
-    expect(row.class_type_override).toBeUndefined()
+    // class_format is owned by the booking reconcile pass and by hand-labeling;
+    // the append-only importer must never set it (else a re-pull would clobber
+    // a resolved template or a human edit).
+    expect(row.class_format).toBeUndefined()
+    expect(row.class_format_source).toBeUndefined()
   })
 
   it('labels a tread-only class Tread-focused', () => {
