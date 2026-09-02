@@ -53,7 +53,7 @@ describe('POST /auth/sign-out', () => {
     expect(res.headers.get('content-type') ?? '').not.toMatch(/json/)
     expect(errSpy).toHaveBeenCalledWith(
       '[auth/sign-out] Supabase signOut failed:',
-      'Network unreachable',
+      'Network unreachable'
     )
   })
 
@@ -71,9 +71,6 @@ describe('POST /auth/sign-out', () => {
     expect(res.status).toBe(303)
     expect(res.headers.get('location')).toBe('http://localhost/')
     expect(res.headers.get('content-type') ?? '').not.toMatch(/json/)
-    expect(errSpy).toHaveBeenCalledWith(
-      '[auth/sign-out] Supabase signOut threw:',
-      thrown,
-    )
+    expect(errSpy).toHaveBeenCalledWith('[auth/sign-out] Supabase signOut threw:', thrown)
   })
 })

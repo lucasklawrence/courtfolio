@@ -76,8 +76,18 @@ export function formatSprintChipLabel(date: string): string {
 }
 
 const MONTH_ABBR = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ] as const
 
 /** ViewBox width — 10 yards at 50 viewBox units per yard, plus margins for the lane labels (left) and finish-line time stamps (right). */
@@ -177,8 +187,8 @@ export function SprintRace({ entries }: SprintRaceProps): JSX.Element | null {
   const knownDatesRef = useRef<Set<string>>(new Set())
 
   useEffect(() => {
-    const currentDates = new Set(runs.map((r) => r.date))
-    setEnabled((prev) => {
+    const currentDates = new Set(runs.map(r => r.date))
+    setEnabled(prev => {
       let changed = false
       const next = new Set(prev)
       for (const date of currentDates) {
@@ -215,7 +225,7 @@ export function SprintRace({ entries }: SprintRaceProps): JSX.Element | null {
   const effectiveEnabled =
     // eslint-disable-next-line react-hooks/refs -- intentional first-paint read (see comment above): treats "nothing seen yet" as "all visible" so the initial frame matches the post-effect state
     enabled.size === 0 && knownDatesRef.current.size === 0
-      ? new Set(runs.map((r) => r.date))
+      ? new Set(runs.map(r => r.date))
       : enabled
 
   return (
@@ -232,15 +242,15 @@ export function SprintRace({ entries }: SprintRaceProps): JSX.Element | null {
       <SprintControls
         runs={runs}
         enabled={effectiveEnabled}
-        onToggle={(date) =>
-          setEnabled((prev) => {
+        onToggle={date =>
+          setEnabled(prev => {
             const next = new Set(prev)
             if (next.has(date)) next.delete(date)
             else next.add(date)
             return next
           })
         }
-        onRace={() => setReplayKey((k) => k + 1)}
+        onRace={() => setReplayKey(k => k + 1)}
       />
     </section>
   )
@@ -266,10 +276,10 @@ function SprintTrackSvg({
   // shorten the race when a slow lane is toggled off, which fires the
   // hook's restart effect and visibly rewinds the clock mid-race.
   const latestEnabledDate = runs
-    .filter((r) => enabled.has(r.date))
+    .filter(r => enabled.has(r.date))
     .reduce<string | undefined>(
       (acc, r) => (acc === undefined || r.date > acc ? r.date : acc),
-      undefined,
+      undefined
     )
   const elapsed = useSprintElapsed({ runs, replayKey, reducedMotion })
   const laneYs = buildLaneYs(runs)
@@ -432,7 +442,7 @@ function FinishLine({ height }: FinishLineProps): JSX.Element {
           width={cellW}
           height={cellH}
           fill={filled ? SCENE_PALETTE.creamBright : SCENE_PALETTE.ink}
-        />,
+        />
       )
     }
   }
@@ -552,20 +562,14 @@ interface UseSprintElapsedArgs {
  */
 function useSprintElapsed({ runs, replayKey, reducedMotion }: UseSprintElapsedArgs): number {
   const [elapsed, setElapsed] = useState(0)
-  const maxSeconds = useMemo(
-    () => runs.reduce((acc, r) => Math.max(acc, r.seconds), 0),
-    [runs],
-  )
+  const maxSeconds = useMemo(() => runs.reduce((acc, r) => Math.max(acc, r.seconds), 0), [runs])
   // Stable identity for the *set* of runs, so a newly logged entry
   // restarts the race even when it's faster than the previous slowest
   // and `maxSeconds` is therefore unchanged. Without this dep, a saved
   // sprint that beats every prior run would render its dot already at
   // the finish line — not the "new entry auto-races vs past selves"
   // behaviour the Combine entry-form flow expects.
-  const runsKey = useMemo(
-    () => runs.map((r) => `${r.date}:${r.seconds}`).join('|'),
-    [runs],
-  )
+  const runsKey = useMemo(() => runs.map(r => `${r.date}:${r.seconds}`).join('|'), [runs])
 
   // Drives the elapsed-time clock via requestAnimationFrame. The synchronous
   // setElapsed calls seed the animation (snap-to-finish for reduced motion, or
@@ -609,12 +613,7 @@ interface SprintControlsProps {
   onRace: () => void
 }
 
-function SprintControls({
-  runs,
-  enabled,
-  onToggle,
-  onRace,
-}: SprintControlsProps): JSX.Element {
+function SprintControls({ runs, enabled, onToggle, onRace }: SprintControlsProps): JSX.Element {
   return (
     <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-3 text-sm">
       <button
@@ -625,7 +624,7 @@ function SprintControls({
         Race
       </button>
       <div className="flex flex-wrap items-center justify-center gap-2">
-        {runs.map((run) => {
+        {runs.map(run => {
           const active = enabled.has(run.date)
           return (
             <SprintToggleChip

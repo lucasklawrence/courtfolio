@@ -4,6 +4,24 @@ import { createClient } from '@supabase/supabase-js'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
 /**
+ * Whether this deployment holds the credentials {@link createAdminSupabaseClient}
+ * needs — i.e. whether admin writes are possible here at all.
+ *
+ * Preview deployments deliberately ship **without** `SUPABASE_SERVICE_ROLE_KEY`:
+ * they're built from pull-request code and auto-deployed, so a write credential
+ * there is reachable by unreviewed code. Previews therefore read the staging
+ * project and cannot write anywhere. Callers use this to answer with a clean 503
+ * instead of letting {@link createAdminSupabaseClient} throw into a 500.
+ *
+ * Checks the same two vars the factory does, so the two can't disagree.
+ */
+export function canPerformAdminWrites(): boolean {
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL?.trim() && process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  )
+}
+
+/**
  * Service-role Supabase client. Bypasses RLS — only call from
  * server-side code (route handlers, server actions). Importing this
  * module from a client component would bundle the secret key into the

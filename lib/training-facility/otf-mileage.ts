@@ -149,13 +149,10 @@ export interface AwardProgress {
  * exactly earns it). The ladder is sorted ascending defensively so callers may
  * pass it in any order.
  */
-export function resolveAwards(
-  miles: number,
-  awards: readonly OtfMileageAward[],
-): AwardProgress {
+export function resolveAwards(miles: number, awards: readonly OtfMileageAward[]): AwardProgress {
   const ladder = [...awards].sort((a, b) => a.miles - b.miles)
-  const earned = ladder.filter((award) => miles >= award.miles)
-  const next = ladder.find((award) => award.miles > miles) ?? null
+  const earned = ladder.filter(award => miles >= award.miles)
+  const next = ladder.find(award => award.miles > miles) ?? null
   return {
     earned,
     next,
@@ -205,13 +202,13 @@ function awardMonth(month: MonthlyMileage, awards: readonly OtfMileageAward[]): 
 export function buildOtfMileageView(
   sessions: readonly OtfSession[],
   awards: readonly OtfMileageAward[],
-  now: Date,
+  now: Date
 ): OtfMileageView {
   const months = monthlyOtfMileage(sessions)
   const currentKey = monthKeyOf(now)
 
   const currentMonth =
-    months.find((month) => month.monthKey === currentKey) ??
+    months.find(month => month.monthKey === currentKey) ??
     ({
       monthKey: currentKey,
       year: now.getFullYear(),
@@ -222,8 +219,8 @@ export function buildOtfMileageView(
     } satisfies MonthlyMileage)
 
   const history = months
-    .filter((month) => month.monthKey !== currentKey)
-    .map((month) => awardMonth(month, awards))
+    .filter(month => month.monthKey !== currentKey)
+    .map(month => awardMonth(month, awards))
 
   return { current: awardMonth(currentMonth, awards), history }
 }

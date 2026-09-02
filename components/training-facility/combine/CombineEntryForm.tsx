@@ -117,7 +117,7 @@ export function normalizeFormValues(values: BenchmarkFormValues): Record<string,
  * shape. Avoids a `@hookform/resolvers` dependency for a single use
  * site — Zod's flattened-issues API is straightforward to map.
  */
-const benchmarkResolver: Resolver<BenchmarkFormValues> = async (values) => {
+const benchmarkResolver: Resolver<BenchmarkFormValues> = async values => {
   const candidate = normalizeFormValues(values)
   const result = BenchmarkSchema.safeParse(candidate)
   if (result.success) {
@@ -282,7 +282,7 @@ function CombineEntryFormImpl({
     onCancelEdit?.()
   }
 
-  const onSubmit: SubmitHandler<BenchmarkFormValues> = async (values) => {
+  const onSubmit: SubmitHandler<BenchmarkFormValues> = async values => {
     setServerError(null)
     setSavedDate(null)
     const candidate = normalizeFormValues(values)
@@ -299,9 +299,7 @@ function CombineEntryFormImpl({
     // (read-only) input value can't desync the URL we PUT to from the
     // status text or the entry handed to `onSaved`.
     const canonicalDate = editingEntry ? editingEntry.date : parsedEntry.date
-    const entry: Benchmark = editingEntry
-      ? { ...parsedEntry, date: canonicalDate }
-      : parsedEntry
+    const entry: Benchmark = editingEntry ? { ...parsedEntry, date: canonicalDate } : parsedEntry
     try {
       if (editingEntry) {
         // Date is the URL key — it can't appear in the PUT body.
@@ -374,7 +372,7 @@ function CombineEntryFormImpl({
               }
               setServerError(null)
               setSavedDate(null)
-              setIsOpen((v) => !v)
+              setIsOpen(v => !v)
             }}
             aria-expanded={isOpen}
             className="rounded border border-amber-300/40 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-amber-200 hover:bg-amber-300/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
@@ -462,9 +460,7 @@ function CombineEntryFormImpl({
 
           <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-3">
             <div className="min-h-[1.25rem] font-mono text-[11px] tracking-wide" role="status">
-              {serverError && (
-                <span className="text-rose-400">{serverError}</span>
-              )}
+              {serverError && <span className="text-rose-400">{serverError}</span>}
               {savedDate && !serverError && (
                 <span className="text-emerald-400">Saved entry for {savedDate}.</span>
               )}
@@ -543,4 +539,3 @@ function Field({
     </label>
   )
 }
-

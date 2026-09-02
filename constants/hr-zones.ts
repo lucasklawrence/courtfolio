@@ -106,7 +106,7 @@ export function hrZoneForBpm(bpm: number, maxHr: number = DEFAULT_MAX_HR): HrZon
  */
 export function bpmRangeForZone(
   zone: HrZoneConfig,
-  maxHr: number = DEFAULT_MAX_HR,
+  maxHr: number = DEFAULT_MAX_HR
 ): [number, number] {
   return [Math.round(zone.minPct * maxHr), Math.round(zone.maxPct * maxHr)]
 }

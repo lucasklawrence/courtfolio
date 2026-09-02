@@ -1,31 +1,31 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { fireEvent, render, screen, within } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import type { OtfData } from '@/types/otf'
 
 import { OtfDetailView } from './OtfDetailView'
 
 /**
- * Render tests for the OTF detail view (#256). `getOtfData` is mocked and the
- * heavy SVG chart children are stubbed to `null`, so the tests focus on the
- * branch decisions (loading → data, empty state, error panel) rather than
- * chart geometry. Sibling pattern: `StairDetailView.test.tsx`.
+ * Render tests for the OTF detail view (#256). Sessions, the milestone ladder
+ * and admin state all arrive as props now that the page reads them server-side
+ * (#345), so there is nothing to mock and nothing async to settle — the tests
+ * focus on branch decisions (data, empty state, error panel) rather than chart
+ * geometry. Heavy SVG chart children are still stubbed to `null`.
+ * Sibling pattern: `StairDetailView.test.tsx`.
  */
 
-const getOtfDataMock = vi.fn()
+/** Render with the default surrounding props; only `otf` usually varies. */
+function renderView(props: Partial<React.ComponentProps<typeof OtfDetailView>> = {}) {
+  return render(<OtfDetailView otf={null} mileageAwards={[]} isAdmin={false} {...props} />)
+}
 
-vi.mock('@/lib/data', () => ({
-  getOtfData: () => getOtfDataMock(),
-  // The mileage section (#321) fetches its ladder here; an empty ladder keeps
-  // these branch tests focused on the session-driven states.
-  getOtfMileageAwards: () => Promise.resolve([]),
+vi.mock('./OtfZoneBars', () => ({
+  // Reports the width it receives so chart sizing stays observable while the
+  // real SVG stays stubbed out.
+  OtfZoneBars: ({ width }: { width: number }) => (
+    <div data-testid="chart-probe" data-chart-width={width} />
+  ),
 }))
-// The mileage section reads admin state to decide whether to show the
-// Milestones link; stub it non-admin so no network call escapes the test.
-vi.mock('@/lib/auth/use-admin-session', () => ({
-  useAdminSession: () => ({ isAdmin: false, isLoading: false, email: null }),
-}))
-vi.mock('./OtfZoneBars', () => ({ OtfZoneBars: () => null }))
 vi.mock('./OtfSparklineSummary', () => ({ OtfSparklineSummary: () => null }))
 vi.mock('@/components/training-facility/shared/charts/RoughLine', () => ({ RoughLine: () => null }))
 vi.mock('next/navigation', () => ({
@@ -36,7 +36,6 @@ vi.mock('next/navigation', () => ({
 
 const VALID_SESSION = {
   started_at: '2026-06-27T16:30:00+00:00',
-  coach: 'Mara Magistad',
   studio: 'Marina Del Rey, CA',
   splat: 15,
   calories: 776,
@@ -58,7 +57,6 @@ const DATA_WITH_EXCLUDED: OtfData = {
   sessions: [
     {
       started_at: '2026-05-30T16:30:00+00:00',
-      coach: 'Jacob Buckenmeyer',
       studio: 'Marina Del Rey, CA',
       splat: 0,
       calories: 4,
@@ -77,14 +75,12 @@ const MULTI_TYPE_DATA: OtfData = {
   sessions: [
     {
       started_at: '2026-06-20T16:30:00+00:00',
-      coach: 'Row Coach',
       splat: 8,
       calories: 668,
       class_type: 'Row-focused',
     },
     {
       started_at: '2026-06-24T16:30:00+00:00',
-      coach: 'Tread Coach',
       splat: 13,
       calories: 697,
       class_type: 'Tread-focused',
@@ -93,14 +89,9 @@ const MULTI_TYPE_DATA: OtfData = {
   ],
 }
 
-beforeEach(() => {
-  getOtfDataMock.mockReset()
-})
-
 describe('OtfDetailView', () => {
   it('always renders the header and a link back to the Gym', () => {
-    getOtfDataMock.mockResolvedValue(DATA)
-    render(<OtfDetailView />)
+    renderView({ otf: DATA })
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /the gym/i })).toHaveAttribute(
       'href',
@@ -108,10 +99,8 @@ describe('OtfDetailView', () => {
     )
   })
 
-  it('renders the highlights strip and session log once data loads', async () => {
-    getOtfDataMock.mockResolvedValue(DATA)
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByText('Mara Magistad')).toBeInTheDocument())
+  it('renders the highlights strip and session log once data loads', () => {
+    renderView({ otf: DATA })
     // Highlights strip (unique tile label) + the session-log heading.
     expect(screen.getByText('Total splat')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /classes/i })).toBeInTheDocument()
@@ -119,11 +108,10 @@ describe('OtfDetailView', () => {
     expect(screen.getAllByText('15').length).toBeGreaterThan(0)
   })
 
-  it('lists an excluded session in the log with a badge but keeps it out of the class count (#268)', async () => {
-    getOtfDataMock.mockResolvedValue(DATA_WITH_EXCLUDED)
-    render(<OtfDetailView />)
-    // The anomaly's coach is still rendered — excluded rows stay in the log.
-    await waitFor(() => expect(screen.getByText('Jacob Buckenmeyer')).toBeInTheDocument())
+  it('lists an excluded session in the log with a badge but keeps it out of the class count (#268)', () => {
+    renderView({ otf: DATA_WITH_EXCLUDED })
+    // The anomaly stays in the log — 4 cal is its row, not an aggregate.
+    expect(within(screen.getByRole('table')).getByText('4')).toBeInTheDocument()
     // …flagged with an "Excluded" badge carrying the reason as its title.
     const badge = screen.getByText('Excluded')
     expect(badge).toHaveAttribute('title', expect.stringContaining('near-zero output'))
@@ -136,10 +124,8 @@ describe('OtfDetailView', () => {
     expect(within(calTile).getByText('776')).toBeInTheDocument()
   })
 
-  it('shows each session\'s class type in the log Type column (#271)', async () => {
-    getOtfDataMock.mockResolvedValue(MULTI_TYPE_DATA)
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByText('Mara Magistad')).toBeInTheDocument())
+  it("shows each session's class type in the log Type column (#271)", () => {
+    renderView({ otf: MULTI_TYPE_DATA })
     const table = screen.getByRole('table')
     expect(within(table).getByRole('columnheader', { name: 'Type' })).toBeInTheDocument()
     // Scope to the table so the filter pills (same labels) don't collide.
@@ -148,21 +134,23 @@ describe('OtfDetailView', () => {
     expect(within(table).getByText('Row-focused')).toBeInTheDocument()
   })
 
-  it('scopes the whole view to a picked class type, composing with the range (#271)', async () => {
-    getOtfDataMock.mockResolvedValue(MULTI_TYPE_DATA)
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByText('Mara Magistad')).toBeInTheDocument())
-    // All three classes present before filtering.
-    expect(screen.getByText('Row Coach')).toBeInTheDocument()
-    expect(screen.getByText('Tread Coach')).toBeInTheDocument()
+  it('scopes the whole view to a picked class type, composing with the range (#271)', () => {
+    renderView({ otf: MULTI_TYPE_DATA })
+    // All three classes present before filtering, identified by their
+    // distinct calorie totals. Scoped to the table throughout: the highlights
+    // tiles show sums, and a filtered sum can equal a surviving row's value.
+    const rows = () => within(screen.getByRole('table'))
+    expect(rows().getByText('668')).toBeInTheDocument()
+    expect(rows().getByText('697')).toBeInTheDocument()
+    expect(rows().getByText('776')).toBeInTheDocument()
     // "All" starts pressed (unfiltered); the type pills do not.
     expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'true')
     // Pick the Tread-focused pill (a button — disambiguates from the Type cell).
     fireEvent.click(screen.getByRole('button', { name: 'Tread-focused' }))
     // Only the tread-only class stays in the log…
-    expect(screen.getByText('Tread Coach')).toBeInTheDocument()
-    expect(screen.queryByText('Mara Magistad')).not.toBeInTheDocument()
-    expect(screen.queryByText('Row Coach')).not.toBeInTheDocument()
+    expect(rows().getByText('697')).toBeInTheDocument()
+    expect(rows().queryByText('776')).not.toBeInTheDocument()
+    expect(rows().queryByText('668')).not.toBeInTheDocument()
     // …the aggregates follow: 1 class in range…
     expect(screen.getByText(/1 in range/)).toBeInTheDocument()
     // …and the selected state is exposed to assistive tech.
@@ -170,30 +158,159 @@ describe('OtfDetailView', () => {
     expect(screen.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'false')
   })
 
-  it('marks a manual class-type override in the log (#271)', async () => {
-    getOtfDataMock.mockResolvedValue({
-      imported_at: '2026-06-30T07:53:00+00:00',
-      sessions: [{ ...VALID_SESSION, class_type: 'Tread + Row', class_type_override: '2G' }],
+  it('marks a booking-resolved class format in the log (#453)', () => {
+    renderView({
+      otf: {
+        imported_at: '2026-06-30T07:53:00+00:00',
+        sessions: [
+          {
+            ...VALID_SESSION,
+            class_type: 'Tread + Row',
+            class_format: '2G',
+            class_format_source: 'booking' as const,
+          },
+        ],
+      },
     })
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByText('Mara Magistad')).toBeInTheDocument())
-    // Override wins over the inferred label and is flagged as manual on hover.
-    const chip = screen.getByText('2G')
-    expect(chip).toHaveAttribute('title', 'Manual override')
+    // The real template wins over the inferred label, and the title says where
+    // it came from — the inference can't tell a 2G from a 3G.
+    expect(screen.getByText('2G')).toHaveAttribute('title', 'From the booking calendar')
     expect(screen.queryByText('Tread + Row')).not.toBeInTheDocument()
   })
 
-  it('shows the empty state when there are no sessions', async () => {
-    getOtfDataMock.mockResolvedValue(null)
-    render(<OtfDetailView />)
-    await waitFor(() =>
-      expect(screen.getByText(/no orangetheory classes yet/i)).toBeInTheDocument()
+  it('distinguishes a hand-labeled drop-in from a booking match (#453)', () => {
+    renderView({
+      otf: {
+        imported_at: '2026-06-30T07:53:00+00:00',
+        sessions: [
+          {
+            ...VALID_SESSION,
+            class_type: 'Tread-focused',
+            class_format: 'Tread 50',
+            class_format_source: 'manual' as const,
+          },
+        ],
+      },
+    })
+    expect(screen.getByText('Tread 50')).toHaveAttribute('title', 'Manually labeled')
+  })
+
+  it('falls back to the inferred label with no provenance marker (#271)', () => {
+    renderView({
+      otf: {
+        imported_at: '2026-06-30T07:53:00+00:00',
+        sessions: [{ ...VALID_SESSION, class_type: 'Tread + Row' }],
+      },
+    })
+    expect(screen.getByText('Tread + Row')).toHaveAttribute(
+      'title',
+      'Inferred from machine signature'
     )
   })
 
-  it('shows the error panel when the load throws', async () => {
-    getOtfDataMock.mockRejectedValue(new Error('boom'))
-    render(<OtfDetailView />)
-    await waitFor(() => expect(screen.getByRole('alert')).toHaveTextContent(/boom/))
+  it('shows the empty state when there are no sessions', () => {
+    renderView({ otf: null })
+    expect(screen.getByText(/no orangetheory classes yet/i)).toBeInTheDocument()
+  })
+
+  it('shows the error panel when the load throws', () => {
+    renderView({ loadError: 'boom' })
+    expect(screen.getByRole('alert')).toHaveTextContent(/boom/)
+  })
+})
+
+/**
+ * Chart sizing across the two layouts (#355 and its follow-up).
+ *
+ * The floor has been wrong in both directions now: too low, so mobile squeezed
+ * a season of classes into ~330px with nothing to scroll; then too high, so
+ * every desktop chart overflowed its 412px column and hid its right edge. The
+ * two card widths are only ~80px apart, so the rule keys off the *breakpoint*
+ * rather than the measured width — these pin both ends.
+ */
+describe('OtfDetailView chart width', () => {
+  /** Stub `matchMedia` for a given two-column verdict, plus a no-op observer. */
+  function stubLayout(twoColumn: boolean) {
+    const listeners: Array<() => void> = []
+    vi.stubGlobal('matchMedia', (query: string) => ({
+      matches: twoColumn,
+      media: query,
+      addEventListener: (_: string, fn: () => void) => listeners.push(fn),
+      removeEventListener: () => {},
+    }))
+    // jsdom has no ResizeObserver; report a realistic card width for the layout.
+    const width = twoColumn ? 412 : 330
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        constructor(private cb: ResizeObserverCallback) {}
+        observe() {
+          this.cb(
+            [{ contentRect: { width } } as unknown as ResizeObserverEntry],
+            this as unknown as ResizeObserver
+          )
+        }
+        unobserve() {}
+        disconnect() {}
+      }
+    )
+  }
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  /**
+   * Width handed to the charts, read off the stubbed child.
+   *
+   * Throws rather than defaulting when no probe rendered: an earlier draft of
+   * this suite measured `svg[width]`, found nothing (the charts are stubbed),
+   * and the desktop assertion passed on `0 <= 412` while checking nothing at
+   * all.
+   */
+  function chartWidth(container: HTMLElement): number {
+    const probe = container.querySelector('[data-chart-width]')
+    if (!probe) throw new Error('no chart rendered — the assertion would be vacuous')
+    return Number(probe.getAttribute('data-chart-width'))
+  }
+
+  it('overflows its card on a phone so the scroll container has something to scroll', () => {
+    stubLayout(false)
+    const { container } = renderView({ otf: DATA })
+    // Wider than the ~330px card: that overflow is what makes it draggable.
+    expect(chartWidth(container)).toBeGreaterThan(330)
+  })
+
+  it('asks the browser about the same breakpoint the CSS uses', () => {
+    // Tailwind v4 defines `lg` as `64rem`, so a px query would disagree with
+    // the grid whenever the root font size is not 16px — and reapply the
+    // mobile floor to a desktop column.
+    const seen: string[] = []
+    vi.stubGlobal('matchMedia', (query: string) => {
+      seen.push(query)
+      return {
+        matches: true,
+        media: query,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      }
+    })
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+      }
+    )
+    renderView({ otf: DATA })
+    expect(seen).toContain('(min-width: 64rem)')
+  })
+
+  it('never exceeds the 412px column on desktop', () => {
+    stubLayout(true)
+    const { container } = renderView({ otf: DATA })
+    // Anything wider clips the chart's right edge behind a scrollbar.
+    expect(chartWidth(container)).toBeLessThanOrEqual(412)
   })
 })

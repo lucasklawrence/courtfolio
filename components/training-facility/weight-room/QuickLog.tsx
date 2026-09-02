@@ -3,6 +3,7 @@
 import { useEffect, useId, useState, type FormEvent, type JSX } from 'react'
 
 import type { ExerciseGoal } from '@/types/weight-room'
+import { exerciseLabel, slugLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link QuickLog}. */
 export interface QuickLogProps {
@@ -35,11 +36,7 @@ export interface QuickLogProps {
    * already trimmed; omitted / empty when the user didn't tag one. The
    * write schema lowercases it, so callers don't need to normalize case.
    */
-  onLog: (entry: {
-    exercise: string
-    reps: number
-    variant?: string
-  }) => Promise<void>
+  onLog: (entry: { exercise: string; reps: number; variant?: string }) => Promise<void>
   /**
    * `false` while a parent action is in flight (e.g. another quick-log
    * still resolving). Disables every button so the form can't submit
@@ -105,11 +102,7 @@ export function QuickLog({
   const [error, setError] = useState<string | null>(null)
   const [pendingExercise, setPendingExercise] = useState<string | null>(null)
 
-  async function handleLog(
-    exercise: string,
-    reps: number,
-    variant?: string,
-  ): Promise<void> {
+  async function handleLog(exercise: string, reps: number, variant?: string): Promise<void> {
     setError(null)
     setPendingExercise(exercise)
     try {
@@ -120,7 +113,12 @@ export function QuickLog({
       await onLog({ exercise, reps, ...(trimmed ? { variant: trimmed } : {}) })
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : `Couldn’t log ${reps} ${exercise}.`,
+        err instanceof Error
+          ? err.message
+          : `Couldn’t log ${reps} ${slugLabel(
+              exercise,
+              goals.find(g => g.exercise === exercise)
+            )}.`
       )
     } finally {
       setPendingExercise(null)
@@ -128,11 +126,7 @@ export function QuickLog({
   }
 
   return (
-    <section
-      aria-label="Quick log"
-      data-testid="quick-log"
-      className="space-y-3"
-    >
+    <section aria-label="Quick log" data-testid="quick-log" className="space-y-3">
       <div className="flex items-baseline justify-between">
         <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
           Quick log
@@ -150,7 +144,7 @@ export function QuickLog({
         </p>
       ) : null}
       <ul className="space-y-3">
-        {goals.map((goal) => (
+        {goals.map(goal => (
           <QuickLogRow
             key={goal.exercise}
             goal={goal}
@@ -221,7 +215,7 @@ function QuickLogRow({
   // pull-ups / push-ups lead with their canonical list.
   const recents = variantSuggestions ?? []
   const curated = GRIP_OPTIONS[goal.exercise.toLowerCase()] ?? []
-  const gripOptions = [...curated, ...recents.filter((r) => !curated.includes(r))]
+  const gripOptions = [...curated, ...recents.filter(r => !curated.includes(r))]
   // Reveal the free-text input when Custom… is chosen, or when the
   // current variant isn't a listed option (e.g. a legacy value) so it
   // stays editable instead of being silently dropped by the <select>.
@@ -267,14 +261,14 @@ function QuickLogRow({
           className="font-mono text-sm font-semibold uppercase tracking-[0.18em]"
           style={{ color: goal.color }}
         >
-          {goal.exercise}
+          {exerciseLabel(goal)}
         </span>
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
           target {goal.daily_target}
         </span>
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
-        {DEFAULT_PRESETS.map((reps) => (
+        {DEFAULT_PRESETS.map(reps => (
           <button
             key={reps}
             type="button"
@@ -289,7 +283,7 @@ function QuickLogRow({
         <button
           type="button"
           disabled={disabled}
-          onClick={() => setCustomOpen((v) => !v)}
+          onClick={() => setCustomOpen(v => !v)}
           aria-expanded={customOpen}
           aria-controls={customInputId}
           className="min-h-[44px] rounded-full border border-white/15 bg-black/30 px-4 font-mono text-sm font-semibold text-white/80 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
@@ -306,14 +300,14 @@ function QuickLogRow({
         <span className="font-mono uppercase tracking-[0.18em]">grip</span>
         <select
           value={gripSelectValue}
-          onChange={(e) => handleGripSelect(e.target.value)}
+          onChange={e => handleGripSelect(e.target.value)}
           disabled={disabled}
-          aria-label={`Grip for ${goal.exercise} (optional)`}
+          aria-label={`Grip for ${exerciseLabel(goal)} (optional)`}
           data-testid={`quick-log-${goal.exercise}-grip`}
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"
         >
           <option value="">no grip</option>
-          {gripOptions.map((g) => (
+          {gripOptions.map(g => (
             <option key={g} value={g}>
               {g}
             </option>
@@ -325,10 +319,10 @@ function QuickLogRow({
             type="text"
             value={variant}
             list={gripOptions.length > 0 ? variantListId : undefined}
-            onChange={(e) => setVariant(e.target.value)}
+            onChange={e => setVariant(e.target.value)}
             disabled={disabled}
             placeholder="type a grip"
-            aria-label={`Custom grip for ${goal.exercise}`}
+            aria-label={`Custom grip for ${exerciseLabel(goal)}`}
             data-testid={`quick-log-${goal.exercise}-variant`}
             className="w-32 rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white placeholder:text-white/30 focus:border-amber-300/60 focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"
           />
@@ -345,7 +339,7 @@ function QuickLogRow({
         ) : null}
         {gripOptions.length > 0 ? (
           <datalist id={variantListId}>
-            {gripOptions.map((g) => (
+            {gripOptions.map(g => (
               <option key={g} value={g} />
             ))}
           </datalist>
@@ -368,7 +362,7 @@ function QuickLogRow({
             min={1}
             inputMode="numeric"
             value={customValue}
-            onChange={(e) => setCustomValue(e.target.value)}
+            onChange={e => setCustomValue(e.target.value)}
             autoFocus={customOpen}
             className="w-24 rounded border border-white/15 bg-black/40 px-2 py-1.5 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
           />

@@ -33,6 +33,10 @@ import {
   loadEnv,
   upsertCardioData,
 } from './lib/cardio-supabase.mjs'
+import {
+  findOrphanedStrengthSessions,
+  upsertStrengthSessions,
+} from './lib/weight-room-supabase.mjs'
 
 const PYTHON_SCRIPT = path.join('scripts', 'preprocess-health.py')
 const DEFAULT_OUTPUT_PATH = path.join('public', 'data', 'cardio.json')
@@ -47,7 +51,7 @@ function pythonExecutable() {
 
 function usage() {
   console.error(
-    'Usage: npm run import-health -- <export.zip|export.xml> [--max-hr=185] [--from-json=<path>]',
+    'Usage: npm run import-health -- <export.zip|export.xml> [--max-hr=185] [--from-json=<path>]'
   )
   process.exit(1)
 }
@@ -56,7 +60,7 @@ async function runPython(args) {
   return new Promise((resolve, reject) => {
     const child = spawn(pythonExecutable(), [PYTHON_SCRIPT, ...args], { stdio: 'inherit' })
     child.on('error', reject)
-    child.on('exit', (code) => {
+    child.on('exit', code => {
       if (code === 0) resolve()
       else reject(new Error(`Python preprocess-health.py exited with code ${code}`))
     })
@@ -72,7 +76,9 @@ async function validateJson(jsonPath) {
     for (const issue of result.error.issues) {
       console.error(`  - ${issue.path.join('.') || '<root>'}: ${issue.message}`)
     }
-    throw new Error('Schema mismatch — check `types/cardio.ts` against `preprocess-health.py` output.')
+    throw new Error(
+      'Schema mismatch — check `types/cardio.ts` against `preprocess-health.py` output.'
+    )
   }
   return result.data
 }
@@ -109,16 +115,42 @@ async function main() {
   console.log(
     `✓ Upserted to Supabase: ${counts.sessions} sessions, ` +
       `${counts.restingHr} resting-HR points, ${counts.vo2max} VO2max points, ` +
-      `${counts.hrSamples.toLocaleString()} HR samples.`,
+      `${counts.hrSamples.toLocaleString()} HR samples.`
   )
   if (counts.pruned > 0) {
     console.log(
-      `  (Pruned ${counts.pruned} orphan row(s) — present in Supabase but not in this import.)`,
+      `  (Pruned ${counts.pruned} orphan row(s) — present in Supabase but not in this import.)`
+    )
+  }
+
+  // Strength workouts land in the Weight Room, not in any cardio table (#413).
+  // Upsert-only and never pruned: unlike the cardio tables, this one also holds
+  // manually recorded sessions, and an import must not reach into those.
+  const strength = await upsertStrengthSessions(supabase, data.strength_sessions ?? [])
+  if (strength.upserted > 0) {
+    console.log(`✓ Upserted ${strength.upserted} strength session(s) to weight_room_workouts.`)
+  }
+
+  // Reported, never pruned. A session deleted or time-corrected in Health leaves
+  // a stale row that nothing else would point out — but these rows can carry
+  // sets transcribed from iCloud notes (#400), so deleting one silently orphans
+  // that work. Name them and let a human decide.
+  const orphans = await findOrphanedStrengthSessions(supabase, data.strength_sessions ?? [])
+  if (orphans.length > 0) {
+    console.log(
+      `\n⚠ ${orphans.length} imported session(s) are in Supabase but not in this export.\n` +
+        '  Likely deleted or time-corrected in Apple Health since the last import.\n' +
+        '  Not removed automatically — they may have sets attached from iCloud notes.\n' +
+        orphans
+          .slice(0, 10)
+          .map(s => `    ${s}`)
+          .join('\n') +
+        (orphans.length > 10 ? `\n    … and ${orphans.length - 10} more` : '')
     )
   }
 }
 
-main().catch((err) => {
+main().catch(err => {
   console.error(err.message ?? err)
   process.exit(1)
 })

@@ -24,9 +24,7 @@ function set(overrides: Partial<StrengthSet> = {}): StrengthSet {
 
 describe('VariantBreakdown', () => {
   it('renders nothing until at least one set carries a variant', () => {
-    const { container } = render(
-      <VariantBreakdown sets={[set(), set()]} goal={PULLUPS} />,
-    )
+    const { container } = render(<VariantBreakdown sets={[set(), set()]} goal={PULLUPS} />)
     expect(container).toBeEmptyDOMElement()
   })
 
@@ -40,19 +38,19 @@ describe('VariantBreakdown', () => {
           set({ reps: 30 }),
         ]}
         goal={PULLUPS}
-      />,
+      />
     )
     expect(screen.getByTestId('variant-breakdown-pullups')).toBeInTheDocument()
     // wide = 60/120 = 50%, close = 25%, unspecified = 25%.
     expect(screen.getByTestId('variant-breakdown-pullups-wide')).toHaveTextContent(
-      /wide\s*60\s*·\s*50%/,
+      /wide\s*60\s*·\s*50%/
     )
     expect(screen.getByTestId('variant-breakdown-pullups-close')).toHaveTextContent(
-      /close\s*30\s*·\s*25%/,
+      /close\s*30\s*·\s*25%/
     )
-    expect(
-      screen.getByTestId('variant-breakdown-pullups-unspecified'),
-    ).toHaveTextContent(/unspecified\s*30\s*·\s*25%/)
+    expect(screen.getByTestId('variant-breakdown-pullups-unspecified')).toHaveTextContent(
+      /unspecified\s*30\s*·\s*25%/
+    )
   })
 
   it('ignores sets for other exercises', () => {
@@ -63,15 +61,13 @@ describe('VariantBreakdown', () => {
           set({ exercise: 'pushups', reps: 100, variant: 'diamond' }),
         ]}
         goal={PULLUPS}
-      />,
+      />
     )
     // Only the pullups/wide set counts: 100% wide, no diamond bucket.
     expect(screen.getByTestId('variant-breakdown-pullups-wide')).toHaveTextContent(
-      /wide\s*10\s*·\s*100%/,
+      /wide\s*10\s*·\s*100%/
     )
-    expect(
-      screen.queryByTestId('variant-breakdown-pullups-diamond'),
-    ).not.toBeInTheDocument()
+    expect(screen.queryByTestId('variant-breakdown-pullups-diamond')).not.toBeInTheDocument()
   })
 
   it('exposes the split to assistive tech via the bar aria-label', () => {
@@ -79,10 +75,10 @@ describe('VariantBreakdown', () => {
       <VariantBreakdown
         sets={[set({ reps: 10, variant: 'wide' }), set({ reps: 10 })]}
         goal={PULLUPS}
-      />,
+      />
     )
     expect(screen.getByRole('img')).toHaveAccessibleName(
-      /pullups by variant: wide 50%, unspecified 50%/,
+      /pullups by variant: wide 50%, unspecified 50%/
     )
   })
 })

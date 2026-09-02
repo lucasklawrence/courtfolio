@@ -19,16 +19,12 @@ describe('getAdminAllowlist', () => {
 
   it('parses comma-separated lists with whitespace', () => {
     vi.stubEnv('ADMIN_EMAILS', '  lucas@example.com ,  foo@bar.com  ')
-    expect(getAdminAllowlist()).toEqual(
-      new Set(['lucas@example.com', 'foo@bar.com']),
-    )
+    expect(getAdminAllowlist()).toEqual(new Set(['lucas@example.com', 'foo@bar.com']))
   })
 
   it('lowercases entries so casing differences do not bypass the gate', () => {
     vi.stubEnv('ADMIN_EMAILS', 'Lucas@Example.com,Foo@BAR.COM')
-    expect(getAdminAllowlist()).toEqual(
-      new Set(['lucas@example.com', 'foo@bar.com']),
-    )
+    expect(getAdminAllowlist()).toEqual(new Set(['lucas@example.com', 'foo@bar.com']))
   })
 
   it('drops empty fragments produced by trailing/extra commas', () => {

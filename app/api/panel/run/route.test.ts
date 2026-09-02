@@ -89,7 +89,11 @@ const fixtureGap: VerifiedGap = {
 const fixtureSynthesis: MetaSynthesis = {
   targetId: 'courtfolio',
   scoreboard: [
-    { personaId: 'hiring-manager', label: 'Skeptical Hiring Manager', scores: fixtureVerdict.scores },
+    {
+      personaId: 'hiring-manager',
+      label: 'Skeptical Hiring Manager',
+      scores: fixtureVerdict.scores,
+    },
   ],
   convergence: [],
   disagreements: [],
@@ -147,7 +151,9 @@ describe('POST /api/panel/run', () => {
     })
 
     it('returns 403 on a malformed Origin header', async () => {
-      const res = await POST(postRun({ targetId: 'courtfolio' }, { origin: 'not a url' }) as NextRequest)
+      const res = await POST(
+        postRun({ targetId: 'courtfolio' }, { origin: 'not a url' }) as NextRequest
+      )
       expect(res.status).toBe(403)
       expect(admitLiveRunMock).not.toHaveBeenCalled()
     })
@@ -226,7 +232,10 @@ describe('POST /api/panel/run', () => {
     it('returns 503 when the IP salt is unavailable (hashClientIp → null)', async () => {
       hashClientIpMock.mockReturnValue(null)
       const res = await POST(
-        postRun({ targetId: 'courtfolio' }, { 'x-forwarded-for': '1.2.3.4, 5.6.7.8' }) as NextRequest
+        postRun(
+          { targetId: 'courtfolio' },
+          { 'x-forwarded-for': '1.2.3.4, 5.6.7.8' }
+        ) as NextRequest
       )
       expect(res.status).toBe(503)
       expect(await res.json()).toEqual({ error: 'Live runs are unavailable.' })
@@ -280,9 +289,7 @@ describe('POST /api/panel/run', () => {
       expect(res.headers.get('retry-after')).toBe('90')
       const body = await res.json()
       expect(body.reason).toBe('in-progress')
-      expect(body.error).toBe(
-        'A live run is already in progress — it will be shared here shortly.'
-      )
+      expect(body.error).toBe('A live run is already in progress — it will be shared here shortly.')
       expect(runPanelMock).not.toHaveBeenCalled()
     })
   })
@@ -384,7 +391,12 @@ describe('POST /api/panel/run', () => {
       const verifierDegraded: PanelResult = {
         ...fixtureResult,
         verifiedGaps: [
-          { ...fixtureGap, verdict: 'unverifiable', verifyNote: 'Verifier unavailable (APICallError).', verifierFailed: true },
+          {
+            ...fixtureGap,
+            verdict: 'unverifiable',
+            verifyNote: 'Verifier unavailable (APICallError).',
+            verifierFailed: true,
+          },
         ],
         personaFailures: [{ personaId: 'staff-mentor', errorType: 'APICallError' }],
       }

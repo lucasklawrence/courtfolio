@@ -114,7 +114,7 @@ export function WorkoutHeatmap({
   useEffect(() => {
     const el = wrapperRef.current
     if (!el || typeof ResizeObserver === 'undefined') return
-    const ro = new ResizeObserver((entries) => {
+    const ro = new ResizeObserver(entries => {
       const entry = entries[0]
       if (entry) setContainerWidth(entry.contentRect.width)
     })
@@ -123,13 +123,11 @@ export function WorkoutHeatmap({
   }, [])
 
   const computedCellSize =
-    cellSize ?? (containerWidth && cols > 0
+    cellSize ??
+    (containerWidth && cols > 0
       ? Math.min(
           MAX_CELL_SIZE,
-          Math.max(
-            DEFAULT_CELL_SIZE,
-            Math.floor((containerWidth - DAY_LABEL_WIDTH) / cols),
-          ),
+          Math.max(DEFAULT_CELL_SIZE, Math.floor((containerWidth - DAY_LABEL_WIDTH) / cols))
         )
       : DEFAULT_CELL_SIZE)
   const cellInner = computedCellSize - cellGap
@@ -144,91 +142,96 @@ export function WorkoutHeatmap({
 
   return (
     <div ref={wrapperRef}>
-    <svg
-      viewBox={`0 0 ${totalWidth} ${totalHeight}`}
-      width={totalWidth}
-      height={totalHeight}
-      role="img"
-      aria-label={ariaLabel}
-      style={{ fontFamily }}
-    >
-      {/* Month labels along the top */}
-      <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT - 4})`}>
-        {monthLabels.map((m) => (
-          <text
-            key={`month-${m.col}-${m.label}`}
-            x={m.col * computedCellSize}
-            y={0}
-            fontSize={11}
-            fill={chartPalette.inkSoft}
-          >
-            {m.label}
-          </text>
-        ))}
-      </g>
-
-      {/* Day-of-week labels along the left */}
-      <g transform={`translate(0, ${MONTH_LABEL_HEIGHT})`}>
-        {DAY_LABELS.map((label, row) =>
-          label ? (
+      <svg
+        viewBox={`0 0 ${totalWidth} ${totalHeight}`}
+        width={totalWidth}
+        height={totalHeight}
+        role="img"
+        aria-label={ariaLabel}
+        style={{ fontFamily }}
+      >
+        {/* Month labels along the top */}
+        <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT - 4})`}>
+          {monthLabels.map(m => (
             <text
-              key={`day-${row}`}
-              x={DAY_LABEL_WIDTH - 6}
-              y={row * computedCellSize + computedCellSize / 2 + 3}
-              textAnchor="end"
-              fontSize={10}
+              key={`month-${m.col}-${m.label}`}
+              x={m.col * computedCellSize}
+              y={0}
+              fontSize={11}
               fill={chartPalette.inkSoft}
             >
-              {label}
+              {m.label}
             </text>
-          ) : null,
-        )}
-      </g>
+          ))}
+        </g>
 
-      {/* Heatmap cells */}
-      <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT})`}>
-        {grid.map((row, rowIdx) =>
-          row.map((cell, colIdx) => (
+        {/* Day-of-week labels along the left */}
+        <g transform={`translate(0, ${MONTH_LABEL_HEIGHT})`}>
+          {DAY_LABELS.map((label, row) =>
+            label ? (
+              <text
+                key={`day-${row}`}
+                x={DAY_LABEL_WIDTH - 6}
+                y={row * computedCellSize + computedCellSize / 2 + 3}
+                textAnchor="end"
+                fontSize={10}
+                fill={chartPalette.inkSoft}
+              >
+                {label}
+              </text>
+            ) : null
+          )}
+        </g>
+
+        {/* Heatmap cells */}
+        <g transform={`translate(${DAY_LABEL_WIDTH}, ${MONTH_LABEL_HEIGHT})`}>
+          {grid.map((row, rowIdx) =>
+            row.map((cell, colIdx) => (
+              <rect
+                key={`cell-${colIdx}-${rowIdx}`}
+                x={colIdx * computedCellSize}
+                y={rowIdx * computedCellSize}
+                width={cellInner}
+                height={cellInner}
+                rx={2}
+                ry={2}
+                fill={CELL_COLORS[intensityLevel(cell.count)]}
+              >
+                <title>{describeCell(cell)}</title>
+              </rect>
+            ))
+          )}
+        </g>
+
+        {/* Legend strip — "Less" + 4 swatches + "More" */}
+        <g
+          transform={`translate(${DAY_LABEL_WIDTH + gridWidth - legendWidth}, ${MONTH_LABEL_HEIGHT + gridHeight + 14})`}
+        >
+          <text x={0} y={0} fontSize={10} fill={chartPalette.inkSoft}>
+            Less
+          </text>
+          {CELL_COLORS.map((color, i) => (
             <rect
-              key={`cell-${colIdx}-${rowIdx}`}
-              x={colIdx * computedCellSize}
-              y={rowIdx * computedCellSize}
+              key={`legend-${i}`}
+              x={32 + i * (computedCellSize + 1)}
+              y={-9}
               width={cellInner}
               height={cellInner}
               rx={2}
               ry={2}
-              fill={CELL_COLORS[intensityLevel(cell.count)]}
-            >
-              <title>{describeCell(cell)}</title>
-            </rect>
-          )),
-        )}
-      </g>
-
-      {/* Legend strip — "Less" + 4 swatches + "More" */}
-      <g
-        transform={`translate(${DAY_LABEL_WIDTH + gridWidth - legendWidth}, ${MONTH_LABEL_HEIGHT + gridHeight + 14})`}
-      >
-        <text x={0} y={0} fontSize={10} fill={chartPalette.inkSoft}>
-          Less
-        </text>
-        {CELL_COLORS.map((color, i) => (
-          <rect
-            key={`legend-${i}`}
-            x={32 + i * (computedCellSize + 1)}
-            y={-9}
-            width={cellInner}
-            height={cellInner}
-            rx={2}
-            ry={2}
-            fill={color}
-          />
-        ))}
-        <text x={32 + 4 * (computedCellSize + 1) + 4} y={0} fontSize={10} fill={chartPalette.inkSoft}>
-          More
-        </text>
-      </g>
-    </svg>
+              fill={color}
+            />
+          ))}
+          <text
+            x={32 + 4 * (computedCellSize + 1) + 4}
+            y={0}
+            fontSize={10}
+            fill={chartPalette.inkSoft}
+          >
+            More
+          </text>
+        </g>
+      </svg>
     </div>
   )
 }

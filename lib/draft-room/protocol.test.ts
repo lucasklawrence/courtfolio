@@ -209,7 +209,10 @@ describe('resultToEvents', () => {
       'synthesis',
       'done',
     ])
-    expect(events.find(e => e.type === 'verify-start')).toEqual({ type: 'verify-start', gapCount: 0 })
+    expect(events.find(e => e.type === 'verify-start')).toEqual({
+      type: 'verify-start',
+      gapCount: 0,
+    })
     expect(events.find(e => e.type === 'gaps-verified')).toEqual({
       type: 'gaps-verified',
       verifiedGaps: [],

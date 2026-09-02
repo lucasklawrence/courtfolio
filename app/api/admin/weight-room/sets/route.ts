@@ -27,8 +27,9 @@ import { withTelemetry } from '@/lib/telemetry/with-telemetry'
  * - 400 — payload failed Zod validation or wasn't valid JSON
  * - 401 — not signed in
  * - 403 — signed in but email not on the allowlist
- * - 409 — `exercise` doesn't exist in `weight_room_goals` (FK violation;
- *   add it via the settings UI first)
+ * - 409 — `exercise` isn't in the `weight_room_exercises` roster (add it via
+ *   the settings catalog first), or `workout_id` names a session that doesn't
+ *   exist (#374)
  * - 500 — unexpected Supabase error
  *
  * @param request Incoming JSON request whose body matches
@@ -71,6 +72,21 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     // than writing an empty-string bucket the History View would have
     // to special-case.
     ...(entry.variant != null ? { variant: entry.variant } : {}),
+    // External load, per implement (#376). Absent leaves the column null,
+    // which is what makes a set bodyweight.
+    ...(entry.weight_lbs != null ? { weight_lbs: entry.weight_lbs } : {}),
+    // Session membership (#374), only when the caller asked for it. There is
+    // deliberately no "attach to whatever workout is open" fallback: a
+    // grease-the-groove set logged during a gym window must stay loose.
+    ...(entry.workout_id != null ? { workout_id: entry.workout_id } : {}),
+    ...(entry.position != null ? { position: entry.position } : {}),
+    ...(entry.template_slot_id != null ? { template_slot_id: entry.template_slot_id } : {}),
+    // The within-set step (#407). Without this the column never gets written,
+    // every mini-set reloads without a step, and a rack run can never complete
+    // a pass — the schema accepting the field is not enough on its own.
+    ...(entry.template_slot_step_id != null
+      ? { template_slot_step_id: entry.template_slot_step_id }
+      : {}),
   }
   const { data, error } = await supabase
     .from('weight_room_sets')
@@ -79,11 +95,34 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     .single()
 
   if (error) {
-    // Postgres FK violation — exercise isn't in weight_room_goals.
+    // Postgres FK violation. Two FKs can fire here now, so name the right one
+    // — blaming the exercise for a bad workout_id sends the caller to the
+    // settings page to fix something that isn't broken. The violated
+    // constraint's name is in the message; match on the workout FK first
+    // since the exercise one is the far more common case and reads as the
+    // sensible default.
     if (error.code === '23503') {
+      if (error.message.includes('template_slot_step_id')) {
+        return NextResponse.json(
+          { error: `Template slot step '${entry.template_slot_step_id}' does not exist.` },
+          { status: 400 }
+        )
+      }
+      if (error.message.includes('template_slot_id')) {
+        return NextResponse.json(
+          { error: `Template slot '${entry.template_slot_id}' does not exist.` },
+          { status: 409 }
+        )
+      }
+      if (error.message.includes('workout_id')) {
+        return NextResponse.json(
+          { error: `Workout '${entry.workout_id}' does not exist.` },
+          { status: 409 }
+        )
+      }
       return NextResponse.json(
         {
-          error: `Exercise '${entry.exercise}' is not configured. Add it via the settings UI before logging sets.`,
+          error: `Exercise '${entry.exercise}' is not in the movement catalog. Add it in settings before logging sets.`,
         },
         { status: 409 }
       )

@@ -70,7 +70,7 @@ const MONTH_LABELS = [
 export function buildHeatmapGrid(
   sessions: ReadonlyArray<Pick<CardioSession, 'date' | 'activity'>>,
   dateFrom?: Date | null,
-  dateTo?: Date | null,
+  dateTo?: Date | null
 ): HeatmapGrid {
   const endMonday = getMondayOf(dateTo ?? new Date())
   const endDate = new Date(endMonday.getTime() + 6 * DAY_MS)

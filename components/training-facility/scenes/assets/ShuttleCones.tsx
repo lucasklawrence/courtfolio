@@ -1,10 +1,5 @@
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
-import {
-  RoughEllipse,
-  RoughLineShape,
-  RoughPolygon,
-  RoughRect,
-} from './rough-shapes'
+import { RoughEllipse, RoughLineShape, RoughPolygon, RoughRect } from './rough-shapes'
 
 type ConeSpec = {
   cx: number
@@ -31,8 +26,15 @@ export function ShuttleCones() {
       {/* Run line — rendered as discrete cream dashes so the rough strokes
           read as a dashed drill line without needing roughjs dasharray support. */}
       {[
-        [200, 240], [280, 320], [360, 400], [440, 480],
-        [520, 560], [600, 640], [680, 720], [760, 800], [840, 880],
+        [200, 240],
+        [280, 320],
+        [360, 400],
+        [440, 480],
+        [520, 560],
+        [600, 640],
+        [680, 720],
+        [760, 800],
+        [840, 880],
       ].map(([x1, x2], i) => (
         <RoughLineShape
           key={`run-dash-${x1}`}

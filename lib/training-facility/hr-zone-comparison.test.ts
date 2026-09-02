@@ -4,12 +4,7 @@ import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
 import type { CardioSession } from '@/types/cardio'
 import type { OtfSession } from '@/types/otf'
 
-import {
-  averageOf,
-  bandForBpm,
-  buildHrZoneComparison,
-  observedMaxHr,
-} from './hr-zone-comparison'
+import { averageOf, bandForBpm, buildHrZoneComparison, observedMaxHr } from './hr-zone-comparison'
 
 /** OTF session factory. */
 function otf(started_at: string, extra: Partial<OtfSession> = {}): OtfSession {
@@ -109,7 +104,9 @@ describe('buildHrZoneComparison', () => {
         hr_seconds_in_zone: { 1: 0, 2: 300, 3: 300, 4: 0, 5: 0 },
       }),
     ]
-    const otfSessions = [otf('a', { peak_hr: 170, zones_min: { gray: 5, blue: 10, green: 20, orange: 4, red: 1 } })]
+    const otfSessions = [
+      otf('a', { peak_hr: 170, zones_min: { gray: 5, blue: 10, green: 20, orange: 4, red: 1 } }),
+    ]
 
     const cmp = buildHrZoneComparison(cardioSessions, otfSessions)
 

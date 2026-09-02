@@ -34,9 +34,7 @@ function setPreviewParam(value: string | null): void {
 
 const populated: CardioData = {
   imported_at: '2026-01-01T00:00:00Z',
-  sessions: [
-    { date: '2026-01-01T00:00:00Z', activity: 'stair', duration_seconds: 1200 },
-  ],
+  sessions: [{ date: '2026-01-01T00:00:00Z', activity: 'stair', duration_seconds: 1200 }],
   resting_hr_trend: [],
   vo2max_trend: [],
 }
@@ -113,7 +111,7 @@ describe('useCardioPreview', () => {
       // surface — preview should fire because there's nothing to render.
       setPreviewParam('demo')
       const { result } = renderHook(() =>
-        useCardioPreview(stairOnly, { requireActivity: 'walking' }),
+        useCardioPreview(stairOnly, { requireActivity: 'walking' })
       )
       expect(result.current.data).toBe(CARDIO_DEMO_DATA)
       expect(result.current.isPreviewMode).toBe(true)
@@ -122,7 +120,7 @@ describe('useCardioPreview', () => {
     it('shows the CTA (no preview param) when real data has no sessions of the required activity', () => {
       setPreviewParam(null)
       const { result } = renderHook(() =>
-        useCardioPreview(stairOnly, { requireActivity: 'walking' }),
+        useCardioPreview(stairOnly, { requireActivity: 'walking' })
       )
       expect(result.current.data).toBe(stairOnly)
       expect(result.current.showEmptyStateCta).toBe(true)
@@ -131,9 +129,7 @@ describe('useCardioPreview', () => {
 
     it('passes through real data when the required activity has sessions', () => {
       setPreviewParam('demo')
-      const { result } = renderHook(() =>
-        useCardioPreview(stairOnly, { requireActivity: 'stair' }),
-      )
+      const { result } = renderHook(() => useCardioPreview(stairOnly, { requireActivity: 'stair' }))
       expect(result.current.data).toBe(stairOnly)
       expect(result.current.isPreviewMode).toBe(false)
       expect(result.current.showEmptyStateCta).toBe(false)

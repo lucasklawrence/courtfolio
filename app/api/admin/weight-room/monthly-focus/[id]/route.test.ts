@@ -79,7 +79,10 @@ describe('DELETE /api/admin/weight-room/monthly-focus/[id]', () => {
 
   it('returns 200 with the deleted row on success', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
-    maybeSingleMock.mockResolvedValueOnce({ data: { id: VALID_ID, exercise: 'shrugs' }, error: null })
+    maybeSingleMock.mockResolvedValueOnce({
+      data: { id: VALID_ID, exercise: 'shrugs' },
+      error: null,
+    })
     const res = await DELETE({} as never, ctx(VALID_ID))
     expect(res.status).toBe(200)
     const body = await res.json()

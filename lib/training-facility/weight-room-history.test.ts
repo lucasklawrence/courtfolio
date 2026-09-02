@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
 
-import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import {
   buildStrengthHeatmap,
@@ -29,6 +29,23 @@ const PUSHUPS: ExerciseGoal = {
   daily_target: 100,
   color: '#EA580C',
 }
+
+/**
+ * Window bounds for the month-label cases, as explicit midday UTC instants.
+ *
+ * `new Date(2026, 0, 5)` is a *local* midnight, and the grid starts on the
+ * Monday of whatever Pacific day that lands on. Under the runner's zone that
+ * Monday can fall into the previous calendar year — which is exactly what
+ * "spans more than one year" tests for, so the single-year case passed in
+ * Pacific and failed on CI's UTC. Midday UTC is the same Pacific day either
+ * way, and each bound sits far enough inside its year that no week straddles
+ * the boundary.
+ */
+const ARCHIVE_START = new Date('2022-08-23T20:00:00Z')
+/** Mid-week and mid-month, so its Monday cannot slip into the previous year. */
+const SAME_YEAR_START = new Date('2026-02-04T20:00:00Z')
+/** Shared end bound; also the fake "now" for these cases. */
+const WINDOW_END = new Date('2026-04-15T20:00:00Z')
 
 describe('intensityFromPct', () => {
   it('buckets 0% as level 0', () => {
@@ -110,10 +127,46 @@ describe('buildStrengthHeatmap', () => {
     const { grid: clamped } = buildStrengthHeatmap(
       [],
       PUSHUPS,
-      new Date(2018, 0, 1),
+      new Date(1970, 0, 1),
       new Date(2026, 3, 15)
     )
-    expect(clamped[0].length).toBeLessThanOrEqual(105)
+    expect(clamped[0].length).toBeLessThanOrEqual(419)
+  })
+
+  it('dates a multi-year axis, and pins the years against thinning (#438)', () => {
+    // Bare month names repeat, so on a four-year grid they identify nothing.
+    vi.useFakeTimers()
+    vi.setSystemTime(WINDOW_END)
+    const { monthLabels } = buildStrengthHeatmap([], PUSHUPS, ARCHIVE_START, WINDOW_END)
+    const years = monthLabels.filter(m => m.pinned === true)
+    expect(years.map(m => m.label)).toEqual(["Aug '22", "Jan '23", "Jan '24", "Jan '25", "Jan '26"])
+  })
+
+  it('leaves a single-year axis on bare month names', () => {
+    // The trailing-year default reads fine without years, and adding them
+    // there would be noise on every existing chart.
+    vi.useFakeTimers()
+    vi.setSystemTime(WINDOW_END)
+    const { monthLabels } = buildStrengthHeatmap([], PUSHUPS, SAME_YEAR_START, WINDOW_END)
+    expect(monthLabels.every(m => m.pinned !== true)).toBe(true)
+    expect(monthLabels.map(m => m.label)).not.toContain("Jan '26")
+  })
+
+  it('draws the whole log for an all-time range, archive included (#438)', () => {
+    // The cap used to be ~2 years, so an all-time window starting at the 2022
+    // archive was silently redrawn as starting in 2024 — and a clamped grid is
+    // indistinguishable from a complete one, so the truncation read as "there
+    // was no training back then".
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(2026, 3, 15))
+    const { grid } = buildStrengthHeatmap(
+      [set('2022-08-23', 'pushups', 50)],
+      PUSHUPS,
+      new Date(2022, 7, 23),
+      new Date(2026, 3, 15)
+    )
+    expect(grid[0][0].dayKey <= '2022-08-23').toBe(true)
+    expect(grid.flat().reduce((acc, c) => acc + c.reps, 0)).toBe(50)
   })
 
   it('skips sets with unparseable timestamps', () => {
@@ -359,5 +412,350 @@ describe('computeStrengthStats', () => {
     const [stats] = computeStrengthStats(sets, [PUSHUPS], now)
     expect(stats.currentStreak).toBe(2)
     expect(stats.longestStreak).toBe(2)
+  })
+})
+
+/**
+ * Effective-dated target coverage (#362). The scenario throughout is the
+ * issue's: pullups at 30, raised to 50 effective Aug 1. Everything before
+ * that boundary must stay scored against 30.
+ */
+describe('effective-dated targets (#362)', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  /** Pullups seeded at 30, raised to 50 on Aug 1. */
+  const PULLUPS_RAISED: ExerciseGoal = {
+    exercise: 'pullups',
+    daily_target: 50,
+    color: '#0EA5A1',
+    target_history: [
+      { daily_target: 30, effective_from: '2026-05-01' },
+      { daily_target: 50, effective_from: '2026-08-01' },
+    ],
+  }
+
+  /** Pullups lowered 50 -> 30 on Aug 1 — the symmetric case. */
+  const PULLUPS_LOWERED: ExerciseGoal = {
+    exercise: 'pullups',
+    daily_target: 30,
+    color: '#0EA5A1',
+    target_history: [
+      { daily_target: 50, effective_from: '2026-05-01' },
+      { daily_target: 30, effective_from: '2026-08-01' },
+    ],
+  }
+
+  /** Find the heatmap cell for a given local date key. */
+  function cellFor(
+    grid: ReturnType<typeof buildStrengthHeatmap>,
+    dateKey: string
+  ): { reps: number; pct: number; dailyTarget: number } | undefined {
+    // Match on the cell's own `dayKey`, not a key re-derived from `cell.date`
+    // (#319). That Date is a fixed 19:00Z instant, so reading its local
+    // components would name the following day on a runner east of UTC+5 — the
+    // exact hazard `StrengthHeatmapCell.dayKey` exists to remove.
+    for (const row of grid.grid) {
+      for (const cell of row) {
+        if (cell.dayKey === dateKey) return cell
+      }
+    }
+    return undefined
+  }
+
+  it('scores a pre-change heatmap cell against the old target', () => {
+    // 30 reps on Jul 15 was a full day against a 30 goal. After raising the
+    // goal to 50 it must still read as 100%, not 60%.
+    const sets = [set('2026-07-15', 'pullups', 30)]
+    const grid = buildStrengthHeatmap(
+      sets,
+      PULLUPS_RAISED,
+      new Date('2026-07-01T12:00:00'),
+      new Date('2026-08-31T12:00:00')
+    )
+    const cell = cellFor(grid, '2026-07-15')
+    expect(cell?.reps).toBe(30)
+    expect(cell?.dailyTarget).toBe(30)
+    expect(cell?.pct).toBe(1)
+    expect(intensityFromPct(cell!.pct)).toBe(3)
+  })
+
+  it('scores a post-change heatmap cell against the new target', () => {
+    const sets = [set('2026-08-15', 'pullups', 40)]
+    const grid = buildStrengthHeatmap(
+      sets,
+      PULLUPS_RAISED,
+      new Date('2026-07-01T12:00:00'),
+      new Date('2026-08-31T12:00:00')
+    )
+    const cell = cellFor(grid, '2026-08-15')
+    expect(cell?.dailyTarget).toBe(50)
+    expect(cell?.pct).toBe(0.8)
+    expect(intensityFromPct(cell!.pct)).toBe(2)
+  })
+
+  it('computes a streak across the boundary with no false break', () => {
+    // 30 reps/day Jul 30-31 (hits the 30 goal), 50 reps/day Aug 1-2 (hits
+    // the raised 50 goal). All four days are hits, so the streak is 4.
+    const sets = [
+      set('2026-07-30', 'pullups', 30),
+      set('2026-07-31', 'pullups', 30),
+      set('2026-08-01', 'pullups', 50),
+      set('2026-08-02', 'pullups', 50),
+    ]
+    const streak = computeStrengthStreaks(sets, PULLUPS_RAISED, new Date('2026-08-02T12:00:00'))
+    expect(streak.current).toBe(4)
+    expect(streak.longest).toBe(4)
+  })
+
+  it('breaks the streak on a post-change day that misses the raised target', () => {
+    // Aug 1 has 30 reps — enough for the old goal, short of the new one, so
+    // it must not count as a hit. Anchoring "now" at Aug 2 puts the last hit
+    // (Jul 31) outside the today/yesterday grace window, so the break shows
+    // up in `current` rather than being masked by it.
+    const sets = [
+      set('2026-07-30', 'pullups', 30),
+      set('2026-07-31', 'pullups', 30),
+      set('2026-08-01', 'pullups', 30),
+    ]
+    const streak = computeStrengthStreaks(sets, PULLUPS_RAISED, new Date('2026-08-02T12:00:00'))
+    expect(streak.current).toBe(0)
+    expect(streak.longest).toBe(2)
+  })
+
+  it('keeps the streak alive under the grace period when today has not yet cleared the new bar', () => {
+    // Same data, anchored at Aug 1: Jul 31 is "yesterday" and still a hit, so
+    // the streak is legitimately alive at 2 even though today falls short.
+    const sets = [
+      set('2026-07-30', 'pullups', 30),
+      set('2026-07-31', 'pullups', 30),
+      set('2026-08-01', 'pullups', 30),
+    ]
+    const streak = computeStrengthStreaks(sets, PULLUPS_RAISED, new Date('2026-08-01T12:00:00'))
+    expect(streak.current).toBe(2)
+    expect(streak.longest).toBe(2)
+  })
+
+  it('does not retroactively credit past days when a target is lowered', () => {
+    // 40 reps on Jul 15 missed the 50 goal in force at the time. Lowering
+    // the goal to 30 in August must not turn it into a hit.
+    const sets = [set('2026-07-15', 'pullups', 40), set('2026-08-15', 'pullups', 40)]
+    const streak = computeStrengthStreaks(sets, PULLUPS_LOWERED, new Date('2026-08-15T12:00:00'))
+    expect(streak.current).toBe(1)
+    expect(streak.longest).toBe(1)
+  })
+
+  it('surfaces the change on the stats payload and keeps dailyTarget current', () => {
+    const sets = [set('2026-07-15', 'pullups', 30)]
+    const [stats] = computeStrengthStats(sets, [PULLUPS_RAISED], new Date('2026-08-15T12:00:00'))
+    expect(stats.dailyTarget).toBe(50)
+    expect(stats.targetChanges).toEqual([{ from: 30, to: 50, effective_from: '2026-08-01' }])
+  })
+
+  it('leaves a goal with no history scored exactly as before', () => {
+    const sets = [set('2026-04-15', 'pushups', 100), set('2026-04-16', 'pushups', 100)]
+    const streak = computeStrengthStreaks(sets, PUSHUPS, new Date('2026-04-16T12:00:00'))
+    expect(streak).toEqual({ current: 2, longest: 2 })
+    const [stats] = computeStrengthStats(sets, [PUSHUPS], new Date('2026-04-16T12:00:00'))
+    expect(stats.targetChanges).toEqual([])
+  })
+})
+
+/**
+ * Focus-anchored exercises in the stats panel (#367). A focus's real bar is
+ * its rotation's `daily_target`, scoped to the window — not the anchor goal's
+ * scalar — so scoring has to run through the synthesized window history.
+ */
+describe('computeStrengthStats with focus rotations (#367)', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  /** Anchor goal for a focus exercise; its scalar deliberately differs from the window target. */
+  const SHRUGS_ANCHOR: ExerciseGoal = {
+    exercise: 'shrugs',
+    daily_target: 500,
+    color: '#C9A268',
+    kind: 'focus',
+  }
+
+  /** July shrugs at 100/day. */
+  const JULY_SHRUGS: MonthlyFocus = {
+    id: 'f1',
+    exercise: 'shrugs',
+    daily_target: 100,
+    target_kind: 'reps',
+    color: '#C9A268',
+    category: 'upper',
+    start_date: '2026-07-01',
+    end_date: '2026-07-31',
+  }
+
+  it('scores focus days against the window target, not the anchor scalar', () => {
+    // 100 reps clears the window's 100 target but not the anchor's 500. With
+    // the anchor scalar it would read as a miss.
+    const sets = [set('2026-07-15', 'shrugs', 100)]
+    const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-07-16T12:00:00'), [
+      JULY_SHRUGS,
+    ])
+    expect(stats.longestStreak).toBe(1)
+  })
+
+  it('falls back to the anchor scalar when no focuses are supplied', () => {
+    const sets = [set('2026-07-15', 'shrugs', 100)]
+    const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-07-16T12:00:00'))
+    // 100 < the anchor's 500, so no hit day — the pre-#367 reading.
+    expect(stats.longestStreak).toBe(0)
+    expect(stats.focus).toBeUndefined()
+  })
+
+  it('attaches a campaign summary marked inactive once the window closes', () => {
+    const sets = [set('2026-07-15', 'shrugs', 100)]
+    const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-08-15T12:00:00'), [
+      JULY_SHRUGS,
+    ])
+    expect(stats.focus?.isActive).toBe(false)
+    expect(stats.focus?.rotations).toBe(1)
+    expect(stats.focus?.campaignReps).toBe(100)
+  })
+
+  it('marks the campaign active while the window covers today', () => {
+    const [stats] = computeStrengthStats(
+      [set('2026-07-15', 'shrugs', 100)],
+      [SHRUGS_ANCHOR],
+      new Date('2026-07-20T12:00:00'),
+      [JULY_SHRUGS]
+    )
+    expect(stats.focus?.isActive).toBe(true)
+  })
+
+  it('leaves permanent goals untouched when focuses are supplied', () => {
+    const sets = [set('2026-04-15', 'pushups', 100), set('2026-04-16', 'pushups', 100)]
+    const [stats] = computeStrengthStats(sets, [PUSHUPS], new Date('2026-04-16T12:00:00'), [
+      JULY_SHRUGS,
+    ])
+    expect(stats.focus).toBeUndefined()
+    expect(stats.currentStreak).toBe(2)
+  })
+})
+
+describe('computeStrengthStats — focus dailyTarget label (#367 review)', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  const SHRUGS_ANCHOR: ExerciseGoal = {
+    exercise: 'shrugs',
+    daily_target: 500,
+    color: '#C9A268',
+    kind: 'focus',
+  }
+
+  const JULY_SHRUGS: MonthlyFocus = {
+    id: 'f1',
+    exercise: 'shrugs',
+    daily_target: 100,
+    target_kind: 'reps',
+    color: '#C9A268',
+    category: 'upper',
+    start_date: '2026-07-01',
+    end_date: '2026-07-31',
+  }
+
+  it('labels the card with the rotation target, not the anchor scalar', () => {
+    // Otherwise the card reads "goal 500/day" beside a streak that counts
+    // 100-rep days as hits — a straight contradiction.
+    const [stats] = computeStrengthStats(
+      [set('2026-07-15', 'shrugs', 100)],
+      [SHRUGS_ANCHOR],
+      new Date('2026-07-20T12:00:00'),
+      [JULY_SHRUGS]
+    )
+    expect(stats.dailyTarget).toBe(100)
+    expect(stats.longestStreak).toBe(1)
+  })
+
+  it('keeps the anchor scalar when no rotation applies', () => {
+    const [stats] = computeStrengthStats([], [SHRUGS_ANCHOR], new Date('2026-07-20T12:00:00'), [])
+    expect(stats.dailyTarget).toBe(500)
+  })
+
+  it('leaves a permanent goal labelled with its own current target', () => {
+    const [stats] = computeStrengthStats([], [PUSHUPS], new Date('2026-07-20T12:00:00'), [])
+    expect(stats.dailyTarget).toBe(100)
+  })
+})
+
+/**
+ * Pacific bucketing (#319). These are the cases the old server-local
+ * `toDateKey` got wrong: on Vercel "local" is UTC, so an evening Pacific set
+ * landed on the following calendar day. They assert against explicit `Z`
+ * timestamps so the result is identical on a Pacific dev machine and a UTC CI
+ * runner — the timezone-independence is the point.
+ */
+describe('Pacific day bucketing (#319)', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  /** A set at an explicit UTC instant, so the test doesn't depend on the runner's zone. */
+  function utcSet(iso: string, exercise: string, reps: number): StrengthSet {
+    return { id: `${exercise}-${iso}-${reps}`, logged_at: iso, exercise, reps }
+  }
+
+  it('buckets an evening Pacific set onto that Pacific day, not the next UTC one', () => {
+    // 2026-07-16T05:00:00Z is 10pm PDT on the 15th.
+    const sets = [utcSet('2026-07-16T05:00:00Z', 'pushups', 100)]
+    const grid = buildStrengthHeatmap(
+      sets,
+      PUSHUPS,
+      new Date('2026-07-13T19:00:00Z'),
+      new Date('2026-07-19T19:00:00Z')
+    )
+    const cells = grid.grid.flat().filter(c => c.reps > 0)
+    expect(cells).toHaveLength(1)
+    expect(cells[0].dayKey).toBe('2026-07-15')
+  })
+
+  it('keeps a split evening session on one day so it can reach the target', () => {
+    // Two halves of the same Pacific evening that straddle UTC midnight.
+    // Bucketed by UTC they are 50 + 50 on separate days — neither a hit.
+    const sets = [
+      utcSet('2026-07-16T02:00:00Z', 'pushups', 50), // 7pm PDT Jul 15
+      utcSet('2026-07-16T05:00:00Z', 'pushups', 50), // 10pm PDT Jul 15
+    ]
+    const streak = computeStrengthStreaks(sets, PUSHUPS, new Date('2026-07-16T19:00:00Z'))
+    expect(streak.longest).toBe(1)
+  })
+
+  it('rolls an evening set into the Pacific week, not the next one', () => {
+    // 2026-07-13T05:00:00Z is 10pm PDT Sunday Jul 12 — the *end* of the
+    // Jul 6 week. In UTC it is Monday Jul 13, opening the next week.
+    const sets = [utcSet('2026-07-13T05:00:00Z', 'pushups', 60)]
+    const points = buildWeeklyVolume(sets, PUSHUPS, 3, new Date('2026-07-15T19:00:00Z'))
+    const withReps = points.filter(p => p.reps > 0)
+    expect(withReps).toHaveLength(1)
+    expect(withReps[0].weekKey).toBe('2026-07-06')
+  })
+
+  it('counts an evening set in the Pacific month it belongs to', () => {
+    // 2026-08-01T05:00:00Z is 10pm PDT on Jul 31.
+    const sets = [utcSet('2026-08-01T05:00:00Z', 'pushups', 120)]
+    const [stats] = computeStrengthStats(sets, [PUSHUPS], new Date('2026-08-15T19:00:00Z'))
+    expect(stats.lastMonthReps).toBe(120)
+    expect(stats.thisMonthReps).toBe(0)
+  })
+
+  it('exposes a Pacific dayKey on every cell', () => {
+    const grid = buildStrengthHeatmap(
+      [],
+      PUSHUPS,
+      new Date('2026-07-13T19:00:00Z'),
+      new Date('2026-07-19T19:00:00Z')
+    )
+    // Row 0 is Monday, so the first cell of the first column is a Monday.
+    expect(grid.grid[0][0].dayKey).toBe('2026-07-13')
+    expect(grid.grid[6][0].dayKey).toBe('2026-07-19')
   })
 })

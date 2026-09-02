@@ -37,14 +37,12 @@ import { SilhouetteJumpTracker } from './SilhouetteJumpTracker'
 export function JumpTrackerSection(): JSX.Element {
   const [entries, setEntries] = useState<Benchmark[] | undefined>(undefined)
   const searchParams = useSearchParams()
-  const previewActive = isPreviewDemoActive(
-    searchParams?.get(TRAINING_FACILITY_PREVIEW_PARAM),
-  )
+  const previewActive = isPreviewDemoActive(searchParams?.get(TRAINING_FACILITY_PREVIEW_PARAM))
 
   useEffect(() => {
     let cancelled = false
     getMovementBenchmarks()
-      .then((data) => {
+      .then(data => {
         if (!cancelled) setEntries(data)
       })
       .catch(() => {

@@ -25,6 +25,8 @@ const PUSHUPS_LOAD: MovementLoad = {
   flag: 'yellow',
   wowFlag: 'yellow',
   acwrFlag: 'green',
+  // Near-daily, so it clears the frequency gate and earns a card (#377).
+  trainingDays: 24,
   sparkline: SPARKLINE,
 }
 
@@ -38,7 +40,7 @@ describe('LoadManagementPanel', () => {
     const { getByTestId } = render(
       <LoadManagementPanel
         loads={[PUSHUPS_LOAD, { ...PUSHUPS_LOAD, movement: 'squats', flag: 'red' }]}
-      />,
+      />
     )
     expect(getByTestId('load-card-pushups')).toHaveAttribute('data-flag', 'yellow')
     expect(getByTestId('load-card-squats')).toHaveAttribute('data-flag', 'red')
@@ -57,7 +59,7 @@ describe('LoadManagementPanel', () => {
     const { getByTestId } = render(
       <LoadManagementPanel
         loads={[{ ...PUSHUPS_LOAD, movement: 'shrugs', metric: 'load', unitLabel: 'lb' }]}
-      />,
+      />
     )
     const card = getByTestId('load-card-shrugs')
     expect(card.textContent).toContain('7d load volume')
@@ -66,7 +68,7 @@ describe('LoadManagementPanel', () => {
 
   it('renders an em-dash when WoW or ACWR is null', () => {
     const { getByTestId } = render(
-      <LoadManagementPanel loads={[{ ...PUSHUPS_LOAD, wowPct: null, acwr: null }]} />,
+      <LoadManagementPanel loads={[{ ...PUSHUPS_LOAD, wowPct: null, acwr: null }]} />
     )
     expect(getByTestId('load-card-pushups').textContent).toContain('—')
   })
@@ -83,5 +85,42 @@ describe('LoadManagementPanel', () => {
     const heading = getByText('pushups')
     const styleAttr = heading.getAttribute('style') ?? ''
     expect(styleAttr).toMatch(/#EA580C|rgb\(\s*234,\s*88,\s*12\s*\)/i)
+  })
+})
+
+describe('LoadManagementPanel — withheld movements (#377)', () => {
+  const INFREQUENT = [
+    { movement: 'barbell-bench-press', displayName: 'Barbell Bench Press', trainingDays: 4 },
+    { movement: 'barbell-squat', trainingDays: 3 },
+  ]
+
+  it('names the movements it held back rather than showing a bare count', () => {
+    const { getByTestId } = render(
+      <LoadManagementPanel loads={[PUSHUPS_LOAD]} infrequent={INFREQUENT} />
+    )
+    const note = getByTestId('load-management-infrequent')
+    expect(note.textContent).toContain('Barbell Bench Press (4d)')
+    // Falls back to the slug when the catalog has no label for it.
+    expect(note.textContent).toContain('barbell-squat (3d)')
+    expect(note.textContent).toContain('Not ramped (2)')
+  })
+
+  it('says nothing when every trained movement earned a card', () => {
+    const { queryByTestId } = render(<LoadManagementPanel loads={[PUSHUPS_LOAD]} />)
+    expect(queryByTestId('load-management-infrequent')).toBeNull()
+  })
+
+  it('distinguishes "nothing logged" from "nothing frequent enough"', () => {
+    const nothing = render(<LoadManagementPanel loads={[]} />)
+    expect(nothing.getByTestId('load-management-empty').textContent).toContain(
+      'No movements logged in the last 28 days'
+    )
+    nothing.unmount()
+
+    const infrequentOnly = render(<LoadManagementPanel loads={[]} infrequent={INFREQUENT} />)
+    expect(infrequentOnly.getByTestId('load-management-empty').textContent).toContain(
+      'trained often enough'
+    )
+    expect(infrequentOnly.getByTestId('load-management-infrequent')).toBeInTheDocument()
   })
 })

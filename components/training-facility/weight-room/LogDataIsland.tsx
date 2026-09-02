@@ -9,6 +9,8 @@ import {
   computeFocusLoadStats,
   upcomingFocuses,
 } from '@/lib/training-facility/monthly-focus'
+import { targetForDay } from '@/lib/training-facility/goal-targets'
+import { countedReps } from '@/lib/training-facility/set-reps'
 import { computeStrengthStreaks } from '@/lib/training-facility/strength-streaks'
 import {
   filterSetsForDay,
@@ -17,15 +19,28 @@ import {
   toLocalDateKey,
   totalsByExercise,
 } from '@/lib/training-facility/strength-today'
-import type { MonthlyFocus, StrengthSet, WeightRoomData } from '@/types/weight-room'
+import type {
+  ExerciseGoal,
+  MonthlyFocus,
+  StrengthSet,
+  WeightRoomData,
+  WorkoutTemplate,
+} from '@/types/weight-room'
 
 import { ActivityRings, type RingProgress } from './ActivityRings'
+import { LiveWorkoutPanel } from './LiveWorkoutPanel'
 import { LogDayPicker } from './LogDayPicker'
 import { MonthlyFocusCard } from './MonthlyFocusCard'
 import { QuickLog } from './QuickLog'
 import { SetList } from './SetList'
 import { StreakBadge } from './StreakBadge'
 import { UpcomingFocusStrip } from './UpcomingFocusStrip'
+import { UpcomingGoalChangeStrip } from './UpcomingGoalChangeStrip'
+import {
+  buildExerciseLabels,
+  exerciseLabel,
+  slugLabel,
+} from '@/lib/training-facility/exercise-labels'
 
 /**
  * Admin Log View data island (#197). Owns the strength dataset that
@@ -50,7 +65,17 @@ import { UpcomingFocusStrip } from './UpcomingFocusStrip'
  * monotonic request id keeps a slow mount fetch from clobbering fresh
  * post-write data.
  */
-export function LogDataIsland(): JSX.Element {
+/** Props for {@link LogDataIsland}. */
+export interface LogDataIslandProps {
+  /**
+   * Templates available to start a workout from (#376), server-fetched by the
+   * page. Passed in rather than fetched here so the panel doesn't add a second
+   * client round trip on every mount of an admin page that already reads a lot.
+   */
+  templates?: readonly WorkoutTemplate[]
+}
+
+export function LogDataIsland({ templates = [] }: LogDataIslandProps = {}): JSX.Element {
   const [data, setData] = useState<WeightRoomData | null | undefined>(undefined)
   // `loadError` is the "fetch threw" branch, distinct from `data === null`
   // (the "tables are genuinely empty" branch). Splitting them keeps a
@@ -60,15 +85,13 @@ export function LogDataIsland(): JSX.Element {
   // Day the whole view is pointed at (#202) — rings, totals, SetList,
   // and the `logged_at` of newly logged sets all follow this key. Lazy
   // initializer so "today" is computed once at mount, not every render.
-  const [selectedDay, setSelectedDay] = useState<string>(() =>
-    toLocalDateKey(new Date()),
-  )
+  const [selectedDay, setSelectedDay] = useState<string>(() => toLocalDateKey(new Date()))
   const requestIdRef = useRef(0)
 
   useEffect(() => {
     const id = ++requestIdRef.current
     getWeightRoomData()
-      .then((d) => {
+      .then(d => {
         if (id === requestIdRef.current) {
           setData(d)
           setLoadError(null)
@@ -77,7 +100,7 @@ export function LogDataIsland(): JSX.Element {
       .catch((err: unknown) => {
         if (id === requestIdRef.current) {
           setLoadError(err instanceof Error ? err.message : 'Failed to load.')
-          setData((prev) => (prev === undefined ? null : prev))
+          setData(prev => (prev === undefined ? null : prev))
         }
       })
     return () => {
@@ -100,13 +123,10 @@ export function LogDataIsland(): JSX.Element {
     }
   }, [])
 
-  const lastReps = useMemo(
-    () => (data ? computeLastRepsByExercise(data.sets) : {}),
-    [data],
-  )
+  const lastReps = useMemo(() => (data ? computeLastRepsByExercise(data.sets) : {}), [data])
   const variantSuggestions = useMemo(
     () => (data ? computeVariantSuggestionsByExercise(data.sets) : {}),
-    [data],
+    [data]
   )
 
   if (data === undefined) {
@@ -131,6 +151,10 @@ export function LogDataIsland(): JSX.Element {
     monthly_focus: [],
   }
   const todayKey = toLocalDateKey(new Date())
+  // Pickers offer live movements and templates only; archived ones stay
+  // rendered wherever they're already referenced, they just aren't selectable.
+  const activeExercises = (surfaceData.exercises ?? []).filter(e => e.archived !== true)
+  const activeTemplates = templates.filter(t => t.archived !== true)
   // Display-only backfill flag. After a midnight rollover `selectedDay`
   // (set at mount) lags `todayKey` — that's intentional: the view stays
   // on the day the admin was logging against, now flagged as a backfill
@@ -146,56 +170,91 @@ export function LogDataIsland(): JSX.Element {
   // finished or future focus doesn't leave a stale empty ring. Permanent
   // goals always show.
   const activeFocuses = activeFocusesForDay(surfaceData.monthly_focus, selectedDay)
-  const activeFocusExercises = new Set(activeFocuses.map((focus) => focus.exercise))
+  const activeFocusExercises = new Set(activeFocuses.map(focus => focus.exercise))
   const visibleGoals = surfaceData.goals.filter(
-    (goal) => goal.kind !== 'focus' || activeFocusExercises.has(goal.exercise),
+    goal => goal.kind !== 'focus' || activeFocusExercises.has(goal.exercise)
   )
   const upcoming = upcomingFocuses(surfaceData.monthly_focus, todayKey)
 
-  const rings: RingProgress[] = visibleGoals.map((goal) => ({
-    goal,
+  // Score the viewed day against the target that was live *that* day (#362).
+  // The picker can point this whole surface at a past date, so reading the
+  // current target would render a completed July day as 30/50 instead of the
+  // 30/30 it actually was — the same retroactive re-scoring the history view
+  // fixes. `target_history` is deliberately preserved so anything downstream
+  // that resolves per-day (streaks) still sees the full series.
+  const forSelectedDay = (goal: ExerciseGoal): ExerciseGoal => ({
+    ...goal,
+    daily_target: targetForDay(goal, selectedDay),
+  })
+
+  const rings: RingProgress[] = visibleGoals.map(goal => ({
+    goal: forSelectedDay(goal),
     totalReps: totals.get(goal.exercise) ?? 0,
   }))
+  // Streaks get the unmodified goals: they span the whole log and resolve
+  // each day's bar themselves, so pinning one day's target here would be
+  // exactly wrong.
   const streaks = computeStrengthStreaks(surfaceData.sets, visibleGoals)
   // SetList color/label lookup spans *all* goals (incl. inactive focuses)
   // so a backfilled out-of-window set still resolves its exercise.
+  const exerciseLabels = buildExerciseLabels(surfaceData.exercises)
   const goalsByExercise = Object.fromEntries(
-    surfaceData.goals.map((g) => [g.exercise, g]),
+    surfaceData.goals.map(g => [g.exercise, forSelectedDay(g)])
   )
+  const quickLogGoals = visibleGoals.map(forSelectedDay)
 
   // Focus card inputs per active focus: today's progress in the focus's
   // own unit (reps or distinct sets), plus windowed adherence and load
   // stats.
-  const focusCards = activeFocuses.map((focus) =>
-    buildFocusCardProps(focus, setsForDay, surfaceData.sets),
+  const focusCards = activeFocuses.map(focus =>
+    buildFocusCardProps(
+      focus,
+      setsForDay,
+      surfaceData.sets,
+      // Implements moved per set — shrugs carry two dumbbells, so their tonnage
+      // counts both. Without this the card would disagree with the Trophy
+      // Room's figure for the same movement.
+      goalsByExercise[focus.exercise]?.load_multiplier ?? 1
+    )
   )
 
   return (
     <div className="flex flex-col gap-8">
       {loadError ? <LoadErrorBanner message={loadError} /> : null}
 
-      <LogDayPicker
-        selectedDay={selectedDay}
-        todayKey={todayKey}
-        onSelectDay={setSelectedDay}
+      {/* Live recording (#376) sits above the grease-the-groove dashboard
+          rather than replacing it: pull-ups and push-ups are in the templates
+          *and* in the daily rings, so forcing a choice between the two
+          surfaces would make one of them wrong. */}
+      <LiveWorkoutPanel
+        sets={surfaceData.sets}
+        exercises={activeExercises}
+        templates={activeTemplates}
+        disabled={busy}
+        onChanged={refetch}
       />
 
+      <LogDayPicker selectedDay={selectedDay} todayKey={todayKey} onSelectDay={setSelectedDay} />
+
       <UpcomingFocusStrip focuses={upcoming} />
+      {/* Scheduled daily-target changes (#371) — announced beside the queued
+          focus rotations, since both answer "what changes next". */}
+      <UpcomingGoalChangeStrip goals={visibleGoals} todayKey={todayKey} />
 
       <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-start">
         <div className="flex w-full max-w-[264px] flex-col items-center gap-4">
           <ActivityRings rings={rings} size={264} className="w-full max-w-[264px]" />
           <div className="grid w-full gap-2">
-            {visibleGoals.map((goal) => (
+            {visibleGoals.map(goal => (
               <StreakBadge
                 key={goal.exercise}
-                exercise={goal.exercise}
+                exercise={exerciseLabel(goal)}
                 streak={streaks[goal.exercise] ?? { current: 0, longest: 0 }}
                 accentColor={goal.color}
               />
             ))}
           </div>
-          {focusCards.map((card) => (
+          {focusCards.map(card => (
             <MonthlyFocusCard
               key={card.focus.id}
               focus={card.focus}
@@ -209,7 +268,7 @@ export function LogDataIsland(): JSX.Element {
         <div className="flex flex-col gap-6">
           {visibleGoals.length > 0 ? (
             <QuickLog
-              goals={visibleGoals}
+              goals={quickLogGoals}
               lastReps={lastReps}
               variantSuggestions={variantSuggestions}
               onLog={({ exercise, reps, variant }) => {
@@ -226,12 +285,10 @@ export function LogDataIsland(): JSX.Element {
                 return logSet(
                   exercise,
                   reps,
-                  isBackfillAtTap
-                    ? localNoonIsoForDay(selectedDay) || undefined
-                    : undefined,
+                  isBackfillAtTap ? localNoonIsoForDay(selectedDay) || undefined : undefined,
                   variant,
                   setBusy,
-                  refetch,
+                  refetch
                 )
               }}
               busy={busy}
@@ -251,7 +308,15 @@ export function LogDataIsland(): JSX.Element {
           <SetList
             setsToday={setsForDay}
             goalsByExercise={goalsByExercise}
-            onDelete={(s) => deleteSet(s, setBusy, refetch)}
+            labels={exerciseLabels}
+            onDelete={s =>
+              deleteSet(
+                s,
+                setBusy,
+                refetch,
+                slugLabel(s.exercise, goalsByExercise[s.exercise], exerciseLabels)
+              )
+            }
             busy={busy}
             dayLabel={isBackfilling ? formatDayLabel(selectedDay) || selectedDay : 'Today'}
           />
@@ -277,7 +342,7 @@ async function logSet(
   loggedAt: string | undefined,
   variant: string | undefined,
   setBusy: (v: boolean) => void,
-  refetch: () => Promise<void>,
+  refetch: () => Promise<void>
 ): Promise<void> {
   setBusy(true)
   try {
@@ -311,8 +376,9 @@ async function deleteSet(
   set: StrengthSet,
   setBusy: (v: boolean) => void,
   refetch: () => Promise<void>,
+  label: string = set.exercise
 ): Promise<void> {
-  const ok = window.confirm(`Delete this set of ${set.reps} ${set.exercise}?`)
+  const ok = window.confirm(`Delete this set of ${set.reps} ${label}?`)
   if (!ok) return
   setBusy(true)
   try {
@@ -334,12 +400,12 @@ async function deleteSet(
  * "Custom" input. Walks the full `sets` array (not just today's) so
  * the seed survives a midnight rollover.
  */
-function computeLastRepsByExercise(
-  sets: readonly StrengthSet[],
-): Record<string, number> {
+function computeLastRepsByExercise(sets: readonly StrengthSet[]): Record<string, number> {
   const out: Record<string, number> = {}
   for (const s of sets) {
-    out[s.exercise] = s.reps
+    // Seeds the rep stepper, so a set with no recorded count is skipped rather
+    // than seeding it with zero (#440).
+    if (s.reps !== null) out[s.exercise] = s.reps
   }
   return out
 }
@@ -352,7 +418,7 @@ function computeLastRepsByExercise(
  * of the suggestion list. Untagged sets contribute nothing.
  */
 function computeVariantSuggestionsByExercise(
-  sets: readonly StrengthSet[],
+  sets: readonly StrengthSet[]
 ): Record<string, string[]> {
   const out: Record<string, string[]> = {}
   for (const s of sets) {
@@ -375,27 +441,30 @@ function computeVariantSuggestionsByExercise(
  * @param focus The focus active on the viewed day.
  * @param setsForDay Sets already filtered to the viewed day.
  * @param allSets The full set log, for window-spanning adherence + load.
+ * @param loadMultiplier Implements moved per set, from the focus exercise's
+ *   goal. Scales tonnage only — top set and average load stay per-implement.
  */
 function buildFocusCardProps(
   focus: MonthlyFocus,
   setsForDay: readonly StrengthSet[],
   allSets: readonly StrengthSet[],
+  loadMultiplier = 1
 ): {
   focus: MonthlyFocus
   todayProgress: number
   adherence: ReturnType<typeof computeFocusAdherence>
   loadStats: ReturnType<typeof computeFocusLoadStats>
 } {
-  const focusSetsToday = setsForDay.filter((s) => s.exercise === focus.exercise)
+  const focusSetsToday = setsForDay.filter(s => s.exercise === focus.exercise)
   const todayProgress =
     focus.target_kind === 'sets'
       ? focusSetsToday.length
-      : focusSetsToday.reduce((n, s) => n + s.reps, 0)
+      : focusSetsToday.reduce((n, s) => n + countedReps(s), 0)
   return {
     focus,
     todayProgress,
     adherence: computeFocusAdherence(focus, allSets),
-    loadStats: computeFocusLoadStats(focus, allSets),
+    loadStats: computeFocusLoadStats(focus, allSets, loadMultiplier),
   }
 }
 

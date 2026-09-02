@@ -114,16 +114,29 @@ export interface OtfSession {
    * Coarse class-type label inferred at ingest from the machine signature
    * (#271): `'Tread + Row'`, `'Tread-focused'`, `'Row-focused'`, or
    * `'Strength / Floor'`. Absent for a near-zero malfunction. NOT OTF's
-   * official format name — see {@link class_type_override}.
+   * official format name — see {@link class_format}.
    */
   class_type?: string
   /**
-   * Manually-set real OTF format name (e.g. `'2G'`, `'Strength 50'`) that wins
-   * over {@link class_type}. Set by hand in Supabase; never written by the
-   * append-only importer. The view uses `class_type_override ?? class_type` as
-   * the effective type.
+   * The real OTF class template (`'2G'`, `'3G'`, `'HYROX 2G'`, `'Tread 50'`, …),
+   * resolved from the booking calendar or entered by hand (#453). Wins over
+   * {@link class_type}, which can't distinguish 2G from 3G because the OTbeat
+   * email carries no template token at all.
+   *
+   * Absent is a legitimate state, not a gap: a drop-in with no calendar booking
+   * stays unlabeled rather than being guessed at.
    */
-  class_type_override?: string
+  class_format?: string
+  /**
+   * Where {@link class_format} came from — `'booking'` (matched to an
+   * `otf_bookings` row) or `'manual'` (hand-entered for a session with no
+   * booking). Always present when {@link class_format} is.
+   *
+   * Not cosmetic: it's what lets the coverage monitor tell a working feed from
+   * a broken one. Without it a week of hand-labeled sessions looks identical to
+   * a week of successfully matched ones.
+   */
+  class_format_source?: 'booking' | 'manual'
 }
 
 /** Full OrangeTheory dataset consumed by the Gym OTF view. */

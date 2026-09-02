@@ -16,11 +16,7 @@ import {
 // components must NOT import these via this module — they're inside a
 // `'use client'` boundary, which Next 15+ refuses to call from a
 // Server Component. Import directly from `./preview-param` instead.
-export {
-  TRAINING_FACILITY_PREVIEW_PARAM,
-  TRAINING_FACILITY_PREVIEW_VALUE,
-  isPreviewDemoActive,
-}
+export { TRAINING_FACILITY_PREVIEW_PARAM, TRAINING_FACILITY_PREVIEW_VALUE, isPreviewDemoActive }
 
 /** Optional knobs for {@link useCardioPreview}. */
 export interface UseCardioPreviewOptions {
@@ -85,12 +81,10 @@ export interface CardioPreviewState {
  */
 export function useCardioPreview(
   real: CardioData | null | undefined,
-  options: UseCardioPreviewOptions = {},
+  options: UseCardioPreviewOptions = {}
 ): CardioPreviewState {
   const searchParams = useSearchParams()
-  const previewActive = isPreviewDemoActive(
-    searchParams?.get(TRAINING_FACILITY_PREVIEW_PARAM),
-  )
+  const previewActive = isPreviewDemoActive(searchParams?.get(TRAINING_FACILITY_PREVIEW_PARAM))
   const realIsEmpty = computeRealIsEmpty(real, options.requireActivity)
   const isPreviewMode = realIsEmpty && previewActive
   const showEmptyStateCta = realIsEmpty && !previewActive
@@ -125,12 +119,12 @@ export function useCardioPreviewHref(): string {
  */
 function computeRealIsEmpty(
   real: CardioData | null | undefined,
-  requireActivity: CardioActivity | undefined,
+  requireActivity: CardioActivity | undefined
 ): boolean {
   if (real === undefined) return false
   if (real === null) return true
   const sessions = requireActivity
-    ? real.sessions.filter((s) => s.activity === requireActivity)
+    ? real.sessions.filter(s => s.activity === requireActivity)
     : real.sessions
   return sessions.length === 0
 }

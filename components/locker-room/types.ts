@@ -28,8 +28,4 @@ export type LockerZoneId =
   | 'ghost-logo-jersey'
 
 export type LockerContentKey =
-  | LockerZoneId
-  | 'title'
-  | 'back-to-court'
-  | 'locker-info'
-  | 'next-stop-nav'
+  LockerZoneId | 'title' | 'back-to-court' | 'locker-info' | 'next-stop-nav'

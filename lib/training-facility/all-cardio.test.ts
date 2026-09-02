@@ -17,7 +17,7 @@ const range = (startIso: string, endIso: string) => ({
 const session = (
   date: string,
   activity: CardioSession['activity'],
-  extras: Partial<CardioSession> = {},
+  extras: Partial<CardioSession> = {}
 ): CardioSession => ({
   date,
   activity,
@@ -36,10 +36,10 @@ describe('filterAllCardioSessions', () => {
     ]
     const out = filterAllCardioSessions(
       sessions,
-      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999'),
+      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999')
     )
-    expect(out.map((s) => s.date)).toEqual(['2026-04-01', '2026-04-05', '2026-04-10'])
-    expect(out.map((s) => s.activity)).toEqual(['running', 'walking', 'stair'])
+    expect(out.map(s => s.date)).toEqual(['2026-04-01', '2026-04-05', '2026-04-10'])
+    expect(out.map(s => s.activity)).toEqual(['running', 'walking', 'stair'])
   })
 
   it('is inclusive on both ends', () => {
@@ -51,9 +51,9 @@ describe('filterAllCardioSessions', () => {
     ]
     const out = filterAllCardioSessions(
       sessions,
-      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999'),
+      range('2026-04-01T00:00:00', '2026-04-15T23:59:59.999')
     )
-    expect(out.map((s) => s.date)).toEqual(['2026-04-01', '2026-04-15'])
+    expect(out.map(s => s.date)).toEqual(['2026-04-01', '2026-04-15'])
   })
 
   it('drops sessions with unparseable date strings rather than throwing', () => {
@@ -63,9 +63,9 @@ describe('filterAllCardioSessions', () => {
     ]
     const out = filterAllCardioSessions(
       sessions,
-      range('2026-01-01T00:00:00', '2026-12-31T23:59:59.999'),
+      range('2026-01-01T00:00:00', '2026-12-31T23:59:59.999')
     )
-    expect(out.map((s) => s.date)).toEqual(['2026-04-10'])
+    expect(out.map(s => s.date)).toEqual(['2026-04-10'])
   })
 })
 
@@ -111,7 +111,7 @@ describe('countByActivity', () => {
       session('2026-04-03', 'walking', { duration_seconds: 2400 }),
     ]
     const out = countByActivity(sessions)
-    expect(out.map((row) => row.activity)).toEqual(ACTIVITY_ORDER)
+    expect(out.map(row => row.activity)).toEqual(ACTIVITY_ORDER)
     expect(out).toEqual([
       { activity: 'stair', sessionCount: 2, totalDurationSeconds: 3300 },
       { activity: 'running', sessionCount: 0, totalDurationSeconds: 0 },
@@ -121,8 +121,8 @@ describe('countByActivity', () => {
 
   it('returns three zero rows for an empty input', () => {
     const out = countByActivity([])
-    expect(out.map((r) => r.activity)).toEqual(ACTIVITY_ORDER)
-    expect(out.every((r) => r.sessionCount === 0 && r.totalDurationSeconds === 0)).toBe(true)
+    expect(out.map(r => r.activity)).toEqual(ACTIVITY_ORDER)
+    expect(out.every(r => r.sessionCount === 0 && r.totalDurationSeconds === 0)).toBe(true)
   })
 })
 
@@ -146,7 +146,7 @@ describe('perSessionAvgHrByActivity', () => {
       session('2026-04-10', 'running', { avg_hr: 150 }),
     ]
     const out = perSessionAvgHrByActivity(sessions)
-    expect(out.map((p) => p.avgHr)).toEqual([150])
+    expect(out.map(p => p.avgHr)).toEqual([150])
   })
 })
 

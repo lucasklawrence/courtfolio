@@ -6,11 +6,7 @@ import { StreakBadge } from './StreakBadge'
 describe('StreakBadge', () => {
   it('shows the current streak count and exercise label', () => {
     render(
-      <StreakBadge
-        exercise="pushups"
-        streak={{ current: 5, longest: 12 }}
-        accentColor="#EA580C"
-      />,
+      <StreakBadge exercise="pushups" streak={{ current: 5, longest: 12 }} accentColor="#EA580C" />
     )
     expect(screen.getByText('pushups')).toBeInTheDocument()
     expect(screen.getByText('5')).toBeInTheDocument()

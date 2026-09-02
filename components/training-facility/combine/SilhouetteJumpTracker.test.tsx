@@ -14,9 +14,7 @@ describe('SilhouetteJumpTracker', () => {
   it('renders an empty state when there are no jump entries', () => {
     render(<SilhouetteJumpTracker entries={[]} />)
     expect(screen.getByRole('status')).toBeInTheDocument()
-    expect(
-      screen.getByText(/no jumps logged yet/i),
-    ).toBeInTheDocument()
+    expect(screen.getByText(/no jumps logged yet/i)).toBeInTheDocument()
   })
 
   it('renders the standing-reach annotation with the configured reach', () => {
@@ -95,9 +93,7 @@ describe('SilhouetteJumpTracker', () => {
     // Active panel reveals one button per complete entry only.
     await user.hover(screen.getByRole('button'))
     expect(screen.getAllByRole('button')).toHaveLength(2)
-    expect(
-      screen.queryByRole('button', { name: /2026-02-15/ }),
-    ).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /2026-02-15/ })).not.toBeInTheDocument()
   })
 
   it('sizes the viewBox to fit the peak historical jump, even when the latest is a regression', () => {
@@ -107,9 +103,7 @@ describe('SilhouetteJumpTracker', () => {
       { date: '2026-01-15', vertical_in: 35 },
       { date: '2026-04-15', vertical_in: 20 },
     ]
-    const { container } = render(
-      <SilhouetteJumpTracker entries={entries} standingReachIn={80} />,
-    )
+    const { container } = render(<SilhouetteJumpTracker entries={entries} standingReachIn={80} />)
     const svg = container.querySelector('svg')
     const viewBox = svg?.getAttribute('viewBox') ?? ''
     // peakJumpTouch = 80 + 35 = 115; + 12" headroom → 127. Anything below
@@ -121,14 +115,7 @@ describe('SilhouetteJumpTracker', () => {
   })
 
   it('uses the override aria-label when one is provided', () => {
-    render(
-      <SilhouetteJumpTracker
-        entries={baseEntries}
-        ariaLabel="Custom tracker label"
-      />,
-    )
-    expect(
-      screen.getByRole('img', { name: 'Custom tracker label' }),
-    ).toBeInTheDocument()
+    render(<SilhouetteJumpTracker entries={baseEntries} ariaLabel="Custom tracker label" />)
+    expect(screen.getByRole('img', { name: 'Custom tracker label' })).toBeInTheDocument()
   })
 })

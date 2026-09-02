@@ -30,6 +30,16 @@ const WEIGHTED_LOAD: FocusLoadStats = {
   avgLoadLbs: 105,
   tonnageLbs: 5800,
   weightedSets: 6,
+  loadMultiplier: 1,
+}
+
+/** A two-dumbbell movement: same per-implement loads, doubled tonnage. */
+const PAIRED_LOAD: FocusLoadStats = {
+  topSetLbs: 60,
+  avgLoadLbs: 50,
+  tonnageLbs: 11600,
+  weightedSets: 6,
+  loadMultiplier: 2,
 }
 
 const BODYWEIGHT_LOAD: FocusLoadStats = {
@@ -37,6 +47,7 @@ const BODYWEIGHT_LOAD: FocusLoadStats = {
   avgLoadLbs: null,
   tonnageLbs: 0,
   weightedSets: 0,
+  loadMultiplier: 1,
 }
 
 describe('MonthlyFocusCard', () => {
@@ -47,7 +58,7 @@ describe('MonthlyFocusCard', () => {
         todayProgress={60}
         adherence={ADHERENCE}
         loadStats={WEIGHTED_LOAD}
-      />,
+      />
     )
     expect(screen.getByText('Upper Focus')).toBeInTheDocument()
     expect(screen.getByText('shrugs')).toBeInTheDocument()
@@ -62,7 +73,7 @@ describe('MonthlyFocusCard', () => {
         todayProgress={60}
         adherence={ADHERENCE}
         loadStats={BODYWEIGHT_LOAD}
-      />,
+      />
     )
     expect(screen.getByText('Lower Focus')).toBeInTheDocument()
     expect(screen.queryByText('Upper Focus')).not.toBeInTheDocument()
@@ -75,7 +86,7 @@ describe('MonthlyFocusCard', () => {
         todayProgress={60}
         adherence={ADHERENCE}
         loadStats={BODYWEIGHT_LOAD}
-      />,
+      />
     )
     expect(screen.getByText('5/31')).toBeInTheDocument()
     expect(screen.getByText('4')).toBeInTheDocument()
@@ -89,11 +100,9 @@ describe('MonthlyFocusCard', () => {
         todayProgress={60}
         adherence={ADHERENCE}
         loadStats={BODYWEIGHT_LOAD}
-      />,
+      />
     )
-    expect(screen.getByTestId('monthly-focus-shrugs-window').textContent).toMatch(
-      /Jul 1 .* Jul 31/,
-    )
+    expect(screen.getByTestId('monthly-focus-shrugs-window').textContent).toMatch(/Jul 1 .* Jul 31/)
   })
 
   it('shows load stats only when the focus has weighted sets', () => {
@@ -103,7 +112,7 @@ describe('MonthlyFocusCard', () => {
         todayProgress={100}
         adherence={ADHERENCE}
         loadStats={WEIGHTED_LOAD}
-      />,
+      />
     )
     expect(screen.getByText('Top set')).toBeInTheDocument()
     expect(screen.getByText('120 lb')).toBeInTheDocument()
@@ -115,9 +124,42 @@ describe('MonthlyFocusCard', () => {
         todayProgress={100}
         adherence={ADHERENCE}
         loadStats={BODYWEIGHT_LOAD}
-      />,
+      />
     )
     expect(screen.queryByText('Top set')).not.toBeInTheDocument()
+  })
+
+  it('shows only the per-implement load for a single-implement movement', () => {
+    render(
+      <MonthlyFocusCard
+        focus={FOCUS}
+        todayProgress={100}
+        adherence={ADHERENCE}
+        loadStats={WEIGHTED_LOAD}
+      />
+    )
+    // Nothing to disambiguate when one implement is moved, so no second reading.
+    expect(screen.queryByText(/^×\d/)).not.toBeInTheDocument()
+  })
+
+  it('shows both readings of the load for a two-implement movement', () => {
+    render(
+      <MonthlyFocusCard
+        focus={FOCUS}
+        todayProgress={100}
+        adherence={ADHERENCE}
+        loadStats={PAIRED_LOAD}
+      />
+    )
+    // Per-implement headline — the number on one dumbbell, as logged...
+    expect(screen.getByText('60 lb')).toBeInTheDocument()
+    expect(screen.getByText('50 lb')).toBeInTheDocument()
+    // ...with the total actually carried underneath, matching the Trophy Room's
+    // load badges so neither surface has to be translated.
+    expect(screen.getByText('×2 · 120 lb')).toBeInTheDocument()
+    expect(screen.getByText('×2 · 100 lb')).toBeInTheDocument()
+    // Tonnage already counts both implements, so it gets no second reading.
+    expect(screen.getByText('11,600 lb')).toBeInTheDocument()
   })
 
   it('marks the daily target as met when today progress reaches it', () => {
@@ -127,7 +169,7 @@ describe('MonthlyFocusCard', () => {
         todayProgress={100}
         adherence={ADHERENCE}
         loadStats={BODYWEIGHT_LOAD}
-      />,
+      />
     )
     expect(screen.getByTitle('Daily target met')).toBeInTheDocument()
   })
@@ -139,8 +181,25 @@ describe('MonthlyFocusCard', () => {
         todayProgress={3}
         adherence={ADHERENCE}
         loadStats={BODYWEIGHT_LOAD}
-      />,
+      />
     )
     expect(screen.getByText(/\/ 5 sets today/)).toBeInTheDocument()
+  })
+})
+
+describe('MonthlyFocusCard — catalog labels (#384)', () => {
+  it('renders the catalog label and keys off the slug', () => {
+    const focus = { ...FOCUS, exercise: 'farmers-carry', display_name: "Farmer's Carry" }
+    const { getByText, queryByText, getByTestId } = render(
+      <MonthlyFocusCard
+        focus={focus}
+        todayProgress={60}
+        adherence={ADHERENCE}
+        loadStats={WEIGHTED_LOAD}
+      />
+    )
+    expect(getByText("Farmer's Carry")).toBeInTheDocument()
+    expect(queryByText('farmers-carry')).toBeNull()
+    expect(getByTestId('monthly-focus-farmers-carry')).toBeInTheDocument()
   })
 })

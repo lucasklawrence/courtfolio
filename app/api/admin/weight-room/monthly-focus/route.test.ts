@@ -17,10 +17,23 @@ vi.mock('@/lib/auth/require-admin', () => ({
 }))
 
 const upsertResultMock = vi.fn()
+const catalogUpsertResultMock = vi.fn()
 const singleMock = vi.fn()
+/**
+ * Table the most recent `.from()` targeted, so `.upsert()` can route to the
+ * right result. The route upserts twice — first the movement catalog (#373),
+ * then the goal anchor — and a single shared result would make "the anchor
+ * upsert fails" actually fail the catalog write instead.
+ */
+let lastTable = ''
 const supabaseChain = {
-  from: vi.fn(() => supabaseChain),
-  upsert: vi.fn(() => upsertResultMock()),
+  from: vi.fn((table: string) => {
+    lastTable = table
+    return supabaseChain
+  }),
+  upsert: vi.fn(() =>
+    lastTable === 'weight_room_exercises' ? catalogUpsertResultMock() : upsertResultMock()
+  ),
   insert: vi.fn(() => supabaseChain),
   select: vi.fn(() => supabaseChain),
   single: vi.fn(() => singleMock()),
@@ -41,20 +54,31 @@ const validFocus = {
 beforeEach(() => {
   requireAdminMock.mockReset()
   upsertResultMock.mockReset()
+  catalogUpsertResultMock.mockReset()
   singleMock.mockReset()
+  lastTable = ''
   supabaseChain.from.mockClear()
   supabaseChain.upsert.mockClear()
   supabaseChain.insert.mockClear()
   supabaseChain.select.mockClear()
   supabaseChain.single.mockClear()
-  supabaseChain.from.mockReturnValue(supabaseChain)
-  supabaseChain.upsert.mockImplementation(() => upsertResultMock())
+  supabaseChain.from.mockImplementation((table: string) => {
+    lastTable = table
+    return supabaseChain
+  })
+  supabaseChain.upsert.mockImplementation(() =>
+    lastTable === 'weight_room_exercises' ? catalogUpsertResultMock() : upsertResultMock()
+  )
   supabaseChain.insert.mockReturnValue(supabaseChain)
   supabaseChain.select.mockReturnValue(supabaseChain)
   supabaseChain.single.mockImplementation(() => singleMock())
   // Happy-path defaults; individual tests override.
   upsertResultMock.mockResolvedValue({ error: null })
-  singleMock.mockResolvedValue({ data: { id: 'f1', ...validFocus, target_kind: 'reps' }, error: null })
+  catalogUpsertResultMock.mockResolvedValue({ error: null })
+  singleMock.mockResolvedValue({
+    data: { id: 'f1', ...validFocus, target_kind: 'reps' },
+    error: null,
+  })
 })
 
 function makeRequest(body: unknown): Request {
@@ -84,7 +108,7 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
   it('returns 400 when end_date precedes start_date', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     const res = await POST(
-      makeRequest({ ...validFocus, start_date: '2026-07-31', end_date: '2026-07-01' }) as never,
+      makeRequest({ ...validFocus, start_date: '2026-07-31', end_date: '2026-07-01' }) as never
     )
     expect(res.status).toBe(400)
   })
@@ -117,6 +141,28 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
     expect(body.error).toMatch(/anchor focus goal/i)
   })
 
+  it('provisions the movement catalog before the goal anchor (#373)', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    await POST(makeRequest(validFocus) as never)
+    // Both the anchor and the focus row FK the catalog, so the roster entry
+    // has to land first or a brand-new focus exercise 23503s.
+    const tables = supabaseChain.from.mock.calls.map(([table]) => table)
+    expect(tables.indexOf('weight_room_exercises')).toBeLessThan(
+      tables.indexOf('weight_room_goals')
+    )
+  })
+
+  it('returns 500 when the catalog provisioning fails (#373)', async () => {
+    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
+    catalogUpsertResultMock.mockResolvedValueOnce({
+      error: { code: 'XX001', message: 'boom' },
+    })
+    const res = await POST(makeRequest(validFocus) as never)
+    expect(res.status).toBe(500)
+    const body = await res.json()
+    expect(body.error).toMatch(/movement catalog/i)
+  })
+
   it('returns 500 when the focus insert fails', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     singleMock.mockResolvedValueOnce({ data: null, error: { code: 'XX001', message: 'nope' } })
@@ -133,7 +179,7 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
     // permanent goal isn't flipped.
     expect(supabaseChain.upsert).toHaveBeenCalledWith(
       expect.objectContaining({ exercise: 'shrugs', kind: 'focus', daily_target: 100 }),
-      { onConflict: 'exercise', ignoreDuplicates: true },
+      { onConflict: 'exercise', ignoreDuplicates: true }
     )
     // Focus insert defaults target_kind to 'reps' and carries the category lane.
     expect(supabaseChain.insert).toHaveBeenCalledWith(
@@ -143,7 +189,7 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
         category: 'upper',
         start_date: '2026-07-01',
         end_date: '2026-07-31',
-      }),
+      })
     )
   })
 
@@ -152,7 +198,7 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
     await POST(makeRequest({ ...validFocus, exercise: 'Shrugs' }) as never)
     expect(supabaseChain.upsert).toHaveBeenCalledWith(
       expect.objectContaining({ exercise: 'shrugs' }),
-      expect.anything(),
+      expect.anything()
     )
   })
 })

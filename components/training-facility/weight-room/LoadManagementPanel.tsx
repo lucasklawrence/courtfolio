@@ -2,11 +2,25 @@ import type { JSX } from 'react'
 
 import { RoughSparkline } from '@/components/training-facility/shared/charts/RoughSparkline'
 import { RAMP_FLAGS } from '@/constants/ramp-rate'
-import type { MovementLoad } from '@/lib/training-facility/load-management'
+import {
+  MIN_TRAINING_DAYS_IN_WINDOW,
+  type InfrequentMovement,
+  type MovementLoad,
+} from '@/lib/training-facility/load-management'
 
 /** Sparkline box size, in px. Fixed so every card's trend reads at the same scale. */
 const SPARK_WIDTH = 220
 const SPARK_HEIGHT = 44
+
+/**
+ * Accent for a movement with no configured goal, and therefore no color of its
+ * own — rim-orange, the Court Vision default (#427).
+ *
+ * Lives here rather than in `load-management.ts` because it answers a rendering
+ * question. The domain reports `color: null`; what to draw instead belongs to
+ * whoever is drawing.
+ */
+const DEFAULT_MOVEMENT_COLOR = '#EA580C'
 
 /** Props for {@link LoadManagementPanel}. */
 export interface LoadManagementPanelProps {
@@ -16,6 +30,12 @@ export interface LoadManagementPanelProps {
    * Empty array renders the empty-state message.
    */
   loads: readonly MovementLoad[]
+  /**
+   * Movements trained too rarely for a ramp signal to mean anything (#377),
+   * listed under the cards so "not shown" is never read as "nothing to worry
+   * about". Defaults to empty.
+   */
+  infrequent?: readonly InfrequentMovement[]
 }
 
 /**
@@ -29,8 +49,11 @@ export interface LoadManagementPanelProps {
  * formats and lays out. Cream cards on the dark Weight Room surface,
  * matching {@link import('./StrengthStats').StrengthStats}.
  */
-export function LoadManagementPanel({ loads }: LoadManagementPanelProps): JSX.Element {
-  if (loads.length === 0) {
+export function LoadManagementPanel({
+  loads,
+  infrequent = [],
+}: LoadManagementPanelProps): JSX.Element {
+  if (loads.length === 0 && infrequent.length === 0) {
     return (
       <p
         data-testid="load-management-empty"
@@ -42,11 +65,52 @@ export function LoadManagementPanel({ loads }: LoadManagementPanelProps): JSX.El
   }
 
   return (
-    <section aria-label="Load management" className="grid gap-4 md:grid-cols-2">
-      {loads.map(load => (
-        <MovementLoadCard key={load.movement} load={load} />
-      ))}
-    </section>
+    <div className="flex flex-col gap-4">
+      {loads.length > 0 ? (
+        <section aria-label="Load management" className="grid gap-4 md:grid-cols-2">
+          {loads.map(load => (
+            <MovementLoadCard key={load.movement} load={load} />
+          ))}
+        </section>
+      ) : (
+        <p
+          data-testid="load-management-empty"
+          className="rounded-[1.2rem] border border-white/10 bg-white/5 p-6 text-center text-sm text-[#e8d5be]/70"
+        >
+          No movement was trained often enough in the last 28 days to ramp.
+        </p>
+      )}
+
+      {infrequent.length > 0 ? <InfrequentNote movements={infrequent} /> : null}
+    </div>
+  )
+}
+
+interface InfrequentNoteProps {
+  movements: readonly InfrequentMovement[]
+}
+
+/**
+ * Footnote listing movements the frequency gate held back (#377).
+ *
+ * Names them rather than showing a bare count: "12 movements not shown" invites
+ * the reader to assume the missing one is fine, and the whole point of the panel
+ * is that you can't tell without looking.
+ */
+function InfrequentNote({ movements }: InfrequentNoteProps): JSX.Element {
+  return (
+    <p
+      data-testid="load-management-infrequent"
+      className="rounded-[1.2rem] border border-white/10 bg-white/5 px-5 py-4 text-xs leading-relaxed text-[#e8d5be]/70"
+    >
+      <span className="font-mono uppercase tracking-[0.18em] text-[#e8d5be]/90">
+        Not ramped ({movements.length})
+      </span>
+      <br />
+      Trained on fewer than {MIN_TRAINING_DAYS_IN_WINDOW} of the last 28 days, so neither ACWR nor
+      week-over-week says anything meaningful yet:{' '}
+      {movements.map(m => `${m.displayName ?? m.movement} (${m.trainingDays}d)`).join(', ')}.
+    </p>
   )
 }
 
@@ -57,20 +121,24 @@ interface MovementLoadCardProps {
 function MovementLoadCard({ load }: MovementLoadCardProps): JSX.Element {
   const flagMeta = RAMP_FLAGS[load.flag]
   const volumeLabel = load.metric === 'load' ? '7d load volume' : '7d rep volume'
+  // A gym lift with no daily goal carries no color of its own (#427). The
+  // domain reports that absence; picking what to draw instead is this panel's
+  // call, and rim-orange is the Court Vision accent it has always used.
+  const accent = load.color ?? DEFAULT_MOVEMENT_COLOR
 
   return (
     <article
       data-testid={`load-card-${load.movement}`}
       data-flag={load.flag}
-      aria-label={`${load.movement}: ${flagMeta.label}`}
+      aria-label={`${load.displayName ?? load.movement}: ${flagMeta.label}`}
       className="rounded-[1.2rem] border border-white/10 bg-[#f5f1e6] p-5 text-[#0a0a0a] shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
     >
       <header className="flex items-baseline justify-between gap-3">
         <h3
           className="font-mono text-sm font-bold uppercase tracking-[0.2em]"
-          style={{ color: load.color }}
+          style={{ color: accent }}
         >
-          {load.movement}
+          {load.displayName ?? load.movement}
         </h3>
         <span className="flex items-center gap-1.5">
           <span
@@ -112,8 +180,8 @@ function MovementLoadCard({ load }: MovementLoadCardProps): JSX.Element {
             points={load.sparkline.map((p, i) => ({ x: i, y: p.volume }))}
             width={SPARK_WIDTH}
             height={SPARK_HEIGHT}
-            stroke={load.color}
-            ariaLabel={`${load.movement} 28-day ${load.metric === 'load' ? 'load' : 'rep'} volume trend`}
+            stroke={accent}
+            ariaLabel={`${load.displayName ?? load.movement} 28-day ${load.metric === 'load' ? 'load' : 'rep'} volume trend`}
           />
         </div>
       </div>

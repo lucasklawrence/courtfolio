@@ -75,6 +75,19 @@ ACTIVITY_MAP: dict[str, str] = {
     'HKWorkoutActivityTypeWalking': 'walking',
 }
 
+# Strength workouts (#413). These land in `weight_room_workouts`, not in
+# `cardio_sessions` — a lifting session has no pace and no distance, and every
+# cardio rollup would need a permanent filter if they shared a table.
+#
+# Traditional Strength Training only, deliberately. Apple files circuit,
+# kettlebell and bootcamp work under *Functional* Strength Training, which is
+# nearer the HIIT sessions tracked in #414 than to a Weight Room session —
+# counting those here would make the session total quietly wrong. Adding it
+# later is one line.
+STRENGTH_ACTIVITY_MAP: dict[str, str] = {
+    'HKWorkoutActivityTypeTraditionalStrengthTraining': 'strength',
+}
+
 # Cap the inferred dwell time between consecutive HR samples. Apple
 # Health samples are ~1/min when sedentary, ~10s during workouts; if
 # the gap is huge (e.g. watch off), don't credit a single sample with
@@ -113,8 +126,19 @@ def zone_for_bpm(bpm: float, max_hr: int) -> int | None:
     return None
 
 
-def parse_workouts(xml_text: str) -> list[dict]:
-    """Extract cardio workouts in our three tracked activities, with raw start/end."""
+def parse_workouts(
+    xml_text: str, activity_map: dict[str, str] | None = None
+) -> list[dict]:
+    """Extract workouts whose `workoutActivityType` is in `activity_map`.
+
+    Args:
+        xml_text: The full export XML.
+        activity_map: `HKWorkoutActivityType` → activity label. Defaults to
+            {@link ACTIVITY_MAP}, the three cardio surfaces. Pass
+            {@link STRENGTH_ACTIVITY_MAP} to pull lifting sessions instead
+            (#413); the parse is identical, and only the destination differs.
+    """
+    activity_map = ACTIVITY_MAP if activity_map is None else activity_map
     open_re = re.compile(r'<Workout\s([^>]+)>')
     block_re = re.compile(r'<Workout\s[^>]*startDate="([^"]*)"[^>]*>([\s\S]*?)</Workout>')
 
@@ -139,7 +163,7 @@ def parse_workouts(xml_text: str) -> list[dict]:
         if not wtype or not start or not end:
             continue
 
-        activity = ACTIVITY_MAP.get(wtype)
+        activity = activity_map.get(wtype)
         if not activity:
             skipped_types[wtype] = skipped_types.get(wtype, 0) + 1
             continue
@@ -510,9 +534,36 @@ def _active_energy_to_kcal(record: str, value: float) -> Optional[float]:
     return value
 
 
+def to_strength_session(workout: dict) -> dict:
+    """Reduce a parsed workout to what a Weight Room session records (#413).
+
+    Deliberately narrow. Health knows a lifting session happened, how long it
+    ran, and what the heart was doing — it does not know what was lifted, so
+    there is nothing here about sets, reps or load. Pace, distance and
+    time-in-zone are dropped as meaningless for lifting.
+
+    `started_at` / `ended_at` rather than the cardio shape's single `date`,
+    because `weight_room_workouts` is a bounded interval and its duration is
+    derived from the two ends rather than stored.
+    """
+    return {
+        'started_at': workout['_start_dt'].isoformat(),
+        'ended_at': workout['_end_dt'].isoformat(),
+        'duration_seconds': workout['duration_seconds'],
+        'avg_hr': workout['avg_hr'],
+        'max_hr': workout['max_hr'],
+    }
+
+
 def build_cardio_data(xml_text: str, max_hr: int) -> dict:
     workouts = parse_workouts(xml_text)
     log(f"Parsed {len(workouts):,} cardio workouts (stair/running/walking)")
+
+    # A second pass rather than one combined map: these land in a different
+    # table with a different shape, and keeping the split here means the cardio
+    # path is provably untouched by #413.
+    strength_workouts = parse_workouts(xml_text, STRENGTH_ACTIVITY_MAP)
+    log(f"Parsed {len(strength_workouts):,} strength workouts (traditional)")
 
     samples = parse_hr_samples(xml_text)
 
@@ -521,10 +572,17 @@ def build_cardio_data(xml_text: str, max_hr: int) -> dict:
         aggregate_session_hr(w, samples, max_hr)
         derive_pace(w)
 
+    # Same HR aggregation, no pace: for a lifting session the HR trace and the
+    # duration are the entire intensity story.
+    for w in strength_workouts:
+        aggregate_session_hr(w, samples, max_hr)
+
     # Strip private parsing fields before serializing.
     sessions = []
     for w in workouts:
         sessions.append({k: v for k, v in w.items() if not k.startswith('_')})
+
+    strength_sessions = [to_strength_session(w) for w in strength_workouts]
 
     log("Parsing resting HR trend...", end='')
     resting = parse_simple_trend(xml_text, 'HKQuantityTypeIdentifierRestingHeartRate')
@@ -569,6 +627,7 @@ def build_cardio_data(xml_text: str, max_hr: int) -> dict:
     return {
         'imported_at': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
         'sessions': sessions,
+        'strength_sessions': strength_sessions,
         'resting_hr_trend': resting,
         'vo2max_trend': vo2,
         'hrv_trend': hrv,
@@ -647,6 +706,7 @@ def main() -> None:
     print("  Done!")
     print(f"  Output: {output_path} ({out_size:.0f} KB)")
     print(f"  Sessions:           {len(data['sessions']):,}")
+    print(f"  Strength sessions:  {len(data['strength_sessions']):,}")
     print(f"  Resting HR points:  {len(data['resting_hr_trend']):,}")
     print(f"  VO2max points:      {len(data['vo2max_trend']):,}")
     print(f"  HRV points:         {len(data['hrv_trend']):,}")

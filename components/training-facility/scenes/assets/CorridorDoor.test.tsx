@@ -32,7 +32,7 @@ describe('CorridorDoor', () => {
           label={{ x: 240, y: 250 }}
           {...extra}
         />
-      </svg>,
+      </svg>
     )
   }
 
@@ -67,5 +67,35 @@ describe('CorridorDoor', () => {
     const overlay = container.querySelector('polygon.group-hover\\:opacity-10')
     expect(overlay).not.toBeNull()
     expect(overlay).toHaveClass('opacity-0')
+  })
+
+  /**
+   * A dark wing (#345) keeps its doorway but must not offer navigation into a
+   * route that 404s. SVG has no `<button>`, so the inert form is a
+   * `role="button"` group — named and announced, but with no href and no
+   * place in the tab order.
+   */
+  describe('when the wing behind it is dark', () => {
+    it('renders an inert button rather than a link', () => {
+      const { getByRole, queryByRole } = renderInScene({ disabled: true })
+      expect(queryByRole('link', { name: /enter the combine/i })).not.toBeInTheDocument()
+      const door = getByRole('button', { name: /enter the combine/i })
+      expect(door).toHaveAttribute('aria-disabled', 'true')
+      expect(door).not.toHaveAttribute('href')
+    })
+
+    it('captions the sign "still building" in place of the wing caption', () => {
+      const { getByText, queryByText } = renderInScene({ disabled: true })
+      expect(getByText('still building')).toBeInTheDocument()
+      expect(queryByText('movement wing')).not.toBeInTheDocument()
+      // The door is dimmed, not removed — the hall is three doors by design.
+      expect(getByText('The Combine')).toBeInTheDocument()
+    })
+
+    it('drops the hover tint and focus ring, which promise interactivity', () => {
+      const { container } = renderInScene({ disabled: true })
+      expect(container.querySelector('[stroke-dasharray]')).toBeNull()
+      expect(container.querySelector('polygon.group-hover\\:opacity-10')).toBeNull()
+    })
   })
 })

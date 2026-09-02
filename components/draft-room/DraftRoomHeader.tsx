@@ -49,8 +49,8 @@ export function DraftRoomHeader({ thesis, illustrative, children }: DraftRoomHea
 
       {illustrative ? (
         <p className="rounded-lg border border-yellow-400/30 bg-yellow-400/5 px-3 py-2 text-xs text-yellow-200/90">
-          Illustrative — authored from a real terminal verdict. A live cross-family run will
-          replace it; the mechanic and findings are real.
+          Illustrative — authored from a real terminal verdict. A live cross-family run will replace
+          it; the mechanic and findings are real.
         </p>
       ) : null}
 

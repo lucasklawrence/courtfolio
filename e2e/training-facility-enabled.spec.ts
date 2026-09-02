@@ -2,44 +2,42 @@ import { expect, test } from '@playwright/test'
 
 import { bypassHomeIntro } from './helpers/intro'
 
-test.describe('training facility enabled', () => {
+/**
+ * Runs against the server configured to mirror the **shipping** flag state
+ * (#345): Gym and Weight Room live, lobby and Combine dark. Before the flag
+ * split this project ran with everything on, which tested a combination that
+ * no environment actually uses — so a broken cross-area link looked fine here
+ * and 404'd in production.
+ *
+ * The lobby / Combine assertions moved to `training-facility-disabled.spec.ts`,
+ * which owns the dark-route coverage.
+ */
+test.describe('training facility — gym and weight room published', () => {
   test.beforeEach(async ({ page }) => {
     await bypassHomeIntro(page)
   })
 
-  test('shows the court-side entrance on the home page', async ({ page }) => {
-    await page.goto('/')
+  test('renders the tracking hub with a card per live area', async ({ page }) => {
+    await page.goto('/training-facility/tracking')
 
-    await expect(page.getByRole('button', { name: /enter the training facility/i })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /everything i train, logged/i })).toBeVisible()
+    await expect(page.getByRole('link', { name: /trophy room/i })).toHaveAttribute(
+      'href',
+      '/training-facility/weight-room/achievements'
+    )
+    await expect(page.getByRole('link', { name: /orangetheory/i })).toHaveAttribute(
+      'href',
+      '/training-facility/gym/otf'
+    )
   })
 
-  test('renders the corridor lobby with all three doors active', async ({ page }) => {
-    await page.goto('/training-facility')
-
-    // Scene-first layout (#326): the h1 is visually hidden but present for
-    // screen readers + this assertion; wayfinding lives on the door signs.
-    await expect(page.getByRole('heading', { name: /^training facility$/i })).toBeAttached()
-    // The three doorways are SVG anchors — assert on the DOM href/aria so
-    // the check doesn't depend on SVG bounding-box visibility.
-    await expect(page.locator('a[href="/training-facility/gym"]')).toHaveCount(1)
-    await expect(page.locator('a[href="/training-facility/combine"]')).toHaveCount(1)
-    await expect(page.locator('a[href="/training-facility/weight-room"]')).toHaveCount(1)
-  })
-
-  test('renders the gym and combine placeholder routes', async ({ page }) => {
+  test('renders the gym scene without a door into the dark combine', async ({ page }) => {
     await page.goto('/training-facility/gym')
     // Heading is visually hidden in the scene-first layout (#197) but
     // remains in the DOM for screen readers + this assertion.
     await expect(page.getByRole('heading', { name: /^the gym$/i })).toBeAttached()
-    await expect(
-      page.getByRole('link', { name: /^← training facility$/i }),
-    ).toBeVisible()
-
-    await page.goto('/training-facility/combine')
-    await expect(page.getByRole('heading', { name: /^the combine$/i })).toBeAttached()
-    await expect(
-      page.getByRole('link', { name: /^← training facility$/i }),
-    ).toBeVisible()
+    // The Combine is dark, so its door must not be painted on the wall.
+    await expect(page.getByRole('link', { name: /into the combine/i })).toHaveCount(0)
   })
 
   test('renders the weight room Today View when reached directly', async ({ page }) => {
@@ -57,9 +55,22 @@ test.describe('training facility enabled', () => {
     await expect(subNav).toBeVisible()
   })
 
-  test('the Weight Room door in the corridor points to the Today View', async ({ page }) => {
-    await page.goto('/training-facility')
-    const door = page.locator('a[aria-label="Enter the Weight Room"]')
-    await expect(door).toHaveAttribute('href', '/training-facility/weight-room')
+  test('renders the OrangeTheory dashboard server-side', async ({ page }) => {
+    await page.goto('/training-facility/gym/otf')
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+  })
+
+  test('sub-pages link back to the tracking hub, not the dark lobby', async ({ page }) => {
+    await page.goto('/training-facility/weight-room/achievements')
+    const back = page.getByRole('link', { name: /^← tracking$/i })
+    await expect(back).toBeVisible()
+    await expect(back).toHaveAttribute('href', '/training-facility/tracking')
+  })
+
+  test('the projects binder offers the tracking card', async ({ page }) => {
+    await page.goto('/projects')
+    await expect(
+      page.getByRole('button', { name: /open training facility details/i })
+    ).toBeVisible()
   })
 })

@@ -1,10 +1,7 @@
 import Link from 'next/link'
 import { useMemo, type CSSProperties, type JSX } from 'react'
 
-import {
-  buildOtfMileageView,
-  type AwardedMonth,
-} from '@/lib/training-facility/otf-mileage'
+import { buildOtfMileageView, type AwardedMonth } from '@/lib/training-facility/otf-mileage'
 import type { OtfMileageAward, OtfSession } from '@/types/otf'
 
 /** Fallback accent for a milestone tier with no configured `color`. */
@@ -55,7 +52,7 @@ export function OtfMileageSection({
   // an explicit `now` stay deterministic while the live view tracks the date.
   const view = useMemo(
     () => buildOtfMileageView(sessions, awards, now ?? new Date()),
-    [sessions, awards, now],
+    [sessions, awards, now]
   )
   const { current, history } = view
 
@@ -94,7 +91,7 @@ export function OtfMileageSection({
           <p className="mt-2 text-sm text-[#e8d5be]/60">No earlier months logged yet.</p>
         ) : (
           <ul className="mt-2 max-h-64 space-y-2 overflow-y-auto pr-1">
-            {history.map((month) => (
+            {history.map(month => (
               <HistoryRow key={month.monthKey} month={month} />
             ))}
           </ul>
@@ -107,15 +104,12 @@ export function OtfMileageSection({
 /** The current calendar month: miles-to-date, earned badges, and progress to next. */
 function CurrentMonthCard({ month }: { month: AwardedMonth }): JSX.Element {
   const { label, miles, classes, earned, next, remainingToNext } = month
-  const pct =
-    next && next.miles > 0 ? Math.min(100, Math.round((miles / next.miles) * 100)) : 100
+  const pct = next && next.miles > 0 ? Math.min(100, Math.round((miles / next.miles) * 100)) : 100
 
   return (
     <div className="mt-4 rounded-[1.1rem] border border-white/10 bg-black/30 p-4 sm:p-5">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/60">
-          {label}
-        </p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/60">{label}</p>
         <p className="text-sm text-white/50">
           {classes} {classes === 1 ? 'class' : 'classes'}
         </p>
@@ -130,7 +124,7 @@ function CurrentMonthCard({ month }: { month: AwardedMonth }): JSX.Element {
 
       {earned.length > 0 ? (
         <div className="mt-3 flex flex-wrap gap-2" aria-label="Milestones earned this month">
-          {earned.map((award) => (
+          {earned.map(award => (
             <AwardBadge key={award.id} award={award} />
           ))}
         </div>
@@ -178,7 +172,7 @@ function HistoryRow({ month }: { month: AwardedMonth }): JSX.Element {
       </span>
       {month.earned.length > 0 ? (
         <span className="ml-auto flex flex-wrap gap-1.5">
-          {month.earned.map((award) => (
+          {month.earned.map(award => (
             <AwardBadge key={award.id} award={award} compact />
           ))}
         </span>

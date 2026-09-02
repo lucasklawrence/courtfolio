@@ -85,12 +85,11 @@ export function CardioStatsCards({
   className = '',
 }: CardioStatsCardsProps): JSX.Element {
   const cells = useMemo(() => {
-    return metrics.map((metric) => {
+    return metrics.map(metric => {
       const currentValue = metric.compute(current)
       const previousValue = metric.compute(previous)
       const delta = computeDelta(currentValue, previousValue)
-      const showDelta =
-        previous.length >= MIN_PREVIOUS_SESSIONS_FOR_DELTA && delta !== null
+      const showDelta = previous.length >= MIN_PREVIOUS_SESSIONS_FOR_DELTA && delta !== null
       return { metric, currentValue, delta, showDelta }
     })
   }, [current, previous, metrics])
@@ -149,9 +148,7 @@ function DeltaLine({ delta, direction, format }: DeltaLineProps): JSX.Element {
   const arrow = delta.direction === 'up' ? '▲' : delta.direction === 'down' ? '▼' : '±'
   const colorClass = deltaColorClass(direction, delta.direction)
   const percentLabel =
-    delta.percent === null
-      ? ''
-      : ` (${delta.percent > 0 ? '+' : ''}${delta.percent.toFixed(1)}%)`
+    delta.percent === null ? '' : ` (${delta.percent > 0 ? '+' : ''}${delta.percent.toFixed(1)}%)`
   return (
     <p
       className={`mt-2 flex items-baseline gap-1 font-mono text-[11px] tabular-nums ${colorClass}`}
@@ -166,10 +163,7 @@ function DeltaLine({ delta, direction, format }: DeltaLineProps): JSX.Element {
 }
 
 /** Map (semantic direction, observed change) → tailwind text-color class. */
-function deltaColorClass(
-  direction: CardioStatCardDirection,
-  change: DeltaDirection,
-): string {
+function deltaColorClass(direction: CardioStatCardDirection, change: DeltaDirection): string {
   if (direction === 'neutral' || change === 'same') return 'text-[#0a0a0a]/55'
   if (direction === 'higher-is-better') {
     return change === 'up' ? 'text-emerald-700' : 'text-red-700'
@@ -179,10 +173,8 @@ function deltaColorClass(
 }
 
 /** Default delta formatter — signed `formatValue` over the absolute change. */
-function defaultDeltaFormatter(
-  formatValue: (n: number) => string,
-): (delta: number) => string {
-  return (delta) => {
+function defaultDeltaFormatter(formatValue: (n: number) => string): (delta: number) => string {
+  return delta => {
     const abs = Math.abs(delta)
     const sign = delta > 0 ? '+' : delta < 0 ? '−' : '±'
     return `${sign}${formatValue(abs)}`

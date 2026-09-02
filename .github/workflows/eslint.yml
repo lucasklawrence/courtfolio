@@ -44,3 +44,16 @@ jobs:
         # rules while tolerating the deliberate `no-unused-vars` `warn` that
         # honors the leading-underscore convention.
         run: npm run lint
+
+      - name: Check formatting
+        # The backstop for the pre-commit hook (#398). The hook formats staged
+        # files automatically, but it can be skipped with `--no-verify`, it
+        # doesn't exist for anyone who cloned without running `npm install`,
+        # and it never runs on a commit made through the GitHub web UI. Without
+        # this gate the tree drifts back out of format silently — which is
+        # exactly how it reached 327 unformatted files before the sweep.
+        #
+        # Runs after eslint rather than before: a formatting failure is
+        # trivially fixed with `npm run format`, so the more substantive lint
+        # errors are worth surfacing first.
+        run: npm run format:check

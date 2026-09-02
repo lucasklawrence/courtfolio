@@ -1,10 +1,7 @@
+import { isGymEnabled } from '@/lib/feature-flags'
+
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
-import {
-  RoughCircle,
-  RoughLineShape,
-  RoughPath,
-  RoughRect,
-} from './rough-shapes'
+import { RoughCircle, RoughLineShape, RoughPath, RoughRect } from './rough-shapes'
 import { SceneDoor } from './SceneDoor'
 
 /**
@@ -109,10 +106,50 @@ export function CombineHeaderSign() {
         seed={623}
       />
       {/* Pin nails */}
-      <RoughCircle cx={534} cy={104} r={3} fill={SCENE_PALETTE.ink} fillStyle="solid" stroke="none" strokeWidth={0} roughness={0.5} seed={624} />
-      <RoughCircle cx={1066} cy={104} r={3} fill={SCENE_PALETTE.ink} fillStyle="solid" stroke="none" strokeWidth={0} roughness={0.5} seed={625} />
-      <RoughCircle cx={534} cy={194} r={3} fill={SCENE_PALETTE.ink} fillStyle="solid" stroke="none" strokeWidth={0} roughness={0.5} seed={626} />
-      <RoughCircle cx={1066} cy={194} r={3} fill={SCENE_PALETTE.ink} fillStyle="solid" stroke="none" strokeWidth={0} roughness={0.5} seed={627} />
+      <RoughCircle
+        cx={534}
+        cy={104}
+        r={3}
+        fill={SCENE_PALETTE.ink}
+        fillStyle="solid"
+        stroke="none"
+        strokeWidth={0}
+        roughness={0.5}
+        seed={624}
+      />
+      <RoughCircle
+        cx={1066}
+        cy={104}
+        r={3}
+        fill={SCENE_PALETTE.ink}
+        fillStyle="solid"
+        stroke="none"
+        strokeWidth={0}
+        roughness={0.5}
+        seed={625}
+      />
+      <RoughCircle
+        cx={534}
+        cy={194}
+        r={3}
+        fill={SCENE_PALETTE.ink}
+        fillStyle="solid"
+        stroke="none"
+        strokeWidth={0}
+        roughness={0.5}
+        seed={626}
+      />
+      <RoughCircle
+        cx={1066}
+        cy={194}
+        r={3}
+        fill={SCENE_PALETTE.ink}
+        fillStyle="solid"
+        stroke="none"
+        strokeWidth={0}
+        roughness={0.5}
+        seed={627}
+      />
 
       <text
         x={800}
@@ -248,11 +285,7 @@ export function ResultsBoard() {
               fontWeight={700}
             >
               {line.value}
-              <tspan
-                fontSize={16}
-                fill={SCENE_PALETTE.inkSoft}
-                fillOpacity={0.7}
-              >
+              <tspan fontSize={16} fill={SCENE_PALETTE.inkSoft} fillOpacity={0.7}>
                 {' '}
                 {line.unit}
               </tspan>
@@ -375,8 +408,14 @@ export function TapeMeasure() {
  * extends to x=1590). The Gym puts `DoorToCombine` at the mirror x=1300 spot,
  * but the Combine's right wall is occupied by the Vertec's wall-mounted reach
  * badge, so the door sits in the gap to its left rather than the right corner.
+ *
+ * Renders nothing when the Gym is dark (#345) — the mirror of `DoorToCombine`.
+ * The two areas have separate flags, so either can be live while the other is
+ * not, and a painted, signposted door into a 404 is worse than a blank wall.
  */
 export function DoorToGym() {
+  if (!isGymEnabled()) return null
+
   return (
     <SceneDoor
       href="/training-facility/gym"

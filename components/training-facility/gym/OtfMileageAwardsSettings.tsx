@@ -62,7 +62,7 @@ export function OtfMileageAwardsSettings({
 
   async function updateAward(
     id: string,
-    body: { label: string; miles: number; color: string },
+    body: { label: string; miles: number; color: string }
   ): Promise<void> {
     setError(null)
     const res = await fetch(`/api/admin/otf/mileage-awards/${encodeURIComponent(id)}`, {
@@ -114,7 +114,7 @@ export function OtfMileageAwardsSettings({
           </p>
         ) : (
           <ul className="mt-3 space-y-3">
-            {initialAwards.map((award) => (
+            {initialAwards.map(award => (
               <AwardRow
                 key={award.id}
                 award={award}
@@ -150,7 +150,8 @@ function AwardRow({ award, disabled, onSave, onDelete }: AwardRowProps): JSX.Ele
   const [label, setLabel] = useState<string>(award.label)
   const [miles, setMiles] = useState<number>(award.miles)
   const [color, setColor] = useState<string>(award.color ?? DEFAULT_NEW_COLOR)
-  const dirty = label !== award.label || miles !== award.miles || color !== (award.color ?? DEFAULT_NEW_COLOR)
+  const dirty =
+    label !== award.label || miles !== award.miles || color !== (award.color ?? DEFAULT_NEW_COLOR)
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault()
@@ -167,7 +168,7 @@ function AwardRow({ award, disabled, onSave, onDelete }: AwardRowProps): JSX.Ele
           <input
             type="text"
             value={label}
-            onChange={(e) => setLabel(e.target.value)}
+            onChange={e => setLabel(e.target.value)}
             className="w-40 rounded border border-white/15 bg-black/40 px-2 py-1 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
           />
         </label>
@@ -178,7 +179,7 @@ function AwardRow({ award, disabled, onSave, onDelete }: AwardRowProps): JSX.Ele
             min={0.1}
             step={0.1}
             value={miles}
-            onChange={(e) => setMiles(Number(e.target.value))}
+            onChange={e => setMiles(Number(e.target.value))}
             className="w-20 rounded border border-white/15 bg-black/40 px-2 py-1 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
           />
         </label>
@@ -187,7 +188,7 @@ function AwardRow({ award, disabled, onSave, onDelete }: AwardRowProps): JSX.Ele
           <input
             type="color"
             value={color}
-            onChange={(e) => setColor(e.target.value)}
+            onChange={e => setColor(e.target.value)}
             className="h-8 w-12 cursor-pointer rounded border border-white/15 bg-black/40"
           />
         </label>
@@ -247,7 +248,7 @@ function AddAwardForm({ disabled, onAdd }: AddAwardFormProps): JSX.Element {
           type="text"
           required
           value={label}
-          onChange={(e) => setLabel(e.target.value)}
+          onChange={e => setLabel(e.target.value)}
           placeholder="Marathon"
           className="rounded border border-white/15 bg-black/40 px-2 py-1.5 font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
@@ -259,7 +260,7 @@ function AddAwardForm({ disabled, onAdd }: AddAwardFormProps): JSX.Element {
           min={0.1}
           step={0.1}
           value={miles}
-          onChange={(e) => setMiles(Number(e.target.value))}
+          onChange={e => setMiles(Number(e.target.value))}
           className="w-24 rounded border border-white/15 bg-black/40 px-2 py-1.5 text-right font-mono text-sm text-white focus:border-amber-300/60 focus:outline-none"
         />
       </label>
@@ -268,7 +269,7 @@ function AddAwardForm({ disabled, onAdd }: AddAwardFormProps): JSX.Element {
         <input
           type="color"
           value={color}
-          onChange={(e) => setColor(e.target.value)}
+          onChange={e => setColor(e.target.value)}
           className="h-9 w-16 cursor-pointer rounded border border-white/15 bg-black/40"
         />
       </label>

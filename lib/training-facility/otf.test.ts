@@ -10,6 +10,7 @@ import {
 } from '../../scripts/lib/otbeat-class-type.mjs'
 import {
   OTF_CLASS_TYPE_ORDER,
+  OTF_CLASS_TYPE_UNTYPED,
   aggregateOtfZoneMinutes,
   earliestOtfDate,
   effectiveOtfClassType,
@@ -18,8 +19,12 @@ import {
   filterOtfSessionsInRange,
   formatMmss,
   formatOtfDate,
+  gradeAdjustedPace,
+  gradeAdjustedPaceSeconds,
+  gradeAdjustmentFactor,
   mmssToSeconds,
   otfBlockTrend,
+  otfClassTypeLabel,
   otfClassTypes,
   otfHighlights,
   otfLinearRegression,
@@ -81,19 +86,22 @@ describe('class-type helpers (#271)', () => {
   })
 
   describe('effectiveOtfClassType', () => {
-    it('prefers a manual override over the inferred class_type', () => {
-      expect(effectiveOtfClassType(mk('a', { class_type: 'Tread + Row', class_type_override: '2G' }))).toBe(
-        '2G'
-      )
+    it('prefers the resolved class_format over the inferred class_type', () => {
+      // class_type only names which machines were worked; class_format is OTF's
+      // real template, so it wins whenever it exists.
+      expect(
+        effectiveOtfClassType(mk('a', { class_type: 'Tread + Row', class_format: '2G' }))
+      ).toBe('2G')
     })
 
-    it('falls back to class_type when there is no override', () => {
+    it('falls back to class_type when there is no class_format', () => {
+      // Most history predates the booking feed, and a coarse label beats none.
       expect(effectiveOtfClassType(mk('a', { class_type: 'Tread-focused' }))).toBe('Tread-focused')
     })
 
-    it('treats a blank override as unset', () => {
+    it('treats a blank class_format as unset', () => {
       expect(
-        effectiveOtfClassType(mk('a', { class_type: 'Row-focused', class_type_override: '  ' }))
+        effectiveOtfClassType(mk('a', { class_type: 'Row-focused', class_format: '  ' }))
       ).toBe('Row-focused')
     })
 
@@ -109,19 +117,28 @@ describe('class-type helpers (#271)', () => {
         mk('b', { class_type: 'Tread + Row' }),
         mk('c', { class_type: 'Tread + Row' }), // duplicate collapses
         mk('d', { class_type: 'Tread-focused' }),
-        mk('e', { class_type: 'Tread + Row', class_type_override: 'Strength 50' }), // manual extra
-        mk('f'), // no type → omitted
+        mk('e', { class_type: 'Tread + Row', class_format: 'Strength 50' }), // resolved extra
+        mk('f'), // no type → the untyped sentinel, last
       ]
       expect(otfClassTypes(sessions)).toEqual([
         'Tread + Row',
         'Tread-focused',
         'Row-focused',
         'Strength 50',
+        OTF_CLASS_TYPE_UNTYPED,
       ])
     })
 
-    it('returns an empty list when no session has a type', () => {
-      expect(otfClassTypes([mk('a'), mk('b')])).toEqual([])
+    it('omits the untyped sentinel when every session has a type', () => {
+      const sessions = [
+        mk('a', { class_type: 'Tread + Row' }),
+        mk('b', { class_type: 'Row-focused' }),
+      ]
+      expect(otfClassTypes(sessions)).toEqual(['Tread + Row', 'Row-focused'])
+    })
+
+    it('offers only the untyped sentinel when no session has a type', () => {
+      expect(otfClassTypes([mk('a'), mk('b')])).toEqual([OTF_CLASS_TYPE_UNTYPED])
     })
   })
 
@@ -180,7 +197,7 @@ describe('class-type helpers (#271)', () => {
     const sessions = [
       mk('a', { class_type: 'Tread + Row' }),
       mk('b', { class_type: 'Row-focused' }),
-      mk('c', { class_type: 'Tread + Row', class_type_override: '2G' }), // effective = '2G'
+      mk('c', { class_type: 'Tread + Row', class_format: '2G' }), // effective = '2G'
     ]
 
     it('keeps only sessions whose effective type matches', () => {
@@ -189,7 +206,7 @@ describe('class-type helpers (#271)', () => {
       ])
     })
 
-    it('matches on the override, not the inferred label', () => {
+    it('matches on the resolved class_format, not the inferred label', () => {
       expect(filterOtfSessionsByClassType(sessions, '2G').map(s => s.started_at)).toEqual(['c'])
     })
 
@@ -197,6 +214,65 @@ describe('class-type helpers (#271)', () => {
       const result = filterOtfSessionsByClassType(sessions, null)
       expect(result).toHaveLength(3)
       expect(result).not.toBe(sessions)
+    })
+
+    it('selects the untyped sessions for the untyped sentinel', () => {
+      const withUntyped = [...sessions, mk('d'), mk('e', { class_type: '  ' })]
+      expect(
+        filterOtfSessionsByClassType(withUntyped, OTF_CLASS_TYPE_UNTYPED).map(s => s.started_at)
+      ).toEqual(['d', 'e'])
+    })
+
+    // The #271 regression: three real July classes were ingested with a null
+    // class_type, so every chip dropped them from the log and the aggregates
+    // with nothing to indicate it. The options must partition the window.
+    it('keeps every session reachable through some option', () => {
+      const withUntyped = [...sessions, mk('d')]
+      const options = otfClassTypes(withUntyped)
+      const reached = new Set(
+        options.flatMap(o => filterOtfSessionsByClassType(withUntyped, o).map(s => s.started_at))
+      )
+      expect(reached).toEqual(new Set(['a', 'b', 'c', 'd']))
+    })
+
+    // codex #334: `class_format` is unrestricted free text — whatever OTF puts
+    // in a booking title, or whatever a human types for a drop-in — so a
+    // readable sentinel could arrive as a real format. The option list would
+    // carry two identical entries (duplicate React keys) and the labeled
+    // session would vanish under its own chip. A non-printable one can't collide.
+    it('keeps a human-readable class_format distinct from the untyped sentinel', () => {
+      const withCollider = [
+        mk('a', { class_type: 'Tread + Row' }),
+        mk('b', { class_format: 'No class type' }), // the sentinel's *label*
+        mk('c'), // genuinely untyped
+      ]
+      const options = otfClassTypes(withCollider)
+      // Two distinct options, no duplicates — safe as React keys.
+      expect(options).toEqual(['Tread + Row', 'No class type', OTF_CLASS_TYPE_UNTYPED])
+      expect(new Set(options).size).toBe(options.length)
+      // Each chip selects only its own session.
+      expect(
+        filterOtfSessionsByClassType(withCollider, 'No class type').map(s => s.started_at)
+      ).toEqual(['b'])
+      expect(
+        filterOtfSessionsByClassType(withCollider, OTF_CLASS_TYPE_UNTYPED).map(s => s.started_at)
+      ).toEqual(['c'])
+    })
+  })
+
+  describe('otfClassTypeLabel', () => {
+    it('renders the untyped sentinel as readable text', () => {
+      expect(otfClassTypeLabel(OTF_CLASS_TYPE_UNTYPED)).toBe('No class type')
+    })
+
+    it('passes a real class type through unchanged', () => {
+      expect(otfClassTypeLabel('Tread + Row')).toBe('Tread + Row')
+      expect(otfClassTypeLabel('2G')).toBe('2G')
+    })
+
+    it('does not disguise an override that matches the sentinel label', () => {
+      // The override is a real, selectable type — it must not be relabelled.
+      expect(otfClassTypeLabel('No class type')).toBe('No class type')
     })
   })
 })
@@ -413,5 +489,136 @@ describe('otfRollingAverage (#267)', () => {
 
   it('returns an empty array for an empty trend', () => {
     expect(otfRollingAverage([], 3)).toEqual([])
+  })
+})
+
+describe('grade-adjusted pace (#335)', () => {
+  describe('gradeAdjustmentFactor', () => {
+    it('is exactly 1 on the flat', () => {
+      expect(gradeAdjustmentFactor(0)).toBe(1)
+    })
+
+    it('matches the reference factors from the issue', () => {
+      // Minetti C(i)/C(0) at the grades the issue tabulated.
+      expect(gradeAdjustmentFactor(2)).toBeCloseTo(1.113, 3)
+      expect(gradeAdjustmentFactor(5)).toBeCloseTo(1.301, 3)
+      expect(gradeAdjustmentFactor(8.5)).toBeCloseTo(1.546, 3)
+      expect(gradeAdjustmentFactor(15)).toBeCloseTo(2.06, 2)
+    })
+
+    it('rises monotonically across the range our data occupies', () => {
+      const grades = [0, 1, 2, 3, 4, 5, 6, 8.5, 10, 15]
+      const factors = grades.map(gradeAdjustmentFactor)
+      for (let i = 1; i < factors.length; i++) {
+        expect(factors[i]).toBeGreaterThan(factors[i - 1])
+      }
+    })
+
+    it('diverges from the linear ACSM approximation as grade climbs', () => {
+      // ACSM's `1 + 4.5g` is the sanity check, not the model: it tracks
+      // Minetti closely when shallow and runs 10-19% low by 8.5-15%.
+      const acsm = (pct: number): number => 1 + 4.5 * (pct / 100)
+      expect(gradeAdjustmentFactor(1) / acsm(1)).toBeCloseTo(1, 1)
+      expect(acsm(8.5) / gradeAdjustmentFactor(8.5)).toBeLessThan(0.91)
+      expect(acsm(15) / gradeAdjustmentFactor(15)).toBeLessThan(0.83)
+    })
+
+    it('handles decline, bottoming out below flat rather than at it', () => {
+      // Shallow braking is cheaper than lifting, so a decline factor is < 1,
+      // falls to a minimum, then climbs again as the descent gets steep.
+      expect(gradeAdjustmentFactor(-5)).toBeLessThan(1)
+      expect(gradeAdjustmentFactor(-15)).toBeLessThan(gradeAdjustmentFactor(-5))
+      expect(gradeAdjustmentFactor(-45)).toBeGreaterThan(gradeAdjustmentFactor(-15))
+    })
+
+    it('puts the decline minimum near -18%, not the -10% the issue quoted', () => {
+      // The issue asserted "minimum cost sits near -10%", but the polynomial
+      // it specifies still reads 0.598 there and keeps falling to ~0.495
+      // around -18%. Immaterial in practice (no session has a negative
+      // avg_incline) — pinned so the discrepancy stays documented.
+      expect(gradeAdjustmentFactor(-10)).toBeCloseTo(0.598, 3)
+      expect(gradeAdjustmentFactor(-18)).toBeCloseTo(0.495, 3)
+      expect(gradeAdjustmentFactor(-18)).toBeLessThan(gradeAdjustmentFactor(-10))
+    })
+
+    it('clamps beyond the fitted range instead of following the polynomial', () => {
+      // No real class reaches ±45%; a value past it is a parse error, and
+      // the quintic diverges fast outside the fit.
+      expect(gradeAdjustmentFactor(900)).toBe(gradeAdjustmentFactor(45))
+      expect(gradeAdjustmentFactor(-900)).toBe(gradeAdjustmentFactor(-45))
+    })
+
+    it('treats non-finite input as flat', () => {
+      expect(gradeAdjustmentFactor(Number.NaN)).toBe(1)
+      expect(gradeAdjustmentFactor(Number.POSITIVE_INFINITY)).toBe(1)
+    })
+  })
+
+  describe('gradeAdjustedPace', () => {
+    it('reproduces the measured sessions from the issue', () => {
+      // The 06-27 / 05-19 / 07-10 rows of the issue's table.
+      expect(gradeAdjustedPace('15:23', 8.5)).toBe('9:57')
+      expect(gradeAdjustedPace('12:45', 5.4)).toBe('9:36')
+      expect(gradeAdjustedPace('10:10', 2.0)).toBe('9:08')
+      expect(gradeAdjustedPace('13:57', 5.5)).toBe('10:27')
+      expect(gradeAdjustedPace('13:02', 4.0)).toBe('10:32')
+    })
+
+    it('leaves a flat class untouched', () => {
+      expect(gradeAdjustedPace('10:00', 0)).toBe('10:00')
+    })
+
+    it('separates two sessions that share a raw pace at different grades', () => {
+      // Both 13:02 raw (04-17 at 2.8%, 07-08 at 4.0%). The issue's prose says
+      // they separate by 39s, but its own table puts 4.0% at 10:32 — which
+      // this matches — and 2.8% lands at 11:13, so the real gap is 41s.
+      // Trusting the table over the sentence.
+      expect(gradeAdjustedPace('13:02', 2.8)).toBe('11:13')
+      expect(gradeAdjustedPace('13:02', 4.0)).toBe('10:32')
+
+      const shallow = mmssToSeconds(gradeAdjustedPace('13:02', 2.8) ?? '')
+      const steep = mmssToSeconds(gradeAdjustedPace('13:02', 4.0) ?? '')
+      expect((shallow as number) - (steep as number)).toBe(41)
+    })
+
+    it('inverts the ranking of a steep class against a flatter, faster one', () => {
+      // 06-27 (15:23 @ 8.5%) is slower than 07-08 (13:02 @ 4.0%) raw, and
+      // faster once adjusted — the reordering the whole feature exists for.
+      const steepRaw = mmssToSeconds('15:23') as number
+      const flatterRaw = mmssToSeconds('13:02') as number
+      expect(steepRaw).toBeGreaterThan(flatterRaw)
+
+      const steepGap = mmssToSeconds(gradeAdjustedPace('15:23', 8.5) ?? '') as number
+      const flatterGap = mmssToSeconds(gradeAdjustedPace('13:02', 4.0) ?? '') as number
+      expect(steepGap).toBeLessThan(flatterGap)
+    })
+
+    it('treats a missing incline as flat rather than dropping the session', () => {
+      expect(gradeAdjustedPace('12:00', undefined)).toBe('12:00')
+      expect(gradeAdjustedPace('12:00', null)).toBe('12:00')
+    })
+
+    it('returns null for missing or malformed pace', () => {
+      expect(gradeAdjustedPace(undefined, 5)).toBeNull()
+      expect(gradeAdjustedPace(null, 5)).toBeNull()
+      expect(gradeAdjustedPace('', 5)).toBeNull()
+      expect(gradeAdjustedPace('nonsense', 5)).toBeNull()
+    })
+  })
+
+  describe('gradeAdjustedPaceSeconds', () => {
+    it('agrees with the formatted helper', () => {
+      const seconds = gradeAdjustedPaceSeconds(mmssToSeconds('15:23') as number, 8.5)
+      expect(formatMmss(seconds)).toBe(gradeAdjustedPace('15:23', 8.5))
+    })
+
+    it('is always faster than raw pace on an incline', () => {
+      const raw = mmssToSeconds('12:00') as number
+      expect(gradeAdjustedPaceSeconds(raw, 4)).toBeLessThan(raw)
+    })
+
+    it('returns raw pace unchanged on the flat', () => {
+      expect(gradeAdjustedPaceSeconds(600, 0)).toBe(600)
+    })
   })
 })

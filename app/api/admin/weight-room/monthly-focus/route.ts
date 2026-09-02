@@ -20,6 +20,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { ZodError } from 'zod'
 
 import { requireAdmin } from '@/lib/auth/require-admin'
+import { ensureWeightRoomExercise } from '@/lib/data/ensure-weight-room-exercise'
 import { WeightRoomMonthlyFocusCreateSchema } from '@/lib/schemas/weight-room'
 import { createAdminSupabaseClient } from '@/lib/supabase/admin'
 import { withTelemetry } from '@/lib/telemetry/with-telemetry'
@@ -60,13 +61,21 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     if (err instanceof ZodError) {
       return NextResponse.json(
         { error: 'Validation failed.', issues: err.flatten() },
-        { status: 400 },
+        { status: 400 }
       )
     }
     throw err
   }
 
   const supabase = createAdminSupabaseClient()
+
+  // 0. Ensure the movement is in the catalog. Both the goal anchor below and
+  //    the focus row itself FK it as of #373, so a brand-new focus exercise
+  //    would fail with a raw 23503 without this.
+  const catalogError = await ensureWeightRoomExercise(supabase, focus.exercise)
+  if (catalogError !== null) {
+    return NextResponse.json({ error: catalogError }, { status: 500 })
+  }
 
   // 1. Ensure the goal anchor exists. ignoreDuplicates leaves an existing
   //    goal untouched so we never flip a permanent exercise to 'focus'.
@@ -79,12 +88,12 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
       kind: 'focus',
       updated_at: now,
     },
-    { onConflict: 'exercise', ignoreDuplicates: true },
+    { onConflict: 'exercise', ignoreDuplicates: true }
   )
   if (anchorError) {
     return NextResponse.json(
       { error: `Failed to anchor focus goal: ${anchorError.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
 
@@ -107,7 +116,7 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   if (error) {
     return NextResponse.json(
       { error: `Failed to create monthly focus: ${error.message}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
 

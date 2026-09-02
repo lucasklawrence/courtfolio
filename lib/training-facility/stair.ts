@@ -8,7 +8,7 @@
  */
 
 import type { CardioSession } from '@/types/cardio'
-import type { DateRange } from '@/components/training-facility/shared/DateFilter'
+import type { DateRange } from '@/lib/training-facility/date-range'
 import { filterCardioSessionsByActivity } from './cardio-shared'
 
 export {
@@ -29,7 +29,7 @@ export type { HrZoneBucket, SessionAvgHrPoint } from './cardio-shared'
  */
 export function filterStairSessions(
   sessions: readonly CardioSession[],
-  range: DateRange,
+  range: DateRange
 ): CardioSession[] {
   return filterCardioSessionsByActivity(sessions, 'stair', range)
 }

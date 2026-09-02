@@ -36,7 +36,7 @@ describe('BodyweightOverlay render', () => {
     render(
       <BodyweightOverlay benchmarks={benchmarks} dateExtent={dateExtent} width={400} height={200}>
         <ChildPlaceholder />
-      </BodyweightOverlay>,
+      </BodyweightOverlay>
     )
     // Toggle button is visible immediately and accessible.
     expect(screen.getByRole('button', { name: /Toggle Bodyweight overlay/ })).toBeInTheDocument()
@@ -58,7 +58,7 @@ describe('BodyweightOverlay render', () => {
         toggleLabel="Weight"
       >
         <ChildPlaceholder />
-      </BodyweightOverlay>,
+      </BodyweightOverlay>
     )
     expect(screen.getByRole('img', { name: 'Custom overlay label' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Toggle Weight overlay/ })).toBeInTheDocument()
@@ -71,7 +71,7 @@ describe('BodyweightOverlay render', () => {
     render(
       <BodyweightOverlay benchmarks={benchmarks} dateExtent={dateExtent} width={400} height={200}>
         <ChildPlaceholder />
-      </BodyweightOverlay>,
+      </BodyweightOverlay>
     )
 
     const toggle = screen.getByRole('button', { name: /Toggle Bodyweight overlay/ })
@@ -96,7 +96,7 @@ describe('BodyweightOverlay render', () => {
         onEnabledChange={onEnabledChange}
       >
         <ChildPlaceholder />
-      </BodyweightOverlay>,
+      </BodyweightOverlay>
     )
 
     expect(screen.getByRole('img', { name: 'Bodyweight overlay' })).toBeInTheDocument()
@@ -118,7 +118,7 @@ describe('BodyweightOverlay render', () => {
         onEnabledChange={onEnabledChange}
       >
         <ChildPlaceholder />
-      </BodyweightOverlay>,
+      </BodyweightOverlay>
     )
     expect(screen.queryByRole('img', { name: 'Bodyweight overlay' })).not.toBeInTheDocument()
   })
@@ -135,7 +135,7 @@ describe('BodyweightOverlay render', () => {
         height={200}
       >
         <ChildPlaceholder />
-      </BodyweightOverlay>,
+      </BodyweightOverlay>
     )
     const toggle = screen.getByRole('button', { name: /Toggle Bodyweight overlay/ })
     expect(toggle).toBeDisabled()
@@ -152,7 +152,7 @@ describe('BodyweightOverlay render', () => {
         height={200}
       >
         <ChildPlaceholder />
-      </BodyweightOverlay>,
+      </BodyweightOverlay>
     )
     // Layer still renders for the in-range points; just verifying no crash
     // and the toggle stays enabled.
@@ -174,7 +174,7 @@ describe('BodyweightOverlay render', () => {
         height={200}
       >
         <ChildPlaceholder />
-      </BodyweightOverlay>,
+      </BodyweightOverlay>
     )
     // No usable points → toggle disabled, no layer.
     expect(screen.getByRole('button', { name: /Toggle Bodyweight overlay/ })).toBeDisabled()

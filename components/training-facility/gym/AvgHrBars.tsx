@@ -1,10 +1,6 @@
 import type { JSX } from 'react'
 import { scaleBand, scaleLinear } from 'd3-scale'
-import {
-  Axis,
-  EmptyChart,
-  type AxisTick,
-} from '@/components/training-facility/shared/charts/axes'
+import { Axis, EmptyChart, type AxisTick } from '@/components/training-facility/shared/charts/axes'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import {
   drawableToPaths,
@@ -98,7 +94,7 @@ export function AvgHrBars({
   const indices = points.map((_, i) => i)
   const xScale = scaleBand<number>().domain(indices).range([0, innerW]).padding(padding)
 
-  const values = points.map((p) => p.avgHr)
+  const values = points.map(p => p.avgHr)
   const [vMin, vMax] = extent(values)
   // Pad the domain by ~15% of the observed range (or ±5 BPM if every session
   // had the same avg HR) so adjacent bars read as different heights instead of
@@ -118,10 +114,10 @@ export function AvgHrBars({
   const xTicks: AxisTick[] = points.flatMap((p, i) =>
     labelIndices.has(i)
       ? [{ value: p.label, offset: (xScale(i) ?? 0) + xScale.bandwidth() / 2 }]
-      : [],
+      : []
   )
 
-  const yTicks: AxisTick[] = yScale.ticks(5).map((tick) => ({
+  const yTicks: AxisTick[] = yScale.ticks(5).map(tick => ({
     value: String(tick),
     offset: yScale(tick),
   }))

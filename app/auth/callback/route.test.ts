@@ -60,9 +60,7 @@ describe('GET /auth/callback', () => {
     const res = await GET(makeRequest())
 
     expect(res.status).toBe(307)
-    expect(res.headers.get('location')).toBe(
-      'http://localhost/admin/login?error=missing_code',
-    )
+    expect(res.headers.get('location')).toBe('http://localhost/admin/login?error=missing_code')
     expect(failureEvents()).toEqual([
       ['auth_callback_failed', { status: 'error', attributes: { reason: 'missing_code' } }],
     ])

@@ -33,7 +33,7 @@ describe('OtfMileageSection', () => {
         sessions={[ride('2026-07-02T12:00:00Z', 10), ride('2026-07-09T12:00:00Z', 5)]}
         awards={AWARDS}
         now={NOW}
-      />,
+      />
     )
     expect(screen.getByText('July 2026')).toBeInTheDocument()
     expect(screen.getByText('15.0')).toBeInTheDocument()
@@ -52,7 +52,9 @@ describe('OtfMileageSection', () => {
   })
 
   it('celebrates once every milestone is cleared', () => {
-    render(<OtfMileageSection sessions={[ride('2026-07-01T12:00:00Z', 40)]} awards={AWARDS} now={NOW} />)
+    render(
+      <OtfMileageSection sessions={[ride('2026-07-01T12:00:00Z', 40)]} awards={AWARDS} now={NOW} />
+    )
     expect(screen.getByText('Every milestone cleared 🎉')).toBeInTheDocument()
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
   })
@@ -67,7 +69,7 @@ describe('OtfMileageSection', () => {
         ]}
         awards={AWARDS}
         now={NOW}
-      />,
+      />
     )
     const history = screen.getByText('Earlier months').closest('div') as HTMLElement
     const rows = within(history).getAllByRole('listitem')
@@ -79,7 +81,7 @@ describe('OtfMileageSection', () => {
 
   it('renders the admin Milestones link only for admins', () => {
     const { rerender } = render(
-      <OtfMileageSection sessions={[]} awards={AWARDS} now={NOW} isAdmin={false} />,
+      <OtfMileageSection sessions={[]} awards={AWARDS} now={NOW} isAdmin={false} />
     )
     expect(screen.queryByRole('link', { name: 'Milestones' })).not.toBeInTheDocument()
 

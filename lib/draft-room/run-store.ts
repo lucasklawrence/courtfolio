@@ -94,7 +94,11 @@ function isoAgo(ms: number): string {
 async function sweepStaleRunning(supabase: SupabaseClient, targetId: string): Promise<void> {
   const { error } = await supabase
     .from('panel_runs')
-    .update({ status: 'failed', error_type: 'StaleRunTimeout', completed_at: new Date().toISOString() })
+    .update({
+      status: 'failed',
+      error_type: 'StaleRunTimeout',
+      completed_at: new Date().toISOString(),
+    })
     .eq('target_id', targetId)
     .eq('status', 'running')
     .lt('created_at', isoAgo(STALE_RUNNING_MS))
@@ -105,7 +109,10 @@ async function sweepStaleRunning(supabase: SupabaseClient, targetId: string): Pr
  * The newest completed, non-degraded run within the cache TTL, or null. A
  * degraded run (benched personas) is never the shared showcase.
  */
-async function findCachedRun(supabase: SupabaseClient, targetId: string): Promise<StoredRun | null> {
+async function findCachedRun(
+  supabase: SupabaseClient,
+  targetId: string
+): Promise<StoredRun | null> {
   const { data, error } = await supabase
     .from('panel_runs')
     .select('id, result, created_at')
@@ -132,10 +139,7 @@ async function findCachedRun(supabase: SupabaseClient, targetId: string): Promis
  * nothing about gateway health, and counting it would let one tab-close (or
  * a hostile abort loop) 429-lock the feature for everyone.
  */
-async function failureCooldownSeconds(
-  supabase: SupabaseClient,
-  targetId: string
-): Promise<number> {
+async function failureCooldownSeconds(supabase: SupabaseClient, targetId: string): Promise<number> {
   const { data, error } = await supabase
     .from('panel_runs')
     .select('completed_at')

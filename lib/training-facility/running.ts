@@ -12,7 +12,7 @@
  */
 
 import type { CardioSession } from '@/types/cardio'
-import type { DateRange } from '@/components/training-facility/shared/DateFilter'
+import type { DateRange } from '@/lib/training-facility/date-range'
 import { filterCardioSessionsByActivity, parseSessionDate } from './cardio-shared'
 
 /** One mile in meters — used for pace and distance conversions. */
@@ -42,8 +42,7 @@ const MAX_PLAUSIBLE_METERS_PER_HEARTBEAT = 10
 /** True when a converted pace (sec/mi) falls in the human-plausible band. */
 function isPlausiblePaceSecPerMile(secPerMile: number): boolean {
   return (
-    secPerMile >= MIN_PLAUSIBLE_PACE_SEC_PER_MILE &&
-    secPerMile <= MAX_PLAUSIBLE_PACE_SEC_PER_MILE
+    secPerMile >= MIN_PLAUSIBLE_PACE_SEC_PER_MILE && secPerMile <= MAX_PLAUSIBLE_PACE_SEC_PER_MILE
   )
 }
 
@@ -68,7 +67,7 @@ export function secPerKmToSecPerMile(secPerKm: number): number {
  */
 export function filterRunningSessions(
   sessions: readonly CardioSession[],
-  range: DateRange,
+  range: DateRange
 ): CardioSession[] {
   return filterCardioSessionsByActivity(sessions, 'running', range)
 }
@@ -129,7 +128,7 @@ export interface CardiacEfficiencyPoint {
  * @param sessions - Filtered, sorted running sessions.
  */
 export function cardiacEfficiencyPoints(
-  sessions: readonly CardioSession[],
+  sessions: readonly CardioSession[]
 ): CardiacEfficiencyPoint[] {
   const out: CardiacEfficiencyPoint[] = []
   for (const s of sessions) {

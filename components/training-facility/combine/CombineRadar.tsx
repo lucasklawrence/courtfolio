@@ -45,17 +45,13 @@ const RING_FACTORS: readonly number[] = [0.25, 0.5, 0.75, 1.0]
  * @param key   Which Tier-1 metric the value belongs to.
  * @param value Raw metric reading, or `undefined` if missing. NaN is treated as missing.
  */
-export function normalizeMetric(
-  key: MetricKey,
-  value: number | undefined,
-): number | null {
+export function normalizeMetric(key: MetricKey, value: number | undefined): number | null {
   if (value === undefined || !Number.isFinite(value)) return null
   const spec = BENCHMARKS[key]
   const [a, b] = spec.targetRange
   const span = b - a
   if (span === 0) return null
-  const raw =
-    spec.direction === 'higher' ? (value - a) / span : (b - value) / span
+  const raw = spec.direction === 'higher' ? (value - a) / span : (b - value) / span
   if (raw < 0) return 0
   if (raw > 1) return 1
   return raw
@@ -80,10 +76,7 @@ export interface RadarShape {
 }
 
 /** Pick function used to resolve a metric's raw value from the benchmark history. */
-type MetricPicker = (
-  entries: readonly Benchmark[],
-  key: MetricKey,
-) => number | undefined
+type MetricPicker = (entries: readonly Benchmark[], key: MetricKey) => number | undefined
 
 /**
  * Build a four-vertex radar shape from a benchmark history using a
@@ -94,11 +87,8 @@ type MetricPicker = (
  * @param entries Full benchmark history; order does not matter.
  * @param pick    Per-metric value resolver — see `scoreboard-utils.ts`.
  */
-export function buildRadarShape(
-  entries: readonly Benchmark[],
-  pick: MetricPicker,
-): RadarShape {
-  const vertices: RadarVertex[] = RADAR_AXIS_ORDER.map((metric) => {
+export function buildRadarShape(entries: readonly Benchmark[], pick: MetricPicker): RadarShape {
+  const vertices: RadarVertex[] = RADAR_AXIS_ORDER.map(metric => {
     const value = pick(entries, metric)
     return {
       metric,
@@ -112,14 +102,12 @@ export function buildRadarShape(
 
 /** Whether a shape has a score on every axis — required for a closed polygon. */
 export function isShapeComplete(shape: RadarShape): boolean {
-  return shape.vertices.every((v) => v.score !== null)
+  return shape.vertices.every(v => v.score !== null)
 }
 
 /** Whether two shapes have the same score on every axis (used to skip drawing the earliest outline when it overlaps the latest exactly). */
 export function shapesEqual(a: RadarShape, b: RadarShape): boolean {
-  return RADAR_AXIS_ORDER.every(
-    (_, i) => a.vertices[i].score === b.vertices[i].score,
-  )
+  return RADAR_AXIS_ORDER.every((_, i) => a.vertices[i].score === b.vertices[i].score)
 }
 
 /** Geometry-only props extracted so the projection math is independently testable. */
@@ -147,7 +135,7 @@ interface RadarGeometry {
 export function projectVertex(
   axisIndex: number,
   score: number,
-  geo: RadarGeometry,
+  geo: RadarGeometry
 ): [number, number] {
   const angle = -Math.PI / 2 + axisIndex * (Math.PI / 2)
   const r = score * geo.rim
@@ -186,9 +174,7 @@ const GEO: RadarGeometry = { cx: CENTER, cy: CENTER, rim: RIM }
  *
  * @param props.entries Shared benchmark history. `undefined` ⇒ render nothing; `[]` ⇒ render nothing; populated ⇒ render the radar with per-axis latest + earliest shapes.
  */
-export function CombineRadar({
-  entries,
-}: CombineRadarProps): JSX.Element | null {
+export function CombineRadar({ entries }: CombineRadarProps): JSX.Element | null {
   if (!entries || entries.length === 0) return null
 
   const latest = buildRadarShape(entries, pickMetricLatest)
@@ -200,7 +186,7 @@ export function CombineRadar({
 
   const ringPaths = RING_FACTORS.flatMap((factor, ringIdx) => {
     const ringPoints: [number, number][] = RADAR_AXIS_ORDER.map((_, i) =>
-      projectVertex(i, factor, GEO),
+      projectVertex(i, factor, GEO)
     )
     const ring = gen.polygon(ringPoints, {
       stroke: chartPalette.courtLineCream,
@@ -245,7 +231,7 @@ export function CombineRadar({
   const earliestPaths = showEarliest
     ? (() => {
         const points: [number, number][] = earliest.vertices.map((v, i) =>
-          projectVertex(i, v.score ?? 0, GEO),
+          projectVertex(i, v.score ?? 0, GEO)
         )
         const drawable = gen.polygon(points, {
           stroke: chartPalette.courtLineCream,
@@ -276,7 +262,7 @@ export function CombineRadar({
     : null
 
   const latestPoints: [number, number][] = latest.vertices.map((v, i) =>
-    projectVertex(i, v.score ?? 0, GEO),
+    projectVertex(i, v.score ?? 0, GEO)
   )
   const latestDrawable = gen.polygon(latestPoints, {
     stroke: chartPalette.rimOrange,
@@ -309,8 +295,7 @@ export function CombineRadar({
     const norm = Math.hypot(dx, dy) || 1
     const lx = x + (dx / norm) * LABEL_OFFSET
     const ly = y + (dy / norm) * LABEL_OFFSET
-    const anchor: 'start' | 'middle' | 'end' =
-      dx > 0.5 ? 'start' : dx < -0.5 ? 'end' : 'middle'
+    const anchor: 'start' | 'middle' | 'end' = dx > 0.5 ? 'start' : dx < -0.5 ? 'end' : 'middle'
     const baseline: 'auto' | 'middle' | 'hanging' =
       dy > 0.5 ? 'hanging' : dy < -0.5 ? 'auto' : 'middle'
     return (
@@ -332,12 +317,10 @@ export function CombineRadar({
   })
 
   const ariaSummary = latest.vertices
-    .map((v) => {
+    .map(v => {
       const spec = BENCHMARKS[v.metric]
       const formatted =
-        typeof v.value === 'number'
-          ? `${v.value.toFixed(spec.precision)}${spec.unit}`
-          : '—'
+        typeof v.value === 'number' ? `${v.value.toFixed(spec.precision)}${spec.unit}` : '—'
       return `${spec.label} ${formatted}`
     })
     .join(', ')

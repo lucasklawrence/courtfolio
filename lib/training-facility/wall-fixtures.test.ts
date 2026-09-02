@@ -33,11 +33,7 @@ describe('takeLatestPoints', () => {
       { date: '2026-04-15', value: 61 },
     ]
     const out = takeLatestPoints(series, 3)
-    expect(out.map((p) => p.date)).toEqual([
-      '2026-04-10',
-      '2026-04-15',
-      '2026-04-20',
-    ])
+    expect(out.map(p => p.date)).toEqual(['2026-04-10', '2026-04-15', '2026-04-20'])
   })
 
   it('returns the full series when fewer than `limit` points exist', () => {
@@ -111,7 +107,7 @@ describe('deriveWeeklyCardioTotals', () => {
   const NOW = new Date('2026-04-30T12:00:00')
 
   const session = (
-    overrides: Partial<CardioSession> & Pick<CardioSession, 'date'>,
+    overrides: Partial<CardioSession> & Pick<CardioSession, 'date'>
   ): CardioSession => ({
     activity: 'stair',
     duration_seconds: 1800,

@@ -1,8 +1,13 @@
 import { describe, it, expect } from 'vitest'
 
-import type { StrengthSet } from '@/types/weight-room'
+import type { ExerciseEquipment, StrengthSet, WeightRoomExercise } from '@/types/weight-room'
 
-import { buildMovementLoads, pacificDayKey } from './load-management'
+import { pacificDayKey } from './day-keys'
+import {
+  MIN_TRAINING_DAYS_IN_WINDOW,
+  buildMovementLoadView,
+  buildMovementLoads,
+} from './load-management'
 
 /**
  * Minimal {@link StrengthSet} stamped at noon Pacific on `dayKey` (noon so
@@ -208,16 +213,18 @@ describe('buildMovementLoads', () => {
     expect(sum).toBe(load.chronic28d)
   })
 
-  it('uses the matching goal color, falling back to a default', () => {
+  it('reports the matching goal color, and null when there is no goal', () => {
+    // Null rather than a fallback hex (#427): the color is user data, so what
+    // to draw in its absence is the render site's call, not this module's.
     const goals = [{ exercise: 'pushups', daily_target: 100, color: '#123456' }]
     const loads = buildMovementLoads(
       [set('2026-07-14', 'pushups', 100), set('2026-07-14', 'squats', 100)],
       goals,
-      NOW,
+      NOW
     )
     const map = byName(loads)
     expect(map.pushups.color).toBe('#123456')
-    expect(map.squats.color).toBe('#EA580C') // default
+    expect(map.squats.color).toBeNull()
   })
 
   it('ignores sets with an unparseable timestamp', () => {
@@ -227,5 +234,159 @@ describe('buildMovementLoads', () => {
     ]
     const load = byName(buildMovementLoads(sets, [], NOW)).pushups
     expect(load.acute7d).toBe(60) // the garbage row contributes nothing
+  })
+})
+
+describe('buildMovementLoads — catalog-driven metric (#384)', () => {
+  /** Minimal catalog row; only `slug` and `equipment` affect classification. */
+  function movement(slug: string, equipment: ExerciseEquipment): WeightRoomExercise {
+    return { slug, display_name: slug, equipment, muscle_group: 'full-body' }
+  }
+
+  it('scores a loaded movement by tonnage even when most sets recorded no load', () => {
+    // 1 of 3 sets carries a weight — under the 0.5 threshold, so the pre-#384
+    // heuristic called this rep-driven. The catalog says dumbbell, so the
+    // stress is tonnage and the unweighted sets are a data-entry gap.
+    const sets = [
+      set('2026-07-14', 'shrugs', 20, 60),
+      set('2026-07-14', 'shrugs', 20),
+      set('2026-07-13', 'shrugs', 20),
+    ]
+    const load = byName(buildMovementLoads(sets, [], NOW, [movement('shrugs', 'dumbbell')])).shrugs
+    expect(load.metric).toBe('load')
+    expect(load.unitLabel).toBe('lb')
+  })
+
+  it('keeps a loaded movement visible when nothing in the window carried load', () => {
+    // Trusting the catalog unconditionally would score this by a tonnage of
+    // zero, and zero-volume movements are dropped — the movement would
+    // silently disappear from the panel instead of showing its rep volume.
+    const sets = [set('2026-07-14', 'barbell-row', 30), set('2026-07-12', 'barbell-row', 30)]
+    const load = byName(buildMovementLoads(sets, [], NOW, [movement('barbell-row', 'barbell')]))[
+      'barbell-row'
+    ]
+    expect(load).toBeDefined()
+    expect(load.metric).toBe('reps')
+    expect(load.chronic28d).toBe(60)
+  })
+
+  it('keeps a bodyweight movement rep-driven', () => {
+    const sets = [set('2026-07-14', 'pushups', 100)]
+    const load = byName(
+      buildMovementLoads(sets, [], NOW, [movement('pushups', 'bodyweight')])
+    ).pushups
+    expect(load.metric).toBe('reps')
+  })
+
+  it('still flips a bodyweight movement to load when it carries added weight', () => {
+    // Weighted pull-ups: catalog says bodyweight, but a dip belt makes the
+    // stress genuinely load-driven, so the threshold still gets a say.
+    const sets = [
+      set('2026-07-14', 'pullups', 5, 45),
+      set('2026-07-13', 'pullups', 5, 45),
+      set('2026-07-12', 'pullups', 5),
+    ]
+    const load = byName(
+      buildMovementLoads(sets, [], NOW, [movement('pullups', 'bodyweight')])
+    ).pullups
+    expect(load.metric).toBe('load')
+  })
+
+  it("treats 'other' as unclassified, not as a loaded implement", () => {
+    // `ensureWeightRoomExercise` stamps 'other' on every movement provisioned
+    // by the goal form or the focus anchor, so it means "nobody has said yet".
+    // Reading it as loaded would score this mostly-bodyweight movement by
+    // tonnage off its single weighted set.
+    const sets = [
+      set('2026-07-14', 'newmove', 20, 25),
+      set('2026-07-13', 'newmove', 20),
+      set('2026-07-12', 'newmove', 20),
+    ]
+    const load = byName(buildMovementLoads(sets, [], NOW, [movement('newmove', 'other')])).newmove
+    expect(load.metric).toBe('reps')
+    expect(load.chronic28d).toBe(60)
+  })
+
+  it('falls back to the pre-#384 threshold for a movement absent from the catalog', () => {
+    const sets = [set('2026-07-14', 'mystery', 10, 50), set('2026-07-13', 'mystery', 10, 50)]
+    // No catalog at all — identical to omitting the argument entirely.
+    expect(byName(buildMovementLoads(sets, [], NOW, [])).mystery.metric).toBe('load')
+    expect(byName(buildMovementLoads(sets, [], NOW)).mystery.metric).toBe('load')
+  })
+})
+
+describe('buildMovementLoadView — frequency gate (#377)', () => {
+  /** Sets on `count` consecutive days ending 2026-07-14 (the day before NOW). */
+  function onDays(exercise: string, count: number, weight?: number): StrengthSet[] {
+    const sets: StrengthSet[] = []
+    for (let i = 0; i < count; i++) {
+      const day = new Date(Date.UTC(2026, 6, 14 - i))
+      sets.push(set(day.toISOString().slice(0, 10), exercise, 10, weight))
+    }
+    return sets
+  }
+
+  it('cards a movement trained on at least the minimum number of days', () => {
+    const view = buildMovementLoadView(onDays('pushups', MIN_TRAINING_DAYS_IN_WINDOW), [], NOW)
+    expect(view.loads.map(l => l.movement)).toEqual(['pushups'])
+    expect(view.infrequent).toEqual([])
+  })
+
+  it('holds back a once-a-week gym lift, with its day count', () => {
+    // Four sessions in the 28-day window — a normal, healthy schedule for a
+    // barbell lift, and exactly where ACWR stops meaning anything.
+    const sets = [
+      set('2026-07-14', 'barbell-bench-press', 5, 185),
+      set('2026-07-07', 'barbell-bench-press', 5, 185),
+      set('2026-06-30', 'barbell-bench-press', 5, 180),
+      set('2026-06-23', 'barbell-bench-press', 5, 180),
+    ]
+    const view = buildMovementLoadView(sets, [], NOW)
+    expect(view.loads).toEqual([])
+    expect(view.infrequent).toEqual([{ movement: 'barbell-bench-press', trainingDays: 4 }])
+  })
+
+  it('counts distinct days, not sets — five sets in one session is one day', () => {
+    const sameDay = Array.from({ length: 5 }, (_, i) => ({
+      ...set('2026-07-14', 'barbell-bench-press', 5, 185),
+      id: `same-${i}`,
+    }))
+    const view = buildMovementLoadView(sameDay, [], NOW)
+    expect(view.loads).toEqual([])
+    expect(view.infrequent[0].trainingDays).toBe(1)
+  })
+
+  it('carries the catalog display name onto a held-back movement', () => {
+    const view = buildMovementLoadView(
+      [set('2026-07-14', 'barbell-bench-press', 5, 185)],
+      [],
+      NOW,
+      [
+        {
+          slug: 'barbell-bench-press',
+          display_name: 'Barbell Bench Press',
+          equipment: 'barbell',
+          muscle_group: 'chest',
+        },
+      ]
+    )
+    expect(view.infrequent[0].displayName).toBe('Barbell Bench Press')
+  })
+
+  it('keeps a gym lift that becomes near-daily — the gate is frequency, not a GTG/gym split', () => {
+    const view = buildMovementLoadView(
+      onDays('barbell-bench-press', MIN_TRAINING_DAYS_IN_WINDOW, 185),
+      [],
+      NOW
+    )
+    expect(view.loads.map(l => l.movement)).toEqual(['barbell-bench-press'])
+    expect(view.infrequent).toEqual([])
+  })
+
+  it('drops a dormant movement entirely rather than listing it as infrequent', () => {
+    // Outside the 28-day window — not "trained too rarely", just not trained.
+    const view = buildMovementLoadView([set('2026-01-01', 'pushups', 20)], [], NOW)
+    expect(view.loads).toEqual([])
+    expect(view.infrequent).toEqual([])
   })
 })

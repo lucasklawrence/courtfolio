@@ -20,13 +20,16 @@ export interface Point {
  */
 export type DoorCorners = [Point, Point, Point, Point]
 
+/** Subtitle painted under a dark wing's sign, in place of its wing caption. */
+export const UNBUILT_DOOR_SUBTITLE = 'still building'
+
 /** Props for {@link CorridorDoor}. */
 export interface CorridorDoorProps {
-  /** Next.js route this doorway opens onto. */
+  /** Next.js route this doorway opens onto. Ignored when `disabled`. */
   href: string
   /**
-   * Accessible label for the wrapping anchor. Sighted users read the
-   * painted overhead sign; screen-reader / keyboard users hear this.
+   * Accessible label for the doorway. Sighted users read the painted
+   * overhead sign; screen-reader / keyboard users hear this.
    */
   ariaLabel: string
   /** Sign-board copy painted overhead (e.g. `"The Gym"`). */
@@ -43,6 +46,16 @@ export interface CorridorDoorProps {
   label: Point
   /** Panel fill color. Defaults to the hardwood-mid plank tone. */
   fill?: string
+  /**
+   * When true the wing behind this door is dark (its feature flag is off,
+   * see #345), so the doorway renders as an inert `button` rather than a
+   * `Link`: still drawn, dimmed, captioned {@link UNBUILT_DOOR_SUBTITLE},
+   * and carrying no hover or focus affordance. The corridor is the only
+   * way into the sub-areas, so a door that opened onto a 404 would be a
+   * worse promise to break than a visibly unfinished one. Defaults to
+   * `false`.
+   */
+  disabled?: boolean
 }
 
 /** Average of a list of points — used for the panel centroid. */
@@ -70,11 +83,12 @@ function toPoints(corners: readonly Point[]): string {
 }
 
 /**
- * A navigable, perspective-foreshortened door set into a corridor wall.
+ * A perspective-foreshortened door set into a corridor wall — navigable
+ * when its wing is live, inert when the wing is still dark.
  *
- * Renders the door panel, a recessed inner panel, a knob, a hover/focus
- * tint overlay, a dashed keyboard-focus ring, and an overhead sign —
- * all wrapped in a Next.js `<Link>` so walking through the door is real
+ * Renders the door panel, a recessed inner panel, a knob, and an overhead
+ * sign. A live door adds a hover/focus tint, a dashed keyboard-focus ring,
+ * and wraps the lot in a Next.js `<Link>` so walking through it is real
  * navigation. Geometry is fully driven by {@link CorridorDoorProps.corners}
  * so the same component draws both the foreshortened side-wall doors and
  * the front-facing door at the end of the hall.
@@ -84,13 +98,19 @@ function toPoints(corners: readonly Point[]): string {
  * rim-orange dashed focus ring that only appear on hover / keyboard focus,
  * so the resting scene stays clean.
  *
- * @param props.href - Route the doorway opens onto.
- * @param props.ariaLabel - Accessible name for the wrapping anchor.
+ * An SVG scene has no `<button>` element to fall back on, so a disabled
+ * door is a `<g role="button" aria-disabled="true">`: announced and named
+ * like the inert card it replaces, but — as with a native disabled button —
+ * outside the tab order and carrying no href.
+ *
+ * @param props.href - Route the doorway opens onto; ignored when disabled.
+ * @param props.ariaLabel - Accessible name for the doorway.
  * @param props.title - Overhead sign-board text.
  * @param props.subtitle - Optional caption under the sign board.
  * @param props.corners - Door panel corners, clockwise from top-outer.
  * @param props.label - Center of the overhead sign board.
  * @param props.fill - Panel fill color; defaults to the hardwood-mid tone.
+ * @param props.disabled - Render the wing as dark and unreachable.
  */
 export function CorridorDoor({
   href,
@@ -100,6 +120,7 @@ export function CorridorDoor({
   corners,
   label,
   fill = SCENE_PALETTE.hardwoodMid,
+  disabled = false,
 }: CorridorDoorProps) {
   const centroid = centroidOf(corners)
   const panelPoints = toPoints(corners)
@@ -119,8 +140,12 @@ export function CorridorDoor({
   const boardWidth = Math.max(120, title.length * 15 + 28)
   const boardHeight = 42
 
-  return (
-    <Link href={href} aria-label={ariaLabel} className="group focus:outline-none">
+  // A dark wing says so on its own sign rather than wearing the wing
+  // caption it has not earned yet.
+  const caption = disabled ? UNBUILT_DOOR_SUBTITLE : subtitle
+
+  const content = (
+    <>
       {/* Door panel */}
       <polygon
         points={panelPoints}
@@ -147,22 +172,26 @@ export function CorridorDoor({
         stroke={SCENE_PALETTE.ink}
         strokeWidth={1.5}
       />
-      {/* Hover / focus tint overlay */}
-      <polygon
-        points={panelPoints}
-        fill={SCENE_PALETTE.creamBright}
-        className="opacity-0 transition-opacity group-hover:opacity-10 group-focus-visible:opacity-15"
-      />
-      {/* Focus ring — visible only when the Link is keyboard-focused. */}
-      <polygon
-        points={focusPoints}
-        fill="none"
-        stroke={SCENE_PALETTE.rim}
-        strokeWidth={4}
-        strokeDasharray="6 4"
-        strokeLinejoin="round"
-        className="opacity-0 transition-opacity group-focus-visible:opacity-100"
-      />
+
+      {/* Hover / focus affordances — only a live door offers them. */}
+      {disabled ? null : (
+        <>
+          <polygon
+            points={panelPoints}
+            fill={SCENE_PALETTE.creamBright}
+            className="opacity-0 transition-opacity group-hover:opacity-10 group-focus-visible:opacity-15"
+          />
+          <polygon
+            points={focusPoints}
+            fill="none"
+            stroke={SCENE_PALETTE.rim}
+            strokeWidth={4}
+            strokeDasharray="6 4"
+            strokeLinejoin="round"
+            className="opacity-0 transition-opacity group-focus-visible:opacity-100"
+          />
+        </>
+      )}
 
       {/* Overhead sign board */}
       <rect
@@ -186,7 +215,7 @@ export function CorridorDoor({
       >
         {title}
       </text>
-      {subtitle ? (
+      {caption ? (
         <text
           x={label.x}
           y={label.y + boardHeight / 2 + 22}
@@ -195,9 +224,23 @@ export function CorridorDoor({
           fontFamily={HANDWRITING_FONT}
           fontSize={18}
         >
-          {subtitle}
+          {caption}
         </text>
       ) : null}
+    </>
+  )
+
+  if (disabled) {
+    return (
+      <g role="button" aria-disabled="true" aria-label={ariaLabel} className="opacity-50">
+        {content}
+      </g>
+    )
+  }
+
+  return (
+    <Link href={href} aria-label={ariaLabel} className="group focus:outline-none">
+      {content}
     </Link>
   )
 }

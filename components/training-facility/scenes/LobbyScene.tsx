@@ -107,16 +107,45 @@ const FLOOR = polyPoints([
 // floor edge (between BACK.left and BACK.right) are drawn, so seams don't
 // spill onto the side walls.
 const FLOOR_SEAMS = [100, 300, 500, 700, 900, 1100, 1300, 1500]
-  .map(nearX => ({ near: { x: nearX, y: VIEWBOX_HEIGHT }, far: towardVpAtY({ x: nearX, y: VIEWBOX_HEIGHT }, BACK.bottom) }))
+  .map(nearX => ({
+    near: { x: nearX, y: VIEWBOX_HEIGHT },
+    far: towardVpAtY({ x: nearX, y: VIEWBOX_HEIGHT }, BACK.bottom),
+  }))
   .filter(seam => seam.far.x >= BACK.left && seam.far.x <= BACK.right)
 
 // The four perspective corner lines that sharpen the tunnel edges.
 const CORNER_LINES: Array<[Point, Point]> = [
-  [{ x: 0, y: 0 }, { x: BACK.left, y: BACK.top }],
-  [{ x: VIEWBOX_WIDTH, y: 0 }, { x: BACK.right, y: BACK.top }],
-  [{ x: 0, y: VIEWBOX_HEIGHT }, { x: BACK.left, y: BACK.bottom }],
-  [{ x: VIEWBOX_WIDTH, y: VIEWBOX_HEIGHT }, { x: BACK.right, y: BACK.bottom }],
+  [
+    { x: 0, y: 0 },
+    { x: BACK.left, y: BACK.top },
+  ],
+  [
+    { x: VIEWBOX_WIDTH, y: 0 },
+    { x: BACK.right, y: BACK.top },
+  ],
+  [
+    { x: 0, y: VIEWBOX_HEIGHT },
+    { x: BACK.left, y: BACK.bottom },
+  ],
+  [
+    { x: VIEWBOX_WIDTH, y: VIEWBOX_HEIGHT },
+    { x: BACK.right, y: BACK.bottom },
+  ],
 ]
+
+/** Props for {@link LobbyScene}. */
+export interface LobbySceneProps {
+  /**
+   * Whether the Gym wing (`/training-facility/gym`) is published. When
+   * false its doorway at the end of the hall is drawn but inert.
+   */
+  gymLive: boolean
+  /**
+   * Whether the Weight Room wing (`/training-facility/weight-room`) is
+   * published. When false its doorway in the right wall is drawn but inert.
+   */
+  weightRoomLive: boolean
+}
 
 /**
  * Side-on, one-point-perspective corridor for the Training Facility
@@ -130,8 +159,17 @@ const CORNER_LINES: Array<[Point, Point]> = [
  * Built in the shared scene idiom (`SceneDefs`, `SCENE_PALETTE`,
  * character props) so it reads as continuous with the rooms behind each
  * door. Navigational only — the doors carry no live data in this pass.
+ *
+ * The Gym and Weight Room wings each ship on their own flag (#345), so
+ * either can be dark while the corridor itself is lit. A dark wing keeps
+ * its doorway — the hall is three doors by design — but renders it inert
+ * rather than as a link onto a 404. The flags are read by
+ * `TrainingFacilityShell` and passed in, leaving this scene presentational.
+ *
+ * @param props.gymLive - Whether the Gym wing's route is published.
+ * @param props.weightRoomLive - Whether the Weight Room wing's route is published.
  */
-export function LobbyScene() {
+export function LobbyScene({ gymLive, weightRoomLive }: LobbySceneProps) {
   return (
     <svg
       viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
@@ -149,7 +187,14 @@ export function LobbyScene() {
     >
       <SceneDefs />
       <defs>
-        <linearGradient id="lobbyLeftWall" gradientUnits="userSpaceOnUse" x1={0} y1={0} x2={BACK.left} y2={0}>
+        <linearGradient
+          id="lobbyLeftWall"
+          gradientUnits="userSpaceOnUse"
+          x1={0}
+          y1={0}
+          x2={BACK.left}
+          y2={0}
+        >
           <stop offset="0%" stopColor={SCENE_PALETTE.wallHighlight} />
           <stop offset="100%" stopColor={SCENE_PALETTE.ink} />
         </linearGradient>
@@ -164,17 +209,18 @@ export function LobbyScene() {
           <stop offset="0%" stopColor={SCENE_PALETTE.wallHighlight} />
           <stop offset="100%" stopColor={SCENE_PALETTE.ink} />
         </linearGradient>
-        <linearGradient id="lobbyCeiling" gradientUnits="userSpaceOnUse" x1={0} y1={0} x2={0} y2={BACK.top}>
+        <linearGradient
+          id="lobbyCeiling"
+          gradientUnits="userSpaceOnUse"
+          x1={0}
+          y1={0}
+          x2={0}
+          y2={BACK.top}
+        >
           <stop offset="0%" stopColor={SCENE_PALETTE.ink} />
           <stop offset="100%" stopColor={SCENE_PALETTE.wallWarm} />
         </linearGradient>
-        <radialGradient
-          id="lobbyGlow"
-          gradientUnits="userSpaceOnUse"
-          cx={VP.x}
-          cy={VP.y}
-          r={280}
-        >
+        <radialGradient id="lobbyGlow" gradientUnits="userSpaceOnUse" cx={VP.x} cy={VP.y} r={280}>
           <stop offset="0%" stopColor={SCENE_PALETTE.rimSoft} stopOpacity={0.35} />
           <stop offset="70%" stopColor={SCENE_PALETTE.rimSoft} stopOpacity={0.06} />
           <stop offset="100%" stopColor={SCENE_PALETTE.rimSoft} stopOpacity={0} />
@@ -202,8 +248,20 @@ export function LobbyScene() {
       ))}
 
       {/* Back wall + warm end-of-hall glow */}
-      <rect x={BACK.left} y={BACK.top} width={BACK.right - BACK.left} height={BACK.bottom - BACK.top} fill={SCENE_PALETTE.wallWarm} />
-      <rect x={BACK.left} y={BACK.top} width={BACK.right - BACK.left} height={BACK.bottom - BACK.top} fill="url(#lobbyGlow)" />
+      <rect
+        x={BACK.left}
+        y={BACK.top}
+        width={BACK.right - BACK.left}
+        height={BACK.bottom - BACK.top}
+        fill={SCENE_PALETTE.wallWarm}
+      />
+      <rect
+        x={BACK.left}
+        y={BACK.top}
+        width={BACK.right - BACK.left}
+        height={BACK.bottom - BACK.top}
+        fill="url(#lobbyGlow)"
+      />
 
       {/* Crisp perspective corner lines */}
       {CORNER_LINES.map(([a, b], i) => (
@@ -235,6 +293,7 @@ export function LobbyScene() {
         subtitle="strength wing"
         corners={RIGHT_DOOR}
         label={{ ...topEdgeMidpoint(RIGHT_DOOR), y: 250 }}
+        disabled={!weightRoomLive}
       />
       <CorridorDoor
         href="/training-facility/gym"
@@ -242,6 +301,7 @@ export function LobbyScene() {
         title="The Gym"
         corners={END_DOOR}
         label={{ x: VP.x, y: 266 }}
+        disabled={!gymLive}
       />
 
       {/* Inhabited foreground touches */}

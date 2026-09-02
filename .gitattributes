@@ -1,0 +1,48 @@
+# Line-ending policy (#393).
+#
+# The repo had no .gitattributes and `core.autocrlf=false`, so whichever
+# endings a file happened to be committed with became that file's endings
+# forever: 554 files LF, 114 CRLF, and 7 with both *inside the same file*.
+#
+# That is not cosmetic. Any tool that rewrites a whole file — a formatter, a
+# codemod, an editor with a different default — silently flips that file's
+# endings and turns a three-line change into a full-file rewrite. PR #392 saw
+# a 6131-insertion diff for ~510 real insertions, and #319 and #370 collided
+# on whole-file conflicts that had to be resolved by hand. With several agent
+# sessions working this repo in parallel, that is a recurring conflict source,
+# not a one-off.
+#
+# So: one convention, LF, enforced by git rather than by each contributor's
+# editor settings. `text=auto` lets git decide what is text; `eol=lf` pins
+# what lands in the working tree and the object database.
+
+* text=auto eol=lf
+
+# Binary formats. Listed explicitly rather than relying on `text=auto`'s
+# heuristic: a false "this is text" guess on a binary file corrupts it on
+# checkout, and the heuristic only inspects the first 8000 bytes.
+*.png   binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.eot   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.mp4   binary
+*.webm  binary
+
+# SVGs are text and want LF like everything else — they're hand-edited and
+# diffed here (see `svgo.config.mjs` and the optimize:svg script), so treating
+# them as opaque blobs would lose that.
+*.svg   text eol=lf
+
+# Windows-only shells. `.ps1` runs fine with LF under both Windows PowerShell
+# 5.1 and pwsh, so it follows the same rule; `.bat`/`.cmd` genuinely need CRLF
+# — cmd.exe can mis-parse LF-only batch files at line boundaries.
+*.bat   text eol=crlf
+*.cmd   text eol=crlf

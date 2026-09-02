@@ -1,10 +1,6 @@
 import type { JSX } from 'react'
 import { scaleBand, scaleLinear } from 'd3-scale'
-import {
-  Axis,
-  EmptyChart,
-  type AxisTick,
-} from '@/components/training-facility/shared/charts/axes'
+import { Axis, EmptyChart, type AxisTick } from '@/components/training-facility/shared/charts/axes'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import {
   drawableToPaths,
@@ -69,16 +65,16 @@ export function HrZoneBars({
   }
 
   const xScale = scaleBand<string>()
-    .domain(buckets.map((b) => b.shortLabel))
+    .domain(buckets.map(b => b.shortLabel))
     .range([0, innerW])
     .padding(padding)
 
-  const yMaxSeconds = Math.max(0, ...buckets.map((b) => b.seconds))
+  const yMaxSeconds = Math.max(0, ...buckets.map(b => b.seconds))
   const yScale = scaleLinear().domain([0, yMaxSeconds]).nice().range([innerH, 0])
 
   const gen = getGenerator()
 
-  const xTicks: AxisTick[] = buckets.map((b) => ({
+  const xTicks: AxisTick[] = buckets.map(b => ({
     value: b.shortLabel,
     offset: (xScale(b.shortLabel) ?? 0) + xScale.bandwidth() / 2,
   }))
@@ -95,7 +91,7 @@ export function HrZoneBars({
     : (tick: number) => `${Math.round(tick / 60)}m`
   const yAxisLabel = showSeconds ? 'Seconds' : 'Minutes'
 
-  const yTicks: AxisTick[] = yScale.ticks(5).map((tick) => ({
+  const yTicks: AxisTick[] = yScale.ticks(5).map(tick => ({
     value: formatYTick(tick),
     offset: yScale(tick),
   }))

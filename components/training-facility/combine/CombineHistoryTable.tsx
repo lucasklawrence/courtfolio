@@ -78,7 +78,7 @@ export function CombineHistoryTable({
         if (a.date > b.date) return -1
         return 0
       }),
-    [entries],
+    [entries]
   )
 
   return (
@@ -99,9 +99,7 @@ export function CombineHistoryTable({
       </header>
 
       {sorted.length === 0 ? (
-        <p className="mt-4 font-mono text-[12px] text-white/50">
-          No entries logged yet.
-        </p>
+        <p className="mt-4 font-mono text-[12px] text-white/50">No entries logged yet.</p>
       ) : (
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse text-left text-sm">
@@ -110,12 +108,8 @@ export function CombineHistoryTable({
                 <th scope="col" className="py-2 pr-3 font-medium">
                   Date
                 </th>
-                {SCOREBOARD_METRIC_ORDER.map((key) => (
-                  <th
-                    key={key}
-                    scope="col"
-                    className="py-2 pr-3 text-right font-medium"
-                  >
+                {SCOREBOARD_METRIC_ORDER.map(key => (
+                  <th key={key} scope="col" className="py-2 pr-3 text-right font-medium">
                     {BENCHMARKS[key].shortLabel}
                   </th>
                 ))}
@@ -133,7 +127,7 @@ export function CombineHistoryTable({
               </tr>
             </thead>
             <tbody>
-              {sorted.map((entry) => (
+              {sorted.map(entry => (
                 <HistoryRow
                   key={entry.date}
                   entry={entry}
@@ -176,10 +170,8 @@ function HistoryRow({
         complete ? '' : 'opacity-60'
       }`}
     >
-      <td className="py-2 pr-3 font-mono text-[12px] text-white/80">
-        {entry.date}
-      </td>
-      {SCOREBOARD_METRIC_ORDER.map((key) => {
+      <td className="py-2 pr-3 font-mono text-[12px] text-white/80">{entry.date}</td>
+      {SCOREBOARD_METRIC_ORDER.map(key => {
         const value = entry[key]
         const spec = BENCHMARKS[key]
         return (
@@ -187,17 +179,13 @@ function HistoryRow({
             key={key}
             className="py-2 pr-3 text-right font-mono text-[12px] tabular-nums text-white/80"
           >
-            {typeof value === 'number'
-              ? `${value.toFixed(spec.precision)}${spec.unit}`
-              : '—'}
+            {typeof value === 'number' ? `${value.toFixed(spec.precision)}${spec.unit}` : '—'}
           </td>
         )
       })}
       <td className="py-2 pr-3 max-w-[18rem] text-[12px] text-white/70">
         {entry.notes ? (
-          <span className="line-clamp-2 whitespace-pre-line break-words">
-            {entry.notes}
-          </span>
+          <span className="line-clamp-2 whitespace-pre-line break-words">{entry.notes}</span>
         ) : (
           <span className="text-white/30">—</span>
         )}

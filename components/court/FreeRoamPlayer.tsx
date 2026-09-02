@@ -88,9 +88,7 @@ export function FreeRoamPlayer({
     // reflow, ancestor CSS changes) refresh bounds without a window resize.
     const svg = boundsRef.current
     const observer =
-      svg && typeof ResizeObserver !== 'undefined'
-        ? new ResizeObserver(updateScaleAndBounds)
-        : null
+      svg && typeof ResizeObserver !== 'undefined' ? new ResizeObserver(updateScaleAndBounds) : null
     if (observer && svg) observer.observe(svg)
 
     window.addEventListener('resize', updateScaleAndBounds)
@@ -114,10 +112,7 @@ export function FreeRoamPlayer({
       if (!el || typeof el.tagName !== 'string') return false
       const tag = el.tagName
       return (
-        tag === 'INPUT' ||
-        tag === 'TEXTAREA' ||
-        tag === 'SELECT' ||
-        el.isContentEditable === true
+        tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || el.isContentEditable === true
       )
     }
 

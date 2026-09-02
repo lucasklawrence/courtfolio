@@ -2,8 +2,7 @@ import 'server-only'
 
 import { notFound } from 'next/navigation'
 
-import { createServerSupabaseClient } from '@/lib/supabase/server'
-import { isAdminEmail } from './admin-allowlist'
+import { resolveAdminSession } from './admin-session'
 
 /**
  * Server-component admin gate (#181 follow-up to #180). Sibling to
@@ -34,12 +33,12 @@ import { isAdminEmail } from './admin-allowlist'
  * @throws when Supabase env vars are missing (misconfiguration).
  */
 export async function requireAdminPage(): Promise<{ email: string }> {
-  const supabase = await createServerSupabaseClient()
-  const { data, error } = await supabase.auth.getUser()
-  if (error || !data?.user || !isAdminEmail(data.user.email)) {
+  const { email, isAdmin } = await resolveAdminSession()
+  if (!isAdmin) {
     notFound()
   }
   // `notFound()` is `never` so this branch only runs on the happy path;
-  // the email assertion is safe because `isAdminEmail` returned true.
-  return { email: data.user.email as string }
+  // the email assertion is safe because `isAdmin` implies the allowlist
+  // matched a non-null email.
+  return { email: email as string }
 }

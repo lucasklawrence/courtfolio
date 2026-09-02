@@ -19,7 +19,7 @@ describe('selectJumpEntries', () => {
     ]
     const result = selectJumpEntries(mixed)
     expect(result).toHaveLength(2)
-    expect(result.map((e) => e.date)).toEqual(['2026-01-15', '2026-03-15'])
+    expect(result.map(e => e.date)).toEqual(['2026-01-15', '2026-03-15'])
   })
 
   it('drops sessions explicitly marked is_complete: false', () => {
@@ -28,10 +28,7 @@ describe('selectJumpEntries', () => {
       { date: '2026-02-15', vertical_in: 20, is_complete: false },
       { date: '2026-03-15', vertical_in: 21 },
     ]
-    expect(selectJumpEntries(entries).map((e) => e.date)).toEqual([
-      '2026-01-15',
-      '2026-03-15',
-    ])
+    expect(selectJumpEntries(entries).map(e => e.date)).toEqual(['2026-01-15', '2026-03-15'])
   })
 
   it('sorts oldest → newest so the last element is the "latest" silhouette', () => {
@@ -40,7 +37,7 @@ describe('selectJumpEntries', () => {
       { date: '2026-01-15', vertical_in: 19 },
       { date: '2026-03-15', vertical_in: 21 },
     ]
-    expect(selectJumpEntries(unsorted).map((e) => e.date)).toEqual([
+    expect(selectJumpEntries(unsorted).map(e => e.date)).toEqual([
       '2026-01-15',
       '2026-03-15',
       '2026-04-15',
@@ -48,9 +45,7 @@ describe('selectJumpEntries', () => {
   })
 
   it('preserves bodyweight on the projected entry for tooltip use', () => {
-    const entries: Benchmark[] = [
-      { date: '2026-04-15', vertical_in: 23, bodyweight_lbs: 232 },
-    ]
+    const entries: Benchmark[] = [{ date: '2026-04-15', vertical_in: 23, bodyweight_lbs: 232 }]
     expect(selectJumpEntries(entries)[0]?.bodyweightLbs).toBe(232)
   })
 })

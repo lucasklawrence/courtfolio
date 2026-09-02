@@ -64,10 +64,7 @@ describe('filterSetsForDay', () => {
   })
 
   it('skips sets with unparseable timestamps without throwing', () => {
-    const sets = [
-      set({ logged_at: '2026-05-07T08:00:00' }),
-      set({ logged_at: 'not-a-date' }),
-    ]
+    const sets = [set({ logged_at: '2026-05-07T08:00:00' }), set({ logged_at: 'not-a-date' })]
     expect(filterSetsForDay(sets, '2026-05-07')).toHaveLength(1)
   })
 })
@@ -119,8 +116,8 @@ describe('variantBreakdown', () => {
       set({ reps: 20, variant: 'wide' }),
       set({ reps: 20, variant: 'close' }),
     ])
-    const wide = slices.find((s) => s.variant === 'wide')
-    const close = slices.find((s) => s.variant === 'close')
+    const wide = slices.find(s => s.variant === 'wide')
+    const close = slices.find(s => s.variant === 'close')
     expect(wide).toEqual({ variant: 'wide', reps: 30, sets: 2, share: 0.6 })
     expect(close).toEqual({ variant: 'close', reps: 20, sets: 1, share: 0.4 })
   })
@@ -137,7 +134,7 @@ describe('variantBreakdown', () => {
       set({ reps: 10 }),
     ])
     // wide (10) and unspecified (10) tie on reps; unspecified sorts last.
-    expect(slices.map((s) => s.variant)).toEqual(['wide', null, 'close'])
+    expect(slices.map(s => s.variant)).toEqual(['wide', null, 'close'])
   })
 
   it('shares across the slices sum to 1', () => {
@@ -163,9 +160,7 @@ describe('computeRingPercent', () => {
   })
 
   it('returns 0 when the daily target is non-positive', () => {
-    expect(
-      computeRingPercent(50, { exercise: 'pushups', daily_target: 0, color: '#000' }),
-    ).toBe(0)
+    expect(computeRingPercent(50, { exercise: 'pushups', daily_target: 0, color: '#000' })).toBe(0)
   })
 
   it('returns 0 when no reps logged', () => {
@@ -174,16 +169,21 @@ describe('computeRingPercent', () => {
 })
 
 describe('localNoonIsoForDay', () => {
-  it('round-trips back to the same local day key', () => {
-    // The exact UTC string depends on the test runner's timezone; the
-    // contract is "this instant buckets onto the requested day."
+  it('round-trips back to the same day key', () => {
+    // The contract is "this instant buckets onto the requested day" — the
+    // only assertion that holds regardless of the runner's timezone.
     expect(toLocalDateKey(localNoonIsoForDay('2026-05-25'))).toBe('2026-05-25')
   })
 
-  it('stamps local noon, not midnight', () => {
-    const d = new Date(localNoonIsoForDay('2026-05-25'))
-    expect(d.getHours()).toBe(12)
-    expect(d.getMinutes()).toBe(0)
+  it('round-trips for a day on the PST side of the year too', () => {
+    expect(toLocalDateKey(localNoonIsoForDay('2026-01-15'))).toBe('2026-01-15')
+  })
+
+  it('stamps Pacific midday, not midnight', () => {
+    // Asserted in UTC rather than via getHours(): the stamp is Pacific noon
+    // (#319), so a local-hours assertion would read 12 only on a Pacific
+    // runner and 19 on the UTC one CI uses.
+    expect(localNoonIsoForDay('2026-05-25')).toBe('2026-05-25T19:00:00.000Z')
   })
 
   it('returns "" for a non-day-key string', () => {

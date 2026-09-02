@@ -4,7 +4,11 @@ import type { StrengthStreakResult } from '@/lib/training-facility/strength-stre
 
 /** Props for {@link StreakBadge}. */
 export interface StreakBadgeProps {
-  /** Display name for the exercise (e.g. `pushups`). Rendered uppercased. */
+  /**
+   * Label to render, uppercased by CSS. Callers pass the catalog's
+   * `display_name` when there is one (#384) and the slug otherwise — this is
+   * display text, never an identity.
+   */
   exercise: string
   /** Active and longest streak counts, from `computeStrengthStreaks`. */
   streak: StrengthStreakResult

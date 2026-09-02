@@ -67,9 +67,19 @@ const runStart: RunStartEvent = {
   targetId: 'courtfolio',
   thesis: replay.thesis,
   personas: [
-    { id: 'p-anthropic', label: 'Persona One', lens: 'lens one', model: 'anthropic/claude-haiku-4.5' },
+    {
+      id: 'p-anthropic',
+      label: 'Persona One',
+      lens: 'lens one',
+      model: 'anthropic/claude-haiku-4.5',
+    },
     { id: 'p-openai', label: 'Persona Two', lens: 'lens two', model: 'openai/gpt-5-mini' },
-    { id: 'p-google', label: 'Persona Three', lens: 'lens three', model: 'google/gemini-2.5-flash' },
+    {
+      id: 'p-google',
+      label: 'Persona Three',
+      lens: 'lens three',
+      model: 'google/gemini-2.5-flash',
+    },
   ],
   cached: false,
   startedAt: new Date().toISOString(),
@@ -175,7 +185,9 @@ describe('LiveDraftRoom', () => {
     const progress = screen.getByText(/Fact-checking/)
     expect(progress).toHaveTextContent('3/5 gaps re-checked')
     // No synthesis yet, so the closing sections are absent.
-    expect(screen.queryByRole('heading', { name: 'The war room — converge vs. split' })).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('heading', { name: 'The war room — converge vs. split' })
+    ).not.toBeInTheDocument()
     expect(
       screen.queryByRole('heading', { name: 'The front office decides' })
     ).not.toBeInTheDocument()
@@ -192,7 +204,9 @@ describe('LiveDraftRoom', () => {
       })
     )
 
-    expect(screen.getByRole('heading', { name: 'The war room — converge vs. split' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: 'The war room — converge vs. split' })
+    ).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'The front office decides' })).toBeInTheDocument()
     expect(screen.getByText('the live synthesis verdict')).toBeInTheDocument()
     // The synthesis supersedes the verify progress line.

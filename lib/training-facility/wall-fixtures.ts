@@ -13,11 +13,7 @@
  * first load.
  */
 
-import type {
-  CardioData,
-  CardioSession,
-  CardioTimePoint,
-} from '@/types/cardio'
+import type { CardioData, CardioSession, CardioTimePoint } from '@/types/cardio'
 
 import { parseSessionDate } from './cardio-shared'
 
@@ -35,7 +31,7 @@ import { parseSessionDate } from './cardio-shared'
  */
 export function takeLatestPoints(
   series: readonly CardioTimePoint[] | undefined,
-  limit: number,
+  limit: number
 ): CardioTimePoint[] {
   if (!series || series.length === 0 || limit <= 0) return []
   const sorted = [...series].sort((a, b) => a.date.localeCompare(b.date))
@@ -61,7 +57,7 @@ export interface RestingHrSnapshot {
  */
 export function pickLatestRestingHr(
   data: CardioData | null,
-  sparklineLimit: number,
+  sparklineLimit: number
 ): RestingHrSnapshot | null {
   if (!data) return null
   const series = takeLatestPoints(data.resting_hr_trend, sparklineLimit)
@@ -90,7 +86,7 @@ export interface Vo2MaxSnapshot {
  */
 export function pickLatestVo2max(
   data: CardioData | null,
-  trendLimit: number,
+  trendLimit: number
 ): Vo2MaxSnapshot | null {
   if (!data) return null
   const series = takeLatestPoints(data.vo2max_trend, trendLimit)
@@ -130,7 +126,7 @@ const ROLLING_WINDOW_DAYS = 7
  */
 export function deriveWeeklyCardioTotals(
   data: CardioData | null,
-  now: Date = new Date(),
+  now: Date = new Date()
 ): WeeklyCardioTotals | null {
   if (!data || !data.sessions || data.sessions.length === 0) return null
   const windowStartMs = now.getTime() - ROLLING_WINDOW_DAYS * 24 * 60 * 60 * 1000

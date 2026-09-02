@@ -1,12 +1,13 @@
 import type { JSX } from 'react'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
+import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { LogDataIsland } from '@/components/training-facility/weight-room/LogDataIsland'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { getWorkoutTemplatesServer } from '@/lib/data/weight-room-server'
+import { isWeightRoomEnabled } from '@/lib/feature-flags'
 
 /**
  * Weight Room Log page (#197). Admin-only owner-facing surface where
@@ -24,8 +25,14 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * after each mutation without a router refresh round-trip.
  */
 export default async function WeightRoomLogPage(): Promise<JSX.Element> {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isWeightRoomEnabled()) notFound()
   await requireAdminPage()
+
+  // Templates are read server-side and handed down (#376) so the live panel
+  // doesn't add a client round trip on mount. A read failure degrades to
+  // "freestyle only" rather than failing the page — you can still start a
+  // workout and log into it without a prescription.
+  const templates = await getWorkoutTemplatesServer().catch(() => [])
 
   return (
     <div className="relative min-h-svh overflow-hidden bg-[#120d0a] text-[#f7ead9]">
@@ -37,12 +44,7 @@ export default async function WeightRoomLogPage(): Promise<JSX.Element> {
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-5xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <BackToCourtButton />
-          <Link
-            href="/training-facility"
-            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
-          >
-            ← Training Facility
-          </Link>
+          <FacilityBackLink />
         </div>
 
         <header className="mt-12">
@@ -53,15 +55,14 @@ export default async function WeightRoomLogPage(): Promise<JSX.Element> {
             Log a set
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Today’s sets, rings, and streaks — plus the form to add a new
-            one. The Today view is read-only for visitors; data entry
-            lives here.
+            Today’s sets, rings, and streaks — plus the form to add a new one. The Today view is
+            read-only for visitors; data entry lives here.
           </p>
-          <WeightRoomSubNav active="log" className="mt-5" />
+          <WeightRoomSubNav active="log" className="mt-5" isAdmin />
         </header>
 
         <section className="mt-10 flex-1">
-          <LogDataIsland />
+          <LogDataIsland templates={templates} />
         </section>
       </div>
     </div>

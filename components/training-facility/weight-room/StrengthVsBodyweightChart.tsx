@@ -7,6 +7,7 @@ import { buildWeeklyVolume } from '@/lib/training-facility/weight-room-history'
 import type { CardioTimePoint } from '@/types/cardio'
 import type { Benchmark } from '@/types/movement'
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Cream axis ink that reads on the Weight Room's dark card surface. */
 const AXIS_COLOR = 'rgba(247, 234, 217, 0.6)'
@@ -95,8 +96,8 @@ export function StrengthVsBodyweightChart({
         width={width}
         height={height}
         axisColor={AXIS_COLOR}
-        emptyMessage={`Not enough completed weeks of ${goal.exercise} yet`}
-        ariaLabel={`${goal.exercise} weekly volume — not enough completed weeks yet`}
+        emptyMessage={`Not enough completed weeks of ${exerciseLabel(goal)} yet`}
+        ariaLabel={`${exerciseLabel(goal)} weekly volume — not enough completed weeks yet`}
       />
     )
   }
@@ -111,26 +112,89 @@ export function StrengthVsBodyweightChart({
     .map(p => ({ date: p.date, bodyweight_lbs: p.value }))
 
   return (
-    <BodyweightOverlay
-      benchmarks={benchmarks}
-      dateExtent={dateExtent}
-      width={width}
-      height={height}
-      stroke={BODYWEIGHT_STROKE}
-      axisColor={AXIS_COLOR}
-      ariaLabel={`Morning bodyweight in pounds overlaid on weekly ${goal.exercise} volume`}
-    >
-      <RoughLine
-        data={points}
-        x={p => p.weekStart}
-        y={p => p.reps}
+    <div style={{ width }}>
+      <BodyweightOverlay
+        benchmarks={benchmarks}
+        dateExtent={dateExtent}
         width={width}
         height={height}
-        stroke={goal.color}
+        stroke={BODYWEIGHT_STROKE}
         axisColor={AXIS_COLOR}
-        yLabel={`${goal.exercise}/wk`}
-        ariaLabel={`Weekly ${goal.exercise} volume over ${points.length} weeks`}
-      />
-    </BodyweightOverlay>
+        ariaLabel={`Morning bodyweight in pounds overlaid on weekly ${exerciseLabel(goal)} volume`}
+      >
+        <RoughLine
+          data={points}
+          x={p => p.weekStart}
+          y={p => p.reps}
+          width={width}
+          height={height}
+          stroke={goal.color}
+          axisColor={AXIS_COLOR}
+          yLabel={`${exerciseLabel(goal)}/wk`}
+          ariaLabel={`Weekly ${exerciseLabel(goal)} volume over ${points.length} weeks`}
+        />
+      </BodyweightOverlay>
+      <ChartLegend exercise={exerciseLabel(goal)} exerciseColor={goal.color} />
+    </div>
+  )
+}
+
+/**
+ * Names the two series. Two lines on two different y-axes are only readable if
+ * you know which is which, and the axis labels alone don't carry that at a
+ * glance — the left axis reads `pullups/wk`, the right `Bodyweight (lbs)`, but
+ * neither says which *line* is which.
+ *
+ * Sits below the plot rather than inside it: the overlay owns an absolutely
+ * positioned toggle in the top-right corner, and an in-plot legend would have
+ * to dodge it at every width.
+ *
+ * Static by design. It labels the encoding; it isn't a control. Hiding the
+ * bodyweight line is what the overlay's own toggle is for, and mirroring that
+ * state here would imply the legend is clickable too.
+ */
+function ChartLegend({
+  exercise,
+  exerciseColor,
+}: {
+  exercise: string
+  exerciseColor: string
+}): JSX.Element {
+  return (
+    <ul className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-[#f7ead9]/70">
+      <LegendKey color={exerciseColor} label={`${exercise} / week`} />
+      {/* Dashed to match how BodyweightOverlay strokes the secondary series. */}
+      <LegendKey color={BODYWEIGHT_STROKE} label="Bodyweight (lb)" dashed />
+    </ul>
+  )
+}
+
+/** One legend row: a line swatch in the series' own stroke, then its name. */
+function LegendKey({
+  color,
+  label,
+  dashed = false,
+}: {
+  color: string
+  label: string
+  dashed?: boolean
+}): JSX.Element {
+  return (
+    <li className="flex items-center gap-2">
+      {/* `aria-hidden` — the adjacent text already names the series, so a
+          screen reader would otherwise hear an unlabeled graphic. */}
+      <svg aria-hidden="true" width={22} height={8} viewBox="0 0 22 8">
+        <line
+          x1={0}
+          y1={4}
+          x2={22}
+          y2={4}
+          stroke={color}
+          strokeWidth={2}
+          strokeDasharray={dashed ? '4 3' : undefined}
+        />
+      </svg>
+      {label}
+    </li>
   )
 }

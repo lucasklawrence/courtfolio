@@ -164,7 +164,7 @@ export interface BuildHrZoneComparisonOptions {
 export function buildHrZoneComparison(
   cardioSessions: readonly CardioSession[],
   otfSessions: readonly OtfSession[],
-  options: BuildHrZoneComparisonOptions = {},
+  options: BuildHrZoneComparisonOptions = {}
 ): HrZoneComparison {
   const derived = observedMaxHr({ cardioSessions, otfSessions })
   const override = options.maxHrOverride
@@ -234,7 +234,7 @@ export function buildHrZoneComparison(
  */
 export function averageOf(
   sessions: readonly OtfSession[],
-  field: 'peak_hr' | 'avg_hr',
+  field: 'peak_hr' | 'avg_hr'
 ): number | null {
   let sum = 0
   let count = 0
@@ -255,10 +255,7 @@ export function averageOf(
  * lower band it satisfies. Used to annotate a marker (e.g. avg HR) with the
  * zone it lands in.
  */
-export function bandForBpm(
-  bands: readonly ZoneTimeShare[],
-  bpm: number,
-): ZoneTimeShare | null {
+export function bandForBpm(bands: readonly ZoneTimeShare[], bpm: number): ZoneTimeShare | null {
   let match: ZoneTimeShare | null = null
   for (const band of bands) {
     if (bpm >= band.minBpm) match = band

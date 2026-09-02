@@ -36,10 +36,7 @@ describe('QuickLog', () => {
   it('attaches a selected grip to a preset log (#254)', async () => {
     const onLog = vi.fn().mockResolvedValue(undefined)
     render(<QuickLog goals={[PULLUPS]} onLog={onLog} />)
-    await userEvent.selectOptions(
-      screen.getByTestId('quick-log-pullups-grip'),
-      'wide',
-    )
+    await userEvent.selectOptions(screen.getByTestId('quick-log-pullups-grip'), 'wide')
     await userEvent.click(screen.getByTestId('quick-log-pullups-10'))
     expect(onLog).toHaveBeenCalledWith({
       exercise: 'pullups',
@@ -51,13 +48,13 @@ describe('QuickLog', () => {
   it('exposes each exercise its curated grip list', () => {
     render(<QuickLog goals={[PULLUPS, PUSHUPS]} onLog={vi.fn()} />)
     const pullupOptions = Array.from(
-      screen.getByTestId('quick-log-pullups-grip').querySelectorAll('option'),
-    ).map((o) => o.value)
+      screen.getByTestId('quick-log-pullups-grip').querySelectorAll('option')
+    ).map(o => o.value)
     // no-grip + 4 curated pull-up grips + Custom…
     expect(pullupOptions).toEqual(['', 'wide', 'close', 'neutral', 'chin-up', '__custom__'])
     const pushupOptions = Array.from(
-      screen.getByTestId('quick-log-pushups-grip').querySelectorAll('option'),
-    ).map((o) => o.value)
+      screen.getByTestId('quick-log-pushups-grip').querySelectorAll('option')
+    ).map(o => o.value)
     expect(pushupOptions).toEqual([
       '',
       'standard',
@@ -101,16 +98,10 @@ describe('QuickLog', () => {
     // been logged with before must show up as a selectable option, not
     // just be typeable.
     const onLog = vi.fn().mockResolvedValue(undefined)
-    render(
-      <QuickLog
-        goals={[SHRUGS]}
-        variantSuggestions={{ shrugs: ['heavy'] }}
-        onLog={onLog}
-      />,
-    )
+    render(<QuickLog goals={[SHRUGS]} variantSuggestions={{ shrugs: ['heavy'] }} onLog={onLog} />)
     const options = Array.from(
-      screen.getByTestId('quick-log-shrugs-grip').querySelectorAll('option'),
-    ).map((o) => o.value)
+      screen.getByTestId('quick-log-shrugs-grip').querySelectorAll('option')
+    ).map(o => o.value)
     expect(options).toEqual(['', 'heavy', '__custom__'])
     await userEvent.selectOptions(screen.getByTestId('quick-log-shrugs-grip'), 'heavy')
     await userEvent.click(screen.getByTestId('quick-log-shrugs-10'))
@@ -166,7 +157,7 @@ describe('QuickLog', () => {
         goals={[PUSHUPS]}
         lastReps={{ pushups: 22 }}
         onLog={vi.fn().mockResolvedValue(undefined)}
-      />,
+      />
     )
     await userEvent.click(screen.getByRole('button', { name: 'Custom' }))
     expect(screen.getByLabelText(/reps/i)).toHaveValue(22)
@@ -207,14 +198,14 @@ describe('QuickLog', () => {
         goals={[PUSHUPS]}
         lastReps={{ pushups: 10 }}
         onLog={vi.fn().mockResolvedValue(undefined)}
-      />,
+      />
     )
     rerender(
       <QuickLog
         goals={[PUSHUPS]}
         lastReps={{ pushups: 25 }}
         onLog={vi.fn().mockResolvedValue(undefined)}
-      />,
+      />
     )
     await userEvent.click(screen.getByRole('button', { name: 'Custom' }))
     expect(screen.getByLabelText(/reps/i)).toHaveValue(25)
@@ -230,9 +221,9 @@ describe('QuickLog', () => {
     let resolveLog: (() => void) | null = null
     const onLog = vi.fn().mockImplementation(
       () =>
-        new Promise<void>((resolve) => {
+        new Promise<void>(resolve => {
           resolveLog = resolve
-        }),
+        })
     )
     render(<QuickLog goals={[PUSHUPS]} onLog={onLog} />)
     await userEvent.click(screen.getByTestId('quick-log-pushups-10'))

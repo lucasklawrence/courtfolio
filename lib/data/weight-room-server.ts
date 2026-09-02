@@ -1,9 +1,21 @@
 import 'server-only'
 
 import { createServerSupabaseClient } from '@/lib/supabase/server'
-import type { WeightRoomData } from '@/types/weight-room'
+import type {
+  WeightRoomAchievement,
+  WeightRoomData,
+  WeightRoomExercise,
+  WeightRoomWorkout,
+  WorkoutTemplate,
+} from '@/types/weight-room'
 
-import { assembleWeightRoomData } from './weight-room-shared'
+import {
+  assembleWeightRoomAchievements,
+  assembleWeightRoomData,
+  assembleWeightRoomExercises,
+  assembleWeightRoomWorkouts,
+  assembleWorkoutTemplates,
+} from './weight-room-shared'
 
 /**
  * Server-side Weight Room dataset reader (#79) for Server Components
@@ -27,4 +39,68 @@ import { assembleWeightRoomData } from './weight-room-shared'
 export async function getWeightRoomDataServer(): Promise<WeightRoomData | null> {
   const supabase = await createServerSupabaseClient()
   return assembleWeightRoomData(supabase)
+}
+
+/**
+ * Server-side reader for the Trophy Room achievement ladder (#336) — used by
+ * the `/training-facility/weight-room/achievements` page and the Settings
+ * page's initial hydration. Wraps {@link assembleWeightRoomAchievements} with
+ * the per-request SSR client.
+ *
+ * Returns an empty array (never `null`) when no tiers are configured — see
+ * {@link assembleWeightRoomAchievements}.
+ *
+ * @throws See {@link assembleWeightRoomAchievements}. Both call sites
+ *   downgrade this to an empty ladder rather than failing the page.
+ */
+export async function getWeightRoomAchievementsServer(): Promise<WeightRoomAchievement[]> {
+  const supabase = await createServerSupabaseClient()
+  return assembleWeightRoomAchievements(supabase)
+}
+
+/**
+ * Server-side reader for the movement roster (#373) — used by the Settings
+ * page's catalog editor. Wraps {@link assembleWeightRoomExercises} with the
+ * per-request SSR client.
+ *
+ * Returns an empty array (never `null`) when the roster is empty, and includes
+ * archived movements so the editor can un-archive them.
+ *
+ * @throws See {@link assembleWeightRoomExercises}. The Settings page downgrades
+ *   this to an empty roster rather than failing the page.
+ */
+export async function getWeightRoomExercisesServer(): Promise<WeightRoomExercise[]> {
+  const supabase = await createServerSupabaseClient()
+  return assembleWeightRoomExercises(supabase)
+}
+
+/**
+ * Server-side reader for workout templates (#375) with their slots, steps, and
+ * alternates attached — used by the Settings builder and, later, the recording
+ * surface's template picker.
+ *
+ * Returns an empty array (never `null`) when none are configured, and includes
+ * archived templates so the builder can un-archive them.
+ *
+ * @throws See {@link assembleWorkoutTemplates}. Call sites downgrade this to an
+ *   empty list rather than failing the page.
+ */
+export async function getWorkoutTemplatesServer(): Promise<WorkoutTemplate[]> {
+  const supabase = await createServerSupabaseClient()
+  return assembleWorkoutTemplates(supabase)
+}
+
+/**
+ * Server-side reader for recorded workouts (#374), newest first — used by the
+ * workout history list and the per-workout summary (#377). Wraps
+ * {@link assembleWeightRoomWorkouts} with the per-request SSR client.
+ *
+ * Returns an empty array (never `null`) when nothing has been recorded.
+ *
+ * @throws See {@link assembleWeightRoomWorkouts}. Call sites downgrade this to
+ *   an empty list rather than failing the page.
+ */
+export async function getWeightRoomWorkoutsServer(): Promise<WeightRoomWorkout[]> {
+  const supabase = await createServerSupabaseClient()
+  return assembleWeightRoomWorkouts(supabase)
 }

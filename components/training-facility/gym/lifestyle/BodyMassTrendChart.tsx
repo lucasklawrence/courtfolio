@@ -13,7 +13,7 @@ export function BodyMassTrendChart(props: LifestyleChartProps): JSX.Element {
     <BaseLifestyleTrendChart
       {...props}
       yLabel="lbs"
-      yTickFormat={(v) => v.toFixed(1)}
+      yTickFormat={v => v.toFixed(1)}
       emptyMessage="No body mass data in range"
       ariaLabel="Body mass over time"
     />

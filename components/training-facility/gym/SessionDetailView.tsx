@@ -4,7 +4,11 @@ import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState, type JSX } from 'react'
 
 import type { CardioSession, HrSample } from '@/types/cardio'
-import { aggregateHrZoneSeconds, formatDuration, parseSessionDate } from '@/lib/training-facility/cardio-shared'
+import {
+  aggregateHrZoneSeconds,
+  formatDuration,
+  parseSessionDate,
+} from '@/lib/training-facility/cardio-shared'
 import { ACTIVITY_VISUALS } from '@/lib/training-facility/all-cardio'
 import { METERS_PER_MILE } from '@/lib/training-facility/running'
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
@@ -45,10 +49,7 @@ export interface SessionDetailViewProps {
  * is read by the Server Component parent and passed down — this view
  * does no fetching of its own.
  */
-export function SessionDetailView({
-  session,
-  samples,
-}: SessionDetailViewProps): JSX.Element {
+export function SessionDetailView({ session, samples }: SessionDetailViewProps): JSX.Element {
   const curveSizerRef = useRef<HTMLDivElement>(null)
   const zoneSizerRef = useRef<HTMLDivElement>(null)
   const [curveWidth, setCurveWidth] = useState(DEFAULT_CHART_WIDTH)
@@ -57,10 +58,10 @@ export function SessionDetailView({
   useEffect(() => {
     const node = curveSizerRef.current
     if (!node || typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
-        setCurveWidth((prev) => (prev === next ? prev : next))
+        setCurveWidth(prev => (prev === next ? prev : next))
       }
     })
     observer.observe(node)
@@ -70,10 +71,10 @@ export function SessionDetailView({
   useEffect(() => {
     const node = zoneSizerRef.current
     if (!node || typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
-        setZoneWidth((prev) => (prev === next ? prev : next))
+        setZoneWidth(prev => (prev === next ? prev : next))
       }
     })
     observer.observe(node)
@@ -89,7 +90,7 @@ export function SessionDetailView({
   // samples ascending so this stays sorted for the line chart.
   const curve = useMemo<CurvePoint[]>(() => {
     if (sessionStartMs === 0) return []
-    return samples.map((s) => {
+    return samples.map(s => {
       const sampleMs = new Date(s.ts).getTime()
       const tSeconds = Number.isFinite(sampleMs)
         ? Math.max(0, (sampleMs - sessionStartMs) / 1000)
@@ -159,8 +160,8 @@ export function SessionDetailView({
             ) : (
               <RoughLine
                 data={curve}
-                x={(d) => d.tSeconds}
-                y={(d) => d.bpm}
+                x={d => d.tSeconds}
+                y={d => d.bpm}
                 width={curveWidth}
                 height={CURVE_HEIGHT}
                 margin={defaultMargin}

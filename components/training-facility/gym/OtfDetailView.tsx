@@ -11,8 +11,6 @@ import {
   rangeForPreset,
   type DateRange,
 } from '@/components/training-facility/shared/DateFilter'
-import { useAdminSession } from '@/lib/auth/use-admin-session'
-import { getOtfData, getOtfMileageAwards } from '@/lib/data'
 import {
   OTF_ZONES,
   aggregateOtfZoneMinutes,
@@ -23,11 +21,13 @@ import {
   filterOtfSessionsInRange,
   formatMmss,
   formatOtfDate,
+  gradeAdjustedPaceSeconds,
   mmssToSeconds,
   otfBlockTrend,
   otfClassTypes,
   otfHighlights,
   otfLinearRegression,
+  otfClassTypeLabel,
   otfMetricTrend,
   resolveOtfClassTypeFilter,
   type OtfTrendPoint,
@@ -39,13 +39,73 @@ import { OtfSparklineSummary, type OtfSparklineRow } from './OtfSparklineSummary
 import { OtfZoneBars } from './OtfZoneBars'
 
 const CHART_HEIGHT = 280
-const MIN_CHART_WIDTH = 280
+
+/**
+ * Narrowest a chart may get before it stops shrinking and overflows its card
+ * instead — and the floor is **breakpoint-dependent**, because the two layouts
+ * want opposite things.
+ *
+ * Stacked (below `lg`) the card spans the viewport, so on a phone the chart
+ * area is ~330px and a season of classes gets crushed into it. There is nothing
+ * to drag sideways either: `ChartCard` wraps its children in `overflow-x-auto`,
+ * but the chart never grows past it. A floor above phone width makes the chart
+ * legible and lets that scroll container do its job — matching the Weight Room
+ * heatmap, which has always sized itself from its data and scrolled.
+ *
+ * Two-column (`lg` and up) the arithmetic is tight and a floor is actively
+ * harmful: `max-w-5xl` (1024) less `lg:px-12` (96) is 928, less the grid's
+ * `gap-6` (24) halves to 452 per column, less `ChartCard`'s `p-5` (40) leaves
+ * **412px**. Any floor above that clips the right edge of every desktop chart
+ * behind a scrollbar. So desktop keeps a floor low enough to never bind, and
+ * the chart simply fills its column.
+ */
+const MOBILE_MIN_CHART_WIDTH = 480
+const DESKTOP_MIN_CHART_WIDTH = 280
+
+/**
+ * Tailwind's `lg` — the breakpoint where the chart grid becomes two columns.
+ *
+ * Expressed in `rem`, not `px`, because that is how Tailwind v4 defines it
+ * (`--breakpoint-lg: 64rem`). A hard-coded `1024px` agrees only while the
+ * browser's root font size is the default 16px. At 12px the CSS grid would
+ * switch to two columns at 768px while this query still reported "stacked",
+ * applying the mobile floor to a ~300px column and clipping the charts —
+ * exactly the bug this floor exists to avoid, just for users who scale their
+ * text.
+ */
+const TWO_COLUMN_QUERY = '(min-width: 64rem)'
+
 const DEFAULT_CHART_WIDTH = 560
 const EARLIEST_FALLBACK = new Date(2026, 0, 1)
 const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
 
 /** Empty dataset used while loading resolves to "no sessions yet" instead of spinning forever. */
 const EMPTY_OTF: OtfData = { imported_at: '', sessions: [] }
+
+/** Props for {@link OtfDetailView}. */
+export interface OtfDetailViewProps {
+  /**
+   * The OrangeTheory dataset read server-side, or `null` when `otf_sessions`
+   * is empty — a normal pre-baseline state, not a failure.
+   */
+  otf: OtfData | null
+  /**
+   * Milestone ladder for the monthly-mileage section (#321). Independent of the
+   * session read: the page downgrades a failure here to an empty ladder (no
+   * badges) rather than blanking the view, so it never blocks the charts.
+   */
+  mileageAwards: OtfMileageAward[]
+  /**
+   * Whether the viewer is an admin — gates the milestone-settings link.
+   *
+   * Resolved server-side by the page rather than by `useAdminSession` here:
+   * that hook builds a browser Supabase client to watch for auth changes, and
+   * this route is publicly reachable (#345).
+   */
+  isAdmin: boolean
+  /** Message from a failed session read, rendered in place of the charts. */
+  loadError?: string
+}
 
 /**
  * OrangeTheory detail view (#256) — renders the `otf_sessions` data the
@@ -56,16 +116,24 @@ const EMPTY_OTF: OtfData = { imported_at: '', sessions: [] }
  * / avg-HR trend lines — plus an expandable session log surfacing each
  * class's treadmill and rower performance blocks.
  */
-export function OtfDetailView(): JSX.Element {
-  const [data, setData] = useState<OtfData | null>(null)
-  // Milestone ladder for the monthly-mileage section (#321). Independent of the
-  // session read: a failure here downgrades to an empty ladder (no badges)
-  // rather than blanking the page, so it never blocks the charts.
-  const [mileageAwards, setMileageAwards] = useState<OtfMileageAward[]>([])
-  const { isAdmin } = useAdminSession()
-  const [loadError, setLoadError] = useState<Error | null>(null)
+export function OtfDetailView({
+  otf,
+  mileageAwards,
+  isAdmin,
+  loadError,
+}: OtfDetailViewProps): JSX.Element {
+  // `null` means `otf_sessions` is empty; substitute an empty dataset so the
+  // view lands on its empty state rather than null-checking at every use site.
+  const data = useMemo<OtfData>(() => otf ?? EMPTY_OTF, [otf])
   const [range, setRange] = useState<DateRange>(() => rangeForPreset('ALL', EARLIEST_FALLBACK))
-  const [chartWidth, setChartWidth] = useState(DEFAULT_CHART_WIDTH)
+  // Raw container width; the legibility floor is applied at render (below), so
+  // a breakpoint change re-derives the width without the observer holding a
+  // stale floor in its closure.
+  const [measuredWidth, setMeasuredWidth] = useState(DEFAULT_CHART_WIDTH)
+  // Start `true` so the server and first client render agree: SSR has no
+  // viewport, and the desktop floor never binds, so the chart renders at its
+  // measured width either way and hydration can't mismatch.
+  const [isTwoColumn, setIsTwoColumn] = useState(true)
   // Coarse class-type filter (#271); `null` = "All". Scopes both the log and
   // every aggregate, composing with the date range and the #268 exclusion.
   const [classType, setClassType] = useState<string | null>(null)
@@ -79,49 +147,36 @@ export function OtfDetailView(): JSX.Element {
     if (!node || typeof ResizeObserver === 'undefined') return
     const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
-        const next = Math.max(MIN_CHART_WIDTH, Math.floor(entry.contentRect.width))
-        setChartWidth(prev => (prev === next ? prev : next))
+        const next = Math.floor(entry.contentRect.width)
+        setMeasuredWidth(prev => (prev === next ? prev : next))
       }
     })
     observer.observe(node)
     observerRef.current = observer
   }, [])
 
+  // Which floor applies is a question about the *layout*, not the container:
+  // a stacked card and a two-column card can be within ~80px of each other, so
+  // a width threshold could not tell them apart. Track the breakpoint itself.
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return
+    const query = window.matchMedia(TWO_COLUMN_QUERY)
+    const sync = () => setIsTwoColumn(query.matches)
+    sync()
+    query.addEventListener('change', sync)
+    return () => query.removeEventListener('change', sync)
+  }, [])
+
+  const chartWidth = Math.max(
+    isTwoColumn ? DESKTOP_MIN_CHART_WIDTH : MOBILE_MIN_CHART_WIDTH,
+    measuredWidth
+  )
+
   // Track manual range edits so the post-load re-anchor doesn't stomp them.
   const userAdjustedRange = useRef(false)
   const handleRangeChange = useCallback((next: DateRange) => {
     userAdjustedRange.current = true
     setRange(next)
-  }, [])
-
-  useEffect(() => {
-    let cancelled = false
-    getOtfData()
-      .then(otf => {
-        if (cancelled) return
-        // `getOtfData()` resolves to `null` when `otf_sessions` is empty;
-        // substitute an empty dataset so we land on the empty state rather
-        // than the perpetual loading panel.
-        setData(otf ?? EMPTY_OTF)
-      })
-      .catch((err: unknown) => {
-        if (cancelled) return
-        setLoadError(err instanceof Error ? err : new Error(String(err)))
-      })
-    // Load the milestone ladder in parallel; its failure is non-fatal (the
-    // mileage section just shows no badges), so it has its own catch and never
-    // trips `loadError`.
-    getOtfMileageAwards()
-      .then(awards => {
-        if (cancelled) return
-        setMileageAwards(awards)
-      })
-      .catch(() => {
-        /* leave the ladder empty — the section renders miles with no badges */
-      })
-    return () => {
-      cancelled = true
-    }
   }, [])
 
   const earliest = useMemo(
@@ -196,6 +251,19 @@ export function OtfDetailView(): JSX.Element {
     () => otfBlockTrend(activeSessions, 'treadmill', t => t.avg_incline),
     [activeSessions]
   )
+  // Grade-adjusted pace (#335) — raw pace folded through the Minetti cost
+  // curve so a steep class stops reading as a slow one. Derived here rather
+  // than stored, so it re-derives if the model is ever revised. A class with
+  // a pace but no incline falls through as its own raw pace (factor 1)
+  // rather than dropping out of the series.
+  const treadGradeAdjustedPaceTrend = useMemo(
+    () =>
+      otfBlockTrend(activeSessions, 'treadmill', t => {
+        const seconds = mmssToSeconds(t.avg_pace)
+        return seconds === null ? null : gradeAdjustedPaceSeconds(seconds, t.avg_incline)
+      }),
+    [activeSessions]
+  )
   const rowerWattsTrend = useMemo(
     () => otfBlockTrend(activeSessions, 'rower', r => r.avg_watt),
     [activeSessions]
@@ -212,19 +280,56 @@ export function OtfDetailView(): JSX.Element {
   )
   const treadRows = useMemo<OtfSparklineRow[]>(
     () => [
-      { key: 'distance', label: 'Distance', trend: treadDistanceTrend, format: v => `${v.toFixed(2)} mi` },
+      {
+        key: 'distance',
+        label: 'Distance',
+        trend: treadDistanceTrend,
+        format: v => `${v.toFixed(2)} mi`,
+      },
       { key: 'time', label: 'Time', trend: treadTimeTrend, format: formatMmss },
       { key: 'pace', label: 'Avg pace', trend: treadPaceTrend, format: v => `${formatMmss(v)}/mi` },
-      { key: 'incline', label: 'Avg incline', trend: treadInclineTrend, format: v => `${v.toFixed(1)}%` },
+      {
+        key: 'incline',
+        label: 'Avg incline',
+        trend: treadInclineTrend,
+        format: v => `${v.toFixed(1)}%`,
+      },
+      {
+        key: 'gap',
+        label: 'Grade-adj pace',
+        trend: treadGradeAdjustedPaceTrend,
+        format: v => `${formatMmss(v)}/mi`,
+      },
     ],
-    [treadDistanceTrend, treadTimeTrend, treadPaceTrend, treadInclineTrend]
+    [
+      treadDistanceTrend,
+      treadTimeTrend,
+      treadPaceTrend,
+      treadInclineTrend,
+      treadGradeAdjustedPaceTrend,
+    ]
   )
   const rowerRows = useMemo<OtfSparklineRow[]>(
     () => [
-      { key: 'distance', label: 'Distance', trend: rowerDistanceTrend, format: v => `${Math.round(v)} m` },
+      {
+        key: 'distance',
+        label: 'Distance',
+        trend: rowerDistanceTrend,
+        format: v => `${Math.round(v)} m`,
+      },
       { key: 'time', label: 'Time', trend: rowerTimeTrend, format: formatMmss },
-      { key: 'watts', label: 'Avg watts', trend: rowerWattsTrend, format: v => `${Math.round(v)} W` },
-      { key: 'split', label: '500m split', trend: rowerSplitTrend, format: v => `${formatMmss(v)}/500m` },
+      {
+        key: 'watts',
+        label: 'Avg watts',
+        trend: rowerWattsTrend,
+        format: v => `${Math.round(v)} W`,
+      },
+      {
+        key: 'split',
+        label: '500m split',
+        trend: rowerSplitTrend,
+        format: v => `${formatMmss(v)}/500m`,
+      },
     ],
     [rowerDistanceTrend, rowerTimeTrend, rowerWattsTrend, rowerSplitTrend]
   )
@@ -273,11 +378,7 @@ export function OtfDetailView(): JSX.Element {
         </header>
 
         {data ? (
-          <OtfMileageSection
-            sessions={data.sessions}
-            awards={mileageAwards}
-            isAdmin={isAdmin}
-          />
+          <OtfMileageSection sessions={data.sessions} awards={mileageAwards} isAdmin={isAdmin} />
         ) : null}
 
         <div className="mt-8">
@@ -298,7 +399,7 @@ export function OtfDetailView(): JSX.Element {
         )}
 
         {loadError ? (
-          <ErrorPanel error={loadError} />
+          <ErrorPanel message={loadError} />
         ) : !data ? (
           <LoadingPanel />
         ) : !hasAnySessions ? (
@@ -396,7 +497,7 @@ export function OtfDetailView(): JSX.Element {
               </ChartCard>
               <ChartCard
                 title="Avg incline"
-                helper="Average treadmill incline — context for pace (a slow mile may be a steep one)."
+                helper="Average treadmill incline — the grade behind each class's pace, and the input to the grade-adjusted figure."
               >
                 <OtfTrendChart
                   data={treadInclineTrend}
@@ -405,6 +506,19 @@ export function OtfDetailView(): JSX.Element {
                   yTickFormat={v => v.toFixed(1)}
                   ariaLabel="Treadmill average incline over time"
                   emptyMessage="No treadmill incline in range"
+                />
+              </ChartCard>
+              <ChartCard
+                title="Grade-adjusted pace"
+                helper="Pace normalized for incline (Minetti 2002) — the flat pace that would have cost the same energy, so steep classes compare against level ones. Estimated from each class's average incline, not a per-minute stream."
+              >
+                <OtfTrendChart
+                  data={treadGradeAdjustedPaceTrend}
+                  width={chartWidth}
+                  yLabel="min/mi"
+                  yTickFormat={formatMmss}
+                  ariaLabel="Treadmill grade-adjusted pace over time"
+                  emptyMessage="No treadmill pace in range"
                 />
               </ChartCard>
             </div>
@@ -501,7 +615,7 @@ function ClassTypeFilter({
           onClick={() => onChange(opt)}
           className={pill(value === opt)}
         >
-          {opt}
+          {otfClassTypeLabel(opt)}
         </button>
       ))}
     </div>
@@ -623,6 +737,13 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
   // classes drive the aggregates; excluded ones are called out separately.
   const excludedCount = useMemo(() => sessions.filter(s => s.excluded).length, [sessions])
   const activeCount = sessions.length - excludedCount
+  // Counted classes that carry no class type still land in every aggregate, but
+  // they're only reachable through the "No class type" chip — so say how many
+  // there are rather than letting them read as missing data.
+  const untypedCount = useMemo(
+    () => sessions.filter(s => !s.excluded && !effectiveOtfClassType(s)).length,
+    [sessions]
+  )
 
   return (
     <section className="mt-8 rounded-[1.6rem] border border-white/10 bg-black/25 p-5">
@@ -635,6 +756,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
           {excludedCount > 0 && (
             <span className="ml-1 text-[#f9a870]/80">· {excludedCount} excluded</span>
           )}
+          {untypedCount > 0 && <span className="ml-1 text-white/45">· {untypedCount} untyped</span>}
           <span className="ml-2 text-white/35">
             ({formatBound(range.start)} → {formatBound(range.end)})
           </span>
@@ -651,9 +773,6 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
               <tr>
                 <th scope="col" className="px-3 py-2 font-semibold">
                   Date
-                </th>
-                <th scope="col" className="px-3 py-2 font-semibold">
-                  Coach
                 </th>
                 <th scope="col" className="px-3 py-2 font-semibold">
                   Type
@@ -727,7 +846,6 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                           )}
                         </span>
                       </td>
-                      <td className="px-3 py-2">{s.coach ?? '—'}</td>
                       <td className="px-3 py-2">
                         <ClassTypeCell session={s} />
                       </td>
@@ -859,21 +977,30 @@ function rowerRows(r: OtfRower | undefined): Array<[string, string]> | null {
 }
 
 /**
- * The session's effective class type (#271) as a small chip, or an em dash when
- * none. A trailing dot marks a manual `class_type_override`; the `title`
- * distinguishes an override from the auto-inferred label on hover.
+ * The session's effective class type as a small chip, or an em dash when none.
+ *
+ * The trailing dot means "this is OTF's real template, not our inference" —
+ * true of a `class_format` from either source (#453). The `title` says which:
+ * a booking-calendar match, a hand-entered label for a drop-in, or the coarse
+ * machine-signature guess (#271) that can't tell a 2G from a 3G.
  */
 function ClassTypeCell({ session }: { session: OtfSession }): JSX.Element {
   const type = effectiveOtfClassType(session)
   if (!type) return <span className="text-white/35">—</span>
-  const isOverride = !!session.class_type_override?.trim()
+  const source = session.class_format?.trim() ? session.class_format_source : undefined
+  const title =
+    source === 'booking'
+      ? 'From the booking calendar'
+      : source === 'manual'
+        ? 'Manually labeled'
+        : 'Inferred from machine signature'
   return (
     <span
-      title={isOverride ? 'Manual override' : 'Inferred from machine signature'}
+      title={title}
       className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[0.65rem] font-medium text-white/75"
     >
       {type}
-      {isOverride && (
+      {source && (
         <span aria-hidden="true" className="text-[#f9a870]">
           •
         </span>
@@ -919,14 +1046,14 @@ function EmptyState(): JSX.Element {
   )
 }
 
-function ErrorPanel({ error }: { error: Error }): JSX.Element {
+function ErrorPanel({ message }: { message: string }): JSX.Element {
   return (
     <div
       role="alert"
       className="mt-10 rounded-[1.6rem] border border-red-400/30 bg-red-950/40 p-6 text-sm leading-6 text-red-100"
     >
       <p className="font-semibold uppercase tracking-[0.18em]">Could not load OrangeTheory data</p>
-      <p className="mt-2 text-red-100/80">{error.message}</p>
+      <p className="mt-2 text-red-100/80">{message}</p>
     </div>
   )
 }

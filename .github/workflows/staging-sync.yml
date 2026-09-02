@@ -1,0 +1,51 @@
+name: Staging sync
+
+# Weekly, not daily. Staging exists so preview deploys render realistic data;
+# nobody reads it for an answer, so being up to seven days behind costs nothing.
+# Daily would burn a run every night to copy ~45k rows that almost never get
+# looked at. Sunday 08:00 UTC lands an hour after the OTbeat ingest (07:00), so
+# a refresh always includes that morning's classes.
+on:
+  schedule:
+    - cron: '0 8 * * 0'
+  # Manual trigger for "I want staging current before reviewing this preview".
+  workflow_dispatch: {}
+
+# Read-only on the repo; this job writes to Supabase, never back to git.
+permissions:
+  contents: read
+
+# Never overlap a scheduled refresh with a manual one — they'd upsert the same
+# keys concurrently for no benefit.
+concurrency:
+  group: staging-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js and install dependencies
+        uses: ./.github/actions/node-setup
+
+      - name: Copy production data into staging
+        # Production is read with the ANON key: every synced table has an RLS
+        # `using (true)` SELECT policy, so nothing here needs production's
+        # service-role key — and this job must never hold one, since a
+        # workflow that can write production defeats the point of staging.
+        #
+        # The staging secret key is scoped to a throwaway project holding a copy
+        # of data that is public-by-design on the live site.
+        env:
+          PROD_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          PROD_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          STAGING_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
+          STAGING_SUPABASE_SECRET_KEY: ${{ secrets.STAGING_SUPABASE_SECRET_KEY }}
+        run: npm run staging:sync

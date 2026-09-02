@@ -111,8 +111,8 @@ export function RoughLine<T>({
 
   const xValues = data.map(x)
   const yValues = data.map(y)
-  const overlayXValues = overlay?.map((d) => d.x) ?? []
-  const overlayYValues = overlay?.map((d) => d.y) ?? []
+  const overlayXValues = overlay?.map(d => d.x) ?? []
+  const overlayYValues = overlay?.map(d => d.y) ?? []
   const usingTime = isDateValue(xValues[0])
 
   // Each branch keeps its scale fully typed, so the rest of the function
@@ -122,14 +122,14 @@ export function RoughLine<T>({
   let xTicks: AxisTick[]
   if (usingTime) {
     const dateValues = xValues as Date[]
-    const overlayTimes = (overlayXValues as Date[]).map((d) => d.getTime())
-    const [tMin, tMax] = extent([...dateValues.map((d) => d.getTime()), ...overlayTimes])
+    const overlayTimes = (overlayXValues as Date[]).map(d => d.getTime())
+    const [tMin, tMax] = extent([...dateValues.map(d => d.getTime()), ...overlayTimes])
     const timeScale: ScaleTime<number, number> = scaleTime()
       .domain([new Date(tMin), new Date(tMax)])
       .range([0, innerW])
-    scaleX = (v) => timeScale(v as Date)
+    scaleX = v => timeScale(v as Date)
     const spanMs = tMax - tMin
-    xTicks = timeScale.ticks(xTickCount).map((tick) => ({
+    xTicks = timeScale.ticks(xTickCount).map(tick => ({
       value: xTickFormat ? xTickFormat(tick) : formatDateAxisTick(tick, spanMs),
       offset: timeScale(tick),
     }))
@@ -138,8 +138,8 @@ export function RoughLine<T>({
     const linearScale: ScaleLinear<number, number> = scaleLinear()
       .domain([xMin, xMax])
       .range([0, innerW])
-    scaleX = (v) => linearScale(v as number)
-    xTicks = linearScale.ticks(xTickCount).map((tick) => ({
+    scaleX = v => linearScale(v as number)
+    xTicks = linearScale.ticks(xTickCount).map(tick => ({
       value: xTickFormat ? xTickFormat(tick) : String(tick),
       offset: linearScale(tick),
     }))
@@ -152,14 +152,13 @@ export function RoughLine<T>({
     .nice()
     .range([innerH, 0])
 
-  const points: [number, number][] = data.map((d) => [scaleX(x(d)), yScale(y(d))])
-  const overlayPoints: [number, number][] =
-    overlay?.map((d) => [scaleX(d.x), yScale(d.y)]) ?? []
+  const points: [number, number][] = data.map(d => [scaleX(x(d)), yScale(y(d))])
+  const overlayPoints: [number, number][] = overlay?.map(d => [scaleX(d.x), yScale(d.y)]) ?? []
 
   const gen = getGenerator()
   const linePath = gen.linearPath(points, { stroke, strokeWidth, roughness, seed })
 
-  const yTicks: AxisTick[] = yScale.ticks(yTickCount).map((tick) => ({
+  const yTicks: AxisTick[] = yScale.ticks(yTickCount).map(tick => ({
     value: yTickFormat ? yTickFormat(tick) : String(tick),
     offset: yScale(tick),
   }))
@@ -213,9 +212,7 @@ export function RoughLine<T>({
         {overlayPoints.length >= 2 && (
           <path
             data-testid="rough-line-overlay"
-            d={overlayPoints
-              .map(([px, py], i) => `${i === 0 ? 'M' : 'L'}${px},${py}`)
-              .join(' ')}
+            d={overlayPoints.map(([px, py], i) => `${i === 0 ? 'M' : 'L'}${px},${py}`).join(' ')}
             stroke={overlayStroke}
             strokeWidth={overlayStrokeWidth}
             strokeDasharray={overlayDash}

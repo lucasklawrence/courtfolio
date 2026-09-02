@@ -60,7 +60,9 @@ export type RoughOptions = {
   fillOpacity?: number
 }
 
-const DEFAULT_OPTIONS: Required<Pick<RoughOptions, 'roughness' | 'bowing' | 'strokeLinecap' | 'strokeLinejoin'>> = {
+const DEFAULT_OPTIONS: Required<
+  Pick<RoughOptions, 'roughness' | 'bowing' | 'strokeLinecap' | 'strokeLinejoin'>
+> = {
   roughness: 1.4,
   bowing: 1,
   strokeLinecap: 'round',

@@ -6,7 +6,7 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { OtfMileageAwardsSettings } from '@/components/training-facility/gym/OtfMileageAwardsSettings'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
 import { getOtfMileageAwardsServer } from '@/lib/data/otf-server'
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isGymEnabled } from '@/lib/feature-flags'
 
 /**
  * OrangeTheory mileage-milestone settings page (#321). Admin-only — non-admins
@@ -23,7 +23,7 @@ import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
  * `router.refresh()` after each mutation to pick up the new state.
  */
 export default async function OtfMileageSettingsPage(): Promise<JSX.Element> {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isGymEnabled()) notFound()
   await requireAdminPage()
 
   // Catch transient read errors so a flaky Supabase response surfaces as an
@@ -57,9 +57,9 @@ export default async function OtfMileageSettingsPage(): Promise<JSX.Element> {
             Mileage milestones
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-7 text-[#e8d5be] sm:text-base">
-            Distance thresholds that light up a badge as each month&apos;s OTF
-            miles (treadmill + rower) add up. Edit a tier&apos;s distance and the
-            badges re-light instantly — nothing is stored per month.
+            Distance thresholds that light up a badge as each month&apos;s OTF miles (treadmill +
+            rower) add up. Edit a tier&apos;s distance and the badges re-light instantly — nothing
+            is stored per month.
           </p>
         </header>
 

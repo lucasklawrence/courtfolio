@@ -33,7 +33,7 @@ export const RIM_HEIGHT_IN = 120
  */
 export function jumpTouchInches(
   verticalIn: number | undefined,
-  standingReachIn: number = STANDING_REACH_IN,
+  standingReachIn: number = STANDING_REACH_IN
 ): number | undefined {
   return typeof verticalIn === 'number' ? standingReachIn + verticalIn : undefined
 }
@@ -48,7 +48,7 @@ export function jumpTouchInches(
  */
 export function inchesToRim(
   jumpTouchIn: number | undefined,
-  rimHeightIn: number = RIM_HEIGHT_IN,
+  rimHeightIn: number = RIM_HEIGHT_IN
 ): number | undefined {
   if (typeof jumpTouchIn !== 'number') return undefined
   return Math.max(0, rimHeightIn - jumpTouchIn)

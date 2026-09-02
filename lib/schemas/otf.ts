@@ -80,7 +80,8 @@ export const OtfSessionRowSchema = z
     excluded: z.boolean().optional(),
     excluded_reason: z.string().optional(),
     class_type: z.string().optional(),
-    class_type_override: z.string().optional(),
+    class_format: z.string().optional(),
+    class_format_source: z.enum(['booking', 'manual']).optional(),
   })
   .strict()
 
@@ -129,7 +130,10 @@ export function otfRowToSession(row: OtfSessionRow): OtfSession {
   if (row.excluded !== undefined) session.excluded = row.excluded
   if (row.excluded_reason !== undefined) session.excluded_reason = row.excluded_reason
   if (row.class_type !== undefined) session.class_type = row.class_type
-  if (row.class_type_override !== undefined) session.class_type_override = row.class_type_override
+  if (row.class_format !== undefined) session.class_format = row.class_format
+  if (row.class_format_source !== undefined) {
+    session.class_format_source = row.class_format_source
+  }
   return session
 }
 
@@ -181,8 +185,8 @@ export type OtfMileageAwardCreate = z.infer<typeof OtfMileageAwardCreateSchema>
  * carry at least one field — an empty patch is a client bug, not a no-op.
  */
 export const OtfMileageAwardUpdateSchema = OtfMileageAwardCreateSchema.partial().refine(
-  (patch) => Object.keys(patch).length > 0,
-  { message: 'At least one field (label, miles, or color) is required.' },
+  patch => Object.keys(patch).length > 0,
+  { message: 'At least one field (label, miles, or color) is required.' }
 )
 
 /** Validated update payload inferred from {@link OtfMileageAwardUpdateSchema}. */

@@ -1,4 +1,4 @@
-import { isInRange, type DateRange } from '@/components/training-facility/shared/DateFilter'
+import { isInRange, type DateRange } from '@/lib/training-facility/date-range'
 import type { OtfSession, OtfZoneMinutes } from '@/types/otf'
 
 /**
@@ -38,10 +38,31 @@ export interface OtfZoneConfig {
  * see {@link bpmRangeForOtfZone} to resolve them to bpm for a chosen maxHR.
  */
 export const OTF_ZONES: readonly OtfZoneConfig[] = [
-  { key: 'gray', shortLabel: 'Gray', label: 'Very light', color: '#9ca3af', minPct: 0.5, maxPct: 0.6 },
+  {
+    key: 'gray',
+    shortLabel: 'Gray',
+    label: 'Very light',
+    color: '#9ca3af',
+    minPct: 0.5,
+    maxPct: 0.6,
+  },
   { key: 'blue', shortLabel: 'Blue', label: 'Light', color: '#3b82f6', minPct: 0.61, maxPct: 0.7 },
-  { key: 'green', shortLabel: 'Green', label: 'Base', color: '#22c55e', minPct: 0.71, maxPct: 0.83 },
-  { key: 'orange', shortLabel: 'Orange', label: 'Challenging', color: '#f97316', minPct: 0.84, maxPct: 0.91 },
+  {
+    key: 'green',
+    shortLabel: 'Green',
+    label: 'Base',
+    color: '#22c55e',
+    minPct: 0.71,
+    maxPct: 0.83,
+  },
+  {
+    key: 'orange',
+    shortLabel: 'Orange',
+    label: 'Challenging',
+    color: '#f97316',
+    minPct: 0.84,
+    maxPct: 0.91,
+  },
   { key: 'red', shortLabel: 'Red', label: 'All out', color: '#dc2626', minPct: 0.92, maxPct: 1.0 },
 ]
 
@@ -98,8 +119,8 @@ export function excludeInvalidOtfSessions(sessions: readonly OtfSession[]): OtfS
  *
  * KEEP IN SYNC WITH the label constants in
  * `scripts/lib/otbeat-class-type.mjs` (guarded by a drift test in
- * `otf.test.ts`). Manual `class_type_override` values that aren't in this list
- * (e.g. "2G", "Strength 50") sort after these, alphabetically, in
+ * `otf.test.ts`). Resolved `class_format` values that aren't in this list
+ * (e.g. "2G", "HYROX 2G") sort after these, alphabetically, in
  * {@link otfClassTypes}.
  */
 export const OTF_CLASS_TYPE_ORDER: readonly string[] = [
@@ -110,14 +131,49 @@ export const OTF_CLASS_TYPE_ORDER: readonly string[] = [
 ]
 
 /**
- * The class type the view should treat a session as: the manual
- * `class_type_override` when set, otherwise the auto-inferred `class_type`
- * (#271). Blank/whitespace strings count as unset. `undefined` when the session
- * has neither (e.g. a near-zero malfunction with no inferred type).
+ * Filter-only sentinel selecting the sessions with no effective class type.
+ *
+ * It exists so untyped sessions stay *reachable* in the UI. Without it, a
+ * session whose `class_type` is null (an ingest that raced the #271 backfill, or
+ * a near-zero malfunction) matched no chip and was silently dropped by every
+ * non-`null` selection, with nothing in the log or the counts to say it had
+ * been. Sorts last in {@link otfClassTypes}.
+ *
+ * The leading NUL is deliberate: `class_format` is unrestricted free text —
+ * whatever OTF puts in a booking title, or whatever a human types for a drop-in
+ * — so a *readable* sentinel like `'Untyped'` could collide with a real format.
+ * The option list would carry two identical entries (duplicate React keys) and
+ * the labeled session would vanish when its own chip was selected, since the
+ * filter would read the selection as the sentinel. No parsed or hand-entered
+ * value contains a NUL, so this cannot collide. Never stored in the database;
+ * render it via {@link otfClassTypeLabel}, never directly.
+ */
+export const OTF_CLASS_TYPE_UNTYPED = '\u0000otf-untyped'
+
+/**
+ * Human label for a class-type filter option — the value itself, except for the
+ * non-printable {@link OTF_CLASS_TYPE_UNTYPED} sentinel. Use for any option
+ * rendered to the user.
+ */
+export function otfClassTypeLabel(classType: string): string {
+  return classType === OTF_CLASS_TYPE_UNTYPED ? 'No class type' : classType
+}
+
+/**
+ * The class type the view should treat a session as: the resolved
+ * `class_format` when set, otherwise the auto-inferred `class_type` (#271).
+ * Blank/whitespace strings count as unset. `undefined` when the session has
+ * neither — a near-zero malfunction, or a drop-in whose template was never
+ * recovered.
+ *
+ * `class_format` wins because it is the real OTF template read from the booking
+ * calendar (#453); `class_type` only names which machines were worked and
+ * cannot tell a 2G from a 3G. The fallback stays because most history predates
+ * the booking feed, and a coarse label beats none.
  */
 export function effectiveOtfClassType(session: OtfSession): string | undefined {
-  const override = session.class_type_override?.trim()
-  if (override) return override
+  const format = session.class_format?.trim()
+  if (format) return format
   const auto = session.class_type?.trim()
   return auto ? auto : undefined
 }
@@ -126,18 +182,23 @@ export function effectiveOtfClassType(session: OtfSession): string | undefined {
  * Distinct effective class types present across the sessions, for the filter
  * control's options. Known auto labels come first in {@link OTF_CLASS_TYPE_ORDER}
  * order; any manual-override values not in that list follow, sorted
- * alphabetically for a stable, session-order-independent result. Sessions with
- * no effective type are omitted.
+ * alphabetically for a stable, session-order-independent result.
+ *
+ * Sessions with no effective type contribute the
+ * {@link OTF_CLASS_TYPE_UNTYPED} sentinel, last — so the options always
+ * partition the window and no session is unreachable through the filter.
  */
 export function otfClassTypes(sessions: readonly OtfSession[]): string[] {
   const present = new Set<string>()
+  let hasUntyped = false
   for (const s of sessions) {
     const t = effectiveOtfClassType(s)
     if (t) present.add(t)
+    else hasUntyped = true
   }
   const known = OTF_CLASS_TYPE_ORDER.filter(t => present.has(t))
   const extras = [...present].filter(t => !OTF_CLASS_TYPE_ORDER.includes(t)).sort()
-  return [...known, ...extras]
+  return [...known, ...extras, ...(hasUntyped ? [OTF_CLASS_TYPE_UNTYPED] : [])]
 }
 
 /**
@@ -145,12 +206,19 @@ export function otfClassTypes(sessions: readonly OtfSession[]): string[] {
  * `classType`, preserving order. A `null` `classType` is the "All" sentinel and
  * returns every session (a fresh array). Composes with
  * {@link filterOtfSessionsInRange} and {@link excludeInvalidOtfSessions}.
+ *
+ * {@link OTF_CLASS_TYPE_UNTYPED} selects the sessions that have *no*
+ * effective type, which no real label can match — keeping untyped classes
+ * reachable rather than silently filtered away.
  */
 export function filterOtfSessionsByClassType(
   sessions: readonly OtfSession[],
   classType: string | null
 ): OtfSession[] {
   if (!classType) return [...sessions]
+  if (classType === OTF_CLASS_TYPE_UNTYPED) {
+    return sessions.filter(s => !effectiveOtfClassType(s))
+  }
   return sessions.filter(s => effectiveOtfClassType(s) === classType)
 }
 
@@ -256,6 +324,124 @@ export function formatMmss(seconds: number): string {
   const m = Math.floor(total / 60)
   const s = total % 60
   return `${m}:${String(s).padStart(2, '0')}`
+}
+
+// ---------------------------------------------------------------------------
+// Grade-adjusted pace (#335)
+// ---------------------------------------------------------------------------
+
+/**
+ * Metabolic cost of running on the flat, J/kg/m — the `C(0)` constant term of
+ * {@link minettiCost}, and the denominator of every adjustment factor.
+ */
+const MINETTI_FLAT_COST = 3.6
+
+/**
+ * Grade range, as a fraction, that Minetti et al. fitted the polynomial over
+ * (±45%). Outside it the curve diverges fast, so inputs are clamped here
+ * rather than trusted — our own data tops out near 0.085, so a value beyond
+ * this is a parse error, not a hill.
+ */
+const MINETTI_VALID_GRADE = 0.45
+
+/**
+ * Energy cost of running at grade `i` (a fraction, positive uphill), in
+ * J/kg/m, per Minetti et al. (2002), *Energy cost of walking and running at
+ * extreme uphill and downhill slopes*:
+ *
+ * ```
+ * C(i) = 155.4i⁵ − 30.4i⁴ − 43.3i³ + 46.3i² + 19.5i + 3.6
+ * ```
+ *
+ * Chosen over the ACSM running equation (`VO₂ = 0.2v + 0.9v·g + 3.5`, a
+ * linear `1 + 4.5g` factor) for three reasons: it was measured on a motorised
+ * treadmill, so it's the same modality as this data rather than an
+ * outdoor-running curve borrowed; it's a 5th-order fit so it keeps the
+ * curvature ACSM misses, diverging from it by 10–19% by 8.5–15% grade; and
+ * it shares a lineage with Strava's GAP, so numbers stay comparable to
+ * outdoor runs. ACSM stays the sanity check, not the model.
+ *
+ * The full polynomial also handles decline for free — cost bottoms out on a
+ * downhill rather than at 0%, since shallow braking is cheaper than lifting.
+ * Note the minimum sits near **−18%** (factor ≈ 0.495), not the −10% the
+ * issue quoted: −10% still evaluates to 0.598 and the curve keeps falling
+ * past it. Immaterial in practice — no session in this dataset has a
+ * negative `avg_incline` — but the constant is worth stating correctly.
+ */
+function minettiCost(grade: number): number {
+  const i = grade
+  const i2 = i * i
+  const i3 = i2 * i
+  const i4 = i3 * i
+  const i5 = i4 * i
+  return 155.4 * i5 - 30.4 * i4 - 43.3 * i3 + 46.3 * i2 + 19.5 * i + MINETTI_FLAT_COST
+}
+
+/**
+ * Multiplier converting a graded pace to its flat equivalent — the ratio of
+ * metabolic cost at `inclinePct` to the cost on the flat.
+ *
+ * Equal metabolic rate means flat-equivalent *speed* scales up by this
+ * factor, so pace (time per distance) is divided by it.
+ *
+ * Reference values: 2% → ×1.113, 5% → ×1.301, 8.5% → ×1.546, 15% → ×2.060.
+ *
+ * @param inclinePct Grade in **percent** (`8.5`, not `0.085`) — the unit
+ *   `OtfTreadmill.avg_incline` is reported in. Clamped to Minetti's fitted
+ *   ±45% range.
+ */
+export function gradeAdjustmentFactor(inclinePct: number): number {
+  if (!Number.isFinite(inclinePct)) return 1
+  const grade = Math.min(MINETTI_VALID_GRADE, Math.max(-MINETTI_VALID_GRADE, inclinePct / 100))
+  return minettiCost(grade) / MINETTI_FLAT_COST
+}
+
+/**
+ * Grade-adjusted pace: the flat pace that would have cost the same metabolic
+ * energy as running `pace` at `inclinePct`.
+ *
+ * Folds incline *into* pace to yield one comparable series in pace units, so
+ * a hard-incline class stops reading as a slow one. On this dataset it
+ * reorders the field substantially — a 15:23 at 8.5% is last of twelve by raw
+ * pace and sixth by GAP.
+ *
+ * **This is an estimate.** `avg_incline` is a single distance-weighted mean
+ * per class, but GAP is defined pointwise, and `C(i)` is convex across the
+ * whole range — so by Jensen's inequality, evaluating at the average grade
+ * *underestimates* the true average cost. Modelling a class as half flat /
+ * half double-average puts the bias at 0.4% (2% incline) to 4.6% (8.5%),
+ * against an adjustment that is itself +11% to +106%. A footnote, not a
+ * blocker — but the reason any UI showing this should say it's derived from
+ * class averages.
+ *
+ * @param pace Average pace as `"MM:SS"` per mile, i.e. `OtfTreadmill.avg_pace`.
+ * @param inclinePct Average incline in percent, i.e. `OtfTreadmill.avg_incline`.
+ *   Treated as flat (factor 1) when absent.
+ * @returns Flat-equivalent pace as `"M:SS"`, or `null` when `pace` is missing
+ *   or malformed.
+ */
+export function gradeAdjustedPace(
+  pace: string | null | undefined,
+  inclinePct: number | null | undefined
+): string | null {
+  const seconds = mmssToSeconds(pace)
+  if (seconds === null) return null
+  return formatMmss(gradeAdjustedPaceSeconds(seconds, inclinePct))
+}
+
+/**
+ * {@link gradeAdjustedPace} in raw seconds, for chart series that need a
+ * numeric axis rather than a formatted label.
+ *
+ * @param paceSeconds Raw pace in seconds per mile.
+ * @param inclinePct Average incline in percent; treated as flat when absent.
+ */
+export function gradeAdjustedPaceSeconds(
+  paceSeconds: number,
+  inclinePct: number | null | undefined
+): number {
+  const incline = typeof inclinePct === 'number' ? inclinePct : 0
+  return paceSeconds / gradeAdjustmentFactor(incline)
 }
 
 /**

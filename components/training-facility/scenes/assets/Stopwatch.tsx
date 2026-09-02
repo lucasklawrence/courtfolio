@@ -1,9 +1,5 @@
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
-import {
-  RoughCircle,
-  RoughLineShape,
-  RoughRect,
-} from './rough-shapes'
+import { RoughCircle, RoughLineShape, RoughRect } from './rough-shapes'
 
 const CX = 1010
 const CY = 720

@@ -19,15 +19,22 @@ interface FakeResult {
 
 /**
  * Chainable + awaitable fake of the Supabase query builder. `select`/
- * `order` return the builder itself (so multi-key `.order().order()`
+ * `order`/`range` return the builder itself (so multi-key `.order().order()`
  * chains work, #229) and awaiting it resolves with {@link FakeQuery.result}
  * — mirroring the real builder, which is a thenable.
+ *
+ * When `.range(from, to)` has been called, the await resolves with just that
+ * slice of `result.data`, so the paged sets read (#336) walks real page
+ * boundaries instead of getting the whole array back on every request.
  */
 interface FakeQuery extends PromiseLike<FakeResult> {
   select: ReturnType<typeof vi.fn>
   order: ReturnType<typeof vi.fn>
+  range: ReturnType<typeof vi.fn>
   /** Result the await resolves with; {@link stubTable} overwrites it. */
   result: FakeResult
+  /** Inclusive `[from, to]` window from the most recent `.range()` call. */
+  lastRange: [number, number] | null
 }
 
 const queriesByTable: Record<string, FakeQuery> = {}
@@ -36,13 +43,24 @@ const fromMock = vi.fn((table: string): FakeQuery => {
     const query: FakeQuery = {
       select: vi.fn(),
       order: vi.fn(),
+      range: vi.fn(),
       result: { data: [], error: null },
+      lastRange: null,
       then(onFulfilled, onRejected) {
-        return Promise.resolve(this.result).then(onFulfilled, onRejected)
+        const { data, error } = this.result
+        const paged =
+          this.lastRange !== null && data !== null
+            ? data.slice(this.lastRange[0], this.lastRange[1] + 1)
+            : data
+        return Promise.resolve({ data: paged, error }).then(onFulfilled, onRejected)
       },
     }
     query.select.mockReturnValue(query)
     query.order.mockReturnValue(query)
+    query.range.mockImplementation((from: number, to: number) => {
+      query.lastRange = [from, to]
+      return query
+    })
     queriesByTable[table] = query
   }
   return queriesByTable[table]
@@ -67,7 +85,7 @@ afterEach(() => {
 function stubTable(
   table: string,
   data: Array<Record<string, unknown>> | null,
-  error: unknown = null,
+  error: unknown = null
 ): void {
   const query = fromMock(table)
   query.result = { data, error }
@@ -103,35 +121,29 @@ describe('getWeightRoomData', () => {
   })
 
   it('assembles the WeightRoomData shape', async () => {
-    stubTable(
-      'weight_room_sets',
-      [
-        {
-          id: '11111111-1111-4111-8111-111111111111',
-          logged_at: '2026-05-07T08:00:00Z',
-          exercise: 'pushups',
-          reps: 25,
-          updated_at: '2026-05-07T08:00:01Z',
-        },
-      ],
-    )
-    stubTable(
-      'weight_room_goals',
-      [
-        {
-          exercise: 'pushups',
-          daily_target: 100,
-          color: '#EA580C',
-          updated_at: '2026-05-07T08:00:00Z',
-        },
-        {
-          exercise: 'pullups',
-          daily_target: 30,
-          color: '#0EA5A1',
-          updated_at: '2026-05-07T08:00:00Z',
-        },
-      ],
-    )
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-05-07T08:00:00Z',
+        exercise: 'pushups',
+        reps: 25,
+        updated_at: '2026-05-07T08:00:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [
+      {
+        exercise: 'pushups',
+        daily_target: 100,
+        color: '#EA580C',
+        updated_at: '2026-05-07T08:00:00Z',
+      },
+      {
+        exercise: 'pullups',
+        daily_target: 30,
+        color: '#0EA5A1',
+        updated_at: '2026-05-07T08:00:00Z',
+      },
+    ])
 
     const data = await getWeightRoomData()
     expect(data).toEqual({
@@ -149,6 +161,7 @@ describe('getWeightRoomData', () => {
         { exercise: 'pullups', daily_target: 30, color: '#0EA5A1' },
       ],
       monthly_focus: [],
+      exercises: [],
     })
   })
 
@@ -224,29 +237,23 @@ describe('getWeightRoomData', () => {
   })
 
   it('imported_at takes the latest updated_at across both tables', async () => {
-    stubTable(
-      'weight_room_sets',
-      [
-        {
-          id: '11111111-1111-4111-8111-111111111111',
-          logged_at: '2026-05-07T08:00:00Z',
-          exercise: 'pushups',
-          reps: 25,
-          updated_at: '2026-05-07T08:00:01Z',
-        },
-      ],
-    )
-    stubTable(
-      'weight_room_goals',
-      [
-        {
-          exercise: 'pushups',
-          daily_target: 100,
-          color: '#EA580C',
-          updated_at: '2026-05-07T09:30:00Z',
-        },
-      ],
-    )
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-05-07T08:00:00Z',
+        exercise: 'pushups',
+        reps: 25,
+        updated_at: '2026-05-07T08:00:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [
+      {
+        exercise: 'pushups',
+        daily_target: 100,
+        color: '#EA580C',
+        updated_at: '2026-05-07T09:30:00Z',
+      },
+    ])
 
     const data = await getWeightRoomData()
     expect(data?.imported_at).toBe('2026-05-07T09:30:00Z')
@@ -265,31 +272,449 @@ describe('getWeightRoomData', () => {
   })
 
   it('throws when a row fails schema validation (e.g. negative reps)', async () => {
-    stubTable(
-      'weight_room_sets',
-      [
-        {
-          id: '11111111-1111-4111-8111-111111111111',
-          logged_at: '2026-05-07T08:00:00Z',
-          exercise: 'pushups',
-          reps: -5, // CHECK constraint blocks at DB level, but defense-in-depth at the schema too.
-          updated_at: '2026-05-07T08:00:00Z',
-        },
-      ],
-    )
-    stubTable(
-      'weight_room_goals',
-      [
-        {
-          exercise: 'pushups',
-          daily_target: 100,
-          color: '#EA580C',
-          updated_at: '2026-05-07T08:00:00Z',
-        },
-      ],
-    )
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-05-07T08:00:00Z',
+        exercise: 'pushups',
+        reps: -5, // CHECK constraint blocks at DB level, but defense-in-depth at the schema too.
+        updated_at: '2026-05-07T08:00:00Z',
+      },
+    ])
+    stubTable('weight_room_goals', [
+      {
+        exercise: 'pushups',
+        daily_target: 100,
+        color: '#EA580C',
+        updated_at: '2026-05-07T08:00:00Z',
+      },
+    ])
+    await expect(getWeightRoomData()).rejects.toThrow(/weight_room_sets failed schema validation/)
+  })
+})
+
+describe('getWeightRoomData — slot attribution (#376)', () => {
+  it('carries template_slot_id through to the assembled set', async () => {
+    // The column has to be in SETS_COLUMNS, not just in the row schema.
+    // Without it every refetch silently strips the link, so a set logged
+    // against a slot immediately reappears as extra work and the slot's
+    // counter never leaves zero — the feature looks broken on the first set.
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-08-01T18:05:00Z',
+        exercise: 'barbell-bench-press',
+        reps: 5,
+        weight_lbs: 185,
+        workout_id: '22222222-2222-4222-8222-222222222222',
+        position: 0,
+        template_slot_id: '33333333-3333-4333-8333-333333333333',
+        updated_at: '2026-08-01T18:05:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.sets[0]).toMatchObject({
+      template_slot_id: '33333333-3333-4333-8333-333333333333',
+      weight_lbs: 185,
+    })
+  })
+
+  it('omits it for extra work rather than surfacing a null', async () => {
+    stubTable('weight_room_sets', [
+      {
+        id: '44444444-4444-4444-8444-444444444444',
+        logged_at: '2026-08-01T18:05:00Z',
+        exercise: 'pec-deck',
+        reps: 12,
+        workout_id: '22222222-2222-4222-8222-222222222222',
+        position: 1,
+        template_slot_id: null,
+        updated_at: '2026-08-01T18:05:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.sets[0]).not.toHaveProperty('template_slot_id')
+  })
+})
+
+describe('getWeightRoomData — session membership (#374)', () => {
+  it('carries workout_id and position through to the assembled set', async () => {
+    stubTable('weight_room_sets', [
+      {
+        id: '11111111-1111-4111-8111-111111111111',
+        logged_at: '2026-07-15T18:05:00Z',
+        exercise: 'pushups',
+        reps: 20,
+        workout_id: '22222222-2222-4222-8222-222222222222',
+        position: 0,
+        updated_at: '2026-07-15T18:05:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.sets[0]).toMatchObject({
+      workout_id: '22222222-2222-4222-8222-222222222222',
+      position: 0,
+    })
+  })
+
+  it('omits both for a loose set rather than surfacing nulls', async () => {
+    // The overwhelming majority — every grease-the-groove set ever logged.
+    // Absent is the real answer, so consumers test for it rather than for null.
+    stubTable('weight_room_sets', [
+      {
+        id: '33333333-3333-4333-8333-333333333333',
+        logged_at: '2026-07-15T18:05:00Z',
+        exercise: 'pushups',
+        reps: 20,
+        workout_id: null,
+        position: null,
+        updated_at: '2026-07-15T18:05:01Z',
+      },
+    ])
+    stubTable('weight_room_goals', [])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.sets[0]).not.toHaveProperty('workout_id')
+    expect(data?.sets[0]).not.toHaveProperty('position')
+  })
+})
+
+describe('getWeightRoomData — exercise catalog (#373)', () => {
+  /** One catalog row, with the not-null columns PostgREST always returns. */
+  function catalogRow(
+    slug: string,
+    overrides: Record<string, unknown> = {}
+  ): Record<string, unknown> {
+    return {
+      slug,
+      display_name: slug,
+      equipment: 'bodyweight',
+      muscle_group: 'full-body',
+      load_multiplier: 1,
+      is_unilateral: false,
+      archived: false,
+      updated_at: '2026-07-31T08:00:00Z',
+      ...overrides,
+    }
+  }
+
+  /** A goal row as read after #373 — no `load_multiplier` column. */
+  function goalRow(exercise: string): Record<string, unknown> {
+    return {
+      exercise,
+      daily_target: 100,
+      color: '#EA580C',
+      updated_at: '2026-07-31T08:00:00Z',
+    }
+  }
+
+  it('joins load_multiplier from the catalog onto the goal', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('shrugs')])
+    stubTable('weight_room_exercises', [
+      catalogRow('shrugs', { equipment: 'dumbbell', load_multiplier: 2 }),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // The tonnage math in achievements.ts / monthly-focus.ts reads this off
+    // the goal, so the join is what keeps those call sites working unchanged.
+    expect(data?.goals[0]).toMatchObject({ exercise: 'shrugs', load_multiplier: 2 })
+  })
+
+  it('omits load_multiplier when the movement moves a single implement', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', [catalogRow('pushups', { load_multiplier: 1 })])
+
+    const data = await getWeightRoomData()
+
+    // Absent rather than `1` — every read site defaults it, and omitting keeps
+    // the pre-#373 shape for movements where nothing actually changed.
+    expect(data?.goals[0]).not.toHaveProperty('load_multiplier')
+  })
+
+  it('joins display_name from the catalog onto the goal', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('barbell-bench-press')])
+    stubTable('weight_room_exercises', [
+      catalogRow('barbell-bench-press', { display_name: 'Barbell Bench Press' }),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // The ~10 surfaces that render a goal's name read it off the goal (#384),
+    // so the join is what keeps them from each needing the roster threaded in.
+    expect(data?.goals[0]).toMatchObject({
+      exercise: 'barbell-bench-press',
+      display_name: 'Barbell Bench Press',
+    })
+  })
+
+  it('omits display_name when the catalog label is just the slug', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', [catalogRow('pushups', { display_name: 'pushups' })])
+
+    const data = await getWeightRoomData()
+
+    // Same principle as load_multiplier: every render site falls back to the
+    // slug, so an identical label is noise on the wire.
+    expect(data?.goals[0]).not.toHaveProperty('display_name')
+  })
+
+  it('joins display_name onto a monthly focus too', async () => {
+    stubTable('weight_room_sets', [])
+    // The focus's anchor goal — a focus can't exist without one (FK), and the
+    // assembler's null contract treats sets+goals empty as "no data at all".
+    stubTable('weight_room_goals', [goalRow('farmers-carry')])
+    stubTable('weight_room_monthly_focus', [
+      {
+        id: '44444444-4444-4444-8444-444444444444',
+        exercise: 'farmers-carry',
+        daily_target: 50,
+        target_kind: 'reps',
+        color: '#C9A268',
+        category: 'upper',
+        start_date: '2026-07-01',
+        end_date: '2026-07-31',
+        updated_at: '2026-07-31T08:00:00Z',
+      },
+    ])
+    stubTable('weight_room_exercises', [
+      catalogRow('farmers-carry', { display_name: "Farmer's Carry" }),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // Not derivable from the slug — an apostrophe is exactly the case that
+    // rules out detokenizing the slug at render time.
+    expect(data?.monthly_focus[0]).toMatchObject({
+      exercise: 'farmers-carry',
+      display_name: "Farmer's Carry",
+    })
+  })
+
+  it('defaults to a single implement when a goal has no catalog row', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('orphaned')])
+    stubTable('weight_room_exercises', [])
+
+    // The FK makes this unreachable in practice; the point is that a
+    // partially-migrated project still renders instead of throwing.
+    const data = await getWeightRoomData()
+    expect(data?.goals[0]).not.toHaveProperty('load_multiplier')
+  })
+
+  it('surfaces the roster on the assembled shape, archived rows included', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', [
+      catalogRow('pushups', { display_name: 'Pushups', muscle_group: 'chest' }),
+      catalogRow('leg-press', {
+        display_name: 'Leg Press',
+        equipment: 'machine',
+        muscle_group: 'legs',
+        archived: true,
+      }),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // The live columns are all NOT NULL DEFAULT, so PostgREST always returns
+    // them and the converter carries them through — only a `null` (a fixture
+    // or a pre-default row) collapses to absent.
+    expect(data?.exercises).toEqual([
+      {
+        slug: 'pushups',
+        display_name: 'Pushups',
+        equipment: 'bodyweight',
+        muscle_group: 'chest',
+        load_multiplier: 1,
+        is_unilateral: false,
+        archived: false,
+      },
+      {
+        slug: 'leg-press',
+        display_name: 'Leg Press',
+        equipment: 'machine',
+        muscle_group: 'legs',
+        load_multiplier: 1,
+        is_unilateral: false,
+        archived: true,
+      },
+    ])
+  })
+
+  it('throws a descriptive error when the catalog query fails', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', null, { message: 'relation does not exist' })
+    await expect(getWeightRoomData()).rejects.toThrow(/relation does not exist/)
+  })
+
+  it('throws when a catalog row carries an equipment value outside the enum', async () => {
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRow('pushups')])
+    stubTable('weight_room_exercises', [catalogRow('pushups', { equipment: 'trebuchet' })])
     await expect(getWeightRoomData()).rejects.toThrow(
-      /weight_room_sets failed schema validation/,
+      /weight_room_exercises failed schema validation/
     )
+  })
+})
+
+describe('getWeightRoomData — paged sets read (#336)', () => {
+  /** `count` well-formed set rows, one per minute so `logged_at` stays unique. */
+  function manySets(count: number): Array<Record<string, unknown>> {
+    return Array.from({ length: count }, (_, i) => ({
+      id: `11111111-1111-4111-8111-${String(i).padStart(12, '0')}`,
+      logged_at: new Date(Date.UTC(2026, 0, 1, 0, i)).toISOString(),
+      exercise: 'pushups',
+      reps: 10,
+      updated_at: new Date(Date.UTC(2026, 0, 1, 0, i)).toISOString(),
+    }))
+  }
+
+  const GOAL = {
+    exercise: 'pushups',
+    daily_target: 100,
+    color: '#EA580C',
+    updated_at: '2026-01-01T00:00:00.000Z',
+  }
+
+  it('reads every set past PostgREST’s 1000-row response cap', async () => {
+    // The real regression: an unbounded select silently returned only the
+    // first 1000 rows, dropping the newest sets (the query sorts ascending).
+    stubTable('weight_room_sets', manySets(1038))
+    stubTable('weight_room_goals', [GOAL])
+
+    const data = await getWeightRoomData()
+    expect(data?.sets).toHaveLength(1038)
+    // The last row is the one truncation used to eat.
+    expect(data?.sets.at(-1)?.id).toBe('11111111-1111-4111-8111-000000001037')
+  })
+
+  it('requests successive pages until one comes back short', async () => {
+    stubTable('weight_room_sets', manySets(1038))
+    stubTable('weight_room_goals', [GOAL])
+
+    await getWeightRoomData()
+
+    expect(queriesByTable.weight_room_sets.range.mock.calls).toEqual([
+      [0, 999],
+      [1000, 1999],
+    ])
+  })
+
+  it('stops after a single page when the table fits under the cap', async () => {
+    stubTable('weight_room_sets', manySets(3))
+    stubTable('weight_room_goals', [GOAL])
+
+    const data = await getWeightRoomData()
+    expect(data?.sets).toHaveLength(3)
+    // One full-size request returns 3 rows (< PAGE_SIZE), so the loop ends
+    // without a second round-trip.
+    expect(queriesByTable.weight_room_sets.range.mock.calls).toEqual([[0, 999]])
+  })
+
+  it('surfaces a page error rather than returning a partial log', async () => {
+    stubTable('weight_room_sets', null, { message: 'connection reset' })
+    stubTable('weight_room_goals', [GOAL])
+
+    await expect(getWeightRoomData()).rejects.toThrow(
+      /Failed to load weight room sets: connection reset/
+    )
+  })
+})
+
+describe('getWeightRoomData — scheduled goal changes (#371)', () => {
+  /** A goal row whose mirror column says `mirror`. */
+  function goalRowWith(exercise: string, mirror: number): Record<string, unknown> {
+    return {
+      exercise,
+      daily_target: mirror,
+      color: '#0EA5A1',
+      updated_at: '2026-08-01T08:00:00Z',
+    }
+  }
+
+  let seq = 0
+  function targetRow(exercise: string, target: number, from: string): Record<string, unknown> {
+    seq += 1
+    return {
+      // The row schema validates this as a UUID.
+      id: `aaaaaaaa-aaaa-4aaa-8aaa-${String(seq).padStart(12, '0')}`,
+      exercise,
+      daily_target: target,
+      effective_from: from,
+      updated_at: '2026-08-01T08:00:00Z',
+    }
+  }
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('keeps the old target while a change is scheduled', async () => {
+    vi.useFakeTimers()
+    // Mid-August Pacific — before the Sept 1 activation.
+    vi.setSystemTime(new Date('2026-08-15T12:00:00-07:00'))
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRowWith('pullups', 30)])
+    stubTable('weight_room_goal_targets', [
+      targetRow('pullups', 30, '2026-01-01'),
+      targetRow('pullups', 50, '2026-09-01'),
+    ])
+
+    const data = await getWeightRoomData()
+
+    // The rings, QuickLog and the stats label all read this field.
+    expect(data?.goals[0].daily_target).toBe(30)
+    // ...while the scheduled row is still carried, so the UI can advertise it.
+    expect(data?.goals[0].target_history).toEqual([
+      { daily_target: 30, effective_from: '2026-01-01' },
+      { daily_target: 50, effective_from: '2026-09-01' },
+    ])
+  })
+
+  it('activates the change on its date with nothing having run', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-09-01T09:00:00-07:00'))
+    stubTable('weight_room_sets', [])
+    // The mirror column is deliberately stale here — it still says 30, exactly
+    // as the DB would after the edit. Resolution on read is what fixes it.
+    stubTable('weight_room_goals', [goalRowWith('pullups', 30)])
+    stubTable('weight_room_goal_targets', [
+      targetRow('pullups', 30, '2026-01-01'),
+      targetRow('pullups', 50, '2026-09-01'),
+    ])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.goals[0].daily_target).toBe(50)
+  })
+
+  it('passes the column through when there is no history', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-08-15T12:00:00-07:00'))
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRowWith('pushups', 100)])
+    stubTable('weight_room_goal_targets', [])
+
+    const data = await getWeightRoomData()
+
+    // Pre-#362 goals degrade to the old semantics rather than breaking.
+    expect(data?.goals[0].daily_target).toBe(100)
+    expect(data?.goals[0]).not.toHaveProperty('target_history')
   })
 })

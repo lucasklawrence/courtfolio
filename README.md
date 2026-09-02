@@ -70,12 +70,17 @@ npm run dev
 
 Then visit [http://localhost:3000](http://localhost:3000)
 
-No `.env` is required for the main site. To expose the unfinished
-Training Facility routes locally, set:
+No `.env` is required for the main site. The Training Facility routes are
+gated by three flags — set whichever areas you want to see:
 
 ```bash
-NEXT_PUBLIC_ENABLE_TRAINING_FACILITY=true
+NEXT_PUBLIC_ENABLE_TF_GYM=true            # cardio + OrangeTheory
+NEXT_PUBLIC_ENABLE_TF_WEIGHT_ROOM=true    # strength log + trophy room
+NEXT_PUBLIC_ENABLE_TRAINING_FACILITY=true # the lobby + the combine
 ```
+
+Each must be exactly the string `true`. See `.env.example` for what each
+one covers.
 
 ---
 

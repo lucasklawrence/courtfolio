@@ -36,7 +36,7 @@ function renderInScene(data: WeightRoomData | null) {
   return render(
     <svg viewBox="0 0 1600 900" data-testid="scene">
       <WallActivityRings data={data} />
-    </svg>,
+    </svg>
   )
 }
 

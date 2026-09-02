@@ -1,5 +1,6 @@
 import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { LobbyScene } from '@/components/training-facility/scenes/LobbyScene'
+import { isGymEnabled, isWeightRoomEnabled } from '@/lib/feature-flags'
 
 /**
  * Top-level Training Facility scene rendered from the `/training-facility`
@@ -8,8 +9,19 @@ import { LobbyScene } from '@/components/training-facility/scenes/LobbyScene'
  * lead to the sub-areas — rather than a menu of buttons. Floating chrome
  * (Home Court button + a facility wordmark) sits over the full-bleed
  * scene, matching the scene-first layout used by the Gym and Weight Room.
+ *
+ * Each wing's door follows its own flag (#345). The areas ship
+ * independently, so a door can point at a route that 404s — and a corridor
+ * you walk down is an even firmer promise than "Pick a door." was. A dark
+ * wing keeps its doorway but renders it inert rather than disappearing:
+ * the hall is three doors by design, and a visitor who can see what is
+ * coming is better served than one shown a blank wall. The flags are read
+ * here and passed down, leaving the scene itself presentational.
  */
 export function TrainingFacilityShell() {
+  const gymLive = isGymEnabled()
+  const weightRoomLive = isWeightRoomEnabled()
+
   return (
     <div className="relative h-svh w-full overflow-hidden bg-[#120d0a] text-[#f7ead9]">
       {/* Visually-hidden h1 — accessibility heading + e2e anchor. The
@@ -18,7 +30,7 @@ export function TrainingFacilityShell() {
       <h1 className="sr-only">Training Facility</h1>
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <LobbyScene />
+        <LobbyScene gymLive={gymLive} weightRoomLive={weightRoomLive} />
       </div>
 
       <div className="pointer-events-none absolute inset-0 z-10">

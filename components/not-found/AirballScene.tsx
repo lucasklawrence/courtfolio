@@ -93,15 +93,7 @@ export function AirballScene() {
         aria-hidden="true"
       >
         <rect x="98" y="0" width="6" height="130" fill="#404040" />
-        <rect
-          x="62"
-          y="14"
-          width="44"
-          height="36"
-          fill="#0a0a0a"
-          stroke="#fff"
-          strokeWidth="1.5"
-        />
+        <rect x="62" y="14" width="44" height="36" fill="#0a0a0a" stroke="#fff" strokeWidth="1.5" />
         <rect x="76" y="26" width="16" height="14" fill="none" stroke="#fff" strokeWidth="1.2" />
         <ellipse cx="62" cy="56" rx="22" ry="4" fill="none" stroke="#ea580c" strokeWidth="3" />
         <path

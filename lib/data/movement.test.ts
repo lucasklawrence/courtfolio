@@ -1,11 +1,6 @@
 import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest'
 
-import {
-  deleteBenchmark,
-  getMovementBenchmarks,
-  logBenchmark,
-  updateBenchmark,
-} from './movement'
+import { deleteBenchmark, getMovementBenchmarks, logBenchmark, updateBenchmark } from './movement'
 
 /**
  * Tests the data-access wrappers in `lib/data/movement.ts`.
@@ -115,24 +110,18 @@ describe('logBenchmark', () => {
   })
 
   it("surfaces the route's domain message verbatim on 401 (sign-in required)", async () => {
-    fetchMock.mockResolvedValueOnce(
-      jsonResponse({ error: 'Sign in required.' }, { status: 401 }),
-    )
-    await expect(logBenchmark({ date: '2026-04-15' })).rejects.toThrow(
-      'Sign in required.',
-    )
+    fetchMock.mockResolvedValueOnce(jsonResponse({ error: 'Sign in required.' }, { status: 401 }))
+    await expect(logBenchmark({ date: '2026-04-15' })).rejects.toThrow('Sign in required.')
   })
 
   it("surfaces the route's domain message verbatim on 403 (admin only)", async () => {
-    fetchMock.mockResolvedValueOnce(
-      jsonResponse({ error: 'Admin only.' }, { status: 403 }),
-    )
+    fetchMock.mockResolvedValueOnce(jsonResponse({ error: 'Admin only.' }, { status: 403 }))
     await expect(logBenchmark({ date: '2026-04-15' })).rejects.toThrow('Admin only.')
   })
 
   it('throws a descriptive message on responses without a JSON `error` field', async () => {
     fetchMock.mockResolvedValueOnce(
-      new Response('payload too big', { status: 413, statusText: 'Payload Too Large' }),
+      new Response('payload too big', { status: 413, statusText: 'Payload Too Large' })
     )
     await expect(logBenchmark({ date: '2026-04-15' })).rejects.toThrow(/413/)
   })
@@ -163,17 +152,17 @@ describe('updateBenchmark', () => {
 
   it("surfaces the route's own message on 404 (entry not found)", async () => {
     fetchMock.mockResolvedValueOnce(
-      jsonResponse({ error: 'No benchmark for 2026-04-15.' }, { status: 404 }),
+      jsonResponse({ error: 'No benchmark for 2026-04-15.' }, { status: 404 })
     )
     await expect(updateBenchmark('2026-04-15', { vertical_in: 23 })).rejects.toThrow(
-      'No benchmark for 2026-04-15.',
+      'No benchmark for 2026-04-15.'
     )
   })
 
   it('falls back to the descriptive non-OK message when the response has no JSON error', async () => {
     fetchMock.mockResolvedValueOnce(jsonResponse({ message: 'something else' }, { status: 500 }))
     await expect(updateBenchmark('2026-04-15', { vertical_in: 23 })).rejects.toThrow(
-      /Failed to update benchmark: 500/,
+      /Failed to update benchmark: 500/
     )
   })
 })
@@ -190,15 +179,13 @@ describe('deleteBenchmark', () => {
 
   it("surfaces the route's own message on 404 (entry-not-found)", async () => {
     fetchMock.mockResolvedValueOnce(
-      jsonResponse({ error: 'No benchmark for 2026-04-15.' }, { status: 404 }),
+      jsonResponse({ error: 'No benchmark for 2026-04-15.' }, { status: 404 })
     )
     await expect(deleteBenchmark('2026-04-15')).rejects.toThrow('No benchmark for 2026-04-15.')
   })
 
   it('surfaces 401/403 admin-gate messages verbatim', async () => {
-    fetchMock.mockResolvedValueOnce(
-      jsonResponse({ error: 'Admin only.' }, { status: 403 }),
-    )
+    fetchMock.mockResolvedValueOnce(jsonResponse({ error: 'Admin only.' }, { status: 403 }))
     await expect(deleteBenchmark('2026-04-15')).rejects.toThrow('Admin only.')
   })
 })

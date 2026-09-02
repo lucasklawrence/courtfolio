@@ -35,8 +35,14 @@ jobs:
       - name: Set up Node.js and install dependencies
         uses: ./.github/actions/node-setup
 
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
+      # WebKit as well as Chromium (#359): the `mobile-webkit` project runs the
+      # rendering specs on an iPhone 14 profile, which is the only place the
+      # suite exercises a non-Chromium engine or a phone viewport — the two
+      # gaps that let #353 and #355/#356 ship. `--with-deps` pulls WebKit's
+      # system libraries, which is the bulk of the added setup time; the run
+      # itself reuses the dev servers the other projects already start.
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
 
       - name: Run Playwright smoke suite
         run: npm run test:e2e

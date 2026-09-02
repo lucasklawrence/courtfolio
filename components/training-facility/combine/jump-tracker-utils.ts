@@ -25,8 +25,8 @@ export interface JumpEntry {
  */
 export function selectJumpEntries(entries: readonly Benchmark[]): JumpEntry[] {
   return entries
-    .filter((e) => e.is_complete !== false && typeof e.vertical_in === 'number')
-    .map((e) => ({
+    .filter(e => e.is_complete !== false && typeof e.vertical_in === 'number')
+    .map(e => ({
       date: e.date,
       verticalIn: e.vertical_in as number,
       bodyweightLbs: e.bodyweight_lbs,
@@ -47,11 +47,7 @@ export function selectJumpEntries(entries: readonly Benchmark[]): JumpEntry[] {
  * @param minOpacity Floor opacity for the oldest entry. Defaults to 0.25 — light
  *                   enough to feel like ghosts, dark enough to read on hardwood tan.
  */
-export function freshnessOpacity(
-  index: number,
-  total: number,
-  minOpacity = 0.25,
-): number {
+export function freshnessOpacity(index: number, total: number, minOpacity = 0.25): number {
   if (total <= 1) return 1
   const t = index / (total - 1)
   return minOpacity + (1 - minOpacity) * t

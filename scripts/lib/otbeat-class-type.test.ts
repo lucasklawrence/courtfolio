@@ -88,12 +88,10 @@ describe('classifyOtfClassType', () => {
   })
 
   it('pins the Strength / Floor calorie boundary at 100', () => {
-    expect(
-      classifyOtfClassType({ hasTreadmill: false, hasRower: false, calories: 100 })
-    ).toBe(OTF_CLASS_TYPE_STRENGTH)
-    expect(
-      classifyOtfClassType({ hasTreadmill: false, hasRower: false, calories: 99 })
-    ).toBeNull()
+    expect(classifyOtfClassType({ hasTreadmill: false, hasRower: false, calories: 100 })).toBe(
+      OTF_CLASS_TYPE_STRENGTH
+    )
+    expect(classifyOtfClassType({ hasTreadmill: false, hasRower: false, calories: 99 })).toBeNull()
   })
 
   it('treats equal tread/rower time as Tread + Row (tie does not flip to Row-focused)', () => {
@@ -108,9 +106,7 @@ describe('classifyOtfClassType', () => {
   })
 
   it('treats absent tread/rower seconds as zero (both machines, no times → Tread + Row)', () => {
-    expect(
-      classifyOtfClassType({ hasTreadmill: true, hasRower: true })
-    ).toBe(OTF_CLASS_TYPE_BOTH)
+    expect(classifyOtfClassType({ hasTreadmill: true, hasRower: true })).toBe(OTF_CLASS_TYPE_BOTH)
   })
 
   it('treats absent calories as zero for a machine-less class (→ null)', () => {

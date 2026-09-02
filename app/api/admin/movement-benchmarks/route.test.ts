@@ -89,9 +89,7 @@ describe('POST /api/admin/movement-benchmarks', () => {
 
   it('rejects unknown extra fields via Zod .strict()', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
-    const res = await POST(
-      makeRequest({ date: '2026-04-15', bench_press_lbs: 200 }) as never,
-    )
+    const res = await POST(makeRequest({ date: '2026-04-15', bench_press_lbs: 200 }) as never)
     expect(res.status).toBe(400)
   })
 

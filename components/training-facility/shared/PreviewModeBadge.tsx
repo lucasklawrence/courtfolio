@@ -37,8 +37,7 @@ export interface PreviewModeBadgeProps {
 export function PreviewModeBadge({ description }: PreviewModeBadgeProps = {}): JSX.Element {
   const router = useRouter()
   const pathname = usePathname()
-  const message =
-    description ?? "These numbers are illustrative — not Lucas’s real benchmarks."
+  const message = description ?? 'These numbers are illustrative — not Lucas’s real benchmarks.'
 
   return (
     <div

@@ -89,7 +89,7 @@ describe('PUT /api/admin/movement-benchmarks/[date]', () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     const res = await PUT(
       putRequest({ date: '2026-04-15', vertical_in: 23 }) as never,
-      ctx('2026-04-15'),
+      ctx('2026-04-15')
     )
     expect(res.status).toBe(400)
   })

@@ -159,17 +159,19 @@ describe('getOtfData', () => {
     expect(data?.sessions[0].excluded_reason).toMatch(/near-zero output/)
   })
 
-  it('passes class_type + class_type_override through to the session (#271)', async () => {
+  it('passes class_type + class_format through to the session (#453)', async () => {
     stubSessions([
       {
         ...FULL_ROW,
         class_type: 'Tread + Row',
-        class_type_override: '2G',
+        class_format: '2G',
+        class_format_source: 'booking',
       },
     ])
     const data = await getOtfData()
     expect(data?.sessions[0].class_type).toBe('Tread + Row')
-    expect(data?.sessions[0].class_type_override).toBe('2G')
+    expect(data?.sessions[0].class_format).toBe('2G')
+    expect(data?.sessions[0].class_format_source).toBe('booking')
   })
 
   it('takes imported_at from the latest updated_at', async () => {

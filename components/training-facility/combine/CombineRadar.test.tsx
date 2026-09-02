@@ -56,19 +56,19 @@ describe('normalizeMetric', () => {
 describe('projectVertex', () => {
   const geo = { cx: 200, cy: 200, rim: 100 }
 
-  it('puts axis 0 (5-10-5) at 12 o\'clock when score is 1', () => {
+  it("puts axis 0 (5-10-5) at 12 o'clock when score is 1", () => {
     const [x, y] = projectVertex(0, 1, geo)
     expect(x).toBeCloseTo(200, 5)
     expect(y).toBeCloseTo(100, 5)
   })
 
-  it('puts axis 1 (Vertical) at 3 o\'clock when score is 1', () => {
+  it("puts axis 1 (Vertical) at 3 o'clock when score is 1", () => {
     const [x, y] = projectVertex(1, 1, geo)
     expect(x).toBeCloseTo(300, 5)
     expect(y).toBeCloseTo(200, 5)
   })
 
-  it('puts axis 2 (10y sprint) at 6 o\'clock and axis 3 (Bodyweight) at 9 o\'clock', () => {
+  it("puts axis 2 (10y sprint) at 6 o'clock and axis 3 (Bodyweight) at 9 o'clock", () => {
     const [x2, y2] = projectVertex(2, 1, geo)
     const [x3, y3] = projectVertex(3, 1, geo)
     expect(x2).toBeCloseTo(200, 5)
@@ -104,7 +104,7 @@ describe('buildRadarShape', () => {
 
   it('returns one vertex per axis in RADAR_AXIS_ORDER', () => {
     const shape = buildRadarShape(entries, pickMetricLatest)
-    expect(shape.vertices.map((v) => v.metric)).toEqual([...RADAR_AXIS_ORDER])
+    expect(shape.vertices.map(v => v.metric)).toEqual([...RADAR_AXIS_ORDER])
   })
 
   it('uses the supplied picker — latest gives different scores than baseline', () => {
@@ -125,8 +125,8 @@ describe('buildRadarShape', () => {
       { date: '2026-04-10', vertical_in: 26 }, // only vertical
     ]
     const shape = buildRadarShape(partial, pickMetricLatest)
-    const vertVertex = shape.vertices.find((v) => v.metric === 'vertical_in')
-    const sprintVertex = shape.vertices.find((v) => v.metric === 'sprint_10y_s')
+    const vertVertex = shape.vertices.find(v => v.metric === 'vertical_in')
+    const sprintVertex = shape.vertices.find(v => v.metric === 'sprint_10y_s')
     expect(vertVertex?.score).not.toBeNull()
     expect(sprintVertex?.score).toBeNull()
   })
@@ -168,9 +168,7 @@ describe('CombineRadar', () => {
 
   it('renders nothing when no entry covers all four axes', () => {
     const { container } = render(
-      <CombineRadar
-        entries={[{ date: '2026-04-10', vertical_in: 26 }]}
-      />,
+      <CombineRadar entries={[{ date: '2026-04-10', vertical_in: 26 }]} />
     )
     expect(container.firstChild).toBeNull()
   })
@@ -187,7 +185,7 @@ describe('CombineRadar', () => {
             bodyweight_lbs: 222,
           },
         ]}
-      />,
+      />
     )
     const section = screen.getByRole('region', { name: /combine radar/i })
     expect(section).toBeInTheDocument()
@@ -217,7 +215,7 @@ describe('CombineRadar', () => {
             bodyweight_lbs: 222,
           },
         ]}
-      />,
+      />
     )
     expect(screen.getByText(/latest/i)).toBeInTheDocument()
     expect(screen.getByText(/earliest/i)).toBeInTheDocument()
@@ -242,7 +240,7 @@ describe('CombineRadar', () => {
             bodyweight_lbs: 222,
           },
         ]}
-      />,
+      />
     )
     // Bug being guarded: the rough.js `strokeLineDash` option silently
     // drops through `drawableToPaths` (which only carries d/stroke/

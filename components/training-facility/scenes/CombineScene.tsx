@@ -1,9 +1,4 @@
-import {
-  HardwoodFloor,
-  SCENE_PALETTE,
-  SceneDefs,
-  WallBand,
-} from './scene-primitives'
+import { HardwoodFloor, SCENE_PALETTE, SceneDefs, WallBand } from './scene-primitives'
 import { Basketball, ChalkPuff, Sneakers, WaterBottle } from './assets/character-props'
 import {
   CombineHeaderSign,
@@ -47,19 +42,9 @@ export function CombineScene() {
       <SceneDefs />
 
       <WallBand width={VIEWBOX_WIDTH} height={FLOOR_TOP} />
-      <rect
-        x={0}
-        y={0}
-        width={VIEWBOX_WIDTH}
-        height={FLOOR_TOP}
-        fill="url(#sceneSpotlight)"
-      />
+      <rect x={0} y={0} width={VIEWBOX_WIDTH} height={FLOOR_TOP} fill="url(#sceneSpotlight)" />
 
-      <HardwoodFloor
-        y={FLOOR_TOP}
-        height={VIEWBOX_HEIGHT - FLOOR_TOP}
-        width={VIEWBOX_WIDTH}
-      />
+      <HardwoodFloor y={FLOOR_TOP} height={VIEWBOX_HEIGHT - FLOOR_TOP} width={VIEWBOX_WIDTH} />
 
       <CourtMarkings />
 
@@ -84,13 +69,7 @@ export function CombineScene() {
         seed={970}
       />
 
-      <VertecSvg
-        x={1160}
-        y={140}
-        width={480}
-        height={720}
-        preserveAspectRatio="xMidYMax meet"
-      />
+      <VertecSvg x={1160} y={140} width={480} height={720} preserveAspectRatio="xMidYMax meet" />
       {/* Chalk residue at the foot of the Vertec */}
       <ChalkPuff x={1280} y={826} seed={985} />
       {/* Stashed basketball near the Vertec base */}

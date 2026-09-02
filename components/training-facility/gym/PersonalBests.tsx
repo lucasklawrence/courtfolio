@@ -7,10 +7,7 @@ import {
   pbInRange,
   type PersonalBests as PersonalBestsRecord,
 } from '@/lib/training-facility/personal-bests'
-import {
-  formatDistanceMiles,
-  formatPaceCellFromSecPerKm,
-} from '@/lib/training-facility/running'
+import { formatDistanceMiles, formatPaceCellFromSecPerKm } from '@/lib/training-facility/running'
 import { formatDuration, parseSessionDate } from '@/lib/training-facility/cardio-shared'
 
 const HANDWRITING_FONT = "'Patrick Hand', system-ui, sans-serif"
@@ -127,9 +124,7 @@ export function PersonalBests({
   }
   if (restingHrPb) {
     const inRange = pbInRange(restingHrPb, range)
-    const inRangeBest = restingHrTrend
-      ? bestTrendInRange(restingHrTrend, range, 'min')
-      : undefined
+    const inRangeBest = restingHrTrend ? bestTrendInRange(restingHrTrend, range, 'min') : undefined
     tiles.push({
       key: 'resting-hr',
       label: 'Lowest resting HR',
@@ -144,9 +139,7 @@ export function PersonalBests({
   }
   if (vo2maxPb) {
     const inRange = pbInRange(vo2maxPb, range)
-    const inRangeBest = vo2maxTrend
-      ? bestTrendInRange(vo2maxTrend, range, 'max')
-      : undefined
+    const inRangeBest = vo2maxTrend ? bestTrendInRange(vo2maxTrend, range, 'max') : undefined
     tiles.push({
       key: 'vo2max',
       label: 'Highest VO₂max',
@@ -154,9 +147,7 @@ export function PersonalBests({
       date: vo2maxPb.date,
       badge: inRange,
       delta:
-        !inRange && inRangeBest
-          ? `Best in range · ${inRangeBest.value.toFixed(1)}`
-          : undefined,
+        !inRange && inRangeBest ? `Best in range · ${inRangeBest.value.toFixed(1)}` : undefined,
     })
   }
 
@@ -178,7 +169,7 @@ export function PersonalBests({
         scoreboard's per-cell separators.
       */}
       <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-md bg-white/10 sm:grid-cols-3 lg:grid-cols-5">
-        {tiles.map((tile) => (
+        {tiles.map(tile => (
           <li
             key={tile.key}
             className={`relative flex flex-col bg-[#120d0a] p-4 ${

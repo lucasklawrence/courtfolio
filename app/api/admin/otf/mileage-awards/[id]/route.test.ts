@@ -105,7 +105,7 @@ describe('PATCH /api/admin/otf/mileage-awards/[id]', () => {
     // Only `miles` was sent, so the update payload carries miles but no label.
     expect(supabaseChain.update).toHaveBeenCalledWith(expect.objectContaining({ miles: 26.2 }))
     expect(supabaseChain.update).not.toHaveBeenCalledWith(
-      expect.objectContaining({ label: expect.anything() }),
+      expect.objectContaining({ label: expect.anything() })
     )
     expect(supabaseChain.eq).toHaveBeenCalledWith('id', VALID_ID)
   })

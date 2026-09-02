@@ -48,7 +48,7 @@ export interface ScoreboardCell {
  */
 export function pickMetricLatest(
   entries: readonly Benchmark[],
-  key: MetricKey,
+  key: MetricKey
 ): number | undefined {
   let best: { date: string; value: number } | undefined
   for (const entry of entries) {
@@ -73,7 +73,7 @@ export function pickMetricLatest(
  */
 export function pickMetricBaseline(
   entries: readonly Benchmark[],
-  key: MetricKey,
+  key: MetricKey
 ): number | undefined {
   let best: { date: string; value: number } | undefined
   for (const entry of entries) {
@@ -103,7 +103,7 @@ export type DeltaStatus = 'improvement' | 'regression' | 'neutral'
 export function classifyDelta(
   latest: number | undefined,
   baseline: number | undefined,
-  direction: 'lower' | 'higher',
+  direction: 'lower' | 'higher'
 ): DeltaStatus | null {
   if (latest === undefined || baseline === undefined) return null
   if (latest === baseline) return 'neutral'
@@ -121,10 +121,8 @@ export function classifyDelta(
  *
  * @param entries Benchmark history. Order does not matter; the helpers compare dates.
  */
-export function deriveCombineScoreboardCells(
-  entries: readonly Benchmark[],
-): ScoreboardCell[] {
-  return SCOREBOARD_METRIC_ORDER.map((key) => {
+export function deriveCombineScoreboardCells(entries: readonly Benchmark[]): ScoreboardCell[] {
+  return SCOREBOARD_METRIC_ORDER.map(key => {
     const spec = BENCHMARKS[key]
     return {
       label: spec.shortLabel,

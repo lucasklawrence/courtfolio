@@ -3,13 +3,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { BENCHMARKS } from '@/constants/benchmarks'
 import type { Benchmark } from '@/types/movement'
-import {
-  TradingCard,
-  formatCell,
-  formatValue,
-  isPersonalBest,
-  seasonFromDate,
-} from './TradingCard'
+import { TradingCard, formatCell, formatValue, isPersonalBest, seasonFromDate } from './TradingCard'
 
 /**
  * Pure-helper coverage for the trading-card module plus a thin set of RTL
@@ -179,7 +173,7 @@ describe('TradingCard render', () => {
         season="Custom Season"
         playerName="Test Player"
         playerNumber={42}
-      />,
+      />
     )
     expect(screen.getByText('Custom Season')).toBeInTheDocument()
     expect(screen.getByText('Test Player')).toBeInTheDocument()

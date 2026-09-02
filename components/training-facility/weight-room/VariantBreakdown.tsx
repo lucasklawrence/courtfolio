@@ -2,6 +2,7 @@ import type { JSX } from 'react'
 
 import { variantBreakdown, type VariantSlice } from '@/lib/training-facility/strength-today'
 import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link VariantBreakdown}. */
 export interface VariantBreakdownProps {
@@ -50,21 +51,19 @@ const UNSPECIFIED_LABEL = 'unspecified'
  * page's Server Component alongside the heatmap and volume chart.
  */
 export function VariantBreakdown({ sets, goal }: VariantBreakdownProps): JSX.Element | null {
-  const exerciseSets = sets.filter((s) => s.exercise === goal.exercise)
+  const exerciseSets = sets.filter(s => s.exercise === goal.exercise)
   const slices = variantBreakdown(exerciseSets)
-  const namedCount = slices.filter((s) => s.variant !== null).length
+  const namedCount = slices.filter(s => s.variant !== null).length
 
   // Nothing to break down until at least one grip has been tagged.
   if (namedCount === 0) return null
 
-  const summary = slices
-    .map((s) => `${sliceLabel(s)} ${Math.round(s.share * 100)}%`)
-    .join(', ')
+  const summary = slices.map(s => `${sliceLabel(s)} ${Math.round(s.share * 100)}%`).join(', ')
 
   return (
     <section
       data-testid={`variant-breakdown-${goal.exercise}`}
-      aria-label={`${goal.exercise} variant breakdown`}
+      aria-label={`${exerciseLabel(goal)} variant breakdown`}
       className="mt-5 border-t border-white/10 pt-4"
     >
       <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
@@ -73,7 +72,7 @@ export function VariantBreakdown({ sets, goal }: VariantBreakdownProps): JSX.Ele
 
       <div
         role="img"
-        aria-label={`${goal.exercise} by variant: ${summary}`}
+        aria-label={`${exerciseLabel(goal)} by variant: ${summary}`}
         className="flex h-3 w-full overflow-hidden rounded-full bg-black/30"
       >
         {slices.map((slice, i) => (
@@ -104,9 +103,7 @@ export function VariantBreakdown({ sets, goal }: VariantBreakdownProps): JSX.Ele
                 opacity: slice.variant === null ? 1 : opacityForRank(i),
               }}
             />
-            <span className="uppercase tracking-[0.16em] text-[#f7ead9]">
-              {sliceLabel(slice)}
-            </span>
+            <span className="uppercase tracking-[0.16em] text-[#f7ead9]">{sliceLabel(slice)}</span>
             <span className="tabular-nums text-[#e8d5be]/60">
               {slice.reps} · {Math.round(slice.share * 100)}%
             </span>

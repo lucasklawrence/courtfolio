@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 
-import { isTrainingFacilityEnabled } from '@/lib/feature-flags'
+import { isGymEnabled } from '@/lib/feature-flags'
 import { getCardioSession } from '@/lib/data/cardio-server'
 import { SessionDetailView } from '@/components/training-facility/gym/SessionDetailView'
 
@@ -18,7 +18,7 @@ import { SessionDetailView } from '@/components/training-facility/gym/SessionDet
  * `decodeURIComponent` here before the DB lookup.
  *
  * 404 routes:
- *   - Training facility flag off (`isTrainingFacilityEnabled === false`).
+ *   - Gym flag off (`isGymEnabled === false`).
  *   - The decoded `started_at` doesn't match any session (`getCardioSession`
  *     resolves to `null`).
  */
@@ -27,7 +27,7 @@ export default async function TrainingFacilityGymSessionPage({
 }: {
   params: Promise<{ started_at: string }>
 }) {
-  if (!isTrainingFacilityEnabled()) notFound()
+  if (!isGymEnabled()) notFound()
 
   const { started_at: rawStartedAt } = await params
   // Bare `%` in the path segment (or any other malformed escape) makes

@@ -68,11 +68,7 @@ export function RoughSparkline({
   }
 
   if (points.length === 0) {
-    return (
-      <svg {...svgProps}>
-        {ariaLabel && <title>{ariaLabel}</title>}
-      </svg>
-    )
+    return <svg {...svgProps}>{ariaLabel && <title>{ariaLabel}</title>}</svg>
   }
 
   const [x0, x1] = xDomain ?? extent(points.map(p => p.x))
@@ -84,22 +80,26 @@ export function RoughSparkline({
 
   // Flat domain (single point or all-equal) → center on that axis rather than
   // dividing by zero.
-  const sx = (x: number): number => (spanX === 0 ? width / 2 : padding + ((x - x0) / spanX) * innerW)
+  const sx = (x: number): number =>
+    spanX === 0 ? width / 2 : padding + ((x - x0) / spanX) * innerW
   const sy = (y: number): number =>
     spanY === 0 ? height / 2 : height - padding - ((y - y0) / spanY) * innerH
 
   const mapped: [number, number][] = points.map(p => [sx(p.x), sy(p.y)])
   const gen = getGenerator()
-  const linePath = mapped.length >= 2 ? gen.linearPath(mapped, { stroke, strokeWidth, roughness, seed }) : null
+  const linePath =
+    mapped.length >= 2 ? gen.linearPath(mapped, { stroke, strokeWidth, roughness, seed }) : null
   const last = mapped[mapped.length - 1]
-  const dot = showLastDot ? gen.circle(last[0], last[1], 5, {
-    fill: stroke,
-    fillStyle: 'solid',
-    stroke,
-    strokeWidth: 1,
-    roughness: roughness * 0.6,
-    seed: seed + 7,
-  }) : null
+  const dot = showLastDot
+    ? gen.circle(last[0], last[1], 5, {
+        fill: stroke,
+        fillStyle: 'solid',
+        stroke,
+        strokeWidth: 1,
+        roughness: roughness * 0.6,
+        seed: seed + 7,
+      })
+    : null
 
   return (
     <svg {...svgProps}>
@@ -118,7 +118,13 @@ export function RoughSparkline({
         ))}
       {dot &&
         drawableToPaths(dot).map((p, i) => (
-          <path key={`dot-${i}`} d={p.d} stroke={p.stroke} strokeWidth={p.strokeWidth} fill={p.fill ?? 'none'} />
+          <path
+            key={`dot-${i}`}
+            d={p.d}
+            stroke={p.stroke}
+            strokeWidth={p.strokeWidth}
+            fill={p.fill ?? 'none'}
+          />
         ))}
     </svg>
   )

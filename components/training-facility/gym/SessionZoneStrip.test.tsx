@@ -20,11 +20,7 @@ const zones = (overrides: Partial<Record<HrZone, number>> = {}): Record<HrZone, 
 
 describe('SessionZoneStrip', () => {
   it('renders a segment per non-zero zone with proportional widths and a tooltip', () => {
-    render(
-      <SessionZoneStrip
-        hrSecondsInZone={zones({ 2: 480, 3: 720, 4: 600 })}
-      />,
-    )
+    render(<SessionZoneStrip hrSecondsInZone={zones({ 2: 480, 3: 720, 4: 600 })} />)
     const strip = screen.getByRole('img')
     // Tooltip text covers all five zones, in canonical order, with both Mm Ss
     // and bare Ss for the sub-minute case.

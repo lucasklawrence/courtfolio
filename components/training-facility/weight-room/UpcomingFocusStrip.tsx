@@ -2,6 +2,7 @@ import type { JSX } from 'react'
 
 import { formatFocusWindow } from '@/lib/training-facility/monthly-focus'
 import type { MonthlyFocus } from '@/types/weight-room'
+import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link UpcomingFocusStrip}. */
 export interface UpcomingFocusStripProps {
@@ -29,15 +30,19 @@ export function UpcomingFocusStrip({ focuses }: UpcomingFocusStripProps): JSX.El
       <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">
         Up Next
       </span>
-      {focuses.map((focus) => (
+      {focuses.map(focus => (
         <span
           key={focus.id}
           data-testid={`upcoming-focus-${focus.exercise}`}
           className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1"
         >
-          <span aria-hidden="true" className="h-2 w-2 rounded-full" style={{ background: focus.color }} />
+          <span
+            aria-hidden="true"
+            className="h-2 w-2 rounded-full"
+            style={{ background: focus.color }}
+          />
           <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80">
-            {focus.exercise}
+            {exerciseLabel(focus)}
           </span>
           <span
             data-testid={`upcoming-focus-${focus.exercise}-category`}

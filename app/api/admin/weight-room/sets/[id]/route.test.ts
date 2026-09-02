@@ -42,8 +42,7 @@ beforeEach(() => {
 })
 
 const ctx = (id: string) => ({ params: Promise.resolve({ id }) })
-const req = () =>
-  new Request('http://localhost/api/admin/weight-room/sets/x', { method: 'DELETE' })
+const req = () => new Request('http://localhost/api/admin/weight-room/sets/x', { method: 'DELETE' })
 
 describe('DELETE /api/admin/weight-room/sets/[id]', () => {
   it('returns 401 when not signed in', async () => {

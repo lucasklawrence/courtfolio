@@ -34,9 +34,7 @@ const logBenchmarkMock = vi.fn()
 const updateBenchmarkMock = vi.fn()
 
 vi.mock('@/lib/data/movement', async () => {
-  const actual = await vi.importActual<typeof import('@/lib/data/movement')>(
-    '@/lib/data/movement',
-  )
+  const actual = await vi.importActual<typeof import('@/lib/data/movement')>('@/lib/data/movement')
   return {
     ...actual,
     logBenchmark: (...args: unknown[]) => logBenchmarkMock(...args),
@@ -72,7 +70,11 @@ describe('CombineEntryForm — admin-session gate', () => {
     // the eventual outcome. This test pins the hidden-during-loading
     // contract: even if the user *will be* admin once the check
     // resolves, the panel stays hidden until then.
-    adminSessionMock.mockReturnValue({ isAdmin: false, isLoading: true, email: 'admin@example.com' })
+    adminSessionMock.mockReturnValue({
+      isAdmin: false,
+      isLoading: true,
+      email: 'admin@example.com',
+    })
     const { container } = render(<CombineEntryForm onSaved={() => {}} />)
     expect(container).toBeEmptyDOMElement()
   })
@@ -114,13 +116,7 @@ describe('CombineEntryForm — sign-out affordance (#151)', () => {
     // a sign-out submit through RHF's `onSubmit`, calling logBenchmark
     // instead of POSTing to /auth/sign-out. Pin the boundary.
     const ENTRY: Benchmark = { date: '2026-03-10', bodyweight_lbs: 230 }
-    render(
-      <CombineEntryForm
-        onSaved={() => {}}
-        editingEntry={ENTRY}
-        onCancelEdit={() => {}}
-      />,
-    )
+    render(<CombineEntryForm onSaved={() => {}} editingEntry={ENTRY} onCancelEdit={() => {}} />)
     const signOutForm = screen.getByRole('button', { name: /sign out/i }).closest('form')
     expect(signOutForm).not.toBeNull()
     expect(signOutForm?.querySelector('input[type="number"]')).toBeNull()
@@ -130,9 +126,7 @@ describe('CombineEntryForm — sign-out affordance (#151)', () => {
     const dataForm = bw.closest('form')
     expect(dataForm).not.toBeNull()
     expect(dataForm).not.toBe(signOutForm)
-    expect(dataForm?.querySelector('button[type="submit"]')?.textContent).not.toMatch(
-      /sign out/i,
-    )
+    expect(dataForm?.querySelector('button[type="submit"]')?.textContent).not.toMatch(/sign out/i)
   })
 })
 
@@ -197,9 +191,7 @@ describe('CombineEntryForm — submit happy path', () => {
 
     await user.click(screen.getByRole('button', { name: /save entry/i }))
 
-    await waitFor(() =>
-      expect(screen.getByText(/saved entry for 2026-04-15/i)).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText(/saved entry for 2026-04-15/i)).toBeInTheDocument())
     expect(bw.value).toBe('')
   })
 })
@@ -219,9 +211,7 @@ describe('CombineEntryForm — error paths', () => {
 
     await user.click(screen.getByRole('button', { name: /save entry/i }))
 
-    await waitFor(() =>
-      expect(screen.getByText(/boom — write failed/i)).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText(/boom — write failed/i)).toBeInTheDocument())
     expect(onSaved).not.toHaveBeenCalled()
   })
 
@@ -235,9 +225,7 @@ describe('CombineEntryForm — error paths', () => {
 
     expect(logBenchmarkMock).not.toHaveBeenCalled()
     // Zod resolver flags the empty date via the regex check on BenchmarkSchema.
-    await waitFor(() =>
-      expect(screen.getByText(/yyyy-mm-dd/i)).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText(/yyyy-mm-dd/i)).toBeInTheDocument())
   })
 
   it('keeps the success message even when the parent onSaved callback rejects (CodeRabbit nit)', async () => {
@@ -253,9 +241,7 @@ describe('CombineEntryForm — error paths', () => {
     await user.type(screen.getByLabelText(/bodyweight/i), '232')
     await user.click(screen.getByRole('button', { name: /save entry/i }))
 
-    await waitFor(() =>
-      expect(screen.getByText(/saved entry for 2026-04-15/i)).toBeInTheDocument(),
-    )
+    await waitFor(() => expect(screen.getByText(/saved entry for 2026-04-15/i)).toBeInTheDocument())
     expect(screen.queryByText(/refetch broke/i)).not.toBeInTheDocument()
     expect(onSaved).toHaveBeenCalledTimes(1)
   })
@@ -304,15 +290,9 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
     const dateInput = screen.getByLabelText(/^date/i) as HTMLInputElement
     expect(dateInput.value).toBe('2026-03-10')
     expect(dateInput.readOnly).toBe(true)
-    expect(
-      (screen.getByLabelText(/bodyweight/i) as HTMLInputElement).value,
-    ).toBe('230')
-    expect(
-      (screen.getByLabelText(/5-10-5/i) as HTMLInputElement).value,
-    ).toBe('5.05')
-    expect((screen.getByLabelText(/notes/i) as HTMLTextAreaElement).value).toBe(
-      'cold gym',
-    )
+    expect((screen.getByLabelText(/bodyweight/i) as HTMLInputElement).value).toBe('230')
+    expect((screen.getByLabelText(/5-10-5/i) as HTMLInputElement).value).toBe('5.05')
+    expect((screen.getByLabelText(/notes/i) as HTMLTextAreaElement).value).toBe('cold gym')
   })
 
   it('shows "Cancel edit" toggle and "Update entry" submit button in edit mode', () => {
@@ -325,13 +305,7 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
     updateBenchmarkMock.mockResolvedValueOnce(undefined)
     const onSaved = vi.fn()
     const user = userEvent.setup()
-    render(
-      <CombineEntryForm
-        onSaved={onSaved}
-        editingEntry={ENTRY}
-        onCancelEdit={() => {}}
-      />,
-    )
+    render(<CombineEntryForm onSaved={onSaved} editingEntry={ENTRY} onCancelEdit={() => {}} />)
     const bw = screen.getByLabelText(/bodyweight/i) as HTMLInputElement
     await user.clear(bw)
     await user.type(bw, '231.0')
@@ -350,13 +324,7 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
   it('clicks "Cancel edit" → calls onCancelEdit and resets the form', async () => {
     const onCancelEdit = vi.fn()
     const user = userEvent.setup()
-    render(
-      <CombineEntryForm
-        onSaved={() => {}}
-        editingEntry={ENTRY}
-        onCancelEdit={onCancelEdit}
-      />,
-    )
+    render(<CombineEntryForm onSaved={() => {}} editingEntry={ENTRY} onCancelEdit={onCancelEdit} />)
     await user.click(screen.getByRole('button', { name: /cancel edit/i }))
     expect(onCancelEdit).toHaveBeenCalledTimes(1)
   })
@@ -365,13 +333,7 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
     updateBenchmarkMock.mockResolvedValueOnce(undefined)
     const onCancelEdit = vi.fn()
     const user = userEvent.setup()
-    render(
-      <CombineEntryForm
-        onSaved={() => {}}
-        editingEntry={ENTRY}
-        onCancelEdit={onCancelEdit}
-      />,
-    )
+    render(<CombineEntryForm onSaved={() => {}} editingEntry={ENTRY} onCancelEdit={onCancelEdit} />)
     await user.click(screen.getByRole('button', { name: /update entry/i }))
     await waitFor(() => expect(updateBenchmarkMock).toHaveBeenCalled())
     await waitFor(() => expect(onCancelEdit).toHaveBeenCalledTimes(1))
@@ -379,23 +341,13 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
 
   it('resets the panel when the parent clears editingEntry externally (Codex P1)', async () => {
     const { rerender } = render(
-      <CombineEntryForm
-        onSaved={() => {}}
-        editingEntry={ENTRY}
-        onCancelEdit={() => {}}
-      />,
+      <CombineEntryForm onSaved={() => {}} editingEntry={ENTRY} onCancelEdit={() => {}} />
     )
     expect(screen.getByText(/edit session for 2026-03-10/i)).toBeInTheDocument()
-    expect((screen.getByLabelText(/^date/i) as HTMLInputElement).readOnly).toBe(
-      true,
-    )
+    expect((screen.getByLabelText(/^date/i) as HTMLInputElement).readOnly).toBe(true)
 
     rerender(
-      <CombineEntryForm
-        onSaved={() => {}}
-        editingEntry={undefined}
-        onCancelEdit={() => {}}
-      />,
+      <CombineEntryForm onSaved={() => {}} editingEntry={undefined} onCancelEdit={() => {}} />
     )
 
     expect(screen.getByText(/admin · log a session/i)).toBeInTheDocument()
@@ -411,16 +363,10 @@ describe('CombineEntryForm — edit mode (PRD §7.11)', () => {
     updateBenchmarkMock.mockRejectedValueOnce(new Error('No benchmark for 2026-03-10.'))
     const onCancelEdit = vi.fn()
     const user = userEvent.setup()
-    render(
-      <CombineEntryForm
-        onSaved={() => {}}
-        editingEntry={ENTRY}
-        onCancelEdit={onCancelEdit}
-      />,
-    )
+    render(<CombineEntryForm onSaved={() => {}} editingEntry={ENTRY} onCancelEdit={onCancelEdit} />)
     await user.click(screen.getByRole('button', { name: /update entry/i }))
     await waitFor(() =>
-      expect(screen.getByText(/no benchmark for 2026-03-10/i)).toBeInTheDocument(),
+      expect(screen.getByText(/no benchmark for 2026-03-10/i)).toBeInTheDocument()
     )
     expect(onCancelEdit).not.toHaveBeenCalled()
   })
@@ -433,7 +379,7 @@ describe('toFormValues', () => {
         date: '2026-04-15',
         bodyweight_lbs: 232.4,
         notes: 'felt fast',
-      }),
+      })
     ).toEqual({
       date: '2026-04-15',
       bodyweight_lbs: '232.4',
@@ -455,7 +401,7 @@ describe('normalizeFormValues', () => {
         vertical_in: '22.5',
         sprint_10y_s: '1.85',
         notes: 'note',
-      }),
+      })
     ).toEqual({
       date: '2026-04-15',
       bodyweight_lbs: 232.4,
@@ -475,7 +421,7 @@ describe('normalizeFormValues', () => {
         vertical_in: '',
         sprint_10y_s: '',
         notes: '   ',
-      }),
+      })
     ).toEqual({ date: '2026-04-15' })
   })
 })

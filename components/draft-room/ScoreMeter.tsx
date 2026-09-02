@@ -35,9 +35,7 @@ export function ScoreMeter({ axisId, score, rationale }: ScoreMeterProps) {
       >
         <div className="h-full bg-orange-600" style={{ width: `${pct}%` }} />
       </div>
-      {rationale ? (
-        <p className="mt-1 text-xs leading-snug text-neutral-600">{rationale}</p>
-      ) : null}
+      {rationale ? <p className="mt-1 text-xs leading-snug text-neutral-600">{rationale}</p> : null}
     </div>
   )
 }

@@ -35,16 +35,12 @@ describe('Scoreboard render', () => {
   })
 
   it('honors a custom ariaLabel', () => {
-    render(
-      <Scoreboard cells={[baseCell()]} ariaLabel="Combine scoreboard summary" />,
-    )
+    render(<Scoreboard cells={[baseCell()]} ariaLabel="Combine scoreboard summary" />)
     expect(screen.getByRole('group', { name: 'Combine scoreboard summary' })).toBeInTheDocument()
   })
 
   it('appends caller-supplied className to the outer container', () => {
-    const { container } = render(
-      <Scoreboard cells={[baseCell()]} className="custom-grid-class" />,
-    )
+    const { container } = render(<Scoreboard cells={[baseCell()]} className="custom-grid-class" />)
     expect(container.firstElementChild).toHaveClass('custom-grid-class')
   })
 
@@ -63,8 +59,10 @@ describe('Scoreboard render', () => {
   it('shows a delta line when value and baseline produce a non-zero rounded delta', () => {
     render(
       <Scoreboard
-        cells={[baseCell({ value: 22, baseline: 19.5, precision: 1, unit: '"', direction: 'higher' })]}
-      />,
+        cells={[
+          baseCell({ value: 22, baseline: 19.5, precision: 1, unit: '"', direction: 'higher' }),
+        ]}
+      />
     )
     // delta = +2.5" — improvement (higher direction).
     expect(screen.getByLabelText(/Delta .* versus baseline/)).toBeInTheDocument()
@@ -94,7 +92,7 @@ describe('Scoreboard render', () => {
             direction: 'lower',
           }),
         ]}
-      />,
+      />
     )
     expect(screen.queryByLabelText(/Delta .* versus baseline/)).not.toBeInTheDocument()
   })
@@ -102,9 +100,30 @@ describe('Scoreboard render', () => {
   it('renders a unique cell for each entry by label', () => {
     const cells: ScoreboardCell[] = [
       baseCell({ label: 'VERT' }),
-      baseCell({ label: '5-10-5', value: 5.4, baseline: 5.6, precision: 2, unit: 's', direction: 'lower' }),
-      baseCell({ label: '10Y', value: 1.85, baseline: 1.98, precision: 2, unit: 's', direction: 'lower' }),
-      baseCell({ label: 'WT', value: 232, baseline: 240, precision: 1, unit: ' lbs', direction: 'lower' }),
+      baseCell({
+        label: '5-10-5',
+        value: 5.4,
+        baseline: 5.6,
+        precision: 2,
+        unit: 's',
+        direction: 'lower',
+      }),
+      baseCell({
+        label: '10Y',
+        value: 1.85,
+        baseline: 1.98,
+        precision: 2,
+        unit: 's',
+        direction: 'lower',
+      }),
+      baseCell({
+        label: 'WT',
+        value: 232,
+        baseline: 240,
+        precision: 1,
+        unit: ' lbs',
+        direction: 'lower',
+      }),
     ]
     render(<Scoreboard cells={cells} />)
     expect(screen.getByText('VERT')).toBeInTheDocument()

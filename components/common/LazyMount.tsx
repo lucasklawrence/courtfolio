@@ -61,7 +61,7 @@ export function LazyMount({
       return
     }
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             setVisible(true)
@@ -70,18 +70,14 @@ export function LazyMount({
           }
         }
       },
-      { rootMargin },
+      { rootMargin }
     )
     observer.observe(node)
     return () => observer.disconnect()
   }, [rootMargin])
 
   return (
-    <div
-      ref={ref}
-      className={className}
-      style={minHeight ? { minHeight } : undefined}
-    >
+    <div ref={ref} className={className} style={minHeight ? { minHeight } : undefined}>
       {visible ? children : null}
     </div>
   )

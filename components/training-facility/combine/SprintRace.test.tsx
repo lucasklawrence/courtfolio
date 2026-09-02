@@ -49,7 +49,7 @@ describe('pickSprintRuns', () => {
       { date: '2026-03-15', sprint_10y_s: 1.85 },
     ]
     const runs = pickSprintRuns(entries)
-    expect(runs.map((r) => r.date)).toEqual(['2026-01-15', '2026-03-15', '2026-04-10'])
+    expect(runs.map(r => r.date)).toEqual(['2026-01-15', '2026-03-15', '2026-04-10'])
   })
 })
 
@@ -135,7 +135,7 @@ describe('SprintRace', () => {
           { date: '2026-03-15', vertical_in: 22 },
           { date: '2026-04-10', bodyweight_lbs: 230 },
         ]}
-      />,
+      />
     )
     expect(container.firstChild).toBeNull()
   })
@@ -147,21 +147,13 @@ describe('SprintRace', () => {
           { date: '2026-01-15', sprint_10y_s: 1.95 },
           { date: '2026-04-10', sprint_10y_s: 1.78 },
         ]}
-      />,
+      />
     )
-    expect(
-      screen.getByRole('region', { name: /sprint race vs past selves/i }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('img', { name: /10-yard sprint lane/i }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: /sprint race vs past selves/i })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: /10-yard sprint lane/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /^race$/i })).toBeInTheDocument()
-    expect(
-      screen.getByRole('switch', { name: /jan 2026 — 1\.95s sprint/i }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('switch', { name: /apr 2026 — 1\.78s sprint/i }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('switch', { name: /jan 2026 — 1\.95s sprint/i })).toBeInTheDocument()
+    expect(screen.getByRole('switch', { name: /apr 2026 — 1\.78s sprint/i })).toBeInTheDocument()
   })
 
   it('chips start checked and toggle off when clicked', async () => {
@@ -181,7 +173,7 @@ describe('SprintRace', () => {
           { date: '2026-02-15', sprint_10y_s: 1.9 },
           { date: '2026-04-10', sprint_10y_s: 1.78 },
         ]}
-      />,
+      />
     )
     expect(screen.getAllByRole('switch')).toHaveLength(3)
   })
@@ -203,12 +195,12 @@ describe('SprintRace', () => {
           { date: '2026-02-15', sprint_10y_s: 1.9 },
           { date: '2026-03-15', sprint_10y_s: 1.85 },
         ]}
-      />,
+      />
     )
     await user.click(screen.getByRole('switch', { name: /mar 2026/i }))
     expect(screen.getByRole('switch', { name: /mar 2026/i })).toHaveAttribute(
       'aria-checked',
-      'false',
+      'false'
     )
     rerender(
       <SprintRace
@@ -217,19 +209,19 @@ describe('SprintRace', () => {
           { date: '2026-03-15', sprint_10y_s: 1.85 },
           { date: '2026-04-10', sprint_10y_s: 1.78 },
         ]}
-      />,
+      />
     )
     expect(screen.getByRole('switch', { name: /feb 2026/i })).toHaveAttribute(
       'aria-checked',
-      'true',
+      'true'
     )
     expect(screen.getByRole('switch', { name: /mar 2026/i })).toHaveAttribute(
       'aria-checked',
-      'false',
+      'false'
     )
     expect(screen.getByRole('switch', { name: /apr 2026/i })).toHaveAttribute(
       'aria-checked',
-      'true',
+      'true'
     )
   })
 })

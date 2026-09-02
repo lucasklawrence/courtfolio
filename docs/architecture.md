@@ -323,7 +323,7 @@ flowchart TB
 | **Lifestyle trends** | `cardio_{hrv,walking_hr,body_mass,step_count,sleep,active_energy}_trend` | Six identical `(date PK, value)` tables. |
 | **OrangeTheory** | `otf_sessions` (PK `started_at`) | Per‑class metrics + `treadmill`/`rower` JSONB, `excluded` anomaly flag, inferred `class_type` (+ manual override). Append‑only. |
 | **Weight Room** | `weight_room_goals` (PK `exercise`), `weight_room_sets` (FK→goals), `weight_room_monthly_focus` | "Grease the groove" strength logging + rotating monthly focus. |
-| **Combine** | `movement_benchmarks` (PK `date`) | Athletic benchmarks. Migration applied directly to Supabase (not in `supabase/migrations/`). |
+| **Combine** | `movement_benchmarks` (PK `date`) | Athletic benchmarks. The only table maintaining `updated_at` with a `set_updated_at` trigger rather than the column default — the admin write path depends on it. |
 
 ---
 
@@ -333,8 +333,11 @@ flowchart TB
 |---|---|
 | **Anon reads, gated writes** | Public dashboards read Supabase directly (anon key, RLS `SELECT`) — no bespoke read API to maintain. Writes are impossible with the anon key; they must pass through a server route holding the service‑role key. Security lives in RLS + one app‑layer gate. |
 | **Three Supabase clients** | browser (anon) · server (anon + cookie) · admin (service‑role, `server-only`). The service‑role key never reaches the browser and is only reachable behind `requireAdmin` or the auto‑sync secret. |
+| **Two Supabase projects** | production (`ryxbnvhxxkrmsrmocume`) is the source of truth and the target of every write — the OTbeat cron, the log‑workout/log‑weight skills, the Health import. Staging (`tztrsfefesacnbreerhp`) is a point‑in‑time **copy** for preview deploys and for rehearsing destructive migrations; nothing dual‑writes to it, so it is stale by design. Never read staging to answer a question about the data. |
 | **`server / shared / browser` data split** | `*-shared.ts` holds the pure row→view logic and imports no client, guaranteeing the server and browser read paths produce identical shapes and neither bundle leaks into the other. |
-| **Feature flags for dark launch** | `NEXT_PUBLIC_ENABLE_TRAINING_FACILITY` and `NEXT_PUBLIC_ENABLE_DRAFT_ROOM` (both default **off**) gate whole areas to 404, so in‑progress features ship to `main` without being publicly reachable. |
+| **Feature flags for dark launch** | Flags in `lib/feature-flags.ts` (all default **off**) gate routes to 404, so in‑progress features ship to `main` without being publicly reachable. Granularity follows readiness rather than directory: the Training Facility split into `NEXT_PUBLIC_ENABLE_TF_GYM`, `NEXT_PUBLIC_ENABLE_TF_WEIGHT_ROOM`, and `NEXT_PUBLIC_ENABLE_TRAINING_FACILITY` (lobby + combine) once two of its three areas were publishable before the third (#345). |
+| **Public routes ship no Supabase key** | `NEXT_PUBLIC_SUPABASE_ANON_KEY` is inlined into any client chunk reaching `lib/supabase/browser.ts`, so a publicly reachable route with a client‑side Supabase import publishes a database credential. Public pages therefore read server‑side and pass results — and `isAdmin`, via `isAdminRequest()` — down as props; the client components keep `'use client'` for their pickers and observers but import no Supabase. Verified per route against the build manifests, not assumed. RLS is the second layer: bodyweight and sleep are scoped to the owner's `auth.uid()`, so the key alone would not reach them (#345). |
+| **Navigation only points at live routes** | Areas ship on independent flags, so any link crossing a flag boundary can land on a 404. Cross‑area links are gated at the source: `FacilityBackLink` picks whichever parent is up, the lobby doors render `disabled` for a dark wing, the scene doors between Gym and Combine render nothing, and the Projects binder hides the tracking card unless its hub exists (#345). Within‑area links need no gate — they share their destination's flag. |
 | **No middleware** | Route protection is per‑route (`requireAdmin` / `requireAdminPage`), keeping auth logic beside the code it protects and off the edge. |
 | **Hand‑drawn chart kit** | A custom roughjs + d3‑scale SVG library instead of a charting framework — matches the sketchy "scouting report" brand and keeps the bundle lean. |
 | **LazyMotion perf** | framer's `domMax` feature set is dynamically imported so animation code is code‑split out of the initial JS. |
@@ -360,7 +363,8 @@ flowchart TB
 | Telemetry | `lib/telemetry/**`, `instrumentation.ts` |
 | Offline judge panel | `lib/panel/**`, `scripts/panel.ts`, `app/draft-room/panelResult.ts` |
 | Ingestion scripts | `scripts/*.mjs`, `scripts/lib/**` |
-| DB schema | `supabase/migrations/*.sql` |
+| DB schema | `supabase/migrations/*.sql` — every file must also appear in the applied ledger; `npm run migrations:check` verifies both directions. Apply to **both** Supabase projects (see below) |
+| Staging refresh | `scripts/sync-staging.mjs` (`npm run staging:sync`), weekly via `.github/workflows/staging-sync.yml` |
 | CI + scheduled cron | `.github/workflows/**` (`otbeat-ingest.yml` is the daily cron) |
 
 ---
