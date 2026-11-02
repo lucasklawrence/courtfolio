@@ -49,7 +49,7 @@ export default function ContactPage() {
                 <a
                   href="/resume"
                   target="_blank"
-                  className="text-sm text-black font-semibold underline hover:text-blue-700"
+                  className="touch-target text-sm text-black font-semibold underline hover:text-blue-700"
                   style={{
                     fontFamily: 'serif',
                     backgroundColor: 'transparent',

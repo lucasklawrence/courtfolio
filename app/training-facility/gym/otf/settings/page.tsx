@@ -43,7 +43,7 @@ export default async function OtfMileageSettingsPage(): Promise<JSX.Element> {
           <BackToCourtButton />
           <Link
             href="/training-facility/gym/otf"
-            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+            className="touch-target rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
           >
             ← OrangeTheory
           </Link>
