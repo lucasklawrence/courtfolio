@@ -809,7 +809,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                 return (
                   <Fragment key={rowKey}>
                     <tr
-                      className={`rounded-md align-middle max-lg:h-11 ${excluded ? 'bg-white/[0.02] opacity-55' : 'bg-white/5'} ${
+                      className={`touch-row rounded-md align-middle ${excluded ? 'bg-white/[0.02] opacity-55' : 'bg-white/5'} ${
                         expandable
                           ? 'cursor-pointer transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60'
                           : ''

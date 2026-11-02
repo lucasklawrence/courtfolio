@@ -28,6 +28,9 @@ import { KindSmartCreativeBooks } from '@/components/locker-room/assets/KindSmar
 import { SnapchatShoes } from '@/components/locker-room/assets/SnapShoes'
 import { LockerZoneId } from '@/components/locker-room/types'
 
+/** The page heading, shared by its in-scene and portrait-phone versions. */
+const PAGE_TITLE = 'Locker Room - Select an item to get more info'
+
 /**
  * Renders the Locker Room page of the basketball-themed portfolio.
  *
@@ -50,16 +53,14 @@ export default function LockerRoomPage() {
     <SvgLayoutContainer>
       {/* A portrait phone scrolls this scene sideways, so a title drawn in it can't fit
           on screen. Only one of these two headings is ever displayed. */}
-      <h1 className="pointer-events-none sticky left-0 z-10 hidden h-0 w-screen px-3 pt-1 text-sm font-bold leading-5 text-[#1c1917] max-md:portrait:block">
-        Locker Room - Select an item to get more info
+      <h1 className="pointer-events-none sticky left-0 z-10 hidden h-0 w-screen px-3 text-sm font-bold leading-5 text-[#1c1917] max-md:portrait:block">
+        <span className="block pt-1">{PAGE_TITLE}</span>
       </h1>
       <LockerRoomSvg
         zoneContent={{
           title: (
             <LockerZone x={400} y={10} width={850} height={200}>
-              <h1 className="text-3xl font-bold mb-4 max-md:portrait:hidden">
-                Locker Room - Select an item to get more info
-              </h1>
+              <h1 className="text-3xl font-bold mb-4 max-md:portrait:hidden">{PAGE_TITLE}</h1>
             </LockerZone>
           ),
           'snap-shoes': (

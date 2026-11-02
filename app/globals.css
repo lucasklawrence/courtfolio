@@ -50,31 +50,41 @@ html, body {
   outline: none;
 }
 
-/* ── Touch sizing below `lg` ───────────────────────────────────────────────
-   Deliberately outside any cascade layer, so these beat Tailwind's size and
-   text utilities here and leave desktop density alone. iOS zooms the page when
-   a focused field's text is under 16px. */
-@media (width < 64rem) {
+/* ── Touch sizing ──────────────────────────────────────────────────────────
+   For the phone layout and any touch screen, which a large tablet can be at any
+   width. Deliberately outside any cascade layer, so these beat Tailwind's size
+   and text utilities without changing desktop density. iOS zooms the page when a
+   focused field's text is under 16px.
+
+   Sizes skip `foreignObject`. An SVG scene scales its contents, so a CSS size
+   doesn't say how large a control renders, and many of its zones are too short to
+   hold a 44px control without clipping it. */
+@media (width < 64rem), (pointer: coarse) {
   input,
   select,
   textarea {
     font-size: 1rem;
   }
 
-  input:not([type='checkbox'], [type='radio'], [type='range'], [type='hidden']),
-  select,
-  textarea,
-  summary,
-  button {
+  input:not([type='checkbox'], [type='radio'], [type='range'], [type='hidden'], foreignObject *),
+  select:not(foreignObject *),
+  textarea:not(foreignObject *),
+  button:not(foreignObject *) {
     min-height: 2.75rem;
   }
 
-  button {
+  button:not(foreignObject *) {
     min-width: 2.75rem;
   }
 
+  summary:not(foreignObject *) {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+
   /* For standalone links. Prose links stay inline, so they don't get this. */
-  .touch-target {
+  .touch-target:not(foreignObject *) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -82,10 +92,8 @@ html, body {
     min-width: 2.75rem;
   }
 
-  /* An SVG scene draws these below their CSS size, about 0.6x on a small phone. */
-  foreignObject .touch-target,
-  foreignObject button {
-    min-height: 4.5rem;
+  .touch-row {
+    height: 2.75rem;
   }
 }
 
