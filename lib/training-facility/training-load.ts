@@ -28,6 +28,7 @@
 
 import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
 import type { CardioActivity, CardioSession } from '@/types/cardio'
+import { addCalendarDays, parseSessionDate } from './day-keys'
 import type { DateRange } from '@/lib/training-facility/date-range'
 
 /**
@@ -124,20 +125,14 @@ function localIsoDate(d: Date): string {
   return `${y}-${m}-${day}`
 }
 
-/** Parse `YYYY-MM-DD` (local midnight) or pass an ISO timestamp through. */
-function parseLocalDate(raw: string): Date {
-  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return new Date(`${raw}T00:00:00`)
-  return new Date(raw)
-}
-
 /**
  * Bin sessions into a contiguous daily TRIMP series. Days without a session
  * still appear (TRIMP = 0) so the EMA in {@link computeTrainingLoad} sees real
  * gaps as zero-input days rather than skipping them entirely. Same-day
  * sessions sum.
  *
- * The series spans from the earliest session's local-midnight day through
- * `endDate` (default: latest session). When `sessions` is empty, returns `[]`.
+ * The series spans from the earliest session's day through the day of `endDate`
+ * (default: latest session). When `sessions` is empty, returns `[]`.
  *
  * @param sessions - All cardio sessions; activity-agnostic.
  * @param options - See {@link DailyTrimpSeriesOptions}.
@@ -162,7 +157,7 @@ export function dailyTrimpSeries(
   let latestMs = -Infinity
 
   for (const s of sessions) {
-    const d = parseLocalDate(s.date)
+    const d = parseSessionDate(s.date)
     const t = d.getTime()
     if (!Number.isFinite(t)) continue
     const iso = localIsoDate(d)
@@ -179,20 +174,16 @@ export function dailyTrimpSeries(
 
   const endMs = options.endDate ? options.endDate.getTime() : latestMs
   const out: DailyTrimpPoint[] = []
-  // Walk by 24h ticks from earliest local midnight to end. Constructing each
-  // day via `new Date(year, month, dayN)` would be safer across DST; using
-  // ms-arithmetic is simpler and only off by an hour on DST-transition days,
-  // which doesn't change which day a session bins to since `localIsoDate`
-  // uses the date's own components.
-  const dayMs = 24 * 60 * 60 * 1000
-  for (let t = earliestMs; t <= endMs; t += dayMs) {
-    const d = new Date(t)
-    const iso = localIsoDate(d)
-    out.push({
-      date: new Date(d.getFullYear(), d.getMonth(), d.getDate()),
-      isoDate: iso,
-      trimp: trimpByDay.get(iso) ?? 0,
-    })
+  // Step by calendar day. 24-hour steps from the earliest session's time of day
+  // would land on the wrong day after a clock change, and stop before a last
+  // session earlier in its day than the first one.
+  for (
+    let day = addCalendarDays(new Date(earliestMs), 0);
+    day.getTime() <= endMs;
+    day = addCalendarDays(day, 1)
+  ) {
+    const iso = localIsoDate(day)
+    out.push({ date: day, isoDate: iso, trimp: trimpByDay.get(iso) ?? 0 })
   }
   return out
 }

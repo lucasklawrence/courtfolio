@@ -1,5 +1,28 @@
 import { describe, it, expect } from 'vitest'
-import { extent } from './rough-svg'
+import { drawableToPaths, extent, getGenerator, roundSvgCoordinate } from './rough-svg'
+
+describe('roundSvgCoordinate', () => {
+  it('makes two values that differ only in their last float digits identical', () => {
+    // A real pair from a server and browser render of the same seeded path.
+    expect(roundSvgCoordinate(354.85143271632626)).toBe(roundSvgCoordinate(354.85143271632628))
+    expect(roundSvgCoordinate(147.79467149218922)).toBe(147.79)
+  })
+})
+
+describe('drawableToPaths', () => {
+  it('rounds every coordinate in the path data', () => {
+    const drawable = getGenerator().line(0.123456, 1.987654, 100.5, 200.25, { seed: 7 })
+    const [path] = drawableToPaths(drawable)
+    const decimals = path.d.match(/\.\d+/g) ?? []
+    expect(decimals.length).toBeGreaterThan(0)
+    expect(decimals.every(decimal => decimal.length <= 3)).toBe(true)
+  })
+
+  it('keeps the same seed drawing the same path', () => {
+    const draw = () => drawableToPaths(getGenerator().line(0, 0, 100, 100, { seed: 7 }))[0].d
+    expect(draw()).toBe(draw())
+  })
+})
 
 describe('extent', () => {
   it('returns [Infinity, -Infinity] for an empty array (sentinel range)', () => {

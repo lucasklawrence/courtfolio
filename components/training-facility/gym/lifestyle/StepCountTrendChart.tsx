@@ -13,7 +13,7 @@ export function StepCountTrendChart(props: LifestyleChartProps): JSX.Element {
     <BaseLifestyleTrendChart
       {...props}
       yLabel="Steps"
-      yTickFormat={v => Math.round(v).toLocaleString()}
+      yTickFormat={v => Math.round(v).toLocaleString('en-US')}
       emptyMessage="No step data in range"
       ariaLabel="Daily step count over time"
     />

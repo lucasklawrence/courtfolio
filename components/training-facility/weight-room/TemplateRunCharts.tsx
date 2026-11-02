@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 
 import { RoughLine, chartPalette } from '@/components/training-facility/shared/charts'
-import { formatDayKey } from '@/lib/training-facility/day-keys'
+import { formatDayKey, pacificWallClock } from '@/lib/training-facility/day-keys'
 import type { TemplateHistory, TemplateRunPoint } from '@/lib/training-facility/template-history'
 
 /** Cream axis ink that reads on the Weight Room's dark page surface. */
@@ -189,7 +189,7 @@ function RunChart({ data, y, stroke, yLabel, yTickFormat, ariaLabel }: RunChartP
   return (
     <RoughLine
       data={[...data]}
-      x={run => run.date}
+      x={run => pacificWallClock(run.date)}
       y={y}
       stroke={stroke}
       width={CHART_WIDTH}

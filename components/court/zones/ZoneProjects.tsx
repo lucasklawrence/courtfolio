@@ -1,7 +1,9 @@
+'use client'
+
 import { ZoneProjectsSafari } from './ZoneProjectsSafari'
 import { ZoneProjectsModern } from './ZoneProjectsModern'
-import { isSafari } from '@/utils/isSafari'
+import { useIsSafari } from '@/utils/useIsSafari'
 
 export function ZoneProjects() {
-  return isSafari() ? <ZoneProjectsSafari /> : <ZoneProjectsModern />
+  return useIsSafari() ? <ZoneProjectsSafari /> : <ZoneProjectsModern />
 }

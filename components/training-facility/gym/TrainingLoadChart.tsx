@@ -1,5 +1,5 @@
 import type { JSX } from 'react'
-import { scaleLinear, scaleTime } from 'd3-scale'
+import { scaleLinear } from 'd3-scale'
 import { Axis, EmptyChart, type AxisTick } from '@/components/training-facility/shared/charts/axes'
 import { chartPalette } from '@/components/training-facility/shared/charts/palette'
 import {
@@ -11,6 +11,7 @@ import {
   resolveMargin,
   type ChartCommonProps,
 } from '@/components/training-facility/shared/charts/types'
+import { wallClockTimeScale } from '@/components/training-facility/shared/charts/wall-clock-scale'
 import { TSB_ZONES, type TrainingLoadPoint } from '@/lib/training-facility/training-load'
 
 /** Props for {@link TrainingLoadChart}. */
@@ -71,11 +72,10 @@ export function TrainingLoadChart({
     )
   }
 
-  const dates = points.map(p => p.date.getTime())
-  const [tMin, tMax] = extent(dates)
-  const xScale = scaleTime()
-    .domain([new Date(tMin), new Date(tMax)])
-    .range([0, innerW])
+  const timeScale = wallClockTimeScale(
+    points.map(p => p.date),
+    [0, innerW]
+  )
 
   // y-domain spans both ATL / CTL (≥ 0) and TSB (can be negative). Pick the
   // tightest envelope across all three series, then pad ~10% so the lines
@@ -88,9 +88,9 @@ export function TrainingLoadChart({
     .nice()
     .range([innerH, 0])
 
-  const xTicks: AxisTick[] = xScale.ticks(5).map(tick => ({
-    value: tick.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
-    offset: xScale(tick),
+  const xTicks: AxisTick[] = timeScale.ticks(5).map(({ date, offset }) => ({
+    value: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    offset,
   }))
   const yTicks: AxisTick[] = yScale.ticks(5).map(tick => ({
     value: String(Math.round(tick)),
@@ -100,15 +100,15 @@ export function TrainingLoadChart({
   const gen = getGenerator()
 
   const atlPath = gen.linearPath(
-    points.map(p => [xScale(p.date), yScale(p.atl)]),
+    points.map(p => [timeScale.position(p.date), yScale(p.atl)]),
     { stroke: COLORS.atl, strokeWidth: 2, roughness, seed: seed + 1 }
   )
   const ctlPath = gen.linearPath(
-    points.map(p => [xScale(p.date), yScale(p.ctl)]),
+    points.map(p => [timeScale.position(p.date), yScale(p.ctl)]),
     { stroke: COLORS.ctl, strokeWidth: 2, roughness, seed: seed + 2 }
   )
   const tsbPath = gen.linearPath(
-    points.map(p => [xScale(p.date), yScale(p.tsb)]),
+    points.map(p => [timeScale.position(p.date), yScale(p.tsb)]),
     { stroke: COLORS.tsb, strokeWidth: 1.8, roughness, seed: seed + 3 }
   )
 

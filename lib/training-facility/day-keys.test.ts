@@ -12,6 +12,7 @@ import {
   mondayOfDayKey,
   monthIndexOfDayKey,
   pacificDayKey,
+  pacificWallClock,
   safePacificDayKey,
   shiftDayKey,
   todayDayKey,
@@ -24,6 +25,33 @@ import {
  * wrong: an evening Pacific timestamp that is already tomorrow in UTC, and day
  * arithmetic across a DST transition.
  */
+
+describe('pacificWallClock', () => {
+  it('reads the Pacific calendar and clock through local getters', () => {
+    // 3:14am UTC on May 28 is 8:14pm on May 27 in Pacific daylight time.
+    const wall = pacificWallClock(new Date('2022-05-28T03:14:05Z'))
+    expect(wall.getFullYear()).toBe(2022)
+    expect(wall.getMonth()).toBe(4)
+    expect(wall.getDate()).toBe(27)
+    expect(wall.getHours()).toBe(20)
+    expect(wall.getMinutes()).toBe(14)
+    expect(wall.getSeconds()).toBe(5)
+  })
+
+  it('uses standard time in winter', () => {
+    const wall = pacificWallClock(new Date('2026-01-02T07:00:00Z'))
+    expect(wall.getDate()).toBe(1)
+    expect(wall.getHours()).toBe(23)
+  })
+
+  it('reads midnight as hour 0, not 24', () => {
+    expect(pacificWallClock(new Date('2026-01-02T08:00:00Z')).getHours()).toBe(0)
+  })
+
+  it('returns an invalid date for an invalid date', () => {
+    expect(Number.isNaN(pacificWallClock(new Date('nope')).getTime())).toBe(true)
+  })
+})
 
 describe('pacificDayKey', () => {
   it('buckets an evening Pacific timestamp to that Pacific day, not the UTC one', () => {

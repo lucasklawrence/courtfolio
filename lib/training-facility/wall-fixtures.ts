@@ -16,6 +16,7 @@
 import type { CardioData, CardioSession, CardioTimePoint } from '@/types/cardio'
 
 import { parseSessionDate } from './cardio-shared'
+import { pacificWallClock, wallClockMs } from './day-keys'
 
 /**
  * Up to N most-recent points from a {@link CardioTimePoint} series, in
@@ -122,22 +123,22 @@ const ROLLING_WINDOW_DAYS = 7
  * sessions usually omit it); the count and duration still reflect them.
  *
  * @param data - Full cardio dataset, or `null`.
- * @param now  - Reference "today" (defaults to `new Date()`). Tests pass a fixed date so the rolling window is deterministic.
+ * @param now  - Reference "today" as a wall-clock `Date` (defaults to the Pacific wall clock now). Tests pass a fixed date so the rolling window is deterministic.
  */
 export function deriveWeeklyCardioTotals(
   data: CardioData | null,
-  now: Date = new Date()
+  now: Date = pacificWallClock(new Date())
 ): WeeklyCardioTotals | null {
   if (!data || !data.sessions || data.sessions.length === 0) return null
-  const windowStartMs = now.getTime() - ROLLING_WINDOW_DAYS * 24 * 60 * 60 * 1000
-  const nowMs = now.getTime()
+  const nowMs = wallClockMs(now)
+  const windowStartMs = nowMs - ROLLING_WINDOW_DAYS * 24 * 60 * 60 * 1000
 
   let sessions = 0
   let totalSeconds = 0
   let totalMeters = 0
 
   for (const s of data.sessions as readonly CardioSession[]) {
-    const ts = parseSessionDate(s.date).getTime()
+    const ts = wallClockMs(parseSessionDate(s.date))
     if (!Number.isFinite(ts)) continue
     if (ts < windowStartMs || ts > nowMs) continue
     sessions += 1

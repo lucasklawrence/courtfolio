@@ -20,12 +20,30 @@ export interface DrawablePath {
   fill?: string
 }
 
+/** Matches a decimal number in SVG path data. */
+const PATH_DECIMAL = /-?\d+\.\d+/g
+
 /**
- * Convert a rough.js Drawable into plain SVG path data. Keeps render
- * declarative — callers map these into `<path>` elements directly.
+ * Round an SVG coordinate to 2 decimals, far below a visible pixel. The server and
+ * browser can compute a coordinate that differs in its last digits, which React
+ * reports as a hydration mismatch and doesn't patch up.
+ */
+export function roundSvgCoordinate(value: number): number {
+  return Number(value.toFixed(2))
+}
+
+/**
+ * Convert a rough.js Drawable into plain SVG path data, with coordinates rounded by
+ * {@link roundSvgCoordinate}. Keeps render declarative — callers map these into
+ * `<path>` elements directly.
  */
 export function drawableToPaths(drawable: Drawable): DrawablePath[] {
-  return getGenerator().toPaths(drawable)
+  return getGenerator()
+    .toPaths(drawable)
+    .map(path => ({
+      ...path,
+      d: path.d.replace(PATH_DECIMAL, value => String(roundSvgCoordinate(Number(value)))),
+    }))
 }
 
 /**

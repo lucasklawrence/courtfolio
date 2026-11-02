@@ -19,6 +19,7 @@
 
 import type { CardioActivity, CardioData, CardioSession, CardioTimePoint } from '@/types/cardio'
 import type { DateRange } from '@/lib/training-facility/date-range'
+import { parseSessionDate } from './day-keys'
 
 /** A single personal-best record — a value plus the date it was achieved. */
 export interface PersonalBestRecord {
@@ -109,7 +110,7 @@ export function bestSession(
  */
 export function pbInRange(record: PersonalBestRecord | undefined, range: DateRange): boolean {
   if (!record) return false
-  const ts = parseRecordDate(record.date).getTime()
+  const ts = parseSessionDate(record.date).getTime()
   if (!Number.isFinite(ts)) return false
   return ts >= range.start.getTime() && ts <= range.end.getTime()
 }
@@ -135,7 +136,7 @@ export function bestTrendInRange(
   let best: PersonalBestRecord | undefined
   for (const p of points) {
     if (typeof p.value !== 'number' || !Number.isFinite(p.value) || p.value <= 0) continue
-    const ts = parseRecordDate(p.date).getTime()
+    const ts = parseSessionDate(p.date).getTime()
     if (!Number.isFinite(ts) || ts < fromMs || ts > toMs) continue
     if (!best || (mode === 'min' ? p.value < best.value : p.value > best.value)) {
       best = { value: p.value, date: p.date }
@@ -181,17 +182,4 @@ function bestTrendPoint(
     }
   }
   return best
-}
-
-/**
- * Local-time `Date` parse for record date strings — `YYYY-MM-DD` becomes
- * local midnight so the `pbInRange` comparison aligns with the
- * `DateFilter`'s local-day bounds; full ISO timestamps pass through.
- *
- * Mirrors {@link parseSessionDate} from `cardio-shared.ts`; duplicated as a
- * tiny helper here to keep this module dependency-free of the chart layer.
- */
-function parseRecordDate(raw: string): Date {
-  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return new Date(`${raw}T00:00:00`)
-  return new Date(raw)
 }
