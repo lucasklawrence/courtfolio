@@ -41,7 +41,7 @@
     "d3-scale": "^4.0.2",
     "framer-motion": "^12.42.2",
     "ical.js": "2.2.1",
-    "next": "16.2.12",
+    "next": "16.4.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-hook-form": "^7.83.0",
@@ -65,7 +65,7 @@
     "autoprefixer": "^10.5.4",
     "cross-env": "^10.1.0",
     "eslint": "10.8.0",
-    "eslint-config-next": "16.2.12",
+    "eslint-config-next": "16.4.3",
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
     "lint-staged": "^15.5.2",
@@ -82,9 +82,6 @@
   },
   "overrides": {
     "tar": "^7.5.3",
-    "next": {
-      "postcss": "^8.5.10"
-    },
     "@opentelemetry/core": "2.9.0"
   },
   "browserslist": {
