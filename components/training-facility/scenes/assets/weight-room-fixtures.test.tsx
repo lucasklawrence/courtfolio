@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { render } from '@testing-library/react'
 
-import type { ExerciseGoal, WeightRoomData } from '@/types/weight-room'
+import type { ExerciseGoal, MonthlyFocus, WeightRoomData } from '@/types/weight-room'
 
 import { WallActivityRings } from './weight-room-fixtures'
 
@@ -62,6 +62,43 @@ describe('WallActivityRings', () => {
     for (const goal of FOUR_GOALS) {
       expect(getByTestId(`wall-tally-${goal.exercise}`)).toBeInTheDocument()
     }
+  })
+
+  describe('focus windows', () => {
+    const FOCUS_GOAL: ExerciseGoal = { ...makeGoal('shrugs', '#C9A268'), kind: 'focus' }
+    const OCTOBER_FOCUS: MonthlyFocus = {
+      id: 'focus-1',
+      exercise: 'shrugs',
+      daily_target: 100,
+      target_kind: 'reps',
+      color: '#C9A268',
+      category: 'upper',
+      start_date: '2026-10-01',
+      end_date: '2026-10-31',
+    }
+    const data: WeightRoomData = {
+      ...makeData([makeGoal('pushups', '#EA580C'), FOCUS_GOAL]),
+      monthly_focus: [OCTOBER_FOCUS],
+    }
+
+    afterEach(() => {
+      vi.useRealTimers()
+    })
+
+    it('shows a focus ring while its window covers today', () => {
+      vi.useFakeTimers({ toFake: ['Date'], now: new Date('2026-10-31T19:00:00.000Z') })
+      const { getByTestId } = renderInScene(data)
+      expect(getByTestId('wall-ring-shrugs')).toBeInTheDocument()
+      expect(getByTestId('wall-ring-pushups')).toBeInTheDocument()
+    })
+
+    it('drops a focus ring the day after its window ends', () => {
+      vi.useFakeTimers({ toFake: ['Date'], now: new Date('2026-11-01T19:00:00.000Z') })
+      const { getByTestId, queryByTestId } = renderInScene(data)
+      expect(queryByTestId('wall-ring-shrugs')).not.toBeInTheDocument()
+      expect(queryByTestId('wall-tally-shrugs')).not.toBeInTheDocument()
+      expect(getByTestId('wall-ring-pushups')).toBeInTheDocument()
+    })
   })
 
   it('falls back to ghost rings and a "no goals yet" note when no goals exist', () => {

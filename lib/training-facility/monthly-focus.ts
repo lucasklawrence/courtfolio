@@ -1,4 +1,4 @@
-import type { FocusCategory, MonthlyFocus, StrengthSet } from '@/types/weight-room'
+import type { ExerciseGoal, FocusCategory, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 import { PACIFIC_CLOCK, inclusiveDaySpan, shiftDayKey, type DayClock } from './clock'
 import { countedReps } from './set-reps'
 
@@ -64,6 +64,29 @@ export function activeFocusesForDay(
     const focus = byCategory.get(category)
     return focus ? [focus] : []
   })
+}
+
+/**
+ * The goals on a given day's board: every permanent goal, plus each
+ * `kind: 'focus'` goal whose campaign is active that day. A finished or future
+ * focus earns no ring, so retiring a campaign needs no write: the goal row stays
+ * and history keeps resolving, it just stops appearing here.
+ *
+ * Goals with no `kind` count as permanent, matching rows read before the column
+ * existed and the demo fixture.
+ *
+ * @param goals All configured goals, usually `WeightRoomData.goals`.
+ * @param focuses All configured focuses, usually `WeightRoomData.monthly_focus`.
+ * @param dayKey `YYYY-MM-DD` key for the viewed day; `''` (no clock yet, or an
+ *   unparseable one) yields permanent goals only.
+ */
+export function goalsVisibleOnDay(
+  goals: readonly ExerciseGoal[],
+  focuses: readonly MonthlyFocus[],
+  dayKey: string
+): ExerciseGoal[] {
+  const activeExercises = new Set(activeFocusesForDay(focuses, dayKey).map(f => f.exercise))
+  return goals.filter(goal => goal.kind !== 'focus' || activeExercises.has(goal.exercise))
 }
 
 /**

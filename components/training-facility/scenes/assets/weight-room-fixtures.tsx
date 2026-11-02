@@ -1,18 +1,12 @@
 'use client'
 
-import { useEffect, useState, type JSX } from 'react'
+import type { JSX } from 'react'
 
-import { computeStrengthStreaks } from '@/lib/training-facility/strength-streaks'
-import {
-  filterSetsForDay,
-  toLocalDateKey,
-  totalsByExercise,
-} from '@/lib/training-facility/strength-today'
+import { useTodayBoard } from '@/components/training-facility/weight-room/useTodayBoard'
 import type { WeightRoomData } from '@/types/weight-room'
 
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
 import { RoughRect } from './rough-shapes'
-import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 
 /** Props for {@link WallActivityRings}. */
 export interface WallActivityRingsProps {
@@ -78,38 +72,19 @@ function fitRingDimensions(
  * geometry mirrors {@link import('../../weight-room/ActivityRings').ActivityRings}
  * — same math, scene-tuned dimensions.
  *
- * Data hydrates from {@link WeightRoomData}. Goals + sets get reduced
- * to today's totals + current streaks in this component; no upstream
- * derivation needed.
+ * Rows come from {@link useTodayBoard}, so a focus goal only appears while its
+ * window covers today. The per-exercise tallies are hidden below `lg`, where
+ * they are too small to read and `TodayProgressPanel` states them instead.
  */
 export function WallActivityRings({ data }: WallActivityRingsProps = {}): JSX.Element {
-  // "Today" needs to be evaluated in the *viewer's* timezone, not the
-  // server's (Vercel functions run in UTC). Deferring `now` to a
-  // post-mount `useEffect` keeps SSR and the first client render
-  // identical (both see `null` → ghost rings) so there's no hydration
-  // mismatch. After hydration the effect sets the real viewer clock
-  // and the rings re-render with today's correct totals + streaks.
-  const [now, setNow] = useState<Date | null>(null)
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: the viewer's clock must be read post-mount (see comment above) to keep SSR and first client render identical
-    setNow(new Date())
-  }, [])
-
-  const goals = data?.goals ?? []
-  const sets = data?.sets ?? []
-  const todayKey = now ? toLocalDateKey(now) : null
-  const setsToday = todayKey ? filterSetsForDay(sets, todayKey) : []
-  const totals = totalsByExercise(setsToday)
-  const streaks = now ? computeStrengthStreaks(sets, goals, now) : {}
-
-  const rings = goals.map(goal => ({
-    exercise: goal.exercise,
+  const rings = useTodayBoard(data).map(row => ({
+    exercise: row.goal.exercise,
     // Slug stays the identity (test ids, keys); the label is what's drawn.
-    label: exerciseLabel(goal),
-    color: goal.color,
-    target: goal.daily_target,
-    total: totals.get(goal.exercise) ?? 0,
-    streak: streaks[goal.exercise]?.current ?? 0,
+    label: row.label,
+    color: row.goal.color,
+    target: row.goal.daily_target,
+    total: row.total,
+    streak: row.streak,
   }))
 
   const primary = rings[0]
@@ -272,6 +247,7 @@ export function WallActivityRings({ data }: WallActivityRingsProps = {}): JSX.El
           <text
             key={`tally-${ring.exercise}`}
             data-testid={`wall-tally-${ring.exercise}`}
+            className="max-lg:hidden"
             x={RING_CX}
             y={tallyTop + tallySpacing * (i + 0.85)}
             textAnchor="middle"
