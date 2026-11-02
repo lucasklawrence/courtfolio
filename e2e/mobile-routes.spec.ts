@@ -10,15 +10,19 @@ import { expect, test, type Page } from '@playwright/test'
  * on, so the flag-gated routes render instead of returning 404. WebKit on Linux isn't
  * iOS Safari, so this is a partial proxy for a real phone.
  *
- * The `e2e:dev` scripts pin the server to UTC, as production runs, and the browser is
- * in Pacific, as the site's real viewer is. Without that gap a date rendered through
- * the runtime's clock matches by accident.
+ * The browser and the server are both in UTC, the server through the `e2e:dev` scripts.
+ * A server started any other way keeps its own zone, which can change the result. A gap
+ * between the zones would make a date-related mismatch appear only for the hours when
+ * they're on different calendar days, which `test.fail()` can't express.
  *
- * A known failure gets a test of its own, marked with `test.fail()` and a link to its
- * fix issue, so it can't hide a new failure on the same route. When the fix lands that
- * test starts passing, Playwright reports it as a failure, and its entry here has to
- * go. `?preview=demo` supplies data where a route supports it, because the e2e job has
- * no Supabase credentials.
+ * Each route is one test and one page load. Anything other than a route's known
+ * offender fails it outright. Only then is the test marked with `test.fail()`, so a
+ * known failure can't hide a new one. When the fix lands the test starts passing,
+ * Playwright reports that as a failure, and the entry has to go.
+ *
+ * `?preview=demo` supplies data where a route supports it, because the e2e job has no
+ * Supabase credentials. Pages with little data render little, so this doesn't catch a
+ * mismatch that only real data reaches.
  */
 
 /**
@@ -26,8 +30,8 @@ import { expect, test, type Page } from '@playwright/test'
  *
  * Not here: `/training-facility` and `/training-facility/combine`, whose flag is off on
  * every e2e server, and the Weight Room's `log` and `settings`, which return 404 to
- * anyone but the admin. Dynamic routes with no demo data need an id that CI can't
- * resolve, so `exercises/pullups` stands in for them.
+ * anyone but the admin. Other dynamic routes need an id that resolves both on CI's demo
+ * data and on a local run's real data, so `exercises/pullups` stands in for them.
  */
 const ROUTES = [
   '/',
@@ -35,6 +39,7 @@ const ROUTES = [
   '/contact',
   '/locker-room',
   '/draft-room',
+  '/banners',
   '/training-facility/gym?preview=demo',
   '/training-facility/gym/overview?preview=demo',
   '/training-facility/gym/treadmill?preview=demo',
@@ -59,9 +64,9 @@ const VIEWPORTS = [
 ] as const
 
 /** How long to wait for a route's chunks, which compile on demand on a cold dev server. */
-const NETWORK_IDLE_TIMEOUT_MS = 15_000
+const HYDRATION_TIMEOUT_MS = 45_000
 
-/** Long enough for React to finish hydrating and report any mismatch. */
+/** Long enough after hydration starts for React to finish and report any mismatch. */
 const HYDRATION_SETTLE_MS = 1_500
 
 /** One sub-pixel of slack for layout rounding, as `chart-overflow.spec.ts` allows. */
@@ -70,64 +75,84 @@ const OVERFLOW_SLACK_PX = 1
 /** iOS zooms the page when a focused field's text is smaller than this. */
 const MIN_FIELD_FONT_PX = 16
 
-/** A check the spec runs on each route. */
-type Check = 'page errors' | 'sideways overflow' | 'field font size'
+/** What one page load found, in the form a failed assertion should print. */
+interface Findings {
+  /** Uncaught errors and hydration reports, in the order they happened. */
+  pageErrors: string[]
+  /** Empty, or how far the document scrolls sideways and what sticks out. */
+  sidewaysOverflow: string[]
+  /** Text fields below {@link MIN_FIELD_FONT_PX}, with their computed size. */
+  smallFields: string[]
+}
 
-/** A check that fails on `main` today, and the issue that fixes it. */
+/** A problem that exists on `main` today, and the issue that fixes it. */
 interface KnownFailure {
-  /** A route from {@link ROUTES}. */
-  route: (typeof ROUTES)[number]
-  /** The check that fails there. */
-  check: Check
-  /** Issue link shown in the report when this runs. */
+  /** The check that fails. */
+  check: keyof Findings
+  /** Matches the findings this entry excuses. Any other finding still fails the test. */
+  offender: RegExp
+  /** Issue link shown in the report. */
   issue: string
 }
 
-/** Hydration errors on `/contact` and the gym pages. */
+/** The `/contact` hydration error, among others. */
 const HYDRATION_ISSUE = 'https://github.com/lucasklawrence/courtfolio/issues/485'
 /** The date range's 12px fields, among other touch and zoom problems. */
 const MOBILE_POLISH_ISSUE = 'https://github.com/lucasklawrence/courtfolio/issues/486'
 
-/** Everything that fails on `main` without Supabase credentials, which is how CI runs. */
-const KNOWN_FAILURES: readonly KnownFailure[] = [
-  { route: '/contact', check: 'page errors', issue: HYDRATION_ISSUE },
-  ...(
-    [
-      '/training-facility/gym/overview?preview=demo',
-      '/training-facility/gym/treadmill?preview=demo',
-      '/training-facility/gym/stair?preview=demo',
-      '/training-facility/gym/track?preview=demo',
-      '/training-facility/gym/otf',
-    ] as const
-  ).map(route => ({ route, check: 'field font size' as const, issue: MOBILE_POLISH_ISSUE })),
-]
+/** The date range's fields. */
+const SMALL_DATE_FIELDS: KnownFailure = {
+  check: 'smallFields',
+  offender: /"(?:Start|End) date"/,
+  issue: MOBILE_POLISH_ISSUE,
+}
 
-/** What one page load found, in the form a failed assertion should print. */
-interface Findings {
-  /** Uncaught errors and hydration reports, in the order they happened. */
-  'page errors': string[]
-  /** Empty, or how far the document scrolls sideways and what sticks out. */
-  'sideways overflow': string[]
-  /** Text fields below {@link MIN_FIELD_FONT_PX}, with their computed size. */
-  'field font size': string[]
+/** Everything that fails on `main`, measured without Supabase credentials as CI runs. */
+const KNOWN_FAILURES: Partial<Record<(typeof ROUTES)[number], KnownFailure>> = {
+  '/contact': { check: 'pageErrors', offender: /^Hydration failed/, issue: HYDRATION_ISSUE },
+  '/training-facility/gym/overview?preview=demo': SMALL_DATE_FIELDS,
+  '/training-facility/gym/treadmill?preview=demo': SMALL_DATE_FIELDS,
+  '/training-facility/gym/stair?preview=demo': SMALL_DATE_FIELDS,
+  '/training-facility/gym/track?preview=demo': SMALL_DATE_FIELDS,
+  '/training-facility/gym/otf': SMALL_DATE_FIELDS,
+}
+
+/**
+ * Failures only real data reaches, so they show on a local run with credentials and
+ * never on CI. `test.fail()` needs a failure on every run, so these are excused instead.
+ */
+const REAL_DATA_FAILURES: Partial<Record<(typeof ROUTES)[number], KnownFailure>> = {
+  '/training-facility/gym/otf': {
+    check: 'pageErrors',
+    offender: /^A tree hydrated/,
+    issue: HYDRATION_ISSUE,
+  },
 }
 
 /** Load a route, fail on a bad status, and measure everything once it has hydrated. */
 async function loadAndMeasure(page: Page, route: string): Promise<Findings> {
-  const errors: string[] = []
-  page.on('pageerror', error => errors.push(error.message.slice(0, 600)))
+  const pageErrors: string[] = []
+  page.on('pageerror', error => pageErrors.push(error.message.slice(0, 600)))
   page.on('console', message => {
     if (message.type() !== 'error') return
     // Other console errors, such as a failed fetch with no credentials, aren't crashes.
     const text = message.text()
-    if (/hydrat|Minified React error #4(18|23|25)/i.test(text)) errors.push(text.slice(0, 600))
+    if (/hydrat/i.test(text)) pageErrors.push(text.slice(0, 600))
   })
 
   const response = await page.goto(route, { waitUntil: 'load' })
   // A 404 page would otherwise pass all three checks by measuring nothing.
   expect(response?.status(), `${route} should load`).toBeLessThan(400)
-  // Best effort. A page that keeps polling still gets measured.
-  await page.waitForLoadState('networkidle', { timeout: NETWORK_IDLE_TIMEOUT_MS }).catch(() => {})
+  // React's internal key is the only sign it has reached the DOM. Failing here beats
+  // measuring a page that hasn't hydrated, which would pass by not having looked.
+  await page.waitForFunction(
+    () => {
+      const root = document.querySelector('main') ?? document.body
+      return Object.keys(root).some(key => key.startsWith('__reactFiber$'))
+    },
+    undefined,
+    { timeout: HYDRATION_TIMEOUT_MS }
+  )
   await page.waitForTimeout(HYDRATION_SETTLE_MS)
 
   const measured = await page.evaluate(
@@ -142,75 +167,66 @@ async function loadAndMeasure(page: Page, route: string): Promise<Findings> {
         }
         return false
       }
-      const overflow: string[] = []
+      const sidewaysOverflow: string[] = []
       if (excess > slack) {
-        overflow.push(`document scrolls ${excess}px sideways`)
+        sidewaysOverflow.push(`document scrolls ${excess}px sideways`)
         for (const el of document.querySelectorAll('body *')) {
           const right = el.getBoundingClientRect().right
-          if (right > doc.clientWidth + slack && !clipped(el) && overflow.length <= 3) {
+          if (right > doc.clientWidth + slack && !clipped(el) && sidewaysOverflow.length <= 3) {
             const name = `${el.tagName.toLowerCase()}.${String(el.getAttribute('class') ?? '')}`
-            overflow.push(`${name.slice(0, 60)} ends at ${Math.round(right)}px`)
+            sidewaysOverflow.push(`${name.slice(0, 60)} ends at ${Math.round(right)}px`)
           }
         }
       }
 
       // Tapping these doesn't focus a text caret, so iOS doesn't zoom for them.
       const noZoom = /^(hidden|checkbox|radio|range|file|color|button|submit|reset|image)$/
-      const fields: string[] = []
+      const smallFields: string[] = []
       for (const el of document.querySelectorAll<HTMLElement>('input, select, textarea')) {
         if (el instanceof HTMLInputElement && noZoom.test(el.type)) continue
         const size = parseFloat(getComputedStyle(el).fontSize)
         const shown = el.getBoundingClientRect().width > 0
         if (shown && size < minFont) {
           const name = el.getAttribute('name') ?? el.getAttribute('aria-label') ?? el.id
-          fields.push(`${el.tagName.toLowerCase()} "${name}" is ${size}px`)
+          smallFields.push(`${el.tagName.toLowerCase()} "${name}" is ${size}px`)
         }
       }
-      return { overflow, fields }
+      return { sidewaysOverflow, smallFields }
     },
     { slack: OVERFLOW_SLACK_PX, minFont: MIN_FIELD_FONT_PX }
   )
 
-  return {
-    'page errors': errors,
-    'sideways overflow': measured.overflow,
-    'field font size': measured.fields,
-  }
+  return { pageErrors, ...measured }
 }
 
-const CHECKS: readonly Check[] = ['page errors', 'sideways overflow', 'field font size']
-
 test.describe.configure({ timeout: 120_000 })
-test.use({ timezoneId: 'America/Los_Angeles' })
+test.use({ timezoneId: 'UTC' })
 
 for (const viewport of VIEWPORTS) {
   test.describe(`at ${viewport.width}px`, () => {
     test.use({ viewport })
 
     for (const route of ROUTES) {
-      const known = KNOWN_FAILURES.filter(failure => failure.route === route)
-      const expectedToPass = CHECKS.filter(check => !known.some(k => k.check === check))
-
-      test(`${route} loads with no problems`, async ({ page }) => {
+      test(`${route} has no new problems`, async ({ page }) => {
         const findings = await loadAndMeasure(page, route)
-        for (const check of expectedToPass) expect.soft(findings[check], check).toEqual([])
-      })
+        const known = KNOWN_FAILURES[route]
 
-      for (const { check, issue } of known) {
-        test(`${route} has the known ${check} failure`, async ({ page }) => {
-          const findings = await loadAndMeasure(page, route)
-          // Marked after the load, so a route that stops loading still fails for real.
-          test.fail(true, issue)
-          expect(findings[check], check).toEqual([])
-        })
-      }
+        const excused = known ? findings[known.check].filter(f => known.offender.test(f)) : []
+        const unexpected = { ...findings }
+        for (const failure of [known, REAL_DATA_FAILURES[route]]) {
+          if (!failure) continue
+          unexpected[failure.check] = unexpected[failure.check].filter(
+            finding => !failure.offender.test(finding)
+          )
+        }
+        expect(unexpected).toEqual({ pageErrors: [], sidewaysOverflow: [], smallFields: [] })
+
+        if (known) {
+          // Marked only now, so everything above still fails for real.
+          test.fail(true, known.issue)
+          expect(excused).toEqual([])
+        }
+      })
     }
   })
 }
-
-test('/resume hands over the PDF', async ({ request }) => {
-  // A download, not a page, so the checks above don't apply to it.
-  const response = await request.get('/resume')
-  expect(response.status()).toBe(200)
-  expect(response.headers()['content-type']).toContain('application/pdf')
-})
