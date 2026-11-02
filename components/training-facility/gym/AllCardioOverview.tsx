@@ -286,7 +286,7 @@ export function AllCardioOverview({
 
             <ChartCard
               title="Workout frequency"
-              helper="One cell per day in the active range — color saturates as the day's session count rises. Hover a cell for the exact count and activities."
+              helper="One cell per day in the active range — color saturates as the day's session count rises. Select a day for the exact count and activities."
               wide
             >
               <WorkoutHeatmap
