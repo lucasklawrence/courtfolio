@@ -26,7 +26,7 @@
  * wrappers exist for the surfaces that are legitimately Pacific-only.
  */
 
-import { PACIFIC_CLOCK } from './clock'
+import { PACIFIC_CLOCK, fromWallClockMs, wallClockMs } from './clock'
 
 export {
   PACIFIC_TZ,
@@ -38,6 +38,7 @@ export {
   firstDayOfMonth,
   lastDayOfMonth,
   monthIndexOfDayKey,
+  addCalendarDays,
   wallClockMs,
   fromWallClockMs,
   type DayClock,
@@ -68,8 +69,31 @@ export function pacificWallClock(instant: Date): Date {
   return PACIFIC_CLOCK.wallClock(instant)
 }
 
-/** Matches a timestamp ending in `Z` or an offset like `-07:00`. */
-const HAS_UTC_OFFSET = /(?:Z|[+-]\d{2}(?::?\d{2})?)$/i
+/**
+ * Matches a time ending in `Z` or an offset like `-07:00`. The time is required: the
+ * end of a bare date such as `2026-03-07` looks like an offset on its own.
+ */
+const HAS_UTC_OFFSET = /:\d{2}(?:\.\d+)?\s*(?:Z|[+-]\d{2}(?::?\d{2})?)$/i
+
+/**
+ * Whether a session-date string names a real instant. A bare date or a timestamp
+ * with no offset only states a wall clock.
+ *
+ * @param raw Original `date` field from a `CardioSession`.
+ */
+export function hasUtcOffset(raw: string): boolean {
+  return HAS_UTC_OFFSET.test(raw)
+}
+
+/**
+ * Session timestamps already converted to a Pacific wall clock, as {@link wallClockMs}
+ * so the entries hold for any runtime zone. A page re-reads every session each time
+ * its date range changes, and each conversion costs about 9µs in `formatToParts`.
+ */
+const sessionWallClocks = new Map<string, number>()
+
+/** Timestamps {@link sessionWallClocks} remembers before starting over. */
+const SESSION_WALL_CLOCK_LIMIT = 20_000
 
 /**
  * Parse a session-date string into a wall-clock `Date` whose local getters read its
@@ -82,15 +106,23 @@ const HAS_UTC_OFFSET = /(?:Z|[+-]\d{2}(?::?\d{2})?)$/i
  * {@link pacificWallClock}, so a session keeps the Pacific day it happened on.
  *
  * Every layer (filters, chart projections, table row formatters) reads session dates
- * through this. To measure elapsed time against real timestamps such as heart-rate
- * samples, use `new Date(raw)` instead.
+ * through this. The result can't be subtracted from a real timestamp such as a
+ * heart-rate sample. See `sessionHrCurve` for that.
  *
  * @param raw Original `date` field from a `CardioSession` or a trend point.
  */
 export function parseSessionDate(raw: string): Date {
   if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return new Date(`${raw}T00:00:00`)
-  if (!HAS_UTC_OFFSET.test(raw)) return new Date(raw)
-  return pacificWallClock(new Date(raw))
+  if (!hasUtcOffset(raw)) return new Date(raw)
+  const known = sessionWallClocks.get(raw)
+  if (known !== undefined) return fromWallClockMs(known)
+  const date = pacificWallClock(new Date(raw))
+  const ms = wallClockMs(date)
+  if (Number.isFinite(ms)) {
+    if (sessionWallClocks.size >= SESSION_WALL_CLOCK_LIMIT) sessionWallClocks.clear()
+    sessionWallClocks.set(raw, ms)
+  }
+  return date
 }
 
 /**

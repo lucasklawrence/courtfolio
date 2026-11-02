@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 
 import { RoughLine, chartPalette } from '@/components/training-facility/shared/charts'
-import { formatDayKey } from '@/lib/training-facility/day-keys'
+import { formatDayKey, pacificWallClock } from '@/lib/training-facility/day-keys'
 import type {
   ExerciseDayPoint,
   ExerciseProgression,
@@ -136,7 +136,10 @@ export function ExerciseProgressionPanel({
             y={p => p.topSet?.effectiveLoad ?? 0}
             overlay={
               estimateDays.length >= MIN_TREND_POINTS
-                ? estimateDays.map(p => ({ x: p.date, y: p.estimatedOneRepMax ?? 0 }))
+                ? estimateDays.map(p => ({
+                    x: pacificWallClock(p.date),
+                    y: p.estimatedOneRepMax ?? 0,
+                  }))
                 : undefined
             }
             stroke={accentColor}
@@ -269,7 +272,7 @@ function TrendChart({
   return (
     <RoughLine
       data={plottable}
-      x={p => p.date}
+      x={p => pacificWallClock(p.date)}
       y={y}
       overlay={plottable.length === 0 ? undefined : overlay}
       overlayStroke={ESTIMATE_STROKE}

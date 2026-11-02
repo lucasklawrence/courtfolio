@@ -8,6 +8,11 @@ import { wallClockTimeScale } from './wall-clock-scale'
 
 export interface RoughLineProps<T> extends ChartCommonProps {
   data: T[]
+  /**
+   * The x value of a point. A `Date` must be a wall clock, such as `parseSessionDate`
+   * or `pacificWallClock` returns. A real instant, such as `DayClock.toNoon` returns,
+   * reads differently per timezone and would mismatch on hydration.
+   */
   x: (d: T) => number | Date
   y: (d: T) => number
   /** Line color. Defaults to rim-orange. */

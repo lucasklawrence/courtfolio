@@ -15,7 +15,7 @@
 import type { CardioActivity, CardioSession, HrSample, HrZone } from '@/types/cardio'
 import { HR_ZONES, type HrZoneConfig } from '@/constants/hr-zones'
 import type { DateRange } from '@/lib/training-facility/date-range'
-import { parseSessionDate, wallClockMs } from '@/lib/training-facility/day-keys'
+import { hasUtcOffset, parseSessionDate, wallClockMs } from '@/lib/training-facility/day-keys'
 
 export { parseSessionDate }
 
@@ -60,9 +60,10 @@ export interface SessionCurvePoint {
 /**
  * Convert a session's raw heart-rate samples to session-relative seconds.
  *
- * Both ends are real instants, so this deliberately reads `sessionDate` with
- * `new Date` and not {@link parseSessionDate}, whose result is a wall clock that
- * can't be subtracted from a sample's timestamp.
+ * Samples are real instants, so the start has to be one too. That rules out
+ * {@link parseSessionDate}, whose result is a wall clock. A `sessionDate` with no
+ * offset doesn't name an instant at all, so the curve starts from its first sample,
+ * which also keeps the result the same in every timezone.
  *
  * @param sessionDate The session's `date`.
  * @param samples Samples for that session, in the order to plot them.
@@ -72,10 +73,13 @@ export function sessionHrCurve(
   sessionDate: string,
   samples: readonly HrSample[]
 ): SessionCurvePoint[] {
-  const startMs = new Date(sessionDate).getTime()
-  if (!Number.isFinite(startMs)) return []
-  return samples.map(sample => {
-    const sampleMs = new Date(sample.ts).getTime()
+  if (!Number.isFinite(parseSessionDate(sessionDate).getTime())) return []
+  const sampleTimes = samples.map(sample => new Date(sample.ts).getTime())
+  const startMs = hasUtcOffset(sessionDate)
+    ? new Date(sessionDate).getTime()
+    : (sampleTimes.find(ms => Number.isFinite(ms)) ?? 0)
+  return samples.map((sample, i) => {
+    const sampleMs = sampleTimes[i]
     const tSeconds = Number.isFinite(sampleMs) ? Math.max(0, (sampleMs - startMs) / 1000) : 0
     return { tSeconds, bpm: sample.bpm }
   })

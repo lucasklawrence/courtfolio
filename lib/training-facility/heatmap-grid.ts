@@ -2,7 +2,7 @@ import type { CardioActivity, CardioSession } from '@/types/cardio'
 
 import { ACTIVITY_VISUALS } from './all-cardio'
 import { parseSessionDate } from './cardio-shared'
-import { pacificWallClock } from './day-keys'
+import { addCalendarDays, pacificWallClock } from './day-keys'
 
 /** A single cell in the workout-frequency heatmap grid. */
 export interface HeatmapCell {
@@ -25,14 +25,6 @@ export interface HeatmapGrid {
 const DAY_MS = 86_400_000
 /** Cap at ~2 years to limit DOM node count when a wide range is requested. */
 const MAX_COLS = 104
-
-/**
- * Local midnight `days` calendar days from `date`. Stepping by the calendar rather
- * than by 24 hours keeps every cell on its own date across a DST change.
- */
-function addDays(date: Date, days: number): Date {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
-}
 
 /** Get the Monday at or before a given local date. */
 function getMondayOf(d: Date): Date {
@@ -81,17 +73,17 @@ export function buildHeatmapGrid(
   dateTo?: Date | null
 ): HeatmapGrid {
   const endMonday = getMondayOf(dateTo ?? pacificWallClock(new Date()))
-  const endDate = addDays(endMonday, 6)
+  const endDate = addCalendarDays(endMonday, 6)
 
   let startMonday: Date
   if (dateFrom) {
     startMonday = getMondayOf(dateFrom)
-    const maxStart = addDays(endMonday, -MAX_COLS * 7)
+    const maxStart = addCalendarDays(endMonday, -MAX_COLS * 7)
     if (startMonday.getTime() < maxStart.getTime()) {
       startMonday = maxStart
     }
   } else {
-    startMonday = addDays(endMonday, -52 * 7)
+    startMonday = addCalendarDays(endMonday, -52 * 7)
   }
 
   // Lookup: local-date key → { count, distinct activity labels }
@@ -120,7 +112,7 @@ export function buildHeatmapGrid(
 
   for (let col = 0; col < totalCols; col++) {
     for (let row = 0; row < 7; row++) {
-      const date = addDays(startMonday, col * 7 + row)
+      const date = addCalendarDays(startMonday, col * 7 + row)
 
       const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
       const entry = lookup.get(key)

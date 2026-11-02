@@ -62,6 +62,20 @@ export function wallClockMs(date: Date): number {
 }
 
 /**
+ * The start of the local day `days` calendar days from `date`.
+ *
+ * Rebuilt from the date's fields rather than stepping 24 hours or mutating a cursor,
+ * so a clock change can't land it on the wrong day or leave it past midnight for
+ * good. A zone whose clocks skip midnight starts that one day at 01:00.
+ *
+ * @param date Any `Date`; only its local calendar day is read.
+ * @param days Calendar days to move, negative for earlier.
+ */
+export function addCalendarDays(date: Date, days: number): Date {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
+}
+
+/**
  * The inverse of {@link wallClockMs}: a `Date` whose local getters read `ms`.
  *
  * @param ms A position on the {@link wallClockMs} timeline.
@@ -244,9 +258,6 @@ export interface DayClock {
 /** A wall clock as year, month index, day, hour, minute, second. */
 type WallClockFields = [number, number, number, number, number, number]
 
-/** Instants one clock remembers before starting over, so a long-lived server stays bounded. */
-const WALL_CLOCK_CACHE_LIMIT = 20_000
-
 /**
  * Build a {@link DayClock} for an IANA timezone.
  *
@@ -272,7 +283,6 @@ export function createDayClock(timeZone: string): DayClock {
     minute: '2-digit',
     second: '2-digit',
   })
-  const fieldsByInstant = new Map<number, WallClockFields>()
 
   /** Assembled from `formatToParts` so a locale or ICU quirk can't reorder the fields. */
   function dayKey(d: Date): string {
@@ -288,19 +298,12 @@ export function createDayClock(timeZone: string): DayClock {
     return `${year}-${month}-${day}`
   }
 
-  /**
-   * This zone's wall clock at `instant`, as year, month index, day, hour, minute,
-   * second. Remembered per instant: `formatToParts` costs about 9µs, and a page
-   * re-reads every session each time its date range changes.
-   */
+  /** This zone's wall clock at `instant`, as year, month index, day, hour, minute, second. */
   function wallClockFields(instant: Date): WallClockFields {
-    const ms = instant.getTime()
-    const known = fieldsByInstant.get(ms)
-    if (known) return known
     const parts = wallClockFormat.formatToParts(instant)
     const field = (type: Intl.DateTimeFormatPartTypes): number =>
       Number(parts.find(p => p.type === type)?.value ?? '0')
-    const fields: WallClockFields = [
+    return [
       field('year'),
       field('month') - 1,
       field('day'),
@@ -308,9 +311,6 @@ export function createDayClock(timeZone: string): DayClock {
       field('minute'),
       field('second'),
     ]
-    if (fieldsByInstant.size >= WALL_CLOCK_CACHE_LIMIT) fieldsByInstant.clear()
-    fieldsByInstant.set(ms, fields)
-    return fields
   }
 
   /** This zone's offset from UTC at `instant`, in milliseconds (east is positive). */

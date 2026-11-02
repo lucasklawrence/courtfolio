@@ -70,7 +70,31 @@ describe.each(ZONES)('in %s', zone => {
   })
 })
 
+describe('dailyTrimpSeries where the clocks skip midnight', () => {
+  it('keeps the last day after the skipped midnight', () => {
+    process.env.TZ = 'America/Santiago'
+    const series = dailyTrimpSeries([session('2026-09-01'), session('2026-09-30')], { maxHr: 185 })
+    expect(series).toHaveLength(30)
+    expect(series[29].isoDate).toBe('2026-09-30')
+    expect(series[29].trimp).toBeGreaterThan(0)
+  })
+})
+
 describe('sessionHrCurve', () => {
+  it.each(ZONES)('measures from the first sample when the date has no offset, in %s', zone => {
+    process.env.TZ = zone
+    const samples: HrSample[] = [
+      { ts: '2026-03-08T07:30:00Z', bpm: 120 },
+      { ts: '2026-03-08T07:30:10Z', bpm: 125 },
+    ]
+    const expected = [
+      { tSeconds: 0, bpm: 120 },
+      { tSeconds: 10, bpm: 125 },
+    ]
+    expect(sessionHrCurve('2026-03-07T23:30:00', samples)).toEqual(expected)
+    expect(sessionHrCurve('2026-03-07', samples)).toEqual(expected)
+  })
+
   it('returns nothing for an unparseable session date', () => {
     expect(sessionHrCurve('not-a-date', [{ ts: '2022-05-28T03:14:05Z', bpm: 120 }])).toEqual([])
   })
@@ -79,6 +103,22 @@ describe('sessionHrCurve', () => {
     expect(sessionHrCurve('2022-05-28T03:14:05Z', [{ ts: 'nope', bpm: 120 }])).toEqual([
       { tSeconds: 0, bpm: 120 },
     ])
+  })
+})
+
+describe('parseSessionDate', () => {
+  it('returns a fresh Date for a repeated timestamp', () => {
+    const first = parseSessionDate('2026-06-01T20:00:00Z')
+    const second = parseSessionDate('2026-06-01T20:00:00Z')
+    expect(second).not.toBe(first)
+    expect(second.getTime()).toBe(first.getTime())
+  })
+
+  it('holds a repeated timestamp to its Pacific clock after the runtime changes zone', () => {
+    process.env.TZ = 'UTC'
+    parseSessionDate('2026-06-02T20:00:00Z')
+    process.env.TZ = 'Asia/Tokyo'
+    expect(parseSessionDate('2026-06-02T20:00:00Z').getHours()).toBe(13)
   })
 })
 

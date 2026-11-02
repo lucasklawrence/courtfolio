@@ -28,7 +28,7 @@
 
 import { DEFAULT_MAX_HR } from '@/constants/hr-zones'
 import type { CardioActivity, CardioSession } from '@/types/cardio'
-import { parseSessionDate } from './day-keys'
+import { addCalendarDays, parseSessionDate } from './day-keys'
 import type { DateRange } from '@/lib/training-facility/date-range'
 
 /**
@@ -177,16 +177,13 @@ export function dailyTrimpSeries(
   // Step by calendar day. 24-hour steps from the earliest session's time of day
   // would land on the wrong day after a clock change, and stop before a last
   // session earlier in its day than the first one.
-  const first = new Date(earliestMs)
-  const day = new Date(first.getFullYear(), first.getMonth(), first.getDate())
-  while (day.getTime() <= endMs) {
+  for (
+    let day = addCalendarDays(new Date(earliestMs), 0);
+    day.getTime() <= endMs;
+    day = addCalendarDays(day, 1)
+  ) {
     const iso = localIsoDate(day)
-    out.push({
-      date: new Date(day.getFullYear(), day.getMonth(), day.getDate()),
-      isoDate: iso,
-      trimp: trimpByDay.get(iso) ?? 0,
-    })
-    day.setDate(day.getDate() + 1)
+    out.push({ date: day, isoDate: iso, trimp: trimpByDay.get(iso) ?? 0 })
   }
   return out
 }

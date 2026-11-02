@@ -1,13 +1,17 @@
 import type { JSX } from 'react'
 import { renderToString } from 'react-dom/server'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { OtfSparklineSummary } from '@/components/training-facility/gym/OtfSparklineSummary'
 import { TrainingLoadChart } from '@/components/training-facility/gym/TrainingLoadChart'
+import { StrengthVsBodyweightChart } from '@/components/training-facility/weight-room/StrengthVsBodyweightChart'
 import { parseSessionDate } from '@/lib/training-facility/cardio-shared'
 import { otfLinearRegression, type OtfTrendPoint } from '@/lib/training-facility/otf'
 import { computeTrainingLoad, dailyTrimpSeries } from '@/lib/training-facility/training-load'
 import type { CardioSession } from '@/types/cardio'
+import type { Benchmark } from '@/types/movement'
+import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import { BodyweightOverlay } from './BodyweightOverlay'
 import { RoughLine } from './RoughLine'
 
 /**
@@ -67,7 +71,13 @@ function sessions(): CardioSession[] {
 }
 
 describe('charts across timezones', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(new Date('2026-11-25T20:00:00Z'))
+  })
+
   afterEach(() => {
+    vi.useRealTimers()
     if (ORIGINAL_TZ === undefined) delete process.env.TZ
     else process.env.TZ = ORIGINAL_TZ
   })
@@ -108,6 +118,36 @@ describe('charts across timezones', () => {
       />
     ))
     expectSameMarkup(renders)
+  })
+
+  it('StrengthVsBodyweightChart, built from real instants, renders the same in every zone', () => {
+    const sets = ['2026-10-14T18:00:00Z', '2026-10-21T18:00:00Z', '2026-11-04T18:00:00Z'].map(
+      (logged_at, i) => ({ id: String(i), logged_at, exercise: 'pullups', reps: 10 + i })
+    ) as StrengthSet[]
+    const renders = renderInEachZone(() => (
+      <StrengthVsBodyweightChart
+        sets={sets}
+        goal={{ exercise: 'pullups', color: '#EA580C' } as ExerciseGoal}
+        bodyMass={[{ date: '2026-10-20', value: 236 }]}
+      />
+    ))
+    expectSameMarkup(renders)
+  })
+
+  it('BodyweightOverlay counts a benchmark on the first day of the range in every zone', () => {
+    const benchmarks = [{ date: '2026-05-01', bodyweight_lbs: 236 }] as Benchmark[]
+    const renders = renderInEachZone(() => (
+      <BodyweightOverlay
+        benchmarks={benchmarks}
+        dateExtent={[parseSessionDate('2026-05-01'), parseSessionDate('2026-05-31')]}
+        width={720}
+        height={280}
+      >
+        <svg />
+      </BodyweightOverlay>
+    ))
+    expectSameMarkup(renders)
+    expect(renders[0]).not.toContain('disabled')
   })
 
   it('OtfSparklineSummary renders the same in every zone', () => {

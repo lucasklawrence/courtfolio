@@ -3,6 +3,7 @@
 import { useEffect, useId, useState, type JSX, type ReactNode } from 'react'
 import { scaleLinear } from 'd3-scale'
 import rough from 'roughjs'
+import { parseSessionDate } from '@/lib/training-facility/day-keys'
 import type { Benchmark } from '@/types/movement'
 import { Axis, type AxisTick } from './axes'
 import { chartPalette } from './palette'
@@ -23,9 +24,9 @@ export interface BodyweightOverlayProps {
   /** Benchmark history. Entries without `bodyweight_lbs` and any with `is_complete === false` are skipped. */
   benchmarks: Benchmark[]
   /**
-   * Date domain shared with the primary chart. The overlay's x-scale matches
-   * this exactly — caller is responsible for passing the same span the chart
-   * child computes from its own data.
+   * Date domain shared with the primary chart, as wall-clock `Date`s. The overlay's
+   * x-scale matches this exactly — caller is responsible for passing the same span
+   * the chart child computes from its own data.
    */
   dateExtent: [Date, Date]
   /** Total width in px — must match the primary chart. */
@@ -141,7 +142,7 @@ export function BodyweightOverlay({
       (b): b is Benchmark & { bodyweight_lbs: number } =>
         typeof b.bodyweight_lbs === 'number' && b.is_complete !== false
     )
-    .map(b => ({ date: new Date(b.date), bw: b.bodyweight_lbs }))
+    .map(b => ({ date: parseSessionDate(b.date), bw: b.bodyweight_lbs }))
     .filter(p => {
       const t = p.date.getTime()
       return t >= fromMs && t <= toMs
