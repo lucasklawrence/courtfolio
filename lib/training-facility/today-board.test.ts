@@ -130,8 +130,51 @@ describe('buildTodayBoard', () => {
       daily_target: 100,
       target_history: [{ effective_from: '2026-11-02', daily_target: 150 }],
     }
-    const board = buildTodayBoard(makeData({ goals: [scheduled] }), noonOn('2026-11-01'))
-    expect(board[0].goal.daily_target).toBe(100)
+    const data = makeData({
+      goals: [scheduled],
+      sets: [makeSet('pushups', 100, '2026-10-30'), makeSet('pushups', 100, '2026-10-31')],
+    })
+    const [row] = buildTodayBoard(data, noonOn('2026-11-01'))
+    expect(row.goal.daily_target).toBe(100)
+    // The same bar scores the streak, so the unreached 150 can't break it.
+    expect(row.streak).toBe(2)
+  })
+
+  it('leaves a permanent goal on its own target after it has run as a rotation', () => {
+    const september: MonthlyFocus = {
+      ...OCTOBER_SHRUGS,
+      exercise: 'pushups',
+      daily_target: 50,
+      start_date: '2026-09-01',
+      end_date: '2026-09-30',
+    }
+    const data = makeData({
+      monthly_focus: [september],
+      sets: [makeSet('pushups', 60, '2026-10-31')],
+    })
+    const [row] = buildTodayBoard(data, noonOn('2026-11-01'))
+    expect(row.goal.daily_target).toBe(100)
+    expect(row.streak).toBe(0)
+  })
+
+  it('takes the target from the active rotation, not the newest one started', () => {
+    const nested: MonthlyFocus = {
+      ...OCTOBER_SHRUGS,
+      id: 'focus-2',
+      daily_target: 150,
+      category: 'lower',
+      start_date: '2026-10-10',
+      end_date: '2026-10-15',
+    }
+    const data = makeData({ monthly_focus: [OCTOBER_SHRUGS, nested] })
+    const row = buildTodayBoard(data, noonOn('2026-10-20')).find(r => r.goal.exercise === 'shrugs')
+    expect(row?.goal.daily_target).toBe(100)
+  })
+
+  it("falls back to the anchor's target when the active rotation counts sets", () => {
+    const setsFocus: MonthlyFocus = { ...OCTOBER_SHRUGS, target_kind: 'sets', daily_target: 3 }
+    const board = buildTodayBoard(makeData({ monthly_focus: [setsFocus] }), noonOn('2026-10-15'))
+    expect(board.find(r => r.goal.exercise === 'shrugs')?.goal.daily_target).toBe(100)
   })
 
   it("scores a focus goal against its rotation's target, not the anchor's", () => {

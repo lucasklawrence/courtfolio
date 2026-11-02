@@ -115,11 +115,11 @@ export default async function TrainingFacilityWeightRoomPage({
 
       {/* The wall's text is unreadable below `lg`, so state the same board as page
           content there. From `lg` the wall carries it visually, but the wall is
-          `aria-hidden`, so this stays available to screen readers. The empty-state
-          call to action above already covers having no data. */}
-      {showEmptyStateCta ? null : (
+          `aria-hidden`, so this stays available to screen readers. With no goals
+          and no sets, the empty-state call to action above says all there is. */}
+      {board.length > 0 || !showEmptyStateCta ? (
         <TodayProgressPanel board={board} className="mx-4 my-6 lg:sr-only" />
-      )}
+      ) : null}
     </div>
   )
 }

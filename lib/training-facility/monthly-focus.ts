@@ -90,25 +90,6 @@ export function goalsVisibleOnDay(
 }
 
 /**
- * Give each goal with a rotation its real bar: a focus anchor's scalar isn't what
- * it's scored against, the rotation's target is (#367). Replacing the goal's
- * history with one built from its windows routes it through the same target
- * resolution as every other goal. Goals with no reps-based window are unchanged.
- *
- * @param goals The goals to resolve.
- * @param focuses All configured focuses, usually `WeightRoomData.monthly_focus`.
- */
-export function withFocusTargets(
-  goals: readonly ExerciseGoal[],
-  focuses: readonly MonthlyFocus[]
-): ExerciseGoal[] {
-  return goals.map(goal => {
-    const windowHistory = focusTargetHistory(focuses, goal.exercise)
-    return windowHistory.length > 0 ? { ...goal, target_history: windowHistory } : goal
-  })
-}
-
-/**
  * Focuses whose window starts strictly after `dayKey`, soonest first.
  * Powers the Today View "Upcoming" strip — the roadmap of what's queued.
  *

@@ -68,8 +68,8 @@ function fitRingDimensions(
  * geometry mirrors {@link import('../../weight-room/ActivityRings').ActivityRings}
  * — same math, scene-tuned dimensions.
  *
- * The per-exercise tallies are hidden below `lg`, where they are too small to
- * read and `TodayProgressPanel` states them instead.
+ * The fixture's text is hidden below `lg`, where it is too small to read and
+ * `TodayProgressPanel` states the board instead. The rings stay as illustration.
  */
 export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): JSX.Element {
   const rings = board.map(row => ({
@@ -132,6 +132,7 @@ export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): 
 
       {/* Header — "TODAY" letterspacing matches PRD's editorial mono */}
       <text
+        className="max-lg:hidden"
         x={RING_CX}
         y={FRAME_Y + 40}
         textAnchor="middle"
@@ -213,6 +214,7 @@ export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): 
       {/* Center percent readout — anchored to the primary (outermost) ring */}
       {primary ? (
         <text
+          className="max-lg:hidden"
           x={RING_CX}
           y={RING_CY + 7}
           textAnchor="middle"
@@ -225,6 +227,7 @@ export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): 
         </text>
       ) : (
         <text
+          className="max-lg:hidden"
           x={RING_CX}
           y={RING_CY + 7}
           textAnchor="middle"
