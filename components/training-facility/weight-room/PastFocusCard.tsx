@@ -211,7 +211,10 @@ export function PastFocusCard({ focus, adherence, loadStats }: PastFocusCardProp
               value={`${trim1(loadStats.avgLoadLbs ?? 0)} lb`}
               sub={totalLoadNote(loadStats.avgLoadLbs, loadStats.loadMultiplier)}
             />
-            <FocusStat label="Tonnage" value={`${loadStats.tonnageLbs.toLocaleString()} lb`} />
+            <FocusStat
+              label="Tonnage"
+              value={`${loadStats.tonnageLbs.toLocaleString('en-US')} lb`}
+            />
           </dl>
         ) : null}
       </div>

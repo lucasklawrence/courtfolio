@@ -99,7 +99,7 @@ export function formatFocusWindow(focus: MonthlyFocus): string {
     return `${focus.start_date} – ${focus.end_date}`
   }
   const short = (d: Date): string =>
-    d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+    d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
   return `${short(start)} – ${short(end)}`
 }
 

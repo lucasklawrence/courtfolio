@@ -12,34 +12,12 @@
  * APIs continue to read naturally at call sites.
  */
 
-import type { CardioActivity, CardioSession, HrZone } from '@/types/cardio'
+import type { CardioActivity, CardioSession, HrSample, HrZone } from '@/types/cardio'
 import { HR_ZONES, type HrZoneConfig } from '@/constants/hr-zones'
 import type { DateRange } from '@/lib/training-facility/date-range'
-import { pacificWallClock } from '@/lib/training-facility/day-keys'
+import { parseSessionDate, wallClockMs } from '@/lib/training-facility/day-keys'
 
-/** Matches a timestamp ending in `Z` or an offset like `-07:00`. */
-const HAS_UTC_OFFSET = /(?:Z|[+-]\d{2}(?::?\d{2})?)$/i
-
-/**
- * Parse a session-date string into a `Date` whose local getters read its calendar
- * day, the same on a UTC server and in any viewer's browser.
- *
- * Bare `YYYY-MM-DD` strings (the dominant format in `cardio.json` for
- * non-walking sessions) are treated as local midnight so range comparisons
- * match the `DateFilter`'s local-day bounds. A timestamp with no offset already
- * states its wall clock, so local parsing keeps it. One with an offset goes through
- * {@link pacificWallClock}, so a session keeps the Pacific day it happened on.
- *
- * Exported so every layer (filters, chart projections, table row formatters)
- * stays consistent on the local-vs-UTC interpretation of the same field.
- *
- * @param raw - Original `date` field from a `CardioSession`.
- */
-export function parseSessionDate(raw: string): Date {
-  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return new Date(`${raw}T00:00:00`)
-  if (!HAS_UTC_OFFSET.test(raw)) return new Date(raw)
-  return pacificWallClock(new Date(raw))
-}
+export { parseSessionDate }
 
 /**
  * Filter `sessions` down to a single activity whose `date` falls within
@@ -69,6 +47,38 @@ export function filterCardioSessionsByActivity(
   }
   out.sort((a, b) => a.ts - b.ts)
   return out.map(entry => entry.session)
+}
+
+/** A single point on a session's heart-rate curve. */
+export interface SessionCurvePoint {
+  /** Seconds since session start, never negative. Unparseable samples read `0`. */
+  tSeconds: number
+  /** Heart rate at this sample, BPM. */
+  bpm: number
+}
+
+/**
+ * Convert a session's raw heart-rate samples to session-relative seconds.
+ *
+ * Both ends are real instants, so this deliberately reads `sessionDate` with
+ * `new Date` and not {@link parseSessionDate}, whose result is a wall clock that
+ * can't be subtracted from a sample's timestamp.
+ *
+ * @param sessionDate The session's `date`.
+ * @param samples Samples for that session, in the order to plot them.
+ * @returns The curve, or `[]` when `sessionDate` can't be parsed.
+ */
+export function sessionHrCurve(
+  sessionDate: string,
+  samples: readonly HrSample[]
+): SessionCurvePoint[] {
+  const startMs = new Date(sessionDate).getTime()
+  if (!Number.isFinite(startMs)) return []
+  return samples.map(sample => {
+    const sampleMs = new Date(sample.ts).getTime()
+    const tSeconds = Number.isFinite(sampleMs) ? Math.max(0, (sampleMs - startMs) / 1000) : 0
+    return { tSeconds, bpm: sample.bpm }
+  })
 }
 
 /** One row in the HR-zone distribution chart. */
@@ -166,7 +176,7 @@ const MS_PER_DAY = 86_400_000
  * @param range - Inclusive date window from the `DateFilter`.
  */
 export function rangeSpanDays(range: DateRange): number {
-  return (range.end.getTime() - range.start.getTime()) / MS_PER_DAY
+  return (wallClockMs(range.end) - wallClockMs(range.start)) / MS_PER_DAY
 }
 
 /**

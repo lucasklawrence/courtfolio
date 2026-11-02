@@ -78,6 +78,8 @@ export default defineConfig({
     {
       command: 'npm run e2e:dev',
       url: DEFAULT_BASE_URL,
+      // Production runs in UTC. Pinned so the timezone specs mean the same on any machine.
+      env: { TZ: 'UTC' },
       timeout: 180_000,
       reuseExistingServer: !IS_CI,
       stdout: 'pipe',
@@ -86,6 +88,7 @@ export default defineConfig({
     {
       command: 'npm run e2e:dev:training-facility',
       url: TRAINING_FACILITY_BASE_URL,
+      env: { TZ: 'UTC' },
       timeout: 180_000,
       reuseExistingServer: !IS_CI,
       stdout: 'pipe',

@@ -4,18 +4,20 @@ import { expect, test, type Page } from '@playwright/test'
  * Pins that the routes in React's #418 reports hydrate cleanly, with the server and
  * browser in different timezones.
  *
- * The e2e server runs in UTC, as production does. Pacific is the site's real viewer.
+ * `playwright.config.ts` pins the e2e server to UTC, as production runs. Pacific is
+ * the site's real viewer.
  * Tokyo and Pago Pago put the browser on a calendar day either side of the server's
  * at any hour, which is what exposes a default of "today".
  *
  * Runs in `mobile-webkit` and `training-facility-enabled`, because `/contact` only
- * failed in WebKit. Without credentials these routes render with little data, so
- * unit tests also cover the date parsing and path rounding that data would reach.
+ * failed in WebKit. Without credentials these routes render with little data, and
+ * the OTF page has no demo data at all, so `zone-render.test.tsx` covers the charts
+ * and unit tests cover the date parsing that real data would reach.
  */
 
 const ROUTES = [
   '/contact',
-  '/training-facility/gym/otf?preview=demo',
+  '/training-facility/gym/otf',
   '/training-facility/gym/overview?preview=demo',
   '/training-facility/gym/treadmill?preview=demo',
   '/training-facility/gym/stair?preview=demo',

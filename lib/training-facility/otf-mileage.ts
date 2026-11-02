@@ -189,14 +189,14 @@ function awardMonth(month: MonthlyMileage, awards: readonly OtfMileageAward[]): 
  * ladder, and the current time.
  *
  * `now` is injected (not read from the clock here) to keep this pure and
- * testable; the client component passes `new Date()`. The current calendar
+ * testable; the client component passes `pacificWallClock(new Date())`. The current calendar
  * month is always returned as {@link OtfMileageView.current} — with its real
  * total when classes exist, or a zero row otherwise — and every other month
  * with logged mileage falls into {@link OtfMileageView.history}, newest first.
  *
  * @param sessions Raw OTF sessions (excluded ones are dropped internally).
  * @param awards   The milestone ladder; may be empty (no badges, no next tier).
- * @param now      The reference "current" time, in the viewer's local timezone.
+ * @param now      The reference "current" time, as a wall-clock `Date` read through its local getters.
  */
 export function buildOtfMileageView(
   sessions: readonly OtfSession[],

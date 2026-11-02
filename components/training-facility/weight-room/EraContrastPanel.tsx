@@ -98,10 +98,10 @@ function EraColumn({ era, title, testId }: EraColumnProps): JSX.Element {
       </p>
 
       <dl className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 font-mono text-[11px]">
-        <Stat label="Training days" value={era.trainingDays.toLocaleString()} />
+        <Stat label="Training days" value={era.trainingDays.toLocaleString('en-US')} />
         <Stat label="Movements" value={String(era.movements)} />
-        <Stat label="Sets" value={era.sets.toLocaleString()} />
-        <Stat label="Reps" value={era.reps.toLocaleString()} />
+        <Stat label="Sets" value={era.sets.toLocaleString('en-US')} />
+        <Stat label="Reps" value={era.reps.toLocaleString('en-US')} />
       </dl>
 
       <div className="mt-4">
@@ -117,7 +117,8 @@ function EraColumn({ era, title, testId }: EraColumnProps): JSX.Element {
           <div className="h-full bg-amber-300/70" style={{ width: `${loadedPct}%` }} />
         </div>
         <p className="mt-1.5 text-xs leading-5 text-[#e8d5be]/55">
-          {era.loadedSets.toLocaleString()} of {era.sets.toLocaleString()} sets carried weight.
+          {era.loadedSets.toLocaleString('en-US')} of {era.sets.toLocaleString('en-US')} sets
+          carried weight.
         </p>
       </div>
     </div>

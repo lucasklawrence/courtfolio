@@ -1,13 +1,14 @@
 'use client'
 
 import { useEffect, useId, useState, type JSX, type ReactNode } from 'react'
-import { scaleLinear, scaleTime } from 'd3-scale'
+import { scaleLinear } from 'd3-scale'
 import rough from 'roughjs'
 import type { Benchmark } from '@/types/movement'
 import { Axis, type AxisTick } from './axes'
 import { chartPalette } from './palette'
 import { drawableToPaths, extent } from './rough-svg'
 import { resolveMargin, type ChartMargin } from './types'
+import { wallClockTimeScale } from './wall-clock-scale'
 
 /**
  * Drop-in wrapper that overlays bodyweight as a secondary right-side axis on
@@ -278,7 +279,8 @@ function BodyweightLayer({
   yTickFormat,
   ariaLabel,
 }: BodyweightLayerProps): JSX.Element {
-  const xScale = scaleTime().domain(dateExtent).range([0, innerW])
+  // The same scale as the chart underneath, so the two lines stay aligned.
+  const timeScale = wallClockTimeScale(dateExtent, [0, innerW])
 
   const bwValues = points.map(p => p.bw)
   const [yMin, yMax] = extent(bwValues)
@@ -293,7 +295,7 @@ function BodyweightLayer({
     offset: yScale(tick),
   }))
 
-  const linePoints: [number, number][] = points.map(p => [xScale(p.date), yScale(p.bw)])
+  const linePoints: [number, number][] = points.map(p => [timeScale.position(p.date), yScale(p.bw)])
 
   // Fresh generator (not the shared singleton) — see the BodyweightOverlay
   // hydration comment above. Cost is one allocation per render; output is

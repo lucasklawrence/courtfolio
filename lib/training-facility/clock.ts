@@ -39,6 +39,47 @@ export function isDayKey(value: string): boolean {
 }
 
 /**
+ * Where a wall-clock `Date` sits on a timeline with no daylight saving: its local
+ * date and time fields, read as if they were UTC.
+ *
+ * The real gap between two wall-clock `Date`s gains or loses an hour when the
+ * runtime's zone changes its clocks between them, so `getTime()` gives a different
+ * answer on a UTC server than in a Pacific browser. Use this for any position or
+ * span derived from such `Date`s that has to come out the same in every zone.
+ *
+ * @param date A `Date` built from wall-clock fields. An invalid one returns `NaN`.
+ */
+export function wallClockMs(date: Date): number {
+  return Date.UTC(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    date.getHours(),
+    date.getMinutes(),
+    date.getSeconds(),
+    date.getMilliseconds()
+  )
+}
+
+/**
+ * The inverse of {@link wallClockMs}: a `Date` whose local getters read `ms`.
+ *
+ * @param ms A position on the {@link wallClockMs} timeline.
+ */
+export function fromWallClockMs(ms: number): Date {
+  const utc = new Date(ms)
+  return new Date(
+    utc.getUTCFullYear(),
+    utc.getUTCMonth(),
+    utc.getUTCDate(),
+    utc.getUTCHours(),
+    utc.getUTCMinutes(),
+    utc.getUTCSeconds(),
+    utc.getUTCMilliseconds()
+  )
+}
+
+/**
  * Shift a `YYYY-MM-DD` key by `delta` days.
  *
  * Arithmetic runs in UTC on the bare calendar numbers — no zone, no DST — so
@@ -141,6 +182,19 @@ export interface DayClock {
    */
   safeDayKey(input: string | Date): string
   /**
+   * A `Date` whose local getters (`getFullYear`, `getDate`, `getHours`, ...) read
+   * this zone's wall clock at `instant`, whatever zone the code runs in.
+   *
+   * The result is not the same instant as the input outside this zone, so use it
+   * for calendar reads and for ordering against other wall-clock `Date`s. Measure
+   * real elapsed time from the original instants, and take spans between results
+   * with {@link wallClockMs}. A wall clock the runtime's own zone skips at a clock
+   * change reads an hour later, on the same day.
+   *
+   * @param instant Any `Date`. An invalid one is returned as an invalid `Date`.
+   */
+  wallClock(instant: Date): Date
+  /**
    * Today's key in this clock's zone.
    *
    * @param now Clock override; defaults to `new Date()`.
@@ -187,6 +241,12 @@ export interface DayClock {
   format(key: string, options: Intl.DateTimeFormatOptions, locale?: string): string
 }
 
+/** A wall clock as year, month index, day, hour, minute, second. */
+type WallClockFields = [number, number, number, number, number, number]
+
+/** Instants one clock remembers before starting over, so a long-lived server stays bounded. */
+const WALL_CLOCK_CACHE_LIMIT = 20_000
+
 /**
  * Build a {@link DayClock} for an IANA timezone.
  *
@@ -212,6 +272,7 @@ export function createDayClock(timeZone: string): DayClock {
     minute: '2-digit',
     second: '2-digit',
   })
+  const fieldsByInstant = new Map<number, WallClockFields>()
 
   /** Assembled from `formatToParts` so a locale or ICU quirk can't reorder the fields. */
   function dayKey(d: Date): string {
@@ -227,20 +288,34 @@ export function createDayClock(timeZone: string): DayClock {
     return `${year}-${month}-${day}`
   }
 
-  /** This zone's offset from UTC at `instant`, in milliseconds (east is positive). */
-  function offsetMsAt(instant: Date): number {
+  /**
+   * This zone's wall clock at `instant`, as year, month index, day, hour, minute,
+   * second. Remembered per instant: `formatToParts` costs about 9µs, and a page
+   * re-reads every session each time its date range changes.
+   */
+  function wallClockFields(instant: Date): WallClockFields {
+    const ms = instant.getTime()
+    const known = fieldsByInstant.get(ms)
+    if (known) return known
     const parts = wallClockFormat.formatToParts(instant)
     const field = (type: Intl.DateTimeFormatPartTypes): number =>
       Number(parts.find(p => p.type === type)?.value ?? '0')
-    const asIfUtc = Date.UTC(
+    const fields: WallClockFields = [
       field('year'),
       field('month') - 1,
       field('day'),
       field('hour'),
       field('minute'),
-      field('second')
-    )
-    return asIfUtc - instant.getTime()
+      field('second'),
+    ]
+    if (fieldsByInstant.size >= WALL_CLOCK_CACHE_LIMIT) fieldsByInstant.clear()
+    fieldsByInstant.set(ms, fields)
+    return fields
+  }
+
+  /** This zone's offset from UTC at `instant`, in milliseconds (east is positive). */
+  function offsetMsAt(instant: Date): number {
+    return Date.UTC(...wallClockFields(instant)) - instant.getTime()
   }
 
   function toNoon(key: string): Date | null {
@@ -266,6 +341,10 @@ export function createDayClock(timeZone: string): DayClock {
     safeDayKey(input: string | Date): string {
       const d = typeof input === 'string' ? new Date(input) : input
       return Number.isFinite(d.getTime()) ? dayKey(d) : ''
+    },
+    wallClock(instant: Date): Date {
+      if (Number.isNaN(instant.getTime())) return new Date(NaN)
+      return new Date(...wallClockFields(instant))
     },
     today(now: Date = new Date()): string {
       return dayKey(now)

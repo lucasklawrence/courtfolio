@@ -26,7 +26,7 @@
  * wrappers exist for the surfaces that are legitimately Pacific-only.
  */
 
-import { PACIFIC_CLOCK, PACIFIC_TZ } from './clock'
+import { PACIFIC_CLOCK } from './clock'
 
 export {
   PACIFIC_TZ,
@@ -38,6 +38,8 @@ export {
   firstDayOfMonth,
   lastDayOfMonth,
   monthIndexOfDayKey,
+  wallClockMs,
+  fromWallClockMs,
   type DayClock,
 } from './clock'
 
@@ -51,43 +53,44 @@ export function pacificDayKey(d: Date): string {
   return PACIFIC_CLOCK.dayKey(d)
 }
 
-/** Reads a timestamp's Pacific date and time, in any runtime's zone. */
-const PACIFIC_PARTS = new Intl.DateTimeFormat('en-US', {
-  timeZone: PACIFIC_TZ,
-  hourCycle: 'h23',
-  year: 'numeric',
-  month: 'numeric',
-  day: 'numeric',
-  hour: 'numeric',
-  minute: 'numeric',
-  second: 'numeric',
-})
-
 /**
- * A `Date` whose local getters (`getFullYear`, `getDate`, `getHours`, ...) read
- * the Pacific wall clock at `instant`, whatever zone this code runs in.
+ * A `Date` whose local getters read the Pacific wall clock at `instant`, whatever
+ * zone this code runs in. See {@link DayClock.wallClock} for what the result can
+ * and can't be used for.
  *
  * For code built on those getters that renders on both a UTC server and a
  * viewer's browser: without this, the two can disagree about which day a session
- * fell on, or which day today is. The result is not the same instant as the
- * input outside Pacific, so use it for calendar reads and for comparing with other
- * results of this function, not for measuring elapsed time.
+ * fell on, or which day today is.
  *
  * @param instant Any `Date`. An invalid one is returned as an invalid `Date`.
  */
 export function pacificWallClock(instant: Date): Date {
-  if (Number.isNaN(instant.getTime())) return new Date(NaN)
-  const parts = new Map(
-    PACIFIC_PARTS.formatToParts(instant).map(part => [part.type, Number(part.value)])
-  )
-  return new Date(
-    parts.get('year') ?? 0,
-    (parts.get('month') ?? 1) - 1,
-    parts.get('day') ?? 1,
-    parts.get('hour') ?? 0,
-    parts.get('minute') ?? 0,
-    parts.get('second') ?? 0
-  )
+  return PACIFIC_CLOCK.wallClock(instant)
+}
+
+/** Matches a timestamp ending in `Z` or an offset like `-07:00`. */
+const HAS_UTC_OFFSET = /(?:Z|[+-]\d{2}(?::?\d{2})?)$/i
+
+/**
+ * Parse a session-date string into a wall-clock `Date` whose local getters read its
+ * calendar day, the same on a UTC server and in any viewer's browser.
+ *
+ * Bare `YYYY-MM-DD` strings (the dominant format in `cardio.json` for non-walking
+ * sessions) are treated as local midnight so range comparisons match the
+ * `DateFilter`'s local-day bounds. A timestamp with no offset already states its
+ * wall clock, so local parsing keeps it. One with an offset goes through
+ * {@link pacificWallClock}, so a session keeps the Pacific day it happened on.
+ *
+ * Every layer (filters, chart projections, table row formatters) reads session dates
+ * through this. To measure elapsed time against real timestamps such as heart-rate
+ * samples, use `new Date(raw)` instead.
+ *
+ * @param raw Original `date` field from a `CardioSession` or a trend point.
+ */
+export function parseSessionDate(raw: string): Date {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return new Date(`${raw}T00:00:00`)
+  if (!HAS_UTC_OFFSET.test(raw)) return new Date(raw)
+  return pacificWallClock(new Date(raw))
 }
 
 /**

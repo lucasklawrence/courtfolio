@@ -1,9 +1,10 @@
 import type { JSX } from 'react'
-import { scaleLinear, scaleTime, type ScaleLinear, type ScaleTime } from 'd3-scale'
+import { scaleLinear, type ScaleLinear } from 'd3-scale'
 import { Axis, EmptyChart, type AxisTick } from './axes'
 import { chartPalette } from './palette'
 import { drawableToPaths, extent, getGenerator, roundSvgCoordinate } from './rough-svg'
 import { resolveMargin, type ChartCommonProps } from './types'
+import { wallClockTimeScale } from './wall-clock-scale'
 
 export interface RoughLineProps<T> extends ChartCommonProps {
   data: T[]
@@ -121,17 +122,14 @@ export function RoughLine<T>({
   let scaleX: (value: number | Date) => number
   let xTicks: AxisTick[]
   if (usingTime) {
-    const dateValues = xValues as Date[]
-    const overlayTimes = (overlayXValues as Date[]).map(d => d.getTime())
-    const [tMin, tMax] = extent([...dateValues.map(d => d.getTime()), ...overlayTimes])
-    const timeScale: ScaleTime<number, number> = scaleTime()
-      .domain([new Date(tMin), new Date(tMax)])
-      .range([0, innerW])
-    scaleX = v => timeScale(v as Date)
-    const spanMs = tMax - tMin
-    xTicks = timeScale.ticks(xTickCount).map(tick => ({
-      value: xTickFormat ? xTickFormat(tick) : formatDateAxisTick(tick, spanMs),
-      offset: timeScale(tick),
+    const timeScale = wallClockTimeScale(
+      [...(xValues as Date[]), ...(overlayXValues as Date[])],
+      [0, innerW]
+    )
+    scaleX = v => timeScale.position(v as Date)
+    xTicks = timeScale.ticks(xTickCount).map(({ date, offset }) => ({
+      value: xTickFormat ? xTickFormat(date) : formatDateAxisTick(date, timeScale.spanMs),
+      offset,
     }))
   } else {
     const [xMin, xMax] = extent([...(xValues as number[]), ...(overlayXValues as number[])])
