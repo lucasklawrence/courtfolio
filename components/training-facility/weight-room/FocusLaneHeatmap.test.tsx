@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 
+import { HeatmapInspector } from '@/components/training-facility/shared/charts/HeatmapInspector'
 import type { FocusDayCell } from '@/lib/training-facility/monthly-focus'
 import type { MonthlyFocus } from '@/types/weight-room'
 
@@ -74,6 +75,22 @@ describe('FocusLaneHeatmap', () => {
       <FocusLaneHeatmap cells={lane('2026-06-29', 36, SHRUGS)} label="Upper Focus Lane" />
     )
     expect(getByRole('img', { name: 'Upper Focus Lane' })).toBeInTheDocument()
+  })
+
+  it("shows a tapped cell's details inside an inspector", () => {
+    const { container } = render(
+      <HeatmapInspector label="Upper Focus Lane">
+        <FocusLaneHeatmap cells={lane('2026-06-29', 36, SHRUGS)} label="Upper Focus Lane" />
+      </HeatmapInspector>
+    )
+    const firstDay = container.querySelector('rect[data-col="0"][data-row="0"]')
+    if (firstDay === null) throw new Error('The lane drew no first cell')
+
+    fireEvent.click(firstDay)
+
+    expect(screen.getByTestId('heatmap-cell-detail')).toHaveTextContent(
+      'Jun 29, 2026: 50 reps shrugs (100% of daily goal)'
+    )
   })
 
   // ---- #370: a short rotation must not render as a postage stamp ----------

@@ -9,18 +9,19 @@ import { expect, test, type Locator, type Page } from '@playwright/test'
  * real touch gesture.
  *
  * `?preview=demo` supplies the dataset, since the e2e job has no Supabase
- * credentials.
+ * credentials. That limits this spec to the per-exercise heatmaps: the fixture has
+ * no focus rotations, and the Cardio Overview shows its load error without
+ * credentials. Component tests cover tapping those two heatmaps instead.
  */
 
 const HISTORY = '/training-facility/weight-room/history?preview=demo'
-const CARDIO = '/training-facility/gym/overview?preview=demo'
 const HINT = 'Select a day to see its breakdown.'
 
 /** The route renders slowly on a cold dev server, so allow for a long first load. */
 const LOAD_TIMEOUT = 60_000
 
 // History is the slowest route on the site, and page.goto counts against the test.
-test.slow(() => true, 'Slow route')
+test.describe.configure({ timeout: 3 * LOAD_TIMEOUT })
 
 /**
  * Wait until React has attached the inspector's handlers. The grid is
@@ -96,26 +97,6 @@ test.describe('heatmap day details on touch', () => {
     )
     expect(widened).toBe(false)
   })
-
-  test('the focus lanes respond to a tap', async ({ page }) => {
-    await page.goto(HISTORY)
-    const inspector = await hydrated(
-      page.getByTestId('weight-room-focus-lanes').getByTestId('heatmap-inspector').first()
-    )
-
-    const cell = inspector.locator('rect[data-col]').first()
-    await cell.tap()
-    await expect(inspector.getByTestId('heatmap-cell-detail')).toHaveText(await titleOf(cell))
-  })
-
-  test('the cardio heatmap responds to a tap', async ({ page }) => {
-    await page.goto(CARDIO)
-    const inspector = await hydrated(page.getByTestId('heatmap-inspector').first())
-
-    const cell = inspector.locator('rect[data-col]').last()
-    await cell.tap()
-    await expect(inspector.getByTestId('heatmap-cell-detail')).toHaveText(await titleOf(cell))
-  })
 })
 
 test.describe('heatmap day details on desktop', () => {
@@ -139,6 +120,8 @@ test.describe('heatmap day details on desktop', () => {
     const selected = inspector.locator('[data-heatmap-selected]')
     await expect(selected).toHaveCount(1)
     await expect(readout).toHaveText(await titleOf(selected))
+    // The inspector's text color, drawn as the selected cell's outline.
+    await expect(selected).toHaveCSS('stroke', 'rgb(232, 213, 190)')
 
     await page.keyboard.press('ArrowLeft')
     await expect(readout).toHaveText(await titleOf(selected))

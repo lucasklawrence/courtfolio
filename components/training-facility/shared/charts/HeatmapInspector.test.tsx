@@ -160,10 +160,48 @@ describe('HeatmapInspector', () => {
     expect(selectedCells()).toHaveLength(0)
   })
 
-  it('announces the details to screen readers', () => {
+  it('leaves arrow keys with a modifier to the browser', () => {
+    renderInspector()
+    for (const modifier of ['altKey', 'ctrlKey', 'metaKey', 'shiftKey']) {
+      expect(fireEvent.keyDown(grid(), { key: 'ArrowLeft', [modifier]: true })).toBe(true)
+    }
+    expect(readout()).toHaveTextContent(HINT)
+  })
+
+  it('leaves arrow keys to a focusable scroller nested in the grid', () => {
+    render(
+      <HeatmapInspector label="Pushups heatmap">
+        <div data-testid="scroller" tabIndex={0}>
+          <Grid />
+        </div>
+      </HeatmapInspector>
+    )
+    expect(fireEvent.keyDown(screen.getByTestId('scroller'), { key: 'ArrowLeft' })).toBe(true)
+    expect(readout()).toHaveTextContent(HINT)
+  })
+
+  it('dismisses when focus moves to something outside the inspector', () => {
+    const { selectedCells } = renderInspector()
+    fireEvent.keyDown(grid(), { key: 'ArrowDown' })
+    fireEvent.focusOut(grid(), { relatedTarget: screen.getByTestId('outside') })
+    expect(readout()).toHaveTextContent(HINT)
+    expect(selectedCells()).toHaveLength(0)
+  })
+
+  it('keeps the details open when focus goes nowhere, as on a tap on the readout', () => {
     const { cell } = renderInspector()
     fireEvent.click(cell(1, 2))
+    fireEvent.focusOut(grid(), { relatedTarget: null })
+    expect(readout()).toHaveTextContent(dayText(1, 2))
+  })
+
+  it('announces a selected day but not the hint', () => {
+    const { cell } = renderInspector()
+    expect(screen.getByRole('status')).toBeEmptyDOMElement()
+    fireEvent.click(cell(1, 2))
     expect(screen.getByRole('status')).toHaveTextContent(dayText(1, 2))
+    fireEvent.click(cell(1, 2))
+    expect(screen.getByRole('status')).toBeEmptyDOMElement()
   })
 
   it('dismisses when a re-render gives the selected square a different day', async () => {

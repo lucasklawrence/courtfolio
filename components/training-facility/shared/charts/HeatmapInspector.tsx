@@ -5,6 +5,7 @@ import {
   useEffect,
   useRef,
   useState,
+  type FocusEvent,
   type JSX,
   type KeyboardEvent,
   type MouseEvent,
@@ -50,8 +51,8 @@ function cellDetail(cell: Element): string {
  * Adds touch and keyboard access to a heatmap's per-day details, which an SVG
  * `<title>` only exposes on hover. Tapping or clicking a cell shows its details
  * below the grid. Tapping the same cell or anywhere else dismisses them. With the
- * grid focused, arrow keys move between days and Escape dismisses. The `<title>`
- * stays in place, so desktop hover keeps its native tooltip.
+ * grid focused, arrow keys move between days, and Escape or moving focus away
+ * dismisses. The `<title>` stays in place, so desktop hover keeps its native tooltip.
  *
  * Selection reads the DOM rather than receiving the cells as props, so a
  * server-rendered heatmap stays server-rendered and the browser receives no
@@ -110,11 +111,23 @@ export function HeatmapInspector({
     select(cell === selectedRef.current ? null : cell)
   }
 
+  // A null `relatedTarget` means focus went nowhere: a tap on the readout, or the
+  // window losing focus. Neither is the user leaving for something else.
+  const handleBlur = (event: FocusEvent<HTMLDivElement>) => {
+    const next = event.relatedTarget
+    if (next !== null && !rootRef.current?.contains(next)) select(null)
+  }
+
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Escape') {
-      if (selectedRef.current !== null) select(null)
+      select(null)
       return
     }
+    // Arrow keys with a modifier are browser shortcuts such as Alt+Left for Back.
+    // A focusable scroller nested in the grid keeps its arrows for panning, which
+    // moving one day at a time can't replace across a multi-year chart.
+    const isPlainKey = !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey
+    if (!isPlainKey || event.target !== event.currentTarget) return
     const step = ARROW_STEPS[event.key]
     const grid = gridRef.current
     if (step === undefined || grid === null) return
@@ -131,27 +144,32 @@ export function HeatmapInspector({
     <div
       ref={rootRef}
       data-testid="heatmap-inspector"
-      className={`[&_rect[data-col]]:cursor-pointer [&_rect[data-col]]:[stroke-width:2px] [&_rect[data-col]]:[stroke:transparent] [&_rect[data-heatmap-selected]]:[stroke:currentColor] ${className}`}
+      // Tailwind needs these selectors as literals, so they repeat CELL_SELECTOR and
+      // SELECTED_ATTRIBUTE. Keep them in step; the e2e keyboard test checks the outline.
+      className={`[&_line]:pointer-events-none [&_rect[data-col]]:cursor-pointer [&_rect[data-col]]:[stroke-width:2px] [&_rect[data-col]]:[stroke:transparent] [&_rect[data-heatmap-selected]]:[stroke:currentColor] ${className}`}
     >
       {/* The transparent stroke extends each cell's hit area across the gap
-          around it, so a tap between two squares still lands on one. */}
+          around it, and a rule drawn over a gap lets taps through, so a tap
+          between two squares still lands on one. The outline is inset because
+          the Cardio Overview's card clips anything outside this element. */}
       <div
         ref={gridRef}
         role="group"
         aria-label={`${label}. Use the arrow keys to read each day.`}
         tabIndex={0}
         onClick={handleClick}
+        onBlur={handleBlur}
         onKeyDown={handleKeyDown}
-        className="touch-manipulation rounded-md [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+        className="touch-manipulation rounded-md [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-current"
       >
         {children}
       </div>
-      <p
-        role="status"
-        data-testid="heatmap-cell-detail"
-        className="mt-2 min-h-10 text-xs leading-5"
-      >
-        {detail ?? HINT}
+      {/* The hint sits outside the live region so that dismissing a day doesn't
+          announce it as news. The region stays mounted so screen readers are
+          already watching it when the first day is selected. */}
+      <p data-testid="heatmap-cell-detail" className="mt-2 min-h-10 text-xs leading-5">
+        {detail === null ? HINT : null}
+        <span role="status">{detail}</span>
       </p>
     </div>
   )

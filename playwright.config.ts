@@ -56,8 +56,8 @@ export default defineConfig({
       // Deliberately *not* the whole suite under a third browser — the two
       // existing projects already run every route, and a naive cross-product
       // triples e2e wall-clock (CI runs `workers: 1`) to re-assert things that
-      // don't vary by engine. This runs only the two specs whose assertions
-      // are about rendering.
+      // don't vary by engine. This runs only the specs whose assertions are
+      // about rendering or real touch input.
       name: 'mobile-webkit',
       testMatch: /(?:svg-fragments|chart-overflow|heatmap-details|eras)\.spec\.ts/,
       use: {
