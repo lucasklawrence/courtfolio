@@ -350,13 +350,13 @@ export function OtfDetailView({
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/training-facility/gym/zones"
-              className="rounded-full border border-[#f97316]/40 bg-[#f97316]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#f9a870] transition hover:bg-[#f97316]/20"
+              className="touch-target rounded-full border border-[#f97316]/40 bg-[#f97316]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#f9a870] transition hover:bg-[#f97316]/20"
             >
               Zones vs Apple →
             </Link>
             <Link
               href="/training-facility/gym"
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+              className="touch-target rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
             >
               ← The Gym
             </Link>
@@ -809,7 +809,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                 return (
                   <Fragment key={rowKey}>
                     <tr
-                      className={`rounded-md align-middle ${excluded ? 'bg-white/[0.02] opacity-55' : 'bg-white/5'} ${
+                      className={`rounded-md align-middle max-lg:h-11 ${excluded ? 'bg-white/[0.02] opacity-55' : 'bg-white/5'} ${
                         expandable
                           ? 'cursor-pointer transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60'
                           : ''

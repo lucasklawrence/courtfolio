@@ -42,7 +42,7 @@ export default defineConfig({
     {
       name: 'training-facility-enabled',
       testMatch:
-        /(?:training-facility-enabled|draft-room-enabled|draft-room-live|chart-overflow|heatmap-span|workout-filters|template-detail|eras)\.spec\.ts/,
+        /(?:training-facility-enabled|draft-room-enabled|draft-room-live|chart-overflow|heatmap-span|touch-targets|workout-filters|template-detail|eras)\.spec\.ts/,
       use: {
         baseURL: TRAINING_FACILITY_BASE_URL,
       },
@@ -56,10 +56,10 @@ export default defineConfig({
       // Deliberately *not* the whole suite under a third browser — the two
       // existing projects already run every route, and a naive cross-product
       // triples e2e wall-clock (CI runs `workers: 1`) to re-assert things that
-      // don't vary by engine. This runs only the two specs whose assertions
-      // are about rendering.
+      // don't vary by engine. This runs only the specs whose assertions are
+      // about rendering.
       name: 'mobile-webkit',
-      testMatch: /(?:svg-fragments|chart-overflow|eras)\.spec\.ts/,
+      testMatch: /(?:svg-fragments|chart-overflow|touch-targets|eras)\.spec\.ts/,
       use: {
         ...devices['iPhone 14'],
         // `browserName` must be set explicitly, *after* the device spread.

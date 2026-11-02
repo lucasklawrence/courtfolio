@@ -101,7 +101,7 @@ export function ExerciseStatCard({ stat, href }: ExerciseStatCardProps): JSX.Ele
           ) : (
             <Link
               href={href}
-              className="underline decoration-current/30 underline-offset-4 hover:decoration-current"
+              className="touch-target underline decoration-current/30 underline-offset-4 hover:decoration-current"
             >
               {stat.displayName ?? stat.exercise}
             </Link>

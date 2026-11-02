@@ -113,7 +113,7 @@ export function ExerciseFilterChips({
           href={buildHref(null, pathname, carryParams)}
           scroll={false}
           data-testid="exercise-chip-reset"
-          className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 underline underline-offset-4 hover:text-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+          className="touch-target font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 underline underline-offset-4 hover:text-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
         >
           show all
         </Link>

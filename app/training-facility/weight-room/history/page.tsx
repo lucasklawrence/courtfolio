@@ -263,7 +263,7 @@ export default async function WeightRoomHistoryPage({
           <Link
             href={isPreviewMode ? `${ERAS_ROUTE}?preview=demo` : ERAS_ROUTE}
             data-testid="eras-link"
-            className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-300/80 underline underline-offset-4 hover:text-amber-200"
+            className="touch-target font-mono text-[10px] uppercase tracking-[0.2em] text-amber-300/80 underline underline-offset-4 hover:text-amber-200"
           >
             Two eras · then vs now across the whole log →
           </Link>

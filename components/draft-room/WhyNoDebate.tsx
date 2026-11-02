@@ -21,7 +21,7 @@ export function WhyNoDebate() {
         href="https://github.com/lucasklawrence/courtfolio/issues/234"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 inline-block font-mono text-xs text-orange-400 underline underline-offset-2 hover:text-orange-300"
+        className="touch-target mt-3 inline-block font-mono text-xs text-orange-400 underline underline-offset-2 hover:text-orange-300"
       >
         The design + research → #234
       </a>

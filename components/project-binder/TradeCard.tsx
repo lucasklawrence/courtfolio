@@ -182,7 +182,7 @@ export const TradeCard: React.FC<TradeCardComponentProps> = ({
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`View ${name} project (opens in new tab)`}
-          className="relative z-50 mt-4 text-xs text-yellow-300 underline hover:text-yellow-100 transition"
+          className="touch-target relative z-50 mt-4 text-xs text-yellow-300 underline hover:text-yellow-100 transition"
         >
           View Project ↗
         </a>

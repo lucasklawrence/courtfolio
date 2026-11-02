@@ -10,7 +10,7 @@
 
 /** Shape, type, spacing, and focus ring shared by every filter pill. */
 export const CHIP_BASE_CLASS =
-  'rounded-full border px-3 py-1 font-mono text-[11px] tracking-[0.12em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300'
+  'touch-target rounded-full border px-3 py-1 font-mono text-[11px] tracking-[0.12em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300'
 
 /** The unselected treatment, identical across both controls. */
 export const CHIP_INACTIVE_CLASS = 'border-white/20 text-white/45 hover:text-white/70'

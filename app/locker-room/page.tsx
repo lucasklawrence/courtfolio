@@ -48,11 +48,16 @@ export default function LockerRoomPage() {
 
   return (
     <SvgLayoutContainer>
+      {/* A portrait phone scrolls this scene sideways, so a title drawn in it can't fit
+          on screen. Only one of these two headings is ever displayed. */}
+      <h1 className="pointer-events-none sticky left-0 z-10 hidden h-0 w-screen px-3 pt-1 text-sm font-bold leading-5 text-[#1c1917] max-md:portrait:block">
+        Locker Room - Select an item to get more info
+      </h1>
       <LockerRoomSvg
         zoneContent={{
           title: (
             <LockerZone x={400} y={10} width={850} height={200}>
-              <h1 className="text-3xl font-bold mb-4">
+              <h1 className="text-3xl font-bold mb-4 max-md:portrait:hidden">
                 Locker Room - Select an item to get more info
               </h1>
             </LockerZone>

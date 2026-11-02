@@ -50,6 +50,45 @@ html, body {
   outline: none;
 }
 
+/* ── Touch sizing below `lg` ───────────────────────────────────────────────
+   Deliberately outside any cascade layer, so these beat Tailwind's size and
+   text utilities here and leave desktop density alone. iOS zooms the page when
+   a focused field's text is under 16px. */
+@media (width < 64rem) {
+  input,
+  select,
+  textarea {
+    font-size: 1rem;
+  }
+
+  input:not([type='checkbox'], [type='radio'], [type='range'], [type='hidden']),
+  select,
+  textarea,
+  summary,
+  button {
+    min-height: 2.75rem;
+  }
+
+  button {
+    min-width: 2.75rem;
+  }
+
+  /* For standalone links. Prose links stay inline, so they don't get this. */
+  .touch-target {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
+
+  /* An SVG scene draws these below their CSS size, about 0.6x on a small phone. */
+  foreignObject .touch-target,
+  foreignObject button {
+    min-height: 4.5rem;
+  }
+}
+
 /* ── Scroll-driven reveal ──────────────────────────────────────────────
    Native fade-up entrance for content sections (e.g. project cards), driven
    by the element's own progress through the viewport — no JS, no scroll
