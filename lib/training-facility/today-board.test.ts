@@ -124,11 +124,25 @@ describe('buildTodayBoard', () => {
     expect(buildTodayBoard(data, noonOn('2026-11-01'))[0].streak).toBe(2)
   })
 
-  it('shows permanent goals at zero before the clock is known', () => {
-    const data = makeData({ sets: [makeSet('pushups', 40, '2026-10-15')] })
-    const board = buildTodayBoard(data, null)
-    expect(board.map(row => row.goal.exercise)).toEqual(['pushups'])
-    expect(board[0].total).toBe(0)
-    expect(board[0].streak).toBe(0)
+  it('keeps the current target when the whole history is still in the future', () => {
+    const scheduled: ExerciseGoal = {
+      ...PUSHUPS,
+      daily_target: 100,
+      target_history: [{ effective_from: '2026-11-02', daily_target: 150 }],
+    }
+    const board = buildTodayBoard(makeData({ goals: [scheduled] }), noonOn('2026-11-01'))
+    expect(board[0].goal.daily_target).toBe(100)
+  })
+
+  it("scores a focus goal against its rotation's target, not the anchor's", () => {
+    const heavier: MonthlyFocus = { ...OCTOBER_SHRUGS, daily_target: 150 }
+    const data = makeData({
+      monthly_focus: [heavier],
+      sets: [makeSet('shrugs', 100, '2026-10-14'), makeSet('shrugs', 100, '2026-10-15')],
+    })
+    const row = buildTodayBoard(data, noonOn('2026-10-15')).find(r => r.goal.exercise === 'shrugs')
+    expect(row?.goal.daily_target).toBe(150)
+    // 100 reps cleared the anchor's bar but not the rotation's, so no streak.
+    expect(row?.streak).toBe(0)
   })
 })

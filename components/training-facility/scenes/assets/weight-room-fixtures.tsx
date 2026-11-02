@@ -1,9 +1,6 @@
-'use client'
-
 import type { JSX } from 'react'
 
-import { useTodayBoard } from '@/components/training-facility/weight-room/useTodayBoard'
-import type { WeightRoomData } from '@/types/weight-room'
+import type { TodayBoardRow } from '@/lib/training-facility/today-board'
 
 import { HANDWRITING_FONT, SCENE_PALETTE } from '../scene-primitives'
 import { RoughRect } from './rough-shapes'
@@ -11,12 +8,11 @@ import { RoughRect } from './rough-shapes'
 /** Props for {@link WallActivityRings}. */
 export interface WallActivityRingsProps {
   /**
-   * Today's strength dataset. Used to derive today's totals + streak
-   * counts per exercise. Pass `null` when no data has loaded (or when
-   * Supabase reads fail) — the fixture renders ghost rings + zero
-   * tallies so the wall still reads as "in use."
+   * Today's board, from `buildTodayBoard`. Empty when nothing could be read or
+   * no goal is on the board: the fixture then renders ghost rings so the wall
+   * still reads as "in use."
    */
-  data?: WeightRoomData | null
+  board?: readonly TodayBoardRow[]
 }
 
 const FRAME_X = 340
@@ -72,12 +68,11 @@ function fitRingDimensions(
  * geometry mirrors {@link import('../../weight-room/ActivityRings').ActivityRings}
  * — same math, scene-tuned dimensions.
  *
- * Rows come from {@link useTodayBoard}, so a focus goal only appears while its
- * window covers today. The per-exercise tallies are hidden below `lg`, where
- * they are too small to read and `TodayProgressPanel` states them instead.
+ * The per-exercise tallies are hidden below `lg`, where they are too small to
+ * read and `TodayProgressPanel` states them instead.
  */
-export function WallActivityRings({ data }: WallActivityRingsProps = {}): JSX.Element {
-  const rings = useTodayBoard(data).map(row => ({
+export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): JSX.Element {
+  const rings = board.map(row => ({
     exercise: row.goal.exercise,
     // Slug stays the identity (test ids, keys); the label is what's drawn.
     label: row.label,
@@ -261,6 +256,7 @@ export function WallActivityRings({ data }: WallActivityRingsProps = {}): JSX.El
         ))
       ) : (
         <text
+          className="max-lg:hidden"
           x={RING_CX}
           y={FRAME_Y + FRAME_H - 32}
           textAnchor="middle"

@@ -6,6 +6,7 @@ import { getWeightRoomData } from '@/lib/data/weight-room'
 import {
   activeFocusesForDay,
   goalsVisibleOnDay,
+  withFocusTargets,
   computeFocusAdherence,
   computeFocusLoadStats,
   upcomingFocuses,
@@ -171,7 +172,10 @@ export function LogDataIsland({ templates = [] }: LogDataIslandProps = {}): JSX.
   // finished or future focus doesn't leave a stale empty ring. Permanent
   // goals always show.
   const activeFocuses = activeFocusesForDay(surfaceData.monthly_focus, selectedDay)
-  const visibleGoals = goalsVisibleOnDay(surfaceData.goals, surfaceData.monthly_focus, selectedDay)
+  const visibleGoals = withFocusTargets(
+    goalsVisibleOnDay(surfaceData.goals, surfaceData.monthly_focus, selectedDay),
+    surfaceData.monthly_focus
+  )
   const upcoming = upcomingFocuses(surfaceData.monthly_focus, todayKey)
 
   // Score the viewed day against the target that was live *that* day (#362).

@@ -13,6 +13,7 @@ import { buildWeightRoomDemoData } from '@/constants/weight-room-demo-fixture'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
+import { buildTodayBoard } from '@/lib/training-facility/today-board'
 
 /** Search-params shape Next.js passes to a server-rendered page. */
 interface PageProps {
@@ -61,9 +62,13 @@ export default async function TrainingFacilityWeightRoomPage({
   const isPreviewMode = realIsEmpty && previewRequested
   const showEmptyStateCta = realIsEmpty && !previewRequested
   const data = isPreviewMode ? buildWeightRoomDemoData() : realData
+  // Computed here so the browser receives these rows and not the whole set
+  // history. Day keys are Pacific wherever this runs, so there is no viewer
+  // clock to wait for.
+  const board = buildTodayBoard(data, new Date())
 
   return (
-    <div className="relative min-h-svh w-full overflow-x-hidden bg-[#120d0a] text-[#f7ead9] lg:h-svh lg:overflow-hidden">
+    <div className="relative min-h-svh w-full bg-[#120d0a] text-[#f7ead9] lg:h-svh lg:overflow-hidden">
       {/* Visually-hidden h1 — accessibility heading + e2e anchor so the
           page still has a named identity for screen readers / Playwright
           even though the scene-first layout has no visible title. */}
@@ -105,13 +110,16 @@ export default async function TrainingFacilityWeightRoomPage({
           `lg` it fills the viewport, and the SVG's
           `preserveAspectRatio="xMidYMid meet"` letterboxes it as needed. */}
       <div className="mt-4 aspect-video w-full lg:absolute lg:inset-0 lg:mt-0 lg:flex lg:aspect-auto lg:items-center lg:justify-center">
-        <WeightRoomScene data={data} />
+        <WeightRoomScene board={board} />
       </div>
 
-      {/* The wall's text is unreadable at this scale, so state the same board as
-          page content below `lg`. Hidden with CSS, not a viewport check, so the
-          server render already matches. */}
-      <TodayProgressPanel data={data} className="mx-4 my-6 lg:hidden" />
+      {/* The wall's text is unreadable below `lg`, so state the same board as page
+          content there. From `lg` the wall carries it visually, but the wall is
+          `aria-hidden`, so this stays available to screen readers. The empty-state
+          call to action above already covers having no data. */}
+      {showEmptyStateCta ? null : (
+        <TodayProgressPanel board={board} className="mx-4 my-6 lg:sr-only" />
+      )}
     </div>
   )
 }

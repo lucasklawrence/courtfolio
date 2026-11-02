@@ -36,13 +36,20 @@ test.describe('weight room Today layout', () => {
       await expect(rows.first()).toBeVisible()
 
       // The longest name on the real board isn't in the demo data, so write it
-      // in. Layout is what's under test here, not the goal list.
+      // in. Wait for hydration first: React would restore a pre-hydration edit,
+      // and the measurements below would pass on the short name.
+      await page.waitForFunction(() => {
+        const nav = document.querySelector('[data-testid="weight-room-sub-nav"]')
+        return nav !== null && Object.keys(nav).some(key => key.startsWith('__reactFiber'))
+      })
+      const longName = 'Single Leg Romanian Deadlift'
       await rows
         .first()
         .locator('span.break-words')
-        .evaluate(name => {
-          name.textContent = 'Single Leg Romanian Deadlift'
-        })
+        .evaluate((name, text) => {
+          name.textContent = text
+        }, longName)
+      await expect(rows.first()).toContainText(longName)
 
       const measured = await rows.evaluateAll(items =>
         items.map(item => {
@@ -91,14 +98,19 @@ test.describe('weight room Today layout', () => {
     viewport,
   }) => {
     await page.goto(TODAY)
-    await expect(page.getByTestId('wall-ring-pushups')).toBeAttached()
+    await expect(page.locator('[data-testid^="wall-ring-"]').first()).toBeAttached()
     const tally = page.getByTestId('wall-tally-pushups')
 
     if ((viewport?.width ?? 0) < LG_BREAKPOINT) {
       await expect(tally).toBeHidden()
     } else {
       await expect(tally).toBeVisible()
-      await expect(page.getByTestId('today-progress-panel')).toBeHidden()
+      // Out of the visual layout, but still in the accessibility tree because the
+      // wall is `aria-hidden`.
+      const panel = page.getByTestId('today-progress-panel')
+      await expect(panel).toBeAttached()
+      expect((await panel.boundingBox())?.width ?? 0).toBeLessThanOrEqual(1)
+      await expect(page.getByRole('region', { name: "Today's progress" })).toBeAttached()
     }
   })
 

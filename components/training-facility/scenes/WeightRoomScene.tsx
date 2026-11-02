@@ -1,4 +1,4 @@
-import type { WeightRoomData } from '@/types/weight-room'
+import type { TodayBoardRow } from '@/lib/training-facility/today-board'
 
 import {
   HANDWRITING_FONT,
@@ -21,13 +21,11 @@ const FLOOR_TOP = 600
 /** Props for {@link WeightRoomScene}. */
 export interface WeightRoomSceneProps {
   /**
-   * Today's strength dataset. Hydrates the wall fixture (activity rings
-   * + per-exercise tallies + streaks). Pass `null` to render the fixture
-   * with ghost rings / zero tallies — the empty state of
-   * `getWeightRoomDataServer()` returning `null` before any sets have
-   * been logged.
+   * Today's board, from `buildTodayBoard`. Hydrates the wall fixture (activity
+   * rings + per-exercise tallies + streaks). Omit or pass an empty list to
+   * render the fixture with ghost rings.
    */
-  data?: WeightRoomData | null
+  board?: readonly TodayBoardRow[]
 }
 
 /**
@@ -42,7 +40,7 @@ export interface WeightRoomSceneProps {
  * facility. Read-only: visitors see the room "in use" without any
  * data-entry UI (admin owners log sets via `/training-facility/weight-room/log`).
  */
-export function WeightRoomScene({ data = null }: WeightRoomSceneProps = {}) {
+export function WeightRoomScene({ board = [] }: WeightRoomSceneProps = {}) {
   return (
     <svg
       viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
@@ -60,7 +58,7 @@ export function WeightRoomScene({ data = null }: WeightRoomSceneProps = {}) {
       <HardwoodFloor y={FLOOR_TOP} height={VIEWBOX_HEIGHT - FLOOR_TOP} width={VIEWBOX_WIDTH} />
 
       {/* Wall fixture — today's activity rings, mounted above the squat rack. */}
-      <WallActivityRings data={data} />
+      <WallActivityRings board={board} />
 
       {/* Equipment laid out along the floor, left → right. Each illustration
           is anchored bottom-center within its bounding box so its feet sit
