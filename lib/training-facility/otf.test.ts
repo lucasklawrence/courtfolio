@@ -332,12 +332,20 @@ describe('earliestOtfDate / formatOtfDate', () => {
   it('earliestOtfDate returns the minimum start, or null when empty', () => {
     expect(earliestOtfDate([])).toBeNull()
     const earliest = earliestOtfDate([mk('2026-06-15T12:00:00Z'), mk('2026-04-01T12:00:00Z')])
-    expect(earliest?.getTime()).toBe(new Date('2026-04-01T12:00:00Z').getTime())
+    // Compared by calendar reads: its local getters show the Pacific wall clock.
+    expect(earliest?.getFullYear()).toBe(2026)
+    expect(earliest?.getMonth()).toBe(3)
+    expect(earliest?.getDate()).toBe(1)
+    expect(earliest?.getHours()).toBe(5)
   })
 
   it('formatOtfDate renders YYYY-MM-DD', () => {
-    // Noon UTC avoids a day flip under negative-offset test runners.
     expect(formatOtfDate(mk('2026-06-27T12:00:00Z'))).toMatch(/^2026-06-27$/)
+  })
+
+  it('formatOtfDate names the Pacific day, wherever this runs', () => {
+    // 8pm on June 26 in Pacific time, already June 27 in UTC.
+    expect(formatOtfDate(mk('2026-06-27T03:00:00Z'))).toBe('2026-06-26')
   })
 })
 

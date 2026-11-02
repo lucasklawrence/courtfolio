@@ -26,7 +26,7 @@
  * wrappers exist for the surfaces that are legitimately Pacific-only.
  */
 
-import { PACIFIC_CLOCK } from './clock'
+import { PACIFIC_CLOCK, PACIFIC_TZ } from './clock'
 
 export {
   PACIFIC_TZ,
@@ -49,6 +49,45 @@ export {
  */
 export function pacificDayKey(d: Date): string {
   return PACIFIC_CLOCK.dayKey(d)
+}
+
+/** Reads a timestamp's Pacific date and time, in any runtime's zone. */
+const PACIFIC_PARTS = new Intl.DateTimeFormat('en-US', {
+  timeZone: PACIFIC_TZ,
+  hourCycle: 'h23',
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+})
+
+/**
+ * A `Date` whose local getters (`getFullYear`, `getDate`, `getHours`, ...) read
+ * the Pacific wall clock at `instant`, whatever zone this code runs in.
+ *
+ * For code built on those getters that renders on both a UTC server and a
+ * viewer's browser: without this, the two can disagree about which day a session
+ * fell on, or which day today is. The result is not the same instant as the
+ * input outside Pacific, so use it for calendar reads and for comparing with other
+ * results of this function, not for measuring elapsed time.
+ *
+ * @param instant Any `Date`. An invalid one is returned as an invalid `Date`.
+ */
+export function pacificWallClock(instant: Date): Date {
+  if (Number.isNaN(instant.getTime())) return new Date(NaN)
+  const parts = new Map(
+    PACIFIC_PARTS.formatToParts(instant).map(part => [part.type, Number(part.value)])
+  )
+  return new Date(
+    parts.get('year') ?? 0,
+    (parts.get('month') ?? 1) - 1,
+    parts.get('day') ?? 1,
+    parts.get('hour') ?? 0,
+    parts.get('minute') ?? 0,
+    parts.get('second') ?? 0
+  )
 }
 
 /**

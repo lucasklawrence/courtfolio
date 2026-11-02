@@ -15,14 +15,20 @@
 import type { CardioActivity, CardioSession, HrZone } from '@/types/cardio'
 import { HR_ZONES, type HrZoneConfig } from '@/constants/hr-zones'
 import type { DateRange } from '@/lib/training-facility/date-range'
+import { pacificWallClock } from '@/lib/training-facility/day-keys'
+
+/** Matches a timestamp ending in `Z` or an offset like `-07:00`. */
+const HAS_UTC_OFFSET = /(?:Z|[+-]\d{2}(?::?\d{2})?)$/i
 
 /**
- * Parse a session-date string as a local-time `Date`.
+ * Parse a session-date string into a `Date` whose local getters read its calendar
+ * day, the same on a UTC server and in any viewer's browser.
  *
  * Bare `YYYY-MM-DD` strings (the dominant format in `cardio.json` for
  * non-walking sessions) are treated as local midnight so range comparisons
- * match the `DateFilter`'s local-day bounds. Full ISO timestamps already carry
- * an offset and pass through to `new Date()` unchanged.
+ * match the `DateFilter`'s local-day bounds. A timestamp with no offset already
+ * states its wall clock, so local parsing keeps it. One with an offset goes through
+ * {@link pacificWallClock}, so a session keeps the Pacific day it happened on.
  *
  * Exported so every layer (filters, chart projections, table row formatters)
  * stays consistent on the local-vs-UTC interpretation of the same field.
@@ -31,7 +37,8 @@ import type { DateRange } from '@/lib/training-facility/date-range'
  */
 export function parseSessionDate(raw: string): Date {
   if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return new Date(`${raw}T00:00:00`)
-  return new Date(raw)
+  if (!HAS_UTC_OFFSET.test(raw)) return new Date(raw)
+  return pacificWallClock(new Date(raw))
 }
 
 /**

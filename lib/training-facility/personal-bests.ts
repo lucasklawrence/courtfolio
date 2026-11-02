@@ -19,6 +19,7 @@
 
 import type { CardioActivity, CardioData, CardioSession, CardioTimePoint } from '@/types/cardio'
 import type { DateRange } from '@/lib/training-facility/date-range'
+import { pacificWallClock } from './day-keys'
 
 /** A single personal-best record — a value plus the date it was achieved. */
 export interface PersonalBestRecord {
@@ -184,14 +185,16 @@ function bestTrendPoint(
 }
 
 /**
- * Local-time `Date` parse for record date strings — `YYYY-MM-DD` becomes
- * local midnight so the `pbInRange` comparison aligns with the
- * `DateFilter`'s local-day bounds; full ISO timestamps pass through.
+ * `Date` parse for record date strings — `YYYY-MM-DD` becomes local midnight so
+ * the `pbInRange` comparison aligns with the `DateFilter`'s local-day bounds; a
+ * timestamp with no offset keeps its stated wall clock, and one with an offset keeps
+ * its Pacific day through {@link pacificWallClock}.
  *
  * Mirrors {@link parseSessionDate} from `cardio-shared.ts`; duplicated as a
  * tiny helper here to keep this module dependency-free of the chart layer.
  */
 function parseRecordDate(raw: string): Date {
   if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return new Date(`${raw}T00:00:00`)
-  return new Date(raw)
+  if (!/(?:Z|[+-]\d{2}(?::?\d{2})?)$/i.test(raw)) return new Date(raw)
+  return pacificWallClock(new Date(raw))
 }

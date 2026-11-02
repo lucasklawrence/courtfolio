@@ -1,5 +1,6 @@
 import { isInRange, type DateRange } from '@/lib/training-facility/date-range'
 import type { OtfSession, OtfZoneMinutes } from '@/types/otf'
+import { pacificWallClock } from './day-keys'
 
 /**
  * Pure derivations for the OrangeTheory Gym view (#256). Mirrors the
@@ -97,9 +98,13 @@ export interface OtfTrendPoint {
   value: number
 }
 
-/** Parse a session's ISO `started_at` to a `Date`. */
+/**
+ * Parse a session's ISO `started_at` to a `Date` whose local getters read the
+ * Pacific wall clock, so a class stays on its own day on the server and for any
+ * viewer.
+ */
 export function otfSessionDate(session: OtfSession): Date {
-  return new Date(session.started_at)
+  return pacificWallClock(new Date(session.started_at))
 }
 
 /**

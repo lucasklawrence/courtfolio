@@ -6,7 +6,7 @@ import rough from 'roughjs'
 import type { Benchmark } from '@/types/movement'
 import { Axis, type AxisTick } from './axes'
 import { chartPalette } from './palette'
-import { extent } from './rough-svg'
+import { drawableToPaths, extent } from './rough-svg'
 import { resolveMargin, type ChartMargin } from './types'
 
 /**
@@ -332,7 +332,7 @@ function BodyweightLayer({
           roughness={roughness}
           seed={seed + 200}
         />
-        {gen.toPaths(linePath).map((p, i) => (
+        {drawableToPaths(linePath).map((p, i) => (
           <path
             key={`bw-line-${i}`}
             d={p.d}
@@ -353,17 +353,15 @@ function BodyweightLayer({
             roughness: roughness * 0.6,
             seed: seed + 300 + i,
           })
-          return gen
-            .toPaths(dot)
-            .map((p, j) => (
-              <path
-                key={`bw-dot-${i}-${j}`}
-                d={p.d}
-                stroke={p.stroke}
-                strokeWidth={p.strokeWidth}
-                fill={p.fill ?? 'none'}
-              />
-            ))
+          return drawableToPaths(dot).map((p, j) => (
+            <path
+              key={`bw-dot-${i}-${j}`}
+              d={p.d}
+              stroke={p.stroke}
+              strokeWidth={p.strokeWidth}
+              fill={p.fill ?? 'none'}
+            />
+          ))
         })}
       </g>
     </svg>

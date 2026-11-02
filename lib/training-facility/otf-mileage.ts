@@ -56,10 +56,9 @@ export function sessionMiles(session: OtfSession): number {
 }
 
 /**
- * Local-timezone `YYYY-MM` bucket key for a date. Uses the viewer's local
- * calendar month (via {@link otfSessionDate}'s `Date`), matching how the OTF
- * day-bucketing helpers treat session dates, so a late-night class counts in
- * the month the user experienced it, not the UTC month.
+ * `YYYY-MM` bucket key from a date's local getters. {@link otfSessionDate} sets
+ * those to the Pacific wall clock, so a late-night class counts in the month it
+ * happened, not the UTC month.
  */
 export function monthKeyOf(date: Date): string {
   const year = date.getFullYear()

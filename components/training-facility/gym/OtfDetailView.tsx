@@ -681,8 +681,8 @@ function HighlightStrip({
     { label: 'Total splat', value: `${highlights.totalSplat}` },
     { label: 'Avg splat', value: highlights.avgSplat.toFixed(1) },
     { label: 'Best splat', value: `${highlights.bestSplat}` },
-    { label: 'Total calories', value: highlights.totalCalories.toLocaleString() },
-    { label: 'Best calories', value: highlights.bestCalories.toLocaleString() },
+    { label: 'Total calories', value: highlights.totalCalories.toLocaleString('en-US') },
+    { label: 'Best calories', value: highlights.bestCalories.toLocaleString('en-US') },
   ]
   return (
     <dl className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">

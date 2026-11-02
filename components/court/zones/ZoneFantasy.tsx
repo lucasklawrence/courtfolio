@@ -1,6 +1,6 @@
 'use client'
 
-import { isSafari } from '@/utils/isSafari'
+import { useIsSafari } from '@/utils/useIsSafari'
 import { ZoneFantasySafari } from './ZoneFantasySafari'
 import { ZoneFantasyModern } from './ZoneFantasyModern'
 
@@ -9,5 +9,5 @@ import { ZoneFantasyModern } from './ZoneFantasyModern'
  * based on whether the user is on Safari or a modern browser.
  */
 export function ZoneFantasy() {
-  return isSafari() ? <ZoneFantasySafari /> : <ZoneFantasyModern />
+  return useIsSafari() ? <ZoneFantasySafari /> : <ZoneFantasyModern />
 }

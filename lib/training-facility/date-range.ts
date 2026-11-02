@@ -1,3 +1,5 @@
+import { pacificWallClock } from './day-keys'
+
 /**
  * The date-range vocabulary shared by the Training Facility's filtered views
  * (#425).
@@ -95,7 +97,7 @@ export function subtractMonths(d: Date, months: number): Date {
  *   invariant is preserved against a misconfigured prop.
  */
 export function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
-  const today = new Date()
+  const today = pacificWallClock(new Date())
   const end = endOfDay(today)
   if (preset === 'ALL') {
     // Clamp `start` to today if `earliest` is in the future, so the

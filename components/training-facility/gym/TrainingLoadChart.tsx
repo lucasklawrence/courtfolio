@@ -89,7 +89,7 @@ export function TrainingLoadChart({
     .range([innerH, 0])
 
   const xTicks: AxisTick[] = xScale.ticks(5).map(tick => ({
-    value: tick.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+    value: tick.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
     offset: xScale(tick),
   }))
   const yTicks: AxisTick[] = yScale.ticks(5).map(tick => ({

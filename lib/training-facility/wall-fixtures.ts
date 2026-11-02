@@ -16,6 +16,7 @@
 import type { CardioData, CardioSession, CardioTimePoint } from '@/types/cardio'
 
 import { parseSessionDate } from './cardio-shared'
+import { pacificWallClock } from './day-keys'
 
 /**
  * Up to N most-recent points from a {@link CardioTimePoint} series, in
@@ -126,7 +127,7 @@ const ROLLING_WINDOW_DAYS = 7
  */
 export function deriveWeeklyCardioTotals(
   data: CardioData | null,
-  now: Date = new Date()
+  now: Date = pacificWallClock(new Date())
 ): WeeklyCardioTotals | null {
   if (!data || !data.sessions || data.sessions.length === 0) return null
   const windowStartMs = now.getTime() - ROLLING_WINDOW_DAYS * 24 * 60 * 60 * 1000

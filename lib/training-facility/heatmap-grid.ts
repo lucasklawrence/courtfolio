@@ -2,6 +2,7 @@ import type { CardioActivity, CardioSession } from '@/types/cardio'
 
 import { ACTIVITY_VISUALS } from './all-cardio'
 import { parseSessionDate } from './cardio-shared'
+import { pacificWallClock } from './day-keys'
 
 /** A single cell in the workout-frequency heatmap grid. */
 export interface HeatmapCell {
@@ -22,9 +23,16 @@ export interface HeatmapGrid {
 }
 
 const DAY_MS = 86_400_000
-const WEEK_MS = 7 * DAY_MS
 /** Cap at ~2 years to limit DOM node count when a wide range is requested. */
 const MAX_COLS = 104
+
+/**
+ * Local midnight `days` calendar days from `date`. Stepping by the calendar rather
+ * than by 24 hours keeps every cell on its own date across a DST change.
+ */
+function addDays(date: Date, days: number): Date {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
+}
 
 /** Get the Monday at or before a given local date. */
 function getMondayOf(d: Date): Date {
@@ -72,18 +80,18 @@ export function buildHeatmapGrid(
   dateFrom?: Date | null,
   dateTo?: Date | null
 ): HeatmapGrid {
-  const endMonday = getMondayOf(dateTo ?? new Date())
-  const endDate = new Date(endMonday.getTime() + 6 * DAY_MS)
+  const endMonday = getMondayOf(dateTo ?? pacificWallClock(new Date()))
+  const endDate = addDays(endMonday, 6)
 
   let startMonday: Date
   if (dateFrom) {
     startMonday = getMondayOf(dateFrom)
-    const maxStart = new Date(endMonday.getTime() - MAX_COLS * WEEK_MS)
+    const maxStart = addDays(endMonday, -MAX_COLS * 7)
     if (startMonday.getTime() < maxStart.getTime()) {
       startMonday = maxStart
     }
   } else {
-    startMonday = new Date(endMonday.getTime() - 52 * WEEK_MS)
+    startMonday = addDays(endMonday, -52 * 7)
   }
 
   // Lookup: local-date key → { count, distinct activity labels }
@@ -102,18 +110,17 @@ export function buildHeatmapGrid(
     }
   }
 
-  // Use timestamp arithmetic (not setDate) so DST transitions don't desync
-  // the column count from real elapsed weeks.
-  const startMs = startMonday.getTime()
-  const diffMs = endDate.getTime() - startMs
-  const totalCols = Math.floor(diffMs / WEEK_MS) + 1
+  // Rounded because a DST change makes the span between two midnights an hour off
+  // a whole number of days.
+  const totalDays = Math.round((endDate.getTime() - startMonday.getTime()) / DAY_MS)
+  const totalCols = Math.floor(totalDays / 7) + 1
   const grid: HeatmapCell[][] = Array.from({ length: 7 }, () => [])
   const monthLabels: { col: number; label: string }[] = []
   let lastMonth = -1
 
   for (let col = 0; col < totalCols; col++) {
     for (let row = 0; row < 7; row++) {
-      const date = new Date(startMs + (col * 7 + row) * DAY_MS)
+      const date = addDays(startMonday, col * 7 + row)
 
       const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
       const entry = lookup.get(key)

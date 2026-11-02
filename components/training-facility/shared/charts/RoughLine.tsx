@@ -2,7 +2,7 @@ import type { JSX } from 'react'
 import { scaleLinear, scaleTime, type ScaleLinear, type ScaleTime } from 'd3-scale'
 import { Axis, EmptyChart, type AxisTick } from './axes'
 import { chartPalette } from './palette'
-import { drawableToPaths, extent, getGenerator } from './rough-svg'
+import { drawableToPaths, extent, getGenerator, roundSvgCoordinate } from './rough-svg'
 import { resolveMargin, type ChartCommonProps } from './types'
 
 export interface RoughLineProps<T> extends ChartCommonProps {
@@ -212,7 +212,12 @@ export function RoughLine<T>({
         {overlayPoints.length >= 2 && (
           <path
             data-testid="rough-line-overlay"
-            d={overlayPoints.map(([px, py], i) => `${i === 0 ? 'M' : 'L'}${px},${py}`).join(' ')}
+            d={overlayPoints
+              .map(
+                ([px, py], i) =>
+                  `${i === 0 ? 'M' : 'L'}${roundSvgCoordinate(px)},${roundSvgCoordinate(py)}`
+              )
+              .join(' ')}
             stroke={overlayStroke}
             strokeWidth={overlayStrokeWidth}
             strokeDasharray={overlayDash}
