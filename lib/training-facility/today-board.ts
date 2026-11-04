@@ -2,9 +2,11 @@ import type { ExerciseGoal, MonthlyFocus, WeightRoomData } from '@/types/weight-
 
 import { exerciseLabel } from './exercise-labels'
 import { currentTarget } from './goal-targets'
-import { activeFocusesForDay, focusTargetHistory, goalsVisibleOnDay } from './monthly-focus'
-import { computeStrengthStreaks } from './strength-streaks'
-import { filterSetsForDay, toLocalDateKey, totalsByExercise } from './strength-today'
+import { streakFromDailyReps } from './hit-day-streaks'
+import { activeFocusesForDay, goalsVisibleOnDay } from './monthly-focus'
+import { countedReps } from './set-reps'
+import { toLocalDateKey } from './strength-today'
+import { PACIFIC_CLOCK } from './clock'
 
 /** One goal's standing on the public Today board. */
 export interface TodayBoardRow {
@@ -16,26 +18,6 @@ export interface TodayBoardRow {
   total: number
   /** Current streak in days; `0` when there is none. */
   streak: number
-}
-
-/**
- * The goal as its streak should score it. A focus goal's bar is its rotations'
- * targets rather than the anchor's scalar (#367). A goal whose whole history is
- * still ahead keeps its current target for past days too, so a scheduled change
- * can't break a streak before it arrives.
- */
-function streakGoal(
-  goal: ExerciseGoal,
-  focuses: readonly MonthlyFocus[],
-  dayKey: string
-): ExerciseGoal {
-  if (goal.kind === 'focus') {
-    const rotations = focusTargetHistory(focuses, goal.exercise)
-    if (rotations.length > 0) return { ...goal, target_history: rotations }
-  }
-  const history = goal.target_history
-  const allAhead = history !== undefined && history.every(p => p.effective_from > dayKey)
-  return allAhead ? { ...goal, target_history: undefined } : goal
 }
 
 /**
@@ -72,18 +54,30 @@ export function buildTodayBoard(
   const dayKey = toLocalDateKey(now)
   const focuses = data.monthly_focus ?? []
   const goals = goalsVisibleOnDay(data.goals, focuses, dayKey)
-  const active = new Map(activeFocusesForDay(focuses, dayKey).map(f => [f.exercise, f]))
-  const totals = totalsByExercise(filterSetsForDay(data.sets, dayKey))
-  const streaks = computeStrengthStreaks(
-    data.sets,
-    goals.map(goal => streakGoal(goal, focuses, dayKey)),
-    now
-  )
+  const repsByExercise = new Map<string, Map<string, number>>()
+  for (const set of data.sets) {
+    const day = PACIFIC_CLOCK.safeDayKey(set.logged_at)
+    if (!day) continue
+    const days = repsByExercise.get(set.exercise) ?? new Map<string, number>()
+    days.set(day, (days.get(day) ?? 0) + countedReps(set))
+    repsByExercise.set(set.exercise, days)
+  }
 
-  return goals.map(goal => ({
-    goal: { ...goal, daily_target: targetToday(goal, active.get(goal.exercise), dayKey) },
-    label: exerciseLabel(goal),
-    total: totals.get(goal.exercise) ?? 0,
-    streak: streaks[goal.exercise]?.current ?? 0,
-  }))
+  return goals.map(goal => {
+    // Use the same window-aware rule for the ring and every streak day. An
+    // ended nested rotation must not keep setting the bar after its window.
+    // `find` preserves the documented upper-lane precedence for duplicate goals.
+    const targetOnDay = (day: string): number => {
+      const active = activeFocusesForDay(focuses, day).find(f => f.exercise === goal.exercise)
+      if (goal.kind === 'focus' && !active) return Infinity
+      return targetToday(goal, active, day)
+    }
+    const days = repsByExercise.get(goal.exercise) ?? new Map<string, number>()
+    return {
+      goal: { ...goal, daily_target: targetOnDay(dayKey) },
+      label: exerciseLabel(goal),
+      total: days.get(dayKey) ?? 0,
+      streak: streakFromDailyReps(days, targetOnDay, dayKey).current,
+    }
+  })
 }

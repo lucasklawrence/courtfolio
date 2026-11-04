@@ -65,9 +65,9 @@ describe('WallActivityRings', () => {
     }
   })
 
-  it('falls back to ghost rings and a "no goals yet" note when no goals exist', () => {
+  it('describes an empty board without claiming no goals have ever existed', () => {
     const { getByText, queryByTestId } = renderInScene([])
-    expect(getByText(/no goals yet/i)).toBeInTheDocument()
+    expect(getByText(/no goals today/i)).toBeInTheDocument()
     expect(queryByTestId('wall-ring-pushups')).not.toBeInTheDocument()
   })
 })

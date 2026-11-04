@@ -267,7 +267,7 @@ export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): 
           fontFamily={HANDWRITING_FONT}
           fontSize={14}
         >
-          no goals yet
+          no goals today
         </text>
       )}
     </g>

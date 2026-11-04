@@ -86,6 +86,78 @@ describe('goalsVisibleOnDay', () => {
 })
 
 describe('buildTodayBoard', () => {
+  it('restores the outer rotation target for streak days after a nested window ends', () => {
+    const nested: MonthlyFocus = {
+      ...OCTOBER_SHRUGS,
+      id: 'nested',
+      start_date: '2026-10-10',
+      end_date: '2026-10-15',
+      daily_target: 150,
+    }
+    const data = makeData({
+      monthly_focus: [OCTOBER_SHRUGS, nested],
+      sets: [makeSet('shrugs', 100, '2026-10-16'), makeSet('shrugs', 100, '2026-10-17')],
+    })
+    const row = buildTodayBoard(data, noonOn('2026-10-17')).find(r => r.goal.exercise === 'shrugs')!
+    expect(row.goal.daily_target).toBe(100)
+    expect(row.streak).toBe(2)
+  })
+
+  it('scores a sets-based rotation against the same rep bar displayed on the board', () => {
+    const data = makeData({
+      monthly_focus: [{ ...OCTOBER_SHRUGS, target_kind: 'sets', daily_target: 3 }],
+      sets: [makeSet('shrugs', 25, '2026-10-15')],
+    })
+    const row = buildTodayBoard(data, noonOn('2026-10-15')).find(r => r.goal.exercise === 'shrugs')!
+    expect(row.goal.daily_target).toBe(100)
+    expect(row.streak).toBe(0)
+  })
+
+  it('uses upper-lane precedence when both active lanes reference the same exercise', () => {
+    const data = makeData({
+      monthly_focus: [
+        OCTOBER_SHRUGS,
+        { ...OCTOBER_SHRUGS, id: 'lower', category: 'lower', daily_target: 150 },
+      ],
+      sets: [makeSet('shrugs', 100, '2026-10-15')],
+    })
+    const row = buildTodayBoard(data, noonOn('2026-10-15')).find(r => r.goal.exercise === 'shrugs')!
+    expect(row.goal.daily_target).toBe(100)
+    expect(row.streak).toBe(1)
+  })
+
+  it('does not count days outside a focus window toward its streak', () => {
+    const data = makeData({
+      sets: [makeSet('shrugs', 100, '2026-09-30'), makeSet('shrugs', 100, '2026-10-01')],
+    })
+    expect(
+      buildTodayBoard(data, noonOn('2026-10-01')).find(r => r.goal.exercise === 'shrugs')?.streak
+    ).toBe(1)
+  })
+
+  it('keeps earned streak days when a scheduled target takes effect', () => {
+    const data = makeData({
+      goals: [
+        {
+          ...PUSHUPS,
+          daily_target: 150,
+          target_history: [
+            { effective_from: '2026-01-01', daily_target: 100 },
+            { effective_from: '2026-11-02', daily_target: 150 },
+          ],
+        },
+      ],
+      sets: [
+        makeSet('pushups', 100, '2026-10-31'),
+        makeSet('pushups', 100, '2026-11-01'),
+        makeSet('pushups', 150, '2026-11-02'),
+      ],
+    })
+    const [row] = buildTodayBoard(data, noonOn('2026-11-02'))
+    expect(row.goal.daily_target).toBe(150)
+    expect(row.streak).toBe(3)
+  })
+
   it('returns no rows when nothing has loaded', () => {
     expect(buildTodayBoard(null, noonOn('2026-11-01'))).toEqual([])
   })
