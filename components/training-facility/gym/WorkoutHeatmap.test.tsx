@@ -1,9 +1,14 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 import type { CardioSession } from '@/types/cardio'
 
 import { WorkoutHeatmap } from './WorkoutHeatmap'
+
+beforeAll(() => {
+  // jsdom has no layout or scrolling; browser tests cover the actual movement.
+  Element.prototype.scrollIntoView = vi.fn()
+})
 
 function session(
   dateStr: string,

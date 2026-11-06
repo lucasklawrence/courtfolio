@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 import { HeatmapInspector } from '@/components/training-facility/shared/charts/HeatmapInspector'
@@ -6,6 +6,11 @@ import type { FocusDayCell } from '@/lib/training-facility/monthly-focus'
 import type { MonthlyFocus } from '@/types/weight-room'
 
 import { FocusLaneHeatmap } from './FocusLaneHeatmap'
+
+beforeAll(() => {
+  // jsdom has no layout or scrolling; browser tests cover the actual movement.
+  Element.prototype.scrollIntoView = vi.fn()
+})
 
 const SHRUGS: MonthlyFocus = {
   id: 'focus-shrugs',

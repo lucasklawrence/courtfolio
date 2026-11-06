@@ -71,43 +71,84 @@ export function HeatmapInspector({
   const rootRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
   const selectedRef = useRef<Element | null>(null)
+  const detailRef = useRef<string | null>(null)
+  const readoutRef = useRef<HTMLParagraphElement>(null)
   const [detail, setDetail] = useState<string | null>(null)
 
   const select = useCallback((cell: Element | null) => {
     selectedRef.current?.removeAttribute(SELECTED_ATTRIBUTE)
     selectedRef.current = cell
     cell?.setAttribute(SELECTED_ATTRIBUTE, '')
-    setDetail(cell === null ? null : cellDetail(cell))
+    detailRef.current = cell === null ? null : cellDetail(cell)
+    setDetail(detailRef.current)
   }, [])
 
   const isOpen = detail !== null
 
   useEffect(() => {
     if (!isOpen) return
-    // `pointerdown`, because iOS doesn't dispatch `click` for a tap on a
-    // non-interactive element, which is most of the page.
-    const dismissIfOutside = (event: PointerEvent) => {
-      if (!rootRef.current?.contains(event.target as Node)) select(null)
+    // Wait for a completed tap. A swipe starting outside the chart may be the
+    // reader scrolling down to its details, not a request to dismiss them.
+    let tap: { id: number; x: number; y: number } | null = null
+    const start = (event: PointerEvent) => {
+      tap = rootRef.current?.contains(event.target as Node)
+        ? null
+        : { id: event.pointerId, x: event.clientX, y: event.clientY }
     }
-    document.addEventListener('pointerdown', dismissIfOutside)
-    return () => document.removeEventListener('pointerdown', dismissIfOutside)
+    const cancel = () => {
+      tap = null
+    }
+    const move = (event: PointerEvent) => {
+      if (
+        tap &&
+        (event.pointerId !== tap.id || Math.hypot(event.clientX - tap.x, event.clientY - tap.y) > 8)
+      )
+        cancel()
+    }
+    const finish = (event: PointerEvent) => {
+      move(event)
+      if (tap && !rootRef.current?.contains(event.target as Node)) select(null)
+      cancel()
+    }
+    document.addEventListener('pointerdown', start)
+    document.addEventListener('pointermove', move)
+    document.addEventListener('pointerup', finish)
+    document.addEventListener('pointercancel', cancel)
+    document.addEventListener('scroll', cancel, true)
+    return () => {
+      document.removeEventListener('pointerdown', start)
+      document.removeEventListener('pointermove', move)
+      document.removeEventListener('pointerup', finish)
+      document.removeEventListener('pointercancel', cancel)
+      document.removeEventListener('scroll', cancel, true)
+    }
   }, [isOpen, select])
 
   useEffect(() => {
     const grid = gridRef.current
-    if (detail === null || grid === null) return
+    if (grid === null) return
+    grid.setAttribute('data-heatmap-ready', '')
     // A filter or range change reuses these elements for different days, so the
     // readout would otherwise describe a day the highlighted square no longer is.
     const observer = new MutationObserver(() => {
       const cell = selectedRef.current
-      if (cell !== null && (!cell.isConnected || cellDetail(cell) !== detail)) select(null)
+      if (cell !== null && (!cell.isConnected || cellDetail(cell) !== detailRef.current))
+        select(null)
     })
     observer.observe(grid, { childList: true, characterData: true, subtree: true })
-    return () => observer.disconnect()
-  }, [detail, select])
+    return () => {
+      observer.disconnect()
+      grid.removeAttribute('data-heatmap-ready')
+    }
+  }, [select])
+
+  useEffect(() => {
+    if (detail !== null) readoutRef.current?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }, [detail])
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     const cell = (event.target as Element).closest(CELL_SELECTOR)
+    if (cell !== null) gridRef.current?.focus({ preventScroll: true })
     select(cell === selectedRef.current ? null : cell)
   }
 
@@ -146,11 +187,11 @@ export function HeatmapInspector({
       data-testid="heatmap-inspector"
       // Tailwind needs these selectors as literals, so they repeat CELL_SELECTOR and
       // SELECTED_ATTRIBUTE. Keep them in step; the e2e keyboard test checks the outline.
-      className={`[&_line]:pointer-events-none [&_rect[data-col]]:cursor-pointer [&_rect[data-col]]:[stroke-width:2px] [&_rect[data-col]]:[stroke:transparent] [&_rect[data-heatmap-selected]]:[stroke:currentColor] ${className}`}
+      className={`[&_rect[data-col]]:cursor-pointer [&_rect[data-col]]:[stroke-width:2px] [&_rect[data-col]]:[stroke:transparent] [&_rect[data-heatmap-selected]]:[stroke:currentColor] ${className}`}
     >
       {/* The transparent stroke extends each cell's hit area across the gap
-          around it, and a rule drawn over a gap lets taps through, so a tap
-          between two squares still lands on one. The outline is inset because
+          around it. Annotation rules retain their own native tooltips.
+          The outline is inset because
           the Cardio Overview's card clips anything outside this element. */}
       <div
         ref={gridRef}
@@ -167,7 +208,11 @@ export function HeatmapInspector({
       {/* The hint sits outside the live region so that dismissing a day doesn't
           announce it as news. The region stays mounted so screen readers are
           already watching it when the first day is selected. */}
-      <p data-testid="heatmap-cell-detail" className="mt-2 min-h-10 text-xs leading-5">
+      <p
+        ref={readoutRef}
+        data-testid="heatmap-cell-detail"
+        className="mt-2 h-20 overflow-y-auto break-words text-xs leading-5"
+      >
         {detail === null ? HINT : null}
         <span role="status">{detail}</span>
       </p>

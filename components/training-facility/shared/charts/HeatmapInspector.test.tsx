@@ -83,8 +83,41 @@ describe('HeatmapInspector', () => {
     const { cell, selectedCells } = renderInspector()
     fireEvent.click(cell(1, 2))
     fireEvent.pointerDown(screen.getByTestId('outside'))
+    fireEvent.pointerUp(screen.getByTestId('outside'))
     expect(readout()).toHaveTextContent(HINT)
     expect(selectedCells()).toHaveLength(0)
+  })
+
+  it('does not dismiss when an outside gesture scrolls the page', () => {
+    const { cell } = renderInspector()
+    fireEvent.click(cell(1, 2))
+    fireEvent.pointerDown(screen.getByTestId('outside'))
+    fireEvent.scroll(document)
+    fireEvent.pointerUp(screen.getByTestId('outside'))
+    expect(readout()).toHaveTextContent(dayText(1, 2))
+  })
+
+  it('does not dismiss a cancelled outside gesture', () => {
+    const { cell } = renderInspector()
+    fireEvent.click(cell(1, 2))
+    fireEvent.pointerDown(screen.getByTestId('outside'))
+    fireEvent.pointerCancel(screen.getByTestId('outside'))
+    fireEvent.pointerUp(screen.getByTestId('outside'))
+    expect(readout()).toHaveTextContent(dayText(1, 2))
+  })
+
+  it('focuses the inspector after selecting a day inside a focusable scroller', () => {
+    const { container } = render(
+      <HeatmapInspector label="Pushups heatmap">
+        <div tabIndex={0}>
+          <Grid />
+        </div>
+      </HeatmapInspector>
+    )
+    fireEvent.click(container.querySelector('rect[data-col="1"][data-row="2"]')!)
+    expect(grid()).toHaveFocus()
+    fireEvent.keyDown(document.activeElement!, { key: 'ArrowDown' })
+    expect(readout()).toHaveTextContent(dayText(1, 3))
   })
 
   it('dismisses on a tap on a part of the chart that is not a cell', () => {

@@ -30,15 +30,9 @@ test.describe.configure({ timeout: 3 * LOAD_TIMEOUT })
  */
 async function hydrated(inspector: Locator): Promise<Locator> {
   await expect(inspector).toBeVisible({ timeout: LOAD_TIMEOUT })
-  await expect
-    .poll(
-      () =>
-        inspector
-          .getByRole('group')
-          .evaluate(el => Object.keys(el).some(key => key.startsWith('__reactProps'))),
-      { timeout: LOAD_TIMEOUT }
-    )
-    .toBe(true)
+  await expect(inspector.getByRole('group')).toHaveAttribute('data-heatmap-ready', '', {
+    timeout: LOAD_TIMEOUT,
+  })
   return inspector
 }
 
