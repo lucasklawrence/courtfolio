@@ -71,7 +71,7 @@
     "lint-staged": "^15.5.2",
     "postcss": "^8.5.23",
     "prettier": "^3.9.6",
-    "svgo": "^4.0.2",
+    "svgo": "^4.1.0",
     "tailwindcss": "^4.1.10",
     "tsx": "^4.23.1",
     "typescript": "^6",
