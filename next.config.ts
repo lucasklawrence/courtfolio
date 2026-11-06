@@ -76,6 +76,28 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  /**
+   * Serves the self-contained static "Nigiri Counter" app (a plain
+   * HTML/JS/PNG bundle under `public/nigiri-counter/`) at the clean URL
+   * `/nigiri-counter`.
+   *
+   * Next.js does not auto-resolve a directory request to its
+   * `index.html` for files in `public/`, so without this rewrite
+   * `/nigiri-counter` would 404 while only `/nigiri-counter/index.html`
+   * resolved. The exact-path source leaves the sibling static assets
+   * (`/nigiri-counter/avatar.js`, `/nigiri-counter/frames/*`) untouched.
+   *
+   * @returns A single rewrite pointing the clean path at the bundled
+   *   entry document.
+   */
+  async rewrites() {
+    return [
+      {
+        source: '/nigiri-counter',
+        destination: '/nigiri-counter/index.html',
+      },
+    ]
+  },
 }
 
 export default nextConfig
