@@ -33,6 +33,12 @@ export interface ActivityRingsProps {
    * the chrome.
    */
   className?: string
+  /**
+   * Whether to draw the primary exercise's count in the middle of the rings.
+   * Defaults to `true`. Turn it off at sizes where the inner ring leaves too
+   * little room for it, and state the counts beside the rings instead.
+   */
+  showReadout?: boolean
 }
 
 const RING_STROKE = 14
@@ -85,6 +91,7 @@ export function ActivityRings({
   rings,
   size = 256,
   className = '',
+  showReadout = true,
 }: ActivityRingsProps): JSX.Element {
   const center = size / 2
   const { stroke, gap } = fitRingDimensions(size, rings.length)
@@ -175,21 +182,23 @@ export function ActivityRings({
           Absolute-positioned over the SVG so the ring sweep stays
           undisturbed and the SVG itself can rotate (-90deg) without
           flipping the text. */}
-      <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
-        <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-white/55">
-          {exerciseLabel(primary.goal)}
-        </span>
-        <span className="mt-1 font-mono text-3xl font-semibold tabular-nums text-white sm:text-4xl">
-          {primary.totalReps}
-          <span className="text-white/40"> / {primary.goal.daily_target}</span>
-        </span>
-        <span
-          className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em]"
-          style={{ color: primary.goal.color }}
-        >
-          {primaryPercentDisplay}%
-        </span>
-      </div>
+      {showReadout ? (
+        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
+          <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-white/55">
+            {exerciseLabel(primary.goal)}
+          </span>
+          <span className="mt-1 font-mono text-3xl font-semibold tabular-nums text-white sm:text-4xl">
+            {primary.totalReps}
+            <span className="text-white/40"> / {primary.goal.daily_target}</span>
+          </span>
+          <span
+            className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em]"
+            style={{ color: primary.goal.color }}
+          >
+            {primaryPercentDisplay}%
+          </span>
+        </div>
+      ) : null}
     </div>
   )
 }
