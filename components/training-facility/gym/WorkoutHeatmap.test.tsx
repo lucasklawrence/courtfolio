@@ -1,9 +1,14 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
-import { render } from '@testing-library/react'
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
 
 import type { CardioSession } from '@/types/cardio'
 
 import { WorkoutHeatmap } from './WorkoutHeatmap'
+
+beforeAll(() => {
+  // jsdom has no layout or scrolling; browser tests cover the actual movement.
+  Element.prototype.scrollIntoView = vi.fn()
+})
 
 function session(
   dateStr: string,
@@ -32,6 +37,24 @@ describe('WorkoutHeatmap', () => {
     const { getByRole } = render(<WorkoutHeatmap sessions={[]} />)
     const svg = getByRole('img', { name: 'Workout frequency heatmap' })
     expect(svg).toBeInTheDocument()
+  })
+
+  it("shows a tapped cell's details", () => {
+    const from = new Date(2026, 3, 1)
+    const to = new Date(2026, 3, 15)
+    const { container } = render(
+      <WorkoutHeatmap sessions={[session('2026-04-08')]} dateFrom={from} dateTo={to} />
+    )
+    const logged = Array.from(container.querySelectorAll('rect[data-col]')).find(cell =>
+      cell.querySelector('title')?.textContent?.includes('1 session')
+    )
+    if (logged === undefined) throw new Error('No cell for the logged session')
+
+    fireEvent.click(logged)
+
+    expect(screen.getByTestId('heatmap-cell-detail')).toHaveTextContent(
+      'Apr 8, 2026: 1 session (Stair)'
+    )
   })
 
   it('renders 7 × N cells inside the grid', () => {

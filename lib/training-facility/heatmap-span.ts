@@ -69,18 +69,6 @@ const DEFAULT_COLS = 52
 /** Cell stride the heatmaps have always drawn at, and the widest this returns. */
 const DEFAULT_CELL = { cellSize: 14, cellGap: 2 } as const
 
-/**
- * Pixel width the all-time grid aims for.
- *
- * Not a fit — the content column is ~900px, and fitting four years inside it
- * would need a 4px stride. It's a panning budget: ~1,400px is a screen and a
- * half, where the default stride over the same span would be three and a half.
- */
-const ALL_TIME_TARGET_WIDTH = 1400
-
-/** Floor on the stride, below which a cell stops reading as its own square. */
-const MIN_CELL_SIZE = 6
-
 /** How a heatmap should draw one span. */
 export interface HeatmapWindow {
   /**
@@ -106,8 +94,8 @@ export interface HeatmapWindow {
  * clipped its own legend off the right edge of the SVG.
  *
  * So all-time is defined as a *superset* of the trailing year: it never starts
- * later than the default window would, and the stride shrinks only in
- * proportion to how much wider the resulting grid actually is.
+ * later than the default window would. Cells retain the trailing-year size so
+ * older days remain selectable by touch; longer archives scroll farther.
  *
  * @param span The chosen span.
  * @param sets Every logged set, for the all-time start.
@@ -131,13 +119,7 @@ export function heatmapWindow(
   const cols = columnsSince(first, clock, now)
   if (cols <= DEFAULT_COLS) return { dateFrom: null, ...DEFAULT_CELL }
 
-  const cellSize = Math.max(
-    MIN_CELL_SIZE,
-    Math.min(DEFAULT_CELL.cellSize, Math.floor(ALL_TIME_TARGET_WIDTH / cols))
-  )
-  // A 1px gap below the default stride: 2px of a 6px cell is a third of it,
-  // and the squares stop reading as squares.
-  return { dateFrom: first, cellSize, cellGap: cellSize >= 10 ? 2 : 1 }
+  return { dateFrom: first, ...DEFAULT_CELL }
 }
 
 /**
