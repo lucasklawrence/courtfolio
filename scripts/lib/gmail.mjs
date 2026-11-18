@@ -1,6 +1,6 @@
 /**
- * Minimal Gmail REST client for the email importers (#251 OTbeat, #502
- * events): a refresh-token OAuth exchange and a few GETs over native `fetch`,
+ * Minimal Gmail REST client for the email importers (OTbeat, events): a
+ * refresh-token OAuth exchange and a few GETs over native `fetch`,
  * with no Google SDK dependency.
  *
  * Loaded as ESM from `.mjs` callers — no TypeScript transpile step.

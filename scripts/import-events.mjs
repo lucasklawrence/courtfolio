@@ -2,10 +2,10 @@
 /**
  * `npm run import-events` — pull ticket-platform emails (Gametime,
  * Ticketmaster, Eventbrite) from Gmail, parse them, and store them as events
- * in Supabase (#502).
+ * in Supabase.
  *
  * Runs headless in CI (`.github/workflows/events-ingest.yml`) on a daily cron,
- * and locally for ad-hoc imports. Same skeleton as the OTbeat importer (#251):
+ * and locally for ad-hoc imports. Same skeleton as the OTbeat importer:
  * an incremental Gmail pull over a lookback window, upsert-only, never prunes,
  * idempotent.
  *

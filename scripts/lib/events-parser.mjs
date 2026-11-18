@@ -1,5 +1,5 @@
 /**
- * Parser for ticket-platform emails (#502): Gametime, Ticketmaster and
+ * Parser for ticket-platform emails: Gametime, Ticketmaster and
  * Eventbrite. Turns one email (sender, subject, HTML body) into a
  * {@link ParsedEventEmail} — what kind of email it is and what it says about
  * the event — for `scripts/import-events.mjs` to store.
@@ -256,6 +256,13 @@ export function findEventDate(text) {
 }
 
 /**
+ * Text ending in "by" right before a date marks a deadline ("Accept by Thu …"),
+ * whether the date follows in the same block, after a colon, or in the next
+ * cell.
+ */
+const DEADLINE_BEFORE = new RegExp(`\\bby\\b[\\s:${BLOCK}]*$`, 'i')
+
+/**
  * Every event date in `text`, in order, deadlines skipped. Layouts repeat the
  * event card (one copy for phones, one for desktop), so the venue may follow
  * the second copy of the date rather than the first.
@@ -268,7 +275,7 @@ export function findEventDates(text) {
   const re = new RegExp(DATE_RE.source, DATE_RE.flags)
   for (let m = re.exec(text); m; m = re.exec(text)) {
     const before = text.slice(Math.max(0, m.index - 24), m.index)
-    if (/\bby\s*$/i.test(before)) continue
+    if (DEADLINE_BEFORE.test(before)) continue
     const [, mon, day, year, h, min, ap] = m
     let hour = Number(h) % 12
     if (ap.toLowerCase() === 'p') hour += 12
@@ -306,14 +313,15 @@ export function resolveEventDate(when, receivedAt) {
 }
 
 /** US state names, so "Bayside, California" reads as a state like "Bayside, CA". */
-const STATE = '(?:[A-Z]{2}|(?:New |North |South |West )?[A-Z][a-z]+)'
+const STATE =
+  '(?:[A-Z]{2}|District of Columbia|Rhode Island|(?:New |North |South |West )?[A-Z][a-z]+)'
 /**
  * "Venue <sep> City, ST" right after the date, with the separators seen:
  * " — ", " - ", ", ", " | ", " • " and a bare block boundary.
  */
 const VENUE_RE = new RegExp(
   `^[\\s${BLOCK}]*([^${BLOCK}|•—–]{2,80}?)\\s*(?:[—–|•,-]|${BLOCK})[\\s${BLOCK}]*` +
-    `([A-Z][A-Za-z.' ]{1,40}?)\\s*,[\\s${BLOCK}]*(${STATE})\\b`
+    `([A-Z][A-Za-z.' -]{1,40}?)\\s*,[\\s${BLOCK}]*(${STATE})\\b`
 )
 
 /**
@@ -373,6 +381,7 @@ const STATE_CODES = {
   oregon: 'OR',
   pennsylvania: 'PA',
   'rhode island': 'RI',
+  'district of columbia': 'DC',
   'south carolina': 'SC',
   'south dakota': 'SD',
   tennessee: 'TN',
@@ -485,6 +494,12 @@ export function parseEventEmail({ from, subject: rawSubject, html, receivedAt })
  * email matchable, the venue is what makes the match safe.
  */
 function score(p) {
+  // An after-the-event email names the event and nothing else by design: it
+  // is matched by title to a recent event, and an unmatched one is listed for
+  // review by its missing event_id, so a missing date is not low confidence.
+  if (p.kind === 'post_event') {
+    return p.title ? { confidence: 1, note: null } : { confidence: 0.2, note: 'missing title' }
+  }
   const missing = []
   if (!p.when) missing.push('date')
   if (!p.title) missing.push('title')
@@ -654,19 +669,30 @@ export function eventMatchKey(p) {
 
 /**
  * Infer a coarse category from the title. Sports are recognisable ("vs.",
- * " at ", a team or league word); anything else stays `other` for a manual
- * override rather than being guessed at.
+ * "@", a team-at-team " at ", a team or league word); anything else stays
+ * `other` for a manual override rather than being guessed at.
+ *
+ * " at " is also how shows are named ("Night at the Museum", "Live at the
+ * Bowl"), so it reads as a matchup only when both sides are full team names
+ * of two words or more and the second doesn't start with "the".
  *
  * @param {string|null} title
  * @returns {{ category: 'sports'|'other', teams: string[]|null }}
  */
 export function inferCategory(title) {
   const t = String(title ?? '')
-  const pair = t.match(/^(.+?)\s+(?:vs\.?|v\.?|at|@)\s+(.+)$/i)
+  const pair = t.match(/^(.+?)\s+(vs\.?|v\.?|at|@)\s+(.+)$/i)
   const sportsWord =
     /\b(football|basketball|baseball|hockey|soccer|training camp|play-?in|nfl|nba|mlb|nhl|wnba|ncaa)\b/i.test(
       t
     )
-  if (pair) return { category: 'sports', teams: [pair[1].trim(), pair[2].trim()] }
+  if (pair) {
+    const [, a, sep, b] = pair
+    const words = s => s.trim().split(/\s+/).length
+    const teamAtTeam = words(a) >= 2 && words(b) >= 2 && !/^the\b/i.test(b)
+    if (sep.toLowerCase() !== 'at' || teamAtTeam) {
+      return { category: 'sports', teams: [a.trim(), b.trim()] }
+    }
+  }
   return { category: sportsWord ? 'sports' : 'other', teams: null }
 }

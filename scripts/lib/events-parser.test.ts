@@ -1,5 +1,5 @@
 /**
- * Tests for the ticket-email parser (#502).
+ * Tests for the ticket-email parser.
  *
  * Every fixture is SYNTHETIC: this repo is public, so no real email, event,
  * venue, person or amount is committed. Each one copies the block structure a
@@ -18,6 +18,7 @@ import {
   cleanEmailText,
   eventMatchKey,
   findEventDates,
+  findVenue,
   inferCategory,
   normalizeForMatch,
   parseEventEmail,
@@ -147,6 +148,17 @@ describe('dates', () => {
       { year: 2026, month: 9, day: 3, hour: 19, minute: 0 },
       { year: 2026, month: 9, day: 3, hour: 19, minute: 0 },
     ])
+  })
+
+  it('skips a deadline whose date sits in the next cell or after a colon', () => {
+    const event = 'Thu &bull; Sep 10, 2026 &bull; 07:00 PM'
+    for (const deadline of [
+      [row('Accept by'), row('Thu &bull; Sep 3, 2026 &bull; 09:00 PM')],
+      [row('Accept by: Thu &bull; Sep 3, 2026 &bull; 09:00 PM')],
+    ]) {
+      const dates = findEventDates(cleanEmailText(html(...deadline, row(event))))
+      expect(dates.map(d => d.when.day)).toEqual([10])
+    }
   })
 
   it('reads the "@" layout and a "from" time', () => {
@@ -334,19 +346,35 @@ describe('parseEventEmail', () => {
     })
   })
 
-  it('reads an Eventbrite "How was it?" as an attendance signal', () => {
+  it('reads an Eventbrite "How was it?" as an attendance signal, confident without a date', () => {
     const p = parseEventEmail({
       from: 'noreply@event.eventbrite.com',
       subject: 'How was Night at the Example Museum?',
       html: html(row('Tell us how it went')),
       receivedAt: new Date('2026-11-19T18:00:00Z'),
     })
+    // It never carries a date; a matched one must not sit on the review list.
     expect(p).toMatchObject({
       kind: 'post_event',
       title: 'Night at the Example Museum',
       when: null,
-      confidence: 0.2,
+      confidence: 1,
+      note: null,
     })
+  })
+
+  it('reads two-word state names and hyphenated cities', () => {
+    expect(findVenue(' ¶ Example Arena, Harborview, Rhode Island ¶')).toEqual({
+      venue: 'Example Arena',
+      city: 'Harborview',
+      state: 'RI',
+    })
+    expect(findVenue(' ¶ Example Arena - Lake-Side, NC ¶')).toEqual({
+      venue: 'Example Arena',
+      city: 'Lake-Side',
+      state: 'NC',
+    })
+    expect(findVenue(' ¶ Sample Hall, Springfield, District of Columbia ¶').state).toBe('DC')
   })
 
   it('returns null for a sender outside the platforms, and an unrecognized row for an unmatched subject', () => {
@@ -408,5 +436,12 @@ describe('matching', () => {
     })
     expect(inferCategory('Hawks Training Camp')).toEqual({ category: 'sports', teams: null })
     expect(inferCategory('An Evening of Examples')).toEqual({ category: 'other', teams: null })
+  })
+
+  it('reads " at " as a matchup only between two full team names', () => {
+    expect(inferCategory('Riverside Rockets at Harbor City Hawks').category).toBe('sports')
+    expect(inferCategory('Night at the Example Museum')).toEqual({ category: 'other', teams: null })
+    expect(inferCategory('Live at Sample Hall')).toEqual({ category: 'other', teams: null })
+    expect(inferCategory('Rockets @ Hawks').category).toBe('sports')
   })
 })

@@ -1,5 +1,5 @@
 /**
- * Supabase write path for the events importer (#502).
+ * Supabase write path for the events importer.
  *
  * Split in two so the matching rules can be tested without a database:
  * {@link planEventLinks} is pure — given parsed emails and the events already
@@ -131,7 +131,9 @@ const POST_EVENT_WINDOW_MS = 4 * 24 * 3600 * 1000
  * An email joins the event with its match key (local date + venue). Two
  * fallbacks bridge emails that name no venue: a title-keyed email joins the
  * only event already on its date, and a venue-keyed email adopts a lone
- * title-keyed event on its date (re-keying it), whichever arrived first. An
+ * title-keyed event on its date (re-keying it), whichever arrived first. Both
+ * apply only when the titles share a significant word (or one is unknown),
+ * so two different outings on one day stay two events. An
  * after-the-event email carries no date at all, so it joins the event that
  * started in the days before it arrived: the one with its title, or the only
  * one. Anything else that has a key starts a new event; an email with no key
@@ -181,7 +183,7 @@ export function planEventLinks(items, existing, linked = new Map()) {
     const date = key.slice(0, 10)
     const sameDay = byDate.get(date) ?? []
     let ev = byKey.get(key)
-    if (!ev && sameDay.length === 1) {
+    if (!ev && sameDay.length === 1 && titlesMayMatch(sameDay[0].title, p.title)) {
       const only = sameDay[0]
       if (key.includes('|t:')) {
         ev = only
@@ -261,6 +263,44 @@ function eventBefore(events, item) {
   const byTitle = title ? recent.filter(e => normalizeForMatch(e.title) === title) : []
   if (byTitle.length === 1) return byTitle[0]
   return recent.length === 1 ? recent[0] : null
+}
+
+/** Words too common in event titles to say two titles name the same outing. */
+const TITLE_STOPWORDS = new Set([
+  'the',
+  'and',
+  'at',
+  'vs',
+  'of',
+  'for',
+  'with',
+  'tickets',
+  'ticket',
+  'night',
+  'live',
+  'tour',
+  'show',
+  'game',
+])
+
+function titleWords(title) {
+  return String(title ?? '')
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter(w => w.length >= 3 && !TITLE_STOPWORDS.has(w))
+}
+
+/**
+ * Whether two titles could name the same outing, for the same-day fallbacks:
+ * yes when either is unknown, otherwise only when they share a significant
+ * word. Platforms title one game differently ("Rockets @ Hawks", "Harbor City
+ * Hawks vs. Riverside Rockets") but never without a word in common, while a
+ * concert and a game on one day share none.
+ */
+function titlesMayMatch(a, b) {
+  if (!a || a === UNTITLED || !b) return true
+  const left = new Set(titleWords(a))
+  return titleWords(b).some(w => left.has(w))
 }
 
 function recordUpdate(updates, ev, changes) {

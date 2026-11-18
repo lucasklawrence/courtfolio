@@ -1,5 +1,5 @@
 /**
- * Tests for the events importer's matching plan (#502). `planEventLinks` is
+ * Tests for the events importer's matching plan. `planEventLinks` is
  * pure, so these need no database. All values are synthetic.
  */
 import { describe, expect, it } from 'vitest'
@@ -103,8 +103,8 @@ describe('planEventLinks', () => {
   it('re-keys a stored title-only event and fills in its venue', () => {
     const stored = {
       id: 'e1',
-      match_key: '2026-03-14|t:show',
-      title: 'Show',
+      match_key: '2026-03-14|t:hawksrockets',
+      title: 'Hawks Rockets',
       venue: null,
       city: null,
       state: null,
@@ -204,19 +204,44 @@ describe('planEventLinks', () => {
     expect(late.emails[0].eventKey).toBeNull()
   })
 
-  it('joins a title-only email to the only event on its date', () => {
+  it('joins a title-only email to the only event on its date when the titles share a word', () => {
     const stored = {
       id: 'e1',
       match_key: '2026-03-14|v:examplearena',
-      title: 'x',
+      title: 'Riverside Rockets at Harbor City Hawks',
       venue: 'Example Arena',
       city: 'Springfield',
       state: 'CA',
       starts_at: '2026-03-15T01:40:00.000Z',
     }
-    const plan = planEventLinks([item({ venue: null, title: 'Something Else' })], [stored])
+    const plan = planEventLinks([item({ venue: null, title: 'Hawks vs. Rockets' })], [stored])
     expect(plan.inserts).toEqual([])
     expect(plan.emails[0].eventKey).toBe(stored.match_key)
+  })
+
+  it('keeps a different outing on the same date apart, in both fallback directions', () => {
+    const game = {
+      id: 'e1',
+      match_key: '2026-03-14|v:examplearena',
+      title: 'Riverside Rockets at Harbor City Hawks',
+      venue: 'Example Arena',
+      city: 'Springfield',
+      state: 'CA',
+      starts_at: '2026-03-15T01:40:00.000Z',
+    }
+    // A title-only concert email does not join the stored game…
+    const concert = planEventLinks([item({ venue: null, title: 'Spring Concert' })], [game])
+    expect(concert.inserts.map(i => i.match_key)).toEqual(['2026-03-14|t:springconcert'])
+    // …and a venue-named game email does not adopt a stored title-only concert.
+    const storedConcert = {
+      ...game,
+      match_key: '2026-03-14|t:springconcert',
+      title: 'Spring Concert',
+      venue: null,
+    }
+    const adopt = planEventLinks([item()], [storedConcert])
+    expect(adopt.updates).toEqual([])
+    expect(adopt.inserts.map(i => i.match_key)).toEqual(['2026-03-14|v:examplearena'])
   })
 
   it('does not guess between two events on one date', () => {
