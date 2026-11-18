@@ -273,7 +273,7 @@ prunes, idempotent.
 ```
 npm run import-events               # last 14 days
 npm run import-events -- --dry-run  # parse and report, write nothing
-EVENTS_LOOKBACK_DAYS=400 npm run import-events   # one-time backfill
+EVENTS_LOOKBACK_DAYS=<days> npm run import-events   # one-time backfill to your oldest ticket email
 ```
 
 ### How emails become events

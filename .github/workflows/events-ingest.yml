@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       lookback_days:
-        description: 'Days of mail to read (default 14; ~400 for the first backfill)'
+        description: 'Days of mail to read (default 14; raise it once to backfill)'
         required: false
         default: ''
       dry_run:

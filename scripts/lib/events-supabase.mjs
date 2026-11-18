@@ -15,7 +15,7 @@
  * Loaded as ESM from `.mjs` callers — no TypeScript transpile step.
  */
 
-import { eventMatchKey, inferCategory } from './events-parser.mjs'
+import { eventMatchKey, inferCategory, normalizeForMatch } from './events-parser.mjs'
 import { createServiceRoleClient, loadEnv, wallTimeToISO } from './otbeat-supabase.mjs'
 
 export { createServiceRoleClient, loadEnv }
@@ -23,35 +23,25 @@ export { createServiceRoleClient, loadEnv }
 /** Zone for a wall-clock time when the email names no state, and for states not listed. */
 export const DEFAULT_EVENT_TZ = 'America/Los_Angeles'
 
-const STATE_TZ = {
-  AZ: 'America/Phoenix',
-  CO: 'America/Denver',
-  ID: 'America/Boise',
-  MT: 'America/Denver',
-  NM: 'America/Denver',
-  UT: 'America/Denver',
-  WY: 'America/Denver',
-  TX: 'America/Chicago',
-  IL: 'America/Chicago',
-  MN: 'America/Chicago',
-  MO: 'America/Chicago',
-  LA: 'America/New_Orleans',
-  TN: 'America/Chicago',
-  WI: 'America/Chicago',
-  NY: 'America/New_York',
-  NJ: 'America/New_York',
-  MA: 'America/New_York',
-  PA: 'America/New_York',
-  FL: 'America/New_York',
-  GA: 'America/New_York',
-  DC: 'America/New_York',
-  HI: 'Pacific/Honolulu',
-  AK: 'America/Anchorage',
+const ZONE_STATES = {
+  'America/New_York': 'CT DC DE FL GA IN KY MA MD ME MI NC NH NJ NY OH PA RI SC VA VT WV',
+  'America/Chicago': 'AL AR IA IL KS LA MN MO MS ND NE OK SD TN TX WI',
+  'America/Denver': 'CO MT NM UT WY',
+  'America/Boise': 'ID',
+  'America/Phoenix': 'AZ',
+  'America/Los_Angeles': 'CA NV OR WA',
+  'America/Anchorage': 'AK',
+  'Pacific/Honolulu': 'HI',
 }
 
+/** Every state (and DC) by its principal zone; split states take the zone most of their venues are in. */
+const STATE_TZ = Object.fromEntries(
+  Object.entries(ZONE_STATES).flatMap(([zone, states]) => states.split(' ').map(s => [s, zone]))
+)
+
 /**
- * The IANA zone a venue's wall-clock times are in, from its state. Pacific
- * states and anything unlisted fall back to {@link DEFAULT_EVENT_TZ}.
+ * The IANA zone a venue's wall-clock times are in, from its state. An absent
+ * or unrecognized state falls back to {@link DEFAULT_EVENT_TZ}.
  *
  * @param {string|null} state Two-letter code.
  * @returns {string}
@@ -78,6 +68,7 @@ export function zoneForState(state) {
  * @property {string|null} venue
  * @property {string|null} city
  * @property {string|null} state
+ * @property {string} starts_at UTC ISO instant.
  */
 
 /**
@@ -114,15 +105,25 @@ export function zoneForState(state) {
  * What {@link upsertEventEmails} should write.
  * @typedef {Object} EventLinkPlan
  * @property {EventInsertRow[]} inserts New `events` rows.
- * @property {Array<{ id: string, changes: Record<string, string> }>} updates
+ * @property {Array<{ id: string, changes: Record<string, unknown> }>} updates
  *   Existing events to fill in (empty fields only) or re-key.
- * @property {Array<{ row: EventEmailRow, eventKey: string|null }>} emails One
- *   `event_emails` row per item; `eventKey` is the match key of its event, or
- *   null for an email that matches none.
+ * @property {Array<{ row: EventEmailRow, eventKey: string|null, eventId: string|null }>} emails
+ *   One `event_emails` row per item. `eventId` is set for an email already
+ *   linked (the link is kept); otherwise `eventKey` is the match key of its
+ *   event, or null for an email that matches none.
  */
 
 /** Kinds that never attach to an event: no reliable event details. */
 const UNMATCHABLE = new Set(['notice', 'unrecognized'])
+
+/**
+ * Title of an event whose first email named none. Treated as empty: the next
+ * email that carries a title replaces it.
+ */
+export const UNTITLED = '(untitled event)'
+
+/** How far back an after-the-event email ("How was it?") looks for its event. */
+const POST_EVENT_WINDOW_MS = 4 * 24 * 3600 * 1000
 
 /**
  * Decide which event each email belongs to.
@@ -130,19 +131,28 @@ const UNMATCHABLE = new Set(['notice', 'unrecognized'])
  * An email joins the event with its match key (local date + venue). Two
  * fallbacks bridge emails that name no venue: a title-keyed email joins the
  * only event already on its date, and a venue-keyed email adopts a lone
- * title-keyed event on its date (re-keying it), whichever arrived first.
- * Anything else that has a key starts a new event; an email with no key is
- * stored unmatched for review.
+ * title-keyed event on its date (re-keying it), whichever arrived first. An
+ * after-the-event email carries no date at all, so it joins the event that
+ * started in the days before it arrived: the one with its title, or the only
+ * one. Anything else that has a key starts a new event; an email with no key
+ * is stored unmatched for review.
+ *
+ * An email already linked to an event (`linked`) keeps that link — it may be
+ * the owner's fix to a review-list row — and is not re-planned.
  *
  * @param {EventEmailItem[]} items
  * @param {StoredEvent[]} existing Events already stored near these dates.
+ * @param {Map<string, string>} [linked] Gmail message id → stored event id,
+ *   for emails already linked.
  * @returns {EventLinkPlan}
  */
-export function planEventLinks(items, existing) {
+export function planEventLinks(items, existing, linked = new Map()) {
   const byKey = new Map()
   const byDate = new Map()
+  const all = new Set()
   const index = ev => {
     byKey.set(ev.match_key, ev)
+    all.add(ev)
     const date = ev.match_key.slice(0, 10)
     byDate.set(date, [...(byDate.get(date) ?? []).filter(e => e !== ev), ev])
   }
@@ -155,6 +165,14 @@ export function planEventLinks(items, existing) {
 
   for (const item of sorted) {
     const p = item.parsed
+    if (linked.has(item.messageId)) {
+      emails.push({ row: emailRow(item), event: null, eventId: linked.get(item.messageId) })
+      continue
+    }
+    if (p.kind === 'post_event' && !p.when) {
+      emails.push({ row: emailRow(item), event: eventBefore(all, item) })
+      continue
+    }
     const key = UNMATCHABLE.has(p.kind) ? null : eventMatchKey(p)
     if (!key) {
       emails.push({ row: emailRow(item), event: null })
@@ -188,13 +206,7 @@ export function planEventLinks(items, existing) {
       inserts.set(key, ev)
       index(ev)
     }
-    const fill = {}
-    for (const field of ['title', 'venue', 'city', 'state']) {
-      if (ev[field] == null && p[field] != null) {
-        ev[field] = p[field]
-        fill[field] = p[field]
-      }
-    }
+    const fill = fillEmpty(ev, p)
     if (Object.keys(fill).length && !inserts.has(ev.match_key)) recordUpdate(updates, ev, fill)
     // The event, not its key: a later email may re-key it.
     emails.push({ row: emailRow(item), event: ev })
@@ -203,8 +215,52 @@ export function planEventLinks(items, existing) {
   return {
     inserts: [...inserts.values()],
     updates: [...updates.values()],
-    emails: emails.map(({ row, event }) => ({ row, eventKey: event?.match_key ?? null })),
+    emails: emails.map(({ row, event, eventId }) => ({
+      row,
+      eventKey: event?.match_key ?? null,
+      eventId: eventId ?? null,
+    })),
   }
+}
+
+/**
+ * Fill an event's empty fields from an email, in place, and return what
+ * changed. A placeholder title counts as empty and brings the category and
+ * teams with it; a newly known state moves `starts_at` into that state's zone,
+ * since it was first computed in the default one.
+ */
+function fillEmpty(ev, p) {
+  const fill = {}
+  if ((ev.title == null || ev.title === UNTITLED) && p.title) {
+    const { category, teams } = inferCategory(p.title)
+    Object.assign(fill, { title: p.title, category, teams })
+  }
+  for (const field of ['venue', 'city', 'state']) {
+    if (ev[field] == null && p[field] != null) fill[field] = p[field]
+  }
+  if (fill.state && p.when) {
+    const { year, month, day, hour, minute } = p.when
+    fill.starts_at = wallTimeToISO(year, month, day, hour, minute, zoneForState(fill.state))
+  }
+  Object.assign(ev, fill)
+  return fill
+}
+
+/**
+ * The event an after-the-event email is about: started within the few days
+ * before the email arrived, matched by title, or the only candidate. Null
+ * rather than a guess between several.
+ */
+function eventBefore(events, item) {
+  const received = item.receivedAt.getTime()
+  const recent = [...events].filter(e => {
+    const start = Date.parse(e.starts_at)
+    return start <= received && received - start <= POST_EVENT_WINDOW_MS
+  })
+  const title = normalizeForMatch(item.parsed.title)
+  const byTitle = title ? recent.filter(e => normalizeForMatch(e.title) === title) : []
+  if (byTitle.length === 1) return byTitle[0]
+  return recent.length === 1 ? recent[0] : null
 }
 
 function recordUpdate(updates, ev, changes) {
@@ -220,7 +276,7 @@ function newEvent(p, key) {
   const { year, month, day, hour, minute } = p.when
   return {
     match_key: key,
-    title: p.title ?? '(untitled event)',
+    title: p.title ?? UNTITLED,
     category,
     teams,
     starts_at: wallTimeToISO(year, month, day, hour, minute, zoneForState(p.state)),
@@ -280,7 +336,7 @@ export async function upsertEventEmails(supabase, items) {
     }
   }
   const existing = await loadEventsNear(supabase, items)
-  const plan = planEventLinks(items, existing)
+  const plan = planEventLinks(items, existing, await loadLinks(supabase, items))
 
   if (plan.inserts.length) {
     const { error } = await supabase
@@ -307,9 +363,9 @@ export async function upsertEventEmails(supabase, items) {
     for (const r of data ?? []) idByKey.set(r.match_key, r.id)
   }
 
-  const rows = plan.emails.map(({ row, eventKey }) => ({
+  const rows = plan.emails.map(({ row, eventKey, eventId }) => ({
     ...row,
-    event_id: eventKey ? (idByKey.get(eventKey) ?? null) : null,
+    event_id: eventId ?? (eventKey ? (idByKey.get(eventKey) ?? null) : null),
   }))
   for (let i = 0; i < rows.length; i += 200) {
     const { error } = await supabase
@@ -327,23 +383,44 @@ export async function upsertEventEmails(supabase, items) {
   }
 }
 
-/** Events whose start is within two days of any email's event date, for the planner's same-day fallbacks. */
+/**
+ * Events near the batch, for the planner's fallbacks: within two days of any
+ * email's event date, and within the after-the-event window before any
+ * dateless email arrived.
+ */
 async function loadEventsNear(supabase, items) {
-  const times = items
-    .map(i => i.parsed.when)
-    .filter(Boolean)
-    .map(w => Date.UTC(w.year, w.month - 1, w.day))
-  if (times.length === 0) return []
   const day = 24 * 3600 * 1000
+  const times = items.flatMap(i => {
+    const w = i.parsed.when
+    if (w) return [Date.UTC(w.year, w.month - 1, w.day)]
+    return [i.receivedAt.getTime(), i.receivedAt.getTime() - POST_EVENT_WINDOW_MS]
+  })
+  if (times.length === 0) return []
   const from = new Date(Math.min(...times) - 2 * day).toISOString()
   const to = new Date(Math.max(...times) + 3 * day).toISOString()
   const { data, error } = await supabase
     .from('events')
-    .select('id, match_key, title, venue, city, state')
+    .select('id, match_key, title, venue, city, state, starts_at')
     .gte('starts_at', from)
     .lt('starts_at', to)
   if (error) throw new Error(`events read failed: ${error.message}`)
   return data ?? []
+}
+
+/** Emails in the batch already linked to an event, so a re-read keeps the link. */
+async function loadLinks(supabase, items) {
+  const links = new Map()
+  const ids = items.map(i => i.messageId)
+  for (let i = 0; i < ids.length; i += 100) {
+    const { data, error } = await supabase
+      .from('event_emails')
+      .select('gmail_message_id, event_id')
+      .in('gmail_message_id', ids.slice(i, i + 100))
+      .not('event_id', 'is', null)
+    if (error) throw new Error(`event_emails read failed: ${error.message}`)
+    for (const r of data ?? []) links.set(r.gmail_message_id, r.event_id)
+  }
+  return links
 }
 
 async function countReview(supabase) {

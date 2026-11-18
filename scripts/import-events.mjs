@@ -27,8 +27,8 @@
  *   GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN,
  *   NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY.
  *
- * One-time backfill (the earliest ticket email to cover is from Nov 2025):
- *   EVENTS_LOOKBACK_DAYS=400 npm run import-events
+ * One-time backfill: set EVENTS_LOOKBACK_DAYS to reach the oldest ticket
+ * email you want covered, e.g. `EVENTS_LOOKBACK_DAYS=<days> npm run import-events`.
  */
 
 import {

@@ -37,7 +37,7 @@ const GAMETIME_ORDER = html(
   row('Order Details Order #'),
   row('ZQ7TEST123'),
   row('Riverside Rockets at Harbor City Hawks'),
-  row('Monday, October 12, 5:15pm'),
+  row('Saturday, March 14, 6:40pm'),
   row('Example Arena'),
   row('Springfield,'),
   row('CA'),
@@ -52,11 +52,11 @@ const GAMETIME_ORDER = html(
 const TM_TRANSFER_IN = html(
   row('First step, accept your tickets. &#847;&#8199;&#65279;&#847;&#8199;&#65279;'),
   row('Jordan just sent you 2 Harbor City Hawks tickets.'),
-  row('Accept by Thu &bull; Aug 27, 2026 &bull; 09:00 PM'),
+  row('Accept by Thu &bull; Sep 3, 2026 &bull; 09:00 PM'),
   row('Transferred Tickets (2)'),
   row('Harbor City Hawks vs Riverside Rockets'),
-  row('Thu &bull; Aug 27, 2026 &bull; 07:00 PM'),
-  row('Thu &bull; Aug 27, 2026 &bull; 07:00 PM'),
+  row('Thu &bull; Sep 3, 2026 &bull; 07:00 PM'),
+  row('Thu &bull; Sep 3, 2026 &bull; 07:00 PM'),
   row('Example Arena | Springfield, CA'),
   row('Sec 101, Row 7, Seat 1'),
   row('Sec 101, Row 7, Seat 2'),
@@ -68,7 +68,7 @@ const TM_PURCHASE = html(
   row('You Got the Tickets'),
   row('ORDER # 9-99999/ABC'),
   row('An Evening of Examples'),
-  row('Fri &middot; Jan 08, 2027 &middot; 7:00 PM'),
+  row('Fri &middot; Feb 12, 2027 &middot; 7:00 PM'),
   row('Sample Hall - Lakeside, CA'),
   row('Order Summary Your Tickets 2x Standard Admission'),
   row('Payment Summary Total $80.10')
@@ -78,24 +78,24 @@ const TM_PURCHASE = html(
 const EVENTBRITE_ORDER = html(
   row('Your Tickets for Night at the Example Museum'),
   row('Night at the Example Museum 1 x Ticket Order total: 42.00 USD'),
-  row('Thursday, October 29, 2026 from 7:00 PM to 10:00 PM (PT)'),
+  row('Wednesday, November 18, 2026 from 7:00 PM to 10:00 PM (PT)'),
   row('Add to Google &middot; Outlook &middot; iCal &middot; Yahoo'),
   row('Example Museum'),
   row('100 Sample Street'),
   row('Harborview, WA 98000'),
-  row('Order Summary Order #12345678901 - October 30, 2026')
+  row('Order Summary Order #12345678901 - November 2, 2026')
 )
 
 const AUG_2026 = new Date('2026-08-01T18:00:00Z')
-const OCT_2026 = new Date('2026-10-12T00:28:00Z')
+const MAR_2026 = new Date('2026-03-14T00:28:00Z')
 
 describe('cleanEmailText', () => {
   it('keeps block boundaries, decodes entities and drops head, style and preheader padding', () => {
     const text = cleanEmailText(
-      html(row('A &amp; B &mdash; C&#8199;&#847;'), row('Fri &bull; Jul&nbsp;31')) +
+      html(row('A &amp; B &mdash; C&#8199;&#847;'), row('Fri &bull; Jun&nbsp;5')) +
         '<!-- hidden -->'
     )
-    expect(text).toBe('¶ A & B — C ¶ Fri • Jul 31 ¶')
+    expect(text).toBe('¶ A & B — C ¶ Fri • Jun 5 ¶')
     expect(text).not.toMatch(/color|Mail|hidden/)
   })
 
@@ -117,6 +117,16 @@ describe('platformForSender / classifyEmail', () => {
     expect(classifyEmail(tm, "You've assigned Pat a ticket")).toBe('transfer_out')
     expect(classifyEmail(tm, 'Jordan Just Sent You 2 Hawks Ticket(s)')).toBe('transfer_in')
     expect(classifyEmail(tm, "You're all set to see Hawks vs. Rockets")).toBe('transfer_in')
+    // classifyEmail sees the raw subject; parseEventEmail straightens it first.
+    expect(
+      parseEventEmail({
+        from: 'customer_support@email.ticketmaster.com',
+        subject: 'You’ve assigned Pat a ticket',
+        html: html(row('You’re all set')),
+        receivedAt: MAR_2026,
+      })
+    ).toMatchObject({ kind: 'transfer_out', counterpart: 'Pat' })
+    expect(cleanEmailText('<p>You’re</p>')).toBe("¶ You're ¶")
     expect(classifyEmail(tm, 'Event Reminder: Hawks vs. Rockets')).toBe('reminder')
     expect(classifyEmail(tm, 'Your password has been updated')).toBe('unrecognized')
   })
@@ -134,20 +144,20 @@ describe('dates', () => {
   it('skips an "Accept by" deadline and finds every copy of the event date', () => {
     const dates = findEventDates(cleanEmailText(TM_TRANSFER_IN))
     expect(dates.map(d => d.when)).toEqual([
-      { year: 2026, month: 8, day: 27, hour: 19, minute: 0 },
-      { year: 2026, month: 8, day: 27, hour: 19, minute: 0 },
+      { year: 2026, month: 9, day: 3, hour: 19, minute: 0 },
+      { year: 2026, month: 9, day: 3, hour: 19, minute: 0 },
     ])
   })
 
   it('reads the "@" layout and a "from" time', () => {
-    expect(findEventDates('Mon, Oct 12 @ 5:15 PM')[0].when).toEqual({
+    expect(findEventDates('Sat, Mar 14 @ 6:40 PM')[0].when).toEqual({
       year: null,
-      month: 10,
-      day: 12,
-      hour: 17,
-      minute: 15,
+      month: 3,
+      day: 14,
+      hour: 18,
+      minute: 40,
     })
-    expect(findEventDates('Thursday, October 29, 2026 from 7:00 PM')[0].when.hour).toBe(19)
+    expect(findEventDates('Wednesday, November 18, 2026 from 7:00 PM')[0].when.hour).toBe(19)
   })
 
   it('gives a yearless date the next occurrence on or after the email', () => {
@@ -158,7 +168,7 @@ describe('dates', () => {
     ).toBe(2026)
     // A same-day purchase can land after a late start in UTC: still that day's event.
     expect(
-      resolveEventDate({ ...when, month: 10, day: 12 }, new Date('2026-10-13T03:00:00Z')).year
+      resolveEventDate({ ...when, month: 3, day: 14 }, new Date('2026-03-15T03:00:00Z')).year
     ).toBe(2026)
   })
 })
@@ -167,16 +177,16 @@ describe('parseEventEmail', () => {
   it('reads a Gametime order: order, title, yearless date, venue split from city, tickets and cost', () => {
     const p = parseEventEmail({
       from: 'receipts@e.gametime.co',
-      subject: 'Your Ticket Order - Rockets @ Hawks on 10/12',
+      subject: 'Your Ticket Order - Rockets @ Hawks on 3/14',
       html: GAMETIME_ORDER,
-      receivedAt: OCT_2026,
+      receivedAt: MAR_2026,
     })
     expect(p).toMatchObject({
       platform: 'gametime',
       kind: 'purchase',
       orderRef: 'ZQ7TEST123',
       title: 'Riverside Rockets at Harbor City Hawks',
-      when: { year: 2026, month: 10, day: 12, hour: 17, minute: 15 },
+      when: { year: 2026, month: 3, day: 14, hour: 18, minute: 40 },
       venue: 'Example Arena',
       city: 'Springfield',
       state: 'CA',
@@ -192,9 +202,9 @@ describe('parseEventEmail', () => {
     const p = parseEventEmail({
       from: 'receipts@e.gametime.co',
       subject:
-        'Action Required: Your Ticket Transfer - Riverside Rockets at Harbor City Hawks on 10/12',
+        'Action Required: Your Ticket Transfer - Riverside Rockets at Harbor City Hawks on 3/14',
       html: GAMETIME_ORDER,
-      receivedAt: OCT_2026,
+      receivedAt: MAR_2026,
     })
     expect(p).toMatchObject({
       kind: 'fulfilment',
@@ -208,10 +218,8 @@ describe('parseEventEmail', () => {
     const p = parseEventEmail({
       from: 'receipts@e.gametime.co',
       subject: 'Action needed: replacement options for your Hawks tickets',
-      html: html(
-        row("We're sorry, your tickets for X on Wednesday, October 28 couldn't be fulfilled")
-      ),
-      receivedAt: OCT_2026,
+      html: html(row("We're sorry, your tickets for X on Friday, March 13 couldn't be fulfilled")),
+      receivedAt: MAR_2026,
     })
     expect(p).toMatchObject({ kind: 'notice', when: null, confidence: 0 })
   })
@@ -226,7 +234,7 @@ describe('parseEventEmail', () => {
     expect(p).toMatchObject({
       kind: 'transfer_in',
       title: 'Harbor City Hawks vs Riverside Rockets',
-      when: { year: 2026, month: 8, day: 27, hour: 19, minute: 0 },
+      when: { year: 2026, month: 9, day: 3, hour: 19, minute: 0 },
       venue: 'Example Arena',
       city: 'Springfield',
       state: 'CA',
@@ -243,17 +251,17 @@ describe('parseEventEmail', () => {
       html: html(
         row('Your Ticket Transfer From - Is Ready To Be Accepted!'),
         row('Harbor City Hawks vs. Riverside Rockets'),
-        row('Mon, Oct 12 @ 5:15 PM'),
+        row('Sat, Mar 14 @ 6:40 PM'),
         row('Example Arena, Springfield, CA'),
         row('You got 1 ticket(s)!')
       ),
-      receivedAt: OCT_2026,
+      receivedAt: MAR_2026,
     })
     expect(p).toMatchObject({
       counterpart: null,
       ticketCount: 1,
       title: 'Harbor City Hawks vs. Riverside Rockets',
-      when: { year: 2026, month: 10, day: 12 },
+      when: { year: 2026, month: 3, day: 14 },
       venue: 'Example Arena',
     })
   })
@@ -268,7 +276,7 @@ describe('parseEventEmail', () => {
     expect(current).toMatchObject({
       orderRef: '9-99999/ABC',
       title: 'An Evening of Examples',
-      when: { year: 2027, month: 1, day: 8, hour: 19 },
+      when: { year: 2027, month: 2, day: 12, hour: 19 },
       venue: 'Sample Hall',
       city: 'Lakeside',
       state: 'CA',
@@ -277,15 +285,15 @@ describe('parseEventEmail', () => {
     })
     const older = parseEventEmail({
       from: 'customer_support@email.ticketmaster.com',
-      subject: 'You Got Tickets To Practice Day',
+      subject: 'You Got Tickets To Open Practice',
       html: html(
         row('Order Confirmed Order # 1-23456/XYZ'),
-        row('Practice Day'),
-        row('Fri &middot; Jul 31, 2026 &middot; 10:00 AM'),
+        row('Open Practice'),
+        row('Sat &middot; Jun 6, 2026 &middot; 11:00 AM'),
         row('The Field &mdash; Bayside, California'),
         row('Payment Summary Total: $0.00')
       ),
-      receivedAt: new Date('2026-07-20T17:00:00Z'),
+      receivedAt: new Date('2026-05-20T17:00:00Z'),
     })
     expect(older).toMatchObject({ venue: 'The Field', city: 'Bayside', state: 'CA', costTotal: 0 })
   })
@@ -296,10 +304,10 @@ describe('parseEventEmail', () => {
       subject: "You've assigned Pat a ticket",
       html: html(
         row('Harbor City Hawks vs. Riverside Rockets'),
-        row('Mon, Oct 12 @ 5:15 PM'),
+        row('Sat, Mar 14 @ 6:40 PM'),
         row('Example Arena, Springfield, CA')
       ),
-      receivedAt: OCT_2026,
+      receivedAt: MAR_2026,
     })
     expect(p).toMatchObject({ kind: 'transfer_out', counterpart: 'Pat', ticketCount: 1 })
   })
@@ -309,12 +317,12 @@ describe('parseEventEmail', () => {
       from: 'Eventbrite <noreply@order.eventbrite.com>',
       subject: 'Order Confirmation for Night at the Example Museum',
       html: EVENTBRITE_ORDER,
-      receivedAt: new Date('2026-10-30T00:54:00Z'),
+      receivedAt: new Date('2026-11-02T00:54:00Z'),
     })
     expect(p).toMatchObject({
       kind: 'purchase',
       title: 'Night at the Example Museum',
-      when: { year: 2026, month: 10, day: 29, hour: 19 },
+      when: { year: 2026, month: 11, day: 18, hour: 19 },
       venue: 'Example Museum',
       city: 'Harborview',
       state: 'WA',
@@ -331,7 +339,7 @@ describe('parseEventEmail', () => {
       from: 'noreply@event.eventbrite.com',
       subject: 'How was Night at the Example Museum?',
       html: html(row('Tell us how it went')),
-      receivedAt: new Date('2026-10-30T18:00:00Z'),
+      receivedAt: new Date('2026-11-19T18:00:00Z'),
     })
     expect(p).toMatchObject({
       kind: 'post_event',
@@ -343,14 +351,14 @@ describe('parseEventEmail', () => {
 
   it('returns null for a sender outside the platforms, and an unrecognized row for an unmatched subject', () => {
     expect(
-      parseEventEmail({ from: 'a@example.com', subject: 'x', html: '', receivedAt: OCT_2026 })
+      parseEventEmail({ from: 'a@example.com', subject: 'x', html: '', receivedAt: MAR_2026 })
     ).toBeNull()
     expect(
       parseEventEmail({
         from: 'noreply@ticketmaster.com',
         subject: 'Your password was changed',
         html: '',
-        receivedAt: OCT_2026,
+        receivedAt: MAR_2026,
       })
     ).toMatchObject({ kind: 'unrecognized', confidence: 0, note: 'no subject rule matched' })
   })
@@ -360,21 +368,21 @@ describe('matching', () => {
   it('gives one game the same key on two platforms despite different titles', () => {
     const gametime = parseEventEmail({
       from: 'receipts@e.gametime.co',
-      subject: 'Your Ticket Order - Rockets @ Hawks on 10/12',
+      subject: 'Your Ticket Order - Rockets @ Hawks on 3/14',
       html: GAMETIME_ORDER,
-      receivedAt: OCT_2026,
+      receivedAt: MAR_2026,
     })
     const tm = parseEventEmail({
       from: 'customer_support@email.ticketmaster.com',
       subject: '- sent you ticket(s) for Harbor City Hawks vs. Riverside Rockets',
       html: html(
         row('Harbor City Hawks vs. Riverside Rockets'),
-        row('Mon, Oct 12 @ 5:15 PM'),
+        row('Sat, Mar 14 @ 6:40 PM'),
         row('Example Arena, Springfield, CA')
       ),
-      receivedAt: OCT_2026,
+      receivedAt: MAR_2026,
     })
-    expect(eventMatchKey(gametime!)).toBe('2026-10-12|v:examplearena')
+    expect(eventMatchKey(gametime!)).toBe('2026-03-14|v:examplearena')
     expect(eventMatchKey(tm!)).toBe(eventMatchKey(gametime!))
   })
 

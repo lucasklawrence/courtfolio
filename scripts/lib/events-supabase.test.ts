@@ -4,7 +4,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { planEventLinks, zoneForState } from './events-supabase.mjs'
+import { UNTITLED, planEventLinks, zoneForState } from './events-supabase.mjs'
 
 type Kind =
   | 'purchase'
@@ -23,12 +23,12 @@ function item(over: Record<string, unknown> & { kind?: Kind } = {}) {
   return {
     messageId: `m${seq}`,
     subject: `subject ${seq}`,
-    receivedAt: new Date(Date.UTC(2026, 9, 1, 0, seq)),
+    receivedAt: new Date(Date.UTC(2026, 2, 1, 0, seq)),
     parsed: {
       platform: 'gametime',
       kind: 'purchase' as Kind,
       title: 'Riverside Rockets at Harbor City Hawks',
-      when: { year: 2026, month: 10, day: 12, hour: 17, minute: 15 },
+      when: { year: 2026, month: 3, day: 14, hour: 18, minute: 40 },
       venue: 'Example Arena',
       city: 'Springfield',
       state: 'CA',
@@ -59,27 +59,28 @@ describe('planEventLinks', () => {
     )
     expect(plan.inserts).toHaveLength(1)
     expect(plan.inserts[0]).toMatchObject({
-      match_key: '2026-10-12|v:examplearena',
+      match_key: '2026-03-14|v:examplearena',
       title: 'Riverside Rockets at Harbor City Hawks',
       category: 'sports',
       teams: ['Riverside Rockets', 'Harbor City Hawks'],
-      // 17:15 Pacific daylight time.
-      starts_at: '2026-10-13T00:15:00.000Z',
+      // 18:40 Pacific daylight time.
+      starts_at: '2026-03-15T01:40:00.000Z',
     })
     expect(plan.emails.map(e => e.eventKey)).toEqual([
-      '2026-10-12|v:examplearena',
-      '2026-10-12|v:examplearena',
+      '2026-03-14|v:examplearena',
+      '2026-03-14|v:examplearena',
     ])
   })
 
   it('adds nothing on a re-run once the event is stored', () => {
     const stored = {
       id: 'e1',
-      match_key: '2026-10-12|v:examplearena',
+      match_key: '2026-03-14|v:examplearena',
       title: 'x',
       venue: 'Example Arena',
       city: 'Springfield',
       state: 'CA',
+      starts_at: '2026-03-15T01:40:00.000Z',
     }
     const plan = planEventLinks([item()], [stored])
     expect(plan.inserts).toEqual([])
@@ -91,22 +92,23 @@ describe('planEventLinks', () => {
     const plan = planEventLinks([item({ venue: null, city: null, state: null }), item()], [])
     expect(plan.inserts).toHaveLength(1)
     expect(plan.inserts[0]).toMatchObject({
-      match_key: '2026-10-12|v:examplearena',
+      match_key: '2026-03-14|v:examplearena',
       venue: 'Example Arena',
     })
     expect(new Set(plan.emails.map(e => e.eventKey))).toEqual(
-      new Set(['2026-10-12|v:examplearena'])
+      new Set(['2026-03-14|v:examplearena'])
     )
   })
 
   it('re-keys a stored title-only event and fills in its venue', () => {
     const stored = {
       id: 'e1',
-      match_key: '2026-10-12|t:show',
+      match_key: '2026-03-14|t:show',
       title: 'Show',
       venue: null,
       city: null,
       state: null,
+      starts_at: '2026-03-15T01:40:00.000Z',
     }
     const plan = planEventLinks([item()], [stored])
     expect(plan.inserts).toEqual([])
@@ -114,23 +116,103 @@ describe('planEventLinks', () => {
       {
         id: 'e1',
         changes: {
-          match_key: '2026-10-12|v:examplearena',
+          match_key: '2026-03-14|v:examplearena',
           venue: 'Example Arena',
           city: 'Springfield',
           state: 'CA',
+          // Recomputed in the newly known state's zone.
+          starts_at: '2026-03-15T01:40:00.000Z',
         },
       },
     ])
   })
 
+  it('moves the start into the right zone when a later email names the state', () => {
+    const stored = {
+      id: 'e1',
+      match_key: '2026-03-14|v:examplearena',
+      title: 'x',
+      venue: 'Example Arena',
+      city: null,
+      state: null,
+      starts_at: '2026-03-15T01:40:00.000Z',
+    }
+    const plan = planEventLinks([item({ city: 'Aurora', state: 'CO' })], [stored])
+    expect(plan.updates).toEqual([
+      {
+        id: 'e1',
+        // 18:40 mountain daylight time.
+        changes: { city: 'Aurora', state: 'CO', starts_at: '2026-03-15T00:40:00.000Z' },
+      },
+    ])
+  })
+
+  it('replaces a placeholder title, with its category, when an email names the event', () => {
+    const stored = {
+      id: 'e1',
+      match_key: '2026-03-14|v:examplearena',
+      title: UNTITLED,
+      venue: 'Example Arena',
+      city: 'Springfield',
+      state: 'CA',
+      starts_at: '2026-03-15T01:40:00.000Z',
+    }
+    const plan = planEventLinks([item()], [stored])
+    expect(plan.updates).toEqual([
+      {
+        id: 'e1',
+        changes: {
+          title: 'Riverside Rockets at Harbor City Hawks',
+          category: 'sports',
+          teams: ['Riverside Rockets', 'Harbor City Hawks'],
+        },
+      },
+    ])
+    const untitled = planEventLinks([item({ title: null })], [])
+    expect(untitled.inserts[0].title).toBe(UNTITLED)
+  })
+
+  it('keeps an email linked where it already is, even to another event', () => {
+    const linkedItem = item()
+    const plan = planEventLinks([linkedItem], [], new Map([[linkedItem.messageId, 'owner-fixed']]))
+    expect(plan.inserts).toEqual([])
+    expect(plan.emails[0]).toMatchObject({ eventId: 'owner-fixed', eventKey: null })
+  })
+
+  it('joins a dateless after-the-event email to the event in the days before it', () => {
+    const stored = {
+      id: 'e1',
+      match_key: '2026-03-14|v:examplearena',
+      title: 'Night at the Example Museum',
+      venue: 'Example Arena',
+      city: 'Springfield',
+      state: 'CA',
+      starts_at: '2026-03-15T01:40:00.000Z',
+    }
+    const other = { ...stored, id: 'e2', match_key: '2026-03-13|v:samplehall', title: 'Other' }
+    const postEvent = (receivedAt: string) => ({
+      ...item({ kind: 'post_event', when: null, title: 'Night at the Example Museum' }),
+      receivedAt: new Date(receivedAt),
+    })
+    // Two recent events: the title decides.
+    const plan = planEventLinks([postEvent('2026-03-15T18:00:00Z')], [stored, other])
+    expect(plan.emails[0].eventKey).toBe(stored.match_key)
+    // Before the event started, or past the window: no match.
+    const early = planEventLinks([postEvent('2026-03-14T18:00:00Z')], [stored])
+    expect(early.emails[0].eventKey).toBeNull()
+    const late = planEventLinks([postEvent('2026-03-25T18:00:00Z')], [stored])
+    expect(late.emails[0].eventKey).toBeNull()
+  })
+
   it('joins a title-only email to the only event on its date', () => {
     const stored = {
       id: 'e1',
-      match_key: '2026-10-12|v:examplearena',
+      match_key: '2026-03-14|v:examplearena',
       title: 'x',
       venue: 'Example Arena',
       city: 'Springfield',
       state: 'CA',
+      starts_at: '2026-03-15T01:40:00.000Z',
     }
     const plan = planEventLinks([item({ venue: null, title: 'Something Else' })], [stored])
     expect(plan.inserts).toEqual([])
@@ -140,22 +222,24 @@ describe('planEventLinks', () => {
   it('does not guess between two events on one date', () => {
     const a = {
       id: 'a',
-      match_key: '2026-10-12|v:examplearena',
+      match_key: '2026-03-14|v:examplearena',
       title: 'A',
       venue: 'Example Arena',
       city: null,
       state: null,
+      starts_at: '2026-03-15T01:40:00.000Z',
     }
     const b = {
       id: 'b',
-      match_key: '2026-10-12|v:samplehall',
+      match_key: '2026-03-14|v:samplehall',
       title: 'B',
       venue: 'Sample Hall',
       city: null,
       state: null,
+      starts_at: '2026-03-15T01:40:00.000Z',
     }
     const plan = planEventLinks([item({ venue: null, title: 'C' })], [a, b])
-    expect(plan.inserts.map(i => i.match_key)).toEqual(['2026-10-12|t:c'])
+    expect(plan.inserts.map(i => i.match_key)).toEqual(['2026-03-14|t:c'])
   })
 
   it('stores a notice, an unrecognized email and a dateless one unmatched', () => {
@@ -171,11 +255,12 @@ describe('planEventLinks', () => {
   it('never overwrites a stored title or venue, only fills what is empty', () => {
     const stored = {
       id: 'e1',
-      match_key: '2026-10-12|v:examplearena',
+      match_key: '2026-03-14|v:examplearena',
       title: 'Owner Title',
       venue: 'Example Arena',
       city: null,
       state: 'CA',
+      starts_at: '2026-03-15T01:40:00.000Z',
     }
     const plan = planEventLinks([item({ title: 'Email Title' })], [stored])
     expect(plan.updates).toEqual([{ id: 'e1', changes: { city: 'Springfield' } }])
@@ -213,17 +298,17 @@ describe('zoneForState', () => {
     expect(zoneForState(null)).toBe('America/Los_Angeles')
   })
 
-  it('stores a Denver start in Denver time', () => {
+  it('stores a Colorado start in mountain time', () => {
     const plan = planEventLinks(
       [
         item({
           state: 'CO',
-          city: 'Denver',
-          when: { year: 2026, month: 2, day: 4, hour: 19, minute: 0 },
+          city: 'Aurora',
+          when: { year: 2026, month: 1, day: 21, hour: 19, minute: 0 },
         }),
       ],
       []
     )
-    expect(plan.inserts[0].starts_at).toBe('2026-02-05T02:00:00.000Z')
+    expect(plan.inserts[0].starts_at).toBe('2026-01-22T02:00:00.000Z')
   })
 })

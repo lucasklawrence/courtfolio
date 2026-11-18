@@ -22,7 +22,7 @@
  *   the parser can't read is still returned (kind `unrecognized`, confidence
  *   0) so the importer can store it for review instead of dropping it.
  * - **Dates are wall-clock, in the venue's zone.** Several layouts omit the
- *   year ("Mon, Oct 12 @ 5:15 PM"); {@link resolveEventDate} supplies it from
+ *   year ("Sat, Mar 14 @ 6:40 PM"); {@link resolveEventDate} supplies it from
  *   the email's own date.
  */
 
@@ -78,11 +78,19 @@ export function cleanEmailText(html) {
       // Preheader padding: soft hyphen, combining grapheme joiner, zero-widths,
       // figure space, word joiner, BOM.
       .replace(/[­͏​-‏ ⁠﻿]/g, '')
+      .replace(CURLY_APOSTROPHES, "'")
       .replace(/\s+/g, ' ')
       .replace(new RegExp(`(?:\\s*${BLOCK}\\s*)+`, 'g'), ` ${BLOCK} `)
       .trim()
   )
 }
+
+/**
+ * Typographic apostrophes (‘ ’ ʼ). Subjects and bodies write "You’re" as often
+ * as "You're", and every rule below is written with the straight one, so both
+ * are folded to `'` before any rule runs.
+ */
+const CURLY_APOSTROPHES = /[‘’ʼ]/g
 
 /** `String.fromCodePoint` that returns '' for an out-of-range code point instead of throwing. */
 function safeCodePoint(n) {
@@ -216,8 +224,8 @@ const MONTH = '(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\\.?'
 const SEP = `\\s*(?:[,·•@|\\-–—]|${BLOCK})?\\s*`
 /**
  * A weekday-led date with a start time, in every layout seen:
- * "Fri · Jul 31, 2026 · 10:00 AM", "Mon, Oct 12 @ 5:15 PM",
- * "Monday, October 12, 5:15pm", "Thursday, October 29, 2026 from 7:00 PM".
+ * "Sat · Jun 6, 2026 · 11:00 AM", "Sat, Mar 14 @ 6:40 PM",
+ * "Saturday, March 14, 6:40pm", "Wednesday, November 18, 2026 from 7:00 PM".
  */
 const DATE_RE = new RegExp(
   `\\b${WEEKDAY}${SEP}${MONTH}\\s+(\\d{1,2})(?:,?\\s*(\\d{4}))?${SEP}(?:from\\s+)?(\\d{1,2}):(\\d{2})\\s*([ap])\\.?m\\b\\.?`,
@@ -236,7 +244,7 @@ const DATE_RE = new RegExp(
  */
 
 /**
- * The first event date in `text`, skipping deadlines ("Accept by Thu • Aug 27,
+ * The first event date in `text`, skipping deadlines ("Accept by Thu • Sep 3,
  * 2026 • 09:00 PM" precedes the event date in Ticketmaster transfers).
  *
  * @param {string} text Output of {@link cleanEmailText}.
@@ -433,9 +441,10 @@ function money(s) {
  * @param {{ from: string, subject: string, html: string, receivedAt: Date }} email
  * @returns {ParsedEventEmail|null} Null when the sender is not a known platform.
  */
-export function parseEventEmail({ from, subject, html, receivedAt }) {
+export function parseEventEmail({ from, subject: rawSubject, html, receivedAt }) {
   const platform = platformForSender(from)
   if (!platform) return null
+  const subject = String(rawSubject ?? '').replace(CURLY_APOSTROPHES, "'")
   const kind = classifyEmail(platform, subject)
   const text = cleanEmailText(html)
   const base = {
@@ -484,7 +493,7 @@ function score(p) {
   return { confidence, note: missing.length ? `missing ${missing.join(', ')}` : null }
 }
 
-/** Strip a subject prefix and trailing " on 10/12", leaving the event title. */
+/** Strip a subject prefix and trailing " on 3/14", leaving the event title. */
 function titleFromSubject(subject, prefix) {
   const m = String(subject ?? '').match(prefix)
   if (!m) return null
@@ -575,7 +584,7 @@ const EXTRACTORS = {
     const order = text.match(/Order\s*#\s*(\d{6,})/i)
     const total = text.match(/Order total:\s*([\d,]+(?:\.\d{2})?)\s*([A-Z]{3})/i)
     const count = text.match(/\b(\d{1,2})\s*x\s+(?:Ticket|[A-Z])/)
-    // "… (PT) ¶ Add to Google · Outlook · iCal · Yahoo ¶ <venue> ¶ <street> ¶ <City>, ST 98101"
+    // "… (PT) ¶ Add to Google · Outlook · iCal · Yahoo ¶ <venue> ¶ <street> ¶ <City>, ST <zip>"
     const place = text.match(
       /\bYahoo\s*¶\s*([^¶]{2,80}?)\s*¶(?:\s*[^¶]{0,80}?\s*¶){0,2}?\s*([A-Z][A-Za-z.' ]{1,40}?),\s*([A-Z]{2})\s+\d{5}\b/
     )
