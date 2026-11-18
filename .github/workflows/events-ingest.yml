@@ -1,0 +1,59 @@
+name: Events ingest
+
+on:
+  schedule:
+    # Daily 07:30 UTC (~half past midnight Pacific), half an hour after the
+    # OTbeat ingest so the two don't contend. The import's 14-day lookback
+    # dwarfs the daily cadence, so a missed or failed run heals on the next
+    # one (upsert by Gmail message id, never prunes) (#502).
+    - cron: '30 7 * * *'
+  # Manual trigger for the one-time backfill and ad-hoc catch-ups. Set
+  # lookback_days to reach further back; dry_run parses without writing.
+  workflow_dispatch:
+    inputs:
+      lookback_days:
+        description: 'Days of mail to read (default 14; ~400 for the first backfill)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Parse and report counts without writing'
+        type: boolean
+        required: false
+        default: false
+
+# Read-only on the repo (only `checkout` needs it); the job writes to
+# Supabase, not back to git, so no `contents: write`.
+permissions:
+  contents: read
+
+# Never run two ingests at once (e.g. a manual backfill during a scheduled run).
+concurrency:
+  group: events-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js and install dependencies
+        uses: ./.github/actions/node-setup
+
+      # The log is public: the importer prints counts only, never titles,
+      # venues, names or amounts.
+      - name: Ingest ticket emails into Supabase
+        env:
+          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+          GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          EVENTS_LOOKBACK_DAYS: ${{ inputs.lookback_days }}
+          DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
+        run: npm run import-events -- $DRY_RUN
