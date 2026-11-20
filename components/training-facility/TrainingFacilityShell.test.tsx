@@ -14,9 +14,16 @@ function withFlags({ gym = false, weightRoom = false }: { gym?: boolean; weightR
 }
 
 /**
- * The lobby says "Pick a door.", so every door it offers has to open. Since
- * #345 each wing ships on its own flag, which means a door can point at a route
- * that 404s — these pin that a dark wing is inert rather than a dead link.
+ * The lobby is a corridor you walk down (#326), so every door it paints has
+ * to open. Since #345 each wing ships on its own flag, which means a door
+ * can point at a route that 404s — these pin that a dark wing is inert
+ * rather than a dead link, and that the shell reads the flags and hands
+ * them to the scene.
+ *
+ * These replace the "Pick a door." card-grid assertions: the corridor keeps
+ * the same contract, but a live door carries no status caption — signage
+ * saying "Route live now" over every open door is noise in a scene you
+ * stand inside — so only the dark wings are captioned.
  */
 describe('TrainingFacilityShell doors', () => {
   it('links both wings when they are live', () => {
@@ -36,14 +43,17 @@ describe('TrainingFacilityShell doors', () => {
     withFlags({ gym: false, weightRoom: true })
     render(<TrainingFacilityShell />)
     expect(screen.queryByRole('link', { name: /the gym/i })).not.toBeInTheDocument()
-    const gym = screen.getByRole('button', { name: /the gym/i })
-    expect(gym).toBeDisabled()
-    expect(gym).toHaveAttribute('aria-disabled', 'true')
+    // An SVG scene has no <button> to fall back on, so the inert doorway is
+    // a role="button" group: named and announced, but outside the tab order.
+    expect(screen.getByRole('button', { name: /the gym/i })).toHaveAttribute(
+      'aria-disabled',
+      'true'
+    )
     // The live wing is unaffected — the flags are independent.
     expect(screen.getByRole('link', { name: /weight room/i })).toBeInTheDocument()
   })
 
-  it('keeps the door visible so the room still reads as three wings', () => {
+  it('keeps the door visible so the hall still reads as three wings', () => {
     withFlags({ gym: false, weightRoom: false })
     render(<TrainingFacilityShell />)
     expect(screen.getByRole('button', { name: /the gym/i })).toBeInTheDocument()
@@ -59,7 +69,12 @@ describe('TrainingFacilityShell doors', () => {
   it('says which wings are still being built', () => {
     withFlags({ gym: false, weightRoom: true })
     render(<TrainingFacilityShell />)
-    expect(screen.getByText('Still building')).toBeInTheDocument()
-    expect(screen.getAllByText('Route live now').length).toBe(2)
+    expect(screen.getAllByText('still building')).toHaveLength(1)
+  })
+
+  it('captions nothing when every wing is live', () => {
+    withFlags({ gym: true, weightRoom: true })
+    render(<TrainingFacilityShell />)
+    expect(screen.queryByText('still building')).not.toBeInTheDocument()
   })
 })
