@@ -1,6 +1,6 @@
 ---
 name: log-workout
-description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, lateral raises, lunges, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x20 squats" (bodyweight), "3x10 shrugs at 100lb" (weighted), "shrugs 15 db - 25 reps" (dumbbell, load-first), "3x10 lateral raises forward" / "wide pullups 3x5" / "10 diamond pushups" (movement variant), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets plus any per-set load and variant, writes them to Supabase, and reports today's totals against the daily goals.
+description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, lateral raises, lunges, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x20 squats" (bodyweight), "3x10 shrugs at 100lb" (weighted), "shrugs 15 db - 25 reps" (dumbbell, load-first), "3x10 lateral raises forward" / "wide pullups 3x5" / "10 diamond pushups" (movement variant), "pushup round" / "pullup round 6 5 6" (round shorthand), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets plus any per-set load and variant, writes them to Supabase, and reports today's totals against the daily goals.
 ---
 
 # Log Workout
@@ -20,6 +20,8 @@ The user casually reports completed bodyweight work. Triggers look like:
 - "3x10 shrugs at 100lb" / "25 shrugs @ 95 lbs" (weighted — see step 1b)
 - "shrugs 15 db - 25 reps" / "15 db 25 reps" (dumbbell notation, load-first — see step 1b)
 - "logged 12 dips this morning" / "20 pushups yesterday" (back-dating — see step 3)
+- "pushup round" / "pullup round 6 5 6" / "2 sets of 10 pushups, 10 of each"
+  (round shorthand: each set gets its grip tag — see step 1c)
 
 Plus the **workout-session** phrasings (#378 — see step 1d and steps 7–9):
 
@@ -299,6 +301,40 @@ regular → chin-up → close. **Tag only what is named** — a bare "3 sets of 
 pullups" stays untagged; don't infer the split. That holds inside a partly named
 round too: "5, 5, 5 — regular then chin-up" is `null`, `chin-up`, `null`. The
 third set isn't assumed to be `close`.
+
+**Round shorthand names the whole split at once.** The word *round*, or
+"N of each", is Lucas naming the grips, so the rule above doesn't block it:
+
+| Says | Logs (in order) |
+|---|---|
+| "pushup round" | 10 regular · 10 tricep · 10 shoulder |
+| "pushup round 12" | 12 regular · 12 tricep · 12 shoulder |
+| "pushup round 10 10" | 10 regular · 10 tricep |
+| "2 sets of 10 pushups, 10 of each" | 10 regular · 10 tricep |
+| "pullup round 5" | 5 regular · 5 chin-up · 5 close |
+| "pullup round 6 5 6" | 6 regular · 5 chin-up · 6 close |
+
+- **One number** sets the reps for all three sets. **A list** gives one set per
+  number, in round order, so two numbers mean the first two grips.
+- With no number, a pushup round defaults to 10 per set. A pullup round has no
+  default; ask for the reps.
+- "N of each" maps the sets onto the round's grips in order. "3 sets of 10
+  pushups, 10 of each" is the full pushup round.
+- More sets than the round has grips (e.g. "pullup round 5 5 5 5") is ambiguous,
+  so ask rather than guess. A plain "3 sets of 10 pushups", with no "round" and
+  no "of each", stays untagged as before.
+
+**Then show a double check Lucas can ignore. Don't ask first.** Insert straight
+away. The readback spells out each set's tag on that exercise's line, followed
+by one short "say so to fix" prompt:
+
+> 🟠 Pushups: 50 / 100 · round logged as 10 regular · 10 tricep · 10 shoulder
+> (not right? say so)
+
+Silence means it's right. If he corrects it ("actually all regular", "that
+last one was diamond"), update those rows by the ids the insert returned. Don't
+re-insert, and don't touch any other set. Only round and "of each" logs get the
+check line. A plain untagged log reads back as before, with no added chatter.
 
 The step 1 override sends chin-ups to `pullups`, not the catalog's `chinups`
 row. The "don't confuse a variant with an exercise" rule below doesn't apply to
