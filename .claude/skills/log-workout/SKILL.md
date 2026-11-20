@@ -296,14 +296,15 @@ tag. Don't keep a split bucket alive just because it already exists.
 means `close`, but any underhand cue ("underhand", "palms in", "chin-up")
 makes it `chin-up`, close grip or not.
 
-A pushup round is usually regular → tricep → shoulder; a pullup round is usually
-regular → chin-up → close. **Tag only what is named** — a bare "3 sets of 5
-pullups" stays untagged; don't infer the split. That holds inside a partly named
-round too: "5, 5, 5 — regular then chin-up" is `null`, `chin-up`, `null`. The
-third set isn't assumed to be `close`.
+**Tag only what is named** — a bare "3 sets of 5 pullups" stays untagged; don't
+infer the split from the usual round order (below).
 
-**Round shorthand names the whole split at once.** The word *round*, or
-"N of each", is Lucas naming the grips, so the rule above doesn't block it:
+**Round shorthand names the whole split at once.** Saying *round* (or "N of
+each" with no grips named) on `pushups` or `pullups` is Lucas naming the grips
+in the round order:
+
+- **Pushup round:** regular → tricep → shoulder
+- **Pullup round:** regular → chin-up → close
 
 | Says | Logs (in order) |
 |---|---|
@@ -313,28 +314,49 @@ third set isn't assumed to be `close`.
 | "2 sets of 10 pushups, 10 of each" | 10 regular · 10 tricep |
 | "pullup round 5" | 5 regular · 5 chin-up · 5 close |
 | "pullup round 6 5 6" | 6 regular · 5 chin-up · 6 close |
+| "2 pushup rounds" / "pushup round x2" | the full pushup round, twice (6 sets) |
 
-- **One number** sets the reps for all three sets. **A list** gives one set per
-  number, in round order, so two numbers mean the first two grips.
-- With no number, a pushup round defaults to 10 per set. A pullup round has no
-  default; ask for the reps.
-- "N of each" maps the sets onto the round's grips in order. "3 sets of 10
-  pushups, 10 of each" is the full pushup round.
-- More sets than the round has grips (e.g. "pullup round 5 5 5 5") is ambiguous,
-  so ask rather than guess. A plain "3 sets of 10 pushups", with no "round" and
-  no "of each", stays untagged as before.
+How to read the table:
+
+- **One number sets the reps for every set. A list gives one set per number.**
+  A pushup round with no number defaults to 10. A pullup round has no default, so
+  ask.
+- **A lone number under 4 is probably an ordinal.** "pullup round 2" or "round
+  two" more likely means the second round than 2 reps a set, so ask. No set in
+  either round is that small.
+- **Grips named in the message win over the round order.** "pullup round 5 5 5,
+  regular then chin-up" is `null`, `chin-up`, `null`: the third set isn't
+  assumed to be `close`. "Diamond and wide pushups, 10 of each" is `diamond`,
+  `wide`, not the round. "N of each" falls back to the round only when no grips
+  are named. On movements with no round (curls, lateral raises), it maps onto
+  the grips the message names; if none are named, ask.
+- **Ask when the shape is unclear.** That covers more numbers than the round has
+  grips ("pullup round 5 5 5 5"), or "did 2 rounds" with no movement or count.
+  A wrong silent insert is worse than one question.
 
 **Then show a double check Lucas can ignore. Don't ask first.** Insert straight
-away. The readback spells out each set's tag on that exercise's line, followed
-by one short "say so to fix" prompt:
+away. After the exercise's normal readback line (step 5, slices and all), add
+one line that names this round's sets, followed by a short "say so to fix":
 
-> 🟠 Pushups: 50 / 100 · round logged as 10 regular · 10 tricep · 10 shoulder
-> (not right? say so)
+> 🟠 Pushups: 50 / 100 · 20 untagged · 20 tricep · 10 shoulder
+> ↳ round logged as 10 regular · 10 tricep · 10 shoulder (not right? say so)
 
-Silence means it's right. If he corrects it ("actually all regular", "that
-last one was diamond"), update those rows by the ids the insert returned. Don't
-re-insert, and don't touch any other set. Only round and "of each" logs get the
-check line. A plain untagged log reads back as before, with no added chatter.
+The check line describes only this round, which is why it can say "regular"
+while the day's slice says "untagged". Only round and "of each" logs get a check
+line. A plain untagged log reads back as before.
+
+**If he corrects it, update in place:**
+
+- **Silence means it's right.** A correction ("actually all regular", "the last
+  one was diamond") **updates** the round's rows. Don't re-insert, and don't touch
+  any other set.
+- **Target the rows by the ids the insert returned.** If those aren't in context
+  any more (a later round got in between, the context was summarized, or it's a
+  new session), find the round by exercise plus the exact shared `logged_at` of
+  its most recent insert. If more than one round could be meant, ask.
+- **Corrections go through the same canonicalization as inserts.** "Regular"
+  becomes `variant = null`, never a `regular` tag. "Triceps" and "chinup" become
+  the canonical tags from the table above. Lowercase and trim the rest.
 
 The step 1 override sends chin-ups to `pullups`, not the catalog's `chinups`
 row. The "don't confuse a variant with an exercise" rule below doesn't apply to
@@ -346,9 +368,11 @@ set 2 = `tricep` and set 3 = `shoulder`. 3-set pullup rounds since 2026-05-25
 got set 2 = `chin-up` and set 3 = `close`. Rounds that didn't fit stayed
 untagged even where they likely include named grips: other shapes, pullups
 before 2026-05-25, and two mixed-rep pullup rounds with no surviving transcript.
-Everything logged from 2026-11-20 on is tagged only when the grip is named. So a
-shift in the slices across that date is a logging change, not a training change.
-Say so if asked to compare across it.
+Everything logged from 2026-11-20 on is tagged only when the grip is named.
+Saying "round" counts as naming, and a bare "pushup round" also assumes 10 reps
+a set unless Lucas corrects it via the check line. So a shift in the slices
+across that date is a logging change, not a training change. Say so if asked to
+compare across it.
 
 The quick-log picker shows the curated `GRIP_OPTIONS` (in
 `components/training-facility/weight-room/QuickLog.tsx`) plus any grip already in
