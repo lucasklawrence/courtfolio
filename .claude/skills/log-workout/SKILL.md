@@ -176,6 +176,11 @@ writes to the wrong movement's history, which is far worse than one question.
 If **zero** rows match after all three passes, treat it as a new movement — see
 step 6; do not invent a near-duplicate key.
 
+**One override runs before the passes: chin-ups are `pullups`.** "Chin-ups",
+"chinups" and "chin ups" would hit the catalog's `chinups` row exactly at pass 1,
+but Lucas counts chin-up sets toward the single pullup ring. Resolve them to
+`pullups` with `variant = 'chin-up'` (see step 1c), and don't log to `chinups`.
+
 `daily_target` comes back **null for movements with no daily goal** — that's the
 normal state for every gym lift, not a problem. It's only used for the
 implausible-rep sanity check above, which simply doesn't apply when it's null.
@@ -263,23 +268,59 @@ stored spelling. If it's genuinely new, that's fine — just say so in the reply
 ("logged as a new variant: `sideways`") so a typo surfaces immediately instead
 of quietly becoming a fourth bucket.
 
-**Some descriptors mean "untagged", not a new variant.** On `dumbbell-curl` and
-`pushups`, "regular", "standard" and "normal" mean the standard form — a
-supinated curl, a standard-width pushup — which every untagged set of those
-movements already records. Leave `variant` **null** for them; never create a
-`regular` or `standard` tag. "10 hammer, 10 regular with 20 lb db" is two rows:
+**Some descriptors mean "untagged", not a new variant.** On `dumbbell-curl`,
+`pushups` and `pullups`, "regular", "standard" and "normal" mean the standard
+form — a supinated curl, a standard-width pushup, a standard-width overhand
+pullup. Leave `variant` **null** for them; never create a `regular` or
+`standard` tag. "10 hammer, 10 regular with 20 lb db" is two rows:
 `variant = 'hammer'` and `variant = null`. A new tag would split one form into
-two History View slices that don't line up with the existing untagged history.
+two History View slices.
 
-The named forms are tagged: `hammer` on curls, `tricep` and `shoulder` on
-pushups (a pushup round is usually regular → tricep → shoulder). **Tag only what
-is named** — a bare "3 sets of 10 pushups" stays untagged; don't infer the split.
+The named forms are tagged, and these spellings all map to the stored tag:
 
-Note the quick-log picker disagrees: `GRIP_OPTIONS` in
-`components/training-facility/weight-room/QuickLog.tsx` offers `standard` as an
-explicit pushup option, but no logged pushup set carries it. #396 (the variant
-registry) is where aliases like these should eventually live as data, and
-should settle that mismatch.
+| Movement | Tag | Also said as |
+|---|---|---|
+| `dumbbell-curl` | `hammer` | hammer curl |
+| `pushups` | `tricep` | triceps, tricep pushup |
+| `pushups` | `shoulder` | shoulder pushup |
+| `pullups` | `chin-up` | chin-ups, chinups, underhand (close grip, palms toward you) |
+| `pullups` | `close` | close grip, close-grip (close grip, overhand) |
+
+**This table wins over stored spellings.** If the `select distinct variant`
+check above turns up a stray `chinup` or `close-grip`, still write the canonical
+tag. Don't keep a split bucket alive just because it already exists.
+
+**Hand orientation decides between the two pullup tags.** "Close grip" alone
+means `close`, but any underhand cue ("underhand", "palms in", "chin-up")
+makes it `chin-up`, close grip or not.
+
+A pushup round is usually regular → tricep → shoulder; a pullup round is usually
+regular → chin-up → close. **Tag only what is named** — a bare "3 sets of 5
+pullups" stays untagged; don't infer the split. That holds inside a partly named
+round too: "5, 5, 5 — regular then chin-up" is `null`, `chin-up`, `null`. The
+third set isn't assumed to be `close`.
+
+The step 1 override sends chin-ups to `pullups`, not the catalog's `chinups`
+row. The "don't confuse a variant with an exercise" rule below doesn't apply to
+them.
+
+**Untagged history is not uniformly "standard".** On 2026-11-20, sets logged
+through 2026-11-19 were backfilled *by position*. Pushup 2×10 / 3×10 rounds got
+set 2 = `tricep` and set 3 = `shoulder`. 3-set pullup rounds since 2026-05-25
+got set 2 = `chin-up` and set 3 = `close`. Rounds that didn't fit stayed
+untagged even where they likely include named grips: other shapes, pullups
+before 2026-05-25, and two mixed-rep pullup rounds with no surviving transcript.
+Everything logged from 2026-11-20 on is tagged only when the grip is named. So a
+shift in the slices across that date is a logging change, not a training change.
+Say so if asked to compare across it.
+
+The quick-log picker shows the curated `GRIP_OPTIONS` (in
+`components/training-facility/weight-room/QuickLog.tsx`) plus any grip already in
+that exercise's history. So `tricep`, `shoulder` and `hammer` are one-tap picks
+now that they're logged. The one real mismatch is curated: the picker offers
+`standard` for pushups, which this skill never writes. #396 (the variant
+registry) is where aliases like these should eventually live as data, and should
+settle that.
 
 **A variant can differ per set within one message** — unlike load, which applies
 to every set. "lateral raises 3x10: forward, sideways, reverse" is three rows
