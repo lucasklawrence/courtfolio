@@ -263,6 +263,20 @@ stored spelling. If it's genuinely new, that's fine — just say so in the reply
 ("logged as a new variant: `sideways`") so a typo surfaces immediately instead
 of quietly becoming a fourth bucket.
 
+**Some descriptors mean "untagged", not a new variant.** For `dumbbell-curl`,
+"regular", "standard" and "normal" all mean the standard supinated curl — the
+grip every untagged curl set already records. Leave `variant` **null** for them;
+never create a `regular` or `standard` tag. "10 hammer, 10 regular with 20 lb db"
+is two rows: `variant = 'hammer'` and `variant = null`. A new tag would split one
+grip into two History View slices that don't line up with the existing untagged
+history.
+
+This is per exercise, not a global rule. `pushups` deliberately offers
+`standard` as an explicit option in the quick-log picker (`GRIP_OPTIONS` in
+`components/training-facility/weight-room/QuickLog.tsx`), so canonicalize a
+pushup "standard" against the stored variants as usual. #396 (the variant
+registry) is where aliases like these should eventually live as data.
+
 **A variant can differ per set within one message** — unlike load, which applies
 to every set. "lateral raises 3x10: forward, sideways, reverse" is three rows
 with three different variants. Read them positionally in that case; if the
