@@ -130,6 +130,32 @@ export async function listMessageIds(token, query) {
 }
 
 /**
+ * `Promise.all(items.map(fn))` with at most `limit` calls in flight, results
+ * in input order — for fetching many messages without one-at-a-time latency
+ * or an unbounded burst against the API quota. The first rejection rejects
+ * the whole call.
+ *
+ * @template T, R
+ * @param {T[]} items
+ * @param {number} limit Calls in flight at once (at least 1).
+ * @param {(item: T) => Promise<R>} fn
+ * @returns {Promise<R[]>}
+ */
+export async function mapLimit(items, limit, fn) {
+  const results = new Array(items.length)
+  let next = 0
+  const worker = async () => {
+    while (next < items.length) {
+      const i = next++
+      results[i] = await fn(items[i])
+    }
+  }
+  const workers = Math.min(Math.max(1, limit), items.length)
+  await Promise.all(Array.from({ length: workers }, worker))
+  return results
+}
+
+/**
  * A header's value from a Gmail payload, case-insensitively, or ''.
  *
  * @param {object} payload `message.payload` from a `format=full` GET.

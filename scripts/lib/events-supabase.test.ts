@@ -314,6 +314,11 @@ describe('planEventLinks', () => {
       confidence: 1,
     })
   })
+
+  it('stores a parsed count of zero as no count, which the column accepts', () => {
+    const plan = planEventLinks([item({ ticketCount: 0 }), item({ ticketCount: null })], [])
+    expect(plan.emails.map(e => e.row.ticket_count)).toEqual([null, null])
+  })
 })
 
 describe('zoneForState', () => {

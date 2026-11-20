@@ -336,7 +336,9 @@ function emailRow(item) {
     subject: item.subject,
     received_at: item.receivedAt.toISOString(),
     order_ref: p.orderRef,
-    ticket_count: p.ticketCount,
+    // The column only accepts a positive count; a parsed 0 ("0 Tickets") is
+    // no count at all, and must not fail the whole chunk's upsert.
+    ticket_count: p.ticketCount > 0 ? p.ticketCount : null,
     cost_total: p.costTotal,
     cost_currency: p.costCurrency,
     counterpart: p.counterpart,
