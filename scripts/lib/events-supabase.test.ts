@@ -204,6 +204,38 @@ describe('planEventLinks', () => {
     expect(late.emails[0].eventKey).toBeNull()
   })
 
+  it('leaves an after-the-event email about something else unmatched, even with one recent event', () => {
+    const game = {
+      id: 'e1',
+      match_key: '2026-03-14|v:examplearena',
+      title: 'Riverside Rockets at Harbor City Hawks',
+      venue: 'Example Arena',
+      city: 'Springfield',
+      state: 'CA',
+      starts_at: '2026-03-15T01:40:00.000Z',
+    }
+    const weekend = {
+      ...item({ kind: 'post_event', when: null, title: 'your weekend' }),
+      receivedAt: new Date('2026-03-16T18:00:00Z'),
+    }
+    expect(planEventLinks([weekend], [game]).emails[0].eventKey).toBeNull()
+  })
+
+  it('matches an after-the-event email to its event created earlier in the same batch', () => {
+    // Gmail lists newest first; the planner must still see the purchase first.
+    const howWas = {
+      ...item({ kind: 'post_event', when: null, title: 'Riverside Rockets at Harbor City Hawks' }),
+      receivedAt: new Date('2026-03-16T18:00:00Z'),
+    }
+    const purchase = item()
+    const plan = planEventLinks([howWas, purchase], [])
+    expect(plan.inserts).toHaveLength(1)
+    expect(plan.emails.map(e => e.eventKey)).toEqual([
+      '2026-03-14|v:examplearena',
+      '2026-03-14|v:examplearena',
+    ])
+  })
+
   it('joins a title-only email to the only event on its date when the titles share a word', () => {
     const stored = {
       id: 'e1',

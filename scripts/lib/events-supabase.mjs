@@ -250,8 +250,10 @@ function fillEmpty(ev, p) {
 
 /**
  * The event an after-the-event email is about: started within the few days
- * before the email arrived, matched by title, or the only candidate. Null
- * rather than a guess between several.
+ * before the email arrived, and matched by title, or the only candidate whose
+ * title could be the same outing. Null rather than a guess between several —
+ * and null for an email whose title names something else entirely ("How was
+ * your weekend?"), which would otherwise mark that week's only event attended.
  */
 function eventBefore(events, item) {
   const received = item.receivedAt.getTime()
@@ -262,7 +264,8 @@ function eventBefore(events, item) {
   const title = normalizeForMatch(item.parsed.title)
   const byTitle = title ? recent.filter(e => normalizeForMatch(e.title) === title) : []
   if (byTitle.length === 1) return byTitle[0]
-  return recent.length === 1 ? recent[0] : null
+  const plausible = recent.filter(e => titlesMayMatch(e.title, item.parsed.title))
+  return plausible.length === 1 ? plausible[0] : null
 }
 
 /** Words too common in event titles to say two titles name the same outing. */

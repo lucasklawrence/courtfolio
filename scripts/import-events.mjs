@@ -45,11 +45,12 @@ import { createServiceRoleClient, loadEnv, upsertEventEmails } from './lib/event
 
 const DEFAULT_LOOKBACK_DAYS = 14
 
-/** Emails fetched, parsed and written per chunk. */
-const CHUNK_SIZE = 200
-
-/** Gmail GETs in flight at once: well under the per-user quota, ~8× faster than one at a time. */
-const FETCH_CONCURRENCY = 8
+/**
+ * Gmail GETs in flight at once. Each full GET costs 5 of the 250 quota units
+ * a user gets per second, so 4 in flight stays under the limit at any
+ * plausible latency; gmailGet backs off if a burst still hits it.
+ */
+const FETCH_CONCURRENCY = 4
 
 async function main() {
   loadEnv()
@@ -64,60 +65,55 @@ async function main() {
     for (const id of found) ids.add(id)
   }
 
-  // A backfill can be thousands of emails, and one full GET at a time would
-  // outrun the job's timeout before anything was saved. So messages are
-  // fetched a few at a time and written a chunk at a time: a run cut short
-  // keeps what it finished, and the next run re-reads the rest (upsert by
-  // message id). Later chunks match against events earlier ones stored.
-  const supabase = dryRun ? null : createServiceRoleClient()
+  // Fetched a few at a time, so a backfill of a few thousand emails takes
+  // minutes rather than outrunning the job; each GET retries rate limits and
+  // server errors itself (gmailGet). Then every email is planned in ONE batch,
+  // oldest first, so an after-the-event email always sees the event its
+  // earlier purchase created.
   const allIds = [...ids]
+  let gone = 0
+  const messages = await mapLimit(allIds, FETCH_CONCURRENCY, id =>
+    gmailGet(`messages/${id}?format=full`, token).catch(err => {
+      if (err.status !== 404) throw err
+      gone += 1 // deleted between the list and the GET
+      return null
+    })
+  )
+  const items = []
   const byKind = {}
   let noHtml = 0
-  let parsedCount = 0
-  let lowConfidence = 0
-  const totals = { emails: 0, matched: 0, newEvents: 0, filledEvents: 0, needsReview: 0 }
-  for (let start = 0; start < allIds.length; start += CHUNK_SIZE) {
-    const chunk = allIds.slice(start, start + CHUNK_SIZE)
-    const messages = await mapLimit(chunk, FETCH_CONCURRENCY, id =>
-      gmailGet(`messages/${id}?format=full`, token)
-    )
-    const items = []
-    for (const [i, msg] of messages.entries()) {
-      const html = findHtmlPart(msg.payload)
-      if (!html) noHtml += 1
-      const receivedAt = new Date(Number(msg.internalDate))
-      const subject = headerValue(msg.payload, 'Subject')
-      const parsed = parseEventEmail({
-        from: headerValue(msg.payload, 'From'),
-        subject,
-        html: html ?? '',
-        receivedAt,
-      })
-      if (!parsed) continue // a sender outside PLATFORMS matched an extra clause; not ours
-      items.push({ messageId: chunk[i], subject, receivedAt, parsed })
-      const label = `${parsed.platform}/${parsed.kind}`
-      byKind[label] = (byKind[label] ?? 0) + 1
-    }
-    parsedCount += items.length
-    lowConfidence += items.filter(i => i.parsed.confidence < 0.7).length
-    if (supabase) {
-      const s = await upsertEventEmails(supabase, items)
-      for (const k of ['emails', 'matched', 'newEvents', 'filledEvents']) totals[k] += s[k]
-      totals.needsReview = s.needsReview
-    }
+  for (const [i, msg] of messages.entries()) {
+    if (!msg) continue
+    const html = findHtmlPart(msg.payload)
+    if (!html) noHtml += 1
+    const receivedAt = new Date(Number(msg.internalDate))
+    const subject = headerValue(msg.payload, 'Subject')
+    const parsed = parseEventEmail({
+      from: headerValue(msg.payload, 'From'),
+      subject,
+      html: html ?? '',
+      receivedAt,
+    })
+    if (!parsed) continue // a sender outside PLATFORMS matched an extra clause; not ours
+    items.push({ messageId: allIds[i], subject, receivedAt, parsed })
+    const label = `${parsed.platform}/${parsed.kind}`
+    byKind[label] = (byKind[label] ?? 0) + 1
   }
 
   for (const [label, n] of Object.entries(byKind).sort()) console.log(`    ${label}: ${n}`)
+  const lowConfidence = items.filter(i => i.parsed.confidence < 0.7).length
   if (noHtml) console.warn(`  ! ${noHtml} email(s) had no text/html part and parsed as empty`)
+  if (gone) console.warn(`  ! ${gone} email(s) were deleted before they could be read`)
 
   if (dryRun) {
     console.log(
-      `✓ dry run: parsed ${parsedCount} email(s), ${lowConfidence} below 0.7 confidence. Nothing written.`
+      `✓ dry run: parsed ${items.length} email(s), ${lowConfidence} below 0.7 confidence. Nothing written.`
     )
     return
   }
 
-  const summary = totals
+  const supabase = createServiceRoleClient()
+  const summary = await upsertEventEmails(supabase, items)
   console.log(
     `✓ events ingest: wrote ${summary.emails} email(s), ${summary.matched} matched to an event; ` +
       `${summary.newEvents} new event(s), ${summary.filledEvents} filled in. ` +

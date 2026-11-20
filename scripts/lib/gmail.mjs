@@ -66,24 +66,55 @@ export async function gmailAccessToken() {
   return json.access_token
 }
 
+/** Attempts per GET when Gmail answers with a rate limit or a server error. */
+const GET_ATTEMPTS = 5
+
+/**
+ * Whether a failed response is worth retrying: a rate limit (429, or the 403
+ * Gmail uses for `rateLimitExceeded` / `userRateLimitExceeded`) or a 5xx.
+ */
+function isTransient(status, body) {
+  return status === 429 || status >= 500 || (status === 403 && /rateLimitExceeded/i.test(body))
+}
+
 /**
  * GET a Gmail REST endpoint (path relative to `users/me/`) as JSON.
  *
+ * Rate limits and server errors are retried with exponential backoff
+ * (honouring `Retry-After`), up to {@link GET_ATTEMPTS} attempts, so a burst
+ * of concurrent fetches slows down instead of failing the run.
+ *
  * @param {string} pathAndQuery e.g. `messages/abc?format=full`.
  * @param {string} token Access token from {@link gmailAccessToken}.
- * @throws {Error} on a non-2xx response.
+ * @param {{ baseDelayMs?: number }} [opts] First backoff delay (default 1s).
+ * @throws {Error & { status: number }} on a non-2xx response that is not
+ *   transient, or still failing after the last attempt. `status` is the HTTP
+ *   status, so a caller can treat a 404 (message deleted) differently.
  */
-export async function gmailGet(pathAndQuery, token) {
-  const res = await fetchWithTimeout(
-    `https://gmail.googleapis.com/gmail/v1/users/me/${pathAndQuery}`,
-    {
-      headers: { Authorization: `Bearer ${token}` },
+export async function gmailGet(pathAndQuery, token, { baseDelayMs = 1000 } = {}) {
+  for (let attempt = 1; ; attempt++) {
+    const res = await fetchWithTimeout(
+      `https://gmail.googleapis.com/gmail/v1/users/me/${pathAndQuery}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+    if (res.ok) return res.json()
+    const body = await res.text()
+    if (attempt < GET_ATTEMPTS && isTransient(res.status, body)) {
+      const retryAfter = Number(res.headers.get('retry-after'))
+      // Retry-After is honoured up to a minute, so one odd header can't stall the job.
+      const delay =
+        Number.isFinite(retryAfter) && retryAfter > 0
+          ? Math.min(retryAfter, 60) * 1000
+          : baseDelayMs * 2 ** (attempt - 1)
+      await new Promise(r => setTimeout(r, delay))
+      continue
     }
-  )
-  if (!res.ok) {
-    throw new Error(`Gmail GET ${pathAndQuery} failed: ${res.status} ${await res.text()}`)
+    throw Object.assign(new Error(`Gmail GET ${pathAndQuery} failed: ${res.status} ${body}`), {
+      status: res.status,
+    })
   }
-  return res.json()
 }
 
 /** Decode a Gmail base64url message-part body to a UTF-8 string. */
