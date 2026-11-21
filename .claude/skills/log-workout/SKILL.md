@@ -1,6 +1,6 @@
 ---
 name: log-workout
-description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, lateral raises, lunges, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x20 squats" (bodyweight), "3x10 shrugs at 100lb" (weighted), "shrugs 15 db - 25 reps" (dumbbell, load-first), "3x10 lateral raises forward" / "wide pullups 3x5" / "10 diamond pushups" (movement variant), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets plus any per-set load and variant, writes them to Supabase, and reports today's totals against the daily goals.
+description: Log Lucas's strength sets (pushups, pullups, weighted shrugs, lateral raises, lunges, etc.) to the Court Vision Weight Room. Use when the user reports having done sets/reps in natural language — e.g. "3 sets of 10 pushups", "did 25 pushups", "1x5 pullups", "3x20 squats" (bodyweight), "3x10 shrugs at 100lb" (weighted), "shrugs 15 db - 25 reps" (dumbbell, load-first), "3x10 lateral raises forward" / "wide pullups 3x5" / "10 diamond pushups" (movement variant), "pushup round" / "pullup round 6 5 6" (round shorthand), "another 3x10 pushups", "logged 12 dips yesterday". Parses the sets plus any per-set load and variant, writes them to Supabase, and reports today's totals against the daily goals.
 ---
 
 # Log Workout
@@ -20,6 +20,8 @@ The user casually reports completed bodyweight work. Triggers look like:
 - "3x10 shrugs at 100lb" / "25 shrugs @ 95 lbs" (weighted — see step 1b)
 - "shrugs 15 db - 25 reps" / "15 db 25 reps" (dumbbell notation, load-first — see step 1b)
 - "logged 12 dips this morning" / "20 pushups yesterday" (back-dating — see step 3)
+- "pushup round" / "pullup round 6 5 6" / "2 sets of 10 pushups, 10 of each"
+  (round shorthand: each set gets its grip tag — see step 1c)
 
 Plus the **workout-session** phrasings (#378 — see step 1d and steps 7–9):
 
@@ -94,7 +96,8 @@ Turn the message into a flat list of `{exercise, reps}` rows:
 - "1x5 pullups" → 1 row of `{pullups, 5}`
 
 If reps or count are ambiguous, ask one quick clarifying question rather than
-guessing.
+guessing. The one deliberate exception is a bare "pushup round", which defaults
+to 10 a set (see the round shorthand in step 1c).
 
 **Sanity-check the rep count before writing.** The DB CHECK (`reps > 0`) only
 rejects non-positive numbers — a fat-finger like `100` for `10`, or `15` for
@@ -294,11 +297,99 @@ tag. Don't keep a split bucket alive just because it already exists.
 means `close`, but any underhand cue ("underhand", "palms in", "chin-up")
 makes it `chin-up`, close grip or not.
 
-A pushup round is usually regular → tricep → shoulder; a pullup round is usually
-regular → chin-up → close. **Tag only what is named** — a bare "3 sets of 5
-pullups" stays untagged; don't infer the split. That holds inside a partly named
-round too: "5, 5, 5 — regular then chin-up" is `null`, `chin-up`, `null`. The
-third set isn't assumed to be `close`.
+**Rounds are the default for Lucas's usual shapes.** He confirmed on
+2026-11-20 that these logs are rounds even when no grip is named:
+
+- **Pushup round:** regular → tricep → shoulder
+- **Pullup round:** regular → chin-up → close
+
+| Plain log | Logs as |
+|---|---|
+| "2 sets of 10 pushups" | 10 regular · 10 tricep |
+| "3 sets of 10 pushups" | 10 regular · 10 tricep · 10 shoulder |
+| "3 sets of 5 pullups" (any 3 pullup sets, incl. "pull ups 6 5 6") | 5 regular · 5 chin-up · 5 close |
+
+**Every other shape stays untagged**: a single set, 4+ sets, pushups at other rep
+counts ("3 sets of 12"), 2 pullup sets, and every other movement. These are the
+same shapes the 2026-11-20 history backfill tagged, so the rule reads the same
+across that date.
+
+**Round shorthand names the split explicitly**, for any rep count. On `pushups`
+or `pullups`, saying *round*, or "N of each" about **that one movement** with no
+grips named, means the round order. "Pushups and pullups, 10 of each" names two
+movements, so it's one untagged set of each, not a round.
+
+| Says | Logs (in order) |
+|---|---|
+| "pushup round" | 10 regular · 10 tricep · 10 shoulder |
+| "pushup round 12" | 12 regular · 12 tricep · 12 shoulder |
+| "pushup round 10 10" | 10 regular · 10 tricep |
+| "2 sets of 10 pushups, 10 of each" | 10 regular · 10 tricep |
+| "pullup round 5" | 5 regular · 5 chin-up · 5 close |
+| "pullup round 6 5 6" | 6 regular · 5 chin-up · 6 close |
+| "2 pushup rounds" / "pushup round x2" | the full pushup round, twice (6 sets) |
+| "pushup round 12 x2" | two rounds of 12 a set |
+
+How to read the table:
+
+- **One number sets the reps for every set. A list gives one set per number.**
+  A pushup round with no number defaults to 10. That default is a deliberate
+  exception to step 1's "ask if reps are ambiguous"; the check line is what
+  catches a wrong guess. A pullup round has no default, so ask.
+- **"xN" or "N rounds" is how many rounds. A lone small number is probably an
+  ordinal.** "pullup round 2" or "round two" more likely means the second round
+  than 2 reps a set. Ask about any lone number under 4, or any small trailing
+  number without an "x" ("pullup round 5 2"). One question costs less than a
+  silent mis-log.
+- **Grips named in the message win, position by position. The round fills in
+  the rest**, whether the round came from the default shapes or from the word
+  "round". "Pullup round 5 5 5, but the last was wide" is `null`, `chin-up`,
+  `wide`. "3 sets of 5 pullups, all regular" is three untagged sets. "Diamond and wide pushups, 10 of each" is `diamond`, `wide`, not the
+  round. On movements with no round (curls, lateral raises), "N of each" maps
+  onto the grips the message names; if none are named, ask.
+- **Ask when the shape is unclear.** That covers more numbers than the round has
+  grips ("pullup round 5 5 5 5"), or "did 2 rounds" with no movement or count.
+  A wrong silent insert is worse than one question.
+- **Insert each round in its own statement.** That gives the round its own
+  `logged_at`, which the correction fallback below relies on. Don't batch a
+  round together with plain sets or another round in one insert.
+
+**Then show a double check Lucas can ignore. Don't ask first.** Insert straight
+away. After the exercise's normal readback line (step 5, slices and all), add
+one line that names this round's sets, followed by a short "say so to fix":
+
+> 🟠 Pushups: 50 / 100 · 20 tricep · 10 shoulder · 20 untagged
+> ↳ round logged as 10 regular · 10 tricep · 10 shoulder (not right? say so)
+
+Build the check line from the `variant` values the insert **returned**, not from
+the parsed intent, so a mis-tag shows up in the line meant to catch it. The
+workout-attached insert in step 5 returns `variant` for this reason. The check
+line describes only this round, which is why it can say "regular" while the
+day's slice says "untagged". Every log that gets round tags gets a check line:
+the default shapes, the word "round", and "of each". That way an auto-tagged
+round is always visible and one word away from a fix. A log that stays untagged
+reads back as before.
+
+**If he corrects it, update in place:**
+
+- **Silence means it's right.** A correction **updates** the round's rows.
+  Don't re-insert, and don't touch any other set.
+- **Grip corrections** ("actually all regular", "the last one was diamond")
+  update `variant`.
+- **Rep corrections** ("it was 12s") update `reps`.
+- **Set-count corrections** ("only did two") delete the extra set. Deleting is
+  fine here: he's explicitly fixing a mistake (step 4). Delete from the end of
+  the round, and say which one.
+- **Target the rows by the ids the insert returned.** If those aren't in context
+  any more (a later round got in between, the context was summarized, or it's a
+  new session), find the round by exercise plus its own `logged_at`, which each
+  round has because it was inserted alone. Check that the matched row count
+  equals the round's set count. If it doesn't, or if more than one round could
+  be meant, ask.
+- **Corrections go through the full step 1c canonicalization**, the same as
+  inserts: the alias table, hand orientation, and the stored-variant check.
+  "Regular" becomes `variant = null`, never a `regular` tag. "Close-grip
+  underhand" becomes `chin-up`. A genuinely new grip gets announced as new.
 
 The step 1 override sends chin-ups to `pullups`, not the catalog's `chinups`
 row. The "don't confuse a variant with an exercise" rule below doesn't apply to
@@ -310,9 +401,12 @@ set 2 = `tricep` and set 3 = `shoulder`. 3-set pullup rounds since 2026-05-25
 got set 2 = `chin-up` and set 3 = `close`. Rounds that didn't fit stayed
 untagged even where they likely include named grips: other shapes, pullups
 before 2026-05-25, and two mixed-rep pullup rounds with no surviving transcript.
-Everything logged from 2026-11-20 on is tagged only when the grip is named. So a
-shift in the slices across that date is a logging change, not a training change.
-Say so if asked to compare across it.
+From 2026-11-20 on, logs are tagged by the round defaults above, which are
+the same shapes the backfill used, plus any grips named in the message. A bare
+"pushup round" also assumes 10 reps a set unless Lucas corrects it via the check
+line. The rule is consistent across the date, but the backfill skipped rounds
+that didn't fit, so older untagged history is noisier. Say so if asked to compare
+slices across it.
 
 The quick-log picker shows the curated `GRIP_OPTIONS` (in
 `components/training-facility/weight-room/QuickLog.tsx`) plus any grip already in
@@ -483,7 +577,7 @@ from base, open,
     (1, 'barbell-bench-press', 5, 185, null),
     (2, 'dips', 12, null, null)
   ) as v(ord, exercise, reps, weight_lbs, variant)
-returning id, exercise, reps, weight_lbs, position;
+returning id, exercise, reps, weight_lbs, variant, position;
 
 -- <OFFSET> = the offset from step 2, e.g. -07:00 (PDT) or -08:00 (PST).
 -- top_set_lbs / tonnage_lbs come back null for bodyweight exercises (every
