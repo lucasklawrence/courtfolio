@@ -297,18 +297,27 @@ tag. Don't keep a split bucket alive just because it already exists.
 means `close`, but any underhand cue ("underhand", "palms in", "chin-up")
 makes it `chin-up`, close grip or not.
 
-**Tag only what is named** — a bare "3 sets of 5 pullups" stays untagged; don't
-infer the split from the usual round order (below). That holds for a partly named
-plain log too: "5, 5, 5 — regular then chin-up" (no "round") is `null`,
-`chin-up`, `null`.
-
-**Round shorthand names the whole split at once.** On `pushups` or `pullups`,
-saying *round*, or "N of each" about **that one movement** with no grips named,
-is Lucas naming the grips in the round order. "Pushups and pullups, 10 of each"
-names two movements, so it's one untagged set of each, not a round.
+**Rounds are the default for Lucas's usual shapes.** He confirmed on
+2026-11-20 that these logs are rounds even when no grip is named:
 
 - **Pushup round:** regular → tricep → shoulder
 - **Pullup round:** regular → chin-up → close
+
+| Plain log | Logs as |
+|---|---|
+| "2 sets of 10 pushups" | 10 regular · 10 tricep |
+| "3 sets of 10 pushups" | 10 regular · 10 tricep · 10 shoulder |
+| "3 sets of 5 pullups" (any 3 pullup sets, incl. "pull ups 6 5 6") | 5 regular · 5 chin-up · 5 close |
+
+**Every other shape stays untagged**: a single set, 4+ sets, pushups at other rep
+counts ("3 sets of 12"), 2 pullup sets, and every other movement. These are the
+same shapes the 2026-11-20 history backfill tagged, so the rule reads the same
+across that date.
+
+**Round shorthand names the split explicitly**, for any rep count. On `pushups`
+or `pullups`, saying *round*, or "N of each" about **that one movement** with no
+grips named, means the round order. "Pushups and pullups, 10 of each" names two
+movements, so it's one untagged set of each, not a round.
 
 | Says | Logs (in order) |
 |---|---|
@@ -332,9 +341,10 @@ How to read the table:
   than 2 reps a set. Ask about any lone number under 4, or any small trailing
   number without an "x" ("pullup round 5 2"). One question costs less than a
   silent mis-log.
-- **Grips named in the message win, position by position. "Round" fills in the
-  rest.** "Pullup round 5 5 5, but the last was wide" is `null`, `chin-up`,
-  `wide`. "Diamond and wide pushups, 10 of each" is `diamond`, `wide`, not the
+- **Grips named in the message win, position by position. The round fills in
+  the rest**, whether the round came from the default shapes or from the word
+  "round". "Pullup round 5 5 5, but the last was wide" is `null`, `chin-up`,
+  `wide`. "3 sets of 5 pullups, all regular" is three untagged sets. "Diamond and wide pushups, 10 of each" is `diamond`, `wide`, not the
   round. On movements with no round (curls, lateral raises), "N of each" maps
   onto the grips the message names; if none are named, ask.
 - **Ask when the shape is unclear.** That covers more numbers than the round has
@@ -355,8 +365,10 @@ Build the check line from the `variant` values the insert **returned**, not from
 the parsed intent, so a mis-tag shows up in the line meant to catch it. The
 workout-attached insert in step 5 returns `variant` for this reason. The check
 line describes only this round, which is why it can say "regular" while the
-day's slice says "untagged". Only round and "of each" logs get a check line. A
-plain untagged log reads back as before.
+day's slice says "untagged". Every log that gets round tags gets a check line:
+the default shapes, the word "round", and "of each". That way an auto-tagged
+round is always visible and one word away from a fix. A log that stays untagged
+reads back as before.
 
 **If he corrects it, update in place:**
 
@@ -389,12 +401,12 @@ set 2 = `tricep` and set 3 = `shoulder`. 3-set pullup rounds since 2026-05-25
 got set 2 = `chin-up` and set 3 = `close`. Rounds that didn't fit stayed
 untagged even where they likely include named grips: other shapes, pullups
 before 2026-05-25, and two mixed-rep pullup rounds with no surviving transcript.
-Everything logged from 2026-11-20 on is tagged only when the grip is named.
-Saying "round", or "N of each" about one movement, counts as naming. A bare
+From 2026-11-20 on, logs are tagged by the round defaults above, which are
+the same shapes the backfill used, plus any grips named in the message. A bare
 "pushup round" also assumes 10 reps a set unless Lucas corrects it via the check
-line. So a shift in the slices
-across that date is a logging change, not a training change. Say so if asked to
-compare across it.
+line. The rule is consistent across the date, but the backfill skipped rounds
+that didn't fit, so older untagged history is noisier. Say so if asked to compare
+slices across it.
 
 The quick-log picker shows the curated `GRIP_OPTIONS` (in
 `components/training-facility/weight-room/QuickLog.tsx`) plus any grip already in
