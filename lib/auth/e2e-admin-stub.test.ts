@@ -13,7 +13,7 @@ import { requireAdmin } from './require-admin'
 import { requireAdminPage } from './require-admin-page'
 
 /**
- * The e2e admin stub is security-sensitive (#481): it grants the admin session
+ * The e2e admin stub is security-sensitive: it grants the admin session
  * without credentials. These pin that it fails closed, and in particular that
  * it is inert in the state every deployed server runs in, `NODE_ENV=production`,
  * even with every other condition deliberately met.

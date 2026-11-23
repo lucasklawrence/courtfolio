@@ -1,7 +1,7 @@
 import { expect, type BrowserContext, type Page } from '@playwright/test'
 
 /**
- * Shared setup for the admin e2e specs (#481).
+ * Shared setup for the admin e2e specs.
  *
  * The admin server (`npm run e2e:dev:admin`) runs with the e2e admin stub on
  * and every Supabase client pointed at the in-memory fake

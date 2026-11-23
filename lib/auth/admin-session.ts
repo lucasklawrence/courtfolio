@@ -40,7 +40,7 @@ export interface AdminSessionState {
  * An auth lookup error is normalized to signed-out rather than thrown: a
  * missing or expired cookie is an ordinary state, not a failure.
  *
- * Checked first: the e2e admin stub (#481), which can only be active on a
+ * Checked first: the e2e admin stub, which can only be active on a
  * non-production server pointed at a loopback Supabase fake. See
  * {@link import('./e2e-admin-stub').isE2eAdminStubActive}.
  *

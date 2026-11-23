@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 import { signInAsE2eAdmin } from './helpers/admin'
 
 /**
- * The e2e admin stub's cookie does nothing on its own (#481).
+ * The e2e admin stub's cookie does nothing on its own.
  *
  * Runs in `training-facility-enabled` against the 3008 server, which has the
  * Weight Room on but neither `E2E_ADMIN_STUB` nor a loopback Supabase URL. A
