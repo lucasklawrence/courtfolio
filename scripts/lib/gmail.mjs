@@ -117,6 +117,57 @@ export async function gmailGet(pathAndQuery, token, { baseDelayMs = 1000 } = {})
   }
 }
 
+/**
+ * A Gmail client whose access token is renewed when it expires mid-run.
+ * @typedef {Object} GmailSession
+ * @property {string} token The current access token.
+ * @property {(pathAndQuery: string, opts?: { baseDelayMs?: number }) => Promise<any>} get
+ *   {@link gmailGet} with the current token; a 401 renews the token once and
+ *   retries the call once.
+ */
+
+/**
+ * Wrap an access token so a long run outlives it. Access tokens last about an
+ * hour, so a local backfill fetching thousands of messages would otherwise
+ * fail partway with 401. Concurrent calls that hit the expiry together share
+ * one renewal.
+ *
+ * @param {string} initialToken From {@link gmailAccessToken}.
+ * @param {() => Promise<string>} [refresh] Fetches a new token (default
+ *   {@link gmailAccessToken}).
+ * @returns {GmailSession}
+ */
+export function gmailSession(initialToken, refresh = gmailAccessToken) {
+  let token = initialToken
+  let pending = null
+  const renew = stale => {
+    if (token !== stale) return Promise.resolve(token) // another call already renewed it
+    pending ??= refresh()
+      .then(t => {
+        token = t
+        return t
+      })
+      .finally(() => {
+        pending = null
+      })
+    return pending
+  }
+  return {
+    get token() {
+      return token
+    },
+    async get(pathAndQuery, opts) {
+      const used = token
+      try {
+        return await gmailGet(pathAndQuery, used, opts)
+      } catch (err) {
+        if (err?.status !== 401) throw err
+        return gmailGet(pathAndQuery, await renew(used), opts)
+      }
+    },
+  }
+}
+
 /** Decode a Gmail base64url message-part body to a UTF-8 string. */
 export function decodeBase64Url(data) {
   return Buffer.from(data.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8')
