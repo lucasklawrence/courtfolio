@@ -34,6 +34,7 @@ const eslintConfig = [
       '.next/**',
       '.next-e2e-default/**',
       '.next-e2e-training-facility/**',
+      '.next-e2e-admin/**',
       'coverage/**',
       '.claude/**',
     ],

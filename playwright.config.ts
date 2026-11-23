@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 
+import { ADMIN_BASE_URL, FAKE_SUPABASE_URL } from './e2e/helpers/admin-constants'
+
 /** Base URL for the default route smoke-test project. */
 const DEFAULT_BASE_URL = 'http://127.0.0.1:3007'
 
@@ -42,7 +44,7 @@ export default defineConfig({
     {
       name: 'training-facility-enabled',
       testMatch:
-        /(?:training-facility-enabled|draft-room-enabled|draft-room-live|chart-overflow|heatmap-span|heatmap-details|hydration|touch-targets|workout-filters|template-detail|eras|weight-room-today)\.spec\.ts/,
+        /(?:training-facility-enabled|draft-room-enabled|draft-room-live|chart-overflow|heatmap-span|heatmap-details|hydration|touch-targets|workout-filters|template-detail|eras|weight-room-today|admin-stub-off)\.spec\.ts/,
       use: {
         baseURL: TRAINING_FACILITY_BASE_URL,
       },
@@ -60,7 +62,7 @@ export default defineConfig({
       // about rendering or real touch input.
       name: 'mobile-webkit',
       testMatch:
-        /(?:svg-fragments|chart-overflow|heatmap-details|hydration|touch-targets|eras|mobile-routes|weight-room-today)\.spec\.ts/,
+        /(?:svg-fragments|chart-overflow|heatmap-details|hydration|touch-targets|eras|mobile-routes|weight-room-today|admin-log-mobile|admin-settings-mobile)\.spec\.ts/,
       use: {
         ...devices['iPhone 14'],
         // `browserName` must be set explicitly, *after* the device spread.
@@ -87,6 +89,24 @@ export default defineConfig({
     {
       command: 'npm run e2e:dev:training-facility',
       url: TRAINING_FACILITY_BASE_URL,
+      timeout: 180_000,
+      reuseExistingServer: !IS_CI,
+      stdout: 'pipe',
+      stderr: 'pipe',
+    },
+    {
+      // Throwaway Supabase for the admin specs (#481). No dependencies, starts
+      // in well under a second; the admin server below reads and writes it.
+      command: 'node e2e/fake-supabase/server.mjs',
+      url: `${FAKE_SUPABASE_URL}/__health`,
+      timeout: 30_000,
+      reuseExistingServer: !IS_CI,
+      stdout: 'pipe',
+      stderr: 'pipe',
+    },
+    {
+      command: 'npm run e2e:dev:admin',
+      url: ADMIN_BASE_URL,
       timeout: 180_000,
       reuseExistingServer: !IS_CI,
       stdout: 'pipe',
