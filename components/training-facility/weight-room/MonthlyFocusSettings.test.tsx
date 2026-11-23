@@ -58,7 +58,12 @@ const PAST: MonthlyFocus = {
 
 const EXERCISES: WeightRoomExercise[] = [
   { slug: 'pushups', display_name: 'Pushups', equipment: 'bodyweight', muscle_group: 'chest' },
-  { slug: 'goblet-squat', display_name: 'Goblet Squat', equipment: 'dumbbell', muscle_group: 'legs' },
+  {
+    slug: 'goblet-squat',
+    display_name: 'Goblet Squat',
+    equipment: 'dumbbell',
+    muscle_group: 'legs',
+  },
 ] as WeightRoomExercise[]
 
 function section(name: RegExp): HTMLElement {
@@ -256,9 +261,7 @@ describe('MonthlyFocusSettings', () => {
   })
 
   it('shows a load error rather than empty lists when the server read failed', () => {
-    render(
-      <MonthlyFocusSettings initialFocuses={[]} exercises={EXERCISES} now={NOW} loadFailed />
-    )
+    render(<MonthlyFocusSettings initialFocuses={[]} exercises={EXERCISES} now={NOW} loadFailed />)
     expect(screen.getByRole('status')).toHaveTextContent(/couldn.t load the current focuses/i)
     expect(screen.queryByText(/nothing queued/i)).not.toBeInTheDocument()
   })
