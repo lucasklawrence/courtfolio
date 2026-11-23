@@ -91,18 +91,17 @@ describe('heatmapWindow', () => {
     expect(dateFrom?.toISOString().slice(0, 10)).toBe('2022-03-03')
   })
 
-  it('tightens the cell in proportion to the widened grid', () => {
+  it('keeps archived days as selectable as trailing-year days', () => {
     const { cellSize, cellGap } = heatmapWindow('all', [loggedOn('2022-03-03')], undefined, NOW)
-    expect(cellSize).toBeLessThan(14)
-    expect(cellGap).toBe(1)
+    expect(cellSize).toBe(14)
+    expect(cellGap).toBe(2)
   })
 
-  it('keeps four years of columns within a couple of screens of panning', () => {
-    // Not a fit — the content column is ~900px and four years cannot fit it at
-    // any legible size. The budget is how far you have to pan.
+  it('allows a longer scroll instead of shrinking four years of tap targets', () => {
     const { dateFrom, cellSize } = heatmapWindow('all', [loggedOn('2022-08-23')], undefined, NOW)
     const cols = Math.ceil((NOW.getTime() - (dateFrom?.getTime() ?? 0)) / (7 * 86_400_000))
-    expect(cols * cellSize).toBeLessThan(2 * 900)
+    expect(cols * cellSize).toBeGreaterThan(2 * 900)
+    expect(cellSize).toBe(14)
   })
 
   it('never renders all-time smaller than the default it replaces', () => {
@@ -131,6 +130,6 @@ describe('heatmapWindow', () => {
     // column cap in buildStrengthHeatmap handles the width, this handles the
     // cell.
     const { cellSize } = heatmapWindow('all', [loggedOn('1970-01-05')], undefined, NOW)
-    expect(cellSize).toBeGreaterThanOrEqual(6)
+    expect(cellSize).toBeGreaterThanOrEqual(14)
   })
 })

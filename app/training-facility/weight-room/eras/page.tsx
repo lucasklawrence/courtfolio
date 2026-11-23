@@ -92,7 +92,7 @@ export default async function WeightRoomErasPage({
                 read is empty again and the demo vanishes mid-tour. */}
             <Link
               href={isPreviewMode ? `${HISTORY_ROUTE}?preview=demo` : HISTORY_ROUTE}
-              className="underline-offset-4 hover:underline"
+              className="touch-target underline-offset-4 hover:underline"
             >
               History
             </Link>
