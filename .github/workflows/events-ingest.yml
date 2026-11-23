@@ -57,3 +57,40 @@ jobs:
           EVENTS_LOOKBACK_DAYS: ${{ inputs.lookback_days }}
           DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
         run: npm run import-events -- $DRY_RUN
+
+      # Heartbeat (#456), last so a row means the whole job succeeded. Skipped
+      # on a dry run, which writes nothing and shouldn't look like a real one.
+      - name: Record the heartbeat
+        if: ${{ !inputs.dry_run }}
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/record-ingest-run.mjs events-ingest
+
+  # Delivery, not detection (#456): the ingest's own gates turn bad data into a
+  # red job, and this makes a red job reach a human as an issue in the tracker.
+  # A separate job so `issues: write` and `actions: read` never sit next to the
+  # production credentials above. `always()` so it also runs after a success,
+  # to close an open alert as recovered.
+  alert:
+    needs: ingest
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+      actions: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Report the result
+        uses: ./.github/actions/ingest-alert
+        with:
+          job: events-ingest
+          result: ${{ needs.ingest.result }}
+          token: ${{ github.token }}
