@@ -263,6 +263,60 @@ The calendar source is a local `.ics` file, so this is a manual run against an e
 
 Unlike `import-otbeat`, this run does **not** exit non-zero for sessions missing a `class_format` — legitimate drop-ins would keep it permanently red, which just trains everyone to ignore it. `findBookingFeedSilence` (sessions arriving with zero bookings in the same window — the revoked-app-password signature) is built and unit-tested but deliberately unwired until Phase B gives it a producer that makes it meaningful.
 
+## `import-events`
+
+Pulls ticket emails from Gmail (Gametime, Ticketmaster, Eventbrite) and stores
+them as events in Supabase (#502). Same Gmail credentials and skeleton as
+`import-otbeat`: an incremental pull over a lookback window, upsert-only, never
+prunes, idempotent.
+
+```
+npm run import-events               # last 14 days
+npm run import-events -- --dry-run  # parse and report, write nothing
+EVENTS_LOOKBACK_DAYS=<days> npm run import-events   # one-time backfill to your oldest ticket email
+```
+
+### How emails become events
+
+Each email is a row in `event_emails` (keyed by Gmail message id) and points at
+one row in `events`. Emails find their event by **local date + venue**, never by
+title: the same game is "Rockets @ Hawks" on a reseller and "Hawks vs. Rockets"
+on Ticketmaster, and resellers deliver venue-restricted tickets as Ticketmaster
+transfers, so one outing routinely produces emails on two platforms.
+
+Status (`upcoming`, `likely_attended`, `attended`, `transferred_away`), how the
+tickets were acquired, the ticket count and the cost are **derived when read**
+in the `events_with_status` view, so nothing goes stale between runs. To correct
+an event, set keys in `events.manual_override` (`title`, `category`,
+`subcategory`, `status`, `acquired_via`, `ticket_count`, `cost_total`); the
+importer never writes that column.
+
+### Review list
+
+Emails that couldn't be matched to an event, or were read with confidence below
+0.7, are listed in the `event_emails_review` view. The run log reports only the
+count.
+
+### Scheduled run (GitHub Action)
+
+`.github/workflows/events-ingest.yml` runs daily at 07:30 UTC. Trigger it by
+hand for the backfill (`lookback_days`) or a `dry_run`. It uses the same
+`GMAIL_*` and Supabase secrets as the OTbeat ingest.
+
+### Privacy
+
+The tables and views are **service-role only**: RLS is on with no policies and
+anon/authenticated grants are revoked, because event history, the people
+tickets went to, and what was paid are private. The Actions log is public, so
+the importer prints **counts only** — never titles, venues, names or amounts.
+Test fixtures are synthetic for the same reason.
+
+### Wrapped
+
+`wrapped_events_summary(p_year, p_as_of)` returns the year's attended events by
+category, top venue, cities, busiest month, free-ticket rate and cost figures
+for life's Wrapped builder. Service role only.
+
 ## `migrations:check`
 
 `npm run migrations:check`
