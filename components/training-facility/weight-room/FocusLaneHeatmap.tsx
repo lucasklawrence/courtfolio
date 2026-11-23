@@ -76,7 +76,7 @@ const DAY_MS = 86_400_000
 
 /**
  * Convert a `Date` to a `YYYY-MM-DD` key using local-time components.
- * Private — callers outside this file use `toLocalDateKey` from
+ * Private — callers outside this file use `toDayKey` from
  * `strength-today`. Kept here so the component has no runtime import from
  * the lib layer (the cells already carry `dayKey`).
  */

@@ -7,6 +7,7 @@ import { WeightRoomScene } from '@/components/training-facility/scenes/WeightRoo
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
 import { TodayProgressPanel } from '@/components/training-facility/weight-room/TodayProgressPanel'
+import { TodayRollover } from '@/components/training-facility/weight-room/TodayRollover'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { isAdminRequest } from '@/lib/auth/admin-session'
 import { buildWeightRoomDemoData } from '@/constants/weight-room-demo-fixture'
@@ -14,6 +15,30 @@ import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
 import { buildTodayBoard } from '@/lib/training-facility/today-board'
+import { PACIFIC_CLOCK } from '@/lib/training-facility/clock'
+import type { WeightRoomData } from '@/types/weight-room'
+
+/** The Today page's dataset read, keeping a failure apart from an empty log. */
+interface TodayRead {
+  /** The dataset; `null` when the tables are empty or the read failed. */
+  data: WeightRoomData | null
+  /** `true` when the read threw, so `data === null` says nothing about the log. */
+  failed: boolean
+}
+
+/**
+ * Read the Weight Room dataset without letting a failure pass for an empty log.
+ * A Supabase blip would otherwise invite the visitor to "preview sample data"
+ * because nothing is logged yet, which isn't true.
+ */
+async function readTodayData(): Promise<TodayRead> {
+  try {
+    return { data: await getWeightRoomDataServer(), failed: false }
+  } catch (err) {
+    console.error('[weight-room] Today read failed', err)
+    return { data: null, failed: true }
+  }
+}
 
 /** Search-params shape Next.js passes to a server-rendered page. */
 interface PageProps {
@@ -43,7 +68,12 @@ interface PageProps {
  * {@link buildWeightRoomDemoData} so the rings still show progress for
  * portfolio reviewers / fresh-clone dev environments. Without the
  * param, the empty state surfaces a floating "Preview with sample data"
- * CTA over the scene.
+ * CTA over the scene. A failed read is told apart from an empty one: it gets a
+ * "couldn't load" notice (still offering the sample data) instead of the claim
+ * that nothing has been logged.
+ *
+ * {@link TodayRollover} keeps an open tab on the current Pacific day, since the
+ * board is computed here on the server.
  */
 export default async function TrainingFacilityWeightRoomPage({
   searchParams,
@@ -52,20 +82,26 @@ export default async function TrainingFacilityWeightRoomPage({
 
   // `isAdmin` is resolved here rather than by the sub-nav so this page ships
   // no browser Supabase client — see WeightRoomSubNavProps.isAdmin (#345).
-  const [realData, isAdmin] = await Promise.all([
-    getWeightRoomDataServer().catch(() => null),
+  const [read, isAdmin] = await Promise.all([
+    readTodayData(),
     isAdminRequest().catch(() => false),
   ])
+  const realData = read.data
   const params = await searchParams
   const previewRequested = isPreviewDemoActive(params.preview)
+  // A failed read still allows the sample data on request: the badge says it's
+  // illustrative, and the preview is the only way to see the wall when the
+  // database is out of reach (the e2e job has no credentials at all).
   const realIsEmpty = realData === null || realData.sets.length === 0
   const isPreviewMode = realIsEmpty && previewRequested
-  const showEmptyStateCta = realIsEmpty && !previewRequested
+  const showEmptyStateCta = realIsEmpty && !previewRequested && !read.failed
+  const showLoadError = read.failed && !previewRequested
   const data = isPreviewMode ? buildWeightRoomDemoData() : realData
   // Computed here so the browser receives these rows and not the whole set
   // history. Day keys are Pacific wherever this runs, so there is no viewer
   // clock to wait for.
-  const board = buildTodayBoard(data, new Date())
+  const now = new Date()
+  const board = buildTodayBoard(data, now)
 
   return (
     <div className="relative min-h-svh w-full bg-[#120d0a] text-[#f7ead9] lg:h-svh lg:overflow-hidden">
@@ -94,6 +130,20 @@ export default async function TrainingFacilityWeightRoomPage({
           </div>
         ) : null}
 
+        {showLoadError ? (
+          <div
+            role="status"
+            data-testid="today-load-error"
+            className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:inset-x-4 lg:top-40 lg:mx-auto lg:mt-0"
+          >
+            <PreviewWithSampleDataButton
+              href="/training-facility/weight-room?preview=demo"
+              headline="Couldn’t load the strength log"
+              description="Today's board didn't load just now. Reload to try again, or load a sample set to see how the wall looks with progress."
+            />
+          </div>
+        ) : null}
+
         {showEmptyStateCta ? (
           <div className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:inset-x-4 lg:top-40 lg:mx-auto lg:mt-0">
             <PreviewWithSampleDataButton
@@ -116,10 +166,13 @@ export default async function TrainingFacilityWeightRoomPage({
       {/* The wall's text is unreadable below `lg`, so state the same board as page
           content there. From `lg` the wall carries it visually, but the wall is
           `aria-hidden`, so this stays available to screen readers. With no goals
-          and no sets, the empty-state call to action above says all there is. */}
-      {board.length > 0 || !showEmptyStateCta ? (
+          and no sets, the empty-state call to action above says all there is; after
+          a failed read, the notice above does, rather than an empty board. */}
+      {!showLoadError && (board.length > 0 || !showEmptyStateCta) ? (
         <TodayProgressPanel board={board} className="mx-4 my-6 lg:sr-only" />
       ) : null}
+
+      <TodayRollover renderedDayKey={PACIFIC_CLOCK.today(now)} />
     </div>
   )
 }

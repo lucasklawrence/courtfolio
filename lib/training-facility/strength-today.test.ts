@@ -8,7 +8,7 @@ import {
   formatDayLabel,
   localNoonIsoForDay,
   sumReps,
-  toLocalDateKey,
+  toDayKey,
   totalsByExercise,
   variantBreakdown,
 } from './strength-today'
@@ -30,22 +30,22 @@ const PUSHUPS: ExerciseGoal = {
   color: '#EA580C',
 }
 
-describe('toLocalDateKey', () => {
-  it('returns YYYY-MM-DD in local time for a parseable timestamp', () => {
-    expect(toLocalDateKey('2026-05-07T13:00:00')).toBe('2026-05-07')
+describe('toDayKey', () => {
+  it('returns the YYYY-MM-DD day key for a parseable timestamp', () => {
+    expect(toDayKey('2026-05-07T13:00:00')).toBe('2026-05-07')
   })
 
   it('zero-pads single-digit months and days', () => {
-    expect(toLocalDateKey('2026-01-04T08:00:00')).toBe('2026-01-04')
+    expect(toDayKey('2026-01-04T08:00:00')).toBe('2026-01-04')
   })
 
   it('returns "" for an unparseable string', () => {
-    expect(toLocalDateKey('not-a-date')).toBe('')
+    expect(toDayKey('not-a-date')).toBe('')
   })
 
   it('accepts a Date input directly', () => {
     const d = new Date('2026-05-07T13:00:00')
-    expect(toLocalDateKey(d)).toBe('2026-05-07')
+    expect(toDayKey(d)).toBe('2026-05-07')
   })
 })
 
@@ -172,11 +172,11 @@ describe('localNoonIsoForDay', () => {
   it('round-trips back to the same day key', () => {
     // The contract is "this instant buckets onto the requested day" — the
     // only assertion that holds regardless of the runner's timezone.
-    expect(toLocalDateKey(localNoonIsoForDay('2026-05-25'))).toBe('2026-05-25')
+    expect(toDayKey(localNoonIsoForDay('2026-05-25'))).toBe('2026-05-25')
   })
 
   it('round-trips for a day on the PST side of the year too', () => {
-    expect(toLocalDateKey(localNoonIsoForDay('2026-01-15'))).toBe('2026-01-15')
+    expect(toDayKey(localNoonIsoForDay('2026-01-15'))).toBe('2026-01-15')
   })
 
   it('stamps Pacific midday, not midnight', () => {
