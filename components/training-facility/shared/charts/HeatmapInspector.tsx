@@ -12,11 +12,15 @@ import {
   type ReactNode,
 } from 'react'
 
+import { HEATMAP_TARGET_COL_ATTRIBUTE, HEATMAP_TARGET_ROW_ATTRIBUTE } from './heatmap-targets'
+
 /** Props for {@link HeatmapInspector}. */
 export interface HeatmapInspectorProps {
   /**
    * The heatmap, including its horizontal scroller. Inspectable cells are
    * `<rect data-col data-row>` elements whose `<title>` holds the day's details.
+   * The grid must be gapless, one column per week with rows 0–6 running Monday
+   * to Sunday: the arrow keys and the day buttons step by that arithmetic.
    */
   children: ReactNode
   /** Accessible name for the focusable grid, e.g. `"Pushups heatmap"`. */
@@ -42,6 +46,14 @@ const ARROW_STEPS: Readonly<Record<string, readonly [number, number]>> = {
   ArrowDown: [0, 1],
 }
 
+/** The day-stepping buttons for screen readers: label, and days to move. */
+const DAY_STEPS: readonly { label: string; days: number }[] = [
+  { label: 'Previous week', days: -7 },
+  { label: 'Previous day', days: -1 },
+  { label: 'Next day', days: 1 },
+  { label: 'Next week', days: 7 },
+]
+
 /** The details a cell's native tooltip shows. */
 function cellDetail(cell: Element): string {
   return cell.querySelector('title')?.textContent ?? ''
@@ -57,6 +69,13 @@ function cellDetail(cell: Element): string {
  * Selection reads the DOM rather than receiving the cells as props, so a
  * server-rendered heatmap stays server-rendered and the browser receives no
  * second copy of every cell's text.
+ *
+ * Touch screen readers can't send arrow keys, and a desktop reader in browse mode
+ * keeps them for itself, so visually hidden buttons step the selection by a day
+ * or a week. They're out of the tab order, since keyboard users have the arrows,
+ * but a swipe or browse-mode cursor reaches them, and each step is announced
+ * through the readout's live region. An annotation can name the cell a tap on it
+ * opens with {@link HEATMAP_TARGET_COL_ATTRIBUTE}.
  *
  * Scrolling can't open details by accident because it relies on `click`, which
  * browsers don't fire for a touch that became a pan. The readout sits outside the
@@ -147,9 +166,32 @@ export function HeatmapInspector({
   }, [detail])
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
-    const cell = (event.target as Element).closest(CELL_SELECTOR)
+    const target = event.target as Element
+    const cell = target.closest(CELL_SELECTOR) ?? annotatedCell(event.currentTarget, target)
     if (cell !== null) gridRef.current?.focus({ preventScroll: true })
     select(cell === selectedRef.current ? null : cell)
+  }
+
+  /** Select a cell and bring it into view, or do nothing at the grid's edge. */
+  const moveTo = (next: Element | null) => {
+    if (next === null) return
+    select(next)
+    next.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }
+
+  const stepDays = (days: number) => {
+    const grid = gridRef.current
+    if (grid === null) return
+    const current = selectedRef.current
+    if (current !== null) {
+      moveTo(dayOffset(grid, current, days))
+      return
+    }
+    // Nothing selected yet: start from the latest Monday, as the arrow keys do,
+    // and step back from it, so a first "Previous week" lands on last week. Later
+    // days of this week may not have happened, so a forward step starts on it.
+    const start = latestMonday(grid)
+    moveTo(start === null || days > 0 ? start : dayOffset(grid, start, days))
   }
 
   // A null `relatedTarget` means focus went nowhere: a tap on the readout, or the
@@ -175,10 +217,7 @@ export function HeatmapInspector({
     event.preventDefault()
 
     const current = selectedRef.current
-    const next = current === null ? latestMonday(grid) : neighbor(grid, current, step)
-    if (next === null) return
-    select(next)
-    next.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+    moveTo(current === null ? latestMonday(grid) : neighbor(grid, current, step))
   }
 
   return (
@@ -205,6 +244,19 @@ export function HeatmapInspector({
       >
         {children}
       </div>
+      <div className="sr-only">
+        {DAY_STEPS.map(({ label: stepLabel, days }) => (
+          <button
+            key={stepLabel}
+            type="button"
+            tabIndex={-1}
+            aria-label={`${stepLabel}, ${label}`}
+            onClick={() => stepDays(days)}
+          >
+            {stepLabel}
+          </button>
+        ))}
+      </div>
       {/* The hint sits outside the live region so that dismissing a day doesn't
           announce it as news. The region stays mounted so screen readers are
           already watching it when the first day is selected. */}
@@ -227,6 +279,31 @@ export function HeatmapInspector({
 function latestMonday(grid: Element): Element | null {
   const mondays = grid.querySelectorAll(`${CELL_SELECTOR}[data-row="0"]`)
   return mondays[mondays.length - 1] ?? null
+}
+
+/**
+ * The cell an annotation under `target` names through
+ * {@link HEATMAP_TARGET_COL_ATTRIBUTE}, or `null` when there is none.
+ */
+function annotatedCell(grid: Element, target: Element): Element | null {
+  const annotation = target.closest(`[${HEATMAP_TARGET_COL_ATTRIBUTE}]`)
+  if (annotation === null) return null
+  const col = annotation.getAttribute(HEATMAP_TARGET_COL_ATTRIBUTE)
+  const row = annotation.getAttribute(HEATMAP_TARGET_ROW_ATTRIBUTE)
+  return grid.querySelector(`${CELL_SELECTOR}[data-col="${col}"][data-row="${row}"]`)
+}
+
+/**
+ * The cell `days` calendar days from `cell`, reading down each week's column and
+ * on into the next, or `null` past either end of the grid.
+ */
+function dayOffset(grid: Element, cell: Element, days: number): Element | null {
+  const index =
+    Number(cell.getAttribute('data-col')) * 7 + Number(cell.getAttribute('data-row')) + days
+  if (index < 0) return null
+  const col = Math.floor(index / 7)
+  const row = index % 7
+  return grid.querySelector(`${CELL_SELECTOR}[data-col="${col}"][data-row="${row}"]`)
 }
 
 /** The cell one step from `cell`, or `null` at the edge of the grid. */

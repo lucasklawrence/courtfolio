@@ -1,9 +1,11 @@
 /**
- * Shared axis-label geometry for the Weight Room calendar heatmaps.
+ * Shared axis-label geometry for the Training Facility calendar heatmaps.
  *
- * Both {@link import('@/components/training-facility/weight-room/StrengthHeatmap').StrengthHeatmap}
- * and {@link import('@/components/training-facility/weight-room/FocusLaneHeatmap').FocusLaneHeatmap}
- * draw month names above a 7×N week grid at `col * cellSize`, with no
+ * {@link import('@/components/training-facility/weight-room/StrengthHeatmap').StrengthHeatmap},
+ * {@link import('@/components/training-facility/weight-room/FocusLaneHeatmap').FocusLaneHeatmap}
+ * and the Cardio Overview's
+ * {@link import('@/components/training-facility/gym/WorkoutHeatmap').WorkoutHeatmap}
+ * all draw month names above a 7×N week grid at `col * cellSize`, with no
  * spacing rule. That only stays legible while months land far apart — over
  * a trailing 52 weeks they average ~4.3 columns, so the per-exercise
  * heatmap gets away with it. A grid narrow enough to put two month
