@@ -452,9 +452,16 @@ export interface FocusCampaignSummary {
   isActive: boolean
   /** How many rotations this exercise has had. */
   rotations: number
-  /** Days hit, summed across every rotation's elapsed days. */
+  /**
+   * Elapsed campaign days that met the target of the window active for this
+   * exercise that day, in that window's unit.
+   */
   daysHit: number
-  /** Elapsed days, summed across every rotation — the denominator for adherence. */
+  /**
+   * Elapsed days on which a window of this exercise was the active one in its
+   * lane, each counted once even where windows overlap — the denominator for
+   * adherence.
+   */
   daysElapsed: number
   /** Reps logged inside any rotation window. Excludes off-campaign sets. */
   campaignReps: number
@@ -488,15 +495,36 @@ export function summarizeFocusCampaigns(
   if (windows.length === 0) return null
 
   const today = clock.dayKey(now)
+  const isActive = windows.some(focus => isFocusActiveOnDay(focus, today))
+
+  // Each elapsed day counts once, scored against the window active for this
+  // exercise that day (`activeFocusesForDay`, the rule the streaks use): a day
+  // a nested window covers belongs to the nested window alone, and a day
+  // another exercise's window holds the lane belongs to neither.
+  const volumeByDay = new Map<string, { reps: number; sets: number }>()
+  for (const s of sets) {
+    if (s.exercise !== exercise) continue
+    const day = clock.safeDayKey(s.logged_at)
+    if (day === '') continue
+    const entry = volumeByDay.get(day) ?? { reps: 0, sets: 0 }
+    entry.reps += countedReps(s)
+    entry.sets += 1
+    volumeByDay.set(day, entry)
+  }
   let daysHit = 0
   let daysElapsed = 0
-  let isActive = false
-
-  for (const focus of windows) {
-    const adherence = computeFocusAdherence(focus, sets, now, clock)
-    daysHit += adherence.daysHit
-    daysElapsed += adherence.daysElapsed
-    if (isFocusActiveOnDay(focus, today)) isActive = true
+  if (today !== '') {
+    let lastDay = windows[0].end_date
+    for (const focus of windows) if (focus.end_date > lastDay) lastDay = focus.end_date
+    if (today < lastDay) lastDay = today
+    for (let day = windows[0].start_date; day <= lastDay; day = shiftDayKey(day, 1)) {
+      const active = activeFocusesForDay(focuses, day).find(f => f.exercise === exercise)
+      if (active === undefined) continue
+      daysElapsed++
+      const volume = volumeByDay.get(day)
+      const done = active.target_kind === 'sets' ? (volume?.sets ?? 0) : (volume?.reps ?? 0)
+      if (done >= active.daily_target) daysHit++
+    }
   }
 
   // Reps inside *any* window. Counted once per set even if windows overlap —

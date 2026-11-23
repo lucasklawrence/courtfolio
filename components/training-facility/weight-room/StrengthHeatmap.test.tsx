@@ -217,4 +217,39 @@ describe('StrengthHeatmap — goal-change markers (#362)', () => {
     // 30 reps on a July day was 100% of the 30 goal live at the time.
     expect(titles.some(t => t.includes('30 reps') && t.includes('100% of 30'))).toBe(true)
   })
+
+  it("names the change in its day's details, which touch readers can reach", () => {
+    const { container } = render(
+      <StrengthHeatmap
+        sets={[]}
+        goal={PULLUPS_RAISED}
+        dateFrom={new Date(2026, 6, 1)}
+        dateTo={new Date(2026, 7, 31)}
+      />
+    )
+    const titles = Array.from(container.querySelectorAll('rect[data-col] > title')).map(
+      t => t.textContent ?? ''
+    )
+    expect(titles.filter(t => t.includes('Goal 30 → 50'))).toEqual([
+      'Aug 1, 2026. Goal 30 → 50 on Aug 1',
+    ])
+  })
+
+  it('points the marker at the cell for the day the change took effect', () => {
+    const { container } = render(
+      <StrengthHeatmap
+        sets={[]}
+        goal={PULLUPS_RAISED}
+        dateFrom={new Date(2026, 6, 1)}
+        dateTo={new Date(2026, 7, 31)}
+      />
+    )
+    const marker = container.querySelector('[data-testid="goal-change-2026-08-01"]')
+    const col = marker?.getAttribute('data-heatmap-target-col')
+    const row = marker?.getAttribute('data-heatmap-target-row')
+    // Aug 1 2026 is a Saturday, row 5 with Monday as row 0.
+    expect(row).toBe('5')
+    const cell = container.querySelector(`rect[data-col="${col}"][data-row="${row}"]`)
+    expect(cell?.querySelector('title')?.textContent).toContain('Aug 1, 2026')
+  })
 })

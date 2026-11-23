@@ -38,7 +38,7 @@ export function TodayProgressPanel({
         <>
           <div className="flex justify-center">
             <ActivityRings
-              rings={board.map(row => ({ goal: row.goal, totalReps: row.total }))}
+              rings={board.map(row => ({ goal: row.goal, totalReps: row.total, unit: row.unit }))}
               size={208}
               showReadout={false}
             />

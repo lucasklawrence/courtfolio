@@ -49,3 +49,32 @@ jobs:
           STAGING_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
           STAGING_SUPABASE_SECRET_KEY: ${{ secrets.STAGING_SUPABASE_SECRET_KEY }}
         run: npm run staging:sync
+
+  # Delivery (#456): a red sync reaches a human as an issue in the tracker.
+  # A separate job so `issues: write` and `actions: read` never sit next to the
+  # staging secret key above. `always()` so it also runs after a success, to
+  # close an open alert as recovered.
+  alert:
+    needs: sync
+    # Only for runs of main. A manual run from a feature branch (testing a
+    # workflow change) must not file, comment on, or close the real alert.
+    if: ${{ always() && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+      actions: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Report the result
+        uses: ./.github/actions/ingest-alert
+        with:
+          job: staging-sync
+          result: ${{ needs.sync.result }}
+          token: ${{ github.token }}

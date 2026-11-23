@@ -17,6 +17,10 @@
  *  - Every email from those senders is stored, read or not: one the parser
  *    can't place lands in the `event_emails_review` view rather than being
  *    dropped.
+ *  - Already-stored emails are re-read and re-parsed by default, so a parser
+ *    fix reaches them. `--skip-stored` fetches only emails not yet in
+ *    `event_emails` — for resuming a long backfill that was cut off, since one
+ *    run writes everything in a single batch at the end.
  *  - `--dry-run` parses and reports without writing.
  *
  * **The log is public** (this repo's Actions logs are), so it reports counts
@@ -34,14 +38,19 @@
 import {
   findHtmlPart,
   gmailAccessToken,
-  gmailGet,
+  gmailSession,
   headerValue,
   listMessageIds,
   mapLimit,
   resolveLookbackDays,
 } from './lib/gmail.mjs'
 import { PLATFORMS, parseEventEmail, platformQuery } from './lib/events-parser.mjs'
-import { createServiceRoleClient, loadEnv, upsertEventEmails } from './lib/events-supabase.mjs'
+import {
+  createServiceRoleClient,
+  loadEnv,
+  loadStoredMessageIds,
+  upsertEventEmails,
+} from './lib/events-supabase.mjs'
 
 const DEFAULT_LOOKBACK_DAYS = 14
 
@@ -55,35 +64,45 @@ const FETCH_CONCURRENCY = 4
 async function main() {
   loadEnv()
   const dryRun = process.argv.includes('--dry-run')
+  const skipStored = process.argv.includes('--skip-stored')
   const lookbackDays = resolveLookbackDays('EVENTS_LOOKBACK_DAYS', DEFAULT_LOOKBACK_DAYS)
-  const token = await gmailAccessToken()
+  // Renews the access token on a 401, so a backfill running past its hour
+  // keeps going instead of failing partway.
+  const gmail = gmailSession(await gmailAccessToken())
 
   const ids = new Set()
   for (const platform of PLATFORMS) {
-    const found = await listMessageIds(token, platformQuery(platform, lookbackDays))
+    const found = await listMessageIds(gmail.token, platformQuery(platform, lookbackDays))
     console.log(`  ${platform.id}: ${found.length} email(s) in the last ${lookbackDays}d.`)
     for (const id of found) ids.add(id)
   }
 
+  const supabase = dryRun && !skipStored ? null : createServiceRoleClient()
+  let allIds = [...ids]
+  if (skipStored) {
+    const stored = await loadStoredMessageIds(supabase, allIds)
+    allIds = allIds.filter(id => !stored.has(id))
+    console.log(`  --skip-stored: ${stored.size} already stored, ${allIds.length} to fetch.`)
+  }
+
   // Fetched a few at a time, so a backfill of a few thousand emails takes
   // minutes rather than outrunning the job; each GET retries rate limits and
-  // server errors itself (gmailGet). Then every email is planned in ONE batch,
-  // oldest first, so an after-the-event email always sees the event its
-  // earlier purchase created.
-  const allIds = [...ids]
+  // server errors itself (gmailGet). Each message is parsed as soon as it
+  // arrives and only the parsed item is kept, so a backfill never holds every
+  // full message in memory. Then every email is planned in ONE batch, oldest
+  // first, so an after-the-event email always sees the event its earlier
+  // purchase created.
   let gone = 0
-  const messages = await mapLimit(allIds, FETCH_CONCURRENCY, id =>
-    gmailGet(`messages/${id}?format=full`, token).catch(err => {
+  let noHtml = 0
+  const fetched = await mapLimit(allIds, FETCH_CONCURRENCY, async id => {
+    let msg
+    try {
+      msg = await gmail.get(`messages/${id}?format=full`)
+    } catch (err) {
       if (err.status !== 404) throw err
       gone += 1 // deleted between the list and the GET
       return null
-    })
-  )
-  const items = []
-  const byKind = {}
-  let noHtml = 0
-  for (const [i, msg] of messages.entries()) {
-    if (!msg) continue
+    }
     const html = findHtmlPart(msg.payload)
     if (!html) noHtml += 1
     const receivedAt = new Date(Number(msg.internalDate))
@@ -94,8 +113,12 @@ async function main() {
       html: html ?? '',
       receivedAt,
     })
-    if (!parsed) continue // a sender outside PLATFORMS matched an extra clause; not ours
-    items.push({ messageId: allIds[i], subject, receivedAt, parsed })
+    // A sender outside PLATFORMS matched an extra clause; not ours.
+    return parsed ? { messageId: id, subject, receivedAt, parsed } : null
+  })
+  const items = fetched.filter(Boolean)
+  const byKind = {}
+  for (const { parsed } of items) {
     const label = `${parsed.platform}/${parsed.kind}`
     byKind[label] = (byKind[label] ?? 0) + 1
   }
@@ -112,7 +135,6 @@ async function main() {
     return
   }
 
-  const supabase = createServiceRoleClient()
   const summary = await upsertEventEmails(supabase, items)
   console.log(
     `✓ events ingest: wrote ${summary.emails} email(s), ${summary.matched} matched to an event; ` +

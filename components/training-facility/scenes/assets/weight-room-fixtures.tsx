@@ -79,6 +79,7 @@ export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): 
     color: row.goal.color,
     target: row.goal.daily_target,
     total: row.total,
+    unit: row.unit,
     streak: row.streak,
   }))
 
@@ -103,7 +104,7 @@ export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): 
   const tallyFontSize = Math.max(10, Math.min(16, Math.round(tallySpacing * 0.72)))
 
   return (
-    <g aria-hidden="true">
+    <g aria-hidden="true" data-testid="wall-board">
       {/* Board frame */}
       <RoughRect
         x={FRAME_X}
@@ -254,6 +255,7 @@ export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): 
             fontSize={tallyFontSize}
           >
             {ring.label} {ring.total}/{ring.target}
+            {ring.unit === 'sets' ? ' sets' : ''}
             {ring.streak > 0 ? `  ·  🔥${ring.streak}d` : ''}
           </text>
         ))

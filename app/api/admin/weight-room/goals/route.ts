@@ -238,7 +238,13 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   // when nothing has taken effect), and once the scheduled day passes nothing
   // else remembers it. Writing it unconditionally (not only when the target
   // moves) also repairs a goal left in either state by an earlier write.
-  const needsBaseline = existing !== null && !history.some(p => p.effective_from <= today)
+  // A change dated at or before the floor already covers every day, and would
+  // otherwise share the baseline's `(exercise, effective_from)` key in a single
+  // upsert, which Postgres rejects.
+  const needsBaseline =
+    existing !== null &&
+    effectiveFrom > BASELINE_EFFECTIVE_FROM &&
+    !history.some(p => p.effective_from <= today)
   const baseline =
     needsBaseline && existing !== null
       ? { daily_target: existing.daily_target, effective_from: BASELINE_EFFECTIVE_FROM }

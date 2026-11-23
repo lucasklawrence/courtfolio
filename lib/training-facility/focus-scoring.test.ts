@@ -129,6 +129,13 @@ describe('labelTargetForToday', () => {
     })
   })
 
+  it('labels with the rotation that ended last, not one nested inside it', () => {
+    expect(labelTargetForToday(SHRUGS, [JULY, NESTED], '2026-08-15')).toEqual({
+      target: 100,
+      unit: 'reps',
+    })
+  })
+
   it('labels with the first rotation when all are ahead', () => {
     expect(labelTargetForToday(SHRUGS, [SEPTEMBER_SETS, JULY], '2026-06-01')).toEqual({
       target: 100,

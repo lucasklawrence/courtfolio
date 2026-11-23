@@ -1,8 +1,11 @@
 import type { JSX } from 'react'
 
-import { formatDayKey } from '@/lib/training-facility/day-keys'
-import { type GoalTargetChange, goalTargetChanges } from '@/lib/training-facility/goal-targets'
-import { pacificDayKey } from '@/lib/training-facility/day-keys'
+import { formatDayKey, isoWeekdayOfDayKey, pacificDayKey } from '@/lib/training-facility/day-keys'
+import {
+  type GoalTargetChange,
+  describeGoalTargetChange,
+  goalTargetChanges,
+} from '@/lib/training-facility/goal-targets'
 import { monthLabelOverhang, thinMonthLabels } from '@/lib/training-facility/heatmap-labels'
 import {
   buildStrengthHeatmap,
@@ -143,6 +146,8 @@ export function StrengthHeatmap({
   const visibleChanges = goalTargetChanges(goal, pacificDayKey(new Date()))
     .map(change => ({ change, col: columnForDayKey(heatmap, change.effective_from) }))
     .filter((entry): entry is { change: GoalTargetChange; col: number } => entry.col !== null)
+  // The day each marked change took effect, so that day's details name it too.
+  const changesByDay = new Map(visibleChanges.map(({ change }) => [change.effective_from, change]))
 
   return (
     // No `maxWidth: 100%` on the SVG — the page wraps each heatmap in
@@ -210,7 +215,7 @@ export function StrengthHeatmap({
                 fill={isEmpty ? EMPTY_CELL_FILL : goal.color}
                 fillOpacity={isEmpty ? 1 : INTENSITY_OPACITY[level]}
               >
-                <title>{describeCell(cell, goal)}</title>
+                <title>{describeCell(cell, goal, changesByDay.get(cell.dayKey))}</title>
               </rect>
             )
           })
@@ -227,6 +232,7 @@ export function StrengthHeatmap({
             x={col * cellSize - cellGap / 2}
             y={0}
             height={gridHeight}
+            target={{ col, row: isoWeekdayOfDayKey(change.effective_from) - 1 }}
           />
         ))}
       </g>
@@ -275,17 +281,25 @@ export function StrengthHeatmap({
  * the Pacific zone (#319). Formatting `cell.date` in viewer-local time would
  * name the *following* day for anyone at UTC+5 or east of it, so the tooltip
  * would contradict the square it's attached to.
+ *
+ * On the day a marked goal change took effect, the details end with it, which
+ * is how a touch or keyboard reader learns the date the marker's label omits.
  */
-function describeCell(cell: StrengthHeatmapCell, goal: ExerciseGoal): string {
+function describeCell(
+  cell: StrengthHeatmapCell,
+  goal: ExerciseGoal,
+  change: GoalTargetChange | undefined
+): string {
   const dateLabel = formatDayKey(
     cell.dayKey,
     { month: 'short', day: 'numeric', year: 'numeric' },
     'en-US'
   )
-  if (cell.reps === 0) return dateLabel
+  const changeNote = change === undefined ? '' : `. Goal ${describeGoalTargetChange(change)}`
+  if (cell.reps === 0) return `${dateLabel}${changeNote}`
   const setNoun = cell.setCount === 1 ? 'set' : 'sets'
   const pctLabel = `${Math.round(cell.pct * 100)}%`
-  return `${dateLabel}: ${cell.reps} reps (${cell.setCount} ${setNoun}, ${pctLabel} of ${cell.dailyTarget} ${exerciseLabel(goal)} goal)`
+  return `${dateLabel}: ${cell.reps} reps (${cell.setCount} ${setNoun}, ${pctLabel} of ${cell.dailyTarget} ${exerciseLabel(goal)} goal)${changeNote}`
 }
 
 /**

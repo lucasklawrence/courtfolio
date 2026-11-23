@@ -94,6 +94,25 @@ export function fromWallClockMs(ms: number): Date {
 }
 
 /**
+ * The `YYYY-MM-DD` key of a wall-clock `Date`: its local calendar day, read
+ * straight off the getters.
+ *
+ * Only meaningful for a `Date` that already *is* a wall clock, such as one from
+ * {@link DayClock.wallClock}, `parseSessionDate`, or {@link addCalendarDays} on
+ * one of those. Handing it a real instant gives the runtime zone's day, which is
+ * exactly the server-vs-browser split this module exists to prevent; use
+ * {@link DayClock.dayKey} for an instant. Zone-free.
+ *
+ * @param date A wall-clock `Date`. An invalid one returns `''`.
+ */
+export function wallClockDayKey(date: Date): string {
+  if (!Number.isFinite(date.getTime())) return ''
+  const mm = String(date.getMonth() + 1).padStart(2, '0')
+  const dd = String(date.getDate()).padStart(2, '0')
+  return `${date.getFullYear()}-${mm}-${dd}`
+}
+
+/**
  * Shift a `YYYY-MM-DD` key by `delta` days.
  *
  * Arithmetic runs in UTC on the bare calendar numbers — no zone, no DST — so

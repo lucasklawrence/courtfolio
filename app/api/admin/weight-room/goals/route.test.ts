@@ -378,6 +378,29 @@ describe('POST /api/admin/weight-room/goals', () => {
       expect(callFor('upsertGoal')?.payload).toEqual(expect.objectContaining({ daily_target: 30 }))
     })
 
+    it('writes no separate baseline for a change dated at the floor itself', async () => {
+      responses.existingGoal = { data: { exercise: 'pullups', daily_target: 30 }, error: null }
+      responses.historyRead = {
+        data: [{ daily_target: 50, effective_from: '2026-09-01' }],
+        error: null,
+      }
+      responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
+
+      const res = await POST(
+        makeRequest({
+          exercise: 'pullups',
+          daily_target: 40,
+          color: '#0EA5A1',
+          effective_from: '1970-01-01',
+        }) as never
+      )
+      expect(res.status).toBe(200)
+      // One row per key: two rows on 1970-01-01 in one upsert would fail.
+      expect(callFor('historyUpsert')?.payload).toEqual([
+        expect.objectContaining({ daily_target: 40, effective_from: '1970-01-01' }),
+      ])
+    })
+
     it('seeds history for a brand-new goal', async () => {
       responses.existingGoal = { data: null, error: null }
       responses.historyRead = { data: [], error: null }

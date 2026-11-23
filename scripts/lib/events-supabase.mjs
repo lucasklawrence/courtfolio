@@ -15,7 +15,13 @@
  * Loaded as ESM from `.mjs` callers — no TypeScript transpile step.
  */
 
-import { eventMatchKey, inferCategory, normalizeForMatch } from './events-parser.mjs'
+import {
+  eventMatchKey,
+  foldAccents,
+  inferCategory,
+  legacyMatchKey,
+  normalizeForMatch,
+} from './events-parser.mjs'
 import { createServiceRoleClient, loadEnv, wallTimeToISO } from './otbeat-supabase.mjs'
 
 export { createServiceRoleClient, loadEnv }
@@ -76,7 +82,8 @@ export function zoneForState(state) {
  * @typedef {Object} EventInsertRow
  * @property {string} match_key See `eventMatchKey`.
  * @property {string} title
- * @property {'sports'|'other'} category Inferred; the owner refines it by override.
+ * @property {import('./events-parser.mjs').InferredCategory} category Inferred;
+ *   the owner refines it by override.
  * @property {string[]|null} teams
  * @property {string} starts_at UTC ISO instant of the venue's wall-clock start.
  * @property {string|null} venue
@@ -133,7 +140,9 @@ const POST_EVENT_WINDOW_MS = 4 * 24 * 3600 * 1000
  * only event already on its date, and a venue-keyed email adopts a lone
  * title-keyed event on its date (re-keying it), whichever arrived first. Both
  * apply only when the titles share a significant word (or one is unknown),
- * so two different outings on one day stay two events. An
+ * so two different outings on one day stay two events. A venue-keyed email
+ * whose venue is spelled differently from the event's (one contains the
+ * other, and the titles share a word) joins the only such event that day. An
  * after-the-event email carries no date at all, so it joins the event that
  * started in the days before it arrived: the one with its title, or the only
  * one. Anything else that has a key starts a new event; an email with no key
@@ -182,7 +191,8 @@ export function planEventLinks(items, existing, linked = new Map()) {
     }
     const date = key.slice(0, 10)
     const sameDay = byDate.get(date) ?? []
-    let ev = byKey.get(key)
+    const legacy = legacyMatchKey(p)
+    let ev = byKey.get(key) ?? (legacy ? byKey.get(legacy) : undefined)
     if (!ev && sameDay.length === 1 && titlesMayMatch(sameDay[0].title, p.title)) {
       const only = sameDay[0]
       if (key.includes('|t:')) {
@@ -203,6 +213,7 @@ export function planEventLinks(items, existing, linked = new Map()) {
         ev = only
       }
     }
+    if (!ev && key.includes('|v:')) ev = venueVariant(sameDay, key, p.title)
     if (!ev) {
       ev = newEvent(p, key)
       inserts.set(key, ev)
@@ -225,6 +236,39 @@ export function planEventLinks(items, existing, linked = new Map()) {
   }
 }
 
+/** Shortest normalized venue that may match another by containment. */
+const MIN_VENUE_CONTAINMENT = 6
+
+/**
+ * The one venue-keyed event on this date that is the same outing under
+ * another spelling of the venue: one platform writes "Harbor City Arena", the
+ * other "Harbor City Arena - Bayside" or a truncated "Harbor City Are". It
+ * matches when one normalized venue contains the other and the titles could
+ * be the same outing (see {@link titlesMayMatch}), so a concert at "Harbor
+ * City Arena Club" stays apart from a game at "Harbor City Arena". Null when
+ * none or several match — a guess between two events is worse than a
+ * duplicate the owner can merge.
+ *
+ * @param {StoredEvent[]} sameDay Events already on the email's date.
+ * @param {string} key The email's venue match key.
+ * @param {string|null} title The email's title.
+ * @returns {StoredEvent|null}
+ */
+function venueVariant(sameDay, key, title) {
+  const venue = key.split('|v:')[1] ?? ''
+  const hits = sameDay.filter(e => {
+    const other = e.match_key.split('|v:')[1]
+    if (!other || other === venue) return false
+    const [short, long] = other.length <= venue.length ? [other, venue] : [venue, other]
+    return (
+      short.length >= MIN_VENUE_CONTAINMENT &&
+      long.includes(short) &&
+      titlesMayMatch(e.title, title)
+    )
+  })
+  return hits.length === 1 ? hits[0] : null
+}
+
 /**
  * Fill an event's empty fields from an email, in place, and return what
  * changed. A placeholder title counts as empty and brings the category and
@@ -234,7 +278,7 @@ export function planEventLinks(items, existing, linked = new Map()) {
 function fillEmpty(ev, p) {
   const fill = {}
   if ((ev.title == null || ev.title === UNTITLED) && p.title) {
-    const { category, teams } = inferCategory(p.title)
+    const { category, teams } = inferCategory(p.title, p.venue ?? ev.venue)
     Object.assign(fill, { title: p.title, category, teams })
   }
   for (const field of ['venue', 'city', 'state']) {
@@ -287,7 +331,7 @@ const TITLE_STOPWORDS = new Set([
 ])
 
 function titleWords(title) {
-  return String(title ?? '')
+  return foldAccents(title)
     .toLowerCase()
     .split(/[^a-z0-9]+/)
     .filter(w => w.length >= 3 && !TITLE_STOPWORDS.has(w))
@@ -315,7 +359,7 @@ function recordUpdate(updates, ev, changes) {
 
 /** A new `events` row from the first email that names it. */
 function newEvent(p, key) {
-  const { category, teams } = inferCategory(p.title)
+  const { category, teams } = inferCategory(p.title, p.venue)
   const { year, month, day, hour, minute } = p.when
   return {
     match_key: key,
@@ -428,12 +472,25 @@ export async function upsertEventEmails(supabase, items) {
   }
 }
 
+/** Rows per page when reading events; PostgREST caps an unpaged select at 1,000. */
+export const EVENTS_PAGE_SIZE = 1000
+
 /**
  * Events near the batch, for the planner's fallbacks: within two days of any
  * email's event date, and within the after-the-event window before any
  * dateless email arrived.
+ *
+ * Read in pages. A multi-year backfill's window covers every stored event,
+ * and one unpaged select stops silently at PostgREST's row cap, after which
+ * the planner misses events and creates duplicates.
+ *
+ * @param {import('@supabase/supabase-js').SupabaseClient} supabase
+ * @param {EventEmailItem[]} items
+ * @param {number} [pageSize]
+ * @returns {Promise<StoredEvent[]>}
+ * @throws {Error} on any Supabase error.
  */
-async function loadEventsNear(supabase, items) {
+export async function loadEventsNear(supabase, items, pageSize = EVENTS_PAGE_SIZE) {
   const day = 24 * 3600 * 1000
   const times = items.flatMap(i => {
     const w = i.parsed.when
@@ -443,13 +500,41 @@ async function loadEventsNear(supabase, items) {
   if (times.length === 0) return []
   const from = new Date(Math.min(...times) - 2 * day).toISOString()
   const to = new Date(Math.max(...times) + 3 * day).toISOString()
-  const { data, error } = await supabase
-    .from('events')
-    .select('id, match_key, title, venue, city, state, starts_at')
-    .gte('starts_at', from)
-    .lt('starts_at', to)
-  if (error) throw new Error(`events read failed: ${error.message}`)
-  return data ?? []
+  const events = []
+  for (let offset = 0; ; offset += pageSize) {
+    const { data, error } = await supabase
+      .from('events')
+      .select('id, match_key, title, venue, city, state, starts_at')
+      .gte('starts_at', from)
+      .lt('starts_at', to)
+      .order('id')
+      .range(offset, offset + pageSize - 1)
+    if (error) throw new Error(`events read failed: ${error.message}`)
+    events.push(...(data ?? []))
+    if ((data ?? []).length < pageSize) return events
+  }
+}
+
+/**
+ * Which of these Gmail message ids are already stored in `event_emails`, so a
+ * resumed backfill can skip fetching them (`--skip-stored`).
+ *
+ * @param {import('@supabase/supabase-js').SupabaseClient} supabase
+ * @param {string[]} ids Gmail message ids.
+ * @returns {Promise<Set<string>>}
+ * @throws {Error} on any Supabase error.
+ */
+export async function loadStoredMessageIds(supabase, ids) {
+  const stored = new Set()
+  for (let i = 0; i < ids.length; i += 100) {
+    const { data, error } = await supabase
+      .from('event_emails')
+      .select('gmail_message_id')
+      .in('gmail_message_id', ids.slice(i, i + 100))
+    if (error) throw new Error(`event_emails read failed: ${error.message}`)
+    for (const r of data ?? []) stored.add(r.gmail_message_id)
+  }
+  return stored
 }
 
 /** Emails in the batch already linked to an event, so a re-read keeps the link. */

@@ -1,0 +1,77 @@
+name: Staging keepalive
+
+# Supabase pauses a Free-plan project after seven days without enough database
+# activity. The weekly staging sync is one day of activity a week, which is not
+# enough: staging was paused on 2026-08-23, exactly seven days after the last
+# successful sync, and every sync after that failed (#478). Supabase's own docs
+# say "a few user requests to the database each day" keeps a project awake, so
+# this makes one cheap read through PostgREST every day.
+#
+# If it fails, staging is already unreachable. The error names the host and,
+# for a host that no longer resolves, says the project is probably paused.
+on:
+  schedule:
+    # Off the hour, to stay clear of the top-of-hour scheduling crush that
+    # delays or drops GitHub's scheduled runs.
+    - cron: '23 9 * * *'
+  workflow_dispatch: {}
+
+# Read-only on the repo; this job reads staging and nothing else.
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      # No `npm ci`: the script uses only Node built-ins, so the install would
+      # be a minute of work for nothing on every run. That's why this doesn't
+      # use ./.github/actions/node-setup -- keep this setup-node version in
+      # step with the one there when bumping it.
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+
+      - name: Read one row from staging
+        env:
+          STAGING_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
+          STAGING_SUPABASE_SECRET_KEY: ${{ secrets.STAGING_SUPABASE_SECRET_KEY }}
+        run: node scripts/sync-staging.mjs --keepalive
+
+  # Delivery (#456): a failed keepalive means staging is already unreachable,
+  # and it reaches a human as an issue in the tracker instead of only a red run.
+  # A separate job so `issues: write` and `actions: read` never sit next to the
+  # staging secret key above. `always()` so it also runs after a success, to
+  # close an open alert as recovered.
+  alert:
+    needs: ping
+    # Only for runs of main. A manual run from a feature branch (testing a
+    # workflow change) must not file, comment on, or close the real alert.
+    if: ${{ always() && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+      actions: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Report the result
+        uses: ./.github/actions/ingest-alert
+        with:
+          job: staging-keepalive
+          result: ${{ needs.ping.result }}
+          token: ${{ github.token }}

@@ -10,7 +10,7 @@ import {
 import { currentTarget } from './goal-targets'
 import { streakFromDailyVolume } from './hit-day-streaks'
 import { goalsVisibleOnDay } from './monthly-focus'
-import { toLocalDateKey } from './strength-today'
+import { toDayKey } from './strength-today'
 import { PACIFIC_CLOCK } from './clock'
 
 /** One goal's standing on the public Today board. */
@@ -53,7 +53,7 @@ export function buildTodayBoard(
 ): TodayBoardRow[] {
   if (!data) return []
 
-  const dayKey = toLocalDateKey(now)
+  const dayKey = toDayKey(now)
   const focuses = data.monthly_focus ?? []
   const goals = goalsVisibleOnDay(data.goals, focuses, dayKey)
   const volumeByExercise = dailyVolumeByExercise(data.sets, PACIFIC_CLOCK)

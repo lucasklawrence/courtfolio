@@ -32,8 +32,10 @@ import { bypassHomeIntro } from './helpers/intro'
  *
  * Not here: `/training-facility` and `/training-facility/combine`, whose flag is off on
  * every e2e server, and the Weight Room's `log` and `settings`, which return 404 to
- * anyone but the admin. Other dynamic routes need an id that resolves both on CI's demo
- * data and on a local run's real data, so `exercises/pullups` stands in for them.
+ * anyone but the admin. Those two run as the admin in `admin-log-mobile.spec.ts` and
+ * `admin-settings-mobile.spec.ts`, against the admin server and its Supabase fake.
+ * Other dynamic routes need an id that resolves both on CI's demo data and on a local
+ * run's real data, so `exercises/pullups` stands in for them.
  */
 const ROUTES = [
   '/',

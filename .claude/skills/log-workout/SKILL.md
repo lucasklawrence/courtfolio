@@ -80,10 +80,10 @@ Three Supabase tables back the Weight Room (see
 `NEXT_PUBLIC_SUPABASE_URL`). Use the Supabase MCP `execute_sql` tool with this
 `project_id`.
 
-**Timezone:** the app buckets sets into "today" by the **viewer's local
-calendar day** (`toLocalDateKey` in `lib/training-facility/strength-today.ts`),
-not UTC. So all day math must be done in Lucas's local timezone, not the DB's
-UTC clock.
+**Timezone:** the app buckets sets into "today" by the **Pacific calendar
+day** (`toDayKey` in `lib/training-facility/strength-today.ts`, which defaults
+to `PACIFIC_CLOCK`), not UTC and not the viewer's zone. So all day math must be
+done in `America/Los_Angeles`, not the DB's UTC clock.
 
 ## Procedure
 

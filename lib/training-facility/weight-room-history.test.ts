@@ -721,9 +721,8 @@ describe('computeStrengthStats — scored like the Today board', () => {
       start_date: '2026-07-10',
       end_date: '2026-07-12',
     }
-    // 100 a day clears July's bar but not the nested 150. A target history
-    // stepped by window start kept 150 after the nested window closed, so
-    // the 13th and 14th read as misses.
+    // 100 a day clears July's bar but not the nested 150, which ends on the
+    // 12th, so the 13th and 14th are both hits.
     const sets = ['2026-07-13', '2026-07-14'].map(day => noonSet(day, 100))
     const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-07-14T19:00:00Z'), [
       JULY_SHRUGS,

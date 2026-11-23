@@ -638,9 +638,11 @@ const BASELINE_EFFECTIVE_FROM = '1970-01-01'
  * a target that hasn't taken effect. Anchoring the column's value in the
  * history makes both resolvers agree.
  *
- * The goals write path persists the same baseline when it schedules a change on
- * such a goal, so the value survives the scheduled day. This covers rows
- * written before it did.
+ * This only holds until the first entry's day. From then on an entry is in
+ * effect and the column may since have moved, so the reader can no longer tell
+ * what the earlier days were held to. Keeping that value is the write path's
+ * job: the goals route persists the same baseline whenever it writes to a goal
+ * with no entry in effect.
  *
  * @param history The exercise's recorded entries, oldest first, or `undefined`.
  * @param columnTarget `weight_room_goals.daily_target` as stored.

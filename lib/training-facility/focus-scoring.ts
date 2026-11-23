@@ -8,13 +8,8 @@ import { countedReps } from './set-reps'
 /**
  * The single rule for "what bar did this goal have to clear on this day, and
  * in what unit", shared by the Today board, the Log view, the History stats
- * and the Trophy Room's streak tiers.
- *
- * Those four surfaces used to answer it separately and disagreed in three
- * ways: a sets-based rotation was scored against a rep total (or not scored
- * at all), a nested rotation kept setting the bar after its window closed, and
- * a day between two rotations of a focus exercise counted against the previous
- * rotation's target on one surface and against nothing on another.
+ * and the Trophy Room's streak tiers, so none of them can score a sets-based
+ * rotation, a nested window or an off-campaign day differently from the rest.
  */
 
 /** Unit a day's volume is measured in: total reps, or distinct logged sets. */
@@ -127,9 +122,9 @@ export function goalDayTargetResolver(
  * The target a stats card labels a goal with today.
  *
  * Today's rule when the goal has a bar today. Otherwise, for a focus exercise
- * between or after rotations, the most recent rotation that has started (or
- * the first one, when every window is still ahead), so an ended campaign's
- * card still says what it was chasing. A permanent goal always has a bar.
+ * between or after rotations, the started rotation that ended last (or the
+ * first one, when every window is still ahead), so an ended campaign's card
+ * still says what it was chasing. A permanent goal always has a bar.
  *
  * @param goal The goal to label.
  * @param focuses Every configured rotation.
@@ -146,8 +141,14 @@ export function labelTargetForToday(
   const windows = focuses
     .filter(f => f.exercise === goal.exercise && f.daily_target > 0)
     .sort((a, b) => (a.start_date < b.start_date ? -1 : a.start_date > b.start_date ? 1 : 0))
-  const started = windows.filter(f => f.start_date <= todayKey)
-  const pick = started[started.length - 1] ?? windows[0]
+  // The campaign that ran last is the started window that *ended* last, so a
+  // short window nested early in a longer one doesn't outrank its parent.
+  let pick: MonthlyFocus | undefined
+  for (const f of windows) {
+    if (f.start_date > todayKey) continue
+    if (pick === undefined || f.end_date >= pick.end_date) pick = f
+  }
+  pick ??= windows[0]
   if (pick === undefined) return { target: targetForDay(goal, todayKey), unit: 'reps' }
   return { target: pick.daily_target, unit: pick.target_kind }
 }

@@ -482,6 +482,45 @@ describe('summarizeFocusCampaigns', () => {
     expect(summary?.latestWindowLabel).toContain('Oct')
   })
 
+  it('counts a nested window’s days once, against the nested target', () => {
+    const nested: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: '77777777-7777-4777-8777-777777777777',
+      daily_target: 150,
+      start_date: '2026-07-10',
+      end_date: '2026-07-12',
+    }
+    const sets: StrengthSet[] = ['2026-07-10', '2026-07-11', '2026-07-12', '2026-07-13'].map(
+      day => ({ id: day, logged_at: `${day}T19:00:00Z`, exercise: 'shrugs', reps: 100 })
+    )
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS, nested],
+      'shrugs',
+      sets,
+      new Date('2026-08-15T19:00:00Z')
+    )
+    // July's 31 days, not 31 + 3.
+    expect(summary?.daysElapsed).toBe(31)
+    // 100 misses the nested 150 on the 10th-12th and clears July's 100 on the 13th.
+    expect(summary?.daysHit).toBe(1)
+  })
+
+  it('scores a sets-based window by distinct sets', () => {
+    const setsFocus: MonthlyFocus = { ...JULY_SHRUGS, target_kind: 'sets', daily_target: 2 }
+    const sets: StrengthSet[] = [
+      { id: 'a', logged_at: '2026-07-02T19:00:00Z', exercise: 'shrugs', reps: 5 },
+      { id: 'b', logged_at: '2026-07-02T19:00:00Z', exercise: 'shrugs', reps: 5 },
+      { id: 'c', logged_at: '2026-07-03T19:00:00Z', exercise: 'shrugs', reps: 100 },
+    ]
+    const summary = summarizeFocusCampaigns(
+      [setsFocus],
+      'shrugs',
+      sets,
+      new Date('2026-08-15T19:00:00Z')
+    )
+    expect(summary?.daysHit).toBe(1)
+  })
+
   it('excludes off-campaign sets from campaignReps', () => {
     const sets: StrengthSet[] = [
       ...JULY_SETS,
