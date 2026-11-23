@@ -358,6 +358,49 @@ describe('POST /api/admin/weight-room/goals', () => {
       ])
     })
 
+    it('persists a baseline when every recorded entry is still in the future', async () => {
+      // The only row is scheduled for Sept 1, so the mirror's 30 is the value
+      // in effect today and nothing else records it. Without a baseline, once
+      // Sept 1 passes the reader can no longer tell what the past scored
+      // against, and the before-first fallback re-scores it at 50.
+      responses.existingGoal = { data: { exercise: 'pullups', daily_target: 30 }, error: null }
+      responses.historyRead = {
+        data: [{ daily_target: 50, effective_from: '2026-09-01' }],
+        error: null,
+      }
+      responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
+
+      await POST(makeRequest({ exercise: 'pullups', daily_target: 30, color: '#123456' }) as never)
+      // A colour edit at the in-effect target: the baseline alone, no change row.
+      expect(callFor('historyUpsert')?.payload).toEqual([
+        expect.objectContaining({ daily_target: 30, effective_from: '1970-01-01' }),
+      ])
+      expect(callFor('upsertGoal')?.payload).toEqual(expect.objectContaining({ daily_target: 30 }))
+    })
+
+    it('writes no separate baseline for a change dated at the floor itself', async () => {
+      responses.existingGoal = { data: { exercise: 'pullups', daily_target: 30 }, error: null }
+      responses.historyRead = {
+        data: [{ daily_target: 50, effective_from: '2026-09-01' }],
+        error: null,
+      }
+      responses.upsertGoal = { data: { exercise: 'pullups' }, error: null }
+
+      const res = await POST(
+        makeRequest({
+          exercise: 'pullups',
+          daily_target: 40,
+          color: '#0EA5A1',
+          effective_from: '1970-01-01',
+        }) as never
+      )
+      expect(res.status).toBe(200)
+      // One row per key: two rows on 1970-01-01 in one upsert would fail.
+      expect(callFor('historyUpsert')?.payload).toEqual([
+        expect.objectContaining({ daily_target: 40, effective_from: '1970-01-01' }),
+      ])
+    })
+
     it('seeds history for a brand-new goal', async () => {
       responses.existingGoal = { data: null, error: null }
       responses.historyRead = { data: [], error: null }

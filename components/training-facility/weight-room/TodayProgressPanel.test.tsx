@@ -15,6 +15,7 @@ const PUSHUPS: TodayBoardRow = {
   },
   label: 'Pushups',
   total: 25,
+  unit: 'reps',
   streak: 1,
 }
 
@@ -27,6 +28,7 @@ const SL_RDL: TodayBoardRow = {
   },
   label: 'Single Leg Romanian Deadlift',
   total: 0,
+  unit: 'reps',
   streak: 0,
 }
 

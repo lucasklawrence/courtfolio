@@ -1,9 +1,8 @@
-import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import { PACIFIC_CLOCK, type DayClock } from './clock'
-import { targetResolverFor } from './goal-targets'
-import { type StreakCounts, streakFromDailyReps } from './hit-day-streaks'
-import { countedReps } from './set-reps'
+import { dailyVolumeByExercise, goalDayTargetResolver } from './focus-scoring'
+import { type StreakCounts, streakFromDailyVolume } from './hit-day-streaks'
 
 /**
  * Per-exercise streak result, mirrored on
@@ -46,30 +45,20 @@ export type StrengthStreakResult = StreakCounts
  *   when calling from a server-rendered surface so server-side UTC
  *   doesn't disagree with the visitor's local timezone (#197).
  * @param clock Zone the day buckets are measured in; defaults to Pacific (#429).
+ * @param focuses The configured rotations. A `kind: 'focus'` goal is then
+ *   scored the way the Today board scores it: against the rotation active that
+ *   day, in that rotation's unit (reps or sets), with no bar on days no window
+ *   covers. Omitted, focus goals score against their own target.
  */
 export function computeStrengthStreaks(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   now: Date = new Date(),
-  clock: DayClock = PACIFIC_CLOCK
+  clock: DayClock = PACIFIC_CLOCK,
+  focuses: readonly MonthlyFocus[] = []
 ): Record<string, StrengthStreakResult> {
   const result: Record<string, StrengthStreakResult> = {}
-
-  // Bucket reps by exercise -> day -> running total. Uses Maps to keep
-  // the inner structure ordered insertion-wise; the shared streak helper
-  // sorts keys explicitly so the input order doesn't matter.
-  const repsByExerciseAndDay = new Map<string, Map<string, number>>()
-  for (const s of sets) {
-    const day = clock.safeDayKey(s.logged_at)
-    if (day === '') continue
-    let dayMap = repsByExerciseAndDay.get(s.exercise)
-    if (!dayMap) {
-      dayMap = new Map()
-      repsByExerciseAndDay.set(s.exercise, dayMap)
-    }
-    dayMap.set(day, (dayMap.get(day) ?? 0) + countedReps(s))
-  }
-
+  const volumeByExercise = dailyVolumeByExercise(sets, clock)
   const todayKey = clock.dayKey(now)
 
   for (const goal of goals) {
@@ -77,10 +66,13 @@ export function computeStrengthStreaks(
       result[goal.exercise] = { current: 0, longest: 0 }
       continue
     }
-    const dayMap = repsByExerciseAndDay.get(goal.exercise) ?? new Map<string, number>()
     // Per-day target resolution (#362) — bound once per goal so the history
     // is sorted a single time rather than once per logged day.
-    result[goal.exercise] = streakFromDailyReps(dayMap, targetResolverFor(goal), todayKey)
+    result[goal.exercise] = streakFromDailyVolume(
+      volumeByExercise.get(goal.exercise) ?? new Map(),
+      goalDayTargetResolver(goal, focuses),
+      todayKey
+    )
   }
 
   return result

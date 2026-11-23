@@ -43,7 +43,9 @@ export default async function WeightRoomAchievementsPage(): Promise<JSX.Element>
     data?.sets ?? [],
     data?.goals ?? [],
     achievements,
-    data?.exercises ?? []
+    data?.exercises ?? [],
+    undefined,
+    data?.monthly_focus ?? []
   )
 
   return (

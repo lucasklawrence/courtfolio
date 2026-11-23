@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import type { ExerciseGoal, StrengthSet } from '@/types/weight-room'
+import type { ExerciseGoal, MonthlyFocus, StrengthSet } from '@/types/weight-room'
 
 import { computeStrengthStreaks } from './strength-streaks'
 
@@ -218,5 +218,49 @@ describe('computeStrengthStreaks with effective-dated targets (#362)', () => {
       [PUSHUPS]
     )
     expect(result.pushups).toEqual({ current: 2, longest: 2 })
+  })
+})
+
+describe('computeStrengthStreaks with rotations', () => {
+  const SHRUGS: ExerciseGoal = {
+    exercise: 'shrugs',
+    daily_target: 500,
+    color: '#C9A268',
+    kind: 'focus',
+  }
+  const JULY: MonthlyFocus = {
+    id: 'july',
+    exercise: 'shrugs',
+    daily_target: 100,
+    target_kind: 'reps',
+    color: '#C9A268',
+    category: 'upper',
+    start_date: '2026-07-01',
+    end_date: '2026-07-31',
+  }
+  const NOW = new Date('2026-07-15T19:00:00Z')
+
+  /** Noon Pacific, at an explicit instant. */
+  function noon(dayKey: string, reps: number, id = dayKey): StrengthSet {
+    return { id: `shrugs-${id}`, logged_at: `${dayKey}T19:00:00Z`, exercise: 'shrugs', reps }
+  }
+
+  it("scores a focus goal against its active rotation, not the anchor's target", () => {
+    const sets = [noon('2026-07-14', 100), noon('2026-07-15', 100)]
+    expect(computeStrengthStreaks(sets, [SHRUGS], NOW, undefined, [JULY]).shrugs).toEqual({
+      current: 2,
+      longest: 2,
+    })
+    // Without rotations, the anchor's 500 applies and neither day is a hit.
+    expect(computeStrengthStreaks(sets, [SHRUGS], NOW).shrugs).toEqual({ current: 0, longest: 0 })
+  })
+
+  it('scores a sets-based rotation by distinct sets', () => {
+    const setsFocus: MonthlyFocus = { ...JULY, target_kind: 'sets', daily_target: 2 }
+    const sets = [noon('2026-07-15', 5, 'a'), noon('2026-07-15', 5, 'b')]
+    expect(computeStrengthStreaks(sets, [SHRUGS], NOW, undefined, [setsFocus]).shrugs).toEqual({
+      current: 1,
+      longest: 1,
+    })
   })
 })

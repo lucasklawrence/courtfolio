@@ -10,20 +10,17 @@ import {
   shiftDayKey,
   type DayClock,
 } from './clock'
-import {
-  type GoalTargetChange,
-  goalTargetChanges,
-  targetForDay,
-  targetResolverFor,
-} from './goal-targets'
+import { type GoalTargetChange, goalTargetChanges, targetResolverFor } from './goal-targets'
 import type { HeatmapMonthLabel } from './heatmap-labels'
-import { type StreakCounts, streakFromDailyReps } from './hit-day-streaks'
-import { countedReps } from './set-reps'
 import {
-  type FocusCampaignSummary,
-  focusTargetHistory,
-  summarizeFocusCampaigns,
-} from './monthly-focus'
+  type DayVolume,
+  type VolumeUnit,
+  goalDayTargetResolver,
+  labelTargetForToday,
+} from './focus-scoring'
+import { type StreakCounts, streakFromDailyReps, streakFromDailyVolume } from './hit-day-streaks'
+import { countedReps } from './set-reps'
+import { type FocusCampaignSummary, summarizeFocusCampaigns } from './monthly-focus'
 
 /**
  * Pure helpers for the Weight Room History View (#81). Mirrors the
@@ -130,6 +127,11 @@ export interface StrengthExerciseStats {
    * {@link targetChanges} for where the bar moved.
    */
   dailyTarget: number
+  /**
+   * What {@link dailyTarget} counts: reps, or distinct sets when the rotation
+   * it comes from is sets-based.
+   */
+  dailyTargetUnit: VolumeUnit
   /**
    * Consecutive days (ending today or yesterday) hitting the daily target,
    * each day tested against the target in effect that day.
@@ -408,11 +410,12 @@ export function computeStrengthStreaks(
  *   / month / streak math. Defaults to `new Date()`. Tests pass a
  *   fixed date to make week boundaries deterministic.
  * @param focuses the configured "grease the groove" rotations (#367). Supply
- *   them to include focus-anchored exercises meaningfully: their days score
- *   against the *window's* target rather than the anchor goal's scalar, and
- *   each gets a {@link StrengthExerciseStats.focus} campaign rollup. Omitted,
- *   focus goals still produce stats — just scored against the anchor scalar,
- *   which is the pre-#367 behavior.
+ *   them to include focus-anchored exercises meaningfully: their days score the
+ *   way the Today board scores them (`goalDayTargetResolver`), against the
+ *   rotation active that day in its own unit, with no bar on days no window
+ *   covers, and each gets a {@link StrengthExerciseStats.focus} campaign
+ *   rollup. Omitted, focus goals still produce stats, scored against the
+ *   anchor scalar.
  */
 export function computeStrengthStats(
   sets: readonly StrengthSet[],
@@ -437,16 +440,13 @@ export function computeStrengthStats(
   const lastMonthStart = firstDayOfMonth(lastMonthEnd)
 
   return goals.map(goal => {
-    // A focus anchor's real bar is its rotation's target, not the anchor's
-    // scalar (#367). Synthesizing a target history from the windows routes it
-    // through the same `targetForDay` every other goal uses, so two rotations
-    // at different targets score correctly without a focus-only code path.
-    const windowHistory = focusTargetHistory(focuses, goal.exercise)
-    const scoringGoal: ExerciseGoal =
-      windowHistory.length > 0 ? { ...goal, target_history: windowHistory } : goal
+    // A focus anchor's real bar is its rotation's target, in the rotation's
+    // unit, not the anchor's scalar (#367). Same rule as the Today board.
+    const targetOnDay = goalDayTargetResolver(goal, focuses)
+    const label = labelTargetForToday(goal, focuses, todayKey)
     const focusSummary = summarizeFocusCampaigns(focuses, goal.exercise, sets, now, clock)
 
-    const dailyReps = new Map<string, number>()
+    const dailyVolume = new Map<string, DayVolume>()
     let allTimeReps = 0
     let validSetCount = 0
     let thisWeekReps = 0
@@ -460,7 +460,10 @@ export function computeStrengthStats(
       if (key === '') continue
 
       // All-time + active-day rollups.
-      dailyReps.set(key, (dailyReps.get(key) ?? 0) + countedReps(s))
+      const volume = dailyVolume.get(key) ?? { reps: 0, sets: 0 }
+      volume.reps += countedReps(s)
+      volume.sets += 1
+      dailyVolume.set(key, volume)
       allTimeReps += countedReps(s)
       validSetCount += 1
 
@@ -475,17 +478,17 @@ export function computeStrengthStats(
       else if (key >= lastMonthStart && key <= lastMonthEnd) lastMonthReps += countedReps(s)
     }
 
-    const avgSetsPerActiveDay = dailyReps.size === 0 ? 0 : validSetCount / dailyReps.size
-    const streak = streakFromDailyReps(dailyReps, targetResolverFor(scoringGoal), todayKey)
+    const avgSetsPerActiveDay = dailyVolume.size === 0 ? 0 : validSetCount / dailyVolume.size
+    const streak = streakFromDailyVolume(dailyVolume, targetOnDay, todayKey)
 
     return {
       exercise: goal.exercise,
       displayName: goal.display_name,
       color: goal.color,
-      // Resolved through `scoringGoal` so the label and the streak agree. For
-      // a permanent goal this is just today's target; for a focus it's the
-      // rotation's, falling back to the anchor scalar when no window applies.
-      dailyTarget: targetForDay(scoringGoal, todayKey),
+      // Today's bar when there is one, so the label and the streak agree; for
+      // a focus between rotations, the most recent rotation's.
+      dailyTarget: label.target,
+      dailyTargetUnit: label.unit,
       currentStreak: streak.current,
       longestStreak: streak.longest,
       thisWeekReps,

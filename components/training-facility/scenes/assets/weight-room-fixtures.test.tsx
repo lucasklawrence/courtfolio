@@ -30,7 +30,13 @@ const FOUR_GOALS: ExerciseGoal[] = [
 ]
 
 function makeBoard(goals: ExerciseGoal[]): TodayBoardRow[] {
-  return goals.map(goal => ({ goal, label: goal.exercise, total: 0, streak: 0 }))
+  return goals.map(goal => ({
+    goal,
+    label: goal.exercise,
+    total: 0,
+    unit: 'reps' as const,
+    streak: 0,
+  }))
 }
 
 function renderInScene(board: TodayBoardRow[]) {

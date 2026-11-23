@@ -7,8 +7,18 @@ import { exerciseLabel } from '@/lib/training-facility/exercise-labels'
 export interface RingProgress {
   /** The configured goal — provides exercise name, target, and color. */
   goal: ExerciseGoal
-  /** Total reps already logged for the exercise on the current day. */
+  /**
+   * Volume already logged for the exercise on the current day: reps, or
+   * distinct sets when {@link unit} is `'sets'`.
+   */
   totalReps: number
+  /** What {@link totalReps} and `goal.daily_target` count. Omitted means reps. */
+  unit?: 'reps' | 'sets'
+}
+
+/** Suffix naming a ring's unit, empty for the default reps. */
+function unitSuffix(ring: RingProgress): string {
+  return ring.unit === 'sets' ? ' sets' : ''
 }
 
 /** Props for {@link ActivityRings}. */
@@ -127,7 +137,9 @@ export function ActivityRings({
         height={size}
         role="img"
         aria-label={`Activity rings: ${rings
-          .map(r => `${exerciseLabel(r.goal)} ${r.totalReps} of ${r.goal.daily_target}`)
+          .map(
+            r => `${exerciseLabel(r.goal)} ${r.totalReps} of ${r.goal.daily_target}${unitSuffix(r)}`
+          )
           .join(', ')}`}
         className="block w-full h-auto -rotate-90"
       >
@@ -189,7 +201,11 @@ export function ActivityRings({
           </span>
           <span className="mt-1 font-mono text-3xl font-semibold tabular-nums text-white sm:text-4xl">
             {primary.totalReps}
-            <span className="text-white/40"> / {primary.goal.daily_target}</span>
+            <span className="text-white/40">
+              {' '}
+              / {primary.goal.daily_target}
+              {unitSuffix(primary)}
+            </span>
           </span>
           <span
             className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em]"

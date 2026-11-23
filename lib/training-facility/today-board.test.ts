@@ -103,14 +103,23 @@ describe('buildTodayBoard', () => {
     expect(row.streak).toBe(2)
   })
 
-  it('scores a sets-based rotation against the same rep bar displayed on the board', () => {
+  it('scores a sets-based rotation in sets, on the ring and every streak day', () => {
     const data = makeData({
       monthly_focus: [{ ...OCTOBER_SHRUGS, target_kind: 'sets', daily_target: 3 }],
-      sets: [makeSet('shrugs', 25, '2026-10-15')],
+      sets: [
+        // Yesterday: one 100-rep set clears a rep bar but not 3 sets.
+        makeSet('shrugs', 100, '2026-10-14'),
+        // Today: three small sets clear 3 sets with only 15 reps.
+        { ...makeSet('shrugs', 5, '2026-10-15'), id: 'a' },
+        { ...makeSet('shrugs', 5, '2026-10-15'), id: 'b' },
+        { ...makeSet('shrugs', 5, '2026-10-15'), id: 'c' },
+      ],
     })
     const row = buildTodayBoard(data, noonOn('2026-10-15')).find(r => r.goal.exercise === 'shrugs')!
-    expect(row.goal.daily_target).toBe(100)
-    expect(row.streak).toBe(0)
+    expect(row.unit).toBe('sets')
+    expect(row.goal.daily_target).toBe(3)
+    expect(row.total).toBe(3)
+    expect(row.streak).toBe(1)
   })
 
   it('uses upper-lane precedence when both active lanes reference the same exercise', () => {
@@ -243,10 +252,9 @@ describe('buildTodayBoard', () => {
     expect(row?.goal.daily_target).toBe(100)
   })
 
-  it("falls back to the anchor's target when the active rotation counts sets", () => {
-    const setsFocus: MonthlyFocus = { ...OCTOBER_SHRUGS, target_kind: 'sets', daily_target: 3 }
-    const board = buildTodayBoard(makeData({ monthly_focus: [setsFocus] }), noonOn('2026-10-15'))
-    expect(board.find(r => r.goal.exercise === 'shrugs')?.goal.daily_target).toBe(100)
+  it('labels a permanent goal in reps', () => {
+    const board = buildTodayBoard(makeData(), noonOn('2026-10-15'))
+    expect(board.find(r => r.goal.exercise === 'pushups')?.unit).toBe('reps')
   })
 
   it("scores a focus goal against its rotation's target, not the anchor's", () => {

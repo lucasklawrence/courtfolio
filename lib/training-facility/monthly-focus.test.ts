@@ -7,7 +7,6 @@ import {
   buildFocusLaneCells,
   computeFocusAdherence,
   computeFocusLoadStats,
-  focusTargetHistory,
   formatFocusWindow,
   isFocusActiveOnDay,
   summarizeFocusCampaigns,
@@ -421,32 +420,6 @@ describe('buildFocusLaneCells', () => {
   })
 })
 
-describe('focusTargetHistory', () => {
-  it('returns nothing for an exercise with no rotations', () => {
-    expect(focusTargetHistory([JULY_SHRUGS], 'pushups')).toEqual([])
-  })
-
-  it('emits one point per window start, oldest first', () => {
-    const octoberShrugs: MonthlyFocus = {
-      ...JULY_SHRUGS,
-      id: '55555555-5555-4555-8555-555555555555',
-      daily_target: 150,
-      start_date: '2026-10-01',
-      end_date: '2026-10-31',
-    }
-    // Supplied newest-first to prove the sort.
-    expect(focusTargetHistory([octoberShrugs, JULY_SHRUGS], 'shrugs')).toEqual([
-      { daily_target: 100, effective_from: '2026-07-01' },
-      { daily_target: 150, effective_from: '2026-10-01' },
-    ])
-  })
-
-  it('skips a window with a non-positive target', () => {
-    const broken: MonthlyFocus = { ...JULY_SHRUGS, daily_target: 0 }
-    expect(focusTargetHistory([broken], 'shrugs')).toEqual([])
-  })
-})
-
 describe('summarizeFocusCampaigns', () => {
   /** Two shrug days inside the July window: one hit (100), one miss (40). */
   const JULY_SETS: StrengthSet[] = [
@@ -509,6 +482,45 @@ describe('summarizeFocusCampaigns', () => {
     expect(summary?.latestWindowLabel).toContain('Oct')
   })
 
+  it('counts a nested window’s days once, against the nested target', () => {
+    const nested: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: '77777777-7777-4777-8777-777777777777',
+      daily_target: 150,
+      start_date: '2026-07-10',
+      end_date: '2026-07-12',
+    }
+    const sets: StrengthSet[] = ['2026-07-10', '2026-07-11', '2026-07-12', '2026-07-13'].map(
+      day => ({ id: day, logged_at: `${day}T19:00:00Z`, exercise: 'shrugs', reps: 100 })
+    )
+    const summary = summarizeFocusCampaigns(
+      [JULY_SHRUGS, nested],
+      'shrugs',
+      sets,
+      new Date('2026-08-15T19:00:00Z')
+    )
+    // July's 31 days, not 31 + 3.
+    expect(summary?.daysElapsed).toBe(31)
+    // 100 misses the nested 150 on the 10th-12th and clears July's 100 on the 13th.
+    expect(summary?.daysHit).toBe(1)
+  })
+
+  it('scores a sets-based window by distinct sets', () => {
+    const setsFocus: MonthlyFocus = { ...JULY_SHRUGS, target_kind: 'sets', daily_target: 2 }
+    const sets: StrengthSet[] = [
+      { id: 'a', logged_at: '2026-07-02T19:00:00Z', exercise: 'shrugs', reps: 5 },
+      { id: 'b', logged_at: '2026-07-02T19:00:00Z', exercise: 'shrugs', reps: 5 },
+      { id: 'c', logged_at: '2026-07-03T19:00:00Z', exercise: 'shrugs', reps: 100 },
+    ]
+    const summary = summarizeFocusCampaigns(
+      [setsFocus],
+      'shrugs',
+      sets,
+      new Date('2026-08-15T19:00:00Z')
+    )
+    expect(summary?.daysHit).toBe(1)
+  })
+
   it('excludes off-campaign sets from campaignReps', () => {
     const sets: StrengthSet[] = [
       ...JULY_SETS,
@@ -522,30 +534,6 @@ describe('summarizeFocusCampaigns', () => {
       new Date('2026-09-01T19:00:00Z')
     )
     expect(summary?.campaignReps).toBe(140)
-  })
-})
-
-/** Review fixes on #367: sets-targets, and upcoming vs ended. */
-describe('focusTargetHistory — set-based targets (#367 review)', () => {
-  it('excludes a sets-target window so a rep total is never compared against it', () => {
-    // 3 sets/day fed into the rep-based streak path would be satisfied by a
-    // single 20-rep set. Better to omit and fall back to the anchor scalar.
-    const setsFocus: MonthlyFocus = { ...JULY_SHRUGS, target_kind: 'sets', daily_target: 3 }
-    expect(focusTargetHistory([setsFocus], 'shrugs')).toEqual([])
-  })
-
-  it('keeps rep-target windows alongside an excluded sets one', () => {
-    const setsFocus: MonthlyFocus = {
-      ...JULY_SHRUGS,
-      id: '66666666-6666-4666-8666-666666666666',
-      target_kind: 'sets',
-      daily_target: 3,
-      start_date: '2026-09-01',
-      end_date: '2026-09-30',
-    }
-    expect(focusTargetHistory([JULY_SHRUGS, setsFocus], 'shrugs')).toEqual([
-      { daily_target: 100, effective_from: '2026-07-01' },
-    ])
   })
 })
 
