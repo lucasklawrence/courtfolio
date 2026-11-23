@@ -487,6 +487,27 @@ describe('parseEventEmail', () => {
     expect(read(['Hello again. Jordan just sent you tickets.'])).toBe('Jordan')
   })
 
+  it('reads the same full recipient name from the subject and from the body', () => {
+    const read = (subject: string, body: string) =>
+      parseEventEmail({
+        from: 'customer_support@email.ticketmaster.com',
+        subject,
+        html: html(
+          row(body),
+          row('Harbor City Hawks vs. Riverside Rockets'),
+          row('Sat, Mar 14 @ 6:40 PM')
+        ),
+        receivedAt: MAR_2026,
+      })?.counterpart
+    // One hand-off's emails must share a counterpart, or the view counts them twice.
+    expect(
+      read("You've transferred your tickets", 'You transferred 2 tickets to Pat Alex Kim.')
+    ).toBe('Pat Alex Kim')
+    expect(read('Your tickets have been accepted by Pat Alex Kim for Hawks', 'All done')).toBe(
+      'Pat Alex Kim'
+    )
+  })
+
   it('never reads "Go to My Account" as a transfer recipient', () => {
     const p = parseEventEmail({
       from: 'customer_support@email.ticketmaster.com',
@@ -628,17 +649,24 @@ describe('venues and states', () => {
   })
 })
 
-describe('resolveEventDate (nearest)', () => {
-  it('picks the closest occurrence, across a year boundary both ways', () => {
-    const when = { year: null, month: 1, day: 5, hour: 19, minute: 0 }
-    expect(resolveEventDate(when, new Date('2026-12-20T00:00:00Z'), { nearest: true }).year).toBe(
-      2027
-    )
+describe('resolveEventDate (mayArriveLate)', () => {
+  const late = { mayArriveLate: true }
+  const when = { year: null, month: 1, day: 5, hour: 19, minute: 0 }
+
+  it('takes a recent past occurrence, across a year boundary', () => {
     expect(
-      resolveEventDate({ ...when, month: 12, day: 28 }, new Date('2027-01-03T00:00:00Z'), {
-        nearest: true,
-      }).year
+      resolveEventDate({ ...when, month: 12, day: 28 }, new Date('2027-01-03T00:00:00Z'), late).year
     ).toBe(2026)
+  })
+
+  it('keeps the next occurrence for an email sent ahead of the event', () => {
+    expect(resolveEventDate(when, new Date('2026-12-20T00:00:00Z'), late).year).toBe(2027)
+    // Months ahead: last year's same date is too old to be a late arrival, so a
+    // delivery notice and its purchase still land on one date.
+    const oct9 = { ...when, month: 10, day: 9 }
+    const received = new Date('2026-03-01T18:00:00Z')
+    expect(resolveEventDate(oct9, received, late).year).toBe(2026)
+    expect(resolveEventDate(oct9, received).year).toBe(2026)
   })
 })
 

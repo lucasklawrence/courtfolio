@@ -329,10 +329,17 @@ export function findEventDates(text) {
 
 /**
  * Kinds that can arrive after the event they name: a transfer completing, a
- * delivery notice, a late reminder. A yearless date in one of these resolves
- * to the nearest occurrence, not the next one.
+ * delivery notice, a late reminder. A yearless date in one of these may
+ * resolve to a recent past occurrence — see {@link resolveEventDate}.
  */
-const MAY_ARRIVE_AFTER = new Set(['transfer_in', 'transfer_out', 'fulfilment', 'reminder'])
+const MAY_ARRIVE_LATE = new Set(['transfer_in', 'transfer_out', 'fulfilment', 'reminder'])
+
+/**
+ * How long after an event a late-arriving email can still be about it. Bounded
+ * so a delivery notice sent months *ahead* of an event isn't pulled back to the
+ * same date last year.
+ */
+const LATE_ARRIVAL_DAYS = 60
 
 /**
  * Fill in a missing year.
@@ -342,31 +349,29 @@ const MAY_ARRIVE_AFTER = new Set(['transfer_in', 'transfer_out', 'fulfilment', '
  * more than a day in the past — a same-day purchase can land after a
  * late-evening start in UTC).
  *
- * With `nearest`, for kinds that may arrive after the event, it is whichever
- * occurrence (last year, this year or next) is closest to the email, so a
- * transfer confirmation landing a week after a March game stays in March
- * rather than moving to next March.
+ * With `mayArriveLate`, for kinds that can land after the event, an occurrence
+ * up to {@link LATE_ARRIVAL_DAYS} before the email wins, so a transfer
+ * confirmation a week after a March game stays in March rather than moving to
+ * next March. Anything older falls back to the default rule.
  *
  * @param {WallTime} when
  * @param {Date} receivedAt When Gmail received the email.
- * @param {{ nearest?: boolean }} [opts]
+ * @param {{ mayArriveLate?: boolean }} [opts]
  * @returns {WallTime} `when` with `year` set.
  */
-export function resolveEventDate(when, receivedAt, { nearest = false } = {}) {
+export function resolveEventDate(when, receivedAt, { mayArriveLate = false } = {}) {
   if (when.year != null) return when
   const asDay = y => Date.UTC(y, when.month - 1, when.day)
-  if (nearest) {
-    const t = receivedAt.getTime()
-    const y0 = receivedAt.getUTCFullYear()
-    const year = [y0 - 1, y0, y0 + 1].reduce((best, y) =>
-      Math.abs(asDay(y) - t) < Math.abs(asDay(best) - t) ? y : best
-    )
-    return { ...when, year }
-  }
   const floor = new Date(receivedAt.getTime() - 36 * 3600 * 1000)
   let year = floor.getUTCFullYear()
   const floorDay = Date.UTC(floor.getUTCFullYear(), floor.getUTCMonth(), floor.getUTCDate())
   if (asDay(year) < floorDay) year += 1
+  if (mayArriveLate) {
+    // The occurrence just before the default one: the most recent past date.
+    const past = asDay(year - 1)
+    const age = receivedAt.getTime() - past
+    if (age >= 0 && age <= LATE_ARRIVAL_DAYS * 24 * 3600 * 1000) year -= 1
+  }
   return { ...when, year }
 }
 
@@ -556,7 +561,7 @@ export function parseEventEmail({ from, subject: rawSubject, html, receivedAt })
   // The date regex runs once per email; every reader below shares the result.
   const dates = findEventDates(text)
   const when = dates[0]
-    ? resolveEventDate(dates[0].when, receivedAt, { nearest: MAY_ARRIVE_AFTER.has(kind) })
+    ? resolveEventDate(dates[0].when, receivedAt, { mayArriveLate: MAY_ARRIVE_LATE.has(kind) })
     : null
   const parsed = { ...base, ...venueAfterAnyDate(text, dates), when }
   // A platform extractor's non-null fields win; its nulls never erase what the
@@ -605,6 +610,7 @@ function cleanName(raw) {
     .split(/[,¶!?:;]/)
     .pop()
     .trim()
+    .replace(/\.+$/, '') // a sentence-ending period, not an initial
   if (!name || name === '-' || !/^[A-Z]/.test(name)) return null
   return name.split(/\s+/).length <= 4 ? name : null
 }
@@ -642,7 +648,7 @@ function recipientName(text, subject) {
     [
       text,
       new RegExp(
-        `\\b(?:transferred|sent|assigned)\\b${IN_SENTENCE}{0,60}?\\bto\\s+(?!(?:My|Your|The|Our)\\b)([A-Z][\\w.'-]*(?: [A-Z][\\w.'-]*)?)`
+        `\\b(?:transferred|sent|assigned)\\b${IN_SENTENCE}{0,60}?\\bto\\s+(?!(?:My|Your|The|Our)\\b)([A-Z][\\w.'-]*(?: [A-Z][\\w.'-]*){0,3})`
       ),
     ],
   ])
