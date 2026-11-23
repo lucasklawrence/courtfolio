@@ -1,3 +1,5 @@
+import { pacificWallClock } from './day-keys'
+
 /**
  * The date-range vocabulary shared by the Training Facility's filtered views
  * (#425).
@@ -10,11 +12,12 @@
  * its own consumers, so nothing changed for callers; the arrow between UI and
  * domain simply points the right way again.
  *
- * **These are local-time helpers, deliberately.** They bound a range the way a
- * person picking dates in a browser means them — midnight to midnight *where
- * they are*. That is a different question from "which calendar day does this
- * training session belong to", which is anchored to a single home timezone and
- * lives in `day-keys.ts`. Don't reach for these to bucket a set.
+ * **Ranges are wall-clock values.** A bound is midnight or end of day, read through
+ * local getters, and compared with other wall-clock `Date`s such as
+ * `parseSessionDate` returns. Presets take "today" from the Pacific wall clock, so
+ * the server and every viewer's browser compute the same range. Dates a person types
+ * into the custom fields are that calendar day as written. To bucket a set, use
+ * `day-keys.ts`.
  */
 
 /**
@@ -95,7 +98,7 @@ export function subtractMonths(d: Date, months: number): Date {
  *   invariant is preserved against a misconfigured prop.
  */
 export function rangeForPreset(preset: PresetId, earliest: Date): DateRange {
-  const today = new Date()
+  const today = pacificWallClock(new Date())
   const end = endOfDay(today)
   if (preset === 'ALL') {
     // Clamp `start` to today if `earliest` is in the future, so the

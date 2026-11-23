@@ -1,5 +1,6 @@
 import { isInRange, type DateRange } from '@/lib/training-facility/date-range'
 import type { OtfSession, OtfZoneMinutes } from '@/types/otf'
+import { parseSessionDate, wallClockMs } from './day-keys'
 
 /**
  * Pure derivations for the OrangeTheory Gym view (#256). Mirrors the
@@ -97,9 +98,13 @@ export interface OtfTrendPoint {
   value: number
 }
 
-/** Parse a session's ISO `started_at` to a `Date`. */
+/**
+ * Parse a session's ISO `started_at` to a `Date` whose local getters read the
+ * Pacific wall clock, so a class stays on its own day on the server and for any
+ * viewer.
+ */
 export function otfSessionDate(session: OtfSession): Date {
-  return new Date(session.started_at)
+  return parseSessionDate(session.started_at)
 }
 
 /**
@@ -516,8 +521,9 @@ const MS_PER_DAY = 86_400_000
 
 /**
  * Fit a least-squares regression line to a `{date, value}` trend, using each
- * point's epoch-milliseconds as x. Returns the line's endpoints (at the min and
- * max date, so it spans the data's x-domain) and its per-day slope.
+ * point's {@link wallClockMs} as x so the fit is the same in every timezone. Returns
+ * the line's endpoints (at the min and max date, so it spans the data's x-domain)
+ * and its per-day slope.
  *
  * Returns `null` when the line is undefined: fewer than two points, or every
  * point sharing the same date (zero x-variance — a vertical line has no slope).
@@ -531,15 +537,23 @@ export function otfLinearRegression(trend: readonly OtfTrendPoint[]): OtfTrendLi
   let sumXX = 0
   let minX = Infinity
   let maxX = -Infinity
+  let minDate = trend[0].date
+  let maxDate = trend[0].date
   for (const p of trend) {
-    const x = p.date.getTime()
+    const x = wallClockMs(p.date)
     const y = p.value
     sumX += x
     sumY += y
     sumXY += x * y
     sumXX += x * x
-    if (x < minX) minX = x
-    if (x > maxX) maxX = x
+    if (x < minX) {
+      minX = x
+      minDate = p.date
+    }
+    if (x > maxX) {
+      maxX = x
+      maxDate = p.date
+    }
   }
   const denom = n * sumXX - sumX * sumX
   if (denom === 0) return null
@@ -547,8 +561,8 @@ export function otfLinearRegression(trend: readonly OtfTrendPoint[]): OtfTrendLi
   const intercept = (sumY - slopePerMs * sumX) / n
   return {
     points: [
-      { date: new Date(minX), value: slopePerMs * minX + intercept },
-      { date: new Date(maxX), value: slopePerMs * maxX + intercept },
+      { date: minDate, value: slopePerMs * minX + intercept },
+      { date: maxDate, value: slopePerMs * maxX + intercept },
     ],
     slopePerDay: slopePerMs * MS_PER_DAY,
   }

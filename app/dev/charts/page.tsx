@@ -7,6 +7,7 @@ import {
   RoughScatter,
   chartPalette,
 } from '@/components/training-facility/shared/charts'
+import { parseSessionDate } from '@/lib/training-facility/day-keys'
 import type { Benchmark } from '@/types/movement'
 
 const patrickHand = Patrick_Hand({
@@ -144,8 +145,8 @@ export default function ChartsDemoPage(): JSX.Element {
           <BodyweightOverlay
             benchmarks={overlayBenchmarks}
             dateExtent={[
-              new Date(overlayBenchmarks[0].date),
-              new Date(overlayBenchmarks[overlayBenchmarks.length - 1].date),
+              parseSessionDate(overlayBenchmarks[0].date),
+              parseSessionDate(overlayBenchmarks[overlayBenchmarks.length - 1].date),
             ]}
             width={720}
             height={300}
@@ -153,7 +154,7 @@ export default function ChartsDemoPage(): JSX.Element {
           >
             <RoughLine
               data={overlayBenchmarks}
-              x={d => new Date(d.date)}
+              x={d => parseSessionDate(d.date)}
               y={d => d.vertical_in ?? 0}
               width={720}
               height={300}

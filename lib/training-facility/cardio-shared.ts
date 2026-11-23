@@ -12,27 +12,12 @@
  * APIs continue to read naturally at call sites.
  */
 
-import type { CardioActivity, CardioSession, HrZone } from '@/types/cardio'
+import type { CardioActivity, CardioSession, HrSample, HrZone } from '@/types/cardio'
 import { HR_ZONES, type HrZoneConfig } from '@/constants/hr-zones'
 import type { DateRange } from '@/lib/training-facility/date-range'
+import { hasUtcOffset, parseSessionDate, wallClockMs } from '@/lib/training-facility/day-keys'
 
-/**
- * Parse a session-date string as a local-time `Date`.
- *
- * Bare `YYYY-MM-DD` strings (the dominant format in `cardio.json` for
- * non-walking sessions) are treated as local midnight so range comparisons
- * match the `DateFilter`'s local-day bounds. Full ISO timestamps already carry
- * an offset and pass through to `new Date()` unchanged.
- *
- * Exported so every layer (filters, chart projections, table row formatters)
- * stays consistent on the local-vs-UTC interpretation of the same field.
- *
- * @param raw - Original `date` field from a `CardioSession`.
- */
-export function parseSessionDate(raw: string): Date {
-  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return new Date(`${raw}T00:00:00`)
-  return new Date(raw)
-}
+export { parseSessionDate }
 
 /**
  * Filter `sessions` down to a single activity whose `date` falls within
@@ -62,6 +47,42 @@ export function filterCardioSessionsByActivity(
   }
   out.sort((a, b) => a.ts - b.ts)
   return out.map(entry => entry.session)
+}
+
+/** A single point on a session's heart-rate curve. */
+export interface SessionCurvePoint {
+  /** Seconds since session start, never negative. Unparseable samples read `0`. */
+  tSeconds: number
+  /** Heart rate at this sample, BPM. */
+  bpm: number
+}
+
+/**
+ * Convert a session's raw heart-rate samples to session-relative seconds.
+ *
+ * Samples are real instants, so the start has to be one too. That rules out
+ * {@link parseSessionDate}, whose result is a wall clock. A `sessionDate` with no
+ * offset doesn't name an instant at all, so the curve starts from its first sample,
+ * which also keeps the result the same in every timezone.
+ *
+ * @param sessionDate The session's `date`.
+ * @param samples Samples for that session, in the order to plot them.
+ * @returns The curve, or `[]` when `sessionDate` can't be parsed.
+ */
+export function sessionHrCurve(
+  sessionDate: string,
+  samples: readonly HrSample[]
+): SessionCurvePoint[] {
+  if (!Number.isFinite(parseSessionDate(sessionDate).getTime())) return []
+  const sampleTimes = samples.map(sample => new Date(sample.ts).getTime())
+  const startMs = hasUtcOffset(sessionDate)
+    ? new Date(sessionDate).getTime()
+    : (sampleTimes.find(ms => Number.isFinite(ms)) ?? 0)
+  return samples.map((sample, i) => {
+    const sampleMs = sampleTimes[i]
+    const tSeconds = Number.isFinite(sampleMs) ? Math.max(0, (sampleMs - startMs) / 1000) : 0
+    return { tSeconds, bpm: sample.bpm }
+  })
 }
 
 /** One row in the HR-zone distribution chart. */
@@ -159,7 +180,7 @@ const MS_PER_DAY = 86_400_000
  * @param range - Inclusive date window from the `DateFilter`.
  */
 export function rangeSpanDays(range: DateRange): number {
-  return (range.end.getTime() - range.start.getTime()) / MS_PER_DAY
+  return (wallClockMs(range.end) - wallClockMs(range.start)) / MS_PER_DAY
 }
 
 /**

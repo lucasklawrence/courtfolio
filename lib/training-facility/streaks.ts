@@ -1,6 +1,7 @@
 import type { CardioSession } from '@/types/cardio'
 
 import { parseSessionDate } from './cardio-shared'
+import { pacificWallClock } from './day-keys'
 
 /**
  * Result of {@link computeStreaks}: the all-time current and longest
@@ -72,7 +73,7 @@ export function computeStreaks(sessions: readonly CardioSession[]): StreakResult
     }
   }
 
-  const today = toDateKey(new Date())
+  const today = toDateKey(pacificWallClock(new Date()))
   const yesterday = addDays(today, -1)
   const lastDay = sorted[sorted.length - 1]
 

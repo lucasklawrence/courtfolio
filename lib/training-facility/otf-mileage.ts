@@ -56,10 +56,9 @@ export function sessionMiles(session: OtfSession): number {
 }
 
 /**
- * Local-timezone `YYYY-MM` bucket key for a date. Uses the viewer's local
- * calendar month (via {@link otfSessionDate}'s `Date`), matching how the OTF
- * day-bucketing helpers treat session dates, so a late-night class counts in
- * the month the user experienced it, not the UTC month.
+ * `YYYY-MM` bucket key from a date's local getters. {@link otfSessionDate} sets
+ * those to the Pacific wall clock, so a late-night class counts in the month it
+ * happened, not the UTC month.
  */
 export function monthKeyOf(date: Date): string {
   const year = date.getFullYear()
@@ -190,14 +189,14 @@ function awardMonth(month: MonthlyMileage, awards: readonly OtfMileageAward[]): 
  * ladder, and the current time.
  *
  * `now` is injected (not read from the clock here) to keep this pure and
- * testable; the client component passes `new Date()`. The current calendar
+ * testable; the client component passes `pacificWallClock(new Date())`. The current calendar
  * month is always returned as {@link OtfMileageView.current} — with its real
  * total when classes exist, or a zero row otherwise — and every other month
  * with logged mileage falls into {@link OtfMileageView.history}, newest first.
  *
  * @param sessions Raw OTF sessions (excluded ones are dropped internally).
  * @param awards   The milestone ladder; may be empty (no badges, no next tier).
- * @param now      The reference "current" time, in the viewer's local timezone.
+ * @param now      The reference "current" time, as a wall-clock `Date` read through its local getters.
  */
 export function buildOtfMileageView(
   sessions: readonly OtfSession[],

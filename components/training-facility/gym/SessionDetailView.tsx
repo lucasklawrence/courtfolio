@@ -8,6 +8,7 @@ import {
   aggregateHrZoneSeconds,
   formatDuration,
   parseSessionDate,
+  sessionHrCurve,
 } from '@/lib/training-facility/cardio-shared'
 import { ACTIVITY_VISUALS } from '@/lib/training-facility/all-cardio'
 import { METERS_PER_MILE } from '@/lib/training-facility/running'
@@ -22,14 +23,6 @@ const ZONE_HEIGHT = 280
 const MIN_CHART_WIDTH = 280
 const DEFAULT_CHART_WIDTH = 880
 const FONT_FAMILY = "'Patrick Hand', system-ui, sans-serif"
-
-/** Single point on the HR curve — `{ tSeconds, bpm }`. */
-interface CurvePoint {
-  /** Seconds since session start. The x-axis renders these as `M:SS`. */
-  tSeconds: number
-  /** Heart rate in BPM at this sample. */
-  bpm: number
-}
 
 /** Props for {@link SessionDetailView}. */
 export interface SessionDetailViewProps {
@@ -81,23 +74,8 @@ export function SessionDetailView({ session, samples }: SessionDetailViewProps):
     return () => observer.disconnect()
   }, [])
 
-  const sessionStartMs = useMemo(() => {
-    const dt = parseSessionDate(session.date)
-    return Number.isFinite(dt.getTime()) ? dt.getTime() : 0
-  }, [session.date])
-
-  // Convert raw samples to session-relative seconds. PostgREST orders the
-  // samples ascending so this stays sorted for the line chart.
-  const curve = useMemo<CurvePoint[]>(() => {
-    if (sessionStartMs === 0) return []
-    return samples.map(s => {
-      const sampleMs = new Date(s.ts).getTime()
-      const tSeconds = Number.isFinite(sampleMs)
-        ? Math.max(0, (sampleMs - sessionStartMs) / 1000)
-        : 0
-      return { tSeconds, bpm: s.bpm }
-    })
-  }, [samples, sessionStartMs])
+  // PostgREST orders the samples ascending, so this stays sorted for the line chart.
+  const curve = useMemo(() => sessionHrCurve(session.date, samples), [session.date, samples])
 
   // Reuse the same HrZoneBucket aggregation that powers the inline strip
   // (#163) and the click-to-expand panel (#164) — the detail page just
