@@ -91,6 +91,16 @@ describe('tailLog', () => {
     expect(tailLog(log, 2)).toBe('fetch failed\n##[error]Process completed with exit code 2.')
   })
 
+  it('drops the runner teardown that follows the failure', () => {
+    const log = [
+      'fetch failed',
+      '##[error]Process completed with exit code 2.',
+      'Post job cleanup.',
+      '[command]/usr/bin/git version',
+    ].join('\n')
+    expect(tailLog(log)).toBe('fetch failed\n##[error]Process completed with exit code 2.')
+  })
+
   it('caps one enormous line by length', () => {
     const tail = tailLog('x'.repeat(50_000))
     expect(tail.length).toBeLessThanOrEqual(6001)

@@ -90,7 +90,9 @@ export function decideAction(result, open) {
  *
  * Strips the ISO timestamp Actions prefixes to every line and ANSI colour
  * codes, drops blank lines, and caps the result by length as well as count so
- * one enormous line can't blow the issue body limit.
+ * one enormous line can't blow the issue body limit. Everything from the first
+ * `Post job cleanup.` on is dropped: the runner's teardown follows every
+ * failure and would otherwise fill the tail with git config noise.
  *
  * @param {string} log Raw log text from the jobs/{id}/logs endpoint.
  * @param {number} [lines]
@@ -101,7 +103,9 @@ export function tailLog(log, lines = LOG_TAIL_LINES) {
     .map(l => l.replace(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z ?/, ''))
     .map(l => l.replace(/\u001b\[[0-9;]*m/g, ''))
     .filter(l => l.trim() !== '')
-  let tail = cleaned.slice(-lines).join('\n')
+  const cleanup = cleaned.findIndex(l => l.startsWith('Post job cleanup.'))
+  const body = cleanup === -1 ? cleaned : cleaned.slice(0, cleanup)
+  let tail = body.slice(-lines).join('\n')
   if (tail.length > MAX_LOG_CHARS) tail = '…' + tail.slice(-MAX_LOG_CHARS)
   return tail
 }
