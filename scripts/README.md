@@ -22,6 +22,14 @@ When the branch changes `package.json` or `package-lock.json` it does a real `np
 
 `-Link` forces the junction anyway, for when you know the dependency delta is irrelevant to what you're running. Know what it shares before reaching for it.
 
+### Turbopack and the junction
+
+Turbopack (the default bundler for `next dev` and `next build` since Next 16) will not read files outside its **workspace root**. It infers that root as the directory holding the nearest lockfile, which in a worktree is the worktree itself, while the junction resolves into the main checkout. Without help, every page fails with *"Could not find the Next.js package (next/package.json)"*, and Playwright's web server times out waiting for a server that never compiles (#493).
+
+`next.config.ts` handles this. When `node_modules` is a link, it sets `turbopack.root` and `outputFileTracingRoot` to the directory the link resolves into, which is the main checkout. Worktrees live under it (`.claude/worktrees/<slug>`), so both trees are inside the root. The check looks at the link itself, not at an env var or a path, so it only changes anything where a linked install exists. Vercel and CI do a real `npm ci` and keep the default root.
+
+A worktree created **outside** the main checkout can't use the junction: no single root contains both trees. Give it a real install with `-Isolate`.
+
 ### Adding a dependency: `-Isolate`
 
 The check above reads the *committed* diff, so it can only see a dependency change that already exists. On a branch where you're **about to** add one, there's nothing to detect yet — you get a junction, and the `npm install` you run next writes through it into the main checkout. That's the trap, and it's easy to walk into because nothing looks wrong until something else breaks.
