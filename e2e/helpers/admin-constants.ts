@@ -1,5 +1,5 @@
 /**
- * Addresses and names shared by the admin e2e setup (#481). Kept free of any
+ * Addresses and names shared by the admin e2e setup. Kept free of any
  * Playwright import so `playwright.config.ts` and the Vitest guard test can
  * both read them.
  */

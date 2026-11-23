@@ -1,5 +1,5 @@
 /**
- * In-memory stand-in for Supabase's PostgREST API, for the admin e2e specs (#481).
+ * In-memory stand-in for Supabase's PostgREST API, for the admin e2e specs.
  *
  * The admin pages read through the Supabase clients and write through the real
  * `/api/admin/*` routes, which use the service role. CI has no Supabase
@@ -29,10 +29,10 @@
  */
 
 import { randomUUID } from 'node:crypto'
-import { readFileSync } from 'node:fs'
+import { readFileSync, realpathSync } from 'node:fs'
 import { createServer } from 'node:http'
 import { dirname, join } from 'node:path'
-import { fileURLToPath, pathToFileURL } from 'node:url'
+import { fileURLToPath } from 'node:url'
 
 /** Port the fake listens on. Matches `NEXT_PUBLIC_SUPABASE_URL` in `e2e:dev:admin`. */
 export const FAKE_SUPABASE_PORT = Number(process.env.FAKE_SUPABASE_PORT ?? 54329)
@@ -67,11 +67,36 @@ function literal(raw) {
   return raw
 }
 
-/** Compare a stored value with a filter literal, numbers numerically. */
+/** An ISO-8601 timestamp, in any of the spellings Postgres and JS produce. */
+const TIMESTAMP = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:?\d{2})$/
+
+/**
+ * Compare a stored value with another value or a filter literal: numbers
+ * numerically, timestamps as instants (so `…18:00:00Z` equals
+ * `…18:00:00.000+00:00`, as it does in Postgres), everything else as text.
+ * Callers handle nulls.
+ */
 function compare(a, b) {
-  if (a === null || a === undefined) return b === null ? 0 : -1
   if (typeof a === 'number') return a - Number(b)
-  return String(a) < String(b) ? -1 : String(a) > String(b) ? 1 : 0
+  const as = String(a)
+  const bs = String(b)
+  if (TIMESTAMP.test(as) && TIMESTAMP.test(bs)) return Date.parse(as) - Date.parse(bs)
+  return as < bs ? -1 : as > bs ? 1 : 0
+}
+
+/**
+ * Split a PostgREST `in.(…)` list, honouring the double quotes postgrest-js
+ * puts around values containing commas or parentheses.
+ *
+ * @param {string} raw The part after `in.`, e.g. `("a,b",c)`.
+ */
+function parseInList(raw) {
+  const body = raw.replace(/^\(/, '').replace(/\)$/, '')
+  const out = []
+  for (const match of body.matchAll(/"((?:[^"\\]|\\.)*)"|([^,]+)/g)) {
+    out.push(match[1] !== undefined ? match[1].replace(/\\(.)/g, '$1') : match[2])
+  }
+  return out
 }
 
 /**
@@ -90,30 +115,31 @@ export function buildFilter(params) {
     const value = expr.slice(dot + 1)
     switch (op) {
       case 'eq':
-        tests.push(row => row[column] !== null && compare(row[column], literal(value)) === 0)
+        tests.push(row => row[column] != null && compare(row[column], literal(value)) === 0)
         break
       case 'neq':
-        tests.push(row => row[column] === null || compare(row[column], literal(value)) !== 0)
+        // `col <> x` is NULL, not true, for a NULL column, so Postgres drops the row.
+        tests.push(row => row[column] != null && compare(row[column], literal(value)) !== 0)
         break
       case 'is':
         tests.push(row => (row[column] ?? null) === literal(value))
         break
       case 'in': {
-        const list = value.replace(/^\(|\)$/g, '').split(',').map(v => v.replace(/^"|"$/g, ''))
-        tests.push(row => row[column] !== null && list.some(v => compare(row[column], v) === 0))
+        const list = parseInList(value)
+        tests.push(row => row[column] != null && list.some(v => compare(row[column], v) === 0))
         break
       }
       case 'gt':
-        tests.push(row => row[column] !== null && compare(row[column], value) > 0)
+        tests.push(row => row[column] != null && compare(row[column], value) > 0)
         break
       case 'gte':
-        tests.push(row => row[column] !== null && compare(row[column], value) >= 0)
+        tests.push(row => row[column] != null && compare(row[column], value) >= 0)
         break
       case 'lt':
-        tests.push(row => row[column] !== null && compare(row[column], value) < 0)
+        tests.push(row => row[column] != null && compare(row[column], value) < 0)
         break
       case 'lte':
-        tests.push(row => row[column] !== null && compare(row[column], value) <= 0)
+        tests.push(row => row[column] != null && compare(row[column], value) <= 0)
         break
       default:
         throw new Unsupported(`filter operator '${op}' on '${column}'`)
@@ -144,7 +170,7 @@ export function sortRows(rows, order) {
       if (av === null && bv === null) continue
       if (av === null) return nullsFirst ? -1 : 1
       if (bv === null) return nullsFirst ? 1 : -1
-      const c = typeof av === 'number' ? av - bv : String(av).localeCompare(String(bv))
+      const c = compare(av, bv)
       if (c !== 0) return desc ? -c : c
     }
     return 0
@@ -248,6 +274,14 @@ export function createFakeSupabase() {
       const prefer = String(req.headers.prefer ?? '')
       const wantsObject = String(req.headers.accept ?? '').includes('vnd.pgrst.object+json')
       const representation = prefer.includes('return=representation')
+      // Counts would otherwise come back as a silent `null`.
+      if (/count=/.test(prefer)) throw new Unsupported(`Prefer: ${prefer}`)
+
+      /**
+       * PostgREST runs a write in a transaction and rolls it back when
+       * `.single()` finds other than one row, so check before mutating.
+       */
+      const notSingle = n => wantsObject && n !== 1
 
       /** Answer with rows, as a single object when `.single()` asked for one. */
       const reply = (status, rows, { always = true } = {}) => {
@@ -281,12 +315,15 @@ export function createFakeSupabase() {
         const inserted = (Array.isArray(body) ? body : [body]).map(r =>
           withDefaults(r, columnsOf[table])
         )
+        if (notSingle(inserted.length)) return reply(201, inserted)
         tables[table].push(...inserted)
         return reply(201, inserted, { always: representation })
       }
 
       if (req.method === 'PATCH') {
         const changes = JSON.parse(raw || '{}')
+        const matched = tables[table].filter(filter)
+        if (notSingle(matched.length)) return reply(200, matched)
         const updated = []
         tables[table] = tables[table].map(row => {
           if (!filter(row)) return row
@@ -299,6 +336,7 @@ export function createFakeSupabase() {
 
       if (req.method === 'DELETE') {
         const removed = tables[table].filter(filter)
+        if (notSingle(removed.length)) return reply(200, removed)
         tables[table] = tables[table].filter(row => !filter(row))
         return reply(200, removed, { always: representation })
       }
@@ -323,7 +361,17 @@ export function createFakeSupabase() {
   return createServer((req, res) => void handle(req, res))
 }
 
-if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(process.argv[1]).href) {
+/** Whether this module is the entry point, comparing real paths so a symlinked checkout still starts. */
+function isEntryPoint() {
+  if (process.argv[1] === undefined) return false
+  try {
+    return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url))
+  } catch {
+    return false
+  }
+}
+
+if (isEntryPoint()) {
   createFakeSupabase().listen(FAKE_SUPABASE_PORT, '127.0.0.1', () => {
     console.log(`[fake-supabase] listening on http://127.0.0.1:${FAKE_SUPABASE_PORT}`)
   })

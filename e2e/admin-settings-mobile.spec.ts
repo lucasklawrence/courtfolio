@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 import { ADMIN_BASE_URL, signInAsE2eAdmin, waitForHydration } from './helpers/admin'
 
 /**
- * Weight Room Settings on a phone, as the admin (#481): the page must not
+ * Weight Room Settings on a phone, as the admin: the page must not
  * scroll sideways, and its controls must be big enough to tap and big enough
  * in text that iOS doesn't zoom when a field takes focus.
  *

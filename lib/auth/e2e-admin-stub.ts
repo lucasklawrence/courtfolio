@@ -3,7 +3,7 @@ import 'server-only'
 import { cookies } from 'next/headers'
 
 /**
- * End-to-end admin session stub (#481).
+ * End-to-end admin session stub.
  *
  * The Weight Room's `/log` and `/settings` 404 for anyone but the admin, and
  * CI has no Supabase credentials to sign in with, so no automated check could

@@ -11,7 +11,7 @@ import {
 
 /**
  * The Weight Room log, used the way it mostly is: as the admin, on a phone,
- * by tapping (#481). Runs in `mobile-webkit` (iPhone 14, 390px, touch) against
+ * by tapping. Runs in `mobile-webkit` (iPhone 14, 390px, touch) against
  * the admin server, where the e2e admin stub supplies the session and every
  * read and write goes to the in-memory Supabase fake. Nothing here can reach a
  * real project: the stub refuses to activate unless Supabase is on loopback.
@@ -70,9 +70,13 @@ test('logs a set with one tap, then deletes it', async ({ page }) => {
   await row.getByRole('button', { name: /^Delete set of 5/ }).tap()
 
   await expect(row).toHaveCount(0)
-  expect((await rows('weight_room_sets')).some(s => s.id === logged.id)).toBe(false)
+  // Polled: a list that drops the row before the DELETE lands would otherwise
+  // race the state read.
+  await expect
+    .poll(async () => (await rows('weight_room_sets')).some(s => s.id === logged.id))
+    .toBe(false)
   // The seeded set from another day is untouched.
-  expect(await rows('weight_room_sets')).toHaveLength(1)
+  await expect.poll(async () => (await rows('weight_room_sets')).length).toBe(1)
 })
 
 test('starts a workout from a template, logs into it, and ends it', async ({ page }) => {
