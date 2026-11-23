@@ -7,6 +7,7 @@ import { FacilityBackLink } from '@/components/training-facility/FacilityBackLin
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { ExerciseFilterChips } from '@/components/training-facility/weight-room/ExerciseFilterChips'
 import { exerciseTrendHref } from '@/components/training-facility/weight-room/ExerciseProgressionPanel'
+import { HeatmapInspector } from '@/components/training-facility/shared/charts/HeatmapInspector'
 import { FocusLaneHeatmap } from '@/components/training-facility/weight-room/FocusLaneHeatmap'
 import { LoadManagementPanel } from '@/components/training-facility/weight-room/LoadManagementPanel'
 import { PastFocusCard } from '@/components/training-facility/weight-room/PastFocusCard'
@@ -229,8 +230,8 @@ export default async function WeightRoomHistoryPage({
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-7 text-[#e8d5be] sm:text-base">
             Per-exercise heatmaps, grease-the-groove rotation history, and all-time stats. Each
-            heatmap cell represents one day colored by adherence to the daily goal — hover for the
-            breakdown. GTG focuses are shown as a stitched timeline so each rotation&rsquo;s
+            heatmap cell represents one day colored by adherence to the daily goal — select a day
+            for the breakdown. GTG focuses are shown as a stitched timeline so each rotation&rsquo;s
             exercise lines up with its own window.
           </p>
           <WeightRoomSubNav active="history" className="mt-5" isAdmin={isAdmin} />
@@ -382,19 +383,24 @@ export default async function WeightRoomHistoryPage({
                         goal {goal.daily_target}/day
                       </span>
                     </header>
-                    <ScrollToEnd
-                      className="overflow-x-auto"
-                      enabled={heatmap.dateFrom !== null}
-                      label={`${exerciseLabel(goal)} heatmap, scrollable`}
+                    <HeatmapInspector
+                      label={`${exerciseLabel(goal)} heatmap`}
+                      className="text-[#e8d5be]"
                     >
-                      <StrengthHeatmap
-                        sets={sets}
-                        goal={goal}
-                        dateFrom={heatmap.dateFrom}
-                        cellSize={heatmap.cellSize}
-                        cellGap={heatmap.cellGap}
-                      />
-                    </ScrollToEnd>
+                      <ScrollToEnd
+                        className="overflow-x-auto"
+                        enabled={heatmap.dateFrom !== null}
+                        label={`${exerciseLabel(goal)} heatmap, scrollable`}
+                      >
+                        <StrengthHeatmap
+                          sets={sets}
+                          goal={goal}
+                          dateFrom={heatmap.dateFrom}
+                          cellSize={heatmap.cellSize}
+                          cellGap={heatmap.cellGap}
+                        />
+                      </ScrollToEnd>
+                    </HeatmapInspector>
                     <div className="mt-5 border-t border-white/10 pt-4">
                       <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#e8d5be]/60">
                         Weekly volume · last 12 weeks
@@ -514,9 +520,11 @@ function FocusLaneCard({ cells, title }: FocusLaneCardProps): JSX.Element {
       </h3>
       {/* Scrolls rather than squashing once the rotation history outgrows
           the card — the same treatment the per-exercise heatmaps get. */}
-      <div className="mt-3 overflow-x-auto">
-        <FocusLaneHeatmap cells={cells} label={`${title} Focus Lane`} />
-      </div>
+      <HeatmapInspector label={`${title} Focus Lane`} className="mt-3 text-[#e8d5be]">
+        <div className="overflow-x-auto">
+          <FocusLaneHeatmap cells={cells} label={`${title} Focus Lane`} />
+        </div>
+      </HeatmapInspector>
     </div>
   )
 }
