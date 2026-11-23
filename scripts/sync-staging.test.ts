@@ -16,7 +16,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { TABLES } from './sync-staging.mjs'
+import { TABLES, describeRequestFailure } from './sync-staging.mjs'
 
 /** child table → tables it holds foreign keys into. */
 const FOREIGN_KEYS: Readonly<Record<string, readonly string[]>> = {
@@ -112,5 +112,50 @@ describe('staging sync manifest', () => {
         (table.mode === 'replace' && typeof table.key === 'string')
       expect(hasKey, `${table.name} has no upsert key`).toBe(true)
     }
+  })
+})
+
+describe('describeRequestFailure', () => {
+  /** Mimic undici: a bare `fetch failed` with the real reason on `cause`. */
+  const fetchFailed = (code: string, message: string) => {
+    const cause = Object.assign(new Error(message), { code })
+    return new TypeError('fetch failed', { cause })
+  }
+
+  it('names the side, step, host and network cause instead of a bare "fetch failed"', () => {
+    const message = describeRequestFailure(
+      'production',
+      'read cardio_sessions @1000',
+      'https://prod-ref.supabase.co/rest/v1/cardio_sessions?select=*',
+      fetchFailed('ECONNRESET', 'socket hang up')
+    )
+    expect(message).toContain('production read cardio_sessions @1000')
+    expect(message).toContain('prod-ref.supabase.co')
+    expect(message).toContain('ECONNRESET: socket hang up')
+    expect(message).not.toContain('/rest/v1')
+    expect(message).not.toContain('paused')
+  })
+
+  it('points at a paused project when the staging host does not resolve', () => {
+    // The #478 signature: a paused project's DNS record is removed.
+    const message = describeRequestFailure(
+      'staging',
+      'read schema',
+      'https://staging-ref.supabase.co/rest/v1/',
+      fetchFailed('ENOTFOUND', 'getaddrinfo ENOTFOUND staging-ref.supabase.co')
+    )
+    expect(message).toContain('staging read schema')
+    expect(message).toContain('ENOTFOUND')
+    expect(message).toMatch(/paused Supabase project/)
+  })
+
+  it('still says something useful when there is no cause', () => {
+    const message = describeRequestFailure(
+      'staging',
+      'write otf_sessions',
+      'not a url',
+      new Error('boom')
+    )
+    expect(message).toBe('staging write otf_sessions: could not reach not a url (boom)')
   })
 })

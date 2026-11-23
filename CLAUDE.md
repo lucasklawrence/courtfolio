@@ -157,6 +157,11 @@ Apple Health import. Nothing dual-writes. So:
 - **Refresh staging with `npm run staging:sync`**, or the weekly
   `staging-sync` workflow. Upsert-based: production edits propagate,
   staging-only rows survive, deletions do **not** propagate.
+- **Staging is on the Free plan and pauses after 7 idle days.** The daily
+  `staging-keepalive` workflow keeps it active, because a weekly sync alone does
+  not (#478). If staging's host stops resolving, the project is paused. Resume
+  it from the Supabase dashboard within 90 days; after that only the backup can
+  be downloaded.
 
 Staging is also the place to rehearse a destructive migration — a `drop`, a type
 change, a `not null` backfill — before running it anywhere near production.
