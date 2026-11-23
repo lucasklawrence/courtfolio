@@ -130,11 +130,13 @@ function safeCodePoint(n) {
  * Account mail every platform sends from its transactional sender (a password
  * change, a sign-in code). It says nothing about an event, so it is a `notice`
  * and stays off the review list. First in each platform's rules so a stray
- * word like "reminder" in such a subject can't make it an event email.
+ * word like "reminder" in such a subject can't make it an event email, and
+ * anchored to the start of the subject so an event titled "Password Security
+ * Workshop" is still read as one.
  * @type {[RegExp, EventEmailKind]}
  */
 const ACCOUNT_NOTICE = [
-  /\bpassword\b|\b(?:authentication|verification|security|sign[- ]?in|login|one[- ]time) code\b|\bverify your (?:email|account)\b/i,
+  /^(?:[^:]{1,30}:\s*)?(?:your (?:password|sign[- ]?in|login)\b|(?:reset|change|update) your password\b|password (?:reset|changed|updated|reminder)\b|(?:your )?(?:\w+ )?(?:authentication|verification|security|sign[- ]?in|login|one[- ]time) code\b|verify your (?:email|account)\b)/i,
   'notice',
 ]
 
@@ -429,10 +431,14 @@ const STATE_CODES = {
   wyoming: 'WY',
 }
 
-/** "California" → "CA"; a two-letter code passes through. */
+/** US state codes, for telling a state from another region's code. */
+const US_CODES = new Set(Object.values(STATE_CODES))
+
+/** "California" → "CA"; a US code passes through; any other region → null. */
 function stateCode(s) {
   const t = String(s ?? '').trim()
-  return STATE_CODES[t.toLowerCase()] ?? t
+  const code = STATE_CODES[t.toLowerCase()] ?? t.toUpperCase()
+  return US_CODES.has(code) ? code : null
 }
 
 /** "new hampshire" → "New Hampshire", "district of columbia" → "District of Columbia". */
@@ -441,17 +447,15 @@ function titleCaseState(name) {
 }
 
 /**
- * A US state: a real two-letter code or a spelled-out name, and nothing else.
- * Any capitalised word used to pass ("…, Bayside, Gate B" read state "Gate"),
- * which then moved `starts_at` into the default zone and put a bogus state in
- * the cities list.
+ * The region after a city: a spelled-out US state, or any two-letter code. A
+ * code that isn't a US state (a Canadian province, a country) still marks the
+ * venue and city, but reads as no state — see {@link stateCode}. A bare
+ * capitalised word is not a region.
  */
-const STATE = `(?:${[
-  ...Object.keys(STATE_CODES)
-    .sort((a, b) => b.length - a.length)
-    .map(titleCaseState),
-  ...new Set(Object.values(STATE_CODES)),
-].join('|')})`
+const STATE = `(?:${Object.keys(STATE_CODES)
+  .sort((a, b) => b.length - a.length)
+  .map(titleCaseState)
+  .join('|')}|[A-Z]{2})`
 
 /**
  * "Venue <sep> City, ST" right after the date, with the separators seen:
@@ -635,7 +639,12 @@ function senderName(text, subject) {
     [s, /^(.+?)\s+(?:has\s+|have\s+)?transferred you\b/i],
     [s, /\btickets? from\s+(.+?)(?:\s+(?:is|are)\b|\s+for\b|$)/i],
     [text, new RegExp(`\\btransfer from\\s+(${IN_SENTENCE}{1,40}?)\\s+(?:is ready|and you)`, 'i')],
-    [text, new RegExp(`(${IN_SENTENCE}{1,40}?)\\s+(?:just sent|has transferred) you\\b`, 'i')],
+    // A run of capitalised words right before the verb: the name, not the
+    // greeting or copy earlier in the sentence.
+    [
+      text,
+      /\b((?:[A-Z][\w.'-]*\s+){0,3}[A-Z][\w.'-]*)\s+(?:[Jj]ust [Ss]ent|[Hh]as [Tt]ransferred) [Yy]ou\b/,
+    ],
   ])
 }
 
@@ -702,14 +711,15 @@ const EXTRACTORS = {
     const order = text.match(/Order\s*#\s*(?:¶\s*)?([A-Z0-9]{6,})\b\s*¶?\s*([^¶]+?)\s*¶/)
     // The count is its own cell and "Ticket(s)" ends the next one, so a number
     // in running copy ("10 Tickets left") is never read as the count.
-    const tickets = text.match(/(?:^|¶)\s*(\d{1,2})\s*¶?\s*Tickets?\s*(?=¶|$)/)
+    const tickets = text.match(/(?:^|¶)\s*(\d{1,2})\s*¶?\s*Tickets?(?:\(s\))?\s*(?=¶|$)/)
     const paid = text.match(/Total Paid[\s¶]*\$\s?([\d,]+(?:\.\d{2})?)/i)
     return {
       orderRef: order?.[1] ?? null,
       title:
         order?.[2]?.trim() ??
-        // "Order Confirmation - <Event> @ <Venue> on 3/14": the last "@" is the venue.
-        titleFromSubject(subject, /^order confirmation\s*-\s*(.+)\s+@\s+[^@]+$/i) ??
+        // "Order Confirmation - <A> @ <B> @ <Venue> on 3/14": with two "@", the
+        // last one is the venue. A single "@" is the matchup itself.
+        titleFromSubject(subject, /^order confirmation\s*-\s*(.+?\s+@\s+.+?)\s+@\s+[^@]+$/i) ??
         titleFromSubject(subject, /-\s*(.+)$/) ??
         titleBeforeDate(text, dates),
       ticketCount: tickets ? Number(tickets[1]) : null,
@@ -841,12 +851,37 @@ export function normalizeForMatch(s) {
  * @returns {string|null} Null when the email can't be matched (no date).
  */
 export function eventMatchKey(p) {
+  return matchKeyWith(p, normalizeForMatch)
+}
+
+function matchKeyWith(p, normalize) {
   if (!p?.when) return null
   const { year, month, day } = p.when
   const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-  if (p.venue) return `${date}|v:${normalizeForMatch(p.venue)}`
-  if (p.title) return `${date}|t:${normalizeForMatch(p.title)}`
+  if (p.venue) return `${date}|v:${normalize(p.venue)}`
+  if (p.title) return `${date}|t:${normalize(p.title)}`
   return null
+}
+
+/**
+ * The key {@link eventMatchKey} gave this email before accents were folded,
+ * when that differs: an accent then became a word break ("Théâtre" →
+ * "the atre", which also lost a leading "the"). Events stored under the old
+ * key are still found by it, so a re-read doesn't create a duplicate.
+ *
+ * @param {ParsedEventEmail} p
+ * @returns {string|null} Null when the email has no key or the keys agree.
+ */
+export function legacyMatchKey(p) {
+  const legacy = matchKeyWith(p, s =>
+    String(s ?? '')
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/[^a-z0-9 ]+/g, ' ')
+      .replace(/^\s*the\s+/, '')
+      .replace(/\s+/g, '')
+  )
+  return legacy && legacy !== eventMatchKey(p) ? legacy : null
 }
 
 /**
@@ -904,12 +939,9 @@ export function inferCategory(title, venue = null) {
     const words = x => x.split(/\s+/).length
     const v = normalizeForMatch(venue)
     const nb = normalizeForMatch(b)
-    // The email's venue, in full or as a prefix of it either way round ("Sample
-    // Bowl" vs "Sample Bowl - Lakeside"); short names are too likely to be a
-    // team's own word to count as a prefix.
-    const sameAsVenue =
-      v.length > 0 &&
-      (nb === v || (Math.min(nb.length, v.length) >= 6 && (v.startsWith(nb) || nb.startsWith(v))))
+    // Exactly the email's venue. Not a prefix: a home team often starts the
+    // venue's name ("Example State at Michigan", venue "Michigan Stadium").
+    const sameAsVenue = v.length > 0 && nb === v
     const isPlace = /^the\b/i.test(b) || VENUE_WORDS.test(b) || sameAsVenue
     const matchup =
       s === 'vs' || s === 'v' || (!isPlace && (s === '@' || (words(a) >= 2 && words(b) >= 2)))

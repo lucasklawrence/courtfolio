@@ -156,6 +156,9 @@ describe('platformForSender / classifyEmail', () => {
       expect(classifyEmail(p, 'Your password has been updated')).toBe('notice')
       expect(classifyEmail(p, 'Your authentication code')).toBe('notice')
     }
+    // An event whose title happens to hold an account word is still an event.
+    const eb = PLATFORMS.find(p => p.id === 'eventbrite')!
+    expect(classifyEmail(eb, 'Order confirmation for Password Security Workshop')).toBe('purchase')
   })
 
   it('reads a Gametime "Order Confirmation - <Event> @ <Venue>" subject as a purchase', () => {
@@ -171,6 +174,14 @@ describe('platformForSender / classifyEmail', () => {
       receivedAt: MAR_2026,
     })
     expect(p).toMatchObject({ kind: 'purchase', title: 'Rockets @ Hawks' })
+    // A single "@" is the matchup, not a venue.
+    const single = parseEventEmail({
+      from: 'receipts@e.gametime.co',
+      subject: 'Order Confirmation - Rockets @ Hawks on 3/14',
+      html: html(row('Thanks for your order')),
+      receivedAt: MAR_2026,
+    })
+    expect(single?.title).toBe('Rockets @ Hawks')
   })
 
   it('builds one query per platform over its senders and extra clause', () => {
@@ -485,6 +496,10 @@ describe('parseEventEmail', () => {
     expect(read(['Hi Sam,', 'Great news! Jordan just sent you tickets.'])).toBe('Jordan')
     expect(read(['Hi Sam, Jordan just sent you tickets.'])).toBe('Jordan')
     expect(read(['Hello again. Jordan just sent you tickets.'])).toBe('Jordan')
+    expect(read(['Hey there Jordan just sent you tickets.'])).toBe('Jordan')
+    expect(read(['Exciting news for this weekend Jordan Lee has transferred you 2 tickets'])).toBe(
+      'Jordan Lee'
+    )
   })
 
   it('reads the same full recipient name from the subject and from the body', () => {
@@ -596,6 +611,22 @@ describe('parseEventEmail', () => {
     expect(p?.ticketCount).toBeNull()
   })
 
+  it('reads a Gametime count labelled "Ticket(s)"', () => {
+    const p = parseEventEmail({
+      from: 'receipts@e.gametime.co',
+      subject: 'Your Ticket Order - Rockets @ Hawks on 3/14',
+      html: html(
+        row('Order Details Order #'),
+        row('ZQ7TEST123'),
+        row('Rockets at Hawks'),
+        row('2'),
+        row('Ticket(s)')
+      ),
+      receivedAt: MAR_2026,
+    })
+    expect(p?.ticketCount).toBe(2)
+  })
+
   it('takes the title from before the date when the time sits in its own cell', () => {
     const p = parseEventEmail({
       from: 'noreply@ticketmaster.com',
@@ -645,6 +676,12 @@ describe('venues and states', () => {
       state: null,
     })
     expect(findVenue(' ¶ Example Arena, Bayside, ZZ ¶').state).toBeNull()
+    // Outside the US: the venue and city still read, with no state.
+    expect(findVenue(' ¶ Example Arena - Lakeview, ON ¶')).toEqual({
+      venue: 'Example Arena',
+      city: 'Lakeview',
+      state: null,
+    })
     expect(findVenue(' ¶ Example Arena, Bayside, New Hampshire ¶').state).toBe('NH')
   })
 })
@@ -732,6 +769,10 @@ describe('matching', () => {
       teams: null,
     })
     expect(inferCategory('Example Band World Tour at Sample Bowl').category).toBe('concert')
+    // A home team that starts the venue's name is still a team.
+    expect(inferCategory('Example State at Lakeside Tech', 'Lakeside Tech Stadium').category).toBe(
+      'sports'
+    )
   })
 
   it('keeps a round or event-type label out of the team names', () => {

@@ -402,7 +402,7 @@ describe('zoneForState', () => {
     expect(truncated.emails[0].eventKey).toBe(stored.match_key)
   })
 
-  it('joins venues that differ outright when the titles are the same', () => {
+  it('keeps unrelated venues apart even when the titles are the same', () => {
     const stored = {
       id: 'e1',
       match_key: '2026-03-14|v:samplehall',
@@ -416,8 +416,46 @@ describe('zoneForState', () => {
       [item({ venue: 'The Sample Concert Room', title: 'An Evening of Examples' })],
       [stored]
     )
+    expect(plan.inserts).toHaveLength(1)
+  })
+
+  it('keeps a different outing at a venue-variant apart when the titles share no word', () => {
+    const game = {
+      id: 'e1',
+      match_key: '2026-03-14|v:harborcityarena',
+      title: 'Riverside Rockets at Harbor City Hawks',
+      venue: 'Harbor City Arena',
+      city: null,
+      state: null,
+      starts_at: '2026-03-15T01:40:00.000Z',
+    }
+    const plan = planEventLinks(
+      [item({ venue: 'Harbor City Arena Club', title: 'Example Band' })],
+      [game]
+    )
+    expect(plan.inserts.map(i => i.match_key)).toEqual(['2026-03-14|v:harborcityarenaclub'])
+  })
+
+  it('finds an event stored under the key accents used to produce', () => {
+    const at = (id: string, key: string, title: string) => ({
+      id,
+      match_key: key,
+      title,
+      venue: null,
+      city: null,
+      state: null,
+      starts_at: '2026-03-15T03:00:00.000Z',
+    })
+    // A second event that day, so the single-event fallback can't do the work.
+    const plan = planEventLinks(
+      [item({ venue: null, title: 'Théâtre Exemple Gala' })],
+      [
+        at('e1', '2026-03-14|t:atreexemplegala', 'Théâtre Exemple Gala'),
+        at('e2', '2026-03-14|t:other', 'Other'),
+      ]
+    )
     expect(plan.inserts).toEqual([])
-    expect(plan.emails[0].eventKey).toBe(stored.match_key)
+    expect(plan.emails[0].eventKey).toBe('2026-03-14|t:atreexemplegala')
   })
 
   it('does not guess between two venue variants, and keeps unrelated venues apart', () => {

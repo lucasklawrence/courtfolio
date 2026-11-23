@@ -15,7 +15,13 @@
  * Loaded as ESM from `.mjs` callers — no TypeScript transpile step.
  */
 
-import { eventMatchKey, foldAccents, inferCategory, normalizeForMatch } from './events-parser.mjs'
+import {
+  eventMatchKey,
+  foldAccents,
+  inferCategory,
+  legacyMatchKey,
+  normalizeForMatch,
+} from './events-parser.mjs'
 import { createServiceRoleClient, loadEnv, wallTimeToISO } from './otbeat-supabase.mjs'
 
 export { createServiceRoleClient, loadEnv }
@@ -136,7 +142,7 @@ const POST_EVENT_WINDOW_MS = 4 * 24 * 3600 * 1000
  * apply only when the titles share a significant word (or one is unknown),
  * so two different outings on one day stay two events. A venue-keyed email
  * whose venue is spelled differently from the event's (one contains the
- * other, or the titles are the same) joins the only such event that day. An
+ * other, and the titles share a word) joins the only such event that day. An
  * after-the-event email carries no date at all, so it joins the event that
  * started in the days before it arrived: the one with its title, or the only
  * one. Anything else that has a key starts a new event; an email with no key
@@ -185,7 +191,8 @@ export function planEventLinks(items, existing, linked = new Map()) {
     }
     const date = key.slice(0, 10)
     const sameDay = byDate.get(date) ?? []
-    let ev = byKey.get(key)
+    const legacy = legacyMatchKey(p)
+    let ev = byKey.get(key) ?? (legacy ? byKey.get(legacy) : undefined)
     if (!ev && sameDay.length === 1 && titlesMayMatch(sameDay[0].title, p.title)) {
       const only = sameDay[0]
       if (key.includes('|t:')) {
@@ -236,9 +243,11 @@ const MIN_VENUE_CONTAINMENT = 6
  * The one venue-keyed event on this date that is the same outing under
  * another spelling of the venue: one platform writes "Harbor City Arena", the
  * other "Harbor City Arena - Bayside" or a truncated "Harbor City Are". It
- * matches when one normalized venue contains the other, or when the titles
- * are the same. Null when none or several do — a guess between two events is
- * worse than a duplicate the owner can merge.
+ * matches when one normalized venue contains the other and the titles could
+ * be the same outing (see {@link titlesMayMatch}), so a concert at "Harbor
+ * City Arena Club" stays apart from a game at "Harbor City Arena". Null when
+ * none or several match — a guess between two events is worse than a
+ * duplicate the owner can merge.
  *
  * @param {StoredEvent[]} sameDay Events already on the email's date.
  * @param {string} key The email's venue match key.
@@ -247,14 +256,15 @@ const MIN_VENUE_CONTAINMENT = 6
  */
 function venueVariant(sameDay, key, title) {
   const venue = key.split('|v:')[1] ?? ''
-  const t = normalizeForMatch(title)
   const hits = sameDay.filter(e => {
     const other = e.match_key.split('|v:')[1]
-    if (!other) return false
+    if (!other || other === venue) return false
     const [short, long] = other.length <= venue.length ? [other, venue] : [venue, other]
-    const contains = short.length >= MIN_VENUE_CONTAINMENT && long.includes(short)
-    const sameTitle = t.length > 0 && normalizeForMatch(e.title) === t
-    return contains || sameTitle
+    return (
+      short.length >= MIN_VENUE_CONTAINMENT &&
+      long.includes(short) &&
+      titlesMayMatch(e.title, title)
+    )
   })
   return hits.length === 1 ? hits[0] : null
 }
