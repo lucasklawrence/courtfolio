@@ -6,12 +6,14 @@ import { FacilityBackLink } from '@/components/training-facility/FacilityBackLin
 import { WeightRoomScene } from '@/components/training-facility/scenes/WeightRoomScene'
 import { PreviewModeBadge } from '@/components/training-facility/shared/PreviewModeBadge'
 import { PreviewWithSampleDataButton } from '@/components/training-facility/shared/PreviewWithSampleDataButton'
+import { TodayProgressPanel } from '@/components/training-facility/weight-room/TodayProgressPanel'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { isAdminRequest } from '@/lib/auth/admin-session'
 import { buildWeightRoomDemoData } from '@/constants/weight-room-demo-fixture'
 import { getWeightRoomDataServer } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
 import { isPreviewDemoActive } from '@/lib/training-facility/preview-param'
+import { buildTodayBoard } from '@/lib/training-facility/today-board'
 
 /** Search-params shape Next.js passes to a server-rendered page. */
 interface PageProps {
@@ -24,10 +26,12 @@ interface PageProps {
 }
 
 /**
- * Weight Room — Today View landing page (#80, #197). Renders the
- * illustrated room full-bleed with floating chrome on top; the scene's
- * wall fixture displays today's activity rings + per-exercise tallies
- * + streaks so visitors see the room "in use" without any data-entry UI.
+ * Weight Room — Today View landing page (#80, #197). From `lg` it renders the
+ * illustrated room full-bleed with floating chrome on top; the scene's wall
+ * fixture displays today's activity rings + per-exercise tallies + streaks so
+ * visitors see the room "in use" without any data-entry UI. Below `lg` the page
+ * scrolls: chrome, then the scene, then {@link TodayProgressPanel} stating the
+ * board at a readable size.
  *
  * Admin owners log sets on the separate
  * `/training-facility/weight-room/log` route. The sub-nav surfaces the
@@ -58,42 +62,40 @@ export default async function TrainingFacilityWeightRoomPage({
   const isPreviewMode = realIsEmpty && previewRequested
   const showEmptyStateCta = realIsEmpty && !previewRequested
   const data = isPreviewMode ? buildWeightRoomDemoData() : realData
+  // Computed here so the browser receives these rows and not the whole set
+  // history. Day keys are Pacific wherever this runs, so there is no viewer
+  // clock to wait for.
+  const board = buildTodayBoard(data, new Date())
 
   return (
-    <div className="relative h-svh w-full overflow-hidden bg-[#120d0a] text-[#f7ead9]">
+    <div className="relative min-h-svh w-full bg-[#120d0a] text-[#f7ead9] lg:h-svh lg:overflow-hidden">
       {/* Visually-hidden h1 — accessibility heading + e2e anchor so the
           page still has a named identity for screen readers / Playwright
           even though the scene-first layout has no visible title. */}
       <h1 className="sr-only">Today</h1>
-      {/* Scene fills the viewport. The illustrated SVG keeps its own
-          aspect ratio via `preserveAspectRatio="xMidYMid meet"`, so on
-          a portrait viewport it letterboxes top + bottom; on wider
-          viewports it letterboxes left + right. */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <WeightRoomScene data={data} />
-      </div>
 
-      {/* Floating chrome — `pointer-events: none` on the wrapper so
-          empty space passes clicks through to the scene; individual
-          chrome elements re-enable pointer events on themselves. */}
-      <div className="pointer-events-none absolute inset-0 z-10">
-        <div className="pointer-events-auto absolute inset-x-0 top-0 flex flex-wrap items-center justify-between gap-3 p-4 sm:p-6 lg:p-8">
+      {/* Chrome. Below `lg` it flows above the scene as ordinary content. From
+          `lg` it floats over the full-bleed scene: `pointer-events: none` on the
+          wrapper so empty space passes clicks through, with individual chrome
+          elements re-enabling pointer events on themselves. */}
+      <div className="lg:pointer-events-none lg:absolute lg:inset-0 lg:z-10">
+        <div className="flex flex-wrap items-center justify-between gap-3 p-4 lg:pointer-events-auto lg:absolute lg:inset-x-0 lg:top-0 lg:p-8">
           <BackToCourtButton />
           <FacilityBackLink />
         </div>
 
-        <div className="pointer-events-auto absolute inset-x-0 top-20 flex justify-center sm:top-24">
+        <div className="px-4 lg:pointer-events-auto lg:absolute lg:inset-x-0 lg:top-24 lg:flex lg:justify-center lg:px-0">
           <WeightRoomSubNav active="today" isAdmin={isAdmin} />
         </div>
 
         {isPreviewMode ? (
-          <div className="pointer-events-auto absolute inset-x-4 top-36 mx-auto max-w-sm sm:top-40">
+          <div className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:inset-x-4 lg:top-40 lg:mx-auto lg:mt-0">
             <PreviewModeBadge description="These rings are illustrative — not Lucas’s real strength logs." />
           </div>
         ) : null}
 
         {showEmptyStateCta ? (
-          <div className="pointer-events-auto absolute inset-x-4 top-36 mx-auto max-w-sm sm:top-40">
+          <div className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:inset-x-4 lg:top-40 lg:mx-auto lg:mt-0">
             <PreviewWithSampleDataButton
               href="/training-facility/weight-room?preview=demo"
               headline="No strength work logged yet"
@@ -102,6 +104,22 @@ export default async function TrainingFacilityWeightRoomPage({
           </div>
         ) : null}
       </div>
+
+      {/* The scene. Below `lg` it sits in the page flow at its own 16:9 shape, so
+          it fills the width rather than letterboxing inside a tall viewport. From
+          `lg` it fills the viewport, and the SVG's
+          `preserveAspectRatio="xMidYMid meet"` letterboxes it as needed. */}
+      <div className="mt-4 aspect-video w-full lg:absolute lg:inset-0 lg:mt-0 lg:flex lg:aspect-auto lg:items-center lg:justify-center">
+        <WeightRoomScene board={board} />
+      </div>
+
+      {/* The wall's text is unreadable below `lg`, so state the same board as page
+          content there. From `lg` the wall carries it visually, but the wall is
+          `aria-hidden`, so this stays available to screen readers. With no goals
+          and no sets, the empty-state call to action above says all there is. */}
+      {board.length > 0 || !showEmptyStateCta ? (
+        <TodayProgressPanel board={board} className="mx-4 my-6 lg:sr-only" />
+      ) : null}
     </div>
   )
 }

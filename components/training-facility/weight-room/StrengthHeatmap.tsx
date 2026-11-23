@@ -95,7 +95,9 @@ const LABEL_FILL = 'rgba(247, 234, 217, 0.55)'
  * Plain `<rect>` cells inside an SVG so 52w × 7d ≈ 364 cells render
  * instantly even on mobile. The `<title>` per cell is the native
  * browser tooltip ("Apr 14, 2026: 45 reps (2 sets, 45% of goal)") that
- * sighted users see on hover and screen readers read for keyboard nav.
+ * sighted users see on hover. Wrap the chart in a
+ * {@link import('@/components/training-facility/shared/charts/HeatmapInspector').HeatmapInspector}
+ * to expose the same text to touch and keyboard users.
  */
 export function StrengthHeatmap({
   sets,
@@ -197,6 +199,8 @@ export function StrengthHeatmap({
             return (
               <rect
                 key={`cell-${colIdx}-${rowIdx}`}
+                data-col={colIdx}
+                data-row={rowIdx}
                 x={colIdx * cellSize}
                 y={rowIdx * cellSize}
                 width={cellInner}
