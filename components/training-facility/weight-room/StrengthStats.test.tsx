@@ -9,6 +9,7 @@ const PUSHUP_STATS: StrengthExerciseStats = {
   exercise: 'pushups',
   color: '#EA580C',
   dailyTarget: 100,
+  dailyTargetUnit: 'reps',
   currentStreak: 4,
   longestStreak: 12,
   thisWeekReps: 380,

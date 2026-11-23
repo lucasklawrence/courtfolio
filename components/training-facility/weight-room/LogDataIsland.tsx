@@ -10,6 +10,7 @@ import {
   computeFocusLoadStats,
   upcomingFocuses,
 } from '@/lib/training-facility/monthly-focus'
+import { goalDayTargetResolver } from '@/lib/training-facility/focus-scoring'
 import { targetForDay } from '@/lib/training-facility/goal-targets'
 import { countedReps } from '@/lib/training-facility/set-reps'
 import { computeStrengthStreaks } from '@/lib/training-facility/strength-streaks'
@@ -188,14 +189,32 @@ export function LogDataIsland({ templates = [] }: LogDataIslandProps = {}): JSX.
     daily_target: targetForDay(goal, selectedDay),
   })
 
-  const rings: RingProgress[] = visibleGoals.map(goal => ({
-    goal: forSelectedDay(goal),
-    totalReps: totals.get(goal.exercise) ?? 0,
-  }))
+  // Rings score the day by the same rule as the Today board: a focus goal
+  // against its active rotation, in that rotation's unit (reps or sets).
+  const rings: RingProgress[] = visibleGoals.map(goal => {
+    const bar = goalDayTargetResolver(goal, surfaceData.monthly_focus)(selectedDay)
+    if (bar === null || bar.unit === 'reps') {
+      return {
+        goal: bar === null ? forSelectedDay(goal) : { ...goal, daily_target: bar.target },
+        totalReps: totals.get(goal.exercise) ?? 0,
+      }
+    }
+    return {
+      goal: { ...goal, daily_target: bar.target },
+      totalReps: setsForDay.filter(s => s.exercise === goal.exercise).length,
+      unit: 'sets',
+    }
+  })
   // Streaks get the unmodified goals: they span the whole log and resolve
   // each day's bar themselves, so pinning one day's target here would be
   // exactly wrong.
-  const streaks = computeStrengthStreaks(surfaceData.sets, visibleGoals)
+  const streaks = computeStrengthStreaks(
+    surfaceData.sets,
+    visibleGoals,
+    undefined,
+    undefined,
+    surfaceData.monthly_focus
+  )
   // SetList color/label lookup spans *all* goals (incl. inactive focuses)
   // so a backfilled out-of-window set still resolves its exercise.
   const exerciseLabels = buildExerciseLabels(surfaceData.exercises)

@@ -2,11 +2,13 @@ import type {
   AchievementMeasure,
   AchievementScope,
   ExerciseGoal,
+  MonthlyFocus,
   StrengthSet,
   WeightRoomAchievement,
   WeightRoomExercise,
 } from '@/types/weight-room'
 
+import { goalDayTargetResolver, volumeIn } from './focus-scoring'
 import { targetResolverFor } from './goal-targets'
 import { countedReps } from './set-reps'
 import { PACIFIC_CLOCK, mondayOfDayKey, shiftDayKey, type DayClock } from './clock'
@@ -128,6 +130,8 @@ export function sectionLabel(scope: AchievementScope, measure: AchievementMeasur
 interface MovementMetrics {
   /** Local day key (`YYYY-MM-DD`) → reps logged that day. */
   byDay: Map<string, number>
+  /** Local day key → distinct sets logged that day, for sets-based rotations. */
+  setsByDay: Map<string, number>
   /** ISO-week Monday key (`YYYY-MM-DD`) → reps logged that week. */
   byWeek: Map<string, number>
   /** Calendar month key (`YYYY-MM`) → reps logged that month. */
@@ -149,8 +153,9 @@ interface MovementMetrics {
   sets: { day: string; reps: number; load: number; tonnage: number }[]
   /**
    * Day keys that met the daily target, ascending — the `'streak'` scope's
-   * source. For a single exercise that's `reps >=` the target in effect *on
-   * that day* (#362), not the goal's current one; for the pooled ladder it's
+   * source. For a single exercise that's the day's volume `>=` the bar in
+   * effect *on that day* (#362), as `goalDayTargetResolver` defines it, not the
+   * goal's current one; for the pooled ladder it's
    * any day where *at least one* exercise hit its own target for that day.
    */
   hitDays: string[]
@@ -257,6 +262,7 @@ function bump(map: Map<string, number>, key: string, by: number): void {
 function emptyMetrics(): MovementMetrics {
   return {
     byDay: new Map(),
+    setsByDay: new Map(),
     byWeek: new Map(),
     byMonth: new Map(),
     tonnageByDay: new Map(),
@@ -289,12 +295,17 @@ function emptyMetrics(): MovementMetrics {
  *   #373. Required for correct tonnage now that gym sets count (#377): a gym
  *   lift has no goal at all, so a goals-only lookup would score every
  *   two-dumbbell movement at half the weight actually moved.
+ * @param focuses The configured rotations. A `kind: 'focus'` goal's streak
+ *   days inside a window are then scored as the Today board scores them:
+ *   against the rotation active that day, in its unit (reps or sets). Days
+ *   outside every window keep the goal's own rep target.
  */
 function buildMetrics(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   exercises: readonly WeightRoomExercise[] = [],
-  clock: DayClock = PACIFIC_CLOCK
+  clock: DayClock = PACIFIC_CLOCK,
+  focuses: readonly MonthlyFocus[] = []
 ): Map<string | null, MovementMetrics> {
   // Implements moved per set, per exercise. Catalog first, then the goal's
   // joined copy, then a single implement — the only safe default, since it can
@@ -342,6 +353,7 @@ function buildMetrics(
     const observation = { day, reps, load, tonnage }
     for (const m of [forExercise(set.exercise), pooled]) {
       bump(m.byDay, day, reps)
+      bump(m.setsByDay, day, 1)
       bump(m.byWeek, week, reps)
       bump(m.byMonth, month, reps)
       bump(m.tonnageByDay, day, tonnage)
@@ -359,10 +371,17 @@ function buildMetrics(
   for (const goal of goals) {
     const m = metrics.get(goal.exercise)
     if (!m || goal.daily_target <= 0) continue
-    // Per-day bar (#362), bound once per goal rather than per logged day.
-    const targetFor = targetResolverFor(goal)
+    // Per-day bar (#362), bound once per goal rather than per logged day. A
+    // rotation's window sets the bar and unit inside it; outside every window
+    // the goal's own target still applies, unlike the Today board, because a
+    // badge is recomputed on every render and an off-campaign run that already
+    // earned one must not un-earn it.
+    const rotationTarget = goalDayTargetResolver(goal, focuses)
+    const ownTarget = targetResolverFor(goal)
     for (const [day, reps] of m.byDay) {
-      if (reps < targetFor(day)) continue
+      const bar = rotationTarget(day) ?? { target: ownTarget(day), unit: 'reps' as const }
+      const volume = volumeIn({ reps, sets: m.setsByDay.get(day) ?? 0 }, bar.unit)
+      if (volume < bar.target) continue
       m.hitDays.push(day)
       pooledHits.add(day)
     }
@@ -543,6 +562,8 @@ function resolveMetric(
  *   movements with no daily goal — see {@link buildMetrics}.
  * @param clock Zone every day, week and month bucket is measured in; defaults
  *   to Pacific (#429).
+ * @param focuses The configured rotations, so a focus goal's `'streak'` days
+ *   score against the rotation active that day — see {@link buildMetrics}.
  * @returns One {@link ResolvedAchievement} per tier, in the order supplied.
  */
 export function resolveAchievements(
@@ -550,9 +571,10 @@ export function resolveAchievements(
   goals: readonly ExerciseGoal[],
   achievements: readonly WeightRoomAchievement[],
   exercises: readonly WeightRoomExercise[] = [],
-  clock: DayClock = PACIFIC_CLOCK
+  clock: DayClock = PACIFIC_CLOCK,
+  focuses: readonly MonthlyFocus[] = []
 ): ResolvedAchievement[] {
-  const metrics = buildMetrics(sets, goals, exercises, clock)
+  const metrics = buildMetrics(sets, goals, exercises, clock, focuses)
 
   return achievements.map(achievement => {
     const outcome = resolveMetric(metrics.get(achievement.exercise) ?? emptyMetrics(), achievement)
@@ -595,13 +617,15 @@ const STRIP_SIZE = 6
  *   label has to come from the catalog, not from `goals`, or a movement with
  *   tiers and no goal renders its raw slug.
  * @param clock Zone every bucket is measured in; defaults to Pacific (#429).
+ * @param focuses The configured rotations, for focus goals' `'streak'` days.
  */
 export function buildAchievementBoard(
   sets: readonly StrengthSet[],
   goals: readonly ExerciseGoal[],
   achievements: readonly WeightRoomAchievement[],
   exercises: readonly WeightRoomExercise[] = [],
-  clock: DayClock = PACIFIC_CLOCK
+  clock: DayClock = PACIFIC_CLOCK,
+  focuses: readonly MonthlyFocus[] = []
 ): AchievementBoard {
   const colorByExercise = new Map(goals.map(g => [g.exercise, g.color]))
   // Catalog first, goal-joined label second (#384). Achievements outlive their
@@ -621,11 +645,13 @@ export function buildAchievementBoard(
 
   // Attached once here rather than inside `resolveAchievements` so the groups
   // and both strips read the same label off the same objects.
-  const resolved = resolveAchievements(sets, goals, achievements, exercises, clock).map(entry => {
-    const slug = entry.achievement.exercise
-    const label = slug === null || slug === undefined ? undefined : labelByExercise.get(slug)
-    return label === undefined ? entry : { ...entry, displayName: label }
-  })
+  const resolved = resolveAchievements(sets, goals, achievements, exercises, clock, focuses).map(
+    entry => {
+      const slug = entry.achievement.exercise
+      const label = slug === null || slug === undefined ? undefined : labelByExercise.get(slug)
+      return label === undefined ? entry : { ...entry, displayName: label }
+    }
+  )
 
   const byExercise = new Map<string | null, ResolvedAchievement[]>()
   for (const entry of resolved) {

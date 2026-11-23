@@ -1,4 +1,5 @@
 import { shiftDayKey } from './day-keys'
+import { type DayTarget, type DayVolume, volumeIn } from './focus-scoring'
 
 /**
  * The one implementation of "consecutive days that cleared the daily target"
@@ -86,6 +87,31 @@ export function streakFromDailyReps(
   const hitDays: string[] = []
   for (const [key, reps] of dailyReps) {
     if (reps >= targetFor(key)) hitDays.push(key)
+  }
+  return streakFromHitDays(hitDays, todayKey)
+}
+
+/**
+ * Count streaks from a `day key → volume` map whose days may be scored in
+ * different units: a sets-based rotation compares the day's distinct set
+ * count, everything else compares its rep total.
+ *
+ * @param dailyVolume Reps and set counts per day key, from
+ *   `dailyVolumeByExercise`.
+ * @param targetFor The bar and its unit on a day, from
+ *   `goalDayTargetResolver`. `null` means the goal had no bar that day, which
+ *   is a miss however much was logged.
+ * @param todayKey `YYYY-MM-DD` anchor for the grace period.
+ */
+export function streakFromDailyVolume(
+  dailyVolume: ReadonlyMap<string, DayVolume>,
+  targetFor: (dayKey: string) => DayTarget | null,
+  todayKey: string
+): StreakCounts {
+  const hitDays: string[] = []
+  for (const [key, volume] of dailyVolume) {
+    const bar = targetFor(key)
+    if (bar !== null && volumeIn(volume, bar.unit) >= bar.target) hitDays.push(key)
   }
   return streakFromHitDays(hitDays, todayKey)
 }

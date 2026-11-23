@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import type {
   AchievementScope,
   ExerciseGoal,
+  MonthlyFocus,
   StrengthSet,
   WeightRoomAchievement,
 } from '@/types/weight-room'
@@ -876,5 +877,56 @@ describe('pooled ladder counts gym work (#377)', () => {
     const [resolved] = resolveAchievements(week, [], [streakTier], GYM_CATALOG)
     expect(resolved.earned).toBe(false)
     expect(resolved.best).toBe(0)
+  })
+})
+
+describe('resolveAchievements — streak scope with rotations', () => {
+  const SHRUGS: ExerciseGoal = {
+    exercise: 'shrugs',
+    daily_target: 100,
+    color: '#C9A268',
+    kind: 'focus',
+  }
+  const SEPTEMBER_SETS: MonthlyFocus = {
+    id: 'september',
+    exercise: 'shrugs',
+    daily_target: 3,
+    target_kind: 'sets',
+    color: '#C9A268',
+    category: 'upper',
+    start_date: '2026-09-01',
+    end_date: '2026-09-30',
+  }
+
+  it('counts a sets-based rotation day by its set count', () => {
+    // Three 5-rep sets a day: a hit against 3 sets, a miss against the
+    // anchor's 100 reps.
+    const sets = ['2026-09-01', '2026-09-02'].flatMap(day => [
+      set(day, 'shrugs', 5),
+      set(day, 'shrugs', 5),
+      set(day, 'shrugs', 5),
+    ])
+    const [result] = resolveAchievements(
+      sets,
+      [SHRUGS],
+      [tier('shrugs', 'streak', 2)],
+      [],
+      undefined,
+      [SEPTEMBER_SETS]
+    )
+    expect(result.earned).toBe(true)
+  })
+
+  it("keeps the goal's own target outside every window, so an earned run stays earned", () => {
+    const sets = ['2026-08-01', '2026-08-02'].map(day => set(day, 'shrugs', 100))
+    const [result] = resolveAchievements(
+      sets,
+      [SHRUGS],
+      [tier('shrugs', 'streak', 2)],
+      [],
+      undefined,
+      [SEPTEMBER_SETS]
+    )
+    expect(result.earned).toBe(true)
   })
 })

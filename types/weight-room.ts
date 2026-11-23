@@ -752,8 +752,8 @@ export interface MonthlyFocus {
   /**
    * Whether {@link MonthlyFocus.daily_target} counts reps (`'reps'`,
    * the default — ring fills on rep total) or distinct logged sets
-   * (`'sets'`). `'sets'` is modeled but unused until a future focus
-   * needs it.
+   * (`'sets'`). Every surface scores a `'sets'` day by its distinct set
+   * count, through `goalDayTargetResolver`.
    */
   target_kind: 'reps' | 'sets'
   /** Hex color for the focus's ring/strip (e.g. `#C9A268`). */

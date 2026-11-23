@@ -117,7 +117,8 @@ export function ExerciseStatCard({ stat, href }: ExerciseStatCardProps): JSX.Ele
           ) : null}
         </h3>
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#0a0a0a]/55">
-          goal {stat.dailyTarget}/day
+          goal {stat.dailyTarget}
+          {stat.dailyTargetUnit === 'sets' ? ' sets' : ''}/day
         </span>
         {stat.focus ? (
           <span className="w-full font-mono text-[10px] tracking-[0.14em] text-[#0a0a0a]/50">
