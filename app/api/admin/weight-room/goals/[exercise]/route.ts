@@ -25,6 +25,15 @@ interface Context {
 }
 
 /**
+ * What `public.delete_weight_room_goal` returns — one of three outcomes, so the
+ * route can keep 409 (blocked by a live focus), 404 (no goal) and 200 apart.
+ */
+type DeleteGoalResult =
+  | { status: 'blocked'; end_date: string }
+  | { status: 'not_found' }
+  | { status: 'deleted'; goal: Record<string, unknown> }
+
+/**
  * Delete a goal — the daily ring and its target history. Logged sets are
  * untouched (#373); the movement stays in `weight_room_exercises`.
  *
@@ -69,45 +78,40 @@ async function handleDELETE(_request: NextRequest, ctx: Context): Promise<NextRe
   // but it would render without its ring, so refuse rather than half-break it.
   // Past windows are not a blocker: a finished focus is history, and history is
   // exactly what should outlive the goal.
+  //
+  // The check and the delete run as one transaction inside
+  // `delete_weight_room_goal`, which takes the same per-movement lock as the
+  // focus POST's `create_weight_room_monthly_focus`. As two PostgREST calls, a
+  // focus created between them could slip past the guard.
   const today = pacificDayKey(new Date())
-  const { data: blockingFocus, error: focusError } = await supabase
-    .from('weight_room_monthly_focus')
-    .select('start_date, end_date')
-    .eq('exercise', trimmed)
-    .gte('end_date', today)
-    .order('start_date', { ascending: true })
-    .limit(1)
-    .maybeSingle()
-
-  if (focusError) {
-    return NextResponse.json(
-      { error: `Failed to check monthly focus: ${focusError.message}` },
-      { status: 500 }
-    )
-  }
-  if (blockingFocus) {
-    return NextResponse.json(
-      {
-        error: `'${trimmed}' has a monthly focus running through ${blockingFocus.end_date}. Remove or end that focus first — deleting the goal now would leave the focus without its daily ring.`,
-      },
-      { status: 409 }
-    )
-  }
-
-  const { data, error } = await supabase
-    .from('weight_room_goals')
-    .delete()
-    .eq('exercise', trimmed)
-    .select()
-    .maybeSingle()
+  const { data, error } = await supabase.rpc('delete_weight_room_goal', {
+    p_exercise: trimmed,
+    p_today: today,
+  })
 
   if (error) {
     return NextResponse.json({ error: `Failed to delete goal: ${error.message}` }, { status: 500 })
   }
-  if (!data) {
+
+  const result = data as DeleteGoalResult | null
+  if (result?.status === 'blocked') {
+    return NextResponse.json(
+      {
+        error: `'${trimmed}' has a monthly focus running through ${result.end_date}. Remove or end that focus first — deleting the goal now would leave the focus without its daily ring.`,
+      },
+      { status: 409 }
+    )
+  }
+  if (result?.status === 'deleted') {
+    return NextResponse.json(result.goal, { status: 200 })
+  }
+  if (result?.status === 'not_found') {
     return NextResponse.json({ error: `No goal for '${trimmed}'.` }, { status: 404 })
   }
-  return NextResponse.json(data, { status: 200 })
+  return NextResponse.json(
+    { error: 'Failed to delete goal: unexpected response from delete_weight_room_goal.' },
+    { status: 500 }
+  )
 }
 
 /** `handleDELETE` wrapped with one-event-per-request telemetry (#220). */

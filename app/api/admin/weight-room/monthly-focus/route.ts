@@ -6,12 +6,13 @@
  * `weight_room_monthly_focus`. RLS on that table permits SELECT only, so
  * writes funnel through this gate via the service-role client.
  *
- * Each create does two writes: it first ensures a `kind: 'focus'` goal
- * anchor exists for the exercise (so set logging satisfies the
- * `weight_room_sets.exercise` FK and the rings/rollup reuse existing
- * machinery), then inserts the focus row. The anchor upsert uses
- * `ignoreDuplicates` so it never clobbers an exercise that already has a
- * goal (e.g. a permanent pushups goal stays permanent).
+ * Each create ensures the movement is in the catalog, then calls
+ * `create_weight_room_monthly_focus`, which in one transaction inserts a
+ * `kind: 'focus'` goal anchor if the movement has no goal yet (so the ring and
+ * rollup reuse existing machinery; `on conflict do nothing` never clobbers a
+ * permanent goal) and then the focus row. It shares a per-movement lock with
+ * the goal DELETE's `delete_weight_room_goal`, so a goal can't be deleted
+ * between the anchor and the insert and leave the focus without its ring.
  *
  * Pair with `[id]/route.ts` for DELETE.
  */
@@ -36,7 +37,7 @@ import { withTelemetry } from '@/lib/telemetry/with-telemetry'
  * - 400 — payload failed Zod validation or wasn't valid JSON
  * - 401 — not signed in
  * - 403 — signed in but email not on the allowlist
- * - 500 — unexpected Supabase error (anchor upsert or focus insert)
+ * - 500 — unexpected Supabase error (catalog upsert or the create RPC)
  *
  * @param request Incoming JSON request whose body matches
  *   {@link WeightRoomMonthlyFocusCreateSchema}.
@@ -77,41 +78,16 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: catalogError }, { status: 500 })
   }
 
-  // 1. Ensure the goal anchor exists. ignoreDuplicates leaves an existing
-  //    goal untouched so we never flip a permanent exercise to 'focus'.
-  const now = new Date().toISOString()
-  const { error: anchorError } = await supabase.from('weight_room_goals').upsert(
-    {
-      exercise: focus.exercise,
-      daily_target: focus.daily_target,
-      color: focus.color,
-      kind: 'focus',
-      updated_at: now,
-    },
-    { onConflict: 'exercise', ignoreDuplicates: true }
-  )
-  if (anchorError) {
-    return NextResponse.json(
-      { error: `Failed to anchor focus goal: ${anchorError.message}` },
-      { status: 500 }
-    )
-  }
-
-  // 2. Insert the focus row.
-  const { data, error } = await supabase
-    .from('weight_room_monthly_focus')
-    .insert({
-      exercise: focus.exercise,
-      daily_target: focus.daily_target,
-      target_kind: focus.target_kind,
-      color: focus.color,
-      category: focus.category,
-      start_date: focus.start_date,
-      end_date: focus.end_date,
-      updated_at: now,
-    })
-    .select()
-    .single()
+  // 1. Anchor + focus insert, atomically (see the module docblock).
+  const { data, error } = await supabase.rpc('create_weight_room_monthly_focus', {
+    p_exercise: focus.exercise,
+    p_daily_target: focus.daily_target,
+    p_target_kind: focus.target_kind,
+    p_color: focus.color,
+    p_category: focus.category,
+    p_start_date: focus.start_date,
+    p_end_date: focus.end_date,
+  })
 
   if (error) {
     return NextResponse.json(
