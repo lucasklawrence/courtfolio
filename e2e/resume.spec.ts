@@ -17,6 +17,13 @@ test.describe('resume download route', () => {
     expect(new URL(res.headers()['location']).pathname).toBe('/LucasLawrenceResume.pdf')
   })
 
+  test('following the redirect hands over the PDF', async ({ request }) => {
+    const res = await request.get('/resume')
+
+    expect(res.status()).toBe(200)
+    expect(res.headers()['content-type']).toContain('application/pdf')
+  })
+
   test('the contact-page resume link routes through /resume', async ({ page }) => {
     await page.goto('/contact')
 

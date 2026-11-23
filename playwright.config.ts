@@ -60,7 +60,7 @@ export default defineConfig({
       // about rendering or real touch input.
       name: 'mobile-webkit',
       testMatch:
-        /(?:svg-fragments|chart-overflow|heatmap-details|hydration|touch-targets|eras|weight-room-today)\.spec\.ts/,
+        /(?:svg-fragments|chart-overflow|heatmap-details|hydration|touch-targets|eras|mobile-routes|weight-room-today)\.spec\.ts/,
       use: {
         ...devices['iPhone 14'],
         // `browserName` must be set explicitly, *after* the device spread.
