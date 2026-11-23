@@ -122,39 +122,45 @@ export default async function TrainingFacilityWeightRoomPage({
           <FacilityBackLink />
         </div>
 
-        <div className="px-4 lg:pointer-events-auto lg:absolute lg:right-8 lg:top-24 lg:px-0">
-          <WeightRoomSubNav active="today" isAdmin={isAdmin} />
+        {/* One right-hand column from `lg`, so the notices always sit below the
+            sub-nav however many rows it wraps to. Capped at half the viewport,
+            which keeps it right of the board; the admin nav (seven pills) wraps
+            rather than reaching across. */}
+        <div className="lg:pointer-events-auto lg:absolute lg:right-8 lg:top-24 lg:flex lg:max-w-[50vw] lg:flex-col lg:items-end lg:gap-4">
+          <div className="px-4 lg:px-0">
+            <WeightRoomSubNav active="today" isAdmin={isAdmin} className="lg:justify-end" />
+          </div>
+
+          {isPreviewMode ? (
+            <div className="mx-4 mt-4 max-w-sm lg:mx-0 lg:mt-0 lg:w-96">
+              <PreviewModeBadge description="These rings are illustrative — not Lucas’s real strength logs." />
+            </div>
+          ) : null}
+
+          {showLoadError ? (
+            <div
+              role="status"
+              data-testid="today-load-error"
+              className="mx-4 mt-4 max-w-sm lg:mx-0 lg:mt-0 lg:w-96"
+            >
+              <PreviewWithSampleDataButton
+                href="/training-facility/weight-room?preview=demo"
+                headline="Couldn’t load the strength log"
+                description="The log couldn't be read just now, so today's board is left out rather than shown empty. Load a sample set to see how the wall looks with progress."
+              />
+            </div>
+          ) : null}
+
+          {showEmptyStateCta ? (
+            <div className="mx-4 mt-4 max-w-sm lg:mx-0 lg:mt-0 lg:w-96">
+              <PreviewWithSampleDataButton
+                href="/training-facility/weight-room?preview=demo"
+                headline="No strength work logged yet"
+                description="Curious what the wall looks like with progress? Load a sample set to see the rings fill, the streak counter come alive, and today's tallies populate."
+              />
+            </div>
+          ) : null}
         </div>
-
-        {isPreviewMode ? (
-          <div className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:right-8 lg:top-40 lg:mx-0 lg:mt-0 lg:w-96">
-            <PreviewModeBadge description="These rings are illustrative — not Lucas’s real strength logs." />
-          </div>
-        ) : null}
-
-        {showLoadError ? (
-          <div
-            role="status"
-            data-testid="today-load-error"
-            className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:right-8 lg:top-40 lg:mx-0 lg:mt-0 lg:w-96"
-          >
-            <PreviewWithSampleDataButton
-              href="/training-facility/weight-room?preview=demo"
-              headline="Couldn’t load the strength log"
-              description="The log couldn't be read just now, so today's board is left out rather than shown empty. Load a sample set to see how the wall looks with progress."
-            />
-          </div>
-        ) : null}
-
-        {showEmptyStateCta ? (
-          <div className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:right-8 lg:top-40 lg:mx-0 lg:mt-0 lg:w-96">
-            <PreviewWithSampleDataButton
-              href="/training-facility/weight-room?preview=demo"
-              headline="No strength work logged yet"
-              description="Curious what the wall looks like with progress? Load a sample set to see the rings fill, the streak counter come alive, and today's tallies populate."
-            />
-          </div>
-        ) : null}
       </div>
 
       {/* The scene. Below `lg` it sits in the page flow at its own 16:9 shape, so
