@@ -3,6 +3,7 @@ import { useMemo, type CSSProperties, type JSX } from 'react'
 
 import { buildOtfMileageView, type AwardedMonth } from '@/lib/training-facility/otf-mileage'
 import type { OtfMileageAward, OtfSession } from '@/types/otf'
+import { pacificWallClock } from '@/lib/training-facility/day-keys'
 
 /** Fallback accent for a milestone tier with no configured `color`. */
 const DEFAULT_AWARD_COLOR = '#F97316'
@@ -51,7 +52,7 @@ export function OtfMileageSection({
   // `now` defaults to the render clock; folded into the memo so tests that pass
   // an explicit `now` stay deterministic while the live view tracks the date.
   const view = useMemo(
-    () => buildOtfMileageView(sessions, awards, now ?? new Date()),
+    () => buildOtfMileageView(sessions, awards, now ?? pacificWallClock(new Date())),
     [sessions, awards, now]
   )
   const { current, history } = view
@@ -74,7 +75,7 @@ export function OtfMileageSection({
         {isAdmin ? (
           <Link
             href="/training-facility/gym/otf/settings"
-            className="rounded-full border border-[#f97316]/40 bg-[#f97316]/10 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#f9a870] transition hover:bg-[#f97316]/20"
+            className="touch-target rounded-full border border-[#f97316]/40 bg-[#f97316]/10 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#f9a870] transition hover:bg-[#f97316]/20"
           >
             Milestones
           </Link>

@@ -332,7 +332,10 @@ export interface FocusLaneHeatmapProps {
  * full focus history for a lane so the rotation story is legible at a
  * glance.
  *
- * Plain `<rect>` SVG cells so the grid renders instantly even on mobile.
+ * Plain `<rect>` SVG cells so the grid renders instantly even on mobile. Wrap
+ * the chart in a
+ * {@link import('@/components/training-facility/shared/charts/HeatmapInspector').HeatmapInspector}
+ * to expose each cell's `<title>` to touch and keyboard users.
  */
 export function FocusLaneHeatmap({
   cells,
@@ -422,6 +425,8 @@ export function FocusLaneHeatmap({
             return (
               <rect
                 key={`cell-${colIdx}-${rowIdx}`}
+                data-col={colIdx}
+                data-row={rowIdx}
                 x={colIdx * stride}
                 y={rowIdx * stride}
                 width={cellInner}

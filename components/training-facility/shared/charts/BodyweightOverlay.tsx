@@ -1,13 +1,15 @@
 'use client'
 
 import { useEffect, useId, useState, type JSX, type ReactNode } from 'react'
-import { scaleLinear, scaleTime } from 'd3-scale'
+import { scaleLinear } from 'd3-scale'
 import rough from 'roughjs'
+import { parseSessionDate } from '@/lib/training-facility/day-keys'
 import type { Benchmark } from '@/types/movement'
 import { Axis, type AxisTick } from './axes'
 import { chartPalette } from './palette'
-import { extent } from './rough-svg'
+import { drawableToPaths, extent } from './rough-svg'
 import { resolveMargin, type ChartMargin } from './types'
+import { wallClockTimeScale } from './wall-clock-scale'
 
 /**
  * Drop-in wrapper that overlays bodyweight as a secondary right-side axis on
@@ -22,9 +24,9 @@ export interface BodyweightOverlayProps {
   /** Benchmark history. Entries without `bodyweight_lbs` and any with `is_complete === false` are skipped. */
   benchmarks: Benchmark[]
   /**
-   * Date domain shared with the primary chart. The overlay's x-scale matches
-   * this exactly — caller is responsible for passing the same span the chart
-   * child computes from its own data.
+   * Date domain shared with the primary chart, as wall-clock `Date`s. The overlay's
+   * x-scale matches this exactly — caller is responsible for passing the same span
+   * the chart child computes from its own data.
    */
   dateExtent: [Date, Date]
   /** Total width in px — must match the primary chart. */
@@ -140,7 +142,7 @@ export function BodyweightOverlay({
       (b): b is Benchmark & { bodyweight_lbs: number } =>
         typeof b.bodyweight_lbs === 'number' && b.is_complete !== false
     )
-    .map(b => ({ date: new Date(b.date), bw: b.bodyweight_lbs }))
+    .map(b => ({ date: parseSessionDate(b.date), bw: b.bodyweight_lbs }))
     .filter(p => {
       const t = p.date.getTime()
       return t >= fromMs && t <= toMs
@@ -278,7 +280,8 @@ function BodyweightLayer({
   yTickFormat,
   ariaLabel,
 }: BodyweightLayerProps): JSX.Element {
-  const xScale = scaleTime().domain(dateExtent).range([0, innerW])
+  // The same scale as the chart underneath, so the two lines stay aligned.
+  const timeScale = wallClockTimeScale(dateExtent, [0, innerW])
 
   const bwValues = points.map(p => p.bw)
   const [yMin, yMax] = extent(bwValues)
@@ -293,7 +296,7 @@ function BodyweightLayer({
     offset: yScale(tick),
   }))
 
-  const linePoints: [number, number][] = points.map(p => [xScale(p.date), yScale(p.bw)])
+  const linePoints: [number, number][] = points.map(p => [timeScale.position(p.date), yScale(p.bw)])
 
   // Fresh generator (not the shared singleton) — see the BodyweightOverlay
   // hydration comment above. Cost is one allocation per render; output is
@@ -332,7 +335,7 @@ function BodyweightLayer({
           roughness={roughness}
           seed={seed + 200}
         />
-        {gen.toPaths(linePath).map((p, i) => (
+        {drawableToPaths(linePath).map((p, i) => (
           <path
             key={`bw-line-${i}`}
             d={p.d}
@@ -353,17 +356,15 @@ function BodyweightLayer({
             roughness: roughness * 0.6,
             seed: seed + 300 + i,
           })
-          return gen
-            .toPaths(dot)
-            .map((p, j) => (
-              <path
-                key={`bw-dot-${i}-${j}`}
-                d={p.d}
-                stroke={p.stroke}
-                strokeWidth={p.strokeWidth}
-                fill={p.fill ?? 'none'}
-              />
-            ))
+          return drawableToPaths(dot).map((p, j) => (
+            <path
+              key={`bw-dot-${i}-${j}`}
+              d={p.d}
+              stroke={p.stroke}
+              strokeWidth={p.strokeWidth}
+              fill={p.fill ?? 'none'}
+            />
+          ))
         })}
       </g>
     </svg>

@@ -85,7 +85,7 @@ export function TemplateCompositionPanel({
                   </span>
                   <span className="font-mono text-[11px] text-[#e8d5be]/60">
                     {movement.runs} of {runs.length} runs · {movement.sets} sets ·{' '}
-                    {movement.tonnage.toLocaleString()} lb
+                    {movement.tonnage.toLocaleString('en-US')} lb
                   </span>
                 </div>
                 <div

@@ -114,6 +114,38 @@ describe('buildHeatmapGrid', () => {
   })
 })
 
+describe('buildHeatmapGrid across a DST change', () => {
+  const dayKey = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
+
+  it.each([
+    ['fall back', new Date(2026, 9, 26), new Date(2026, 10, 15)],
+    ['spring forward', new Date(2026, 2, 2), new Date(2026, 2, 22)],
+  ])('gives every cell its own date through %s', (_name, from, to) => {
+    const { grid } = buildHeatmapGrid([], from, to)
+
+    // Row 0 stays Monday and row 6 Sunday in every column.
+    for (const cell of grid[0]) expect(cell.date.getDay()).toBe(1)
+    for (const cell of grid[6]) expect(cell.date.getDay()).toBe(0)
+
+    const keys = grid.flat().map(cell => dayKey(cell.date))
+    expect(new Set(keys).size).toBe(keys.length)
+  })
+})
+
+describe('session dates', () => {
+  it('counts an evening Pacific session on its Pacific day, wherever this runs', () => {
+    // 8:14pm on May 27 in Pacific time, already May 28 in UTC.
+    const session: CardioSession = {
+      date: '2022-05-28T03:14:05Z',
+      activity: 'running',
+    } as CardioSession
+    const { grid } = buildHeatmapGrid([session], new Date(2022, 4, 23), new Date(2022, 4, 29))
+    const logged = grid.flat().filter(cell => cell.count > 0)
+    expect(logged).toHaveLength(1)
+    expect(logged[0].date.getDate()).toBe(27)
+  })
+})
+
 describe('intensityLevel', () => {
   it('buckets counts into 0/1/2/3', () => {
     expect(intensityLevel(0)).toBe(0)

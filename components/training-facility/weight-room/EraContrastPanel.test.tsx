@@ -108,7 +108,7 @@ describe('EraContrastPanel', () => {
     // tonnage and push-up reps don't add up to anything.
     render(<EraContrastPanel eras={eras()} exerciseLabels={LABELS} />)
     const text = screen.getByTestId('era-contrast').textContent ?? ''
-    const combinedSets = (5109 + 1564).toLocaleString()
+    const combinedSets = (5109 + 1564).toLocaleString('en-US')
     expect(text).not.toContain(combinedSets)
   })
 })

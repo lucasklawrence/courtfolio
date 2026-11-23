@@ -350,13 +350,13 @@ export function OtfDetailView({
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/training-facility/gym/zones"
-              className="rounded-full border border-[#f97316]/40 bg-[#f97316]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#f9a870] transition hover:bg-[#f97316]/20"
+              className="touch-target rounded-full border border-[#f97316]/40 bg-[#f97316]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#f9a870] transition hover:bg-[#f97316]/20"
             >
               Zones vs Apple →
             </Link>
             <Link
               href="/training-facility/gym"
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+              className="touch-target rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
             >
               ← The Gym
             </Link>
@@ -681,8 +681,8 @@ function HighlightStrip({
     { label: 'Total splat', value: `${highlights.totalSplat}` },
     { label: 'Avg splat', value: highlights.avgSplat.toFixed(1) },
     { label: 'Best splat', value: `${highlights.bestSplat}` },
-    { label: 'Total calories', value: highlights.totalCalories.toLocaleString() },
-    { label: 'Best calories', value: highlights.bestCalories.toLocaleString() },
+    { label: 'Total calories', value: highlights.totalCalories.toLocaleString('en-US') },
+    { label: 'Best calories', value: highlights.bestCalories.toLocaleString('en-US') },
   ]
   return (
     <dl className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
@@ -809,7 +809,7 @@ function SessionLogTable({ sessions, range }: SessionLogTableProps): JSX.Element
                 return (
                   <Fragment key={rowKey}>
                     <tr
-                      className={`rounded-md align-middle ${excluded ? 'bg-white/[0.02] opacity-55' : 'bg-white/5'} ${
+                      className={`touch-row rounded-md align-middle ${excluded ? 'bg-white/[0.02] opacity-55' : 'bg-white/5'} ${
                         expandable
                           ? 'cursor-pointer transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60'
                           : ''

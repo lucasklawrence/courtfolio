@@ -3,6 +3,7 @@
 import type { JSX } from 'react'
 
 import { BodyweightOverlay, RoughLine } from '@/components/training-facility/shared/charts'
+import { pacificWallClock } from '@/lib/training-facility/day-keys'
 import { buildWeeklyVolume } from '@/lib/training-facility/weight-room-history'
 import type { CardioTimePoint } from '@/types/cardio'
 import type { Benchmark } from '@/types/movement'
@@ -81,7 +82,10 @@ export function StrengthVsBodyweightChart({
   // completed weeks make an honest trend.
   const completed = buildWeeklyVolume(sets, goal, weeks).slice(0, -1)
   const firstActive = completed.findIndex(p => p.reps > 0)
-  const points = firstActive === -1 ? [] : completed.slice(firstActive)
+  const points = (firstActive === -1 ? [] : completed.slice(firstActive)).map(p => ({
+    ...p,
+    weekStart: pacificWallClock(p.weekStart),
+  }))
 
   // A trend needs two anchored weeks; below that, scaleTime's domain
   // collapses and the overlay can't align. Fall back to the empty-state

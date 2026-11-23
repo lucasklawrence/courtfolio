@@ -232,7 +232,7 @@ export function AllCardioOverview({
           <BackToCourtButton />
           <Link
             href="/training-facility/gym"
-            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
+            className="touch-target rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:bg-white/10"
           >
             ← The Gym
           </Link>
@@ -286,7 +286,7 @@ export function AllCardioOverview({
 
             <ChartCard
               title="Workout frequency"
-              helper="One cell per day in the active range — color saturates as the day's session count rises. Hover a cell for the exact count and activities."
+              helper="One cell per day in the active range — color saturates as the day's session count rises. Select a day for the exact count and activities."
               wide
             >
               <WorkoutHeatmap

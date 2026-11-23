@@ -1,6 +1,7 @@
 import type { JSX } from 'react'
 
 import { RoughSparkline } from '@/components/training-facility/shared/charts/RoughSparkline'
+import { wallClockMs } from '@/lib/training-facility/clock'
 import { otfTrendEndpoints, type OtfTrendPoint } from '@/lib/training-facility/otf'
 
 const SPARK_WIDTH = 150
@@ -49,7 +50,7 @@ export function OtfSparklineSummary({
   let maxMs = -Infinity
   for (const row of rows) {
     for (const p of row.trend) {
-      const ms = p.date.getTime()
+      const ms = wallClockMs(p.date)
       if (ms < minMs) minMs = ms
       if (ms > maxMs) maxMs = ms
     }
@@ -73,7 +74,7 @@ export function OtfSparklineSummary({
             </span>
             {ends ? (
               <RoughSparkline
-                points={row.trend.map(p => ({ x: p.date.getTime(), y: p.value }))}
+                points={row.trend.map(p => ({ x: wallClockMs(p.date), y: p.value }))}
                 xDomain={xDomain}
                 width={SPARK_WIDTH}
                 height={SPARK_HEIGHT}

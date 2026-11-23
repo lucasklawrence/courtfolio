@@ -1,6 +1,6 @@
 'use client'
 
-import { isSafari } from '@/utils/isSafari'
+import { useIsSafari } from '@/utils/useIsSafari'
 import { ZoneBarsSafari } from './ZoneBarsSafari'
 import { ZoneBarsModern } from './ZoneBarsModern'
 
@@ -9,5 +9,5 @@ import { ZoneBarsModern } from './ZoneBarsModern'
  * Bars of the Day zone content based on Safari detection.
  */
 export function ZoneBars() {
-  return isSafari() ? <ZoneBarsSafari /> : <ZoneBarsModern />
+  return useIsSafari() ? <ZoneBarsSafari /> : <ZoneBarsModern />
 }

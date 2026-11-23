@@ -116,7 +116,7 @@ export function MonthlyFocusCard({
             sub={totalLoadNote(loadStats.avgLoadLbs, loadStats.loadMultiplier)}
           />
           {/* Tonnage already counts every implement, so it needs no second reading. */}
-          <FocusStat label="Tonnage" value={`${loadStats.tonnageLbs.toLocaleString()} lb`} />
+          <FocusStat label="Tonnage" value={`${loadStats.tonnageLbs.toLocaleString('en-US')} lb`} />
         </dl>
       ) : null}
     </div>
