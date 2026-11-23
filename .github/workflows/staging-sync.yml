@@ -50,14 +50,15 @@ jobs:
           STAGING_SUPABASE_SECRET_KEY: ${{ secrets.STAGING_SUPABASE_SECRET_KEY }}
         run: npm run staging:sync
 
-  # Delivery, not detection (#456): the ingest's own gates turn bad data into a
-  # red job, and this makes a red job reach a human as an issue in the tracker.
+  # Delivery (#456): a red sync reaches a human as an issue in the tracker.
   # A separate job so `issues: write` and `actions: read` never sit next to the
-  # production credentials above. `always()` so it also runs after a success,
-  # to close an open alert as recovered.
+  # staging secret key above. `always()` so it also runs after a success, to
+  # close an open alert as recovered.
   alert:
     needs: sync
-    if: ${{ always() }}
+    # Only for runs of main. A manual run from a feature branch (testing a
+    # workflow change) must not file, comment on, or close the real alert.
+    if: ${{ always() && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:

@@ -168,9 +168,14 @@ function github(token, repo) {
       return res.status === 204 ? null : res.json()
     },
     async text(path) {
-      const res = await fetch(`${base}${path}`, { headers })
-      if (!res.ok) throw new Error(`GET ${path}: ${res.status}`)
-      return res.text()
+      // A job's log can 404 for a few seconds after the job completes, which
+      // is exactly when this runs. Retry briefly before giving up on it.
+      for (let attempt = 1; ; attempt++) {
+        const res = await fetch(`${base}${path}`, { headers })
+        if (res.ok) return res.text()
+        if (res.status !== 404 || attempt >= 4) throw new Error(`GET ${path}: ${res.status}`)
+        await new Promise(resolve => setTimeout(resolve, attempt * 3000))
+      }
     },
   }
 }

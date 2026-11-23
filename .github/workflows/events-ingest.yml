@@ -74,7 +74,12 @@ jobs:
   # to close an open alert as recovered.
   alert:
     needs: ingest
-    if: ${{ always() }}
+    # Not for dry runs: one writes nothing, so its success says nothing about
+    # the writes or heartbeat that a real failure was about, and it must not
+    # close that alert as recovered.
+    # And only for runs of main, so a feature-branch test run can't touch the
+    # real alert either.
+    if: ${{ always() && !inputs.dry_run && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
