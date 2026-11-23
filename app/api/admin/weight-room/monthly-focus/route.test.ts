@@ -5,10 +5,10 @@ import { POST } from './route'
 
 /**
  * Tests for `POST /api/admin/weight-room/monthly-focus` (#255). Auth gate
- * + Supabase service-role client are mocked. The route does two writes —
- * a `kind: 'focus'` goal-anchor upsert (awaited directly) and a focus-row
- * insert (`.insert().select().single()`) — so the mock resolves those two
- * call shapes independently.
+ * + Supabase service-role client are mocked. The route provisions the
+ * movement catalog (an `.upsert()` on `weight_room_exercises`), then makes
+ * one `create_weight_room_monthly_focus` RPC that anchors the goal and
+ * inserts the focus in a single transaction (#384).
  */
 
 const requireAdminMock = vi.fn()
@@ -16,27 +16,22 @@ vi.mock('@/lib/auth/require-admin', () => ({
   requireAdmin: () => requireAdminMock(),
 }))
 
-const upsertResultMock = vi.fn()
 const catalogUpsertResultMock = vi.fn()
-const singleMock = vi.fn()
-/**
- * Table the most recent `.from()` targeted, so `.upsert()` can route to the
- * right result. The route upserts twice — first the movement catalog (#373),
- * then the goal anchor — and a single shared result would make "the anchor
- * upsert fails" actually fail the catalog write instead.
- */
-let lastTable = ''
+const rpcMock = vi.fn((_fn: string, _args: Record<string, unknown>) =>
+  Promise.resolve({ data: null as unknown, error: null as unknown })
+)
+/** Every call, in order, so tests can assert the catalog lands before the RPC. */
+const calls: string[] = []
 const supabaseChain = {
   from: vi.fn((table: string) => {
-    lastTable = table
+    calls.push(`from:${table}`)
     return supabaseChain
   }),
-  upsert: vi.fn(() =>
-    lastTable === 'weight_room_exercises' ? catalogUpsertResultMock() : upsertResultMock()
-  ),
-  insert: vi.fn(() => supabaseChain),
-  select: vi.fn(() => supabaseChain),
-  single: vi.fn(() => singleMock()),
+  upsert: vi.fn(() => catalogUpsertResultMock()),
+  rpc: vi.fn((fn: string, args: Record<string, unknown>) => {
+    calls.push(`rpc:${fn}`)
+    return rpcMock(fn, args)
+  }),
 }
 vi.mock('@/lib/supabase/admin', () => ({
   createAdminSupabaseClient: () => supabaseChain,
@@ -53,29 +48,15 @@ const validFocus = {
 
 beforeEach(() => {
   requireAdminMock.mockReset()
-  upsertResultMock.mockReset()
   catalogUpsertResultMock.mockReset()
-  singleMock.mockReset()
-  lastTable = ''
+  rpcMock.mockReset()
+  calls.length = 0
   supabaseChain.from.mockClear()
   supabaseChain.upsert.mockClear()
-  supabaseChain.insert.mockClear()
-  supabaseChain.select.mockClear()
-  supabaseChain.single.mockClear()
-  supabaseChain.from.mockImplementation((table: string) => {
-    lastTable = table
-    return supabaseChain
-  })
-  supabaseChain.upsert.mockImplementation(() =>
-    lastTable === 'weight_room_exercises' ? catalogUpsertResultMock() : upsertResultMock()
-  )
-  supabaseChain.insert.mockReturnValue(supabaseChain)
-  supabaseChain.select.mockReturnValue(supabaseChain)
-  supabaseChain.single.mockImplementation(() => singleMock())
+  supabaseChain.rpc.mockClear()
   // Happy-path defaults; individual tests override.
-  upsertResultMock.mockResolvedValue({ error: null })
   catalogUpsertResultMock.mockResolvedValue({ error: null })
-  singleMock.mockResolvedValue({
+  rpcMock.mockResolvedValue({
     data: { id: 'f1', ...validFocus, target_kind: 'reps' },
     error: null,
   })
@@ -132,23 +113,14 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
     expect(res.status).toBe(400)
   })
 
-  it('returns 500 when the goal-anchor upsert fails', async () => {
-    requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
-    upsertResultMock.mockResolvedValueOnce({ error: { code: 'XX001', message: 'boom' } })
-    const res = await POST(makeRequest(validFocus) as never)
-    expect(res.status).toBe(500)
-    const body = await res.json()
-    expect(body.error).toMatch(/anchor focus goal/i)
-  })
-
-  it('provisions the movement catalog before the goal anchor (#373)', async () => {
+  it('provisions the movement catalog before the create RPC (#373)', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     await POST(makeRequest(validFocus) as never)
     // Both the anchor and the focus row FK the catalog, so the roster entry
     // has to land first or a brand-new focus exercise 23503s.
-    const tables = supabaseChain.from.mock.calls.map(([table]) => table)
-    expect(tables.indexOf('weight_room_exercises')).toBeLessThan(
-      tables.indexOf('weight_room_goals')
+    expect(calls.indexOf('from:weight_room_exercises')).toBeGreaterThanOrEqual(0)
+    expect(calls.indexOf('from:weight_room_exercises')).toBeLessThan(
+      calls.indexOf('rpc:create_weight_room_monthly_focus')
     )
   })
 
@@ -163,42 +135,42 @@ describe('POST /api/admin/weight-room/monthly-focus', () => {
     expect(body.error).toMatch(/movement catalog/i)
   })
 
-  it('returns 500 when the focus insert fails', async () => {
+  it('returns 500 when the create RPC fails', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
-    singleMock.mockResolvedValueOnce({ data: null, error: { code: 'XX001', message: 'nope' } })
+    rpcMock.mockResolvedValueOnce({ data: null, error: { code: 'XX001', message: 'nope' } })
     const res = await POST(makeRequest(validFocus) as never)
     expect(res.status).toBe(500)
+    expect((await res.json()).error).toMatch(/nope/)
   })
 
-  it('anchors a kind=focus goal without clobbering existing goals, then inserts the focus', async () => {
+  it('anchors and inserts in one RPC, defaulting target_kind to reps (#384)', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     const res = await POST(makeRequest(validFocus) as never)
     expect(res.status).toBe(201)
+    expect(await res.json()).toMatchObject({ id: 'f1', exercise: 'shrugs' })
 
-    // Anchor upsert: kind 'focus', ignoreDuplicates so an existing
-    // permanent goal isn't flipped.
-    expect(supabaseChain.upsert).toHaveBeenCalledWith(
-      expect.objectContaining({ exercise: 'shrugs', kind: 'focus', daily_target: 100 }),
-      { onConflict: 'exercise', ignoreDuplicates: true }
-    )
-    // Focus insert defaults target_kind to 'reps' and carries the category lane.
-    expect(supabaseChain.insert).toHaveBeenCalledWith(
-      expect.objectContaining({
-        exercise: 'shrugs',
-        target_kind: 'reps',
-        category: 'upper',
-        start_date: '2026-07-01',
-        end_date: '2026-07-31',
-      })
-    )
+    expect(rpcMock).toHaveBeenCalledTimes(1)
+    expect(rpcMock).toHaveBeenCalledWith('create_weight_room_monthly_focus', {
+      p_exercise: 'shrugs',
+      p_daily_target: 100,
+      p_target_kind: 'reps',
+      p_color: '#C9A268',
+      p_category: 'upper',
+      p_start_date: '2026-07-01',
+      p_end_date: '2026-07-31',
+    })
+    // No direct table write for the goal or the focus: a separate anchor
+    // upsert is what let a concurrent goal delete strand the focus.
+    expect(calls).not.toContain('from:weight_room_goals')
+    expect(calls).not.toContain('from:weight_room_monthly_focus')
   })
 
   it('lowercases the exercise name on write', async () => {
     requireAdminMock.mockResolvedValue({ ok: true, email: 'a@b.com' })
     await POST(makeRequest({ ...validFocus, exercise: 'Shrugs' }) as never)
-    expect(supabaseChain.upsert).toHaveBeenCalledWith(
-      expect.objectContaining({ exercise: 'shrugs' }),
-      expect.anything()
+    expect(rpcMock).toHaveBeenCalledWith(
+      'create_weight_room_monthly_focus',
+      expect.objectContaining({ p_exercise: 'shrugs' })
     )
   })
 })
