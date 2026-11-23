@@ -8,7 +8,7 @@
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { linkedWorktreeRoot } from './next.config'
 
@@ -32,6 +32,25 @@ describe('linkedWorktreeRoot', () => {
     fs.symlinkSync(path.join(main, 'node_modules'), path.join(worktree, 'node_modules'), 'junction')
 
     expect(linkedWorktreeRoot(worktree)).toBe(fs.realpathSync(main))
+  })
+
+  it('does not widen to a root that would not contain the project', () => {
+    // A worktree outside the main checkout: no single root holds both trees,
+    // and a root that excludes the project makes Turbopack reject it outright.
+    const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'outside-worktree-'))
+    try {
+      fs.symlinkSync(
+        path.join(main, 'node_modules'),
+        path.join(outside, 'node_modules'),
+        'junction'
+      )
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      expect(linkedWorktreeRoot(outside)).toBeUndefined()
+      expect(warn).toHaveBeenCalledWith(expect.stringContaining('-Isolate'))
+      warn.mockRestore()
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true })
+    }
   })
 
   it('leaves a real install alone, as on Vercel and CI', () => {

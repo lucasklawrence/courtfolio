@@ -53,12 +53,26 @@ const distDir = process.env.NEXT_DIST_DIR || '.next'
  */
 export function linkedWorktreeRoot(cwd: string = process.cwd()): string | undefined {
   const modules = path.join(cwd, 'node_modules')
+  let root: string
   try {
     if (!fs.lstatSync(modules).isSymbolicLink()) return undefined
-    return path.dirname(fs.realpathSync(modules))
+    root = path.dirname(fs.realpathSync(modules))
   } catch {
     return undefined
   }
+  // Only widen to a root that contains the project. A link into some unrelated
+  // directory (a worktree outside the main checkout, a shared cache) can't be
+  // fixed by a root, and Turbopack would reject the project outright. Fall back
+  // to the default and let its own error point at the link.
+  const relative = path.relative(root, fs.realpathSync(cwd))
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    console.warn(
+      `node_modules links to ${root}, which does not contain this project; ` +
+        'Turbopack cannot follow it. Re-run scripts/worktree-init.ps1 -Isolate for a real install.'
+    )
+    return undefined
+  }
+  return root
 }
 
 const workspaceRoot = linkedWorktreeRoot()
