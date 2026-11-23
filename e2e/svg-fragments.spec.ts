@@ -22,8 +22,8 @@ import { bypassHomeIntro } from './helpers/intro'
  * Deliberately generic rather than pinned to one component: it asserts the
  * invariant over whatever the app actually renders, so a future SVG that
  * reintroduces the pattern is caught without anyone remembering to add a case.
- * (Related: #383 — `LogoSvg` currently has no consumers, so the original mark
- * isn't reachable from any route. This check will cover it the moment it is.)
+ * The original mark is covered too: `LogoSvg` renders in the home court's `logo`
+ * zone (`useZoneContent`), so the `/` case checks it.
  */
 
 /** Routes that render substantial SVG artwork and need no credentials to do it. */

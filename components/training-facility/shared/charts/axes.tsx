@@ -1,9 +1,16 @@
 import type { JSX } from 'react'
 import { drawableToPaths, getGenerator } from './rough-svg'
 
+/** Props for {@link EmptyChart}. */
 export interface EmptyChartProps {
+  /**
+   * The chart's width in px. The placeholder never grows past it but shrinks to
+   * fit a narrower container, since there is nothing in it to scroll to.
+   */
   width: number
+  /** The chart's height in px, kept so the card doesn't jump when data arrives. */
   height: number
+  /** Text centred in the placeholder. Defaults to `"No data"`. */
   message?: string
   fontFamily?: string
   color?: string
@@ -16,6 +23,10 @@ export interface EmptyChartProps {
  * Accessible "no data" placeholder rendered at the chart's footprint.
  * Used by the primitives when `data.length === 0` so callers don't have to
  * re-implement the empty branch — and so screen readers still get a label.
+ *
+ * A data chart keeps a width floor on a phone so a season of data can scroll
+ * inside its card. An empty one has nothing to scroll to, so it is capped at the
+ * card's width and its message stays centred in view.
  */
 export function EmptyChart({
   width,
@@ -32,13 +43,14 @@ export function EmptyChart({
       width={width}
       height={height}
       className={className}
+      style={{ maxWidth: '100%' }}
       role="img"
       aria-label={ariaLabelledBy ? undefined : (ariaLabel ?? message)}
       aria-labelledby={ariaLabelledBy}
     >
       {!ariaLabelledBy && <title>{ariaLabel ?? message}</title>}
       <text
-        x={width / 2}
+        x="50%"
         y={height / 2}
         textAnchor="middle"
         dominantBaseline="middle"

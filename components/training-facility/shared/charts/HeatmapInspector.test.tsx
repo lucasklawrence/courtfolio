@@ -21,6 +21,9 @@ function Grid({ prefix = '' }: { prefix?: string }) {
       )}
       <rect data-testid="legend" />
       <text data-testid="label">Mon</text>
+      <g data-testid="annotation" data-heatmap-target-col={0} data-heatmap-target-row={3}>
+        <text>30 → 50</text>
+      </g>
     </svg>
   )
 }
@@ -272,5 +275,58 @@ describe('HeatmapInspector', () => {
     })
 
     expect(readout()).toHaveTextContent(dayText(1, 2))
+  })
+
+  it('selects the day an annotation names when the annotation is tapped', () => {
+    const { selectedCells, cell } = renderInspector()
+    fireEvent.click(screen.getByText('30 → 50'))
+    expect(readout()).toHaveTextContent(dayText(0, 3))
+    expect(selectedCells()).toHaveLength(1)
+    expect(cell(0, 3)).toHaveAttribute('data-heatmap-selected')
+  })
+
+  it('gives screen readers day buttons outside the tab order', () => {
+    renderInspector()
+    const next = screen.getByRole('button', { name: 'Next day, Pushups heatmap' })
+    expect(next).toHaveAttribute('tabindex', '-1')
+    for (const name of ['Previous week', 'Previous day', 'Next week']) {
+      expect(screen.getByRole('button', { name: `${name}, Pushups heatmap` })).toBeInTheDocument()
+    }
+  })
+
+  it("starts the day buttons on the last drawn week's Monday", () => {
+    renderInspector()
+    fireEvent.click(screen.getByRole('button', { name: /^Previous day/ }))
+    expect(readout()).toHaveTextContent(dayText(1, 0))
+  })
+
+  it('steps by a day across the end of a week, and by a week', () => {
+    const { cell } = renderInspector()
+    fireEvent.click(cell(0, 6))
+    fireEvent.click(screen.getByRole('button', { name: /^Next day/ }))
+    expect(readout()).toHaveTextContent(dayText(1, 0))
+    fireEvent.click(screen.getByRole('button', { name: /^Previous day/ }))
+    expect(readout()).toHaveTextContent(dayText(0, 6))
+    fireEvent.click(screen.getByRole('button', { name: /^Next week/ }))
+    expect(readout()).toHaveTextContent(dayText(1, 6))
+  })
+
+  it('stays put when a day button would leave the grid', () => {
+    const { cell } = renderInspector()
+    fireEvent.click(cell(1, 6))
+    fireEvent.click(screen.getByRole('button', { name: /^Next day/ }))
+    expect(readout()).toHaveTextContent(dayText(1, 6))
+    fireEvent.click(cell(0, 0))
+    fireEvent.click(screen.getByRole('button', { name: /^Previous week/ }))
+    expect(readout()).toHaveTextContent(dayText(0, 0))
+  })
+
+  it('keeps the details open while a day button takes focus', () => {
+    const { cell } = renderInspector()
+    fireEvent.click(cell(0, 2))
+    const next = screen.getByRole('button', { name: /^Next day/ })
+    fireEvent.blur(grid(), { relatedTarget: next })
+    fireEvent.click(next)
+    expect(readout()).toHaveTextContent(dayText(0, 3))
   })
 })

@@ -1,7 +1,7 @@
 import type { CardioSession } from '@/types/cardio'
 
 import { parseSessionDate } from './cardio-shared'
-import { pacificWallClock } from './day-keys'
+import { shiftDayKey, todayDayKey, wallClockDayKey } from './day-keys'
 
 /**
  * Result of {@link computeStreaks}: the all-time current and longest
@@ -21,23 +21,8 @@ export interface StreakResult {
   longest: number
 }
 
-/** Get a `YYYY-MM-DD` local-date key from a Date. */
-function toDateKey(d: Date): string {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-}
-
 /**
- * Add `n` days to a `YYYY-MM-DD` key, returning a new key. Uses local-noon
- * as the base time so DST transitions don't accidentally shift the date.
- */
-function addDays(dateKey: string, n: number): string {
-  const d = new Date(dateKey + 'T12:00:00')
-  d.setDate(d.getDate() + n)
-  return toDateKey(d)
-}
-
-/**
- * Count consecutive calendar days (in local time) with at least one cardio
+ * Count consecutive Pacific calendar days with at least one cardio
  * session. Multiple sessions on the same day count as one day. The "current"
  * streak counts backwards from today (or yesterday if today has no session
  * logged yet) and is `0` if the last logged day is older than yesterday.
@@ -56,7 +41,7 @@ export function computeStreaks(sessions: readonly CardioSession[]): StreakResult
   for (const s of sessions) {
     const d = parseSessionDate(s.date)
     if (!Number.isFinite(d.getTime())) continue
-    days.add(toDateKey(d))
+    days.add(wallClockDayKey(d))
   }
   if (days.size === 0) return { current: 0, longest: 0 }
 
@@ -65,7 +50,7 @@ export function computeStreaks(sessions: readonly CardioSession[]): StreakResult
   let longest = 1
   let run = 1
   for (let i = 1; i < sorted.length; i++) {
-    if (addDays(sorted[i - 1], 1) === sorted[i]) {
+    if (shiftDayKey(sorted[i - 1], 1) === sorted[i]) {
       run++
       if (run > longest) longest = run
     } else {
@@ -73,8 +58,8 @@ export function computeStreaks(sessions: readonly CardioSession[]): StreakResult
     }
   }
 
-  const today = toDateKey(pacificWallClock(new Date()))
-  const yesterday = addDays(today, -1)
+  const today = todayDayKey()
+  const yesterday = shiftDayKey(today, -1)
   const lastDay = sorted[sorted.length - 1]
 
   if (lastDay !== today && lastDay !== yesterday) {
@@ -83,7 +68,7 @@ export function computeStreaks(sessions: readonly CardioSession[]): StreakResult
 
   let current = 1
   for (let i = sorted.length - 2; i >= 0; i--) {
-    if (addDays(sorted[i], 1) === sorted[i + 1]) {
+    if (shiftDayKey(sorted[i], 1) === sorted[i + 1]) {
       current++
     } else {
       break

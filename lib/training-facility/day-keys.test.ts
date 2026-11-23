@@ -16,6 +16,7 @@ import {
   safePacificDayKey,
   shiftDayKey,
   todayDayKey,
+  wallClockDayKey,
 } from './day-keys'
 
 /**
@@ -91,6 +92,22 @@ describe('safePacificDayKey', () => {
 
   it('returns a key that sorts before every real one, so bad rows drop out', () => {
     expect('' < '1970-01-01').toBe(true)
+  })
+})
+
+describe('wallClockDayKey', () => {
+  it('reads the calendar day off a wall-clock Date', () => {
+    expect(wallClockDayKey(new Date(2026, 0, 5, 23, 59))).toBe('2026-01-05')
+  })
+
+  it('agrees with pacificDayKey on the wall clock of an evening Pacific instant', () => {
+    // 10pm PT on Jul 11, already Jul 12 in UTC.
+    const instant = new Date('2026-07-12T05:00:00Z')
+    expect(wallClockDayKey(pacificWallClock(instant))).toBe(pacificDayKey(instant))
+  })
+
+  it('returns an empty string for an invalid Date', () => {
+    expect(wallClockDayKey(new Date('nope'))).toBe('')
   })
 })
 

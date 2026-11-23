@@ -1,6 +1,10 @@
 import type { JSX } from 'react'
 
 import {
+  HEATMAP_TARGET_COL_ATTRIBUTE,
+  HEATMAP_TARGET_ROW_ATTRIBUTE,
+} from '@/components/training-facility/shared/charts/heatmap-targets'
+import {
   type GoalTargetChange,
   describeGoalTargetChange,
   formatGoalTargetChange,
@@ -27,6 +31,12 @@ export interface GoalChangeMarkerProps {
    * already crowded.
    */
   labelPosition?: 'above' | 'below'
+  /**
+   * The heatmap cell, as `{ col, row }`, that tapping the marker selects inside a
+   * `HeatmapInspector`, so touch readers can reach the change's date. Omit outside
+   * an inspector.
+   */
+  target?: { col: number; row: number }
 }
 
 /** Soft cream that reads as chrome rather than data on the dark card. */
@@ -53,10 +63,19 @@ export function GoalChangeMarker({
   height,
   color = MARKER_COLOR,
   labelPosition = 'above',
+  target,
 }: GoalChangeMarkerProps): JSX.Element {
   const labelY = labelPosition === 'above' ? y - 4 : y + height + 10
+  const targetAttributes =
+    target === undefined
+      ? {}
+      : {
+          [HEATMAP_TARGET_COL_ATTRIBUTE]: target.col,
+          [HEATMAP_TARGET_ROW_ATTRIBUTE]: target.row,
+          style: { cursor: 'pointer' },
+        }
   return (
-    <g data-testid={`goal-change-${change.effective_from}`}>
+    <g data-testid={`goal-change-${change.effective_from}`} {...targetAttributes}>
       <line
         x1={x}
         y1={y}
@@ -69,8 +88,9 @@ export function GoalChangeMarker({
       <text x={x + 3} y={labelY} fontSize={9} fill={color}>
         {formatGoalTargetChange(change)}
       </text>
-      {/* Native tooltip + screen-reader text carries the date, which the
-          visible label omits to stay narrow enough for a one-week column. */}
+      {/* Native tooltip carries the date, which the visible label omits to stay
+          narrow enough for a one-week column. Touch readers get it from the
+          target cell's details instead. */}
       <title>{`Goal ${describeGoalTargetChange(change)}`}</title>
     </g>
   )
