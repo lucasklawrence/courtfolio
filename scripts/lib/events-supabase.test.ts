@@ -4,7 +4,13 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { UNTITLED, planEventLinks, zoneForState } from './events-supabase.mjs'
+import {
+  UNTITLED,
+  loadEventsNear,
+  loadStoredMessageIds,
+  planEventLinks,
+  zoneForState,
+} from './events-supabase.mjs'
 
 type Kind =
   | 'purchase'
@@ -372,5 +378,142 @@ describe('zoneForState', () => {
       []
     )
     expect(plan.inserts[0].starts_at).toBe('2026-01-22T02:00:00.000Z')
+  })
+
+  it('joins a venue-variant email to the only event whose venue contains it', () => {
+    const stored = {
+      id: 'e1',
+      match_key: '2026-03-14|v:harborcityarena',
+      title: 'Riverside Rockets at Harbor City Hawks',
+      venue: 'Harbor City Arena',
+      city: 'Springfield',
+      state: 'CA',
+      starts_at: '2026-03-15T01:40:00.000Z',
+    }
+    const longer = planEventLinks(
+      [item({ venue: 'Harbor City Arena - Bayside', title: 'Hawks Pregame Party' })],
+      [stored]
+    )
+    expect(longer.inserts).toEqual([])
+    expect(longer.emails[0].eventKey).toBe(stored.match_key)
+    // A truncated venue on another platform, same outing.
+    const truncated = planEventLinks([item({ venue: 'Harbor City Are' })], [stored])
+    expect(truncated.inserts).toEqual([])
+    expect(truncated.emails[0].eventKey).toBe(stored.match_key)
+  })
+
+  it('joins venues that differ outright when the titles are the same', () => {
+    const stored = {
+      id: 'e1',
+      match_key: '2026-03-14|v:samplehall',
+      title: 'An Evening of Examples',
+      venue: 'Sample Hall',
+      city: null,
+      state: null,
+      starts_at: '2026-03-15T03:00:00.000Z',
+    }
+    const plan = planEventLinks(
+      [item({ venue: 'The Sample Concert Room', title: 'An Evening of Examples' })],
+      [stored]
+    )
+    expect(plan.inserts).toEqual([])
+    expect(plan.emails[0].eventKey).toBe(stored.match_key)
+  })
+
+  it('does not guess between two venue variants, and keeps unrelated venues apart', () => {
+    const at = (id: string, venue: string, key: string) => ({
+      id,
+      match_key: `2026-03-14|v:${key}`,
+      title: id,
+      venue,
+      city: null,
+      state: null,
+      starts_at: '2026-03-15T01:40:00.000Z',
+    })
+    const two = planEventLinks(
+      [item({ venue: 'Harbor City Arena', title: 'X' })],
+      [
+        at('a', 'Harbor City Arena North', 'harborcityarenanorth'),
+        at('b', 'Harbor City Arena South', 'harborcityarenasouth'),
+      ]
+    )
+    expect(two.inserts).toHaveLength(1)
+    const apart = planEventLinks(
+      [item({ venue: 'Sample Hall', title: 'X' })],
+      [at('a', 'Example Arena', 'examplearena')]
+    )
+    expect(apart.inserts).toHaveLength(1)
+  })
+
+  it('treats accented and plain title words as the same word', () => {
+    const stored = {
+      id: 'e1',
+      match_key: '2026-03-14|v:examplearena',
+      title: 'Théâtre Exemple Gala',
+      venue: 'Example Arena',
+      city: null,
+      state: null,
+      starts_at: '2026-03-15T03:00:00.000Z',
+    }
+    const plan = planEventLinks([item({ venue: null, title: 'Theatre Gala' })], [stored])
+    expect(plan.inserts).toEqual([])
+    expect(plan.emails[0].eventKey).toBe(stored.match_key)
+  })
+})
+
+/**
+ * A stand-in for the Supabase query builder: records each call, and resolves
+ * a select with the rows `respond` returns for its `range` / `in` filter.
+ */
+function fakeSupabase(respond: (q: { range?: [number, number]; ids?: string[] }) => unknown[]) {
+  const queries: Array<{ range?: [number, number]; ids?: string[] }> = []
+  const builder = () => {
+    const q: { range?: [number, number]; ids?: string[] } = {}
+    const chain: Record<string, unknown> = {
+      select: () => chain,
+      gte: () => chain,
+      lt: () => chain,
+      order: () => chain,
+      range: (from: number, to: number) => {
+        q.range = [from, to]
+        return chain
+      },
+      in: (_col: string, ids: string[]) => {
+        q.ids = ids
+        return chain
+      },
+      then: (resolve: (v: unknown) => void) => {
+        queries.push(q)
+        resolve({ data: respond(q), error: null })
+      },
+    }
+    return chain
+  }
+  return { client: { from: builder } as never, queries }
+}
+
+describe('loadEventsNear', () => {
+  it('reads every page, past the row cap of one select', async () => {
+    const all = Array.from({ length: 5 }, (_, i) => ({ id: `e${i}`, match_key: `k${i}` }))
+    const { client, queries } = fakeSupabase(q => all.slice(q.range![0], q.range![1] + 1))
+    const events = await loadEventsNear(client, [item()], 2)
+    expect(events.map(e => e.id)).toEqual(['e0', 'e1', 'e2', 'e3', 'e4'])
+    expect(queries.map(q => q.range)).toEqual([
+      [0, 1],
+      [2, 3],
+      [4, 5],
+    ])
+  })
+})
+
+describe('loadStoredMessageIds', () => {
+  it('returns the ids already stored, reading in chunks', async () => {
+    const stored = new Set(['m1', 'm150'])
+    const { client, queries } = fakeSupabase(q =>
+      (q.ids ?? []).filter(id => stored.has(id)).map(id => ({ gmail_message_id: id }))
+    )
+    const ids = Array.from({ length: 160 }, (_, i) => `m${i}`)
+    expect(await loadStoredMessageIds(client, ids)).toEqual(new Set(['m1', 'm150']))
+    expect(queries).toHaveLength(2)
   })
 })

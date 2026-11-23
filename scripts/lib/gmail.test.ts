@@ -4,7 +4,53 @@
  */
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { gmailGet, mapLimit } from './gmail.mjs'
+import { gmailGet, gmailSession, mapLimit } from './gmail.mjs'
+
+describe('gmailSession', () => {
+  afterEach(() => vi.unstubAllGlobals())
+
+  /** Stub fetch: 401 for any token but `fresh`, a message otherwise. Returns the tokens seen. */
+  function stubAuth() {
+    const seen: string[] = []
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (_url: string, init: { headers: Record<string, string> }) => {
+        const token = init.headers.Authorization.replace('Bearer ', '')
+        seen.push(token)
+        return token === 'fresh'
+          ? new Response('{"id":"m1"}', { status: 200 })
+          : new Response('{"error":"invalid_token"}', { status: 401 })
+      })
+    )
+    return seen
+  }
+
+  it('renews an expired token once and retries the call', async () => {
+    const seen = stubAuth()
+    const refresh = vi.fn(async () => 'fresh')
+    const gmail = gmailSession('stale', refresh)
+    expect(await gmail.get('messages/m1', { baseDelayMs: 1 })).toEqual({ id: 'm1' })
+    expect(seen).toEqual(['stale', 'fresh'])
+    expect(gmail.token).toBe('fresh')
+    expect(refresh).toHaveBeenCalledTimes(1)
+  })
+
+  it('shares one renewal between calls that expire together', async () => {
+    stubAuth()
+    const refresh = vi.fn(async () => 'fresh')
+    const gmail = gmailSession('stale', refresh)
+    await Promise.all([gmail.get('messages/a'), gmail.get('messages/b'), gmail.get('messages/c')])
+    expect(refresh).toHaveBeenCalledTimes(1)
+  })
+
+  it('gives up when the renewed token is refused too', async () => {
+    stubAuth()
+    const gmail = gmailSession('stale', async () => 'also-stale')
+    await expect(gmail.get('messages/m1', { baseDelayMs: 1 })).rejects.toMatchObject({
+      status: 401,
+    })
+  })
+})
 
 describe('gmailGet', () => {
   afterEach(() => vi.unstubAllGlobals())

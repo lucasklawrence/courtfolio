@@ -126,13 +126,27 @@ function safeCodePoint(n) {
  * @property {Array<[RegExp, EventEmailKind]>} rules Subject rules, first match wins.
  */
 
+/**
+ * Account mail every platform sends from its transactional sender (a password
+ * change, a sign-in code). It says nothing about an event, so it is a `notice`
+ * and stays off the review list. First in each platform's rules so a stray
+ * word like "reminder" in such a subject can't make it an event email.
+ * @type {[RegExp, EventEmailKind]}
+ */
+const ACCOUNT_NOTICE = [
+  /\bpassword\b|\b(?:authentication|verification|security|sign[- ]?in|login|one[- ]time) code\b|\bverify your (?:email|account)\b/i,
+  'notice',
+]
+
 /** @type {EventPlatform[]} */
 export const PLATFORMS = [
   {
     id: 'gametime',
     senders: ['receipts@e.gametime.co'],
     rules: [
+      ACCOUNT_NOTICE,
       [/^your ticket order\b/i, 'purchase'],
+      [/^order confirmation\b/i, 'purchase'],
       [/your ticket transfer\b/i, 'fulfilment'],
       [/replacement options|couldn'?t be fulfilled/i, 'notice'],
     ],
@@ -142,9 +156,20 @@ export const PLATFORMS = [
     senders: ['customer_support@email.ticketmaster.com', 'noreply@ticketmaster.com'],
     extraQuery: 'from:newsletter@email.ticketmaster.com subject:"Event Reminder"',
     rules: [
+      ACCOUNT_NOTICE,
       [/^you got tickets to\b/i, 'purchase'],
       [/\byou(?:'ve| have) (?:transferred|assigned|sent)\b/i, 'transfer_out'],
+      // Completion notices for a transfer I sent: "Your Ticket Has Been
+      // Accepted by <Name>", "Your Ticket Transfer Went Through".
+      [/\b(?:has been|have been|was|were) accepted by\b/i, 'transfer_out'],
+      [/\btransfer went through\b/i, 'transfer_out'],
       [/\bsent you\b.*\bticket/i, 'transfer_in'],
+      // "<Name> has transferred you ticket(s) for <Event>", "<Name> transferred
+      // you 2 tickets", "You've received tickets from <Name>", "Your Ticket
+      // Transfer From <Name> Is Ready".
+      [/\b(?:has |have )?transferred you\b/i, 'transfer_in'],
+      [/\byou(?:'ve| have) received\b.*\btickets? from\b/i, 'transfer_in'],
+      [/\bticket transfer from\b/i, 'transfer_in'],
       [/^you'?re all set to see\b/i, 'transfer_in'],
       [/^event reminder\b|\btoday:|^reminder\b/i, 'reminder'],
       [/view and save your tickets/i, 'fulfilment'],
@@ -155,6 +180,7 @@ export const PLATFORMS = [
     senders: ['noreply@order.eventbrite.com'],
     extraQuery: 'from:eventbrite.com subject:"how was"',
     rules: [
+      ACCOUNT_NOTICE,
       [/^order confirmation for\b/i, 'purchase'],
       [/\bhow was\b/i, 'post_event'],
       [/\breminder\b|\bstarts (?:soon|tomorrow|today)\b/i, 'reminder'],
@@ -248,12 +274,21 @@ const DATE_RE = new RegExp(
  * 2026 • 09:00 PM" precedes the event date in Ticketmaster transfers).
  *
  * @param {string} text Output of {@link cleanEmailText}.
- * @returns {{ when: WallTime, end: number } | null} The date and the index
- *   just past it, so the venue can be read from what follows.
+ * @returns {EventDateMatch | null}
  */
 export function findEventDate(text) {
   return findEventDates(text)[0] ?? null
 }
+
+/**
+ * One event date found in an email's text.
+ * @typedef {Object} EventDateMatch
+ * @property {WallTime} when The date as stated (year may be null).
+ * @property {number} start Index where the date starts, so the event title can
+ *   be read from the block before it.
+ * @property {number} end Index just past the date, so the venue can be read
+ *   from what follows.
+ */
 
 /**
  * Text ending in "by" right before a date marks a deadline ("Accept by Thu …"),
@@ -268,7 +303,7 @@ const DEADLINE_BEFORE = new RegExp(`\\bby\\b[\\s:${BLOCK}]*$`, 'i')
  * the second copy of the date rather than the first.
  *
  * @param {string} text Output of {@link cleanEmailText}.
- * @returns {Array<{ when: WallTime, end: number }>}
+ * @returns {EventDateMatch[]}
  */
 export function findEventDates(text) {
   const found = []
@@ -287,58 +322,52 @@ export function findEventDates(text) {
       minute: Number(min),
     }
     if (when.day < 1 || when.day > 31 || when.hour > 23 || when.minute > 59) continue
-    found.push({ when, end: m.index + m[0].length })
+    found.push({ when, start: m.index, end: m.index + m[0].length })
   }
   return found
 }
 
 /**
- * Fill in a missing year: the event is the first occurrence of that month and
- * day on or after the day before the email was sent (a ticket email is never
- * about an event more than a day in the past — a same-day purchase can land
- * after a late-evening start in UTC).
+ * Kinds that can arrive after the event they name: a transfer completing, a
+ * delivery notice, a late reminder. A yearless date in one of these resolves
+ * to the nearest occurrence, not the next one.
+ */
+const MAY_ARRIVE_AFTER = new Set(['transfer_in', 'transfer_out', 'fulfilment', 'reminder'])
+
+/**
+ * Fill in a missing year.
+ *
+ * By default the event is the first occurrence of that month and day on or
+ * after the day before the email was sent (a purchase is never about an event
+ * more than a day in the past — a same-day purchase can land after a
+ * late-evening start in UTC).
+ *
+ * With `nearest`, for kinds that may arrive after the event, it is whichever
+ * occurrence (last year, this year or next) is closest to the email, so a
+ * transfer confirmation landing a week after a March game stays in March
+ * rather than moving to next March.
  *
  * @param {WallTime} when
  * @param {Date} receivedAt When Gmail received the email.
+ * @param {{ nearest?: boolean }} [opts]
  * @returns {WallTime} `when` with `year` set.
  */
-export function resolveEventDate(when, receivedAt) {
+export function resolveEventDate(when, receivedAt, { nearest = false } = {}) {
   if (when.year != null) return when
+  const asDay = y => Date.UTC(y, when.month - 1, when.day)
+  if (nearest) {
+    const t = receivedAt.getTime()
+    const y0 = receivedAt.getUTCFullYear()
+    const year = [y0 - 1, y0, y0 + 1].reduce((best, y) =>
+      Math.abs(asDay(y) - t) < Math.abs(asDay(best) - t) ? y : best
+    )
+    return { ...when, year }
+  }
   const floor = new Date(receivedAt.getTime() - 36 * 3600 * 1000)
   let year = floor.getUTCFullYear()
-  const asDay = y => Date.UTC(y, when.month - 1, when.day)
   const floorDay = Date.UTC(floor.getUTCFullYear(), floor.getUTCMonth(), floor.getUTCDate())
   if (asDay(year) < floorDay) year += 1
   return { ...when, year }
-}
-
-/** US state names, so "Bayside, California" reads as a state like "Bayside, CA". */
-const STATE =
-  '(?:[A-Z]{2}|District of Columbia|Rhode Island|(?:New |North |South |West )?[A-Z][a-z]+)'
-/**
- * "Venue <sep> City, ST" right after the date, with the separators seen:
- * " — ", " - ", ", ", " | ", " • " and a bare block boundary.
- */
-const VENUE_RE = new RegExp(
-  `^[\\s${BLOCK}]*([^${BLOCK}|•—–]{2,80}?)\\s*(?:[—–|•,-]|${BLOCK})[\\s${BLOCK}]*` +
-    `([A-Z][A-Za-z.' -]{1,40}?)\\s*,[\\s${BLOCK}]*(${STATE})\\b`
-)
-
-/**
- * The venue, city and state that follow an event date, or nulls.
- *
- * @param {string} after Text after the date.
- * @returns {{ venue: string|null, city: string|null, state: string|null }}
- */
-export function findVenue(after) {
-  const m = String(after ?? '')
-    .slice(0, 220)
-    .match(VENUE_RE)
-  if (!m) return { venue: null, city: null, state: null }
-  const venue = m[1].trim().replace(/[,\s]+$/, '')
-  // A venue that is itself a date is the repeated event card, not a venue.
-  if (!venue || findEventDate(venue)) return { venue: null, city: null, state: null }
-  return { venue, city: m[2].trim(), state: stateCode(m[3]) }
 }
 
 const STATE_CODES = {
@@ -395,10 +424,55 @@ const STATE_CODES = {
   wyoming: 'WY',
 }
 
-/** "California" → "CA"; a two-letter code or an unknown name passes through. */
+/** "California" → "CA"; a two-letter code passes through. */
 function stateCode(s) {
   const t = String(s ?? '').trim()
   return STATE_CODES[t.toLowerCase()] ?? t
+}
+
+/** "new hampshire" → "New Hampshire", "district of columbia" → "District of Columbia". */
+function titleCaseState(name) {
+  return name.replace(/\b[a-z]/g, (c, i) => (name.slice(i, i + 3) === 'of ' ? c : c.toUpperCase()))
+}
+
+/**
+ * A US state: a real two-letter code or a spelled-out name, and nothing else.
+ * Any capitalised word used to pass ("…, Bayside, Gate B" read state "Gate"),
+ * which then moved `starts_at` into the default zone and put a bogus state in
+ * the cities list.
+ */
+const STATE = `(?:${[
+  ...Object.keys(STATE_CODES)
+    .sort((a, b) => b.length - a.length)
+    .map(titleCaseState),
+  ...new Set(Object.values(STATE_CODES)),
+].join('|')})`
+
+/**
+ * "Venue <sep> City, ST" right after the date, with the separators seen:
+ * " — ", " - ", ", ", " | ", " • " and a bare block boundary. A hyphen counts
+ * only with spaces around it, so "Example-Name Arena" stays one venue.
+ */
+const VENUE_RE = new RegExp(
+  `^[\\s${BLOCK}]*([^${BLOCK}|•—–]{2,80}?)\\s*(?:[—–|•,]|${BLOCK}|(?<=\\s)-(?=\\s))[\\s${BLOCK}]*` +
+    `([A-Z][A-Za-z.' -]{1,40}?)\\s*,[\\s${BLOCK}]*(${STATE})\\b`
+)
+
+/**
+ * The venue, city and state that follow an event date, or nulls.
+ *
+ * @param {string} after Text after the date.
+ * @returns {{ venue: string|null, city: string|null, state: string|null }}
+ */
+export function findVenue(after) {
+  const m = String(after ?? '')
+    .slice(0, 220)
+    .match(VENUE_RE)
+  if (!m) return { venue: null, city: null, state: null }
+  const venue = m[1].trim().replace(/[,\s]+$/, '')
+  // A venue that is itself a date is the repeated event card, not a venue.
+  if (!venue || findEventDate(venue)) return { venue: null, city: null, state: null }
+  return { venue, city: m[2].trim(), state: stateCode(m[3]) }
 }
 
 /**
@@ -406,10 +480,11 @@ function stateCode(s) {
  * "Venue, City, ST" block.
  *
  * @param {string} text Output of {@link cleanEmailText}.
+ * @param {EventDateMatch[]} dates `findEventDates(text)`, computed once per email.
  * @returns {{ venue: string|null, city: string|null, state: string|null }}
  */
-function venueAfterAnyDate(text) {
-  for (const d of findEventDates(text)) {
+function venueAfterAnyDate(text, dates) {
+  for (const d of dates) {
     const place = findVenue(text.slice(d.end))
     if (place.venue) return place
   }
@@ -475,15 +550,18 @@ export function parseEventEmail({ from, subject: rawSubject, html, receivedAt })
   if (kind === 'unrecognized' || kind === 'notice') {
     return {
       ...base,
-      note: kind === 'notice' ? 'order notice, no event details' : 'no subject rule matched',
+      note: kind === 'notice' ? 'notice, no event details' : 'no subject rule matched',
     }
   }
-  const date = findEventDate(text)
-  const when = date ? resolveEventDate(date.when, receivedAt) : null
-  const parsed = { ...base, ...venueAfterAnyDate(text), when }
+  // The date regex runs once per email; every reader below shares the result.
+  const dates = findEventDates(text)
+  const when = dates[0]
+    ? resolveEventDate(dates[0].when, receivedAt, { nearest: MAY_ARRIVE_AFTER.has(kind) })
+    : null
+  const parsed = { ...base, ...venueAfterAnyDate(text, dates), when }
   // A platform extractor's non-null fields win; its nulls never erase what the
   // generic readers found.
-  for (const [k, v] of Object.entries(EXTRACTORS[platform.id](text, subject, kind))) {
+  for (const [k, v] of Object.entries(EXTRACTORS[platform.id](text, subject, kind, dates))) {
     if (v != null) parsed[k] = v
   }
   return { ...parsed, ...score(parsed) }
@@ -516,56 +594,132 @@ function titleFromSubject(subject, prefix) {
   return t || null
 }
 
-/** The sender in "X just sent you", "transfer from X", "Transfer From X Is Ready"; null for "-". */
+/**
+ * A person's name from a phrase that precedes or follows it, kept to one
+ * sentence: text from another block or sentence ("Hi Sam, ¶ Great news!
+ * Jordan") never joins it, and a greeting before a comma is dropped. Null for
+ * Ticketmaster's "-" placeholder or anything that doesn't start with a capital.
+ */
+function cleanName(raw) {
+  const name = String(raw ?? '')
+    .split(/[,¶!?:;]/)
+    .pop()
+    .trim()
+  if (!name || name === '-' || !/^[A-Z]/.test(name)) return null
+  return name.split(/\s+/).length <= 4 ? name : null
+}
+
+/** One sentence's worth of text: no block break, no sentence end. */
+const IN_SENTENCE = `[^${BLOCK}.!?]`
+
+/** The first pattern whose capture is a usable name, in order. */
+function firstName(candidates) {
+  for (const [source, re] of candidates) {
+    const name = cleanName(source.match(re)?.[1])
+    if (name) return name
+  }
+  return null
+}
+
+/** The sender in "X just sent you", "X has transferred you", "transfer from X"; null for "-". */
 function senderName(text, subject) {
-  const m =
-    String(subject ?? '').match(/^(.+?)\s+(?:just\s+)?sent you\b/i) ??
-    text.match(/\btransfer from\s+(.+?)\s+(?:is ready|and you)/i) ??
-    text.match(/\b(\S.{0,40}?)\s+just sent you\b/i)
-  const name = m?.[1]?.trim()
-  return name && name !== '-' ? name : null
+  const s = String(subject ?? '')
+  return firstName([
+    [s, /^(.+?)\s+(?:just\s+)?sent you\b/i],
+    [s, /^(.+?)\s+(?:has\s+|have\s+)?transferred you\b/i],
+    [s, /\btickets? from\s+(.+?)(?:\s+(?:is|are)\b|\s+for\b|$)/i],
+    [text, new RegExp(`\\btransfer from\\s+(${IN_SENTENCE}{1,40}?)\\s+(?:is ready|and you)`, 'i')],
+    [text, new RegExp(`(${IN_SENTENCE}{1,40}?)\\s+(?:just sent|has transferred) you\\b`, 'i')],
+  ])
 }
 
-/** "You've assigned NAME a ticket", "transferred ... to NAME". */
+/** "You've assigned NAME a ticket", "accepted by NAME", "transferred ... to NAME". */
 function recipientName(text, subject) {
-  const m =
-    String(subject ?? '').match(/\byou(?:'ve| have) assigned\s+(.+?)\s+an? ticket/i) ??
-    text.match(/\b(?:transferred|sent|assigned)\b.{0,60}?\bto\s+([A-Z][\w.'-]*(?: [A-Z][\w.'-]*)?)/)
-  return m?.[1]?.trim() ?? null
+  const s = String(subject ?? '')
+  return firstName([
+    [s, /\byou(?:'ve| have) assigned\s+(.+?)\s+an? ticket/i],
+    [s, /\baccepted by\s+(.+?)(?:\s+for\b|$)/i],
+    [
+      text,
+      new RegExp(
+        `\\b(?:transferred|sent|assigned)\\b${IN_SENTENCE}{0,60}?\\bto\\s+(?!(?:My|Your|The|Our)\\b)([A-Z][\\w.'-]*(?: [A-Z][\\w.'-]*)?)`
+      ),
+    ],
+  ])
 }
 
-/** Count distinct "Seat N" lines (layouts repeat each seat for mobile and desktop). */
+/**
+ * Count distinct seats. Layouts repeat each seat for mobile and desktop, and
+ * one copy may drop the section ("Sec 101, Row 5, Seat 3" beside "Row 5,
+ * Seat 3"), so seats are keyed on row and seat; a row and seat seen in two
+ * different sections are two seats.
+ */
 function seatCount(text) {
-  const seats = new Set(
-    text.match(/\b(?:Sec(?:tion)?\s+\S+,?\s+)?Row\s+\S+,?\s+Seat\s+\S+/gi) ?? []
-  )
-  return seats.size || null
+  const bySeat = new Map()
+  const re = /\b(?:Sec(?:tion)?\s+(\S+?),?\s+)?Row\s+(\S+?),?\s+Seat\s+([^\s,¶]+)/gi
+  for (const m of text.matchAll(re)) {
+    const key = `${m[2]}|${m[3]}`.toLowerCase()
+    const sections = bySeat.get(key) ?? new Set()
+    if (m[1]) sections.add(m[1].toLowerCase())
+    bySeat.set(key, sections)
+  }
+  let n = 0
+  for (const sections of bySeat.values()) n += Math.max(1, sections.size)
+  return n || null
+}
+
+/**
+ * Tickets in a Ticketmaster order summary: the sum of its "2x Standard
+ * Admission" line items, each ticket type once (the summary is repeated for
+ * mobile and desktop). Read only after "Order Summary" / "Your Tickets", so
+ * promo copy ("Earn 2x points") elsewhere in the email can't set the count.
+ */
+function orderLineItemCount(text) {
+  const start = text.search(/\b(?:order summary|your tickets)\b/i)
+  if (start < 0) return null
+  const items = new Map()
+  const re =
+    /\b(\d{1,2})\s?x\s+(?!(?:[Pp]oints?|[Rr]ewards?|[Mm]iles|POINTS|REWARDS|MILES)\b)([A-Z][\w'&/-]*(?:\s+[A-Z][\w'&/-]*)*)/g
+  for (const m of text.slice(start).matchAll(re)) {
+    const label = m[2].toLowerCase()
+    items.set(label, Math.max(items.get(label) ?? 0, Number(m[1])))
+  }
+  let n = 0
+  for (const q of items.values()) n += q
+  return n || null
 }
 
 const EXTRACTORS = {
-  gametime(text, subject, kind) {
+  gametime(text, subject, kind, dates) {
     // Order receipts and delivery notices share one block:
     // "Order # ¶ ABC123 ¶ <title> ¶ <date> ¶ <venue> ¶ <city>, ¶ <ST> ¶ … N ¶ Ticket(s) … Total Paid $X"
     const order = text.match(/Order\s*#\s*(?:¶\s*)?([A-Z0-9]{6,})\b\s*¶?\s*([^¶]+?)\s*¶/)
-    const tickets = text.match(/\b(\d{1,2})\s*¶?\s*Tickets?\b/)
+    // The count is its own cell and "Ticket(s)" ends the next one, so a number
+    // in running copy ("10 Tickets left") is never read as the count.
+    const tickets = text.match(/(?:^|¶)\s*(\d{1,2})\s*¶?\s*Tickets?\s*(?=¶|$)/)
     const paid = text.match(/Total Paid[\s¶]*\$\s?([\d,]+(?:\.\d{2})?)/i)
     return {
       orderRef: order?.[1] ?? null,
-      title: order?.[2]?.trim() ?? titleFromSubject(subject, /-\s*(.+)$/),
+      title:
+        order?.[2]?.trim() ??
+        // "Order Confirmation - <Event> @ <Venue> on 3/14": the last "@" is the venue.
+        titleFromSubject(subject, /^order confirmation\s*-\s*(.+)\s+@\s+[^@]+$/i) ??
+        titleFromSubject(subject, /-\s*(.+)$/) ??
+        titleBeforeDate(text, dates),
       ticketCount: tickets ? Number(tickets[1]) : null,
       costTotal: kind === 'purchase' ? money(paid?.[1]) : null,
       costCurrency: kind === 'purchase' && paid ? 'USD' : null,
     }
   },
 
-  ticketmaster(text, subject, kind) {
+  ticketmaster(text, subject, kind, dates) {
     const order = text.match(/Order\s*#\s*([0-9]+-[0-9]+\/[A-Z0-9]+)/i)
     const total = text.match(/\bTotal:?[\s¶]*\$\s?([\d,]+(?:\.\d{2})?)/i)
     const count =
-      text.match(/\b(\d{1,2})x\s/)?.[1] ??
+      orderLineItemCount(text) ??
       text.match(/\byou got (\d{1,2}) ticket/i)?.[1] ??
-      text.match(/\bsent you (\d{1,2})\b/i)?.[1] ??
-      String(subject ?? '').match(/\bsent you (\d{1,2})\b/i)?.[1] ??
+      text.match(/\b(?:sent|transferred) you (\d{1,2})\b/i)?.[1] ??
+      String(subject ?? '').match(/\b(?:sent|transferred) you (\d{1,2})\b/i)?.[1] ??
       text.match(/Transferred Tickets \((\d{1,2})\)/i)?.[1] ??
       `${subject ?? ''} ${text}`.match(/\btransferred (\d{1,2})\b/i)?.[1] ??
       (kind === 'transfer_out' &&
@@ -574,12 +728,12 @@ const EXTRACTORS = {
         : undefined)
     const title =
       titleFromSubject(subject, /^you got tickets to\s+(.+)$/i) ??
-      titleFromSubject(subject, /\bticket\(s\) for\s+(.+)$/i) ??
+      titleFromSubject(subject, /\bticket(?:\(s\)|s)? for\s+(.+)$/i) ??
       titleFromSubject(subject, /^you'?re all set to see\s+(.+)$/i) ??
       titleFromSubject(subject, /^event reminder:\s*(.+)$/i) ??
       // "Jordan Just Sent You 2 Harbor City Hawks Tickets" names a team, not
       // the event; the body's event block does: "<title> ¶ <date>".
-      titleBeforeDate(text)
+      titleBeforeDate(text, dates)
     return {
       orderRef: order?.[1] ?? null,
       title,
@@ -618,31 +772,53 @@ const EXTRACTORS = {
   },
 }
 
-/** The block just before the first event date — Ticketmaster's event-card title. */
-function titleBeforeDate(text) {
-  const date = findEventDate(text)
+/**
+ * The block just before the first event date — Ticketmaster's event-card
+ * title. Read from the text before the date *starts*, so a date whose time
+ * sits in the next cell ("Title ¶ Sat, Mar 14 ¶ 6:40 PM") still yields the
+ * title rather than the date fragment. Whatever shares the date's own block
+ * ("Date: Sat, Mar 14 …") is skipped.
+ *
+ * @param {string} text Output of {@link cleanEmailText}.
+ * @param {EventDateMatch[]} dates `findEventDates(text)`.
+ */
+function titleBeforeDate(text, dates) {
+  const date = dates[0]
   if (!date) return null
-  const blocks = text
-    .slice(0, date.end)
-    .split(BLOCK)
-    .map(s => s.trim())
-    .filter(Boolean)
-  // The last block holds the date itself; the one before it is the title.
-  const t = blocks.length >= 2 ? blocks[blocks.length - 2] : null
-  return t && t.length <= 120 ? t : null
+  const blocks = text.slice(0, date.start).split(BLOCK)
+  blocks.pop() // the date's own block, up to the date
+  const t =
+    blocks
+      .map(s => s.trim())
+      .filter(Boolean)
+      .pop() ?? null
+  return t && t.length <= 120 && !findEventDate(t) ? t : null
 }
 
 /**
- * Normalize a venue or title for matching: lowercase, ASCII letters and digits
- * only, and leading "the" dropped. "The Field" and "field " match.
+ * Strip accents: NFKD splits "é" into "e" plus a combining mark, and the mark
+ * is dropped, so "Théâtre" and "Theatre" read the same.
+ *
+ * @param {string|null|undefined} s
+ * @returns {string}
+ */
+export function foldAccents(s) {
+  return String(s ?? '')
+    .normalize('NFKD')
+    .replace(/\p{M}+/gu, '')
+}
+
+/**
+ * Normalize a venue or title for matching: lowercase, accents folded, ASCII
+ * letters and digits only, and leading "the" dropped. "The Field" and "field "
+ * match, and so do "Théâtre" and "Theatre".
  *
  * @param {string|null|undefined} s
  * @returns {string}
  */
 export function normalizeForMatch(s) {
-  return String(s ?? '')
+  return foldAccents(s)
     .toLowerCase()
-    .normalize('NFKD')
     .replace(/[^a-z0-9 ]+/g, ' ')
     .replace(/^\s*the\s+/, '')
     .replace(/\s+/g, '')
@@ -668,31 +844,74 @@ export function eventMatchKey(p) {
 }
 
 /**
- * Infer a coarse category from the title. Sports are recognisable ("vs.",
- * "@", a team-at-team " at ", a team or league word); anything else stays
+ * Words a venue's name ends with. A " at " or "@" whose right side ends in one
+ * names a place, not a team: "Example Band at Sample Bowl", "Comedy Night @
+ * The Improv Club".
+ */
+const VENUE_WORDS =
+  /\b(?:arena|stadium|field|park|cent(?:er|re)|hall|theat(?:er|re)|amphitheat(?:er|re)|bowl|pavilion|ballroom|club|lounge|gardens?|museum|auditorium|coliseum|dome|forum|house|room|bar|brewery|winery|studios?|lawn|grounds|palladium|fillmore|warfield)\s*$/i
+
+const SPORTS_WORDS =
+  /\b(?:football|basketball|baseball|hockey|soccer|training camp|play-?in|playoffs?|nfl|nba|mlb|nhl|wnba|mls|ncaa)\b/i
+const CONCERT_WORDS =
+  /\b(?:concert|tour|festival|symphony|orchestra|philharmonic|quartet|jazz|choir|dj set|live music|unplugged|acoustic|in concert)\b/i
+const SHOW_WORDS =
+  /\b(?:comedy|comedian|stand-?up|improv|musical|theat(?:er|re)|ballet|opera|broadway|magic show|circus)\b/i
+
+/**
+ * Event categories the importer can infer; `party` is set only by the owner.
+ * @typedef {'sports'|'concert'|'show'|'other'} InferredCategory
+ */
+
+/**
+ * Infer a coarse category from the title (and the venue, when known). Sports
+ * are recognisable ("vs.", "@", a team-at-team " at ", a team or league word);
+ * a music or stage word reads as a concert or a show; anything else stays
  * `other` for a manual override rather than being guessed at.
  *
- * " at " is also how shows are named ("Night at the Museum", "Live at the
- * Bowl"), so it reads as a matchup only when both sides are full team names
- * of two words or more and the second doesn't start with "the".
+ * " at " and "@" are also how shows are named ("Night at the Museum", "Live
+ * at the Bowl", "Comedy Night @ The Improv"), so they read as a matchup only
+ * when the right side isn't a place: it doesn't start with "the", doesn't end
+ * in a venue word, and isn't the email's own venue. A bare " at " further
+ * needs two full team names of two words or more on either side.
+ *
+ * Titles often wrap the matchup in a label — "Round 1: Rockets at Hawks:
+ * Game 3", "Preseason - Rockets at Hawks" — so the matchup is read from the
+ * segment between ": " and " - " separators that holds it, and the label
+ * stays out of the team names.
  *
  * @param {string|null} title
- * @returns {{ category: 'sports'|'other', teams: string[]|null }}
+ * @param {string|null} [venue] The parsed venue, to recognise "Artist at <venue>".
+ * @returns {{ category: InferredCategory, teams: string[]|null }}
  */
-export function inferCategory(title) {
+export function inferCategory(title, venue = null) {
   const t = String(title ?? '')
-  const pair = t.match(/^(.+?)\s+(vs\.?|v\.?|at|@)\s+(.+)$/i)
-  const sportsWord =
-    /\b(football|basketball|baseball|hockey|soccer|training camp|play-?in|nfl|nba|mlb|nhl|wnba|ncaa)\b/i.test(
-      t
-    )
+  const pairRe = /^(.+?)\s+(vs\.?|v\.?|at|@)\s+(.+)$/i
+  const segment = t.split(/:\s+|\s+[-–—|]\s+/).find(s => pairRe.test(s.trim()))
+  const pair = segment?.trim().match(pairRe)
+  let named = t // the part of the title that names the act, for the word checks
   if (pair) {
-    const [, a, sep, b] = pair
-    const words = s => s.trim().split(/\s+/).length
-    const teamAtTeam = words(a) >= 2 && words(b) >= 2 && !/^the\b/i.test(b)
-    if (sep.toLowerCase() !== 'at' || teamAtTeam) {
-      return { category: 'sports', teams: [a.trim(), b.trim()] }
-    }
+    const [, rawA, sep, rawB] = pair
+    const a = rawA.trim()
+    const b = rawB.trim()
+    const s = sep.toLowerCase().replace('.', '')
+    const words = x => x.split(/\s+/).length
+    const v = normalizeForMatch(venue)
+    const nb = normalizeForMatch(b)
+    // The email's venue, in full or as a prefix of it either way round ("Sample
+    // Bowl" vs "Sample Bowl - Lakeside"); short names are too likely to be a
+    // team's own word to count as a prefix.
+    const sameAsVenue =
+      v.length > 0 &&
+      (nb === v || (Math.min(nb.length, v.length) >= 6 && (v.startsWith(nb) || nb.startsWith(v))))
+    const isPlace = /^the\b/i.test(b) || VENUE_WORDS.test(b) || sameAsVenue
+    const matchup =
+      s === 'vs' || s === 'v' || (!isPlace && (s === '@' || (words(a) >= 2 && words(b) >= 2)))
+    if (matchup) return { category: 'sports', teams: [a, b] }
+    if (isPlace) named = a
   }
-  return { category: sportsWord ? 'sports' : 'other', teams: null }
+  if (SPORTS_WORDS.test(t)) return { category: 'sports', teams: null }
+  if (CONCERT_WORDS.test(named)) return { category: 'concert', teams: null }
+  if (SHOW_WORDS.test(named)) return { category: 'show', teams: null }
+  return { category: 'other', teams: null }
 }
