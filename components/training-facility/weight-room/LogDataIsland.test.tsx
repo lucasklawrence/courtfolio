@@ -278,16 +278,14 @@ describe('LogDataIsland — write orchestration', () => {
 
 describe('LogDataIsland — stale response guard', () => {
   it('ignores a stale read that lands after a newer one', async () => {
-    // The guard's real interleaving is React's double-invoked mount effect:
+    // The mount read's interleaving is React's double-invoked mount effect:
     // effect runs (id 1), cleanup bumps to 2, effect runs again (id 3). Two
     // reads are genuinely in flight, and the first is already stale by the
     // time it resolves. Without the guard its late response paints over the
     // current one.
     //
-    // Reaching this through the UI isn't possible — the surface only renders
-    // once a read has resolved, and `busy` disables the log buttons while a
-    // write is in flight, so two overlapping refetches can't be triggered by
-    // clicking. StrictMode is where this actually happens.
+    // `refetch` carries the same guard against a different interleaving,
+    // reachable from the UI — see "overlapping refetches" below.
     let resolveStale: (v: WeightRoomData) => void = () => {}
     const stalePending = new Promise<WeightRoomData>(r => {
       resolveStale = r
@@ -330,5 +328,59 @@ describe('LogDataIsland — stale response guard', () => {
     // disappears and the admin watches a set they just logged vanish.
     expect(screen.getByTestId('set-row-set-2')).toBeInTheDocument()
     expect(screen.getByTestId('set-row-set-1')).toBeInTheDocument()
+  })
+})
+
+describe('LogDataIsland — overlapping refetches', () => {
+  it('keeps the newer read when a live-workout refetch lands after a quick-log one', async () => {
+    // The UI interleaving that makes `refetch`'s own request-id check live.
+    // The live panel (#376) holds its *own* busy flag, not the island's, so
+    // while it waits on its post-write refetch the quick-log buttons stay
+    // enabled. A quick-log tap in that window starts a second refetch; if the
+    // live panel's older read resolves last, it must not paint over the newer
+    // one.
+    const user = userEvent.setup()
+    fetchMock.mockImplementation(async (url: string) => ({
+      ok: true,
+      // The open-session probe finds nothing, before and after the start, so
+      // the panel stays on its start form and the test needs no session shape.
+      json: async () => (url === '/api/admin/weight-room/workouts?open=true' ? null : {}),
+    }))
+
+    let resolveStale: (v: WeightRoomData) => void = () => {}
+    const stalePending = new Promise<WeightRoomData>(r => {
+      resolveStale = r
+    })
+    const fresh = fixture()
+    fresh.sets = [
+      ...fresh.sets,
+      { id: 'set-2', logged_at: `${PAST_DAY}T20:00:00Z`, exercise: 'pullups', reps: 10 },
+    ]
+    getWeightRoomDataMock
+      .mockResolvedValueOnce(fixture()) // mount
+      .mockReturnValueOnce(stalePending) // the live panel's refetch, held open
+      .mockResolvedValueOnce(fresh) // the quick-log refetch, which lands first
+
+    render(<LogDataIsland />)
+    await selectDay(PAST_DAY)
+    await screen.findByTestId('set-row-set-1')
+
+    await user.click(await screen.findByRole('button', { name: /^start$/i }))
+    await waitFor(() => expect(getWeightRoomDataMock).toHaveBeenCalledTimes(2))
+
+    const quickLog = await screen.findByTestId('quick-log-pullups-10')
+    expect(quickLog).toBeEnabled()
+    await user.click(quickLog)
+    expect(await screen.findByTestId('set-row-set-2')).toBeInTheDocument()
+
+    // Drained inside `act` so the stale `setData` has definitely run before the
+    // assertion, rather than a `waitFor` passing before it is processed.
+    await act(async () => {
+      resolveStale(fixture())
+      await Promise.resolve()
+      await Promise.resolve()
+    })
+
+    expect(screen.getByTestId('set-row-set-2')).toBeInTheDocument()
   })
 })

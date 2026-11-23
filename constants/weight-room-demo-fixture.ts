@@ -9,8 +9,8 @@
  * Built as a *function* (not a const) because the Today View is
  * "today-relative" — we need today's date plus a few days back so the
  * rings show partial progress now and the streak badge has data to
- * lean on. The function is invoked at hydration time in the client
- * data island, so SSR vs client clock drift never lands on the user.
+ * lean on. The pages call it per request on the server, and every
+ * timestamp is placed by Pacific day, the zone the board buckets in.
  *
  * Hand-typed (not auto-derived from a Zod schema) so a real schema
  * change in `types/weight-room.ts` surfaces here as a TypeScript error
@@ -21,6 +21,7 @@
  */
 
 import { templateToPrescription } from '@/lib/schemas/weight-room'
+import { PACIFIC_CLOCK, shiftDayKey } from '@/lib/training-facility/clock'
 import type {
   ExerciseGoal,
   StrengthSet,
@@ -104,22 +105,25 @@ const DEMO_DAY_PLAN: Array<{ exercise: string; reps: number[] }>[] = [
 ]
 
 /**
- * Subtract `n` days from a Date and return an ISO timestamp at the
- * given hour-of-day. Stays in the caller's local timezone — Today
- * View math reads everything in local time (per
- * {@link import('@/lib/training-facility/strength-today').toLocalDateKey})
- * so the demo's timestamps need to match.
+ * The instant `hour:minute` Pacific falls on, `daysAgo` Pacific days before
+ * `now`. The Today, History and streak surfaces all bucket sets by Pacific day
+ * (`PACIFIC_CLOCK`), so the demo has to be stamped in Pacific too: built from the
+ * process-local clock instead, a UTC server would shift every evening set onto
+ * the next day and the preview's daily totals would no longer match the plan.
+ *
+ * Measured from the day's Pacific noon. The hours used here (07:00–21:59) sit on
+ * the same side of the 02:00 daylight-saving switch as noon, so the offset from
+ * noon is exact on transition days too.
  */
-function isoDaysAgo(now: Date, daysAgo: number, hour: number, minute = 0): string {
-  const d = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute, 0, 0)
-  d.setDate(d.getDate() - daysAgo)
-  return d.toISOString()
+function pacificIsoDaysAgo(now: Date, daysAgo: number, hour: number, minute = 0): string {
+  const noon = PACIFIC_CLOCK.toNoon(shiftDayKey(PACIFIC_CLOCK.today(now), -daysAgo))
+  if (noon === null) throw new Error('demo fixture: could not resolve a Pacific day')
+  return new Date(noon.getTime() + ((hour - 12) * 60 + minute) * 60_000).toISOString()
 }
 
 /**
- * Build today-relative demo {@link WeightRoomData}. Called from the
- * client data island when the real read is empty AND the URL has
- * `?preview=demo`.
+ * Build today-relative demo {@link WeightRoomData}. Called by the Weight
+ * Room pages when the real read is empty AND the URL has `?preview=demo`.
  *
  * The seed `now` is parameterized so unit tests can pin a specific
  * "today" — production callers omit it and get system time.
@@ -138,9 +142,12 @@ export function buildWeightRoomDemoData(now: Date = new Date()): WeightRoomData 
     let hour = 7
     for (const row of rows) {
       for (const reps of row.reps) {
+        const planned = pacificIsoDaysAgo(now, dayIndex, hour, (counter * 7) % 60)
         sets.push({
           id: `demo-${dayIndex}-${counter++}`,
-          logged_at: isoDaysAgo(now, dayIndex, hour, (counter * 7) % 60),
+          // Today's plan can run past `now` early in the day; a set is never
+          // stamped in the future, it just lands at `now`, still today.
+          logged_at: planned > now.toISOString() ? now.toISOString() : planned,
           exercise: row.exercise,
           reps,
         })
@@ -402,13 +409,10 @@ const DEMO_IMPORTED: Array<[number, number, number, number]> = [
 ]
 
 export function buildWorkoutDemoData(now: Date = new Date()): WorkoutDemoData {
-  // Anchored to 6pm on each day rather than to `now`, so the fixture reads as
-  // evening gym sessions regardless of when the page is loaded.
-  const evening = (daysAgo: number): Date => {
-    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0, 0)
-    d.setDate(d.getDate() - daysAgo)
-    return d
-  }
+  // Anchored to 6pm Pacific on each day rather than to `now`, so the fixture
+  // reads as evening gym sessions regardless of when the page is loaded, and
+  // lands on the same Pacific day wherever the server runs.
+  const evening = (daysAgo: number): Date => new Date(pacificIsoDaysAgo(now, daysAgo, 18))
 
   const previous = buildDemoWorkout('demo-workout-1', evening(9), 58, DEMO_PREVIOUS_SETS)
   const latest = buildDemoWorkout('demo-workout-2', evening(2), 52, DEMO_LATEST_SETS)

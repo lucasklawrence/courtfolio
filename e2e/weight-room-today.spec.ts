@@ -114,6 +114,28 @@ test.describe('weight room Today layout', () => {
     }
   })
 
+  test('keeps the floating chrome off the wall board on desktop', async ({ page, viewport }) => {
+    test.skip((viewport?.width ?? 0) < LG_BREAKPOINT, 'desktop layout only')
+    await page.goto(TODAY)
+
+    const board = await page.getByTestId('wall-board').boundingBox()
+    expect(board).not.toBeNull()
+    const chrome = [
+      page.getByTestId('weight-room-sub-nav'),
+      page.getByText('These rings are illustrative', { exact: false }),
+    ]
+    for (const locator of chrome) {
+      await expect(locator).toBeVisible()
+      const box = (await locator.boundingBox())!
+      const overlaps =
+        box.x < board!.x + board!.width &&
+        box.x + box.width > board!.x &&
+        box.y < board!.y + board!.height &&
+        box.y + box.height > board!.y
+      expect(overlaps).toBe(false)
+    }
+  })
+
   test('keeps the desktop page to one screen', async ({ page, viewport }) => {
     test.skip((viewport?.width ?? 0) < LG_BREAKPOINT, 'desktop layout only')
     await page.goto(TODAY)

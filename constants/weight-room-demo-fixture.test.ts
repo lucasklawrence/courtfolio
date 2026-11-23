@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
 import {
   buildWorkoutAdherence,
@@ -8,8 +8,10 @@ import {
   findPersonalBests,
   findPreviousRun,
 } from '@/lib/training-facility/workout-stats'
+import { PACIFIC_CLOCK, shiftDayKey } from '@/lib/training-facility/clock'
+import { filterSetsForDay, totalsByExercise } from '@/lib/training-facility/strength-today'
 
-import { buildWorkoutDemoData } from './weight-room-demo-fixture'
+import { buildWeightRoomDemoData, buildWorkoutDemoData } from './weight-room-demo-fixture'
 
 /**
  * The workout preview fixture (#377) earns its keep only if it exercises every
@@ -141,3 +143,62 @@ describe('buildWorkoutDemoData', () => {
     expect(withoutCatalog.tonnage).toBeLessThan(latest.summary.tonnage)
   })
 })
+
+/**
+ * The Today preview's numbers come from bucketing the demo sets by Pacific day,
+ * so the fixture has to stamp them in Pacific whatever zone the server runs in.
+ * Built from process-local hours, a UTC preview pushed the evening sets onto the
+ * next day and the board's "today" no longer showed the planned 75 / 20.
+ */
+describe.each(['UTC', 'America/Los_Angeles', 'Asia/Tokyo'])(
+  'buildWeightRoomDemoData in %s',
+  zone => {
+    const originalTz = process.env.TZ
+
+    beforeEach(() => {
+      process.env.TZ = zone
+    })
+
+    afterEach(() => {
+      if (originalTz === undefined) delete process.env.TZ
+      else process.env.TZ = originalTz
+    })
+
+    // 10pm Pacific: already the next day in UTC and Tokyo.
+    const LATE_EVENING = new Date('2026-08-01T22:00:00-07:00')
+
+    function totalsOn(dayKey: string): Map<string, number> {
+      const demo = buildWeightRoomDemoData(LATE_EVENING)
+      return totalsByExercise(filterSetsForDay(demo.sets, dayKey))
+    }
+
+    it("puts today's partial plan on the Pacific today", () => {
+      const today = totalsOn(PACIFIC_CLOCK.today(LATE_EVENING))
+      expect(today.get('pushups')).toBe(75)
+      expect(today.get('pullups')).toBe(20)
+    })
+
+    it('puts yesterday’s completed plan on the Pacific yesterday', () => {
+      const yesterday = totalsOn(shiftDayKey(PACIFIC_CLOCK.today(LATE_EVENING), -1))
+      expect(yesterday.get('pushups')).toBe(100)
+      expect(yesterday.get('pullups')).toBe(30)
+    })
+
+    it('never stamps a set in the future, even early in the Pacific day', () => {
+      const morning = new Date('2026-08-01T08:00:00-07:00')
+      const demo = buildWeightRoomDemoData(morning)
+      for (const set of demo.sets) {
+        expect(new Date(set.logged_at).getTime()).toBeLessThanOrEqual(morning.getTime())
+      }
+      const today = totalsByExercise(filterSetsForDay(demo.sets, PACIFIC_CLOCK.today(morning)))
+      expect(today.get('pushups')).toBe(75)
+      expect(today.get('pullups')).toBe(20)
+    })
+
+    it('starts each demo workout at 6pm Pacific', () => {
+      for (const workout of buildWorkoutDemoData(LATE_EVENING).workouts) {
+        expect(PACIFIC_CLOCK.wallClock(new Date(workout.started_at)).getHours()).toBe(18)
+      }
+    })
+  }
+)
