@@ -391,6 +391,24 @@ Exits 0 on success, 1 if any table failed, 2 on missing config — including a g
 
 The `staging-sync` workflow runs it Sundays at 08:00 UTC (an hour after the OTbeat ingest, so a refresh includes that morning's classes) and on `workflow_dispatch` for "make staging current before I review this preview".
 
+### Failures name the host and the step
+
+Before touching any table, the sync makes one read against production and reads staging's schema, so a dead host shows up as one clear line instead of a failure per table. A request that never gets a response is reported with its side, step, host and network cause. For example:
+
+```
+✗ staging sync: staging read schema: could not reach <ref>.supabase.co (ENOTFOUND: …) — the staging host does not answer. A paused Supabase project loses its DNS record: check the project status in the Supabase dashboard before debugging anything else.
+```
+
+In GitHub Actions the same line is also emitted as an `::error` annotation, so it appears on the run's summary page. Before #478 the script printed only `fetch failed`, which is how a paused project went undiagnosed for eleven weeks.
+
+### Keepalive: `--keepalive`
+
+`node scripts/sync-staging.mjs --keepalive` makes one cheap read against staging and does nothing else. It needs only the two `STAGING_*` variables. The `staging-keepalive` workflow runs it daily at 09:23 UTC.
+
+Staging is on Supabase's Free plan, which pauses a project after seven days without enough database activity. A weekly sync is one day of activity a week, and that is not enough. Staging was paused on 2026-08-23, seven days after the last successful sync on 2026-08-16 (#478). A paused project can be resumed from the dashboard for 90 days. After that, only its backup can be downloaded. The daily read keeps the project active. The alternative is a paid plan, which is never paused.
+
+One limit: GitHub disables scheduled workflows in a public repo after 60 days without repository activity. A quiet stretch that long would stop the keepalive too, and staging would pause a week later with no failed run to point at it. Any push re-enables the schedules.
+
 ### Writing a migration
 
 1. Write the file first, `<version>_<name>.sql`. The `<name>` must match the name you apply it under — it's the only key tying the file to the ledger.
