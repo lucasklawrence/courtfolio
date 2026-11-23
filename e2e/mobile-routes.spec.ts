@@ -1,5 +1,7 @@
 import { expect, test, type Page } from '@playwright/test'
 
+import { bypassHomeIntro } from './helpers/intro'
+
 /**
  * Loads every public route at phone widths and checks the three things a one-off
  * sweep once found broken and nothing else looked at: uncaught page errors including
@@ -95,27 +97,15 @@ interface KnownFailure {
   issue: string
 }
 
-/** The `/contact` hydration error, among others. */
+/** React hydration errors on the contact and gym pages. */
 const HYDRATION_ISSUE = 'https://github.com/lucasklawrence/courtfolio/issues/485'
-/** The date range's 12px fields, among other touch and zoom problems. */
-const MOBILE_POLISH_ISSUE = 'https://github.com/lucasklawrence/courtfolio/issues/486'
 
-/** The date range's fields. */
-const SMALL_DATE_FIELDS: KnownFailure = {
-  check: 'smallFields',
-  offender: /"(?:Start|End) date"/,
-  issue: MOBILE_POLISH_ISSUE,
-}
-
-/** Everything that fails on `main`, measured without Supabase credentials as CI runs. */
-const KNOWN_FAILURES: Partial<Record<(typeof ROUTES)[number], KnownFailure>> = {
-  '/contact': { check: 'pageErrors', offender: /^Hydration failed/, issue: HYDRATION_ISSUE },
-  '/training-facility/gym/overview?preview=demo': SMALL_DATE_FIELDS,
-  '/training-facility/gym/treadmill?preview=demo': SMALL_DATE_FIELDS,
-  '/training-facility/gym/stair?preview=demo': SMALL_DATE_FIELDS,
-  '/training-facility/gym/track?preview=demo': SMALL_DATE_FIELDS,
-  '/training-facility/gym/otf': SMALL_DATE_FIELDS,
-}
+/**
+ * Everything that fails on `main`, measured without Supabase credentials as CI runs.
+ * Empty since #485 and #486 landed. Add an entry, with its issue, for a failure that
+ * has to ship before its fix.
+ */
+const KNOWN_FAILURES: Partial<Record<(typeof ROUTES)[number], KnownFailure>> = {}
 
 /**
  * Failures only real data reaches, so they show on a local run with credentials and
@@ -131,6 +121,9 @@ const REAL_DATA_FAILURES: Partial<Record<(typeof ROUTES)[number], KnownFailure>>
 
 /** Load a route, fail on a bad status, and measure everything once it has hydrated. */
 async function loadAndMeasure(page: Page, route: string): Promise<Findings> {
+  // A fresh visitor gets the tunnel intro, which runs for 20 seconds. Skip it so the
+  // checks measure the home court rather than the intro.
+  if (route === '/') await bypassHomeIntro(page)
   const pageErrors: string[] = []
   page.on('pageerror', error => pageErrors.push(error.message.slice(0, 600)))
   page.on('console', message => {
@@ -143,6 +136,11 @@ async function loadAndMeasure(page: Page, route: string): Promise<Findings> {
   const response = await page.goto(route, { waitUntil: 'load' })
   // A 404 page would otherwise pass all three checks by measuring nothing.
   expect(response?.status(), `${route} should load`).toBeLessThan(400)
+  if (route === '/') {
+    await expect(page.getByTestId('home-court-root')).toBeVisible({
+      timeout: HYDRATION_TIMEOUT_MS,
+    })
+  }
   // React's internal key is the only sign it has reached the DOM. Failing here beats
   // measuring a page that hasn't hydrated, which would pass by not having looked.
   await page.waitForFunction(
