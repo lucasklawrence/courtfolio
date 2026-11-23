@@ -144,7 +144,7 @@ export default async function WeightRoomWorkoutSummaryPage({
                 list read is empty again and the demo vanishes mid-tour. */}
             <Link
               href={isPreviewMode ? `${WORKOUTS_ROUTE}?preview=demo` : WORKOUTS_ROUTE}
-              className="underline-offset-4 hover:underline"
+              className="touch-target underline-offset-4 hover:underline"
             >
               Workouts
             </Link>

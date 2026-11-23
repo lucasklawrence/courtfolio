@@ -131,8 +131,8 @@ export function WeightRoomSubNav({
       {visibleItems.map(item => {
         const isActive = item.section === active
         const pillClassName = isActive
-          ? 'rounded-full border border-amber-200/35 bg-amber-200/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-amber-100'
-          : 'rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/75 transition hover:bg-white/10 hover:text-white'
+          ? 'touch-target rounded-full border border-amber-200/35 bg-amber-200/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-amber-100'
+          : 'touch-target rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/75 transition hover:bg-white/10 hover:text-white'
         return (
           <Link
             key={item.section}

@@ -74,7 +74,7 @@ export function OtfMileageSection({
         {isAdmin ? (
           <Link
             href="/training-facility/gym/otf/settings"
-            className="rounded-full border border-[#f97316]/40 bg-[#f97316]/10 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#f9a870] transition hover:bg-[#f97316]/20"
+            className="touch-target rounded-full border border-[#f97316]/40 bg-[#f97316]/10 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-[#f9a870] transition hover:bg-[#f97316]/20"
           >
             Milestones
           </Link>

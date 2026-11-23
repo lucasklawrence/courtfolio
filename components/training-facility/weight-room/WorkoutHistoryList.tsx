@@ -252,8 +252,8 @@ function chipHref(
 /** Shared chip styling, so the two rails can't drift apart visually. */
 function chipClass(isActive: boolean): string {
   return isActive
-    ? 'inline-flex items-center gap-1.5 rounded-full bg-[#f5f1e6] px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#0a0a0a]'
-    : 'inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#e8d5be]/75 transition hover:border-white/35 hover:text-[#f7ead9]'
+    ? 'touch-target inline-flex items-center gap-1.5 rounded-full bg-[#f5f1e6] px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#0a0a0a]'
+    : 'touch-target inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-[#e8d5be]/75 transition hover:border-white/35 hover:text-[#f7ead9]'
 }
 
 interface SourceFilterRailProps {
@@ -362,7 +362,7 @@ function TemplateFilterRail({ filters, filterState }: TemplateFilterRailProps): 
             filterState.isPreviewMode
           )}
           data-testid="template-trends-link"
-          className="mt-2 inline-block font-mono text-[10px] uppercase tracking-[0.2em] text-amber-300/80 underline underline-offset-4 hover:text-amber-200"
+          className="touch-target mt-2 inline-block font-mono text-[10px] uppercase tracking-[0.2em] text-amber-300/80 underline underline-offset-4 hover:text-amber-200"
         >
           {selected.name} over time →
         </Link>
