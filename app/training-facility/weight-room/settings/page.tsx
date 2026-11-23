@@ -6,6 +6,7 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { AchievementSettings } from '@/components/training-facility/weight-room/AchievementSettings'
 import { ExerciseCatalogSettings } from '@/components/training-facility/weight-room/ExerciseCatalogSettings'
+import { MonthlyFocusSettings } from '@/components/training-facility/weight-room/MonthlyFocusSettings'
 import { StrengthSettings } from '@/components/training-facility/weight-room/StrengthSettings'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
@@ -17,6 +18,14 @@ import {
   getWorkoutTemplatesServer,
 } from '@/lib/data/weight-room-server'
 import { isWeightRoomEnabled } from '@/lib/feature-flags'
+
+/**
+ * Stands in for the main dataset when its read throws, so the page can tell a
+ * failed read apart from the legitimate `null` the reader returns for an empty
+ * log. The monthly-focus editor needs the difference: an empty list there
+ * invites re-creating focuses that do exist.
+ */
+const DATA_READ_FAILED: unique symbol = Symbol('weight-room data read failed')
 
 /**
  * Weight Room settings page (#79). Admin-only — non-admins get a 404
@@ -41,14 +50,18 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
   // as an empty editor instead of 500ing the whole page. The Settings
   // UI handles `goals: []` gracefully (renders the add-exercise form
   // without an existing-goal table). The achievement ladder read (#336)
-  // degrades independently — a failed fetch just empties that editor.
+  // degrades independently — a failed fetch just empties that editor. The
+  // monthly-focus editor is told the read failed instead of shown as empty.
   const [data, achievements, exercises, templates] = await Promise.all([
-    getWeightRoomDataServer().catch(() => null),
+    getWeightRoomDataServer().catch((): typeof DATA_READ_FAILED => DATA_READ_FAILED),
     getWeightRoomAchievementsServer().catch(() => []),
     getWeightRoomExercisesServer().catch(() => []),
     getWorkoutTemplatesServer().catch(() => []),
   ])
-  const goals = data?.goals ?? []
+  const dataReadFailed = data === DATA_READ_FAILED
+  const weightRoom = dataReadFailed ? null : data
+  const goals = weightRoom?.goals ?? []
+  const focuses = weightRoom?.monthly_focus ?? []
   // Pickers offer live movements only; an archived one stays rendered wherever
   // it's already referenced, it just isn't selectable for something new.
   const activeExercises = exercises.filter(exercise => exercise.archived !== true)
@@ -82,6 +95,24 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
 
         <section className="mt-10">
           <StrengthSettings initialGoals={goals} />
+        </section>
+
+        <section className="mt-14 border-t border-white/10 pt-10">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+            Monthly focus
+          </h2>
+          <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+            The &ldquo;grease the groove&rdquo; rotation: one movement per lane for a stretch of
+            days, with its own ring on the Today board while it runs. Queue the next one here; it
+            appears in the Up Next strip until its start date.
+          </p>
+          <div className="mt-6">
+            <MonthlyFocusSettings
+              initialFocuses={focuses}
+              exercises={activeExercises}
+              loadFailed={dataReadFailed}
+            />
+          </div>
         </section>
 
         <section className="mt-14 border-t border-white/10 pt-10">
