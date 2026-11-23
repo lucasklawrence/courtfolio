@@ -39,6 +39,7 @@ export {
   lastDayOfMonth,
   monthIndexOfDayKey,
   addCalendarDays,
+  wallClockDayKey,
   wallClockMs,
   fromWallClockMs,
   type DayClock,

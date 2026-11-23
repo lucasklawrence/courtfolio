@@ -139,4 +139,40 @@ describe('WorkoutHeatmap', () => {
     expect(populated).toContain('Running')
     expect(populated).toContain('Walking')
   })
+
+  it('thins month labels a short range would draw on top of each other', () => {
+    // The week of Jun 29 2026 starts in June and reaches July, so both month
+    // markers land on its column and would be drawn over each other.
+    const { container } = render(
+      <WorkoutHeatmap
+        sessions={[]}
+        dateFrom={new Date(2026, 5, 29)}
+        dateTo={new Date(2026, 6, 12)}
+        cellSize={14}
+      />
+    )
+    const months = Array.from(container.querySelectorAll('svg text'))
+      .map(t => t.textContent)
+      .filter(t => t === 'Jun' || t === 'Jul')
+    expect(months).toEqual(['Jul'])
+  })
+
+  it('keeps the legend inside the SVG on a grid narrower than it', () => {
+    const { container } = render(
+      <WorkoutHeatmap
+        sessions={[]}
+        dateFrom={new Date(2026, 6, 6)}
+        dateTo={new Date(2026, 6, 12)}
+        cellSize={14}
+      />
+    )
+    const svg = container.querySelector('svg') as SVGSVGElement
+    const legend = Array.from(svg.querySelectorAll('g')).find(g =>
+      g.textContent?.startsWith('Less')
+    ) as SVGGElement
+    const x = Number(/translate\((-?[\d.]+)/.exec(legend.getAttribute('transform') ?? '')?.[1])
+    expect(x).toBeGreaterThanOrEqual(0)
+    // "Less" + four 15px swatch strides + "More", as the component lays it out.
+    expect(Number(svg.getAttribute('width'))).toBeGreaterThanOrEqual(x + 32 + 4 * 15 + 4 + 28)
+  })
 })

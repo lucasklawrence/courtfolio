@@ -98,4 +98,17 @@ describe('computeStreaks', () => {
     ]
     expect(computeStreaks(sessions)).toEqual({ current: 1, longest: 1 })
   })
+
+  it('counts an evening Pacific session on its Pacific day, wherever this runs', () => {
+    vi.useFakeTimers()
+    // Noon PT on May 28.
+    vi.setSystemTime(new Date('2022-05-28T19:00:00Z'))
+    // 8:14pm PT on May 27 (already May 28 in UTC), then 9am PT on May 28. Read in
+    // UTC these would be one day, not a two-day streak.
+    const sessions: CardioSession[] = [
+      { date: '2022-05-28T03:14:05Z', activity: 'running', duration_seconds: 1800 },
+      { date: '2022-05-28T16:00:00Z', activity: 'running', duration_seconds: 1800 },
+    ]
+    expect(computeStreaks(sessions)).toEqual({ current: 2, longest: 2 })
+  })
 })
