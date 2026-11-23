@@ -1,5 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { targetForDay } from '@/lib/training-facility/goal-targets'
+
 import { getWeightRoomData } from './weight-room'
 
 /**
@@ -716,5 +718,42 @@ describe('getWeightRoomData — scheduled goal changes (#371)', () => {
     // Pre-#362 goals degrade to the old semantics rather than breaking.
     expect(data?.goals[0].daily_target).toBe(100)
     expect(data?.goals[0]).not.toHaveProperty('target_history')
+  })
+
+  it('anchors the column as a baseline when every entry is still in the future', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-08-15T12:00:00-07:00'))
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRowWith('pullups', 30)])
+    stubTable('weight_room_goal_targets', [targetRow('pullups', 50, '2026-09-01')])
+
+    const data = await getWeightRoomData()
+    const goal = data!.goals[0]
+
+    expect(goal.daily_target).toBe(30)
+    expect(goal.target_history).toEqual([
+      { daily_target: 30, effective_from: '1970-01-01' },
+      { daily_target: 50, effective_from: '2026-09-01' },
+    ])
+    // History and the Today board now agree about the past and today: the
+    // scheduled 50 no longer leaks backwards through the before-first fallback.
+    expect(targetForDay(goal, '2026-08-01')).toBe(30)
+    expect(targetForDay(goal, '2026-08-15')).toBe(30)
+    expect(targetForDay(goal, '2026-09-01')).toBe(50)
+  })
+
+  it('leaves a history with an entry in effect untouched', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-09-02T12:00:00-07:00'))
+    stubTable('weight_room_sets', [])
+    stubTable('weight_room_goals', [goalRowWith('pullups', 30)])
+    stubTable('weight_room_goal_targets', [targetRow('pullups', 50, '2026-09-01')])
+
+    const data = await getWeightRoomData()
+
+    expect(data?.goals[0].daily_target).toBe(50)
+    expect(data?.goals[0].target_history).toEqual([
+      { daily_target: 50, effective_from: '2026-09-01' },
+    ])
   })
 })

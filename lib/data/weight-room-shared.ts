@@ -547,7 +547,11 @@ export async function assembleWeightRoomData(
 
   const goals = goalsParsed.data.map(row => {
     const goal = goalRowToExerciseGoal(row)
-    const history = historyByExercise.get(goal.exercise)
+    const history = withFutureOnlyBaseline(
+      historyByExercise.get(goal.exercise),
+      goal.daily_target,
+      todayKey
+    )
     // Omit rather than attach `[]` so "no recorded history" is a single
     // shape everywhere — `targetForDay` treats absent and empty the same,
     // but keeping one of them off the wire makes fixtures and snapshots
@@ -615,6 +619,43 @@ function groupTargetHistory(
     )
   }
   return byExercise
+}
+
+/**
+ * Floor date for a baseline entry the reader synthesizes, matching the one the
+ * goals write path persists.
+ */
+const BASELINE_EFFECTIVE_FROM = '1970-01-01'
+
+/**
+ * Give a goal whose every target entry is still in the future an explicit
+ * baseline: the column's current value, dated from the floor.
+ *
+ * Without it the history alone disagrees with `currentTarget` about every day
+ * before the first scheduled entry. `currentTarget` keeps the column for today,
+ * but `targetForDay` falls back to the *earliest* entry for a day before it, so
+ * the History heatmap and streaks would score today and the whole past against
+ * a target that hasn't taken effect. Anchoring the column's value in the
+ * history makes both resolvers agree.
+ *
+ * The goals write path persists the same baseline when it schedules a change on
+ * such a goal, so the value survives the scheduled day. This covers rows
+ * written before it did.
+ *
+ * @param history The exercise's recorded entries, oldest first, or `undefined`.
+ * @param columnTarget `weight_room_goals.daily_target` as stored.
+ * @param todayKey Today's Pacific day key.
+ * @returns `history` unchanged unless it is non-empty and entirely after
+ *   `todayKey`, in which case a copy with the baseline prepended.
+ */
+export function withFutureOnlyBaseline(
+  history: GoalTargetPoint[] | undefined,
+  columnTarget: number,
+  todayKey: string
+): GoalTargetPoint[] | undefined {
+  if (history === undefined || history.length === 0 || todayKey === '') return history
+  if (history.some(point => point.effective_from <= todayKey)) return history
+  return [{ daily_target: columnTarget, effective_from: BASELINE_EFFECTIVE_FROM }, ...history]
 }
 
 /**

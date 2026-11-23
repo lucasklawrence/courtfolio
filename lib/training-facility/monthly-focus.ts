@@ -424,55 +424,6 @@ export function buildFocusLaneCells(
 }
 
 /**
- * Derive an effective-dated target history for a focus-anchored exercise from
- * its rotation windows (#367).
- *
- * A focus carries its own {@link MonthlyFocus.daily_target} scoped to
- * `[start_date, end_date]`, which is why focuses accidentally dodged the
- * re-scoring bug that #362 fixed for permanent goals. But the anchor
- * {@link import('@/types/weight-room').ExerciseGoal} still holds a single
- * scalar, so scoring a focus exercise through the normal rollups would use
- * that scalar for every day — wrong the moment two rotations of the same
- * exercise use different targets (July shrugs at 100, October at 150).
- *
- * Emitting one point per window start lets the focus exercise flow through
- * {@link import('./goal-targets').targetForDay} like any other goal, so there
- * is one resolution path rather than a parallel focus-only one.
- *
- * Days *between* windows resolve to the preceding window's target — an
- * off-campaign set still has a bar to clear, and the most recent campaign's is
- * the honest one. Days before the first window fall back to the earliest
- * target via `targetForDay`'s own before-first guard.
- *
- * **`target_kind: 'sets'` windows are excluded.** Their target counts distinct
- * sets, not reps, and every consumer of this history compares it against a
- * daily *rep* total — a 3-sets/day target would be satisfied by a single
- * 20-rep set. Omitting them means such a focus falls back to its anchor goal's
- * scalar (the pre-#367 reading) rather than being scored against the wrong
- * unit. `'sets'` is modeled but unused today; wiring it up needs a set-count
- * rollup, not a target here.
- *
- * @param focuses All configured focuses, usually `WeightRoomData.monthly_focus`.
- * @param exercise Exercise name to filter to.
- */
-export function focusTargetHistory(
-  focuses: readonly MonthlyFocus[],
-  exercise: string
-): { daily_target: number; effective_from: string }[] {
-  return focuses
-    .filter(
-      focus => focus.exercise === exercise && focus.daily_target > 0 && focus.target_kind !== 'sets'
-    )
-    .map(focus => ({
-      daily_target: focus.daily_target,
-      effective_from: focus.start_date,
-    }))
-    .sort((a, b) =>
-      a.effective_from < b.effective_from ? -1 : a.effective_from > b.effective_from ? 1 : 0
-    )
-}
-
-/**
  * Campaign-scoped rollup for one focus-anchored exercise, aggregated across
  * *every* rotation it has run (#367).
  *

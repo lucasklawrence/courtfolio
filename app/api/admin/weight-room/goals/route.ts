@@ -31,13 +31,15 @@ import type { GoalTargetPoint } from '@/types/weight-room'
 /**
  * Synthetic floor date for a retroactive baseline row.
  *
- * Only reachable when an existing goal has no target history at all — the
- * migration backfilled every goal, and every create through this route seeds
- * one, so in practice this is dead defensive code. If it ever does fire,
- * dating the *old* target from the epoch means no logged day is left
- * uncovered, which is what stops the new target from silently re-scoring the
- * past. It is never rendered: `goalTargetChanges` treats the oldest entry as
- * the baseline rather than a change.
+ * Written when an existing goal has no target entry in effect today: either no
+ * history at all (the migration backfilled every goal, so that's defensive), or
+ * only entries scheduled for a later date, as with a goal created with a future
+ * `effective_from` and then edited before that day. Dating the *current* target
+ * from the epoch means no logged day is left uncovered, which is what stops a
+ * later target from silently re-scoring the past. It is never rendered:
+ * `goalTargetChanges` treats the oldest entry as the baseline rather than a
+ * change. The reader synthesizes the same baseline for rows written before this
+ * one was (`withFutureOnlyBaseline`).
  */
 const BASELINE_EFFECTIVE_FROM = '1970-01-01'
 
@@ -227,19 +229,22 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
     updated_at: string
   }[] = []
 
-  // Retroactive baseline: a goal with no history at all needs its *old* target
-  // anchored before everything, or the resolver's before-first fallback scores
-  // the entire past against the new value — the exact re-scoring this feature
-  // exists to prevent. Writing it unconditionally (not only when the target
-  // moves) also repairs a goal left history-less by an earlier failed write,
-  // which a change-gated version could never revisit.
-  if (history.length === 0 && existing !== null) {
-    historyRows.push({
-      exercise: goalFields.exercise,
-      daily_target: existing.daily_target,
-      effective_from: BASELINE_EFFECTIVE_FROM,
-      updated_at: nowIso,
-    })
+  // Retroactive baseline: an existing goal with no entry in effect today needs
+  // its *current* target anchored before everything, or the resolver's
+  // before-first fallback scores the entire past against the earliest recorded
+  // value — the exact re-scoring this feature exists to prevent. That covers a
+  // goal with no history at all, and one whose only entries are scheduled for
+  // later: the mirror is the value in effect today (`currentTarget` keeps it
+  // when nothing has taken effect), and once the scheduled day passes nothing
+  // else remembers it. Writing it unconditionally (not only when the target
+  // moves) also repairs a goal left in either state by an earlier write.
+  const needsBaseline = existing !== null && !history.some(p => p.effective_from <= today)
+  const baseline =
+    needsBaseline && existing !== null
+      ? { daily_target: existing.daily_target, effective_from: BASELINE_EFFECTIVE_FROM }
+      : null
+  if (baseline !== null) {
+    historyRows.push({ exercise: goalFields.exercise, ...baseline, updated_at: nowIso })
   }
 
   // Append when the requested target differs from whatever was *already in
@@ -247,8 +252,10 @@ async function handlePOST(request: NextRequest): Promise<NextResponse> {
   // against the mirror silently dropped a backdate whose value matched it
   // ("the 50 actually started Aug 1" while the mirror already read 50), which
   // is precisely the backdating case this endpoint exists to support.
-  const targetOnEffectiveFrom =
-    history.length === 0 ? existing?.daily_target : resolveRecordedTarget(history, effectiveFrom)
+  const targetOnEffectiveFrom = resolveRecordedTarget(
+    baseline === null ? history : [baseline, ...history],
+    effectiveFrom
+  )
 
   if (targetOnEffectiveFrom !== goalFields.daily_target) {
     historyRows.push({

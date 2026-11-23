@@ -684,6 +684,82 @@ describe('computeStrengthStats — focus dailyTarget label (#367 review)', () =>
   it('leaves a permanent goal labelled with its own current target', () => {
     const [stats] = computeStrengthStats([], [PUSHUPS], new Date('2026-07-20T12:00:00'), [])
     expect(stats.dailyTarget).toBe(100)
+    expect(stats.dailyTargetUnit).toBe('reps')
+  })
+})
+
+/** History scores focus days by the same rule as the Today board. */
+describe('computeStrengthStats — scored like the Today board', () => {
+  const SHRUGS_ANCHOR: ExerciseGoal = {
+    exercise: 'shrugs',
+    daily_target: 500,
+    color: '#C9A268',
+    kind: 'focus',
+  }
+
+  const JULY_SHRUGS: MonthlyFocus = {
+    id: 'f1',
+    exercise: 'shrugs',
+    daily_target: 100,
+    target_kind: 'reps',
+    color: '#C9A268',
+    category: 'upper',
+    start_date: '2026-07-01',
+    end_date: '2026-07-31',
+  }
+
+  /** Noon Pacific on a day, at an explicit instant. */
+  function noonSet(dayKey: string, reps: number, id = dayKey): StrengthSet {
+    return { id: `shrugs-${id}`, logged_at: `${dayKey}T19:00:00Z`, exercise: 'shrugs', reps }
+  }
+
+  it('restores the outer rotation after a nested window ends', () => {
+    const nested: MonthlyFocus = {
+      ...JULY_SHRUGS,
+      id: 'f2',
+      daily_target: 150,
+      start_date: '2026-07-10',
+      end_date: '2026-07-12',
+    }
+    // 100 a day clears July's bar but not the nested 150. A target history
+    // stepped by window start kept 150 after the nested window closed, so
+    // the 13th and 14th read as misses.
+    const sets = ['2026-07-13', '2026-07-14'].map(day => noonSet(day, 100))
+    const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-07-14T19:00:00Z'), [
+      JULY_SHRUGS,
+      nested,
+    ])
+    expect(stats.currentStreak).toBe(2)
+    expect(stats.dailyTarget).toBe(100)
+  })
+
+  it('does not count off-campaign days toward a focus streak', () => {
+    const sets = ['2026-07-31', '2026-08-01', '2026-08-02'].map(day => noonSet(day, 100))
+    const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-08-02T19:00:00Z'), [
+      JULY_SHRUGS,
+    ])
+    expect(stats.longestStreak).toBe(1)
+    // The ended campaign's card still names the bar it was chasing.
+    expect(stats.dailyTarget).toBe(100)
+  })
+
+  it('scores a sets-based rotation by distinct sets and labels it in sets', () => {
+    const setsFocus: MonthlyFocus = { ...JULY_SHRUGS, target_kind: 'sets', daily_target: 3 }
+    const sets = [
+      // One 100-rep set: one set, a miss.
+      noonSet('2026-07-14', 100),
+      // Three 5-rep sets: a hit.
+      noonSet('2026-07-15', 5, 'a'),
+      noonSet('2026-07-15', 5, 'b'),
+      noonSet('2026-07-15', 5, 'c'),
+    ]
+    const [stats] = computeStrengthStats(sets, [SHRUGS_ANCHOR], new Date('2026-07-15T19:00:00Z'), [
+      setsFocus,
+    ])
+    expect(stats.currentStreak).toBe(1)
+    expect(stats.longestStreak).toBe(1)
+    expect(stats.dailyTarget).toBe(3)
+    expect(stats.dailyTargetUnit).toBe('sets')
   })
 })
 

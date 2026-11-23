@@ -60,7 +60,11 @@ export function TodayProgressPanel({
                 </span>
                 <span className="shrink-0 text-right font-mono tabular-nums text-white">
                   {row.total}
-                  <span className="text-white/60"> / {row.goal.daily_target}</span>
+                  <span className="text-white/60">
+                    {' '}
+                    / {row.goal.daily_target}
+                    {row.unit === 'sets' ? ' sets' : null}
+                  </span>
                   {row.streak > 0 ? (
                     <span className="block text-sm text-amber-200">
                       <span aria-hidden="true">🔥</span>
