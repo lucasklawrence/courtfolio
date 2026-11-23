@@ -3,6 +3,7 @@ import 'server-only'
 import { createServerSupabaseClient } from '@/lib/supabase/server'
 
 import { isAdminEmail } from './admin-allowlist'
+import { E2E_ADMIN_EMAIL, isE2eAdminStubActive } from './e2e-admin-stub'
 
 /**
  * Shared server-side admin-session read (#345).
@@ -39,9 +40,16 @@ export interface AdminSessionState {
  * An auth lookup error is normalized to signed-out rather than thrown: a
  * missing or expired cookie is an ordinary state, not a failure.
  *
+ * Checked first: the e2e admin stub (#481), which can only be active on a
+ * non-production server pointed at a loopback Supabase fake. See
+ * {@link import('./e2e-admin-stub').isE2eAdminStubActive}.
+ *
  * @throws when Supabase env vars are missing (misconfigured deploy).
  */
 export async function resolveAdminSession(): Promise<AdminSessionState> {
+  if (await isE2eAdminStubActive()) {
+    return { signedIn: true, email: E2E_ADMIN_EMAIL, isAdmin: true }
+  }
   const supabase = await createServerSupabaseClient()
   const { data, error } = await supabase.auth.getUser()
   if (error || !data?.user) {
