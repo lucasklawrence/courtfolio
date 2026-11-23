@@ -6,6 +6,7 @@ import { BackToCourtButton } from '@/components/common/BackToCourtButton'
 import { FacilityBackLink } from '@/components/training-facility/FacilityBackLink'
 import { AchievementSettings } from '@/components/training-facility/weight-room/AchievementSettings'
 import { ExerciseCatalogSettings } from '@/components/training-facility/weight-room/ExerciseCatalogSettings'
+import { MonthlyFocusSettings } from '@/components/training-facility/weight-room/MonthlyFocusSettings'
 import { StrengthSettings } from '@/components/training-facility/weight-room/StrengthSettings'
 import { WeightRoomSubNav } from '@/components/training-facility/weight-room/WeightRoomSubNav'
 import { requireAdminPage } from '@/lib/auth/require-admin-page'
@@ -49,6 +50,7 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
     getWorkoutTemplatesServer().catch(() => []),
   ])
   const goals = data?.goals ?? []
+  const focuses = data?.monthly_focus ?? []
   // Pickers offer live movements only; an archived one stays rendered wherever
   // it's already referenced, it just isn't selectable for something new.
   const activeExercises = exercises.filter(exercise => exercise.archived !== true)
@@ -82,6 +84,20 @@ export default async function WeightRoomSettingsPage(): Promise<JSX.Element> {
 
         <section className="mt-10">
           <StrengthSettings initialGoals={goals} />
+        </section>
+
+        <section className="mt-14 border-t border-white/10 pt-10">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.32em] text-amber-300/80">
+            Monthly focus
+          </h2>
+          <p className="mt-2 max-w-xl text-sm leading-7 text-[#e8d5be]">
+            The &ldquo;grease the groove&rdquo; rotation: one movement per lane for a stretch of
+            days, with its own ring on the Today board while it runs. Queue the next one here; it
+            appears in the Up Next strip until its start date.
+          </p>
+          <div className="mt-6">
+            <MonthlyFocusSettings initialFocuses={focuses} exercises={activeExercises} />
+          </div>
         </section>
 
         <section className="mt-14 border-t border-white/10 pt-10">
