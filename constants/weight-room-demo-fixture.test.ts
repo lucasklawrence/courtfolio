@@ -184,6 +184,17 @@ describe.each(['UTC', 'America/Los_Angeles', 'Asia/Tokyo'])(
       expect(yesterday.get('pullups')).toBe(30)
     })
 
+    it('never stamps a set in the future, even early in the Pacific day', () => {
+      const morning = new Date('2026-08-01T08:00:00-07:00')
+      const demo = buildWeightRoomDemoData(morning)
+      for (const set of demo.sets) {
+        expect(new Date(set.logged_at).getTime()).toBeLessThanOrEqual(morning.getTime())
+      }
+      const today = totalsByExercise(filterSetsForDay(demo.sets, PACIFIC_CLOCK.today(morning)))
+      expect(today.get('pushups')).toBe(75)
+      expect(today.get('pullups')).toBe(20)
+    })
+
     it('starts each demo workout at 6pm Pacific', () => {
       for (const workout of buildWorkoutDemoData(LATE_EVENING).workouts) {
         expect(PACIFIC_CLOCK.wallClock(new Date(workout.started_at)).getHours()).toBe(18)

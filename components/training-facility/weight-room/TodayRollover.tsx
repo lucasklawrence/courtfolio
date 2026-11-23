@@ -8,6 +8,13 @@ import { PACIFIC_CLOCK } from '@/lib/training-facility/clock'
 /** How often an open, visible tab checks whether the Pacific day has turned. */
 export const ROLLOVER_CHECK_MS = 60_000
 
+/**
+ * How long to wait before asking again when a refresh came back still showing
+ * the old day, which happens when the browser's clock runs ahead of the
+ * server's across midnight.
+ */
+export const ROLLOVER_RETRY_MS = 5 * 60_000
+
 /** Props for {@link TodayRollover}. */
 export interface TodayRolloverProps {
   /**
@@ -28,21 +35,28 @@ export interface TodayRolloverProps {
  * at midnight, because a sleeping laptop or a throttled background tab skips
  * timers, and reading the clock on wake is what actually catches up.
  *
- * Asks once per stale day: the refresh replaces `renderedDayKey`, and until it
- * lands a second check for the same day does nothing.
+ * A successful refresh replaces `renderedDayKey`, which ends the checks for that
+ * day. Until it does, further checks wait {@link ROLLOVER_RETRY_MS} before
+ * asking again, so a slow refresh isn't stacked on, and a browser clock running
+ * ahead of the server's (whose refresh comes back with the old day) still gets
+ * the new day a few minutes later instead of never.
  *
  * Renders nothing.
  */
 export function TodayRollover({ renderedDayKey }: TodayRolloverProps): null {
   const router = useRouter()
-  const requestedFor = useRef<string | null>(null)
+  const lastRequestAt = useRef<number | null>(null)
 
   useEffect(() => {
+    // A new render is a fresh start: whatever was asked for before it landed.
+    lastRequestAt.current = null
+
     function check(): void {
       if (document.visibilityState !== 'visible') return
-      const today = PACIFIC_CLOCK.today()
-      if (today === renderedDayKey || requestedFor.current === today) return
-      requestedFor.current = today
+      if (PACIFIC_CLOCK.today() === renderedDayKey) return
+      const now = Date.now()
+      if (lastRequestAt.current !== null && now - lastRequestAt.current < ROLLOVER_RETRY_MS) return
+      lastRequestAt.current = now
       router.refresh()
     }
 

@@ -76,8 +76,9 @@ const DAY_MS = 86_400_000
 
 /**
  * Convert a `Date` to a `YYYY-MM-DD` key using local-time components.
- * Private — callers outside this file use `toDayKey` from
- * `strength-today`. Kept here so the component has no runtime import from
+ * Private, and not interchangeable with `toDayKey` from `strength-today`,
+ * which buckets an instant by Pacific day: this only reads back the fields
+ * of grid dates the component built itself. Kept here so the component has no runtime import from
  * the lib layer (the cells already carry `dayKey`).
  */
 function toDateKey(d: Date): string {

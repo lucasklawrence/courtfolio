@@ -23,12 +23,7 @@ import {
   summarizeFocusCampaigns,
 } from './monthly-focus'
 import { computeStrengthStreaks as computeGoalStreaks } from './strength-streaks'
-import {
-  filterSetsForDay,
-  formatDayLabel,
-  localNoonIsoForDay,
-  toDayKey,
-} from './strength-today'
+import { filterSetsForDay, formatDayLabel, localNoonIsoForDay, toDayKey } from './strength-today'
 import { firstLoggedDate, heatmapWindow } from './heatmap-span'
 import {
   buildStrengthHeatmap,

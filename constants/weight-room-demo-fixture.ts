@@ -142,9 +142,12 @@ export function buildWeightRoomDemoData(now: Date = new Date()): WeightRoomData 
     let hour = 7
     for (const row of rows) {
       for (const reps of row.reps) {
+        const planned = pacificIsoDaysAgo(now, dayIndex, hour, (counter * 7) % 60)
         sets.push({
           id: `demo-${dayIndex}-${counter++}`,
-          logged_at: pacificIsoDaysAgo(now, dayIndex, hour, (counter * 7) % 60),
+          // Today's plan can run past `now` early in the day; a set is never
+          // stamped in the future, it just lands at `now`, still today.
+          logged_at: planned > now.toISOString() ? now.toISOString() : planned,
           exercise: row.exercise,
           reps,
         })

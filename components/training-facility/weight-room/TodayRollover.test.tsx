@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, render } from '@testing-library/react'
 
-import { ROLLOVER_CHECK_MS, TodayRollover } from './TodayRollover'
+import { ROLLOVER_CHECK_MS, ROLLOVER_RETRY_MS, TodayRollover } from './TodayRollover'
 
 const refreshMock = vi.fn()
 
@@ -51,7 +51,35 @@ describe('TodayRollover', () => {
     // Further checks on the same stale day don't pile up refreshes while the
     // first one is still on its way.
     act(() => {
-      vi.advanceTimersByTime(ROLLOVER_CHECK_MS * 5)
+      vi.advanceTimersByTime(ROLLOVER_RETRY_MS - ROLLOVER_CHECK_MS)
+    })
+    expect(refreshMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('asks again later when the refresh came back with the old day', () => {
+    // A browser clock running ahead of the server's: the server re-renders
+    // 1 Aug, so `renderedDayKey` never changes. Giving up after one try would
+    // leave yesterday's board up all day.
+    render(<TodayRollover renderedDayKey="2026-08-01" />)
+    act(() => {
+      vi.advanceTimersByTime(ROLLOVER_CHECK_MS)
+    })
+    expect(refreshMock).toHaveBeenCalledTimes(1)
+
+    act(() => {
+      vi.advanceTimersByTime(ROLLOVER_RETRY_MS)
+    })
+    expect(refreshMock).toHaveBeenCalledTimes(2)
+  })
+
+  it('stops once the server renders the new day', () => {
+    const { rerender } = render(<TodayRollover renderedDayKey="2026-08-01" />)
+    act(() => {
+      vi.advanceTimersByTime(ROLLOVER_CHECK_MS)
+    })
+    rerender(<TodayRollover renderedDayKey="2026-08-02" />)
+    act(() => {
+      vi.advanceTimersByTime(ROLLOVER_RETRY_MS * 3)
     })
     expect(refreshMock).toHaveBeenCalledTimes(1)
   })

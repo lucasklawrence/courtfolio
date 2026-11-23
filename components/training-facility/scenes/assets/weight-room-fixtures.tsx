@@ -103,7 +103,7 @@ export function WallActivityRings({ board = [] }: WallActivityRingsProps = {}): 
   const tallyFontSize = Math.max(10, Math.min(16, Math.round(tallySpacing * 0.72)))
 
   return (
-    <g aria-hidden="true">
+    <g aria-hidden="true" data-testid="wall-board">
       {/* Board frame */}
       <RoughRect
         x={FRAME_X}

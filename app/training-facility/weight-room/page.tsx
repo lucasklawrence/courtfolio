@@ -82,10 +82,7 @@ export default async function TrainingFacilityWeightRoomPage({
 
   // `isAdmin` is resolved here rather than by the sub-nav so this page ships
   // no browser Supabase client — see WeightRoomSubNavProps.isAdmin (#345).
-  const [read, isAdmin] = await Promise.all([
-    readTodayData(),
-    isAdminRequest().catch(() => false),
-  ])
+  const [read, isAdmin] = await Promise.all([readTodayData(), isAdminRequest().catch(() => false)])
   const realData = read.data
   const params = await searchParams
   const previewRequested = isPreviewDemoActive(params.preview)
@@ -113,19 +110,24 @@ export default async function TrainingFacilityWeightRoomPage({
       {/* Chrome. Below `lg` it flows above the scene as ordinary content. From
           `lg` it floats over the full-bleed scene: `pointer-events: none` on the
           wrapper so empty space passes clicks through, with individual chrome
-          elements re-enabling pointer events on themselves. */}
+          elements re-enabling pointer events on themselves.
+
+          The sub-nav and the notices sit on the right. The wall board hangs left
+          of centre (x 340–660 of the 1600-wide scene), so centred chrome landed
+          on the board and its "today" heading at common desktop sizes, while the
+          right side of the wall stays clear from 1024 to 1920 wide. */}
       <div className="lg:pointer-events-none lg:absolute lg:inset-0 lg:z-10">
         <div className="flex flex-wrap items-center justify-between gap-3 p-4 lg:pointer-events-auto lg:absolute lg:inset-x-0 lg:top-0 lg:p-8">
           <BackToCourtButton />
           <FacilityBackLink />
         </div>
 
-        <div className="px-4 lg:pointer-events-auto lg:absolute lg:inset-x-0 lg:top-24 lg:flex lg:justify-center lg:px-0">
+        <div className="px-4 lg:pointer-events-auto lg:absolute lg:right-8 lg:top-24 lg:px-0">
           <WeightRoomSubNav active="today" isAdmin={isAdmin} />
         </div>
 
         {isPreviewMode ? (
-          <div className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:inset-x-4 lg:top-40 lg:mx-auto lg:mt-0">
+          <div className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:right-8 lg:top-40 lg:mx-0 lg:mt-0 lg:w-96">
             <PreviewModeBadge description="These rings are illustrative — not Lucas’s real strength logs." />
           </div>
         ) : null}
@@ -134,18 +136,18 @@ export default async function TrainingFacilityWeightRoomPage({
           <div
             role="status"
             data-testid="today-load-error"
-            className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:inset-x-4 lg:top-40 lg:mx-auto lg:mt-0"
+            className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:right-8 lg:top-40 lg:mx-0 lg:mt-0 lg:w-96"
           >
             <PreviewWithSampleDataButton
               href="/training-facility/weight-room?preview=demo"
               headline="Couldn’t load the strength log"
-              description="Today's board didn't load just now. Reload to try again, or load a sample set to see how the wall looks with progress."
+              description="The log couldn't be read just now, so today's board is left out rather than shown empty. Load a sample set to see how the wall looks with progress."
             />
           </div>
         ) : null}
 
         {showEmptyStateCta ? (
-          <div className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:inset-x-4 lg:top-40 lg:mx-auto lg:mt-0">
+          <div className="mx-4 mt-4 max-w-sm lg:pointer-events-auto lg:absolute lg:right-8 lg:top-40 lg:mx-0 lg:mt-0 lg:w-96">
             <PreviewWithSampleDataButton
               href="/training-facility/weight-room?preview=demo"
               headline="No strength work logged yet"
